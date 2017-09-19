@@ -1,0 +1,34 @@
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+{% call formSection() %}
+
+<p>We’ll use these to send you information about your appeal.</p>
+
+{{ textbox(fields.get('firstName'),    fields.get('firstName').content.title,    hint="") }}
+{{ textbox(fields.get('lastName'),     fields.get('lastName').content.title,     hint="") }}
+{{ textbox(fields.get('niNumber'),     fields.get('niNumber').content.title,     hint="") }}
+{{ textbox(fields.get('addressLine1'), fields.get('addressLine1').content.title, hint="") }}
+{{ textbox(fields.get('addressLine2'), fields.get('addressLine2').content.title, hint="") }}
+{{ textbox(fields.get('townCity'),     fields.get('townCity').content.title,     hint="") }}
+{{ textbox(fields.get('postCode'),     fields.get('postCode').content.title,     hint="") }}
+{{ textbox(fields.get('phoneNumber'),  fields.get('phoneNumber').content.title,  hint=fields.get('phoneNumber').content.hint) }}
+{{ textbox(fields.get('emailAddress'), fields.get('emailAddress').content.title, hint=fields.get('emailAddress').content.hint) }}
+
+{% endcall %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "en": {
+    "translation": {
+      "title": "Which benefit is the appeal about?",
+      "fields": {
+        "benefitType": {
+          "title": "Last name(s)",
+          "error": {
+            "msg": "Please enter a benefits type (e.g. ESA)"
+          }
+        }
+      }
+    }
+  }
+}

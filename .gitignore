@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+public
+node_modules
+.nyc_output
+dump.rdb

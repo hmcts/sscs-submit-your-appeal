@@ -1,0 +1,65 @@
+{
+  "en": {
+    "translation": {
+      "title": "Enter your details",
+      "fields": {
+        "firstName": {
+          "title": "First name(s)",
+          "error": {
+            "msg": "Please enter your first name"
+          }
+        },
+        "lastName": {
+          "title": "Last name(s)",
+          "error": {
+            "msg": "Please enter your last name"
+          }
+        },
+        "niNumber": {
+          "title": "National Insurance number",
+          "error": {
+            "msg": "Please enter a valid NI number"
+          }
+        },
+        "addressLine1": {
+          "title": "Address line 1",
+          "error": {
+            "msg": "Please enter Address line 1"
+          }
+        },
+        "addressLine2": {
+          "title": "Address line 2",
+          "error": {
+            "msg": "Please enter Address line 2"
+          }
+        },
+        "townCity": {
+          "title": "Town/City",
+          "error": {
+            "msg": "Please enter a Town/City"
+          }
+        },
+        "postCode": {
+          "title": "Postcode",
+          "error": {
+            "msg": "Please enter a valid postcode"
+          }
+        },
+        "phoneNumber": {
+          "title": "Phone number (optional)",
+          "hint": "We may use this to contact you about your appeal",
+          "error": {
+            "msg": "Please enter a valid phone number"
+          }
+        },
+        "emailAddress": {
+          "title": "Email address (optional)",
+          "hint": "We’ll use this to email you updates about your appeal",
+          "error": {
+            "msg": "Please enter a valid email address"
+          }
+        }
+      }
+    }
+  }
+}

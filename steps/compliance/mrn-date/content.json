@@ -1,0 +1,27 @@
+{
+  "en": {
+    "translation": {
+      "title": "MRN Date",
+      "fields": {
+        "day": {
+          "title": "Day",
+          "error": {
+            "msg": "Please enter a day"
+          }
+        },
+        "month": {
+          "title": "Month",
+          "error": {
+            "msg": "Please enter a month"
+          }
+        },
+        "year": {
+          "title": "Year",
+          "error": {
+            "msg": "Please enter a year"
+          }
+        }
+      }
+    }
+  }
+}
