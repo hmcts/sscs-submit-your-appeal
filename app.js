@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
+const steps = require('steps');
 
 const app = express();
 
@@ -27,48 +28,9 @@ lookAndFeel.configure(app, {
     ] }
 });
 
-// Creates a session then redirects to /benefits-type
-const Entry = require('steps/entry/Entry');
-
-// Exits a session
-const Exit = require('steps/exit/Exit');
-
-// View session data (e.g. /sessions)
-const Sessions = require('steps/session/Sessions');
-
-// Start
-const BenefitsType = require('steps/start/BenefitsType');
-
-// Compliance
-const MRNDate = require('steps/compliance/mrn-date/MRNDate');
-
-// Identity
-const Appointee = require('steps/identity/appointee/Appointee');
-const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
-const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
-
-// Appellant SMS notifications
-const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
-const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
-
-// Representative
-const Representative = require('steps/representative/representative/Representative');
-
 journey(app, {
     baseUrl,
-    steps: [
-        new Entry(),
-        new Exit(),
-        new Sessions(),
-        new BenefitsType(),
-        new MRNDate(),
-        new Appointee(),
-        new AppointeeDetails(),
-        new AppellantDetails(),
-        new TextReminders(),
-        new SendToNumber(),
-        new Representative()
-    ],
+    steps,
     session: {
         redis: { url: config.redisUrl },
         cookie: { secure: false }
