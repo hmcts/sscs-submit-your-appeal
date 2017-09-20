@@ -6,7 +6,7 @@ ENV NODE_ENV development
 RUN mkdir -p /usr/src/sya
 WORKDIR /usr/src/sya
 
-COPY package.json yarn.lock .npmrc app.js /usr/src/sya/
+COPY package.json yarn.lock app.js /usr/src/sya/
 RUN  yarn install && yarn cache clean
 
 COPY assets /usr/src/sya/assets
