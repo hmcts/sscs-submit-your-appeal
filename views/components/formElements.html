@@ -1,0 +1,58 @@
+{% macro date(dayField, dayName = 'day', monthField, monthName = 'month',yearField, yearName = 'year',dateField,label = '',hint = '', legend = '',hiddenLegend  = '', id, additionalErrors = [], index = 1) %}
+
+{% set hasError = dateField.error or dayField.error or monthField.error or yearField.error %}
+
+{% for i in range(0, additionalErrors.length) -%}
+{% set hasError = hasError or additionalErrors[i].error %}
+{%- endfor %}
+
+<fieldset class="form-group form-date {{ 'error' if hasError }}" id="{{ id }}">
+    {% if legend %}
+    <legend class="form-label-bold">{{ legend | safe }}</legend>
+    {% endif %}
+
+    {% if hiddenLegend %}
+    <legend class="visually-hidden">{{ hiddenLegend | safe }}</legend>
+    {% endif %}
+
+    {% if label %}
+    <span class="form-label">{{ label | safe }}</span>
+    {% endif %}
+
+    {% if hint %}
+    <span class="form-hint">{{ hint | safe }}</span>
+    {% endif %}
+
+    {{ errorsFor(dateField) }}
+    {{ errorsFor(dayField) }}
+    {{ errorsFor(monthField) }}
+    {{ errorsFor(yearField) }}
+
+    {% for i in range(0, additionalErrors.length) -%}
+    {{ errorsFor(additionalErrors[i]) }}
+    {%- endfor %}
+
+    <div class="form-group form-group-day">
+        <label for="{{ dayField.id }}">Day</label>
+        <input class="form-control {{ 'form-control-error' if dayField.error }}" id="{{ dayField.id }}" type="number" pattern="[0-9]*" min="1" max="31"
+               name="{{ dayField.id }}" value="{{ dayField.value }}">
+    </div>
+    <div class="form-group form-group-month">
+        <label for="{{ monthField.id }}">Month</label>
+        <input class="form-control {{ 'form-control-error' if monthField.error }}" id="{{ monthField.id }}" type="number" pattern="[0-9]*" min="1" max="12"
+               name="{{ monthField.id }}" value="{{ monthField.value }}">
+    </div>
+    <div class="form-group form-group-year">
+        <label for="{{ yearField.id }}">Year</label>
+        <input class="form-control {{ 'form-control-error' if yearField.error }}" id="{{ yearField.id }}" type="number" pattern="[0-9]*" min="1"
+               name="{{ yearField.id }}" value="{{ yearField.value }}">
+    </div>
+
+</fieldset>
+{% endmacro %}
+
+{% macro errorsFor(field) -%}
+{% if field.error %}
+<span class="error-message">{{ field.errorMessage | safe }}</span>
+{% endif %}
+{%- endmacro %}

@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+  dev:
+    container_name: sya
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/sya
+      - ../look-and-feel:/usr/src/look-and-feel
+      - ../one-per-page:/usr/src/one-per-page
+    ports:
+      - "9229:9229"
+      - "3000:3000"
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+    links:
+      - redis
+
+  redis:
+    image: redis
