@@ -1,14 +1,14 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const content = require('./content');
 
-class AppellantSMSNotify extends Question {
+class TextReminders extends Question {
 
     get url() {
-        return '/appellant-sms-notify';
+        return '/appellant-text-reminders';
     }
 
     get template() {
-        return `sms-notify/appellant/template`;
+        return `sms-notify/text-reminders/template`;
     }
 
     get i18NextContent() {
@@ -22,4 +22,4 @@ class AppellantSMSNotify extends Question {
     }
 }
 
-module.exports = AppellantSMSNotify;
+module.exports = TextReminders;
