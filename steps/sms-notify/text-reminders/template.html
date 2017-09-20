@@ -15,7 +15,7 @@
 
 {% block two_thirds %}
     {{ header(content.title, size="large") }}
-    <p>You’ll only get them when you need to do something important, like send evidence or go to your hearing.</p>
-    <p><a class="button" href="/send-to-number" role="button">Sign up</a></p>
-    <p><a class="link" href="/representative">No thanks</a></p>
+    <p>{{ content.intro }}</p>
+    <p><a class="button" href="/send-to-number" role="button">{{ content.signUp }}</a></p>
+    <p><a class="link" href="/representative">{{ content.noThanks }}</a></p>
 {% endblock %}
