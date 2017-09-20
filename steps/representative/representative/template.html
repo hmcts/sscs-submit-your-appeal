@@ -1,4 +1,5 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/header.njk" import header %}
 
 {% block head -%}
@@ -6,11 +7,6 @@
 {% endblock %}
 
 {% block two_thirds %}
-
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Go back</a>
-
-{{ header(content.title) }}
-
-{{ session | dump }}
-
+<a class="link-back" href="#" onclick="history.go(-1)">Back</a>
+<h1>REPRESENTATIVE PLACEHOLDER TEXT</h1>
 {% endblock %}

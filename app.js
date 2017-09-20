@@ -48,7 +48,11 @@ const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDeta
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
 
 // Appellant SMS notifications
-const AppellantSMSNotify = require('steps/sms-notify/appellant/AppellantSMSNotify');
+const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
+const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
+
+// Representative
+const Representative = require('steps/representative/representative/Representative');
 
 journey(app, {
     baseUrl,
@@ -61,7 +65,9 @@ journey(app, {
         new Appointee(),
         new AppointeeDetails(),
         new AppellantDetails(),
-        new AppellantSMSNotify()
+        new TextReminders(),
+        new SendToNumber(),
+        new Representative()
     ],
     session: {
         redis: { url: config.redisUrl },

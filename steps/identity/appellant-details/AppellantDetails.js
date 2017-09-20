@@ -64,7 +64,7 @@ class AppellantDetails extends Question {
     }
 
     next() {
-        return goTo(this.journey.AppellantSMSNotify);
+        return goTo(this.journey.TextReminders);
     }
 }
 
