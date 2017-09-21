@@ -31,7 +31,6 @@ class SendToNumber extends Question {
         } else {
             return goTo(this.journey.EnterMobile);
         }
-        // return goTo(undefined); // To define the next step
     }
 }
 
