@@ -4,7 +4,7 @@ const firstName = /^[a-zA-z]+([-][a-zA-Z]+)*$/;
 const lastName  = /^[a-zA-z]+([ '-][a-zA-Z]+)*$/;
 const whitelist = /^[a-zA-Z0-9 .",'?!()£:-]+$/;
 const numbers  = /^[0-9]+$/;
-const phoneNumber  = /^[0-9]{10,12}$/;
+const phoneNumber  = /^[0-9\-\+ ]{10,17}$/;
 const benefitType   = /^[a-zA-Z ()]+$/;
 
 module.exports = {

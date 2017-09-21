@@ -9,6 +9,8 @@ const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDeta
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
+const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
+const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
 
 const init = [
@@ -33,7 +35,9 @@ const identity = [
 
 const smsNotify = [
     new TextReminders(),
-    new SendToNumber()
+    new SendToNumber(),
+    new EnterMobile(),
+    new SmsConfirmation()
 ];
 
 const representative = [
