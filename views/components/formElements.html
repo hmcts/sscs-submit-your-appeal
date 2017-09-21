@@ -51,6 +51,19 @@
 </fieldset>
 {% endmacro %}
 
+{% macro textarea(field, label, hint) %}
+<div class="form-group {{ 'form-group-error' if field.error }}">
+    <label class="form-label" for="{{ field.id }}">{{ label | safe }}</label>
+
+    {% if hint %}
+    <span class="form-hint">{{ hint | safe }}</span>
+    {% endif %}
+
+    {{ errorsFor(field) }}
+    <textarea class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7">{{ field.value }}</textarea>
+</div>
+{% endmacro %}
+
 {% macro errorsFor(field) -%}
 {% if field.error %}
 <span class="error-message">{{ field.errorMessage | safe }}</span>
