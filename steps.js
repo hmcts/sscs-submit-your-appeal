@@ -3,6 +3,7 @@ const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
 const BenefitsType = require('steps/start/BenefitsType');
+const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
@@ -26,6 +27,7 @@ const startAnAppeal = [
 ];
 
 const compliance = [
+    new CheckMRN(),
     new ContactDWP(),
     new MRNDate(),
     new NoMRN()
