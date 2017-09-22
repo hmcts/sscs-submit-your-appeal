@@ -6,7 +6,8 @@
       "fields": {
         "mobileNumber": {
           "error": {
-            "msg": "meow"
+            "emptyField": "Enter a mobile number where you would like to receive text messages about your appeal.",
+            "invalidNumber": "You have entered an invalid number. Check your mobile number and enter it again."
           }
         }
       }

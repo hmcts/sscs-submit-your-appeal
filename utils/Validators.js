@@ -34,4 +34,24 @@ const email = ( content, allowEmpty = false) => {
 
 };
 
-module.exports = { regex, email};
+const multiRegex = (validationList, content) => {
+
+    let validators = [];
+
+    validationList.forEach(validation => {
+        validators.push(Joi.string().regex(validation.regex).error(new Error(content.error[validation.msg])))
+    });
+
+    return field => {
+        let error = [];
+
+        validators.forEach(validator => {
+            const joiError = Joi.validate(field.value, validator).error;
+            if (joiError) error.push(joiError);
+        });
+
+        return error.length > 0 ? error[0].message : null;
+    }
+};
+
+module.exports = { regex, email, multiRegex };
