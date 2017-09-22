@@ -11,7 +11,7 @@ class TextReminders extends Question {
     get template() {
         // if the appellant details phone number is a mobile set to true
         const number = this.locals.session.AppellantDetails_phoneNumber;
-        this.locals.isAppellantNumberMobile = number.match(regex.mobileNumber) !== null ? true : false;
+        this.locals.isAppellantNumberMobile = number.match(regex.mobileNumber);
         return `sms-notify/text-reminders/template`;
     }
 
