@@ -1,14 +1,19 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/header.njk" import header %}
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+{% if isAppellantNumberMobile %}
+    {% set signUpLink="/send-to-number" %}
+{% else %}
+    {% set signUpLink="/enter-mobile" %}
+{% endif %}
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% set phase="ALPHA" %}
-    {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
     {{ phaseBanner(phase, feedbackLink) }}
     <a class="link-back" href="#" onclick="history.go(-1)">Back</a>
 {% endblock %}
@@ -16,6 +21,6 @@
 {% block two_thirds %}
     {{ header(content.title, size="large") }}
     <p>{{ content.intro }}</p>
-    <p><a class="button" href="/send-to-number" role="button">{{ content.signUp }}</a></p>
+    <p><a class="button" href="{{ signUpLink }}" role="button">{{ content.signUp }}</a></p>
     <p><a class="link" href="/representative">{{ content.noThanks }}</a></p>
 {% endblock %}
