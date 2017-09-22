@@ -1,1 +1,15 @@
-{}
+{
+  "en": {
+    "translation": {
+      "title": "Enter your mobile phone number",
+      "description": "This is the number where the text messages will be sent.",
+      "fields": {
+        "mobileNumber": {
+          "error": {
+            "msg": "meow"
+          }
+        }
+      }
+    }
+  }
+}
