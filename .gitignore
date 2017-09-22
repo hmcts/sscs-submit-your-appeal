@@ -4,3 +4,4 @@ public
 node_modules
 .nyc_output
 dump.rdb
+test/e2e/output

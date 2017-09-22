@@ -3,7 +3,9 @@ const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
 const BenefitsType = require('steps/start/BenefitsType');
+const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
+const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
@@ -24,7 +26,9 @@ const startAnAppeal = [
 ];
 
 const compliance = [
-    new MRNDate()
+    new ContactDWP(),
+    new MRNDate(),
+    new NoMRN()
 ];
 
 const identity = [

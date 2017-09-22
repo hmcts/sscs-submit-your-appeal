@@ -1,6 +1,6 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
 {% from "components/formElements.html" import date %}
 
 {% block head -%}
@@ -30,6 +30,8 @@ This is the letter you received from DWP after you asked them to reconsider the 
     id = 'mrnDate',
     legend = 'Date of your MRN'
 )}}
+
+<p><a href="/no-mrn">{{content.doNotHaveAnMRN}}</a></p>
 
 {% endcall %}
 
