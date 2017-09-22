@@ -6,6 +6,7 @@ const whitelist = /^[a-zA-Z0-9 .",'?!()£:-]+$/;
 const numbers  = /^[0-9]+$/;
 const phoneNumber  = /^[0-9\-\+ ]{10,17}$/;
 const benefitType   = /^[a-zA-Z ()]+$/;
+const mobileNumber = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
 
 module.exports = {
     postCode,
@@ -15,5 +16,6 @@ module.exports = {
     whitelist,
     numbers,
     phoneNumber,
-    benefitType
+    benefitType,
+    mobileNumber
 };
