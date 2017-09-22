@@ -34,20 +34,9 @@ class MRNDate extends Question {
             this.fields.get('year').value);
 
         if (DateUtils.isLessThanOrEqualToAMonth(mrnDate)) {
-
-            // MRN is <= 1 month.
             return goTo(this.journey.Appointee);
-
-        } else if (DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate)) {
-
-            // MRN is > 1 month and <= 13 months.
-            return goTo(this.journey.MRNOverOneMonthLate); // This needs to be defined
-
         } else {
-
-            // MRN is > 13 months.
-            return goTo(this.journey.MRNOverThirteensMonthLate); // This needs to be defined
-
+            return goTo(this.journey.CheckMRN);
         }
     }
 }
