@@ -1,5 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
-// const content = require('./content');
+const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const { multiRegex } = require('utils/Validators');
+const { whitelist, mobileNumber } = require('utils/regex');
+const content = require('./content');
 
 class EnterMobile extends Question {
 
@@ -8,17 +10,33 @@ class EnterMobile extends Question {
     }
 
     get template() {
-        return `sms-notify/enter-mobile/template`;
+        return 'sms-notify/enter-mobile/template';
     }
 
-    // get i18NextContent() {
-    //     return content;
-    // }
+    get i18NextContent() {
+        return content;
+    }
 
-    get form() {}
+    get form() {
+
+        const fields = this.content.fields;
+        const validation = [{
+            regex: whitelist,
+            msg: 'emptyField'
+        }, {
+            regex: mobileNumber,
+            msg: 'invalidNumber'
+        }];
+
+        return form(
+            field('mobileNumber')
+                .validate(multiRegex(validation, fields.mobileNumber))
+                .content(fields.mobileNumber)
+        );
+    }
 
     next() {
-        return goTo(undefined); // To define the next step
+        return goTo(this.journey.SmsConfirmation);
     }
 }
 
