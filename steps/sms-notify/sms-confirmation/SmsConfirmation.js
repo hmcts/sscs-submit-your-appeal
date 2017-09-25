@@ -1,5 +1,5 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
-// const content = require('./content');
+const content = require('./content');
 
 class SmsConfirmation extends Question {
 
@@ -11,14 +11,14 @@ class SmsConfirmation extends Question {
         return `sms-notify/sms-confirmation/template`;
     }
 
-    // get i18NextContent() {
-    //     return content;
-    // }
+    get i18NextContent() {
+        return content;
+    }
 
     get form() {}
 
     next() {
-        return goTo(undefined); // To define the next step
+        return goTo(this.journey.Representative);
     }
 }
 
