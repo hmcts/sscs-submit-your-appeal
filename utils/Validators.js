@@ -47,7 +47,9 @@ const multiRegex = (validationList, content) => {
 
         validators.forEach(validator => {
             const joiError = Joi.validate(field.value, validator).error;
-            if (joiError) error.push(joiError);
+            if (joiError) {
+                error.push(joiError);
+            }
         });
 
         return error.length > 0 ? error[0].message : null;
