@@ -1,7 +1,6 @@
 const mrnDateContent = require('steps/compliance/mrn-date/content.json').en.translation.content;
 const noMRNContent = require('steps/compliance/no-mrn/content.json').en.translation.content;
 const contactDWPContent = require('steps/compliance/contact-dwp/content.json').en.translation.content;
-// const common = require('content/common.json').en.translation;
 
 Feature('User does not have an MRN');
 

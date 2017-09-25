@@ -1,15 +1,13 @@
-//const DateUtils = require('utils/DateUtils');
+const DateUtils = require('utils/DateUtils');
 
 Feature('User has an MRN');
 
-//Scenario('I have an MRN dated one day short of a month ago', (I) => {
-//
-//console.log('meow')
-//
-//    I.enterAnMRNDateAndContinue(DateUtils.oneDayShortOfAMonthAgo());
-//    I.seeCurrentUrlEquals('/appointee');
-//
-//});
+Scenario('I have an MRN dated one day short of a month ago', (I) => {
+
+    I.enterAnMRNDateAndContinue(DateUtils.oneDayShortOfAMonthAgo());
+    I.seeCurrentUrlEquals('/appointee');
+
+});
 
 Scenario('I have an MRN dated one month ago', (I) => {
 

@@ -1,7 +1,6 @@
-//const mrnOverMonthLate = require('steps/compliance/mrn-over-month-late/content.json').resources.en.translation.content;
-//const mrnOverThirteenMonthLate = require('steps/compliance/mrn-over-thirteen-months-late/content.json').resources.en.translation.content;
-//const cantAppeal = require('steps/compliance/cant-appeal/content.json').resources.en.translation.content;
-//const common = require('app/content/common.json').resources.en.translation;
+const mrnOverMonthLate = require('steps/compliance/mrn-over-month-late/content.json').resources.en.translation.content;
+const mrnOverThirteenMonthLate = require('steps/compliance/mrn-over-thirteen-months-late/content.json').resources.en.translation.content;
+const cantAppeal = require('steps/compliance/cant-appeal/content.json').resources.en.translation.content;
 const DateUtils = require('utils/DateUtils');
 
 Feature('It is too late for a user to appeal');
