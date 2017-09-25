@@ -33,12 +33,12 @@ class CheckMRN extends Question {
             if (DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate)) {
 
                 // MRN is > 1 month and <= 13 months.
-                return goTo(this.journey.MRNOverOneMonthLate); // This needs to be defined
+                return goTo(this.journey.MRNOverOneMonthLate);
 
             } else {
 
                 // MRN is > 13 months.
-                return goTo(this.journey.MRNOverThirteensMonthLate); // This needs to be defined
+                return goTo(this.journey.MRNOverThirteenMonthsLate);
             }
 
         } else {
