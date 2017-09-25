@@ -8,7 +8,7 @@ class SmsConfirmation extends Question {
     }
 
     get template() {
-        return `sms-notify/sms-confirmation/template`;
+        return 'sms-notify/sms-confirmation/template';
     }
 
     get i18NextContent() {
