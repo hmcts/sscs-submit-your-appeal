@@ -1,11 +1,12 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const DateUtils = require('utils/DateUtils');
 const content = require('./content');
+const urls = require('urls');
 
 class CheckMRN extends Question {
 
     get url() {
-        return '/check-mrn-date';
+        return urls.compliance.checkMRNDate;
     }
 
     get form() {

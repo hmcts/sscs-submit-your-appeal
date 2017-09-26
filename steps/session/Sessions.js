@@ -1,8 +1,9 @@
 const { Page } = require('@hmcts/one-per-page');
+const urls = require('urls');
 
 class Sessions extends Page {
     get url() {
-        return '/sessions';
+        return urls.session.sessions;
     }
 
     handler(req, res) {

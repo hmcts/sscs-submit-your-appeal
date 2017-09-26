@@ -1,10 +1,11 @@
 const { Page } = require('@hmcts/one-per-page');
 const content = require('./content');
+const urls = require('urls');
 
 class CantAppeal extends Page {
 
     get url () {
-        return '/cant-appeal';
+        return urls.compliance.cantAppeal;
     }
 
     get template() {

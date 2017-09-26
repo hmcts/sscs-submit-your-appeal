@@ -1,9 +1,10 @@
 const { BaseStep } = require('@hmcts/one-per-page');
+const urls = require('urls');
 
 class CreateSession extends BaseStep {
 
     get url() {
-        return '/create-session';
+        return urls.session.createSession
     }
 
     handler(req, res) {

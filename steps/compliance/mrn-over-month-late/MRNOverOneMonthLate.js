@@ -2,11 +2,12 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { regex } = require('utils/Validators');
 const { whitelist } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 class MRNOverOneMonthLate extends Question {
 
     get url () {
-        return '/mrn-over-month-late';
+        return urls.compliance.mrnOverMonthLate;
     }
 
     get form() {

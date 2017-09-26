@@ -2,11 +2,12 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { regex } = require('utils/Validators');
 const { whitelist } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 class SendToNumber extends Question {
 
     get url() {
-        return '/send-to-number';
+        return urls.smsNotify.sendToNumber;
     }
 
     get form() {

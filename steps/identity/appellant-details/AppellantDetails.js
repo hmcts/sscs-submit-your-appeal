@@ -2,13 +2,14 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { regex, email } = require('utils/Validators');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 const allowEmpty = true;
 
 class AppellantDetails extends Question {
 
     get url() {
-        return '/enter-appellant-details';
+        return urls.identity.enterAppellantDetails;
     }
 
     get template() {

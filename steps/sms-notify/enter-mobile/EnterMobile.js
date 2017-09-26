@@ -2,11 +2,12 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { multiRegex } = require('utils/Validators');
 const { whitelist, mobileNumber } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 class EnterMobile extends Question {
 
     get url() {
-        return '/enter-mobile';
+        return urls.smsNotify.enterMobile;
     }
 
     get template() {
