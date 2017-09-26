@@ -5,7 +5,6 @@ const urls = require('urls');
 class Representative extends Question {
 
     get url() {
-        return '/representative';
         return urls.representative.representative
     }
 
