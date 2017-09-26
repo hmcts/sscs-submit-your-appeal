@@ -8,7 +8,7 @@ module.exports = {
     },
 
     start: {
-        benefitType:                '/benefits-type'
+        benefitType:                '/benefit-type'
     },
 
     compliance: {

@@ -4,7 +4,7 @@ const { benefitType } = require('utils/regex');
 const content = require('./content');
 const urls = require('urls');
 
-class BenefitsType extends Question {
+class BenefitType extends Question {
 
     get url() {
         return urls.start.benefitType;
@@ -32,4 +32,4 @@ class BenefitsType extends Question {
     }
 }
 
-module.exports = BenefitsType;
+module.exports = BenefitType;
