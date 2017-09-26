@@ -52,7 +52,7 @@ describe('EnterMobile.js', () => {
             field = undefined;
         });
 
-        it('contains the field name', () => {
+        it('contains the field name mobileNumber', () => {
            expect(field.name).to.equal('mobileNumber');
         });
 
@@ -68,7 +68,7 @@ describe('EnterMobile.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url', () => {
+        it('returns the next step url /sms-confirmation', () => {
             const redirector = {
                 nextStep: '/sms-confirmation'
             };
