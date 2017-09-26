@@ -42,7 +42,11 @@ describe('EnterMobile.js', () => {
 
     describe('get form()', () => {
 
-        let field = enterMobileClass.form.fields[0];
+        let field;
+
+        beforeEach(() => {
+            field = enterMobileClass.form.fields[0];
+        });
 
         after(() => {
             field = undefined;
