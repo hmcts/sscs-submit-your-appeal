@@ -2,10 +2,9 @@ function enterAnMRNDateAndContinue(date) {
 
     const I = this;
 
-    I.amOnPage('/mrn-date');
-    I.fillField('Day',  date.date());
-    I.fillField('Month', date.month() + 1);
-    I.fillField('Year',  date.year());
+    I.fillField('MRNDate_day',  date.date());
+    I.fillField('MRNDate_month', date.month() + 1);
+    I.fillField('MRNDate_year',  date.year());
     I.click('Continue');
 }
 

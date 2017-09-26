@@ -3,8 +3,7 @@ function enterBenefitTypeAndContinue(type) {
 
     const I = this;
 
-    I.amOnPage('/benefits-type/');
-    I.fillField({css : '.form-group input'}, type);
+    I.fillField('BenefitType_benefitType', type);
     I.click('Continue');
 }
 
