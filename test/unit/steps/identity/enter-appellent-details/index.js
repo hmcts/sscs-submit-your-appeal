@@ -1,6 +1,6 @@
 const TestServer = require('test/TestServer');
 const {testContent} = require('test/util/assertions');
-const modulePath = 'app/steps/identity/enter-appellant-details';
+const modulePath = 'steps/identity/enter-appellant-details';
 const content = require(`${modulePath}/content`);
 
 describe(modulePath, () => {

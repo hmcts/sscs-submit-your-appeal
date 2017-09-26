@@ -1,6 +1,6 @@
 const TestServer = require('test/TestServer');
 const {testContent} = require('test/util/assertions');
-const modulePath = 'app/steps/compliance/cant-appeal';
+const modulePath = 'steps/compliance/cant-appeal';
 const content = require(`${modulePath}/content`);
 
 describe(modulePath, () => {

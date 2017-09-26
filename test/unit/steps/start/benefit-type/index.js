@@ -1,6 +1,6 @@
 const TestServer = require('test/TestServer');
 const {testContent} = require('test/util/assertions');
-const modulePath = 'app/steps/start/benefit-type';
+const modulePath = 'steps/start/benefit-type';
 const content = require(`${modulePath}/content`);
 
 describe(modulePath, () => {
