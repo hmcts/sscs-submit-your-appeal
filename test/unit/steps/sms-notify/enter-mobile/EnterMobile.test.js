@@ -6,7 +6,11 @@ const content = require('steps/sms-notify/enter-mobile/content.json');
 
 describe('EnterMobile.js', () => {
 
-    let enterMobileClass = new EnterMobile();
+    let enterMobileClass;
+
+    beforeEach(() => {
+        enterMobileClass = new EnterMobile();
+    });
 
     after(() => {
        enterMobileClass = undefined;
