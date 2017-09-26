@@ -18,7 +18,7 @@ describe('EnterMobile.js', () => {
 
     describe('get url()', () => {
 
-        it('returns the correct url', () => {
+        it('returns url /enter-mobile', () => {
            expect(enterMobileClass.url).to.equal('/enter-mobile');
         });
 
@@ -26,7 +26,7 @@ describe('EnterMobile.js', () => {
 
     describe('get template()', () => {
 
-        it('returns the correct template path', () => {
+        it('returns template path sms-notify/enter-mobile/template', () => {
             expect(enterMobileClass.template).to.equal('sms-notify/enter-mobile/template');
         });
 
