@@ -42,9 +42,9 @@
     router "^1.3.1"
     url-parse "^1.1.9"
 
-"@types/node@^8.0.24":
-  version "8.0.28"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@types/node/-/node-8.0.28.tgz#86206716f8d9251cf41692e384264cbd7058ad60"
+"@types/node@^7.0.18":
+  version "7.0.43"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.43.tgz#a187e08495a075f200ca946079c914e1a5fe962c"
 
 a-sync-waterfall@^1.0.0:
   version "1.0.0"
@@ -255,7 +255,7 @@ async-foreach@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
 
-async@1.x, async@^1.4.0:
+async@1.5.2, async@1.x, async@^1.4.0:
   version "1.5.2"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -728,9 +728,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codeceptjs@^1.0.2:
-  version "1.0.2"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/codeceptjs/-/codeceptjs-1.0.2.tgz#2e8124551f321bf3b938eeccfda03fc60785efe6"
+codeceptjs@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/codeceptjs/-/codeceptjs-1.0.0.tgz#b07abfe89dda0f47fba5aabddf7cb2b34f859cd3"
   dependencies:
     chalk "^1.1.3"
     co "^4.6.0"
@@ -1062,6 +1062,10 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+date-format@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/date-format/-/date-format-0.0.0.tgz#09206863ab070eb459acea5542cbd856b11966b3"
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -1098,6 +1102,10 @@ debug@2.6.8, debug@^2.1.3, debug@^2.2.0, debug@^2.6.3, debug@^2.6.8:
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
     ms "2.0.0"
+
+debug@^0.7.2:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
@@ -1231,10 +1239,10 @@ electron-to-chromium@^1.2.7:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.18.tgz#3dcc99da3e6b665f6abbc71c28ad51a2cd731a9c"
 
 electron@^1.4.4:
-  version "1.8.0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/electron/-/electron-1.8.0.tgz#896f429b1e664f496f62b9cc7ee6a67a71375f31"
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.7.6.tgz#fb69ea31bd03df0eff247f26f0b538bd29b6ee72"
   dependencies:
-    "@types/node" "^8.0.24"
+    "@types/node" "^7.0.18"
     electron-download "^3.0.1"
     extract-zip "^1.0.3"
 
@@ -2182,6 +2190,12 @@ is-glob@^3.1.0:
   dependencies:
     is-extglob "^2.1.0"
 
+is-number-like@^1.0.3:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/is-number-like/-/is-number-like-1.0.8.tgz#2e129620b50891042e44e9bbbb30593e75cfbbe3"
+  dependencies:
+    lodash.isfinite "^3.3.2"
+
 is-number@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
@@ -2627,6 +2641,10 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
+lodash.isfinite@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/lodash.isfinite/-/lodash.isfinite-3.3.2.tgz#fb89b65a9a80281833f0b7478b3a5104f898ebb3"
+
 lodash.keys@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/lodash.keys/-/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
@@ -2666,6 +2684,14 @@ lodash@^3.3.1:
 lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
+log4js@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/log4js/-/log4js-1.1.1.tgz#c21d29c7604089e4f255833e7f94b3461de1ff43"
+  dependencies:
+    debug "^2.2.0"
+    semver "^5.3.0"
+    streamroller "^0.4.0"
 
 lolex@^1.6.0:
   version "1.6.0"
@@ -2895,7 +2921,7 @@ mocha@^3.1.2, mocha@^3.5.3:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-moment@^2.18.1:
+moment@^2.17.1, moment@^2.18.1:
   version "2.18.1"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -3079,6 +3105,15 @@ node-sass@^4.5.3:
     request "^2.79.0"
     sass-graph "^2.1.1"
     stdout-stream "^1.4.0"
+
+nodejs-logging@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/nodejs-logging/-/nodejs-logging-1.1.1.tgz#2da870e07a3c70bdfa676dff77e81be8ecbe47bb"
+  dependencies:
+    lodash "^4.17.4"
+    log4js "^1.1.0"
+    moment "^2.17.1"
+    on-finished "~2.3.0"
 
 "nopt@2 || 3", nopt@3.x:
   version "3.0.6"
@@ -3450,6 +3485,13 @@ pkg-dir@^1.0.0:
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/pkg-dir/-/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"
   dependencies:
     find-up "^1.0.0"
+
+portscanner@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/portscanner/-/portscanner-2.1.1.tgz#eabb409e4de24950f5a2a516d35ae769343fbb96"
+  dependencies:
+    async "1.5.2"
+    is-number-like "^1.0.3"
 
 postcss-calc@^5.2.0:
   version "5.3.1"
@@ -3872,6 +3914,15 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
+readable-stream@^1.1.7, readable-stream@~1.1.9:
+  version "1.1.14"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
 readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.6:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
@@ -3883,15 +3934,6 @@ readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.0.3"
     util-deprecate "~1.0.1"
-
-readable-stream@~1.1.9:
-  version "1.1.14"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
-  dependencies:
-    core-util-is "~1.0.0"
-    inherits "~2.0.1"
-    isarray "0.0.1"
-    string_decoder "~0.10.x"
 
 readdirp@^2.0.0:
   version "2.1.0"
@@ -4386,6 +4428,15 @@ stream-http@^2.3.1:
     readable-stream "^2.2.6"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
+
+streamroller@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/streamroller/-/streamroller-0.4.1.tgz#d435bd5974373abd9bd9068359513085106cc05f"
+  dependencies:
+    date-format "^0.0.0"
+    debug "^0.7.2"
+    mkdirp "^0.5.1"
+    readable-stream "^1.1.7"
 
 strict-uri-encode@^1.0.0:
   version "1.1.0"
