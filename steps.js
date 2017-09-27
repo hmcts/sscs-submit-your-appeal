@@ -2,7 +2,7 @@ const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
-const BenefitsType = require('steps/start/BenefitsType');
+const BenefitType = require('steps/start/BenefitType');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
@@ -26,7 +26,7 @@ const init = [
 ];
 
 const startAnAppeal = [
-    new BenefitsType()
+    new BenefitType()
 ];
 
 const compliance = [

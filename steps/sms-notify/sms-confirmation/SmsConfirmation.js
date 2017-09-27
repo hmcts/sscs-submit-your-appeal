@@ -1,10 +1,11 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const content = require('./content');
+const urls = require('urls');
 
 class SmsConfirmation extends Question {
 
     get url() {
-        return '/sms-confirmation';
+        return urls.smsNotify.smsConfirmation;
     }
 
     get template() {

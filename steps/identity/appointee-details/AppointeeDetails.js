@@ -1,10 +1,11 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const content = require('./content');
+const urls = require('urls');
 
 class AppointeeDetails extends Question {
 
     get url() {
-        return '/enter-appointee-details';
+        return urls.identity.enterAppointeeDetails;
     }
 
     get template() {

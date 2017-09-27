@@ -3,11 +3,12 @@ const DateUtils = require('utils/DateUtils');
 const { regex } = require('utils/Validators');
 const { numbers } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 class MRNDate extends Question {
 
     get url() {
-        return '/mrn-date';
+        return urls.compliance.mrnDate;
     }
 
     get form() {

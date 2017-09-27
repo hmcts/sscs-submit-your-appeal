@@ -2,11 +2,12 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { regex } = require('utils/Validators');
 const { whitelist } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
 class NoMRN extends Question {
 
     get url() {
-        return '/no-mrn';
+        return urls.compliance.noMRN;
     }
 
     get form() {

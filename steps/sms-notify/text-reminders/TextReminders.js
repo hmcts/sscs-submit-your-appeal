@@ -1,11 +1,12 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const content = require('./content');
 const regex = require('../../../utils/regex');
+const urls = require('urls');
 
 class TextReminders extends Question {
 
     get url() {
-        return '/appellant-text-reminders';
+        return urls.smsNotify.appellantTextReminders
     }
 
     get template() {

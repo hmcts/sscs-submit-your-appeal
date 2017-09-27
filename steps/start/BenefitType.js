@@ -2,11 +2,12 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { regex } = require('utils/Validators');
 const { benefitType } = require('utils/regex');
 const content = require('./content');
+const urls = require('urls');
 
-class BenefitsType extends Question {
+class BenefitType extends Question {
 
     get url() {
-        return '/benefits-type';
+        return urls.start.benefitType;
     }
 
     get form() {
@@ -31,4 +32,4 @@ class BenefitsType extends Question {
     }
 }
 
-module.exports = BenefitsType;
+module.exports = BenefitType;
