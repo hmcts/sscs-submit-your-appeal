@@ -2,6 +2,8 @@ const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
+const Error404 = require('steps/errors/404');
+const Error500 = require('steps/errors/500');
 const BenefitType = require('steps/start/BenefitType');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
@@ -23,6 +25,8 @@ const init = [
     new Entry(),
     new Exit(),
     new Sessions(),
+    new Error404(),
+    new Error500()
 ];
 
 const startAnAppeal = [

@@ -8,7 +8,7 @@ class Entry extends EntryPoint {
     }
 
     next() {
-        return goTo(this.journey.BenefitsType);
+        return goTo(this.journey.BenefitType);
     }
 }
 

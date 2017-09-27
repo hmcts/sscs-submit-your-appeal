@@ -5,7 +5,7 @@ const urls = require('urls');
 class Appointee extends Question {
 
     get url() {
-        return urls.identity.appointee;
+        return urls.identity.areYouAnAppointee;
     }
 
     get form() {

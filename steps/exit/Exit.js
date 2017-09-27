@@ -3,6 +3,7 @@ const content = require('./content');
 const urls = require('urls');
 
 class Exit extends ExitPoint {
+
     get url() {
         return urls.session.exit;
     }
