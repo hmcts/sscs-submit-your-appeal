@@ -22,7 +22,7 @@ class TextReminders extends Question {
     get form() {}
 
     next() {
-        return goTo(undefined); // To define the next step
+        return goTo(this.journey.EnterMobile);
     }
 }
 
