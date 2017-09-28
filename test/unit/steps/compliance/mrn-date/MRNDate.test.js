@@ -134,10 +134,10 @@ describe('EnterMobile.js', () => {
             mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
             mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
             redirector = {
-                nextStep: '/are-you-an-appointee'
+                nextStep: urls.identity.areYouAnAppointee
             };
             mrnDateClass.journey = {
-                Appointee: '/are-you-an-appointee'
+                Appointee: urls.identity.areYouAnAppointee
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });
@@ -148,10 +148,10 @@ describe('EnterMobile.js', () => {
             mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
             mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
             redirector = {
-                nextStep: '/are-you-an-appointee'
+                nextStep: urls.identity.areYouAnAppointee
             };
             mrnDateClass.journey = {
-                Appointee: '/are-you-an-appointee'
+                Appointee: urls.identity.areYouAnAppointee
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });
@@ -162,10 +162,10 @@ describe('EnterMobile.js', () => {
             mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
             mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
             redirector = {
-                nextStep: '/check-mrn-date'
+                nextStep: urls.compliance.checkMRNDate
             };
             mrnDateClass.journey = {
-                CheckMRN: '/check-mrn-date'
+                CheckMRN: urls.compliance.checkMRNDate
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });
