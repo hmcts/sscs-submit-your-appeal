@@ -1,5 +1,7 @@
 module.exports = {
 
+    health:                             '/health',
+
     session: {
         createSession:                  '/create-session',
         entry:                          '/',

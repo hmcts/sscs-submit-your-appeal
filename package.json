@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@hmcts/look-and-feel": "git+https://github.com/hmcts/look-and-feel.git",
+    "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "git+https://github.com/hmcts/one-per-page.git",
     "express": "^4.15.3",
     "joi": "^10.6.0",
