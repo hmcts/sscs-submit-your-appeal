@@ -7,15 +7,16 @@
     "node": ">=6.0"
   },
   "scripts": {
-    "start": "NODE_PATH=. node app.js",
-    "start-dev": "NODE_PATH=. node-dev app.js",
-    "test": "NODE_PATH=. nyc mocha 'test/unit/**/*.test.js'",
-    "e2e": "NODE_PATH=. codeceptjs run -c test/e2e/ --steps"
+    "start": "cross-env NODE_PATH=. node app.js",
+    "start-dev": "cross-env NODE_PATH=. node-dev app.js",
+    "test": "cross-env NODE_PATH=. nyc mocha 'test/unit/**/*.test.js'",
+    "e2e": "cross-env NODE_PATH=. codeceptjs run -c test/e2e/ --steps"
   },
   "dependencies": {
     "@hmcts/look-and-feel": "git+https://github.com/hmcts/look-and-feel.git",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "git+https://github.com/hmcts/one-per-page.git",
+    "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "joi": "^10.6.0",
     "moment": "^2.18.1"
