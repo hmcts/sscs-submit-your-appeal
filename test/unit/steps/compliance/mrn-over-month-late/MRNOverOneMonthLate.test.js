@@ -33,6 +33,28 @@ describe('MRNOverOneMonth.js', () => {
 
     });
 
+    describe('get form()', () => {
+
+        let field;
+
+        beforeEach(() => {
+            field = mrnOverOneMonthClass.form.fields[0];
+        });
+
+        after(() => {
+            field = undefined;
+        });
+
+        it('contains the field name reasonForBeingLate', () => {
+            expect(field.name).to.equal('reasonForBeingLate');
+        });
+
+        it('contains field content', () => {
+            expect(field.content).to.eql(content.en.translation.fields.reasonForBeingLate);
+        });
+
+    });
+
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {
@@ -41,14 +63,18 @@ describe('MRNOverOneMonth.js', () => {
 
     });
 
-    it('returns the next step url /', () => {
-        const redirector = {
-            nextStep: '/sms-confirmation'
-        };
-        enterMobileClass.journey = {
-            SmsConfirmation: '/sms-confirmation'
-        };
-        expect(enterMobileClass.next()).to.eql(redirector);
+    describe('next()', () => {
+
+        it('returns the next step url /are-you-an-appointee', () => {
+            const redirector = {
+                nextStep: urls.identity.areYouAnAppointee
+            };
+            mrnOverOneMonthClass.journey = {
+                Appointee: urls.identity.areYouAnAppointee
+            };
+            expect(mrnOverOneMonthClass.next()).to.eql(redirector);
+        });
+
     });
 
 });
