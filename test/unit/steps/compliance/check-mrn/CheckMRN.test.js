@@ -93,10 +93,10 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step url /mrn-over-month-late when date is less than thirteen months', () => {
                 redirector = {
-                    nextStep: '/mrn-over-month-late'
+                    nextStep: urls.compliance.mrnOverMonthLate
                 };
                 checkMRNClass.journey = {
-                    MRNOverOneMonthLate: '/mrn-over-month-late'
+                    MRNOverOneMonthLate: urls.compliance.mrnOverMonthLate
                 };
                 checkMRNClass.locals = {
                     session: mrnDate(1)
@@ -106,10 +106,10 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step url /mrn-over-month-late when date is equal to thirteen months', () => {
                 redirector = {
-                    nextStep: '/mrn-over-month-late'
+                    nextStep: urls.compliance.mrnOverMonthLate
                 };
                 checkMRNClass.journey = {
-                    MRNOverOneMonthLate: '/mrn-over-month-late'
+                    MRNOverOneMonthLate: urls.compliance.mrnOverMonthLate
                 };
                 checkMRNClass.locals = {
                     session: mrnDate(13)
@@ -119,10 +119,10 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step url /mrn-over-thirteen-months-late when date is over thirteen months', () => {
                 redirector = {
-                    nextStep: '/mrn-over-thirteen-months-late'
+                    nextStep: urls.compliance.mrnOverThirteenMonthsLate
                 };
                 checkMRNClass.journey = {
-                    MRNOverThirteenMonthsLate: '/mrn-over-thirteen-months-late'
+                    MRNOverThirteenMonthsLate: urls.compliance.mrnOverThirteenMonthsLate
                 };
                 checkMRNClass.locals = {
                     session: mrnDate(14)
@@ -136,10 +136,10 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step url /mrn-date when checkMRN value equals no', () => {
                 redirector = {
-                    nextStep: '/mrn-date'
+                    nextStep: urls.compliance.mrnDate
                 };
                 checkMRNClass.journey = {
-                    MRNDate: '/mrn-date'
+                    MRNDate: urls.compliance.mrnDate
                 };
                 checkMRNClass.fields.get = stub().returns({value: 'no'});
                 expect(checkMRNClass.next()).to.eql(redirector);
