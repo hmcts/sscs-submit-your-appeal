@@ -3,7 +3,9 @@ const express = require('express');
 const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
+const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
+const urls = require('urls');
 
 const app = express();
 
@@ -36,6 +38,12 @@ journey(app, {
         cookie: { secure: false }
     }
 });
+
+app.use(urls.health, healthcheck.configure({
+    "checks": {
+        "submit-your-appeal-api": healthcheck.web(`${config.health.url}/health`)
+    }
+}));
 
 app.listen(config.port);
 

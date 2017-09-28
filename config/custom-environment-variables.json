@@ -1,4 +1,7 @@
 {
   "redisUrl": "REDIS_URL",
-  "secret": "SESSION_SECRET"
+  "secret": "SESSION_SECRET",
+  "health": {
+    "url": "HEALTH_URL"
+  }
 }
