@@ -5,6 +5,7 @@ const moment = require('moment');
 const { stub } = require('sinon');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const content = require('steps/compliance/check-mrn/content.json');
+const urls = require('urls');
 
 describe('CheckMRN.js', () => {
 
@@ -29,7 +30,7 @@ describe('CheckMRN.js', () => {
     describe('get url()', () => {
 
         it('returns url /check-mrn-date', () => {
-            expect(checkMRNClass.url).to.equal('/check-mrn-date');
+            expect(checkMRNClass.url).to.equal(urls.compliance.checkMRNDate);
         });
 
     });
