@@ -1,6 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { regex } = require('utils/Validators');
 const { whitelist } = require('utils/regex');
+const Joi = require('joi');
 const content = require('./content');
 const urls = require('urls');
 
@@ -11,14 +11,11 @@ class MRNOverThirteenMonthsLate extends Question {
     }
 
     get form() {
-
-        const fields = this.content.fields;
-
         return form(
-
-            field('reasonForBeingLate')
-                .validate(regex(whitelist, fields.reasonForBeingLate))
-                .content(fields.reasonForBeingLate)
+            field('reasonForBeingLate').joi(
+                this.content.fields.reasonForBeingLate.error.required,
+                Joi.string().regex(whitelist).required()
+            )
         );
     }
 

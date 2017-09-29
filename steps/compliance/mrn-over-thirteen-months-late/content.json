@@ -8,7 +8,7 @@
       "fields": {
         "reasonForBeingLate": {
           "error": {
-            "msg": "Please tell us why your appeal is late"
+            "required": "Please tell us why your appeal is late"
           }
         }
       }
