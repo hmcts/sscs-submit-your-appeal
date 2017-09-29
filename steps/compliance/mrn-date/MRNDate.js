@@ -1,9 +1,9 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const DateUtils = require('utils/DateUtils');
-const { regex } = require('utils/Validators');
 const { numbers } = require('utils/regex');
 const content = require('./content');
 const urls = require('urls');
+const Joi = require('joi');
 
 class MRNDate extends Question {
 
@@ -12,11 +12,13 @@ class MRNDate extends Question {
     }
 
     get form() {
-
         return form(
-            field('day').validate(regex(numbers, this.content.fields.day)),
-            field('month').validate(regex(numbers, this.content.fields.month)),
-            field('year').validate(regex(numbers, this.content.fields.year)),
+            field('day')
+                .joi(this.content.fields.day.error.required, Joi.string().regex(numbers).required()),
+            field('month')
+                .joi(this.content.fields.month.error.required, Joi.string().regex(numbers).required()),
+            field('year')
+                .joi(this.content.fields.year.error.required, Joi.string().regex(numbers).required())
         );
     }
 
@@ -30,9 +32,9 @@ class MRNDate extends Question {
 
     next() {
         const mrnDate = DateUtils.createMoment(
-            this.fields.get('day').value,
-            this.fields.get('month').value,
-            this.fields.get('year').value);
+            this.fields.day.value,
+            this.fields.month.value,
+            this.fields.year.value);
 
         if (DateUtils.isLessThanOrEqualToAMonth(mrnDate)) {
             return goTo(this.journey.Appointee);
