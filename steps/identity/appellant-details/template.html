@@ -10,25 +10,25 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
 
-{% call formSection() %}
+    {% call formSection() %}
 
-<p>We’ll use these to send you information about your appeal.</p>
+        <p>{{ content.subtitle}}</p>
 
-{{ textbox(fields.get('firstName'),    fields.get('firstName').content.title,    hint="") }}
-{{ textbox(fields.get('lastName'),     fields.get('lastName').content.title,     hint="") }}
-{{ textbox(fields.get('niNumber'),     fields.get('niNumber').content.title,     hint="") }}
-{{ textbox(fields.get('addressLine1'), fields.get('addressLine1').content.title, hint="") }}
-{{ textbox(fields.get('addressLine2'), fields.get('addressLine2').content.title, hint="") }}
-{{ textbox(fields.get('townCity'),     fields.get('townCity').content.title,     hint="") }}
-{{ textbox(fields.get('postCode'),     fields.get('postCode').content.title,     hint="") }}
-{{ textbox(fields.get('phoneNumber'),  fields.get('phoneNumber').content.title,  hint=fields.get('phoneNumber').content.hint) }}
-{{ textbox(fields.get('emailAddress'), fields.get('emailAddress').content.title, hint=fields.get('emailAddress').content.hint) }}
+        {{ textbox(fields.firstName,    content.fields.firstName.title,     hint="") }}
+        {{ textbox(fields.lastName,     content.fields.lastName.title,      hint="") }}
+        {{ textbox(fields.niNumber,     content.fields.niNumber.title,      hint="") }}
+        {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint="") }}
+        {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
+        {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
+        {{ textbox(fields.postCode,     content.fields.postCode.title,      hint="") }}
+        {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=fields.phoneNumber.hint) }}
+        {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=fields.emailAddress.hint) }}
 
-{% endcall %}
+    {% endcall %}
 
 {% endblock %}
