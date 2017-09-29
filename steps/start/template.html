@@ -4,31 +4,19 @@
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-<script src="{{ asset_path }}/javascripts/accessible-autocomplete.min.js"></script>
-<script src="{{ asset_path }}/javascripts/autocomplete.js"></script>
 {% endblock %}
 
 {% set phase="ALPHA" %}
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
 
-{% call formSection() %}
-
-{% if fields.get('type').error %}
-<span class="error-message">
-        {{ fields.get('type').error | safe}}
-    </span>
-{% endif %}
-
-<!--<div id="autocomplete-benefit-container"></div>-->
-
-{{ textbox(fields.get('benefitType'), "", hint="") }}
-
-{% endcall %}
+    {% call formSection() %}
+        {{ textbox(fields.benefitType, "", hint="") }}
+    {% endcall %}
 
 {% endblock %}
