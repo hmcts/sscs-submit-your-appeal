@@ -7,7 +7,7 @@
           "yes": "Yes, send them to {{session.AppellantDetails_phoneNumber}}",
           "no": "No, send them to a different number",
           "error": {
-            "msg": "You need to tell us whether you would like us to send text messages about you appeal to the number you provided earlier."
+            "required": "You need to tell us whether you would like us to send text messages about you appeal to the number you provided earlier."
           }
         }
       }
