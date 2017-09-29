@@ -11,7 +11,7 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
@@ -20,7 +20,7 @@
 
 <p>{{ content.subtitle }}</p>
 
-{{ textarea(fields.get('reasonForNoMRN'), "", hint="") }}
+{{ textarea(fields.reasonForNoMRN, "", hint="") }}
 
 <a href="/contact-dwp">{{ content.haveNotContactedDWP }}</a>
 
