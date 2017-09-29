@@ -1,7 +1,13 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const content = require('./content');
 const urls = require('urls');
+
+const answer = {
+    YES: 'yes',
+    NO: 'no'
+};
 
 class CheckMRN extends Question {
 
@@ -10,8 +16,14 @@ class CheckMRN extends Question {
     }
 
     get form() {
+
+        const answers = [answer.YES, answer.NO];
+
         return form(
-            field('checkedMRN').content(this.content.fields.checkedMRN)
+
+            field('checkedMRN')
+                .joi(this.content.fields.checkedMRN.error.required, Joi.string().valid(answers)
+            )
         );
     }
 
@@ -24,7 +36,7 @@ class CheckMRN extends Question {
     }
 
     next() {
-        if(this.fields.get('checkedMRN').value === 'yes') {
+        if(this.fields.checkedMRN.value === answer.YES) {
 
             const mrnDate = DateUtils.createMoment(
                 this.locals.session.MRNDate_day,
