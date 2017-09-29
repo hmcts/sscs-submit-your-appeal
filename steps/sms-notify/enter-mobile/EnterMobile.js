@@ -1,6 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { multiRegex } = require('utils/Validators');
-const { whitelist, mobileNumber } = require('utils/regex');
+const { mobileNumber } = require('utils/regex');
+const Joi = require('joi');
 const content = require('./content');
 const urls = require('urls');
 
@@ -14,26 +14,23 @@ class EnterMobile extends Question {
         return 'sms-notify/enter-mobile/template';
     }
 
-    get i18NextContent() {
-        return content;
-    }
-
     get form() {
-
-        const fields = this.content.fields;
-        const validation = [{
-            regex: whitelist,
-            msg: 'emptyField'
-        }, {
-            regex: mobileNumber,
-            msg: 'invalidNumber'
-        }];
 
         return form(
             field('mobileNumber')
-                .validate(multiRegex(validation, fields.mobileNumber))
-                .content(fields.mobileNumber)
+                .joi(
+                    this.content.fields.mobileNumber.error.emptyField,
+                    Joi.string().required()
+                )
+                .joi(
+                    this.content.fields.mobileNumber.error.invalidNumber,
+                    Joi.string().regex(mobileNumber).required()
+                )
         );
+    }
+
+    get i18NextContent() {
+        return content;
     }
 
     next() {
