@@ -1,10 +1,10 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { regex, email } = require('utils/Validators');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
+const Joi = require('joi');
 const content = require('./content');
 const urls = require('urls');
 
-const allowEmpty = true;
+const emailOptions = { minDomainAtoms: 2 };
 
 class AppellantDetails extends Question {
 
@@ -27,40 +27,31 @@ class AppellantDetails extends Question {
         return form(
 
             field('firstName')
-                .validate(regex(firstName, fields.firstName))
-                .content(fields.firstName),
+                .joi(fields.firstName.error.required, Joi.string().regex(firstName).required()),
 
             field('lastName')
-                .validate(regex(lastName, fields.lastName))
-                .content(fields.lastName),
+                .joi(fields.lastName.error.required, Joi.string().regex(lastName).required()),
 
             field('niNumber')
-                .validate(regex(niNumber, fields.niNumber))
-                .content(fields.niNumber),
+                .joi(fields.niNumber.error.required, Joi.string().regex(niNumber).required()),
 
             field('addressLine1')
-                .validate(regex(whitelist, fields.addressLine1))
-                .content(fields.addressLine1),
+                .joi(fields.addressLine1.error.required, Joi.string().regex(whitelist).required()),
 
             field('addressLine2')
-                .validate(regex(whitelist, fields.addressLine2))
-                .content(fields.addressLine2),
+                .joi(fields.addressLine2.error.required, Joi.string().regex(whitelist).required()),
 
             field('townCity')
-                .validate(regex(whitelist, fields.townCity))
-                .content(fields.townCity),
+                .joi(fields.townCity.error.required, Joi.string().regex(whitelist).required()),
 
             field('postCode')
-                .validate(regex(postCode, fields.postCode))
-                .content(fields.postCode),
+                .joi(fields.postCode.error.required, Joi.string().regex(postCode).required()),
 
             field('phoneNumber')
-                .validate(regex(phoneNumber, fields.phoneNumber, allowEmpty))
-                .content(fields.phoneNumber),
+                .joi(fields.phoneNumber.error.invalid, Joi.string().regex(phoneNumber).allow('')),
 
             field('emailAddress')
-                .validate(email(fields.emailAddress, allowEmpty))
-                .content(fields.emailAddress),
+                .joi(fields.emailAddress.error.invalid, Joi.string().email(emailOptions).allow('')),
         );
     }
 

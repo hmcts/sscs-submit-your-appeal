@@ -1,8 +1,13 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { regex } = require('utils/Validators');
+const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
 const { whitelist } = require('utils/regex');
+const Joi = require('joi');
 const content = require('./content');
 const urls = require('urls');
+
+const answer = {
+    YES: 'yes',
+    NO: 'no'
+};
 
 class SendToNumber extends Question {
 
@@ -10,16 +15,20 @@ class SendToNumber extends Question {
         return urls.smsNotify.sendToNumber;
     }
 
-    get form() {
-        return form(
-            field('useSameNumber')
-                .validate(regex(whitelist, this.content.fields.useSameNumber))
-                .content(this.content.fields.useSameNumber)
-        );
-    }
-
     get template() {
         return `sms-notify/send-to-number/template`;
+    }
+
+    get form() {
+
+        return form(
+
+            field('useSameNumber')
+                .joi(
+                    this.content.fields.useSameNumber.error.required,
+                    Joi.string().regex(whitelist).required()
+                )
+        );
     }
 
     get i18NextContent() {
@@ -27,11 +36,13 @@ class SendToNumber extends Question {
     }
 
     next() {
-        if(this.fields.get('useSameNumber').value === 'yes') {
-            return goTo(this.journey.SmsConfirmation);
-        } else {
-            return goTo(this.journey.EnterMobile);
-        }
+
+        const useSameNumber = () => this.fields.useSameNumber.value === answer.YES;
+
+        return branch(
+            goTo(this.journey.SmsConfirmation).if(useSameNumber),
+            goTo(this.journey.EnterMobile)
+        );
     }
 }
 

@@ -18,7 +18,7 @@
     {% call formSection() %}
 
         <p>{{ content.description | safe }}</p>
-        {{ textbox(fields.get('mobileNumber'), "", hint="") }}
+        {{ textbox(fields.mobileNumber, "", hint="") }}
 
     {% endcall %}
 

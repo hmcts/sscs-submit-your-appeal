@@ -6,7 +6,7 @@
         "benefitType": {
           "title": "Last name(s)",
           "error": {
-            "msg": "Please enter a benefits type (e.g. ESA)"
+            "required": "Please enter a benefits type (e.g. ESA)"
           }
         }
       }

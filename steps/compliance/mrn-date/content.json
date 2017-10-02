@@ -7,19 +7,19 @@
         "day": {
           "title": "Day",
           "error": {
-            "msg": "Please enter a day"
+            "required": "Please enter a day"
           }
         },
         "month": {
           "title": "Month",
           "error": {
-            "msg": "Please enter a month"
+            "required": "Please enter a month"
           }
         },
         "year": {
           "title": "Year",
           "error": {
-            "msg": "Please enter a year"
+            "required": "Please enter a year"
           }
         }
       }

@@ -9,21 +9,21 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
 
 <p>{{ content.description | safe }}</p>
 
-
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.get('isappointee'), "", hint = '',
+    fields.appointee, "",
+    hint = '',
     options = [
-        { label: fields.get('isappointee').content.yes, value: "yes" },
-        { label: fields.get('isappointee').content.no, value: "no" }
+        { label: content.fields.appointee.yes, value: "yes" },
+        { label: content.fields.appointee.no, value: "no" }
     ])
 }}
 

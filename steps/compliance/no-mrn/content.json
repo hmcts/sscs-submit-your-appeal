@@ -7,7 +7,7 @@
       "fields": {
         "reasonForNoMRN": {
           "error": {
-            "msg": "Please tell us why you don’t have a MRN"
+            "required": "Please tell us why you don’t have a MRN"
           }
         }
       }

@@ -11,20 +11,20 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
 
-<p>{{ content.yourAppealIsOverOneYearLate }}</p>
-<p>{{ content.appealMayGoAheadForGoodReason }}</p>
+    <p>{{ content.yourAppealIsOverOneYearLate }}</p>
+    <p>{{ content.appealMayGoAheadForGoodReason }}</p>
 
-{% call formSection() %}
+    {% call formSection() %}
 
-{{ textarea(fields.get('reasonForBeingLate'), "", hint="") }}
+        {{ textarea(fields.reasonForBeingLate, "", hint="") }}
 
-<a href="/cant-appeal">{{ content.noGoodReasonWhyLate }}</a>
+        <a href="/cant-appeal">{{ content.noGoodReasonWhyLate }}</a>
 
-{% endcall %}
+    {% endcall %}
 
 {% endblock %}

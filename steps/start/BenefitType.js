@@ -1,6 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { regex } = require('utils/Validators');
 const { benefitType } = require('utils/regex');
+const Joi = require('joi');
 const content = require('./content');
 const urls = require('urls');
 
@@ -11,11 +11,9 @@ class BenefitType extends Question {
     }
 
     get form() {
-
         return form(
             field('benefitType')
-                .validate(regex(benefitType, this.content.fields.benefitType))
-                .content(this.content.fields.benefitType),
+                .joi(this.content.fields.benefitType.error.required, Joi.string().regex(benefitType).required())
         );
     }
 

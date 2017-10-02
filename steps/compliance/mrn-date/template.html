@@ -23,9 +23,9 @@ This is the letter you received from DWP after you asked them to reconsider the 
 {% call formSection() %}
 
 {{ date(
-    dayField = fields.get('day'),
-    monthField = fields.get('month'),
-    yearField = fields.get('year'),
+    dayField = fields.day,
+    monthField = fields.month,
+    yearField = fields.year,
     hint = 'For example, 31 3 2017',
     id = 'mrnDate',
     legend = 'Date of your MRN'

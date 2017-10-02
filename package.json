@@ -13,9 +13,9 @@
     "e2e": "cross-env NODE_PATH=. codeceptjs run -c test/e2e/ --steps"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "git+https://github.com/hmcts/look-and-feel.git",
+    "@hmcts/look-and-feel": "^1.0.0-0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
-    "@hmcts/one-per-page": "git+https://github.com/hmcts/one-per-page.git",
+    "@hmcts/one-per-page": "^1.0.0-0",
     "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "joi": "^10.6.0",

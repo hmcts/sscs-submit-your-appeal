@@ -17,10 +17,12 @@
     {% call formSection() %}
 
         {{ selectionButtons(
-            fields.get('useSameNumber'), "", hint = '',
+            fields.useSameNumber,
+            "",
+            hint = '',
             options = [
-            { label: fields.get('useSameNumber').content.yes, value: "yes" },
-            { label: fields.get('useSameNumber').content.no, value: "no" }
+            { label: content.fields.useSameNumber.yes, value: "yes" },
+            { label: content.fields.useSameNumber.no,  value: "no" }
             ])
         }}
 
