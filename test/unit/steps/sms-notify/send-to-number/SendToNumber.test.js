@@ -63,36 +63,4 @@ describe('SendToNumber.js', () => {
 
     });
 
-    // describe('next()', () => {
-    //
-    //     beforeEach(() => {
-    //         sendToNumberClass.fields = stub();
-    //         sendToNumberClass.fields.useSameNumber = {};
-    //     });
-    //
-    //     it('returns the next step url /sms-confirmation when useSameNumber value equals yes', () => {
-    //         const redirector = {
-    //             nextStep: '/sms-confirmation'
-    //         };
-    //         sendToNumberClass.journey = {
-    //             SmsConfirmation: '/sms-confirmation'
-    //         };
-    //         sendToNumberClass.fields.useSameNumber.value = 'yes';
-    //         console.log(sendToNumberClass.next())
-    //         expect(sendToNumberClass.next()).to.eql(redirector);
-    //     });
-    //
-    //     it('returns the next step url /enter-mobile when useSameNumber value equals no', () => {
-    //         const redirector = {
-    //             nextStep: '/enter-mobile'
-    //         };
-    //         sendToNumberClass.journey = {
-    //             EnterMobile: '/enter-mobile'
-    //         };
-    //         sendToNumberClass.fields.useSameNumber.value = 'no';
-    //         expect(sendToNumberClass.next()).to.eql(redirector);
-    //     });
-    //
-    // });
-
 });
