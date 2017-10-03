@@ -7,7 +7,7 @@ const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const content = require('steps/compliance/mrn-date/content.json');
 const urls = require('urls');
 
-describe('EnterMobile.js', () => {
+describe('MRNDate.js', () => {
 
     const mrnDate = m => {
         const date =  moment().subtract(m, 'month');
@@ -75,7 +75,7 @@ describe('EnterMobile.js', () => {
             });
 
             it('contains validation', () => {
-                expect(field.validator).to.not.be.null;
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -91,7 +91,7 @@ describe('EnterMobile.js', () => {
             });
 
             it('contains validation', () => {
-                expect(field.validator).to.not.be.null;
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -107,7 +107,7 @@ describe('EnterMobile.js', () => {
             });
 
             it('contains validation', () => {
-                expect(field.validator).to.not.be.null;
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -121,7 +121,9 @@ describe('EnterMobile.js', () => {
 
         beforeEach(() => {
             mrnDateClass.fields = stub();
-            mrnDateClass.fields.get = stub();
+            mrnDateClass.fields.day = {};
+            mrnDateClass.fields.month = {};
+            mrnDateClass.fields.year = {};
         });
 
         after(() => {
@@ -130,9 +132,9 @@ describe('EnterMobile.js', () => {
 
         it('returns the next step url /are-you-an-appointee if date less than a month', () => {
             date = mrnDate(0);
-            mrnDateClass.fields.get.withArgs('day').returns({value: date.d});
-            mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
-            mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
+            mrnDateClass.fields.day.value = date.d;
+            mrnDateClass.fields.month.value = date.m;
+            mrnDateClass.fields.year.value = date.y;
             redirector = {
                 nextStep: urls.identity.areYouAnAppointee
             };
@@ -144,9 +146,9 @@ describe('EnterMobile.js', () => {
 
         it('returns the next step url /are-you-an-appointee if date is equal to a month', () => {
             date = mrnDate(1);
-            mrnDateClass.fields.get.withArgs('day').returns({value: date.d});
-            mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
-            mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
+            mrnDateClass.fields.day.value = date.d;
+            mrnDateClass.fields.month.value = date.m;
+            mrnDateClass.fields.year.value = date.y;
             redirector = {
                 nextStep: urls.identity.areYouAnAppointee
             };
@@ -158,9 +160,9 @@ describe('EnterMobile.js', () => {
 
         it('returns the next step url /check-mrn-date if date more than a month', () => {
             date = mrnDate(2);
-            mrnDateClass.fields.get.withArgs('day').returns({value: date.d});
-            mrnDateClass.fields.get.withArgs('month').returns({value: date.m});
-            mrnDateClass.fields.get.withArgs('year').returns({value: date.y});
+            mrnDateClass.fields.day.value = date.d;
+            mrnDateClass.fields.month.value = date.m;
+            mrnDateClass.fields.year.value = date.y;
             redirector = {
                 nextStep: urls.compliance.checkMRNDate
             };

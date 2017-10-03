@@ -67,8 +67,8 @@ describe('CheckMRN.js', () => {
             expect(field.name).to.equal('checkedMRN');
         });
 
-        it('contains field content', () => {
-            expect(field.content).to.eql(content.en.translation.fields.checkedMRN);
+        it('contains validation', () => {
+            expect(field.validations).to.not.be.empty;
         });
 
     });
@@ -79,6 +79,7 @@ describe('CheckMRN.js', () => {
 
         beforeEach(() => {
             checkMRNClass.fields = stub();
+            checkMRNClass.fields.checkedMRN = {};
         });
 
         after(() => {
@@ -88,7 +89,7 @@ describe('CheckMRN.js', () => {
         describe('checkMRN field value equals yes', () => {
 
             beforeEach(() => {
-                checkMRNClass.fields.get = stub().returns({value: 'yes'});
+                checkMRNClass.fields.checkedMRN.value = 'yes';
             });
 
             it('returns the next step url /mrn-over-month-late when date is less than thirteen months', () => {
@@ -141,7 +142,7 @@ describe('CheckMRN.js', () => {
                 checkMRNClass.journey = {
                     MRNDate: urls.compliance.mrnDate
                 };
-                checkMRNClass.fields.get = stub().returns({value: 'no'});
+                checkMRNClass.fields.checkedMRN.value = 'no';
                 expect(checkMRNClass.next()).to.eql(redirector);
             });
 

@@ -57,11 +57,7 @@ describe('EnterMobile.js', () => {
         });
 
         it('contains validation', () => {
-            expect(field.validator).to.not.be.null;
-        });
-
-        it('contains field content', () => {
-            expect(field.content).to.eql(content.en.translation.fields.mobileNumber);
+            expect(field.validations).to.not.be.empty;
         });
 
     });

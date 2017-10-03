@@ -57,10 +57,6 @@ describe('NoMRN.js', () => {
             expect(field.name).to.equal('reasonForNoMRN');
         });
 
-        it('contains field content', () => {
-            expect(field.content).to.eql(content.en.translation.fields.reasonForNoMRN);
-        });
-
     });
 
     describe('next()', () => {
