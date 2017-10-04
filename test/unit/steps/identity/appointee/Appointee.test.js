@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { stub, spy } = require('sinon');
+const { stub } = require('sinon');
 const Appointee = require('steps/identity/appointee/Appointee');
 const content = require('steps/identity/appointee/content.json');
 const urls = require('urls');
