@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const Entry = require('steps/entry/Entry');
-const urls = require('url');
+const urls = require('urls');
 
 describe('Entry.js', () => {
 
