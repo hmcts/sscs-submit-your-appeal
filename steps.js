@@ -20,6 +20,9 @@ const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
+const Arrangements = require('steps/hearing/arrangement/Arrangements');
+const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
+const HearingAvailability = require('steps/hearing/availibility/HearingAvailibility');
 
 const init = [
     new Entry(),
@@ -60,11 +63,18 @@ const representative = [
     new Representative()
 ];
 
+const hearing = [
+  new Arrangements(),
+  new HearingArrangements(),
+  new HearingAvailability()
+];
+
 module.exports = concat(
     init,
     startAnAppeal,
     compliance,
     identity,
     smsNotify,
-    representative
+    representative,
+    hearing
 );

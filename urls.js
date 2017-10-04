@@ -38,6 +38,12 @@ module.exports = {
 
     representative: {
         representative:                 '/representative'
+    },
+
+    hearing: {
+        arrangements:                   '/arrangements',
+        hearingArrangements:            '/hearing-arrangements',
+        hearingAvailability:            '/hearing-availability'
     }
 
 };
