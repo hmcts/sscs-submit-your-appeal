@@ -8,4 +8,4 @@ chai.use(sinonChai);
 chai.use(chaiAsPromised);
 chai.use(chaiJq);
 
-module.exports = { expect: chai.expect, sinon };
+module.exports = { expect: chai.expect, should: chai.should(), sinon};
