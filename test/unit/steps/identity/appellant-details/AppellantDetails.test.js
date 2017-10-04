@@ -64,8 +64,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('firstName');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.firstName);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -80,8 +80,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('lastName');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.lastName);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -96,8 +96,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('niNumber');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.niNumber);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -112,8 +112,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('addressLine1');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.addressLine1);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -128,8 +128,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('addressLine2');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.addressLine2);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -144,8 +144,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('townCity');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.townCity);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -160,8 +160,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('postCode');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.postCode);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -176,8 +176,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('phoneNumber');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.phoneNumber);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -192,8 +192,8 @@ describe('AppellantDetails.js', () => {
                 expect(field.name).to.equal('emailAddress');
             });
 
-            it('contains field content', () => {
-                expect(field.content).to.eql(content.en.translation.fields.emailAddress);
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
