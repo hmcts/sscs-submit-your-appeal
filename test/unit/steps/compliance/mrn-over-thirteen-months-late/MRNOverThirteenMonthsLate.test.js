@@ -57,10 +57,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
             expect(field.name).to.equal('reasonForBeingLate');
         });
 
-        it('contains field content', () => {
-            expect(field.content).to.eql(content.en.translation.fields.reasonForBeingLate);
-        });
-
     });
 
     describe('next()', () => {

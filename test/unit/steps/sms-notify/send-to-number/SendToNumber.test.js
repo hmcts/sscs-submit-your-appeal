@@ -63,34 +63,4 @@ describe('SendToNumber.js', () => {
 
     });
 
-    describe('next()', () => {
-
-        beforeEach(() => {
-            sendToNumberClass.fields = stub();
-        });
-
-        it('returns the next step url /sms-confirmation when useSameNumber value equals yes', () => {
-            const redirector = {
-                nextStep: '/sms-confirmation'
-            };
-            sendToNumberClass.journey = {
-                SmsConfirmation: '/sms-confirmation'
-            };
-            sendToNumberClass.fields.get = stub().returns({value: 'yes'});
-            expect(sendToNumberClass.next()).to.eql(redirector);
-        });
-
-        it('returns the next step url /enter-mobile when useSameNumber value equals no', () => {
-            const redirector = {
-                nextStep: '/enter-mobile'
-            };
-            sendToNumberClass.journey = {
-                EnterMobile: '/enter-mobile'
-            };
-            sendToNumberClass.fields.get = stub().returns({value: 'no'});
-            expect(sendToNumberClass.next()).to.eql(redirector);
-        });
-
-    });
-
 });
