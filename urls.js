@@ -37,7 +37,12 @@ module.exports = {
     },
 
     representative: {
-        representative:                 '/representative'
+        hasRepresentative:              '/representative',
+        representativeDetails:          '/representative-details'
+    },
+
+    reasonsForAppealing: {
+        reasonForAppealing:             '/reason-for-appealing'
     },
 
     hearing: {
