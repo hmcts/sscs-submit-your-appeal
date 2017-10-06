@@ -8,10 +8,6 @@ class CantAppeal extends Page {
         return urls.compliance.cantAppeal;
     }
 
-    get template() {
-        return `compliance/cant-appeal/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

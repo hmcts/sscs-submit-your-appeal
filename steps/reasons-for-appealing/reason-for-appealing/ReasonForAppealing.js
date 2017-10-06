@@ -7,12 +7,7 @@ class ReasonForAppealing extends Question {
         return urls.reasonsForAppealing.reasonForAppealing;
     }
 
-    get form() {
-    }
-
-    get template() {
-        return 'reasons-for-appealing/reason-for-appealing/template';
-    }
+    get form() {}
 
     next() {}
 }

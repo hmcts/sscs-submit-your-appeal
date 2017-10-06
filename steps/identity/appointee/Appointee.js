@@ -24,10 +24,6 @@ class Appointee extends Question {
         );
     }
 
-    get template() {
-        return `identity/appointee/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

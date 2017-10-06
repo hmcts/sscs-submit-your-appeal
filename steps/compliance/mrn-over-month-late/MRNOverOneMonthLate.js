@@ -19,10 +19,6 @@ class MRNOverOneMonthLate extends Question {
         );
     }
 
-    get template() {
-        return `compliance/mrn-over-month-late/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

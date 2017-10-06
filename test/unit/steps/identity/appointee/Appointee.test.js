@@ -26,14 +26,6 @@ describe('Appointee.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path identity/appointee/template', () => {
-            expect(appointeeClass.template).to.equal('identity/appointee/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

@@ -25,14 +25,6 @@ describe('MRNOverOneMonth.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/mrn-over-month-late/template', () => {
-            expect(mrnOverOneMonthClass.template).to.equal('compliance/mrn-over-month-late/template');
-        });
-
-    });
-
     describe('get form()', () => {
 
         let field;

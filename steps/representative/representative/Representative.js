@@ -14,10 +14,6 @@ class Representative extends Question {
         return urls.representative.representative
     }
 
-    get template() {
-        return `representative/has-representative/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

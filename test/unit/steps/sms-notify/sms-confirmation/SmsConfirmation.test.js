@@ -24,14 +24,6 @@ describe('SmsConfirmation.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path sms-notify/sms-confirmation/template', () => {
-            expect(smsConfirmationClass.template).to.equal('sms-notify/sms-confirmation/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

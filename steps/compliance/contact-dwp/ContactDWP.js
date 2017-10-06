@@ -8,10 +8,6 @@ class ContactDWP extends Page {
         return urls.compliance.contactDWP;
     }
 
-    get template() {
-        return `compliance/contact-dwp/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

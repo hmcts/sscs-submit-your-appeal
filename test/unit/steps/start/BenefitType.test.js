@@ -25,14 +25,6 @@ describe('BenefitType.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path start/template', () => {
-            expect(benefitTypeClass.template).to.equal('start/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

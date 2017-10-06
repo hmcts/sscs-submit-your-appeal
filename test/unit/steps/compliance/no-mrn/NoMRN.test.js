@@ -25,14 +25,6 @@ describe('NoMRN.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/no-mrn/template', () => {
-            expect(noMRNClass.template).to.equal('compliance/no-mrn/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

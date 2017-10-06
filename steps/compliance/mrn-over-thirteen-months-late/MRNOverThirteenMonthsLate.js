@@ -19,10 +19,6 @@ class MRNOverThirteenMonthsLate extends Question {
         );
     }
 
-    get template() {
-        return `compliance/mrn-over-thirteen-months-late/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

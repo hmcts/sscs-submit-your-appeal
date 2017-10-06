@@ -22,10 +22,6 @@ class MRNDate extends Question {
         );
     }
 
-    get template() {
-        return `compliance/mrn-date/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

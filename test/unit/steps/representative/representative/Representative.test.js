@@ -26,14 +26,6 @@ describe('Representative.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path representative/has-representative/template', () => {
-            expect(representativeClass.template).to.equal('representative/has-representative/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

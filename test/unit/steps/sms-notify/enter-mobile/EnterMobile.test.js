@@ -24,14 +24,6 @@ describe('EnterMobile.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path sms-notify/enter-mobile/template', () => {
-            expect(enterMobileClass.template).to.equal('sms-notify/enter-mobile/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

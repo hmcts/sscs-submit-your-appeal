@@ -25,14 +25,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/mrn-over-thirteen-months-late/template', () => {
-            expect(mrnOverThirteenMonthsLateClass.template).to.equal('compliance/mrn-over-thirteen-months-late/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

@@ -26,14 +26,6 @@ describe('SendToNumber.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path sms-notify/send-to-number/template', () => {
-            expect(sendToNumberClass.template).to.equal('sms-notify/send-to-number/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

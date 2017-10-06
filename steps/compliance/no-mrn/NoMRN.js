@@ -19,10 +19,6 @@ class NoMRN extends Question {
         );
     }
 
-    get template() {
-        return `compliance/no-mrn/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

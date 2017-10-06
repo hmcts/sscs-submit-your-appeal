@@ -35,14 +35,6 @@ describe('MRNDate.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/mrn-date/template', () => {
-            expect(mrnDateClass.template).to.equal('compliance/mrn-date/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

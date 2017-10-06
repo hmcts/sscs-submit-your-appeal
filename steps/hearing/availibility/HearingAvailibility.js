@@ -13,10 +13,6 @@ class HearingAvailibility extends Question {
         return form();
     }
 
-    get template() {
-        return `hearing/hearing-arrangements/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

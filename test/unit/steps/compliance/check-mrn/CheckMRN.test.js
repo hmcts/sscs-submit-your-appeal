@@ -35,14 +35,6 @@ describe('CheckMRN.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/check-mrn/template', () => {
-            expect(checkMRNClass.template).to.equal('compliance/check-mrn/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

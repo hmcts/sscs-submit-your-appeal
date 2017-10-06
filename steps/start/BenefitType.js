@@ -17,10 +17,6 @@ class BenefitType extends Question {
         );
     }
 
-    get template() {
-        return `start/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

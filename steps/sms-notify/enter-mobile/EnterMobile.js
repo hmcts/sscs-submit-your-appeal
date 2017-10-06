@@ -10,10 +10,6 @@ class EnterMobile extends Question {
         return urls.smsNotify.enterMobile;
     }
 
-    get template() {
-        return 'sms-notify/enter-mobile/template';
-    }
-
     get form() {
 
         return form(

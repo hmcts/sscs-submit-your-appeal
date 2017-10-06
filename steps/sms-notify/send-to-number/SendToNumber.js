@@ -15,10 +15,6 @@ class SendToNumber extends Question {
         return urls.smsNotify.sendToNumber;
     }
 
-    get template() {
-        return `sms-notify/send-to-number/template`;
-    }
-
     get form() {
 
         return form(

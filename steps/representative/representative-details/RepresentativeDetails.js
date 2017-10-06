@@ -7,12 +7,7 @@ class RepresentativeDetails extends Question {
         return urls.representative.representativeDetails;
     }
 
-    get form() {
-    }
-
-    get template() {
-        return `representative/representative-details/template`;
-    }
+    get form() {}
     
     next() {}
 }

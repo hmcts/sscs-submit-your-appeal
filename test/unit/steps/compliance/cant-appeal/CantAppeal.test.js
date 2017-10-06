@@ -24,14 +24,6 @@ describe('CantAppeal.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/cant-appeal/template', () => {
-            expect(cantAppealClass.template).to.equal('compliance/cant-appeal/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

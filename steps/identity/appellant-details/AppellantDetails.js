@@ -12,10 +12,6 @@ class AppellantDetails extends Question {
         return urls.identity.enterAppellantDetails;
     }
 
-    get template() {
-        return `identity/appellant-details/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

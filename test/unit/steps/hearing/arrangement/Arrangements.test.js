@@ -26,14 +26,6 @@ describe('Arrangements.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path hearing/arrangement/template', () => {
-            expect(arrangements.template).to.equal('hearing/arrangement/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

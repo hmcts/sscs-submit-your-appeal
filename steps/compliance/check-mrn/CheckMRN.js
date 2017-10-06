@@ -27,10 +27,6 @@ class CheckMRN extends Question {
         );
     }
 
-    get template() {
-        return `compliance/check-mrn/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

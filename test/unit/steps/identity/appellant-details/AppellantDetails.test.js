@@ -25,14 +25,6 @@ describe('AppellantDetails.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path identity/appellant-details/template', () => {
-            expect(appellantDetailsClass.template).to.equal('identity/appellant-details/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

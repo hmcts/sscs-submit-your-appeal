@@ -25,14 +25,6 @@ describe('ContactDWP.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path compliance/contact-dwp/template', () => {
-            expect(contactDWPClass.template).to.equal('compliance/contact-dwp/template');
-        });
-
-    });
-
     describe('get i18NextContent()', () => {
 
         it('returns the correct content for the page', () => {

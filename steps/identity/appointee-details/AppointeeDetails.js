@@ -8,10 +8,6 @@ class AppointeeDetails extends Question {
         return urls.identity.enterAppointeeDetails;
     }
 
-    get template() {
-        return `identity/appointee-details/template`;
-    }
-
     get i18NextContent() {
         return content;
     }

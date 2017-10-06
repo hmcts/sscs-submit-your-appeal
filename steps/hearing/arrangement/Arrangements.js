@@ -24,10 +24,6 @@ class Arrangements extends Question {
         );
     }
 
-    get template() {
-        return `hearing/arrangement/template`;
-    }
-
     get i18NextContent() {
         return content;
     }
