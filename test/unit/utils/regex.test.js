@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const { firstName, lastName, whitelist, niNumber, phoneNumber } = require('utils/regex');
+const { firstName, lastName, whitelist, niNumber, phoneNumber, internationalMobileNumber } = require('utils/regex');
 
 describe('validating a string', () => {
 
@@ -96,6 +96,52 @@ describe('validating a telephone number', () => {
         const number = '07422735993';
         const phoneNumberValidator = number.match(phoneNumber);
         expect(phoneNumberValidator).to.not.equal(null);
+    });
+
+});
+
+describe('validating a international mobile number', () => {
+
+    it("should validate against number starting with 07", () => {
+        const number = '07332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.not.equal(null);
+    });
+
+    it("should validate against number starting with + before country calling code", () => {
+        const number = '+447332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.not.equal(null);
+    });
+
+    it("should validate against number starting with 00 before country calling code", () => {
+        const number = '00447332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.not.equal(null);
+    });
+
+    it("should validate against number starting with (00) before country calling code", () => {
+        const number = '(00)447332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.not.equal(null);
+    });
+
+    it("should validate against number starting with (0044)", () => {
+        const number = '(0044)7332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.not.equal(null);
+    });
+
+    it("should not validate against number starting without 07 or + + or 00 or ()", () => {
+        const number = '7332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.equal(null);
+    });
+
+    it("should not validate against number starting with country code without + or 00 or ()", () => {
+        const number = '447332198765';
+        const mobileNumberValidator = number.match(internationalMobileNumber);
+        expect(mobileNumberValidator).to.equal(null);
     });
 
 });
