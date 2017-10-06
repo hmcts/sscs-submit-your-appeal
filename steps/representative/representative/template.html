@@ -1,12 +1,40 @@
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
-{% from "look-and-feel/components/header.njk" import header %}
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
-{% block two_thirds %}
-<a class="link-back" href="#" onclick="history.go(-1)">Back</a>
-<h1>REPRESENTATIVE PLACEHOLDER TEXT</h1>
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    <p>{{ content.subtitle | safe}}</p>
+    <p>{{ content.registerList | safe}}</p>
+    <ul class="list list-bullet">
+        <li>{{ content.info | safe }}</li>
+        <li>{{ content.evidence | safe }}</li>
+        <li>{{ content.talkToUs | safe }}</li>
+    </ul>
+    <p>{{ content.phoneUp | safe }}</p>
+
+    {% call formSection() %}
+
+        {{ selectionButtons(
+            fields.hasRepresentative,
+            "",
+            hint = '',
+            options = [
+                { label: content.fields.hasRepresentative.yes, value: "yes" },
+                { label: content.fields.hasRepresentative.no,  value: "no" }
+            ])
+        }}
+
+    {% endcall %}
+
 {% endblock %}
