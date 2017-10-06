@@ -37,7 +37,7 @@ module.exports = {
     },
 
     representative: {
-        hasRepresentative:              '/representative',
+        representative:                 '/representative',
         representativeDetails:          '/representative-details'
     },
 

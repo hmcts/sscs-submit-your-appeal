@@ -8,10 +8,10 @@ const answer = {
     NO: 'no'
 };
 
-class HasRepresentative extends Question {
+class Representative extends Question {
 
     get url() {
-        return urls.representative.hasRepresentative
+        return urls.representative.representative
     }
 
     get template() {
@@ -44,4 +44,4 @@ class HasRepresentative extends Question {
     }
 }
 
-module.exports = HasRepresentative;
+module.exports = Representative;
