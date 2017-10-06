@@ -1,27 +1,23 @@
 {
-  "en": {
-    "translation": {
-      "title": "MRN Date",
-      "doNotHaveAnMRN": "I don’t have a Mandatory Reconsideration Notice",
-      "fields": {
-        "day": {
-          "title": "Day",
-          "error": {
-            "required": "Please enter a day"
-          }
-        },
-        "month": {
-          "title": "Month",
-          "error": {
-            "required": "Please enter a month"
-          }
-        },
-        "year": {
-          "title": "Year",
-          "error": {
-            "required": "Please enter a year"
-          }
-        }
+  "title": "MRN Date",
+  "doNotHaveAnMRN": "I don’t have a Mandatory Reconsideration Notice",
+  "fields": {
+    "day": {
+      "title": "Day",
+      "error": {
+        "required": "Please enter a day"
+      }
+    },
+    "month": {
+      "title": "Month",
+      "error": {
+        "required": "Please enter a month"
+      }
+    },
+    "year": {
+      "title": "Year",
+      "error": {
+        "required": "Please enter a year"
       }
     }
   }

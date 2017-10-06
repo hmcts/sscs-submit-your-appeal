@@ -1,11 +1,7 @@
 {
-  "en": {
-    "translation": {
-      "title": "You’re signed up for text message reminders",
-      "mobileNumber": "Text messages will be sent to the following number: ",
-      "firstMessage": "You’ll get your first message after you’ve submitted your appeal.",
-      "continue": "Continue",
-      "change": "Change number"
-    }
-  }
+  "title": "You’re signed up for text message reminders",
+  "mobileNumber": "Text messages will be sent to the following number: ",
+  "firstMessage": "You’ll get your first message after you’ve submitted your appeal.",
+  "continue": "Continue",
+  "change": "Change number"
 }
