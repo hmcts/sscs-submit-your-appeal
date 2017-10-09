@@ -2,11 +2,7 @@ const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
-
-const answer = {
-    YES: 'yes',
-    NO: 'no'
-};
+const answer = require('utils/answer');
 
 class SendToNumber extends Question {
 

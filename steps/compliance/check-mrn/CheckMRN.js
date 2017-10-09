@@ -2,11 +2,7 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
-
-const answer = {
-    YES: 'yes',
-    NO: 'no'
-};
+const answer = require('utils/answer');
 
 class CheckMRN extends Question {
 

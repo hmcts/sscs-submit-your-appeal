@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node app.js",
-    "start-dev": "cross-env NODE_PATH=. node-dev app.js",
+    "start-dev": "cross-env NODE_PATH=. --inspect node-dev app.js",
     "test": "cross-env NODE_PATH=. nyc mocha 'test/unit/**/*.test.js'",
     "e2e": "cross-env NODE_PATH=. codeceptjs run -c test/e2e/ --steps"
   },
