@@ -16,21 +16,24 @@ class RepresentativeDetails extends Question {
 
         return form(
             field('firstName')
-                .joi(fields.firstName.error.required, Joi.string().regex(firstName).required()),
+                .joi(fields.firstName.error.required, Joi.string().required())
+                .joi(fields.firstName.error.invalid, Joi.string().regex(firstName)),
 
             field('lastName')
-                .joi(fields.firstName.error.required, Joi.string().regex(lastName).required()),
-
+                .joi(fields.lastName.error.required, Joi.string().required())
+                .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)),
             field('organisation'),
 
             field('addressLine1')
                 .joi(fields.addressLine1.error.required, Joi.string().regex(whitelist).required()),
 
-            field('addressLine2')
-                .joi(fields.addressLine2.error.required, Joi.string().regex(whitelist).required()),
+            field('addressLine2'),
 
             field('townCity')
                 .joi(fields.townCity.error.required, Joi.string().regex(whitelist).required()),
+
+            field('county')
+                .joi(fields.county.error.required, Joi.string().regex(whitelist).required()),
 
             field('postCode')
                 .joi(fields.postCode.error.required, Joi.string().regex(postCode).required()),

@@ -25,6 +25,7 @@
         {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint="") }}
         {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
         {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
+        {{ textbox(fields.county,       content.fields.county.title,        hint="") }}
         {{ textbox(fields.postCode,     content.fields.postCode.title,      hint="") }}
         {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
@@ -35,6 +36,6 @@
 
 {% block after_form %}
     <div class="after-form">
-        <p><a class="link" href="/representative">{{ content.noDetails }}</a></p>
+        <p><a class="link" href="/no-representative-details">{{ content.noDetails }}</a></p>
     </div>
 {% endblock %}

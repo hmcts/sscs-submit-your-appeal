@@ -8,13 +8,15 @@
         "firstName": {
           "title": "First name",
           "error": {
-            "required": "Please enter your first name"
+            "required": "No first name entered",
+            "invalid": "Invalid first name entered"
           }
         },
         "lastName": {
           "title": "Last name(s)",
           "error": {
-            "required": "Please enter your last name"
+            "required": "No surname name entered",
+            "invalid": "Invalid surname name entered"
           }
         },
         "organisation": {
@@ -23,39 +25,42 @@
         "addressLine1": {
           "title": "Address line 1",
           "error": {
-            "required": "Please enter Address line 1"
+            "required": "First line of address not entered"
           }
         },
         "addressLine2": {
-          "title": "Address line 2 (optional)",
-          "error": {
-            "required": "Please enter Address line 2"
-          }
+          "title": "Address line 2 (optional)"
         },
         "townCity": {
           "title": "Town/City",
           "error": {
-            "required": "Please enter a Town/City"
+            "required": "Town or city not entered"
+          }
+        },
+        "county": {
+          "title": "County",
+          "error": {
+            "required": "County not entered"
           }
         },
         "postCode": {
           "title": "Postcode",
           "error": {
-            "required": "Please enter a valid postcode"
+            "required": "Postcode not entered"
           }
         },
         "phoneNumber": {
           "title": "Phone number (optional)",
           "hint": "We may use this to contact them about your appeal",
           "error": {
-            "invalid": "Please enter a valid phone number"
+            "invalid": "Invalid phone number entered"
           }
         },
         "emailAddress": {
           "title": "Email address (optional)",
           "hint": "We’ll use this to email them updates about your appeal",
           "error": {
-            "invalid": "Please enter a valid email address"
+            "invalid": "Invalid email address entered"
           }
         }
       }
