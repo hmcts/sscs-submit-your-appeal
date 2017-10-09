@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { mobileNumber } = require('utils/regex');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
 
 class EnterMobile extends Question {
@@ -23,10 +22,6 @@ class EnterMobile extends Question {
                     Joi.string().regex(mobileNumber).required()
                 )
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

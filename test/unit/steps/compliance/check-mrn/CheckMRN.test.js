@@ -4,7 +4,6 @@ const { expect } = require('test/util/chai');
 const moment = require('moment');
 const { stub } = require('sinon');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
-const content = require('steps/compliance/check-mrn/content.json');
 const urls = require('urls');
 
 describe('CheckMRN.js', () => {
@@ -31,14 +30,6 @@ describe('CheckMRN.js', () => {
 
         it('returns url /check-mrn-date', () => {
             expect(checkMRNClass.url).to.equal(urls.compliance.checkMRNDate);
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(checkMRNClass.i18NextContent).to.equal(content);
         });
 
     });

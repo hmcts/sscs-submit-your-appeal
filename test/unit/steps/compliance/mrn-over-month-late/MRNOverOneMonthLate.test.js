@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
-const content = require('steps/compliance/mrn-over-month-late/content.json');
 const urls = require('urls');
 
 describe('MRNOverOneMonth.js', () => {
@@ -39,14 +38,6 @@ describe('MRNOverOneMonth.js', () => {
 
         it('contains the field name reasonForBeingLate', () => {
             expect(field.name).to.equal('reasonForBeingLate');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(mrnOverOneMonthClass.i18NextContent).to.equal(content);
         });
 
     });

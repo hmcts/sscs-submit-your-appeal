@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
 
 class NoMRN extends Question {
@@ -17,10 +16,6 @@ class NoMRN extends Question {
             field('reasonForNoMRN')
                 .joi(this.content.fields.reasonForNoMRN.error.required, Joi.string().regex(whitelist).required())
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

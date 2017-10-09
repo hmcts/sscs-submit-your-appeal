@@ -3,7 +3,6 @@
 const { expect } = require('test/util/chai');
 const urls = require('urls');
 const BenefitType = require('steps/start/BenefitType');
-const content = require('steps/start/content.json');
 
 describe('BenefitType.js', () => {
 
@@ -21,14 +20,6 @@ describe('BenefitType.js', () => {
 
         it('returns url /benefit-type', () => {
             expect(benefitTypeClass.url).to.equal(urls.start.benefitType);
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(benefitTypeClass.i18NextContent).to.equal(content);
         });
 
     });

@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const DateUtils = require('utils/DateUtils');
 const { numbers } = require('utils/regex');
-const content = require('./content');
 const urls = require('urls');
 const Joi = require('joi');
 
@@ -20,10 +19,6 @@ class MRNDate extends Question {
             field('year')
                 .joi(this.content.fields.year.error.required, Joi.string().regex(numbers).required())
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

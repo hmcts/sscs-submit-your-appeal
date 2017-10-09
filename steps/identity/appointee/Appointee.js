@@ -1,6 +1,5 @@
 const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
 
 const answer = {
@@ -22,10 +21,6 @@ class Appointee extends Question {
             field('appointee')
                 .joi(this.content.fields.appointee.error.required, Joi.string().valid(answers))
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

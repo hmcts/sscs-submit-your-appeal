@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
-const content = require('./content');
 const urls = require('urls');
 
 const answer = {
@@ -25,10 +24,6 @@ class CheckMRN extends Question {
                 .joi(this.content.fields.checkedMRN.error.required, Joi.string().valid(answers)
             )
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

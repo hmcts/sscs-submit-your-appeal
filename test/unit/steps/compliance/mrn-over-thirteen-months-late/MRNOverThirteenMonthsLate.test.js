@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
-const content = require('steps/compliance/mrn-over-thirteen-months-late/content.json');
 const urls = require('urls');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
@@ -21,14 +20,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
         it('returns url /mrn-over-thirteen-months-late', () => {
             expect(mrnOverThirteenMonthsLateClass.url).to.equal(urls.compliance.mrnOverThirteenMonthsLate);
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(mrnOverThirteenMonthsLateClass.i18NextContent).to.equal(content);
         });
 
     });

@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
-const content = require('steps/sms-notify/text-reminders/content.json');
 
 describe('TextReminders.js', () => {
 
@@ -33,14 +32,6 @@ describe('TextReminders.js', () => {
                 }
             };
             expect(textRemindersClass.template).to.equal('sms-notify/text-reminders/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(textRemindersClass.i18NextContent).to.equal(content);
         });
 
     });

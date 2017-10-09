@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
 
 const emailOptions = { minDomainAtoms: 2 };
@@ -10,10 +9,6 @@ class AppellantDetails extends Question {
 
     get url() {
         return urls.identity.enterAppellantDetails;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     get form() {

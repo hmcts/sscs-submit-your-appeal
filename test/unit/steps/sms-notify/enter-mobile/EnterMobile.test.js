@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
-const content = require('steps/sms-notify/enter-mobile/content.json');
 
 describe('EnterMobile.js', () => {
 
@@ -20,14 +19,6 @@ describe('EnterMobile.js', () => {
 
         it('returns url /enter-mobile', () => {
            expect(enterMobileClass.url).to.equal('/enter-mobile');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(enterMobileClass.i18NextContent).to.equal(content);
         });
 
     });
