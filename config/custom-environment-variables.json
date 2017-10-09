@@ -1,4 +1,5 @@
 {
+  "port": "PORT",
   "redisUrl": "REDIS_URL",
   "secret": "SESSION_SECRET",
   "health": {
