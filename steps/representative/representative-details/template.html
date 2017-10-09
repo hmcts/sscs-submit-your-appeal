@@ -1,1 +1,40 @@
-<h1>REPRESENTATIVE DETAILS PLACEHOLDER</h1>
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+
+{% block head -%}
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    {% call formSection() %}
+
+        <p>{{ content.subtitle}}</p>
+
+        {{ textbox(fields.firstName,    content.fields.firstName.title,     hint="") }}
+        {{ textbox(fields.lastName,     content.fields.lastName.title,      hint="") }}
+        {{ textbox(fields.organisation, content.fields.organisation.title,  hint="") }}
+        {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint="") }}
+        {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
+        {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
+        {{ textbox(fields.postCode,     content.fields.postCode.title,      hint="") }}
+        {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
+        {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+{% block after_form %}
+    <div class="after-form">
+        <p><a class="link" href="/representative">{{ content.noDetails }}</a></p>
+    </div>
+{% endblock %}
