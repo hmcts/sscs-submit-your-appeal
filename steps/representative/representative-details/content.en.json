@@ -18,7 +18,10 @@
       }
     },
     "organisation": {
-      "title": "Organisation (if they work for one)"
+      "title": "Organisation (if they work for one)",
+      "error": {
+        "invalid": "Invalid organisation entered"
+      }
     },
     "addressLine1": {
       "title": "Address line 1",
@@ -27,7 +30,10 @@
       }
     },
     "addressLine2": {
-      "title": "Address line 2 (optional)"
+      "title": "Address line 2 (optional)",
+      "error": {
+        "invalid": "Invalid second line of address entered"
+      }
     },
     "townCity": {
       "title": "Town/City",

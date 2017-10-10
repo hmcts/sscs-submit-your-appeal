@@ -79,8 +79,8 @@ describe('RepresentativeDetails.js', () => {
                 expect(field.name).to.equal('organisation');
             });
 
-            it('doesn\'t contain validation', () => {
-                expect(field.validations).to.be.empty;
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });
@@ -111,8 +111,8 @@ describe('RepresentativeDetails.js', () => {
                 expect(field.name).to.equal('addressLine2');
             });
 
-            it('doesn\'t contain validation', () => {
-                expect(field.validations).to.be.empty;
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
             });
 
         });

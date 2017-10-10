@@ -4,8 +4,7 @@ const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
-
-const emailOptions = { minDomainAtoms: 2 };
+const emailOptions = require('utils/emailOptions');
 
 class RepresentativeDetails extends Question {
 
@@ -24,12 +23,15 @@ class RepresentativeDetails extends Question {
             field('lastName')
                 .joi(fields.lastName.error.required, Joi.string().required())
                 .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)),
-            field('organisation'),
+
+            field('organisation')
+                .joi(fields.organisation.error.invalid, Joi.string().regex(whitelist).allow('')),
 
             field('addressLine1')
                 .joi(fields.addressLine1.error.required, Joi.string().regex(whitelist).required()),
 
-            field('addressLine2'),
+            field('addressLine2')
+                .joi(fields.addressLine2.error.invalid, Joi.string().regex(whitelist).allow('')),
 
             field('townCity')
                 .joi(fields.townCity.error.required, Joi.string().regex(whitelist).required()),
