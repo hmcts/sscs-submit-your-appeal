@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
-const content = require('steps/representative/representative-details/content.json');
 const urls = require('urls');
 
 describe('RepresentativeDetails.js', () => {
@@ -21,22 +20,6 @@ describe('RepresentativeDetails.js', () => {
 
         it('returns url /representative-details', () => {
             expect(representativeDetailsClass.url).to.equal(urls.representative.representativeDetails);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path representative/representative-details/template', () => {
-            expect(representativeDetailsClass.template).to.equal('representative/representative-details/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(representativeDetailsClass.i18NextContent).to.equal(content);
         });
 
     });

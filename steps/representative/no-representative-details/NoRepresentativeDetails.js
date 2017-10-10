@@ -7,10 +7,6 @@ class NoRepresentativeDetails extends Question {
         return urls.representative.noRepresentativeDetails;
     }
 
-    get template() {
-        return `representative/no-representative-details/template`;
-    }
-
     get form() {
     }
 
