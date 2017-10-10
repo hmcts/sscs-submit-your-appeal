@@ -1,7 +1,7 @@
-const { Page } = require('@hmcts/one-per-page');
+const { BaseStep } = require('@hmcts/one-per-page');
 const urls = require('urls');
 
-class Sessions extends Page {
+class Sessions extends BaseStep {
     get url() {
         return urls.session.sessions;
     }
