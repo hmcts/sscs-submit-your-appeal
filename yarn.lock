@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@^1.0.0-0":
-  version "1.0.0-0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.0-0.tgz#cb4454180cca5ef7d9f2740e1f78365512df166b"
+"@hmcts/look-and-feel@^1.0.0-3":
+  version "1.0.0-3"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.0-3.tgz#599c03736ab259f8ccc566a4efdbf70654b76c69"
   dependencies:
     check-types "^7.3.0"
     config "^1.26.1"
@@ -32,9 +32,9 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@1.0.0-2":
-  version "1.0.0-2"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.0.0-2.tgz#b6c4b9fcaf8f0e2cd57797fe43a410bc7146b61c"
+"@hmcts/one-per-page@1.0.0-4":
+  version "1.0.0-4"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.0.0-4.tgz#a818e6818502f442506ad1e73f3f09d5f7c7ca4f"
   dependencies:
     body-parser "^1.17.2"
     callsites "^2.0.0"

@@ -8,14 +8,15 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node app.js",
-    "start-dev": "cross-env NODE_PATH=. --inspect node-dev app.js",
-    "test": "cross-env NODE_PATH=. nyc mocha 'test/unit/**/*.test.js'",
-    "e2e": "cross-env NODE_PATH=. codeceptjs run -c test/e2e/ --steps"
+    "start-dev": "cross-env NODE_PATH=. node-dev app.js",
+    "test": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
+    "e2e": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --steps",
+    "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn e2e"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "^1.0.0-0",
+    "@hmcts/look-and-feel": "^1.0.0-3",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
-    "@hmcts/one-per-page": "1.0.0-2",
+    "@hmcts/one-per-page": "1.0.0-4",
     "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "joi": "^10.6.0",
