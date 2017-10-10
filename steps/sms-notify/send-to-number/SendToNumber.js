@@ -1,22 +1,13 @@
 const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
-
-const answer = {
-    YES: 'yes',
-    NO: 'no'
-};
+const answer = require('utils/answer');
 
 class SendToNumber extends Question {
 
     get url() {
         return urls.smsNotify.sendToNumber;
-    }
-
-    get template() {
-        return `sms-notify/send-to-number/template`;
     }
 
     get form() {
@@ -29,10 +20,6 @@ class SendToNumber extends Question {
                     Joi.string().regex(whitelist).required()
                 )
         );
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

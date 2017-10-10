@@ -3,7 +3,6 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Arrangements = require('steps/hearing/arrangement/Arrangements');
-const content = require('steps/hearing/arrangement/content.json');
 const urls = require('urls');
 
 describe('Arrangements.js', () => {
@@ -22,22 +21,6 @@ describe('Arrangements.js', () => {
 
         it('returns url /arrangements', () => {
             expect(arrangements.url).to.equal(urls.hearing.arrangements);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path hearing/arrangement/template', () => {
-            expect(arrangements.template).to.equal('hearing/arrangement/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(arrangements.i18NextContent).to.equal(content);
         });
 
     });

@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@^1.0.0-0":
-  version "1.0.0-0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.0-0.tgz#cb4454180cca5ef7d9f2740e1f78365512df166b"
+"@hmcts/look-and-feel@^1.0.0-3":
+  version "1.0.0-3"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.0-3.tgz#599c03736ab259f8ccc566a4efdbf70654b76c69"
   dependencies:
     check-types "^7.3.0"
     config "^1.26.1"
@@ -32,16 +32,18 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@^1.0.0-0":
-  version "1.0.0-0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.0.0-0.tgz#f6c8c2bc76802f38b1bafa77d94902028833c5ec"
+"@hmcts/one-per-page@1.0.0-4":
+  version "1.0.0-4"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.0.0-4.tgz#a818e6818502f442506ad1e73f3f09d5f7c7ca4f"
   dependencies:
     body-parser "^1.17.2"
+    callsites "^2.0.0"
     config "^1.26.2"
     connect-redis "^3.3.0"
     express "^4.15.3"
     express-nunjucks "^2.2.3"
     express-session "^1.15.4"
+    glob "^7.1.2"
     http-status-codes "^1.2.0"
     i18next "^9.0.0"
     joi "^11.1.1"
@@ -558,6 +560,10 @@ caching-transform@^1.0.0:
     md5-hex "^1.2.0"
     mkdirp "^0.5.1"
     write-file-atomic "^1.1.4"
+
+callsites@^2.0.0:
+  version "2.0.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/callsites/-/callsites-2.0.0.tgz#06eb84f00eea413da86affefacbffb36093b3c50"
 
 camelcase-keys@^2.0.0:
   version "2.1.0"
@@ -1913,7 +1919,7 @@ glob@^6.0.1, glob@^6.0.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:

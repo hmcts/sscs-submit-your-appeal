@@ -1,4 +1,3 @@
-const content = require('steps/identity/appellant-details/content.json').en.translation;
 const { expect } = require('test/util/chai');
 const { firstName, lastName, whitelist, niNumber, phoneNumber } = require('utils/regex');
 

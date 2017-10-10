@@ -1,25 +1,12 @@
 const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
-
-const answer = {
-    YES: 'yes',
-    NO: 'no'
-};
+const answer = require('utils/answer');
 
 class Representative extends Question {
 
     get url() {
         return urls.representative.representative
-    }
-
-    get template() {
-        return `representative/has-representative/template`;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     get form() {

@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
-const content = require('steps/compliance/no-mrn/content.json');
 const urls = require('urls');
 
 describe('NoMRN.js', () => {
@@ -21,22 +20,6 @@ describe('NoMRN.js', () => {
 
         it('returns url /no-mrn', () => {
             expect(noMRNClass.url).to.equal(urls.compliance.noMRN);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path compliance/no-mrn/template', () => {
-            expect(noMRNClass.template).to.equal('compliance/no-mrn/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(noMRNClass.i18NextContent).to.equal(content);
         });
 
     });

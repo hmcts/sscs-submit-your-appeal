@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
-const content = require('steps/compliance/contact-dwp/content.json');
 const urls = require('urls');
 
 describe('ContactDWP.js', () => {
@@ -21,22 +20,6 @@ describe('ContactDWP.js', () => {
 
         it('returns url /contact-dwp', () => {
             expect(contactDWPClass.url).to.equal(urls.compliance.contactDWP);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path compliance/contact-dwp/template', () => {
-            expect(contactDWPClass.template).to.equal('compliance/contact-dwp/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(contactDWPClass.i18NextContent).to.equal(content);
         });
 
     });

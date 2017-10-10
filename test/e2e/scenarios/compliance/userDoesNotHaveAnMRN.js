@@ -1,6 +1,6 @@
-const mrnDateContent = require('steps/compliance/mrn-date/content.json').en.translation;
-const noMRNContent = require('steps/compliance/no-mrn/content.json').en.translation;
-const contactDWPContent = require('steps/compliance/contact-dwp/content.json').en.translation;
+const mrnDateContent = require('steps/compliance/mrn-date/content.en');
+const noMRNContent = require('steps/compliance/no-mrn/content.en');
+const contactDWPContent = require('steps/compliance/contact-dwp/content.en');
 const urls = require('urls');
 
 Feature('User does not have an MRN');

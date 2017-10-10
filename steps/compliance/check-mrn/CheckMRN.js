@@ -1,13 +1,8 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
-const content = require('./content');
 const urls = require('urls');
-
-const answer = {
-    YES: 'yes',
-    NO: 'no'
-};
+const answer = require('utils/answer');
 
 class CheckMRN extends Question {
 
@@ -25,14 +20,6 @@ class CheckMRN extends Question {
                 .joi(this.content.fields.checkedMRN.error.required, Joi.string().valid(answers)
             )
         );
-    }
-
-    get template() {
-        return `compliance/check-mrn/template`;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

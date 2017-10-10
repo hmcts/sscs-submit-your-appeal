@@ -1,5 +1,4 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
-const content = require('./content');
 const regex = require('../../../utils/regex');
 const urls = require('urls');
 
@@ -14,10 +13,6 @@ class TextReminders extends Question {
         const number = this.locals.session.AppellantDetails_phoneNumber;
         this.locals.isAppellantNumberMobile = number.match(regex.mobileNumber);
         return `sms-notify/text-reminders/template`;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     get form() {}

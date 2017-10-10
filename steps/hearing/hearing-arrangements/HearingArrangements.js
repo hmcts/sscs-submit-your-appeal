@@ -1,5 +1,4 @@
 const { Question, form } = require('@hmcts/one-per-page');
-const content = require('./content');
 const urls = require('urls');
 
 class HearingArrangements extends Question {
@@ -11,14 +10,6 @@ class HearingArrangements extends Question {
     get form() {
 
         return form();
-    }
-
-    get template() {
-        return `hearing/hearing-arrangements/template`;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

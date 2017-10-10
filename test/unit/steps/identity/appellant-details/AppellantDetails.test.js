@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
-const content = require('steps/identity/appellant-details/content.json');
 const urls = require('urls');
 
 describe('AppellantDetails.js', () => {
@@ -21,22 +20,6 @@ describe('AppellantDetails.js', () => {
 
         it('returns url /enter-appellant-details', () => {
             expect(appellantDetailsClass.url).to.equal(urls.identity.enterAppellantDetails);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path identity/appellant-details/template', () => {
-            expect(appellantDetailsClass.template).to.equal('identity/appellant-details/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(appellantDetailsClass.i18NextContent).to.equal(content);
         });
 
     });

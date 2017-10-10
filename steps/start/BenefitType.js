@@ -1,7 +1,6 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { benefitType } = require('utils/regex');
 const Joi = require('joi');
-const content = require('./content');
 const urls = require('urls');
 
 class BenefitType extends Question {
@@ -15,14 +14,6 @@ class BenefitType extends Question {
             field('benefitType')
                 .joi(this.content.fields.benefitType.error.required, Joi.string().regex(benefitType).required())
         );
-    }
-
-    get template() {
-        return `start/template`;
-    }
-
-    get i18NextContent() {
-        return content;
     }
 
     next() {

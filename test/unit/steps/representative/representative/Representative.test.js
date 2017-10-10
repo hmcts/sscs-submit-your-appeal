@@ -3,7 +3,6 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Representative = require('steps/representative/representative/Representative');
-const content = require('steps/representative/representative/content.json');
 const urls = require('urls');
 
 describe('Representative.js', () => {
@@ -22,22 +21,6 @@ describe('Representative.js', () => {
 
         it('returns url /representative', () => {
             expect(representativeClass.url).to.equal(urls.representative.representative);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path representative/has-representative/template', () => {
-            expect(representativeClass.template).to.equal('representative/has-representative/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(representativeClass.i18NextContent).to.equal(content);
         });
 
     });

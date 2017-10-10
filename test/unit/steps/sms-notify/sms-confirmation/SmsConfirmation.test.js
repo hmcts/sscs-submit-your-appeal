@@ -2,7 +2,6 @@
 
 const { expect } = require('test/util/chai');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
-const content = require('steps/sms-notify/sms-confirmation/content.json');
 
 describe('SmsConfirmation.js', () => {
 
@@ -20,22 +19,6 @@ describe('SmsConfirmation.js', () => {
 
         it('returns url /sms-confirmation', () => {
             expect(smsConfirmationClass.url).to.equal('/sms-confirmation');
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path sms-notify/sms-confirmation/template', () => {
-            expect(smsConfirmationClass.template).to.equal('sms-notify/sms-confirmation/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(smsConfirmationClass.i18NextContent).to.equal(content);
         });
 
     });

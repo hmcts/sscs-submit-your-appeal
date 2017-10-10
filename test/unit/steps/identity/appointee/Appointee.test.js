@@ -3,7 +3,6 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Appointee = require('steps/identity/appointee/Appointee');
-const content = require('steps/identity/appointee/content.json');
 const urls = require('urls');
 
 describe('Appointee.js', () => {
@@ -22,22 +21,6 @@ describe('Appointee.js', () => {
 
         it('returns url /are-you-an-appointee', () => {
             expect(appointeeClass.url).to.equal(urls.identity.areYouAnAppointee);
-        });
-
-    });
-
-    describe('get template()', () => {
-
-        it('returns template path identity/appointee/template', () => {
-            expect(appointeeClass.template).to.equal('identity/appointee/template');
-        });
-
-    });
-
-    describe('get i18NextContent()', () => {
-
-        it('returns the correct content for the page', () => {
-            expect(appointeeClass.i18NextContent).to.equal(content);
         });
 
     });
