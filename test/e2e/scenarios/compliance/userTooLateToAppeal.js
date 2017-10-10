@@ -1,6 +1,6 @@
-const mrnOverMonthLate = require('steps/compliance/mrn-over-month-late/content.json').en.translation;
-const mrnOverThirteenMonthLate = require('steps/compliance/mrn-over-thirteen-months-late/content.json').en.translation;
-const cantAppeal = require('steps/compliance/cant-appeal/content.json').en.translation;
+const mrnOverMonthLate = require('steps/compliance/mrn-over-month-late/content.en');
+const mrnOverThirteenMonthLate = require('steps/compliance/mrn-over-thirteen-months-late/content.en');
+const cantAppeal = require('steps/compliance/cant-appeal/content.en');
 const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
 

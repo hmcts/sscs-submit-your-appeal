@@ -1,5 +1,5 @@
-const appointee = require('steps/identity/appointee/content.json').en.translation;
-const fields = require('steps/identity/appellant-details/content.json').en.translation.fields;
+const appointee = require('steps/identity/appointee/content.en').fields.appointee;
+const appellant = require('steps/identity/appellant-details/content.en').fields;
 const urls = require('urls');
 
 Feature('Appellant details form');
@@ -15,7 +15,7 @@ After((I) => {
 
 Scenario('User selects NO and completes the form', (I) => {
 
-    I.selectAreYouAnAppointeeAndContinue(appointee.fields.isappointee.no);
+    I.selectAreYouAnAppointeeAndContinue(appointee.no);
     I.seeCurrentUrlEquals(urls.identity.enterAppellantDetails);
     I.fillField('AppellantDetails_firstName', 'Harry');
     I.fillField('AppellantDetails_lastName', 'Potter');
@@ -33,22 +33,22 @@ Scenario('User selects NO and completes the form', (I) => {
 
 Scenario('User selects NO and does not complete the form', (I) => {
 
-    I.selectAreYouAnAppointeeAndContinue(appointee.fields.isappointee.no);
+    I.selectAreYouAnAppointeeAndContinue(appointee.no);
     I.seeCurrentUrlEquals(urls.identity.enterAppellantDetails);
     I.click('Continue');
-    I.see(fields.firstName.error.msg);
-    I.see(fields.lastName.error.msg);
-    I.see(fields.niNumber.error.msg);
-    I.see(fields.addressLine1.error.msg);
-    I.see(fields.addressLine2.error.msg);
-    I.see(fields.townCity.error.msg);
-    I.see(fields.postCode.error.msg);
+    I.see(appellant.firstName.error.required);
+    I.see(appellant.lastName.error.required);
+    I.see(appellant.niNumber.error.required);
+    I.see(appellant.addressLine1.error.required);
+    I.see(appellant.addressLine2.error.required);
+    I.see(appellant.townCity.error.required);
+    I.see(appellant.postCode.error.required);
 
 });
 
 Scenario('User selects YES and views a placeholder', (I) => {
 
-    I.selectAreYouAnAppointeeAndContinue(appointee.fields.isappointee.yes);
+    I.selectAreYouAnAppointeeAndContinue(appointee.yes);
     I.seeCurrentUrlEquals(urls.identity.enterAppointeeDetails);
 
 });
