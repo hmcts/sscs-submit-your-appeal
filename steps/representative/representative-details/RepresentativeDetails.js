@@ -1,3 +1,5 @@
+'use strict';
+
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
