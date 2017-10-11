@@ -4,6 +4,7 @@ const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Arrangements = require('steps/hearing/arrangement/Arrangements');
 const urls = require('urls');
+const answer = require('utils/answer');
 
 describe('Arrangements.js', () => {
 
@@ -59,13 +60,13 @@ describe('Arrangements.js', () => {
         });
 
         it('returns branch object with condition property', () => {
-            arrangements.fields.arrangements.value = 'yes';
+            arrangements.fields.arrangements.value = answer.YES;
             const branches = arrangements.next().branches[0];
             expect(branches).to.have.property('condition');
         });
 
         it('returns branch object where condition nextStep equals /hearing-arrangements', () => {
-            arrangements.fields.arrangements.value = 'yes';
+            arrangements.fields.arrangements.value = answer.YES;
             const redirector = {
                 nextStep: urls.hearing.hearingArrangements
             };
@@ -74,7 +75,7 @@ describe('Arrangements.js', () => {
         });
 
         it('returns fallback object where nextStep equals /hearing-availability', () => {
-            arrangements.fields.arrangements.value = 'no';
+            arrangements.fields.arrangements.value = answer.NO;
             const redirector = {
                 nextStep: urls.hearing.hearingAvailability
             };
