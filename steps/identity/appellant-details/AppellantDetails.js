@@ -1,9 +1,10 @@
+'use strict';
+
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
-
-const emailOptions = { minDomainAtoms: 2 };
+const emailOptions = require('utils/emailOptions');
 
 class AppellantDetails extends Question {
 
