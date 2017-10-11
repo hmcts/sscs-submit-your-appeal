@@ -1,5 +1,5 @@
 const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const { mobileNumber } = require('utils/regex');
+const { internationalMobileNumber } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
 
@@ -19,7 +19,7 @@ class EnterMobile extends Question {
                 )
                 .joi(
                     this.content.fields.mobileNumber.error.invalidNumber,
-                    Joi.string().regex(mobileNumber).required()
+                    Joi.string().regex(internationalMobileNumber).required()
                 )
         );
     }
