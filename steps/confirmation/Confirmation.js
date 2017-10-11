@@ -12,7 +12,7 @@ class Confirmation extends Question {
     get form() {}
 
     next() {
-        goTo(undefined);
+       return goTo(undefined);
     }
 
 }
