@@ -12,10 +12,10 @@ class HearingArrangements extends Question {
     get form() {
 
         const answers = [
-            "languageInterpreter",
-            "signLanguageInterpreter",
-            "hearingLoop",
-            "disabledAccess",
+            'languageInterpreter',
+            'signLanguageInterpreter',
+            'hearingLoop',
+            'disabledAccess',
         ];
 
         return form(
