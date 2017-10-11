@@ -6,7 +6,7 @@
       "yes": "Yes",
       "no": "No",
       "error": {
-        "required": "Please select either yes or no"
+        "required": "You need to tell us whether you want us to make arrangements for your hearing. Select either yes or no."
       }
     }
   }
