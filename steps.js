@@ -26,6 +26,8 @@ const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appea
 const Arrangements = require('steps/hearing/arrangement/Arrangements');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
 const HearingAvailability = require('steps/hearing/availibility/HearingAvailibility');
+const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
+const Confirmation = require('steps/confirmation/Confirmation');
 
 const init = [
     new Entry(),
@@ -73,9 +75,17 @@ const reasonsForAppealing = [
 ];
 
 const hearing = [
-  new Arrangements(),
-  new HearingArrangements(),
-  new HearingAvailability()
+    new Arrangements(),
+    new HearingArrangements(),
+    new HearingAvailability()
+];
+
+const checkYourAppeal = [
+    new CheckYourAppeal()
+];
+
+const confirmation = [
+    new Confirmation()
 ];
 
 module.exports = concat(
@@ -86,5 +96,7 @@ module.exports = concat(
     smsNotify,
     representative,
     reasonsForAppealing,
-    hearing
+    hearing,
+    checkYourAppeal,
+    confirmation
 );
