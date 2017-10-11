@@ -1,3 +1,23 @@
 {
-  "title": "Arrangements for the hearing"
+  "title": "Arrangements for the hearing",
+  "clickAllArrangements": "Click all the arrangements we need to make for the hearing.",
+  "cannotBringInterpreter": "Please note that you can’t bring your own interpreter to the hearing.",
+  "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
+  "fields": {
+    "selection": {
+      "languageInterpreter": "Language interpreter",
+      "signLanguageInterpreter": "Sign language interpreter",
+      "hearingLoop": "Hearing loop",
+      "disabledAccess": "Disabled access",
+      "error": {
+        "required": "No arrangements have been requested."
+      }
+    },
+    "anythingElse": {
+      "title": "Anything else we need to know",
+      "error": {
+        "required": "No special characters allowed"
+      }
+    }
+  }
 }
