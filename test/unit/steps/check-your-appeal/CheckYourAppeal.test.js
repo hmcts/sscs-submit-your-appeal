@@ -19,7 +19,7 @@ describe('CheckYourAppeal.js', () => {
     describe('get url()', () => {
 
         it('returns url /check-your-appeal', () => {
-            expect(checkYourAppealClass.url).to.equal(urls.checkYouAppeal);
+            expect(checkYourAppealClass.url).to.equal(urls.checkYourAppeal);
         });
 
     });

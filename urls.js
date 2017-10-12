@@ -52,7 +52,7 @@ module.exports = {
         hearingAvailability:            '/hearing-availability'
     },
 
-    checkYouAppeal:                     '/check-your-appeal',
+    checkYourAppeal:                     '/check-your-appeal',
 
     confirmation:                       '/confirmation'
 

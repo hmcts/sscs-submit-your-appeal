@@ -6,7 +6,7 @@ const urls = require('urls');
 class CheckYourAppeal extends Question {
 
     get url() {
-        return urls.checkYouAppeal
+        return urls.checkYourAppeal
     }
 
     get form() {}
