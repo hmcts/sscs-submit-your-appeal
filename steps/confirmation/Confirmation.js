@@ -6,7 +6,7 @@ const urls = require('urls');
 class Confirmation extends ExitPoint {
 
     get url() {
-        return urls.session.exit;
+        return urls.confirmation;
     }
 }
 
