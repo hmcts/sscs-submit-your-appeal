@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const Exit = require('steps/confirmation/Confirmation');
+const Exit = require('steps/exit/Exit');
 const urls = require('urls');
 
 describe('Exit.js', () => {
