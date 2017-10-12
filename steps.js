@@ -1,6 +1,6 @@
 const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
-const Exit = require('steps/exit/Exit');
+const Exit = require('steps/confirmation/Confirmation');
 const Sessions = require('steps/session/Sessions');
 const Error404 = require('steps/errors/404');
 const Error500 = require('steps/errors/500');

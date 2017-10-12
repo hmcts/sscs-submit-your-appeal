@@ -1,11 +1,6 @@
 @import 'govuk-elements';
 @import '~accessible-autocomplete/src/autocomplete.css';
 
-.no-image {
-  color: red;
-  padding-top: 15px;
-}
-
 .after-form {
   padding-top: 1.5em;
 }
@@ -13,4 +8,10 @@
 .mrn-image {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
+}
+
+.description {
+  background-color: #eef7ff;
+  padding: 20px 20px 30px 20px;
+  margin-bottom: 45px;
 }
