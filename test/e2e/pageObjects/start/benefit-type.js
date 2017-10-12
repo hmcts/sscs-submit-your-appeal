@@ -1,4 +1,3 @@
-
 function enterBenefitTypeAndContinue(type) {
 
     const I = this;
