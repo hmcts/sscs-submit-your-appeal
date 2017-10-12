@@ -50,6 +50,10 @@ module.exports = {
         arrangements:                   '/arrangements',
         hearingArrangements:            '/hearing-arrangements',
         hearingAvailability:            '/hearing-availability'
-    }
+    },
+
+    checkYourAppeal:                     '/check-your-appeal',
+
+    confirmation:                       '/confirmation'
 
 };
