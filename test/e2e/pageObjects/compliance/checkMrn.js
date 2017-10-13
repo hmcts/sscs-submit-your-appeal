@@ -14,7 +14,7 @@ function goToCheckMrnPage(mrnDate) {
 
 }
 
-function goToCorrectPage(value, url) {
+function goToCorrectPageAfterCheckMRN(value, url) {
 
     const I = this;
 
@@ -24,4 +24,4 @@ function goToCorrectPage(value, url) {
 
 }
 
-module.exports = { goToCorrectPage, goToCheckMrnPage };
+module.exports = { goToCorrectPageAfterCheckMRN, goToCheckMrnPage };

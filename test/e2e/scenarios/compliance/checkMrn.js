@@ -18,7 +18,7 @@ Scenario('When I select yes and mrnDate is > 1 month and <= 13 months, I am take
 
     const mrnDate = moment().subtract(2, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPage('yes', urls.compliance.mrnOverMonthLate);
+    I.goToCorrectPageAfterCheckMRN('yes', urls.compliance.mrnOverMonthLate);
 
 });
 
@@ -26,7 +26,7 @@ Scenario('When I select yes and mrnDate is > 13 months, I am taken to the mrn ov
 
     const mrnDate = moment().subtract(14, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPage('yes', urls.compliance.mrnOverThirteenMonthsLate);
+    I.goToCorrectPageAfterCheckMRN('yes', urls.compliance.mrnOverThirteenMonthsLate);
 
 });
 
@@ -34,6 +34,6 @@ Scenario('When I select no, I am taken to the mrn date page', (I) => {
 
     const mrnDate = moment().subtract(2, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPage('no', urls.compliance.mrnDate);
+    I.goToCorrectPageAfterCheckMRN('no', urls.compliance.mrnDate);
 
 });
