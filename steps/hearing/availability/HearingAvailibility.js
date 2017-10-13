@@ -12,8 +12,7 @@ class HearingAvailibility extends Question {
         return form();
     }
 
-    next() {
-    }
+    next() {}
 }
 
 module.exports = HearingAvailibility;
