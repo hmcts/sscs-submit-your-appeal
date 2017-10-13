@@ -1,4 +1,5 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, field, arrayField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
@@ -11,7 +12,7 @@ class HearingArrangements extends Question {
 
     get form() {
 
-        const answers = [
+        const validAnswers = [
             'languageInterpreter',
             'signLanguageInterpreter',
             'hearingLoop',
@@ -20,17 +21,15 @@ class HearingArrangements extends Question {
 
         return form(
 
-            field('selection')
-                .joi(
-                    this.content.fields.selection.error.required,
-                    Joi.array().items(Joi.string().valid(answers)).single()
-                ),
+            arrayField('selection').joi(
+                this.content.fields.selection.error.required,
+                Joi.array().items(validAnswers).min(1)
+            ),
 
-            field('anythingElse')
-                .joi(
-                    this.content.fields.anythingElse.error.required,
-                    Joi.string().regex(whitelist).required().allow('')
-                )
+            field('anythingElse').joi(
+                this.content.fields.anythingElse.error.required,
+                Joi.string().regex(whitelist).required().allow('')
+            )
         );
     }
 

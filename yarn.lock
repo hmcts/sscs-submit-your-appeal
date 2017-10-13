@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@^1.0.0-3":
-  version "1.0.0-3"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.0-3.tgz#599c03736ab259f8ccc566a4efdbf70654b76c69"
+"@hmcts/look-and-feel@^1.0.1":
+  version "1.0.1"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.1.tgz#e66c97c76ed324dd7e77b276f25d2de675b182d3"
   dependencies:
     check-types "^7.3.0"
     config "^1.26.1"
@@ -32,9 +32,9 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@1.0.0-4":
-  version "1.0.0-4"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.0.0-4.tgz#a818e6818502f442506ad1e73f3f09d5f7c7ca4f"
+"@hmcts/one-per-page@^1.1.0":
+  version "1.1.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.1.0.tgz#cc06a285d895976271de73ef65c267c56a51a095"
   dependencies:
     body-parser "^1.17.2"
     callsites "^2.0.0"
@@ -45,7 +45,7 @@
     express-session "^1.15.4"
     glob "^7.1.2"
     http-status-codes "^1.2.0"
-    i18next "^9.0.0"
+    i18next "^10.0.1"
     joi "^11.1.1"
     js-yaml "^3.9.0"
     nunjucks "^3.0.1"
@@ -2131,9 +2131,9 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-i18next@^9.0.0:
-  version "9.0.0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/i18next/-/i18next-9.0.0.tgz#a89ab0481b5b6b3964f55b12f03de9063d8f4500"
+i18next@^10.0.1:
+  version "10.0.1"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/i18next/-/i18next-10.0.1.tgz#ce682ef7c43590d015b0cc5cef31f226475d0a3f"
 
 iconv-lite@0.4.19:
   version "0.4.19"
