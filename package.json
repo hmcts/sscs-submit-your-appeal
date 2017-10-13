@@ -14,7 +14,7 @@
     "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn e2e"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "^1.0.1",
+    "@hmcts/look-and-feel": "^1.0.2",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "^1.1.0",
     "cross-env": "^5.0.5",

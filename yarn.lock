@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@^1.0.1":
-  version "1.0.1"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.1.tgz#e66c97c76ed324dd7e77b276f25d2de675b182d3"
+"@hmcts/look-and-feel@^1.0.2":
+  version "1.0.2"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/look-and-feel/-/look-and-feel-1.0.2.tgz#1dadf05723f86b067de9ac23e8b383331e0981e5"
   dependencies:
     check-types "^7.3.0"
     config "^1.26.1"
