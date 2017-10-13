@@ -1,5 +1,7 @@
 const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
+const mrnDateFields = require('steps/compliance/mrn-date/content.en').fields;
+
 
 Feature('User has an MRN');
 
@@ -51,5 +53,14 @@ Scenario('I have an MRN dated 13 months and one day ago', (I) => {
 
     I.enterAnMRNDateAndContinue(DateUtils.thirteenMonthsAndOneDayAgo());
     I.seeCurrentUrlEquals(urls.compliance.checkMRNDate);
+
+});
+
+Scenario('I have a MRN but I do not enter the day, month or the year', (I) => {
+
+    I.click('Continue');
+    I.see(mrnDateFields.day.error.required);
+    I.see(mrnDateFields.month.error.required);
+    I.see(mrnDateFields.year.error.required);
 
 });

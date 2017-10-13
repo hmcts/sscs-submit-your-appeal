@@ -10,7 +10,7 @@ exports.config = {
         }
     },
     'include': {
-        'I': './pages/steps.js'
+        'I': './page-objects/steps.js'
     },
     'bootstrap': false,
     'mocha': {
