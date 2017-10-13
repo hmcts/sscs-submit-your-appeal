@@ -9,6 +9,7 @@ describe('TextReminders.js', () => {
 
     beforeEach(() => {
        textRemindersClass = new TextReminders();
+       textRemindersClass.res = { locals: { session: {} } };
     });
 
     after(() => {
@@ -26,11 +27,8 @@ describe('TextReminders.js', () => {
     describe('get template()', () => {
 
         it('returns template path sms-notify/text-reminders/template', () => {
-            textRemindersClass.locals = {
-                session: {
-                    AppellantDetails_phoneNumber: '07223456789'
-                }
-            };
+            const session = textRemindersClass.locals.session;
+            session.AppellantDetails_phoneNumber = '07223456789';
             expect(textRemindersClass.template).to.equal('sms-notify/text-reminders/template');
         });
 
