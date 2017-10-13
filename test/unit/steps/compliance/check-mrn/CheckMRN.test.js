@@ -62,7 +62,9 @@ describe('CheckMRN.js', () => {
 
         beforeEach(() => {
             checkMRNClass.fields = stub();
+            checkMRNClass.res = { locals: {} };
             checkMRNClass.fields.checkedMRN = {};
+
         });
 
         after(() => {
@@ -82,9 +84,8 @@ describe('CheckMRN.js', () => {
                 checkMRNClass.journey = {
                     MRNOverOneMonthLate: urls.compliance.mrnOverMonthLate
                 };
-                checkMRNClass.locals = {
-                    session: mrnDate(1)
-                };
+
+                checkMRNClass.locals.session = mrnDate(1);
                 expect(checkMRNClass.next()).to.eql(redirector);
             });
 
@@ -95,9 +96,7 @@ describe('CheckMRN.js', () => {
                 checkMRNClass.journey = {
                     MRNOverOneMonthLate: urls.compliance.mrnOverMonthLate
                 };
-                checkMRNClass.locals = {
-                    session: mrnDate(13)
-                };
+                checkMRNClass.locals.session = mrnDate(13);
                 expect(checkMRNClass.next()).to.eql(redirector);
             });
 
@@ -108,9 +107,7 @@ describe('CheckMRN.js', () => {
                 checkMRNClass.journey = {
                     MRNOverThirteenMonthsLate: urls.compliance.mrnOverThirteenMonthsLate
                 };
-                checkMRNClass.locals = {
-                    session: mrnDate(14)
-                };
+                checkMRNClass.locals.session = mrnDate(14);
                 expect(checkMRNClass.next()).to.eql(redirector);
             });
 
