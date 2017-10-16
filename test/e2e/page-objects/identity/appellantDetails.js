@@ -23,5 +23,4 @@ function enterAppellantDetailsWithMobileAndContinue() {
     I.click('Continue');
 }
 
-
 module.exports = { enterRequiredAppellantDetails, enterAppellantDetailsWithMobileAndContinue };
