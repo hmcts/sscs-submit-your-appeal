@@ -46,7 +46,7 @@ class RepresentativeDetails extends Question {
                 .joi(fields.phoneNumber.error.invalid, Joi.string().regex(phoneNumber).allow('')),
 
             field('emailAddress')
-                .joi(fields.emailAddress.error.invalid, Joi.string().email(emailOptions).allow('')),
+                .joi(fields.emailAddress.error.invalid, Joi.string().email(emailOptions).allow(''))
         );
     }
 
