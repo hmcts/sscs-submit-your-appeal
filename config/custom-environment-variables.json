@@ -2,6 +2,7 @@
   "port": "PORT",
   "redisUrl": "REDIS_URL",
   "secret": "SESSION_SECRET",
+  "useSSL": "USE_SSL",
   "health": {
     "url": "HEALTH_URL"
   }
