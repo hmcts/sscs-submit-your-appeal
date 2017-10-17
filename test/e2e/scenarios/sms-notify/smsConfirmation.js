@@ -61,16 +61,3 @@ Scenario('When I don\'t enter a mobile number in appellant details, I see the mo
     I.see('+447987654321');
 
 });
-
-// Scenario.only('When I enter a mobile number in appellant details and click use same number, then click change number,' +
-//     'I see the mobile number I provided for enter number', (I) => {
-//
-//     I.goToSmsConfirmWithMobileNumber();
-//     I.see('07466748336');
-//     I.click(content.change);
-//     I.fillField('#EnterMobile_mobileNumber', '+447987654321');
-//     I.click('Continue');
-//     I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
-//     I.see('+447987654321');
-//
-// });
