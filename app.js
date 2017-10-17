@@ -10,6 +10,7 @@ const urls = require('urls');
 const app = express();
 
 const baseUrl = `http://localhost:${config.port}`;
+const useSSL = config.useSSL === 'true';
 
 lookAndFeel.configure(app, {
     baseUrl,
@@ -34,8 +35,14 @@ journey(app, {
     baseUrl,
     steps,
     session: {
-        redis: { url: config.redisUrl },
-        cookie: { secure: false }
+        redis: {
+            url: config.redisUrl,
+            connect_timeout: 15000,
+        },
+        cookie: {
+            secure: useSSL
+        },
+        secret: config.secret
     }
 });
 
