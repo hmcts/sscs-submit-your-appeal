@@ -3,7 +3,7 @@
 {% from "look-and-feel/components/header.njk" import header %}
 {% set phase="ALPHA" %}
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
-{% if isAppellantNumberMobile %}
+{% if session.AppellantDetails_phoneNumber | isMobilePhone %}
     {% set signUpLink="/send-to-number" %}
 {% else %}
     {% set signUpLink="/enter-mobile" %}
