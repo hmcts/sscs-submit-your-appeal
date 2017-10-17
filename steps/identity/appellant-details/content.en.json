@@ -1,5 +1,6 @@
 {
-  "title": "Enter your details",
+  "titleNoAppointee": "Enter your details",
+  "titleAppointee": "Enter appellants details",
   "subtitle": "We’ll use these to send you information about your appeal.",
   "fields": {
     "firstName": {

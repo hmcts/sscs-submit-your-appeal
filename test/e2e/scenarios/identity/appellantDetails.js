@@ -6,17 +6,15 @@ Feature('Appellant details form');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.identity.areYouAnAppointee);
+    I.amOnPage(urls.identity.enterAppellantDetails);
 });
 
 After((I) => {
     I.endTheSession();
 });
 
-Scenario('User selects NO and completes the form', (I) => {
+Scenario('When I fill in the fields and click Continue, I am taken to the Text reminders page', (I) => {
 
-    I.selectAreYouAnAppointeeAndContinue(appointee.no);
-    I.seeCurrentUrlEquals(urls.identity.enterAppellantDetails);
     I.fillField('AppellantDetails_firstName', 'Harry');
     I.fillField('AppellantDetails_lastName', 'Potter');
     I.fillField('AppellantDetails_niNumber', 'AB123456C');
@@ -31,10 +29,8 @@ Scenario('User selects NO and completes the form', (I) => {
 
 });
 
-Scenario('User selects NO and does not complete the form', (I) => {
+Scenario('When I click Continue without filling in the fields I see errors', (I) => {
 
-    I.selectAreYouAnAppointeeAndContinue(appointee.no);
-    I.seeCurrentUrlEquals(urls.identity.enterAppellantDetails);
     I.click('Continue');
     I.see(appellant.firstName.error.required);
     I.see(appellant.lastName.error.required);
@@ -43,12 +39,5 @@ Scenario('User selects NO and does not complete the form', (I) => {
     I.see(appellant.addressLine2.error.required);
     I.see(appellant.townCity.error.required);
     I.see(appellant.postCode.error.required);
-
-});
-
-Scenario('User selects YES and views a placeholder', (I) => {
-
-    I.selectAreYouAnAppointeeAndContinue(appointee.yes);
-    I.seeCurrentUrlEquals(urls.identity.enterAppointeeDetails);
 
 });

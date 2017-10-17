@@ -49,37 +49,14 @@ describe('Appointee.js', () => {
 
     describe('next()', () => {
 
-        beforeEach(() => {
-            appointeeClass.fields = stub();
-            appointeeClass.fields.appointee = {};
-            appointeeClass.journey = {
-                AppointeeDetails: urls.identity.enterAppointeeDetails,
-                AppellantDetails: urls.identity.enterAppellantDetails
-            };
-        });
-
-        it('returns branch object with condition property', () => {
-            appointeeClass.fields.appointee.value = 'yes';
-            const branches = appointeeClass.next().branches[0];
-            expect(branches).to.have.property('condition');
-        });
-
-        it('returns branch object where condition nextStep equals /enter-appointee-details', () => {
-            appointeeClass.fields.appointee.value = 'yes';
-            const redirector = {
-                nextStep: urls.identity.enterAppointeeDetails
-            };
-            const branches = appointeeClass.next().branches[0];
-            expect(branches.redirector).to.eql(redirector)
-        });
-
-        it('returns fallback object where nextStep equals /enter-appellant-details', () => {
-            appointeeClass.fields.appointee.value = 'no';
+        it('returns the next step url /enter-appellant-details', () => {
             const redirector = {
                 nextStep: urls.identity.enterAppellantDetails
             };
-            const fallback = appointeeClass.next().fallback;
-            expect(fallback).to.eql(redirector);
+            appointeeClass.journey = {
+                AppellantDetails: urls.identity.enterAppellantDetails
+            };
+            expect(appointeeClass.next()).to.eql(redirector);
         });
 
     });

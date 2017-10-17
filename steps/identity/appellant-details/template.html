@@ -10,7 +10,11 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-    {{ content.title | safe }}
+    {% if session.Appointee_appointee == 'yes' %}
+        {{ content.titleAppointee | safe }}
+    {% else %}
+        {{ content.titleNoAppointee | safe }}
+    {% endif %}
 {% endset %}
 
 {% block fields %}

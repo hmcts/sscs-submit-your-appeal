@@ -20,12 +20,7 @@ class Appointee extends Question {
     }
 
     next() {
-        const isAnAppointee = () => this.fields.appointee.value === answer.YES;
-
-        return branch(
-            goTo(this.journey.AppointeeDetails).if(isAnAppointee),
-            goTo(this.journey.AppellantDetails)
-        );
+        return goTo(this.journey.AppellantDetails)
     }
 }
 
