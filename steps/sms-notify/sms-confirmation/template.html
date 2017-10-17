@@ -17,7 +17,13 @@
     {{ header(content.title, size="large") }}
     <p>{{ content.mobileNumber }}
         <span class="bold-small">
-            {{ session.EnterMobile_mobileNumber if (session.EnterMobile_mobileNumber) and session.SendToNumber_useSameNumber == 'no' else session.AppellantDetails_phoneNumber }}
+
+            {% if (session.AppellantDetails_phoneNumber | isMobilePhone) and (session.SendToNumber_useSameNumber === 'yes') %}
+                {{ session.AppellantDetails_phoneNumber }}
+            {% else %}
+                {{ session.EnterMobile_mobileNumber }}
+            {% endif %}
+
         </span>
     </p>
     <p>{{ content.firstMessage }}</p>

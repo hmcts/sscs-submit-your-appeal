@@ -24,16 +24,6 @@ describe('TextReminders.js', () => {
 
     });
 
-    describe('get template()', () => {
-
-        it('returns template path sms-notify/text-reminders/template', () => {
-            const session = textRemindersClass.locals.session;
-            session.AppellantDetails_phoneNumber = '07223456789';
-            expect(textRemindersClass.template).to.equal('sms-notify/text-reminders/template');
-        });
-
-    });
-
     describe('next()', () => {
 
         it('returns the next step url /sms-confirmation', () => {

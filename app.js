@@ -4,6 +4,7 @@ const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
+const NunjucksUtils = require('utils/NunjucksUtils');
 const steps = require('steps');
 const urls = require('urls');
 
@@ -18,6 +19,9 @@ lookAndFeel.configure(app, {
         path.resolve(__dirname, 'steps'),
         path.resolve(__dirname, 'views/compliance'),
     ] },
+    nunjucks: {
+      filters: NunjucksUtils.filters
+    },
     webpack: { entry: [
         // Styles
         path.resolve(__dirname, 'assets/scss/main.scss'),
