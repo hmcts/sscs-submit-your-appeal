@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, field, textField } = require('@hmcts/one-per-page/forms');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
@@ -39,10 +40,10 @@ class AppellantDetails extends Question {
             field('postCode')
                 .joi(fields.postCode.error.required, Joi.string().regex(postCode).required()),
 
-            field('phoneNumber')
+            textField('phoneNumber')
                 .joi(fields.phoneNumber.error.invalid, Joi.string().regex(phoneNumber).allow('')),
 
-            field('emailAddress')
+            textField('emailAddress')
                 .joi(fields.emailAddress.error.invalid, Joi.string().email(emailOptions).allow(''))
         );
     }
