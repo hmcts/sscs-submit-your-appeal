@@ -1,9 +1,7 @@
 {
   "port": 3000,
-  "secret": "defaultsecret",
   "redisUrl": "redis://127.0.0.1:6379",
+  "secret": "defaultsecret",
   "useSSL": "false",
-  "health": {
-    "url": "http://localhost:8080"
-  }
+  "api":  "http://localhost:8080"
 }
