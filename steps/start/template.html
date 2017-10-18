@@ -1,6 +1,6 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection, select %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -16,7 +16,17 @@
 {% block fields %}
 
     {% call formSection() %}
-        {{ textbox(fields.benefitType, "", hint="") }}
+
+        {{ select(
+            fields.benefitType,
+            "Please select a benefit type",
+            hint = '',
+            options = [
+                { label: content.benefitTypes.attendanceAllowance, value: "attendanceAllowance" },
+                { label: content.benefitTypes.bereavementBenefit,  value: "bereavementBenefit" }
+            ])
+        }}
+
     {% endcall %}
 
 {% endblock %}

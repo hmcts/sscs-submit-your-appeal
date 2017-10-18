@@ -11,8 +11,10 @@ class BenefitType extends Question {
 
     get form() {
         return form(
-            field('benefitType')
-                .joi(this.content.fields.benefitType.error.required, Joi.string().regex(benefitType).required())
+            field('benefitType').joi(
+                this.content.fields.benefitType.error.required,
+                Joi.string().regex(benefitType).required()
+            )
         );
     }
 

@@ -1,5 +1,9 @@
 {
   "title": "Which benefit is the appeal about?",
+  "benefitTypes": {
+    "attendanceAllowance": "Attendance Allowance",
+    "bereavementBenefit": "Bereavement Benefit"
+  },
   "fields": {
     "benefitType": {
       "title": "Last name(s)",
