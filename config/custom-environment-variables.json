@@ -3,7 +3,5 @@
   "redisUrl": "REDIS_URL",
   "secret": "SESSION_SECRET",
   "useSSL": "USE_SSL",
-  "health": {
-    "url": "HEALTH_URL"
-  }
+  "api": "TRIBUNALS_CASE_API_URL"
 }

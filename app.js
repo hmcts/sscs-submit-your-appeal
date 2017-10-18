@@ -48,7 +48,7 @@ journey(app, {
 
 app.use(urls.health, healthcheck.configure({
     "checks": {
-        "submit-your-appeal-api": healthcheck.web(`${config.health.url}/health`)
+        "submit-your-appeal-api": healthcheck.web(`${config.api}/health`)
     }
 }));
 
