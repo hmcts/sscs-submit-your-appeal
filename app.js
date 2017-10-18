@@ -9,7 +9,7 @@ const urls = require('urls');
 
 const app = express();
 
-const baseUrl = `http://localhost:${config.port}`;
+const baseUrl = `${config.domain}:${config.port}`;
 const useSSL = config.useSSL === 'true';
 
 lookAndFeel.configure(app, {
