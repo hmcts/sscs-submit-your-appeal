@@ -6,11 +6,13 @@ const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const urls = require('urls');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
 
-const baseUrl = `${config.domain}:${config.port}`;
-const useSSL = config.useSSL === 'true';
+const baseUrl = `${config.node.host.url}:${config.node.port}`;
+const useSSL = config.security.useSSL === 'true';
+
 
 lookAndFeel.configure(app, {
     baseUrl,
@@ -18,17 +20,18 @@ lookAndFeel.configure(app, {
         path.resolve(__dirname, 'steps'),
         path.resolve(__dirname, 'views/compliance'),
     ] },
-    webpack: { entry: [
-        // Styles
-        path.resolve(__dirname, 'assets/scss/main.scss'),
-
-        // We need a webpack CSS loader within look-and-feel for this to work.
-        //path.resolve(__dirname, 'assets/css/accessible-autocomplete.min.css'),
-
-        // JavaScript
-        path.resolve(__dirname, 'assets/js/autocomplete.js'),
-        path.resolve(__dirname, 'assets/js/accessible-autocomplete.min.js')
-    ] }
+    webpack: {
+        entry: [
+            path.resolve(__dirname, 'assets/scss/main.scss'),
+            path.resolve(__dirname, 'assets/js/main.js'),
+        ]
+    },
+    plugins: [
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, 'assets/images'),
+            to: 'images'
+        }])
+    ]
 });
 
 journey(app, {
@@ -36,22 +39,22 @@ journey(app, {
     steps,
     session: {
         redis: {
-            url: config.redisUrl,
+            url: config.redis.url,
             connect_timeout: 15000,
         },
         cookie: {
             secure: useSSL
         },
-        secret: config.secret
+        secret: config.redis.secret
     }
 });
 
 app.use(urls.health, healthcheck.configure({
     "checks": {
-        "submit-your-appeal-api": healthcheck.web(`${config.api}/health`)
+        "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
     }
 }));
 
-app.listen(config.port);
+app.listen(config.node.port);
 
-console.log(`SYA started on port:${config.port}`);
+console.log(`SYA started on port:${config.node.port}`);
