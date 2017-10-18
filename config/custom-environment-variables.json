@@ -4,5 +4,5 @@
   "secret": "SESSION_SECRET",
   "useSSL": "USE_SSL",
   "api": "TRIBUNALS_CASE_API_URL",
-  "domain": "DOMAIN_NAME"
+  "domain": "WEBSITE_HOSTNAME"
 }
