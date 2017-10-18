@@ -1,8 +1,18 @@
 {
-  "port": "PORT",
-  "redisUrl": "REDIS_URL",
-  "secret": "SESSION_SECRET",
-  "useSSL": "USE_SSL",
-  "api": "TRIBUNALS_CASE_API_URL",
-  "domain": "WEBSITE_HOSTNAME"
+  "node": {
+    "port": "PORT",
+    "host": {
+      "url": "WEBSITE_HOSTNAME"
+    }
+  },
+  "redis": {
+    "url": "REDIS_URL",
+    "secret": "SESSION_SECRET"
+  },
+  "security": {
+    "useSSL": "USE_SSL"
+  },
+  "api": {
+    "url":  "TRIBUNALS_CASE_API_URL"
+  }
 }

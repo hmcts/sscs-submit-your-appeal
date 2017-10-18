@@ -1,8 +1,18 @@
 {
-  "port": 3000,
-  "redisUrl": "redis://127.0.0.1:6379",
-  "secret": "defaultsecret",
-  "useSSL": "false",
-  "api":  "http://localhost:8080",
-  "domain": "http://localhost"
+  "node": {
+    "port": 3000,
+    "host": {
+      "url": "http://localhost"
+    }
+  },
+  "redis": {
+    "url": "redis://127.0.0.1:6379",
+    "secret": "defaultsecret"
+  },
+  "security": {
+    "useSSL": "false"
+  },
+  "api": {
+    "url":  "http://localhost:8080"
+  }
 }
