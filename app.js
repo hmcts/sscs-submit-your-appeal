@@ -6,6 +6,7 @@ const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const urls = require('urls');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
 
@@ -18,17 +19,21 @@ lookAndFeel.configure(app, {
         path.resolve(__dirname, 'steps'),
         path.resolve(__dirname, 'views/compliance'),
     ] },
-    webpack: { entry: [
+    webpack: {
+      entry: [
         // Styles
         path.resolve(__dirname, 'assets/scss/main.scss'),
 
-        // We need a webpack CSS loader within look-and-feel for this to work.
-        //path.resolve(__dirname, 'assets/css/accessible-autocomplete.min.css'),
-
         // JavaScript
         path.resolve(__dirname, 'assets/js/autocomplete.js'),
-        path.resolve(__dirname, 'assets/js/accessible-autocomplete.min.js')
-    ] }
+      ],
+      plugins: [
+        new CopyWebpackPlugin([{
+          from: path.resolve(__dirname, './assets/images'),
+          to: 'images'
+        }])
+      ]
+    }
 });
 
 journey(app, {

@@ -1,9 +1,10 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import formSection, select %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+<script src="{{ asset_path }}main.js" type="text/javascript"></script>
 {% endblock %}
 
 {% set phase="ALPHA" %}
@@ -16,7 +17,28 @@
 {% block fields %}
 
     {% call formSection() %}
-        {{ textbox(fields.benefitType, "", hint="") }}
+        {{ select(fields.benefitType, "Benefit type",
+          hideLabel = true,
+          options = [
+            { label: 'Attendance Allowance' },
+            { label: 'Bereavement Benefit' },
+            { label: 'Carer’s Allowance' },
+            { label: 'Child Benefit' },
+            { label: 'Disability Living Allowance (DLA)' },
+            { label: 'Employment and Support Allowance (ESA)' },
+            { label: 'Home Responsibilities Protection' },
+            { label: 'Housing Benefit' },
+            { label: 'Incapacity Benefit' },
+            { label: 'Income Support' },
+            { label: 'Industrial Injuries Disablement' },
+            { label: 'Jobseeker’s Allowance (JSA)' },
+            { label: 'Maternity Allowance' },
+            { label: 'Personal Independence Payment (PIP)' },
+            { label: 'Severe Disablement Allowance' },
+            { label: 'Social Fund' },
+            { label: 'Universal Credit (UC)' }
+          ]
+        ) }}
     {% endcall %}
 
 {% endblock %}

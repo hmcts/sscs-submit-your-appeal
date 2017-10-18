@@ -17,6 +17,8 @@
     "@hmcts/look-and-feel": "^1.0.2",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "^1.1.0",
+    "accessible-autocomplete": "^1.6.1",
+    "bootstrap": "^3.3.7",
     "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "joi": "^10.6.0",
