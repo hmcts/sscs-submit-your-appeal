@@ -1,8 +1,23 @@
 {
   "title": "Which benefit is the appeal about?",
   "benefitTypes": {
-    "attendanceAllowance": "Attendance Allowance",
-    "bereavementBenefit": "Bereavement Benefit"
+    "aa": "Attendance Allowance",
+    "bb": "Bereavement Benefit",
+    "ca": "Carer’s Allowance",
+    "cb": "Child Benefit",
+    "dla": "Disability Living Allowance (DLA)",
+    "esa": "Employment and Support Allowance (ESA)",
+    "hrp": "Home Responsibilities Protection",
+    "hb": "Housing Benefit",
+    "ib": "Incapacity Benefit",
+    "is": "Income Support",
+    "iid": "Industrial Injuries Disablement",
+    "jsa": "Jobseeker’s Allowance (JSA)",
+    "ma": "Maternity Allowance",
+    "pip": "Personal Independence Payment (PIP)",
+    "sda": "Severe Disablement Allowance",
+    "sf": "Social Fund",
+    "uc": "Universal Credit (UC)"
   },
   "fields": {
     "benefitType": {
