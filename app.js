@@ -16,22 +16,24 @@ const useSSL = config.security.useSSL === 'true';
 
 lookAndFeel.configure(app, {
     baseUrl,
-    express: { views: [
-        path.resolve(__dirname, 'steps'),
-        path.resolve(__dirname, 'views/compliance'),
-    ] },
+    express: {
+        views: [
+            path.resolve(__dirname, 'steps'),
+            path.resolve(__dirname, 'views/compliance')
+        ]
+    },
     webpack: {
         entry: [
             path.resolve(__dirname, 'assets/scss/main.scss'),
-            path.resolve(__dirname, 'assets/js/main.js'),
+            path.resolve(__dirname, 'assets/js/main.js')
+        ],
+        plugins: [
+            new CopyWebpackPlugin([{
+                from: path.resolve(__dirname, 'assets/images'),
+                to: 'images'
+            }])
         ]
-    },
-    plugins: [
-        new CopyWebpackPlugin([{
-            from: path.resolve(__dirname, 'assets/images'),
-            to: 'images'
-        }])
-    ]
+    }
 });
 
 journey(app, {
