@@ -1,9 +1,10 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection, select %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+<script src="{{ asset_path }}main.js" type="text/javascript" />
 {% endblock %}
 
 {% set phase="ALPHA" %}
@@ -16,7 +17,32 @@
 {% block fields %}
 
     {% call formSection() %}
-        {{ textbox(fields.benefitType, "", hint="") }}
+
+        {{ select(
+            fields.benefitType,
+            "Please select a benefit type",
+            hint = '',
+            options = [
+                { label: content.benefitTypes.aa,  value: 'Attendance Allowance' },
+                { label: content.benefitTypes.bb,  value: 'Bereavement Benefit' },
+                { label: content.benefitTypes.ca,  value: 'Carer’s Allowance' },
+                { label: content.benefitTypes.cb,  value: 'Child Benefit' },
+                { label: content.benefitTypes.dla, value: 'Disability Living Allowance (DLA)' },
+                { label: content.benefitTypes.esa, value: 'Employment and Support Allowance (ESA)' },
+                { label: content.benefitTypes.hrp, value: 'Home Responsibilities Protection' },
+                { label: content.benefitTypes.hb,  value: 'Housing Benefit' },
+                { label: content.benefitTypes.ib,  value: 'Incapacity Benefit' },
+                { label: content.benefitTypes.is,  value: 'Income Support' },
+                { label: content.benefitTypes.iid, value: 'Industrial Injuries Disablement' },
+                { label: content.benefitTypes.jsa, value: 'Jobseeker’s Allowance (JSA)' },
+                { label: content.benefitTypes.ma,  value: 'Maternity Allowance' },
+                { label: content.benefitTypes.pip, value: 'Personal Independence Payment (PIP)' },
+                { label: content.benefitTypes.sda, value: 'Severe Disablement Allowance' },
+                { label: content.benefitTypes.sf,  value: 'Social Fund' },
+                { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' }
+            ])
+        }}
+
     {% endcall %}
 
 {% endblock %}
