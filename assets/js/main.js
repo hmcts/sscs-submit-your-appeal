@@ -13,15 +13,10 @@ function initShowHideContent() {
 }
 
 function initAutocomplete() {
-
-    const benefitsDropdown = $('#BenefitType_benefitType')[0];
-
-    if(!benefitsDropdown) {
-        return;
-    }
-
-    accessibleAutocomplete.enhanceSelectElement({
-        selectElement: benefitsDropdown
-    })
-
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        accessibleAutocomplete.enhanceSelectElement({
+            selectElement: select
+        });
+    });
 }
