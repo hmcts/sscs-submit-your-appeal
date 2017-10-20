@@ -39,9 +39,9 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@^1.1.0":
-  version "1.1.0"
-  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.1.0.tgz#cc06a285d895976271de73ef65c267c56a51a095"
+"@hmcts/one-per-page@^1.2.0":
+  version "1.2.0"
+  resolved "https://artifactory.reform.hmcts.net:443/artifactory/api/npm/npm/@hmcts/one-per-page/-/one-per-page-1.2.0.tgz#3fac4a8b95f2b939a7c5b70f104adc05a087ff9f"
   dependencies:
     body-parser "^1.17.2"
     callsites "^2.0.0"

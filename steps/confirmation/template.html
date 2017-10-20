@@ -1,1 +1,33 @@
-<h1>CONFIRMATION PAGE PLACEHOLDER</h1>
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% block two_thirds %}
+
+    {% set title %}
+        {{ content.title | safe }}
+    {% endset %}
+
+    <div class="govuk-box-highlight">
+        <h1 class="bold-large">{{ content.title }}</h1>
+    </div>
+
+    <div>
+        <p class="no-image">IMAGE GOES HERE</p>
+    </div>
+
+    <div class="description">
+        <h4 class="heading-small">{{ content.next.heading }}</h4>
+        <p>{{ content.next.notify }}</p>
+        <p>{{ content.next.contact }}</p>
+    </div>
+
+    <div>
+        <p>{{ content.email }}</p>
+        <p><a class="link" href="#">{{ content.download }}</a></p>
+    </div>
+
+{% endblock %}

@@ -1,20 +1,13 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const urls = require('urls');
 
-class Confirmation extends Question {
+class Confirmation extends ExitPoint {
 
     get url() {
-        return urls.confirmation
+        return urls.confirmation;
     }
-
-    get form() {}
-
-    next() {
-       return goTo(undefined);
-    }
-
 }
 
 module.exports = Confirmation;
