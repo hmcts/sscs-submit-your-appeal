@@ -13,6 +13,7 @@ const app = express();
 const baseUrl = `${config.node.host.url}:${config.node.port}`;
 const useSSL = config.security.useSSL === 'true';
 
+console.log('SYA base Url : %s', baseUrl);
 
 lookAndFeel.configure(app, {
     baseUrl,
