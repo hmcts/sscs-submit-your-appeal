@@ -12,14 +12,18 @@ describe('CantAppeal.js', () => {
        cantAppealClass = new CantAppeal;
     });
 
-    after(() => {
-       cantAppealClass = undefined;
-    });
-
     describe('get url()', () => {
 
         it('returns url /cant-appeal', () => {
             expect(cantAppealClass.url).to.equal(urls.compliance.cantAppeal);
+        });
+
+    });
+
+    describe('next()', () => {
+
+        it('should return undefined', () => {
+            expect(cantAppealClass.next()).to.be.undefined;
         });
 
     });
