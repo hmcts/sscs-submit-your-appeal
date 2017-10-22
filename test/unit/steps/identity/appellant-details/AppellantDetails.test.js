@@ -1,8 +1,9 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
+const { expect } = require('test/util/chai');
 const urls = require('urls');
+const answer = require('utils/answer');
 
 describe('AppellantDetails.js', () => {
 
@@ -10,16 +11,32 @@ describe('AppellantDetails.js', () => {
 
     beforeEach(() => {
         appellantDetailsClass = new AppellantDetails();
-    });
-
-    after(() => {
-        appellantDetailsClass = undefined;
+        appellantDetailsClass.journey = {
+            Appointee: {}
+        };
+        appellantDetailsClass.fields = {
+            appointee: {}
+        }
     });
 
     describe('get url()', () => {
 
         it('returns url /enter-appellant-details', () => {
             expect(appellantDetailsClass.url).to.equal(urls.identity.enterAppellantDetails);
+        });
+
+    });
+
+    describe('get isAppointee()', () => {
+
+        it('should return true', () => {
+            appellantDetailsClass.fields.appointee.value = answer.YES;
+            expect(appellantDetailsClass.isAppointee).to.eq(true);
+        });
+
+        it('should return false', () => {
+            appellantDetailsClass.fields.appointee.value = answer.NO;
+            expect(appellantDetailsClass.isAppointee).to.eq(false);
         });
 
     });
@@ -149,14 +166,14 @@ describe('AppellantDetails.js', () => {
 
         });
 
-        describe('phoneNumber field', () => {
+        describe('appellantPhoneNumber field', () => {
 
             beforeEach(() => {
                 field = fields[7];
             });
 
-            it('contains the field name phoneNumber', () => {
-                expect(field.name).to.equal('phoneNumber');
+            it('contains the field name appellantPhoneNumber', () => {
+                expect(field.name).to.equal('appellantPhoneNumber');
             });
 
             it('contains validation', () => {

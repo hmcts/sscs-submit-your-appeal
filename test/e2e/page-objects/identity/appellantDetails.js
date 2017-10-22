@@ -19,7 +19,7 @@ function enterAppellantDetailsWithMobileAndContinue() {
     const I = this;
 
     I.enterRequiredAppellantDetails();
-    I.fillField('#AppellantDetails_phoneNumber', '07466748336');
+    I.fillField('#AppellantDetails_appellantPhoneNumber', '07466748336');
     I.click('Continue');
 }
 

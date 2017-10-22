@@ -22,7 +22,7 @@ Scenario('When I fill in the fields and click Continue, I am taken to the Text r
     I.fillField('AppellantDetails_addressLine2', 'Off Wizards close');
     I.fillField('AppellantDetails_townCity', 'Little Whinging');
     I.fillField('AppellantDetails_postCode', 'PA80 5UU');
-    I.fillField('AppellantDetails_phoneNumber', '07466748336');
+    I.fillField('AppellantDetails_appellantPhoneNumber', '07466748336');
     I.fillField('AppellantDetails_emailAddress', 'harrypotter@wizards.com');
     I.click('Continue');
     I.seeCurrentUrlEquals(urls.smsNotify.appellantTextReminders);
