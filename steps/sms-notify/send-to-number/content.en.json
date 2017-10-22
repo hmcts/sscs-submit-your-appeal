@@ -2,7 +2,7 @@
   "title": "Shall we send them to the number you provided earlier?",
   "fields": {
     "useSameNumber": {
-      "yes": "Yes, send them to {{session.AppellantDetails_phoneNumber}}",
+      "yes": "Yes, send them to {{ appellantPhoneNumber }}",
       "no": "No, send them to a different number",
       "error": {
         "required": "You need to tell us whether you would like us to send text messages about you appeal to the number you provided earlier."
