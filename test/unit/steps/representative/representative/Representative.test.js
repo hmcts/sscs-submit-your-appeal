@@ -4,6 +4,7 @@ const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Representative = require('steps/representative/representative/Representative');
 const urls = require('urls');
+const answer = require('utils/answer');
 
 describe('Representative.js', () => {
 
@@ -11,10 +12,6 @@ describe('Representative.js', () => {
 
     beforeEach(() => {
         representativeClass = new Representative();
-    });
-
-    after(() => {
-        representativeClass = undefined;
     });
 
     describe('get url()', () => {
@@ -31,10 +28,6 @@ describe('Representative.js', () => {
 
         beforeEach(() => {
             field = representativeClass.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
         });
 
         it('contains the field name hasRepresentative', () => {
@@ -59,13 +52,13 @@ describe('Representative.js', () => {
         });
 
         it('returns branch object with condition property', () => {
-            representativeClass.fields.hasRepresentative.value = 'yes';
+            representativeClass.fields.hasRepresentative.value = answer.YES;
             const branches = representativeClass.next().branches[0];
             expect(branches).to.have.property('condition');
         });
 
         it('returns branch object where condition nextStep equals /representative-details', () => {
-            representativeClass.fields.hasRepresentative.value = 'yes';
+            representativeClass.fields.hasRepresentative.value = answer.YES;
             const redirector = {
                 nextStep: urls.representative.representativeDetails
             };
@@ -74,7 +67,7 @@ describe('Representative.js', () => {
         });
 
         it('returns fallback object where nextStep equals /reason-for-appealing', () => {
-            representativeClass.fields.hasRepresentative.value = 'no';
+            representativeClass.fields.hasRepresentative.value = answer.NO;
             const redirector = {
                 nextStep: urls.reasonsForAppealing.reasonForAppealing
             };

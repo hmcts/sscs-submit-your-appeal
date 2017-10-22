@@ -15,8 +15,9 @@ class Representative extends Question {
 
         return form(
 
-            field('hasRepresentative')
-              .joi(this.content.fields.hasRepresentative.error.required, Joi.string().valid(answers)
+            field('hasRepresentative').joi(
+                this.content.fields.hasRepresentative.error.required,
+                Joi.string().valid(answers)
             )
         );
     }
