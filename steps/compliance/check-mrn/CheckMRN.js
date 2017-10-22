@@ -1,4 +1,5 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
@@ -16,8 +17,14 @@ class CheckMRN extends Question {
 
         return form(
 
-            field('checkedMRN')
-                .joi(this.content.fields.checkedMRN.error.required, Joi.string().valid(answers)
+            // Reference day, month and year from a previous step.
+            textField.ref(this.journey.MRNDate, 'day'),
+            textField.ref(this.journey.MRNDate, 'month'),
+            textField.ref(this.journey.MRNDate, 'year'),
+
+            textField('checkedMRN').joi(
+                this.content.fields.checkedMRN.error.required,
+                Joi.string().valid(answers)
             )
         );
     }
@@ -26,9 +33,10 @@ class CheckMRN extends Question {
         if(this.fields.checkedMRN.value === answer.YES) {
 
             const mrnDate = DateUtils.createMoment(
-                this.locals.session.MRNDate_day,
-                this.locals.session.MRNDate_month,
-                this.locals.session.MRNDate_year);
+                this.fields.day.value,
+                this.fields.month.value,
+                this.fields.year.value
+            );
 
             if (DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate)) {
 
