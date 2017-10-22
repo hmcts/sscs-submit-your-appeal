@@ -2,7 +2,7 @@
   "title": "Enter your mobile phone number",
   "description": "This is the number where the text messages will be sent.",
   "fields": {
-    "mobileNumber": {
+    "enterMobile": {
       "error": {
         "emptyField": "Enter a mobile number where you would like to receive text messages about your appeal.",
         "invalidNumber": "You have entered an invalid number. Check your mobile number and enter it again."
