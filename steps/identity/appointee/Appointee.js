@@ -1,4 +1,5 @@
-const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms')
 const Joi = require('joi');
 const urls = require('urls');
 const answer = require('utils/answer');
@@ -14,8 +15,10 @@ class Appointee extends Question {
         const answers = [answer.YES, answer.NO];
 
         return form(
-            field('appointee')
-                .joi(this.content.fields.appointee.error.required, Joi.string().valid(answers))
+            textField('appointee').joi(
+                this.content.fields.appointee.error.required,
+                Joi.string().valid(answers)
+            )
         );
     }
 

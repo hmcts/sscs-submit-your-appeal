@@ -12,14 +12,26 @@ describe('AppointeeDetails.js', () => {
         appointeeDetailsClass = new AppointeeDetails();
     });
 
-    after(() => {
-        appointeeDetailsClass = undefined;
-    });
-
     describe('get url()', () => {
 
         it('returns url /enter-appointee-details', () => {
             expect(appointeeDetailsClass.url).to.equal(urls.identity.enterAppointeeDetails);
+        });
+
+    });
+
+    describe('get form()', () => {
+
+        it('should be defined', () => {
+            expect(appointeeDetailsClass.form).to.be.undefined;
+        });
+
+    });
+
+    describe('get next()', () => {
+
+        it('should be defined', () => {
+            expect(appointeeDetailsClass.next()).to.be.undefined;
         });
 
     });
