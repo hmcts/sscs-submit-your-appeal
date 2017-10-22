@@ -10,10 +10,7 @@ describe('CheckYourAppeal.js', () => {
 
     beforeEach(() => {
         checkYourAppealClass = new CheckYourAppeal();
-    });
-
-    after(() => {
-        checkYourAppealClass = undefined;
+        checkYourAppealClass.journey = {};
     });
 
     describe('get url()', () => {
@@ -24,16 +21,19 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
+    describe('get form()', () => {
+
+        it('should be defined', () => {
+            expect(checkYourAppealClass.form).to.be.undefined;
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step url /confirmation', () => {
-            const redirector = {
-                nextStep: urls.confirmation
-            };
-            checkYourAppealClass.journey = {
-                Confirmation: urls.confirmation
-            };
-            expect(checkYourAppealClass.next()).to.eql(redirector);
+            checkYourAppealClass.journey.Confirmation = urls.confirmation;
+            expect(checkYourAppealClass.next()).to.eql({ nextStep: urls.confirmation});
         });
 
     });
