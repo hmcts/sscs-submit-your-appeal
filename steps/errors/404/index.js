@@ -1,3 +1,5 @@
+'use strict';
+
 const { Page } = require('@hmcts/one-per-page');
 
 class Error404 extends Page {

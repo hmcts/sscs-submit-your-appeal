@@ -1,3 +1,5 @@
+'use strict';
+
 const { ExitPoint } = require('@hmcts/one-per-page');
 const urls = require('urls');
 

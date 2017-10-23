@@ -24,32 +24,50 @@ class AppellantDetails extends Question {
 
         return form(
 
-            textField('firstName')
-                .joi(fields.firstName.error.required, Joi.string().regex(firstName).required()),
+            textField('firstName').joi(
+                fields.firstName.error.required,
+                Joi.string().regex(firstName).required()
+            ),
 
-            textField('lastName')
-                .joi(fields.lastName.error.required, Joi.string().regex(lastName).required()),
+            textField('lastName').joi(
+                fields.lastName.error.required,
+                Joi.string().regex(lastName).required()
+            ),
 
-            textField('niNumber')
-                .joi(fields.niNumber.error.required, Joi.string().regex(niNumber).required()),
+            textField('niNumber').joi(
+                fields.niNumber.error.required,
+                Joi.string().regex(niNumber).required()
+            ),
 
-            textField('addressLine1')
-                .joi(fields.addressLine1.error.required, Joi.string().regex(whitelist).required()),
+            textField('addressLine1').joi(
+                fields.addressLine1.error.required,
+                Joi.string().regex(whitelist).required()
+            ),
 
-            textField('addressLine2')
-                .joi(fields.addressLine2.error.required, Joi.string().regex(whitelist).required()),
+            textField('addressLine2').joi(
+                fields.addressLine2.error.required,
+                Joi.string().regex(whitelist).required()
+            ),
 
-            textField('townCity')
-                .joi(fields.townCity.error.required, Joi.string().regex(whitelist).required()),
+            textField('townCity').joi(
+                fields.townCity.error.required,
+                Joi.string().regex(whitelist).required()
+            ),
 
-            textField('postCode')
-                .joi(fields.postCode.error.required, Joi.string().regex(postCode).required()),
+            textField('postCode').joi(
+                fields.postCode.error.required,
+                Joi.string().regex(postCode).required()
+            ),
 
-            textField('appellantPhoneNumber')
-                .joi(fields.appellantPhoneNumber.error.invalid, Joi.string().regex(phoneNumber).allow('')),
+            textField('appellantPhoneNumber').joi(
+                fields.appellantPhoneNumber.error.invalid,
+                Joi.string().regex(phoneNumber).allow('')
+            ),
 
-            textField('emailAddress')
-                .joi(fields.emailAddress.error.invalid, Joi.string().email(emailOptions).allow('')),
+            textField('emailAddress').joi(
+                fields.emailAddress.error.invalid,
+                Joi.string().email(emailOptions).allow('')
+            ),
 
             textField.ref(this.journey.Appointee, 'appointee')
         );

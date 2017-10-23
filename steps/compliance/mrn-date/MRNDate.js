@@ -1,6 +1,7 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
-const DateUtils = require('utils/DateUtils');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, field } = require('@hmcts/one-per-page/forms');
 const { numbers } = require('utils/regex');
+const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
 const Joi = require('joi');
 
@@ -12,12 +13,19 @@ class MRNDate extends Question {
 
     get form() {
         return form(
-            field('day')
-                .joi(this.content.fields.day.error.required, Joi.string().regex(numbers).required()),
-            field('month')
-                .joi(this.content.fields.month.error.required, Joi.string().regex(numbers).required()),
-            field('year')
-                .joi(this.content.fields.year.error.required, Joi.string().regex(numbers).required())
+            field('day').joi(
+                this.content.fields.day.error.required,
+                Joi.string().regex(numbers).required()),
+
+            field('month').joi(
+                this.content.fields.month.error.required,
+                Joi.string().regex(numbers).required()
+            ),
+
+            field('year').joi(
+                this.content.fields.year.error.required,
+                Joi.string().regex(numbers).required()
+            )
         );
     }
 

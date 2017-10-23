@@ -1,5 +1,7 @@
+'use strict';
+
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms')
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const urls = require('urls');
 const answer = require('utils/answer');

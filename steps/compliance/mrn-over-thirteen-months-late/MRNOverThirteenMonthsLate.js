@@ -1,4 +1,7 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+'use strict';
+
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, field } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');

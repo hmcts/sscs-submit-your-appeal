@@ -1,3 +1,5 @@
+'use strict';
+
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, field, arrayField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
