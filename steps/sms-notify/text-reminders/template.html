@@ -1,13 +1,9 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/header.njk" import header %}
+
 {% set phase="ALPHA" %}
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
-{% if isAppellantNumberMobile %}
-    {% set signUpLink="/send-to-number" %}
-{% else %}
-    {% set signUpLink="/enter-mobile" %}
-{% endif %}
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />

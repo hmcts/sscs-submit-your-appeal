@@ -14,10 +14,6 @@ describe('Arrangements.js', () => {
         arrangements = new Arrangements();
     });
 
-    after(() => {
-        arrangements = undefined;
-    });
-
     describe('get url()', () => {
 
         it('returns url /arrangements', () => {

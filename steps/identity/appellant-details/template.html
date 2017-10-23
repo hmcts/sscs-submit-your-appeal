@@ -10,7 +10,7 @@
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% set title %}
-    {% if session.Appointee_appointee == 'yes' %}
+    {% if isAppointee %}
         {{ content.titleAppointee | safe }}
     {% else %}
         {{ content.titleNoAppointee | safe }}
@@ -23,15 +23,15 @@
 
         <p>{{ content.subtitle}}</p>
 
-        {{ textbox(fields.firstName,    content.fields.firstName.title,     hint="") }}
-        {{ textbox(fields.lastName,     content.fields.lastName.title,      hint="") }}
-        {{ textbox(fields.niNumber,     content.fields.niNumber.title,      hint="") }}
-        {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint="") }}
-        {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
-        {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
-        {{ textbox(fields.postCode,     content.fields.postCode.title,      hint="") }}
-        {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=fields.phoneNumber.hint) }}
-        {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=fields.emailAddress.hint) }}
+        {{ textbox(fields.firstName,            content.fields.firstName.title,             hint="") }}
+        {{ textbox(fields.lastName,             content.fields.lastName.title,              hint="") }}
+        {{ textbox(fields.niNumber,             content.fields.niNumber.title,              hint="") }}
+        {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
+        {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
+        {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}
+        {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
+        {{ textbox(fields.appellantPhoneNumber, content.fields.appellantPhoneNumber.title,  hint=fields.appellantPhoneNumber.hint) }}
+        {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=fields.emailAddress.hint) }}
 
     {% endcall %}
 

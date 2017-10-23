@@ -1,13 +1,16 @@
 'use strict';
 
+const remindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 const urls = require('urls');
-const content = require('steps/sms-notify/send-to-number/content.en.json');
 
 Feature('Send to number');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.smsNotify.sendToNumber);
+    I.amOnPage(urls.identity.enterAppellantDetails);
+    I.enterAppellantDetailsWithMobileAndContinue();
+    I.click(remindersContent.signUp);
+    I.seeInCurrentUrl(urls.smsNotify.sendToNumber);
 });
 
 After((I) => {

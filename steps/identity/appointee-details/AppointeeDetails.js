@@ -1,4 +1,4 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page');
 const urls = require('urls');
 
 class AppointeeDetails extends Question {
@@ -9,9 +9,7 @@ class AppointeeDetails extends Question {
 
     get form() {}
 
-    next() {
-        return goTo(undefined); // To define the next step
-    }
+    next() {}
 }
 
 module.exports = AppointeeDetails;

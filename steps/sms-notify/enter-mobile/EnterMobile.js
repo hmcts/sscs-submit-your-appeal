@@ -1,4 +1,5 @@
-const { Question, form, field, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const { internationalMobileNumber } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
@@ -12,13 +13,13 @@ class EnterMobile extends Question {
     get form() {
 
         return form(
-            field('mobileNumber')
+            textField('enterMobile')
                 .joi(
-                    this.content.fields.mobileNumber.error.emptyField,
+                    this.content.fields.enterMobile.error.emptyField,
                     Joi.string().required()
                 )
                 .joi(
-                    this.content.fields.mobileNumber.error.invalidNumber,
+                    this.content.fields.enterMobile.error.invalidNumber,
                     Joi.string().regex(internationalMobileNumber).required()
                 )
         );

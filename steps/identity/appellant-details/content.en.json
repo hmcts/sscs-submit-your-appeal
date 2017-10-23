@@ -45,7 +45,7 @@
         "required": "Please enter a valid postcode"
       }
     },
-    "phoneNumber": {
+    "appellantPhoneNumber": {
       "title": "Phone number (optional)",
       "hint": "We may use this to contact you about your appeal",
       "error": {

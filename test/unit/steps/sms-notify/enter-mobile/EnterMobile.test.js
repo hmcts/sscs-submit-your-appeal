@@ -2,6 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
+const urls = require('urls');
 
 describe('EnterMobile.js', () => {
 
@@ -9,6 +10,7 @@ describe('EnterMobile.js', () => {
 
     beforeEach(() => {
         enterMobileClass = new EnterMobile();
+        enterMobileClass.journey = {};
     });
 
     after(() => {
@@ -18,7 +20,7 @@ describe('EnterMobile.js', () => {
     describe('get url()', () => {
 
         it('returns url /enter-mobile', () => {
-           expect(enterMobileClass.url).to.equal('/enter-mobile');
+           expect(enterMobileClass.url).to.equal(urls.smsNotify.enterMobile);
         });
 
     });
@@ -35,8 +37,8 @@ describe('EnterMobile.js', () => {
             field = undefined;
         });
 
-        it('contains the field name mobileNumber', () => {
-           expect(field.name).to.equal('mobileNumber');
+        it('contains the field name enterMobile', () => {
+           expect(field.name).to.equal('enterMobile');
         });
 
         it('contains validation', () => {
@@ -48,13 +50,8 @@ describe('EnterMobile.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /sms-confirmation', () => {
-            const redirector = {
-                nextStep: '/sms-confirmation'
-            };
-            enterMobileClass.journey = {
-                SmsConfirmation: '/sms-confirmation'
-            };
-            expect(enterMobileClass.next()).to.eql(redirector);
+            enterMobileClass.journey.SmsConfirmation = urls.smsNotify.smsConfirmation;
+            expect(enterMobileClass.next()).to.eql({ nextStep: urls.smsNotify.smsConfirmation });
         });
 
     });

@@ -14,8 +14,10 @@ class Arrangements extends Question {
         const answers = [answer.YES, answer.NO];
 
         return form(
-            field('arrangements')
-                .joi(this.content.fields.arrangements.error.required, Joi.string().valid(answers))
+            field('arrangements').joi(
+                this.content.fields.arrangements.error.required,
+                Joi.string().valid(answers)
+            )
         );
     }
 

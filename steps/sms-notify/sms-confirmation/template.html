@@ -1,6 +1,7 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/header.njk" import header %}
+
 {% set phase="ALPHA" %}
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
@@ -16,9 +17,7 @@
 {% block two_thirds %}
     {{ header(content.title, size="large") }}
     <p>{{ content.mobileNumber }}
-        <span class="bold-small">
-            {{ session.EnterMobile_mobileNumber if (session.EnterMobile_mobileNumber) and session.SendToNumber_useSameNumber == 'no' else session.AppellantDetails_phoneNumber }}
-        </span>
+        <span class="bold-small">{{ mobileNumber }}</span>
     </p>
     <p>{{ content.firstMessage }}</p>
     <p><a class="button" href="/representative">{{ content.continue }}</a></p>

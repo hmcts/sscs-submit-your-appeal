@@ -15,7 +15,7 @@ After((I) => {
 
 Scenario('When I enter a valid mobile number, I am taken to the sms-confirmation page', (I) => {
 
-    I.fillField('#EnterMobile_mobileNumber', '07223344556');
+    I.fillField('#EnterMobile_enterMobile', '07223344556');
     I.click('Continue');
     I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
 
