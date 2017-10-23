@@ -17,7 +17,9 @@ class TextReminders extends Question {
     }
 
     get form() {
+
         return form(
+
             textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber')
         )
     }

@@ -11,7 +11,6 @@ class HearingAvailibility extends Question {
     }
 
     get form() {
-
         return form();
     }
 

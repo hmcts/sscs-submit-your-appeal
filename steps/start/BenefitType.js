@@ -13,7 +13,9 @@ class BenefitType extends Question {
     }
 
     get form() {
+
         return form(
+
             textField('benefitType').joi(
                 this.content.fields.benefitType.error.required,
                 Joi.string().regex(benefitType).required()

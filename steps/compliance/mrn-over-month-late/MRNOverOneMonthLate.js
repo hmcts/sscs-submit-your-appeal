@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, field } = require('@hmcts/one-per-page/forms');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
@@ -13,8 +13,10 @@ class MRNOverOneMonthLate extends Question {
     }
 
     get form() {
+
         return form(
-            field('reasonForBeingLate').joi(
+
+            textField('reasonForBeingLate').joi(
                 this.content.fields.reasonForBeingLate.error.required,
                 Joi.string().regex(whitelist).required()
             )

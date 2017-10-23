@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, field, arrayField } = require('@hmcts/one-per-page/forms');
+const { form, textField, arrayField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const urls = require('urls');
@@ -28,7 +28,7 @@ class HearingArrangements extends Question {
                 Joi.array().items(validAnswers).min(1)
             ),
 
-            field('anythingElse').joi(
+            textField('anythingElse').joi(
                 this.content.fields.anythingElse.error.required,
                 Joi.string().regex(whitelist).required().allow('')
             )

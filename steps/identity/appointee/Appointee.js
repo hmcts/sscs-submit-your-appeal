@@ -17,6 +17,7 @@ class Appointee extends Question {
         const answers = [answer.YES, answer.NO];
 
         return form(
+
             textField('appointee').joi(
                 this.content.fields.appointee.error.required,
                 Joi.string().valid(answers)
