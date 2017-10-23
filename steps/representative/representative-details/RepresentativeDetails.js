@@ -4,13 +4,13 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 
 class RepresentativeDetails extends Question {
 
     get url() {
-        return urls.representative.representativeDetails;
+        return paths.representative.representativeDetails;
     }
 
     get form() {

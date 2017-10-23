@@ -3,13 +3,13 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const regex = require('../../../utils/regex');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 class SmsConfirmation extends Question {
 
     get url() {
-        return urls.smsNotify.smsConfirmation;
+        return paths.smsNotify.smsConfirmation;
     }
 
     get mobileNumber() {

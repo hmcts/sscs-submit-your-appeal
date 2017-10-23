@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
 
@@ -10,6 +10,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     beforeEach(() => {
         mrnOverThirteenMonthsLateClass = new MRNOverThirteenMonthsLate();
+        mrnOverThirteenMonthsLateClass.journey = {};
     });
 
     after(() => {
@@ -19,7 +20,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     describe('get url()', () => {
 
         it('returns url /mrn-over-thirteen-months-late', () => {
-            expect(mrnOverThirteenMonthsLateClass.url).to.equal(urls.compliance.mrnOverThirteenMonthsLate);
+            expect(mrnOverThirteenMonthsLateClass.url).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
         });
 
     });
@@ -45,13 +46,8 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /are-you-an-appointee', () => {
-            const redirector = {
-                nextStep: urls.identity.areYouAnAppointee
-            };
-            mrnOverThirteenMonthsLateClass.journey = {
-                Appointee: urls.identity.areYouAnAppointee
-            };
-            expect(mrnOverThirteenMonthsLateClass.next()).to.eql(redirector);
+            mrnOverThirteenMonthsLateClass.journey.Appointee = paths.identity.areYouAnAppointee;
+            expect(mrnOverThirteenMonthsLateClass.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 
     });

@@ -2,12 +2,12 @@
 
 const { Question } = require('@hmcts/one-per-page');
 const { form } = require('@hmcts/one-per-page/forms');
-const urls = require('urls');
+const paths = require('paths');
 
 class HearingAvailibility extends Question {
 
     get url() {
-        return urls.hearing.hearingAvailability;
+        return paths.hearing.hearingAvailability;
     }
 
     get form() {

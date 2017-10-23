@@ -1,12 +1,12 @@
 'use strict';
 
 const { EntryPoint, goTo } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class Entry extends EntryPoint {
 
     get url() {
-        return urls.session.entry;
+        return paths.session.entry;
     }
 
     next() {

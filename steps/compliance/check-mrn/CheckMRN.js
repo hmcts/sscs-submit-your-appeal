@@ -2,13 +2,13 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 class CheckMRN extends Question {
 
     get url() {
-        return urls.compliance.checkMRNDate;
+        return paths.compliance.checkMRNDate;
     }
 
     get form() {

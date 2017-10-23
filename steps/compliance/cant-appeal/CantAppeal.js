@@ -1,12 +1,12 @@
 'use strict';
 
 const { Page } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class CantAppeal extends Page {
 
     get url () {
-        return urls.compliance.cantAppeal;
+        return paths.compliance.cantAppeal;
     }
 
     next() {}

@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const Exit = require('steps/exit/Exit');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('Exit.js', () => {
 
@@ -19,7 +19,7 @@ describe('Exit.js', () => {
     describe('get url()', () => {
 
         it('returns url /exit', () => {
-            expect(exitClass.url).to.equal(urls.session.exit);
+            expect(exitClass.url).to.equal(paths.session.exit);
         });
 
     });

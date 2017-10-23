@@ -4,12 +4,12 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 
 class MRNOverOneMonthLate extends Question {
 
     get url () {
-        return urls.compliance.mrnOverMonthLate;
+        return paths.compliance.mrnOverMonthLate;
     }
 
     get form() {

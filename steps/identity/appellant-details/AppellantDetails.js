@@ -4,14 +4,14 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { postCode, niNumber, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 const emailOptions = require('utils/emailOptions');
 
 class AppellantDetails extends Question {
 
     get url() {
-        return urls.identity.enterAppellantDetails;
+        return paths.identity.enterAppellantDetails;
     }
 
     get isAppointee() {

@@ -5,7 +5,7 @@ const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
-const urls = require('urls');
+const paths = require('paths');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
@@ -52,7 +52,7 @@ journey(app, {
     }
 });
 
-app.use(urls.health, healthcheck.configure({
+app.use(paths.health, healthcheck.configure({
     "checks": {
         "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
     }

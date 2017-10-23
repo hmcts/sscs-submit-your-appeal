@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const urls = require('urls');
+const paths = require('paths');
 const BenefitType = require('steps/start/BenefitType');
 
 describe('BenefitType.js', () => {
@@ -19,7 +19,7 @@ describe('BenefitType.js', () => {
     describe('get url()', () => {
 
         it('returns url /benefit-type', () => {
-            expect(benefitTypeClass.url).to.equal(urls.start.benefitType);
+            expect(benefitTypeClass.url).to.equal(paths.start.benefitType);
         });
 
     });
@@ -50,10 +50,10 @@ describe('BenefitType.js', () => {
 
         it('returns the next step url /mrn-date', () => {
             const redirector = {
-                nextStep: urls.compliance.mrnDate
+                nextStep: paths.compliance.mrnDate
             };
             benefitTypeClass.journey = {
-                MRNDate: urls.compliance.mrnDate
+                MRNDate: paths.compliance.mrnDate
             };
             expect(benefitTypeClass.next()).to.eql(redirector);
         });

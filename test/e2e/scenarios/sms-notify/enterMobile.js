@@ -1,12 +1,12 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 
 Feature('Enter Mobile');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.smsNotify.enterMobile);
+    I.amOnPage(paths.smsNotify.enterMobile);
 });
 
 After((I) => {
@@ -17,6 +17,6 @@ Scenario('When I enter a valid mobile number, I am taken to the sms-confirmation
 
     I.fillField('#EnterMobile_enterMobile', '07223344556');
     I.click('Continue');
-    I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
+    I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
 
 });

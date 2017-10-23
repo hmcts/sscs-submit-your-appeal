@@ -1,6 +1,6 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 
 function goToCheckMrnPage(mrnDate) {
 
@@ -10,7 +10,7 @@ function goToCheckMrnPage(mrnDate) {
     I.fillField('#MRNDate_month', mrnDate.month() + 1);
     I.fillField('#MRNDate_year', mrnDate.year());
     I.click('Continue');
-    I.seeInCurrentUrl(urls.compliance.checkMRNDate);
+    I.seeInCurrentUrl(paths.compliance.checkMRNDate);
 
 }
 

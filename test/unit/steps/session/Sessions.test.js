@@ -3,7 +3,7 @@
 const Sessions = require('steps/session/Sessions');
 const { expect, should } = require('test/util/chai');
 const { stub } = require('sinon');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('Sessions.js', () => {
 
@@ -30,7 +30,7 @@ describe('Sessions.js', () => {
     describe('get url()', () => {
 
         it('returns url /sessions', () => {
-            expect(sessionsClass.url).to.equal(urls.session.sessions);
+            expect(sessionsClass.url).to.equal(paths.session.sessions);
         });
 
     });

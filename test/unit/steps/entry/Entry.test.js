@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const Entry = require('steps/entry/Entry');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('Entry.js', () => {
 
@@ -19,7 +19,7 @@ describe('Entry.js', () => {
     describe('get url()', () => {
 
         it('returns url /', () => {
-            expect(entryClass.url).to.equal(urls.session.entry);
+            expect(entryClass.url).to.equal(paths.session.entry);
         });
 
     });
@@ -28,10 +28,10 @@ describe('Entry.js', () => {
 
         it('returns the next step url /benefit-type', () => {
             const redirector = {
-                nextStep: urls.start.benefitType
+                nextStep: paths.start.benefitType
             };
             entryClass.journey = {
-                BenefitType: urls.start.benefitType
+                BenefitType: paths.start.benefitType
             };
             expect(entryClass.next()).to.eql(redirector);
         });

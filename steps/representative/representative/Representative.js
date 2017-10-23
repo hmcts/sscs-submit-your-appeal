@@ -3,13 +3,13 @@
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 class Representative extends Question {
 
     get url() {
-        return urls.representative.representative
+        return paths.representative.representative
     }
 
     get form() {

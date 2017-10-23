@@ -1,6 +1,6 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 const content = require('steps/sms-notify/text-reminders/content.en.json');
 
 function goToSmsConfirmWithMobileNumber() {
@@ -10,7 +10,7 @@ function goToSmsConfirmWithMobileNumber() {
     I.enterAppellantDetailsWithMobileAndContinue();
     I.click(content.signUp);
     I.selectUseSameNumberAndContinue('#SendToNumber_useSameNumber-yes');
-    I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
+    I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
 
 }
 

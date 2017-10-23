@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('NoMRN.js', () => {
 
@@ -19,7 +19,7 @@ describe('NoMRN.js', () => {
     describe('get url()', () => {
 
         it('returns url /no-mrn', () => {
-            expect(noMRNClass.url).to.equal(urls.compliance.noMRN);
+            expect(noMRNClass.url).to.equal(paths.compliance.noMRN);
         });
 
     });

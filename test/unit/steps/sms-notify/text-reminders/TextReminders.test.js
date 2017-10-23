@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('TextReminders.js', () => {
 
@@ -30,17 +30,17 @@ describe('TextReminders.js', () => {
 
         it('returns \'/enter-number\' when the number provided is an empty string', () => {
             textRemindersClass.fields.appellantPhoneNumber.value = '';
-            expect(textRemindersClass.signUpLink).to.equal(urls.smsNotify.enterMobile);
+            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.enterMobile);
         });
 
         it('returns \'/enter-number\' when the number provided is not a mobile number', () => {
             textRemindersClass.fields.appellantPhoneNumber.value = '03453003943';
-            expect(textRemindersClass.signUpLink).to.equal(urls.smsNotify.enterMobile);
+            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.enterMobile);
         });
 
         it('returns \'/send-to-number\' when the number provided is a mobile number', () => {
             textRemindersClass.fields.appellantPhoneNumber.value = '07422756889';
-            expect(textRemindersClass.signUpLink).to.equal(urls.smsNotify.sendToNumber);
+            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.sendToNumber);
         });
 
     });
@@ -64,10 +64,10 @@ describe('TextReminders.js', () => {
 
         it('returns the next step url /sms-confirmation', () => {
             const redirector = {
-                nextStep: urls.smsNotify.enterMobile
+                nextStep: paths.smsNotify.enterMobile
             };
             textRemindersClass.journey = {
-                EnterMobile: urls.smsNotify.enterMobile
+                EnterMobile: paths.smsNotify.enterMobile
             };
             expect(textRemindersClass.next()).to.eql(redirector);
         });

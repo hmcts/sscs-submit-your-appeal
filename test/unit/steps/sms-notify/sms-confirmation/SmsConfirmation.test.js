@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('SmsConfirmation.js', () => {
@@ -88,8 +88,8 @@ describe('SmsConfirmation.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /representative', () => {
-            smsConfirmationClass.journey.Representative = urls.representative.representative;
-            expect(smsConfirmationClass.next()).to.eql({ nextStep: urls.representative.representative });
+            smsConfirmationClass.journey.Representative = paths.representative.representative;
+            expect(smsConfirmationClass.next()).to.eql({ nextStep: paths.representative.representative });
         });
 
     });

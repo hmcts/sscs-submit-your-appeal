@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('RepresentativeDetails.js', () => {
 
@@ -19,7 +19,7 @@ describe('RepresentativeDetails.js', () => {
     describe('get url()', () => {
 
         it('returns url /representative-details', () => {
-            expect(representativeDetailsClass.url).to.equal(urls.representative.representativeDetails);
+            expect(representativeDetailsClass.url).to.equal(paths.representative.representativeDetails);
         });
 
     });
@@ -203,10 +203,10 @@ describe('RepresentativeDetails.js', () => {
 
         it('returns the next step url /reason-for-appealing', () => {
             const redirector = {
-                nextStep: urls.reasonsForAppealing.reasonForAppealing
+                nextStep: paths.reasonsForAppealing.reasonForAppealing
             };
             representativeDetailsClass.journey = {
-                ReasonForAppealing: urls.reasonsForAppealing.reasonForAppealing
+                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
             };
             expect(representativeDetailsClass.next()).to.eql(redirector);
         });

@@ -3,7 +3,7 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Arrangements = require('steps/hearing/arrangement/Arrangements');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('Arrangements.js', () => {
@@ -17,7 +17,7 @@ describe('Arrangements.js', () => {
     describe('get url()', () => {
 
         it('returns url /arrangements', () => {
-            expect(arrangements.url).to.equal(urls.hearing.arrangements);
+            expect(arrangements.url).to.equal(paths.hearing.arrangements);
         });
 
     });
@@ -50,8 +50,8 @@ describe('Arrangements.js', () => {
             arrangements.fields = stub();
             arrangements.fields.arrangements = {};
             arrangements.journey = {
-                HearingArrangements: urls.hearing.hearingArrangements,
-                HearingAvailibility: urls.hearing.hearingAvailability
+                HearingArrangements: paths.hearing.hearingArrangements,
+                HearingAvailibility: paths.hearing.hearingAvailability
             };
         });
 
@@ -64,7 +64,7 @@ describe('Arrangements.js', () => {
         it('returns branch object where condition nextStep equals /hearing-arrangements', () => {
             arrangements.fields.arrangements.value = answer.YES;
             const redirector = {
-                nextStep: urls.hearing.hearingArrangements
+                nextStep: paths.hearing.hearingArrangements
             };
             const branches = arrangements.next().branches[0];
             expect(branches.redirector).to.eql(redirector)
@@ -73,7 +73,7 @@ describe('Arrangements.js', () => {
         it('returns fallback object where nextStep equals /hearing-availability', () => {
             arrangements.fields.arrangements.value = answer.NO;
             const redirector = {
-                nextStep: urls.hearing.hearingAvailability
+                nextStep: paths.hearing.hearingAvailability
             };
             const fallback = arrangements.next().fallback;
             expect(fallback).to.eql(redirector);

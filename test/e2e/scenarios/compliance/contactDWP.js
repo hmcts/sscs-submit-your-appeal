@@ -1,13 +1,13 @@
 'use strict';
 
 const content = require('steps/compliance/contact-dwp/content.en.json');
-const urls = require('urls');
+const paths = require('paths');
 
 Feature('Contact DWP');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.compliance.contactDWP)
+    I.amOnPage(paths.compliance.contactDWP)
 });
 
 After((I) => {

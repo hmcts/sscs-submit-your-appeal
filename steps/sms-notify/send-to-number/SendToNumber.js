@@ -4,13 +4,13 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 class SendToNumber extends Question {
 
     get url() {
-        return urls.smsNotify.sendToNumber;
+        return paths.smsNotify.sendToNumber;
     }
 
     get appellantPhoneNumber() {

@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('HearingArrangements.js', () => {
 
@@ -19,7 +19,7 @@ describe('HearingArrangements.js', () => {
     describe('get url()', () => {
 
         it('returns url /hearing-arrangements', () => {
-            expect(hearingArrangements.url).to.equal(urls.hearing.hearingArrangements);
+            expect(hearingArrangements.url).to.equal(paths.hearing.hearingArrangements);
         });
 
     });
@@ -73,10 +73,10 @@ describe('HearingArrangements.js', () => {
 
             it('returns the next step url /hearing-availability', () => {
                 const redirector = {
-                    nextStep: urls.hearing.hearingAvailability
+                    nextStep: paths.hearing.hearingAvailability
                 };
                 hearingArrangements.journey = {
-                    HearingAvailibility: urls.hearing.hearingAvailability
+                    HearingAvailibility: paths.hearing.hearingAvailability
                 };
                 expect(hearingArrangements.next()).to.eql(redirector);
             });

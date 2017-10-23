@@ -1,12 +1,11 @@
-const appointee = require('steps/identity/appointee/content.en').fields.appointee;
 const appellant = require('steps/identity/appellant-details/content.en').fields;
-const urls = require('urls');
+const paths = require('paths');
 
 Feature('Appellant details form');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.identity.enterAppellantDetails);
+    I.amOnPage(paths.identity.enterAppellantDetails);
 });
 
 After((I) => {
@@ -25,7 +24,7 @@ Scenario('When I fill in the fields and click Continue, I am taken to the Text r
     I.fillField('AppellantDetails_appellantPhoneNumber', '07466748336');
     I.fillField('AppellantDetails_emailAddress', 'harrypotter@wizards.com');
     I.click('Continue');
-    I.seeCurrentUrlEquals(urls.smsNotify.appellantTextReminders);
+    I.seeCurrentUrlEquals(paths.smsNotify.appellantTextReminders);
 
 });
 

@@ -2,7 +2,7 @@
 
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
 const { expect } = require('test/util/chai');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('AppellantDetails.js', () => {
@@ -22,7 +22,7 @@ describe('AppellantDetails.js', () => {
     describe('get url()', () => {
 
         it('returns url /enter-appellant-details', () => {
-            expect(appellantDetailsClass.url).to.equal(urls.identity.enterAppellantDetails);
+            expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantDetails);
         });
 
     });
@@ -204,10 +204,10 @@ describe('AppellantDetails.js', () => {
 
         it('returns the next step url /appellant-text-reminders', () => {
             const redirector = {
-                nextStep: urls.smsNotify.appellantTextReminders
+                nextStep: paths.smsNotify.appellantTextReminders
             };
             appellantDetailsClass.journey = {
-                TextReminders: urls.smsNotify.appellantTextReminders
+                TextReminders: paths.smsNotify.appellantTextReminders
             };
             expect(appellantDetailsClass.next()).to.eql(redirector);
         });

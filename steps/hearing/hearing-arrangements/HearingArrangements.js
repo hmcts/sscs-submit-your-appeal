@@ -4,12 +4,12 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField, arrayField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 
 class HearingArrangements extends Question {
 
     get url() {
-        return urls.hearing.hearingArrangements;
+        return paths.hearing.hearingArrangements;
     }
 
     get form() {

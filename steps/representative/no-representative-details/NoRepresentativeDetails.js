@@ -1,12 +1,12 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class NoRepresentativeDetails extends Question {
 
     get url() {
-        return urls.representative.noRepresentativeDetails;
+        return paths.representative.noRepresentativeDetails;
     }
 
     get form() {}

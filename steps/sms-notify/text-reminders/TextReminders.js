@@ -3,17 +3,17 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const regex = require('../../../utils/regex');
-const urls = require('urls');
+const paths = require('paths');
 
 class TextReminders extends Question {
 
     get url() {
-        return urls.smsNotify.appellantTextReminders
+        return paths.smsNotify.appellantTextReminders
     }
 
     get signUpLink() {
         return regex.mobileNumber.test(this.fields.appellantPhoneNumber.value) ?
-            urls.smsNotify.sendToNumber : urls.smsNotify.enterMobile
+            paths.smsNotify.sendToNumber : paths.smsNotify.enterMobile
     }
 
     get form() {
