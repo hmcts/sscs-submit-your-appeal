@@ -9,8 +9,7 @@ class NoRepresentativeDetails extends Question {
         return urls.representative.noRepresentativeDetails;
     }
 
-    get form() {
-    }
+    get form() {}
 
     next() {
         return goTo(this.journey.ReasonForAppealing);

@@ -1,4 +1,7 @@
-const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
+'use strict';
+
+const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const urls = require('urls');
 const answer = require('utils/answer');
@@ -14,7 +17,7 @@ class Arrangements extends Question {
         const answers = [answer.YES, answer.NO];
 
         return form(
-            field('arrangements').joi(
+            textField('arrangements').joi(
                 this.content.fields.arrangements.error.required,
                 Joi.string().valid(answers)
             )

@@ -1,3 +1,5 @@
+'use strict';
+
 const { Question } = require('@hmcts/one-per-page');
 const urls = require('urls');
 

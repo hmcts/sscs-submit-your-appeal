@@ -1,4 +1,5 @@
 'use strict';
+
 const requireDirectory = require('require-directory');
 const steps = requireDirectory(module);
 

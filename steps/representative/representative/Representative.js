@@ -1,4 +1,7 @@
-const { Question, form, field, branch, goTo } = require('@hmcts/one-per-page');
+'use strict';
+
+const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const urls = require('urls');
 const answer = require('utils/answer');
@@ -15,7 +18,7 @@ class Representative extends Question {
 
         return form(
 
-            field('hasRepresentative').joi(
+            textField('hasRepresentative').joi(
                 this.content.fields.hasRepresentative.error.required,
                 Joi.string().valid(answers)
             )

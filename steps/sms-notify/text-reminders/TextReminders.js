@@ -1,3 +1,5 @@
+'use strict';
+
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const regex = require('../../../utils/regex');
