@@ -18,19 +18,19 @@
     <div class="form-group form-group-day">
         <label for="{{ dayField.id }}">Day</label>
         <input class="form-control {{ 'form-control-error' if dayField.errors }}" id="{{ dayField.id }}" type="number" pattern="[0-9]*" min="1" max="31"
-               name="{{ dayField.id }}" value="{{ dayField.value }}">
+               name="{{ dayField.id }}" {% if dayField.value %} value="{{ dayField.value }}" {% endif %}>
     </div>
 
     <div class="form-group form-group-month">
         <label for="{{ monthField.id }}">Month</label>
         <input class="form-control {{ 'form-control-error' if monthField.errors }}" id="{{ monthField.id }}" type="number" pattern="[0-9]*" min="1" max="12"
-               name="{{ monthField.id }}" value="{{ monthField.value }}">
+               name="{{ monthField.id }}" {% if monthField.value %} value="{{ monthField.value }}" {% endif %}>
     </div>
 
     <div class="form-group form-group-year">
         <label for="{{ yearField.id }}">Year</label>
         <input class="form-control {{ 'form-control-error' if yearField.errors }}" id="{{ yearField.id }}" type="number" pattern="[0-9]*" min="1"
-               name="{{ yearField.id }}" value="{{ yearField.value }}">
+               name="{{ yearField.id }}" {% if yearField.value %} value="{{ yearField.value }}" {% endif %}>
     </div>
 
 </fieldset>
@@ -48,6 +48,6 @@
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7">{{ field.value }}</textarea>
+    <textarea class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7">{{ field.value | default('') }}</textarea>
 </div>
 {% endmacro %}

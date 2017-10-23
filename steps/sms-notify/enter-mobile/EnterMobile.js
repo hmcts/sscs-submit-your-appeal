@@ -15,6 +15,7 @@ class EnterMobile extends Question {
     get form() {
 
         return form(
+
             textField('enterMobile').joi(
                 this.content.fields.enterMobile.error.emptyField,
                 Joi.string().required())

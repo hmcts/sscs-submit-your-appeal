@@ -18,8 +18,11 @@ class SendToNumber extends Question {
     }
 
     get form() {
+
         return form(
+
             textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber'),
+
             textField('useSameNumber').joi(
                 this.content.fields.useSameNumber.error.required,
                 Joi.string().regex(whitelist).required()

@@ -25,7 +25,9 @@ class SmsConfirmation extends Question {
     }
 
     get form() {
+
         return form(
+
             textField.ref(this.journey.EnterMobile, 'enterMobile'),
             textField.ref(this.journey.SendToNumber, 'useSameNumber'),
             textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber')

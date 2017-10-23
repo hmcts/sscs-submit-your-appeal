@@ -14,9 +14,11 @@ class RepresentativeDetails extends Question {
     }
 
     get form() {
+
         const fields = this.content.fields;
 
         return form(
+
             textField('firstName').joi(
                 fields.firstName.error.required,
                 Joi.string().required()

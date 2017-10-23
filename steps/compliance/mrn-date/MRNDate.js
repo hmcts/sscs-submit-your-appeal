@@ -1,5 +1,5 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, field } = require('@hmcts/one-per-page/forms');
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const { numbers } = require('utils/regex');
 const DateUtils = require('utils/DateUtils');
 const urls = require('urls');
@@ -12,17 +12,19 @@ class MRNDate extends Question {
     }
 
     get form() {
+
         return form(
-            field('day').joi(
+
+            textField('day').joi(
                 this.content.fields.day.error.required,
                 Joi.string().regex(numbers).required()),
 
-            field('month').joi(
+            textField('month').joi(
                 this.content.fields.month.error.required,
                 Joi.string().regex(numbers).required()
             ),
 
-            field('year').joi(
+            textField('year').joi(
                 this.content.fields.year.error.required,
                 Joi.string().regex(numbers).required()
             )
