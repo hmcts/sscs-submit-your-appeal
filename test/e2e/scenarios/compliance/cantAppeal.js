@@ -1,13 +1,13 @@
 'use strict';
 
 const content = require('steps/compliance/cant-appeal/content.en.json');
-const urls = require('urls');
+const paths = require('paths');
 
 Feature('Can\'t appeal');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.compliance.cantAppeal)
+    I.amOnPage(paths.compliance.cantAppeal)
 });
 
 After((I) => {

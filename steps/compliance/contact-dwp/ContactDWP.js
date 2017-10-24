@@ -1,12 +1,12 @@
 'use strict';
 
 const { Page } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class ContactDWP extends Page {
 
     get url() {
-        return urls.compliance.contactDWP;
+        return paths.compliance.contactDWP;
     }
 }
 

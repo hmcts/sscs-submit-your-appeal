@@ -1,13 +1,13 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 const content = require('steps/sms-notify/text-reminders/content.en.json');
 
 Feature('Text Reminders');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.identity.enterAppellantDetails);
+    I.amOnPage(paths.identity.enterAppellantDetails);
 });
 
 After((I) => {
@@ -18,7 +18,7 @@ Scenario('When I enter a mobile number in the appellant details page and click S
 
     I.enterAppellantDetailsWithMobileAndContinue();
     I.click(content.signUp);
-    I.seeInCurrentUrl(urls.smsNotify.sendToNumber);
+    I.seeInCurrentUrl(paths.smsNotify.sendToNumber);
 
 });
 
@@ -26,7 +26,7 @@ Scenario('When I enter a mobile number in the appellant details page and click d
 
     I.enterAppellantDetailsWithMobileAndContinue();
     I.click(content.noThanks);
-    I.seeInCurrentUrl(urls.representative.representative);
+    I.seeInCurrentUrl(paths.representative.representative);
 
 });
 
@@ -35,6 +35,6 @@ Scenario('When I don\'t enter a mobile number in the appellant details page and 
     I.enterRequiredAppellantDetails();
     I.click('Continue');
     I.click(content.signUp);
-    I.seeInCurrentUrl(urls.smsNotify.enterMobile);
+    I.seeInCurrentUrl(paths.smsNotify.enterMobile);
 
 });

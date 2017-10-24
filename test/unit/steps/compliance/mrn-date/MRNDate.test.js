@@ -4,7 +4,7 @@ const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const moment = require('moment');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('MRNDate.js', () => {
 
@@ -29,7 +29,7 @@ describe('MRNDate.js', () => {
     describe('get url()', () => {
 
         it('returns url /mrn-date', () => {
-            expect(mrnDateClass.url).to.equal(urls.compliance.mrnDate);
+            expect(mrnDateClass.url).to.equal(paths.compliance.mrnDate);
         });
 
     });
@@ -119,10 +119,10 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
             redirector = {
-                nextStep: urls.identity.areYouAnAppointee
+                nextStep: paths.identity.areYouAnAppointee
             };
             mrnDateClass.journey = {
-                Appointee: urls.identity.areYouAnAppointee
+                Appointee: paths.identity.areYouAnAppointee
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });
@@ -133,10 +133,10 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
             redirector = {
-                nextStep: urls.identity.areYouAnAppointee
+                nextStep: paths.identity.areYouAnAppointee
             };
             mrnDateClass.journey = {
-                Appointee: urls.identity.areYouAnAppointee
+                Appointee: paths.identity.areYouAnAppointee
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });
@@ -147,10 +147,10 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
             redirector = {
-                nextStep: urls.compliance.checkMRNDate
+                nextStep: paths.compliance.checkMRNDate
             };
             mrnDateClass.journey = {
-                CheckMRN: urls.compliance.checkMRNDate
+                CheckMRN: paths.compliance.checkMRNDate
             };
             expect(mrnDateClass.next()).to.eql(redirector);
         });

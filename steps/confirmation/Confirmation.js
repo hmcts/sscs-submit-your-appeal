@@ -1,12 +1,12 @@
 'use strict';
 
 const { ExitPoint } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class Confirmation extends ExitPoint {
 
     get url() {
-        return urls.confirmation;
+        return paths.confirmation;
     }
 }
 

@@ -1,12 +1,12 @@
 'use strict';
 
 const { ExitPoint } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class Exit extends ExitPoint {
 
     get url() {
-        return urls.session.exit;
+        return paths.session.exit;
     }
 }
 

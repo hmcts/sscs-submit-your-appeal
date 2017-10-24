@@ -1,13 +1,13 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 const content = require('steps/representative/representative-details/content.en.json');
 
 Feature('Representative Details');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.representative.representativeDetails)
+    I.amOnPage(paths.representative.representativeDetails)
 });
 
 After((I) => {
@@ -18,13 +18,13 @@ Scenario('When I fill in the fields and continue, I am taken to the reason for a
 
     I.enterRequiredRepresentativeDetails();
     I.click('Continue');
-    I.seeInCurrentUrl(urls.reasonsForAppealing.reasonForAppealing);
+    I.seeInCurrentUrl(paths.reasonsForAppealing.reasonForAppealing);
 
 });
 
 Scenario('When I click the no details link, I am taken to the no representative details page', (I) => {
 
     I.click(content.noDetails);
-    I.seeInCurrentUrl(urls.representative.noRepresentativeDetails);
+    I.seeInCurrentUrl(paths.representative.noRepresentativeDetails);
 
 });

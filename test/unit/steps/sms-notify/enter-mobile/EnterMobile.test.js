@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('EnterMobile.js', () => {
 
@@ -20,7 +20,7 @@ describe('EnterMobile.js', () => {
     describe('get url()', () => {
 
         it('returns url /enter-mobile', () => {
-           expect(enterMobileClass.url).to.equal(urls.smsNotify.enterMobile);
+           expect(enterMobileClass.url).to.equal(paths.smsNotify.enterMobile);
         });
 
     });
@@ -50,8 +50,8 @@ describe('EnterMobile.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /sms-confirmation', () => {
-            enterMobileClass.journey.SmsConfirmation = urls.smsNotify.smsConfirmation;
-            expect(enterMobileClass.next()).to.eql({ nextStep: urls.smsNotify.smsConfirmation });
+            enterMobileClass.journey.SmsConfirmation = paths.smsNotify.smsConfirmation;
+            expect(enterMobileClass.next()).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
         });
 
     });

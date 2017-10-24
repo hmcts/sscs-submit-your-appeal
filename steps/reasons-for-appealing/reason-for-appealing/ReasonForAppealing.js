@@ -1,12 +1,12 @@
 'use strict';
 
 const { Question } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class ReasonForAppealing extends Question {
 
     get url() {
-        return urls.reasonsForAppealing.reasonForAppealing;
+        return paths.reasonsForAppealing.reasonForAppealing;
     }
 
     get form() {}

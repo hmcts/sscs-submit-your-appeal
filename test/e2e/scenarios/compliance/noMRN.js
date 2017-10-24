@@ -1,13 +1,13 @@
 'use strict';
 
 const content = require('steps/compliance/no-mrn/content.en');
-const urls = require('urls');
+const paths = require('paths');
 
 Feature('User does not have an MRN');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.compliance.noMRN)
+    I.amOnPage(paths.compliance.noMRN)
 });
 
 After((I) => {
@@ -18,7 +18,7 @@ After((I) => {
 Scenario('When I do not have an MRN and have not contacted DWP, I am taken to the contact DWP page', (I) => {
 
     I.click(content.haveNotContactedDWP);
-    I.seeCurrentUrlEquals(urls.compliance.contactDWP);
+    I.seeCurrentUrlEquals(paths.compliance.contactDWP);
 
 });
 
@@ -26,14 +26,14 @@ Scenario('When I do not have an MRN and have entered a reason why, I am taken to
 
     I.fillField('#NoMRN_reasonForNoMRN', 'I do not have an MRN because...');
     I.click('Continue');
-    I.seeCurrentUrlEquals(urls.identity.areYouAnAppointee);
+    I.seeCurrentUrlEquals(paths.identity.areYouAnAppointee);
 
 });
 
 Scenario('When I do not have an MRN, I have not entered anything, I see errors', (I) => {
 
     I.click('Continue');
-    I.seeCurrentUrlEquals(urls.compliance.noMRN);
+    I.seeCurrentUrlEquals(paths.compliance.noMRN);
     I.see(content.fields.reasonForNoMRN.error.required);
 
 });

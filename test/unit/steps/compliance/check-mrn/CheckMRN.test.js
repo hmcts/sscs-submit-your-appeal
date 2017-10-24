@@ -1,10 +1,10 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
+const { Reference } = require('@hmcts/one-per-page/forms');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const DateUtils = require('utils/DateUtils');
-const { Reference } = require('@hmcts/one-per-page/forms');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('CheckMRN.js', () => {
@@ -20,7 +20,7 @@ describe('CheckMRN.js', () => {
     describe('get url()', () => {
 
         it('returns url /check-mrn-date', () => {
-            expect(checkMRNClass.url).to.equal(urls.compliance.checkMRNDate);
+            expect(checkMRNClass.url).to.equal(paths.compliance.checkMRNDate);
         });
 
     });
@@ -77,20 +77,20 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step \'/mrn-over-month-late\' when the date is less than thirteen months', () => {
                 setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-                checkMRNClass.journey.MRNOverOneMonthLate = urls.compliance.mrnOverMonthLate;
-                expect(checkMRNClass.next()).to.eql({ nextStep: urls.compliance.mrnOverMonthLate });
+                checkMRNClass.journey.MRNOverOneMonthLate = paths.compliance.mrnOverMonthLate;
+                expect(checkMRNClass.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
             });
 
             it('returns the next step url /mrn-over-month-late when date is equal to thirteen months', () => {
-                checkMRNClass.journey.MRNOverOneMonthLate = urls.compliance.mrnOverMonthLate;
+                checkMRNClass.journey.MRNOverOneMonthLate = paths.compliance.mrnOverMonthLate;
                 setMRNDate(DateUtils.thirteenMonthsAgo());
-                expect(checkMRNClass.next()).to.eql({ nextStep: urls.compliance.mrnOverMonthLate });
+                expect(checkMRNClass.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
             });
 
             it('returns the next step url /mrn-over-thirteen-months-late when date is over thirteen months', () => {
-                checkMRNClass.journey.MRNOverThirteenMonthsLate = urls.compliance.mrnOverThirteenMonthsLate;
+                checkMRNClass.journey.MRNOverThirteenMonthsLate = paths.compliance.mrnOverThirteenMonthsLate;
                 setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
-                expect(checkMRNClass.next()).to.eql({ nextStep: urls.compliance.mrnOverThirteenMonthsLate });
+                expect(checkMRNClass.next()).to.eql({ nextStep: paths.compliance.mrnOverThirteenMonthsLate });
             });
 
         });
@@ -102,8 +102,8 @@ describe('CheckMRN.js', () => {
             });
 
             it('returns the next step url /mrn-date when checkMRN value equals no', () => {
-                checkMRNClass.journey.MRNDate = urls.compliance.mrnDate;
-                expect(checkMRNClass.next()).to.eql({ nextStep: urls.compliance.mrnDate });
+                checkMRNClass.journey.MRNDate = paths.compliance.mrnDate;
+                expect(checkMRNClass.next()).to.eql({ nextStep: paths.compliance.mrnDate });
             });
 
         });

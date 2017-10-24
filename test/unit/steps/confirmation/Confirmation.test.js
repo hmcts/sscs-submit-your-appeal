@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const Confirmation = require('steps/confirmation/Confirmation');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('Confirmation.js', () => {
 
@@ -19,7 +19,7 @@ describe('Confirmation.js', () => {
     describe('get url()', () => {
 
         it('returns url /confirmation', () => {
-            expect(confirmationClass.url).to.equal(urls.confirmation);
+            expect(confirmationClass.url).to.equal(paths.confirmation);
         });
 
     });

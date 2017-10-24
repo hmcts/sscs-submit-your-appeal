@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('MRNOverOneMonth.js', () => {
 
@@ -19,7 +19,7 @@ describe('MRNOverOneMonth.js', () => {
     describe('get url()', () => {
 
         it('returns url /mrn-over-month-late', () => {
-            expect(mrnOverOneMonthClass.url).to.equal(urls.compliance.mrnOverMonthLate);
+            expect(mrnOverOneMonthClass.url).to.equal(paths.compliance.mrnOverMonthLate);
         });
 
     });
@@ -46,10 +46,10 @@ describe('MRNOverOneMonth.js', () => {
 
         it('returns the next step url /are-you-an-appointee', () => {
             const redirector = {
-                nextStep: urls.identity.areYouAnAppointee
+                nextStep: paths.identity.areYouAnAppointee
             };
             mrnOverOneMonthClass.journey = {
-                Appointee: urls.identity.areYouAnAppointee
+                Appointee: paths.identity.areYouAnAppointee
             };
             expect(mrnOverOneMonthClass.next()).to.eql(redirector);
         });

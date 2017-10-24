@@ -1,6 +1,6 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 const content = require('steps/sms-notify/sms-confirmation/content.en.json');
 const remindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 
@@ -8,7 +8,7 @@ Feature('SMS Confirmation');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.identity.enterAppellantDetails);
+    I.amOnPage(paths.identity.enterAppellantDetails);
 });
 
 After((I) => {
@@ -19,7 +19,7 @@ Scenario('When I click Continue, I am taken to the Representative page', (I) => 
 
     I.goToSmsConfirmWithMobileNumber();
     I.click(content.continue);
-    I.seeInCurrentUrl(urls.representative.representative);
+    I.seeInCurrentUrl(paths.representative.representative);
 
 });
 
@@ -27,7 +27,7 @@ Scenario('When I click Change number, I am taken to the enter mobile page', (I) 
 
     I.goToSmsConfirmWithMobileNumber();
     I.click(content.change);
-    I.seeInCurrentUrl(urls.smsNotify.enterMobile);
+    I.seeInCurrentUrl(paths.smsNotify.enterMobile);
 
 });
 
@@ -45,7 +45,7 @@ Scenario('When I enter a mobile number in appellant details and click use differ
     I.selectUseSameNumberAndContinue('#SendToNumber_useSameNumber-no');
     I.fillField('#EnterMobile_enterMobile', '+447123456789');
     I.click('Continue');
-    I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
+    I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
     I.see('+447123456789');
 
 });
@@ -57,7 +57,7 @@ Scenario('When I don\'t enter a mobile number in appellant details, I see the mo
     I.click(remindersContent.signUp);
     I.fillField('#EnterMobile_enterMobile', '+447987654321');
     I.click('Continue');
-    I.seeInCurrentUrl(urls.smsNotify.smsConfirmation);
+    I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
     I.see('+447987654321');
 
 });

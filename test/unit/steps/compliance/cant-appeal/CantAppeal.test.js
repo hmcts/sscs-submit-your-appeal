@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('CantAppeal.js', () => {
 
@@ -15,7 +15,7 @@ describe('CantAppeal.js', () => {
     describe('get url()', () => {
 
         it('returns url /cant-appeal', () => {
-            expect(cantAppealClass.url).to.equal(urls.compliance.cantAppeal);
+            expect(cantAppealClass.url).to.equal(paths.compliance.cantAppeal);
         });
 
     });

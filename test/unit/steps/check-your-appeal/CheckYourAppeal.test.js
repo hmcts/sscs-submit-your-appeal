@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('CheckYourAppeal.js', () => {
 
@@ -16,7 +16,7 @@ describe('CheckYourAppeal.js', () => {
     describe('get url()', () => {
 
         it('returns url /check-your-appeal', () => {
-            expect(checkYourAppealClass.url).to.equal(urls.checkYourAppeal);
+            expect(checkYourAppealClass.url).to.equal(paths.checkYourAppeal);
         });
 
     });
@@ -32,8 +32,8 @@ describe('CheckYourAppeal.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /confirmation', () => {
-            checkYourAppealClass.journey.Confirmation = urls.confirmation;
-            expect(checkYourAppealClass.next()).to.eql({ nextStep: urls.confirmation});
+            checkYourAppealClass.journey.Confirmation = paths.confirmation;
+            expect(checkYourAppealClass.next()).to.eql({ nextStep: paths.confirmation});
         });
 
     });

@@ -4,12 +4,12 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { benefitType } = require('utils/regex');
 const Joi = require('joi');
-const urls = require('urls');
+const paths = require('paths');
 
 class BenefitType extends Question {
 
     get url() {
-        return urls.start.benefitType;
+        return paths.start.benefitType;
     }
 
     get form() {

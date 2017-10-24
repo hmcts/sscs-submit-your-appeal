@@ -3,7 +3,7 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Representative = require('steps/representative/representative/Representative');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('Representative.js', () => {
@@ -17,7 +17,7 @@ describe('Representative.js', () => {
     describe('get url()', () => {
 
         it('returns url /representative', () => {
-            expect(representativeClass.url).to.equal(urls.representative.representative);
+            expect(representativeClass.url).to.equal(paths.representative.representative);
         });
 
     });
@@ -46,8 +46,8 @@ describe('Representative.js', () => {
             representativeClass.fields = stub();
             representativeClass.fields.hasRepresentative = {};
             representativeClass.journey = {
-                RepresentativeDetails: urls.representative.representativeDetails,
-                ReasonForAppealing: urls.reasonsForAppealing.reasonForAppealing
+                RepresentativeDetails: paths.representative.representativeDetails,
+                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
             };
         });
 
@@ -60,7 +60,7 @@ describe('Representative.js', () => {
         it('returns branch object where condition nextStep equals /representative-details', () => {
             representativeClass.fields.hasRepresentative.value = answer.YES;
             const redirector = {
-                nextStep: urls.representative.representativeDetails
+                nextStep: paths.representative.representativeDetails
             };
             const branches = representativeClass.next().branches[0];
             expect(branches.redirector).to.eql(redirector)
@@ -69,7 +69,7 @@ describe('Representative.js', () => {
         it('returns fallback object where nextStep equals /reason-for-appealing', () => {
             representativeClass.fields.hasRepresentative.value = answer.NO;
             const redirector = {
-                nextStep: urls.reasonsForAppealing.reasonForAppealing
+                nextStep: paths.reasonsForAppealing.reasonForAppealing
             };
             const fallback = representativeClass.next().fallback;
             expect(fallback).to.eql(redirector);

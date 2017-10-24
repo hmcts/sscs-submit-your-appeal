@@ -1,13 +1,14 @@
 'use strict';
 
-const urls = require('urls');
+const paths = require('paths');
 const moment = require('moment');
+const answer = require('utils/answer');
 
 Feature('Check MRN');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(urls.compliance.mrnDate);
+    I.amOnPage(paths.compliance.mrnDate);
 });
 
 After((I) => {
@@ -18,7 +19,7 @@ Scenario('When I select yes and mrnDate is > 1 month and <= 13 months, I am take
 
     const mrnDate = moment().subtract(2, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPageAfterCheckMRN('yes', urls.compliance.mrnOverMonthLate);
+    I.goToCorrectPageAfterCheckMRN(answer.YES, paths.compliance.mrnOverMonthLate);
 
 });
 
@@ -26,7 +27,7 @@ Scenario('When I select yes and mrnDate is > 13 months, I am taken to the mrn ov
 
     const mrnDate = moment().subtract(14, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPageAfterCheckMRN('yes', urls.compliance.mrnOverThirteenMonthsLate);
+    I.goToCorrectPageAfterCheckMRN(answer.YES, paths.compliance.mrnOverThirteenMonthsLate);
 
 });
 
@@ -34,6 +35,6 @@ Scenario('When I select no, I am taken to the mrn date page', (I) => {
 
     const mrnDate = moment().subtract(2, 'months');
     I.goToCheckMrnPage(mrnDate);
-    I.goToCorrectPageAfterCheckMRN('no', urls.compliance.mrnDate);
+    I.goToCorrectPageAfterCheckMRN(answer.NO, paths.compliance.mrnDate);
 
 });

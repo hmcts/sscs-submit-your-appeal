@@ -1,12 +1,12 @@
 'use strict';
 
 const { BaseStep } = require('@hmcts/one-per-page');
-const urls = require('urls');
+const paths = require('paths');
 
 class Sessions extends BaseStep {
 
     get url() {
-        return urls.session.sessions;
+        return paths.session.sessions;
     }
 
     handler(req, res) {

@@ -3,7 +3,7 @@
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const Appointee = require('steps/identity/appointee/Appointee');
-const urls = require('urls');
+const paths = require('paths');
 
 describe('Appointee.js', () => {
 
@@ -20,7 +20,7 @@ describe('Appointee.js', () => {
     describe('get url()', () => {
 
         it('returns url /are-you-an-appointee', () => {
-            expect(appointeeClass.url).to.equal(urls.identity.areYouAnAppointee);
+            expect(appointeeClass.url).to.equal(paths.identity.areYouAnAppointee);
         });
 
     });
@@ -51,10 +51,10 @@ describe('Appointee.js', () => {
 
         it('returns the next step url /enter-appellant-details', () => {
             const redirector = {
-                nextStep: urls.identity.enterAppellantDetails
+                nextStep: paths.identity.enterAppellantDetails
             };
             appointeeClass.journey = {
-                AppellantDetails: urls.identity.enterAppellantDetails
+                AppellantDetails: paths.identity.enterAppellantDetails
             };
             expect(appointeeClass.next()).to.eql(redirector);
         });

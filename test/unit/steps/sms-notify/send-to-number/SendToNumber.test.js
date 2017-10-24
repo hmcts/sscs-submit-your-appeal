@@ -2,7 +2,7 @@
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
-const urls = require('urls');
+const paths = require('paths');
 const answer = require('utils/answer');
 
 describe('SendToNumber.js', () => {
@@ -24,7 +24,7 @@ describe('SendToNumber.js', () => {
     describe('get url()', () => {
 
         it('returns url /send-to-number', () => {
-            expect(sendToNumberClass.url).to.equal(urls.smsNotify.sendToNumber);
+            expect(sendToNumberClass.url).to.equal(paths.smsNotify.sendToNumber);
         });
 
     });
@@ -66,8 +66,8 @@ describe('SendToNumber.js', () => {
         beforeEach(() => {
             sendToNumberClass.fields = stub();
             sendToNumberClass.fields.useSameNumber = {};
-            sendToNumberClass.journey.SmsConfirmation = urls.smsNotify.smsConfirmation;
-            sendToNumberClass.journey.EnterMobile = urls.smsNotify.enterMobile
+            sendToNumberClass.journey.SmsConfirmation = paths.smsNotify.smsConfirmation;
+            sendToNumberClass.journey.EnterMobile = paths.smsNotify.enterMobile
         });
 
         it('returns branch object with condition property', () => {
@@ -79,7 +79,7 @@ describe('SendToNumber.js', () => {
         it('returns branch object where condition nextStep equals /sms-confirmation', () => {
             sendToNumberClass.fields.useSameNumber.value = answer.YES;
             const redirector = {
-                nextStep: urls.smsNotify.smsConfirmation
+                nextStep: paths.smsNotify.smsConfirmation
             };
             const branches = sendToNumberClass.next().branches[0];
             expect(branches.redirector).to.eql(redirector)
@@ -88,7 +88,7 @@ describe('SendToNumber.js', () => {
         it('returns fallback object where nextStep equals /enter-mobile', () => {
             sendToNumberClass.fields.useSameNumber.value = answer.NO;
             const redirector = {
-                nextStep: urls.smsNotify.enterMobile
+                nextStep: paths.smsNotify.enterMobile
             };
             const fallback = sendToNumberClass.next().fallback;
             expect(fallback).to.eql(redirector);
