@@ -2,7 +2,8 @@
   "node": {
     "port": 3000,
     "host": {
-      "url": "http://localhost"
+      "name": "localhost",
+      "protocol": "http"
     }
   },
   "lookAndFeel": {
@@ -10,9 +11,7 @@
   },
   "redis": {
     "url": "redis://127.0.0.1:6379",
-    "secret": "defaultsecret"
-  },
-  "security": {
+    "secret": "defaultsecret",
     "useSSL": "false"
   },
   "api": {

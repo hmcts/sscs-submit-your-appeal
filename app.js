@@ -10,8 +10,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
 
-const baseUrl = `${config.node.host.url}:${config.lookAndFeel.port}`;
-const useSSL = config.security.useSSL === 'true';
+const protocol = config.node.host.protocol;
+const hostname = config.node.host.name;
+const port = config.lookAndFeel.port;
+
+const baseUrl = `${protocol}://${hostname}:${port}`;
 
 console.log('SYA base Url : %s', baseUrl);
 
@@ -46,7 +49,7 @@ journey(app, {
             connect_timeout: 15000,
         },
         cookie: {
-            secure: useSSL
+            secure: config.redis.useSSL === 'true'
         },
         secret: config.redis.secret
     }
