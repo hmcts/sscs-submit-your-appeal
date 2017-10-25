@@ -1,12 +1,7 @@
 {
   "node": {
-    "port": 3000,
-    "host": {
-      "name": "localhost",
-      "protocol": "http"
-    }
-  },
-  "lookAndFeel": {
+    "protocol": "http",
+    "hostname": "localhost",
     "port": 3000
   },
   "redis": {

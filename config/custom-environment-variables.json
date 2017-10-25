@@ -1,13 +1,8 @@
 {
   "node": {
-    "port": "PORT",
-    "host": {
-      "name": "WEBSITE_HOSTNAME",
-      "protocol": "HTTP_PROTOCOL"
-    }
-  },
-  "lookAndFeel": {
-    "port": "LOOK_AND_FEEL_PORT"
+    "protocol": "HTTP_PROTOCOL",
+    "hostname": "WEBSITE_HOSTNAME",
+    "port": "PORT"
   },
   "redis": {
     "url": "REDIS_URL",
