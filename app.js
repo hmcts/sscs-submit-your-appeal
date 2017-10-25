@@ -10,7 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
 
-const baseUrl = `${config.node.host.url}:${config.node.port}`;
+const baseUrl = `${config.node.host.url}:${config.lookAndFeel.port}`;
 const useSSL = config.security.useSSL === 'true';
 
 console.log('SYA base Url : %s', baseUrl);
