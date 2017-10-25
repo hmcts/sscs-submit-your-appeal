@@ -5,6 +5,9 @@
       "url": "http://localhost"
     }
   },
+  "lookAndFeel": {
+    "port": 3000
+  },
   "redis": {
     "url": "redis://127.0.0.1:6379",
     "secret": "defaultsecret"

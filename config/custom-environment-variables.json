@@ -5,6 +5,9 @@
       "url": "WEBSITE_HOSTNAME"
     }
   },
+  "lookAndFeel": {
+    "port": "LOOK_AND_FEEL_PORT"
+  },
   "redis": {
     "url": "REDIS_URL",
     "secret": "SESSION_SECRET"
