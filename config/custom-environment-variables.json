@@ -2,7 +2,8 @@
   "node": {
     "port": "PORT",
     "host": {
-      "url": "WEBSITE_HOSTNAME"
+      "name": "WEBSITE_HOSTNAME",
+      "protocol": "HTTP_PROTOCOL"
     }
   },
   "lookAndFeel": {
@@ -10,9 +11,7 @@
   },
   "redis": {
     "url": "REDIS_URL",
-    "secret": "SESSION_SECRET"
-  },
-  "security": {
+    "secret": "SESSION_SECRET",
     "useSSL": "USE_SSL"
   },
   "api": {
