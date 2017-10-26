@@ -23,14 +23,6 @@ Scenario('When I click Continue, I am taken to the Representative page', (I) => 
 
 });
 
-Scenario('When I click Change number, I am taken to the enter mobile page', (I) => {
-
-    I.goToSmsConfirmWithMobileNumber();
-    I.click(content.change);
-    I.seeInCurrentUrl(paths.smsNotify.enterMobile);
-
-});
-
 Scenario('When I enter a mobile number in appellant details and click use same number, I see the mobile number I provided for appellant details', (I) => {
 
     I.goToSmsConfirmWithMobileNumber();
