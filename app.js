@@ -13,9 +13,8 @@ const app = express();
 
 const protocol = config.node.protocol;
 const hostname = config.node.hostname;
-const port     = config.node.port;
 
-const baseUrl = `${protocol}://${hostname}:${port}`;
+const baseUrl = `${protocol}://${hostname}`;
 console.log('SYA base Url : %s', baseUrl);
 
 lookAndFeel.configure(app, {
