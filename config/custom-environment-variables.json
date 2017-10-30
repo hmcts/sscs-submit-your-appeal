@@ -11,8 +11,5 @@
   },
   "api": {
     "url":  "TRIBUNALS_CASE_API_URL"
-  },
-  "lookAndFeel": {
-    "port": "LOOK_AND_FEEL_PORT"
   }
 }
