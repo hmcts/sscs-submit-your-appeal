@@ -13,7 +13,7 @@ const app = express();
 
 const protocol = config.node.protocol;
 const hostname = config.node.hostname;
-const port     = config.node.port;
+const port     = config.lookAndFeel.port;
 
 const baseUrl = `${protocol}://${hostname}:${port}`;
 console.log('SYA base Url : %s', baseUrl);

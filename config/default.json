@@ -11,5 +11,8 @@
   },
   "api": {
     "url":  "http://localhost:8080"
+  },
+  "lookAndFeel": {
+    "port": "3000"
   }
 }
