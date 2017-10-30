@@ -19,7 +19,7 @@ node {
     }
 
     stage("Build + Test") {
-        def node = tool name: 'Node-8.1.4', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        def node = tool name: 'Node-8', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
 
         sh 'yarn install'
