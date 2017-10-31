@@ -4,41 +4,11 @@ properties(
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-@Library("Infrastructure@use-yarn-in-webapp")
-
-import uk.gov.hmcts.contino.WebAppDeploy
+@Library("Infrastructure")
 
 def product = "sscs-tribunals"
-def frondEndDeployer = new WebAppDeploy(this, product, "frontend")
-def computeCluster = "core-compute-sample"
-node {
+def component = "frontend"
 
-        stage('Checkout') {
-        deleteDir()
-        checkout scm
-    }
-
-    stage("Build + Test") {
-        def node = tool name: 'Node-8', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        env.PATH = "${node}/bin:${env.PATH}"
-
-        sh 'yarn install'
-        sh 'yarn test'
-
-    }
-
-    stage('Deploy Dev') {
-
-        frondEndDeployer.deployNodeJS('dev')
-        frondEndDeployer.healthCheck('dev')
-
-    }
-
-  stage('Deploy Prod') {
-
-        frondEndDeployer.deployNodeJS('prod')
-        frondEndDeployer.healthCheck('prod')
-
-    }
+withPipeline("nodejs", product, component) {
 
 }
