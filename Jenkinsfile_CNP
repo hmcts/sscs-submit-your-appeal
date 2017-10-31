@@ -1,6 +1,6 @@
 #!groovy
 properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal.git'],
+        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
