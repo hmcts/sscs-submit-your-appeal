@@ -16,7 +16,7 @@
     "test:a11y": "echo 'a11y tests not implemented'"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "^1.1.0",
+    "@hmcts/look-and-feel": "^1.1.1",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "^1.2.0",
     "accessible-autocomplete": "^1.6.1",

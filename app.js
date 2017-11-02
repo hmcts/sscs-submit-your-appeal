@@ -7,6 +7,7 @@ const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const paths = require('paths');
+const overviewContent = require('steps/landing-pages/overview/content.en.json');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
@@ -22,6 +23,7 @@ lookAndFeel.configure(app, {
     express: {
         views: [
             path.resolve(__dirname, 'steps'),
+            path.resolve(__dirname, 'steps/landing-pages'),
             path.resolve(__dirname, 'views/compliance')
         ]
     },
@@ -59,6 +61,26 @@ app.use(paths.health, healthcheck.configure({
         "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
     }
 }));
+
+app.get(paths.landingPages.overview, (req, res) => {
+   res.render('overview/template.html', overviewContent);
+});
+
+app.get(paths.landingPages.beforeYouAppeal, (req, res) => {
+    res.render('before-you-appeal/template.html');
+});
+
+app.get(paths.landingPages.helpWithAppeal, (req, res) => {
+    res.render('help-with-appeal/template.html');
+});
+
+app.get(paths.landingPages.startAnAppeal, (req, res) => {
+    res.render('start-an-appeal/template.html');
+});
+
+app.get(paths.landingPages.afterYouAppeal, (req, res) => {
+    res.render('after-you-appeal/template.html');
+});
 
 app.listen(config.node.port);
 
