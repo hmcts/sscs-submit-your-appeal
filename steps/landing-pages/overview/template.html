@@ -3,85 +3,79 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
 {% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
 {% set phase="ALPHA" %}
 {% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% block breadcrumbs %}
-{{ phaseBanner(phase, feedbackLink) }}
-
-<div class="breadcrumbs">
-    <ol>
-        <li><a href="https://www.gov.uk">{{ breadcrumbs.home }}</a></li>
-        <li><a href="https://www.gov.uk/browse/benefits">{{ breadcrumbs.benefits }}</a></li>
-        <li><a href="https://www.gov.uk/browse/benefits/entitlement">{{ breadcrumbs.entitlement }}</a></li>
-    </ol>
-</div>
+    {{ phaseBanner(phase, feedbackLink) }}
+    <div class="breadcrumbs">
+        <ol>
+            <li><a href="https://www.gov.uk">{{ breadcrumbs.home }}</a></li>
+            <li><a href="https://www.gov.uk/browse/benefits">{{ breadcrumbs.benefits }}</a></li>
+            <li><a href="https://www.gov.uk/browse/benefits/entitlement">{{ breadcrumbs.entitlement }}</a></li>
+        </ol>
+    </div>
 {% endblock %}
 
 {% block two_thirds -%}
 
+    {{ header(title, size='xlarge') }}
 
+    <div>
+        <ol class="nav-list">
+            <li>{{ navList.overview }}</li>
+            <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
+            <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
+            <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
+            <li><a href="/after-you-appeal">{{ navList.after }}</a></li>
+        </ol>
+    </div>
 
+    <hr>
 
-{{ header(title, size='xlarge') }}
+    <h1 class="heading-large">{{ heading }}</h1>
+    <p>{{ youCanAppeal }}</p>
+    <p>{{ decision }}</p>
 
-<div>
-    <ol class="nav-list">
-        <li>{{ navList.overview }}</li>
-        <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
-        <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
-        <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
-        <li><a href="/after-you-appeal">{{ navList.after }}</a></li>
-    </ol>
-</div>
+    <h2 class="heading-medium">{{ subheading }}</h2>
+    <p>{{ benefits }}</p>
+    <ul class="list list-bullet">
+        <li>{{ benefitsList.attendance }}</li>
+        <li>{{ benefitsList.bereavement }}</li>
+        <li>{{ benefitsList.carer }}</li>
+        <li>{{ benefitsList.child }}</li>
+        <li>{{ benefitsList.disability }}</li>
+        <li>{{ benefitsList.employment }}</li>
+        <li>{{ benefitsList.responsibilities }}</li>
+        <li>{{ benefitsList.housing }}</li>
+        <li>{{ benefitsList.incapacity }}</li>
+        <li>{{ benefitsList.income }}</li>
+        <li>{{ benefitsList.injuries }}</li>
+        <li>{{ benefitsList.jobseeker }}</li>
+        <li>{{ benefitsList.maternity }}</li>
+        <li>{{ benefitsList.pip }}</li>
+        <li>{{ benefitsList.disablement }}</li>
+        <li>{{ benefitsList.social }}</li>
+        <li>{{ benefitsList.universal }}</li>
+    </ul>
 
-<hr>
+    <p>{{ cantSeeBenefit }}</p>
 
-<h1 class="heading-large">{{ heading }}</h1>
-<p>{{ youCanAppeal }}</p>
-
-<p>{{ decision }}</p>
-
-<h2 class="heading-medium">{{ subheading }}</h2>
-<p>{{ benefits }}</p>
-<ul class="list list-bullet">
-    <li>{{ benefitsList.attendance }}</li>
-    <li>{{ benefitsList.bereavement }}</li>
-    <li>{{ benefitsList.carer }}</li>
-    <li>{{ benefitsList.child }}</li>
-    <li>{{ benefitsList.disability }}</li>
-    <li>{{ benefitsList.employment }}</li>
-    <li>{{ benefitsList.responsibilities }}</li>
-    <li>{{ benefitsList.housing }}</li>
-    <li>{{ benefitsList.incapacity }}</li>
-    <li>{{ benefitsList.income }}</li>
-    <li>{{ benefitsList.injuries }}</li>
-    <li>{{ benefitsList.jobseeker }}</li>
-    <li>{{ benefitsList.maternity }}</li>
-    <li>{{ benefitsList.pip }}</li>
-    <li>{{ benefitsList.disablement }}</li>
-    <li>{{ benefitsList.social }}</li>
-    <li>{{ benefitsList.universal }}</li>
-</ul>
-
-<p>{{ cantSeeBenefit }}</p>
-
-<div class="panel panel-border-wide">
-    <p>{{ upToAMonth }}</p>
-</div>
-
+    <div class="panel panel-border-wide">
+        <p>{{ upToAMonth }}</p>
+    </div>
 
 {%- endblock %}
 
 {% block one_third -%}
-<aside class="govuk-related-items">
-    <h2 class="heading-medium">{{ relatedLinks.heading }}</h2>
-    <nav role="navigation"></nav>
-    <ul class="font-xsmall">
-        <li><a href="/overview">{{ relatedLinks.linksList.appealDecision }}</a></li>
-    </ul>
-</aside>
+    <aside class="govuk-related-items">
+        <h2 class="heading-medium">{{ relatedLinks.heading }}</h2>
+        <nav role="navigation"></nav>
+        <ul class="font-xsmall">
+            <li><a href="/overview">{{ relatedLinks.linksList.appealDecision }}</a></li>
+        </ul>
+    </aside>
 {%- endblock %}
