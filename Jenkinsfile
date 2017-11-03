@@ -1,5 +1,10 @@
 #!groovy
 
+@Library('Reform')
+import uk.gov.hmcts.Ansible
+import uk.gov.hmcts.Packager
+import uk.gov.hmcts.RPMTagger
+
 properties(
   [[$class: 'GithubProjectProperty', displayName: 'Submit Your Appeal frontend', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal/'],
    pipelineTriggers([
@@ -7,13 +12,8 @@ properties(
    ])]
 )
 
-@Library('Reform')
-import uk.gov.hmcts.Ansible
-import uk.gov.hmcts.Packager
-import uk.gov.hmcts.RPMTagger
-
-def packager = new Packager(this, 'sscs')
-def ansible = new Ansible(this, 'sscs')
+Ansible ansible = new Ansible(this, 'sscs')
+Packager packager = new Packager(this, 'sscs')
 
 def channel = '#sscs-tech'
 
@@ -21,7 +21,7 @@ def channel = '#sscs-tech'
 timestamps {
     milestone()
     lock(resource: "submit-your-appeal-frontend-${env.BRANCH_NAME}", inversePrecedence: true) {
-        node {
+        node('slave') {
             try {
                 def syaFrontendRPMVersion
                 def version
