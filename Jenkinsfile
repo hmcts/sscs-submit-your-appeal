@@ -33,16 +33,16 @@ timestamps {
                 }
 
                 stage("Install") {
-                    sh 'make install'
+                    sh 'make install-tactical'
                 }
 
                 stage("Unit test") {
-                    sh 'make test-unit'
+                    sh 'make test-unit-tactical'
                 }
 
                 stage("Code coverage") {
-                    sh 'make test-coverage'
-                    sh 'make sonarscan'
+                    sh 'make test-coverage-tactical'
+                    sh 'make sonarscan-tactical'
                     publishHTML([
                             allowMissing         : false,
                             alwaysLinkToLastBuild: true,
@@ -54,13 +54,13 @@ timestamps {
                 }
 
                 stage("Security checks") {
-                    sh 'make test-nsp'
+                    sh 'make test-nsp-tactical'
                 }
 
                 stage("a11y test") {
                     withEnv(["JUNIT_REPORT_PATH='test-reports.xml'"]) {
                         try {
-                            sh 'make test-a11y'
+                            sh 'make test-a11y-tactical'
                         } finally {
                             step([$class: 'JUnitResultArchiver', testResults: env.JUNIT_REPORT_PATH])
                         }
@@ -94,8 +94,8 @@ timestamps {
                         stage('Smoke Test (Dev)') {
                             ws('workspace/sscsHealthCheck/build') {
                                 git url: 'git@github.com:hmcts/submit-your-appeal.git'
-                                sh 'make install'
-                                sh 'make health-check'
+                                sh 'make install-tactical'
+                                sh 'make health-check-tactical'
                                 deleteDir()
                             }
                         }
