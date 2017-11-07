@@ -64,6 +64,4 @@ app.use(paths.health, healthcheck.configure({
 
 app.use('/', landingPages);
 
-app.listen(config.node.port);
-
-console.log(`SYA started on port:${config.node.port}`);
+module.exports = app;
