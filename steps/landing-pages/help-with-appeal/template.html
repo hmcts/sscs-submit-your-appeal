@@ -1,1 +1,57 @@
-<h1>HELP WITH APPEAL</h1>
+{% extends "landing-page-template.html" %}
+
+{% block navList -%}
+    <div>
+        <ol class="nav-list">
+            <li><a href="/overview">{{ navList.overview }}</a></li>
+            <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
+            <li>{{ navList.help }}</li>
+            <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
+            <li><a href="/after-you-appeal">{{ navList.after }}</a></li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block infoContent %}
+    <h1 class="heading-large">{{ heading }}</h1>
+    <p>{{ support }}</p>
+
+    <div>
+        <h2 class="heading-medium">{{ representative.subHeading }}</h2>
+        <p>{{ representative.unableToManage }}</p>
+        <p>{{ representative.goodRep }}</p>
+        <ul class="list list-bullet">
+            <li>{{ representative.helpList.process }}</li>
+            <li>{{ representative.helpList.evidence }}</li>
+            <li>{{ representative.helpList.statement }}</li>
+            <li>{{ representative.helpList.actOnBehalf }}</li>
+            <li>{{ representative.helpList.hearing }}</li>
+            <li>{{ representative.helpList.afterDecision }}</li>
+        </ul>
+        <p>{{ representative.anyone }}</p>
+        <p>{{ representative.sentInfo }}</p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ telephoneSupport.subHeading }}</h2>
+        <p>{{ telephoneSupport.contactCentre }}</p>
+        <h3 class="heading-small">{{ telephoneSupport.englandWales }}</h3>
+        <p>
+            {{ telephoneSupport.telephoneForEW }}<br>
+            {{ telephoneSupport.days }}<br>
+            {{ telephoneSupport.charges | safe }}
+        </p>
+        <h3 class="heading-small">{{ telephoneSupport.scotland }}</h3>
+        <p>
+            {{ telephoneSupport.telephoneForS }}<br>
+            {{ telephoneSupport.days }}<br>
+            {{ telephoneSupport.charges | safe }}
+        </p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ financialSupport.subHeading }}</h2>
+        <p>{{ financialSupport.contact | safe }}</p>
+    </div>
+
+{%- endblock %}
