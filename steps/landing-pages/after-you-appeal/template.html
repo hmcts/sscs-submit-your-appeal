@@ -1,1 +1,56 @@
-<h1>AFTER YOU APPEAL</h1>
+{% extends "landing-page-template.html" %}
+
+{% block navList -%}
+    <div>
+        <ol class="nav-list">
+            <li><a href="/overview">{{ navList.overview }}</a></li>
+            <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
+            <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
+            <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
+            <li>{{ navList.after }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block infoContent %}
+    <h1 class="heading-large">{{ heading }}</h1>
+
+    <div>
+        <h2 class="heading-medium">{{ sentToDepartment.subHeading }}</h2>
+        <p>{{ sentToDepartment.appealSent }}</p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ departmentResponds.subHeading }}</h2>
+        <p>{{ departmentResponds.writesResponse }}</p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ questions.subHeading }}</h2>
+        <p>{{ questions.helpTribunal }}</p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ appealHeard.subHeading }}</h2>
+        <p>{{ appealHeard.hearing }}</p>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ time.subHeading }}</h2>
+        <p>{{ time.severalMonths }}</p>
+        <p>{{ time.avoidDelays }}</p>
+        <ul class="list list-bullet">
+            <li>{{ time.delaysList.sendEvidence }}</li>
+            <li>{{ time.delaysList.turnUp }}</li>
+            <li>{{ time.delaysList.earlyRep | safe }}</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2 class="heading-medium">{{ sendEvidence.subHeading }}</h2>
+        <p>{{ sendEvidence.helpToUnderstand }}</p>
+        <div class="panel panel-border-wide">
+            <p>{{ sendEvidence.sendASAP }}</p>
+        </div>
+    </div>
+{%- endblock %}
