@@ -1,5 +1,7 @@
 const app = require('app.js');
 const portscanner = require('portscanner');
+const config = require('config');
+const port = config.node.port;
 
 let testServer = {
 
@@ -16,7 +18,7 @@ let testServer = {
     },
 
     findAvailablePort() {
-        return portscanner.findAPortNotInUse(3000, 3050, '127.0.0.1');
+        return portscanner.findAPortNotInUse(port, port + 50, '127.0.0.1');
     }
 
 };
