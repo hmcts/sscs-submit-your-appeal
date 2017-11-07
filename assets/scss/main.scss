@@ -26,6 +26,18 @@
   line-height: 30px;
 }
 
+@media (max-width: 640px) {
+  .nav-list {
+    column-count: 1;
+    padding-left: 0;
+
+    li {
+      margin-left: 1.5em;
+      padding-left: 0.3em;
+    }
+  }
+}
+
 .govuk-related-items {
   border-top: 10px solid $govuk-blue;
   margin-top: $gutter;
