@@ -2,6 +2,14 @@ module.exports = {
 
     health:                             '/health',
 
+    landingPages: {
+      overview:                         '/overview',
+      beforeYouAppeal:                  '/before-you-appeal',
+      helpWithAppeal:                   '/help-with-appeal',
+      startAnAppeal:                    '/start-an-appeal',
+      afterYouAppeal:                   '/after-you-appeal'
+    },
+
     session: {
         createSession:                  '/create-session',
         entry:                          '/',

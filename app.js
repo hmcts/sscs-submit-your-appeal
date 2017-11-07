@@ -7,6 +7,7 @@ const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const paths = require('paths');
+const landingPages = require('landing-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
@@ -22,6 +23,7 @@ lookAndFeel.configure(app, {
     express: {
         views: [
             path.resolve(__dirname, 'steps'),
+            path.resolve(__dirname, 'landing-pages'),
             path.resolve(__dirname, 'views/compliance')
         ]
     },
@@ -59,6 +61,8 @@ app.use(paths.health, healthcheck.configure({
         "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
     }
 }));
+
+app.use('/', landingPages);
 
 app.listen(config.node.port);
 
