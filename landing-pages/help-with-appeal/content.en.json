@@ -1,0 +1,46 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "benefits": "Benefits",
+    "entitlement": "Benefits entitlement"
+  },
+  "title": "Appeal a benefit decision",
+  "navList": {
+    "overview": "Overview",
+    "before": "Before you appeal",
+    "help": "Help with your appeal",
+    "start": "Start an appeal",
+    "after": "What happens after you’ve appealed"
+  },
+  "heading": "3. Help with your appeal",
+  "support": "There’s various support available before and during your appeal.",
+  "representative": {
+    "subHeading": "Representatives",
+    "unableToManage": "If you think you’ll be unable to manage your appeal on your own you may want the help of a representative. They often work for a charity or welfare rights organisation and will provide their services for free.",
+    "goodRep": "A good representative can help you do one or more of the following:",
+    "helpList": {
+      "process": "Advise you on the appeals process",
+      "evidence": "Help you prepare evidence to support your appeal",
+      "statement": "Help you prepare a written statement",
+      "actOnBehalf": "Act on your behalf during your appeal",
+      "hearing": "Help you explain your appeal at the hearing",
+      "afterDecision": "Advise you on what to do after the tribunal have made a decision"
+    },
+    "anyone": "Anyone can be your representative, including friends and family.",
+    "sentInfo": "Anyone who is registered as a representative will be sent all the information relating to your appeal, including medical evidence. They can also make decisions on your appeal but should only do this with your permission."
+  },
+  "telephoneSupport": {
+    "subHeading": "Telephone support",
+    "contactCentre": "If you have a question about the appeal process, you can contact the HMCTS Contact Centre. They can’t provide you with legal advice.",
+    "englandWales": "England and Wales",
+    "scotland": "Scotland",
+    "telephoneForEW": "Telephone: 0300 123 1142",
+    "telephoneForS": "Telephone: 0141 354 8400",
+    "days": "Monday to Friday, 8:30am to 5pm",
+    "charges": "<a href='https://www.gov.uk/call-charges'>Find out about call charges</a>"
+    },
+  "financialSupport": {
+    "subHeading": "Financial support",
+    "contact": "Your appeal can take several months. If you think you’ll struggle for money you should contact DWP, <a href='https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims'>Jobcentre Plus</a> or your local council to see whether they can help."
+  }
+}
