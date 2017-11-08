@@ -44,7 +44,7 @@
     "county": {
       "title": "County",
       "error": {
-        "required": "County not entered"
+        "invalid": "Invalid County entered"
       }
     },
     "postCode": {
