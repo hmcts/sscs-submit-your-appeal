@@ -2,6 +2,7 @@ const router = require('express').Router();
 const paths = require('paths');
 const overviewContent = require('landing-pages/overview/content.en.json');
 const beforeYouAppealContent = require('landing-pages/before-you-appeal/content.en.json');
+const helpWithAppealContent = require('landing-pages/help-with-appeal/content.en.json');
 
 router.get(paths.landingPages.overview, (req, res) => {
     res.render('overview/template.html', overviewContent);
@@ -12,7 +13,7 @@ router.get(paths.landingPages.beforeYouAppeal, (req, res) => {
 });
 
 router.get(paths.landingPages.helpWithAppeal, (req, res) => {
-    res.render('help-with-appeal/template.html');
+    res.render('help-with-appeal/template.html', helpWithAppealContent);
 });
 
 router.get(paths.landingPages.startAnAppeal, (req, res) => {

@@ -17,11 +17,5 @@
   "housingBenefit": "If you’re appealing a decision about Housing Benefit then you should <a href='https://www.gov.uk/find-local-council'>contact your local authority</a> before appealing.",
   "childBenefit": "For Child Benefit appeals, <a href='https://www.gov.uk/government/organisations/hm-revenue-customs/contact/child-benefit'>contact HMRC</a> first.",
   "contactDetails": "If you can’t find the right contact details, check the last letter you received about the benefit.",
-  "upToAMonth": "You can appeal up to a month after going through ‘mandatory reconsideration’. You might still be able to appeal after a month but you’ll need to explain why it’s late.",
-  "relatedLinks": {
-    "heading": "Related links",
-    "linksList": {
-      "appealDecision": "Appeal a benefit decision"
-    }
-  }
+  "upToAMonth": "You can appeal up to a month after going through ‘mandatory reconsideration’. You might still be able to appeal after a month but you’ll need to explain why it’s late."
 }

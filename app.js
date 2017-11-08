@@ -23,7 +23,7 @@ lookAndFeel.configure(app, {
     express: {
         views: [
             path.resolve(__dirname, 'steps'),
-            path.resolve(__dirname, 'steps/landing-pages'),
+            path.resolve(__dirname, 'landing-pages'),
             path.resolve(__dirname, 'views/compliance')
         ]
     },

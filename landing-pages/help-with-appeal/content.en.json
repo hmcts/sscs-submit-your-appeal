@@ -42,11 +42,5 @@
   "financialSupport": {
     "subHeading": "Financial support",
     "contact": "Your appeal can take several months. If you think you’ll struggle for money you should contact DWP, <a href='https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims'>Jobcentre Plus</a> or your local council to see whether they can help."
-  },
-  "relatedLinks": {
-    "heading": "Related links",
-    "linksList": {
-      "appealDecision": "Appeal a benefit decision"
-    }
   }
 }
