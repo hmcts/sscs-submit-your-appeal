@@ -3,7 +3,6 @@ const paths = require('paths');
 const overviewContent = require('landing-pages/overview/content.en.json');
 const beforeYouAppealContent = require('landing-pages/before-you-appeal/content.en.json');
 const helpWithAppealContent = require('landing-pages/help-with-appeal/content.en.json');
-
 const afterYouAppealContent = require('landing-pages/after-you-appeal/content.en.json');
 
 router.get(paths.landingPages.overview, (req, res) => {
