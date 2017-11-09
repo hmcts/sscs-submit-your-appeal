@@ -1,0 +1,24 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "benefits": "Benefits",
+    "entitlement": "Benefits entitlement"
+  },
+  "title": "Appeal a benefit decision",
+  "navList": {
+    "overview": "Overview",
+    "before": "Before you appeal",
+    "help": "Help with your appeal",
+    "start": "Start an appeal",
+    "after": "What happens after you’ve appealed"
+  },
+  "heading": "4. Start an appeal",
+  "example": "Use this service to appeal a benefit decision that you don’t agree with. For example, Personal Independence Payment (PIP), Employment and Support Allowance (ESA) or Universal Credit (UC).",
+  "whatYouNeed": "To appeal you’ll need:",
+  "whatYouNeedList": {
+    "mrn": "your <a href='/before-you-appeal'>Mandatory Reconsideration Notice</a> (read it before you appeal)",
+    "nin": "your National Insurance number (this will be on any letter about the benefit)",
+    "repDetails": "details of anyone who’s supporting you with your appeal, such as a <a href='/help-with-appeal'>representative</a> or friend or family member"
+  },
+  "start": "Start an appeal"
+}

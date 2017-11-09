@@ -1,1 +1,26 @@
-<h1>START AN APPEAL</h1>
+{% extends "landing-page-template.html" %}
+
+{% block navList -%}
+    <div>
+        <ol class="nav-list">
+            <li><a href="/overview">{{ navList.overview }}</a></li>
+            <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
+            <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
+            <li>{{ navList.start }}</li>
+            <li><a href="/after-you-appeal">{{ navList.after }}</a></li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block infoContent %}
+<h1 class="heading-large">{{ heading }}</h1>
+<p>{{ example }}</p>
+<p>{{ whatYouNeed }}</p>
+<ul class="list list-bullet">
+    <li>{{ whatYouNeedList.mrn | safe }}</li>
+    <li>{{ whatYouNeedList.nin }}</li>
+    <li>{{ whatYouNeedList.repDetails | safe }}</li>
+</ul>
+
+<a class="button" href="/">{{ start }}</a>
+{%- endblock %}
