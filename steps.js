@@ -15,6 +15,8 @@ const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-mo
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
+const AppellantName = require('steps/identity/appellant-name/AppellantName');
+const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
@@ -54,7 +56,9 @@ const compliance = [
 const identity = [
     new Appointee(),
     new AppointeeDetails(),
-    new AppellantDetails()
+    new AppellantDetails(),
+    new AppellantName(),
+    new AppellantDOB()
 ];
 
 const smsNotify = [
