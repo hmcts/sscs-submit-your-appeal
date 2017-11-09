@@ -1,0 +1,27 @@
+{
+  "titleNoAppointee": "Enter your name",
+  "titleAppointee": "Enter appellants name",
+  "fields": {
+    "title": {
+      "title": "Title",
+      "error": {
+        "required": "Enter your title",
+        "invalid": "You have entered an invalid title. Enter your title."
+      }
+    },
+    "firstName": {
+      "title": "First name",
+      "error": {
+        "required": "Enter your first name",
+        "invalid": "You have entered an invalid first name. Enter your first name in full."
+      }
+    },
+    "lastName": {
+      "title": "Last name",
+      "error": {
+        "required": "Enter your last name",
+        "invalid": "You have entered an invalid last name. Enter your last name in full."
+      }
+    }
+  }
+}

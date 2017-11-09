@@ -49,12 +49,12 @@ describe('Appointee.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-details', () => {
+        it('returns the next step url /enter-appellant-name', () => {
             const redirector = {
-                nextStep: paths.identity.enterAppellantDetails
+                nextStep: paths.identity.enterAppellantName
             };
             appointeeClass.journey = {
-                AppellantDetails: paths.identity.enterAppellantDetails
+                AppellantName: paths.identity.enterAppellantName
             };
             expect(appointeeClass.next()).to.eql(redirector);
         });

@@ -26,7 +26,7 @@ class Appointee extends Question {
     }
 
     next() {
-        return goTo(this.journey.AppellantDetails)
+        return goTo(this.journey.AppellantName)
     }
 }
 
