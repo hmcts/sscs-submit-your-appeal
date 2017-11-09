@@ -56,8 +56,8 @@ class RepresentativeDetails extends Question {
             ),
 
             textField('county').joi(
-                fields.county.error.required,
-                Joi.string().regex(whitelist).required()
+                fields.county.error.invalid,
+                Joi.string().regex(whitelist).allow('')
             ),
 
             textField('postCode').joi(
