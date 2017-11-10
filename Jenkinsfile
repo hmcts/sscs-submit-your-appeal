@@ -21,7 +21,7 @@ def channel = '#sscs-tech'
 timestamps {
     milestone()
     lock(resource: "submit-your-appeal-frontend-${env.BRANCH_NAME}", inversePrecedence: true) {
-        node {
+        node("reformMgmtDevBuildAgent02.reform.hmcts.net") {
             try {
                 def syaFrontendRPMVersion
                 def version
