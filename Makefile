@@ -31,16 +31,16 @@ test:
 	yarn test
 
 test-coverage-tactical:
-	yarn test-coverage
+	yarn test:coverage
 
 test-nsp-tactical:
-	yarn test-nsp
+	yarn test:nsp
 
 test-a11y-tactical:
 ifdef JUNIT_REPORT_PATH
-	yarn test-a11y -- --reporter mocha-jenkins-reporter --reporter-options junit_report_packages=true
+	yarn test:a11y -- --reporter mocha-jenkins-reporter --reporter-options junit_report_packages=true
 else
-	yarn test-a11y
+	yarn test:a11y
 endif
 
 test-e2e-tactical:
