@@ -27,8 +27,8 @@ install-tactical:
 test-all:
 	yarn test-all
 
-test-unit-tactical:
-	yarn test-unit
+test:
+	yarn test
 
 test-coverage-tactical:
 	yarn test-coverage
