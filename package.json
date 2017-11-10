@@ -9,6 +9,7 @@
     "setup": "exit 0",
     "test": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
     "e2e": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --steps",
+    "test-unit": "cross-env NODE_ENV=test NODE_PATH=. mocha test/unit --recursive",
     "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn e2e",
     "lint": "echo 'linting not implemented'",
     "test:smoke": "echo 'smoke test not implemented'",
