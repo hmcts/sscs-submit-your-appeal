@@ -13,6 +13,7 @@
     "lint": "echo 'linting not implemented'",
     "test:smoke": "echo 'smoke test not implemented'",
     "test-coverage": "cross-env NODE_ENV=test NODE_PATH=. istanbul cover _mocha test/unit/** --dir test/coverage/html",
+    "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner",
     "test:coverage": "echo 'test coverage not implemented'",
     "test:nsp": "echo 'nsp  checks not implemented'",
     "test:a11y": "echo 'a11y tests not implemented'",
