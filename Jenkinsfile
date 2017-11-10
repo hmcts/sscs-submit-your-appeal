@@ -62,7 +62,7 @@ timestamps {
                         try {
                             sh 'make test-a11y-tactical'
                         } finally {
-                            step([$class: 'JUnitResultArchiver', testResults: env.JUNIT_REPORT_PATH])
+                        //    step([$class: 'JUnitResultArchiver', testResults: env.JUNIT_REPORT_PATH])
                         }
                     }
                 }
