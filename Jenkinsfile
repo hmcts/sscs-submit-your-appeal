@@ -37,7 +37,7 @@ timestamps {
                 }
 
                 stage("Unit test") {
-                    sh 'make test-unit-tactical'
+                    sh 'make test-all'
                 }
 
                 stage("Code coverage") {

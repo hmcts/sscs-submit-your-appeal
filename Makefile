@@ -24,6 +24,9 @@ build-tactical: install-tactical test-unit-tactical test-pa11y-tactical
 install-tactical:
 	yarn install
 
+test-all:
+	yarn test-all
+
 test-unit-tactical:
 	yarn test-unit
 
