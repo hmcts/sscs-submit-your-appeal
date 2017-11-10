@@ -42,7 +42,7 @@ timestamps {
 
                 stage("Code coverage") {
                     sh 'make test-coverage-tactical'
-                    sh 'make sonarscan-tactical'
+                    //sh 'make sonarscan-tactical'
                     publishHTML([
                             allowMissing         : false,
                             alwaysLinkToLastBuild: true,
