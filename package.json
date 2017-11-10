@@ -16,7 +16,7 @@
     "test:nsp": "echo 'nsp  checks not implemented'",
     "test:a11y": "echo 'a11y tests not implemented'",
     "sonar-scan": "echo 'sonar scan not implemented'",
-    "health-check": "cross-env NODE_PATH=. mocha test/healthCheck.js"
+    "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
     "@hmcts/look-and-feel": "^1.1.1",
