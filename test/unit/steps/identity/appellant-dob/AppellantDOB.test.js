@@ -108,12 +108,9 @@ describe('AppellantNINO.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /enter-appellant-nino', () => {
-            const redirector = {
-                nextStep: paths.identity.enterAppellantNINO
-            };
-            appellantDOBClass.journey = {
-                AppellantNINO: paths.identity.enterAppellantNINO
-            };
+            let redirector = {};
+            redirector.nextStep = paths.identity.enterAppellantNINO;
+            appellantDOBClass.journey.AppellantNINO = paths.identity.enterAppellantNINO;
             expect(appellantDOBClass.next()).to.eql(redirector);
         });
 
