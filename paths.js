@@ -3,7 +3,7 @@ module.exports = {
     health:                             '/health',
 
     landingPages: {
-      overview:                         '/overview',
+      overview:                         '/',
       beforeYouAppeal:                  '/before-you-appeal',
       helpWithAppeal:                   '/help-with-appeal',
       startAnAppeal:                    '/start-an-appeal',
@@ -12,7 +12,7 @@ module.exports = {
 
     session: {
         createSession:                  '/create-session',
-        entry:                          '/',
+        entry:                          '/entry',
         exit:                           '/exit',
         sessions:                       '/sessions'
     },

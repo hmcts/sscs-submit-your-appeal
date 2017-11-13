@@ -18,7 +18,7 @@ describe('Entry.js', () => {
 
     describe('get url()', () => {
 
-        it('returns url /', () => {
+        it('returns url /entry', () => {
             expect(entryClass.url).to.equal(paths.session.entry);
         });
 
