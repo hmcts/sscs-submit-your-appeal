@@ -1,5 +1,7 @@
 # SSCS - Submit your  appeal
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7cfcc31911754eb88285c2e57556c0a6)](https://www.codacy.com/app/iguannago/submit-your-appeal?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hmcts/submit-your-appeal&amp;utm_campaign=Badge_Grade)
+
 
 ## Background
 Someone who receives a decision about their entitlement to benefits has the right to appeal against that decision,

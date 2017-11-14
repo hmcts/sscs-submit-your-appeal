@@ -1,6 +1,6 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -19,6 +19,14 @@
 
 {% block fields %}
 
-<p>{{ content.subtitle }}</p>
+
+{% call formSection() %}
+
+  <p>{{ content.subtitle }}</p>
+
+  {{ textbox(fields.nino, content.fields.nino.title, hint="") }}
+
+{% endcall %}
+
 
 {% endblock %}
