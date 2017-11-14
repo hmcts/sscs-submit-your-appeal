@@ -3,13 +3,13 @@
 
 ## Background
 Someone who receives a decision about their entitlement to benefits has the right to appeal against that decision,
-if they disagree with it. The first step is asking the Department for Work and Pensions to look at the decision again. 
-This is known as requesting ‘Mandatory Reconsideration’. If they still disagree, they can appeal to the Social Security 
-and Child Support tribunal. 
+if they disagree with it. The first step is asking the Department for Work and Pensions to look at the decision again.
+This is known as requesting ‘Mandatory Reconsideration’. If they still disagree, they can appeal to the Social Security
+and Child Support tribunal.
 
-Should an appellant wish to appeal online this web application will allow them to do so. The application takes the 
-appellant on a journey, presenting a single question per page, at the end of the journey we present all questions and 
-corresponding answers to them (i.e. their appeal), they may also go back to modify an answer, once complete 
+Should an appellant wish to appeal online this web application will allow them to do so. The application takes the
+appellant on a journey, presenting a single question per page, at the end of the journey we present all questions and
+corresponding answers to them (i.e. their appeal), they may also go back to modify an answer, once complete
 they may downloaded a PDF for reference.
 
 ## Dependencies
@@ -24,9 +24,9 @@ To start the container run:
     $> make
 
 Once complete you will be dropped into a shell:
- 
+
     root@23a45b67c89:/usr/src/sya#
-    
+
 Now install application dependencies leveraging yarn:
 
     yarn install
@@ -34,7 +34,12 @@ Now install application dependencies leveraging yarn:
 Run the application for development:
 
     yarn start-dev
-    
+
+* If you have problems to view the app properly because assets are not being displayed correctly, then run it this way:
+
+    ENV=dev yarn start-dev
+
+
 View the application
 
     http://localhost:3000
