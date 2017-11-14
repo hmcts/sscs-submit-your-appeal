@@ -12,7 +12,7 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario.only('When I go to the Enter Appellant NINO page I see the correct text and fields displayed', function*(I) {
+Scenario('When I go to the Enter Appellant NINO page I see the correct title and subtitle displayed', function*(I) {
     const expected = 'Enter your National Insurance number';
     I.see(expected);
     const actual = yield I.grabTextFrom('.heading-large');
