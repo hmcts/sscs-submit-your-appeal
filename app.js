@@ -1,5 +1,6 @@
 const config = require('config');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
@@ -8,6 +9,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const paths = require('paths');
 const landingPages = require('landing-pages/routes');
+const validPostcode = require('valid-postcode-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const app = express();
@@ -31,6 +33,7 @@ lookAndFeel.configure(app, {
         views: [
             path.resolve(__dirname, 'steps'),
             path.resolve(__dirname, 'landing-pages'),
+            path.resolve(__dirname, 'valid-postcode-pages'),
             path.resolve(__dirname, 'views/compliance')
         ]
     },
@@ -69,12 +72,16 @@ journey(app, {
     }
 });
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 app.use(paths.health, healthcheck.configure({
     "checks": {
         "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
     }
 }));
 
-app.use('/', landingPages);
+app.use('/', landingPages, validPostcode);
 
 module.exports = app;

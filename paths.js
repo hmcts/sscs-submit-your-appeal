@@ -10,6 +10,11 @@ module.exports = {
       afterYouAppeal:                   '/after-you-appeal'
     },
 
+    validPostcode: {
+        postcodeCheck:                  '/postcode-check',
+        invalidPostcode:                '/invalid-postcode'
+    },
+
     session: {
         createSession:                  '/create-session',
         entry:                          '/entry',
