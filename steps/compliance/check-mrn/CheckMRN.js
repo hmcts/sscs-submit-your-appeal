@@ -24,7 +24,7 @@ class CheckMRN extends Question {
 
             textField('checkedMRN').joi(
                 this.content.fields.checkedMRN.error.required,
-                Joi.string().valid(answers)
+                Joi.string().valid(answers).required()
             )
         );
     }
