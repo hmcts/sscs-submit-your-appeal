@@ -37,11 +37,6 @@ Run the application for development:
 
     yarn start-dev
 
-* If you have problems to view the app properly because assets are not being displayed correctly, then run it this way:
-
-      ENV=dev yarn start-dev
-
-
 View the application
 
     http://localhost:3000
