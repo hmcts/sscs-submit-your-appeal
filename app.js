@@ -14,8 +14,15 @@ const app = express();
 
 const protocol = config.node.protocol;
 const hostname = config.node.hostname;
+const port =     config.node.port;
 
-const baseUrl = `${protocol}://${hostname}`;
+let baseUrl;
+if(process.env.NODE_ENV === 'production') {
+    baseUrl = `${protocol}://${hostname}`;
+} else if (process.env.NODE_ENV === 'development') {
+    baseUrl = `${protocol}://${hostname}:${port}`;
+}
+
 console.log('SYA base Url : %s', baseUrl);
 
 lookAndFeel.configure(app, {
@@ -38,6 +45,12 @@ lookAndFeel.configure(app, {
                 to: 'images'
             }])
         ]
+    },
+    development: {
+        useWebpackDevMiddleware: true,
+        webpackDevMiddleware: {
+            // override default dev middleware settings
+        }
     }
 });
 
