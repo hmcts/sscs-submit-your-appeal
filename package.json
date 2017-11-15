@@ -15,7 +15,8 @@
     "test:coverage": "echo 'test coverage not implemented'",
     "test:nsp": "echo 'nsp  checks not implemented'",
     "test:a11y": "echo 'a11y tests not implemented'",
-    "sonar-scan": "echo 'sonar scan not implemented'"
+    "sonar-scan": "echo 'sonar scan not implemented'",
+    "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
     "@hmcts/look-and-feel": "^1.1.1",
