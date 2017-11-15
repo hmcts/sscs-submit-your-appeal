@@ -42,6 +42,7 @@ module.exports = {
         enterAppellantName:             '/enter-appellant-name',
         enterAppellantDOB:              '/enter-appellant-dob',
         enterAppellantNINO:             '/enter-appellant-nino',
+        enterAppellantContactDetails:   '/enter-appellant-contact-details',
         enterAppointeeDetails:          '/enter-appointee-details'
     },
 

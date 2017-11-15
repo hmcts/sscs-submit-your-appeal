@@ -23,15 +23,15 @@ class AppellantNINO extends Question {
 
 		return form(
 			textField('nino').joi(
-					fields.nino.error.required,
-					Joi.string().regex(niNumber).required()),
+				fields.nino.error.required,
+				Joi.string().regex(niNumber).required()),
 
 			textField.ref(this.journey.Appointee, 'appointee')
 		);
 	}
 
 	next() {
-		return goTo(undefined);
+		return goTo(this.journey.AppellantContactDetails);
 	}
 }
 

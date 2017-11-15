@@ -1,9 +1,7 @@
 'use strict';
 
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
-const {
-	expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const answer = require('utils/answer');
 
