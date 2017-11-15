@@ -88,6 +88,7 @@ timestamps {
                     milestone()
                     lock(resource: "sscs-frontend-dev-deploy", inversePrecedence: true) {
                         stage('Deploy to DEV') {
+                                ansible.runInstallPlaybook(version, 'dev');
                                 ansibleCommitId = ansible.runDeployPlaybook(version, 'dev')
                                 rpmTagger.tagDeploymentSuccessfulOn('dev')
                                 rpmTagger.tagAnsibleCommit(ansibleCommitId)
