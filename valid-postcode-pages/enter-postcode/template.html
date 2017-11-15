@@ -19,8 +19,6 @@
 
 {% block two_thirds %}
 
-{{ header(content.title, size='large') }}
-
 <form action="/postcode-check" method="post" class="form">
 
     {%- if fields.validated and not fields.valid -%}
@@ -35,6 +33,8 @@
         </ul>
     </div>
     {%- endif -%}
+
+    {{ header(content.title, size='large') }}
 
     {{ textbox(fields.postcode, content.fields.postcode.title) }}
 

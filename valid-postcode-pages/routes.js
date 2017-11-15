@@ -34,7 +34,7 @@ router.post(paths.validPostcode.postcodeCheck, (req, res) => {
         const field = JSON.parse(JSON.stringify(fields));
         field.validated = true;
         field.errors = [{
-            id: 'postcode-error',
+            id: 'postcode',
             message: errorMessage
         }];
         field.postcode.value = postcodeValue;
