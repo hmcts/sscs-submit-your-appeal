@@ -43,3 +43,11 @@ Scenario('When I go to the start an appeal landing page, I see the page heading'
     I.see(startAnAppealContent.heading);
 
 });
+
+Scenario.only('When I go to the start an appeal landing page and click start appeal, I am taken to the benefits page', (I) => {
+
+    I.amOnPage(paths.landingPages.startAnAppeal);
+    I.click('Start an appeal')
+    I.seeInCurrentUrl(paths.start.benefitType);
+
+});
