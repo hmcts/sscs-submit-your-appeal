@@ -20,13 +20,12 @@
 {% block fields %}
 
 
-{% call formSection() %}
+    {% call formSection() %}
 
-  <p>{{ content.subtitle }}</p>
+        <p>{{ content.subtitle }}</p>
+        {{ textbox(fields.nino, content.fields.nino.title, hint="") }}
 
-  {{ textbox(fields.nino, content.fields.nino.title, hint="") }}
-
-{% endcall %}
+    {% endcall %}
 
 
 {% endblock %}

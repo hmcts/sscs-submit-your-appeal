@@ -22,6 +22,7 @@ class AppellantNINO extends Question {
 		const fields = this.content.fields;
 
 		return form(
+
 			textField('nino').joi(
 				fields.nino.error.required,
 				Joi.string().regex(niNumber).required()),
