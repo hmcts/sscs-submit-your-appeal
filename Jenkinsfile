@@ -1,7 +1,7 @@
 #!groovy
 
 properties(
-  [[$class: 'GithubProjectProperty', displayName: 'Submit Your Appeal frontend', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal/'],
+  [[$class: 'GithubProjectProperty', displayName: 'Submit Your Appeal', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal/'],
    pipelineTriggers([
      [$class: 'hudson.triggers.TimerTrigger', spec  : 'H 1 * * *']
    ])]
@@ -20,7 +20,7 @@ def channel = '#sscs-tech'
 
 timestamps {
     milestone()
-    lock(resource: "submit-your-appeal-frontend-${env.BRANCH_NAME}", inversePrecedence: true) {
+    lock(resource: "submit-your-appeal-${env.BRANCH_NAME}", inversePrecedence: true) {
         node {
         //node("reformMgmtDevBuildAgent02.reform.hmcts.net") {
             try {
@@ -69,18 +69,18 @@ timestamps {
                 }
 
                 stage('Package application (RPM)') {
-                    syaFrontendRPMVersion = packager.nodeRPM('submit-your-appeal-frontend')
-                    version = "{submit_your_appeal_frontend_version: ${syaFrontendRPMVersion}}"
+                    syaFrontendRPMVersion = packager.nodeRPM('submit-your-appeal')
+                    version = "{submit_your_appeal_version: ${syaFrontendRPMVersion}}"
 
                     onMaster {
-                        packager.publishNodeRPM('submit-your-appeal-frontend')
+                        packager.publishNodeRPM('submit-your-appeal')
                     }
                 }
 
                 //noinspection GroovyVariableNotAssigned It is guaranteed to be assigned
                 RPMTagger rpmTagger = new RPMTagger(this,
-                'submit-your-appeal-frontend',
-                packager.rpmName('submit-your-appeal-frontend', syaFrontendRPMVersion),
+                'submit-your-appeal',
+                packager.rpmName('submit-your-appeal', syaFrontendRPMVersion),
                 'sscs-local'
                 )
 
