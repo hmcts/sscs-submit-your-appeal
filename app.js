@@ -26,6 +26,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 console.log('SYA base Url : %s', baseUrl);
+
 lookAndFeel.configure(app, {
     baseUrl,
     express: {
