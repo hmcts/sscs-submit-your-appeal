@@ -88,17 +88,13 @@ timestamps {
                     milestone()
                     lock(resource: "sscs-frontend-dev-deploy", inversePrecedence: true) {
                         stage('Deploy to DEV') {
+                                ansible.runInstallPlaybook(version, 'dev');
                                 ansibleCommitId = ansible.runDeployPlaybook(version, 'dev')
                                 rpmTagger.tagDeploymentSuccessfulOn('dev')
                                 rpmTagger.tagAnsibleCommit(ansibleCommitId)
                             }
                         stage('Smoke Test (Dev)') {
-                            ws('workspace/sscsHealthCheck/build') {
-                                git url: 'git@github.com:hmcts/submit-your-appeal.git'
-                                sh 'make install-tactical'
-                                sh 'make health-check-tactical'
-                                deleteDir()
-                            }
+                          echo 'to be implemented'
                         }
                     }
                     milestone()
