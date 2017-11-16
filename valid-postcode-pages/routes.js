@@ -2,7 +2,7 @@ const router = require('express').Router();
 const paths = require('paths');
 const { postCode, inwardPostcode } = require('utils/regex');
 const content = require('./enter-postcode/content.en.json');
-const postcodeList = require('utils/validPostcodeList');
+const postcodeList = require('valid-postcode-pages/validPostcodeList');
 
 const postcodeIsValid = value => value.match(postCode);
 const postcodeInList = postcode => postcodeList.includes(postcode);
