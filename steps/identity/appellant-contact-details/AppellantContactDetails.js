@@ -5,15 +5,15 @@ const paths = require('paths');
 
 class AppellantContactDetails extends Question {
 
-	get url() {
-		return paths.identity.enterAppellantContactDetails;
-	}
+    get url() {
+        return paths.identity.enterAppellantContactDetails;
+    }
 
-	get form() {}
+    get form() {}
 
-	next() {
-		return goTo(undefined);
-	}
+    next() {
+        return goTo(undefined);
+    }
 }
 
 module.exports = AppellantContactDetails;

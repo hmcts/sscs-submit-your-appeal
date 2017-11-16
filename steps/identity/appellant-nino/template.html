@@ -19,13 +19,11 @@
 
 {% block fields %}
 
-
     {% call formSection() %}
 
         <p>{{ content.subtitle }}</p>
         {{ textbox(fields.nino, content.fields.nino.title, hint="") }}
 
     {% endcall %}
-
 
 {% endblock %}
