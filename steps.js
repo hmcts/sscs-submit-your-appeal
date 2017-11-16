@@ -17,7 +17,8 @@ const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDeta
 const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
-const AppellantNINO = require('steps/identity/appellant-nino/AppellantNino');
+const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
+const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
@@ -60,7 +61,8 @@ const identity = [
     new AppellantDetails(),
     new AppellantName(),
     new AppellantDOB(),
-    new AppellantNINO()
+    new AppellantNINO(),
+    new AppellantContactDetails()
 ];
 
 const smsNotify = [

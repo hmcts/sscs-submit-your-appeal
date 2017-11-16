@@ -1,11 +1,11 @@
 'use strict';
 
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
-const { expect } = require('test/util/chai');
+const {expect} = require('test/util/chai');
 const paths = require('paths');
 const answer = require('utils/answer');
 
-describe('AppellantNINO.js', () => {
+describe('AppellantDOB.js', () => {
 
     let appellantDOBClass;
 
