@@ -4,7 +4,6 @@
   "subtitle": "You can find your National Insurance number on any letter about the benefit.",
   "fields": {
     "nino": {
-      "title": "",
       "error": {
         "required": "Enter a NINO"
       }

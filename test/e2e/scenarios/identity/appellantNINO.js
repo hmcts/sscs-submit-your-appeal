@@ -1,4 +1,4 @@
-const assert = require('assert');
+const content = require('steps/identity/appellant-nino/content.en.json');
 const paths = require('paths');
 
 Feature('Appellant NINO form');
@@ -12,36 +12,27 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('When I go to the Enter Appellant NINO page I see the correct information is displayed', function* (I) {
+Scenario('I see the correct information is displayed', (I) => {
 
-    const expected = 'Enter your National Insurance number';
-    I.see(expected);
-    const actual = yield I.grabTextFrom('.heading-large');
-    const result = actual.search(/Enter your|appellants National Insurance Number/g);
-    assert.notEqual(result, -1, `actual: ${actual} \n expected: ${expected} \n Does Not Match`);
-    I.see('You can find your National Insurance number on any letter about the benefit.');
-    I.seeElement('#AppellantNINO_nino');
+    I.see(content.titleNoAppointee);
+    I.see(content.subtitle);
 
 });
 
-Scenario('Given that user has entered their NINO \n' +
-    'When it is in the correct format AA123456A \n' +
-    'And they click next \n' +
-    'Then they should go to the next page', (I) => {
+Scenario('The user has entered a NINO in the correct format (e.g. AA123456A) and continued', (I) => {
 
     I.fillField('#AppellantNINO_nino', 'AA123456A');
     I.click('Continue');
-    I.seeInCurrentUrl('/enter-appellant-contact');
+    I.seeInCurrentUrl(paths.identity.enterAppellantContactDetails);
 
 });
 
-Scenario('Given that user has entered their NINO \n' +
-    'When it is NOT in the correct format AA123456A \n' +
-    'And they click next \n' +
-    'Then they should see the error message', (I) => {
+Scenario('The user has entered a NINO in the wrong format (e.g.AA1234) and continued', (I) => {
 
     I.fillField('#AppellantNINO_nino', 'AA1234');
     I.click('Continue');
     I.seeElement('#error-summary-heading');
+    I.see('There was a problem');
+    I.see(content.fields.nino.error.required);
 
 });

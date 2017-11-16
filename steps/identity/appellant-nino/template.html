@@ -22,7 +22,8 @@
     {% call formSection() %}
 
         <p>{{ content.subtitle }}</p>
-        {{ textbox(fields.nino, content.fields.nino.title, hint="") }}
+
+        {{ textbox(fields.nino, "", hint="") }}
 
     {% endcall %}
 
