@@ -5,9 +5,11 @@
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
-{% block two_thirds %}
+{% block breadcrumbs %}
+    {% include "include/phaseBanner.html" %}
+{% endblock %}
 
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
+{% block two_thirds %}
 
 {% set title %}
 {{ content.title | safe }}
