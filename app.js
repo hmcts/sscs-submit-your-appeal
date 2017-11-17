@@ -49,11 +49,17 @@ lookAndFeel.configure(app, {
             }])
         ]
     },
-    development: {
-        useWebpackDevMiddleware: true,
-        webpackDevMiddleware: {
-            // override default dev middleware settings
+    nunjucks: {
+        globals: {
+            phase: 'ALPHA',
+            feedbackLink: 'https://github.com/hmcts/submit-your-appeal',
+            isArray(value) {
+                return Array.isArray(value);
+            }
         }
+    },
+    development: {
+        useWebpackDevMiddleware: true
     }
 });
 
