@@ -22,7 +22,7 @@ describe('AppellantNINO.js', () => {
     describe('get url()', () => {
 
         it('returns url /enter-appellant-nino', () => {
-            expect(appellantNINOSut.url).to.equal('/enter-appellant-nino');
+            expect(appellantNINOSut.url).to.equal(paths.identity.enterAppellantNINO);
         });
 
     });
