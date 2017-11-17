@@ -7,8 +7,9 @@
 <script src="{{ asset_path }}main.js" type="text/javascript" />
 {% endblock %}
 
-{% set phase="ALPHA" %}
-{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+{% block breadcrumbs %}
+    {% include "include/phaseBanner.html" %}
+{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}

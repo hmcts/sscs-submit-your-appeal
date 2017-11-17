@@ -5,10 +5,13 @@
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
+{% block breadcrumbs %}
+    {% include "include/phaseBanner.html" %}
+{% endblock %}
+
 {% block two_thirds %}
 
 {{ header(content.title, size="large") }}
 
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Go back</a>
 
 {% endblock %}
