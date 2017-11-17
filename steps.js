@@ -34,66 +34,66 @@ const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 
 const init = [
-    new Entry(),
-    new Exit(),
-    new Sessions(),
-    new Error404(),
-    new Error500()
+    Entry,
+    Exit,
+    Sessions,
+    Error404,
+    Error500
 ];
 
 const startAnAppeal = [
-    new BenefitType()
+    BenefitType
 ];
 
 const compliance = [
-    new CantAppeal(),
-    new CheckMRN(),
-    new ContactDWP(),
-    new MRNDate(),
-    new NoMRN(),
-    new MRNOverOneMonthLate(),
-    new MRNOverThirteenMonthsLate()
+    // CantAppeal,
+    CheckMRN,
+    // ContactDWP,
+    MRNDate,
+    // NoMRN,
+    // MRNOverOneMonthLate,
+    // MRNOverThirteenMonthsLate
 ];
 
 const identity = [
-    new Appointee(),
-    new AppointeeDetails(),
-    new AppellantDetails(),
-    new AppellantName(),
-    new AppellantDOB(),
-    new AppellantNINO(),
-    new AppellantContactDetails()
+     Appointee,
+    // AppointeeDetails,
+    // AppellantDetails,
+    // AppellantName,
+    // AppellantDOB,
+    // AppellantNINO,
+    // AppellantContactDetails
 ];
 
 const smsNotify = [
-    new TextReminders(),
-    new SendToNumber(),
-    new EnterMobile(),
-    new SmsConfirmation()
+    // TextReminders,
+    // SendToNumber,
+    // EnterMobile,
+    // SmsConfirmation
 ];
 
 const representative = [
-    new Representative(),
-    new RepresentativeDetails(),
-    new NoRepresentativeDetails()
+    // Representative,
+    // RepresentativeDetails,
+    // NoRepresentativeDetails
 ];
 
 const reasonsForAppealing = [
-    new ReasonForAppealing()
+    // ReasonForAppealing
 ];
 
 const hearing = [
-    new Arrangements(),
-    new HearingArrangements(),
-    new HearingAvailability()
-];
+    // Arrangements,
+    // HearingArrangements,
+    // HearingAvailability
+ ];
 
 const checkYourAppeal = [
-    new CheckYourAppeal()
+    CheckYourAppeal
 ];
 
 const confirmation = [
-    new Confirmation()
+    Confirmation
 ];
 
 module.exports = concat(
