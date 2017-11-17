@@ -7,7 +7,6 @@ const answer = require('utils/answer');
 const paths = require('paths');
 const Joi = require('joi');
 
-
 class AppellantNINO extends Question {
 
     get url() {
