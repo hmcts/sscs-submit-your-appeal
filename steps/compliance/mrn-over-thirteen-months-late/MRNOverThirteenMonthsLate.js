@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -9,6 +10,7 @@ const paths = require('paths');
 class MRNOverThirteenMonthsLate extends Question {
 
     get url () {
+
         return paths.compliance.mrnOverThirteenMonthsLate;
     }
 
@@ -23,7 +25,20 @@ class MRNOverThirteenMonthsLate extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.reasonForBeingLate.question,
+                section: 'mrn-over-thirteen-months-late',
+                answer: `${this.fields.reasonForBeingLate.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.Appointee);
     }
 }

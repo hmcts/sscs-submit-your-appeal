@@ -9,5 +9,10 @@
         "required": "Please tell us why your appeal is late"
       }
     }
+  },
+  "cya": {
+    "reasonForBeingLate": {
+      "question": "Why your appeal was late"
+    }
   }
 }
