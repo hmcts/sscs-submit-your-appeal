@@ -21,11 +21,13 @@ class CheckYourAppeal extends CYA {
             section('benefit-type', { title: 'Benefit' }),
             section('mrn-date', { title: 'Mandatory Reconsideration Notice (MRN)' }),
             section('appointee', { title: 'Appointee' }),
-            section('mrn-over-thirteen-months-late', { title: 'Why your appeal over 13 months late' })
+            section('mrn-over-thirteen-months-late', { title: 'Why your appeal over 13 months late' }),
+            section('mrn-over-month-late', { title: 'Why your appeal is over a month late' })
         ];
     }
 
     next() {
+
         return goTo(this.journey.Confirmation);
     }
 }
