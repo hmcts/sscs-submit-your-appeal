@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -30,7 +31,7 @@ class Appointee extends Question {
 
         return answer(this, {
             question: this.content.cya.appointee.question,
-            section: 'appointee',
+            section: sections.appointee.id,
             answer: titleise(this.fields.appointee.value)
         });
 
