@@ -15,6 +15,11 @@ let sections = {
         id: 'check-mrn'
     },
 
+    noMRN: {
+        title: 'Why you don’t have an MRN',
+        id: 'no-mrn'
+    },
+
     appointee: {
         title: 'Appointee',
         id: 'appointee'
