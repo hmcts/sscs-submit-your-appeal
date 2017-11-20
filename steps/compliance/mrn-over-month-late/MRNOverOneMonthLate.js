@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -30,7 +31,7 @@ class MRNOverOneMonthLate extends Question {
 
             answer(this, {
                 question: this.content.cya.reasonForBeingLate.question,
-                section: 'mrn-over-month-late',
+                section: sections.mrnOverOneMonthLate.id,
                 answer: `${this.fields.reasonForBeingLate.value}`
             })
         ];

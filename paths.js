@@ -3,11 +3,11 @@ module.exports = {
     health:                             '/health',
 
     landingPages: {
-      overview:                         '/',
-      beforeYouAppeal:                  '/before-you-appeal',
-      helpWithAppeal:                   '/help-with-appeal',
-      startAnAppeal:                    '/start-an-appeal',
-      afterYouAppeal:                   '/after-you-appeal'
+        overview:                         '/',
+        beforeYouAppeal:                  '/before-you-appeal',
+        helpWithAppeal:                   '/help-with-appeal',
+        startAnAppeal:                    '/start-an-appeal',
+        afterYouAppeal:                   '/after-you-appeal'
     },
 
     validPostcode: {

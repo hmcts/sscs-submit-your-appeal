@@ -6,6 +6,7 @@ const {
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
 const { goTo } = require('@hmcts/one-per-page');
+const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
 class CheckYourAppeal extends CYA {
@@ -18,11 +19,11 @@ class CheckYourAppeal extends CYA {
     sections() {
 
         return [
-            section('benefit-type', { title: 'Benefit' }),
-            section('mrn-date', { title: 'Mandatory Reconsideration Notice (MRN)' }),
-            section('appointee', { title: 'Appointee' }),
-            section('mrn-over-thirteen-months-late', { title: 'Why your appeal over 13 months late' }),
-            section('mrn-over-month-late', { title: 'Why your appeal is over a month late' })
+            section(sections.benefitType.id,                { title: sections.benefitType.title }),
+            section(sections.mrnDate.id,                    { title: sections.mrnDate.title }),
+            section(sections.appointee.id,                  { title: sections.appointee.title }),
+            section(sections.mrnOverThirteenMonthsLate.id,  { title: sections.mrnOverThirteenMonthsLate.title }),
+            section(sections.mrnOverOneMonthLate.id,        { title: sections.mrnOverOneMonthLate.title })
         ];
     }
 
