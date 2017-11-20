@@ -10,6 +10,11 @@ let sections = {
         id: 'mrn-date'
     },
 
+    checkMRN: {
+        title: 'Check MRN Date',
+        id: 'check-mrn'
+    },
+
     appointee: {
         title: 'Appointee',
         id: 'appointee'

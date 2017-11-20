@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
@@ -37,7 +38,7 @@ class CheckMRN extends Question {
 
             answer(this, {
                 question: this.content.cya.mrnDate.question,
-                section: 'check-mrn',
+                section: sections.checkMRN.id,
                 answer: `${this.fields.day.value} ${this.fields.month.value} ${this.fields.year.value}`
             })
         ];

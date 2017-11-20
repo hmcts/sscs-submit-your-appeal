@@ -21,6 +21,7 @@ class CheckYourAppeal extends CYA {
         return [
             section(sections.benefitType.id,                { title: sections.benefitType.title }),
             section(sections.mrnDate.id,                    { title: sections.mrnDate.title }),
+            section(sections.checkMRN.id,                   { title: sections.checkMRN.title }),
             section(sections.appointee.id,                  { title: sections.appointee.title }),
             section(sections.mrnOverThirteenMonthsLate.id,  { title: sections.mrnOverThirteenMonthsLate.title }),
             section(sections.mrnOverOneMonthLate.id,        { title: sections.mrnOverOneMonthLate.title })
