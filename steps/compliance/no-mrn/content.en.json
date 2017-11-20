@@ -8,5 +8,10 @@
         "required": "Please tell us why you don’t have a MRN"
       }
     }
+  },
+  "cya": {
+    "reasonForNoMRN": {
+      "question": "The reason you don't have an MRN"
+    }
   }
 }
