@@ -6,6 +6,7 @@ const paths = require('paths');
 class CantAppeal extends Page {
 
     get url () {
+
         return paths.compliance.cantAppeal;
     }
 

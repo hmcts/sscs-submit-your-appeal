@@ -38,7 +38,7 @@ class CheckMRN extends Question {
 
             answer(this, {
                 question: this.content.cya.mrnDate.question,
-                section: sections.checkMRN.id,
+                section: sections.compliance.checkMRN,
                 answer: `${this.fields.day.value} ${this.fields.month.value} ${this.fields.year.value}`
             })
         ];

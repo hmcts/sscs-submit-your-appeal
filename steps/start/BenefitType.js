@@ -30,7 +30,7 @@ class BenefitType extends Question {
 
         return answer(this, {
             question: this.content.cya.benefitType.question,
-            section: sections.benefitType.id,
+            section: sections.start.benefitType,
             answer: this.fields.benefitType.value
         });
     }

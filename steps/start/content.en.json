@@ -28,6 +28,7 @@
     }
   },
   "cya": {
+    "title": "Benefit",
     "benefitType": {
       "question": "Benefit name"
     }

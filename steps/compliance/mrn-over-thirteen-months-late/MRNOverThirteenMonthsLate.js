@@ -32,7 +32,7 @@ class MRNOverThirteenMonthsLate extends Question {
 
             answer(this, {
                 question: this.content.cya.reasonForBeingLate.question,
-                section: sections.mrnOverThirteenMonthsLate,
+                section: sections.compliance.mrnOverThirteenMonthsLate,
                 answer: `${this.fields.reasonForBeingLate.value}`
             })
         ];

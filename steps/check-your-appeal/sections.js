@@ -1,39 +1,26 @@
+
 let sections = {
 
-    benefitType: {
-        title: 'Benefit',
-        id: 'benefit-type'
+    start: {
+        benefitType: 'benefit-type'
     },
 
-    mrnDate: {
-        title: 'Mandatory Reconsideration Notice (MRN)',
-        id: 'mrn-date'
+    compliance: {
+        checkMRN: 'check-mrn',
+        mrnDate: 'mrn-date',
+        mrnOverOneMonthLate: 'mrn-over-month-late',
+        mrnOverThirteenMonthsLate: 'mrn-over-thirteen-months-late',
+        noMRN: 'no-mrn',
     },
 
-    checkMRN: {
-        title: 'Check MRN Date',
-        id: 'check-mrn'
+    hearing: {
+        arrangements: 'arrangements'
     },
 
-    noMRN: {
-        title: 'Why you don’t have an MRN',
-        id: 'no-mrn'
+    identity: {
+        appointee: 'appointee'
     },
 
-    appointee: {
-        title: 'Appointee',
-        id: 'appointee'
-    },
-
-    mrnOverOneMonthLate: {
-        title: 'Why your appeal is over a month late',
-        id: 'mrn-over-month-late'
-    },
-
-    mrnOverThirteenMonthsLate: {
-        title: 'Why your appeal over 13 months late',
-        id: 'mrn-over-thirteen-months-late'
-    }
 };
 
 module.exports = sections;

@@ -12,6 +12,7 @@
     }
   },
   "cya": {
+    "title": "Check MRN Date",
     "mrnDate": {
       "question": "Check MRN Page"
     }
