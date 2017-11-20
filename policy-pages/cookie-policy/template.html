@@ -1,0 +1,73 @@
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "components/cookieTable.html" import cookieTable %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% set title = cookies.title%}
+
+{% block two_thirds %}
+
+<h1 class="heading-xlarge">{{cookies.title}}</h1>
+
+<p>{{cookies.description}}</p>
+
+<p>{{cookies.whatAreThey.listHeading}}</p>
+<ul class="list list-bullet">
+    {% for listItem in cookies.whatAreThey.list %}
+    <li>{{listItem}}</li>
+    {% endfor %}
+</ul>
+
+{% for description in cookies.whatAreThey.description %}
+<p>{{description}}</p>
+{% endfor %}
+
+<p>{{cookies.whatAreThey.preLink}}
+    <a href="https://www.aboutcookies.org" rel="external">{{cookies.whatAreThey.link}}</a>
+</p>
+
+<h2 class="heading-large">{{howAreTheyUsed.title}}</h2>
+<h3 class="heading-medium">{{howAreTheyUsed.subtitle}}</h3>
+
+<p>{{howAreTheyUsed.description}}
+    <a href="https://insidegovuk.blog.gov.uk/2015/03/26/new-tool-to-see-trending-searches" rel="external">{{howAreTheyUsed.descriptionLink}}</a>
+</p>
+
+<p>{{howAreTheyUsed.googleAnalytics.listHeading}}</p>
+<ul class="list list-bullet">
+    {% for listItem in howAreTheyUsed.googleAnalytics.list %}
+    <li>{{listItem}}</li>
+    {% endfor %}
+</ul>
+
+{% for description in howAreTheyUsed.googleAnalytics.description %}
+<p>{{description}}</p>
+{% endfor %}
+
+<h3 class="heading-medium">{{universalAnalytics.title}}</h3>
+{{ cookieTable( universalAnalytics.items, universalAnalytics.columnNames ) }}
+
+<h3 class="heading-medium">{{googleAnalytics.title}}</h3>
+{{ cookieTable( googleAnalytics.items, googleAnalytics.columnNames ) }}
+
+<h3 class="heading-medium">{{govUkEvents.title}}</h3>
+{{ cookieTable( govUkEvents.items, govUkEvents.columnNames ) }}
+
+<p class="google-opt-out-link">{{govUkEvents.preLink}}
+    <a href="https://tools.google.com/dlpage/gaoptout" rel="external">{{govUkEvents.link}}</a>
+</p>
+
+<h3 class="heading-medium">{{ourIntroductoryMessage.title}}</h3>
+<p>{{ourIntroductoryMessage.description}}</p>
+{{ cookieTable( ourIntroductoryMessage.items, ourIntroductoryMessage.columnNames ) }}
+
+{% endblock %}
+
+{% block footer_top %}
+    <p>HWLLLEELE</p>
+{% endblock %}

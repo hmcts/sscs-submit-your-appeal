@@ -10,6 +10,10 @@ module.exports = {
         afterYouAppeal:                 '/after-you-appeal'
     },
 
+    policy: {
+      cookiePolicy:                     '/cookie-policy'
+    },
+
     validPostcode: {
         postcodeCheck:                  '/postcode-check',
         invalidPostcode:                '/invalid-postcode'
