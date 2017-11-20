@@ -20,5 +20,11 @@
         "required": "Please enter a year"
       }
     }
+  },
+  "cya": {
+    "title": "Mandatory Reconsideration Notice (MRN)",
+    "mrnDate": {
+      "question": "Date of MRN"
+    }
   }
 }

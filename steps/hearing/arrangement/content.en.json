@@ -9,5 +9,11 @@
         "required": "You need to tell us whether you want us to make arrangements for your hearing. Select either yes or no."
       }
     }
+  },
+  "cya": {
+    "title": "Arrangements",
+    "arrangements": {
+      "question": "Do you want us to make arrangements for your hearing"
+    }
   }
 }

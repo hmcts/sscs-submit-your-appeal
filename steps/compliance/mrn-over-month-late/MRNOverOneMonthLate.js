@@ -3,12 +3,14 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
 class MRNOverOneMonthLate extends Question {
 
     get url () {
+
         return paths.compliance.mrnOverMonthLate;
     }
 
@@ -23,7 +25,20 @@ class MRNOverOneMonthLate extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.reasonForBeingLate.question,
+                section: sections.compliance.mrnOverOneMonthLate,
+                answer: `${this.fields.reasonForBeingLate.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.Appointee);
     }
 }

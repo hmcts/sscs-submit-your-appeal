@@ -10,5 +10,11 @@
         "required": "Question not answered"
       }
     }
+  },
+  "cya": {
+    "title": "Check MRN Date",
+    "mrnDate": {
+      "question": "Check MRN Page"
+    }
   }
 }

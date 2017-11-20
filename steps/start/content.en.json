@@ -26,5 +26,11 @@
         "required": "Please select a benefit type"
       }
     }
+  },
+  "cya": {
+    "title": "Benefit",
+    "benefitType": {
+      "question": "Benefit name"
+    }
   }
 }
