@@ -42,7 +42,7 @@ class MRNDate extends Question {
 
             answer(this, {
                 question: this.content.cya.mrnDate.question,
-                section: sections.mrnDate.id,
+                section: sections.compliance.mrnDate,
                 answer: `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
             })
         ];
