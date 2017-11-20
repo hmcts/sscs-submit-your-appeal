@@ -16,7 +16,11 @@ const fields = {
 };
 
 router.get(paths.validPostcode.postcodeCheck, (req, res) => {
-    res.render('enter-postcode/template.html', Object.assign({}, {content}, {fields}));
+    res.render('enter-postcode/template.html', Object.assign({},
+        {content},
+        {fields},
+        {url: paths.validPostcode.postcodeCheck}
+    ));
 });
 
 router.post(paths.validPostcode.postcodeCheck, (req, res) => {
@@ -41,7 +45,11 @@ router.post(paths.validPostcode.postcodeCheck, (req, res) => {
         field.postcode.errors = [
             errorMessage
         ];
-        res.render('enter-postcode/template.html', Object.assign({}, {content}, {fields: field}));
+        res.render('enter-postcode/template.html', Object.assign({},
+            {content},
+            {fields: field},
+            {url: paths.validPostcode.postcodeCheck}
+        ));
     }
 });
 

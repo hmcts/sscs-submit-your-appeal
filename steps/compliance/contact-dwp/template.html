@@ -1,13 +1,9 @@
-{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% extends "layout/formPage.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 
-{% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-{% endblock %}
+{% set title = content.title %}
 
 {% block two_thirds %}
-
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Go back</a>
 
 {{ header(content.title, size="large") }}
 

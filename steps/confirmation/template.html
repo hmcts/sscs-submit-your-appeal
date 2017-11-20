@@ -1,15 +1,8 @@
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/header.njk" import header %}
+{% extends "layout/formPage.html" %}
 
-{% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-{% endblock %}
+{% set title = content.title %}
 
 {% block two_thirds %}
-
-    {% set title %}
-        {{ content.title | safe }}
-    {% endset %}
 
     <div class="govuk-box-highlight">
         <h1 class="bold-large">{{ content.title }}</h1>

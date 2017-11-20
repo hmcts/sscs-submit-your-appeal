@@ -1,0 +1,8 @@
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% macro banner(backLink) %}
+    {{ phaseBanner('BETA', 'MEOW') }}
+    {% if backLink %}
+        <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+    {% endif %}
+{% endmacro %}
