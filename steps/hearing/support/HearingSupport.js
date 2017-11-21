@@ -46,7 +46,7 @@ class HearingSupport extends Question {
 
         return branch(
             goTo(this.journey.HearingArrangements).if(makeHearingArrangements),
-            goTo(this.journey.HearingAvailibility)
+            goTo(this.journey.DatesCantAttend)
         );
     }
 }

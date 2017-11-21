@@ -7,7 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
-class HearingAvailibility extends Question {
+class DatesCantAttend extends Question {
 
     get url() {
 
@@ -52,4 +52,4 @@ class HearingAvailibility extends Question {
     }
 }
 
-module.exports = HearingAvailibility;
+module.exports = DatesCantAttend;

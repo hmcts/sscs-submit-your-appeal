@@ -12,7 +12,7 @@ const mrnOver13MonthsLateTitle = require('steps/compliance/mrn-over-thirteen-mon
 const mrnOverOneMonthLateTitle = require('steps/compliance/mrn-over-month-late/content.en.json').cya.title;
 const appointeeTitle = require('steps/identity/appointee/content.en.json').cya.title;
 const arrangementTitle = require('steps/hearing/support/content.en.json').cya.title;
-const availabilityTitle = require('steps/hearing/availability/content.en.json').cya.title;
+const datesCantAttendTitle = require('steps/hearing/dates-cant-attend/content.en.json').cya.title;
 
 const { goTo } = require('@hmcts/one-per-page');
 const sections = require('steps/check-your-appeal/sections');
@@ -35,7 +35,7 @@ class CheckYourAppeal extends CYA {
             section(sections.compliance.mrnOverOneMonthLate,        { title: mrnOverOneMonthLateTitle }),
             section(sections.identity.appointee,                    { title: appointeeTitle }),
             section(sections.hearing.arrangements,                  { title: arrangementTitle }),
-            section(sections.hearing.availability,                  { title: availabilityTitle })
+            section(sections.hearing.datesCantAttend,               { title: datesCantAttendTitle })
         ];
     }
 

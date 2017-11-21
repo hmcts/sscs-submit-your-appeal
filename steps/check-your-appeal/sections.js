@@ -15,7 +15,7 @@ let sections = {
 
     hearing: {
         arrangements: 'arrangements',
-        availability: 'availability'
+        datesCantAttend: 'dates-cant-attend'
     },
 
     identity: {
