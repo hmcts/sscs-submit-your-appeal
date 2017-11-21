@@ -8,11 +8,11 @@ const paths = require('paths');
 const answer = require('utils/answer');
 const { titleise } = require('utils/stringUtils');
 
-class Arrangements extends Question {
+class HearingSupport extends Question {
 
     get url() {
 
-        return paths.hearing.arrangements;
+        return paths.hearing.hearingSupport;
     }
 
     get form() {
@@ -51,4 +51,4 @@ class Arrangements extends Question {
     }
 }
 
-module.exports = Arrangements;
+module.exports = HearingSupport;

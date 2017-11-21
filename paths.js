@@ -68,7 +68,7 @@ module.exports = {
 
     hearing: {
         arrangements:                   '/arrangements',
-        hearingArrangements:            '/hearing-arrangements',
+        hearingSupport:                 '/hearing-support',
         hearingAvailability:            '/hearing-availability'
     },
 

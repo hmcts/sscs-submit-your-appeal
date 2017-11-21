@@ -11,7 +11,7 @@ const checkMRNTitle = require('steps/compliance/check-mrn/content.en.json').cya.
 const mrnOver13MonthsLateTitle = require('steps/compliance/mrn-over-thirteen-months-late/content.en.json').cya.title;
 const mrnOverOneMonthLateTitle = require('steps/compliance/mrn-over-month-late/content.en.json').cya.title;
 const appointeeTitle = require('steps/identity/appointee/content.en.json').cya.title;
-const arrangementTitle = require('steps/hearing/arrangement/content.en.json').cya.title;
+const arrangementTitle = require('steps/hearing/support/content.en.json').cya.title;
 const availabilityTitle = require('steps/hearing/availability/content.en.json').cya.title;
 
 const { goTo } = require('@hmcts/one-per-page');

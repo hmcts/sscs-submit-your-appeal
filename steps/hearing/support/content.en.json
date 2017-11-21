@@ -1,6 +1,6 @@
 {
-  "title": "Do you need us to make any arrangements for the hearing?",
-  "subtitle": "We can arrange support such as an interpreter, hearing loop or disabled access.",
+  "title": "Do you need any support for your hearing?",
+  "subtitle": "Support for your hearing can be arranged,such as an interpreter, hearing loop or disabled access. You can’t bring your own interpreter to the hearing.",
   "fields": {
     "arrangements": {
       "yes": "Yes",
