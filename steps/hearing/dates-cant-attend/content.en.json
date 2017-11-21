@@ -21,7 +21,6 @@
     }
   },
   "cya": {
-    "title": "Date you cant attend the hearing",
     "dateYouCantAttend": {
       "question": "The date you can't attend"
     }

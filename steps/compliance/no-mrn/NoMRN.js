@@ -3,7 +3,6 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
-const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -31,7 +30,7 @@ class NoMRN extends Question {
 
             answer(this, {
                 question: this.content.cya.reasonForNoMRN.question,
-                section: sections.noMRN.id,
+                section: 'no-mrn',
                 answer: `${this.fields.reasonForNoMRN.value}`
             })
         ];

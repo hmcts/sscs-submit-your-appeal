@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@git://github.com/hmcts/look-and-feel.git#check-your-answers":
+"@hmcts/look-and-feel@git+https://github.com/hmcts/look-and-feel.git#check-your-answers":
   version "1.2.0"
-  resolved "git://github.com/hmcts/look-and-feel.git#ea4b8bcf7883a06c8f21fbac3fcf03ce89a25500"
+  resolved "git+https://github.com/hmcts/look-and-feel.git#920e9679657de54c4e04bf1273dd54fdc3b915a6"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -39,9 +39,9 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@git://github.com/hmcts/one-per-page.git#check-your-answers":
+"@hmcts/one-per-page@git+https://github.com/hmcts/one-per-page.git#check-your-answers":
   version "1.2.0"
-  resolved "git://github.com/hmcts/one-per-page.git#08eda5f52af570fa4efccca08ccbf5dbfb6072b0"
+  resolved "git+https://github.com/hmcts/one-per-page.git#5fc0c5888fcc9d22b8c97063be1284277a9005a2"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.17.2"

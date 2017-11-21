@@ -22,7 +22,6 @@
     }
   },
   "cya": {
-    "title": "Mandatory Reconsideration Notice (MRN)",
     "mrnDate": {
       "question": "Date of MRN"
     }

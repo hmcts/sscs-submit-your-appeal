@@ -2,10 +2,10 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
-const sections = require('steps/check-your-appeal/sections');
-const Joi = require('joi');
 const paths = require('paths');
+const Joi = require('joi');
 
 class DatesCantAttend extends Question {
 
@@ -40,7 +40,7 @@ class DatesCantAttend extends Question {
 
             answer(this, {
                 question: this.content.cya.dateYouCantAttend.question,
-                section: sections.hearing.availability,
+                section: 'dates-you-cant-attend',
                 answer: `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
             })
         ];

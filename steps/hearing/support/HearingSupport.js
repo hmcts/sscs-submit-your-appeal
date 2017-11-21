@@ -2,11 +2,11 @@
 
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
-const sections = require('steps/check-your-appeal/sections');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
-const answer = require('utils/answer');
-const { titleise } = require('utils/stringUtils');
+const userAnswer = require('utils/answer');
 
 class HearingSupport extends Question {
 
@@ -17,7 +17,7 @@ class HearingSupport extends Question {
 
     get form() {
 
-        const answers = [answer.YES, answer.NO];
+        const answers = [userAnswer.YES, userAnswer.NO];
 
         return form(
 
@@ -34,7 +34,7 @@ class HearingSupport extends Question {
 
             answer(this, {
                 question: this.content.cya.arrangements.question,
-                section: sections.hearing.arrangements,
+                section: 'hearing-support',
                 answer: titleise(this.fields.arrangements.value)
             })
         ];
@@ -42,7 +42,7 @@ class HearingSupport extends Question {
 
     next() {
 
-        const makeHearingArrangements = () => this.fields.arrangements.value === answer.YES;
+        const makeHearingArrangements = () => this.fields.arrangements.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.HearingArrangements).if(makeHearingArrangements),
