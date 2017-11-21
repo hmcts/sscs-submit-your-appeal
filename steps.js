@@ -13,12 +13,11 @@ const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
-const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
-const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
+const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
-const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
+const AppointeeFormDownload = require('steps/identity/appointee-form-download/AppointeeFormDownload');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
@@ -27,6 +26,8 @@ const Representative = require('steps/representative/representative/Representati
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
+const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
+const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
 const Arrangements = require('steps/hearing/arrangement/Arrangements');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
 const HearingAvailability = require('steps/hearing/availability/HearingAvailibility');
@@ -46,46 +47,47 @@ const startAnAppeal = [
 ];
 
 const compliance = [
-    // CantAppeal,
+    CantAppeal,
     CheckMRN,
-    // ContactDWP,
+    ContactDWP,
     MRNDate,
-    // NoMRN,
-    // MRNOverOneMonthLate,
-    // MRNOverThirteenMonthsLate
+    NoMRN,
+    MRNOverOneMonthLate,
+    MRNOverThirteenMonthsLate
 ];
 
 const identity = [
-     Appointee,
-    // AppointeeDetails,
-    // AppellantDetails,
-    // AppellantName,
-    // AppellantDOB,
-    // AppellantNINO,
-    // AppellantContactDetails
+    AppellantContactDetails,
+    AppellantDOB,
+    AppellantName,
+    AppellantNINO,
+    Appointee,
+    AppointeeFormDownload
 ];
 
 const smsNotify = [
-    // TextReminders,
-    // SendToNumber,
-    // EnterMobile,
-    // SmsConfirmation
+    TextReminders,
+    SendToNumber,
+    EnterMobile,
+    SmsConfirmation
 ];
 
 const representative = [
-    // Representative,
-    // RepresentativeDetails,
-    // NoRepresentativeDetails
+    Representative,
+    RepresentativeDetails,
+    NoRepresentativeDetails
 ];
 
 const reasonsForAppealing = [
-    // ReasonForAppealing
+    ReasonForAppealing,
+    OtherReasonForAppealing,
+    SendingEvidence
 ];
 
 const hearing = [
-    // Arrangements,
-    // HearingArrangements,
-    // HearingAvailability
+    Arrangements,
+    HearingArrangements,
+    HearingAvailability
  ];
 
 const checkYourAppeal = [
