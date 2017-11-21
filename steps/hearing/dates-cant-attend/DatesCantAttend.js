@@ -11,7 +11,7 @@ class DatesCantAttend extends Question {
 
     get url() {
 
-        return paths.hearing.hearingAvailability;
+        return paths.hearing.datesCantAttend;
     }
 
     get form() {

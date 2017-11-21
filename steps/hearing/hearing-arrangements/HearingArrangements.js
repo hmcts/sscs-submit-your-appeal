@@ -36,7 +36,7 @@ class HearingArrangements extends Question {
     }
 
     next() {
-        return goTo(this.journey.DatesCantAttend);
+        return goTo(this.journey.HearingAvailability);
     }
 }
 
