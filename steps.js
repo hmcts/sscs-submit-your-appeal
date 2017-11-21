@@ -29,6 +29,7 @@ const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appea
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
 const HearingSupport = require('steps/hearing/support/HearingSupport');
+const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
 const HearingAvailability = require('steps/hearing/availability/HearingAvailibility');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
@@ -87,7 +88,8 @@ const reasonsForAppealing = [
 const hearing = [
     HearingSupport,
     HearingArrangements,
-    HearingAvailability
+    HearingAvailability,
+    TheHearing
  ];
 
 const checkYourAppeal = [
