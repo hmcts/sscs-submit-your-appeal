@@ -32,6 +32,7 @@ const HearingSupport = require('steps/hearing/support/HearingSupport');
 const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
 const HearingAvailability = require('steps/hearing/availability/HearingAvailibility');
+const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 
@@ -89,6 +90,7 @@ const hearing = [
     HearingSupport,
     HearingArrangements,
     HearingAvailability,
+    NotAttendingHearing,
     TheHearing
  ];
 

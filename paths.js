@@ -70,6 +70,7 @@ module.exports = {
         arrangements:                   '/arrangements',
         hearingSupport:                 '/hearing-support',
         hearingAvailability:            '/hearing-availability',
+        notAttendingHearing:            '/not-attending-hearing',
         theHearing:                     '/the-hearing'
     },
 
