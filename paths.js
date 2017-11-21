@@ -56,8 +56,7 @@ module.exports = {
 
     representative: {
         representative:                 '/representative',
-        representativeDetails:          '/representative-details',
-        noRepresentativeDetails:        '/no-representative-details'
+        representativeDetails:          '/representative-details'
     },
 
     reasonsForAppealing: {
