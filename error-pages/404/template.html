@@ -1,0 +1,26 @@
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block head -%}
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% block breadcrumbs %}
+    {{ phaseBanner(phase, feedbackLink) }}
+{% endblock %}
+
+{% block two_thirds %}
+
+    {{ header(title, size='large') }}
+
+    <p>{{ checkAddress }}</p>
+
+    <p>{{ startAppeal | safe }}</p>
+
+{% endblock %}
