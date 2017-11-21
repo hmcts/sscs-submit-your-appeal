@@ -1,6 +1,6 @@
 'use strict';
 
-const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
+const AppellantDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const answer = require('utils/answer');
@@ -21,7 +21,7 @@ describe('AppellantDetails.js', () => {
 
     describe('get url()', () => {
 
-        it('returns url /enter-appellant-details', () => {
+        it('returns url /enter-appellant-contact-details', () => {
             expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantDetails);
         });
 

@@ -21,7 +21,7 @@ describe('AppellantName.js', () => {
 
     describe('get url()', () => {
 
-        it('returns url /enter-appellant-details', () => {
+        it('returns url /enter-appellant-contact-details', () => {
             expect(appellantNameClass.url).to.equal(paths.identity.enterAppellantName);
         });
 

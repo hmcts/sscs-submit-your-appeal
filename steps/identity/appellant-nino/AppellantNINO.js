@@ -10,21 +10,21 @@ const Joi = require('joi');
 class AppellantNINO extends Question {
 
     get url() {
+
         return paths.identity.enterAppellantNINO;
     }
 
     get isAppointee() {
+
         return this.fields.appointee.value === answer.YES;
     }
 
     get form() {
 
-        const fields = this.content.fields;
-
         return form(
 
             textField('nino').joi(
-                fields.nino.error.required,
+                this.content.fields.nino.error.required,
                 Joi.string().regex(niNumber).required()),
 
             textField.ref(this.journey.Appointee, 'appointee')
@@ -32,6 +32,7 @@ class AppellantNINO extends Question {
     }
 
     next() {
+
         return goTo(this.journey.AppellantContactDetails);
     }
 }
