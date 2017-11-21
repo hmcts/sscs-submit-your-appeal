@@ -10,18 +10,20 @@ const answer = require('utils/answer');
 class SendToNumber extends Question {
 
     get url() {
+
         return paths.smsNotify.sendToNumber;
     }
 
     get appellantPhoneNumber() {
-        return this.fields.appellantPhoneNumber.value;
+
+        return this.fields.phoneNumber.value;
     }
 
     get form() {
 
         return form(
 
-            textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber'),
+            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber'),
 
             textField('useSameNumber').joi(
                 this.content.fields.useSameNumber.error.required,
