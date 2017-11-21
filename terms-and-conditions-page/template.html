@@ -1,5 +1,4 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
-<!-- {% from "look-and-feel/components/header.njk" import header %} -->
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -12,12 +11,12 @@
 
     <a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
 
-    <!-- {% set title %}
-        {{ content.title | safe }}
-    {% endset %} -->
+    {% set title %}
+        {{ title | safe }}
+    {% endset %}
 
-    <h1 class="heading-large">Terms and conditions</h1>
-    <p>By using this service you’re agreeing to the following terms of use.</p>
-    <p>These include the GOV.UK privacy policy and terms and conditions.</p>
+    <h1 class="heading-large">{{ title }}</h1>
+    <p>{{ termsAndConditions.paragraph1 }}</p>
+    <p>{{ termsAndConditions.paragraph2 }}</p>
 
 {%- endblock %}
