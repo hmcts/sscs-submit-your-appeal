@@ -1,1 +1,21 @@
-<h1>POSTCODE NOT COVERED</h1>
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set title = title %}
+
+{% set phase="ALPHA" %}
+{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+
+{% block two_thirds %}
+
+    {{ header(title, size='large') }}
+
+    <p>{{ notCovered }}</p>
+
+    <a href="https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?original_id=3038" class="button">{{ formDownload }}</a>
+
+{% endblock %}

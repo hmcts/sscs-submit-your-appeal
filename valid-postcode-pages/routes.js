@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const paths = require('paths');
 const { postCode, inwardPostcode } = require('utils/regex');
-const content = require('./enter-postcode/content.en.json');
+const enterPostcodeContent = require('./enter-postcode/content.en.json');
+const invalidPostcodeContent = require('./postcode-invalid/content.en.json');
 const postcodeList = require('valid-postcode-pages/validPostcodeList');
 
 const postcodeIsValid = value => value.match(postCode);
@@ -16,7 +17,7 @@ const fields = {
 };
 
 router.get(paths.validPostcode.postcodeCheck, (req, res) => {
-    res.render('enter-postcode/template.html', Object.assign({}, {content}, {fields}));
+    res.render('enter-postcode/template.html', Object.assign({}, {enterPostcodeContent}, {fields}));
 });
 
 router.post(paths.validPostcode.postcodeCheck, (req, res) => {
@@ -29,7 +30,7 @@ router.post(paths.validPostcode.postcodeCheck, (req, res) => {
             res.redirect(paths.validPostcode.invalidPostcode);
         }
     } else {
-        const errors = content.fields.postcode.error;
+        const errors = enterPostcodeContent.fields.postcode.error;
         const errorMessage = postcodeValue === '' ? errors.required : errors.invalid;
         const field = JSON.parse(JSON.stringify(fields));
         field.validated = true;
@@ -41,12 +42,12 @@ router.post(paths.validPostcode.postcodeCheck, (req, res) => {
         field.postcode.errors = [
             errorMessage
         ];
-        res.render('enter-postcode/template.html', Object.assign({}, {content}, {fields: field}));
+        res.render('enter-postcode/template.html', Object.assign({}, {enterPostcodeContent}, {fields: field}));
     }
 });
 
 router.get(paths.validPostcode.invalidPostcode, (req, res) => {
-    res.render('postcode-invalid/template.html');
+    res.render('postcode-invalid/template.html', invalidPostcodeContent);
 });
 
 module.exports = router;
