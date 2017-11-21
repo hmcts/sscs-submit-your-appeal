@@ -1,6 +1,6 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
@@ -39,7 +39,12 @@ class Appointee extends Question {
 
     next() {
 
-        return goTo(this.journey.AppellantName)
+        const isAppointee = () => this.fields.appointee.value === userAnswer.YES;
+
+        return branch(
+            goTo(this.journey.AppointeeFormDownload).if(isAppointee),
+            goTo(this.journey.AppellantName)
+        );
     }
 }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
+const AppointeeDetails = require('steps/identity/appointee-contact-details/AppointeeContactDetails');
 const paths = require('paths');
 
 describe('AppointeeDetails.js', () => {
@@ -14,7 +14,7 @@ describe('AppointeeDetails.js', () => {
 
     describe('get url()', () => {
 
-        it('returns url /enter-appointee-details', () => {
+        it('returns url /enter-appointee-contact-details', () => {
             expect(appointeeDetailsClass.url).to.equal(paths.identity.enterAppointeeDetails);
         });
 
