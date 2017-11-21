@@ -14,11 +14,11 @@ class SmsConfirmation extends Question {
 
     get mobileNumber() {
 
-        const isMobile = regex.internationalMobileNumber.test(this.fields.appellantPhoneNumber.value);
+        const isMobile = regex.internationalMobileNumber.test(this.fields.phoneNumber.value);
 
         if(isMobile) {
             return this.fields.useSameNumber.value === answer.YES ?
-                this.fields.appellantPhoneNumber.value : this.fields.enterMobile.value;
+                this.fields.phoneNumber.value : this.fields.enterMobile.value;
         }
 
         return this.fields.enterMobile.value;
@@ -30,7 +30,7 @@ class SmsConfirmation extends Question {
 
             textField.ref(this.journey.EnterMobile, 'enterMobile'),
             textField.ref(this.journey.SendToNumber, 'useSameNumber'),
-            textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber')
+            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber')
         )
     }
 

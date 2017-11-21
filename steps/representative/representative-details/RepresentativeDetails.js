@@ -10,6 +10,7 @@ const emailOptions = require('utils/emailOptions');
 class RepresentativeDetails extends Question {
 
     get url() {
+
         return paths.representative.representativeDetails;
     }
 
@@ -19,19 +20,17 @@ class RepresentativeDetails extends Question {
 
         return form(
 
-            textField('firstName').joi(
-                fields.firstName.error.required,
-                Joi.string().required()
-            ).joi(
-                fields.firstName.error.invalid,
+            textField('firstName')
+                .joi(fields.firstName.error.required,
+                Joi.string().required())
+                .joi(fields.firstName.error.invalid,
                 Joi.string().regex(firstName)
             ),
 
-            textField('lastName').joi(
-                fields.lastName.error.required,
-                Joi.string().required()
-            ).joi(
-                fields.lastName.error.invalid,
+            textField('lastName')
+                .joi(fields.lastName.error.required,
+                Joi.string().required())
+                .joi(fields.lastName.error.invalid,
                 Joi.string().regex(lastName)
             ),
 
@@ -78,6 +77,7 @@ class RepresentativeDetails extends Question {
     }
 
     next() {
+
         return goTo(this.journey.ReasonForAppealing);
     }
 }
