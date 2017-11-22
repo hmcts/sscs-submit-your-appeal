@@ -10,7 +10,11 @@
       "cookie": {
         "text": "Cookie policy",
         "url": "/cookie-policy"
-        }
+      },
+      "privacy": {
+        "text": "GOV.UK privacy policy",
+        "url":"https://www.gov.uk/help/privacy-policy"
+      }
     }
   }
 }
