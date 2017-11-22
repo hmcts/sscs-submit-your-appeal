@@ -20,5 +20,10 @@
         "required": "Enter a Year"
       }
     }
+  },
+  "cya": {
+    "dob": {
+      "question": "Date of birth"
+    }
   }
 }

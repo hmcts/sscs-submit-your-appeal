@@ -5,8 +5,13 @@
   "fields": {
     "nino": {
       "error": {
-        "required": "Enter a NINO"
+        "required": "Enter a National Insurance Number"
       }
+    }
+  },
+  "cya": {
+    "nino": {
+      "question": "NI Number"
     }
   }
 }

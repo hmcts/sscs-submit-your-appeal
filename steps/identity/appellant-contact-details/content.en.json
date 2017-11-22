@@ -40,5 +40,25 @@
         "invalid": "Please enter a valid email address"
       }
     }
+  },
+  "cya": {
+    "addressLine1": {
+      "question": "Address line 1"
+    },
+    "addressLine2": {
+      "question": "Address line 2"
+    },
+    "townCity": {
+      "question": "Town/City"
+    },
+    "postCode": {
+      "question": "Postcode"
+    },
+    "phoneNumber": {
+      "question": "Phone number"
+    },
+    "emailAddress": {
+      "question": "Email address"
+    }
   }
 }

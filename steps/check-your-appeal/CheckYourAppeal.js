@@ -26,7 +26,8 @@ class CheckYourAppeal extends CYA {
             section('no-mrn',                           { title: this.content.compliance.noMRN }),
             section('appointee',                        { title: this.content.identity.appointee }),
             section('hearing-support',                  { title: this.content.hearing.support }),
-            section('dates-you-cant-attend',            { title: this.content.hearing.datesCantAttend })
+            section('dates-you-cant-attend',            { title: this.content.hearing.datesCantAttend }),
+            section('appellant-details',                { title: this.content.identity.appellantDetails })
         ];
     }
 

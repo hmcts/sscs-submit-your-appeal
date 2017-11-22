@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -50,6 +51,48 @@ class AppellantContactDetails extends Question {
                 Joi.string().email(emailOptions).allow('')
             )
         );
+    }
+
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.addressLine1.question,
+                section: 'appellant-details',
+                answer: this.fields.addressLine1.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.addressLine2.question,
+                section: 'appellant-details',
+                answer: this.fields.addressLine2.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.townCity.question,
+                section: 'appellant-details',
+                answer: this.fields.townCity.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.postCode.question,
+                section: 'appellant-details',
+                answer: this.fields.postCode.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.phoneNumber.question,
+                section: 'appellant-details',
+                answer: this.fields.phoneNumber.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.emailAddress.question,
+                section: 'appellant-details',
+                answer: this.fields.emailAddress.value
+            })
+        ];
     }
 
     next() {

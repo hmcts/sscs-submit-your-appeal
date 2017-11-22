@@ -14,6 +14,7 @@
     "datesCantAttend": "Date you cant attend the hearing"
   },
   "identity": {
-    "appointee": "Appointee"
+    "appointee": "Appointee",
+    "appellantDetails": "Appellant's details"
   }
 }
