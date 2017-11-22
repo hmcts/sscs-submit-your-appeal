@@ -1,0 +1,27 @@
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+{% call formSection() %}
+
+{{ selectionButtons(
+    fields.detailsToHand, "",
+    hint = '',
+    options = [
+        { label: content.fields.detailsToHand.yes, value: "yes" },
+        { label: content.fields.detailsToHand.no, value: "no" }
+    ])
+}}
+
+{% endcall %}
+
+{% endblock %}
