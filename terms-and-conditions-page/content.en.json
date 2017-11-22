@@ -61,7 +61,8 @@
   },
   "changes": {
     "title": "Changes to these terms and conditions",
-    "check": "Please check these terms and conditions regularly. We can update them at any time without notice."
+    "check": "Please check these terms and conditions regularly. We can update them at any time without notice.",
+    "agree": "You’ll agree to any changes if you continue to use this service after the terms and conditions have been updated."
   }
 
 }

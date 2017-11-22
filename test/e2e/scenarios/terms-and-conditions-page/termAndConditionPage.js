@@ -97,5 +97,6 @@ Scenario.only('When I go to the Terms And Conditions page, I see the Changes to 
 
 	I.see(termsAndConditionsContent.changes.title);
 	I.see(termsAndConditionsContent.changes.check);
+	I.see(termsAndConditionsContent.changes.agree);
 
 });
