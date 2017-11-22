@@ -31,5 +31,8 @@ Scenario('When I go to the Terms And Conditions page, I see the Related links se
     I.amOnPage(paths.termsAndConditions);
     I.seeGivenRelatedLink(termsAndConditionsContent.relatedLinks.links.privacy.text,
         termsAndConditionsContent.relatedLinks.links.privacy.url);
+    I.amOnPage(paths.termsAndConditions);
+    I.seeGivenRelatedLink(termsAndConditionsContent.relatedLinks.links.conditions.text,
+        termsAndConditionsContent.relatedLinks.links.conditions.url);
 
 });
