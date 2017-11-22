@@ -1,9 +1,9 @@
 'use strict';
 
-const { Page } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const paths = require('paths');
 
-class AppointeeFormDownload extends Page {
+class AppointeeFormDownload extends ExitPoint {
 
     get url() {
 
