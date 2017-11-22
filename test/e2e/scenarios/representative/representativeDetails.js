@@ -21,3 +21,10 @@ Scenario('When I fill in the fields and continue, I am taken to the reason for a
     I.seeInCurrentUrl(paths.reasonsForAppealing.reasonForAppealing);
 
 });
+
+Scenario('When I click the no details link, I am taken to the no representative details page', (I) => {
+
+   I.click(content.noDetails);
+   I.seeInCurrentUrl(paths.representative.noRepresentativeDetails);
+
+});
