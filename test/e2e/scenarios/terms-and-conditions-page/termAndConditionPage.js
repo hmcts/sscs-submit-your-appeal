@@ -93,7 +93,7 @@ Scenario('When I go to the Terms And Conditions page, I see the Responsible Use 
 
 });
 
-Scenario.only('When I go to the Terms And Conditions page, I see the Changes to these terms and conditions section', (I) => {
+Scenario('When I go to the Terms And Conditions page, I see the Changes to these terms and conditions section', (I) => {
 
 	I.see(termsAndConditionsContent.changes.title);
 	I.see(termsAndConditionsContent.changes.check);
