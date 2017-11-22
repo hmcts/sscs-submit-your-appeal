@@ -49,7 +49,8 @@
     "mental": "Mental Capacity Act 2005"
   },
   "responsibleUse": {
-    "title": "Responsible use of this service"
+    "title": "Responsible use of this service",
+    "designedFor": "The service is designed for people who need to use it or by others on their behalf and only with their consent."
   }
 
 }

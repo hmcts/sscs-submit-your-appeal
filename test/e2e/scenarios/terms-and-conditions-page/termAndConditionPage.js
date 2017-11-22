@@ -82,5 +82,6 @@ Scenario('When I go to the Terms And Conditions page, I see the Applicable law s
 Scenario.only('When I go to the Terms And Conditions page, I see the Responsible Use of this service section', (I) => {
 
 	I.see(termsAndConditionsContent.responsibleUse.title);
+	I.see(termsAndConditionsContent.responsibleUse.designedFor);
 
 });
