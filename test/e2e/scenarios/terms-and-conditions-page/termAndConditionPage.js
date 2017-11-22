@@ -60,3 +60,11 @@ Scenario('When I go to the Terms And Conditions page, I see the Where your data 
 	I.see(termsAndConditionsContent.dataStored.notify);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see the Who we share your data with section', (I) => {
+
+	I.see(termsAndConditionsContent.shareYourData.title);
+	I.see(termsAndConditionsContent.shareYourData.dwp);
+	I.see(termsAndConditionsContent.shareYourData.representative);
+
+});

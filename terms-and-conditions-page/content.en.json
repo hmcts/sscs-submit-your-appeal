@@ -35,5 +35,11 @@
     "title": "Where your data is stored",
     "dataCentres": "Your data will be stored in data centres in the UK. It will be held for 6 months after the last action has been taken on the appeal.",
     "notify": "We use GOV.UK Notify to send emails. Until the point where emails are handed over to your email provider, they are processed within the European Economic Area. GOV.UK Notify stores your data in data centres in the UK for 1 month."
+  },
+  "shareYourData": {
+    "title": "Who we share your data with",
+    "dwp": "Your data will be shared with Department for Work and Pensions (DWP). This is so they can respond to your appeal.",
+    "representative": "We also share your data with your named representative, if you enter their details. This is so they can stay updated with your appeal."
   }
+
 }
