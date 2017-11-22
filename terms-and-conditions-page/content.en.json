@@ -55,8 +55,8 @@
     "precautions": "You must take your own precautions to ensure that the way you access this service does not expose you to the risk of:",
     "viruses": "viruses",
     "malicious": "malicious computer code",
-    "interference": "other forms of interference which may damage your computer system"
-
+    "interference": "other forms of interference which may damage your computer system",
+    "mustNot": "You must not misuse this service by knowingly introducing viruses, trojans, worms, logic bombs or other material which is malicious or technologically harmful. You must not attempt to gain unauthorised access to this service, the system on which it is stored or any server, computer or database connected to it. You must not attack this site via a denial-of-service attack or a distributed denial-of-service attack."
   }
 
 }

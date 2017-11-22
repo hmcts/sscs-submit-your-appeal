@@ -88,5 +88,6 @@ Scenario.only('When I go to the Terms And Conditions page, I see the Responsible
 	I.see(termsAndConditionsContent.responsibleUse.viruses);
 	I.see(termsAndConditionsContent.responsibleUse.malicious);
 	I.see(termsAndConditionsContent.responsibleUse.interference);
+	I.see(termsAndConditionsContent.responsibleUse.mustNot);
 
 });
