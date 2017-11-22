@@ -79,7 +79,7 @@ Scenario('When I go to the Terms And Conditions page, I see the Applicable law s
 
 });
 
-Scenario.only('When I go to the Terms And Conditions page, I see the Responsible Use of this service section', (I) => {
+Scenario('When I go to the Terms And Conditions page, I see the Responsible Use of this service section', (I) => {
 
 	I.see(termsAndConditionsContent.responsibleUse.title);
 	I.see(termsAndConditionsContent.responsibleUse.designedFor);
@@ -90,5 +90,11 @@ Scenario.only('When I go to the Terms And Conditions page, I see the Responsible
 	I.see(termsAndConditionsContent.responsibleUse.interference);
 	I.see(termsAndConditionsContent.responsibleUse.mustNot);
 	I.see(termsAndConditionsContent.responsibleUse.freeText);
+
+});
+
+Scenario.only('When I go to the Terms And Conditions page, I see the Changes to these terms and conditions section', (I) => {
+
+	I.see(termsAndConditionsContent.changes.title);
 
 });
