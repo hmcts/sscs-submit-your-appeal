@@ -52,3 +52,11 @@ Scenario('When I go to the Terms And Conditions page, I see the Information prov
 	I.see(termsAndConditionsContent.informationProvided.questions);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see the Where your data is stored section', (I) => {
+
+	I.see(termsAndConditionsContent.dataStored.title);
+	I.see(termsAndConditionsContent.dataStored.dataCentres);
+	I.see(termsAndConditionsContent.dataStored.notify);
+
+});
