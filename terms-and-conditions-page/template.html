@@ -20,6 +20,6 @@
     {% endset %}
 
     <h1 class="heading-large">{{ title }}</h1>
-    <p>{{ termsAndConditions.paragraph1 }}</p>
-    <p>{{ termsAndConditions.paragraph2 }}</p>
+    <p>{{ termsAndConditions.termsOfuse }}</p>
+    <p>{{ termsAndConditions.govPrivacy | safe }}</p>
 {%- endblock %}
