@@ -9,7 +9,6 @@ Before((I) => {
 	I.amOnPage(paths.termsAndConditions);
 });
 
-
 Scenario('When I go to the Terms And Conditions page, I see the Term and Conditions section', (I) => {
 
 	I.seeElement('.link-back');
@@ -24,17 +23,13 @@ Scenario('When I go to the Terms And Conditions page, I see the Term and Conditi
 
 });
 
-Scenario.only('When I go to the Terms And Conditions page, I see the Related links section', (I) => {
+Scenario('When I go to the Terms And Conditions page, I see the Related links section', (I) => {
 
 	I.see(termsAndConditionsContent.relatedLinks.title);
-	//cookie policy
-	I.see(termsAndConditionsContent.relatedLinks.links.cookie.text);
-	I.click(termsAndConditionsContent.relatedLinks.links.cookie.text);
-	I.seeInCurrentUrl(termsAndConditionsContent.relatedLinks.links.cookie.url);
-	//privacy policy
-	I.amOnPage(paths.termsAndConditions);
-	I.see(termsAndConditionsContent.relatedLinks.links.privacy.text);
-	I.click(termsAndConditionsContent.relatedLinks.links.privacy.text);
-	I.seeInCurrentUrl(termsAndConditionsContent.relatedLinks.links.privacy.url);
+    I.seeGivenRelatedLink(termsAndConditionsContent.relatedLinks.links.cookie.text,
+        termsAndConditionsContent.relatedLinks.links.cookie.url);
+    I.amOnPage(paths.termsAndConditions);
+    I.seeGivenRelatedLink(termsAndConditionsContent.relatedLinks.links.privacy.text,
+        termsAndConditionsContent.relatedLinks.links.privacy.url);
 
 });
