@@ -7,5 +7,10 @@
         "invalid": "No special characters allowed"
       }
     }
+  },
+  "cya": {
+    "otherReasonForAppealing": {
+      "question": "Other reasons for appealing"
+    }
   }
 }
