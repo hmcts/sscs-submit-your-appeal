@@ -100,3 +100,9 @@ Scenario('When I go to the Terms And Conditions page, I see the Changes to these
 	I.see(termsAndConditionsContent.changes.agree);
 
 });
+
+Scenario.only('When I go to the Terms And Conditions page, I see the Contact us section', (I) => {
+
+	I.see(termsAndConditionsContent.contactUs.title);
+
+});
