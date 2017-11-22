@@ -20,5 +20,8 @@
   "smsNotify": {
     "textMsgReminders": "Text message reminders",
     "mobile": "Mobile"
+  },
+  "representative": {
+    "representative": "Representative details"
   }
 }
