@@ -22,6 +22,10 @@
     <h1 class="heading-large">{{ title }}</h1>
     <p>{{ termsAndConditions.termsOfuse }}</p>
     <p>{{ termsAndConditions.govPrivacy | safe }}</p>
+
+    <h2 class="heading-medium">{{whoWeAre.title}}</h2>
+    <p>{{whoWeAre.managedBy}}</p>
+    <p>{{whoWeAre.changeInLaw}}</p>
 {%- endblock %}
 
 {% block one_third %}

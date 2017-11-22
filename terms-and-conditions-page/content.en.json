@@ -20,5 +20,10 @@
         "url": "https://www.gov.uk/help/terms-conditions"
       }
     }
+  },
+  "whoWeAre": {
+    "title": "Who we are",
+    "managedBy": "This service is managed by Her Majesty’s Courts and Tribunals Service and will be referred to as ‘we’ from now on.",
+    "changeInLaw": "We may update these terms and conditions if there is a change in the law or to the way the service works."
   }
 }

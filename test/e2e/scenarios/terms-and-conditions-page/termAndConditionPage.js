@@ -36,3 +36,11 @@ Scenario('When I go to the Terms And Conditions page, I see the Related links se
         termsAndConditionsContent.relatedLinks.links.conditions.url);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see the Who we are section', (I) => {
+
+	I.see(termsAndConditionsContent.whoWeAre.title);
+	I.see(termsAndConditionsContent.whoWeAre.managedBy);
+	I.see(termsAndConditionsContent.whoWeAre.changeInLaw);
+
+});
