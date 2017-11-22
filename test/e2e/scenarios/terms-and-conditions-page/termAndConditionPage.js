@@ -101,8 +101,12 @@ Scenario('When I go to the Terms And Conditions page, I see the Changes to these
 
 });
 
-Scenario.only('When I go to the Terms And Conditions page, I see the Contact us section', (I) => {
+Scenario('When I go to the Terms And Conditions page, I see the Contact us section', (I) => {
 
 	I.see(termsAndConditionsContent.contactUs.title);
+	const adressLines = termsAndConditionsContent.contactUs.address.split(/<br>/g);
+	adressLines.forEach(line => {
+		I.see(line);
+	});
 
 });
