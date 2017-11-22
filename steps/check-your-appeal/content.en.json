@@ -23,5 +23,8 @@
   },
   "representative": {
     "representative": "Representative details"
+  },
+  "reasonsForAppealing": {
+    "reasons": "Reasons why you're appealing"
   }
 }

@@ -7,5 +7,10 @@
         "required": "Please enter a reason"
       }
     }
+  },
+  "cya": {
+    "reasonForAppealing": {
+      "question": "Reason for appealing"
+    }
   }
 }

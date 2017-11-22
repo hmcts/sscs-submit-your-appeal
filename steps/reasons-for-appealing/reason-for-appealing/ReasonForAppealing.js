@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const paths = require('paths');
 const Joi = require('joi');
@@ -22,6 +23,18 @@ class ReasonForAppealing extends Question {
                 Joi.string().regex(whitelist)
             )
         );
+    }
+
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.reasonForAppealing.question,
+                section: 'reasons-for-appealing',
+                answer: this.fields.reasonForAppealing.value
+            })
+        ];
     }
 
     next() {
