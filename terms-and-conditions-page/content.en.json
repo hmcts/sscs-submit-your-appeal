@@ -60,7 +60,8 @@
     "freeText": "This online service contains several free-text fields in which you will need to enter certain types of information. You should not enter sensitive information into these free-text fields. Sensitive information may include, but is not limited to, details of religious beliefs and financial information. Entering sensitive information is done so at your own risk."
   },
   "changes": {
-    "title": "Changes to these terms and conditions"
+    "title": "Changes to these terms and conditions",
+    "check": "Please check these terms and conditions regularly. We can update them at any time without notice."
   }
 
 }
