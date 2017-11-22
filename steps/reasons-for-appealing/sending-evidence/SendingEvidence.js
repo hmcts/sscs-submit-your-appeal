@@ -16,6 +16,11 @@ class SendingEvidence extends Question {
         return form();
     }
 
+    answers() {
+
+        return [];
+    }
+
     next() {
 
         return goTo(this.journey.TheHearing);

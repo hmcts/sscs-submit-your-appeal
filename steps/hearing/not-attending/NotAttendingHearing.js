@@ -16,6 +16,11 @@ class NotAttendingHearing extends Question {
         return form();
     }
 
+    answers() {
+
+        return [];
+    }
+
     next() {
 
         return goTo(this.journey.CheckYourAppeal);

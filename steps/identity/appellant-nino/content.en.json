@@ -11,7 +11,7 @@
   },
   "cya": {
     "nino": {
-      "question": "NI Number"
+      "question": "National Insurance number"
     }
   }
 }

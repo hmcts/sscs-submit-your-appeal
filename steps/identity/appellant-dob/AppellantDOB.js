@@ -51,7 +51,7 @@ class AppellantDOB extends Question {
             answer(this, {
                 question: this.content.cya.dob.question,
                 section: 'appellant-details',
-                answer: `${this.fields.day.value} - ${this.fields.month.value} - ${this.fields.year.value}`
+                answer: `${this.fields.day.value}.${this.fields.month.value}.${this.fields.year.value}`
             })
         ];
     }

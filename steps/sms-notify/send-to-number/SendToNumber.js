@@ -32,6 +32,11 @@ class SendToNumber extends Question {
         );
     }
 
+    answers() {
+
+        return [];
+    }
+
     next() {
 
         const useSameNumber = () => this.fields.useSameNumber.value === answer.YES;

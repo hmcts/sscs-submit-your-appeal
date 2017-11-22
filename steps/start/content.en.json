@@ -29,7 +29,7 @@
   },
   "cya": {
     "benefitType": {
-      "question": "Type"
+      "question": "Benefit name"
     }
   }
 }

@@ -58,7 +58,7 @@
       "question": "Phone number"
     },
     "emailAddress": {
-      "question": "Email address"
+      "question": "Email"
     }
   }
 }

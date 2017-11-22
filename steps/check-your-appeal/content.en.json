@@ -1,7 +1,5 @@
 {
-  "start": {
-    "benefitType": "Benefit"
-  },
+  "benefitType": "Benefit",
   "compliance": {
     "checkMRN": "Check MRN Date",
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
@@ -9,22 +7,16 @@
     "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
     "noMRN": "No MRN - Will we ever get here?"
   },
+  "appellantDetails": "Your details",
   "hearing": {
-    "support": "Hearing Support",
-    "datesCantAttend": "Date you cant attend the hearing"
-  },
-  "identity": {
-    "appointee": "Appointee",
-    "appellantDetails": "Appellant's details"
+    "arrangements":  "Hearing arrangements",
+    "datesCantAttend": "Date you cant attend the hearing",
+    "theHearing": "The hearing"
   },
   "smsNotify": {
     "textMsgReminders": "Text message reminders",
     "mobile": "Mobile"
   },
-  "representative": {
-    "representative": "Representative details"
-  },
-  "reasonsForAppealing": {
-    "reasons": "Reasons why you're appealing"
-  }
+  "representative": "Representative",
+  "reasonsForAppealing": "Reasons for appealing"
 }

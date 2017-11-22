@@ -9,5 +9,10 @@
         "required": "Please select an option"
       }
     }
+  },
+  "cya": {
+    "scheduleHearing": {
+      "question": "Attending the hearing"
+    }
   }
 }

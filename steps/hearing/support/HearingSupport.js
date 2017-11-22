@@ -34,7 +34,7 @@ class HearingSupport extends Question {
 
             answer(this, {
                 question: this.content.cya.arrangements.question,
-                section: 'hearing-support',
+                section: 'hearing',
                 answer: titleise(this.fields.arrangements.value)
             })
         ];

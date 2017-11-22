@@ -19,5 +19,13 @@
         "required": "No special characters allowed"
       }
     }
+  },
+  "cya": {
+    "selection": {
+      "question": "Your hearing arrangement"
+    },
+    "anythingElse": {
+      "question": "Any other arrangements"
+    }
   }
 }

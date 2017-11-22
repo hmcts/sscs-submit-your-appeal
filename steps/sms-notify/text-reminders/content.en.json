@@ -12,7 +12,7 @@
   },
   "cya": {
     "doYouWantTextMsgReminders": {
-      "question": "Do you want text message reminders"
+      "question": "Receive text message reminders"
     }
   }
 }

@@ -16,6 +16,11 @@ class NoRepresentativeDetails extends Question {
         return form();
     }
 
+    answers() {
+
+        return [];
+    }
+
     next() {
 
         return goTo(this.journey.ReasonForAppealing);

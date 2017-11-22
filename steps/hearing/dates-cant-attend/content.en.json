@@ -22,7 +22,7 @@
   },
   "cya": {
     "dateYouCantAttend": {
-      "question": "The date you can't attend"
+      "question": "Dates you're not available"
     }
   }
 }

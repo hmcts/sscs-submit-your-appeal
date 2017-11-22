@@ -18,19 +18,14 @@ class CheckYourAppeal extends CYA {
     sections() {
 
         return [
-            section('benefit-type',                     { title: this.content.start.benefitType }),
+            section('benefit-type',                     { title: this.content.benefitType }),
             section('mrn-date',                         { title: this.content.compliance.mrnDate }),
-            section('check-mrn',                        { title: this.content.compliance.checkMRNDate }),
-            section('mrn-over-thirteen-months-late',    { title: this.content.compliance.mrnOverThirteenMonthsLate }),
-            section('mrn-over-month-late',              { title: this.content.compliance.mrnOverMonthLate }),
-            section('no-mrn',                           { title: this.content.compliance.noMRN }),
-            section('appointee',                        { title: this.content.identity.appointee }),
-            section('hearing-support',                  { title: this.content.hearing.support }),
-            section('dates-you-cant-attend',            { title: this.content.hearing.datesCantAttend }),
-            section('appellant-details',                { title: this.content.identity.appellantDetails }),
+            section('appellant-details',                { title: this.content.appellantDetails }),
             section('text-msg-reminders',               { title: this.content.smsNotify.textMsgReminders }),
-            section('representative',                   { title: this.content.representative.representative }),
-            section('reasons-for-appealing',            { title: this.content.reasonsForAppealing.reasons })
+            section('representative',                   { title: this.content.representative }),
+            section('reasons-for-appealing',            { title: this.content.reasonsForAppealing }),
+            section('the-hearing',                      { title: this.content.hearing.theHearing }),
+            section('hearing-arrangements',             { title: this.content.hearing.arrangements })
         ];
     }
 

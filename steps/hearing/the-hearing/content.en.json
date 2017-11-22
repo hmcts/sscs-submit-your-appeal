@@ -12,5 +12,10 @@
         "required": "You need to tell us whether you want to attend the hearing. Select either yes or no."
       }
     }
+  },
+  "cya": {
+    "attendHearing": {
+      "question": "Attending the hearing"
+    }
   }
 }
