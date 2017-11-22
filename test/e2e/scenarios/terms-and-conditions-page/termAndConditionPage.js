@@ -5,7 +5,7 @@ const termsAndConditionsContent = require('terms-and-conditions-page/content.en.
 
 Feature('Terms and Conditions Page');
 
-Scenario.only('When I go to the Terms And Conditions page, I see the Term and Conditions section', (I) => {
+Scenario('When I go to the Terms And Conditions page, I see the Term and Conditions section', (I) => {
 
     I.amOnPage(paths.termsAndConditions);
     I.seeElement('.link-back');
@@ -18,4 +18,13 @@ Scenario.only('When I go to the Terms And Conditions page, I see the Term and Co
     I.click('terms and conditions');
     I.seeInCurrentUrl('https://www.gov.uk/help/terms-conditions');
 
+});
+
+Scenario.only('When I go to the Terms And Conditions page, I see the Related links section', (I) => {
+
+    I.amOnPage(paths.termsAndConditions);
+    I.see(termsAndConditionsContent.relatedLinks.title);
+    I.see(termsAndConditionsContent.relatedLinks.links.cookie.text);
+    I.click(termsAndConditionsContent.relatedLinks.links.cookie.text);
+    I.seeInCurrentUrl(termsAndConditionsContent.relatedLinks.links.cookie.url);
 });

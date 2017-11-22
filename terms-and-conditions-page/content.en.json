@@ -3,5 +3,14 @@
   "termsAndConditions": {
     "termsOfuse": "By using this service you’re agreeing to the following terms of use.",
     "govPrivacy": "These include the GOV.UK <a href='https://www.gov.uk/help/privacy-policy'>privacy policy</a> and <a href='https://www.gov.uk/help/terms-conditions'>terms and conditions</a>."
+  },
+  "relatedLinks": {
+    "title": "Related links",
+    "links": {
+      "cookie": {
+        "text": "Cookie policy",
+        "url": "/cookie-policy"
+        }
+    }
   }
 }
