@@ -78,3 +78,9 @@ Scenario('When I go to the Terms And Conditions page, I see the Applicable law s
 	I.see(termsAndConditionsContent.applicableLaw.mental);
 
 });
+
+Scenario.only('When I go to the Terms And Conditions page, I see the Responsible Use of this service section', (I) => {
+
+	I.see(termsAndConditionsContent.responsibleUse.title);
+
+});

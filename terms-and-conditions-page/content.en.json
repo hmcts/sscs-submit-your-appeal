@@ -47,6 +47,9 @@
     "misuse": "Computer Misuse Act 1990",
     "data": "Data Protection Act 1998",
     "mental": "Mental Capacity Act 2005"
+  },
+  "responsibleUse": {
+    "title": "Responsible use of this service"
   }
 
 }
