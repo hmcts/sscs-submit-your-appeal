@@ -2,11 +2,11 @@
 
 const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
-const Arrangements = require('steps/hearing/arrangement/Arrangements');
+const Arrangements = require('steps/hearing/support/Arrangements');
 const paths = require('paths');
 const answer = require('utils/answer');
 
-describe('Arrangements.js', () => {
+describe('HearingSupport.js', () => {
 
     let arrangements;
 

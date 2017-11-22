@@ -13,87 +13,93 @@ const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
-const AppointeeDetails = require('steps/identity/appointee-details/AppointeeDetails');
-const AppellantDetails = require('steps/identity/appellant-details/AppellantDetails');
+const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
-const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
+const AppointeeFormDownload = require('steps/identity/appointee-form-download/AppointeeFormDownload');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
-const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
-const Arrangements = require('steps/hearing/arrangement/Arrangements');
+const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
+const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
+const HearingSupport = require('steps/hearing/support/HearingSupport');
+const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
-const HearingAvailability = require('steps/hearing/availability/HearingAvailibility');
+const HearingAvailability = require('steps/hearing/availability/HearingAvailability');
+const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
+const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 
 const init = [
-    new Entry(),
-    new Exit(),
-    new Sessions(),
-    new Error404(),
-    new Error500()
+    Entry,
+    Exit,
+    Sessions,
+    Error404,
+    Error500
 ];
 
 const startAnAppeal = [
-    new BenefitType()
+    BenefitType
 ];
 
 const compliance = [
-    new CantAppeal(),
-    new CheckMRN(),
-    new ContactDWP(),
-    new MRNDate(),
-    new NoMRN(),
-    new MRNOverOneMonthLate(),
-    new MRNOverThirteenMonthsLate()
+    CantAppeal,
+    CheckMRN,
+    ContactDWP,
+    MRNDate,
+    NoMRN,
+    MRNOverOneMonthLate,
+    MRNOverThirteenMonthsLate
 ];
 
 const identity = [
-    new Appointee(),
-    new AppointeeDetails(),
-    new AppellantDetails(),
-    new AppellantName(),
-    new AppellantDOB(),
-    new AppellantNINO(),
-    new AppellantContactDetails()
+    AppellantContactDetails,
+    AppellantDOB,
+    AppellantName,
+    AppellantNINO,
+    Appointee,
+    AppointeeFormDownload
 ];
 
 const smsNotify = [
-    new TextReminders(),
-    new SendToNumber(),
-    new EnterMobile(),
-    new SmsConfirmation()
+    TextReminders,
+    SendToNumber,
+    EnterMobile,
+    SmsConfirmation
 ];
 
 const representative = [
-    new Representative(),
-    new RepresentativeDetails(),
-    new NoRepresentativeDetails()
+    Representative,
+    RepresentativeDetails
 ];
 
 const reasonsForAppealing = [
-    new ReasonForAppealing()
+    ReasonForAppealing,
+    OtherReasonForAppealing,
+    SendingEvidence
 ];
 
 const hearing = [
-    new Arrangements(),
-    new HearingArrangements(),
-    new HearingAvailability()
-];
+    HearingAvailability,
+    HearingSupport,
+    HearingArrangements,
+    DatesCantAttend,
+    NotAttendingHearing,
+    TheHearing
+ ];
 
 const checkYourAppeal = [
-    new CheckYourAppeal()
+    CheckYourAppeal
 ];
 
 const confirmation = [
-    new Confirmation()
+    Confirmation
 ];
 
 module.exports = concat(

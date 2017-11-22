@@ -1,0 +1,28 @@
+{
+  "title": "Your availability for a hearing",
+  "fields": {
+    "day": {
+      "title": "Day",
+      "error": {
+        "required": "Please enter a day"
+      }
+    },
+    "month": {
+      "title": "Month",
+      "error": {
+        "required": "Please enter a month"
+      }
+    },
+    "year": {
+      "title": "Year",
+      "error": {
+        "required": "Please enter a year"
+      }
+    }
+  },
+  "cya": {
+    "dateYouCantAttend": {
+      "question": "The date you can't attend"
+    }
+  }
+}

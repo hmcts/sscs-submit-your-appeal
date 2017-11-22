@@ -1,1 +1,29 @@
-<h1>{{ content.title }}</h1>
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+<p>{{ content.subtitle | safe }}</p>
+
+{% call formSection() %}
+
+{{ selectionButtons(
+    fields.scheduleHearing, "",
+    hint = '',
+    options = [
+        { label: content.fields.scheduleHearing.yes, value: "yes" },
+        { label: content.fields.scheduleHearing.no, value: "no" }
+    ])
+}}
+
+{% endcall %}
+
+{% endblock %}

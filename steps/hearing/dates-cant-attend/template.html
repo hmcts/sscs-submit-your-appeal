@@ -1,0 +1,29 @@
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/formElements.html" import date %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+{% call formSection() %}
+
+{{ date(
+    dayField = fields.day,
+    monthField = fields.month,
+    yearField = fields.year,
+    hint = 'For example, 31 3 2017',
+    id = 'date',
+    legend = 'Date you cant attend'
+)}}
+
+{% endcall %}
+
+{% endblock %}

@@ -1,3 +1,13 @@
 {
-  "title": "Your availability for a hearing"
+  "title": "Your availability for a hearing",
+  "subtitle": "Do you have any dates when you can’t attend a hearing? For example, because you’re going on holiday or have an appointment which can’t be moved.",
+  "fields": {
+    "scheduleHearing": {
+      "yes": "I need to tell you about dates when I can’t attend a hearing",
+      "no": "I will come to a hearing whenever you schedule it",
+      "error": {
+        "required": "Please select an option"
+      }
+    }
+  }
 }

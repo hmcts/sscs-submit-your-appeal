@@ -1,4 +1,4 @@
-const appellant = require('steps/identity/appellant-details/content.en').fields;
+const appellant = require('steps/identity/appellant-contact-details/content.en').fields;
 const paths = require('paths');
 
 Feature('Appellant details form');

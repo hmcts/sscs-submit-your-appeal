@@ -3,11 +3,11 @@ module.exports = {
     health:                             '/health',
 
     landingPages: {
-      overview:                         '/',
-      beforeYouAppeal:                  '/before-you-appeal',
-      helpWithAppeal:                   '/help-with-appeal',
-      startAnAppeal:                    '/start-an-appeal',
-      afterYouAppeal:                   '/after-you-appeal'
+        overview:                       '/',
+        beforeYouAppeal:                '/before-you-appeal',
+        helpWithAppeal:                 '/help-with-appeal',
+        startAnAppeal:                  '/start-an-appeal',
+        afterYouAppeal:                 '/after-you-appeal'
     },
 
     validPostcode: {
@@ -38,12 +38,13 @@ module.exports = {
 
     identity: {
         areYouAnAppointee:              '/are-you-an-appointee',
-        enterAppellantDetails:          '/enter-appellant-details',
+        enterAppellantDetails:          '/enter-appellant-contact-details',
         enterAppellantName:             '/enter-appellant-name',
         enterAppellantDOB:              '/enter-appellant-dob',
         enterAppellantNINO:             '/enter-appellant-nino',
         enterAppellantContactDetails:   '/enter-appellant-contact-details',
-        enterAppointeeDetails:          '/enter-appointee-details'
+        enterAppointeeContactDetails:   '/enter-appointee-contact-details',
+        downloadAppointeeForm:          '/appointee-form-download'
     },
 
     smsNotify: {
@@ -55,18 +56,22 @@ module.exports = {
 
     representative: {
         representative:                 '/representative',
-        representativeDetails:          '/representative-details',
-        noRepresentativeDetails:        '/no-representative-details'
+        representativeDetails:          '/representative-details'
     },
 
     reasonsForAppealing: {
-        reasonForAppealing:             '/reason-for-appealing'
+        reasonForAppealing:             '/reason-for-appealing',
+        otherReasonForAppealing:        '/other-reason-for-appealing',
+        sendingEvidence:                '/sending-evidence'
     },
 
     hearing: {
         arrangements:                   '/arrangements',
-        hearingArrangements:            '/hearing-arrangements',
-        hearingAvailability:            '/hearing-availability'
+        datesCantAttend:                '/dates-cant-attend',
+        hearingSupport:                 '/hearing-support',
+        hearingAvailability:            '/hearing-availability',
+        notAttendingHearing:            '/not-attending-hearing',
+        theHearing:                     '/the-hearing'
     },
 
     checkYourAppeal:                     '/check-your-appeal',

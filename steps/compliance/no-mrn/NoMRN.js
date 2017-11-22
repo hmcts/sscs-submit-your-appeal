@@ -9,6 +9,7 @@ const paths = require('paths');
 class NoMRN extends Question {
 
     get url() {
+
         return paths.compliance.noMRN;
     }
 
@@ -23,7 +24,20 @@ class NoMRN extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.reasonForNoMRN.question,
+                section: 'no-mrn',
+                answer: `${this.fields.reasonForNoMRN.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.Appointee);
     }
 }

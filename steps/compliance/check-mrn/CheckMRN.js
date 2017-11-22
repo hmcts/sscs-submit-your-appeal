@@ -1,19 +1,21 @@
+'use strict';
+
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
-const answer = require('utils/answer');
+const userAnswer = require('utils/answer');
 
 class CheckMRN extends Question {
 
     get url() {
+
         return paths.compliance.checkMRNDate;
     }
 
     get form() {
-
-        const answers = [answer.YES, answer.NO];
 
         return form(
 
@@ -24,13 +26,26 @@ class CheckMRN extends Question {
 
             textField('checkedMRN').joi(
                 this.content.fields.checkedMRN.error.required,
-                Joi.string().valid(answers).required()
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.mrnDate.question,
+                section: 'check-mrn',
+                answer: `${this.fields.day.value} ${this.fields.month.value} ${this.fields.year.value}`
+            })
+        ];
+    }
+
     next() {
-        if(this.fields.checkedMRN.value === answer.YES) {
+
+        if(this.fields.checkedMRN.value === userAnswer.YES) {
 
             const mrnDate = DateUtils.createMoment(
                 this.fields.day.value,
@@ -50,6 +65,7 @@ class CheckMRN extends Question {
             }
 
         } else {
+
             return goTo(this.journey.MRNDate);
         }
     }

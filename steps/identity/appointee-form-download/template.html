@@ -7,8 +7,14 @@
 
 {% block two_thirds %}
 
-{{ header(content.title, size="large") }}
+<a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
 
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Go back</a>
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+<h1 class="heading-large">{{ content.title }}</h1>
+
+<a href="http://www.gov.uk">{{ content.govuk }}</a>
 
 {% endblock %}

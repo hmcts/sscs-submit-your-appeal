@@ -23,5 +23,10 @@
         "invalid": "You have entered an invalid last name. Enter your last name in full."
       }
     }
+  },
+  "cya": {
+    "appellantName": {
+      "question": "Name"
+    }
   }
 }

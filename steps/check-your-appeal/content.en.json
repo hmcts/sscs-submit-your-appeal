@@ -1,4 +1,24 @@
 {
-  "title": "Check your appeal PLACEHOLDER",
-  "submit": "Submit your appeal"
+  "start": {
+    "benefitType": "Benefit"
+  },
+  "compliance": {
+    "checkMRN": "Check MRN Date",
+    "mrnDate": "Mandatory Reconsideration Notice (MRN)",
+    "mrnOverOneMonthLate": "Appeal over a month late",
+    "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
+    "noMRN": "No MRN - Will we ever get here?"
+  },
+  "hearing": {
+    "support": "Hearing Support",
+    "datesCantAttend": "Date you cant attend the hearing"
+  },
+  "identity": {
+    "appointee": "Appointee",
+    "appellantDetails": "Appellant's details"
+  },
+  "smsNotify": {
+    "textMsgReminders": "Text message reminders",
+    "mobile": "Mobile"
+  }
 }

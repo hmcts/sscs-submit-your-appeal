@@ -1,22 +1,27 @@
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
-{% from "look-and-feel/components/header.njk" import header %}
-
-{% set phase="ALPHA" %}
-{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
 
 {% block head -%}
-    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
-{% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
-    <a class="link-back" href="#" onclick="history.go(-1)">Back</a>
-{% endblock %}
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
 
-{% block two_thirds %}
-    {{ header(content.title, size="large") }}
-    <p>{{ content.intro }}</p>
-    <p><a class="button" href="{{ signUpLink }}" role="button">{{ content.signUp }}</a></p>
-    <p><a class="link" href="/representative">{{ content.noThanks }}</a></p>
+{% block fields %}
+
+{% call formSection() %}
+
+{{ selectionButtons(
+    fields.doYouWantTextMsgReminders, "",
+    hint = '',
+    options = [
+        { label: content.fields.doYouWantTextMsgReminders.yes, value: "yes" },
+        { label: content.fields.doYouWantTextMsgReminders.no, value: "no" }
+    ])
+    }}
+
+{% endcall %}
+
 {% endblock %}
