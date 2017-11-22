@@ -25,5 +25,10 @@
     "title": "Who we are",
     "managedBy": "This service is managed by Her Majesty’s Courts and Tribunals Service and will be referred to as ‘we’ from now on.",
     "changeInLaw": "We may update these terms and conditions if there is a change in the law or to the way the service works."
+  },
+  "informationProvided": {
+    "title": "Information provided by this service",
+    "support": "This service provides information to support you. We can’t give legal advice on individual cases.",
+    "questions": "You should answer the questions in the service based on your circumstances, and seek legal advice if you need it."
   }
 }

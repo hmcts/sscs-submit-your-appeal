@@ -44,3 +44,11 @@ Scenario('When I go to the Terms And Conditions page, I see the Who we are secti
 	I.see(termsAndConditionsContent.whoWeAre.changeInLaw);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see the Information provided by this service section', (I) => {
+
+	I.see(termsAndConditionsContent.informationProvided.title);
+	I.see(termsAndConditionsContent.informationProvided.support);
+	I.see(termsAndConditionsContent.informationProvided.questions);
+
+});
