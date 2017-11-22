@@ -2,6 +2,8 @@
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { titleise } = require('utils/stringUtils');
 const regex = require('../../../utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -25,6 +27,18 @@ class TextReminders extends Question {
 
             textField.ref(this.journey.AppellantContactDetails, 'phoneNumber')
         );
+    }
+
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.doYouWantTextMsgReminders.question,
+                section: 'text-msg-reminders',
+                answer: titleise(this.fields.doYouWantTextMsgReminders.value)
+            })
+        ];
     }
 
     next() {

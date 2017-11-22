@@ -27,7 +27,8 @@ class CheckYourAppeal extends CYA {
             section('appointee',                        { title: this.content.identity.appointee }),
             section('hearing-support',                  { title: this.content.hearing.support }),
             section('dates-you-cant-attend',            { title: this.content.hearing.datesCantAttend }),
-            section('appellant-details',                { title: this.content.identity.appellantDetails })
+            section('appellant-details',                { title: this.content.identity.appellantDetails }),
+            section('text-msg-reminders',               { title: this.content.smsNotify.textMsgReminders })
         ];
     }
 

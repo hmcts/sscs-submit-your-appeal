@@ -16,5 +16,9 @@
   "identity": {
     "appointee": "Appointee",
     "appellantDetails": "Appellant's details"
+  },
+  "smsNotify": {
+    "textMsgReminders": "Text message reminders",
+    "mobile": "Mobile"
   }
 }

@@ -9,5 +9,10 @@
         "required": "Select whether or not you want text message reminders"
       }
     }
+  },
+  "cya": {
+    "doYouWantTextMsgReminders": {
+      "question": "Do you want text message reminders"
+    }
   }
 }
