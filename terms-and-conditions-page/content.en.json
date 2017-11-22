@@ -53,7 +53,8 @@
     "designedFor": "The service is designed for people who need to use it or by others on their behalf and only with their consent.",
     "risks": "There are risks in using a shared computer (for example in an internet café) to access this service. It’s your responsibility to be aware of these risks and to avoid using any computer which may leave your personal information accessible to others. You’re responsible if you choose to leave a computer unprotected while using this service.",
     "precautions": "You must take your own precautions to ensure that the way you access this service does not expose you to the risk of:",
-    "viruses": "viruses"
+    "viruses": "viruses",
+    "malicious": "malicious computer code"
 
   }
 
