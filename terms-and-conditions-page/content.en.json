@@ -40,6 +40,13 @@
     "title": "Who we share your data with",
     "dwp": "Your data will be shared with Department for Work and Pensions (DWP). This is so they can respond to your appeal.",
     "representative": "We also share your data with your named representative, if you enter their details. This is so they can stay updated with your appeal."
+  },
+  "applicableLaw": {
+    "title": "Applicable law",
+    "law": "Your use of this service and any dispute arising from its use will be governed by and construed in accordance with the laws of England and Wales, including but not limited to the:",
+    "misuse": "Computer Misuse Act 1990",
+    "data": "Data Protection Act 1998",
+    "mental": "Mental Capacity Act 2005"
   }
 
 }

@@ -68,3 +68,13 @@ Scenario('When I go to the Terms And Conditions page, I see the Who we share you
 	I.see(termsAndConditionsContent.shareYourData.representative);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see the Applicable law section', (I) => {
+
+	I.see(termsAndConditionsContent.applicableLaw.title);
+	I.see(termsAndConditionsContent.applicableLaw.law);
+	I.see(termsAndConditionsContent.applicableLaw.misuse);
+	I.see(termsAndConditionsContent.applicableLaw.data);
+	I.see(termsAndConditionsContent.applicableLaw.mental);
+
+});
