@@ -15,8 +15,7 @@ import uk.gov.hmcts.RPMTagger
 Ansible ansible = new Ansible(this, 'sscs')
 Packager packager = new Packager(this, 'sscs')
 
-def channel = '#sscs-tech'
-
+String channel = '#sscs-tech'
 
 timestamps {
     milestone()
@@ -100,12 +99,12 @@ timestamps {
                     milestone()
                 }
 
-            }  catch (Throwable err) {
+            }   catch (Throwable err) {
                 notifyBuildFailure channel: channel
                 throw err
             }
         }
         milestone()
     }
-  notifyBuildFixed channel: channel
+    notifyBuildFixed channel: channel
 }
