@@ -106,5 +106,5 @@ timestamps {
         }
         milestone()
     }
-    notifyBuildFixed channel: channel
+    // notifyBuildFixed channel: channel
 }
