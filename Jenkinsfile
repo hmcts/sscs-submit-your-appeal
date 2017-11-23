@@ -99,11 +99,11 @@ timestamps {
                 }
 
             }   catch (err) {
-                notifyBuildFailure channel: channel
+                //notifyBuildFailure channel: channel
                 throw err
             }
         }
         milestone()
     }
-    notifyBuildFixed channel: channel
+    //notifyBuildFixed channel: channel
 }
