@@ -3,44 +3,33 @@
 const { expect } = require('test/util/chai');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const paths = require('paths');
+const answer = require('utils/answer');
 
 describe('TextReminders.js', () => {
 
-    let textRemindersClass;
+    let textReminders;
 
     beforeEach(() => {
-       textRemindersClass = new TextReminders();
-       textRemindersClass.journey = {
-           AppellantDetails: {}
-       };
-       textRemindersClass.fields = {
-           appellantPhoneNumber: {}
+
+       textReminders = new TextReminders({
+           journey: {
+               SendToNumber: paths.smsNotify.sendToNumber,
+               EnterMobile: paths.smsNotify.enterMobile,
+               Representative: paths.representative.representative,
+               AppellantContactDetails: paths.identity.enterAppellantDetails
+           }
+       });
+
+       textReminders.fields = {
+           doYouWantTextMsgReminders: {},
+           phoneNumber: {}
        };
     });
 
     describe('url()', () => {
 
         it('returns url /appellant-text-reminders', () => {
-            expect(textRemindersClass.url).to.equal('/appellant-text-reminders');
-        });
-
-    });
-
-    describe('signUpLink()', () => {
-
-        it('returns \'/enter-number\' when the number provided is an empty string', () => {
-            textRemindersClass.fields.appellantPhoneNumber.value = '';
-            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.enterMobile);
-        });
-
-        it('returns \'/enter-number\' when the number provided is not a mobile number', () => {
-            textRemindersClass.fields.appellantPhoneNumber.value = '03453003943';
-            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.enterMobile);
-        });
-
-        it('returns \'/send-to-number\' when the number provided is a mobile number', () => {
-            textRemindersClass.fields.appellantPhoneNumber.value = '07422756889';
-            expect(textRemindersClass.signUpLink).to.equal(paths.smsNotify.sendToNumber);
+            expect(textReminders.url).to.equal('/appellant-text-reminders');
         });
 
     });
@@ -48,13 +37,20 @@ describe('TextReminders.js', () => {
     describe('get form()', () => {
 
         it('should contain a single field', () => {
-            expect(textRemindersClass.form.fields.length).to.equal(1);
+            expect(textReminders.form.fields.length).to.equal(2);
         });
 
-        it('should contain a textField reference called \'appellantPhoneNumber\'', () => {
-            const textField = textRemindersClass.form.fields[0];
+        it('should contain a textField reference called \'phoneNumber\'', () => {
+            const textField = textReminders.form.fields[0];
+            expect(textField.constructor.name).to.eq('FieldDesriptor');
+            expect(textField.name).to.equal('doYouWantTextMsgReminders');
+            expect(textField.validations).to.not.be.empty;
+        });
+
+        it('should contain a textField reference called \'phoneNumber\'', () => {
+            const textField = textReminders.form.fields[1];
             expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('appellantPhoneNumber');
+            expect(textField.name).to.equal('phoneNumber');
             expect(textField.validations).to.be.empty;
         });
 
@@ -62,14 +58,24 @@ describe('TextReminders.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /sms-confirmation', () => {
-            const redirector = {
-                nextStep: paths.smsNotify.enterMobile
-            };
-            textRemindersClass.journey = {
-                EnterMobile: paths.smsNotify.enterMobile
-            };
-            expect(textRemindersClass.next()).to.eql(redirector);
+        it('returns the next step url /send-to-number', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
+            textReminders.fields.phoneNumber.value = '07455654886';
+            const nextStep = textReminders.next().branches[0].redirector.nextStep;
+            expect(nextStep).to.eq(paths.smsNotify.sendToNumber);
+        });
+
+        it('returns the next step url /enter-mobile', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
+            textReminders.fields.phoneNumber.value = '01277456378';
+            const nextStep = textReminders.next().branches[0].redirector.nextStep;
+            expect(nextStep).to.eq(paths.smsNotify.enterMobile);
+        });
+
+        it('returns the next step url /representative', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = answer.NO;
+            const nextStep = textReminders.next().fallback.nextStep;
+            expect(nextStep).to.eq(paths.representative.representative);
         });
 
     });

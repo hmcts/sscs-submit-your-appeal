@@ -1,7 +1,7 @@
 'use strict';
 
 const Sessions = require('steps/session/Sessions');
-const { expect, should } = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const { stub } = require('sinon');
 const paths = require('paths');
 
@@ -20,11 +20,7 @@ describe('Sessions.js', () => {
     res.send = stub();
 
     beforeEach(() => {
-        sessionsClass = new Sessions();
-    });
-
-    after(() => {
-        sessionsClass = undefined;
+        sessionsClass = new Sessions({ journey: {} });
     });
 
     describe('get url()', () => {

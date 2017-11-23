@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const HearingArrangements = require('steps/hearing/hearing-arrangements/HearingArrangements');
+const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
 const paths = require('paths');
 
 describe('HearingArrangements.js', () => {
@@ -9,16 +9,17 @@ describe('HearingArrangements.js', () => {
     let hearingArrangements;
 
     beforeEach(() => {
-        hearingArrangements = new HearingArrangements();
-    });
 
-    after(() => {
-        hearingArrangements = undefined;
+        hearingArrangements = new HearingArrangements({
+            journey: {
+                HearingAvailability: paths.hearing.hearingAvailability
+            }
+        });
     });
 
     describe('get url()', () => {
 
-        it('returns url /hearing-arrangements', () => {
+        it('returns url /arrangements', () => {
             expect(hearingArrangements.url).to.equal(paths.hearing.hearingArrangements);
         });
 
@@ -72,13 +73,7 @@ describe('HearingArrangements.js', () => {
         describe('next()', () => {
 
             it('returns the next step url /hearing-availability', () => {
-                const redirector = {
-                    nextStep: paths.hearing.hearingAvailability
-                };
-                hearingArrangements.journey = {
-                    HearingAvailibility: paths.hearing.hearingAvailability
-                };
-                expect(hearingArrangements.next()).to.eql(redirector);
+                expect(hearingArrangements.next()).to.eql({ nextStep: paths.hearing.hearingAvailability });
             });
 
         });

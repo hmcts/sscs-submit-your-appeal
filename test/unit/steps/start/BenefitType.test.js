@@ -6,20 +6,22 @@ const BenefitType = require('steps/start/BenefitType');
 
 describe('BenefitType.js', () => {
 
-    let benefitTypeClass;
+    let benefitType;
 
     beforeEach(() => {
-        benefitTypeClass = new BenefitType();
-    });
 
-    after(() => {
-        benefitTypeClass = undefined;
+        benefitType = new BenefitType({
+            journey: {
+                MRNDate: paths.compliance.mrnDate
+            }
+        });
+
     });
 
     describe('get url()', () => {
 
         it('returns url /benefit-type', () => {
-            expect(benefitTypeClass.url).to.equal(paths.start.benefitType);
+            expect(benefitType.url).to.equal(paths.start.benefitType);
         });
 
     });
@@ -29,7 +31,7 @@ describe('BenefitType.js', () => {
         let field;
 
         beforeEach(() => {
-            field = benefitTypeClass.form.fields[0];
+            field = benefitType.form.fields[0];
         });
 
         after(() => {
@@ -49,16 +51,9 @@ describe('BenefitType.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /mrn-date', () => {
-            const redirector = {
-                nextStep: paths.compliance.mrnDate
-            };
-            benefitTypeClass.journey = {
-                MRNDate: paths.compliance.mrnDate
-            };
-            expect(benefitTypeClass.next()).to.eql(redirector);
+            expect(benefitType.next()).to.eql({ nextStep: paths.compliance.mrnDate });
         });
 
     });
-
 
 });

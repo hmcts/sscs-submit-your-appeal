@@ -3,40 +3,27 @@
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const {expect} = require('test/util/chai');
 const paths = require('paths');
-const answer = require('utils/answer');
 
 describe('AppellantNINO.js', () => {
 
-    let appellantNINOSut;
+    let appellantNINOClass;
 
     beforeEach(() => {
-        appellantNINOSut = new AppellantNINO();
-        appellantNINOSut.journey = {
-            Appointee: {}
-        };
-        appellantNINOSut.fields = {
-            appointee: {}
-        }
+
+        appellantNINOClass = new AppellantNINO({
+            journey: {
+                AppellantContactDetails: paths.identity.enterAppointeeContactDetails
+            }
+        });
+
+        appellantNINOClass.fields = {}
+
     });
 
     describe('get url()', () => {
 
         it('returns url /enter-appellant-nino', () => {
-            expect(appellantNINOSut.url).to.equal(paths.identity.enterAppellantNINO);
-        });
-
-    });
-
-    describe('get isAppointee()', () => {
-
-        it('should return true', () => {
-            appellantNINOSut.fields.appointee.value = answer.YES;
-            expect(appellantNINOSut.isAppointee).to.eq(true);
-        });
-
-        it('should return false', () => {
-            appellantNINOSut.fields.appointee.value = answer.NO;
-            expect(appellantNINOSut.isAppointee).to.eq(false);
+            expect(appellantNINOClass.url).to.equal(paths.identity.enterAppellantNINO);
         });
 
     });
@@ -47,7 +34,7 @@ describe('AppellantNINO.js', () => {
         let field;
 
         beforeEach(() => {
-            fields = appellantNINOSut.form.fields;
+            fields = appellantNINOClass.form.fields;
         });
 
         after(() => {
@@ -68,6 +55,14 @@ describe('AppellantNINO.js', () => {
                 expect(field.validations).to.not.be.empty;
             });
 
+        });
+
+    });
+
+    describe('next()', () => {
+
+        it('returns the next step url /enter-appellant-contact-details', () => {
+            expect(appellantNINOClass.next()).to.eql({nextStep: paths.identity.enterAppointeeContactDetails});
         });
 
     });

@@ -6,37 +6,30 @@ const paths = require('paths');
 
 describe('NoMRN.js', () => {
 
-    let noMRNClass;
+    let noMRN;
 
     beforeEach(() => {
-        noMRNClass = new NoMRN();
-    });
 
-    after(() => {
-        noMRNClass = undefined;
+        noMRN = new NoMRN({
+            journey: {
+                Appointee: '/are-you-an-appointee'
+            }
+        });
+
     });
 
     describe('get url()', () => {
 
         it('returns url /no-mrn', () => {
-            expect(noMRNClass.url).to.equal(paths.compliance.noMRN);
+            expect(noMRN.url).to.equal(paths.compliance.noMRN);
         });
 
     });
 
     describe('get form()', () => {
 
-        let field;
-
-        beforeEach(() => {
-            field = noMRNClass.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name reasonForNoMRN', () => {
+            const field = noMRN.form.fields[0];
             expect(field.name).to.equal('reasonForNoMRN');
         });
 
@@ -45,13 +38,7 @@ describe('NoMRN.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /are-you-an-appointee', () => {
-            const redirector = {
-                nextStep: '/are-you-an-appointee'
-            };
-            noMRNClass.journey = {
-                Appointee: '/are-you-an-appointee'
-            };
-            expect(noMRNClass.next()).to.eql(redirector);
+            expect(noMRN.next()).to.eql({ nextStep: '/are-you-an-appointee' });
         });
 
     });

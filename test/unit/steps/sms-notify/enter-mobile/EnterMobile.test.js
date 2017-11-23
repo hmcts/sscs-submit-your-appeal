@@ -6,21 +6,22 @@ const paths = require('paths');
 
 describe('EnterMobile.js', () => {
 
-    let enterMobileClass;
+    let enterMobile;
 
     beforeEach(() => {
-        enterMobileClass = new EnterMobile();
-        enterMobileClass.journey = {};
-    });
 
-    after(() => {
-       enterMobileClass = undefined;
+        enterMobile = new EnterMobile({
+            journey: {
+                SmsConfirmation: paths.smsNotify.smsConfirmation
+            }
+        });
+
     });
 
     describe('get url()', () => {
 
         it('returns url /enter-mobile', () => {
-           expect(enterMobileClass.url).to.equal(paths.smsNotify.enterMobile);
+           expect(enterMobile.url).to.equal(paths.smsNotify.enterMobile);
         });
 
     });
@@ -30,7 +31,7 @@ describe('EnterMobile.js', () => {
         let field;
 
         beforeEach(() => {
-            field = enterMobileClass.form.fields[0];
+            field = enterMobile.form.fields[0];
         });
 
         after(() => {
@@ -50,8 +51,7 @@ describe('EnterMobile.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /sms-confirmation', () => {
-            enterMobileClass.journey.SmsConfirmation = paths.smsNotify.smsConfirmation;
-            expect(enterMobileClass.next()).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
+            expect(enterMobile.next()).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
         });
 
     });

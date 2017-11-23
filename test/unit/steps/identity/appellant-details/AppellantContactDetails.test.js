@@ -3,40 +3,24 @@
 const AppellantDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const answer = require('utils/answer');
 
-describe('AppellantDetails.js', () => {
+describe('AppellantContactDetails.js', () => {
 
     let appellantDetailsClass;
 
     beforeEach(() => {
-        appellantDetailsClass = new AppellantDetails();
-        appellantDetailsClass.journey = {
-            Appointee: {}
-        };
-        appellantDetailsClass.fields = {
-            appointee: {}
-        }
+        appellantDetailsClass = new AppellantDetails({
+            journey: {
+                TextReminders: paths.smsNotify.appellantTextReminders
+            }
+        });
+        appellantDetailsClass.fields = {}
     });
 
     describe('get url()', () => {
 
         it('returns url /enter-appellant-contact-details', () => {
             expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantDetails);
-        });
-
-    });
-
-    describe('get isAppointee()', () => {
-
-        it('should return true', () => {
-            appellantDetailsClass.fields.appointee.value = answer.YES;
-            expect(appellantDetailsClass.isAppointee).to.eq(true);
-        });
-
-        it('should return false', () => {
-            appellantDetailsClass.fields.appointee.value = answer.NO;
-            expect(appellantDetailsClass.isAppointee).to.eq(false);
         });
 
     });
@@ -54,58 +38,10 @@ describe('AppellantDetails.js', () => {
             fields = field = undefined;
         });
 
-        describe('firstName field', () => {
-
-            beforeEach(() => {
-                field = fields[0];
-            });
-
-            it('contains the field name firstName', () => {
-                expect(field.name).to.equal('firstName');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('lastName field', () => {
-
-            beforeEach(() => {
-                field = fields[1];
-            });
-
-            it('contains the field name lastName', () => {
-                expect(field.name).to.equal('lastName');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('niNumber field', () => {
-
-            beforeEach(() => {
-                field = fields[2];
-            });
-
-            it('contains the field name niNumber', () => {
-                expect(field.name).to.equal('niNumber');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
         describe('addressLine1 field', () => {
 
             beforeEach(() => {
-                field = fields[3];
+                field = fields[0];
             });
 
             it('contains the field name addressLine1', () => {
@@ -121,7 +57,7 @@ describe('AppellantDetails.js', () => {
         describe('addressLine2 field', () => {
 
             beforeEach(() => {
-                field = fields[4];
+                field = fields[1];
             });
 
             it('contains the field name addressLine2', () => {
@@ -137,7 +73,7 @@ describe('AppellantDetails.js', () => {
         describe('townCity field', () => {
 
             beforeEach(() => {
-                field = fields[5];
+                field = fields[2];
             });
 
             it('contains the field name townCity', () => {
@@ -153,7 +89,7 @@ describe('AppellantDetails.js', () => {
         describe('postCode field', () => {
 
             beforeEach(() => {
-                field = fields[6];
+                field = fields[3];
             });
 
             it('contains the field name postCode', () => {
@@ -166,14 +102,14 @@ describe('AppellantDetails.js', () => {
 
         });
 
-        describe('appellantPhoneNumber field', () => {
+        describe('phoneNumber field', () => {
 
             beforeEach(() => {
-                field = fields[7];
+                field = fields[4];
             });
 
-            it('contains the field name appellantPhoneNumber', () => {
-                expect(field.name).to.equal('appellantPhoneNumber');
+            it('contains the field name phoneNumber', () => {
+                expect(field.name).to.equal('phoneNumber');
             });
 
             it('contains validation', () => {
@@ -185,7 +121,7 @@ describe('AppellantDetails.js', () => {
         describe('emailAddress field', () => {
 
             beforeEach(() => {
-                field = fields[8];
+                field = fields[5];
             });
 
             it('contains the field name emailAddress', () => {
@@ -203,13 +139,7 @@ describe('AppellantDetails.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /appellant-text-reminders', () => {
-            const redirector = {
-                nextStep: paths.smsNotify.appellantTextReminders
-            };
-            appellantDetailsClass.journey = {
-                TextReminders: paths.smsNotify.appellantTextReminders
-            };
-            expect(appellantDetailsClass.next()).to.eql(redirector);
+            expect(appellantDetailsClass.next()).to.eql({ nextStep: paths.smsNotify.appellantTextReminders });
         });
 
     });

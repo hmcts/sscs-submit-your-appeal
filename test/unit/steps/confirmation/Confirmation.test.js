@@ -9,11 +9,9 @@ describe('Confirmation.js', () => {
     let confirmationClass;
 
     beforeEach(() => {
-        confirmationClass = new Confirmation();
-    });
 
-    after(() => {
-        confirmationClass = undefined;
+        confirmationClass = new Confirmation({ journey: {} });
+
     });
 
     describe('get url()', () => {

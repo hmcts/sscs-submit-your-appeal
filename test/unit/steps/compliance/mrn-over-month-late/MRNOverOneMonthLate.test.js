@@ -6,37 +6,29 @@ const paths = require('paths');
 
 describe('MRNOverOneMonth.js', () => {
 
-    let mrnOverOneMonthClass;
+    let mrnOverOneMonth;
 
     beforeEach(() => {
-        mrnOverOneMonthClass = new MRNOverOneMonthLate();
-    });
 
-    after(() => {
-        mrnOverOneMonthClass = undefined;
+        mrnOverOneMonth = new MRNOverOneMonthLate({
+            journey: {
+                Appointee: paths.identity.areYouAnAppointee
+            }
+        });
     });
 
     describe('get url()', () => {
 
         it('returns url /mrn-over-month-late', () => {
-            expect(mrnOverOneMonthClass.url).to.equal(paths.compliance.mrnOverMonthLate);
+            expect(mrnOverOneMonth.url).to.equal(paths.compliance.mrnOverMonthLate);
         });
 
     });
 
     describe('get form()', () => {
 
-        let field;
-
-        beforeEach(() => {
-            field = mrnOverOneMonthClass.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name reasonForBeingLate', () => {
+            const field = mrnOverOneMonth.form.fields[0];
             expect(field.name).to.equal('reasonForBeingLate');
         });
 
@@ -45,13 +37,7 @@ describe('MRNOverOneMonth.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /are-you-an-appointee', () => {
-            const redirector = {
-                nextStep: paths.identity.areYouAnAppointee
-            };
-            mrnOverOneMonthClass.journey = {
-                Appointee: paths.identity.areYouAnAppointee
-            };
-            expect(mrnOverOneMonthClass.next()).to.eql(redirector);
+            expect(mrnOverOneMonth.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 
     });

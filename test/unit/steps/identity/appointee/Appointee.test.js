@@ -1,20 +1,23 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { stub } = require('sinon');
 const Appointee = require('steps/identity/appointee/Appointee');
 const paths = require('paths');
+const answer = require('utils/answer');
 
 describe('Appointee.js', () => {
 
     let appointeeClass;
 
     beforeEach(() => {
-        appointeeClass = new Appointee();
-    });
 
-    after(() => {
-        appointeeClass = undefined;
+        appointeeClass = new Appointee({
+            journey: {
+                AppellantName: paths.identity.enterAppellantName,
+                AppointeeFormDownload: paths.identity.downloadAppointeeForm
+            }
+        });
+
     });
 
     describe('get url()', () => {
@@ -49,14 +52,14 @@ describe('Appointee.js', () => {
 
     describe('next()', () => {
 
+        it('returns the next step url /appointee-form-download', () => {
+            const nextStep = appointeeClass.next().branches[0].redirector.nextStep;
+            expect(nextStep).to.eq(paths.identity.downloadAppointeeForm);
+        });
+
         it('returns the next step url /enter-appellant-name', () => {
-            const redirector = {
-                nextStep: paths.identity.enterAppellantName
-            };
-            appointeeClass.journey = {
-                AppellantName: paths.identity.enterAppellantName
-            };
-            expect(appointeeClass.next()).to.eql(redirector);
+            const nextStep = appointeeClass.next().fallback.nextStep;
+            expect(nextStep).to.eq(paths.identity.enterAppellantName);
         });
 
     });

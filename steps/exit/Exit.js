@@ -6,6 +6,7 @@ const paths = require('paths');
 class Exit extends ExitPoint {
 
     get url() {
+
         return paths.session.exit;
     }
 }

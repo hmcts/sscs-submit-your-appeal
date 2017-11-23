@@ -6,20 +6,16 @@ const paths = require('paths');
 
 describe('ContactDWP.js', () => {
 
-    let contactDWPClass;
+    let contactDWP;
 
     beforeEach(() => {
-        contactDWPClass = new ContactDWP();
-    });
-
-    after(() => {
-        contactDWPClass = undefined;
+        contactDWP = new ContactDWP({ journey: {} });
     });
 
     describe('get url()', () => {
 
         it('returns url /contact-dwp', () => {
-            expect(contactDWPClass.url).to.equal(paths.compliance.contactDWP);
+            expect(contactDWP.url).to.equal(paths.compliance.contactDWP);
         });
 
     });

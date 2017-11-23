@@ -14,7 +14,7 @@ class SendToNumber extends Question {
         return paths.smsNotify.sendToNumber;
     }
 
-    get appellantPhoneNumber() {
+    get phoneNumber() {
 
         return this.fields.phoneNumber.value;
     }

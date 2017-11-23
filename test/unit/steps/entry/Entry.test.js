@@ -6,20 +6,22 @@ const paths = require('paths');
 
 describe('Entry.js', () => {
 
-    let entryClass;
+    let entry;
 
     beforeEach(() => {
-       entryClass = new Entry();
-    });
 
-    after(() => {
-        entryClass = undefined;
+       entry = new Entry({
+           journey: {
+               BenefitType: paths.start.benefitType
+           }
+       });
+
     });
 
     describe('get url()', () => {
 
         it('returns url /entry', () => {
-            expect(entryClass.url).to.equal(paths.session.entry);
+            expect(entry.url).to.equal(paths.session.entry);
         });
 
     });
@@ -27,13 +29,7 @@ describe('Entry.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /benefit-type', () => {
-            const redirector = {
-                nextStep: paths.start.benefitType
-            };
-            entryClass.journey = {
-                BenefitType: paths.start.benefitType
-            };
-            expect(entryClass.next()).to.eql(redirector);
+            expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
         });
 
     });

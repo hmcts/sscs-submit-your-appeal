@@ -19,11 +19,13 @@ describe('MRNDate.js', () => {
     let mrnDateClass;
 
     beforeEach(() => {
-        mrnDateClass = new MRNDate();
-    });
 
-    after(() => {
-        mrnDateClass = undefined;
+        mrnDateClass = new MRNDate({
+            journey: {
+                Appointee: paths.identity.areYouAnAppointee,
+                CheckMRN:  paths.compliance.checkMRNDate
+            }
+        });
     });
 
     describe('get url()', () => {
@@ -50,6 +52,7 @@ describe('MRNDate.js', () => {
         describe('day field', () => {
 
             beforeEach(() => {
+
                 field = fields[0];
             });
 
@@ -66,6 +69,7 @@ describe('MRNDate.js', () => {
         describe('month field', () => {
 
             beforeEach(() => {
+
                 field = fields[1];
             });
 
@@ -82,7 +86,9 @@ describe('MRNDate.js', () => {
         describe('year field', () => {
 
             beforeEach(() => {
+
                 field = fields[2];
+
             });
 
             it('contains the field name year', () => {
@@ -99,7 +105,6 @@ describe('MRNDate.js', () => {
 
     describe('next()', () => {
 
-        let redirector;
         let date;
 
         beforeEach(() => {
@@ -109,22 +114,12 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.year = {};
         });
 
-        after(() => {
-           redirector = date = undefined;
-        });
-
         it('returns the next step url /are-you-an-appointee if date less than a month', () => {
             date = mrnDate(0);
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
-            redirector = {
-                nextStep: paths.identity.areYouAnAppointee
-            };
-            mrnDateClass.journey = {
-                Appointee: paths.identity.areYouAnAppointee
-            };
-            expect(mrnDateClass.next()).to.eql(redirector);
+            expect(mrnDateClass.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 
         it('returns the next step url /are-you-an-appointee if date is equal to a month', () => {
@@ -132,13 +127,7 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
-            redirector = {
-                nextStep: paths.identity.areYouAnAppointee
-            };
-            mrnDateClass.journey = {
-                Appointee: paths.identity.areYouAnAppointee
-            };
-            expect(mrnDateClass.next()).to.eql(redirector);
+            expect(mrnDateClass.next()).to.eql({nextStep: paths.identity.areYouAnAppointee});
         });
 
         it('returns the next step url /check-mrn-date if date more than a month', () => {
@@ -146,13 +135,7 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;
             mrnDateClass.fields.year.value = date.y;
-            redirector = {
-                nextStep: paths.compliance.checkMRNDate
-            };
-            mrnDateClass.journey = {
-                CheckMRN: paths.compliance.checkMRNDate
-            };
-            expect(mrnDateClass.next()).to.eql(redirector);
+            expect(mrnDateClass.next()).to.eql({ nextStep: paths.compliance.checkMRNDate });
         });
 
     });
