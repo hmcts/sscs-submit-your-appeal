@@ -1,12 +1,11 @@
 #!groovy
 
-properties(
-  [[$class: 'GithubProjectProperty', displayName: 'Submit Your Appeal', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal/'],
-   pipelineTriggers([
-     [$class: 'hudson.triggers.TimerTrigger', spec  : 'H 1 * * *']
-   ])]
-)
 
+//noinspection GroovyAssignabilityCheck Jenkins API requires this format
+properties(
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal/'],
+   pipelineTriggers([[$class: 'hudson.triggers.TimerTrigger', spec  : 'H 1 * * *']])]
+)
 @Library('Reform')
 import uk.gov.hmcts.Ansible
 import uk.gov.hmcts.Packager
@@ -21,7 +20,6 @@ timestamps {
     milestone()
     lock(resource: "submit-your-appeal-${env.BRANCH_NAME}", inversePrecedence: true) {
         node {
-        //node("reformMgmtDevBuildAgent02.reform.hmcts.net") {
             try {
                 def syaFrontendRPMVersion
                 def version
@@ -62,6 +60,7 @@ timestamps {
                         try {
                             sh 'make test-a11y-tactical'
                         } finally {
+                            echo "not ready yet"
                         //    step([$class: 'JUnitResultArchiver', testResults: env.JUNIT_REPORT_PATH])
                         }
                     }
@@ -99,12 +98,12 @@ timestamps {
                     milestone()
                 }
 
-            }   catch (Throwable err) {
+            }   catch (err) {
                 notifyBuildFailure channel: channel
                 throw err
             }
         }
         milestone()
     }
-    // notifyBuildFixed channel: channel
+    notifyBuildFixed channel: channel
 }
