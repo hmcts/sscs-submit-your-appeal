@@ -88,6 +88,8 @@ module.exports = {
 
     checkYourAppeal:                     '/check-your-appeal',
 
-    confirmation:                       '/confirmation'
+    confirmation:                       '/confirmation',
+
+    formDownload:                       '/form-download'
 
 };
