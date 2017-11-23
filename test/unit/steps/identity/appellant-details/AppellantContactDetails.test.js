@@ -20,7 +20,7 @@ describe('AppellantContactDetails.js', () => {
     describe('get url()', () => {
 
         it('returns url /enter-appellant-contact-details', () => {
-            expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantDetails);
+            expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantContactDetails);
         });
 
     });

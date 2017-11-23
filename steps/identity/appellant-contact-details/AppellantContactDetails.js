@@ -12,7 +12,7 @@ class AppellantContactDetails extends Question {
 
     get url() {
 
-        return paths.identity.enterAppellantDetails;
+        return paths.identity.enterAppellantContactDetails;
     }
 
     get form() {

@@ -16,7 +16,10 @@ After((I) => {
 
 Scenario('When I click submit your appeal, I am taken to the confirmation page', (I) => {
 
-    I.click(content.submit);
-    I.seeInCurrentUrl(paths.confirmation);
+    I.see('Check your answers');
+    I.see('Your application is incomplete');
+    I.see('There are still some questions to answer');
+    I.click('Continue your application');
+    I.seeCurrentUrlEquals('/benefit-type');
 
 });

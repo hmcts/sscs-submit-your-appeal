@@ -7,7 +7,7 @@ Feature('Text Reminders');
 
 Before((I) => {
     I.createTheSession();
-    I.amOnPage(paths.identity.enterAppellantDetails);
+    I.amOnPage(paths.identity.enterAppellantContactDetails);
 });
 
 After((I) => {
@@ -17,7 +17,8 @@ After((I) => {
 Scenario('When I enter a mobile number in the appellant details page and click Sign up, I am taken to the send to number page', (I) => {
 
     I.enterAppellantDetailsWithMobileAndContinue();
-    I.click(content.signUp);
+    I.click('Sign up');
+    I.click('Continue');
     I.seeInCurrentUrl(paths.smsNotify.sendToNumber);
 
 });
@@ -25,16 +26,18 @@ Scenario('When I enter a mobile number in the appellant details page and click S
 Scenario('When I enter a mobile number in the appellant details page and click don\'t sign up, I am taken to the representative page', (I) => {
 
     I.enterAppellantDetailsWithMobileAndContinue();
-    I.click(content.noThanks);
+    I.click('No thanks');
+    I.click('Continue');
     I.seeInCurrentUrl(paths.representative.representative);
 
 });
 
 Scenario('When I don\'t enter a mobile number in the appellant details page and click Sign up, I am taken to the enter mobile page', (I) => {
 
-    I.enterRequiredAppellantDetails();
+    I.enterRequiredAppellantContactDetails();
     I.click('Continue');
-    I.click(content.signUp);
+    I.click('Sign up');
+    I.click('Continue');
     I.seeInCurrentUrl(paths.smsNotify.enterMobile);
 
 });

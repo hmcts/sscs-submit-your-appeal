@@ -4,13 +4,13 @@ function enterRequiredRepresentativeDetails() {
 
     const I = this;
 
-    I.fillField('#RepresentativeDetails_firstName', 'Harry');
-    I.fillField('#RepresentativeDetails_lastName', 'Potter');
-    I.fillField('#RepresentativeDetails_addressLine1', '4 Privet Drive');
-    I.fillField('#RepresentativeDetails_addressLine2', 'Off Wizards close');
-    I.fillField('#RepresentativeDetails_county', 'Wizard county');
-    I.fillField('#RepresentativeDetails_townCity', 'Little Whinging');
-    I.fillField('#RepresentativeDetails_postCode', 'PA80 5UU');
+    I.fillField('#firstName', 'Harry');
+    I.fillField('#lastName', 'Potter');
+    I.fillField('#addressLine1', '4 Privet Drive');
+    I.fillField('#addressLine2', 'Off Wizards close');
+    I.fillField('#county', 'Wizard county');
+    I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#postCode', 'PA80 5UU');
 
 }
 

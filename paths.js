@@ -38,12 +38,10 @@ module.exports = {
 
     identity: {
         areYouAnAppointee:              '/are-you-an-appointee',
-        enterAppellantDetails:          '/enter-appellant-contact-details',
         enterAppellantName:             '/enter-appellant-name',
         enterAppellantDOB:              '/enter-appellant-dob',
         enterAppellantNINO:             '/enter-appellant-nino',
         enterAppellantContactDetails:   '/enter-appellant-contact-details',
-        enterAppointeeContactDetails:   '/enter-appointee-contact-details',
         downloadAppointeeForm:          '/appointee-form-download'
     },
 

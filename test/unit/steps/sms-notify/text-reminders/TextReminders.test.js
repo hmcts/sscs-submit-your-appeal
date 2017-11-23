@@ -16,7 +16,7 @@ describe('TextReminders.js', () => {
                SendToNumber: paths.smsNotify.sendToNumber,
                EnterMobile: paths.smsNotify.enterMobile,
                Representative: paths.representative.representative,
-               AppellantContactDetails: paths.identity.enterAppellantDetails
+               AppellantContactDetails: paths.identity.enterAppellantContactDetails
            }
        });
 

@@ -16,8 +16,8 @@ After((I) => {
 
 Scenario('When I enter a reason for lateness and click continue, I am taken to the are-you-an-appointee page', (I) => {
 
-    I.fillField('#MRNOverThirteenMonthsLate_reasonForBeingLate', 'Late');
-    I.click('input[type="submit"]');
+    I.fillField('#reasonForBeingLate', 'Late');
+    I.click('Continue');
     I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
 
 });

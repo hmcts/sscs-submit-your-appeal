@@ -24,7 +24,7 @@ Scenario('When I do not have an MRN and have not contacted DWP, I am taken to th
 
 Scenario('When I do not have an MRN and have entered a reason why, I am taken to the appointee page', (I) => {
 
-    I.fillField('#NoMRN_reasonForNoMRN', 'I do not have an MRN because...');
+    I.fillField('#reasonForNoMRN', 'I do not have an MRN because...');
     I.click('Continue');
     I.seeCurrentUrlEquals(paths.identity.areYouAnAppointee);
 

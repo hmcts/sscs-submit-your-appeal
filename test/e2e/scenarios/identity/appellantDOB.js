@@ -14,9 +14,9 @@ After((I) => {
 
 Scenario('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
 
-    I.fillField('AppellantDOB_day', '21');
-    I.fillField('AppellantDOB_month', '03');
-    I.fillField('AppellantDOB_year', '1981');
+    I.fillField('day', '21');
+    I.fillField('month', '03');
+    I.fillField('year', '1981');
     I.click('Continue');
     I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
 

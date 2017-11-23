@@ -12,7 +12,7 @@ describe('AppellantNINO.js', () => {
 
         appellantNINOClass = new AppellantNINO({
             journey: {
-                AppellantContactDetails: paths.identity.enterAppointeeContactDetails
+                AppellantContactDetails: paths.identity.enterAppellantContactDetails
             }
         });
 
@@ -62,7 +62,7 @@ describe('AppellantNINO.js', () => {
     describe('next()', () => {
 
         it('returns the next step url /enter-appellant-contact-details', () => {
-            expect(appellantNINOClass.next()).to.eql({nextStep: paths.identity.enterAppointeeContactDetails});
+            expect(appellantNINOClass.next()).to.eql({nextStep: paths.identity.enterAppellantContactDetails});
         });
 
     });
