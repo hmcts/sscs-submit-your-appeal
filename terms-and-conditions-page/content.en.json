@@ -2,7 +2,16 @@
   "title": "Terms and conditions",
   "termsAndConditions": {
     "termsOfuse": "By using this service you’re agreeing to the following terms of use.",
-    "govPrivacy": "These include the GOV.UK <a href='https://www.gov.uk/help/privacy-policy'>privacy policy</a> and <a href='https://www.gov.uk/help/terms-conditions'>terms and conditions</a>."
+    "govPrivacy": "These include the GOV.UK <a href='https://www.gov.uk/help/privacy-policy'>privacy policy</a> and <a href='https://www.gov.uk/help/terms-conditions'>terms and conditions</a>.",
+    "renderedGovPrivacy": "These include the GOV.UK privacy policy and terms and conditions.",
+    "links": {
+      "privacy": {
+        "name": "privacy policy"
+      },
+      "terms": {
+        "name": "terms and conditions"
+      }
+    }
   },
   "relatedLinks": {
     "title": "Related links",

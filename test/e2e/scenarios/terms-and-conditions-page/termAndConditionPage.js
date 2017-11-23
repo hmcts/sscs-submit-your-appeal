@@ -14,12 +14,12 @@ Scenario('When I go to the Terms And Conditions page, I see the Term and Conditi
 	I.seeElement('.link-back');
 	I.see(termsAndConditionsContent.title);
 	I.see(termsAndConditionsContent.termsAndConditions.termsOfuse);
-	I.see('These include the GOV.UK privacy policy and terms and conditions.');
-	I.click('privacy policy');
-	I.seeInCurrentUrl('https://www.gov.uk/help/privacy-policy');
+	I.see(termsAndConditionsContent.termsAndConditions.renderedGovPrivacy);
+	I.click(termsAndConditionsContent.termsAndConditions.links.privacy.name);
+	I.seeInCurrentUrl(termsAndConditionsContent.relatedLinks.links.privacy.url);
 	I.amOnPage(paths.termsAndConditions);
-	I.click('terms and conditions');
-	I.seeInCurrentUrl('https://www.gov.uk/help/terms-conditions');
+	I.click(termsAndConditionsContent.termsAndConditions.links.terms.name);
+	I.seeInCurrentUrl(termsAndConditionsContent.relatedLinks.links.conditions.url);
 
 });
 
