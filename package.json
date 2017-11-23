@@ -19,9 +19,9 @@
     "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "git://github.com/hmcts/look-and-feel.git#check-your-answers",
+    "@hmcts/look-and-feel": "https://github.com/hmcts/look-and-feel.git#check-your-answers",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
-    "@hmcts/one-per-page": "git://github.com/hmcts/one-per-page.git#check-your-answers",
+    "@hmcts/one-per-page": "https://github.com/hmcts/one-per-page.git#check-your-answers",
     "accessible-autocomplete": "^1.6.1",
     "body-parser": "^1.18.2",
     "cross-env": "^5.0.5",
