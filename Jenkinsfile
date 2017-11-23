@@ -105,6 +105,7 @@ timestamps {
                 throw err
             }
         }
+        milestone()
     }
   notifyBuildFixed channel: channel
 }
