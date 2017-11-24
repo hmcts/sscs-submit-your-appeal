@@ -1,5 +1,10 @@
 
 const titleise = string => {
+
+    if (typeof string === 'undefined') {
+        return '';
+    }
+
     if (string.length < 1) {
         return string;
     }

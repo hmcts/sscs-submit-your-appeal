@@ -9,6 +9,10 @@ describe('stringUtils.js', () => {
             expect(titleise('hello')).to.equal('Hello');
         });
 
+        it('should return an empty string when undefined is passed', () => {
+            expect(titleise(undefined)).to.equal('');
+        });
+
         it('should return an empty string when being passed one', () => {
             const str = '';
             expect(titleise(str)).to.equal(str);
