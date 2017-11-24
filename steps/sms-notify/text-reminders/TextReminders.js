@@ -11,7 +11,7 @@ const userAnswer = require('utils/answer');
 
 class TextReminders extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.smsNotify.appellantTextReminders
     }

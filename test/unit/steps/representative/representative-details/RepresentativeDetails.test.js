@@ -18,10 +18,10 @@ describe('RepresentativeDetails.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /representative-details', () => {
-            expect(representativeDetails.url).to.equal(paths.representative.representativeDetails);
+        it('returns path /representative-details', () => {
+            expect(RepresentativeDetails.path).to.equal(paths.representative.representativeDetails);
         });
 
     });
@@ -199,7 +199,7 @@ describe('RepresentativeDetails.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /reason-for-appealing', () => {
+        it('returns the next step path /reason-for-appealing', () => {
             expect(representativeDetails.next()).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
         });
 

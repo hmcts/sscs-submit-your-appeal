@@ -26,10 +26,10 @@ describe('TextReminders.js', () => {
        };
     });
 
-    describe('url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /appellant-text-reminders', () => {
-            expect(textReminders.url).to.equal('/appellant-text-reminders');
+        it('returns path /appellant-text-reminders', () => {
+            expect(TextReminders.path).to.equal(paths.smsNotify.appellantTextReminders);
         });
 
     });
@@ -58,21 +58,21 @@ describe('TextReminders.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /send-to-number', () => {
+        it('returns the next step path /send-to-number', () => {
             textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
             textReminders.fields.phoneNumber.value = '07455654886';
             const nextStep = textReminders.next().branches[0].redirector.nextStep;
             expect(nextStep).to.eq(paths.smsNotify.sendToNumber);
         });
 
-        it('returns the next step url /enter-mobile', () => {
+        it('returns the next step path /enter-mobile', () => {
             textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
             textReminders.fields.phoneNumber.value = '01277456378';
             const nextStep = textReminders.next().branches[0].redirector.nextStep;
             expect(nextStep).to.eq(paths.smsNotify.enterMobile);
         });
 
-        it('returns the next step url /representative', () => {
+        it('returns the next step path /representative', () => {
             textReminders.fields.doYouWantTextMsgReminders.value = answer.NO;
             const nextStep = textReminders.next().fallback.nextStep;
             expect(nextStep).to.eq(paths.representative.representative);

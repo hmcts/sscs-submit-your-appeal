@@ -9,7 +9,7 @@ const Joi = require('joi');
 
 class ReasonForAppealing extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.reasonsForAppealing.reasonForAppealing;
     }

@@ -18,10 +18,10 @@ describe('AppellantDOB.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-appellant-dob', () => {
-            expect(appellantDOBClass.url).to.equal(paths.identity.enterAppellantDOB);
+        it('returns path /enter-appellant-dob', () => {
+            expect(AppellantDOB.path).to.equal(paths.identity.enterAppellantDOB);
         });
 
     });
@@ -91,7 +91,7 @@ describe('AppellantDOB.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-nino', () => {
+        it('returns the next step path /enter-appellant-nino', () => {
             expect(appellantDOBClass.next()).to.eql({nextStep: paths.identity.enterAppellantNINO});
         });
 

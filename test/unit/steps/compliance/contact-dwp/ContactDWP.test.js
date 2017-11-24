@@ -12,10 +12,10 @@ describe('ContactDWP.js', () => {
         contactDWP = new ContactDWP({ journey: {} });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /contact-dwp', () => {
-            expect(contactDWP.url).to.equal(paths.compliance.contactDWP);
+        it('returns path /contact-dwp', () => {
+            expect(ContactDWP.path).to.equal(paths.compliance.contactDWP);
         });
 
     });

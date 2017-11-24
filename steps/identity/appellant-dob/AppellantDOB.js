@@ -10,7 +10,7 @@ const paths = require('paths');
 
 class AppellantDOB extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.identity.enterAppellantDOB;
     }

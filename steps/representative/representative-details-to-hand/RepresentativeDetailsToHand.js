@@ -10,7 +10,7 @@ const userAnswer = require('utils/answer');
 
 class RepresentativeDetailsToHand extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.representative.representativeDetailsToHand;
     }

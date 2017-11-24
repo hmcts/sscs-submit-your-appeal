@@ -26,10 +26,10 @@ describe('SendToNumber.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /send-to-number', () => {
-            expect(sendToNumber.url).to.equal(paths.smsNotify.sendToNumber);
+        it('returns path /send-to-number', () => {
+            expect(SendToNumber.path).to.equal(paths.smsNotify.sendToNumber);
         });
 
     });

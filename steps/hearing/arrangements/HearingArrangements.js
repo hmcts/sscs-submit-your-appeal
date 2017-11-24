@@ -9,7 +9,7 @@ const paths = require('paths');
 
 class HearingArrangements extends Question {
 
-    get url() {
+    static get path() {
         return paths.hearing.hearingArrangements;
     }
 

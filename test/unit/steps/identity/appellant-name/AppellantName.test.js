@@ -18,10 +18,10 @@ describe('AppellantName.js', () => {
         appellantNameClass.fields = {};
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-appellant-contact-details', () => {
-            expect(appellantNameClass.url).to.equal(paths.identity.enterAppellantName);
+        it('returns path /enter-appellant-contact-details', () => {
+            expect(AppellantName.path).to.equal(paths.identity.enterAppellantName);
         });
 
     });
@@ -91,7 +91,7 @@ describe('AppellantName.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-dob', () => {
+        it('returns the next step path /enter-appellant-dob', () => {
             expect(appellantNameClass.next()).to.eql({ nextStep: paths.identity.enterAppellantDOB });
         });
 

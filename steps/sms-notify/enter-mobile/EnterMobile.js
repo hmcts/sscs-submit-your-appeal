@@ -9,7 +9,8 @@ const paths = require('paths');
 
 class EnterMobile extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.smsNotify.enterMobile;
     }
 

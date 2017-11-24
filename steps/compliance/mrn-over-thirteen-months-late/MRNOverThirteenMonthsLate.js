@@ -9,7 +9,7 @@ const paths = require('paths');
 
 class MRNOverThirteenMonthsLate extends Question {
 
-    get url () {
+    static get path() {
 
         return paths.compliance.mrnOverThirteenMonthsLate;
     }

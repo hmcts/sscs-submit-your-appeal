@@ -6,7 +6,7 @@ const paths = require('paths');
 
 class NoRepresentativeDetails extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.representative.noRepresentativeDetails;
     }

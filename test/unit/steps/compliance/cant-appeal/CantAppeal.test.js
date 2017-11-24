@@ -14,10 +14,10 @@ describe('CantAppeal.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /cant-appeal', () => {
-            expect(cantAppeal.url).to.equal(paths.compliance.cantAppeal);
+        it('returns path /cant-appeal', () => {
+            expect(CantAppeal.path).to.equal(paths.compliance.cantAppeal);
         });
 
     });

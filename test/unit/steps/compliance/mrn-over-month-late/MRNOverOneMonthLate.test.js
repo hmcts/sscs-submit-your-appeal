@@ -17,10 +17,10 @@ describe('MRNOverOneMonth.js', () => {
         });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /mrn-over-month-late', () => {
-            expect(mrnOverOneMonth.url).to.equal(paths.compliance.mrnOverMonthLate);
+        it('returns path /mrn-over-month-late', () => {
+            expect(MRNOverOneMonthLate.path).to.equal(paths.compliance.mrnOverMonthLate);
         });
 
     });
@@ -36,7 +36,7 @@ describe('MRNOverOneMonth.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /are-you-an-appointee', () => {
+        it('returns the next step path /are-you-an-appointee', () => {
             expect(mrnOverOneMonth.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 

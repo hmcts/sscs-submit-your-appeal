@@ -28,10 +28,10 @@ describe('MRNDate.js', () => {
         });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /mrn-date', () => {
-            expect(mrnDateClass.url).to.equal(paths.compliance.mrnDate);
+        it('returns path /mrn-date', () => {
+            expect(MRNDate.path).to.equal(paths.compliance.mrnDate);
         });
 
     });
@@ -114,7 +114,7 @@ describe('MRNDate.js', () => {
             mrnDateClass.fields.year = {};
         });
 
-        it('returns the next step url /are-you-an-appointee if date less than a month', () => {
+        it('returns the next step path /are-you-an-appointee if date less than a month', () => {
             date = mrnDate(0);
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;
@@ -122,7 +122,7 @@ describe('MRNDate.js', () => {
             expect(mrnDateClass.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 
-        it('returns the next step url /are-you-an-appointee if date is equal to a month', () => {
+        it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
             date = mrnDate(1);
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;
@@ -130,7 +130,7 @@ describe('MRNDate.js', () => {
             expect(mrnDateClass.next()).to.eql({nextStep: paths.identity.areYouAnAppointee});
         });
 
-        it('returns the next step url /check-mrn-date if date more than a month', () => {
+        it('returns the next step path /check-mrn-date if date more than a month', () => {
             date = mrnDate(2);
             mrnDateClass.fields.day.value = date.d;
             mrnDateClass.fields.month.value = date.m;

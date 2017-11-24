@@ -6,24 +6,24 @@ const paths = require('paths');
 
 describe('AppellantNINO.js', () => {
 
-    let appellantNINOClass;
+    let appellantNINO;
 
     beforeEach(() => {
 
-        appellantNINOClass = new AppellantNINO({
+        appellantNINO = new AppellantNINO({
             journey: {
                 AppellantContactDetails: paths.identity.enterAppellantContactDetails
             }
         });
 
-        appellantNINOClass.fields = {}
+        appellantNINO.fields = {}
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-appellant-nino', () => {
-            expect(appellantNINOClass.url).to.equal(paths.identity.enterAppellantNINO);
+        it('returns path /enter-appellant-nino', () => {
+            expect(AppellantNINO.path).to.equal(paths.identity.enterAppellantNINO);
         });
 
     });
@@ -34,7 +34,7 @@ describe('AppellantNINO.js', () => {
         let field;
 
         beforeEach(() => {
-            fields = appellantNINOClass.form.fields;
+            fields = appellantNINO.form.fields;
         });
 
         after(() => {
@@ -61,8 +61,8 @@ describe('AppellantNINO.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-contact-details', () => {
-            expect(appellantNINOClass.next()).to.eql({nextStep: paths.identity.enterAppellantContactDetails});
+        it('returns the next step path /enter-appellant-contact-details', () => {
+            expect(appellantNINO.next()).to.eql({nextStep: paths.identity.enterAppellantContactDetails});
         });
 
     });

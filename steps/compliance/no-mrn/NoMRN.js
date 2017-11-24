@@ -8,7 +8,7 @@ const paths = require('paths');
 
 class NoMRN extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.compliance.noMRN;
     }

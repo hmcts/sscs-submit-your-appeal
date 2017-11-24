@@ -24,10 +24,10 @@ describe('SmsConfirmation.js', () => {
         };
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /sms-confirmation', () => {
-            expect(smsConfirmation.url).to.equal('/sms-confirmation');
+        it('returns path /sms-confirmation', () => {
+            expect(SmsConfirmation.path).to.equal('/sms-confirmation');
         });
 
     });
@@ -92,7 +92,7 @@ describe('SmsConfirmation.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /representative', () => {
+        it('returns the next step path /representative', () => {
             expect(smsConfirmation.next()).to.eql({ nextStep: paths.representative.representative });
         });
 

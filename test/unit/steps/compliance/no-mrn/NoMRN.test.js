@@ -18,10 +18,10 @@ describe('NoMRN.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /no-mrn', () => {
-            expect(noMRN.url).to.equal(paths.compliance.noMRN);
+        it('returns path /no-mrn', () => {
+            expect(NoMRN.path).to.equal(paths.compliance.noMRN);
         });
 
     });
@@ -37,7 +37,7 @@ describe('NoMRN.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /are-you-an-appointee', () => {
+        it('returns the next step path /are-you-an-appointee', () => {
             expect(noMRN.next()).to.eql({ nextStep: '/are-you-an-appointee' });
         });
 

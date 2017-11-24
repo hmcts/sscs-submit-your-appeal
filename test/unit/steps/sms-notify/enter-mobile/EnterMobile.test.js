@@ -18,10 +18,10 @@ describe('EnterMobile.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-mobile', () => {
-           expect(enterMobile.url).to.equal(paths.smsNotify.enterMobile);
+        it('returns path /enter-mobile', () => {
+           expect(EnterMobile.path).to.equal(paths.smsNotify.enterMobile);
         });
 
     });
@@ -50,7 +50,7 @@ describe('EnterMobile.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /sms-confirmation', () => {
+        it('returns the next step path /sms-confirmation', () => {
             expect(enterMobile.next()).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
         });
 

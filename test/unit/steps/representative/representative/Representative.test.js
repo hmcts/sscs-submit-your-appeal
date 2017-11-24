@@ -19,10 +19,10 @@ describe('Representative.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /representative', () => {
-            expect(representative.url).to.equal(paths.representative.representative);
+        it('returns path /representative', () => {
+            expect(Representative.path).to.equal(paths.representative.representative);
         });
 
     });

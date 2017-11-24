@@ -5,9 +5,9 @@ const paths = require('paths');
 
 class AppointeeFormDownload extends ExitPoint {
 
-    get url() {
+    static get path() {
 
-        return paths.identity.appointeeFormDownload;
+        return paths.identity.downloadAppointeeForm;
     }
 
     get form() {}

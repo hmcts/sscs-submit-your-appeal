@@ -9,7 +9,8 @@ const userAnswer = require('utils/answer');
 
 class SmsConfirmation extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.smsNotify.smsConfirmation;
     }
 
@@ -48,6 +49,7 @@ class SmsConfirmation extends Question {
     }
 
     next() {
+
         return goTo(this.journey.Representative);
     }
 }

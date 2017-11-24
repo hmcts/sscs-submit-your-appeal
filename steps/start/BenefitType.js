@@ -9,7 +9,7 @@ const paths = require('paths');
 
 class BenefitType extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.start.benefitType;
     }

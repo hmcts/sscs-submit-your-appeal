@@ -23,10 +23,10 @@ describe('Sessions.js', () => {
         sessionsClass = new Sessions({ journey: {} });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /sessions', () => {
-            expect(sessionsClass.url).to.equal(paths.session.sessions);
+        it('returns path /sessions', () => {
+            expect(Sessions.path).to.equal(paths.session.sessions);
         });
 
     });

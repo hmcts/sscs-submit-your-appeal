@@ -9,7 +9,7 @@ const answer = require('utils/answer');
 
 class SendToNumber extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.smsNotify.sendToNumber;
     }

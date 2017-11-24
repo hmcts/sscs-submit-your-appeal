@@ -6,7 +6,7 @@ const paths = require('paths');
 
 class NotAttendingHearing extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.hearing.notAttendingHearing;
     }

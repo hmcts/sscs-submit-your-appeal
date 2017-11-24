@@ -17,10 +17,10 @@ describe('HearingArrangements.js', () => {
         });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /arrangements', () => {
-            expect(hearingArrangements.url).to.equal(paths.hearing.hearingArrangements);
+        it('returns path /arrangements', () => {
+            expect(HearingArrangements.path).to.equal(paths.hearing.hearingArrangements);
         });
 
     });
@@ -72,7 +72,7 @@ describe('HearingArrangements.js', () => {
 
         describe('next()', () => {
 
-            it('returns the next step url /hearing-availability', () => {
+            it('returns the next step path /hearing-availability', () => {
                 expect(hearingArrangements.next()).to.eql({ nextStep: paths.hearing.hearingAvailability });
             });
 

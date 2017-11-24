@@ -10,7 +10,7 @@ const emailOptions = require('utils/emailOptions');
 
 class RepresentativeDetails extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.representative.representativeDetails;
     }

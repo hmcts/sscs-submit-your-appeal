@@ -10,7 +10,7 @@ const Joi = require('joi');
 
 class AppellantNINO extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.identity.enterAppellantNINO;
     }

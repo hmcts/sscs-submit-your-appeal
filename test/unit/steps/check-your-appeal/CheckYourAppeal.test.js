@@ -16,17 +16,17 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /check-your-appeal', () => {
-            expect(checkYourAppeal.url).to.equal(paths.checkYourAppeal);
+        it('returns path /check-your-appeal', () => {
+            expect(CheckYourAppeal.path).to.equal(paths.checkYourAppeal);
         });
 
     });
 
     describe('next()', () => {
 
-        it('returns the next step url /confirmation', () => {
+        it('returns the next step path /confirmation', () => {
             expect(checkYourAppeal.next()).to.eql({ nextStep: paths.confirmation});
         });
 

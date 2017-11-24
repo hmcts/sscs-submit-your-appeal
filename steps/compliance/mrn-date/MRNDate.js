@@ -10,7 +10,7 @@ const Joi = require('joi');
 
 class MRNDate extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.compliance.mrnDate;
     }

@@ -10,7 +10,7 @@ const emailOptions = require('utils/emailOptions');
 
 class AppellantContactDetails extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.identity.enterAppellantContactDetails;
     }

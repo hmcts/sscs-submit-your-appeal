@@ -5,7 +5,7 @@ const paths = require('paths');
 
 class ContactDWP extends ExitPoint {
 
-    get url() {
+    static get path() {
 
         return paths.compliance.contactDWP;
     }

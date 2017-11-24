@@ -14,10 +14,10 @@ describe('Confirmation.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /confirmation', () => {
-            expect(confirmationClass.url).to.equal(paths.confirmation);
+        it('returns path /confirmation', () => {
+            expect(Confirmation.path).to.equal(paths.confirmation);
         });
 
     });

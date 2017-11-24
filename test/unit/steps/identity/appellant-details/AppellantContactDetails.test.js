@@ -1,26 +1,26 @@
 'use strict';
 
-const AppellantDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
+const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 
 describe('AppellantContactDetails.js', () => {
 
-    let appellantDetailsClass;
+    let appellantContactDetails;
 
     beforeEach(() => {
-        appellantDetailsClass = new AppellantDetails({
+        appellantContactDetails = new AppellantContactDetails({
             journey: {
                 TextReminders: paths.smsNotify.appellantTextReminders
             }
         });
-        appellantDetailsClass.fields = {}
+        appellantContactDetails.fields = {}
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-appellant-contact-details', () => {
-            expect(appellantDetailsClass.url).to.equal(paths.identity.enterAppellantContactDetails);
+        it('returns path /enter-appellant-contact-details', () => {
+            expect(AppellantContactDetails.path).to.equal(paths.identity.enterAppellantContactDetails);
         });
 
     });
@@ -31,7 +31,7 @@ describe('AppellantContactDetails.js', () => {
         let field;
 
         beforeEach(() => {
-            fields = appellantDetailsClass.form.fields;
+            fields = appellantContactDetails.form.fields;
         });
 
         after(() => {
@@ -138,8 +138,8 @@ describe('AppellantContactDetails.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /appellant-text-reminders', () => {
-            expect(appellantDetailsClass.next()).to.eql({ nextStep: paths.smsNotify.appellantTextReminders });
+        it('returns the next step path /appellant-text-reminders', () => {
+            expect(appellantContactDetails.next()).to.eql({ nextStep: paths.smsNotify.appellantTextReminders });
         });
 
     });

@@ -18,10 +18,10 @@ describe('BenefitType.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /benefit-type', () => {
-            expect(benefitType.url).to.equal(paths.start.benefitType);
+        it('returns path /benefit-type', () => {
+            expect(BenefitType.path).to.equal(paths.start.benefitType);
         });
 
     });
@@ -50,7 +50,7 @@ describe('BenefitType.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /mrn-date', () => {
+        it('returns the next step path /mrn-date', () => {
             expect(benefitType.next()).to.eql({ nextStep: paths.compliance.mrnDate });
         });
 

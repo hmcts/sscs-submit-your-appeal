@@ -18,17 +18,17 @@ describe('Entry.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /entry', () => {
-            expect(entry.url).to.equal(paths.session.entry);
+        it('returns path /entry', () => {
+            expect(Entry.path).to.equal(paths.session.entry);
         });
 
     });
 
     describe('next()', () => {
 
-        it('returns the next step url /benefit-type', () => {
+        it('returns the next step path /benefit-type', () => {
             expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
         });
 

@@ -6,7 +6,7 @@ const paths = require('paths');
 
 class SendingEvidence extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.reasonsForAppealing.sendingEvidence;
     }

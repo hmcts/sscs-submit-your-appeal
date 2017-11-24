@@ -10,7 +10,7 @@ const paths = require('paths');
 
 class CheckYourAppeal extends CYA {
 
-    get url() {
+    static get path() {
 
         return paths.checkYourAppeal
     }

@@ -18,10 +18,10 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /mrn-over-thirteen-months-late', () => {
-            expect(mrnOverThirteenMonthsLate.url).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
+        it('returns path /mrn-over-thirteen-months-late', () => {
+            expect(MRNOverThirteenMonthsLate.path).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
         });
 
     });
@@ -37,7 +37,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /are-you-an-appointee', () => {
+        it('returns the next step path /are-you-an-appointee', () => {
             expect(mrnOverThirteenMonthsLate.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 

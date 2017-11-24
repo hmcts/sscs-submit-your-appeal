@@ -10,7 +10,8 @@ const userAnswer = require('utils/answer');
 
 class Representative extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.representative.representative
     }
 
@@ -38,6 +39,7 @@ class Representative extends Question {
     }
 
     next() {
+
         const hasARepresentative = () => this.fields.hasRepresentative.value === userAnswer.YES;
 
         return branch(

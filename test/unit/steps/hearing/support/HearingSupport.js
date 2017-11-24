@@ -17,10 +17,10 @@ describe('HearingSupport.js', () => {
         });
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /hearing-support', () => {
-            expect(hearingSupport.url).to.equal(paths.hearing.hearingSupport);
+        it('returns path /hearing-support', () => {
+            expect(HearingSupport.path).to.equal(paths.hearing.hearingSupport);
         });
 
     });

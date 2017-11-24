@@ -9,7 +9,7 @@ const Joi = require('joi');
 
 class DatesCantAttend extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.hearing.datesCantAttend;
     }

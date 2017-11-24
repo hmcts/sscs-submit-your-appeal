@@ -5,7 +5,7 @@ const paths = require('paths');
 
 class Entry extends EntryPoint {
 
-    get url() {
+    static get path() {
 
         return paths.session.entry;
     }

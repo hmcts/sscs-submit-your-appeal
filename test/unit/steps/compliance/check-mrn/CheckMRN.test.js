@@ -29,10 +29,10 @@ describe('CheckMRN.js', () => {
         };
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /check-mrn-date', () => {
-            expect(checkMRN.url).to.equal(paths.compliance.checkMRNDate);
+        it('returns path /check-mrn-date', () => {
+            expect(CheckMRN.path).to.equal(paths.compliance.checkMRNDate);
         });
 
     });
@@ -93,13 +93,13 @@ describe('CheckMRN.js', () => {
                 expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
             });
 
-            it('returns the next step url /mrn-over-month-late when date is equal to thirteen months', () => {
+            it('returns the next step path /mrn-over-month-late when date is equal to thirteen months', () => {
                 checkMRN.journey.MRNOverOneMonthLate = paths.compliance.mrnOverMonthLate;
                 setMRNDate(DateUtils.thirteenMonthsAgo());
                 expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
             });
 
-            it('returns the next step url /mrn-over-thirteen-months-late when date is over thirteen months', () => {
+            it('returns the next step path /mrn-over-thirteen-months-late when date is over thirteen months', () => {
                 checkMRN.journey.MRNOverThirteenMonthsLate = paths.compliance.mrnOverThirteenMonthsLate;
                 setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
                 expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverThirteenMonthsLate });
@@ -109,7 +109,7 @@ describe('CheckMRN.js', () => {
 
         describe('checkMRN field value equals no', () => {
 
-            it('returns the next step url /mrn-date when checkMRN value equals no', () => {
+            it('returns the next step path /mrn-date when checkMRN value equals no', () => {
                 checkMRN.fields.checkedMRN.value = answer.NO;
                 expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnDate });
             });

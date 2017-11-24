@@ -14,10 +14,10 @@ describe('Exit.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /exit', () => {
-            expect(exit.url).to.equal(paths.session.exit);
+        it('returns path /exit', () => {
+            expect(Exit.path).to.equal(paths.session.exit);
         });
 
     });

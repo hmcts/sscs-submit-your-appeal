@@ -10,7 +10,7 @@ const userAnswer = require('utils/answer');
 
 class Appointee extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.identity.areYouAnAppointee;
     }

@@ -20,10 +20,10 @@ describe('Appointee.js', () => {
 
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /are-you-an-appointee', () => {
-            expect(appointeeClass.url).to.equal(paths.identity.areYouAnAppointee);
+        it('returns path /are-you-an-appointee', () => {
+            expect(Appointee.path).to.equal(paths.identity.areYouAnAppointee);
         });
 
     });
@@ -52,12 +52,12 @@ describe('Appointee.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /appointee-form-download', () => {
+        it('returns the next step path /appointee-form-download', () => {
             const nextStep = appointeeClass.next().branches[0].redirector.nextStep;
             expect(nextStep).to.eq(paths.identity.downloadAppointeeForm);
         });
 
-        it('returns the next step url /enter-appellant-name', () => {
+        it('returns the next step path /enter-appellant-name', () => {
             const nextStep = appointeeClass.next().fallback.nextStep;
             expect(nextStep).to.eq(paths.identity.enterAppellantName);
         });

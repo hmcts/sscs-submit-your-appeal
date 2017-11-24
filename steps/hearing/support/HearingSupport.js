@@ -10,7 +10,7 @@ const userAnswer = require('utils/answer');
 
 class HearingSupport extends Question {
 
-    get url() {
+    static get path() {
 
         return paths.hearing.hearingSupport;
     }
