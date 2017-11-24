@@ -20,6 +20,7 @@ class CheckYourAppeal extends CYA {
         return [
             section('benefit-type',                     { title: this.content.benefitType }),
             section('mrn-date',                         { title: this.content.compliance.mrnDate }),
+            section('no-mrn',                           { title: this.content.compliance.noMRN }),
             section('appellant-details',                { title: this.content.appellantDetails }),
             section('text-msg-reminders',               { title: this.content.smsNotify.textMsgReminders }),
             section('representative',                   { title: this.content.representative }),
