@@ -1,18 +1,7 @@
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+{% extends "layout/formPage.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 
-{% set phase="ALPHA" %}
-{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
-
-{% block head -%}
-    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-{% endblock %}
-
-{% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
-    <a class="link-back" href="#" onclick="history.go(-1)">Back</a>
-{% endblock %}
+{% set title = content.title %}
 
 {% block two_thirds %}
     {{ header(content.title, size="large") }}

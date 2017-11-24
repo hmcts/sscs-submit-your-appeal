@@ -1,0 +1,44 @@
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "components/breadcrumbs.html" import banner %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+<script src="{{ asset_path }}main.js" type="text/javascript" />
+{% endblock %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ banner(true) }}
+{% endblock %}
+
+{% block two_thirds %}
+
+    {{ header(title, size='large') }}
+
+    <form action="{{ url }}" method="post" class="form">
+
+        {%- if fields.validated and not fields.valid -%}
+        <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+            <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+                There was a problem
+            </h1>
+            <ul class="error-summary-list">
+                {%- for error in fields.errors -%}
+                <li><a href="#{{error.id}}">{{error.message}}</a></li>
+                {%- endfor -%}
+            </ul>
+        </div>
+        {%- endif -%}
+
+        {% block fields -%}
+        {%- endblock %}
+
+        <input class="button" type="submit" value="Continue">
+    </form>
+
+{% block after_form -%}
+{%- endblock %}
+
+{% endblock %}
