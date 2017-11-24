@@ -33,7 +33,8 @@ class SmsConfirmation extends Question {
             answer(this, {
                 question: this.content.cya.mobileNumber.question,
                 section: 'text-msg-reminders',
-                answer: this.mobileNumber
+                answer: this.mobileNumber,
+                url: paths.smsNotify.sendToNumber
             })
         ];
     }
