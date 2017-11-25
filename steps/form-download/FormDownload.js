@@ -16,6 +16,7 @@ class FormDownload extends Question {
     }
 
     get form() {
+
         return form(
             textField.ref(this.journey.Appointee, 'appointee')
         );

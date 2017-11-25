@@ -14,6 +14,6 @@ After((I) => {
 
 Scenario.only('I see the correct information is displayed', (I) => {
 
-    I.see('You need to download and fill out a paper form');
+    I.see(content.title);
 
 });
