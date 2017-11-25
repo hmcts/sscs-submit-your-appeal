@@ -1,4 +1,5 @@
 {% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
 
 {% block head -%}
 <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -10,3 +11,13 @@
 {% set title %}
     {{ content.title }}
 {% endset %}
+
+{% block fields %}
+
+    {% call formSection() %}
+
+        <p>{{ content.subtitle }}</p>
+
+    {% endcall %}
+
+{% endblock %}
