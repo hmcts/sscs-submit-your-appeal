@@ -38,6 +38,7 @@ module.exports = {
     },
 
     compliance: {
+        dwpIssuingOffice:               '/dwp-issuing-office',
         cantAppeal:                     '/cant-appeal',
         checkMRNDate:                   '/check-mrn-date',
         contactDWP:                     '/contact-dwp',

@@ -1,0 +1,15 @@
+{
+  "title": "Look for DWP's address on the top right of your Mandatory Reconsideration Notice (MRN)",
+  "subtitle": "This is the letter you received from DWP when you asked them to reconsider their decision about the PIP benefit.",
+  "fields": {
+    "pipNumber": {
+      "header": "Enter the number from the top of DWP’s address",
+      "label": "Personal Independence Payment",
+      "error": {
+        "emptyField": "",
+        "invalid": ""
+      }
+    }
+  },
+  "noMRN": "I don’t have a Mandatory Reconsideration Notice"
+}
