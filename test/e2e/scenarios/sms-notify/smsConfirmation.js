@@ -16,7 +16,7 @@ After((I) => {
 
 Scenario('When I click Continue, I am taken to the Representative page', (I) => {
 
-    I.enterAppellantDetailsWithMobileAndContinue();
+    I.enterAppellantContactDetailsWithMobileAndContinue();
     I.click('Sign up');
     I.click('Continue');
     I.selectUseSameNumberAndContinue('#useSameNumber-yes');
@@ -26,9 +26,9 @@ Scenario('When I click Continue, I am taken to the Representative page', (I) => 
 
 });
 
-Scenario('When I enter a mobile number in appellant details and click use same number, I see the mobile number I provided for appellant details', (I) => {
+Scenario('When I enter a mobile number in appellant contact details and click use same number, I see the same mobile number in SMS confirmation', (I) => {
 
-    I.enterAppellantDetailsWithMobileAndContinue();
+    I.enterAppellantContactDetailsWithMobileAndContinue('07466748336');
     I.click('Sign up');
     I.click('Continue');
     I.selectUseSameNumberAndContinue('#useSameNumber-yes');
@@ -37,9 +37,9 @@ Scenario('When I enter a mobile number in appellant details and click use same n
 
 });
 
-Scenario('When I enter a mobile number in appellant details and click use different number, I see the mobile number I provided for enter mobile', (I) => {
+Scenario('When I enter a mobile number in appellant contact details and click use different number, I see the mobile number I provided for enter mobile', (I) => {
 
-    I.enterAppellantDetailsWithMobileAndContinue();
+    I.enterAppellantContactDetailsWithMobileAndContinue('07466748336');
     I.click('Sign up');
     I.click('Continue');
     I.selectUseSameNumberAndContinue('#useSameNumber-no');
@@ -53,8 +53,7 @@ Scenario('When I enter a mobile number in appellant details and click use differ
 
 Scenario('When I don\'t enter a mobile number in appellant details, I see the mobile number I provided for enter mobile', (I) => {
 
-    I.enterRequiredAppellantContactDetails();
-    I.click('Continue');
+    I.enterAppellantContactDetailsAndContinue();
     I.click('Sign up');
     I.click('Continue');
     I.fillField('#enterMobile', '+447987654321');

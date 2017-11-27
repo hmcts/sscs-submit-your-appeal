@@ -7,8 +7,7 @@ Feature('Send to number');
 Before((I) => {
     I.createTheSession();
     I.amOnPage(paths.identity.enterAppellantContactDetails);
-    I.enterRequiredAppellantContactDetails();
-    I.enterAppellantDetailsWithMobileAndContinue();
+    I.enterAppellantContactDetailsWithMobileAndContinue('07466748336');
     I.seeInCurrentUrl(paths.smsNotify.appellantTextReminders);
     I.click('Sign up');
     I.click('Continue');

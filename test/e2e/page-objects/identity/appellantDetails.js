@@ -1,6 +1,35 @@
 'use strict';
 
-function enterRequiredAppellantContactDetails() {
+function enterAppellantNameAndContinue(title, firstName, lastName) {
+
+    const I = this;
+
+    I.fillField('#title', title);
+    I.fillField('#firstName', firstName);
+    I.fillField('#lastName', lastName);
+    I.click('Continue');
+
+}
+
+function enterAppellantDOBAndContinue(day, month, year) {
+
+    const I = this;
+
+    I.fillField('#day', day);
+    I.fillField('#month', month);
+    I.fillField('#year', year);
+    I.click('Continue');
+}
+
+function enterAppellantNINOAndContinue(nino) {
+
+    const I = this;
+
+    I.fillField('#nino', nino);
+    I.click('Continue');
+}
+
+function enterAppellantContactDetailsAndContinue() {
 
     const I = this;
 
@@ -8,16 +37,26 @@ function enterRequiredAppellantContactDetails() {
     I.fillField('#addressLine2', 'Off Wizards close');
     I.fillField('#townCity', 'Little Whinging');
     I.fillField('#postCode', 'PA80 5UU');
+    I.click('Continue');
 
 }
 
-function enterAppellantDetailsWithMobileAndContinue() {
+function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber='07466748336') {
 
     const I = this;
 
-    I.enterRequiredAppellantContactDetails();
-    I.fillField('#phoneNumber', '07466748336');
+    I.fillField('#addressLine1', '4 Privet Drive');
+    I.fillField('#addressLine2', 'Off Wizards close');
+    I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#postCode', 'PA80 5UU');
+    I.fillField('#phoneNumber', mobileNumber);
     I.click('Continue');
 }
 
-module.exports = { enterRequiredAppellantContactDetails, enterAppellantDetailsWithMobileAndContinue };
+module.exports = {
+    enterAppellantNameAndContinue,
+    enterAppellantDOBAndContinue,
+    enterAppellantNINOAndContinue,
+    enterAppellantContactDetailsAndContinue,
+    enterAppellantContactDetailsWithMobileAndContinue
+};
