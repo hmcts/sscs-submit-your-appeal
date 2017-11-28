@@ -10,10 +10,11 @@ describe('FormDownload.js', () => {
 
     beforeEach(() => {
         formDownloadSut = new FormDownload();
-
+        formDownloadSut.journey = {};
         formDownloadSut.fields = {
             benefitType: {}
         }
+
     });
 
     describe('get url()', () => {
@@ -24,11 +25,26 @@ describe('FormDownload.js', () => {
 
     });
 
-    describe.only('get benefitType()', () => {
+    describe('get benefitType()', () => {
 
         it('returns correct wording', () => {
             formDownloadSut.fields.benefitType.value = 'some benefitType';
-            expect(formDownloadSut.benefitType).to.equal('Download and fill out a [Form name here] form to appeal a [some benefitType] benefit decision.');
+            expect(formDownloadSut.benefitType).to.equal('Download and fill out a form to appeal a [some benefitType] benefit decision.');
+        });
+
+    });
+
+    describe('get form()', () => {
+
+        it('should contain 1 fields', () => {
+            expect(formDownloadSut.form.fields.length).to.equal(1);
+        });
+
+        it('should contain a textField reference called \'benefitType\'', () => {
+            const textField = formDownloadSut.form.fields[0];
+            expect(textField.constructor.name).to.eq('Reference');
+            expect(textField.name).to.equal('benefitType');
+            expect(textField.validations).to.be.empty;
         });
 
     });

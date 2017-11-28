@@ -21,9 +21,7 @@ class FormDownload extends Question {
         );
     }
 
-    next() {
-        return goTo(undefined);
-    }
+    next() {}
 
 }
 

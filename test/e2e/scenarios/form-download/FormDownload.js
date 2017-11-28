@@ -12,7 +12,7 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario.only('I see the correct information is displayed', (I) => {
+Scenario('I see the correct information is displayed', (I) => {
 
     I.see(content.title);
     I.see(content.subtitle);
