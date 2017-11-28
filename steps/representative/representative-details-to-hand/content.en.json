@@ -1,0 +1,17 @@
+{
+  "title": "Do you have the representative details to hand?",
+  "fields": {
+    "detailsToHand": {
+      "yes": "Yes, I have their details to hand.",
+      "no": "No, I don't have their details to hand.",
+      "error": {
+        "required": "Please select an option"
+      }
+    }
+  },
+  "cya": {
+    "detailsToHand": {
+      "question": "Have representative details to hand"
+    }
+  }
+}

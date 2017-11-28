@@ -14,9 +14,9 @@ After((I) => {
 
 Scenario('When I fill in the fields and click Continue, I am taken to the Appellant DOB page', (I) => {
 
-    I.fillField('AppellantName_title', 'Mr');
-    I.fillField('AppellantName_firstName', 'Harry');
-    I.fillField('AppellantName_lastName', 'Potter');
+    I.fillField('title', 'Mr');
+    I.fillField('firstName', 'Harry');
+    I.fillField('lastName', 'Potter');
     I.click('Continue');
     I.seeCurrentUrlEquals(paths.identity.enterAppellantDOB);
 

@@ -1,1 +1,27 @@
-<h1>NO REPRESENTATIVE DETAILS PLACEHOLDER</h1>
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+<p>{{ content.subtitle }}</p>
+
+{% call formSection() %}
+
+<p>{{ content.register.heading }}</p>
+
+<ul class="list list-bullet">
+    <li>{{ content.register.fullName }}</li>
+    <li>{{ content.register.organisation}}</li>
+    <li>{{ content.register.emailOrPostalAddress }}</li>
+</ul>
+{% endcall %}
+
+{% endblock %}

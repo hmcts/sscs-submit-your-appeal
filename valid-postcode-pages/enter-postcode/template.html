@@ -9,9 +9,6 @@
 
 {% block page_title %}{{ content.title }}{% endblock %}
 
-{% set phase="ALPHA" %}
-{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
-
 {% block breadcrumbs %}
     {{ phaseBanner(phase, feedbackLink) }}
     <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>

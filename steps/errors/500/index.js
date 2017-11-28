@@ -4,7 +4,7 @@ const { Page } = require('@hmcts/one-per-page');
 
 class Error500 extends Page {
 
-    get url() {
+    static get path() {
         return '/error/500';
     }
 

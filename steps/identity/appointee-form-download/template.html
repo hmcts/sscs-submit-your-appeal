@@ -1,0 +1,20 @@
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% block two_thirds %}
+
+<a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+<h1 class="heading-large">{{ content.title }}</h1>
+
+<a href="http://www.gov.uk">{{ content.govuk }}</a>
+
+{% endblock %}

@@ -6,24 +6,18 @@ const paths = require('paths');
 
 describe('CantAppeal.js', () => {
 
-    let cantAppealClass;
+    let cantAppeal;
 
     beforeEach(() => {
-       cantAppealClass = new CantAppeal;
-    });
 
-    describe('get url()', () => {
-
-        it('returns url /cant-appeal', () => {
-            expect(cantAppealClass.url).to.equal(paths.compliance.cantAppeal);
-        });
+       cantAppeal = new CantAppeal( { journey: {} })
 
     });
 
-    describe('next()', () => {
+    describe('get path()', () => {
 
-        it('should return undefined', () => {
-            expect(cantAppealClass.next()).to.be.undefined;
+        it('returns path /cant-appeal', () => {
+            expect(CantAppeal.path).to.equal(paths.compliance.cantAppeal);
         });
 
     });

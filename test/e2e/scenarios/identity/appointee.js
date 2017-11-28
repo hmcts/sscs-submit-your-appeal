@@ -14,11 +14,11 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('When I select Yes, I am taken to the enter appellant details page', (I) => {
+Scenario('When I select Yes, I am taken to the download appointee form page', (I) => {
 
     I.selectAreYouAnAppointeeAndContinue('Yes');
-    I.seeInCurrentUrl(paths.identity.enterAppellantName);
-    I.see(content.titleAppointee);
+    I.seeInCurrentUrl(paths.identity.downloadAppointeeForm);
+    I.see('Download appointee form');
 
 });
 

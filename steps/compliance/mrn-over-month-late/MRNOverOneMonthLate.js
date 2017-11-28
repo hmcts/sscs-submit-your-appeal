@@ -8,7 +8,8 @@ const paths = require('paths');
 
 class MRNOverOneMonthLate extends Question {
 
-    get url () {
+    static get path() {
+
         return paths.compliance.mrnOverMonthLate;
     }
 
@@ -23,7 +24,20 @@ class MRNOverOneMonthLate extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.reasonForBeingLate.question,
+                section: 'mrn-over-month-late',
+                answer: `${this.fields.reasonForBeingLate.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.Appointee);
     }
 }

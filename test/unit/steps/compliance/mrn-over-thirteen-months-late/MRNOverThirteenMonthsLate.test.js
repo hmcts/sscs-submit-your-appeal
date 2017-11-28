@@ -6,38 +6,30 @@ const paths = require('paths');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
 
-    let mrnOverThirteenMonthsLateClass;
+    let mrnOverThirteenMonthsLate;
 
     beforeEach(() => {
-        mrnOverThirteenMonthsLateClass = new MRNOverThirteenMonthsLate();
-        mrnOverThirteenMonthsLateClass.journey = {};
+
+        mrnOverThirteenMonthsLate = new MRNOverThirteenMonthsLate({
+            journey: {
+                Appointee: paths.identity.areYouAnAppointee
+            }
+        });
+
     });
 
-    after(() => {
-        mrnOverThirteenMonthsLateClass = undefined;
-    });
+    describe('get path()', () => {
 
-    describe('get url()', () => {
-
-        it('returns url /mrn-over-thirteen-months-late', () => {
-            expect(mrnOverThirteenMonthsLateClass.url).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
+        it('returns path /mrn-over-thirteen-months-late', () => {
+            expect(MRNOverThirteenMonthsLate.path).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
         });
 
     });
 
     describe('get form()', () => {
 
-        let field;
-
-        beforeEach(() => {
-            field = mrnOverThirteenMonthsLateClass.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name reasonForBeingLate', () => {
+            const field = mrnOverThirteenMonthsLate.form.fields[0];
             expect(field.name).to.equal('reasonForBeingLate');
         });
 
@@ -45,12 +37,9 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /are-you-an-appointee', () => {
-            mrnOverThirteenMonthsLateClass.journey.Appointee = paths.identity.areYouAnAppointee;
-            expect(mrnOverThirteenMonthsLateClass.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+        it('returns the next step path /are-you-an-appointee', () => {
+            expect(mrnOverThirteenMonthsLate.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
         });
 
     });
-
-
 });

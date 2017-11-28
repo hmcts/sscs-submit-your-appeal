@@ -1,1 +1,16 @@
-{}
+{
+  "title": "Your reasons for appealing",
+  "subtitle": "DWP should have explained their decision on your entitlement to PIP in the Mandatory Reconsideration Notice (MRN).",
+  "fields": {
+    "reasonForAppealing": {
+      "error": {
+        "required": "Please enter a reason"
+      }
+    }
+  },
+  "cya": {
+    "reasonForAppealing": {
+      "question": "Reason for appealing"
+    }
+  }
+}

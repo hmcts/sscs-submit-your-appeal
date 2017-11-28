@@ -1,1 +1,10 @@
-{}
+{
+  "title": "You can register them later",
+  "subtitle": "You can contact the tribunal and provide their details later. You’ll be sent the address or phone number after you’ve submitted your appeal.",
+  "register": {
+    "heading": "Make sure you have their:",
+    "fullName": "full name",
+    "organisation": "organisation they work for (if they work for one)",
+    "emailOrPostalAddress": "email or postal address"
+  }
+}

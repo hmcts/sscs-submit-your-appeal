@@ -16,8 +16,8 @@ After((I) => {
 
 Scenario('When I enter a reason for lateness and click continue, I am taken to the no mrn page', (I) => {
 
-    I.fillField('#MRNOverOneMonthLate_reasonForBeingLate', 'Late');
-    I.click('input[type="submit"]');
+    I.fillField('#reasonForBeingLate', 'Late');
+    I.click('Continue');
     I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
 
 });

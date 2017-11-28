@@ -20,5 +20,10 @@
         "required": "Please enter a year"
       }
     }
+  },
+  "cya": {
+    "mrnDate": {
+      "question": "Date of MRN"
+    }
   }
 }

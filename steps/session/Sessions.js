@@ -5,7 +5,8 @@ const paths = require('paths');
 
 class Sessions extends BaseStep {
 
-    get url() {
+    static get path() {
+
         return paths.session.sessions;
     }
 

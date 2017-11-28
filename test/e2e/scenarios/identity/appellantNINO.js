@@ -21,7 +21,7 @@ Scenario('I see the correct information is displayed', (I) => {
 
 Scenario('The user has entered a NINO in the correct format (e.g. AA123456A) and continued', (I) => {
 
-    I.fillField('#AppellantNINO_nino', 'AA123456A');
+    I.fillField('#nino', 'AA123456A');
     I.click('Continue');
     I.seeInCurrentUrl(paths.identity.enterAppellantContactDetails);
 
@@ -29,7 +29,7 @@ Scenario('The user has entered a NINO in the correct format (e.g. AA123456A) and
 
 Scenario('The user has entered a NINO in the wrong format (e.g.AA1234) and continued', (I) => {
 
-    I.fillField('#AppellantNINO_nino', 'AA1234');
+    I.fillField('#nino', 'AA1234');
     I.click('Continue');
     I.seeElement('#error-summary-heading');
     I.see('There was a problem');

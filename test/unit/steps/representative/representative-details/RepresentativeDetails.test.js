@@ -6,20 +6,22 @@ const paths = require('paths');
 
 describe('RepresentativeDetails.js', () => {
 
-    let representativeDetailsClass;
+    let representativeDetails;
 
     beforeEach(() => {
-        representativeDetailsClass = new RepresentativeDetails();
+
+        representativeDetails = new RepresentativeDetails({
+            journey: {
+                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+            }
+        });
+
     });
 
-    after(() => {
-        representativeDetailsClass = undefined;
-    });
+    describe('get path()', () => {
 
-    describe('get url()', () => {
-
-        it('returns url /representative-details', () => {
-            expect(representativeDetailsClass.url).to.equal(paths.representative.representativeDetails);
+        it('returns path /representative-details', () => {
+            expect(RepresentativeDetails.path).to.equal(paths.representative.representativeDetails);
         });
 
     });
@@ -30,11 +32,7 @@ describe('RepresentativeDetails.js', () => {
         let field;
 
         beforeEach(() => {
-            fields = representativeDetailsClass.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
+            fields = representativeDetails.form.fields;
         });
 
         describe('firstName field', () => {
@@ -201,14 +199,8 @@ describe('RepresentativeDetails.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /reason-for-appealing', () => {
-            const redirector = {
-                nextStep: paths.reasonsForAppealing.reasonForAppealing
-            };
-            representativeDetailsClass.journey = {
-                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-            };
-            expect(representativeDetailsClass.next()).to.eql(redirector);
+        it('returns the next step path /reason-for-appealing', () => {
+            expect(representativeDetails.next()).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
         });
 
     });

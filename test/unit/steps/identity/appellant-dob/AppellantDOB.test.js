@@ -3,40 +3,25 @@
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const {expect} = require('test/util/chai');
 const paths = require('paths');
-const answer = require('utils/answer');
 
 describe('AppellantDOB.js', () => {
 
     let appellantDOBClass;
 
     beforeEach(() => {
-        appellantDOBClass = new AppellantDOB();
-        appellantDOBClass.journey = {
-            Appointee: {}
-        };
-        appellantDOBClass.fields = {
-            appointee: {}
-        }
-    });
 
-    describe('get url()', () => {
-
-        it('returns url /enter-appellant-dob', () => {
-            expect(appellantDOBClass.url).to.equal(paths.identity.enterAppellantDOB);
+        appellantDOBClass = new AppellantDOB({
+            journey:{
+                AppellantNINO: paths.identity.enterAppellantNINO
+            }
         });
 
     });
 
-    describe('get isAppointee()', () => {
+    describe('get path()', () => {
 
-        it('should return true', () => {
-            appellantDOBClass.fields.appointee.value = answer.YES;
-            expect(appellantDOBClass.isAppointee).to.eq(true);
-        });
-
-        it('should return false', () => {
-            appellantDOBClass.fields.appointee.value = answer.NO;
-            expect(appellantDOBClass.isAppointee).to.eq(false);
+        it('returns path /enter-appellant-dob', () => {
+            expect(AppellantDOB.path).to.equal(paths.identity.enterAppellantDOB);
         });
 
     });
@@ -102,13 +87,11 @@ describe('AppellantDOB.js', () => {
 
         });
 
-
     });
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-nino', () => {
-            appellantDOBClass.journey.AppellantNINO = paths.identity.enterAppellantNINO;
+        it('returns the next step path /enter-appellant-nino', () => {
             expect(appellantDOBClass.next()).to.eql({nextStep: paths.identity.enterAppellantNINO});
         });
 

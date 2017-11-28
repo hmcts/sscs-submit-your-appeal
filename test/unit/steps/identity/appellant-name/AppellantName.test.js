@@ -3,40 +3,25 @@
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const answer = require('utils/answer');
 
 describe('AppellantName.js', () => {
 
     let appellantNameClass;
 
     beforeEach(() => {
-        appellantNameClass = new AppellantName();
-        appellantNameClass.journey = {
-            Appointee: {}
-        };
-        appellantNameClass.fields = {
-            appointee: {}
-        }
+
+        appellantNameClass = new AppellantName({
+            journey:{
+                AppellantDOB: paths.identity.enterAppellantDOB
+            }
+        });
+        appellantNameClass.fields = {};
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /enter-appellant-details', () => {
-            expect(appellantNameClass.url).to.equal(paths.identity.enterAppellantName);
-        });
-
-    });
-
-    describe('get isAppointee()', () => {
-
-        it('should return true', () => {
-            appellantNameClass.fields.appointee.value = answer.YES;
-            expect(appellantNameClass.isAppointee).to.eq(true);
-        });
-
-        it('should return false', () => {
-            appellantNameClass.fields.appointee.value = answer.NO;
-            expect(appellantNameClass.isAppointee).to.eq(false);
+        it('returns path /enter-appellant-contact-details', () => {
+            expect(AppellantName.path).to.equal(paths.identity.enterAppellantName);
         });
 
     });
@@ -102,19 +87,12 @@ describe('AppellantName.js', () => {
 
         });
 
-
     });
 
     describe('next()', () => {
 
-        it('returns the next step url /enter-appellant-dob', () => {
-            const redirector = {
-                nextStep: paths.identity.enterAppellantDOB
-            };
-            appellantNameClass.journey = {
-                AppellantDOB: paths.identity.enterAppellantDOB
-            };
-            expect(appellantNameClass.next()).to.eql(redirector);
+        it('returns the next step path /enter-appellant-dob', () => {
+            expect(appellantNameClass.next()).to.eql({ nextStep: paths.identity.enterAppellantDOB });
         });
 
     });

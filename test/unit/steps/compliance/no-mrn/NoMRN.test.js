@@ -6,37 +6,30 @@ const paths = require('paths');
 
 describe('NoMRN.js', () => {
 
-    let noMRNClass;
+    let noMRN;
 
     beforeEach(() => {
-        noMRNClass = new NoMRN();
+
+        noMRN = new NoMRN({
+            journey: {
+                Appointee: '/are-you-an-appointee'
+            }
+        });
+
     });
 
-    after(() => {
-        noMRNClass = undefined;
-    });
+    describe('get path()', () => {
 
-    describe('get url()', () => {
-
-        it('returns url /no-mrn', () => {
-            expect(noMRNClass.url).to.equal(paths.compliance.noMRN);
+        it('returns path /no-mrn', () => {
+            expect(NoMRN.path).to.equal(paths.compliance.noMRN);
         });
 
     });
 
     describe('get form()', () => {
 
-        let field;
-
-        beforeEach(() => {
-            field = noMRNClass.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name reasonForNoMRN', () => {
+            const field = noMRN.form.fields[0];
             expect(field.name).to.equal('reasonForNoMRN');
         });
 
@@ -44,14 +37,8 @@ describe('NoMRN.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step url /are-you-an-appointee', () => {
-            const redirector = {
-                nextStep: '/are-you-an-appointee'
-            };
-            noMRNClass.journey = {
-                Appointee: '/are-you-an-appointee'
-            };
-            expect(noMRNClass.next()).to.eql(redirector);
+        it('returns the next step path /are-you-an-appointee', () => {
+            expect(noMRN.next()).to.eql({ nextStep: '/are-you-an-appointee' });
         });
 
     });

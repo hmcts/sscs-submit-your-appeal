@@ -1,6 +1,6 @@
 'use strict';
 
-const fields = require('steps/hearing/hearing-arrangements/content.en.json').fields;
+const fields = require('steps/hearing/arrangements/content.en.json').fields;
 const paths = require('paths');
 const Continue = 'Continue';
 
@@ -22,7 +22,7 @@ Scenario('I do not select any checkboxes and continue to see errors', (I) => {
 });
 
 Scenario('I enter illegal characters < $ > to see errors', (I) => {
-    I.fillField('#HearingArrangements_anythingElse', '< $ >');
+    I.fillField('#anythingElse', '< $ >');
     I.click(Continue);
     I.seeInCurrentUrl(paths.hearing.hearingArrangements);
     I.see(fields.anythingElse.error.required);

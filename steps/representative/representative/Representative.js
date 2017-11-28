@@ -2,19 +2,22 @@
 
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
-const answer = require('utils/answer');
+const userAnswer = require('utils/answer');
 
 class Representative extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.representative.representative
     }
 
     get form() {
 
-        const answers = [answer.YES, answer.NO];
+        const answers = [userAnswer.YES, userAnswer.NO];
 
         return form(
 
@@ -25,11 +28,22 @@ class Representative extends Question {
         );
     }
 
+    answers() {
+
+        return answer(this, {
+            question: this.content.cya.hasRepresentative.question,
+            section: 'representative',
+            answer: titleise(this.fields.hasRepresentative.value)
+        });
+
+    }
+
     next() {
-        const hasARepresentative = () => this.fields.hasRepresentative.value === answer.YES;
+
+        const hasARepresentative = () => this.fields.hasRepresentative.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.RepresentativeDetails).if(hasARepresentative),
+            goTo(this.journey.RepresentativeDetailsToHand).if(hasARepresentative),
             goTo(this.journey.ReasonForAppealing)
         )
     }

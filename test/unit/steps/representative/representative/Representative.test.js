@@ -1,23 +1,28 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { stub } = require('sinon');
 const Representative = require('steps/representative/representative/Representative');
 const paths = require('paths');
-const answer = require('utils/answer');
 
 describe('Representative.js', () => {
 
-    let representativeClass;
+    let representative;
 
     beforeEach(() => {
-        representativeClass = new Representative();
+
+        representative = new Representative({
+            journey: {
+                RepresentativeDetailsToHand: paths.representative.representativeDetailsToHand,
+                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+            }
+        });
+
     });
 
-    describe('get url()', () => {
+    describe('get path()', () => {
 
-        it('returns url /representative', () => {
-            expect(representativeClass.url).to.equal(paths.representative.representative);
+        it('returns path /representative', () => {
+            expect(Representative.path).to.equal(paths.representative.representative);
         });
 
     });
@@ -27,7 +32,9 @@ describe('Representative.js', () => {
         let field;
 
         beforeEach(() => {
-            field = representativeClass.form.fields[0];
+
+            field = representative.form.fields[0];
+
         });
 
         it('contains the field name hasRepresentative', () => {
@@ -42,37 +49,14 @@ describe('Representative.js', () => {
 
     describe('next()', () => {
 
-        beforeEach(() => {
-            representativeClass.fields = stub();
-            representativeClass.fields.hasRepresentative = {};
-            representativeClass.journey = {
-                RepresentativeDetails: paths.representative.representativeDetails,
-                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-            };
+        it('nextStep equals /representative-details', () => {
+            const branches = representative.next().branches[0];
+            expect(branches.redirector).to.eql({ nextStep: paths.representative.representativeDetailsToHand })
         });
 
-        it('returns branch object with condition property', () => {
-            representativeClass.fields.hasRepresentative.value = answer.YES;
-            const branches = representativeClass.next().branches[0];
-            expect(branches).to.have.property('condition');
-        });
-
-        it('returns branch object where condition nextStep equals /representative-details', () => {
-            representativeClass.fields.hasRepresentative.value = answer.YES;
-            const redirector = {
-                nextStep: paths.representative.representativeDetails
-            };
-            const branches = representativeClass.next().branches[0];
-            expect(branches.redirector).to.eql(redirector)
-        });
-
-        it('returns fallback object where nextStep equals /reason-for-appealing', () => {
-            representativeClass.fields.hasRepresentative.value = answer.NO;
-            const redirector = {
-                nextStep: paths.reasonsForAppealing.reasonForAppealing
-            };
-            const fallback = representativeClass.next().fallback;
-            expect(fallback).to.eql(redirector);
+        it('nextStep equals /reason-for-appealing', () => {
+            const fallback = representative.next().fallback;
+            expect(fallback).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
         });
 
     });

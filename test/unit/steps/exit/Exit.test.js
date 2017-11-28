@@ -6,20 +6,18 @@ const paths = require('paths');
 
 describe('Exit.js', () => {
 
-    let exitClass;
+    let exit;
 
     beforeEach(() => {
-        exitClass = new Exit();
+
+        exit = new Exit({ journey: {} });
+
     });
 
-    after(() => {
-        exitClass = undefined;
-    });
+    describe('get path()', () => {
 
-    describe('get url()', () => {
-
-        it('returns url /exit', () => {
-            expect(exitClass.url).to.equal(paths.session.exit);
+        it('returns path /exit', () => {
+            expect(Exit.path).to.equal(paths.session.exit);
         });
 
     });

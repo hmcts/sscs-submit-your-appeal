@@ -2,19 +2,22 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
-const paths = require('paths');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
+const userAnswer = require('utils/answer');
 const Joi = require('joi');
-const answer = require('utils/answer');
+const paths = require('paths');
 
 class AppellantDOB extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.identity.enterAppellantDOB;
     }
 
     get isAppointee() {
-        return this.fields.appointee.value === answer.YES;
+
+        return this.fields.appointee.value === userAnswer.YES;
     }
 
     get form() {
@@ -41,7 +44,20 @@ class AppellantDOB extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.dob.question,
+                section: 'appellant-details',
+                answer: `${this.fields.day.value}.${this.fields.month.value}.${this.fields.year.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.AppellantNINO);
     }
 }

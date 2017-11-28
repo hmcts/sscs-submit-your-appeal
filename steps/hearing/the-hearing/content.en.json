@@ -1,0 +1,21 @@
+{
+  "title": "The hearing",
+  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
+  "explainReasons": "If you come to the hearing you can explain your reasons for appealing.",
+  "arrangeSupport": "Support can be arranged for you, such as an interpreter, hearing loop or disabled access.",
+  "fields": {
+    "attendHearing": {
+      "title": "Do you want to attend the hearing?",
+      "yes": "Yes",
+      "no": "No",
+      "error": {
+        "required": "You need to tell us whether you want to attend the hearing. Select either yes or no."
+      }
+    }
+  },
+  "cya": {
+    "attendHearing": {
+      "question": "Attending the hearing"
+    }
+  }
+}

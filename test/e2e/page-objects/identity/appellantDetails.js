@@ -1,26 +1,62 @@
 'use strict';
 
-function enterRequiredAppellantDetails() {
+function enterAppellantNameAndContinue(title, firstName, lastName) {
 
     const I = this;
 
-    I.fillField('#AppellantDetails_firstName', 'Harry');
-    I.fillField('#AppellantDetails_lastName', 'Potter');
-    I.fillField('#AppellantDetails_niNumber', 'AB123456C');
-    I.fillField('#AppellantDetails_addressLine1', '4 Privet Drive');
-    I.fillField('#AppellantDetails_addressLine2', 'Off Wizards close');
-    I.fillField('#AppellantDetails_townCity', 'Little Whinging');
-    I.fillField('#AppellantDetails_postCode', 'PA80 5UU');
+    I.fillField('#title', title);
+    I.fillField('#firstName', firstName);
+    I.fillField('#lastName', lastName);
+    I.click('Continue');
 
 }
 
-function enterAppellantDetailsWithMobileAndContinue() {
+function enterAppellantDOBAndContinue(day, month, year) {
 
     const I = this;
 
-    I.enterRequiredAppellantDetails();
-    I.fillField('#AppellantDetails_appellantPhoneNumber', '07466748336');
+    I.fillField('#day', day);
+    I.fillField('#month', month);
+    I.fillField('#year', year);
     I.click('Continue');
 }
 
-module.exports = { enterRequiredAppellantDetails, enterAppellantDetailsWithMobileAndContinue };
+function enterAppellantNINOAndContinue(nino) {
+
+    const I = this;
+
+    I.fillField('#nino', nino);
+    I.click('Continue');
+}
+
+function enterAppellantContactDetailsAndContinue() {
+
+    const I = this;
+
+    I.fillField('#addressLine1', '4 Privet Drive');
+    I.fillField('#addressLine2', 'Off Wizards close');
+    I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#postCode', 'PA80 5UU');
+    I.click('Continue');
+
+}
+
+function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber='07466748336') {
+
+    const I = this;
+
+    I.fillField('#addressLine1', '4 Privet Drive');
+    I.fillField('#addressLine2', 'Off Wizards close');
+    I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#postCode', 'PA80 5UU');
+    I.fillField('#phoneNumber', mobileNumber);
+    I.click('Continue');
+}
+
+module.exports = {
+    enterAppellantNameAndContinue,
+    enterAppellantDOBAndContinue,
+    enterAppellantNINOAndContinue,
+    enterAppellantContactDetailsAndContinue,
+    enterAppellantContactDetailsWithMobileAndContinue
+};

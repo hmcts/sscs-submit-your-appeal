@@ -9,25 +9,32 @@ const answer = require('utils/answer');
 
 class SendToNumber extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.smsNotify.sendToNumber;
     }
 
-    get appellantPhoneNumber() {
-        return this.fields.appellantPhoneNumber.value;
+    get phoneNumber() {
+
+        return this.fields.phoneNumber.value;
     }
 
     get form() {
 
         return form(
 
-            textField.ref(this.journey.AppellantDetails, 'appellantPhoneNumber'),
+            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber'),
 
             textField('useSameNumber').joi(
                 this.content.fields.useSameNumber.error.required,
                 Joi.string().regex(whitelist).required()
             )
         );
+    }
+
+    answers() {
+
+        return [];
     }
 
     next() {

@@ -8,7 +8,8 @@ const paths = require('paths');
 
 class EnterMobile extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.smsNotify.enterMobile;
     }
 
@@ -18,12 +19,16 @@ class EnterMobile extends Question {
 
             textField('enterMobile').joi(
                 this.content.fields.enterMobile.error.emptyField,
-                Joi.string().required())
-            .joi(
+                Joi.string().required()).joi(
                 this.content.fields.enterMobile.error.invalidNumber,
                 Joi.string().regex(internationalMobileNumber).required()
             )
         );
+    }
+
+    answers() {
+
+        return [];
     }
 
     next() {

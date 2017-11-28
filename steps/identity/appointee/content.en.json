@@ -9,5 +9,10 @@
         "required": "Select whether or not your an appointee"
       }
     }
+  },
+  "cya": {
+    "appointee": {
+      "question": "Appointee"
+    }
   }
 }

@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -9,7 +10,8 @@ const emailOptions = require('utils/emailOptions');
 
 class RepresentativeDetails extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.representative.representativeDetails;
     }
 
@@ -19,19 +21,17 @@ class RepresentativeDetails extends Question {
 
         return form(
 
-            textField('firstName').joi(
-                fields.firstName.error.required,
-                Joi.string().required()
-            ).joi(
-                fields.firstName.error.invalid,
+            textField('firstName')
+                .joi(fields.firstName.error.required,
+                Joi.string().required())
+                .joi(fields.firstName.error.invalid,
                 Joi.string().regex(firstName)
             ),
 
-            textField('lastName').joi(
-                fields.lastName.error.required,
-                Joi.string().required()
-            ).joi(
-                fields.lastName.error.invalid,
+            textField('lastName')
+                .joi(fields.lastName.error.required,
+                Joi.string().required())
+                .joi(fields.lastName.error.invalid,
                 Joi.string().regex(lastName)
             ),
 
@@ -77,7 +77,68 @@ class RepresentativeDetails extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.firstName.question,
+                section: 'representative',
+                answer: this.fields.firstName.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.lastName.question,
+                section: 'representative',
+                answer: this.fields.lastName.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.organisation.question,
+                section: 'representative',
+                answer: this.fields.organisation.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.addressLine1.question,
+                section: 'representative',
+                answer: this.fields.addressLine1.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.addressLine2.question,
+                section: 'representative',
+                answer: this.fields.addressLine2.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.townCity.question,
+                section: 'representative',
+                answer: this.fields.townCity.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.postCode.question,
+                section: 'representative',
+                answer: this.fields.postCode.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.phoneNumber.question,
+                section: 'representative',
+                answer: this.fields.phoneNumber.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.emailAddress.question,
+                section: 'representative',
+                answer: this.fields.emailAddress.value
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.ReasonForAppealing);
     }
 }

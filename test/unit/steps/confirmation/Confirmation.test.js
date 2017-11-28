@@ -9,17 +9,15 @@ describe('Confirmation.js', () => {
     let confirmationClass;
 
     beforeEach(() => {
-        confirmationClass = new Confirmation();
+
+        confirmationClass = new Confirmation({ journey: {} });
+
     });
 
-    after(() => {
-        confirmationClass = undefined;
-    });
+    describe('get path()', () => {
 
-    describe('get url()', () => {
-
-        it('returns url /confirmation', () => {
-            expect(confirmationClass.url).to.equal(paths.confirmation);
+        it('returns path /confirmation', () => {
+            expect(Confirmation.path).to.equal(paths.confirmation);
         });
 
     });

@@ -2,19 +2,23 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { title, firstName, lastName } = require('utils/regex');
+
 const Joi = require('joi');
 const paths = require('paths');
-const answer = require('utils/answer');
+const userAnswer = require('utils/answer');
 
 class AppellantName extends Question {
 
-    get url() {
+    static get path() {
+
         return paths.identity.enterAppellantName;
     }
 
     get isAppointee() {
-        return this.fields.appointee.value === answer.YES;
+
+        return this.fields.appointee.value === userAnswer.YES;
     }
 
     get form() {
@@ -39,7 +43,20 @@ class AppellantName extends Question {
         );
     }
 
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.appellantName.question,
+                section: 'appellant-details',
+                answer: `${this.fields.title.value} ${this.fields.firstName.value} ${this.fields.lastName.value}`
+            })
+        ];
+    }
+
     next() {
+
         return goTo(this.journey.AppellantDOB);
     }
 }

@@ -14,5 +14,10 @@
         "required": "You have to say whether you have a representative. Select either yes or no."
       }
     }
+  },
+  "cya": {
+    "hasRepresentative": {
+      "question": "Have a representative"
+    }
   }
 }

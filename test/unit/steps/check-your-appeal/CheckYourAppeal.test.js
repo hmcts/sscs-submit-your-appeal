@@ -6,34 +6,28 @@ const paths = require('paths');
 
 describe('CheckYourAppeal.js', () => {
 
-    let checkYourAppealClass;
+    let checkYourAppeal;
 
     beforeEach(() => {
-        checkYourAppealClass = new CheckYourAppeal();
-        checkYourAppealClass.journey = {};
-    });
 
-    describe('get url()', () => {
-
-        it('returns url /check-your-appeal', () => {
-            expect(checkYourAppealClass.url).to.equal(paths.checkYourAppeal);
-        });
+        checkYourAppeal = new CheckYourAppeal({ journey: {
+            Confirmation: paths.confirmation
+        } });
 
     });
 
-    describe('get form()', () => {
+    describe('get path()', () => {
 
-        it('should be defined', () => {
-            expect(checkYourAppealClass.form).to.be.undefined;
+        it('returns path /check-your-appeal', () => {
+            expect(CheckYourAppeal.path).to.equal(paths.checkYourAppeal);
         });
 
     });
 
     describe('next()', () => {
 
-        it('returns the next step url /confirmation', () => {
-            checkYourAppealClass.journey.Confirmation = paths.confirmation;
-            expect(checkYourAppealClass.next()).to.eql({ nextStep: paths.confirmation});
+        it('returns the next step path /confirmation', () => {
+            expect(checkYourAppeal.next()).to.eql({ nextStep: paths.confirmation});
         });
 
     });

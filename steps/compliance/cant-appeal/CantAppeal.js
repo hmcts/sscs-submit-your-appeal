@@ -1,15 +1,14 @@
 'use strict';
 
-const { Page } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const paths = require('paths');
 
-class CantAppeal extends Page {
+class CantAppeal extends ExitPoint {
 
-    get url () {
+    static get path() {
+
         return paths.compliance.cantAppeal;
     }
-
-    next() {}
 }
 
 module.exports = CantAppeal;
