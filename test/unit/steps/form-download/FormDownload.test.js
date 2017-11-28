@@ -10,9 +10,13 @@ describe('FormDownload.js', () => {
 
     beforeEach(() => {
         formDownloadSut = new FormDownload();
+
+        formDownloadSut.fields = {
+            benefitType: {}
+        }
     });
 
-    describe.only('get url()', () => {
+    describe('get url()', () => {
 
         it('returns url /form-download', () => {
             expect(formDownloadSut.url).to.equal(paths.formDownload);
@@ -20,5 +24,13 @@ describe('FormDownload.js', () => {
 
     });
 
+    describe.only('get benefitType()', () => {
+
+        it('returns correct wording', () => {
+            formDownloadSut.fields.benefitType.value = 'some benefitType';
+            expect(formDownloadSut.benefitType).to.equal('Download and fill out a [Form name here] form to appeal a [some benefitType] benefit decision.');
+        });
+
+    });
 
 });
