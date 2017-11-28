@@ -1,7 +1,9 @@
 {
   "title": "You need to download and fill out a paper form",
-  "subtitle": "Download and fill out a [formType] form to appeal a [benefitType] benefit decision.",
+  "subtitle": "Download and fill out a form to appeal a [benefitType] benefit decision.",
   "benefitTypePlaceholder": "benefitType",
-  "formTypePlaceholder": "formType",
-  "button": "Continue to form download"
+  "button": {
+    "text": "Continue to form download",
+    "link": "https://hmctsformfinder.justice.gov.uk/HMCTS/FormFinder.do"
+    }
 }

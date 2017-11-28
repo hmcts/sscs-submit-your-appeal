@@ -12,8 +12,7 @@ class FormDownload extends Question {
     }
 
     get benefitType() {
-        return content.subtitle.replace(content.benefitTypePlaceholder, this.fields.benefitType.value)
-        .replace(content.formTypePlaceholder, "Form name here");
+        return content.subtitle.replace(content.benefitTypePlaceholder, this.fields.benefitType.value);
     }
 
     get form() {
