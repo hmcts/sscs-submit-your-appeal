@@ -7,7 +7,7 @@ function seeAndGoToGivenLink(relatedLinkText, relatedLinkUrl) {
     I.see(relatedLinkText);
     I.click(relatedLinkText);
     I.seeInCurrentUrl(relatedLinkUrl);
-    I.amOnPage(paths.termsAndConditions);
+    I.amOnPage(paths.policy.termsAndConditions);
 
 }
 

@@ -11,7 +11,8 @@ module.exports = {
     },
 
     policy: {
-      cookiePolicy:                     '/cookie-policy'
+        cookiePolicy:                     '/cookie-policy',
+        termsAndConditions:               '/terms-and-conditions'
     },
 
     validPostcode: {
@@ -80,7 +81,6 @@ module.exports = {
 
     checkYourAppeal:                     '/check-your-appeal',
 
-    confirmation:                       '/confirmation',
-    termsAndConditions:                 '/terms-and-conditions'
+    confirmation:                       '/confirmation'
 
 };
