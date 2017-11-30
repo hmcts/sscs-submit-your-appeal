@@ -1,6 +1,6 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -45,29 +45,20 @@ class CheckMRN extends Question {
 
     next() {
 
-        if(this.fields.checkedMRN.value === userAnswer.YES) {
+        const mrnDate = DateUtils.createMoment(
+            this.fields.day.value,
+            this.fields.month.value,
+            this.fields.year.value
+        );
 
-            const mrnDate = DateUtils.createMoment(
-                this.fields.day.value,
-                this.fields.month.value,
-                this.fields.year.value
-            );
+        const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
+        const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 
-            if (DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate)) {
-
-                // MRN is > 1 month and <= 13 months.
-                return goTo(this.journey.MRNOverOneMonthLate);
-
-            } else {
-
-                // MRN is > 13 months.
-                return goTo(this.journey.MRNOverThirteenMonthsLate);
-            }
-
-        } else {
-
-            return goTo(this.journey.MRNDate);
-        }
+        return branch(
+            goTo(this.journey.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
+            goTo(this.journey.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
+            goTo(this.journey.MRNDate)
+        );
     }
 }
 

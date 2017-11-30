@@ -87,22 +87,19 @@ describe('CheckMRN.js', () => {
                 checkMRN.fields.checkedMRN.value = answer.YES;
             });
 
-            it('returns the next step \'/mrn-over-month-late\' when the date is less than thirteen months', () => {
+            it('returns the next step path \'/mrn-over-month-late\' when the date is less than thirteen months', () => {
                 setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-                checkMRN.journey.MRNOverOneMonthLate = paths.compliance.mrnOverMonthLate;
-                expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
+                expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverMonthLate);
             });
 
             it('returns the next step path /mrn-over-month-late when date is equal to thirteen months', () => {
-                checkMRN.journey.MRNOverOneMonthLate = paths.compliance.mrnOverMonthLate;
                 setMRNDate(DateUtils.thirteenMonthsAgo());
-                expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverMonthLate });
+                expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverMonthLate);
             });
 
             it('returns the next step path /mrn-over-thirteen-months-late when date is over thirteen months', () => {
-                checkMRN.journey.MRNOverThirteenMonthsLate = paths.compliance.mrnOverThirteenMonthsLate;
                 setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
-                expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnOverThirteenMonthsLate });
+                expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
             });
 
         });
@@ -111,7 +108,7 @@ describe('CheckMRN.js', () => {
 
             it('returns the next step path /mrn-date when checkMRN value equals no', () => {
                 checkMRN.fields.checkedMRN.value = answer.NO;
-                expect(checkMRN.next()).to.eql({ nextStep: paths.compliance.mrnDate });
+                expect(checkMRN.next().step).to.eql(paths.compliance.mrnDate);
             });
 
         });
