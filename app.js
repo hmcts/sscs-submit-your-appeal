@@ -51,8 +51,8 @@ lookAndFeel.configure(app, {
     },
     nunjucks: {
         globals: {
-            phase: 'ALPHA',
-            feedbackLink: 'https://github.com/hmcts/submit-your-appeal',
+            phase: 'BETA',
+            feedbackLink: 'mailto:benefitappeal_helpdesk@digital.justice.gov.uk?subject=Report a problem&body=Don’t include personal or financial information like evidence, your National Insurance number or credit card details.',
             isArray(value) {
                 return Array.isArray(value);
             }
