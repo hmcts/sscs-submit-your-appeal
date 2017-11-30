@@ -1,10 +1,10 @@
+{% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/header.njk" import header %}
 {% from "look-and-feel/components/fields.njk" import textbox, formSection, select %}
 
 {% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-<script src="{{ asset_path }}main.js" type="text/javascript" />
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+    <script src="{{ asset_path }}main.js" type="text/javascript" />
 {% endblock %}
 
 {% set title %}
