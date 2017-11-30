@@ -1,26 +1,17 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { stub } = require('sinon');
-const moment = require('moment');
+const DateUtils = require('utils/DateUtils');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const paths = require('paths');
 
 describe('MRNDate.js', () => {
 
-    const mrnDate = m => {
-        const date =  moment().subtract(m, 'month');
-        return {
-            d: date.date(),
-            m: date.month() + 1,
-            y: date.year()
-        }
-    };
-    let mrnDateClass;
+    let mrnDate;
 
     beforeEach(() => {
 
-        mrnDateClass = new MRNDate({
+        mrnDate = new MRNDate({
             journey: {
                 Appointee: paths.identity.areYouAnAppointee,
                 CheckMRN:  paths.compliance.checkMRNDate
@@ -42,7 +33,7 @@ describe('MRNDate.js', () => {
         let field;
 
         beforeEach(() => {
-           fields = mrnDateClass.form.fields;
+           fields = mrnDate.form.fields;
         });
 
         after(() => {
@@ -105,37 +96,25 @@ describe('MRNDate.js', () => {
 
     describe('next()', () => {
 
-        let date;
-
-        beforeEach(() => {
-            mrnDateClass.fields = stub();
-            mrnDateClass.fields.day = {};
-            mrnDateClass.fields.month = {};
-            mrnDateClass.fields.year = {};
-        });
+        const setMRNDate = date => {
+            mrnDate.fields.day.value = date.date();
+            mrnDate.fields.month.value = date.month() + 1;
+            mrnDate.fields.year.value = date.year();
+        };
 
         it('returns the next step path /are-you-an-appointee if date less than a month', () => {
-            date = mrnDate(0);
-            mrnDateClass.fields.day.value = date.d;
-            mrnDateClass.fields.month.value = date.m;
-            mrnDateClass.fields.year.value = date.y;
-            expect(mrnDateClass.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+            setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
         });
 
         it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
-            date = mrnDate(1);
-            mrnDateClass.fields.day.value = date.d;
-            mrnDateClass.fields.month.value = date.m;
-            mrnDateClass.fields.year.value = date.y;
-            expect(mrnDateClass.next()).to.eql({nextStep: paths.identity.areYouAnAppointee});
+            setMRNDate(DateUtils.oneMonthAgo());
+            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
         });
 
         it('returns the next step path /check-mrn-date if date more than a month', () => {
-            date = mrnDate(2);
-            mrnDateClass.fields.day.value = date.d;
-            mrnDateClass.fields.month.value = date.m;
-            mrnDateClass.fields.year.value = date.y;
-            expect(mrnDateClass.next()).to.eql({ nextStep: paths.compliance.checkMRNDate });
+            setMRNDate(DateUtils.oneMonthAndOneDayAgo());
+            expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
         });
 
     });

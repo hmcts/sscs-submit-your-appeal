@@ -1,6 +1,6 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
@@ -54,13 +54,12 @@ class MRNDate extends Question {
             this.fields.month.value,
             this.fields.year.value);
 
-        if (DateUtils.isLessThanOrEqualToAMonth(mrnDate)) {
+        const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
 
-            return goTo(this.journey.Appointee);
-        } else {
-
-            return goTo(this.journey.CheckMRN);
-        }
+        return branch(
+            goTo(this.journey.Appointee).if(isLessThanOrEqualToAMonth),
+            goTo(this.journey.CheckMRN)
+        );
     }
 }
 
