@@ -76,6 +76,7 @@ module.exports = {
 
     checkYourAppeal:                     '/check-your-appeal',
 
-    confirmation:                       '/confirmation'
+    confirmation:                       '/confirmation',
+    termsAndConditions:                 '/terms-and-conditions'
 
 };

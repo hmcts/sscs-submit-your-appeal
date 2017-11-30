@@ -1,0 +1,77 @@
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block head -%}
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ phaseBanner(phase, feedbackLink) }}
+    <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+{% endblock %}
+
+
+{% block two_thirds %}
+    {% set title %}
+        {{ title | safe }}
+    {% endset %}
+
+    <h1 class="heading-large">{{ title }}</h1>
+    <p>{{ termsAndConditions.termsOfUse }}</p>
+    <p>{{ termsAndConditions.govPrivacy | safe }}</p>
+
+    <h2 class="heading-medium">{{whoWeAre.title}}</h2>
+    <p>{{whoWeAre.managedBy}}</p>
+    <p>{{whoWeAre.changeInLaw}}</p>
+
+    <h2 class="heading-medium">{{informationProvided.title}}</h2>
+    <p>{{informationProvided.support}}</p>
+    <p>{{informationProvided.questions}}</p>
+
+    <h2 class="heading-medium">{{dataStored.title}}</h2>
+    <p>{{dataStored.dataCentres}}</p>
+    <p>{{dataStored.notify}}</p>
+
+    <h2 class="heading-medium">{{shareYourData.title}}</h2>
+    <p>{{shareYourData.dwp}}</p>
+    <p>{{shareYourData.representative}}</p>
+
+    <h2 class="heading-medium">{{applicableLaw.title}}</h2>
+    <p>{{applicableLaw.law}}</p>
+    <ul class="list list-bullet">
+        <li>{{applicableLaw.misuse}}</a></li>
+        <li>{{applicableLaw.data}}</a></li>
+        <li>{{applicableLaw.mental}}</a></li>
+    </ul>
+
+    <h2 class="heading-medium">{{responsibleUse.title}}</h2>
+    <p>{{responsibleUse.designedFor}}</p>
+    <p>{{responsibleUse.risks}}</p>
+    <p>{{responsibleUse.precautions}}</p>
+    <ul class="list list-bullet">
+        <li>{{responsibleUse.viruses}}</a></li>
+        <li>{{responsibleUse.malicious}}</a></li>
+        <li>{{responsibleUse.interference}}</a></li>
+    </ul>
+    <p>{{responsibleUse.mustNot}}</p>
+    <p>{{responsibleUse.freeText}}</p>
+
+    <h2 class="heading-medium">{{changes.title}}</h2>
+    <p>{{changes.check}}</p>
+    <p>{{changes.agree}}</p>
+
+    <h2 class="heading-medium">{{contactUs.title}}</h2>
+    <p>{{contactUs.address | safe}}</p>
+{%- endblock %}
+
+{% block one_third %}
+    <aside class="govuk-related-items">
+        <h2 class="heading-medium">{{relatedLinks.title}}</h2>
+        <nav role="navigation"></nav>
+        <ul class="font-xsmall">
+            <li><a href="{{relatedLinks.cookie.url}}">{{relatedLinks.cookie.text}}</a></li>
+            <li><a href="{{relatedLinks.privacy.url}}">{{relatedLinks.privacy.text}}</a></li>
+            <li><a href="{{relatedLinks.conditions.url}}">{{relatedLinks.conditions.text}}</a></li>
+        </ul>
+    </aside>
+ {%- endblock %}

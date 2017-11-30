@@ -9,6 +9,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const paths = require('paths');
 const landingPages = require('landing-pages/routes');
+const termsAndConditionsPage = require('terms-and-conditions-page/routes');
 const validPostcode = require('valid-postcode-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -34,7 +35,8 @@ lookAndFeel.configure(app, {
             path.resolve(__dirname, 'steps'),
             path.resolve(__dirname, 'landing-pages'),
             path.resolve(__dirname, 'valid-postcode-pages'),
-            path.resolve(__dirname, 'views/compliance')
+            path.resolve(__dirname, 'views/compliance'),
+            path.resolve(__dirname, 'terms-and-conditions-page')
         ]
     },
     webpack: {
@@ -88,6 +90,6 @@ app.use(paths.health, healthcheck.configure({
     }
 }));
 
-app.use('/', landingPages, validPostcode);
+app.use('/', landingPages, validPostcode, termsAndConditionsPage);
 
 module.exports = app;
