@@ -3,7 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { title, firstName, lastName } = require('utils/regex');
+const { whitelist, firstName, lastName } = require('utils/regex');
 
 const Joi = require('joi');
 const paths = require('paths');
@@ -29,7 +29,7 @@ class AppellantName extends Question {
 
             textField('title')
                 .joi(fields.title.error.required, Joi.string().required())
-                .joi(fields.title.error.invalid, Joi.string().regex(title)),
+                .joi(fields.title.error.invalid, Joi.string().regex(whitelist)),
 
             textField('firstName')
                 .joi(fields.firstName.error.required, Joi.string().required())
