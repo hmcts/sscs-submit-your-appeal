@@ -15,7 +15,7 @@
     "test:coverage": "echo 'test coverage not implemented'",
     "test:nsp": "echo 'nsp  checks not implemented'",
     "test:a11y": "echo 'a11y tests not implemented'",
-    "sonar-scan": "echo 'sonar scan not implemented'",
+    "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner",
     "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "portscanner": "^2.1.1",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0",
+    "sonar-scanner": "^1.0.1",
     "supertest": "^3.0.0"
   }
 }

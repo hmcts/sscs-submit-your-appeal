@@ -5156,6 +5156,10 @@ sntp@2.x.x:
   dependencies:
     hoek "4.x.x"
 
+sonar-scanner@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sonar-scanner/-/sonar-scanner-1.0.1.tgz#09ec309e30e5e9570a4ccaf21dcc1adc2b1856c5"
+
 sort-keys@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
