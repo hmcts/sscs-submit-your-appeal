@@ -41,11 +41,25 @@
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
     "node-dev": "^3.1.3",
-    "nyc": "^11.2.1",
+    "nyc": "^11.4.0",
     "portscanner": "^2.1.1",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0",
     "sonar-scanner": "^1.0.1",
     "supertest": "^3.0.0"
+  },
+  "nyc": {
+    "extension": [
+      ".js"
+    ],
+    "exclude": [
+      "test/**","assets/js/**", "node_modules/**", "test/unit/coverage/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "test/unit/coverage",
+    "all": true
   }
 }
