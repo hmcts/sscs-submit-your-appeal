@@ -4,9 +4,9 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/fields.njk" import textbox %}
 
-{% block page_title %}
-    {{ content.title }}
-{% endblock %}
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
 
 {% block breadcrumbs %}
     {{ phaseBanner(phase, feedbackLink) }}
@@ -30,7 +30,7 @@
     </div>
     {%- endif -%}
 
-    {{ header(content.title, size='large') }}
+    {{ header(title, size='large') }}
 
     {{ textbox(fields.postcode, content.fields.postcode.title) }}
 
