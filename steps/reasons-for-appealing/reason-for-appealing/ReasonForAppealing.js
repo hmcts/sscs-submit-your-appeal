@@ -39,7 +39,7 @@ class ReasonForAppealing extends Question {
 
     next() {
 
-        return goTo(this.journey.OtherReasonForAppealing);
+        return goTo(this.journey.steps.OtherReasonForAppealing);
     }
 }
 

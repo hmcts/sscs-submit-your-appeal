@@ -11,8 +11,10 @@ describe('HearingSupport.js', () => {
     beforeEach(() => {
         hearingSupport = new HearingSupport({
             journey: {
-                HearingAvailability: paths.hearing.hearingAvailability,
-                HearingArrangements: paths.hearing.hearingArrangements
+                steps: {
+                    HearingAvailability: paths.hearing.hearingAvailability,
+                    HearingArrangements: paths.hearing.hearingArrangements
+                }
             }
         });
     });

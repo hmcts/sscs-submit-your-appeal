@@ -45,8 +45,8 @@ class HearingSupport extends Question {
         const makeHearingArrangements = () => this.fields.arrangements.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.HearingArrangements).if(makeHearingArrangements),
-            goTo(this.journey.HearingAvailability)
+            goTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
+            goTo(this.journey.steps.HearingAvailability)
         );
     }
 }

@@ -12,8 +12,10 @@ describe('Representative.js', () => {
 
         representative = new Representative({
             journey: {
-                RepresentativeDetailsToHand: paths.representative.representativeDetailsToHand,
-                ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+                steps: {
+                    RepresentativeDetailsToHand: paths.representative.representativeDetailsToHand,
+                    ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+                }
             }
         });
 

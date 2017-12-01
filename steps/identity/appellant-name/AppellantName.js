@@ -39,7 +39,7 @@ class AppellantName extends Question {
                 .joi(fields.lastName.error.required, Joi.string().required())
                 .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)),
 
-            textField.ref(this.journey.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'appointee')
         );
     }
 
@@ -57,7 +57,7 @@ class AppellantName extends Question {
 
     next() {
 
-        return goTo(this.journey.AppellantDOB);
+        return goTo(this.journey.steps.AppellantDOB);
     }
 }
 

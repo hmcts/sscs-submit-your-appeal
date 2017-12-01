@@ -32,7 +32,7 @@ class CheckYourAppeal extends CYA {
 
     next() {
 
-        return goTo(this.journey.Confirmation);
+        return goTo(this.journey.steps.Confirmation);
     }
 }
 

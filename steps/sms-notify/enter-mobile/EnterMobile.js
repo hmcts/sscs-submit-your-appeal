@@ -32,7 +32,7 @@ class EnterMobile extends Question {
     }
 
     next() {
-        return goTo(this.journey.SmsConfirmation);
+        return goTo(this.journey.steps.SmsConfirmation);
     }
 }
 

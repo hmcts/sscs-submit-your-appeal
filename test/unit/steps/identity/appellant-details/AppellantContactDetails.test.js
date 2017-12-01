@@ -11,7 +11,9 @@ describe('AppellantContactDetails.js', () => {
     beforeEach(() => {
         appellantContactDetails = new AppellantContactDetails({
             journey: {
-                TextReminders: paths.smsNotify.appellantTextReminders
+                steps: {
+                    TextReminders: paths.smsNotify.appellantTextReminders
+                }
             }
         });
         appellantContactDetails.fields = {}

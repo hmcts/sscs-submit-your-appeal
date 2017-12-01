@@ -13,8 +13,10 @@ describe('Appointee.js', () => {
 
         appointeeClass = new Appointee({
             journey: {
-                AppellantName: paths.identity.enterAppellantName,
-                AppointeeFormDownload: paths.identity.downloadAppointeeForm
+                steps: {
+                    AppellantName: paths.identity.enterAppellantName,
+                    AppointeeFormDownload: paths.identity.downloadAppointeeForm
+                }
             }
         });
 

@@ -12,7 +12,9 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
         mrnOverThirteenMonthsLate = new MRNOverThirteenMonthsLate({
             journey: {
-                Appointee: paths.identity.areYouAnAppointee
+                steps: {
+                    Appointee: paths.identity.areYouAnAppointee
+                }
             }
         });
 

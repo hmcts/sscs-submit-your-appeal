@@ -40,7 +40,7 @@ class AppellantDOB extends Question {
                 Joi.string().regex(numbers).required()
             ),
 
-            textField.ref(this.journey.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'appointee')
         );
     }
 
@@ -58,7 +58,7 @@ class AppellantDOB extends Question {
 
     next() {
 
-        return goTo(this.journey.AppellantNINO);
+        return goTo(this.journey.steps.AppellantNINO);
     }
 }
 

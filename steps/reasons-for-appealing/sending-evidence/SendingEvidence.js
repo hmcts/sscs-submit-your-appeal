@@ -23,7 +23,7 @@ class SendingEvidence extends Question {
 
     next() {
 
-        return goTo(this.journey.TheHearing);
+        return goTo(this.journey.steps.TheHearing);
     }
 }
 

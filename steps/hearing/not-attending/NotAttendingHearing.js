@@ -23,7 +23,7 @@ class NotAttendingHearing extends Question {
 
     next() {
 
-        return goTo(this.journey.CheckYourAppeal);
+        return goTo(this.journey.steps.CheckYourAppeal);
     }
 }
 

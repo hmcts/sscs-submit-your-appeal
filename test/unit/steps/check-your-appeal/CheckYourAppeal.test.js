@@ -10,9 +10,12 @@ describe('CheckYourAppeal.js', () => {
 
     beforeEach(() => {
 
-        checkYourAppeal = new CheckYourAppeal({ journey: {
-            Confirmation: paths.confirmation
-        } });
+        checkYourAppeal = new CheckYourAppeal({
+            journey: {
+                steps: {
+                    Confirmation: paths.confirmation
+                }
+        }   });
 
     });
 

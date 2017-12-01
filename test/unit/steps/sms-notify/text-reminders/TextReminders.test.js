@@ -13,10 +13,12 @@ describe('TextReminders.js', () => {
 
        textReminders = new TextReminders({
            journey: {
-               SendToNumber: paths.smsNotify.sendToNumber,
-               EnterMobile: paths.smsNotify.enterMobile,
-               Representative: paths.representative.representative,
-               AppellantContactDetails: paths.identity.enterAppellantContactDetails
+               steps: {
+                   SendToNumber: paths.smsNotify.sendToNumber,
+                   EnterMobile: paths.smsNotify.enterMobile,
+                   Representative: paths.representative.representative,
+                   AppellantContactDetails: paths.identity.enterAppellantContactDetails
+               }
            }
        });
 

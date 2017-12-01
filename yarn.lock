@@ -39,9 +39,9 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@^2.0.0-1":
-  version "2.0.0-1"
-  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-2.0.0-1.tgz#d44df75e7e406c274d7ccf055f82c4c7ac827f83"
+"@hmcts/one-per-page@^2.0.0-2":
+  version "2.0.0-2"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-2.0.0-2.tgz#93a3f6a9b6dde9a940c72861cf0e05dd36c227d3"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.17.2"

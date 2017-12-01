@@ -97,7 +97,7 @@ class AppellantContactDetails extends Question {
 
     next() {
 
-        return goTo(this.journey.TextReminders);
+        return goTo(this.journey.steps.TextReminders);
     }
 }
 
