@@ -9,11 +9,11 @@
     "setup": "exit 0",
     "test": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
     "e2e": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --steps",
-    "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn e2e",
+    "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn e2e",
     "lint": "echo 'linting not implemented'",
     "test:smoke": "echo 'smoke test not implemented'",
     "test:coverage": "echo 'test coverage not implemented'",
-    "test:nsp": "echo 'nsp  checks not implemented'",
+    "test:nsp": "nsp check",
     "test:a11y": "echo 'a11y tests not implemented'",
     "sonar-scan": "echo 'sonar scan not implemented'",
     "health-check": "echo 'not implemented yet'"
@@ -28,7 +28,8 @@
     "express": "^4.15.3",
     "http-status-codes": "^1.3.0",
     "joi": "^10.6.0",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "nsp": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
