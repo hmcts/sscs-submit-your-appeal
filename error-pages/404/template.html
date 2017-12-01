@@ -1,15 +1,11 @@
+{% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
-{% block head -%}
-    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% block page_title %}
+    {{ title }}
 {% endblock %}
-
-{% block page_title %}{{ title }}{% endblock %}
-
-{% set phase="ALPHA" %}
-{% set feedbackLink="https://github.com/hmcts/one-per-page/issues/new" %}
 
 {% block breadcrumbs %}
     {{ phaseBanner(phase, feedbackLink) }}
