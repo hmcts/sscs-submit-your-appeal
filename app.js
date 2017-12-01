@@ -12,6 +12,7 @@ const landingPages = require('landing-pages/routes');
 const validPostcode = require('valid-postcode-pages/routes');
 const policyPages = require('policy-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const content = require('content.en.json');
 
 const app = express();
 
@@ -54,7 +55,7 @@ lookAndFeel.configure(app, {
     nunjucks: {
         globals: {
             phase: 'BETA',
-            feedbackLink: 'mailto:benefitappeal_helpdesk@digital.justice.gov.uk?subject=Report a problem&body=Don’t include personal or financial information like evidence, your National Insurance number or credit card details.',
+            feedbackLink: `mailto:benefitappeal_helpdesk@digital.justice.gov.uk?subject=${content.email.subject}&body=${content.email.body}`,
             isArray(value) {
                 return Array.isArray(value);
             }
