@@ -2,6 +2,12 @@ module.exports = {
 
     health:                             '/health',
 
+    errorPages: {
+        pageNotFound:                     '/page-not-found',
+        timedOut:                         '/page-timed-out',
+        technicalIssue:                   '/technical-issues'
+    },
+
     landingPages: {
         overview:                       '/',
         beforeYouAppeal:                '/before-you-appeal',
