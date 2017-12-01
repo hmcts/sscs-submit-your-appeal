@@ -1,0 +1,20 @@
+{% macro cookieTable(items, columnNames) %}
+    <table>
+        <thead>
+        <tr>
+            {% for columnName in columnNames %}
+            <th scope="col">{{columnName}}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.purpose}}</td>
+            <td>{{item.expires}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

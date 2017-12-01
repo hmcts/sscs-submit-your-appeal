@@ -1,13 +1,12 @@
+{% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/fields.njk" import textbox %}
 
-{% block head -%}
-    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% block page_title %}
+    {{ content.title }}
 {% endblock %}
-
-{% block page_title %}{{ content.title }}{% endblock %}
 
 {% block breadcrumbs %}
     {{ phaseBanner(phase, feedbackLink) }}

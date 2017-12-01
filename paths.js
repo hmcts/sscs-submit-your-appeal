@@ -10,6 +10,11 @@ module.exports = {
         afterYouAppeal:                 '/after-you-appeal'
     },
 
+    policy: {
+        cookiePolicy:                     '/cookie-policy',
+        termsAndConditions:               '/terms-and-conditions'
+    },
+
     validPostcode: {
         postcodeCheck:                  '/postcode-check',
         invalidPostcode:                '/invalid-postcode'
@@ -76,7 +81,6 @@ module.exports = {
 
     checkYourAppeal:                     '/check-your-appeal',
 
-    confirmation:                       '/confirmation',
-    termsAndConditions:                 '/terms-and-conditions'
+    confirmation:                       '/confirmation'
 
 };

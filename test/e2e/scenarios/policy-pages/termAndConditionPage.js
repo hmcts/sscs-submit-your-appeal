@@ -1,12 +1,12 @@
 'use strict';
 
 const paths = require('paths');
-const termsAndConditionsContent = require('terms-and-conditions-page/content.en.json');
+const termsAndConditionsContent = require('policy-pages/terms-and-conditions/content.en.json');
 
 Feature('Terms and Conditions Page');
 
 Before((I) => {
-    I.amOnPage(paths.termsAndConditions);
+    I.amOnPage(paths.policy.termsAndConditions);
 });
 
 Scenario('When I go to the Terms And Conditions page, I see the page title text', (I) => {
