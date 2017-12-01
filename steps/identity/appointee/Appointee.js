@@ -41,8 +41,8 @@ class Appointee extends Question {
         const isAppointee = () => this.fields.appointee.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.AppointeeFormDownload).if(isAppointee),
-            goTo(this.journey.AppellantName)
+            goTo(this.journey.steps.AppointeeFormDownload).if(isAppointee),
+            goTo(this.journey.steps.AppellantName)
         );
     }
 }

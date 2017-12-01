@@ -13,7 +13,9 @@ describe('SmsConfirmation.js', () => {
 
         smsConfirmation = new SmsConfirmation({
             journey: {
-                Representative: paths.representative.representative
+                steps: {
+                    Representative: paths.representative.representative
+                }
             }
         });
 

@@ -23,7 +23,7 @@ class SendToNumber extends Question {
 
         return form(
 
-            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber'),
+            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
 
             textField('useSameNumber').joi(
                 this.content.fields.useSameNumber.error.required,
@@ -42,8 +42,8 @@ class SendToNumber extends Question {
         const useSameNumber = () => this.fields.useSameNumber.value === answer.YES;
 
         return branch(
-            goTo(this.journey.SmsConfirmation).if(useSameNumber),
-            goTo(this.journey.EnterMobile)
+            goTo(this.journey.steps.SmsConfirmation).if(useSameNumber),
+            goTo(this.journey.steps.EnterMobile)
         );
     }
 }

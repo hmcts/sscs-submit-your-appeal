@@ -13,8 +13,10 @@ describe('MRNDate.js', () => {
 
         mrnDate = new MRNDate({
             journey: {
-                Appointee: paths.identity.areYouAnAppointee,
-                CheckMRN:  paths.compliance.checkMRNDate
+                steps: {
+                    Appointee: paths.identity.areYouAnAppointee,
+                    CheckMRN:  paths.compliance.checkMRNDate
+                }
             }
         });
     });

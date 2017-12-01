@@ -12,7 +12,9 @@ describe('EnterMobile.js', () => {
 
         enterMobile = new EnterMobile({
             journey: {
-                SmsConfirmation: paths.smsNotify.smsConfirmation
+                steps: {
+                    SmsConfirmation: paths.smsNotify.smsConfirmation
+                }
             }
         });
 

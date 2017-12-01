@@ -12,7 +12,9 @@ describe('AppellantDOB.js', () => {
 
         appellantDOBClass = new AppellantDOB({
             journey:{
-                AppellantNINO: paths.identity.enterAppellantNINO
+                steps: {
+                    AppellantNINO: paths.identity.enterAppellantNINO
+                }
             }
         });
 

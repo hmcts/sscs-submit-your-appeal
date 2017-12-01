@@ -41,8 +41,8 @@ class HearingAvailability extends Question {
         const shouldScheduleHearing = () => this.fields.scheduleHearing.value === userAnswer.NO;
 
         return branch(
-            goTo(this.journey.CheckYourAppeal).if(shouldScheduleHearing),
-            goTo(this.journey.DatesCantAttend)
+            goTo(this.journey.steps.CheckYourAppeal).if(shouldScheduleHearing),
+            goTo(this.journey.steps.DatesCantAttend)
         );
     }
 }

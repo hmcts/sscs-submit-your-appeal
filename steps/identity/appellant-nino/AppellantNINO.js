@@ -28,7 +28,7 @@ class AppellantNINO extends Question {
                 this.content.fields.nino.error.required,
                 Joi.string().regex(niNumber).required()),
 
-            textField.ref(this.journey.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'appointee')
         );
     }
 
@@ -46,7 +46,7 @@ class AppellantNINO extends Question {
 
     next() {
 
-        return goTo(this.journey.AppellantContactDetails);
+        return goTo(this.journey.steps.AppellantContactDetails);
     }
 }
 

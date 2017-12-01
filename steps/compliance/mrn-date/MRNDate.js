@@ -57,8 +57,8 @@ class MRNDate extends Question {
         const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
 
         return branch(
-            goTo(this.journey.Appointee).if(isLessThanOrEqualToAMonth),
-            goTo(this.journey.CheckMRN)
+            goTo(this.journey.steps.Appointee).if(isLessThanOrEqualToAMonth),
+            goTo(this.journey.steps.CheckMRN)
         );
     }
 }

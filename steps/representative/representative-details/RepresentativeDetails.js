@@ -139,7 +139,7 @@ class RepresentativeDetails extends Question {
 
     next() {
 
-        return goTo(this.journey.ReasonForAppealing);
+        return goTo(this.journey.steps.ReasonForAppealing);
     }
 }
 

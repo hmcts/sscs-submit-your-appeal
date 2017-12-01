@@ -12,7 +12,9 @@ describe('HearingArrangements.js', () => {
 
         hearingArrangements = new HearingArrangements({
             journey: {
-                HearingAvailability: paths.hearing.hearingAvailability
+                steps: {
+                    HearingAvailability: paths.hearing.hearingAvailability
+                }
             }
         });
     });

@@ -39,7 +39,7 @@ class OtherReasonForAppealing extends Question {
 
     next() {
 
-        return goTo(this.journey.SendingEvidence);
+        return goTo(this.journey.steps.SendingEvidence);
     }
 }
 

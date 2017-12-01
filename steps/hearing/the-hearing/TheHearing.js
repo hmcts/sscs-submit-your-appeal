@@ -41,8 +41,8 @@ class TheHearing extends Question {
         const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.HearingSupport).if(isAttendingHearing),
-            goTo(this.journey.NotAttendingHearing)
+            goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
+            goTo(this.journey.steps.NotAttendingHearing)
         );
     }
 }

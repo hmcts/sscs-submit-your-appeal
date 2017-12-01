@@ -25,7 +25,7 @@ class TextReminders extends Question {
                 Joi.string().valid([userAnswer.YES, userAnswer.NO])
             ),
 
-            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber')
+            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
         );
     }
 
@@ -44,11 +44,12 @@ class TextReminders extends Question {
     next() {
 
         const wantsTextMsgReminders = () => this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
-        const nextStep = regex.mobileNumber.test(this.fields.phoneNumber.value) ? this.journey.SendToNumber : this.journey.EnterMobile;
+        const nextStep = regex.mobileNumber.test(this.fields.phoneNumber.value) ?
+            this.journey.steps.SendToNumber : this.journey.steps.EnterMobile;
 
         return branch(
             goTo(nextStep).if(wantsTextMsgReminders),
-            goTo(this.journey.Representative)
+            goTo(this.journey.steps.Representative)
         );
     }
 }

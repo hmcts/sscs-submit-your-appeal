@@ -12,7 +12,7 @@ class Entry extends EntryPoint {
 
     next() {
 
-        return goTo(this.journey.BenefitType);
+        return goTo(this.journey.steps.BenefitType);
     }
 }
 

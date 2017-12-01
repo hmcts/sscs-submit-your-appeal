@@ -55,7 +55,7 @@ class HearingArrangements extends Question {
     }
 
     next() {
-        return goTo(this.journey.HearingAvailability);
+        return goTo(this.journey.steps.HearingAvailability);
     }
 }
 

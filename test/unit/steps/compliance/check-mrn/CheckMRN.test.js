@@ -15,9 +15,11 @@ describe('CheckMRN.js', () => {
 
         checkMRN = new CheckMRN({
             journey: {
-                MRNOverOneMonthLate: paths.compliance.mrnOverMonthLate,
-                MRNOverThirteenMonthsLate: paths.compliance.mrnOverThirteenMonthsLate,
-                MRNDate: paths.compliance.mrnDate
+                steps: {
+                    MRNOverOneMonthLate: paths.compliance.mrnOverMonthLate,
+                    MRNOverThirteenMonthsLate: paths.compliance.mrnOverThirteenMonthsLate,
+                    MRNDate: paths.compliance.mrnDate
+                }
             }
         });
 

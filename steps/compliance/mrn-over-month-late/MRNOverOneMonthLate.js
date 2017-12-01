@@ -38,7 +38,7 @@ class MRNOverOneMonthLate extends Question {
 
     next() {
 
-        return goTo(this.journey.Appointee);
+        return goTo(this.journey.steps.Appointee);
     }
 }
 

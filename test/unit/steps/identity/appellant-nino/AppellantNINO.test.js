@@ -12,7 +12,9 @@ describe('AppellantNINO.js', () => {
 
         appellantNINO = new AppellantNINO({
             journey: {
-                AppellantContactDetails: paths.identity.enterAppellantContactDetails
+                steps: {
+                    AppellantContactDetails: paths.identity.enterAppellantContactDetails
+                }
             }
         });
 

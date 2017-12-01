@@ -23,7 +23,7 @@ class NoRepresentativeDetails extends Question {
 
     next() {
 
-        return goTo(this.journey.ReasonForAppealing);
+        return goTo(this.journey.steps.ReasonForAppealing);
     }
 }
 

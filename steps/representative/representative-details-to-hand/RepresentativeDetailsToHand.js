@@ -41,8 +41,8 @@ class RepresentativeDetailsToHand extends Question {
         const hasDetailsToHand = () => this.fields.detailsToHand.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.RepresentativeDetails).if(hasDetailsToHand),
-            goTo(this.journey.NoRepresentativeDetails)
+            goTo(this.journey.steps.RepresentativeDetails).if(hasDetailsToHand),
+            goTo(this.journey.steps.NoRepresentativeDetails)
         );
     }
 }

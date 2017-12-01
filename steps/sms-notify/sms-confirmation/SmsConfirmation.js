@@ -43,15 +43,15 @@ class SmsConfirmation extends Question {
 
         return form(
 
-            textField.ref(this.journey.EnterMobile, 'enterMobile'),
-            textField.ref(this.journey.SendToNumber, 'useSameNumber'),
-            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber')
+            textField.ref(this.journey.steps.EnterMobile, 'enterMobile'),
+            textField.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
+            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
         )
     }
 
     next() {
 
-        return goTo(this.journey.Representative);
+        return goTo(this.journey.steps.Representative);
     }
 }
 

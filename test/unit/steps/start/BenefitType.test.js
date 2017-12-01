@@ -12,7 +12,9 @@ describe('BenefitType.js', () => {
 
         benefitType = new BenefitType({
             journey: {
-                MRNDate: paths.compliance.mrnDate
+                steps: {
+                    MRNDate: paths.compliance.mrnDate
+                }
             }
         });
 
