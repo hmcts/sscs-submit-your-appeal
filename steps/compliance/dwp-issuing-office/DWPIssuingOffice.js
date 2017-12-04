@@ -18,16 +18,13 @@ class DWPIssuingOffice extends Question {
 
         return form(
 
-            textField('pipNumber')
-                .joi(
+            textField('pipNumber').joi(
                     this.content.fields.pipNumber.error.required,
                     Joi.string().required()
-                )
-                .joi(
+                ).joi(
                     this.content.fields.pipNumber.error.notNumeric,
                     Joi.string().regex(numbers)
-                )
-                .joi(
+                ).joi(
                     this.content.fields.pipNumber.error.invalid,
                     Joi.string().valid(officeIds)
                 )
