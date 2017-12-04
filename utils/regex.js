@@ -1,6 +1,6 @@
 const postCode  = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/;
 const inwardPostcode = /\d[a-z]{2}$/i;
-const niNumber  = /^([A-CEGHJ-PR-TW-Z]){1}([A-CEGHJ-NPR-TW-Z]){1}([0-9]){2}([0-9]){2}([0-9]){2}([A-D ]){1}?$/;
+const niNumber  = /^\s*[a-zA-Z]{1}\s*[a-zA-Z]{1}\s*(?:\s*\d\s*){6}[a-zA-Z]{1}\s*$/;
 const title = /^[a-zA-Z /&]{2,}$/;
 const firstName = /^[a-zA-z]+([-][a-zA-Z]+)*$/;
 const lastName  = /^[a-zA-z]+([ '-][a-zA-Z]+)*$/;

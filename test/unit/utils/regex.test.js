@@ -82,6 +82,18 @@ describe('validating a National Insurance number', () => {
         expect(niNumberValidator).to.not.equal(null);
     });
 
+    it("should validate against a valid National Insurance number with spaces", () => {
+        const number = 'AB 123 456 C';
+        const niNumberValidator = number.match(niNumber);
+        expect(niNumberValidator).to.not.equal(null);
+    });
+
+    it("should validate against a valid National Insurance number with lowercase letters", () => {
+        const number = 'ab123456c';
+        const niNumberValidator = number.match(niNumber);
+        expect(niNumberValidator).to.not.equal(null);
+    });
+
     it("should not validate against a valid National Insurance number", () => {
         const number = 'AB1234';
         const niNumberValidator = number.match(niNumber);
