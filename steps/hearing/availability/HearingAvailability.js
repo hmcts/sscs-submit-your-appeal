@@ -21,7 +21,7 @@ class HearingAvailability extends Question {
 
             textField('scheduleHearing').joi(
                 this.content.fields.scheduleHearing.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
