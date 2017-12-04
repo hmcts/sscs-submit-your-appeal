@@ -38,8 +38,8 @@ class BenefitType extends Question {
         const isPIPBenefitType = ()  => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
 
         return branch(
-            goTo(this.journey.DWPIssuingOffice).if(isPIPBenefitType),
-            goTo(this.journey.MRNDate)
+            goTo(this.journey.steps.DWPIssuingOffice).if(isPIPBenefitType),
+            goTo(this.journey.steps.MRNDate)
         );
     }
 }

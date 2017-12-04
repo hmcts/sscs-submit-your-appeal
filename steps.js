@@ -52,6 +52,7 @@ const startAnAppeal = [
 ];
 
 const compliance = [
+    DWPIssuingOffice,
     CantAppeal,
     CheckMRN,
     ContactDWP,

@@ -6,8 +6,9 @@
       "header": "Enter the number from the top of DWP’s address",
       "label": "Personal Independence Payment",
       "error": {
-        "emptyField": "",
-        "invalid": ""
+        "required": "Enter the DWP issuing office",
+        "notNumeric": "DWP issuing office must be a number",
+        "invalid": "Enter a valid DWP issuing office"
       }
     }
   },

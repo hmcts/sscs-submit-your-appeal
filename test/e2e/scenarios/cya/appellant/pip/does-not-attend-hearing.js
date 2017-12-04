@@ -86,6 +86,7 @@ Scenario('Appellant defines an optional phone number, but doesn\'t sign up for t
 const IenterDetailsFromStartToNINO = (I) => {
 
     I.enterBenefitTypeAndContinue('PIP');
+    I.enterDWPIssuingOfficeAndContinue('1');
     I.enterAnMRNDateAndContinue(oneMonthAgo);
     I.selectAreYouAnAppointeeAndContinue('No, I’m appealing for myself');
     I.enterAppellantNameAndContinue('Mr','Harry','Potter');
