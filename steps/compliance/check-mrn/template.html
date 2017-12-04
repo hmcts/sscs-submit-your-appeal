@@ -14,9 +14,11 @@
 
     {% call formSection() %}
 
+        <legend id="check-mrn" class="form-label-bold">{{ content.question }}</legend>
+
         {{ selectionButtons(
             fields.checkedMRN,
-            "",
+            content.question,
             hint = '',
             options = [
                 { label: content.fields.checkedMRN.yes, value: "yes" },
