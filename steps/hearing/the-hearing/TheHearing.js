@@ -21,7 +21,7 @@ class TheHearing extends Question {
 
             textField('attendHearing').joi(
                 this.content.fields.attendHearing.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
