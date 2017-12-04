@@ -39,10 +39,6 @@ describe('AppellantNINO.js', () => {
             fields = appellantNINO.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('nino field', () => {
 
             beforeEach(() => {

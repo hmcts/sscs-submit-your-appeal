@@ -6,6 +6,7 @@ const Error404 = require('steps/errors/404');
 const Error500 = require('steps/errors/500');
 const BenefitType = require('steps/start/BenefitType');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
+const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
@@ -51,6 +52,7 @@ const startAnAppeal = [
 ];
 
 const compliance = [
+    DWPIssuingOffice,
     CantAppeal,
     CheckMRN,
     ContactDWP,

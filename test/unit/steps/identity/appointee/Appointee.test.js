@@ -38,10 +38,6 @@ describe('Appointee.js', () => {
             field = appointeeClass.form.fields[0];
         });
 
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name appointee', () => {
             expect(field.name).to.equal('appointee');
         });

@@ -1,6 +1,6 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { benefitType } = require('utils/regex');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -35,8 +35,12 @@ class BenefitType extends Question {
     }
 
     next() {
+        const isPIPBenefitType = () => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
 
-        return goTo(this.journey.steps.MRNDate);
+        return branch(
+            goTo(this.journey.steps.DWPIssuingOffice).if(isPIPBenefitType),
+            goTo(this.journey.steps.MRNDate)
+        );
     }
 }
 

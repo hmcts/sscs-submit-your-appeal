@@ -1,0 +1,29 @@
+{% extends "components/globals.html" %}
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, textbox %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    <p>{{ content.subtitle }}</p>
+
+    <img class="mrn-image" src="{{ asset_path }}images/pip-number.png">
+
+    <p><h3 class="heading-small">{{ content.fields.pipNumber.header }}</h3></p>
+
+    {% call formSection() %}
+
+        {{ textbox(fields.pipNumber, content.fields.pipNumber.label) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+{% block after_form %}
+    <div class="after-form">
+        <p><a class="link" href="/no-mrn">{{ content.noMRN }}</a></p>
+    </div>
+{% endblock %}
