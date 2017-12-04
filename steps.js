@@ -38,7 +38,6 @@ const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend
 const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
-const FormDownload = require('steps/form-download/FormDownload');
 
 const init = [
     Entry,
@@ -109,10 +108,6 @@ const confirmation = [
     Confirmation
 ];
 
-const formDownload = [
-    new FormDownload()
-];
-
 module.exports = concat(
     init,
     startAnAppeal,
@@ -123,6 +118,5 @@ module.exports = concat(
     reasonsForAppealing,
     hearing,
     checkYourAppeal,
-    confirmation,
-    formDownload
+    confirmation
 );

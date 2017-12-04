@@ -1,4 +1,7 @@
 {
-  "title": "Download appointee form",
-  "govuk": "Return to GOV.UK"
+  "title": "You need to download and fill out a paper form",
+  "subtitle": "Download and fill out a SSCS1 form to appeal a {{ benefitType }} benefit decision.",
+  "button": {
+    "text": "Continue to form download"
+    }
 }
