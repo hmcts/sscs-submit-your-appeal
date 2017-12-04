@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { numbers } = require('utils/regex');
+const officeIds = require('./dwpIssuingOfficeIds');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -24,6 +25,10 @@ class DWPIssuingOffice extends Question {
                 .joi(
                     this.content.fields.pipNumber.error.notNumeric,
                     Joi.string().regex(numbers)
+                )
+                .joi(
+                    this.content.fields.pipNumber.error.invalid,
+                    Joi.string().valid(officeIds)
                 )
         )
 

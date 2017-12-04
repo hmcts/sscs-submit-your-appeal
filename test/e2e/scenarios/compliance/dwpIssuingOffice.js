@@ -38,7 +38,7 @@ Scenario('When I enter a non numerical character and click continue I see an err
 
 Scenario('When I enter a dwp issuing office that is not in the list and click continue I see an error', (I) => {
 
-    I.enterDWPIssuingOfficeAndContinue();
+    I.enterDWPIssuingOfficeAndContinue('6001');
     I.seeDWPIssuingOfficeError(paths.compliance.dwpIssuingOffice, content.fields.pipNumber.error.invalid);
 
 });
