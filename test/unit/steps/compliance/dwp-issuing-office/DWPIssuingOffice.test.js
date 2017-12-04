@@ -59,7 +59,7 @@ describe('DWPIssuingOffice.js', () => {
         });
     });
 
-    describe.only('next()', () => {
+    describe('next()', () => {
 
         it('returns the next step path /mrn-date', () => {
             expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.compliance.mrnDate });

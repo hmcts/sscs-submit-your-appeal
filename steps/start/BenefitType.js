@@ -35,7 +35,7 @@ class BenefitType extends Question {
     }
 
     next() {
-        const isPIPBenefitType = ()  => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
+        const isPIPBenefitType = () => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
 
         return branch(
             goTo(this.journey.steps.DWPIssuingOffice).if(isPIPBenefitType),
