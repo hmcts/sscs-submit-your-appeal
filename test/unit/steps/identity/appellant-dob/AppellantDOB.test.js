@@ -37,10 +37,6 @@ describe('AppellantDOB.js', () => {
             fields = appellantDOBClass.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('day field', () => {
 
             beforeEach(() => {

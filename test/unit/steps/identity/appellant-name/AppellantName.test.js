@@ -37,10 +37,6 @@ describe('AppellantName.js', () => {
             fields = appellantNameClass.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('title field', () => {
 
             beforeEach(() => {

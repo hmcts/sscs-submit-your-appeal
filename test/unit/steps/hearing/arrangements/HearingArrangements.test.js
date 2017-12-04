@@ -36,10 +36,6 @@ describe('HearingArrangements.js', () => {
             fields = hearingArrangements.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('selection field', () => {
 
             beforeEach(() => {

@@ -37,10 +37,6 @@ describe('DWPIssuingOffice.js', () => {
             fields = dWPIssuingOffice.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('pipNumber field', () => {
 
             beforeEach(() => {

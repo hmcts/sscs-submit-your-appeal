@@ -36,10 +36,6 @@ describe('EnterMobile.js', () => {
             field = enterMobile.form.fields[0];
         });
 
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name enterMobile', () => {
            expect(field.name).to.equal('enterMobile');
         });

@@ -38,10 +38,6 @@ describe('MRNDate.js', () => {
            fields = mrnDate.form.fields;
         });
 
-        after(() => {
-           fields = field = undefined;
-        });
-
         describe('day field', () => {
 
             beforeEach(() => {

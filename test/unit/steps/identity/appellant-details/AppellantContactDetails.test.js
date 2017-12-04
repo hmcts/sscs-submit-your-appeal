@@ -36,10 +36,6 @@ describe('AppellantContactDetails.js', () => {
             fields = appellantContactDetails.form.fields;
         });
 
-        after(() => {
-            fields = field = undefined;
-        });
-
         describe('addressLine1 field', () => {
 
             beforeEach(() => {

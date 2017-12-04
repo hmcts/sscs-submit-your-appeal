@@ -35,10 +35,6 @@ describe('HearingSupport.js', () => {
             field = hearingSupport.form.fields[0];
         });
 
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name arrangements', () => {
             expect(field.name).to.equal('arrangements');
         });

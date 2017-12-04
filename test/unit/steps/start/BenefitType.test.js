@@ -37,10 +37,6 @@ describe('BenefitType.js', () => {
             field = benefitType.form.fields[0];
         });
 
-        after(() => {
-            field = undefined;
-        });
-
         it('contains the field name benefitType', () => {
             expect(field.name).to.equal('benefitType');
         });
