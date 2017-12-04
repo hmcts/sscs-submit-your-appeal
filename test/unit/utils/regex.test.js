@@ -76,27 +76,30 @@ describe('validating a last name regular expression', () => {
 
 describe('validating a National Insurance number', () => {
 
+    let number;
+    let niNumberValidator;
+
     it("should validate against a valid National Insurance number", () => {
-        const number = 'AB123456C';
-        const niNumberValidator = number.match(niNumber);
+        number = 'AB123456C';
+        niNumberValidator = number.match(niNumber);
         expect(niNumberValidator).to.not.equal(null);
     });
 
     it("should validate against a valid National Insurance number with spaces", () => {
-        const number = 'AB 123 456 C';
-        const niNumberValidator = number.match(niNumber);
+        number = 'AB 123 456 C';
+        niNumberValidator = number.match(niNumber);
         expect(niNumberValidator).to.not.equal(null);
     });
 
     it("should validate against a valid National Insurance number with lowercase letters", () => {
-        const number = 'ab123456c';
-        const niNumberValidator = number.match(niNumber);
+        number = 'ab123456c';
+        niNumberValidator = number.match(niNumber);
         expect(niNumberValidator).to.not.equal(null);
     });
 
     it("should not validate against a valid National Insurance number", () => {
-        const number = 'AB1234';
-        const niNumberValidator = number.match(niNumber);
+        number = 'AB1234';
+        niNumberValidator = number.match(niNumber);
         expect(niNumberValidator).to.equal(null);
     });
 
