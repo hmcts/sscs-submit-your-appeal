@@ -1,6 +1,7 @@
 {
   "title": "Look for DWP's address on the top right of your Mandatory Reconsideration Notice (MRN)",
   "subtitle": "This is the letter you received from DWP when you asked them to reconsider their decision about the PIP benefit.",
+  "noMRN": "I don’t have a Mandatory Reconsideration Notice",
   "fields": {
     "pipNumber": {
       "header": "Enter the number from the top of DWP’s address",
@@ -11,6 +12,5 @@
         "invalid": "Enter a valid DWP issuing office"
       }
     }
-  },
-  "noMRN": "I don’t have a Mandatory Reconsideration Notice"
+  }
 }

@@ -3,7 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { numbers } = require('utils/regex');
-const officeIds = require('./dwpIssuingOfficeIds');
+const officeIds = require('steps/compliance/dwp-issuing-office/dwpIssuingOfficeIds');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -17,6 +17,7 @@ class DWPIssuingOffice extends Question {
     get form() {
 
         return form(
+
             textField('pipNumber')
                 .joi(
                     this.content.fields.pipNumber.error.required,
