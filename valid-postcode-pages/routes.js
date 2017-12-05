@@ -6,7 +6,7 @@ const invalidPostcodeContent = require('./postcode-invalid/content.en.json');
 const postcodeList = require('valid-postcode-pages/validPostcodeList');
 
 const postcodeIsValid = value => value.match(postCode);
-const postcodeInList = postcode => postcodeList.includes(postcode);
+const postcodeInList = postcode => postcodeList.includes(postcode.toUpperCase());
 const splitPostcode = postcode => postcode.replace(inwardPostcode, "").replace(/\s+/, "");
 
 const fields = {
