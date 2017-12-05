@@ -23,6 +23,7 @@ Scenario('Appellant doesn\'t define an optional phone number and doesn\'t sign u
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
+
 });
 
 Scenario('Appellant doesn\'t define an optional phone number, however, enters mobile for text msg reminders.', (I) => {
@@ -35,7 +36,8 @@ Scenario('Appellant doesn\'t define an optional phone number, however, enters mo
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeeMobileNumberInTxtMsgRemindersSection(I, '07455678444');
+    ISeeValueInSection(I, '07455678444', 'Mobile Number', '/send-to-number');
+
 });
 
 Scenario('Appellant defines an optional phone number and signs up for text msg reminders using the same number.', (I) => {
@@ -49,8 +51,9 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeePhoneNumberInAppellantDetailsSection(I, '07411738663');
-    ISeeMobileNumberInTxtMsgRemindersSection(I, '07411738663');
+    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
+    ISeeValueInSection(I, '07411738663', 'Mobile Number', '/send-to-number');
+
 });
 
 Scenario('Appellant defines an optional phone number, this is overridden by another number for text msg reminders.', (I) => {
@@ -65,8 +68,8 @@ Scenario('Appellant defines an optional phone number, this is overridden by anot
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeePhoneNumberInAppellantDetailsSection(I, '07411738663');
-    ISeeMobileNumberInTxtMsgRemindersSection(I, '07411333333');
+    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
+    ISeeValueInSection(I, '07411333333', 'Mobile Number', '/send-to-number');
 
 });
 
@@ -79,7 +82,7 @@ Scenario('Appellant defines an optional phone number, but doesn\'t sign up for t
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeePhoneNumberInAppellantDetailsSection(I, '07411738663');
+    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
 
 });
 
@@ -113,6 +116,9 @@ const IconfirmDetailsArePresent = (I) => {
     // Type of benefit
     I.see('Personal Independence Payment (PIP)');
 
+    // MRN address number
+    ISeeValueInSection(I, '1', 'Number from MRN address', '/dwp-issuing-office');
+
     // Date of MRN
     I.see(`${oneMonthAgo.date()}/${oneMonthAgo.month()+1}/${oneMonthAgo.year()}`);
 
@@ -143,41 +149,20 @@ const IconfirmDetailsArePresent = (I) => {
 
 };
 
-const ISeePhoneNumberInAppellantDetailsSection = (I, phoneNumber) => {
+const ISeeValueInSection = (I, value, label, path) => {
 
     const section = `<div>
   <dt class="cya-question">
-    Phone number
+    ${label}
   </dt>
   <dd class="cya-answer">
     
-      ${phoneNumber}
+      ${value}
     
   </dd>
   <dd class="cya-change">
-    <a href="/enter-appellant-contact-details">
-      Change<span class="visually-hidden"> Phone number</span>
-    </a>
-  </dd>
-</div>`;
-
-    I.seeInSource(section);
-};
-
-const ISeeMobileNumberInTxtMsgRemindersSection = (I, mobileNumber) => {
-
-    const section = `<div>
-  <dt class="cya-question">
-    Mobile Number
-  </dt>
-  <dd class="cya-answer">
-    
-      ${mobileNumber}
-    
-  </dd>
-  <dd class="cya-change">
-    <a href="/send-to-number">
-      Change<span class="visually-hidden"> Mobile Number</span>
+    <a href="${path}">
+      Change<span class="visually-hidden"> ${label}</span>
     </a>
   </dd>
 </div>`;
