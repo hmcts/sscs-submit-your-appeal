@@ -2,10 +2,10 @@
 
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
-const { benefitType } = require('utils/regex');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
+const types = require('steps/start/types');
 
 class BenefitType extends Question {
 
@@ -20,7 +20,7 @@ class BenefitType extends Question {
 
             textField('benefitType').joi(
                 this.content.fields.benefitType.error.required,
-                Joi.string().regex(benefitType).required()
+                Joi.string().valid(types).required()
             )
         );
     }
@@ -35,6 +35,7 @@ class BenefitType extends Question {
     }
 
     next() {
+
         const isPIPBenefitType = () => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
 
         return branch(
