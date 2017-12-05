@@ -1,7 +1,7 @@
 const content = require('steps/identity/appointee-form-download/content.en.json');
 const paths = require('paths');
 
-Feature('Form download page');
+Feature('Appointee form download page');
 
 Before((I) => {
     I.createTheSession();
