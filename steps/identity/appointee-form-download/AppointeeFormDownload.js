@@ -19,7 +19,7 @@ class AppointeeFormDownload extends Question {
 
         return form(
 
-            textField.ref(this.journey.BenefitType, 'benefitType')
+            textField.ref(this.journey.steps.BenefitType, 'benefitType')
         );
     }
 
