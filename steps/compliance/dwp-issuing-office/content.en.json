@@ -12,5 +12,10 @@
         "invalid": "Enter a valid DWP issuing office"
       }
     }
+  },
+  "cya": {
+    "pipNumber": {
+      "question": "Number from MRN address"
+    }
   }
 }
