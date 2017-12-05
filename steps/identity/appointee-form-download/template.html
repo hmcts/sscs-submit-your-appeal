@@ -7,11 +7,15 @@
 <a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
 
 {% set title %}
-    {{ content.title | safe }}
+    {{ content.title }}
 {% endset %}
 
 {{ header(content.title, size='xlarge') }}
 
-<a href="http://www.gov.uk">{{ content.govuk }}</a>
+<p>
+    {{ content.subtitle }}
+</p>
+
+<a class="button" href="https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?original_id=3038">{{ content.button.text }}</a>
 
 {% endblock %}
