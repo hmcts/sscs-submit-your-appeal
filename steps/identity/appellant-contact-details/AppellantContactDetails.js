@@ -27,12 +27,17 @@ class AppellantContactDetails extends Question {
             ),
 
             textField('addressLine2').joi(
-                fields.addressLine2.error.required,
-                Joi.string().regex(whitelist).required()
+                fields.addressLine2.error.invalid,
+                Joi.string().regex(whitelist).allow('')
             ),
 
             textField('townCity').joi(
                 fields.townCity.error.required,
+                Joi.string().regex(whitelist).required()
+            ),
+
+            textField('county').joi(
+                fields.county.error.required,
                 Joi.string().regex(whitelist).required()
             ),
 
@@ -73,6 +78,12 @@ class AppellantContactDetails extends Question {
                 question: this.content.cya.townCity.question,
                 section: 'appellant-details',
                 answer: this.fields.townCity.value
+            }),
+
+            answer(this, {
+                question: this.content.cya.county.question,
+                section: 'appellant-details',
+                answer: this.fields.county.value
             }),
 
             answer(this, {
