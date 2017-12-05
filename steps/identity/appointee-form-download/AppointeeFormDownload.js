@@ -24,8 +24,6 @@ class AppointeeFormDownload extends Question {
         );
     }
 
-    next() {}
-
 }
 
 module.exports = AppointeeFormDownload;
