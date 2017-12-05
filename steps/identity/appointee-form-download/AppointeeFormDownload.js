@@ -12,6 +12,7 @@ class AppointeeFormDownload extends Question {
     }
 
     get benefitType() {
+
         return this.fields.benefitType.value;
     }
 
