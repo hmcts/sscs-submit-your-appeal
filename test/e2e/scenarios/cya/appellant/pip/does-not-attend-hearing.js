@@ -128,6 +128,7 @@ const IconfirmDetailsArePresent = (I) => {
     I.see('4 Privet Drive');
     I.see('Off Wizards close');
     I.see('Little Whinging');
+    I.see('Kent');
     I.see('PA80 5UU');
 
     // Appellant Reason for appealing

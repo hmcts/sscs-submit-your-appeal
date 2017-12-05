@@ -17,6 +17,7 @@ Scenario('When I fill in the fields and click Continue, I am taken to the Text r
     I.fillField('addressLine1', '4 Privet Drive');
     I.fillField('addressLine2', 'Off Wizards close');
     I.fillField('townCity', 'Little Whinging');
+    I.fillField('county', 'Kent');
     I.fillField('postCode', 'PA80 5UU');
     I.fillField('phoneNumber', '07466748336');
     I.fillField('emailAddress', 'harrypotter@wizards.com');
@@ -29,8 +30,8 @@ Scenario('When I click Continue without filling in the fields I see errors', (I)
 
     I.click('Continue');
     I.see(appellant.addressLine1.error.required);
-    I.see(appellant.addressLine2.error.required);
     I.see(appellant.townCity.error.required);
+    I.see(appellant.county.error.required);
     I.see(appellant.postCode.error.required);
 
 });

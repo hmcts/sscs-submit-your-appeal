@@ -36,6 +36,7 @@ function enterAppellantContactDetailsAndContinue() {
     I.fillField('#addressLine1', '4 Privet Drive');
     I.fillField('#addressLine2', 'Off Wizards close');
     I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#county', 'Kent');
     I.fillField('#postCode', 'PA80 5UU');
     I.click('Continue');
 
@@ -48,6 +49,7 @@ function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber='0746674
     I.fillField('#addressLine1', '4 Privet Drive');
     I.fillField('#addressLine2', 'Off Wizards close');
     I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#county', 'Kent');
     I.fillField('#postCode', 'PA80 5UU');
     I.fillField('#phoneNumber', mobileNumber);
     I.click('Continue');
