@@ -12,10 +12,10 @@ After((I) => {
     I.endTheSession();
 });
 
-xScenario('I see the correct information is displayed', (I) => {
+Scenario('I see the correct information is displayed', (I) => {
 
     I.see(content.title);
-    I.see(content.subtitle);
-    I.see(content.button);
+    I.see("Download and fill out a SSCS1 form to appeal a benefit decision.");
+    I.see(content.button.text);
 
 });
