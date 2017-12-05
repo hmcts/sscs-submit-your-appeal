@@ -17,13 +17,11 @@ class Representative extends Question {
 
     get form() {
 
-        const answers = [userAnswer.YES, userAnswer.NO];
-
         return form(
 
             textField('hasRepresentative').joi(
                 this.content.fields.hasRepresentative.error.required,
-                Joi.string().valid(answers)
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }

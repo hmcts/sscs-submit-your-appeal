@@ -22,7 +22,7 @@ class TextReminders extends Question {
 
             textField('doYouWantTextMsgReminders').joi(
                 this.content.fields.doYouWantTextMsgReminders.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             ),
 
             textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
