@@ -21,7 +21,7 @@ class RepresentativeDetailsToHand extends Question {
 
             textField('detailsToHand').joi(
                 this.content.fields.detailsToHand.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }

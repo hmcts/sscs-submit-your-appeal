@@ -17,13 +17,11 @@ class HearingSupport extends Question {
 
     get form() {
 
-        const answers = [userAnswer.YES, userAnswer.NO];
-
         return form(
 
             textField('arrangements').joi(
                 this.content.fields.arrangements.error.required,
-                Joi.string().valid(answers)
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }

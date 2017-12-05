@@ -21,7 +21,7 @@ class Appointee extends Question {
 
             textField('appointee').joi(
                 this.content.fields.appointee.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
