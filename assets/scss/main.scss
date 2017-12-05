@@ -12,6 +12,24 @@
   width: 100%;
 }
 
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress {
+  &.form-control {
+    @extend .form-control-3-4;
+  }
+}
+
+#postcode {
+  &.form-control {
+    @extend .form-control-1-4;
+  }
+}
+
+#title {
+  &.form-control {
+    @extend .form-control-1-8;
+  }
+}
+
 #check-mrn {
   padding-bottom: 30px;
 }
