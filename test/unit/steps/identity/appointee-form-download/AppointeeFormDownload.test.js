@@ -6,16 +6,16 @@ const paths = require('paths');
 
 describe('AppointeeFormDownload.js', () => {
 
-    let appointeeFormDownloadSut;
+    let appointeeFormDownload;
 
     beforeEach(() => {
 
-        appointeeFormDownloadSut = new AppointeeFormDownload({
+        appointeeFormDownload = new AppointeeFormDownload({
             journey: {
                 steps: {}
             }
         });
-        appointeeFormDownloadSut.fields = {
+        appointeeFormDownload.fields = {
             benefitType: {}
         }
 
@@ -32,8 +32,8 @@ describe('AppointeeFormDownload.js', () => {
     describe('get benefitType()', () => {
 
         it('returns correct wording', () => {
-            appointeeFormDownloadSut.fields.benefitType.value = 'some benefitType';
-            expect(appointeeFormDownloadSut.benefitType).to.equal('some benefitType');
+            appointeeFormDownload.fields.benefitType.value = 'some benefitType';
+            expect(appointeeFormDownload.benefitType).to.equal('some benefitType');
         });
 
     });
@@ -41,11 +41,11 @@ describe('AppointeeFormDownload.js', () => {
     describe('get form()', () => {
 
         it('should contain 1 fields', () => {
-            expect(appointeeFormDownloadSut.form.fields.length).to.equal(1);
+            expect(appointeeFormDownload.form.fields.length).to.equal(1);
         });
 
         it('should contain a textField reference called \'benefitType\'', () => {
-            const textField = appointeeFormDownloadSut.form.fields[0];
+            const textField = appointeeFormDownload.form.fields[0];
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('benefitType');
             expect(textField.validations).to.be.empty;
