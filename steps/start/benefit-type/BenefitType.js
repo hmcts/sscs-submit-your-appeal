@@ -40,7 +40,7 @@ class BenefitType extends Question {
 
         return branch(
             goTo(this.journey.steps.DWPIssuingOffice).if(isPIPBenefitType),
-            goTo(this.journey.steps.MRNDate)
+            goTo(this.journey.steps.AppointeeFormDownload)
         );
     }
 }

@@ -13,7 +13,7 @@ describe('BenefitType.js', () => {
         benefitType = new BenefitType({
             journey: {
                 steps: {
-                    MRNDate: paths.compliance.mrnDate,
+                    AppointeeFormDownload: paths.identity.downloadAppointeeForm,
                     DWPIssuingOffice: paths.compliance.dwpIssuingOffice
                 }
             }
@@ -51,7 +51,7 @@ describe('BenefitType.js', () => {
 
         it('returns the next step path /mrn-date with benefit type value is not PIP', () => {
             benefitType.fields.benefitType.value = 'not PIP';
-            expect(benefitType.next().step).to.eql(paths.compliance.mrnDate);
+            expect(benefitType.next().step).to.eql(paths.identity.downloadAppointeeForm);
         });
 
         it('returns the next step path /dwp-issuing-office with benefit type value is PIP', () => {
