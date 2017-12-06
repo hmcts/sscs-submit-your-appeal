@@ -13,7 +13,7 @@ describe('Representative.js', () => {
         representative = new Representative({
             journey: {
                 steps: {
-                    RepresentativeDetailsToHand: paths.representative.representativeDetailsToHand,
+                    RepresentativeDetails: paths.representative.representativeDetails,
                     ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
                 }
             }
@@ -53,7 +53,7 @@ describe('Representative.js', () => {
 
         it('nextStep equals /representative-details', () => {
             const branches = representative.next().branches[0];
-            expect(branches.redirector).to.eql({ nextStep: paths.representative.representativeDetailsToHand })
+            expect(branches.redirector).to.eql({ nextStep: paths.representative.representativeDetails })
         });
 
         it('nextStep equals /reason-for-appealing', () => {
