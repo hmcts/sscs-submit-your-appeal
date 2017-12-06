@@ -1,13 +1,22 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
-{% from "look-and-feel/components/header.njk" import header %}
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
 
-{% block two_thirds %}
-    {{ header(content.title, size="large") }}
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
     <p>{{ content.mobileNumber }}
         <span class="bold-small">{{ mobileNumber }}</span>
     </p>
     <p>{{ content.firstMessage }}</p>
-    <p><a class="button" href="/representative">{{ content.continue }}</a></p>
+
+{% call formSection() %}
+
+
+{% endcall %}
+
 {% endblock %}
+
