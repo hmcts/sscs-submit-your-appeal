@@ -3,9 +3,9 @@ module.exports = {
     health:                             '/health',
 
     errorPages: {
-        pageNotFound:                     '/page-not-found',
-        timedOut:                         '/page-timed-out',
-        technicalIssue:                   '/technical-issues'
+        pageNotFound:                   '/page-not-found',
+        timedOut:                       '/page-timed-out',
+        technicalIssue:                 '/technical-issues'
     },
 
     landingPages: {
@@ -17,8 +17,8 @@ module.exports = {
     },
 
     policy: {
-        cookiePolicy:                     '/cookie-policy',
-        termsAndConditions:               '/terms-and-conditions'
+        cookiePolicy:                   '/cookie-policy',
+        termsAndConditions:             '/terms-and-conditions'
     },
 
     session: {
@@ -84,7 +84,7 @@ module.exports = {
         theHearing:                     '/the-hearing'
     },
 
-    checkYourAppeal:                     '/check-your-appeal',
+    checkYourAppeal:                    '/check-your-appeal',
 
     confirmation:                       '/confirmation'
 
