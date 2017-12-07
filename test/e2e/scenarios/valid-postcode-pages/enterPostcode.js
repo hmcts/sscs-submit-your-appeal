@@ -6,6 +6,7 @@ const content = require('valid-postcode-pages/enter-postcode/content.en.json');
 Feature('Enter postcode');
 
 Before((I) => {
+    I.createTheSession();
     I.amOnPage(paths.validPostcode.postcodeCheck);
 });
 
@@ -15,11 +16,11 @@ Scenario('When I go to the enter postcode page I see the page heading', (I) => {
 
 });
 
-Scenario('When I enter a valid postcode that is on the list, I go to the Benefits-type page', (I) => {
+Scenario('When I enter a valid postcode that is on the list, I go to the Independence page', (I) => {
 
     I.fillField('#postcode', 'WV11 2HE');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.start.benefitType);
+    I.seeInCurrentUrl(paths.start.independence);
 
 });
 

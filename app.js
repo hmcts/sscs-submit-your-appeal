@@ -93,6 +93,6 @@ app.use(paths.health, healthcheck.configure({
     }
 }));
 
-app.use('/', landingPages, validPostcode, policyPages, errorPages);
+app.use('/', landingPages, policyPages, errorPages);
 
 module.exports = app;

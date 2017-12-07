@@ -1,0 +1,11 @@
+{
+  "title": "Enter your postcode",
+  "fields": {
+    "postcode": {
+      "error": {
+        "emptyField": "No postcode entered",
+        "invalid": "Invalid postcode entered"
+      }
+    }
+  }
+}

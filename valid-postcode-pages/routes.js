@@ -3,7 +3,7 @@ const paths = require('paths');
 const { postCode, inwardPostcode } = require('utils/regex');
 const enterPostcodeContent = require('./enter-postcode/content.en.json');
 const invalidPostcodeContent = require('./postcode-invalid/content.en.json');
-const postcodeList = require('valid-postcode-pages/validPostcodeList');
+const postcodeList = require('steps/start/postcode-checker/validPostcodeList');
 
 const postcodeIsValid = value => value.match(postCode);
 const postcodeInList = postcode => postcodeList.includes(postcode.toUpperCase());

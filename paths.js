@@ -34,7 +34,8 @@ module.exports = {
     },
 
     start: {
-        benefitType:                    '/benefit-type'
+        benefitType:                    '/benefit-type',
+        independence:                   '/independence'
     },
 
     compliance: {

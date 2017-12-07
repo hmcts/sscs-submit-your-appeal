@@ -90,6 +90,8 @@ const IenterDetailsFromStartToNINO = (I) => {
 
     I.enterBenefitTypeAndContinue('PIP');
     I.enterDWPIssuingOfficeAndContinue('1');
+    I.enterPostcodeAndContinue('WV11 2HE');
+    I.continueFromIndependance();
     I.enterAnMRNDateAndContinue(oneMonthAgo);
     I.selectAreYouAnAppointeeAndContinue('No, I’m appealing for myself');
     I.enterAppellantNameAndContinue('Mr','Harry','Potter');
