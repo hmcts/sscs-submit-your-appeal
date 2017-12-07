@@ -22,7 +22,6 @@ timestamps {
     milestone()
     lock(resource: "submit-your-appeal-${env.BRANCH_NAME}", inversePrecedence: true) {
         node {
-        //node("reformMgmtDevBuildAgent02.reform.hmcts.net") {
             try {
                 def syaFrontendRPMVersion
                 def version
@@ -41,31 +40,8 @@ timestamps {
                     sh 'make test'
                 }
 
-                stage("Code coverage") {
-                    sh 'make test-coverage-tactical'
-                    //sh 'make sonarscan-tactical'
-                    publishHTML([
-                            allowMissing         : false,
-                            alwaysLinkToLastBuild: true,
-                            keepAll              : true,
-                            reportDir            : 'test/coverage/html/lcov-report',
-                            reportFiles          : 'index.html',
-                            reportName           : 'HTML Report'
-                    ])
-                }
-
                 stage("Security checks") {
                     sh 'make test-nsp-tactical'
-                }
-
-                stage("a11y test") {
-                    withEnv(["JUNIT_REPORT_PATH='test-reports.xml'"]) {
-                        try {
-                            sh 'make test-a11y-tactical'
-                        } finally {
-                        //    step([$class: 'JUnitResultArchiver', testResults: env.JUNIT_REPORT_PATH])
-                        }
-                    }
                 }
 
                 stage('Package application (RPM)') {
@@ -93,9 +69,6 @@ timestamps {
                                 rpmTagger.tagDeploymentSuccessfulOn('dev')
                                 rpmTagger.tagAnsibleCommit(ansibleCommitId)
                             }
-                        stage('Smoke Test (Dev)') {
-                          echo 'to be implemented'
-                        }
                     }
                     milestone()
                 }
