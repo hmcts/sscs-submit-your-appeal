@@ -58,7 +58,16 @@
     <p>{{changes.agree}}</p>
 
     <h2 class="heading-medium">{{contactUs.title}}</h2>
-    <p>{{contactUs.address | safe}}</p>
+    <p class="contact-us">
+        {{contactUs.EnglandAndWales.text}}<br/>
+        {{contactUs.EnglandAndWales.phone}}<br/>
+        {{contactUs.EnglandAndWales.open}}
+    </p>
+    <p class="contact-us">
+        {{contactUs.Scotland.text}}<br/>
+        {{contactUs.Scotland.phone}}<br/>
+        {{contactUs.Scotland.open}}
+    </p>
 {%- endblock %}
 
 {% block one_third %}
