@@ -3,5 +3,6 @@
   "healthcarePro": "Evidence includes anything which shows how your condition affects your life, such as a letter from your doctor or healthcare professional.",
   "writeStatement": "You or someone who knows you could also write a statement. It all helps the independent tribunal understand your appeal.",
   "sendEvidence": "Send in any evidence as soon as possible after you’ve submitted your appeal. This is so there’s time to read it before your hearing.",
-  "postEvidence": "You’ll get a letter and an email telling you the address to post your evidence a few days after submitting your appeal."
+  "postEvidence": "You’ll get a letter telling you the address to post your evidence a few days after submitting your appeal.",
+  "postEvidenceWithEmail": "You’ll get a letter and an email telling you the address to post your evidence a few days after submitting your appeal."
 }
