@@ -4,7 +4,10 @@ const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
 const Error404 = require('steps/errors/404');
 const Error500 = require('steps/errors/500');
-const BenefitType = require('steps/start/BenefitType');
+const BenefitType = require('steps/start/benefit-type/BenefitType');
+const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
+const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
+const Independence = require('steps/start/independence/Independence');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
@@ -48,7 +51,10 @@ const init = [
 ];
 
 const startAnAppeal = [
-    BenefitType
+    BenefitType,
+    PostcodeChecker,
+    InvalidPostcode,
+    Independence
 ];
 
 const compliance = [

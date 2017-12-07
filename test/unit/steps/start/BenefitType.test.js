@@ -2,7 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const BenefitType = require('steps/start/BenefitType');
+const BenefitType = require('steps/start/benefit-type/BenefitType');
 
 describe('BenefitType.js', () => {
 

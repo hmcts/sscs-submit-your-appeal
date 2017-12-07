@@ -17,7 +17,7 @@ After((I) => {
 Scenario('When I enter a valid issuing office, I am taken to the mrn date page', (I) => {
 
     I.enterDWPIssuingOfficeAndContinue('1');
-    I.seeInCurrentUrl(paths.compliance.mrnDate);
+    I.seeInCurrentUrl(paths.start.postcodeCheck);
 
 });
 

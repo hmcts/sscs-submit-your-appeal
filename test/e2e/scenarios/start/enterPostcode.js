@@ -1,12 +1,13 @@
 'use strict';
 
 const paths = require('paths');
-const content = require('valid-postcode-pages/enter-postcode/content.en.json');
+const content = require('steps/start/postcode-checker/content.en.json');
 
 Feature('Enter postcode');
 
 Before((I) => {
-    I.amOnPage(paths.validPostcode.postcodeCheck);
+    I.createTheSession();
+    I.amOnPage(paths.start.postcodeCheck);
 });
 
 Scenario('When I go to the enter postcode page I see the page heading', (I) => {
@@ -15,11 +16,11 @@ Scenario('When I go to the enter postcode page I see the page heading', (I) => {
 
 });
 
-Scenario('When I enter a valid postcode that is on the list, I go to the Benefits-type page', (I) => {
+Scenario('When I enter a valid postcode that is on the list, I go to the Independence page', (I) => {
 
     I.fillField('#postcode', 'WV11 2HE');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.start.benefitType);
+    I.seeInCurrentUrl(paths.start.independence);
 
 });
 
@@ -27,7 +28,7 @@ Scenario('When I enter a valid postcode that is not on the list, I go to the inv
 
     I.fillField('#postcode', 'SW1P 4DF');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.validPostcode.invalidPostcode);
+    I.seeInCurrentUrl(paths.start.invalidPostcode);
 
 });
 
@@ -35,7 +36,7 @@ Scenario('When I enter an invalid postcode I see an error', (I) => {
 
     I.fillField('#postcode', 'INVALID POSTCODE');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.validPostcode.postcodeCheck);
+    I.seeInCurrentUrl(paths.start.postcodeCheck);
     I.see(content.fields.postcode.error.invalid);
 
 });
@@ -44,7 +45,7 @@ Scenario('When I leave the postcode field empty and continue, I see an error', (
 
     I.fillField('#postcode', '');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.validPostcode.postcodeCheck);
-    I.see(content.fields.postcode.error.required);
+    I.seeInCurrentUrl(paths.start.postcodeCheck);
+    I.see(content.fields.postcode.error.emptyField);
 
 });

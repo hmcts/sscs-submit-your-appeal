@@ -48,6 +48,6 @@ Scenario('When I go to the start an appeal landing page and click start appeal, 
 
     I.amOnPage(paths.landingPages.startAnAppeal);
     I.click('Start an appeal');
-    I.seeInCurrentUrl(paths.validPostcode.postcodeCheck);
+    I.seeInCurrentUrl(paths.start.benefitType);
 
 });

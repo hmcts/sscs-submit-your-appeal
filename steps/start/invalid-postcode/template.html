@@ -6,16 +6,16 @@
 {% set title = content.title %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+{{ phaseBanner(phase, feedbackLink) }}
+<a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
 {% endblock %}
 
 {% block two_thirds %}
 
-    {{ header(title, size='large') }}
+{{ header(title, size='large') }}
 
-    <p>{{ content.notCovered }}</p>
+<p>{{ content.notCovered }}</p>
 
-    <a href="https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?original_id=3038" class="button">{{ content.formDownload }}</a>
+<a href="https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?original_id=3038" class="button">{{ content.formDownload }}</a>
 
 {% endblock %}

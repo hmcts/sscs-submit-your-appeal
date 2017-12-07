@@ -5,7 +5,7 @@ const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
-const types = require('steps/start/types');
+const types = require('steps/start/benefit-type/types');
 
 class BenefitType extends Question {
 

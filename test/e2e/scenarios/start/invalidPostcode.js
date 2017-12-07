@@ -1,12 +1,12 @@
 'use strict';
 
 const paths = require('paths');
-const content = require('valid-postcode-pages/postcode-invalid/content.en.json');
+const content = require('steps/start/invalid-postcode/content.en.json');
 
 Feature('Invalid postcode');
 
 Before((I) => {
-    I.amOnPage(paths.validPostcode.invalidPostcode);
+    I.amOnPage(paths.start.invalidPostcode);
 });
 
 Scenario('When I go to the invalid postcode page I see the page heading', (I) => {
