@@ -11,7 +11,7 @@ class PostcodeChecker extends Question {
 
     static get path() {
 
-        return paths.validPostcode.postcodeCheck;
+        return paths.start.postcodeCheck;
     }
 
     get form() {

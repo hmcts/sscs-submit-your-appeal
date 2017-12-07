@@ -10,7 +10,6 @@ const steps = require('steps');
 const paths = require('paths');
 const landingPages = require('landing-pages/routes');
 const errorPages = require('error-pages/routes');
-const validPostcode = require('valid-postcode-pages/routes');
 const policyPages = require('policy-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const content = require('content.en.json');
@@ -36,7 +35,6 @@ lookAndFeel.configure(app, {
         views: [
             path.resolve(__dirname, 'steps'),
             path.resolve(__dirname, 'landing-pages'),
-            path.resolve(__dirname, 'valid-postcode-pages'),
             path.resolve(__dirname, 'views/compliance'),
             path.resolve(__dirname, 'policy-pages'),
             path.resolve(__dirname, 'error-pages')

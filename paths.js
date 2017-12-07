@@ -21,11 +21,6 @@ module.exports = {
         termsAndConditions:               '/terms-and-conditions'
     },
 
-    validPostcode: {
-        postcodeCheck:                  '/postcode-check',
-        invalidPostcode:                '/invalid-postcode'
-    },
-
     session: {
         createSession:                  '/create-session',
         entry:                          '/entry',
@@ -35,6 +30,8 @@ module.exports = {
 
     start: {
         benefitType:                    '/benefit-type',
+        postcodeCheck:                  '/postcode-check',
+        invalidPostcode:                '/invalid-postcode',
         independence:                   '/independence'
     },
 

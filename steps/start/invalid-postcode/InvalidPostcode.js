@@ -7,7 +7,7 @@ class InvalidPostcode extends ExitPoint {
 
     static get path() {
 
-        return paths.validPostcode.invalidPostcode;
+        return paths.start.invalidPostcode;
     }
 
 }
