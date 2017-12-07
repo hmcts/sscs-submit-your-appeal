@@ -22,13 +22,6 @@ Scenario('When I enter a reason for lateness and click continue, I am taken to t
 
 });
 
-Scenario('When I click I don\'t have a good reason, I am taken to the cant appeal page', (I) => {
-
-    I.click(content.noGoodReasonWhyLate);
-    I.seeInCurrentUrl(paths.compliance.cantAppeal);
-
-});
-
 Scenario('When I have an MRN that is over thirteen months late, I do not enter a reason why my appeal is late, I see errors', (I) => {
 
     I.click('Continue');
