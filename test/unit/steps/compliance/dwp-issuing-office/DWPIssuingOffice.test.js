@@ -14,7 +14,7 @@ describe('DWPIssuingOffice.js', () => {
         dWPIssuingOffice = new DWPIssuingOffice({
             journey: {
                 steps: {
-                    PostcodeChecker: paths.start.postcodeCheck
+                    MRNDate: paths.compliance.mrnDate
                 }
             }
         });
@@ -57,8 +57,8 @@ describe('DWPIssuingOffice.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step path /postcode-check', () => {
-            expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.start.postcodeCheck });
+        it('returns the next step path /mrn-date', () => {
+            expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.compliance.mrnDate });
         });
 
     });

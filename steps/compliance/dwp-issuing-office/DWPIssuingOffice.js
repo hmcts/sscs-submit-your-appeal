@@ -50,7 +50,7 @@ class DWPIssuingOffice extends Question {
 
     next() {
 
-        return goTo(this.journey.steps.PostcodeChecker);
+        return goTo(this.journey.steps.MRNDate);
     }
 }
 
