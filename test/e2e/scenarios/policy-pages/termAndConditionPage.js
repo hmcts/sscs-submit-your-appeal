@@ -24,3 +24,14 @@ Scenario('When I go to the Terms And Conditions page, I see expected links and g
     I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.terms.name, termsAndConditionsContent.relatedLinks.conditions.url);
 
 });
+
+Scenario('When I go to the Terms And Conditions page, I see contact us section for customer communication', (I) => {
+    I.see(termsAndConditionsContent.contactUs.title);
+    I.see(termsAndConditionsContent.contactUs.EnglandAndWales.text);
+    I.see(termsAndConditionsContent.contactUs.EnglandAndWales.phone);
+    I.see(termsAndConditionsContent.contactUs.EnglandAndWales.open);
+    I.see(termsAndConditionsContent.contactUs.Scotland.text);
+    I.see(termsAndConditionsContent.contactUs.Scotland.phone);
+    I.see(termsAndConditionsContent.contactUs.Scotland.open);
+});
+
