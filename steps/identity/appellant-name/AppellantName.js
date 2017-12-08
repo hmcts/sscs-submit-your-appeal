@@ -55,6 +55,17 @@ class AppellantName extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                title: this.fields.title.value,
+                firstName: this.fields.firstName.value,
+                lastName: this.fields.lastName.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.AppellantDOB);

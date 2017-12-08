@@ -37,6 +37,10 @@ class NoMRN extends Question {
         ];
     }
 
+    values() {
+        return { mrn: { reasonForNoMRN: this.fields.reasonForNoMRN.value } };
+    }
+
     next() {
 
         return goTo(this.journey.steps.Appointee);

@@ -48,6 +48,15 @@ class DWPIssuingOffice extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            mrn: {
+                dwpIssuingOffice: this.fields.pipNumber.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.MRNDate);

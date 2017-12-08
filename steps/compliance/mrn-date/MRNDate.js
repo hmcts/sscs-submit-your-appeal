@@ -47,6 +47,15 @@ class MRNDate extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            mrn: {
+                date: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+            }
+        };
+    }
+
     next() {
 
         const mrnDate = DateUtils.createMoment(

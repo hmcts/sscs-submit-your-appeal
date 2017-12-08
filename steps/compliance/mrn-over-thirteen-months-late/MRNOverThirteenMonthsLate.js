@@ -37,6 +37,15 @@ class MRNOverThirteenMonthsLate extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            mrn: {
+                overThirteenMonthsLateReason: this.fields.reasonForBeingLate.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.Appointee);

@@ -37,6 +37,15 @@ class ReasonForAppealing extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            reasonsForAppealing: {
+                reasons: this.fields.reasonForAppealing.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.OtherReasonForAppealing);

@@ -36,6 +36,15 @@ class BenefitType extends Question {
         });
     }
 
+    values() {
+
+        return {
+            benefit: {
+                type: this.fields.benefitType.value
+            }
+        };
+    }
+
     next() {
 
         const isPIPBenefitType = () => this.fields.benefitType.value === 'Personal Independence Payment (PIP)';

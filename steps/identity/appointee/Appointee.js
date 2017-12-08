@@ -19,8 +19,8 @@ class Appointee extends Question {
 
         return form(
 
-            textField('appointee').joi(
-                this.content.fields.appointee.error.required,
+            textField('isAppointee').joi(
+                this.content.fields.isAppointee.error.required,
                 Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
@@ -29,16 +29,22 @@ class Appointee extends Question {
     answers() {
 
         return answer(this, {
-            question: this.content.cya.appointee.question,
+            question: this.content.cya.isAppointee.question,
             section: 'appellant-details',
-            answer: titleise(this.fields.appointee.value)
+            answer: titleise(this.fields.isAppointee.value)
         });
+    }
 
+    values() {
+
+        return {
+            isAppointee: this.fields.isAppointee.value === userAnswer.YES
+        }
     }
 
     next() {
 
-        const isAppointee = () => this.fields.appointee.value === userAnswer.YES;
+        const isAppointee = () => this.fields.isAppointee.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.AppointeeFormDownload).if(isAppointee),

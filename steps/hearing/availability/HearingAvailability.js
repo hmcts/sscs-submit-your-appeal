@@ -36,6 +36,15 @@ class HearingAvailability extends Question {
 
     }
 
+    values() {
+
+        return {
+            hearing: {
+                scheduleHearing: this.fields.scheduleHearing.value === userAnswer.YES
+            }
+        }
+    }
+
     next() {
 
         const shouldScheduleHearing = () => this.fields.scheduleHearing.value === userAnswer.NO;

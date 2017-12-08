@@ -36,6 +36,13 @@ class Representative extends Question {
 
     }
 
+    values() {
+
+        return {
+            hasRepresentative: this.fields.hasRepresentative.value === userAnswer.YES
+        }
+    }
+
     next() {
 
         const hasARepresentative = () => this.fields.hasRepresentative.value === userAnswer.YES;

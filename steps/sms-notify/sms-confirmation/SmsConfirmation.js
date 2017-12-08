@@ -26,6 +26,16 @@ class SmsConfirmation extends Question {
         return this.fields.enterMobile.value;
     }
 
+    get form() {
+
+        return form(
+
+            textField.ref(this.journey.steps.EnterMobile, 'enterMobile'),
+            textField.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
+            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
+        )
+    }
+
     answers() {
 
         return [
@@ -39,14 +49,15 @@ class SmsConfirmation extends Question {
         ];
     }
 
-    get form() {
+    values() {
 
-        return form(
+        let values = { smsNotify: {} };
 
-            textField.ref(this.journey.steps.EnterMobile, 'enterMobile'),
-            textField.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
-            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
-        )
+        values.smsNotify.useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
+        values.smsNotify.smsNumber = values.smsNotify.useSameNumber ?
+            this.fields.phoneNumber.value : this.fields.enterMobile.value;
+
+        return values;
     }
 
     next() {

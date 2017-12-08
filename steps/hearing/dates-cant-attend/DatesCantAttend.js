@@ -46,6 +46,17 @@ class DatesCantAttend extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            hearing: {
+                datesCantAttend: [
+                    `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
+                ]
+            }
+        }
+    }
+
     next() {
 
         return goTo(this.journey.steps.CheckYourAppeal);

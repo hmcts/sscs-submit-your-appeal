@@ -41,6 +41,15 @@ class TextReminders extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            smsNotify: {
+                wantsSMSNotifications: this.fields.doYouWantTextMsgReminders.value === userAnswer.YES
+            }
+        };
+    }
+
     next() {
 
         const wantsTextMsgReminders = () => this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;

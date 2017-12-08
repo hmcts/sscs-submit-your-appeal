@@ -37,6 +37,15 @@ class OtherReasonForAppealing extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            reasonsForAppealing: {
+                otherReasons: this.fields.otherReasonForAppealing.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.SendingEvidence);

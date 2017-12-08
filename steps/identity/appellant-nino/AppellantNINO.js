@@ -44,6 +44,15 @@ class AppellantNINO extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                nino: this.fields.nino.value
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.AppellantContactDetails);

@@ -54,6 +54,17 @@ class HearingArrangements extends Question {
         ];
     }
 
+
+    values() {
+
+        return {
+            hearing: {
+                arrangements: this.fields.selection.value,
+                anythingElse: this.fields.anythingElse.value
+            }
+        };
+    }
+
     next() {
         return goTo(this.journey.steps.HearingAvailability);
     }

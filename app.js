@@ -78,7 +78,8 @@ journey(app, {
             secure: config.redis.useSSL === 'true'
         },
         secret: config.redis.secret
-    }
+    },
+    apiUrl: `${baseUrl}/api/sya`
 });
 
 app.use(bodyParser.urlencoded({

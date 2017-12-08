@@ -56,6 +56,15 @@ class AppellantDOB extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                dob: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+            }
+        };
+    }
+
     next() {
 
         return goTo(this.journey.steps.AppellantNINO);

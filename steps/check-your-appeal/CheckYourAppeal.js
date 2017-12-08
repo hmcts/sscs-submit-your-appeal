@@ -5,14 +5,26 @@ const {
     section
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
-const { goTo } = require('@hmcts/one-per-page');
+const { goTo, action } = require('@hmcts/one-per-page/flow');
+const request = require('request-promise-native');
 const paths = require('paths');
 
 class CheckYourAppeal extends CYA {
 
+    constructor(...args) {
+        super(...args);
+        this.sendToAPI = this.sendToAPI.bind(this);
+    }
+
     static get path() {
 
         return paths.checkYourAppeal
+    }
+
+    sendToAPI() {
+        const apiUrl = this.journey.settings.apiUrl;
+        const json = this.journey.values;
+        return request.post(apiUrl, { json });
     }
 
     sections() {
@@ -32,7 +44,9 @@ class CheckYourAppeal extends CYA {
 
     next() {
 
-        return goTo(this.journey.steps.Confirmation);
+        return action(this.sendToAPI)
+            .then(goTo(this.journey.steps.Confirmation))
+            .onFailure(goTo(this.journey.steps.Error));
     }
 }
 

@@ -137,6 +137,26 @@ class RepresentativeDetails extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            representative: {
+                firstName: this.fields.firstName.value,
+                lastName: this.fields.lastName.value,
+                organisation: this.fields.organisation.value,
+                contactDetails: {
+                    addressLine1: this.fields.addressLine1.value,
+                    addressLine2: this.fields.addressLine2.value,
+                    townCity: this.fields.townCity.value,
+                    county: this.fields.county.value,
+                    postCode: this.fields.postCode.value,
+                    phoneNumber: this.fields.phoneNumber.value,
+                    emailAddress: this.fields.emailAddress.value,
+                }
+            }
+        }
+    }
+
     next() {
 
         return goTo(this.journey.steps.ReasonForAppealing);

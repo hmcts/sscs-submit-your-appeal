@@ -26,6 +26,20 @@ class PostcodeChecker extends Question {
         );
     }
 
+    answers() {
+
+        return [];
+    }
+
+    values() {
+
+        return {
+            appellant: {
+                postCodeCheck: this.fields.postcode.value
+            }
+        };
+    }
+
     next() {
 
         const postcode = this.fields.postcode.value;
