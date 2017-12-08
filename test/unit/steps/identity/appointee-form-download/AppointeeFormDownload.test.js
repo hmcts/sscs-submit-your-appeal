@@ -41,19 +41,34 @@ describe('AppointeeFormDownload.js', () => {
 
     describe('get getFormLink()', () => {
 
-        it('returns correct SSCS5 form link when Benefit type is Carer\'s Allowance', () => {
+        it('returns SSCS5 form link when Benefit type is Carer\'s Allowance', () => {
             appointeeFormDownload.fields.benefitType.value = 'Carer’s Allowance';
-            expect(appointeeFormDownload.getFormLink).to.equal(urls.formDownload.sscs5);
+            expect(appointeeFormDownload.formDownload.link).to.equal(urls.formDownload.sscs5);
         });
 
-        it('returns correct SSCS5 form link when Benefit type is Child Benefit', () => {
+        it('returns SSCS5 form link when Benefit type is Child Benefit', () => {
             appointeeFormDownload.fields.benefitType.value = 'Child Benefit';
-            expect(appointeeFormDownload.getFormLink).to.equal(urls.formDownload.sscs5);
+            expect(appointeeFormDownload.formDownload.link).to.equal(urls.formDownload.sscs5);
         });
 
-        it('returns correct SSCS1 form link when Benefit type is not Carer\'s Allowance or Child Benefit', () => {
+        it('returns SSCS5 form type when Benefit type is Carer\'s Allowance', () => {
+            appointeeFormDownload.fields.benefitType.value = 'Carer’s Allowance';
+            expect(appointeeFormDownload.formDownload.type).to.equal('SSCS5');
+        });
+
+        it('returns SSCS5 form type when Benefit type is Child Benefit', () => {
+            appointeeFormDownload.fields.benefitType.value = 'Child Benefit';
+            expect(appointeeFormDownload.formDownload.type).to.equal('SSCS5');
+        });
+
+        it('returns SSCS1 form link when Benefit type is not Carer\'s Allowance or Child Benefit', () => {
             appointeeFormDownload.fields.benefitType.value = 'Social Fund';
-            expect(appointeeFormDownload.getFormLink).to.equal(urls.formDownload.sscs1);
+            expect(appointeeFormDownload.formDownload.link).to.equal(urls.formDownload.sscs1);
+        });
+
+        it('returns SSCS1 form type when Benefit type is not Carer\'s Allowance or Child Benefit', () => {
+            appointeeFormDownload.fields.benefitType.value = 'Social Fund';
+            expect(appointeeFormDownload.formDownload.type).to.equal('SSCS1');
         });
 
     });

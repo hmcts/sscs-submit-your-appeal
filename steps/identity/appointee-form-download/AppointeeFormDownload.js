@@ -17,18 +17,20 @@ class AppointeeFormDownload extends Question {
         return this.fields.benefitType.value;
     }
 
-    get getFormLink() {
+    get formDownload() {
 
         const benefitType = this.fields.benefitType.value;
-        let link;
+        let formDownload = {};
 
         if (benefitType === 'Carer’s Allowance' || benefitType === 'Child Benefit') {
-            link = urls.formDownload.sscs5;
+            formDownload.link = urls.formDownload.sscs5;
+            formDownload.type = 'SSCS5';
         } else {
-            link = urls.formDownload.sscs1;
+            formDownload.link = urls.formDownload.sscs1;
+            formDownload.type = 'SSCS1';
         }
 
-        return link;
+        return formDownload;
     }
 
     get form() {

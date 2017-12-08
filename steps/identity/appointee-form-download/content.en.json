@@ -1,6 +1,6 @@
 {
   "title": "You need to download and fill out a paper form",
-  "subtitle": "Download and fill out a SSCS1 form to appeal a {{benefitType}} benefit decision.",
+  "subtitle": "Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
   "button": {
     "text": "Continue to form download"
     }
