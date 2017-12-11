@@ -1,15 +1,25 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "look-and-feel/components/header.njk" import header %}
 
 {% set title %}
-{{ content.title | safe }}
+    {{ content.title | safe }}
 {% endset %}
 
-{% block fields %}
+{% block two_thirds %}
 
-{% call formSection() %}
+    <div class="banner-blue">
+        {{ header(title, size='large') }}
+    </div>
 
-{% endcall %}
+    <form action="{{ path if path else url }}" method="post" class="form">
+
+        {% block fields %}
+            <p>{{ content.reviewed }}</p>
+            <p>{{ content.separate }}</p>
+        {% endblock %}
+
+        <input class="button" type="submit" value="Continue">
+    </form>
 
 {% endblock %}
