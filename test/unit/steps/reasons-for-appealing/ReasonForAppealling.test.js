@@ -9,6 +9,7 @@ describe('ReasonForAppealing.js', () => {
     let reasonForAppealing;
 
     beforeEach(() => {
+
         reasonForAppealing = new ReasonForAppealing({
             journey: {
                 steps: {
@@ -16,7 +17,9 @@ describe('ReasonForAppealing.js', () => {
                 }
             }
         });
-        reasonForAppealing.fields = {}
+
+        reasonForAppealing.fields = {};
+
     });
 
     describe('get path()', () => {
@@ -50,6 +53,40 @@ describe('ReasonForAppealing.js', () => {
                 expect(field.validations).to.not.be.empty;
             });
 
+        });
+
+    });
+
+    describe('get answers()', () => {
+
+        beforeEach(() => {
+
+            reasonForAppealing.fields = {
+                reasonForAppealing: {
+                    value: "my answer"
+                }
+            };
+
+            reasonForAppealing.content = {
+                cya: {
+                    reasonForAppealing: {
+                        question: 'my question'
+                    }
+                }
+            };
+
+        });
+
+        it('.section', () => {
+            expect(reasonForAppealing.answers()[0].section).to.eql('reasons-for-appealing');
+        });
+
+        it('.answer', () => {
+            expect(reasonForAppealing.answers()[0].answer).to.eql('my answer');
+        });
+
+        it('.question', () => {
+            expect(reasonForAppealing.answers()[0].question).to.eql('my question');
         });
 
     });
