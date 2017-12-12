@@ -28,7 +28,7 @@ p.contact-us::first-line {
   }
 }
 
-#title {
+#title, #pipNumber {
   &.form-control {
     @extend .form-control-1-8;
   }
