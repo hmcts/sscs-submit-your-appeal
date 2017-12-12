@@ -12,10 +12,10 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('When I enter PIP, I am taken to the DWP Issuing office page', (I) => {
+Scenario('When I enter PIP, I am taken to the postcode-check page', (I) => {
 
     I.enterBenefitTypeAndContinue('Personal Independence Payment (PIP)');
-    I.seeInCurrentUrl(paths.compliance.dwpIssuingOffice);
+    I.seeInCurrentUrl(paths.start.postcodeCheck);
 
 });
 

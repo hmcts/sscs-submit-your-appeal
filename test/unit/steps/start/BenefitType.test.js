@@ -14,7 +14,7 @@ describe('BenefitType.js', () => {
             journey: {
                 steps: {
                     AppointeeFormDownload: paths.identity.downloadAppointeeForm,
-                    DWPIssuingOffice: paths.compliance.dwpIssuingOffice
+                    PostcodeChecker: paths.start.postcodeCheck
                 }
             }
         });
@@ -54,9 +54,9 @@ describe('BenefitType.js', () => {
             expect(benefitType.next().step).to.eql(paths.identity.downloadAppointeeForm);
         });
 
-        it('returns the next step path /dwp-issuing-office with benefit type value is PIP', () => {
+        it('returns the next step path /postcode-check with benefit type value is PIP', () => {
             benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
-            expect(benefitType.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+            expect(benefitType.next().step).to.eql(paths.start.postcodeCheck);
         });
 
     });

@@ -13,7 +13,7 @@ describe('Independence.js', () => {
         independence = new Independence({
             journey: {
                 steps: {
-                    MRNDate: paths.compliance.mrnDate
+                    DWPIssuingOffice: paths.compliance.dwpIssuingOffice
                 }
             }
         });
@@ -31,7 +31,7 @@ describe('Independence.js', () => {
     describe('next()', () => {
 
         it('returns the next step path /mrn-date', () => {
-            expect(independence.next().step).to.eql(paths.compliance.mrnDate);
+            expect(independence.next().step).to.eql(paths.compliance.dwpIssuingOffice);
         });
 
 
