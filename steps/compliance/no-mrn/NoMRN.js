@@ -32,14 +32,19 @@ class NoMRN extends Question {
 
             answer(this, {
                 question: this.content.cya.reasonForNoMRN.question,
-                section: sections.noMRN,
-                answer: `${this.fields.reasonForNoMRN.value}`
+                section: sections.mrnDate,
+                answer: this.fields.reasonForNoMRN.value
             })
         ];
     }
 
     values() {
-        return { mrn: { reasonForNoMRN: this.fields.reasonForNoMRN.value } };
+
+        return {
+            mrn: {
+                reasonForNoMRN: this.fields.reasonForNoMRN.value
+            }
+        };
     }
 
     next() {
