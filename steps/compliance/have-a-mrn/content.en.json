@@ -4,7 +4,10 @@
   "fields": {
     "haveAMRN": {
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
-      "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)"
+      "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)",
+      "error": {
+        "required": "Select an option"
+      }
     }
   },
   "cya": {
