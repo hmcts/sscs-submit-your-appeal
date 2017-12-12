@@ -38,8 +38,8 @@ describe('Appointee.js', () => {
             field = appointeeClass.form.fields[0];
         });
 
-        it('contains the field name appointee', () => {
-            expect(field.name).to.equal('appointee');
+        it('contains the field name isAppointee', () => {
+            expect(field.name).to.equal('isAppointee');
         });
 
         it('contains validation', () => {
