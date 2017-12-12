@@ -79,7 +79,7 @@ journey(app, {
         },
         secret: config.redis.secret
     },
-    apiUrl: `${baseUrl}/api/sya`
+    apiUrl: `${config.api.url}/appeals`
 });
 
 app.use(bodyParser.urlencoded({
@@ -87,8 +87,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(paths.health, healthcheck.configure({
-    "checks": {
-        "submit-your-appeal-api": healthcheck.web(`${config.api.url}/health`)
+    checks: {
+        'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
     }
 }));
 
