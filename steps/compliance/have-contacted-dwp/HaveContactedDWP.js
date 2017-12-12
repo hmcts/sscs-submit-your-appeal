@@ -1,7 +1,10 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { form, textField } = require('@hmcts/one-per-page/forms');
+const Joi = require('joi');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 class HaveContactedDWP extends Question {
 
@@ -10,8 +13,30 @@ class HaveContactedDWP extends Question {
         return paths.compliance.haveContactedDWP;
     }
 
+    get form() {
+
+        return form(
+
+            textField('haveContactedDWP').joi(
+                this.content.fields.haveContactedDWP.error.required,
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+            )
+        );
+    }
+
+    answers() {
+
+        return [];
+    }
+
     next() {
-        return goTo(this.journey.steps.NoMRN);
+
+        const hasContactDWP = this.fields.haveContactedDWP.value === userAnswer.YES;
+
+        return branch(
+            goTo(this.journey.steps.NoMRN).if(hasContactDWP),
+            goTo(this.journey.steps.ContactDWP)
+        );
     }
 }
 
