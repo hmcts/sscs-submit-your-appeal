@@ -1,0 +1,13 @@
+{
+  "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
+  "subtitle": "This is the letter DWP sent you when you asked them to reconsider their decision about the PIP benefit.",
+  "fields": {
+    "haveAMRN": {
+      "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
+      "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)",
+      "error": {
+        "required": "Select an option"
+      }
+    }
+  }
+}

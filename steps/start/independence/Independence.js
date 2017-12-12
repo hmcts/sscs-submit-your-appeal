@@ -12,7 +12,7 @@ class Independence extends Question {
 
     next() {
 
-        return goTo(this.journey.steps.DWPIssuingOffice);
+        return goTo(this.journey.steps.HaveAMRN);
     }
 }
 

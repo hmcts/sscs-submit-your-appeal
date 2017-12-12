@@ -10,6 +10,8 @@ const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
 const Independence = require('steps/start/independence/Independence');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
+const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
+const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
@@ -57,6 +59,8 @@ const startAnAppeal = [
 ];
 
 const compliance = [
+    HaveAMRN,
+    HaveContactedDWP,
     DWPIssuingOffice,
     CantAppeal,
     CheckMRN,
