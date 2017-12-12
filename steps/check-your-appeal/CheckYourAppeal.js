@@ -19,7 +19,6 @@ class CheckYourAppeal extends CYA {
 
         return [
             section('benefit-type',                     { title: this.content.benefitType }),
-            section('have-a-mrn',                       { title: this.content.compliance.haveAMRN }),
             section('mrn-date',                         { title: this.content.compliance.mrnDate }),
             section('no-mrn',                           { title: this.content.compliance.noMRN }),
             section('appellant-details',                { title: this.content.appellantDetails }),
