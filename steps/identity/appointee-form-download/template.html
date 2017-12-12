@@ -1,21 +1,16 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
-
-{% block two_thirds %}
-
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
 
 {% set title %}
     {{ content.title }}
 {% endset %}
 
-{{ header(content.title, size='xlarge') }}
+{% block two_thirds %}
 
-<p>
-    {{ content.subtitle }}
-</p>
+    {{ header(content.title, size='xlarge') }}
+    <p>{{ content.subtitle }}</p>
 
-<a class="button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
+    <a class="button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
 
 {% endblock %}
