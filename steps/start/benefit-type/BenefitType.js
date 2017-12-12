@@ -3,6 +3,7 @@
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
@@ -31,7 +32,7 @@ class BenefitType extends Question {
 
         return answer(this, {
             question: this.content.cya.benefitType.question,
-            section: 'benefit-type',
+            section: sections.benefitType,
             answer: this.fields.benefitType.value
         });
     }

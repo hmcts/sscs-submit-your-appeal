@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
 const regex = require('utils/regex');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -42,7 +43,7 @@ class SmsConfirmation extends Question {
 
             answer(this, {
                 question: this.content.cya.mobileNumber.question,
-                section: 'text-msg-reminders',
+                section: sections.textMsgReminders,
                 answer: this.mobileNumber,
                 url: paths.smsNotify.sendToNumber
             })
