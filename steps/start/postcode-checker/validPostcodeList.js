@@ -827,6 +827,7 @@ const postCodes = [
     "DY11",
     "DY11",
     "DY11",
+    "DY12",
     "DY13",
     "DY13",
     "DY13",
