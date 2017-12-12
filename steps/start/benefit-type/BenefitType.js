@@ -4,8 +4,9 @@ const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
+const { values } = require('lodash');
 const paths = require('paths');
-const types = require('steps/start/benefit-type/types');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 class BenefitType extends Question {
 
@@ -15,6 +16,8 @@ class BenefitType extends Question {
     }
 
     get form() {
+
+        const types = values(benefitTypes);
 
         return form(
 

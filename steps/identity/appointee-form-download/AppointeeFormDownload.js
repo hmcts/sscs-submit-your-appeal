@@ -4,6 +4,7 @@ const { form, textField } = require('@hmcts/one-per-page/forms');
 const { Question } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const urls = require('urls');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 class AppointeeFormDownload extends Question {
 
@@ -22,7 +23,7 @@ class AppointeeFormDownload extends Question {
         const benefitType = this.fields.benefitType.value;
         let formDownload = {};
 
-        if (benefitType === 'Carer’s Allowance' || benefitType === 'Child Benefit') {
+        if (benefitType === benefitTypes.carersAllowance || benefitType === benefitTypes.childBenefit) {
             formDownload.link = urls.formDownload.sscs5;
             formDownload.type = 'SSCS5';
         } else {
