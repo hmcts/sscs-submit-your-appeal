@@ -42,7 +42,7 @@ class MRNOverOneMonthLate extends Question {
 
         return {
             mrn: {
-                oneMonthLateReason: this.fields.reasonForBeingLate.value
+                reasonForBeingLate: this.fields.reasonForBeingLate.value
             }
         };
     }

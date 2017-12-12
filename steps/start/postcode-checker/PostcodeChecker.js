@@ -34,9 +34,7 @@ class PostcodeChecker extends Question {
     values() {
 
         return {
-            appellant: {
-                postCodeCheck: this.fields.postcode.value
-            }
+            postCodeCheck: this.fields.postcode.value
         };
     }
 

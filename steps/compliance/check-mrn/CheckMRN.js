@@ -33,14 +33,12 @@ class CheckMRN extends Question {
 
     answers() {
 
-        return [
+        return [];
+    }
 
-            answer(this, {
-                question: this.content.cya.mrnDate.question,
-                section: 'check-mrn',
-                answer: `${this.fields.day.value} ${this.fields.month.value} ${this.fields.year.value}`
-            })
-        ];
+    values() {
+
+        return {};
     }
 
     next() {

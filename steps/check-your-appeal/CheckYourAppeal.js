@@ -27,6 +27,7 @@ class CheckYourAppeal extends CYA {
 
         const apiUrl = this.journey.settings.apiUrl;
         const json = this.journey.values;
+        console.log(JSON.stringify(json));
         return request.post(apiUrl, { json });
     }
 

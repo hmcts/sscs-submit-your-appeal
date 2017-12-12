@@ -40,9 +40,7 @@ class BenefitType extends Question {
     values() {
 
         return {
-            benefit: {
-                type: this.fields.benefitType.value
-            }
+            benefitType: this.fields.benefitType.value
         };
     }
 

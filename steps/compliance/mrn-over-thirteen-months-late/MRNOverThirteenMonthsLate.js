@@ -33,7 +33,7 @@ class MRNOverThirteenMonthsLate extends Question {
             answer(this, {
                 question: this.content.cya.reasonForBeingLate.question,
                 section: sections.mrnDate,
-                answer: `${this.fields.reasonForBeingLate.value}`
+                answer: this.fields.reasonForBeingLate.value
             })
         ];
     }
@@ -42,7 +42,7 @@ class MRNOverThirteenMonthsLate extends Question {
 
         return {
             mrn: {
-                overThirteenMonthsLateReason: this.fields.reasonForBeingLate.value
+                reasonForBeingLate: this.fields.reasonForBeingLate.value
             }
         };
     }
