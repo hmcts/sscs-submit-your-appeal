@@ -36,6 +36,8 @@ module.exports = {
     },
 
     compliance: {
+        haveAMRN:                       '/have-a-mrn',
+        haveContactedDWP:               '/have-contacted-dwp',
         dwpIssuingOffice:               '/dwp-issuing-office',
         cantAppeal:                     '/cant-appeal',
         checkMRNDate:                   '/check-mrn-date',
