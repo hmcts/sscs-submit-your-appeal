@@ -44,6 +44,19 @@ p.contact-us::first-line {
   margin-bottom: 45px;
 }
 
+.banner-blue h1{
+  background: #005ea5;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  padding: {
+    top: 30px;
+    bottom: 30px;
+    right:29px;
+    left:29px;
+  };
+}
+
 .nav-list {
   column-count: 2;
   column-gap: 2em;
