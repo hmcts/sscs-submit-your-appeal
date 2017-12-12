@@ -6,5 +6,10 @@
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
       "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)"
     }
+  },
+  "cya": {
+    "haveAMRN": {
+      "question": "Has a MRN"
+    }
   }
 }
