@@ -1,7 +1,6 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { Reference } = require('@hmcts/one-per-page/forms');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
@@ -26,7 +25,7 @@ describe('HaveAMRN.js', () => {
     describe('get path()', () => {
 
         it('returns path /have-a-mrn', () => {
-            expect(haveAMRN.path).to.equal(paths.compliance.haveAMRN);
+            expect(HaveAMRN.path).to.equal(paths.compliance.haveAMRN);
         });
 
     });
@@ -35,7 +34,7 @@ describe('HaveAMRN.js', () => {
 
         let field;
 
-        beforeEach(() => {
+        before(() => {
 
             field = haveAMRN.form.fields[0];
 
@@ -54,12 +53,12 @@ describe('HaveAMRN.js', () => {
     describe('next()', () => {
 
         it('returns the next step path /dwp-issuing-office when haveAMRN equals Yes', () => {
-            haveAMRN.fields.haveAMRN.value = 'yes';
+            haveAMRN.fields.haveAMRN.value = answer.YES;
             expect(haveAMRN.next().step).to.eql(paths.compliance.dwpIssuingOffice);
         });
 
         it('returns the next step path /have-contacted-dwp when haveAMRN equals No', () => {
-            haveAMRN.fields.haveAMRN.value = 'no';
+            haveAMRN.fields.haveAMRN.value = answer.NO;
             expect(haveAMRN.next().step).to.eql(paths.compliance.haveContactedDWP);
         });
 

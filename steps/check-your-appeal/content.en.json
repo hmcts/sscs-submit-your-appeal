@@ -1,7 +1,6 @@
 {
   "benefitType": "Benefit",
   "compliance": {
-    "haveAMRN": "Have you got a Mandatory Reconsideration Notice (MRN)?",
     "checkMRN": "Check MRN Date",
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
     "mrnOverOneMonthLate": "Appeal over a month late",

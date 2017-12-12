@@ -27,14 +27,7 @@ class HaveAMRN extends Question {
 
     answers() {
 
-        return [
-
-            answer(this, {
-                question: this.content.cya.haveAMRN.question,
-                section: 'have-a-mrn',
-                answer: this.fields.haveAMRN.value
-            })
-        ];
+        return [];
     }
 
     next() {
