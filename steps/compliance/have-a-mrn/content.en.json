@@ -9,5 +9,10 @@
         "required": "Select an option"
       }
     }
+  },
+  "cya": {
+    "haveAMRN": {
+      "question": "Has a MRN"
+    }
   }
 }
