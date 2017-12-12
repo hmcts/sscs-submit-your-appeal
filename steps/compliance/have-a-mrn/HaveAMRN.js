@@ -4,7 +4,6 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
-const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
