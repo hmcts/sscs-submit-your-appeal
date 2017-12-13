@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
 const regex = require('utils/regex');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -26,19 +27,6 @@ class SmsConfirmation extends Question {
         return this.fields.enterMobile.value;
     }
 
-    answers() {
-
-        return [
-
-            answer(this, {
-                question: this.content.cya.mobileNumber.question,
-                section: 'text-msg-reminders',
-                answer: this.mobileNumber,
-                url: paths.smsNotify.sendToNumber
-            })
-        ];
-    }
-
     get form() {
 
         return form(
@@ -47,6 +35,30 @@ class SmsConfirmation extends Question {
             textField.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
             textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
         )
+    }
+
+    answers() {
+
+        return [
+
+            answer(this, {
+                question: this.content.cya.mobileNumber.question,
+                section: sections.textMsgReminders,
+                answer: this.mobileNumber,
+                url: paths.smsNotify.sendToNumber
+            })
+        ];
+    }
+
+    values() {
+
+        let values = { smsNotify: {} };
+
+        values.smsNotify.useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
+        values.smsNotify.smsNumber = values.smsNotify.useSameNumber ?
+            this.fields.phoneNumber.value : this.fields.enterMobile.value;
+
+        return values;
     }
 
     next() {

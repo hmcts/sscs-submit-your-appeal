@@ -30,6 +30,11 @@ class HaveAMRN extends Question {
         return [];
     }
 
+    values() {
+
+        return {};
+    }
+
     next() {
 
         const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;

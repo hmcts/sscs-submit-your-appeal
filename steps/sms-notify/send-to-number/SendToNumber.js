@@ -5,7 +5,7 @@ const { form, textField } = require('@hmcts/one-per-page/forms');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
-const answer = require('utils/answer');
+const userAnswer = require('utils/answer');
 
 class SendToNumber extends Question {
 
@@ -37,9 +37,18 @@ class SendToNumber extends Question {
         return [];
     }
 
+    values() {
+
+        return {
+            smsNotify: {
+                useSameNumber: this.fields.useSameNumber.value === userAnswer.YES
+            }
+        };
+    }
+
     next() {
 
-        const useSameNumber = () => this.fields.useSameNumber.value === answer.YES;
+        const useSameNumber = () => this.fields.useSameNumber.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.SmsConfirmation).if(useSameNumber),

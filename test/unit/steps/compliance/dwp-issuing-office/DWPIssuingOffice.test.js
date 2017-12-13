@@ -1,7 +1,6 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const DateUtils = require('utils/DateUtils');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const paths = require('paths');
 

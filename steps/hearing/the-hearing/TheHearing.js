@@ -33,7 +33,15 @@ class TheHearing extends Question {
             section: 'hearing',
             answer: titleise(this.fields.attendHearing.value)
         });
+    }
 
+    values() {
+
+        return {
+            hearing: {
+                wantsToAttend: this.fields.attendHearing.value === userAnswer.YES
+            }
+        };
     }
 
     next() {

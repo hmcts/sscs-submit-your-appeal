@@ -38,6 +38,15 @@ class HearingSupport extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            hearing: {
+                wantsSupport: this.fields.arrangements.value === userAnswer.YES
+            }
+        };
+    }
+
     next() {
 
         const makeHearingArrangements = () => this.fields.arrangements.value === userAnswer.YES;
