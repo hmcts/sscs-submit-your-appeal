@@ -1,7 +1,6 @@
 {
-  "title": "Tell us why you don’t have a Mandatory Reconsideration Notice",
-  "subtitle": "You can still appeal if you have asked [DWP] for ‘mandatory reconsideration’ but haven’t got the MRN letter.",
-  "haveNotContactedDWP": "I haven’t contacted DWP about their decision",
+  "title": "Explain why you don’t have a Mandatory Reconsideration Notice (MRN)",
+  "subtitle": "You can still appeal if you have asked DWP for ‘mandatory reconsideration’ but haven’t got the MRN letter. If you can remember, provide a date for when you contacted them.",
   "fields": {
     "reasonForNoMRN": {
       "error": {
