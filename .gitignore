@@ -6,3 +6,4 @@ node_modules
 dump.rdb
 test/e2e/output
 test/unit/coverage
+.sonar/

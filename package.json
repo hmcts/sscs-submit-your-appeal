@@ -50,19 +50,5 @@
     "sinon-chai": "^2.13.0",
     "sonar-scanner": "^1.0.1",
     "supertest": "^3.0.0"
-  },
-  "nyc": {
-    "extension": [
-      ".js"
-    ],
-    "exclude": [
-      "test/**","assets/js/**", "node_modules/**", "test/unit/coverage/**"
-    ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ],
-    "report-dir": "test/unit/coverage",
-    "all": true
   }
 }
