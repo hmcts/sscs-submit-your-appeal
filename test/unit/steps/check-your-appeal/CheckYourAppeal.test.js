@@ -1,22 +1,37 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
-const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
+const { expect, sinon } = require('test/util/chai');
+const sections = require('steps/check-your-appeal/sections');
+const proxyquire = require('proxyquire');
 const paths = require('paths');
 
 describe('CheckYourAppeal.js', () => {
 
-    let checkYourAppeal;
+    let CheckYourAppeal;
+    let request = {};
+    let cya;
 
-    beforeEach(() => {
+    before(() => {
 
-        checkYourAppeal = new CheckYourAppeal({
+        CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', { 'request-promise-native': request });
+
+        cya = new CheckYourAppeal({
             journey: {
                 steps: {
                     Confirmation: paths.confirmation
+                },
+                values: {
+                    benefit: {
+                        type: 'PIP'
+                    },
+                    isAppointee: false,
+                    hasRepresentative: true
+                },
+                settings: {
+                    apiUrl: '/appeals'
                 }
-        }   });
-
+            }
+        });
     });
 
     describe('get path()', () => {
@@ -27,10 +42,36 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
+    describe('sendToAPI()', () => {
+
+        it('should make an API call to the /appeals endpoint with appeal JSON', () => {
+            request.post = sinon.spy();
+            const endpoint = cya.journey.settings.apiUrl;
+            const json = cya.journey.values;
+
+            // Assert
+            cya.sendToAPI();
+            sinon.assert.calledWith(request.post, endpoint, { json });
+        });
+
+    });
+
+    describe('get section()', () => {
+
+        it('returns the CYA sections', () => {
+            const cyaSections = cya.sections();
+            Object.values(sections).map(function(value, index) {
+                expect(cyaSections[index].id).to.equal(value);
+            });
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /confirmation', () => {
-            expect(checkYourAppeal.next()).to.eql({ nextStep: paths.confirmation});
+            const action = cya.next();
+            expect(action.nextFlow.nextStep).to.eql(paths.confirmation);
         });
 
     });

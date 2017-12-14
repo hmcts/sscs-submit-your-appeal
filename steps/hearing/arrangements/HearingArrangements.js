@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField, arrayField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -42,16 +43,27 @@ class HearingArrangements extends Question {
 
             answer(this, {
                 question: this.content.cya.selection.question,
-                section: 'hearing-arrangements',
+                section: sections.hearingArrangements,
                 answer: this.fields.selection.value.join(', ')
             }),
 
             answer(this, {
                 question: this.content.cya.anythingElse.question,
-                section: 'hearing-arrangements',
+                section: sections.hearingArrangements,
                 answer: this.fields.anythingElse.value === '' ? 'Not required' : this.fields.anythingElse.value
             })
         ];
+    }
+
+
+    values() {
+
+        return {
+            hearing: {
+                arrangements: this.fields.selection.value,
+                anythingElse: this.fields.anythingElse.value
+            }
+        };
     }
 
     next() {

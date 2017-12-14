@@ -91,6 +91,7 @@ const IenterDetailsFromStartToNINO = (I) => {
     I.enterBenefitTypeAndContinue('PIP');
     I.enterPostcodeAndContinue('WV11 2HE');
     I.continueFromIndependance();
+    I.selectHaveYouGotAMRNAndContinue('Yes, I have a Mandatory Reconsideration Notice (MRN)');
     I.enterDWPIssuingOfficeAndContinue('1');
     I.enterAnMRNDateAndContinue(oneMonthAgo);
     I.selectAreYouAnAppointeeAndContinue('No, I’m appealing for myself');

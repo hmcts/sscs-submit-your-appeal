@@ -1,21 +1,21 @@
-const types = [
-    'Attendance Allowance',
-    'Bereavement Benefit',
-    'Carer’s Allowance',
-    'Child Benefit',
-    'Disability Living Allowance (DLA)',
-    'Employment and Support Allowance (ESA)',
-    'Home Responsibilities Protection',
-    'Housing Benefit',
-    'Incapacity Benefit',
-    'Income Support',
-    'Industrial Injuries Disablement',
-    'Jobseeker’s Allowance (JSA)',
-    'Maternity Allowance',
-    'Personal Independence Payment (PIP)',
-    'Severe Disablement Allowance',
-    'Social Fund',
-    'Universal Credit (UC)'
-];
+const types = {
+    attendanceAllowance: 'Attendance Allowance',
+    bereavementBenefit: 'Bereavement Benefit',
+    carersAllowance: 'Carer’s Allowance',
+    childBenefit: 'Child Benefit',
+    disabilityLivingAllowance: 'Disability Living Allowance (DLA)',
+    employmentAndSupportAllowance: 'Employment and Support Allowance (ESA)',
+    homeResponsibilitiesProtection: 'Home Responsibilities Protection',
+    housingBenefit: 'Housing Benefit',
+    incapacityBenefit: 'Incapacity Benefit',
+    incomeSupport: 'Income Support',
+    industrialInjuriesDisablement: 'Industrial Injuries Disablement',
+    jobseekersAllowance: 'Jobseeker’s Allowance (JSA)',
+    maternityAllowance: 'Maternity Allowance',
+    personalIndependencePayment: 'Personal Independence Payment (PIP)',
+    severeDisablementAllowance: 'Severe Disablement Allowance',
+    socialFund: 'Social Fund',
+    universalCredit: 'Universal Credit (UC)'
+};
 
 module.exports = types;

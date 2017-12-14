@@ -4,7 +4,8 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
-const regex = require('../../../utils/regex');
+const sections = require('steps/check-your-appeal/sections');
+const regex = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -35,10 +36,19 @@ class TextReminders extends Question {
 
             answer(this, {
                 question: this.content.cya.doYouWantTextMsgReminders.question,
-                section: 'text-msg-reminders',
+                section: sections.textMsgReminders,
                 answer: titleise(this.fields.doYouWantTextMsgReminders.value)
             })
         ];
+    }
+
+    values() {
+
+        return {
+            smsNotify: {
+                wantsSMSNotifications: this.fields.doYouWantTextMsgReminders.value === userAnswer.YES
+            }
+        };
     }
 
     next() {
