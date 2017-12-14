@@ -1,6 +1,7 @@
 {
-  "email": {
-    "subject": "Report a problem",
-    "body": "Don’t include personal or financial information like evidence, your National Insurance number or credit card details."
+  "phaseBanner": {
+    "newService": "This is a new service. ",
+    "reportProblem": "Report a problem",
+    "improve": " and help improve it for others."
   }
 }
