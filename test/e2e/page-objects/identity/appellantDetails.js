@@ -19,6 +19,7 @@ function enterAppellantDOBAndContinue(day, month, year) {
     I.fillField('#month', month);
     I.fillField('#year', year);
     I.click('Continue');
+
 }
 
 function enterAppellantNINOAndContinue(nino) {
@@ -27,16 +28,14 @@ function enterAppellantNINOAndContinue(nino) {
 
     I.fillField('#nino', nino);
     I.click('Continue');
+
 }
 
 function enterAppellantContactDetailsAndContinue() {
 
     const I = this;
 
-    I.fillField('#addressLine1', '4 Privet Drive');
-    I.fillField('#addressLine2', 'Off Wizards close');
-    I.fillField('#townCity', 'Little Whinging');
-    I.fillField('#postCode', 'PA80 5UU');
+    IenterAddressDetails(I);
     I.click('Continue');
 
 }
@@ -45,12 +44,30 @@ function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber='0746674
 
     const I = this;
 
+    IenterAddressDetails(I);
+    I.fillField('#phoneNumber', mobileNumber);
+    I.click('Continue');
+
+}
+
+function enterAppellantContactDetailsWithEmailAndContinue() {
+
+    const I = this;
+
+    IenterAddressDetails(I);
+    I.fillField('#emailAddress', 'harry.potter@wizards.com');
+    I.click('Continue');
+
+}
+
+function IenterAddressDetails(I) {
+
     I.fillField('#addressLine1', '4 Privet Drive');
     I.fillField('#addressLine2', 'Off Wizards close');
     I.fillField('#townCity', 'Little Whinging');
+    I.fillField('#county', 'Kent');
     I.fillField('#postCode', 'PA80 5UU');
-    I.fillField('#phoneNumber', mobileNumber);
-    I.click('Continue');
+
 }
 
 module.exports = {
@@ -58,5 +75,6 @@ module.exports = {
     enterAppellantDOBAndContinue,
     enterAppellantNINOAndContinue,
     enterAppellantContactDetailsAndContinue,
-    enterAppellantContactDetailsWithMobileAndContinue
+    enterAppellantContactDetailsWithMobileAndContinue,
+    enterAppellantContactDetailsWithEmailAndContinue
 };

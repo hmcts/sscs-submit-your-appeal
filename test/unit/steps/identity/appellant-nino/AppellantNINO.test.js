@@ -12,7 +12,9 @@ describe('AppellantNINO.js', () => {
 
         appellantNINO = new AppellantNINO({
             journey: {
-                AppellantContactDetails: paths.identity.enterAppellantContactDetails
+                steps: {
+                    AppellantContactDetails: paths.identity.enterAppellantContactDetails
+                }
             }
         });
 
@@ -35,10 +37,6 @@ describe('AppellantNINO.js', () => {
 
         beforeEach(() => {
             fields = appellantNINO.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
         });
 
         describe('nino field', () => {

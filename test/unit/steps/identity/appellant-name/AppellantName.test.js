@@ -12,7 +12,9 @@ describe('AppellantName.js', () => {
 
         appellantNameClass = new AppellantName({
             journey:{
-                AppellantDOB: paths.identity.enterAppellantDOB
+                steps: {
+                    AppellantDOB: paths.identity.enterAppellantDOB
+                }
             }
         });
         appellantNameClass.fields = {};
@@ -33,10 +35,6 @@ describe('AppellantName.js', () => {
 
         beforeEach(() => {
             fields = appellantNameClass.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
         });
 
         describe('title field', () => {

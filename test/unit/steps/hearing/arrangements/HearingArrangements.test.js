@@ -12,7 +12,9 @@ describe('HearingArrangements.js', () => {
 
         hearingArrangements = new HearingArrangements({
             journey: {
-                HearingAvailability: paths.hearing.hearingAvailability
+                steps: {
+                    HearingAvailability: paths.hearing.hearingAvailability
+                }
             }
         });
     });
@@ -32,10 +34,6 @@ describe('HearingArrangements.js', () => {
 
         beforeEach(() => {
             fields = hearingArrangements.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
         });
 
         describe('selection field', () => {

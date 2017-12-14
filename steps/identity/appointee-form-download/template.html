@@ -1,17 +1,16 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
+
+{% set title %}
+    {{ content.title }}
+{% endset %}
 
 {% block two_thirds %}
 
-<a class="link-back" href="#" onclick="javascript:history.go(-1)">Back</a>
+    {{ header(content.title, size='xlarge') }}
+    <p>{{ content.subtitle }}</p>
 
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
-
-{{ header(content.title, size='xlarge') }}
-
-<a href="http://www.gov.uk">{{ content.govuk }}</a>
+    <a class="button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
 
 {% endblock %}

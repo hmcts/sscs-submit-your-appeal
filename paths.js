@@ -2,6 +2,12 @@ module.exports = {
 
     health:                             '/health',
 
+    errorPages: {
+        pageNotFound:                   '/page-not-found',
+        timedOut:                       '/page-timed-out',
+        technicalIssue:                 '/technical-issues'
+    },
+
     landingPages: {
         overview:                       '/',
         beforeYouAppeal:                '/before-you-appeal',
@@ -11,13 +17,8 @@ module.exports = {
     },
 
     policy: {
-        cookiePolicy:                     '/cookie-policy',
-        termsAndConditions:               '/terms-and-conditions'
-    },
-
-    validPostcode: {
-        postcodeCheck:                  '/postcode-check',
-        invalidPostcode:                '/invalid-postcode'
+        cookiePolicy:                   '/cookie-policy',
+        termsAndConditions:             '/terms-and-conditions'
     },
 
     session: {
@@ -28,10 +29,16 @@ module.exports = {
     },
 
     start: {
-        benefitType:                    '/benefit-type'
+        benefitType:                    '/benefit-type',
+        postcodeCheck:                  '/postcode-check',
+        invalidPostcode:                '/invalid-postcode',
+        independence:                   '/independence'
     },
 
     compliance: {
+        haveAMRN:                       '/have-a-mrn',
+        haveContactedDWP:               '/have-contacted-dwp',
+        dwpIssuingOffice:               '/dwp-issuing-office',
         cantAppeal:                     '/cant-appeal',
         checkMRNDate:                   '/check-mrn-date',
         contactDWP:                     '/contact-dwp',
@@ -79,7 +86,7 @@ module.exports = {
         theHearing:                     '/the-hearing'
     },
 
-    checkYourAppeal:                     '/check-your-appeal',
+    checkYourAppeal:                    '/check-your-appeal',
 
     confirmation:                       '/confirmation'
 

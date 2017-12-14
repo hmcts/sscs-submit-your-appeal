@@ -12,7 +12,9 @@ describe('NoMRN.js', () => {
 
         noMRN = new NoMRN({
             journey: {
-                Appointee: '/are-you-an-appointee'
+                steps: {
+                    Appointee: '/are-you-an-appointee'
+                }
             }
         });
 

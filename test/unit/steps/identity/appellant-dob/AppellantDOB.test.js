@@ -12,7 +12,9 @@ describe('AppellantDOB.js', () => {
 
         appellantDOBClass = new AppellantDOB({
             journey:{
-                AppellantNINO: paths.identity.enterAppellantNINO
+                steps: {
+                    AppellantNINO: paths.identity.enterAppellantNINO
+                }
             }
         });
 
@@ -33,10 +35,6 @@ describe('AppellantDOB.js', () => {
 
         beforeEach(() => {
             fields = appellantDOBClass.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
         });
 
         describe('day field', () => {

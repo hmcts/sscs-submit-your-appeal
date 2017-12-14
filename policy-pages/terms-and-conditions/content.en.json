@@ -73,6 +73,15 @@
   },
   "contactUs": {
     "title": "Contact us",
-    "address": "Northampton County Court Business Centre<br>St Katharine's House<br>21-27 St Katharine's Street<br>Northampton<br>Northamptonshire<br>NN1 2LH"
+    "EnglandAndWales": {
+      "text": "Social Security and Child Support Tribunal (England and Wales)",
+      "phone": "Telephone: 0300 123 1142",
+      "open": "Monday to Friday, 8:30am to 5pm"
+    },
+    "Scotland": {
+      "text": "Social Security and Child Support Tribunal (Scotland)",
+      "phone": "Telephone: 0141 354 8400",
+      "open": "Monday to Friday, 8:30am to 5pm"
+    }
   }
 }

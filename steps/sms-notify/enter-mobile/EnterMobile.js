@@ -31,8 +31,17 @@ class EnterMobile extends Question {
         return [];
     }
 
+    values() {
+
+        return {
+            smsNotify: {
+                smsNumber: this.fields.enterMobile.value
+            }
+        };
+    }
+
     next() {
-        return goTo(this.journey.SmsConfirmation);
+        return goTo(this.journey.steps.SmsConfirmation);
     }
 }
 

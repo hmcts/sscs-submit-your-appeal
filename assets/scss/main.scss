@@ -2,6 +2,10 @@
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import 'look-and-feel/check-your-answers';
 
+p.contact-us::first-line {
+  font-weight: bold;
+}
+
 .after-form {
   padding-top: 1.5em;
 }
@@ -12,10 +16,51 @@
   width: 100%;
 }
 
+.confirmation-image {
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+  width: 100%;
+}
+
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress {
+  &.form-control {
+    @extend .form-control-3-4;
+  }
+}
+
+#postcode {
+  &.form-control {
+    @extend .form-control-1-4;
+  }
+}
+
+#title, #pipNumber {
+  &.form-control {
+    @extend .form-control-1-8;
+  }
+}
+
+#check-mrn {
+  padding-bottom: 30px;
+}
+
 .description {
   background-color: #eef7ff;
   padding: 20px 20px 30px 20px;
   margin-bottom: 45px;
+}
+
+.banner-blue h1{
+  background: #005ea5;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  padding: {
+    top: 30px;
+    bottom: 30px;
+    right:29px;
+    left:29px;
+  };
 }
 
 .nav-list {

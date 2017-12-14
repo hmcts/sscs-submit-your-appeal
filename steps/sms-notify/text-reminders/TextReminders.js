@@ -4,7 +4,8 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
-const regex = require('../../../utils/regex');
+const sections = require('steps/check-your-appeal/sections');
+const regex = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -22,10 +23,10 @@ class TextReminders extends Question {
 
             textField('doYouWantTextMsgReminders').joi(
                 this.content.fields.doYouWantTextMsgReminders.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             ),
 
-            textField.ref(this.journey.AppellantContactDetails, 'phoneNumber')
+            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
         );
     }
 
@@ -35,20 +36,30 @@ class TextReminders extends Question {
 
             answer(this, {
                 question: this.content.cya.doYouWantTextMsgReminders.question,
-                section: 'text-msg-reminders',
+                section: sections.textMsgReminders,
                 answer: titleise(this.fields.doYouWantTextMsgReminders.value)
             })
         ];
     }
 
+    values() {
+
+        return {
+            smsNotify: {
+                wantsSMSNotifications: this.fields.doYouWantTextMsgReminders.value === userAnswer.YES
+            }
+        };
+    }
+
     next() {
 
         const wantsTextMsgReminders = () => this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
-        const nextStep = regex.mobileNumber.test(this.fields.phoneNumber.value) ? this.journey.SendToNumber : this.journey.EnterMobile;
+        const nextStep = regex.mobileNumber.test(this.fields.phoneNumber.value) ?
+            this.journey.steps.SendToNumber : this.journey.steps.EnterMobile;
 
         return branch(
             goTo(nextStep).if(wantsTextMsgReminders),
-            goTo(this.journey.Representative)
+            goTo(this.journey.steps.Representative)
         );
     }
 }

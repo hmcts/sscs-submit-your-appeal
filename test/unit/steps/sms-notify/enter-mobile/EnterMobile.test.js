@@ -12,7 +12,9 @@ describe('EnterMobile.js', () => {
 
         enterMobile = new EnterMobile({
             journey: {
-                SmsConfirmation: paths.smsNotify.smsConfirmation
+                steps: {
+                    SmsConfirmation: paths.smsNotify.smsConfirmation
+                }
             }
         });
 
@@ -32,10 +34,6 @@ describe('EnterMobile.js', () => {
 
         beforeEach(() => {
             field = enterMobile.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
         });
 
         it('contains the field name enterMobile', () => {

@@ -12,7 +12,9 @@ describe('Entry.js', () => {
 
        entry = new Entry({
            journey: {
-               BenefitType: paths.start.benefitType
+               steps: {
+                   BenefitType: paths.start.benefitType
+               }
            }
        });
 

@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const Joi = require('joi');
 const paths = require('paths');
@@ -40,7 +41,7 @@ class AppellantDOB extends Question {
                 Joi.string().regex(numbers).required()
             ),
 
-            textField.ref(this.journey.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'appointee')
         );
     }
 
@@ -50,15 +51,24 @@ class AppellantDOB extends Question {
 
             answer(this, {
                 question: this.content.cya.dob.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: `${this.fields.day.value}.${this.fields.month.value}.${this.fields.year.value}`
             })
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                dob: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+            }
+        };
+    }
+
     next() {
 
-        return goTo(this.journey.AppellantNINO);
+        return goTo(this.journey.steps.AppellantNINO);
     }
 }
 

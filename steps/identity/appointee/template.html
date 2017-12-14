@@ -13,11 +13,11 @@
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.appointee, "",
+    fields.isAppointee, "",
     hint = '',
     options = [
-        { label: content.fields.appointee.yes, value: "yes" },
-        { label: content.fields.appointee.no, value: "no" }
+        { label: content.fields.isAppointee.yes, value: "yes" },
+        { label: content.fields.isAppointee.no, value: "no" }
     ])
 }}
 

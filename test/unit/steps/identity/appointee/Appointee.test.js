@@ -13,8 +13,10 @@ describe('Appointee.js', () => {
 
         appointeeClass = new Appointee({
             journey: {
-                AppellantName: paths.identity.enterAppellantName,
-                AppointeeFormDownload: paths.identity.downloadAppointeeForm
+                steps: {
+                    AppellantName: paths.identity.enterAppellantName,
+                    AppointeeFormDownload: paths.identity.downloadAppointeeForm
+                }
             }
         });
 
@@ -36,12 +38,8 @@ describe('Appointee.js', () => {
             field = appointeeClass.form.fields[0];
         });
 
-        after(() => {
-            field = undefined;
-        });
-
-        it('contains the field name appointee', () => {
-            expect(field.name).to.equal('appointee');
+        it('contains the field name isAppointee', () => {
+            expect(field.name).to.equal('isAppointee');
         });
 
         it('contains validation', () => {

@@ -21,7 +21,7 @@ class TheHearing extends Question {
 
             textField('attendHearing').joi(
                 this.content.fields.attendHearing.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO])
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
@@ -33,7 +33,15 @@ class TheHearing extends Question {
             section: 'hearing',
             answer: titleise(this.fields.attendHearing.value)
         });
+    }
 
+    values() {
+
+        return {
+            hearing: {
+                wantsToAttend: this.fields.attendHearing.value === userAnswer.YES
+            }
+        };
     }
 
     next() {
@@ -41,8 +49,8 @@ class TheHearing extends Question {
         const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.HearingSupport).if(isAttendingHearing),
-            goTo(this.journey.NotAttendingHearing)
+            goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
+            goTo(this.journey.steps.NotAttendingHearing)
         );
     }
 }

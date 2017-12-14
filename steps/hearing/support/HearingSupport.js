@@ -17,13 +17,11 @@ class HearingSupport extends Question {
 
     get form() {
 
-        const answers = [userAnswer.YES, userAnswer.NO];
-
         return form(
 
             textField('arrangements').joi(
                 this.content.fields.arrangements.error.required,
-                Joi.string().valid(answers)
+                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
         );
     }
@@ -40,13 +38,22 @@ class HearingSupport extends Question {
         ];
     }
 
+    values() {
+
+        return {
+            hearing: {
+                wantsSupport: this.fields.arrangements.value === userAnswer.YES
+            }
+        };
+    }
+
     next() {
 
         const makeHearingArrangements = () => this.fields.arrangements.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.HearingArrangements).if(makeHearingArrangements),
-            goTo(this.journey.HearingAvailability)
+            goTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
+            goTo(this.journey.steps.HearingAvailability)
         );
     }
 }

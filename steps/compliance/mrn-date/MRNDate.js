@@ -4,6 +4,7 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const Joi = require('joi');
@@ -41,10 +42,19 @@ class MRNDate extends Question {
 
             answer(this, {
                 question: this.content.cya.mrnDate.question,
-                section: 'mrn-date',
+                section: sections.mrnDate,
                 answer: `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
             })
         ];
+    }
+
+    values() {
+
+        return {
+            mrn: {
+                date: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+            }
+        };
     }
 
     next() {
@@ -57,8 +67,8 @@ class MRNDate extends Question {
         const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
 
         return branch(
-            goTo(this.journey.Appointee).if(isLessThanOrEqualToAMonth),
-            goTo(this.journey.CheckMRN)
+            goTo(this.journey.steps.Appointee).if(isLessThanOrEqualToAMonth),
+            goTo(this.journey.steps.CheckMRN)
         );
     }
 }

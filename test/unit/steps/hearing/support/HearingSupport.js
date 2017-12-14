@@ -11,8 +11,10 @@ describe('HearingSupport.js', () => {
     beforeEach(() => {
         hearingSupport = new HearingSupport({
             journey: {
-                HearingAvailability: paths.hearing.hearingAvailability,
-                HearingArrangements: paths.hearing.hearingArrangements
+                steps: {
+                    HearingAvailability: paths.hearing.hearingAvailability,
+                    HearingArrangements: paths.hearing.hearingArrangements
+                }
             }
         });
     });
@@ -31,10 +33,6 @@ describe('HearingSupport.js', () => {
 
         beforeEach(() => {
             field = hearingSupport.form.fields[0];
-        });
-
-        after(() => {
-            field = undefined;
         });
 
         it('contains the field name arrangements', () => {

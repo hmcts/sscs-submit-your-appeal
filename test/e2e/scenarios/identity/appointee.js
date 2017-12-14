@@ -18,7 +18,7 @@ Scenario('When I select Yes, I am taken to the download appointee form page', (I
 
     I.selectAreYouAnAppointeeAndContinue('Yes');
     I.seeInCurrentUrl(paths.identity.downloadAppointeeForm);
-    I.see('Download appointee form');
+    I.see('You need to download and fill out a paper form');
 
 });
 

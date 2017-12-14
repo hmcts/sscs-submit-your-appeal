@@ -13,8 +13,10 @@ describe('MRNDate.js', () => {
 
         mrnDate = new MRNDate({
             journey: {
-                Appointee: paths.identity.areYouAnAppointee,
-                CheckMRN:  paths.compliance.checkMRNDate
+                steps: {
+                    Appointee: paths.identity.areYouAnAppointee,
+                    CheckMRN:  paths.compliance.checkMRNDate
+                }
             }
         });
     });
@@ -34,10 +36,6 @@ describe('MRNDate.js', () => {
 
         beforeEach(() => {
            fields = mrnDate.form.fields;
-        });
-
-        after(() => {
-           fields = field = undefined;
         });
 
         describe('day field', () => {

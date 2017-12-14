@@ -11,11 +11,14 @@
 <p>{{ content.healthcarePro }}</p>
 <p>{{ content.writeStatement }}</p>
 <p>{{ content.sendEvidence }}</p>
-<p>{{ content.postEvidence }}</p>
+
+{% if hasSignedUpForEmail %}
+    {{ content.postEvidenceWithEmail }}
+{% else %}
+    {{ content.postEvidence }}
+{% endif %}
 
 {% call formSection() %}
-
-
 {% endcall %}
 
 {% endblock %}

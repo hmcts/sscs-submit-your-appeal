@@ -4,8 +4,14 @@ const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
 const Error404 = require('steps/errors/404');
 const Error500 = require('steps/errors/500');
-const BenefitType = require('steps/start/BenefitType');
+const BenefitType = require('steps/start/benefit-type/BenefitType');
+const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
+const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
+const Independence = require('steps/start/independence/Independence');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
+const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
+const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
+const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
@@ -23,7 +29,6 @@ const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
-const RepresentativeDetailsToHand = require('steps/representative/representative-details-to-hand/RepresentativeDetailsToHand');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
@@ -47,10 +52,16 @@ const init = [
 ];
 
 const startAnAppeal = [
-    BenefitType
+    BenefitType,
+    PostcodeChecker,
+    InvalidPostcode,
+    Independence
 ];
 
 const compliance = [
+    HaveAMRN,
+    HaveContactedDWP,
+    DWPIssuingOffice,
     CantAppeal,
     CheckMRN,
     ContactDWP,
@@ -78,7 +89,6 @@ const smsNotify = [
 
 const representative = [
     Representative,
-    RepresentativeDetailsToHand,
     RepresentativeDetails,
     NoRepresentativeDetails
 ];

@@ -11,7 +11,9 @@ describe('AppellantContactDetails.js', () => {
     beforeEach(() => {
         appellantContactDetails = new AppellantContactDetails({
             journey: {
-                TextReminders: paths.smsNotify.appellantTextReminders
+                steps: {
+                    TextReminders: paths.smsNotify.appellantTextReminders
+                }
             }
         });
         appellantContactDetails.fields = {}
@@ -32,10 +34,6 @@ describe('AppellantContactDetails.js', () => {
 
         beforeEach(() => {
             fields = appellantContactDetails.form.fields;
-        });
-
-        after(() => {
-            fields = field = undefined;
         });
 
         describe('addressLine1 field', () => {
@@ -86,10 +84,26 @@ describe('AppellantContactDetails.js', () => {
 
         });
 
-        describe('postCode field', () => {
+        describe('county field', () => {
 
             beforeEach(() => {
                 field = fields[3];
+            });
+
+            it('contains the field name county', () => {
+                expect(field.name).to.equal('county');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
+        });
+
+        describe('postCode field', () => {
+
+            beforeEach(() => {
+                field = fields[4];
             });
 
             it('contains the field name postCode', () => {
@@ -105,7 +119,7 @@ describe('AppellantContactDetails.js', () => {
         describe('phoneNumber field', () => {
 
             beforeEach(() => {
-                field = fields[4];
+                field = fields[5];
             });
 
             it('contains the field name phoneNumber', () => {
@@ -121,7 +135,7 @@ describe('AppellantContactDetails.js', () => {
         describe('emailAddress field', () => {
 
             beforeEach(() => {
-                field = fields[5];
+                field = fields[6];
             });
 
             it('contains the field name emailAddress', () => {

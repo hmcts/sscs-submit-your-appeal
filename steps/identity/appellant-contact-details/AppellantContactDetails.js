@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
@@ -27,12 +28,17 @@ class AppellantContactDetails extends Question {
             ),
 
             textField('addressLine2').joi(
-                fields.addressLine2.error.required,
-                Joi.string().regex(whitelist).required()
+                fields.addressLine2.error.invalid,
+                Joi.string().regex(whitelist).allow('')
             ),
 
             textField('townCity').joi(
                 fields.townCity.error.required,
+                Joi.string().regex(whitelist).required()
+            ),
+
+            textField('county').joi(
+                fields.county.error.required,
                 Joi.string().regex(whitelist).required()
             ),
 
@@ -59,45 +65,68 @@ class AppellantContactDetails extends Question {
 
             answer(this, {
                 question: this.content.cya.addressLine1.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.addressLine1.value
             }),
 
             answer(this, {
                 question: this.content.cya.addressLine2.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.addressLine2.value
             }),
 
             answer(this, {
                 question: this.content.cya.townCity.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.townCity.value
             }),
 
             answer(this, {
+                question: this.content.cya.county.question,
+                section: sections.appellantDetails,
+                answer: this.fields.county.value
+            }),
+
+            answer(this, {
                 question: this.content.cya.postCode.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.postCode.value
             }),
 
             answer(this, {
                 question: this.content.cya.phoneNumber.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.phoneNumber.value
             }),
 
             answer(this, {
                 question: this.content.cya.emailAddress.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: this.fields.emailAddress.value
             })
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                contactDetails: {
+                    addressLine1: this.fields.addressLine1.value,
+                    addressLine2: this.fields.addressLine2.value,
+                    townCity: this.fields.townCity.value,
+                    county: this.fields.county.value,
+                    postCode: this.fields.postCode.value,
+                    phoneNumber: this.fields.phoneNumber.value,
+                    emailAddress: this.fields.emailAddress.value,
+                }
+            }
+        };
+    }
+
     next() {
 
-        return goTo(this.journey.TextReminders);
+        return goTo(this.journey.steps.TextReminders);
     }
 }
 

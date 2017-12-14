@@ -2,9 +2,9 @@
   "title": "Your appeal has been submitted",
   "next": {
     "heading": "What happens next",
-    "notify": "We’ll notify DWP of your appeal. They have until <DATE GOES HERE> to respond. We’ll contact you and explain the next steps when they reply.",
-    "contact": "The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can if they do."
+    "notify": "DWP will be notified that you want to appeal against their decision. You’ll be told the next steps when DWP have responded.",
+    "contact": "The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can."
   },
-  "email": "You’ll get an email and text message from us within 3 working days. This will have a link so you can track your appeal online.",
-  "download": "Download, view or print a copy of your appeal submission"
+  "email": "You’ll get an email and text message within 3 working days to confirm your appeal has been lodged. They’ll have a link so you can track your appeal online. You’ll also get a copy of your appeal in a separate email.",
+  "surveyLink": "Continue"
 }

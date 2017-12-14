@@ -20,9 +20,9 @@ class CheckMRN extends Question {
         return form(
 
             // Reference day, month and year from a previous step.
-            textField.ref(this.journey.MRNDate, 'day'),
-            textField.ref(this.journey.MRNDate, 'month'),
-            textField.ref(this.journey.MRNDate, 'year'),
+            textField.ref(this.journey.steps.MRNDate, 'day'),
+            textField.ref(this.journey.steps.MRNDate, 'month'),
+            textField.ref(this.journey.steps.MRNDate, 'year'),
 
             textField('checkedMRN').joi(
                 this.content.fields.checkedMRN.error.required,
@@ -33,14 +33,12 @@ class CheckMRN extends Question {
 
     answers() {
 
-        return [
+        return [];
+    }
 
-            answer(this, {
-                question: this.content.cya.mrnDate.question,
-                section: 'check-mrn',
-                answer: `${this.fields.day.value} ${this.fields.month.value} ${this.fields.year.value}`
-            })
-        ];
+    values() {
+
+        return {};
     }
 
     next() {
@@ -55,9 +53,9 @@ class CheckMRN extends Question {
         const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 
         return branch(
-            goTo(this.journey.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
-            goTo(this.journey.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
-            goTo(this.journey.MRNDate)
+            goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
+            goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
+            goTo(this.journey.steps.MRNDate)
         );
     }
 }

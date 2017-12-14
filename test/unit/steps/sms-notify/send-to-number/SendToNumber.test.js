@@ -12,8 +12,10 @@ describe('SendToNumber.js', () => {
 
        sendToNumber = new SendToNumber({
            journey: {
-               SmsConfirmation: paths.smsNotify.smsConfirmation,
-               EnterMobile: paths.smsNotify.enterMobile
+               steps: {
+                   SmsConfirmation: paths.smsNotify.smsConfirmation,
+                   EnterMobile: paths.smsNotify.enterMobile
+               }
            }
        });
 

@@ -21,9 +21,18 @@ class NoRepresentativeDetails extends Question {
         return [];
     }
 
+    values() {
+
+        return {
+            representative: {
+                hasRepresentative: false
+            }
+        }
+    }
+
     next() {
 
-        return goTo(this.journey.ReasonForAppealing);
+        return goTo(this.journey.steps.ReasonForAppealing);
     }
 }
 

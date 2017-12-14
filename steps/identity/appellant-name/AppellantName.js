@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist, firstName, lastName } = require('utils/regex');
+const sections = require('steps/check-your-appeal/sections');
 
 const Joi = require('joi');
 const paths = require('paths');
@@ -39,7 +40,7 @@ class AppellantName extends Question {
                 .joi(fields.lastName.error.required, Joi.string().required())
                 .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)),
 
-            textField.ref(this.journey.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'appointee')
         );
     }
 
@@ -49,15 +50,26 @@ class AppellantName extends Question {
 
             answer(this, {
                 question: this.content.cya.appellantName.question,
-                section: 'appellant-details',
+                section: sections.appellantDetails,
                 answer: `${this.fields.title.value} ${this.fields.firstName.value} ${this.fields.lastName.value}`
             })
         ];
     }
 
+    values() {
+
+        return {
+            appellant: {
+                title: this.fields.title.value,
+                firstName: this.fields.firstName.value,
+                lastName: this.fields.lastName.value
+            }
+        };
+    }
+
     next() {
 
-        return goTo(this.journey.AppellantDOB);
+        return goTo(this.journey.steps.AppellantDOB);
     }
 }
 
