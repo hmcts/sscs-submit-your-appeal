@@ -16,6 +16,12 @@ p.contact-us::first-line {
   width: 100%;
 }
 
+.confirmation-image {
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+  width: 100%;
+}
+
 #addressLine1, #addressLine2, #townCity, #county, #emailAddress {
   &.form-control {
     @extend .form-control-3-4;
