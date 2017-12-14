@@ -13,7 +13,7 @@ After((I) => {
 
 });
 
-Scenario.only('Textfield allows to enter new lines', (I) => {
+Scenario('Textfield allows to enter new lines', (I) => {
 
     const text = 'This is a text. \r This is a new line';
     I.enterReasonForAppealingAndContinue(text);

@@ -77,15 +77,15 @@ describe('ReasonForAppealing.js', () => {
 
         });
 
-        it('.section', () => {
+        it('should return expected section', () => {
             expect(reasonForAppealing.answers()[0].section).to.eql('reasons-for-appealing');
         });
 
-        it('.answer', () => {
+        it('should retrun expected answer', () => {
             expect(reasonForAppealing.answers()[0].answer).to.eql('my answer');
         });
 
-        it('.question', () => {
+        it('should return expected question', () => {
             expect(reasonForAppealing.answers()[0].question).to.eql('my question');
         });
 
