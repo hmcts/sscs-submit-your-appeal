@@ -15,7 +15,6 @@ After((I) => {
     I.endTheSession();
 });
 
-
 Scenario('When I enter PIP, I am taken to the postcode-check page', (I) => {
 
     I.enterBenefitTypeAndContinue('pip');
