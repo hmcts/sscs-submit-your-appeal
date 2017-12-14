@@ -1,5 +1,8 @@
 'use strict';
 
+const content = require('steps/identity/appointee-form-download/content.en');
+const benefitTypesObj = require('steps/start/benefit-type/types');
+const benefitTypesArr = Object.values(benefitTypesObj);
 const paths = require('paths');
 
 Feature('Benefit Type');
@@ -14,14 +17,22 @@ After((I) => {
 
 Scenario('When I enter PIP, I am taken to the postcode-check page', (I) => {
 
-    I.enterBenefitTypeAndContinue('Personal Independence Payment (PIP)');
+    I.enterBenefitTypeAndContinue('pip');
     I.seeInCurrentUrl(paths.start.postcodeCheck);
 
 });
 
-Scenario('When I enter a non PIP benefit type, I am taken to the download form page', (I) => {
+benefitTypesArr.forEach((benefitType) => {
 
-    I.enterBenefitTypeAndContinue('Disability Living Allowance (DLA)');
-    I.seeInCurrentUrl(paths.identity.downloadAppointeeForm);
+    if (benefitType !== benefitTypesObj.personalIndependencePayment) {
 
+        Scenario(`When I enter ${benefitType} I am taken to the download form page`, (I) => {
+
+            I.enterBenefitTypeAndContinue(benefitType);
+            I.seeInCurrentUrl(paths.identity.downloadAppointeeForm);
+            I.see(content.title);
+            I.see(content.button.text);
+
+        });
+    }
 });
