@@ -1,5 +1,5 @@
 {
-  "title": "Which benefit is the appeal about?",
+  "title": "Which benefit is your appeal about?",
   "benefitTypes": {
     "aa": "Attendance Allowance",
     "bb": "Bereavement Benefit",
@@ -23,7 +23,7 @@
     "benefitType": {
       "title": "Last name(s)",
       "error": {
-        "required": "Please select a benefit type"
+        "required": "Enter the name of the benefit decision you want to appeal"
       }
     }
   },
