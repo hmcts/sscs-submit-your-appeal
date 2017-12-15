@@ -1,15 +1,15 @@
 {
-  "title": "Look for DWP's address on the top right of your Mandatory Reconsideration Notice (MRN)",
+  "title": "Find DWP's address on the top right of your Mandatory Reconsideration Notice (MRN)",
   "subtitle": "This is the letter you received from DWP when you asked them to reconsider their decision about the PIP benefit.",
   "noMRN": "I don’t have a Mandatory Reconsideration Notice",
   "fields": {
     "pipNumber": {
-      "header": "Enter the number from the top of DWP’s address",
+      "header": "Enter the Personal Independence Payment number from DWP’s address",
       "label": "Personal Independence Payment",
       "error": {
-        "required": "Enter the DWP issuing office",
-        "notNumeric": "DWP issuing office must be a number",
-        "invalid": "Enter a valid DWP issuing office"
+        "required": "Enter the Personal Independence Payment number from your MRN",
+        "notNumeric": "You have not entered a number. Enter the Personal Independence Payment number from your MRN",
+        "invalid": "The number you have entered is invalid. Enter the Personal Independence Payment number from your MRN"
       }
     }
   },
