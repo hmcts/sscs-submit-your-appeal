@@ -3,8 +3,8 @@
   "fields": {
     "postcode": {
       "error": {
-        "emptyField": "No postcode entered",
-        "invalid": "Invalid postcode entered"
+        "emptyField": "Enter your postcode to continue",
+        "invalid": "You have entered an invalid postcode. Enter your postcode to continue"
       }
     }
   }
