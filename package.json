@@ -31,7 +31,7 @@
     "moment": "^2.18.1",
     "nsp": "^3.1.0",
     "proxyquire": "^1.8.0",
-    "request-promise-native": "^1.0.5"
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
