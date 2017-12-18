@@ -7,7 +7,7 @@ const {
 
 const { goTo, action } = require('@hmcts/one-per-page/flow');
 const sections = require('steps/check-your-appeal/sections');
-const request = require('request-promise-native');
+const request = require('superagent');
 const paths = require('paths');
 
 class CheckYourAppeal extends CYA {
@@ -25,10 +25,11 @@ class CheckYourAppeal extends CYA {
 
     sendToAPI() {
 
-        const apiUrl = this.journey.settings.apiUrl;
-        const json = this.journey.values;
-        console.log(JSON.stringify(json));
-        return request.post(apiUrl, { json });
+        // Temporary
+        console.log(JSON.stringify(this.journey.values));
+        console.log(this.journey.settings.apiUrl);
+
+        return request.post(this.journey.settings.apiUrl).send(this.journey.values);
     }
 
     sections() {
