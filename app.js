@@ -56,7 +56,7 @@ lookAndFeel.configure(app, {
     nunjucks: {
         globals: {
             phase: 'BETA',
-            html: `${content.phaseBanner.newService}
+            banner: `${content.phaseBanner.newService}
                     <a href="${urls.phaseBanner}" target="_blank">${content.phaseBanner.reportProblem}</a>
                     ${content.phaseBanner.improve}`,
             isArray(value) {
