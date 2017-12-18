@@ -40,6 +40,10 @@ timestamps {
                     sh 'make test'
                 }
 
+                stage("Sonar Scan"){
+                    sh 'make sonarscan-tactical'
+                }
+
                 stage("Security checks") {
                     sh 'make test-nsp-tactical'
                 }
