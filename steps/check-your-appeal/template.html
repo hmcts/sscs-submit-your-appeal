@@ -1,2 +1,9 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/check_your_answers.html" %}
+
+{% block statement_of_truth_content %}
+    {{ header('Sign and submit', size='medium') }}
+    <p>The information I have provided in this appeal is accurate, to the best of my knowledge.</p>
+    <p>I give permission for you to correspond with my named representative about my appeal.</p>
+    <p>I agree to the terms and conditions of using the ‘Appeal a benefit decision’ service.</p>
+{% endblock %}

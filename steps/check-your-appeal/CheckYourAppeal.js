@@ -24,11 +24,9 @@ class CheckYourAppeal extends CYA {
     }
 
     sendToAPI() {
-
         // Temporary
-        console.log(JSON.stringify(this.journey.values));
+        console.log(JSON.stringify(this.journey.values, null, '\t'));
         console.log(this.journey.settings.apiUrl);
-
         return request.post(this.journey.settings.apiUrl).send(this.journey.values);
     }
 
