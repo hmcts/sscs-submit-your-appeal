@@ -5,10 +5,6 @@
     "exclude": [
       "test/**","assets/js/**", "node_modules/**", "test/unit/coverage/**"
     ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ],
     "report-dir": "test/unit/coverage",
     "all": true
 }
