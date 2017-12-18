@@ -13,7 +13,7 @@ describe('CheckYourAppeal.js', () => {
 
     before(() => {
 
-        CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', { 'request-promise-native': request });
+        CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', { 'superagent': request });
 
         cya = new CheckYourAppeal({
             journey: {
@@ -45,13 +45,15 @@ describe('CheckYourAppeal.js', () => {
     describe('sendToAPI()', () => {
 
         it('should make an API call to the /appeals endpoint with appeal JSON', () => {
-            request.post = sinon.spy();
-            const endpoint = cya.journey.settings.apiUrl;
-            const json = cya.journey.values;
+            const sendStub = sinon.stub();
+            request.post = sinon.stub().returns({
+                send: sendStub
+            });
 
             // Assert
             cya.sendToAPI();
-            sinon.assert.calledWith(request.post, endpoint, { json });
+            sinon.assert.calledWith(request.post, cya.journey.settings.apiUrl);
+            sinon.assert.calledWith(sendStub, cya.journey.values);
         });
 
     });
