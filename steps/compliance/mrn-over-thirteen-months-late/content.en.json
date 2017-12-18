@@ -6,7 +6,7 @@
   "fields": {
     "reasonForBeingLate": {
       "error": {
-        "required": "Please tell us why your appeal is late"
+        "required": "If you want to appeal, you must say why your appeal is late"
       }
     }
   },
