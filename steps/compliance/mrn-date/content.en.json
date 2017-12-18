@@ -1,6 +1,7 @@
 {
   "title": "MRN Date",
-  "doNotHaveAnMRN": "I don’t have a Mandatory Reconsideration Notice",
+  "dateLegend": "Date of your MRN",
+  "dateHint": "For example, 31 3 2017",
   "fields": {
     "day": {
       "title": "Day",

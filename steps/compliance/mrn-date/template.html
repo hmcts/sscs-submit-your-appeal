@@ -9,8 +9,6 @@
 
 {% block fields %}
 
-This is the letter you received from DWP after you asked them to reconsider the decision about your entitlement to ESA.
-
 <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png">
 
 {% call formSection() %}
@@ -19,9 +17,9 @@ This is the letter you received from DWP after you asked them to reconsider the 
     dayField = fields.day,
     monthField = fields.month,
     yearField = fields.year,
-    hint = 'For example, 31 3 2017',
+    hint = content.dateHint,
     id = 'mrnDate',
-    legend = 'Date of your MRN'
+    legend = content.dateLegend
 )}}
 
 {% endcall %}
