@@ -6,7 +6,7 @@
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
       "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)",
       "error": {
-        "required": "Select an option"
+        "required": "You need to say whether you have an MRN. Select either yes or no."
       }
     }
   }
