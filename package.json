@@ -48,7 +48,7 @@
     "portscanner": "^2.1.1",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0",
-    "sonar-scanner": "^1.0.1",
+    "sonar-scanner": "^3.0.3",
     "supertest": "^3.0.0"
   }
 }
