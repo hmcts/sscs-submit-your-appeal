@@ -23,7 +23,7 @@ class AppointeeFormDownload extends Question {
         const benefitType = this.fields.benefitType.value;
         let formDownload = {};
 
-        if (benefitType === benefitTypes.carersAllowance || benefitType === benefitTypes.childBenefit) {
+        if (benefitType === benefitTypes.childBenefit) {
             formDownload.link = urls.formDownload.sscs5;
             formDownload.type = 'SSCS5';
         } else {

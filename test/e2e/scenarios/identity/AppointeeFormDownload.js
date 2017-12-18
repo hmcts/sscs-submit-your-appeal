@@ -19,13 +19,6 @@ Scenario('I see SSCS1 content when I select any Benefit type other than Carer’
 
 });
 
-Scenario('I see SSCS5 content when I select Carer’s Allowance as a benefit type', (I) => {
-
-    I.enterBenefitTypeAndContinue(benefitTypes.carersAllowance);
-    I.see('Download and fill out a SSCS5 form to appeal a Carer’s Allowance benefit decision.');
-
-});
-
 Scenario('I see SSCS5 content when I select Child Benefit as a benefit type', (I) => {
 
     I.enterBenefitTypeAndContinue(benefitTypes.childBenefit);
