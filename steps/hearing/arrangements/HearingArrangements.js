@@ -8,20 +8,23 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
+const arrangements = {
+    languageInterpreter: 'Language interpreter',
+    signLanguageInterpreter: 'Sign language interpreter',
+    hearingLoop: 'Hearing loop',
+    disabledAccess: 'Disabled access'
+};
+
 class HearingArrangements extends Question {
 
     static get path() {
+
         return paths.hearing.hearingArrangements;
     }
 
     get form() {
 
-        const validAnswers = [
-            'Language interpreter',
-            'Sign language interpreter',
-            'Hearing loop',
-            'Disabled access',
-        ];
+        const validAnswers = Object.keys(arrangements);
 
         return form(
 
@@ -44,7 +47,9 @@ class HearingArrangements extends Question {
             answer(this, {
                 question: this.content.cya.selection.question,
                 section: sections.hearingArrangements,
-                answer: this.fields.selection.value.join(', ')
+                answer: this.fields.selection.value.map((arrangement) => {
+                    return arrangements[arrangement]
+                }).join(', ')
             }),
 
             answer(this, {
@@ -58,15 +63,27 @@ class HearingArrangements extends Question {
 
     values() {
 
-        return {
+        let values = {
             hearing: {
-                arrangements: this.fields.selection.value,
-                anythingElse: this.fields.anythingElse.value
+                anythingElse: this.fields.anythingElse.value,
+                arrangements: {
+                    languageInterpreter: false,
+                    signLanguageInterpreter: false,
+                    hearingLoop: false,
+                    disabledAccess: false
+                }
             }
         };
+
+        this.fields.selection.value.forEach((arrangement) => {
+            values.hearing.arrangements[arrangement] = true;
+        });
+
+        return values;
     }
 
     next() {
+
         return goTo(this.journey.steps.HearingAvailability);
     }
 }
