@@ -12,7 +12,7 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
+Scenario.only('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
 
     I.fillField('day', '21');
     I.fillField('month', '03');
