@@ -3,7 +3,9 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
