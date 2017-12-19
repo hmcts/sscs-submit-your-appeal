@@ -13,6 +13,7 @@ const errorPages = require('error-pages/routes');
 const policyPages = require('policy-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const content = require('content.en.json');
+const urls = require('urls');
 
 const app = express();
 
@@ -55,7 +56,9 @@ lookAndFeel.configure(app, {
     nunjucks: {
         globals: {
             phase: 'BETA',
-            feedbackLink: `mailto:benefitappeal_helpdesk@digital.justice.gov.uk?subject=${content.email.subject}&body=${content.email.body}`,
+            banner: `${content.phaseBanner.newService}
+                    <a href="${urls.phaseBanner}" target="_blank">${content.phaseBanner.reportProblem}</a>
+                    ${content.phaseBanner.improve}`,
             isArray(value) {
                 return Array.isArray(value);
             }

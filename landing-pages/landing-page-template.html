@@ -4,7 +4,9 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
     <div class="breadcrumbs">
         <ol>
             <li><a href="https://www.gov.uk">{{ breadcrumbs.home }}</a></li>

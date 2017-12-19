@@ -19,7 +19,7 @@
     "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "1.3.0",
+    "@hmcts/look-and-feel": "^1.3.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "^2.0.0-3",
     "accessible-autocomplete": "^1.6.1",

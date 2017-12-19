@@ -1,3 +1,12 @@
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
+    <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+{% endblock %}
+
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}

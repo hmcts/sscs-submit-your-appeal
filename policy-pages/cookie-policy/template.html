@@ -6,7 +6,9 @@
 {% set title = cookies.title%}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
