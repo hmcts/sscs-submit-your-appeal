@@ -39,9 +39,17 @@ class AppellantDOB extends Question {
                 }
             ).check(
                 'MEOW',
-                (something)=>{
-                    console.log('meow ' + JSON.stringify(something))
-                    return true
+                (d)=>{
+                    console.log(d)
+                    const now = moment();
+                    const date = moment(`${d.day}-${d.month}-${d.year}`, 'DD-MM-YYYY', true);
+                    console.log(now);
+                    console.log(date)
+                    console.log(date.isValid())
+                    if (date.isValid()) {
+                        return true;
+                    }
+                    return false
                 }
             ),
 
