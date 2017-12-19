@@ -9,6 +9,7 @@ const userAnswer = require('utils/answer');
 const Joi = require('joi');
 const paths = require('paths');
 const moment = require('moment');
+const DateUtils = require('utils/DateUtils');
 
 class AppellantDOB extends Question {
 
@@ -38,40 +39,15 @@ class AppellantDOB extends Question {
                     yearRequired: fields.date.error.yearRequired
                 }
             ).check(
-                'MEOW',
-                (d)=>{
-                    console.log(d)
-                    const now = moment();
-                    const date = moment(`${d.day}-${d.month}-${d.year}`, 'DD-MM-YYYY', true);
-                    console.log(now);
-                    console.log(date)
-                    console.log(date.isValid())
-                    if (date.isValid()) {
-                        return true;
-                    }
-                    return false
-                }
+                fields.date.error.invalid,
+                value => DateUtils.isDateValid(value)
+            ).check(
+                fields.date.error.future,
+                value => DateUtils.isDateInPast(value)
             ),
 
             textField.ref(this.journey.steps.Appointee, 'appointee')
         );
-
-        //     textField('day').joi(
-        //         fields.day.error.required,
-        //         Joi.string().regex(numbers).required()),
-        //
-        //     textField('month').joi(
-        //         fields.month.error.required,
-        //         Joi.string().regex(numbers).required()
-        //     ),
-        //
-        //     textField('year').joi(
-        //         fields.year.error.required,
-        //         Joi.string().regex(numbers).required()
-        //     ),
-        //
-        //     textField.ref(this.journey.steps.Appointee, 'appointee')
-        // );
     }
 
     answers() {

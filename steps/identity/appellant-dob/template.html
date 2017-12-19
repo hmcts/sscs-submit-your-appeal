@@ -19,13 +19,14 @@
     {% call formSection() %}
 
         {{ date(
-            fields.date, 'MEOW',
+            fields.date,
+            content.titleNoAppointee,
             hideQuestion = true,
-            hint = 'hint meow',
+            hint = content.fields.date.hint,
             labels = {
-                day: 'DAY',
-                month: 'MONTH',
-                year: 'YEAR'
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
             }
         ) }}
 

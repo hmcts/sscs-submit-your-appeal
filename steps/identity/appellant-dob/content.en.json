@@ -3,29 +3,17 @@
   "titleAppointee": "Enter the appellants date of birth",
   "fields": {
     "date": {
+      "hint": "For example, 7 5 1981",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
       "error": {
-        "allRequired": "All Required",
-        "dayRequired": "Day Required",
-        "monthRequired": "Month Required",
-        "yearRequired": "Year Required"
-      }
-    },
-    "day": {
-      "title": "Day",
-      "error": {
-        "required": "Enter the day from your date of birth"
-      }
-    },
-    "month": {
-      "title": "Month",
-      "error": {
-        "required": "Enter the month from your date of birth"
-      }
-    },
-    "year": {
-      "title": "Year",
-      "error": {
-        "required": "Enter the year from your date of birth"
+        "allRequired": "Enter your date of birth.",
+        "dayRequired": "Enter the day from your date of birth",
+        "monthRequired": "Enter the month from your date of birth",
+        "yearRequired": "Enter the year from your date of birth",
+        "invalid": "You’ve entered an invalid date of birth. Enter your date of birth.",
+        "future": "You’ve entered a date in the future. Enter your date of birth."
       }
     }
   },
