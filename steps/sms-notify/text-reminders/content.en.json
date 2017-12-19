@@ -3,10 +3,10 @@
   "intro": "You’ll only get them when you need to do something important, like send evidence or go to your hearing.",
   "fields": {
     "doYouWantTextMsgReminders": {
-      "yes": "Sign up",
-      "no": "No thanks",
+      "yes": "Yes",
+      "no": "No",
       "error": {
-        "required": "Select whether or not you want text message reminders"
+        "required": "Select whether you want to sign up for text message reminders"
       }
     }
   },
