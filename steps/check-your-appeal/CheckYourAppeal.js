@@ -9,6 +9,9 @@ const { goTo, action } = require('@hmcts/one-per-page/flow');
 const sections = require('steps/check-your-appeal/sections');
 const request = require('superagent');
 const paths = require('paths');
+const {form, textField} = require('@hmcts/one-per-page/forms');
+const Joi = require('joi');
+const { whitelist } = require('utils/regex');
 
 class CheckYourAppeal extends CYA {
 
@@ -43,6 +46,30 @@ class CheckYourAppeal extends CYA {
             section(sections.theHearing,            { title: this.content.hearing.theHearing }),
             section(sections.hearingArrangements,   { title: this.content.hearing.arrangements })
         ];
+    }
+
+    get form() {
+
+        return form(
+
+            textField('signer').joi(
+                this.content.fields.signer.error.required,
+                Joi.string().regex(whitelist))
+        );
+    }
+
+    answers() {
+
+        return [];
+    }
+
+    values() {
+
+        return {
+            signAndSubmit: {
+                signer: this.fields.signer.value
+            }
+        };
     }
 
     next() {

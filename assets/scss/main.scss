@@ -6,6 +6,10 @@ p.contact-us::first-line {
   font-weight: bold;
 }
 
+label.form-label[for="signer"] {
+  font-weight: bold;
+}
+
 .after-form {
   padding-top: 1.5em;
 }

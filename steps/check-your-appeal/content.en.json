@@ -18,5 +18,17 @@
     "mobile": "Mobile"
   },
   "representative": "Representative",
-  "reasonsForAppealing": "Reasons for appealing"
+  "reasonsForAppealing": "Reasons for appealing",
+  "fields": {
+    "signer": {
+      "error": {
+        "required": "Enter a Name"
+      },
+      "label": "Enter your name",
+      "hint": "This should be the person who is named on the appeal"
+    }
+  },
+  "submitButton": {
+    "value": "Submit your appeal"
+  }
 }
