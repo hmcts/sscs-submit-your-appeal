@@ -2,6 +2,14 @@
   "titleNoAppointee": "Enter your date of birth",
   "titleAppointee": "Enter the appellants date of birth",
   "fields": {
+    "date": {
+      "error": {
+        "allRequired": "All Required",
+        "dayRequired": "Day Required",
+        "monthRequired": "Month Required",
+        "yearRequired": "Year Required"
+      }
+    },
     "day": {
       "title": "Day",
       "error": {

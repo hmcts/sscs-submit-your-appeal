@@ -21,7 +21,7 @@
   "dependencies": {
     "@hmcts/look-and-feel": "^1.7.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
-    "@hmcts/one-per-page": "^2.0.0-3",
+    "@hmcts/one-per-page": "^2.0.0-5",
     "accessible-autocomplete": "^1.6.1",
     "body-parser": "^1.18.2",
     "cross-env": "^5.1.3",

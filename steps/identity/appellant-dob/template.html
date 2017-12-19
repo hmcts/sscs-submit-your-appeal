@@ -1,7 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import date %}
+{% from "look-and-feel/components/fields.njk" import formSection, date %}
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -20,13 +19,15 @@
     {% call formSection() %}
 
         {{ date(
-            dayField = fields.day,
-            monthField = fields.month,
-            yearField = fields.year,
-            hint = 'For example, 7 5 1981',
-            id = 'appellantDOB',
-            legend = ''
-        )}}
+            fields.date, 'MEOW',
+            hideQuestion = true,
+            hint = 'hint meow',
+            labels = {
+                day: 'DAY',
+                month: 'MONTH',
+                year: 'YEAR'
+            }
+        ) }}
 
     {% endcall %}
 
