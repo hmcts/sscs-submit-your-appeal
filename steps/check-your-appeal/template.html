@@ -2,56 +2,21 @@
 {% extends "look-and-feel/layouts/check_your_answers.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, formSection, hiddenInput %}
 
+{% set pageContent = {
+    sendApplication: content.submitButton.value
+    }
+%}
 
-{% block two_thirds %}
-
-    {{ header(title | default('Check your answers')) }}
-
-    {% for section in _sections %}
-
-        {% if section.atLeast1Completed %}
-            {% if section.title and _sections|length > 1 %}
-                {{ header(section.title, size='medium') }}
-            {% endif %}
-
-            <dl class="govuk-check-your-answers cya-questions-short">
-                {% for part in section.completedAnswers %}
-                    {% if not part.hide %}
-                        {% if part.html %}
-                            {{ part.html | safe }}
-                        {% else %}
-                            {{ answer(part.question, part.answer, part.url) }}
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            </dl>
-        {% endif %}
-    {% endfor %}
-
-    {% if incomplete %}
-        {% block continue_application %}
-            {{ header('Your application is incomplete', size='medium') }}
-            <p>There are still some questions to answer.</p>
-            <a href="{{ continueUrl }}" class="button">Continue your application</a>
-        {% endblock %}
-    {% endif %}
-
-    {% if complete %}
-        {% block statement_of_truth_content %}
-            {{ header('Sign and submit', size='medium') }}
-            <p>The information I have provided in this appeal is accurate, to the best of my knowledge.</p>
-            <p>I give permission for you to correspond with my named representative about my appeal.</p>
-            <p>I agree to the <a href="/terms-and-conditions">terms and conditions</a> of using the ‘Appeal a benefit decision’ service.</p>
-        {% endblock %}
-
-        <form action="{{ path if path else url }}" method="post" class="form">
-
-            {% call formSection() %}
-                {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
-            {% endcall %}
-
-            <input class="button" type="submit" value="{{ content.submitButton.value }}">
-        </form>
-    {% endif %}
-
+{% block statement_of_truth_content %}
+    {{ header('Sign and submit', size='medium') }}
+    <p>The information I have provided in this appeal is accurate, to the best of my knowledge.</p>
+    <p>I give permission for you to correspond with my named representative about my appeal.</p>
+    <p>I agree to the <a href="/terms-and-conditions">terms and conditions</a> of using the ‘Appeal a benefit decision’ service.</p>
 {% endblock %}
+
+{% block statement_of_truth_fields %}
+    {% call formSection() %}
+        {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
+    {% endcall %}
+{%- endblock %}
+
