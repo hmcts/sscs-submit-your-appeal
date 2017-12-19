@@ -3,7 +3,9 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink) }}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
@@ -13,7 +15,7 @@
     {% endset %}
 
     <div class="govuk-box-highlight">
-        <h1 class="bold-large">{{ title }}</h1>
+        <h1 class="bold-large">{{ content.title }}</h1>
     </div>
 
     <img class="confirmation-image" src="{{ asset_path }}images/progress-bar-appeal-received.svg">
