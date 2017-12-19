@@ -58,11 +58,6 @@ class CheckYourAppeal extends CYA {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
     values() {
 
         return {
