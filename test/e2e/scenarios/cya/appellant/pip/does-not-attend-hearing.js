@@ -3,6 +3,9 @@
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const oneMonthAgo = DateUtils.oneMonthAgo();
+const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+const haveAMRNContent = require('steps/compliance/have-a-mrn/content.en.json');
+const appointeeContent = require('steps/identity/appointee/content.en.json');
 
 Feature('Appellant PIP, one month ago, does not attend hearing.');
 
@@ -19,7 +22,7 @@ Scenario('Appellant doesn\'t define an optional phone number and doesn\'t sign u
 
     IenterDetailsFromStartToNINO(I);
     I.enterAppellantContactDetailsAndContinue();
-    I.selectDoYouWantToReceiveTextMessageReminders('No thanks');
+    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
@@ -30,7 +33,7 @@ Scenario('Appellant doesn\'t define an optional phone number, however, enters mo
 
     IenterDetailsFromStartToNINO(I);
     I.enterAppellantContactDetailsAndContinue();
-    I.selectDoYouWantToReceiveTextMessageReminders('Sign up');
+    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
     I.enterMobileAndContinue('07455678444');
     I.readSMSConfirmationAndContinue();
     IenterDetailsFromNoRepresentativeToEnd(I);
@@ -45,7 +48,7 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
     IenterDetailsFromStartToNINO(I);
 
     I.enterAppellantContactDetailsWithMobileAndContinue('07411738663');
-    I.selectDoYouWantToReceiveTextMessageReminders('Sign up');
+    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
     I.selectUseSameNumberAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
     IenterDetailsFromNoRepresentativeToEnd(I);
@@ -61,7 +64,7 @@ Scenario('Appellant defines an optional phone number, this is overridden by anot
     IenterDetailsFromStartToNINO(I);
 
     I.enterAppellantContactDetailsWithMobileAndContinue('07411738663');
-    I.selectDoYouWantToReceiveTextMessageReminders('Sign up');
+    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
     I.selectUseSameNumberAndContinue('#useSameNumber-no');
     I.enterMobileAndContinue('07411333333');
     I.readSMSConfirmationAndContinue();
@@ -78,7 +81,7 @@ Scenario('Appellant defines an optional phone number, but doesn\'t sign up for t
     IenterDetailsFromStartToNINO(I);
 
     I.enterAppellantContactDetailsWithMobileAndContinue('07411738663');
-    I.selectDoYouWantToReceiveTextMessageReminders('No thanks');
+    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
@@ -91,10 +94,10 @@ const IenterDetailsFromStartToNINO = (I) => {
     I.enterBenefitTypeAndContinue('PIP');
     I.enterPostcodeAndContinue('WV11 2HE');
     I.continueFromIndependance();
-    I.selectHaveYouGotAMRNAndContinue('Yes, I have a Mandatory Reconsideration Notice (MRN)');
+    I.selectHaveYouGotAMRNAndContinue(haveAMRNContent.fields.haveAMRN.yes);
     I.enterDWPIssuingOfficeAndContinue('1');
     I.enterAnMRNDateAndContinue(oneMonthAgo);
-    I.selectAreYouAnAppointeeAndContinue('No, I’m appealing for myself');
+    I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
     I.enterAppellantNameAndContinue('Mr','Harry','Potter');
     I.enterAppellantDOBAndContinue('25','01','1980');
     I.enterAppellantNINOAndContinue('NX877564C');
