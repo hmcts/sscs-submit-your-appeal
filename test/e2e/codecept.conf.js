@@ -6,7 +6,6 @@ exports.config = {
         'Nightmare': {
             'url': process.env.E2E_FRONTEND_URL || 'http://localhost:3000',
             'waitForTimeout': 2000,
-
             'show': false,
             'windowSize': ' 800x1000'
         },
