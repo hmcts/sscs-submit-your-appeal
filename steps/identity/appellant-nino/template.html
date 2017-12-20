@@ -3,11 +3,7 @@
 {% from "look-and-feel/components/fields.njk" import textbox, formSection %}
 
 {% set title %}
-    {% if isAppointee %}
-        {{ content.titleAppointee | safe }}
-    {% else %}
-        {{ content.titleNoAppointee | safe }}
-    {% endif %}
+{{ content.title | safe }}
 {% endset %}
 
 {% block fields %}

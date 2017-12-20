@@ -3,6 +3,7 @@
 const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
+const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
 describe('MRNDate.js', () => {
@@ -90,6 +91,48 @@ describe('MRNDate.js', () => {
 
         });
 
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+
+        beforeEach(() => {
+
+            mrnDate.fields = {
+                day: {
+                    value: '13'
+                },
+                month: {
+                    value: '12'
+                },
+                year: {
+                    value: '2017'
+                }
+            };
+
+            mrnDate.content = {
+                cya: {
+                    mrnDate: {
+                        question
+                    }
+                }
+            };
+
+        });
+
+        it('should contain a single answer', () => {
+            const answers = mrnDate.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.mrnDate);
+            expect(answers[0].answer).to.equal('13/12/2017');
+        });
+
+        it('should contain a value object', () => {
+            const values = mrnDate.values();
+            expect(values).to.eql( { mrn: { date: '13-12-2017' } });
+        });
     });
 
     describe('next()', () => {

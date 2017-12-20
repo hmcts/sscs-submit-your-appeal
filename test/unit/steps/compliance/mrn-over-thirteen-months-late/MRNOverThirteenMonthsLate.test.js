@@ -2,6 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
+const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
@@ -35,6 +36,43 @@ describe('MRNOverThirteenMonthsLate.js', () => {
             expect(field.name).to.equal('reasonForBeingLate');
         });
 
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+        const value = 'The reason is...';
+
+        beforeEach(() => {
+
+            mrnOverThirteenMonthsLate.content = {
+                cya: {
+                    reasonForBeingLate: {
+                        question
+                    }
+                }
+            };
+
+            mrnOverThirteenMonthsLate.fields = {
+                reasonForBeingLate: {
+                    value
+                }
+            };
+
+        });
+
+        it('should contain a single answer', () => {
+            const answers = mrnOverThirteenMonthsLate.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.mrnDate);
+            expect(answers[0].answer).to.equal(value);
+        });
+
+        it('should contain a value object', () => {
+            const values = mrnOverThirteenMonthsLate.values();
+            expect(values).to.eql( { mrn: { reasonForBeingLate: value } });
+        });
     });
 
     describe('next()', () => {

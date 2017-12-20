@@ -2,6 +2,7 @@
 
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const { expect } = require('test/util/chai');
+const userAnswer = require('utils/answer');
 const paths = require('paths');
 
 describe('SendToNumber.js', () => {
@@ -66,6 +67,37 @@ describe('SendToNumber.js', () => {
             expect(textField.validations).to.not.be.empty;
         });
 
+    });
+
+    describe('answers()', () => {
+
+        it('should be empty', ()=> {
+            expect(sendToNumber.answers()).to.be.empty;
+        });
+
+    });
+
+    describe('values()', () => {
+
+        beforeEach(() => {
+
+            sendToNumber.fields = {
+                useSameNumber: {}
+            };
+
+        });
+
+        it('should set useSameNumber to false', () => {
+            sendToNumber.fields.useSameNumber.value = userAnswer.NO;
+            const values = sendToNumber.values();
+            expect(values).to.eql({ smsNotify: { useSameNumber: false } });
+        });
+
+        it('should set useSameNumber to true', () => {
+            sendToNumber.fields.useSameNumber.value = userAnswer.YES;
+            const values = sendToNumber.values();
+            expect(values).to.eql({ smsNotify: { useSameNumber: true } });
+        });
     });
 
     describe('next()', () => {

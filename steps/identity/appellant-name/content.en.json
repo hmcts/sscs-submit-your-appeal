@@ -1,6 +1,5 @@
 {
-  "titleNoAppointee": "Enter your name",
-  "titleAppointee": "Enter appellants name",
+  "title": "Enter your name",
   "fields": {
     "title": {
       "title": "Title",
