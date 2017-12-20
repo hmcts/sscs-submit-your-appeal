@@ -1,9 +1,11 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
-const paths = require('paths');
+const sections = require('steps/check-your-appeal/sections');
+const { expect } = require('test/util/chai');
 const answer = require('utils/answer');
+const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('TextReminders.js', () => {
 
@@ -54,6 +56,59 @@ describe('TextReminders.js', () => {
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('phoneNumber');
             expect(textField.validations).to.be.empty;
+        });
+
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+
+        beforeEach(() => {
+
+            textReminders.content = {
+                cya: {
+                    doYouWantTextMsgReminders: {
+                        question
+                    }
+                }
+            };
+
+            textReminders.fields = {
+                doYouWantTextMsgReminders: {}
+            };
+
+        });
+
+        it('should set the question and section', () => {
+            const answers = textReminders.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.textMsgReminders);
+        });
+
+        it('should titleise the users selection to \'No\' for CYA', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
+            const answers = textReminders.answers();
+            expect(answers[0].answer).to.equal('No');
+        });
+
+        it('should titleise the users selection to \'Yes\' for CYA', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
+            const answers = textReminders.answers();
+            expect(answers[0].answer).to.equal('Yes');
+        });
+
+        it('should set doYouWantTextMsgReminders to false', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
+            const values = textReminders.values();
+            expect(values).to.eql({ smsNotify: { wantsSMSNotifications: false } });
+        });
+
+        it('should set doYouWantTextMsgReminders to true', () => {
+            textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
+            const values = textReminders.values();
+            expect(values).to.eql({ smsNotify: { wantsSMSNotifications: true } });
         });
 
     });

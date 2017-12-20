@@ -47,6 +47,25 @@ describe('PostcodeChecker.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be empty', ()=> {
+            expect(postcodeChecker.answers()).to.be.empty;
+        });
+
+    });
+
+    describe('values()', () => {
+
+        it('should...', ()=> {
+            const value = 'TN32 4GT';
+            postcodeChecker.fields = { postcode: { value } };
+            const values = postcodeChecker.values();
+            expect(values).to.eql({postCodeCheck: value});
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /independence if postcode is on the list of acceptable postcodes', () => {

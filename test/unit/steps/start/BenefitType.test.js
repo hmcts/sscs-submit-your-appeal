@@ -1,8 +1,9 @@
 'use strict';
 
+const BenefitType = require('steps/start/benefit-type/BenefitType');
+const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const BenefitType = require('steps/start/benefit-type/BenefitType');
 
 describe('BenefitType.js', () => {
 
@@ -45,6 +46,42 @@ describe('BenefitType.js', () => {
             expect(field.validations).to.not.be.empty;
         });
 
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+        const value = 'PIP';
+
+        beforeEach(() => {
+
+            benefitType.content = {
+                cya: {
+                    benefitType: {
+                        question
+                    }
+                }
+            };
+
+            benefitType.fields = {
+                benefitType: {
+                    value
+                }
+            };
+
+        });
+
+        it('should contain a single answer', () => {
+            const answers = benefitType.answers();
+            expect(answers.question).to.equal(question);
+            expect(answers.section).to.equal(sections.benefitType);
+            expect(answers.answer).to.equal(value);
+        });
+
+        it('should contain a value object', () => {
+            const values = benefitType.values();
+            expect(values).to.eql( { benefitType: 'PIP' });
+        });
     });
 
     describe('next()', () => {

@@ -26,6 +26,6 @@ Scenario('When I select No, I am taken to the enter your details page', (I) => {
 
     I.selectAreYouAnAppointeeAndContinue('No');
     I.seeInCurrentUrl(paths.identity.enterAppellantName);
-    I.see(content.titleNoAppointee);
+    I.see(content.title);
 
 });

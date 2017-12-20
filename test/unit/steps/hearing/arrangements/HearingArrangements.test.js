@@ -17,6 +17,7 @@ describe('HearingArrangements.js', () => {
                 }
             }
         });
+
     });
 
     describe('get path()', () => {
@@ -68,12 +69,49 @@ describe('HearingArrangements.js', () => {
 
         });
 
-        describe('next()', () => {
+    });
 
-            it('returns the next step path /hearing-availability', () => {
-                expect(hearingArrangements.next()).to.eql({ nextStep: paths.hearing.hearingAvailability });
-            });
+    describe('answers', () => {
 
+        beforeEach(() => {
+
+            hearingArrangements.content = {
+                cya: {
+                    selection: {
+                        question: 'Your hearing arrangement'
+                    },
+                    anythingElse: {
+                        question: 'Any other arrangements'
+                    }
+                }
+            };
+
+            hearingArrangements.fields = {
+                selection: {
+                    value: []
+                },
+                anythingElse: {
+                    value: 'Nope, not today!'
+                }
+            };
+
+        });
+
+        it('should set the question and section', () => {
+            const answers = hearingArrangements.answers();
+            expect(answers.length).to.equal(2);
+        });
+
+    });
+
+    describe('values', () => {
+
+    });
+
+    describe('next()', () => {
+
+        it('returns the next step path /hearing-availability', () => {
+            expect(hearingArrangements.next()).to.eql({ nextStep: paths.hearing.hearingAvailability });
         });
 
     });

@@ -14,7 +14,7 @@ After((I) => {
 
 Scenario('I see the correct information is displayed', (I) => {
 
-    I.see(content.titleNoAppointee);
+    I.see(content.title);
     I.see(content.subtitle);
 
 });

@@ -1,9 +1,10 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
+const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const answer = require('utils/answer');
+const userAnswer = require('utils/answer');
 
 describe('SmsConfirmation.js', () => {
 
@@ -50,14 +51,14 @@ describe('SmsConfirmation.js', () => {
 
         it('should return enterMobile when the appellantPhoneNumber is a mobile but provides another', () => {
             smsConfirmation.fields.phoneNumber.value = '07411738765';
-            smsConfirmation.fields.useSameNumber.value = answer.NO;
+            smsConfirmation.fields.useSameNumber.value = userAnswer.NO;
             smsConfirmation.fields.enterMobile.value = '07411738371';
             expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
         });
 
         it('should return appellantPhoneNumber which is a mobile', () => {
             smsConfirmation.fields.phoneNumber.value = '07411738765';
-            smsConfirmation.fields.useSameNumber.value = answer.YES;
+            smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
             expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.phoneNumber.value);
         });
 
@@ -90,6 +91,52 @@ describe('SmsConfirmation.js', () => {
             expect(textField.validations).to.be.empty;
         });
 
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+
+        beforeEach(() => {
+
+            smsConfirmation.content = {
+                cya: {
+                    mobileNumber: {
+                        question
+                    }
+                }
+            };
+
+            smsConfirmation.fields = {
+                useSameNumber: {},
+                phoneNumber: {
+                    value: '07411333333'
+                },
+                enterMobile: {
+                    value: '07411444444'
+                }
+            };
+        });
+
+        it('should contain a single answer', () => {
+            const answers = smsConfirmation.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.textMsgReminders);
+            expect(answers[0].url).to.equal(paths.smsNotify.sendToNumber);
+        });
+
+        it('should use the same number from the appellant details step', () => {
+            smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
+            const values = smsConfirmation.values();
+            expect(values).to.eql({ smsNotify: { useSameNumber: true, smsNumber: '07411333333' } });
+        });
+
+        it('should only use the enter mobile number', () => {
+            smsConfirmation.fields.useSameNumber.value = userAnswer.NO;
+            const values = smsConfirmation.values();
+            expect(values).to.eql({ smsNotify: { useSameNumber: false, smsNumber: '07411444444' } });
+        });
     });
 
     describe('next()', () => {

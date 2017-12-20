@@ -46,6 +46,35 @@ describe('EnterMobile.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be empty', ()=> {
+            expect(enterMobile.answers()).to.be.empty;
+        });
+
+    });
+
+    describe('values()', () => {
+
+        const value = '07411435779';
+
+        beforeEach(() => {
+
+            enterMobile.fields = {
+                enterMobile: {
+                    value
+                }
+            };
+
+        });
+
+        it('should contain a value object', () => {
+            const values = enterMobile.values();
+            expect(values).to.eql( { smsNotify: { smsNumber: value } });
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /sms-confirmation', () => {

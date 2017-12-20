@@ -5,21 +5,14 @@ const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist, firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
-
 const Joi = require('joi');
 const paths = require('paths');
-const userAnswer = require('utils/answer');
 
 class AppellantName extends Question {
 
     static get path() {
 
         return paths.identity.enterAppellantName;
-    }
-
-    get isAppointee() {
-
-        return this.fields.appointee.value === userAnswer.YES;
     }
 
     get form() {
@@ -38,9 +31,7 @@ class AppellantName extends Question {
 
             textField('lastName')
                 .joi(fields.lastName.error.required, Joi.string().required())
-                .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)),
-
-            textField.ref(this.journey.steps.Appointee, 'appointee')
+                .joi(fields.lastName.error.invalid, Joi.string().regex(lastName))
         );
     }
 

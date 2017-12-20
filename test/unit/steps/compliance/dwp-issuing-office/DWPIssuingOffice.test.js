@@ -2,6 +2,7 @@
 
 const { expect } = require('test/util/chai');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
+const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
 describe('DWPIssuingOffice.js', () => {
@@ -51,6 +52,42 @@ describe('DWPIssuingOffice.js', () => {
                 expect(field.validations).to.not.be.empty;
             });
 
+        });
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+
+        beforeEach(() => {
+
+            dWPIssuingOffice.fields = {
+                pipNumber: {
+                    value: 5
+                }
+            };
+
+            dWPIssuingOffice.content = {
+                cya: {
+                    pipNumber: {
+                        question
+                    }
+                }
+            };
+
+        });
+
+        it('should contain a single answer', () => {
+            const answers = dWPIssuingOffice.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.mrnDate);
+            expect(answers[0].answer).to.equal(5);
+        });
+
+        it('should contain a value object', () => {
+            const values = dWPIssuingOffice.values();
+            expect(values).to.eql( { mrn: { dwpIssuingOffice: 5 } });
         });
     });
 
