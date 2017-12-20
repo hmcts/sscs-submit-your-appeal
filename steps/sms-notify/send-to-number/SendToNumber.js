@@ -32,11 +32,6 @@ class SendToNumber extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
     values() {
 
         return {

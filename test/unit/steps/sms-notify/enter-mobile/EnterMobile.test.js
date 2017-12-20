@@ -46,14 +46,6 @@ describe('EnterMobile.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(enterMobile.answers()).to.be.empty;
-        });
-
-    });
-
     describe('values()', () => {
 
         const value = '07411435779';

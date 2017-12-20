@@ -16,11 +16,6 @@ class NoRepresentativeDetails extends Question {
         return form();
     }
 
-    answers() {
-
-        return [];
-    }
-
     values() {
 
         return {

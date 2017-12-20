@@ -21,8 +21,25 @@ class CheckYourAppeal extends CYA {
         this.sendToAPI = this.sendToAPI.bind(this);
     }
 
-    static get path() {
+    get debugObj() {
+        console.log(`Appeal:`);
+        console.log(`\t incomplete: ${this.incomplete}`);
+        console.log(`\t complete: ${this.complete}`);
+        console.log(`\nSections:`);
+        this._sections.forEach( section => {
+            console.log(`\tsection.id: ${section.id}`);
+            console.log(`\t\t incomplete: ${section.incomplete}`);
+            console.log(`\t\t answers:`);
+            section.answers.forEach(answer => {
+                console.log(`\t\t\t id: ${answer.id}`);
+                console.log(`\t\t\t\t complete: ${answer.complete}`);
+                console.log(`\t\t\t\t answer: ${answer.answer}`);
+            })
+        });
+        return true
+    }
 
+    static get path() {
         return paths.checkYourAppeal
     }
 
@@ -58,6 +75,15 @@ class CheckYourAppeal extends CYA {
         );
     }
 
+    // answers() {
+    //
+    //     return answer(this, {
+    //         question: "Check Your Appeal Signer",
+    //         section: sections.checkYourAppeal,
+    //         answer: true
+    //     });
+    // }
+
     values() {
 
         return {
@@ -68,7 +94,6 @@ class CheckYourAppeal extends CYA {
     }
 
     next() {
-
         return action(this.sendToAPI)
             .then(goTo(this.journey.steps.Confirmation))
     }

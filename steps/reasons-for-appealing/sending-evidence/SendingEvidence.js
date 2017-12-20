@@ -24,11 +24,6 @@ class SendingEvidence extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
     next() {
 
         return goTo(this.journey.steps.TheHearing);

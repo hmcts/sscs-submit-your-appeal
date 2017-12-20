@@ -24,11 +24,6 @@ class NotAttendingHearing extends Question {
         return this.fields.emailAddress.value ? 'email' : 'post';
     }
 
-    answers() {
-
-        return [];
-    }
-
     next() {
 
         return goTo(this.journey.steps.CheckYourAppeal);

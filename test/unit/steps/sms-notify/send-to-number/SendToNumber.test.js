@@ -69,14 +69,6 @@ describe('SendToNumber.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(sendToNumber.answers()).to.be.empty;
-        });
-
-    });
-
     describe('values()', () => {
 
         beforeEach(() => {

@@ -28,14 +28,6 @@ describe('Independence.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(independence.answers()).to.be.empty;
-        });
-
-    });
-
     describe('next()', () => {
 
         it('returns the next step path /mrn-date', () => {

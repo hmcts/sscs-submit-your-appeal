@@ -75,22 +75,6 @@ describe('CheckMRN.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(checkMRN.answers()).to.be.empty;
-        });
-
-    });
-
-    describe('values()', () => {
-
-        it('should be empty', ()=> {
-            expect(checkMRN.values()).to.be.empty;
-        });
-
-    });
-
     describe('next()', () => {
 
         const setMRNDate = date => {

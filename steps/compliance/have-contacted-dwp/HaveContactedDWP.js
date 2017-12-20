@@ -24,16 +24,6 @@ class HaveContactedDWP extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
-    values() {
-
-        return {};
-    }
-
     next() {
 
         const hasContactDWP = this.fields.haveContactedDWP.value === userAnswer.YES;

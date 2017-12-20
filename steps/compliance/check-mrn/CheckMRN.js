@@ -31,16 +31,6 @@ class CheckMRN extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
-    values() {
-
-        return {};
-    }
-
     next() {
 
         const mrnDate = DateUtils.createMoment(

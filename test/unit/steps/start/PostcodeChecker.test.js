@@ -47,14 +47,6 @@ describe('PostcodeChecker.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(postcodeChecker.answers()).to.be.empty;
-        });
-
-    });
-
     describe('values()', () => {
 
         it('should...', ()=> {

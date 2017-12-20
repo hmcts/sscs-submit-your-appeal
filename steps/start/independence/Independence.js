@@ -10,11 +10,6 @@ class Independence extends Question {
         return paths.start.independence;
     }
 
-    answers() {
-
-        return [];
-    }
-
     next() {
 
         return goTo(this.journey.steps.HaveAMRN);

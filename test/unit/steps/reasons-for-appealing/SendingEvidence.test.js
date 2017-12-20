@@ -46,14 +46,6 @@ describe('SendingEvidence.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be empty', ()=> {
-            expect(sendingEvidence.answers()).to.be.empty;
-        });
-
-    });
-
     describe('next()', () => {
 
         it('nextStep equals /the-hearing', () => {

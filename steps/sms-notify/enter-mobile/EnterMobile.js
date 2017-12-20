@@ -26,11 +26,6 @@ class EnterMobile extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
     values() {
 
         return {

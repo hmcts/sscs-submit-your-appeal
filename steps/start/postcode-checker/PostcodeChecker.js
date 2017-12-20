@@ -26,11 +26,6 @@ class PostcodeChecker extends Question {
         );
     }
 
-    answers() {
-
-        return [];
-    }
-
     values() {
 
         return {
