@@ -2,6 +2,8 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
 {% block breadcrumbs %}
     {% call phaseBanner(phase) %}
         {{ banner | safe }}

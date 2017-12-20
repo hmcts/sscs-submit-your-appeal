@@ -13,7 +13,7 @@ class SendingEvidence extends Question {
 
     get hasSignedUpForEmail() {
 
-        return this.fields.emailAddress.value !== '';
+        return this.fields.emailAddress.value;
     }
 
     get form() {

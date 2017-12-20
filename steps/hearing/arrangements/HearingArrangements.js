@@ -35,7 +35,7 @@ class HearingArrangements extends Question {
 
             textField('anythingElse').joi(
                 this.content.fields.anythingElse.error.required,
-                Joi.string().regex(whitelist).required().allow('')
+                Joi.string().regex(whitelist).allow('')
             )
         );
     }
