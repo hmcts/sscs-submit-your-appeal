@@ -7,6 +7,7 @@ Feature('Sending Evidence');
 
 Before((I) => {
     I.createTheSession();
+    I.amOnPage(paths.identity.enterAppellantContactDetails);
 });
 
 After((I) => {
@@ -15,7 +16,6 @@ After((I) => {
 
 Scenario('When I omit my email address from my contact details I should see the correct content on /sending-evidence', (I) => {
 
-    I.amOnPage(paths.identity.enterAppellantContactDetails);
     I.enterAppellantContactDetailsAndContinue();
     I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
     I.see(content.postEvidence);
@@ -24,7 +24,6 @@ Scenario('When I omit my email address from my contact details I should see the 
 
 Scenario('When I add my email address to my contact details I should see the correct content on /sending-evidence', (I) => {
 
-    I.amOnPage(paths.identity.enterAppellantContactDetails);
     I.enterAppellantContactDetailsWithEmailAndContinue();
     I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
     I.see(content.postEvidenceWithEmail);
@@ -33,6 +32,7 @@ Scenario('When I add my email address to my contact details I should see the cor
 
 Scenario('When I go to the /sending-evidence page I see the title', (I) => {
 
+    I.enterAppellantContactDetailsAndContinue();
     I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
     I.see(content.title);
 
@@ -40,6 +40,7 @@ Scenario('When I go to the /sending-evidence page I see the title', (I) => {
 
 Scenario('When I go to the /sending-evidence page and select continue I see the path /the-hearing', (I) => {
 
+    I.enterAppellantContactDetailsAndContinue();
     I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
     I.click('Continue');
     I.seeInCurrentUrl(paths.hearing.theHearing);
