@@ -12,21 +12,66 @@ After((I) => {
     I.endTheSession();
 });
 
-// Scenario.only('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
-//
-//     I.fillField('day', '21');
-//     I.fillField('month', '03');
-//     I.fillField('year', '1981');
-//     I.click('Continue');
-//     I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
-//
-// });
-//
-// Scenario('When I click Continue without filling in the fields I see errors', (I) => {
-//
-//     I.click('Continue');
-//     I.see(appellantDOB.day.error.required);
-//     I.see(appellantDOB.month.error.required);
-//     I.see(appellantDOB.year.error.required);
-//
-// });
+Scenario('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
+
+    I.fillField('day', '21');
+    I.fillField('month', '03');
+    I.fillField('year', '1981');
+    I.click('Continue');
+    I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
+
+});
+
+Scenario('When I click Continue without filling in the fields I see errors', (I) => {
+
+    I.click('Continue');
+    I.see(appellantDOB.date.error.allRequired);
+
+});
+
+Scenario('When I click Continue when only entering the day field I see errors', (I) => {
+
+    I.fillField('day', '21');
+    I.click('Continue');
+    I.see(appellantDOB.date.error.monthRequired);
+    I.see(appellantDOB.date.error.yearRequired);
+
+});
+
+Scenario('When I click Continue when only entering the month field I see errors', (I) => {
+
+    I.fillField('day', '21');
+    I.click('Continue');
+    I.see(appellantDOB.date.error.yearRequired);
+    I.see(appellantDOB.date.error.dayRequired);
+
+});
+
+Scenario('When I click Continue when only entering the year field I see errors', (I) => {
+
+    I.fillField('day', '21');
+    I.click('Continue');
+    I.see(appellantDOB.date.error.monthRequired);
+    I.see(appellantDOB.date.error.dayRequired);
+
+});
+
+Scenario('When I enter an invalid date I see errors', (I) => {
+
+    I.fillField('day', '30');
+    I.fillField('month', '02');
+    I.fillField('year', '1981');
+    I.click('Continue');
+    I.see(appellantDOB.date.error.invalid);
+
+});
+
+Scenario('When I enter a date in the future I see errors', (I) => {
+
+    I.fillField('day', '25');
+    I.fillField('month', '02');
+    I.fillField('year', '3400');
+    I.click('Continue');
+    I.see(appellantDOB.date.error.future);
+
+});
