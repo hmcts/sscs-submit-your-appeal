@@ -20,7 +20,7 @@ class AppellantDOB extends Question {
 
     get isAppointee() {
 
-        return this.fields.appointee.value === userAnswer.YES;
+        return this.fields.isAppointee.value === userAnswer.YES;
     }
 
     get form() {
@@ -46,7 +46,7 @@ class AppellantDOB extends Question {
                 value => DateUtils.isDateInPast(value)
             ),
 
-            textField.ref(this.journey.steps.Appointee, 'appointee')
+            textField.ref(this.journey.steps.Appointee, 'isAppointee')
         );
     }
 
@@ -57,7 +57,7 @@ class AppellantDOB extends Question {
             answer(this, {
                 question: this.content.cya.dob.question,
                 section: sections.appellantDetails,
-                answer: `${this.fields.day.value}.${this.fields.month.value}.${this.fields.year.value}`
+                answer: `${this.fields.date.value.day}.${this.fields.date.value.month}.${this.fields.date.value.year}`
             })
         ];
     }
@@ -66,7 +66,7 @@ class AppellantDOB extends Question {
 
         return {
             appellant: {
-                dob: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+                dob: `${this.fields.date.value.day}-${this.fields.date.value.month}-${this.fields.date.value.year}`
             }
         };
     }
