@@ -21,11 +21,11 @@
   "reasonsForAppealing": "Reasons for appealing",
   "fields": {
     "signer": {
+      "label": "Enter your name",
+      "hint": "This should be the person who is named on the appeal",
       "error": {
         "required": "Enter a Name"
-      },
-      "label": "Enter your name",
-      "hint": "This should be the person who is named on the appeal"
+      }
     }
   },
   "submitButton": {
