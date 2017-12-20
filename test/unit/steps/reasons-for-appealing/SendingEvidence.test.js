@@ -32,7 +32,7 @@ describe('SendingEvidence.js', () => {
         });
 
         it('should be false when the email address has not been defined', () => {
-            sendingEvidence.fields.emailAddress.value = '';
+            sendingEvidence.fields.emailAddress.value = undefined;
             expect(sendingEvidence.hasSignedUpForEmail).to.be.false;
         });
 

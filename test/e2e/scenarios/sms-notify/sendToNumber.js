@@ -1,6 +1,7 @@
 'use strict';
 
 const paths = require('paths');
+const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 
 Feature('Send to number');
 
@@ -9,7 +10,7 @@ Before((I) => {
     I.amOnPage(paths.identity.enterAppellantContactDetails);
     I.enterAppellantContactDetailsWithMobileAndContinue('07466748336');
     I.seeInCurrentUrl(paths.smsNotify.appellantTextReminders);
-    I.click('Sign up');
+    I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
     I.click('Continue');
 });
 
