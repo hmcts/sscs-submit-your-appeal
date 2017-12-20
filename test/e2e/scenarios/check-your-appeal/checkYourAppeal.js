@@ -23,12 +23,10 @@ Scenario('When the appeal is incomplete, I am taken to the next step that needs 
 
 })
 
-Scenario('When I go to the check your appeal page, I see the Sign and submit section', (I) => {
+Scenario('When I go to the check your appeal page, I don\'t see the Sign and submit section', (I) => {
 
     I.enterBenefitTypeAndContinue('pip');
     I.amOnPage(paths.checkYourAppeal);
-    I.see('Sign and submit');
-    I.click('terms and conditions');
-    I.seeInCurrentUrl('/terms-and-conditions');
+    I.dontSee('Sign and submit');
 
 });
