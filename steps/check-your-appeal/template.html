@@ -8,10 +8,10 @@
 %}
 
 {% block statement_of_truth_content %}
-    {{ header('Sign and submit', size='medium') }}
-    <p>The information I have provided in this appeal is accurate, to the best of my knowledge.</p>
-    <p>I give permission for you to correspond with my named representative about my appeal.</p>
-    <p>I agree to the <a href="/terms-and-conditions">terms and conditions</a> of using the ‘Appeal a benefit decision’ service.</p>
+    {{ header(content.header, size='medium') }}
+    <p>{{ content.information }}</p>
+    <p>{{ content.permission }}</p>
+    <p>{{ content.agree | safe }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}

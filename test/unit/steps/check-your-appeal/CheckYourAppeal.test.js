@@ -112,4 +112,11 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
+    describe('termsAndConditionPath()', () => {
+
+        it('should return /terms-and-conditions', () => {
+            expect(cya.termsAndConditionPath).to.equal(paths.policy.termsAndConditions);
+        });
+    });
+
 });

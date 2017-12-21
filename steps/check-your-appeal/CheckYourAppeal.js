@@ -25,6 +25,10 @@ class CheckYourAppeal extends CYA {
         return paths.checkYourAppeal
     }
 
+    get termsAndConditionPath() {
+        return paths.policy.termsAndConditions
+    }
+
     sendToAPI() {
         // Temporary
         console.log(JSON.stringify(this.journey.values, null, 2));
