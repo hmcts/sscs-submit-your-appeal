@@ -11,7 +11,7 @@ const request = require('superagent');
 const paths = require('paths');
 const {form, textField} = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
-const { whitelist } = require('utils/regex');
+const { lastName } = require('utils/regex');
 
 class CheckYourAppeal extends CYA {
 
@@ -53,7 +53,7 @@ class CheckYourAppeal extends CYA {
 
             textField('signer').joi(
                 this.content.fields.signer.error.required,
-                Joi.string().regex(whitelist))
+                Joi.string().regex(lastName))
         );
     }
 
