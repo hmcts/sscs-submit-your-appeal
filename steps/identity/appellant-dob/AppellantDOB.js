@@ -3,10 +3,8 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField, dateField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { numbers } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
-const Joi = require('joi');
 const paths = require('paths');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
@@ -38,6 +36,8 @@ class AppellantDOB extends Question {
                     monthRequired: fields.date.error.monthRequired,
                     yearRequired: fields.date.error.yearRequired
                 }
+            ).mapValue(
+                ({ day, month, year }) => moment({day, month: month -1, year})
             ).check(
                 fields.date.error.invalid,
                 value => DateUtils.isDateValid(value)
@@ -57,7 +57,7 @@ class AppellantDOB extends Question {
             answer(this, {
                 question: this.content.cya.dob.question,
                 section: sections.appellantDetails,
-                answer: `${this.fields.date.value.day}.${this.fields.date.value.month}.${this.fields.date.value.year}`
+                answer: this.fields.date.value.format('DD.MM.YYYY')
             })
         ];
     }
@@ -66,7 +66,7 @@ class AppellantDOB extends Question {
 
         return {
             appellant: {
-                dob: `${this.fields.date.value.day}-${this.fields.date.value.month}-${this.fields.date.value.year}`
+                dob: this.fields.date.value.format('DD-MM-YYYY')
             }
         };
     }
