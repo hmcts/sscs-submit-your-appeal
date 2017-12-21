@@ -46,6 +46,14 @@ describe('SendingEvidence.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be hidden', () => {
+            expect(sendingEvidence.answers().hide).to.be.true;
+        });
+
+    });
+
     describe('next()', () => {
 
         it('nextStep equals /the-hearing', () => {

@@ -50,6 +50,22 @@ describe('HaveAMRN.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be hidden', () => {
+            expect(haveAMRN.answers().hide).to.be.true;
+        });
+
+    });
+
+    describe('values()', () => {
+
+        it('should be empty', () => {
+            expect(haveAMRN.values()).to.be.empty;
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /dwp-issuing-office when haveAMRN equals Yes', () => {

@@ -69,6 +69,14 @@ describe('SendToNumber.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be hidden', () => {
+            expect(sendToNumber.answers().hide).to.be.true;
+        });
+
+    });
+
     describe('values()', () => {
 
         beforeEach(() => {

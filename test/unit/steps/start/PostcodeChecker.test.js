@@ -47,6 +47,14 @@ describe('PostcodeChecker.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be hidden', () => {
+            expect(postcodeChecker.answers().hide).to.be.true;
+        });
+
+    });
+
     describe('values()', () => {
 
         it('should...', ()=> {

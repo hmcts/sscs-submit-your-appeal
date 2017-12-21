@@ -49,6 +49,22 @@ describe('HaveContactedDWP.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should be hidden', () => {
+            expect(haveContactedDWP.answers().hide).to.be.true;
+        });
+
+    });
+
+    describe('values()', () => {
+
+        it('should be empty', () => {
+            expect(haveContactedDWP.values()).to.be.empty;
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /dwp-issuing-office when haveAMRN equals Yes', () => {
