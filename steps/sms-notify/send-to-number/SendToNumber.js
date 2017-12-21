@@ -2,6 +2,7 @@
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -30,6 +31,10 @@ class SendToNumber extends Question {
                 Joi.string().regex(whitelist).required()
             )
         );
+    }
+
+    answers() {
+        return answer(this, { hide: true });
     }
 
     values() {

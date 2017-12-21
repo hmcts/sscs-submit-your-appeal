@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class NoRepresentativeDetails extends Question {
@@ -14,6 +15,10 @@ class NoRepresentativeDetails extends Question {
     get form() {
 
         return form();
+    }
+
+    answers() {
+        return answer(this, { hide: true });
     }
 
     values() {

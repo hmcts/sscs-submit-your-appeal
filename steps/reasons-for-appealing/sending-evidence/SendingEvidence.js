@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class SendingEvidence extends Question {
@@ -22,6 +23,10 @@ class SendingEvidence extends Question {
 
             textField.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
         );
+    }
+
+    answers() {
+        return answer(this, { hide: true });
     }
 
     next() {
