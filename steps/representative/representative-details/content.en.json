@@ -1,70 +1,70 @@
 {
   "title": "Enter their details",
-  "subtitle": "If your representative is from a national organisation, provide contact details of the local office dealing with your appeal. You can find these details on any correspondence you’ve received from them or by searching on the internet.",
+  "subtitle": "If you have a professional representative, you can find their contact detais on any letter you've received from them.",
   "noDetails": "I don’t have their details to hand",
   "fields": {
     "firstName": {
       "title": "First name",
       "error": {
-        "required": "No first name entered",
-        "invalid": "Invalid first name entered"
+        "required": "Enter their first name",
+        "invalid": "You have entered an invalid first name. Check it and enter it again"
       }
     },
     "lastName": {
       "title": "Last name(s)",
       "error": {
-        "required": "No surname name entered",
-        "invalid": "Invalid surname name entered"
+        "required": "Enter their surname",
+        "invalid": "You have entered an invalid surname. Check it and enter it again"
       }
     },
     "organisation": {
       "title": "Organisation (if they work for one)",
       "error": {
-        "invalid": "Invalid organisation entered"
+        "invalid": "You have entered an invalid name. Check it and enter it again"
       }
     },
     "addressLine1": {
       "title": "Address line 1",
       "error": {
-        "required": "First line of address not entered"
+        "required": "Enter the first line of their address"
       }
     },
     "addressLine2": {
       "title": "Address line 2 (optional)",
       "error": {
-        "invalid": "Invalid second line of address entered"
+        "invalid": "You have entered an invalid second line of their address. Check it and enter it again"
       }
     },
     "townCity": {
       "title": "Town/City",
       "error": {
-        "required": "Town or city not entered"
+        "required": "Enter the town or city from their address"
       }
     },
     "county": {
       "title": "County",
       "error": {
-        "invalid": "Invalid County entered"
+        "invalid": "You have entered an invalid county. Check it and enter it again"
       }
     },
     "postCode": {
       "title": "Postcode",
       "error": {
-        "required": "Postcode not entered"
+        "required": "Enter the postcode from their address"
       }
     },
     "phoneNumber": {
       "title": "Phone number (optional)",
-      "hint": "We may use this to contact them about your appeal",
+      "hint": "This may be used to contact them about your appeal",
       "error": {
-        "invalid": "Invalid phone number entered"
+        "invalid": "You have entered an invalid phonenumber. Check it and enter it again"
       }
     },
     "emailAddress": {
       "title": "Email address (optional)",
-      "hint": "We’ll use this to email them updates about your appeal",
+      "hint": "This may be used to contact them about your appeal",
       "error": {
-        "invalid": "Invalid email address entered"
+        "invalid": "You have entered an invalid email address. Check it and enter it again"
       }
     }
   },
