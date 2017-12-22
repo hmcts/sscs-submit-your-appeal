@@ -4,7 +4,7 @@
   "fields": {
     "otherReasonForAppealing": {
       "error": {
-        "invalid": "No special characters allowed"
+        "invalid": "You have entered some invalid charactrs. Please delete them before continuing"
       }
     }
   },
