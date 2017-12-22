@@ -1,12 +1,12 @@
 {
-  "title": "Do you need any support for your hearing?",
-  "subtitle": "Support for your hearing can be arranged,such as an interpreter, hearing loop or disabled access. You can’t bring your own interpreter to the hearing.",
+  "title": "Do you need any support at the appeal hearing?",
+  "subtitle": "Support can be arranged, such as an interpreter, hearing loop or disabled access. You can’t bring your own interpreter to the hearing.",
   "fields": {
     "arrangements": {
       "yes": "Yes",
       "no": "No",
       "error": {
-        "required": "You need to tell us whether you want us to make arrangements for your hearing. Select either yes or no."
+        "required": "You need to tell us whether you need support at the hearing. Select either yes or no."
       }
     }
   },
