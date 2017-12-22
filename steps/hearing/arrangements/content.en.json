@@ -1,7 +1,7 @@
 {
-  "title": "Arrangements for the hearing",
-  "clickAllArrangements": "Click all the arrangements we need to make for the hearing.",
-  "cannotBringInterpreter": "Please note that you can’t bring your own interpreter to the hearing.",
+  "title": "Support at the hearing",
+  "clickAllArrangements": "Click all the support you need at the hearing.",
+  "cannotBringInterpreter": "You can’t bring your own interpreter to the hearing.",
   "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
   "fields": {
     "selection": {
@@ -10,13 +10,13 @@
       "hearingLoop": "Hearing loop",
       "disabledAccess": "Disabled access",
       "error": {
-        "required": "No arrangements have been requested."
+        "required": "You need to provide some information about the support you need"
       }
     },
     "anythingElse": {
-      "title": "Anything else we need to know",
+      "title": "Any other support you need",
       "error": {
-        "required": "No special characters allowed"
+        "required": "You have entered a special character that is not allowed. Delete it before continuing"
       }
     }
   },
