@@ -48,8 +48,8 @@ describe('EnterMobile.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(enterMobile.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(enterMobile.answers().hide).to.be.true;
         });
 
     });

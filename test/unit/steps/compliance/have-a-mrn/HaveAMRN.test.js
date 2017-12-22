@@ -52,15 +52,15 @@ describe('HaveAMRN.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(haveAMRN.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(haveAMRN.answers().hide).to.be.true;
         });
 
     });
 
     describe('values()', () => {
 
-        it('should be empty', ()=> {
+        it('should be empty', () => {
             expect(haveAMRN.values()).to.be.empty;
         });
 

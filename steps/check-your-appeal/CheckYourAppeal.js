@@ -9,6 +9,9 @@ const { goTo, action } = require('@hmcts/one-per-page/flow');
 const sections = require('steps/check-your-appeal/sections');
 const request = require('superagent');
 const paths = require('paths');
+const {form, textField} = require('@hmcts/one-per-page/forms');
+const Joi = require('joi');
+const { lastName } = require('utils/regex');
 
 class CheckYourAppeal extends CYA {
 
@@ -23,12 +26,16 @@ class CheckYourAppeal extends CYA {
         return paths.checkYourAppeal
     }
 
+    get termsAndConditionPath() {
+
+        return paths.policy.termsAndConditions
+    }
+
     sendToAPI() {
 
         // Temporary
-        console.log(JSON.stringify(this.journey.values));
+        console.log(JSON.stringify(this.journey.values, null, 2));
         console.log(this.journey.settings.apiUrl);
-
         return request.post(this.journey.settings.apiUrl).send(this.journey.values);
     }
 
@@ -45,6 +52,25 @@ class CheckYourAppeal extends CYA {
             section(sections.theHearing,            { title: this.content.hearing.theHearing }),
             section(sections.hearingArrangements,   { title: this.content.hearing.arrangements })
         ];
+    }
+
+    get form() {
+
+        return form(
+
+            textField('signer').joi(
+                this.content.fields.signer.error.required,
+                Joi.string().regex(lastName))
+        );
+    }
+
+    values() {
+
+        return {
+            signAndSubmit: {
+                signer: this.fields.signer.value
+            }
+        };
     }
 
     next() {

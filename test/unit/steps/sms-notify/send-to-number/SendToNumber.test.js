@@ -71,8 +71,8 @@ describe('SendToNumber.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(sendToNumber.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(sendToNumber.answers().hide).to.be.true;
         });
 
     });

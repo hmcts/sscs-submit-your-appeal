@@ -77,15 +77,15 @@ describe('CheckMRN.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(checkMRN.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(checkMRN.answers().hide).to.be.true;
         });
 
     });
 
     describe('values()', () => {
 
-        it('should be empty', ()=> {
+        it('should be empty', () => {
             expect(checkMRN.values()).to.be.empty;
         });
 

@@ -21,8 +21,7 @@ class OtherReasonForAppealing extends Question {
 
             textField('otherReasonForAppealing').joi(
                 this.content.fields.otherReasonForAppealing.error.invalid,
-                Joi.string().allow('').regex(whitelist)
-            )
+                Joi.string().regex(whitelist).allow(''))
         );
     }
 

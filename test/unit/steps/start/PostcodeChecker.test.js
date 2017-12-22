@@ -49,8 +49,8 @@ describe('PostcodeChecker.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(postcodeChecker.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(postcodeChecker.answers().hide).to.be.true;
         });
 
     });

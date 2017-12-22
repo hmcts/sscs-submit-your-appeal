@@ -1,6 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class Independence extends Question {
@@ -12,7 +13,7 @@ class Independence extends Question {
 
     answers() {
 
-        return [];
+        return answer(this, { hide: true });
     }
 
     next() {

@@ -7,6 +7,7 @@ const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const sections = require('steps/check-your-appeal/sections');
 
 class TheHearing extends Question {
 
@@ -30,7 +31,7 @@ class TheHearing extends Question {
 
         return answer(this, {
             question: this.content.cya.attendHearing.question,
-            section: 'hearing',
+            section: sections.theHearing,
             answer: titleise(this.fields.attendHearing.value)
         });
     }

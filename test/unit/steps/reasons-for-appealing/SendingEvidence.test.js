@@ -48,8 +48,8 @@ describe('SendingEvidence.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(sendingEvidence.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(sendingEvidence.answers().hide).to.be.true;
         });
 
     });

@@ -59,6 +59,8 @@ describe('ReasonForAppealing.js', () => {
 
     describe('get answers()', () => {
 
+        let answers;
+
         beforeEach(() => {
 
             reasonForAppealing.fields = {
@@ -75,21 +77,24 @@ describe('ReasonForAppealing.js', () => {
                 }
             };
 
+            answers = reasonForAppealing.answers()[0];
+
         });
 
         it('should return expected section', () => {
-            expect(reasonForAppealing.answers()[0].section).to.eql('reasons-for-appealing');
+            expect(answers.section).to.equal('reasons-for-appealing');
         });
 
-        it('should return expected answer', () => {
-            expect(reasonForAppealing.answers()[0].answer).to.eql('my answer');
+        it('should return expected answers', () => {
+            expect(answers.answer).to.equal('my answer');
         });
 
         it('should return expected question', () => {
-            expect(reasonForAppealing.answers()[0].question).to.eql('my question');
+            expect(answers.question).to.equal('my question');
         });
 
     });
+
 
     describe('next()', () => {
 

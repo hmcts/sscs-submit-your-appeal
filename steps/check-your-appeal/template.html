@@ -1,2 +1,22 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/check_your_answers.html" %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+
+{% set pageContent = {
+    sendApplication: content.submitButton.value
+    }
+%}
+
+{% block statement_of_truth_content %}
+    {{ header(content.header, size='medium') }}
+    <p>{{ content.information }}</p>
+    <p>{{ content.permission }}</p>
+    <p>{{ content.agree | safe }}</p>
+{% endblock %}
+
+{% block statement_of_truth_fields %}
+    {% call formSection() %}
+        {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
+    {% endcall %}
+{%- endblock %}
+

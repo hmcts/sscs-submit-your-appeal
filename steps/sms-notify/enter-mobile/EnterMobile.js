@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { internationalMobileNumber } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
@@ -28,7 +29,7 @@ class EnterMobile extends Question {
 
     answers() {
 
-        return [];
+        return answer(this, { hide: true });
     }
 
     values() {
@@ -41,6 +42,7 @@ class EnterMobile extends Question {
     }
 
     next() {
+
         return goTo(this.journey.steps.SmsConfirmation);
     }
 }

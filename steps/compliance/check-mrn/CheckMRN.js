@@ -33,7 +33,7 @@ class CheckMRN extends Question {
 
     answers() {
 
-        return [];
+        return answer(this, { hide: true });
     }
 
     values() {

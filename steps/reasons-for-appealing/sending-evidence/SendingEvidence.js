@@ -2,6 +2,7 @@
 
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class SendingEvidence extends Question {
@@ -26,7 +27,7 @@ class SendingEvidence extends Question {
 
     answers() {
 
-        return [];
+        return answer(this, { hide: true });
     }
 
     next() {

@@ -20,18 +20,18 @@ describe('Independence.js', () => {
 
     });
 
-    describe('get path()', () => {
+    describe('answers()', () => {
 
-        it('returns path /independence', () => {
-            expect(independence.path).to.equal(paths.start.independence);
+        it('should be hidden', () => {
+            expect(independence.answers().hide).to.be.true;
         });
 
     });
 
-    describe('answers()', () => {
+    describe('get path()', () => {
 
-        it('should be empty', ()=> {
-            expect(independence.answers()).to.be.empty;
+        it('returns path /independence', () => {
+            expect(independence.path).to.equal(paths.start.independence);
         });
 
     });

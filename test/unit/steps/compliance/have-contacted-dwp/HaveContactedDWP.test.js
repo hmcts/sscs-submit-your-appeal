@@ -51,15 +51,15 @@ describe('HaveContactedDWP.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(haveContactedDWP.answers()).to.be.empty;
+        it('should be hidden', () => {
+            expect(haveContactedDWP.answers().hide).to.be.true;
         });
 
     });
 
     describe('values()', () => {
 
-        it('should be empty', ()=> {
+        it('should be empty', () => {
             expect(haveContactedDWP.values()).to.be.empty;
         });
 

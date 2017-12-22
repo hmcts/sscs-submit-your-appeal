@@ -151,7 +151,7 @@ const IconfirmDetailsArePresent = (I) => {
     I.see('Anything else...');
 
     // Shows when the appeal is complete
-    I.see('Now send your application');
+    I.see('Sign and submit');
 
 };
 

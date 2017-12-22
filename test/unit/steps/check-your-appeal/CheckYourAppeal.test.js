@@ -10,6 +10,8 @@ describe('CheckYourAppeal.js', () => {
     let CheckYourAppeal;
     let request = {};
     let cya;
+    let field;
+
 
     before(() => {
 
@@ -32,6 +34,14 @@ describe('CheckYourAppeal.js', () => {
                 }
             }
         });
+
+        cya.fields = {
+            signer: {
+                value: "Mr Tester"
+            }
+        };
+
+        field = cya.form.fields[0];
     });
 
     describe('get path()', () => {
@@ -69,6 +79,30 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
+    describe('get form()', () => {
+
+        describe('signer field', () => {
+
+            it('contains a field with the name signer', () => {
+                expect(field.name).to.equal('signer');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
+        });
+
+    });
+
+    describe('get values()', () => {
+
+        it('contains the signAndSubmit json object field', () => {
+            expect(cya.values().signAndSubmit.signer).to.equal('Mr Tester');
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /confirmation', () => {
@@ -76,6 +110,13 @@ describe('CheckYourAppeal.js', () => {
             expect(action.nextFlow.nextStep).to.eql(paths.confirmation);
         });
 
+    });
+
+    describe('termsAndConditionPath()', () => {
+
+        it('should return /terms-and-conditions', () => {
+            expect(cya.termsAndConditionPath).to.equal(paths.policy.termsAndConditions);
+        });
     });
 
 });

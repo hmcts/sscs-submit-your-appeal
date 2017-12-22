@@ -2,6 +2,7 @@
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -26,13 +27,14 @@ class HaveContactedDWP extends Question {
 
     answers() {
 
-        return [];
+        return answer(this, { hide: true });
     }
 
     values() {
 
         return {};
     }
+
 
     next() {
 
