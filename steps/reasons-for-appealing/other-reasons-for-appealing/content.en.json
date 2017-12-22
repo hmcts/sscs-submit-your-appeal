@@ -1,10 +1,10 @@
 {
-  "title": "Anything else you want to tell the independent tribunal",
+  "title": "Anything else you want to tell the tribunal",
   "subtitle": "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
   "fields": {
     "otherReasonForAppealing": {
       "error": {
-        "invalid": "You have entered some invalid charactrs. Please delete them before continuing"
+        "invalid": "You've entered a special character. Delete it before continuing"
       }
     }
   },
