@@ -19,10 +19,9 @@ class OtherReasonForAppealing extends Question {
 
         return form(
 
-            textField('otherReasonForAppealing').joi(
-                this.content.fields.otherReasonForAppealing.error.invalid,
-                Joi.string().allow('').regex(whitelist)
-            )
+            textField('otherReasonForAppealing')
+                .joi(this.content.fields.otherReasonForAppealing.error.invalid,
+                    Joi.string().regex(whitelist).allow('').required())
         );
     }
 

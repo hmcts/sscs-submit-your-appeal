@@ -17,12 +17,13 @@ class ReasonForAppealing extends Question {
 
     get form() {
 
+        const reasonForAppealing = this.content.fields.reasonForAppealing;
+
         return form(
 
-            textField('reasonForAppealing').joi(
-                this.content.fields.reasonForAppealing.error.required,
-                Joi.string().regex(whitelist)
-            )
+            textField('reasonForAppealing')
+                .joi(reasonForAppealing.error.invalid,
+                    Joi.string().regex(whitelist).allow('').required())
         );
     }
 

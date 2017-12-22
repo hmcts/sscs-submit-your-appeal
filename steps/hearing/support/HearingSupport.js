@@ -7,6 +7,7 @@ const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const sections = require('steps/check-your-appeal/sections');
 
 class HearingSupport extends Question {
 
@@ -32,7 +33,7 @@ class HearingSupport extends Question {
 
             answer(this, {
                 question: this.content.cya.arrangements.question,
-                section: 'hearing',
+                section: sections.theHearing,
                 answer: titleise(this.fields.arrangements.value)
             })
         ];
