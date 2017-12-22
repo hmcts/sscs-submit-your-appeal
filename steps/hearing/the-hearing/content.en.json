@@ -9,7 +9,7 @@
       "yes": "Yes",
       "no": "No",
       "error": {
-        "required": "You need to tell us whether you want to attend the hearing. Select either yes or no."
+        "required": "You need to tell us whether you want to attend the hearing. Select either yes or no"
       }
     }
   },
