@@ -21,9 +21,9 @@ class ReasonForAppealing extends Question {
 
         return form(
 
-            textField('reasonForAppealing')
-                .joi(reasonForAppealing.error.invalid,
-                    Joi.string().regex(whitelist).allow('').required())
+            textField('reasonForAppealing').joi(
+                reasonForAppealing.error.required,
+                Joi.string().regex(whitelist).trim().required())
         );
     }
 
