@@ -1,24 +1,24 @@
 {
-  "title": "MRN Date",
-  "dateLegend": "Date of your MRN",
+  "title": "When is your Mandatory Reconsideration Notice (MRN) dated?",
+  "dateLegend": "Enter the date from the top right of your MRN letter",
   "dateHint": "For example, 31 3 2017",
   "fields": {
     "day": {
       "title": "Day",
       "error": {
-        "required": "Please enter a day"
+        "required": "You have not entered a day. Enter a day"
       }
     },
     "month": {
       "title": "Month",
       "error": {
-        "required": "Please enter a month"
+        "required": "You have not entered a month. Enter a month"
       }
     },
     "year": {
       "title": "Year",
       "error": {
-        "required": "Please enter a year"
+        "required": "You have not entered a year. Enter a year"
       }
     }
   },
