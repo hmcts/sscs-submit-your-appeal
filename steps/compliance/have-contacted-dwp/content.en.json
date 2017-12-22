@@ -6,7 +6,7 @@
       "yes": "Yes, I’ve contacted DWP about the decision",
       "no": "No, I haven’t contacted DWP about the decision",
       "error": {
-        "required": "Select an option"
+        "required": "You need to say whether you contacted DWP about their decision. Selecet either yes or no"
       }
     }
   }
