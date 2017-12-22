@@ -28,6 +28,7 @@ class EnterMobile extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 
@@ -41,6 +42,7 @@ class EnterMobile extends Question {
     }
 
     next() {
+
         return goTo(this.journey.steps.SmsConfirmation);
     }
 }

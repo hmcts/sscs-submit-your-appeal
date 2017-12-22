@@ -34,6 +34,7 @@ class SendToNumber extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 

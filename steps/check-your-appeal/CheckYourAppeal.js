@@ -22,14 +22,17 @@ class CheckYourAppeal extends CYA {
     }
 
     static get path() {
+
         return paths.checkYourAppeal
     }
 
     get termsAndConditionPath() {
+
         return paths.policy.termsAndConditions
     }
 
     sendToAPI() {
+
         // Temporary
         console.log(JSON.stringify(this.journey.values, null, 2));
         console.log(this.journey.settings.apiUrl);
@@ -71,6 +74,7 @@ class CheckYourAppeal extends CYA {
     }
 
     next() {
+
         return action(this.sendToAPI)
             .then(goTo(this.journey.steps.Confirmation))
     }

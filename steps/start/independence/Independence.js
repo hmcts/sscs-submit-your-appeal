@@ -12,6 +12,7 @@ class Independence extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 

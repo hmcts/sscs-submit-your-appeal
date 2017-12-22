@@ -26,6 +26,7 @@ class SendingEvidence extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 

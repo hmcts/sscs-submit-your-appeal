@@ -18,6 +18,7 @@ class NoRepresentativeDetails extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 

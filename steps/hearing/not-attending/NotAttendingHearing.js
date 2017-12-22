@@ -21,6 +21,7 @@ class NotAttendingHearing extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 

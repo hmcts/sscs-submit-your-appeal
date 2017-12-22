@@ -27,6 +27,7 @@ class PostcodeChecker extends Question {
     }
 
     answers() {
+
         return answer(this, {hide: true});
     }
 

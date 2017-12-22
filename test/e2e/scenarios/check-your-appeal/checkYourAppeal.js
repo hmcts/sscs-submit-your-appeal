@@ -21,7 +21,7 @@ Scenario('When the appeal is incomplete, I am taken to the next step that needs 
     I.click('Continue your application');
     I.seeCurrentUrlEquals('/benefit-type');
 
-})
+});
 
 Scenario('When I go to the check your appeal page, I don\'t see the Sign and submit section', (I) => {
 

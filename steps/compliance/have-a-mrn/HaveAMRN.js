@@ -26,10 +26,12 @@ class HaveAMRN extends Question {
     }
 
     answers() {
+
         return answer(this, { hide: true });
     }
 
     values() {
+
         return {};
     }
 
