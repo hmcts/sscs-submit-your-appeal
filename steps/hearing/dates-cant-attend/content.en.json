@@ -1,22 +1,22 @@
 {
-  "title": "Your availability for a hearing",
+  "title": "Enter the dates when you can't go to a hearing",
   "fields": {
     "day": {
       "title": "Day",
       "error": {
-        "required": "Please enter a day"
+        "required": "You need to enter a day"
       }
     },
     "month": {
       "title": "Month",
       "error": {
-        "required": "Please enter a month"
+        "required": "You need to enter a month"
       }
     },
     "year": {
       "title": "Year",
       "error": {
-        "required": "Please enter a year"
+        "required": "You need to enter a year"
       }
     }
   },
