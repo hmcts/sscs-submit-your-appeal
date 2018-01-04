@@ -20,6 +20,12 @@ describe('MRNDate.js', () => {
                 }
             }
         });
+
+        mrnDate.fields = {
+            day: {},
+            month: {},
+            year: {}
+        };
     });
 
     describe('get path()', () => {

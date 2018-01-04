@@ -20,6 +20,10 @@ describe('BenefitType.js', () => {
             }
         });
 
+        benefitType.fields = {
+            benefitType: {}
+        };
+
     });
 
     describe('get path()', () => {

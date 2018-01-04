@@ -20,6 +20,10 @@ describe('HaveAMRN.js', () => {
                 }
             }
         });
+
+        haveAMRN.fields = {
+            haveAMRN: {}
+        };
     });
 
     describe('get path()', () => {

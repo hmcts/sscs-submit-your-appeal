@@ -19,6 +19,10 @@ describe('PostcodeChecker.js', () => {
             }
         });
 
+        postcodeChecker.fields = {
+            postcode: {}
+        };
+
     });
 
     describe('get path()', () => {

@@ -19,6 +19,10 @@ describe('HaveContactedDWP.js', () => {
                 }
             }
         });
+
+        haveContactedDWP.fields = {
+            haveContactedDWP: {}
+        };
     });
 
     describe('get path()', () => {
