@@ -31,9 +31,36 @@ describe('NoMRN.js', () => {
 
     describe('get form()', () => {
 
-        it('contains the field name reasonForNoMRN', () => {
-            const field = noMRN.form.fields[0];
-            expect(field.name).to.equal('reasonForNoMRN');
+        let fields;
+        let field;
+
+        before(() => {
+            fields = noMRN.form.fields
+        });
+
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('reasonForNoMRN');
+        });
+
+        describe('reasonForNoMRN field', () => {
+
+            beforeEach(() => {
+                field = fields.reasonForNoMRN;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name reasonForNoMRN', () => {
+                expect(field.name).to.equal('reasonForNoMRN');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
         });
 
     });

@@ -32,20 +32,36 @@ describe('HaveAMRN.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
         let field;
 
         before(() => {
-
-            field = haveAMRN.form.fields[0];
-
+            fields = haveAMRN.form.fields
         });
 
-        it('contains the field name haveAMRN', () => {
-            expect(field.name).to.equal('haveAMRN');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('haveAMRN');
         });
 
-        it('contains validation', () => {
-            expect(field.validations).to.not.be.empty;
+        describe('haveAMRN field', () => {
+
+            beforeEach(() => {
+                field = fields.haveAMRN;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name pipNumber', () => {
+                expect(field.name).to.equal('haveAMRN');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
         });
 
     });

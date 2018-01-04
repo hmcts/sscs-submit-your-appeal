@@ -66,26 +66,33 @@ describe('SmsConfirmation.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
+
+        before(() => {
+            fields = smsConfirmation.form.fields
+        });
+
         it('should contain 3 fields', () => {
-            expect(smsConfirmation.form.fields.length).to.equal(3);
+            expect(Object.keys(fields).length).to.equal(3);
+            expect(fields).to.have.all.keys('enterMobile', 'useSameNumber', 'phoneNumber');
         });
 
         it('should contain a textField reference called \'enterMobile\'', () => {
-            const textField = smsConfirmation.form.fields[0];
+            const textField = fields.enterMobile;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('enterMobile');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField reference called \'useSameNumber\'', () => {
-            const textField = smsConfirmation.form.fields[1];
+            const textField = fields.useSameNumber;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('useSameNumber');
             expect(textField.validations).to.be.empty;
         });
 
-        it('should contain a textField reference called \'year\'', () => {
-            const textField = smsConfirmation.form.fields[2];
+        it('should contain a textField reference called \'phoneNumber\'', () => {
+            const textField = fields.phoneNumber;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('phoneNumber');
             expect(textField.validations).to.be.empty;

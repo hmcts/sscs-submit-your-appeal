@@ -35,15 +35,23 @@ describe('MRNDate.js', () => {
         let fields;
         let field;
 
-        beforeEach(() => {
-           fields = mrnDate.form.fields;
+        before(() => {
+            fields = mrnDate.form.fields
+        });
+
+        it('should contain 3 fields', () => {
+            expect(Object.keys(fields).length).to.equal(3);
+            expect(fields).to.have.all.keys('day', 'month', 'year');
         });
 
         describe('day field', () => {
 
             beforeEach(() => {
+                field = fields.day;
+            });
 
-                field = fields[0];
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name day', () => {
@@ -59,8 +67,11 @@ describe('MRNDate.js', () => {
         describe('month field', () => {
 
             beforeEach(() => {
+                field = fields.month;
+            });
 
-                field = fields[1];
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name month', () => {
@@ -76,9 +87,11 @@ describe('MRNDate.js', () => {
         describe('year field', () => {
 
             beforeEach(() => {
+                field = fields.year;
+            });
 
-                field = fields[2];
-
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name year', () => {

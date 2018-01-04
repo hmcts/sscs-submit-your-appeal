@@ -38,10 +38,19 @@ describe('AppellantName.js', () => {
             fields = appellantName.form.fields;
         });
 
+        it('should contain 3 fields', () => {
+            expect(Object.keys(fields).length).to.equal(3);
+            expect(fields).to.have.all.keys('title', 'firstName', 'lastName');
+        });
+
         describe('title field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.title;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name title', () => {
@@ -57,7 +66,11 @@ describe('AppellantName.js', () => {
         describe('firstName field', () => {
 
             beforeEach(() => {
-                field = fields[1];
+                field = fields.firstName;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name firstName', () => {
@@ -73,7 +86,11 @@ describe('AppellantName.js', () => {
         describe('lastName field', () => {
 
             beforeEach(() => {
-                field = fields[2];
+                field = fields.lastName;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name lastName', () => {

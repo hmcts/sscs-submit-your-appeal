@@ -39,10 +39,19 @@ describe('ReasonForAppealing.js', () => {
             fields = reasonForAppealing.form.fields;
         });
 
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('reasonForAppealing');
+        });
+
         describe('reasonForAppealing field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.reasonForAppealing;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name reasonForAppealing', () => {

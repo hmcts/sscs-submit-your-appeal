@@ -29,18 +29,36 @@ describe('HearingSupport.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
         let field;
 
-        beforeEach(() => {
-            field = hearingSupport.form.fields[0];
+        before(() => {
+            fields = hearingSupport.form.fields
         });
 
-        it('contains the field name arrangements', () => {
-            expect(field.name).to.equal('arrangements');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('arrangements');
         });
 
-        it('contains validation', () => {
-            expect(field.validations).to.not.be.empty;
+        describe('arrangements field', () => {
+
+            beforeEach(() => {
+                field = fields.arrangements;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name arrangements', () => {
+                expect(field.name).to.equal('arrangements');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
         });
 
     });

@@ -40,19 +40,26 @@ describe('TextReminders.js', () => {
 
     describe('get form()', () => {
 
-        it('should contain a single field', () => {
-            expect(textReminders.form.fields.length).to.equal(2);
+        let fields;
+
+        before(() => {
+            fields = textReminders.form.fields
         });
 
-        it('should contain a textField reference called \'phoneNumber\'', () => {
-            const textField = textReminders.form.fields[0];
+        it('should contain 2 fields', () => {
+            expect(Object.keys(fields).length).to.equal(2);
+            expect(fields).to.have.all.keys('doYouWantTextMsgReminders', 'phoneNumber');
+        });
+
+        it('should contain a textField reference called \'doYouWantTextMsgReminders\'', () => {
+            const textField = fields.doYouWantTextMsgReminders;
             expect(textField.constructor.name).to.eq('FieldDesriptor');
             expect(textField.name).to.equal('doYouWantTextMsgReminders');
             expect(textField.validations).to.not.be.empty;
         });
 
         it('should contain a textField reference called \'phoneNumber\'', () => {
-            const textField = textReminders.form.fields[1];
+            const textField = fields.phoneNumber;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('phoneNumber');
             expect(textField.validations).to.be.empty;

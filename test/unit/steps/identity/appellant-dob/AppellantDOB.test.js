@@ -37,10 +37,19 @@ describe('AppellantDOB.js', () => {
             fields = appellantDOBClass.form.fields;
         });
 
+        it('should contain 4 fields', () => {
+            expect(Object.keys(fields).length).to.equal(4);
+            expect(fields).to.have.all.keys('day', 'month', 'year', 'appointee');
+        });
+
         describe('day field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.day;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field day title', () => {
@@ -56,7 +65,11 @@ describe('AppellantDOB.js', () => {
         describe('month field', () => {
 
             beforeEach(() => {
-                field = fields[1];
+                field = fields.month;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name month', () => {
@@ -72,7 +85,11 @@ describe('AppellantDOB.js', () => {
         describe('year field', () => {
 
             beforeEach(() => {
-                field = fields[2];
+                field = fields.year;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name year', () => {
@@ -81,6 +98,22 @@ describe('AppellantDOB.js', () => {
 
             it('contains validation', () => {
                 expect(field.validations).to.not.be.empty;
+            });
+
+        });
+
+        describe('appointee field', () => {
+
+            beforeEach(() => {
+                field = fields.appointee;
+            });
+
+            it('has constructor name Reference', () => {
+                expect(field.constructor.name).to.eq('Reference');
+            });
+
+            it('contains the field appointee', () => {
+                expect(field.name).to.equal('appointee');
             });
 
         });

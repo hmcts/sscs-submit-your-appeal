@@ -32,14 +32,23 @@ describe('AppellantContactDetails.js', () => {
         let fields;
         let field;
 
-        beforeEach(() => {
-            fields = appellantContactDetails.form.fields;
+        before(() => {
+            fields = appellantContactDetails.form.fields
+        });
+
+        it('should contain 7 fields', () => {
+            expect(Object.keys(fields).length).to.equal(7);
+            expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'county', 'postCode', 'phoneNumber', 'emailAddress');
         });
 
         describe('addressLine1 field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.addressLine1;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name addressLine1', () => {
@@ -55,7 +64,11 @@ describe('AppellantContactDetails.js', () => {
         describe('addressLine2 field', () => {
 
             beforeEach(() => {
-                field = fields[1];
+                field = fields.addressLine2;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name addressLine2', () => {
@@ -71,7 +84,11 @@ describe('AppellantContactDetails.js', () => {
         describe('townCity field', () => {
 
             beforeEach(() => {
-                field = fields[2];
+                field = fields.townCity;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name townCity', () => {
@@ -87,7 +104,11 @@ describe('AppellantContactDetails.js', () => {
         describe('county field', () => {
 
             beforeEach(() => {
-                field = fields[3];
+                field = fields.county;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name county', () => {
@@ -103,7 +124,11 @@ describe('AppellantContactDetails.js', () => {
         describe('postCode field', () => {
 
             beforeEach(() => {
-                field = fields[4];
+                field = fields.postCode;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name postCode', () => {
@@ -119,7 +144,11 @@ describe('AppellantContactDetails.js', () => {
         describe('phoneNumber field', () => {
 
             beforeEach(() => {
-                field = fields[5];
+                field = fields.phoneNumber;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name phoneNumber', () => {
@@ -135,7 +164,11 @@ describe('AppellantContactDetails.js', () => {
         describe('emailAddress field', () => {
 
             beforeEach(() => {
-                field = fields[6];
+                field = fields.emailAddress;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name emailAddress', () => {

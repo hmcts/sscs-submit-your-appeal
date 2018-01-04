@@ -33,14 +33,32 @@ describe('HearingArrangements.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
         let field;
 
         before(() => {
-            field = notAttendingHearing.form.fields[0];
+            fields = notAttendingHearing.form.fields;
         });
 
-        it('contains textfield reference for emailAddress field from contact details page', () => {
-            expect(field.name).to.equal('emailAddress');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('emailAddress');
+        });
+
+        describe('emailAddress field', () => {
+
+            before(() => {
+                field = fields.emailAddress;
+            });
+
+            it('has constructor name Reference', () => {
+                expect(field.constructor.name).to.eq('Reference');
+            });
+
+            it('contains the field name emailAddress', () => {
+                expect(field.name).to.equal('emailAddress');
+            });
+
         });
 
     });

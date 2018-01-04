@@ -31,20 +31,36 @@ describe('HaveContactedDWP.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
         let field;
 
         before(() => {
-
-            field = haveContactedDWP.form.fields[0];
-
+            fields = haveContactedDWP.form.fields
         });
 
-        it('contains the field name haveContactedDWP', () => {
-            expect(field.name).to.equal('haveContactedDWP');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('haveContactedDWP');
         });
 
-        it('contains validation', () => {
-            expect(field.validations).to.not.be.empty;
+        describe('haveContactedDWP field', () => {
+
+            beforeEach(() => {
+                field = fields.haveContactedDWP;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name haveContactedDWP', () => {
+                expect(field.name).to.equal('haveContactedDWP');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
         });
 
     });

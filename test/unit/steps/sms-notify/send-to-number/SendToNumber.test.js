@@ -49,19 +49,26 @@ describe('SendToNumber.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
+
+        before(() => {
+            fields = sendToNumber.form.fields
+        });
+
         it('should contain 2 fields', () => {
-            expect(sendToNumber.form.fields.length).to.equal(2);
+            expect(Object.keys(fields).length).to.equal(2);
+            expect(fields).to.have.all.keys('phoneNumber', 'useSameNumber');
         });
 
         it('should contain a textField reference called \'phoneNumber\'', () => {
-            const textField = sendToNumber.form.fields[0];
+            const textField = fields.phoneNumber;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('phoneNumber');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField called useSameNumber', () => {
-            const textField = sendToNumber.form.fields[1];
+            const textField = fields.useSameNumber;
             expect(textField.constructor.name).to.eq('FieldDesriptor');
             expect(textField.name).to.equal('useSameNumber');
             expect(textField.validations).to.not.be.empty;

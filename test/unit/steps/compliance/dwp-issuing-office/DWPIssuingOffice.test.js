@@ -33,15 +33,23 @@ describe('DWPIssuingOffice.js', () => {
         let fields;
         let field;
 
-        beforeEach(() => {
-            fields = dWPIssuingOffice.form.fields;
+        before(() => {
+            fields = dWPIssuingOffice.form.fields
+        });
+
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('pipNumber');
         });
 
         describe('pipNumber field', () => {
 
             beforeEach(() => {
+                field = fields.pipNumber;
+            });
 
-                field = fields[0];
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name pipNumber', () => {
@@ -53,6 +61,7 @@ describe('DWPIssuingOffice.js', () => {
             });
 
         });
+
     });
 
     describe('answers() and values()', () => {
