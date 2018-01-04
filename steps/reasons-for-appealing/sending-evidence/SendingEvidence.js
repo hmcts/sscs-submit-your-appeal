@@ -14,6 +14,10 @@ class SendingEvidence extends Question {
 
     get hasSignedUpForEmail() {
 
+        if(typeof this.fields.emailAddress.value === 'undefined') {
+            return false;
+        }
+
         return this.fields.emailAddress.value.length > 0;
     }
 

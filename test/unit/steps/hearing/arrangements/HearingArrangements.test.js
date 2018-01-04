@@ -34,7 +34,7 @@ describe('HearingArrangements.js', () => {
         let field;
 
         before(() => {
-            fields = hearingArrangements.form.fields
+            fields = hearingArrangements.form.fields;
         });
 
         it('should contain 2 fields', () => {

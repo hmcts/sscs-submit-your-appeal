@@ -42,7 +42,7 @@ describe('MRNDate.js', () => {
         let field;
 
         before(() => {
-            fields = mrnDate.form.fields
+            fields = mrnDate.form.fields;
         });
 
         it('should contain 3 fields', () => {

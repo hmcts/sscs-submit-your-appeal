@@ -39,7 +39,7 @@ describe('HaveContactedDWP.js', () => {
         let field;
 
         before(() => {
-            fields = haveContactedDWP.form.fields
+            fields = haveContactedDWP.form.fields;
         });
 
         it('should contain 1 field', () => {

@@ -40,7 +40,7 @@ describe('HaveAMRN.js', () => {
         let field;
 
         before(() => {
-            fields = haveAMRN.form.fields
+            fields = haveAMRN.form.fields;
         });
 
         it('should contain 1 field', () => {

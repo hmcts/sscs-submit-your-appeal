@@ -35,7 +35,7 @@ describe('NoMRN.js', () => {
         let field;
 
         before(() => {
-            fields = noMRN.form.fields
+            fields = noMRN.form.fields;
         });
 
         it('should contain 1 field', () => {

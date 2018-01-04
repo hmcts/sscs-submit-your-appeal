@@ -34,7 +34,7 @@ describe('DWPIssuingOffice.js', () => {
         let field;
 
         before(() => {
-            fields = dWPIssuingOffice.form.fields
+            fields = dWPIssuingOffice.form.fields;
         });
 
         it('should contain 1 field', () => {

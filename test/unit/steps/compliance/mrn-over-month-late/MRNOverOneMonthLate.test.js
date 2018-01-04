@@ -34,7 +34,7 @@ describe('MRNOverOneMonth.js', () => {
         let field;
 
         before(() => {
-            fields = mrnOverOneMonth.form.fields
+            fields = mrnOverOneMonth.form.fields;
         });
 
         it('should contain 1 field', () => {
