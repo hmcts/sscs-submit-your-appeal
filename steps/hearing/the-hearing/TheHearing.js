@@ -29,11 +29,14 @@ class TheHearing extends Question {
 
     answers() {
 
-        return answer(this, {
-            question: this.content.cya.attendHearing.question,
-            section: sections.theHearing,
-            answer: titleise(this.fields.attendHearing.value)
-        });
+        return [
+
+            answer(this, {
+                question: this.content.cya.attendHearing.question,
+                section: sections.theHearing,
+                answer: titleise(this.fields.attendHearing.value)
+            })
+        ];
     }
 
     values() {
