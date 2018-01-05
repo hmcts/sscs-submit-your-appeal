@@ -33,8 +33,9 @@ describe('NoRepresentativeDetails.js', () => {
 
     describe('answers()', () => {
 
-        it('should be empty', ()=> {
-            expect(noRepresentativeDetails.answers()).to.be.empty;
+        it('should be hidden', ()=> {
+            const answers = noRepresentativeDetails.answers();
+            expect(answers.hide).to.equal(true);
         });
 
     });

@@ -91,7 +91,7 @@ describe('TheHearing.js', () => {
             const answers = theHearing.answers();
             expect(answers.length).to.equal(1);
             expect(answers[0].question).to.equal(question);
-            expect(answers[0].section).to.equal('hearing');
+            expect(answers[0].section).to.equal(sections.theHearing);
             expect(answers[0].answer).to.equal(value);
         });
 
