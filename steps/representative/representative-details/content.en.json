@@ -6,14 +6,14 @@
     "firstName": {
       "title": "First name",
       "error": {
-        "required": "Enter their first name",
+        "required": "Enter your representative's first name",
         "invalid": "You have entered an invalid first name. Check it and enter it again"
       }
     },
     "lastName": {
       "title": "Last name(s)",
       "error": {
-        "required": "Enter their surname",
+        "required": "Enter your representative's surname",
         "invalid": "You have entered an invalid surname. Check it and enter it again"
       }
     },
@@ -26,7 +26,7 @@
     "addressLine1": {
       "title": "Address line 1",
       "error": {
-        "required": "Enter the first line of their address"
+        "required": "Enter the first line of your representative's address"
       }
     },
     "addressLine2": {
@@ -38,7 +38,7 @@
     "townCity": {
       "title": "Town/City",
       "error": {
-        "required": "Enter the town or city from their address"
+        "required": "Enter the town or city from your representative's address"
       }
     },
     "county": {
@@ -50,7 +50,7 @@
     "postCode": {
       "title": "Postcode",
       "error": {
-        "required": "Enter the postcode from their address"
+        "required": "Enter the postcode from your representative's address"
       }
     },
     "phoneNumber": {
