@@ -4,7 +4,7 @@
   "fields": {
     "reasonForAppealing": {
       "error": {
-        "required": "You need to give at least one reason why you are appealing"
+        "required": "You need to give at least one reason for appealing"
       }
     }
   },
