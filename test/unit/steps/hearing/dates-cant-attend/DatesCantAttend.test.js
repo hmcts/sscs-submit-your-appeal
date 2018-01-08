@@ -113,7 +113,7 @@ describe('DatesCantAttend.js', () => {
     describe('answers() and values()', () => {
 
         const question = 'A Question';
-        const value = '1/1/2022';
+        const value = '1-1-2022';
 
         beforeEach(() => {
 

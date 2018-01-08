@@ -42,7 +42,7 @@ class DatesCantAttend extends Question {
             answer(this, {
                 question: this.content.cya.dateYouCantAttend.question,
                 section: sections.theHearing,
-                answer: `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
+                answer: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
             })
         ];
     }
