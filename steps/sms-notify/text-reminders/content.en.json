@@ -6,7 +6,7 @@
       "yes": "Yes",
       "no": "No",
       "error": {
-        "required": "Select whether you want to sign up for text message reminders"
+        "required": "You need to say whether you want text message reminders. Select either yes or no"
       }
     }
   },
