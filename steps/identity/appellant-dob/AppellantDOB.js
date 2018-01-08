@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField, dateField } = require('@hmcts/one-per-page/forms');
+const { form,  date, convert, ref, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
@@ -16,38 +16,28 @@ class AppellantDOB extends Question {
         return paths.identity.enterAppellantDOB;
     }
 
-    get isAppointee() {
-
-        return this.fields.isAppointee.value === userAnswer.YES;
-    }
-
     get form() {
 
         const fields = this.content.fields;
 
-
-        return form(
-
-            dateField(
-                'date',
-                {
+        return form({
+            date: convert(
+                d => moment({day: d.day, month: d.month -1, year: d.year}),
+                date.required({
                     allRequired: fields.date.error.allRequired,
                     dayRequired: fields.date.error.dayRequired,
                     monthRequired: fields.date.error.monthRequired,
                     yearRequired: fields.date.error.yearRequired
-                }
-            ).mapValue(
-                ({ day, month, year }) => moment({day, month: month -1, year})
+                })
             ).check(
                 fields.date.error.invalid,
                 value => DateUtils.isDateValid(value)
             ).check(
                 fields.date.error.future,
                 value => DateUtils.isDateInPast(value)
-            ),
+            )
+        });
 
-            textField.ref(this.journey.steps.Appointee, 'isAppointee')
-        );
     }
 
     answers() {

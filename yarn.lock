@@ -39,7 +39,7 @@
     js-yaml "^3.8.4"
     superagent "^3.5.1"
 
-"@hmcts/one-per-page@^2.0.0-3":
+"@hmcts/one-per-page@^2.0.0-5":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-2.0.1.tgz#cc47e9b3ff06d2062a5b9894189f2cbe30d00e82"
   dependencies:

@@ -7,11 +7,7 @@
 {% endblock %}
 
 {% set title %}
-    {% if isAppointee %}
-        {{ content.titleAppointee | safe }}
-    {% else %}
-        {{ content.titleNoAppointee | safe }}
-    {% endif %}
+        {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}

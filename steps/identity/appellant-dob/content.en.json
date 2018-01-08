@@ -1,6 +1,5 @@
 {
-  "titleNoAppointee": "Enter your date of birth",
-  "titleAppointee": "Enter the appellants date of birth",
+  "title": "Enter your date of birth",
   "fields": {
     "date": {
       "hint": "For example, 7 5 1981",
