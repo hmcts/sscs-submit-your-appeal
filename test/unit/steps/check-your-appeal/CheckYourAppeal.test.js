@@ -10,7 +10,7 @@ describe('CheckYourAppeal.js', () => {
     let CheckYourAppeal;
     let request = {};
     let cya;
-    let field;
+    let fields;
 
 
     before(() => {
@@ -41,7 +41,7 @@ describe('CheckYourAppeal.js', () => {
             }
         };
 
-        field = cya.form.fields[0];
+        fields = cya.form.fields;
     });
 
     describe('get path()', () => {
@@ -81,7 +81,22 @@ describe('CheckYourAppeal.js', () => {
 
     describe('get form()', () => {
 
+        let field;
+
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('signer');
+        });
+
         describe('signer field', () => {
+
+            beforeEach(() => {
+                field = fields.signer;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
 
             it('contains a field with the name signer', () => {
                 expect(field.name).to.equal('signer');

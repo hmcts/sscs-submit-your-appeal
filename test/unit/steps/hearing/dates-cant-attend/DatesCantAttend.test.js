@@ -1,37 +1,35 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
-const DateUtils = require('utils/DateUtils');
-const MRNDate = require('steps/compliance/mrn-date/MRNDate');
+const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
 const sections = require('steps/check-your-appeal/sections');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 
-describe('MRNDate.js', () => {
+describe('DatesCantAttend.js', () => {
 
-    let mrnDate;
+    let datesCantAttend;
 
     beforeEach(() => {
-
-        mrnDate = new MRNDate({
+        datesCantAttend = new DatesCantAttend({
             journey: {
                 steps: {
-                    Appointee: paths.identity.areYouAnAppointee,
-                    CheckMRN:  paths.compliance.checkMRNDate
+                    CheckYourAppeal: paths.checkYourAppeal,
+                    DatesCantAttend: paths.hearing.datesCantAttend
                 }
             }
         });
 
-        mrnDate.fields = {
+        datesCantAttend.fields = {
             day: {},
             month: {},
             year: {}
-        };
+        }
     });
 
     describe('get path()', () => {
 
-        it('returns path /mrn-date', () => {
-            expect(MRNDate.path).to.equal(paths.compliance.mrnDate);
+        it('returns path /dates-cant-attend', () => {
+            expect(DatesCantAttend.path).to.equal(paths.hearing.datesCantAttend);
         });
 
     });
@@ -41,8 +39,8 @@ describe('MRNDate.js', () => {
         let fields;
         let field;
 
-        before(() => {
-            fields = mrnDate.form.fields;
+        beforeEach(() => {
+            fields = datesCantAttend.form.fields;
         });
 
         it('should contain 3 fields', () => {
@@ -60,7 +58,7 @@ describe('MRNDate.js', () => {
                 expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
-            it('contains the field name day', () => {
+            it('contains the field day title', () => {
                 expect(field.name).to.equal('day');
             });
 
@@ -115,66 +113,44 @@ describe('MRNDate.js', () => {
     describe('answers() and values()', () => {
 
         const question = 'A Question';
+        const value = '1-1-2022';
 
         beforeEach(() => {
 
-            mrnDate.fields = {
-                day: {
-                    value: '13'
-                },
-                month: {
-                    value: '12'
-                },
-                year: {
-                    value: '2017'
-                }
-            };
-
-            mrnDate.content = {
+            datesCantAttend.content = {
                 cya: {
-                    mrnDate: {
+                    dateYouCantAttend: {
                         question
                     }
                 }
             };
 
+            datesCantAttend.fields.day.value = '1';
+            datesCantAttend.fields.month.value = '1';
+            datesCantAttend.fields.year.value = '2022';
+
         });
 
         it('should contain a single answer', () => {
-            const answers = mrnDate.answers();
+            const answers = datesCantAttend.answers();
             expect(answers.length).to.equal(1);
             expect(answers[0].question).to.equal(question);
-            expect(answers[0].section).to.equal(sections.mrnDate);
-            expect(answers[0].answer).to.equal('13/12/2017');
+            expect(answers[0].section).to.equal(sections.theHearing);
+            expect(answers[0].answer).to.equal(value);
         });
 
         it('should contain a value object', () => {
-            const values = mrnDate.values();
-            expect(values).to.eql( { mrn: { date: '13-12-2017' } });
+            const values = datesCantAttend.values();
+            expect(values).to.eql( { hearing: { datesCantAttend: [value] } });
         });
+
     });
 
     describe('next()', () => {
 
-        const setMRNDate = date => {
-            mrnDate.fields.day.value = date.date();
-            mrnDate.fields.month.value = date.month() + 1;
-            mrnDate.fields.year.value = date.year();
-        };
+        it('returns the next step path /check-your-appeal', () => {
+            expect(datesCantAttend.next().step).to.eq(paths.checkYourAppeal);
 
-        it('returns the next step path /are-you-an-appointee if date less than a month', () => {
-            setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-        });
-
-        it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
-            setMRNDate(DateUtils.oneMonthAgo());
-            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-        });
-
-        it('returns the next step path /check-mrn-date if date more than a month', () => {
-            setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-            expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
         });
 
     });

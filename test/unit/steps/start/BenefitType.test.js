@@ -20,6 +20,10 @@ describe('BenefitType.js', () => {
             }
         });
 
+        benefitType.fields = {
+            benefitType: {}
+        };
+
     });
 
     describe('get path()', () => {
@@ -32,18 +36,36 @@ describe('BenefitType.js', () => {
 
     describe('get form()', () => {
 
+        let fields;
         let field;
 
-        beforeEach(() => {
-            field = benefitType.form.fields[0];
+        before(() => {
+            fields = benefitType.form.fields
         });
 
-        it('contains the field name benefitType', () => {
-            expect(field.name).to.equal('benefitType');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('benefitType');
         });
 
-        it('contains validation', () => {
-            expect(field.validations).to.not.be.empty;
+        describe('benefitType filed', () => {
+
+            beforeEach(() => {
+                field = fields.benefitType;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name benefitType', () => {
+                expect(field.name).to.equal('benefitType');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
         });
 
     });

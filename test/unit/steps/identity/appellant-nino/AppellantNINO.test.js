@@ -40,10 +40,19 @@ describe('AppellantNINO.js', () => {
             fields = appellantNINO.form.fields;
         });
 
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('nino');
+        });
+
         describe('nino field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.nino;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains a field with the name nino', () => {

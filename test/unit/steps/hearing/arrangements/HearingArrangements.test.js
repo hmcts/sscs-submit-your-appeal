@@ -33,14 +33,23 @@ describe('HearingArrangements.js', () => {
         let fields;
         let field;
 
-        beforeEach(() => {
+        before(() => {
             fields = hearingArrangements.form.fields;
+        });
+
+        it('should contain 2 fields', () => {
+            expect(Object.keys(fields).length).to.equal(2);
+            expect(fields).to.have.all.keys('selection', 'anythingElse');
         });
 
         describe('selection field', () => {
 
             beforeEach(() => {
-                field = fields[0];
+                field = fields.selection;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name selection', () => {
@@ -56,7 +65,11 @@ describe('HearingArrangements.js', () => {
         describe('anythingElse field', () => {
 
             beforeEach(() => {
-                field = fields[1];
+                field = fields.anythingElse;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
             });
 
             it('contains the field name anythingElse', () => {

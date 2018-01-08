@@ -42,32 +42,33 @@ describe('CheckMRN.js', () => {
     describe('get form()', () => {
 
         it('should contain 4 fields', () => {
-            expect(checkMRN.form.fields.length).to.equal(4);
+            expect(Object.keys(checkMRN.form.fields).length).to.equal(4);
+            expect(checkMRN.form.fields).to.have.all.keys('day', 'month', 'year', 'checkedMRN');
         });
 
         it('should contain a textField reference called \'day\'', () => {
-            const textField = checkMRN.form.fields[0];
+            const textField = checkMRN.form.fields.day;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('day');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField reference called \'month\'', () => {
-            const textField = checkMRN.form.fields[1];
+            const textField = checkMRN.form.fields.month;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('month');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField reference called \'year\'', () => {
-            const textField = checkMRN.form.fields[2];
+            const textField = checkMRN.form.fields.year;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('year');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField called checkedMRN', () => {
-            const textField = checkMRN.form.fields[3];
+            const textField = checkMRN.form.fields.checkedMRN;
             expect(textField.constructor.name).to.eq('FieldDesriptor');
             expect(textField.name).to.equal('checkedMRN');
             expect(textField.validations).to.not.be.empty;

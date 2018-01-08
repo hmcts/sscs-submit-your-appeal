@@ -67,11 +67,11 @@ describe('AppointeeFormDownload.js', () => {
     describe('get form()', () => {
 
         it('should contain 1 fields', () => {
-            expect(appointeeFormDownload.form.fields.length).to.equal(1);
+            expect(Object.keys(appointeeFormDownload.form.fields).length).to.equal(1);
         });
 
         it('should contain a textField reference called \'benefitType\'', () => {
-            const textField = appointeeFormDownload.form.fields[0];
+            const textField = appointeeFormDownload.form.fields.benefitType;
             expect(textField.constructor.name).to.eq('Reference');
             expect(textField.name).to.equal('benefitType');
             expect(textField.validations).to.be.empty;

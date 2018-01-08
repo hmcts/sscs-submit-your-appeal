@@ -31,11 +31,38 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     describe('get form()', () => {
 
-        it('contains the field name reasonForBeingLate', () => {
-            const field = mrnOverThirteenMonthsLate.form.fields[0];
-            expect(field.name).to.equal('reasonForBeingLate');
+        let fields;
+        let field;
+
+        before(() => {
+            fields = mrnOverThirteenMonthsLate.form.fields
         });
 
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('reasonForBeingLate');
+        });
+
+        describe('reasonForBeingLate field', () => {
+
+            beforeEach(() => {
+                field = fields.reasonForBeingLate;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name reasonForBeingLate', () => {
+                expect(field.name).to.equal('reasonForBeingLate');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
+        });
+        
     });
 
     describe('answers() and values()', () => {
