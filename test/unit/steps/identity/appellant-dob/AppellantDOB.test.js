@@ -1,8 +1,10 @@
 'use strict';
 
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
-const {expect} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
+const sections = require('steps/check-your-appeal/sections');
+const moment = require('moment');
 
 describe('AppellantDOB.js', () => {
 
@@ -58,6 +60,46 @@ describe('AppellantDOB.js', () => {
 
         });
 
+    });
+
+    describe('answers() and values()', () => {
+
+        const question = 'A Question';
+
+        beforeEach(() => {
+
+            appellantDOBClass.fields = {
+                date: {
+                    value: moment('07-08-1980', 'DD-MM-YYYY')
+                }
+            };
+
+            appellantDOBClass.content = {
+                cya: {
+                    dob: {
+                        question
+                    }
+                }
+            };
+
+        });
+
+        it('should contain a single answer', () => {
+            const answers = appellantDOBClass.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.appellantDetails);
+            expect(answers[0].answer).to.equal('07.08.1980');
+        });
+
+        it('should contain a value object', () => {
+            const values = appellantDOBClass.values();
+            expect(values).to.eql({
+                appellant: {
+                    dob: '07-08-1980'
+                }
+            });
+        });
     });
 
     describe('next()', () => {

@@ -1,10 +1,9 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form,  date, convert, ref, text } = require('@hmcts/one-per-page/forms');
+const { form,  date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
-const userAnswer = require('utils/answer');
 const paths = require('paths');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
