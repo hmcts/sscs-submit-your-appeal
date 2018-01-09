@@ -26,7 +26,7 @@ describe('AppointeeFormDownload.js', () => {
     describe('get path()', () => {
 
         it('returns path /appointee-form-download', () => {
-            expect(AppointeeFormDownload.path).to.equal(paths.identity.downloadAppointeeForm);
+            expect(AppointeeFormDownload.path).to.equal(paths.identity.appointeeFormDownload);
         });
 
     });
