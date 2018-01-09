@@ -7,7 +7,7 @@
       "yes": "Yes, I entered the date from the top right of my MRN",
       "no": "No, I entered a different date",
       "error": {
-        "required": "Question not answered"
+        "required": "You have not answered the question. Select either yes or no"
       }
     }
   },
