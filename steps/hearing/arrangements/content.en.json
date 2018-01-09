@@ -1,7 +1,9 @@
 {
   "title": "Support at the hearing",
   "clickAllArrangements": "Click all the support you need at the hearing.",
-  "cannotBringInterpreter": "You can’t bring your own interpreter to the hearing.",
+  "you": "You",
+  "cant": "can’t",
+  "bringYourOwnInterpreter": "bring your own interpreter to the hearing.",
   "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
   "fields": {
     "selection": {

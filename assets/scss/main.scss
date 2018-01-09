@@ -10,6 +10,15 @@ label.form-label[for="signer"] {
   font-weight: bold;
 }
 
+#reasonForAppealing,
+#otherReasonForAppealing {
+  width: 100%;
+}
+
+.autocomplete__wrapper {
+  max-width: 365px;
+}
+
 .after-form {
   padding-top: 1.5em;
 }

@@ -25,6 +25,7 @@
     },
     "addressLine1": {
       "title": "Address line 1",
+      "hint": "If they work for a national organisation, enter the address of your local branch",
       "error": {
         "required": "Enter the first line of your representative's address"
       }

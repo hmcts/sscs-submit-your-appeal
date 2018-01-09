@@ -1,6 +1,6 @@
 {
   "title": "Do you want to receive text message reminders?",
-  "intro": "You’ll only get them when you need to do something important, like send evidence or go to your hearing.",
+  "subtitle": "You’ll only get them when you need to do something important, like send evidence or go to the hearing.",
   "fields": {
     "doYouWantTextMsgReminders": {
       "yes": "Yes",
