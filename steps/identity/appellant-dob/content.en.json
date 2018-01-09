@@ -5,19 +5,19 @@
     "day": {
       "title": "Day",
       "error": {
-        "required": "Enter a Day"
+        "required": "Enter the day from your date of birth"
       }
     },
     "month": {
       "title": "Month",
       "error": {
-        "required": "Enter a Month"
+        "required": "Enter the month from your date of birth"
       }
     },
     "year": {
       "title": "Year",
       "error": {
-        "required": "Enter a Year"
+        "required": "Enter the year from your date of birth"
       }
     }
   },
