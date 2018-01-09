@@ -4,7 +4,7 @@
   "fields": {
     "nino": {
       "error": {
-        "required": "Enter a National Insurance Number"
+        "required": "Enter your National Insurance number"
       }
     }
   },
