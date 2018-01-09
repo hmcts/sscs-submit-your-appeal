@@ -14,10 +14,7 @@ After((I) => {
 
 Scenario('When I fill in the fields and click Continue, I am taken to the Appellant NINO page', (I) => {
 
-    I.fillField('day', '21');
-    I.fillField('month', '03');
-    I.fillField('year', '1981');
-    I.click('Continue');
+    I.enterAppellantDOBAndContinue('21','03','1981');
     I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
 
 });
@@ -58,9 +55,7 @@ Scenario('When I click Continue when only entering the year field I see errors',
 
 Scenario('When I enter an invalid date I see errors', (I) => {
 
-    I.fillField('day', '30');
-    I.fillField('month', '02');
-    I.fillField('year', '1981');
+    I.enterAppellantDOBAndContinue('30','02','1981');
     I.click('Continue');
     I.see(appellantDOB.date.error.invalid);
 
@@ -68,9 +63,7 @@ Scenario('When I enter an invalid date I see errors', (I) => {
 
 Scenario('When I enter a date in the future I see errors', (I) => {
 
-    I.fillField('day', '25');
-    I.fillField('month', '02');
-    I.fillField('year', '3400');
+    I.enterAppellantDOBAndContinue('25','02','3400');
     I.click('Continue');
     I.see(appellantDOB.date.error.future);
 

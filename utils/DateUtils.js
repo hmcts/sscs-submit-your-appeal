@@ -39,13 +39,12 @@ class DateUtils {
     }
 
     static isDateValid(date) {
-        return this.createMoment(date.day, date.month, date.year).isValid();
+        return date.isValid();
     }
 
     static isDateInPast(date) {
-        const today = moment();
-        const mDate = this.createMoment(date.day, date.month, date.year);
-        return today.diff(mDate, 'days') > 0;
+        const today = moment().startOf('day');
+        return today.isAfter(date);
     }
 
 }

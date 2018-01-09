@@ -5,7 +5,6 @@ const { form,  date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
 
 class AppellantDOB extends Question {
@@ -21,7 +20,7 @@ class AppellantDOB extends Question {
 
         return form({
             date: convert(
-                d => moment({day: d.day, month: d.month -1, year: d.year}),
+                d => DateUtils.createMoment(d.day, d.month, d.year),
                 date.required({
                     allRequired: fields.date.error.allRequired,
                     dayRequired: fields.date.error.dayRequired,
