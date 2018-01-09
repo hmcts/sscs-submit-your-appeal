@@ -6,7 +6,7 @@
       "yes": "I need to tell you about dates when I can’t attend a hearing",
       "no": "I will come to a hearing whenever you schedule it",
       "error": {
-        "required": "Please select an option"
+        "required": "Enter a date when you can't attend a hearing"
       }
     }
   },
