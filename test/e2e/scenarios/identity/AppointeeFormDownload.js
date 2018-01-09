@@ -1,5 +1,3 @@
-const content = require('steps/identity/appointee-form-download/content.en.json');
-const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 Feature('Appointee form download page');

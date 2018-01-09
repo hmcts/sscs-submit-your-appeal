@@ -10,7 +10,7 @@ class AppointeeFormDownload extends Question {
 
     static get path() {
 
-        return paths.identity.downloadAppointeeForm;
+        return paths.identity.appointeeFormDownload;
     }
 
     get benefitType() {

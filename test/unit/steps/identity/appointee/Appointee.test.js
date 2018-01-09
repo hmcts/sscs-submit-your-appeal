@@ -16,7 +16,7 @@ describe('Appointee.js', () => {
             journey: {
                 steps: {
                     AppellantName: paths.identity.enterAppellantName,
-                    AppointeeFormDownload: paths.identity.downloadAppointeeForm
+                    AppointeeFormDownload: paths.identity.appointeeFormDownload
                 }
             }
         });
@@ -122,7 +122,7 @@ describe('Appointee.js', () => {
 
         it('returns the next step path /appointee-form-download', () => {
             const nextStep = appointee.next().branches[0].redirector.nextStep;
-            expect(nextStep).to.eq(paths.identity.downloadAppointeeForm);
+            expect(nextStep).to.eq(paths.identity.appointeeFormDownload);
         });
 
         it('returns the next step path /enter-appellant-name', () => {

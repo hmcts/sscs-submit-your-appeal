@@ -54,7 +54,7 @@ module.exports = {
         enterAppellantDOB:              '/enter-appellant-dob',
         enterAppellantNINO:             '/enter-appellant-nino',
         enterAppellantContactDetails:   '/enter-appellant-contact-details',
-        downloadAppointeeForm:          '/appointee-form-download'
+        appointeeFormDownload:          '/appointee-form-download'
     },
 
     smsNotify: {

@@ -29,7 +29,7 @@ benefitTypesArr.forEach((benefitType) => {
         Scenario(`When I enter ${benefitType} I am taken to the download form page`, (I) => {
 
             I.enterBenefitTypeAndContinue(benefitType);
-            I.seeInCurrentUrl(paths.identity.downloadAppointeeForm);
+            I.seeInCurrentUrl(paths.identity.appointeeFormDownload);
             I.see(content.title);
             I.see(content.button.text);
 
