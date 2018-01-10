@@ -3,10 +3,10 @@
   "description": "You’re an appointee if you’ve been appointed by DWP to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
   "fields": {
     "isAppointee": {
-      "yes": "Yes, I have been appointed by DWP to act on behalf of someone else",
-      "no": "No, I’m appealing for myself",
+      "yes": "I have been appointed by DWP to act on behalf of someone else",
+      "no": "I’m appealing for myself",
       "error": {
-        "required": "You need to answer the question. Select either yes or no"
+        "required": "You need to answer the question before continuing"
       }
     }
   },
