@@ -4,7 +4,7 @@
   "fields": {
     "isAppointee": {
       "yes": "I have been appointed by DWP to act on behalf of someone else",
-      "no": "I’m appealing for myself",
+      "no": "I'm appealing for myself",
       "error": {
         "required": "You need to answer the question before continuing"
       }
