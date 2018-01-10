@@ -1,7 +1,6 @@
 'use strict';
 
 const { expect } = require('test/util/chai');
-const { Reference } = require('@hmcts/one-per-page/forms');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
@@ -24,9 +23,11 @@ describe('CheckMRN.js', () => {
         });
 
         checkMRN.fields = {
-            day: {},
-            month: {},
-            year: {},
+            mrnDate: {
+                day: {},
+                month: {},
+                year: {}
+            },
             checkedMRN: {}
         };
     });
@@ -41,36 +42,20 @@ describe('CheckMRN.js', () => {
 
     describe('get form()', () => {
 
-        it('should contain 4 fields', () => {
-            expect(Object.keys(checkMRN.form.fields).length).to.equal(4);
-            expect(checkMRN.form.fields).to.have.all.keys('day', 'month', 'year', 'checkedMRN');
+        it('should contain 2 fields', () => {
+            expect(Object.keys(checkMRN.form.fields).length).to.equal(2);
+            expect(checkMRN.form.fields).to.have.all.keys('mrnDate', 'checkedMRN');
         });
 
-        it('should contain a textField reference called \'day\'', () => {
-            const textField = checkMRN.form.fields.day;
-            expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('day');
-            expect(textField.validations).to.be.empty;
-        });
-
-        it('should contain a textField reference called \'month\'', () => {
-            const textField = checkMRN.form.fields.month;
-            expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('month');
-            expect(textField.validations).to.be.empty;
-        });
-
-        it('should contain a textField reference called \'year\'', () => {
-            const textField = checkMRN.form.fields.year;
-            expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('year');
+        it('should contain a textField reference called \'mrnDate\'', () => {
+            const textField = checkMRN.form.fields.mrnDate;
+            expect(textField.constructor.name).to.eq('FieldDescriptor');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField called checkedMRN', () => {
             const textField = checkMRN.form.fields.checkedMRN;
-            expect(textField.constructor.name).to.eq('FieldDesriptor');
-            expect(textField.name).to.equal('checkedMRN');
+            expect(textField.constructor.name).to.eq('FieldDescriptor');
             expect(textField.validations).to.not.be.empty;
         });
 
@@ -95,9 +80,9 @@ describe('CheckMRN.js', () => {
     describe('next()', () => {
 
         const setMRNDate = date => {
-            checkMRN.fields.day.value = date.date();
-            checkMRN.fields.month.value = date.month() + 1;
-            checkMRN.fields.year.value = date.year();
+            checkMRN.fields.mrnDate.day.value = date.date();
+            checkMRN.fields.mrnDate.month.value = date.month() + 1;
+            checkMRN.fields.mrnDate.year.value = date.year();
         };
 
         describe('checkMRN field value equals yes', () => {

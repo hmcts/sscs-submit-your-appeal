@@ -45,8 +45,6 @@ class CheckMRN extends Question {
             this.fields.mrnDate.year.value
         );
 
-        console.log(mrnDate)
-
         const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
         const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 

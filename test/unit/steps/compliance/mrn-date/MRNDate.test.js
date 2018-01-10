@@ -5,6 +5,7 @@ const DateUtils = require('utils/DateUtils');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const moment = require('moment');
 
 describe('MRNDate.js', () => {
 
@@ -22,9 +23,7 @@ describe('MRNDate.js', () => {
         });
 
         mrnDate.fields = {
-            day: {},
-            month: {},
-            year: {}
+            mrnDate: {}
         };
     });
 
@@ -45,63 +44,19 @@ describe('MRNDate.js', () => {
             fields = mrnDate.form.fields;
         });
 
-        it('should contain 3 fields', () => {
-            expect(Object.keys(fields).length).to.equal(3);
-            expect(fields).to.have.all.keys('day', 'month', 'year');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('mrnDate');
         });
 
-        describe('day field', () => {
+        describe('mrnDate field', () => {
 
             beforeEach(() => {
-                field = fields.day;
+                field = fields.mrnDate;
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name day', () => {
-                expect(field.name).to.equal('day');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('month field', () => {
-
-            beforeEach(() => {
-                field = fields.month;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name month', () => {
-                expect(field.name).to.equal('month');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('year field', () => {
-
-            beforeEach(() => {
-                field = fields.year;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name year', () => {
-                expect(field.name).to.equal('year');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -119,14 +74,8 @@ describe('MRNDate.js', () => {
         beforeEach(() => {
 
             mrnDate.fields = {
-                day: {
-                    value: '13'
-                },
-                month: {
-                    value: '12'
-                },
-                year: {
-                    value: '2017'
+                mrnDate: {
+                    value: moment('13-12-2017', 'DD-MM-YYYY')
                 }
             };
 
@@ -145,7 +94,7 @@ describe('MRNDate.js', () => {
             expect(answers.length).to.equal(1);
             expect(answers[0].question).to.equal(question);
             expect(answers[0].section).to.equal(sections.mrnDate);
-            expect(answers[0].answer).to.equal('13/12/2017');
+            expect(answers[0].answer).to.equal('13 December 2017');
         });
 
         it('should contain a value object', () => {
@@ -157,9 +106,7 @@ describe('MRNDate.js', () => {
     describe('next()', () => {
 
         const setMRNDate = date => {
-            mrnDate.fields.day.value = date.date();
-            mrnDate.fields.month.value = date.month() + 1;
-            mrnDate.fields.year.value = date.year();
+            mrnDate.fields.mrnDate.value = date
         };
 
         it('returns the next step path /are-you-an-appointee if date less than a month', () => {
