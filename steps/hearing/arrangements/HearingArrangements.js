@@ -30,7 +30,7 @@ class HearingArrangements extends Question {
 
             arrayField('selection').joi(
                 this.content.fields.selection.error.required,
-                Joi.array().items(validAnswers).min(1)
+                Joi.array().items(validAnswers)
             ),
 
             textField('anythingElse').joi(
