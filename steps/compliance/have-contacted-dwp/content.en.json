@@ -1,12 +1,12 @@
 {
   "title": "Have you contacted DWP and asked them to reconsider their decision?",
-  "subtitle": "You can still appeal if you have contacted DWP about their decision about the PIP benefit but you don’t have the MRN letter. For example, because you lost it.",
+  "subtitle": "You can still appeal if you have contacted DWP about their benefit decision but you don’t have the MRN letter, for example, because you lost it.",
   "fields": {
     "haveContactedDWP": {
       "yes": "Yes, I’ve contacted DWP about the decision",
       "no": "No, I haven’t contacted DWP about the decision",
       "error": {
-        "required": "You need to say whether you contacted DWP about their decision. Selecet either yes or no"
+        "required": "You need to say whether you contacted DWP about their decision. Selecet either yes or no."
       }
     }
   }
