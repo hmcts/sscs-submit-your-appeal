@@ -1,6 +1,6 @@
 {
   "title": "Enter your contact details",
-  "subtitle": "These will be used to send you information about your appeal",
+  "subtitle": "These will be used to send you information about your appeal.",
   "fields": {
     "addressLine1": {
       "title": "Address line 1",
@@ -29,7 +29,7 @@
     "postCode": {
       "title": "Postcode",
       "error": {
-        "required": "You have entered an invalid postcode. Check it and enter it again"
+        "required": "Enter the postcode from your address"
       }
     },
     "phoneNumber": {
