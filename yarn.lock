@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@hmcts/look-and-feel@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.7.0.tgz#99e76ead0573f3488a3bb3cad26baed156f79be0"
+"@hmcts/look-and-feel@^1.8.0-1":
+  version "1.8.0-1"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.8.0-1.tgz#6ec127f86c0fc6d80b6ab35e805baa8c25ef83fc"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"

@@ -18,7 +18,7 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('Appellant doesn\'t define an optional phone number and doesn\'t sign up for text msg reminders.', (I) => {
+Scenario('Appellant does not define an optional phone number and does not sign up for text msg reminders.', (I) => {
 
     IenterDetailsFromStartToNINO(I);
     I.enterAppellantContactDetailsAndContinue();
@@ -29,7 +29,7 @@ Scenario('Appellant doesn\'t define an optional phone number and doesn\'t sign u
 
 });
 
-Scenario('Appellant doesn\'t define an optional phone number, however, enters mobile for text msg reminders.', (I) => {
+Scenario('Appellant does not define an optional phone number, however, enters mobile for text msg reminders.', (I) => {
 
     IenterDetailsFromStartToNINO(I);
     I.enterAppellantContactDetailsAndContinue();
@@ -76,7 +76,7 @@ Scenario('Appellant defines an optional phone number, this is overridden by anot
 
 });
 
-Scenario('Appellant defines an optional phone number, but doesn\'t sign up for text msg reminders.', (I) => {
+Scenario('Appellant defines an optional phone number, but does not sign up for text msg reminders.', (I) => {
 
     IenterDetailsFromStartToNINO(I);
 
@@ -163,7 +163,9 @@ const ISeeValueInSection = (I, value, label, path) => {
   </dt>
   <dd class="cya-answer">
     
-      ${value}
+      
+        ${value}
+      
     
   </dd>
   <dd class="cya-change">
