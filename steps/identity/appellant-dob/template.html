@@ -1,18 +1,13 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import date %}
+{% from "look-and-feel/components/fields.njk" import formSection, date %}
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
 {% set title %}
-    {% if isAppointee %}
-        {{ content.titleAppointee | safe }}
-    {% else %}
-        {{ content.titleNoAppointee | safe }}
-    {% endif %}
+        {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
@@ -20,13 +15,16 @@
     {% call formSection() %}
 
         {{ date(
-            dayField = fields.day,
-            monthField = fields.month,
-            yearField = fields.year,
-            hint = 'For example, 7 5 1981',
-            id = 'appellantDOB',
-            legend = ''
-        )}}
+            fields.date,
+            content.titleNoAppointee,
+            hideQuestion = true,
+            hint = content.fields.date.hint,
+            labels = {
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
+            }
+        ) }}
 
     {% endcall %}
 

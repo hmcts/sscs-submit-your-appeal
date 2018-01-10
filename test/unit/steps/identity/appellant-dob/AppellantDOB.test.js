@@ -1,8 +1,10 @@
 'use strict';
 
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
-const {expect} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
+const sections = require('steps/check-your-appeal/sections');
+const moment = require('moment');
 
 describe('AppellantDOB.js', () => {
 
@@ -37,23 +39,19 @@ describe('AppellantDOB.js', () => {
             fields = appellantDOBClass.form.fields;
         });
 
-        it('should contain 4 fields', () => {
-            expect(Object.keys(fields).length).to.equal(4);
-            expect(fields).to.have.all.keys('day', 'month', 'year', 'appointee');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('date');
         });
 
-        describe('day field', () => {
+        describe('date field', () => {
 
             beforeEach(() => {
-                field = fields.day;
+                field = fields.date;
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field day title', () => {
-                expect(field.name).to.equal('day');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -62,62 +60,46 @@ describe('AppellantDOB.js', () => {
 
         });
 
-        describe('month field', () => {
+    });
 
-            beforeEach(() => {
-                field = fields.month;
-            });
+    describe('answers() and values()', () => {
 
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
+        const question = 'A Question';
 
-            it('contains the field name month', () => {
-                expect(field.name).to.equal('month');
-            });
+        beforeEach(() => {
 
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
+            appellantDOBClass.fields = {
+                date: {
+                    value: moment('07-08-1980', 'DD-MM-YYYY')
+                }
+            };
 
-        });
-
-        describe('year field', () => {
-
-            beforeEach(() => {
-                field = fields.year;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name year', () => {
-                expect(field.name).to.equal('year');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
+            appellantDOBClass.content = {
+                cya: {
+                    dob: {
+                        question
+                    }
+                }
+            };
 
         });
 
-        describe('appointee field', () => {
-
-            beforeEach(() => {
-                field = fields.appointee;
-            });
-
-            it('has constructor name Reference', () => {
-                expect(field.constructor.name).to.eq('Reference');
-            });
-
-            it('contains the field appointee', () => {
-                expect(field.name).to.equal('appointee');
-            });
-
+        it('should contain a single answer', () => {
+            const answers = appellantDOBClass.answers();
+            expect(answers.length).to.equal(1);
+            expect(answers[0].question).to.equal(question);
+            expect(answers[0].section).to.equal(sections.appellantDetails);
+            expect(answers[0].answer).to.equal('07 August 1980');
         });
 
+        it('should contain a value object', () => {
+            const values = appellantDOBClass.values();
+            expect(values).to.eql({
+                appellant: {
+                    dob: '07-08-1980'
+                }
+            });
+        });
     });
 
     describe('next()', () => {

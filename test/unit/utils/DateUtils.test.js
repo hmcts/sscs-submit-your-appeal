@@ -1,5 +1,6 @@
 const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
+const moment = require('moment');
 
 describe('DateUtils.js', () => {
 
@@ -34,5 +35,161 @@ describe('DateUtils.js', () => {
         });
 
     });
+
+    describe('isDateValid', () => {
+
+        let date;
+        let day;
+        let month;
+        let year;
+
+        before(() => {
+           day = '29';
+           month = '2';
+           year = '2000';
+        });
+
+        it('should return true when date is a leap year', () => {
+            date = DateUtils.createMoment(day, month, year);
+            expect(DateUtils.isDateValid(date)).to.be.true;
+        });
+
+        describe('day', () => {
+
+            it('should return true when day is a single digit', () => {
+                day = '1';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.true;
+            });
+
+            it('should return true when day is double digits', () => {
+                day = '12';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.true;
+            });
+
+            it('should return false when invalid day is added', () => {
+                day = '35';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+            it('should return false when day is a non-numeric character', () => {
+                day = 'a';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+        });
+
+        describe('month', () => {
+
+            before(() => {
+                day = '15';
+                year = '2000';
+            });
+
+            it('should return true when month is a single digit', () => {
+                month = '1';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.true;
+            });
+
+            it('should return true when month is double digits', () => {
+                month = '10';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.true;
+            });
+
+            it('should return false when invalid month is added', () => {
+                month = '35';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+            it('should return false when month is a non-numeric character', () => {
+                month = 'a';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+        });
+
+        describe('year', () => {
+
+            before(() => {
+                day = '15';
+                month = '10';
+            });
+
+            it('should return false when year is a single digit', () => {
+                year = '1';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+            it('should return false when month is double digits', () => {
+                year = '12';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+            it('should return false when month is triple digits', () => {
+                year = '121';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+            it('should return true when month is quadruple digits', () => {
+                year = '1999';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.true;
+            });
+
+            it('should return false when year is a non-numeric character', () => {
+                year = 'a';
+                date = DateUtils.createMoment(day, month, year);
+                expect(DateUtils.isDateValid(date)).to.be.false;
+            });
+
+        });
+
+    });
+
+    describe('isDateInPast', () => {
+
+        let date;
+        let day;
+        let month;
+        let year;
+
+        before(() => {
+            day = '29';
+            month = '3';
+        });
+
+        it('should return false if date is in the future', () => {
+            year = '3700';
+            date = DateUtils.createMoment(day, month, year);
+            expect(DateUtils.isDateInPast(date)).to.be.false;
+        });
+
+        it('should return true if date is in the past', () => {
+            year = '1999';
+            date = DateUtils.createMoment(day, month, year);
+            expect(DateUtils.isDateInPast(date)).to.be.true;
+        });
+
+        it('should return false if date is in the present', () => {
+            const today = moment();
+            day =  today.date();
+            month =  today.month() + 1;
+            year =  today.year();
+            date = DateUtils.createMoment(day, month, year);
+            expect(DateUtils.isDateInPast(date)).to.be.false;
+        });
+
+    });
+
 
 });

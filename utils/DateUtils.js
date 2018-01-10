@@ -11,7 +11,7 @@ class DateUtils {
     }
 
     static createMoment(day, month, year) {
-        return moment(`${day}-${month}-${year}`, 'DD-MM-YYYY');
+        return moment(`${day}-${month}-${year}`, 'D-M-YYYY', true);
     }
 
     static oneDayShortOfAMonthAgo() {
@@ -36,6 +36,15 @@ class DateUtils {
 
     static thirteenMonthsAndOneDayAgo() {
         return moment().subtract(13, 'month').subtract(1, 'day');
+    }
+
+    static isDateValid(date) {
+        return date.isValid();
+    }
+
+    static isDateInPast(date) {
+        const today = moment().startOf('day');
+        return today.isAfter(date);
     }
 
 }
