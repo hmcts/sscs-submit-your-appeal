@@ -1,7 +1,7 @@
 {
   "title": "Tell us why your appeal is late",
   "appealsShouldBeMadeWithOneMonth": "Appeals should be made within one month of the Mandatory Reconsideration Notice being sent.",
-  "appealMayGoAheadForGoodReason": "Your appeal may still go ahead if there’s a reason for it being late.",
+  "appealMayGoAheadForGoodReason": "Your appeal may still go ahead if there’s a reason why it's late.",
   "noGoodReasonWhyLate": "I don’t have a good reason why my appeal is late",
   "fields": {
     "reasonForBeingLate": {
