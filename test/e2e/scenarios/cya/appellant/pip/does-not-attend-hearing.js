@@ -132,7 +132,7 @@ const IconfirmDetailsArePresent = (I) => {
     I.see('Mr Harry Potter');
 
     // Appellant DOB
-    I.see('25.01.1980');
+    I.see('25 January 1980');
 
     // Appellant NINO
     I.see('NX877564C');

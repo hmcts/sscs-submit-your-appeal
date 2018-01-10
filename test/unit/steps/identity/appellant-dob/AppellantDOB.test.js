@@ -89,7 +89,7 @@ describe('AppellantDOB.js', () => {
             expect(answers.length).to.equal(1);
             expect(answers[0].question).to.equal(question);
             expect(answers[0].section).to.equal(sections.appellantDetails);
-            expect(answers[0].answer).to.equal('07.08.1980');
+            expect(answers[0].answer).to.equal('07 August 1980');
         });
 
         it('should contain a value object', () => {

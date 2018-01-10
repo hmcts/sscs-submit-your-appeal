@@ -45,7 +45,7 @@ class AppellantDOB extends Question {
             answer(this, {
                 question: this.content.cya.dob.question,
                 section: sections.appellantDetails,
-                answer: this.fields.date.value.format('DD.MM.YYYY')
+                answer: this.fields.date.value.format('DD MMMM YYYY')
             })
         ];
     }
