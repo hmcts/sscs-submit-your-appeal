@@ -1,7 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import date %}
+{% from "look-and-feel/components/fields.njk" import formSection, date %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -9,19 +8,21 @@
 
 {% block fields %}
 
-<img class="mrn-image" src="{{ asset_path }}images/mrn-date.png">
+    <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png">
 
-{% call formSection() %}
+    {% call formSection() %}
 
-{{ date(
-    dayField = fields.day,
-    monthField = fields.month,
-    yearField = fields.year,
-    hint = content.dateHint,
-    id = 'mrnDate',
-    legend = content.dateLegend
-)}}
+        {{ date(
+            fields.mrnDate,
+            content.dateLegend,
+            hint = content.dateHint,
+            labels = {
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
+            }
+        ) }}
 
-{% endcall %}
+    {% endcall %}
 
 {% endblock %}

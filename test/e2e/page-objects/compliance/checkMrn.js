@@ -6,9 +6,9 @@ function goToCheckMrnPage(mrnDate) {
 
     const I = this;
 
-    I.fillField('#day', mrnDate.date());
-    I.fillField('#month', mrnDate.month() + 1);
-    I.fillField('#year', mrnDate.year());
+    I.fillField('.form-group-day input', mrnDate.date());
+    I.fillField('.form-group-month input', mrnDate.month() + 1);
+    I.fillField('.form-group-year input', mrnDate.year());
     I.click('Continue');
     I.seeInCurrentUrl(paths.compliance.checkMRNDate);
 

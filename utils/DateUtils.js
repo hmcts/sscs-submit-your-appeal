@@ -1,4 +1,5 @@
 const moment = require('moment');
+const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
 class DateUtils {
 
@@ -45,6 +46,11 @@ class DateUtils {
     static isDateInPast(date) {
         const today = moment().startOf('day');
         return today.isAfter(date);
+    }
+
+    static mrnDateDifferentToImage(date) {
+        const imageDate = this.createMoment(mrnDateImage.day, mrnDateImage.month, mrnDateImage.year);
+        return !imageDate.isSame(date);
     }
 
 }
