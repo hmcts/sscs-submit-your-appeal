@@ -1,25 +1,28 @@
 'use strict';
 
+const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
+const content = require('steps/hearing/dates-cant-attend/content.en');
 
-class DatesCantAttend extends Question {
+class DatesCantAttend extends AddAnother {
 
-    static get path() {
-
-        return paths.hearing.datesCantAttend;
+    get addAnotherLinkContent() {
+        if (this.fields.items !== undefined) {
+            return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
+        }
+        return '';
     }
 
-    get form() {
+    get field() {
 
         const fields = this.content.fields;
 
-        return form({
-            cantAttendDate: convert(
+        return convert(
                 d => DateUtils.createMoment(d.day, d.month, d.year),
                 date.required({
                     allRequired: fields.cantAttendDate.error.allRequired,
@@ -30,9 +33,11 @@ class DatesCantAttend extends Question {
             ).check(
                 fields.cantAttendDate.error.invalid,
                 value => DateUtils.isDateValid(value)
-            )
-        });
+            );
+    }
 
+    validateList(list) {
+        return list.check('Enter atleast 1 date', arr => arr.length > 0);
     }
 
     answers() {
@@ -42,20 +47,19 @@ class DatesCantAttend extends Question {
             answer(this, {
                 question: this.content.cya.dateYouCantAttend.question,
                 section: sections.theHearing,
-                answer: this.fields.date.value.format('DD MMMM YYYY')
+                answer: this.fields.items.value.map(d => d.format('DD MMMM YYYY'))
             })
         ];
     }
 
     values() {
 
-        return {
-            hearing: {
-                datesCantAttend: [
-                    this.fields.date.value.format('DD-MM-YYYY')
-                ]
-            }
+        const utfStamps = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+
+        if (utfStamps.length === 0) {
+            return {};
         }
+        return { unavailableDates: utfStamps }
     }
 
     next() {

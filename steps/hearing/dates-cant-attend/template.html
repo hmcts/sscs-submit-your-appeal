@@ -1,29 +1,31 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "look-and-feel/layouts/add_another.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection, date %}
 
 {% set title %}
-    {{ content.title | safe }}
+{{ content.title | safe if isListMode }}
+{{ content.titleEdit | safe if isEditMode }}
 {% endset %}
 
-{% block fields %}
+{% set pageContent = {
+  addAnotherLink: addAnotherLinkContent,
+  itemLabel: content.fields.cantAttendDate.legend,
+  noItemsMessage: content.noDates,
+  itemsListLabel: content.fields.cantAttendDate.legendList,
+  editItemLabel: content.fields.cantAttendDate.legend
+} %}
 
-    {% call formSection() %}
+{% block item %}
+  {{ item.value.format('dddd, D MMMM YYYY') }}
+{% endblock %}
 
-        <p>{{ content.itsImportant }}</p>
-        <p>{{ content.yourHearing }}</p>
+{% block listItems %}
+    <p>{{ content.itsImportant }}</p>
+    <p>{{ content.yourHearing }}</p>
+    {{ super() }}
+{% endblock %}
 
-        {{ date(
-            fields.cantAttendDate,
-            content.fields.cantAttendDate.legend,
-            hint = content.fields.cantAttendDate.hint,
-            labels = {
-                day: content.fields.cantAttendDate.day,
-                month: content.fields.cantAttendDate.month,
-                year: content.fields.cantAttendDate.year
-            }
-        ) }}
-
-    {% endcall %}
-
+{% block editItem %}
+    <p>{{ content.yourHearing }}</p>
+  {{ date(fields.item, content.fields.cantAttendDate.legend) }}
 {% endblock %}
