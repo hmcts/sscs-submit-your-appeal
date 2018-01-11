@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -18,22 +18,29 @@ class MRNDate extends Question {
 
     get form() {
 
-        return form(
+        const fields = this.content.fields;
 
-            textField('day').joi(
-                this.content.fields.day.error.required,
-                Joi.string().regex(numbers).required()),
-
-            textField('month').joi(
-                this.content.fields.month.error.required,
-                Joi.string().regex(numbers).required()
-            ),
-
-            textField('year').joi(
-                this.content.fields.year.error.required,
-                Joi.string().regex(numbers).required()
+        return form({
+            mrnDate: convert(
+                d => DateUtils.createMoment(d.day, d.month, d.year),
+                date.required({
+                    allRequired: fields.date.error.allRequired,
+                    dayRequired: fields.date.error.dayRequired,
+                    monthRequired: fields.date.error.monthRequired,
+                    yearRequired: fields.date.error.yearRequired
+                })
+            ).check(
+                fields.date.error.invalid,
+                value => DateUtils.isDateValid(value)
+            ).check(
+                fields.date.error.future,
+                value => DateUtils.isDateInPast(value)
+            ).check(
+                fields.date.error.dateSameAsImage,
+                value => !DateUtils.mrnDateSameAsImage(value)
             )
-        );
+
+        });
     }
 
     answers() {
@@ -43,7 +50,7 @@ class MRNDate extends Question {
             answer(this, {
                 question: this.content.cya.mrnDate.question,
                 section: sections.mrnDate,
-                answer: `${this.fields.day.value}/${this.fields.month.value}/${this.fields.year.value}`
+                answer: this.fields.mrnDate.value.format('DD MMMM YYYY')
             })
         ];
     }
@@ -52,17 +59,14 @@ class MRNDate extends Question {
 
         return {
             mrn: {
-                date: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+                date: this.fields.mrnDate.value.format('DD-MM-YYYY')
             }
         };
     }
 
     next() {
 
-        const mrnDate = DateUtils.createMoment(
-            this.fields.day.value,
-            this.fields.month.value,
-            this.fields.year.value);
+        const mrnDate = this.fields.mrnDate.value;
 
         const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
 

@@ -1,6 +1,7 @@
 const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
+const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
 describe('DateUtils.js', () => {
 
@@ -191,5 +192,20 @@ describe('DateUtils.js', () => {
 
     });
 
+    describe('mrnDateSameAsImage', () => {
+
+        let date;
+
+        it('should return true if date is the same as the image', () => {
+            date = DateUtils.createMoment(mrnDateImage.day, mrnDateImage.month, mrnDateImage.year);
+            expect(DateUtils.mrnDateSameAsImage(date)).to.be.true;
+        });
+
+        it('should return false if date is the different to the image', () => {
+            date = moment();
+            expect(DateUtils.mrnDateSameAsImage(date)).to.be.false;
+        });
+
+    });
 
 });

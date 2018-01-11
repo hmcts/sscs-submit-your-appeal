@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text, ref, date } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
@@ -17,18 +17,14 @@ class CheckMRN extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            // Reference day, month and year from a previous step.
-            textField.ref(this.journey.steps.MRNDate, 'day'),
-            textField.ref(this.journey.steps.MRNDate, 'month'),
-            textField.ref(this.journey.steps.MRNDate, 'year'),
-
-            textField('checkedMRN').joi(
+            mrnDate: ref(this.journey.steps.MRNDate, date),
+            checkedMRN: text.joi(
                 this.content.fields.checkedMRN.error.required,
                 Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
             )
-        );
+        });
     }
 
     answers() {
@@ -44,9 +40,9 @@ class CheckMRN extends Question {
     next() {
 
         const mrnDate = DateUtils.createMoment(
-            this.fields.day.value,
-            this.fields.month.value,
-            this.fields.year.value
+            this.fields.mrnDate.day.value,
+            this.fields.mrnDate.month.value,
+            this.fields.mrnDate.year.value
         );
 
         const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;

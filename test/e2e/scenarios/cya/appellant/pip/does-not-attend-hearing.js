@@ -126,7 +126,7 @@ const IconfirmDetailsArePresent = (I) => {
     ISeeValueInSection(I, '1', 'Number from MRN address', '/dwp-issuing-office');
 
     // Date of MRN
-    I.see(`${oneMonthAgo.date()}/${oneMonthAgo.month()+1}/${oneMonthAgo.year()}`);
+    I.see(oneMonthAgo.format('DD MMMM YYYY'));
 
     // Appellant name
     I.see('Mr Harry Potter');
