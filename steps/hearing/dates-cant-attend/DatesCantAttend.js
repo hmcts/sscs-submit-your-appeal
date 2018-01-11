@@ -1,12 +1,11 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { numbers } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const Joi = require('joi');
+const DateUtils = require('utils/DateUtils');
 
 class DatesCantAttend extends Question {
 
@@ -17,22 +16,23 @@ class DatesCantAttend extends Question {
 
     get form() {
 
-        return form(
+        const fields = this.content.fields;
 
-            textField('day').joi(
-                this.content.fields.day.error.required,
-                Joi.string().regex(numbers).required()),
-
-            textField('month').joi(
-                this.content.fields.month.error.required,
-                Joi.string().regex(numbers).required()
-            ),
-
-            textField('year').joi(
-                this.content.fields.year.error.required,
-                Joi.string().regex(numbers).required()
+        return form({
+            cantAttendDate: convert(
+                d => DateUtils.createMoment(d.day, d.month, d.year),
+                date.required({
+                    allRequired: fields.cantAttendDate.error.allRequired,
+                    dayRequired: fields.cantAttendDate.error.dayRequired,
+                    monthRequired: fields.cantAttendDate.error.monthRequired,
+                    yearRequired: fields.cantAttendDate.error.yearRequired
+                })
+            ).check(
+                fields.cantAttendDate.error.invalid,
+                value => DateUtils.isDateValid(value)
             )
-        );
+        });
+
     }
 
     answers() {
@@ -42,7 +42,7 @@ class DatesCantAttend extends Question {
             answer(this, {
                 question: this.content.cya.dateYouCantAttend.question,
                 section: sections.theHearing,
-                answer: `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+                answer: this.fields.date.value.format('DD MMMM YYYY')
             })
         ];
     }
@@ -52,7 +52,7 @@ class DatesCantAttend extends Question {
         return {
             hearing: {
                 datesCantAttend: [
-                    `${this.fields.day.value}-${this.fields.month.value}-${this.fields.year.value}`
+                    this.fields.date.value.format('DD-MM-YYYY')
                 ]
             }
         }
