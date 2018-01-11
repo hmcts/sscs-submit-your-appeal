@@ -3,6 +3,7 @@
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('AppellantContactDetails.js', () => {
 
@@ -16,7 +17,18 @@ describe('AppellantContactDetails.js', () => {
                 }
             }
         });
-        appellantContactDetails.fields = {}
+
+        appellantContactDetails.fields = {
+            firstName: { value: '' },
+            lastName: { value: '' },
+            addressLine1: { value: '' },
+            addressLine2: { value: '' },
+            townCity: { value: '' },
+            county: { value: '' },
+            postCode: { value: '' },
+            phoneNumber: { value: '' },
+            emailAddress: { value: '' }
+        }
     });
 
     describe('get path()', () => {
@@ -36,9 +48,44 @@ describe('AppellantContactDetails.js', () => {
             fields = appellantContactDetails.form.fields
         });
 
-        it('should contain 7 fields', () => {
-            expect(Object.keys(fields).length).to.equal(7);
-            expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'county', 'postCode', 'phoneNumber', 'emailAddress');
+        describe('all field names', () => {
+
+            it('should contain 7 fields', () => {
+                expect(Object.keys(fields).length).to.equal(7);
+                expect(fields).to.have.all.keys(
+                    'addressLine1',
+                    'addressLine2',
+                    'townCity',
+                    'county',
+                    'postCode',
+                    'phoneNumber',
+                    'emailAddress');
+            });
+
+        });
+
+        describe('optional fields defaulting to \'Not provided\' on CYA', () => {
+
+            it('should display \'Not provided\' when the user omits the addressLine2', () => {
+                const addressLine2 = appellantContactDetails.answers()[1];
+                expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the county', () => {
+                const county = appellantContactDetails.answers()[3];
+                expect(county.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the phoneNumber', () => {
+                const phoneNumber = appellantContactDetails.answers()[5];
+                expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the emailAddress', () => {
+                const emailAddress = appellantContactDetails.answers()[6];
+                expect(emailAddress.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
         });
 
         describe('addressLine1 field', () => {

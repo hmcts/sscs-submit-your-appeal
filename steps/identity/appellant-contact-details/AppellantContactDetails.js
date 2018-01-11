@@ -40,7 +40,7 @@ class AppellantContactDetails extends Question {
 
             textField('county').joi(
                 fields.county.error.required,
-                Joi.string().regex(whitelist).required()
+                Joi.string().regex(whitelist).allow('')
             ),
 
             textField('postCode').joi(
@@ -85,7 +85,7 @@ class AppellantContactDetails extends Question {
             answer(this, {
                 question: this.content.cya.county.question,
                 section: sections.appellantDetails,
-                answer: this.fields.county.value
+                answer: this.fields.county.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {

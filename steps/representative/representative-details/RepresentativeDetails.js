@@ -116,6 +116,12 @@ class RepresentativeDetails extends Question {
             }),
 
             answer(this, {
+                question: this.content.cya.county.question,
+                section: sections.representative,
+                answer: this.fields.county.value || userAnswer.NOT_PROVIDED
+            }),
+
+            answer(this, {
                 question: this.content.cya.postCode.question,
                 section: sections.representative,
                 answer: this.fields.postCode.value

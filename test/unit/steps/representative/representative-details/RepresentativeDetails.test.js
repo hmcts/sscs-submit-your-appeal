@@ -3,6 +3,7 @@
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('RepresentativeDetails.js', () => {
 
@@ -17,6 +18,19 @@ describe('RepresentativeDetails.js', () => {
                 }
             }
         });
+
+        representativeDetails.fields = {
+            firstName: { value: '' },
+            lastName: { value: '' },
+            organisation: { value: '' },
+            addressLine1: { value: '' },
+            addressLine2: { value: '' },
+            townCity: { value: '' },
+            county: { value: '' },
+            postCode: { value: '' },
+            phoneNumber: { value: '' },
+            emailAddress: { value: '' }
+        }
 
     });
 
@@ -53,6 +67,34 @@ describe('RepresentativeDetails.js', () => {
             );
         });
 
+        describe('optional fields defaulting to \'Not provided\' on CYA', () => {
+
+            it('should display \'Not provided\' when the user omits the organisation', () => {
+                const organisation = representativeDetails.answers()[2];
+                expect(organisation.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the addressLine2', () => {
+                const addressLine2 = representativeDetails.answers()[4];
+                expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the county', () => {
+                const county = representativeDetails.answers()[6];
+                expect(county.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the phoneNumber', () => {
+                const phoneNumber = representativeDetails.answers()[8];
+                expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the emailAddress', () => {
+                const emailAddress = representativeDetails.answers()[9];
+                expect(emailAddress.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+        });
 
         describe('firstName field', () => {
 
