@@ -88,6 +88,9 @@
     "townCity": {
       "question": "Town/City"
     },
+    "county": {
+      "question": "County"
+    },
     "postCode": {
       "question": "Postcode"
     },

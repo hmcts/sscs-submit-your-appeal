@@ -8,6 +8,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
+const userAnswer = require('utils/answer');
 
 class AppellantContactDetails extends Question {
 
@@ -39,7 +40,7 @@ class AppellantContactDetails extends Question {
 
             textField('county').joi(
                 fields.county.error.required,
-                Joi.string().regex(whitelist).required()
+                Joi.string().regex(whitelist).allow('')
             ),
 
             textField('postCode').joi(
@@ -72,7 +73,7 @@ class AppellantContactDetails extends Question {
             answer(this, {
                 question: this.content.cya.addressLine2.question,
                 section: sections.appellantDetails,
-                answer: this.fields.addressLine2.value
+                answer: this.fields.addressLine2.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
@@ -84,7 +85,7 @@ class AppellantContactDetails extends Question {
             answer(this, {
                 question: this.content.cya.county.question,
                 section: sections.appellantDetails,
-                answer: this.fields.county.value
+                answer: this.fields.county.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
@@ -96,13 +97,13 @@ class AppellantContactDetails extends Question {
             answer(this, {
                 question: this.content.cya.phoneNumber.question,
                 section: sections.appellantDetails,
-                answer: this.fields.phoneNumber.value
+                answer: this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
                 question: this.content.cya.emailAddress.question,
                 section: sections.appellantDetails,
-                answer: this.fields.emailAddress.value
+                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
             })
         ];
     }
