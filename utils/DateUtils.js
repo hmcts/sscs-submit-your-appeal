@@ -48,9 +48,9 @@ class DateUtils {
         return today.isAfter(date);
     }
 
-    static mrnDateDifferentToImage(date) {
+    static mrnDateSameAsImage(date) {
         const imageDate = this.createMoment(mrnDateImage.day, mrnDateImage.month, mrnDateImage.year);
-        return !imageDate.isSame(date);
+        return imageDate.isSame(date);
     }
 
 }

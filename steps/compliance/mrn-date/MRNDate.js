@@ -37,7 +37,7 @@ class MRNDate extends Question {
                 value => DateUtils.isDateInPast(value)
             ).check(
                 fields.date.error.dateSameAsImage,
-                value => DateUtils.mrnDateDifferentToImage(value)
+                value => !DateUtils.mrnDateSameAsImage(value)
             )
 
         });
