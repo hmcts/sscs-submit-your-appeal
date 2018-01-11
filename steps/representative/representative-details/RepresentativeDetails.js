@@ -8,6 +8,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
+const userAnswer = require('utils/answer');
 
 class RepresentativeDetails extends Question {
 
@@ -23,17 +24,13 @@ class RepresentativeDetails extends Question {
         return form(
 
             textField('firstName')
-                .joi(fields.firstName.error.required,
-                Joi.string().required())
-                .joi(fields.firstName.error.invalid,
-                Joi.string().regex(firstName)
+                .joi(fields.firstName.error.required, Joi.string().required())
+                .joi(fields.firstName.error.invalid, Joi.string().regex(firstName)
             ),
 
             textField('lastName')
-                .joi(fields.lastName.error.required,
-                Joi.string().required())
-                .joi(fields.lastName.error.invalid,
-                Joi.string().regex(lastName)
+                .joi(fields.lastName.error.required, Joi.string().required())
+                .joi(fields.lastName.error.invalid, Joi.string().regex(lastName)
             ),
 
             textField('organisation').joi(
@@ -97,7 +94,7 @@ class RepresentativeDetails extends Question {
             answer(this, {
                 question: this.content.cya.organisation.question,
                 section: sections.representative,
-                answer: this.fields.organisation.value
+                answer: this.fields.organisation.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
@@ -109,7 +106,7 @@ class RepresentativeDetails extends Question {
             answer(this, {
                 question: this.content.cya.addressLine2.question,
                 section: sections.representative,
-                answer: this.fields.addressLine2.value
+                answer: this.fields.addressLine2.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
@@ -127,13 +124,13 @@ class RepresentativeDetails extends Question {
             answer(this, {
                 question: this.content.cya.phoneNumber.question,
                 section: sections.representative,
-                answer: this.fields.phoneNumber.value
+                answer: this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED
             }),
 
             answer(this, {
                 question: this.content.cya.emailAddress.question,
                 section: sections.representative,
-                answer: this.fields.emailAddress.value
+                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
             })
         ];
     }
