@@ -31,6 +31,7 @@ Scenario('When I click Continue without filling in the fields I see errors', (I)
     I.click('Continue');
     I.see(appellant.addressLine1.error.required);
     I.see(appellant.townCity.error.required);
+    I.see(appellant.county.error.required);
     I.see(appellant.postCode.error.required);
 
 });

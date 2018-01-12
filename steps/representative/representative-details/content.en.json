@@ -45,7 +45,7 @@
     "county": {
       "title": "County",
       "error": {
-        "invalid": "You have entered an invalid county. Check it and enter it again"
+        "required": "Enter the county from your representative's address"
       }
     },
     "postCode": {

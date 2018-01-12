@@ -71,11 +71,6 @@ describe('AppellantContactDetails.js', () => {
                 expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
             });
 
-            it('should display \'Not provided\' when the user omits the county', () => {
-                const county = appellantContactDetails.answers()[3];
-                expect(county.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
             it('should display \'Not provided\' when the user omits the phoneNumber', () => {
                 const phoneNumber = appellantContactDetails.answers()[5];
                 expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
