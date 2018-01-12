@@ -116,3 +116,25 @@ label.form-label[for="signer"] {
     margin-bottom: 10px;
   }
 }
+
+.add-another-list div {
+    padding: 20px 0;
+    border-bottom: 1px solid $border-colour;
+
+  &:first-child {
+    border-top: 1px solid $border-colour;
+  }
+
+  .add-another-list-item {
+    float: left;
+  }
+
+  .add-another-list-controls{
+    padding-left: 70%;
+    padding-right: 5%;
+
+    .add-another-edit-link {
+      padding-right: 40%;
+    }
+  }
+}

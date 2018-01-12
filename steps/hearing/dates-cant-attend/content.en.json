@@ -11,7 +11,7 @@
   "noDates": "No dates added yet",
   "fields": {
     "cantAttendDate": {
-      "hint": "For example, 31 3 2017",
+      "hint": "For example, 31 3 2018",
       "legend": "Date you can't attend",
       "legendList": "Dates you can't attend",
       "day": "Day",
