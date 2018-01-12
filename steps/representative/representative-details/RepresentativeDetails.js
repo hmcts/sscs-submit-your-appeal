@@ -63,15 +63,15 @@ class RepresentativeDetails extends Question {
                 Joi.string().regex(postCode).required()
             ),
 
+            textField('emailAddress').joi(
+                fields.emailAddress.error.invalid,
+                Joi.string().email(emailOptions).allow('')
+            ),
+
             textField('phoneNumber').joi(
                 fields.phoneNumber.error.invalid,
                 Joi.string().regex(phoneNumber).allow('')
             ),
-
-            textField('emailAddress').joi(
-                fields.emailAddress.error.invalid,
-                Joi.string().email(emailOptions).allow('')
-            )
         );
     }
 

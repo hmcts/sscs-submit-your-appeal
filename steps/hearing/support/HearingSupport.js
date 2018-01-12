@@ -3,11 +3,9 @@
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const sections = require('steps/check-your-appeal/sections');
 
 class HearingSupport extends Question {
 
@@ -29,14 +27,7 @@ class HearingSupport extends Question {
 
     answers() {
 
-        return [
-
-            answer(this, {
-                question: this.content.cya.arrangements.question,
-                section: sections.theHearing,
-                answer: titleise(this.fields.arrangements.value)
-            })
-        ];
+        return answer(this, {hide: true});
     }
 
     values() {

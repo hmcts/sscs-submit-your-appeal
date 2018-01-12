@@ -6,6 +6,7 @@ const oneMonthAgo = DateUtils.oneMonthAgo();
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 const haveAMRNContent = require('steps/compliance/have-a-mrn/content.en.json');
 const appointeeContent = require('steps/identity/appointee/content.en.json');
+const selectors = require('steps/check-your-appeal/selectors');
 
 Feature('Appellant PIP, one month ago, does not attend hearing.');
 
@@ -26,6 +27,8 @@ Scenario('Appellant does not define an optional phone number and does not sign u
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
+    I.see('Not provided', selectors.appellant.phoneNumber);
+    I.see('No', selectors.textMsgReminders.receiveTxtMsgReminders);
 
 });
 
@@ -39,7 +42,8 @@ Scenario('Appellant does not define an optional phone number, however, enters mo
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeeValueInSection(I, '07455678444', 'Mobile Number', '/send-to-number');
+    I.see('Not provided', selectors.appellant.phoneNumber);
+    I.see('07455678444', selectors.textMsgReminders.mobileNumber);
 
 });
 
@@ -54,12 +58,12 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
-    ISeeValueInSection(I, '07411738663', 'Mobile Number', '/send-to-number');
+    I.see('07411738663', selectors.appellant.phoneNumber);
+    I.see('07411738663', selectors.textMsgReminders.mobileNumber);
 
 });
 
-Scenario('Appellant defines an optional phone number, this is overridden by another number for text msg reminders.', (I) => {
+Scenario('Appellant defines an optional phone number, then provides an additional mobile number for text msg reminders.', (I) => {
 
     IenterDetailsFromStartToNINO(I);
 
@@ -71,8 +75,8 @@ Scenario('Appellant defines an optional phone number, this is overridden by anot
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
-    ISeeValueInSection(I, '07411333333', 'Mobile Number', '/send-to-number');
+    I.see('07411738663', selectors.appellant.phoneNumber);
+    I.see('07411333333', selectors.textMsgReminders.mobileNumber);
 
 });
 
@@ -85,7 +89,8 @@ Scenario('Appellant defines an optional phone number, but does not sign up for t
     IenterDetailsFromNoRepresentativeToEnd(I);
 
     IconfirmDetailsArePresent(I);
-    ISeeValueInSection(I, '07411738663', 'Phone number',  '/enter-appellant-contact-details');
+    I.see('07411738663', selectors.appellant.phoneNumber);
+    I.see('No', selectors.textMsgReminders.receiveTxtMsgReminders);
 
 });
 
@@ -123,7 +128,7 @@ const IconfirmDetailsArePresent = (I) => {
     I.see('Personal Independence Payment (PIP)');
 
     // MRN address number
-    ISeeValueInSection(I, '1', 'Number from MRN address', '/dwp-issuing-office');
+    I.see('1', selectors.mrn.dwpIssuingOffice);
 
     // Date of MRN
     I.see(oneMonthAgo.format('DD MMMM YYYY'));
@@ -153,27 +158,4 @@ const IconfirmDetailsArePresent = (I) => {
     // Shows when the appeal is complete
     I.see('Sign and submit');
 
-};
-
-const ISeeValueInSection = (I, value, label, path) => {
-
-    const section = `<div>
-  <dt class="cya-question">
-    ${label}
-  </dt>
-  <dd class="cya-answer">
-    
-      
-        ${value}
-      
-    
-  </dd>
-  <dd class="cya-change">
-    <a href="${path}">
-      Change<span class="visually-hidden"> ${label}</span>
-    </a>
-  </dd>
-</div>`;
-
-    I.seeInSource(section);
 };

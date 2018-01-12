@@ -1,7 +1,6 @@
 'use strict';
 
 const HearingAvailability = require('steps/hearing/availability/HearingAvailability');
-const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 
@@ -87,12 +86,9 @@ describe('HearingAvailability.js', () => {
 
         });
 
-        it('should contain a single answer', () => {
+        it('should contain a hidden answer', () => {
             const answers = hearingAvailability.answers();
-            expect(answers.length).to.equal(1);
-            expect(answers[0].question).to.equal(question);
-            expect(answers[0].section).to.equal(sections.theHearing);
-            expect(answers[0].answer).to.equal(value);
+            expect(answers.hide).to.be.true;
         });
 
         it('should contain a value object', () => {
