@@ -54,8 +54,8 @@ class RepresentativeDetails extends Question {
             ),
 
             textField('county').joi(
-                fields.county.error.invalid,
-                Joi.string().regex(whitelist).allow('')
+                fields.county.error.required,
+                Joi.string().regex(whitelist).required()
             ),
 
             textField('postCode').joi(
@@ -118,7 +118,7 @@ class RepresentativeDetails extends Question {
             answer(this, {
                 question: this.content.cya.county.question,
                 section: sections.representative,
-                answer: this.fields.county.value || userAnswer.NOT_PROVIDED
+                answer: this.fields.county.value
             }),
 
             answer(this, {

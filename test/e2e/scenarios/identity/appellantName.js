@@ -22,6 +22,16 @@ Scenario('When I fill in the fields and click Continue, I am taken to the Appell
 
 });
 
+Scenario('When I only provide a single character for firstName and lastName I see errors', (I) => {
+
+    I.fillField('#firstName', 'H');
+    I.fillField('#lastName', 'P');
+    I.click('Continue');
+    I.see(appellant.firstName.error.invalid);
+    I.see(appellant.lastName.error.invalid);
+
+});
+
 Scenario('When I click Continue without filling in the fields I see errors', (I) => {
 
     I.click('Continue');

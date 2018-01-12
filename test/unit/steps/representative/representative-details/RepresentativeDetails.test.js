@@ -79,11 +79,6 @@ describe('RepresentativeDetails.js', () => {
                 expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
             });
 
-            it('should display \'Not provided\' when the user omits the county', () => {
-                const county = representativeDetails.answers()[6];
-                expect(county.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
             it('should display \'Not provided\' when the user omits the phoneNumber', () => {
                 const phoneNumber = representativeDetails.answers()[8];
                 expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
