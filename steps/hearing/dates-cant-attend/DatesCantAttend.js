@@ -37,7 +37,7 @@ class DatesCantAttend extends AddAnother {
     }
 
     validateList(list) {
-        return list.check('Enter atleast 1 date', arr => arr.length > 0);
+        return list.check(content.listError, arr => arr.length > 0);
     }
 
     answers() {

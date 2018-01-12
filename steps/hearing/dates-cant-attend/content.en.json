@@ -7,6 +7,7 @@
     "add": "Add date",
     "addAnother": "Add another date"
   },
+  "listError": "Enter at least one date",
   "noDates": "No dates added yet",
   "fields": {
     "cantAttendDate": {
