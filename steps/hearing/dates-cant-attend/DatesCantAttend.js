@@ -14,7 +14,7 @@ class DatesCantAttend extends AddAnother {
         if (this.fields.items !== undefined) {
             return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
         }
-        return '';
+        return false;
     }
 
     get field() {
@@ -59,12 +59,16 @@ class DatesCantAttend extends AddAnother {
 
     values() {
 
-        const utfStamps = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+        const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
 
-        if (utfStamps.length === 0) {
+        if (datesCantAttend.length === 0) {
             return {};
         }
-        return { unavailableDates: utfStamps }
+        return {
+            hearing: {
+                datesCantAttend
+            }
+        };
     }
 
     next() {
