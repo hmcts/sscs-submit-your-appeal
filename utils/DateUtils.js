@@ -53,6 +53,16 @@ class DateUtils {
         return imageDate.isSame(date);
     }
 
+    static isDateOverFourWeeks(date) {
+        const dateFourWeeksLater = moment().add(4, 'weeks');
+        return date.isSameOrAfter(dateFourWeeksLater);
+    }
+
+    static isDateUnderThirtyWeeks(date) {
+        const dateThirtyWeeksLater = moment().add(30, 'weeks');
+        return date.isSameOrBefore(dateThirtyWeeksLater);
+    }
+
 }
 
 module.exports = DateUtils;

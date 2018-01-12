@@ -1,11 +1,10 @@
 'use strict';
 
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, date, convert } = require('@hmcts/one-per-page/forms');
+const { goTo } = require('@hmcts/one-per-page');
+const { date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
-const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const content = require('steps/hearing/dates-cant-attend/content.en');
 
@@ -23,17 +22,23 @@ class DatesCantAttend extends AddAnother {
         const fields = this.content.fields;
 
         return convert(
-                d => DateUtils.createMoment(d.day, d.month, d.year),
-                date.required({
-                    allRequired: fields.cantAttendDate.error.allRequired,
-                    dayRequired: fields.cantAttendDate.error.dayRequired,
-                    monthRequired: fields.cantAttendDate.error.monthRequired,
-                    yearRequired: fields.cantAttendDate.error.yearRequired
-                })
-            ).check(
-                fields.cantAttendDate.error.invalid,
-                value => DateUtils.isDateValid(value)
-            );
+            d => DateUtils.createMoment(d.day, d.month, d.year),
+            date.required({
+                allRequired: fields.cantAttendDate.error.allRequired,
+                dayRequired: fields.cantAttendDate.error.dayRequired,
+                monthRequired: fields.cantAttendDate.error.monthRequired,
+                yearRequired: fields.cantAttendDate.error.yearRequired
+            })
+        ).check(
+            fields.cantAttendDate.error.invalid,
+            value => DateUtils.isDateValid(value)
+        ).check(
+            fields.cantAttendDate.error.underFourWeeks,
+            value => DateUtils.isDateOverFourWeeks(value)
+        ).check(
+            fields.cantAttendDate.error.overThirtyWeeks,
+            value => DateUtils.isDateUnderThirtyWeeks(value)
+        );
     }
 
     validateList(list) {

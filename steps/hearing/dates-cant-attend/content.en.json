@@ -19,10 +19,12 @@
       "year": "Year",
       "error": {
         "allRequired": "Enter the date you can't attend",
-        "dayRequired": "You need to enter a day",
-        "monthRequired": "You need to enter a month",
-        "yearRequired": "You need to enter a year",
-        "invalid": "Enter a valid date"
+        "dayRequired": "Enter the day from the date you can't attend",
+        "monthRequired": "Enter the month from the date you can't attend",
+        "yearRequired": "Enter the year from the date you can't attend",
+        "invalid": "Enter a valid date",
+        "underFourWeeks": "Only enter dates at least 4 weeks in the future",
+        "overThirtyWeeks": "Only enter dates up to 30 weeks in the future"
       }
     }
   },
