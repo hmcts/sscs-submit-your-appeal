@@ -7,16 +7,80 @@
     }
 %}
 
-{% block statement_of_truth_content %}
-    {{ header(content.header, size='medium') }}
-    <p>{{ content.information }}</p>
-    <p>{{ content.permission }}</p>
-    <p>{{ content.agree | safe }}</p>
+{% block two_thirds %}
+
+    {{ header(pageContent.title | default(defaultContent.title)) }}
+
+    {%- if fields.validated and not fields.valid -%}
+    <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+            There was a problem
+        </h1>
+        <ul class="error-summary-list">
+            {%- for error in fields.errors -%}
+            <li><a href="#{{error.id}}">{{error.message}}</a></li>
+            {%- endfor -%}
+        </ul>
+    </div>
+    {%- endif -%}
+
+    {% for section in _sections %}
+
+        {% if section.atLeast1Completed %}
+        {% if section.title and _sections|length > 1 %}
+        {{ header(section.title, size='medium') }}
+        {% endif %}
+
+        <dl class="govuk-check-your-answers cya-questions-short">
+            {% for part in section.completedAnswers %}
+            {% if not part.hide %}
+            {% if part.html %}
+            {{ part.html | safe }}
+            {% else %}
+            {{ answer(part.question, part.answer, part.url) }}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </dl>
+            {% endif %}
+    {% endfor %}
+
+    {% if incomplete %}
+        {% block continue_application %}
+            {{ header(pageContent.incompleteHeader | default(defaultContent.incompleteHeader), size='medium') }}
+            <p>{{ pageContent.incompleteMessage | default(defaultContent.incompleteMessage) }}</p>
+            <a href="{{ continueUrl }}" class="button">{{ pageContent.continue | default(defaultContent.continue) }}</a>
+        {% endblock %}
+    {% endif %}
+
+    {% if complete %}
+
+        {% block statement_of_truth_content %}
+            {{ header(content.header, size='medium') }}
+            <p>{{ content.information }}</p>
+            <p>{{ content.permission }}</p>
+            <p>{{ content.agree | safe }}</p>
+        {% endblock %}
+
+        <form action="{{ path if path else url }}" method="post" class="form">
+
+            {% block statement_of_truth_fields %}
+                {% call formSection() %}
+                {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
+                {% endcall %}
+            {%- endblock %}
+
+
+            <input class="button" type="submit" value="{{ pageContent.sendApplication | default(defaultContent.sendApplication) }}">
+        </form>
+    {% endif %}
+
 {% endblock %}
 
-{% block statement_of_truth_fields %}
-    {% call formSection() %}
-        {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
-    {% endcall %}
-{%- endblock %}
+
+
+
+
+
+
 
