@@ -51,7 +51,7 @@ else
 endif
 
 sonarscan-tactical:
-	yarn sonar-scanner
+	yarn sonar-scan
 
 health-check-tactical:
 	yarn health-check
