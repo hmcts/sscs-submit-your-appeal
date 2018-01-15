@@ -15,7 +15,6 @@
     "test:coverage": "echo 'test coverage not implemented'",
     "test:nsp": "nsp check",
     "test:a11y": "echo 'a11y tests not implemented'",
-    "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner",
     "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
     "health-check": "echo 'not implemented yet'"
   },
