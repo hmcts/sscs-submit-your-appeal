@@ -16,7 +16,7 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('Appellant provides a single date of when they cannot attend the hearing', (I) => {
+Scenario('Appellant provides date of when they cannot attend the hearing', (I) => {
 
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
