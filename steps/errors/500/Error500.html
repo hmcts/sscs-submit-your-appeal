@@ -1,0 +1,34 @@
+{% extends "components/globals.html" %}
+{% extends "look-and-feel/layouts/error.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block page_title %}
+    {{ title }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+{% block two_thirds %}
+
+{{ header(title, size='large') }}
+
+<p>{{ message }}</p>
+
+<a class="button" href="/start-an-appeal">Try again</a>
+
+{% if error and settings.env == 'development'  %}
+<div class="form-group-error internal-server-error">
+    <label>
+        <span class="form-label-bold">Error Message</span>
+        <span class="form-hint">The error message will only display in development mode</span>
+        <span>{{ error }}</span>
+    </label>
+</div>
+{% endif %}
+
+{% endblock %}

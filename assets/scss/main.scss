@@ -85,6 +85,10 @@ label.form-label[for="signer"] {
   line-height: 30px;
 }
 
+.internal-server-error {
+  margin-top: 30px;
+}
+
 @media (max-width: 640px) {
   .nav-list {
     column-count: 1;

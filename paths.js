@@ -2,10 +2,9 @@ module.exports = {
 
     health:                             '/health',
 
-    errorPages: {
-        pageNotFound:                   '/page-not-found',
-        timedOut:                       '/page-timed-out',
-        technicalIssue:                 '/technical-issues'
+    errors: {
+        doesNotExist:                   '/does-not-exist',
+        internalServerError:            '/internal-server-error'
     },
 
     landingPages: {

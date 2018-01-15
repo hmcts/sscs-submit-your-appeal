@@ -3,5 +3,19 @@
     "newService": "This is a new service. ",
     "reportProblem": "Report a problem",
     "improve": " and help improve it for others."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page cannot be found",
+      "message": "Check that you’ve entered the correct web address",
+      "nextSteps": [
+        "Or go to the",
+        "start of Appeal a benefit decision"
+      ]
+    },
+    "serverError": {
+      "title": "Sorry, we’re experiencing technical difficulties",
+      "message": "Please try again in a few minutes."
+    }
   }
 }

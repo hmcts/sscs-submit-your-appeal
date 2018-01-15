@@ -2,8 +2,7 @@ const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
 const Sessions = require('steps/session/Sessions');
-const Error404 = require('steps/errors/404');
-const Error500 = require('steps/errors/500');
+const Error500 = require('steps/errors/500/Error500');
 const BenefitType = require('steps/start/benefit-type/BenefitType');
 const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
 const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
@@ -47,7 +46,6 @@ const init = [
     Entry,
     Exit,
     Sessions,
-    Error404,
     Error500
 ];
 
