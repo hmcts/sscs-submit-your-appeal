@@ -7,6 +7,7 @@ const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
+const userAnswer = require('utils/answer');
 
 class OtherReasonForAppealing extends Question {
 
@@ -32,7 +33,7 @@ class OtherReasonForAppealing extends Question {
             answer(this, {
                 question: this.content.cya.otherReasonForAppealing.question,
                 section: sections.reasonsForAppealing,
-                answer: this.fields.otherReasonForAppealing.value
+                answer: this.fields.otherReasonForAppealing.value  || userAnswer.NOT_REQUIRED
             })
         ];
     }

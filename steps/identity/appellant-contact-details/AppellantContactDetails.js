@@ -95,16 +95,16 @@ class AppellantContactDetails extends Question {
             }),
 
             answer(this, {
+                question: this.content.cya.emailAddress.question,
+                section: sections.appellantDetails,
+                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
+            }),
+
+            answer(this, {
                 question: this.content.cya.phoneNumber.question,
                 section: sections.appellantDetails,
                 answer: this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED
             }),
-
-            answer(this, {
-                question: this.content.cya.emailAddress.question,
-                section: sections.appellantDetails,
-                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
-            })
         ];
     }
 
