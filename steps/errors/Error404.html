@@ -1,5 +1,5 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% extends "look-and-feel/layouts/error.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
@@ -15,10 +15,10 @@
 
 {% block two_thirds %}
 
-    {{ header(title, size='large') }}
+{{ header(title, size='large') }}
 
-    <p>{{ checkAddress }}</p>
+<p>{{ message }}</p>
 
-    <p>{{ startAppeal | safe }}</p>
+<p>{{ nextSteps[0] }} <a href='/start-an-appeal'>{{ nextSteps[1] }}</a></p>
 
 {% endblock %}

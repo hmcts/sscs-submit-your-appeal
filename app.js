@@ -9,7 +9,6 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const steps = require('steps');
 const paths = require('paths');
 const landingPages = require('landing-pages/routes');
-const errorPages = require('error-pages/routes');
 const policyPages = require('policy-pages/routes');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const content = require('content.en.json');
@@ -82,6 +81,19 @@ journey(app, {
         },
         secret: config.redis.secret
     },
+    errorPages: {
+        notFound: {
+            template: 'errors/Error404.html',
+            title: content.errors.notFound.title,
+            message: content.errors.notFound.message,
+            nextSteps: content.errors.notFound.nextSteps
+        },
+        serverError: {
+            template: 'errors/500/Error500.html',
+            title: content.errors.serverError.title,
+            message: content.errors.serverError.message
+        }
+    },
     apiUrl: `${config.api.url}/appeals`
 });
 
@@ -95,6 +107,6 @@ app.use(paths.health, healthcheck.configure({
     }
 }));
 
-app.use('/', landingPages, policyPages, errorPages);
+app.use('/', landingPages, policyPages);
 
 module.exports = app;
