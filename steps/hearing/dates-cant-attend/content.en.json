@@ -24,7 +24,8 @@
         "yearRequired": "Enter the year from the date you can't attend",
         "invalid": "Enter a valid date",
         "underFourWeeks": "Only enter dates at least 4 weeks in the future",
-        "overThirtyWeeks": "Only enter dates up to 30 weeks in the future"
+        "overThirtyWeeks": "Only enter dates up to 30 weeks in the future",
+        "weekend": "Enter a date this is not on a weekend"
       }
     }
   },

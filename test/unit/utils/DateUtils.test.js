@@ -251,4 +251,25 @@ describe('DateUtils.js', () => {
 
     });
 
+    describe('isDateOnTheWeekend', () => {
+
+        let date;
+
+        it('should return true when date is on the weekend', () => {
+            date = moment('20-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+        });
+
+        it('should return true when date is on the weekend', () => {
+            date = moment('19-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+        });
+
+        it('should return false when date is not on the weekend', () => {
+            date = moment('18-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.false;
+        });
+
+    });
+
 });

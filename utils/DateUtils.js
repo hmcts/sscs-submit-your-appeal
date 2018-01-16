@@ -63,6 +63,10 @@ class DateUtils {
         return date.isSameOrBefore(dateThirtyWeeksLater);
     }
 
+    static isDateOnTheWeekend(date) {
+        return date.weekday() === 0 || date.weekday() === 6
+    }
+
 }
 
 module.exports = DateUtils;
