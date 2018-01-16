@@ -25,7 +25,7 @@ Scenario('Appellant provides date of when they cannot attend the hearing', (I) =
     I.enterDetailsFromAttendingTheHearingToEnd();
 
     I.confirmDetailsArePresent();
-    I.see(moment().add(5, 'months').format('DD MMMM YYYY'), selectors.theHearing.datesYouCantAttend);
+    I.see(moment().add(10, 'weeks').format('DD MMMM YYYY'), selectors.theHearing.datesYouCantAttend);
 
 });
 

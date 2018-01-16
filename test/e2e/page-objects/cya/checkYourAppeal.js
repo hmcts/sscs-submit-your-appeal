@@ -55,7 +55,7 @@ function enterDetailsFromAttendingTheHearingToEnd() {
     I.selectDoYouNeedSupportAndContinue('Yes, I need support at the hearing');
     I.checkAllArrangementsAndContinue();
     I.selectHearingAvailabilityAndContinue('I need to tell you about dates when I can’t attend a hearing');
-    I.enterDateCantAttendAndContinue(moment().add(5, 'months'), datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(moment().add(10, 'weeks'), datesCantAttendContent.links.add);
     I.click('Continue');
 
 }
