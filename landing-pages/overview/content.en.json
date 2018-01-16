@@ -14,7 +14,7 @@
   },
   "heading": "1. Overview",
   "youCanAppeal": "You can appeal if you disagree with a decision that was made about your entitlement to benefits. For example Personal Independence Payment (PIP), Employment and Support Allowance (ESA) or Universal Credit (UC).",
-  "decision": "Your appeal will be decided by an independent panel of people known as a tribunal. They will make an impartial decision on your entitlement to benefits.",
+  "decision": "Your appeal will be decided by an independent panel of people known as a tribunal. There will always be a judge on the tribunal panel and sometimes a doctor or disabiilty expert, depending on the benefit you are appealing. They will make an impartial decision on your entitlement to benefits.",
   "subheading": "Benefit decisions you can appeal",
   "benefits": "You can appeal a decision about the following benefits using this service:",
   "benefitsList": {
@@ -23,7 +23,7 @@
     "carer": "Carer’s Allowance",
     "child": "Child Benefit",
     "disability": "Disability Living Allowance (DLA)",
-    "employment": "Employment Support Allowance (ESA)",
+    "employment": "Employment and Support Allowance (ESA)",
     "responsibilities": "Home Responsibilities Protection",
     "housing": "Housing Benefit",
     "incapacity": "Incapacity Benefit",
@@ -37,5 +37,5 @@
     "universal": "Universal Credit (UC)"
   },
   "cantSeeBenefit": "If you can’t see your benefit on the list it may be because the name has changed. Check the last letter you received about the benefit.",
-  "upToAMonth": "You can appeal up to a month after going through ‘mandatory reconsideration’. You might still be able to appeal after a month but you’ll need to explain why it’s late."
+  "upToAMonth": "You can appeal up to a month after going through <a href='/before-you-appeal'>'mandatory reconsideration'</a> You might still be able to appeal after a month but you’ll need to explain why it’s late."
 }
