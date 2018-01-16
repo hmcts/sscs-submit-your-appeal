@@ -209,44 +209,44 @@ describe('DateUtils.js', () => {
     });
 
 
-    describe('isDateOverFourWeeks', () => {
+    describe('isGreaterThanOrEqualToFourWeeks', () => {
 
         let date;
 
         it('should return false if date is under four weeks', () => {
             date = moment();
-            expect(DateUtils.isDateOverFourWeeks(date)).to.be.false;
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.false;
         });
 
         it('should return true if date is over four weeks', () => {
             date = moment().add(5, 'weeks');
-            expect(DateUtils.isDateOverFourWeeks(date)).to.be.true;
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
         });
 
         it('should return true if date is exactly four weeks', () => {
             date = moment().add(4, 'weeks');
-            expect(DateUtils.isDateOverFourWeeks(date)).to.be.true;
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
         });
 
     });
 
-    describe('isDateUnderThirtyWeeks', () => {
+    describe('isLessThanOrEqualToThirtyWeeks', () => {
 
         let date;
 
         it('should return false if date is over thirty weeks', () => {
             date = moment().add(31, 'weeks');
-            expect(DateUtils.isDateUnderThirtyWeeks(date)).to.be.false;
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.false;
         });
 
         it('should return true if date is under thirty weeks', () => {
             date = moment();
-            expect(DateUtils.isDateUnderThirtyWeeks(date)).to.be.true;
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
         });
 
         it('should return true if date is exactly thirty weeks', () => {
             date = moment().add(30, 'weeks');
-            expect(DateUtils.isDateUnderThirtyWeeks(date)).to.be.true;
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
         });
 
     });

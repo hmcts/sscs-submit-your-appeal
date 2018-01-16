@@ -1,6 +1,10 @@
 const DateUtils = require('utils/DateUtils');
 const haveAMRNContent = require('steps/compliance/have-a-mrn/content.en.json');
 const appointeeContent = require('steps/identity/appointee/content.en.json');
+const representativeContent = require('steps/representative/representative/content.en');
+const theHearingContent = require('steps/hearing/the-hearing/content.en');
+const supportContent = require('steps/hearing/support/content.en');
+const availabilityContent = require('steps/hearing/availability/content.en');
 const datesCantAttendContent = require('steps/hearing/dates-cant-attend/content.en');
 const oneMonthAgo = DateUtils.oneMonthAgo();
 const selectors = require('steps/check-your-appeal/selectors');
@@ -27,7 +31,7 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
 
     const I = this;
 
-    I.selectDoYouHaveARepresentativeAndContinue('No');
+    I.selectDoYouHaveARepresentativeAndContinue(representativeContent.fields.hasRepresentative.no);
     I.enterReasonForAppealingAndContinue('A reason...');
     I.enterAnythingElseAndContinue('Anything else...');
     I.readSendingEvidenceAndContinue();
@@ -38,10 +42,7 @@ function enterDetailsFromNoRepresentativeToEnd() {
 
     const I = this;
 
-    I.selectDoYouHaveARepresentativeAndContinue('No');
-    I.enterReasonForAppealingAndContinue('A reason...');
-    I.enterAnythingElseAndContinue('Anything else...');
-    I.readSendingEvidenceAndContinue();
+    I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDoYouWantToAttendTheHearing('No');
     I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
 
@@ -51,10 +52,10 @@ function enterDetailsFromAttendingTheHearingToEnd() {
 
     const I = this;
 
-    I.enterDoYouWantToAttendTheHearing('Yes');
-    I.selectDoYouNeedSupportAndContinue('Yes, I need support at the hearing');
+    I.enterDoYouWantToAttendTheHearing(theHearingContent.fields.attendHearing.yes);
+    I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
     I.checkAllArrangementsAndContinue();
-    I.selectHearingAvailabilityAndContinue('I need to tell you about dates when I can’t attend a hearing');
+    I.selectHearingAvailabilityAndContinue(availabilityContent.fields.scheduleHearing.yes);
     I.enterDateCantAttendAndContinue(moment().add(10, 'weeks'), datesCantAttendContent.links.add);
     I.click('Continue');
 
