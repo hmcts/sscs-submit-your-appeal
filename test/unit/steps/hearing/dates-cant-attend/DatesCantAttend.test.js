@@ -4,6 +4,8 @@ const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const moment = require('moment');
+const content = require('steps/hearing/dates-cant-attend/content.en');
 
 describe('DatesCantAttend.js', () => {
 
@@ -20,9 +22,7 @@ describe('DatesCantAttend.js', () => {
         });
 
         datesCantAttend.fields = {
-            day: {},
-            month: {},
-            year: {}
+            items: {}
         }
     });
 
@@ -34,7 +34,26 @@ describe('DatesCantAttend.js', () => {
 
     });
 
-    describe('get form()', () => {
+    describe('get addAnotherLinkContent()', () => {
+
+        it('returns false when items is undefined', () => {
+            datesCantAttend.fields.items = undefined;
+            expect(datesCantAttend.addAnotherLinkContent).to.be.false;
+        });
+
+        it('returns add link when there are no items in the list', () => {
+            datesCantAttend.fields.items.value = [];
+            expect(datesCantAttend.addAnotherLinkContent).to.equal(content.links.add);
+        });
+
+        it('returns addAnother link when there are items in the list', () => {
+            datesCantAttend.fields.items.value = [moment()];
+            expect(datesCantAttend.addAnotherLinkContent).to.equal(content.links.addAnother);
+        });
+
+    });
+
+    describe('get field()', () => {
 
         let fields;
         let field;
@@ -43,63 +62,19 @@ describe('DatesCantAttend.js', () => {
             fields = datesCantAttend.form.fields;
         });
 
-        it('should contain 3 fields', () => {
-            expect(Object.keys(fields).length).to.equal(3);
-            expect(fields).to.have.all.keys('day', 'month', 'year');
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('items');
         });
 
-        describe('day field', () => {
+        describe('items field', () => {
 
             beforeEach(() => {
-                field = fields.day;
+                field = fields.items;
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field day title', () => {
-                expect(field.name).to.equal('day');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('month field', () => {
-
-            beforeEach(() => {
-                field = fields.month;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name month', () => {
-                expect(field.name).to.equal('month');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('year field', () => {
-
-            beforeEach(() => {
-                field = fields.year;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name year', () => {
-                expect(field.name).to.equal('year');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -113,7 +88,12 @@ describe('DatesCantAttend.js', () => {
     describe('answers() and values()', () => {
 
         const question = 'A Question';
-        const value = '1-1-2022';
+        const value = [
+            moment().add(5, 'weeks'),
+            moment().add(6, 'weeks')
+        ];
+        const answersMappedValue = value.map(d => d.format('DD MMMM YYYY'));
+        const valuesMappedValue = value.map(d => d.format('DD-MM-YYYY'));
 
         beforeEach(() => {
 
@@ -125,9 +105,7 @@ describe('DatesCantAttend.js', () => {
                 }
             };
 
-            datesCantAttend.fields.day.value = '1';
-            datesCantAttend.fields.month.value = '1';
-            datesCantAttend.fields.year.value = '2022';
+            datesCantAttend.fields.items.value = value
 
         });
 
@@ -136,12 +114,12 @@ describe('DatesCantAttend.js', () => {
             expect(answers.length).to.equal(1);
             expect(answers[0].question).to.equal(question);
             expect(answers[0].section).to.equal(sections.theHearing);
-            expect(answers[0].answer).to.equal(value);
+            expect(answers[0].answer).to.eql(answersMappedValue);
         });
 
         it('should contain a value object', () => {
             const values = datesCantAttend.values();
-            expect(values).to.eql( { hearing: { datesCantAttend: [value] } });
+            expect(values).to.eql( { hearing: { datesCantAttend: valuesMappedValue } });
         });
 
     });

@@ -208,4 +208,68 @@ describe('DateUtils.js', () => {
 
     });
 
+
+    describe('isGreaterThanOrEqualToFourWeeks', () => {
+
+        let date;
+
+        it('should return false if date is under four weeks', () => {
+            date = moment();
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.false;
+        });
+
+        it('should return true if date is over four weeks', () => {
+            date = moment().add(5, 'weeks');
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
+        });
+
+        it('should return true if date is exactly four weeks', () => {
+            date = moment().add(4, 'weeks');
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
+        });
+
+    });
+
+    describe('isLessThanOrEqualToThirtyWeeks', () => {
+
+        let date;
+
+        it('should return false if date is over thirty weeks', () => {
+            date = moment().add(31, 'weeks');
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.false;
+        });
+
+        it('should return true if date is under thirty weeks', () => {
+            date = moment();
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
+        });
+
+        it('should return true if date is exactly thirty weeks', () => {
+            date = moment().add(30, 'weeks');
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
+        });
+
+    });
+
+    describe('isDateOnTheWeekend', () => {
+
+        let date;
+
+        it('should return true when date is on the weekend', () => {
+            date = moment('20-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+        });
+
+        it('should return true when date is on the weekend', () => {
+            date = moment('19-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+        });
+
+        it('should return false when date is not on the weekend', () => {
+            date = moment('18-05-2018', 'DD-MM-YYYY');
+            expect(DateUtils.isDateOnTheWeekend(date)).to.be.false;
+        });
+
+    });
+
 });
