@@ -1,7 +1,7 @@
 'use strict';
 
 const paths = require('paths');
-const dynamicContent = postOrEmail => `You’ll receive this by ${postOrEmail} after you’ve submitted your appeal.`;
+const dynamicContent = postOrEmail => `You'll receive the address to send it by ${postOrEmail} after submitting your appeal.`;
 
 Feature('Not Attending Hearing');
 
