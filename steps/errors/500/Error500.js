@@ -9,7 +9,7 @@ class Error500 extends Page {
     }
 
     handler(req, res) {
-        throw 'This is an error that has been thrown on purpose to illustrate what happens in the event of an exception';
+        throw 'HTTP 500: An internal server error has occurred';
     }
 }
 

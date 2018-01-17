@@ -5,19 +5,22 @@ const {
     section
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const { goTo, action } = require('@hmcts/one-per-page/flow');
+const { Logger } = require('@hmcts/nodejs-logging');
+const { lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
+const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const paths = require('paths');
-const {form, textField} = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
-const { lastName } = require('utils/regex');
 
 class CheckYourAppeal extends CYA {
 
     constructor(...args) {
 
         super(...args);
+        this.logger = Logger.getLogger('CheckYourAppeal.js');
         this.sendToAPI = this.sendToAPI.bind(this);
     }
 
@@ -33,10 +36,15 @@ class CheckYourAppeal extends CYA {
 
     sendToAPI() {
 
-        // Temporary
-        console.log(JSON.stringify(this.journey.values, null, 2));
-        console.log(this.journey.settings.apiUrl);
-        return request.post(this.journey.settings.apiUrl).send(this.journey.values);
+        return request
+            .post(this.journey.settings.apiUrl)
+            .send(this.journey.values)
+            .then((result) => {
+                this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
+            }).catch((err) => {
+                this.logger.error(`${err.message} status:${err.status || HttpStatus.INTERNAL_SERVER_ERROR}`);
+                return Promise.reject(err);
+            });
     }
 
     sections() {
@@ -77,6 +85,7 @@ class CheckYourAppeal extends CYA {
 
         return action(this.sendToAPI)
             .then(goTo(this.journey.steps.Confirmation))
+            .onFailure(goTo(this.journey.steps.Error500));
     }
 }
 

@@ -1,19 +1,20 @@
-const config = require('config');
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const path = require('path');
+const { Logger, Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const config = require('config');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
 const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const content = require('content.en.json');
 const urls = require('urls');
 
+const logger = Logger.getLogger('server.js');
 const app = express();
 
 const protocol = config.node.protocol;
@@ -27,7 +28,13 @@ if(process.env.NODE_ENV === 'production') {
     baseUrl = `${protocol}://${hostname}:${port}`;
 }
 
-console.log('SYA base Url : %s', baseUrl);
+Logger.config({
+    microservice: "submit-your-appeal-frontend",
+    team: "sscs",
+    environment: process.env.NODE_ENV,
+});
+
+logger.info('SYA base Url: ', baseUrl);
 
 lookAndFeel.configure(app, {
     baseUrl,
@@ -107,6 +114,7 @@ app.use(paths.health, healthcheck.configure({
     }
 }));
 
+app.use(Express.accessLogger());
 app.use('/', landingPages, policyPages);
 
 module.exports = app;
