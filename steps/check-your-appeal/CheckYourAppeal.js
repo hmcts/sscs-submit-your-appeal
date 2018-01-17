@@ -5,13 +5,13 @@ const {
     section
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
+const { form, textField } = require('@hmcts/one-per-page/forms');
 const { goTo, action } = require('@hmcts/one-per-page/flow');
+const { lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const request = require('superagent');
 const paths = require('paths');
-const {form, textField} = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
-const { lastName } = require('utils/regex');
 
 class CheckYourAppeal extends CYA {
 
@@ -33,9 +33,6 @@ class CheckYourAppeal extends CYA {
 
     sendToAPI() {
 
-        // Temporary
-        console.log(JSON.stringify(this.journey.values, null, 2));
-        console.log(this.journey.settings.apiUrl);
         return request.post(this.journey.settings.apiUrl).send(this.journey.values);
     }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const sections = require('steps/check-your-appeal/sections');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
@@ -52,29 +52,11 @@ describe('CheckYourAppeal.js', () => {
 
     });
 
-    describe('sendToAPI()', () => {
-
-        it('should make an API call to the /appeals endpoint with appeal JSON', () => {
-            const sendStub = sinon.stub();
-            request.post = sinon.stub().returns({
-                send: sendStub
-            });
-
-            // Assert
-            cya.sendToAPI();
-            sinon.assert.calledWith(request.post, cya.journey.settings.apiUrl);
-            sinon.assert.calledWith(sendStub, cya.journey.values);
-        });
-
-    });
-
     describe('get section()', () => {
 
         it('returns the CYA sections', () => {
             const cyaSections = cya.sections();
-            Object.values(sections).map(function(value, index) {
-                expect(cyaSections[index].id).to.equal(value);
-            });
+            Object.values(sections).map((value, index) => expect(cyaSections[index].id).to.equal(value));
         });
 
     });
