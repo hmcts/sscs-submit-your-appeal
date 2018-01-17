@@ -1,7 +1,8 @@
 'use strict';
 
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const sections = require('steps/check-your-appeal/sections');
+const HttpStatus = require('http-status-codes');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
 
@@ -15,12 +16,15 @@ describe('CheckYourAppeal.js', () => {
 
     before(() => {
 
-        CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', { 'superagent': request });
+        CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
+            'superagent': request
+        });
 
         cya = new CheckYourAppeal({
             journey: {
                 steps: {
-                    Confirmation: paths.confirmation
+                    Confirmation: paths.confirmation,
+                    Error500: paths.errors.internalServerError
                 },
                 values: {
                     benefit: {
@@ -48,6 +52,34 @@ describe('CheckYourAppeal.js', () => {
 
         it('returns path /check-your-appeal', () => {
             expect(CheckYourAppeal.path).to.equal(paths.checkYourAppeal);
+        });
+
+    });
+
+    describe('sendToAPI()', () => {
+
+        it('should log a message when successfully making an API call', () => {
+
+            request.post = () => ({ send: sinon.stub().resolves({status: HttpStatus.CREATED} ) });
+
+            cya.logger.info = sinon.spy();
+
+            return cya.sendToAPI().then(() => {
+                expect(cya.logger.info).calledWith('POST api:/appeals status:201');
+            });
+
+        });
+
+        it('should log a message when unsuccessfully making an API call', () => {
+
+            request.post = () => ({ send: sinon.stub().rejects( { message: 'Internal server error' } ) });
+
+            cya.logger.error = sinon.spy();
+
+            return cya.sendToAPI().catch(() => {
+                expect(cya.logger.error).calledWith('Internal server error status:500');
+            });
+
         });
 
     });
