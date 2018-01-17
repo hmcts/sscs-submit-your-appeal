@@ -63,7 +63,7 @@ class HearingArrangements extends Question {
 
     values() {
 
-        let values = {
+        const values = {
             hearing: {
                 anythingElse: this.fields.anythingElse.value,
                 arrangements: {

@@ -52,7 +52,7 @@ class SmsConfirmation extends Question {
 
     values() {
 
-        let values = { smsNotify: {} };
+        const values = { smsNotify: {} };
 
         values.smsNotify.useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
         values.smsNotify.smsNumber = values.smsNotify.useSameNumber ?
