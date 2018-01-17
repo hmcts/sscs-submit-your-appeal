@@ -21,7 +21,7 @@ class AppointeeFormDownload extends Question {
     get formDownload() {
 
         const benefitType = this.fields.benefitType.value;
-        let formDownload = {};
+        const formDownload = {};
 
         if (benefitType === benefitTypes.childBenefit) {
             formDownload.link = urls.formDownload.sscs5;
