@@ -1,5 +1,4 @@
-const { Logger } = require('@hmcts/nodejs-logging');
-const { Express } = require('@hmcts/nodejs-logging');
+const { Logger, Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
