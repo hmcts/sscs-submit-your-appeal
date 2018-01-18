@@ -12,7 +12,7 @@
     "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn e2e",
     "lint": "echo 'linting not implemented'",
     "test:smoke": "echo 'smoke test not implemented'",
-    "test:coverage": "echo 'test coverage not implemented'",
+    "test:coverage": "cross-env NODE_PATH=. istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
     "test:nsp": "nsp check",
     "test:a11y": "echo 'a11y tests not implemented'",
     "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
