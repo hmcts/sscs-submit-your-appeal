@@ -8,7 +8,7 @@ class Error500 extends Page {
         return '/internal-server-error';
     }
 
-    handler(req, res) {
+    handler() {
         throw 'HTTP 500: An internal server error has occurred';
     }
 }
