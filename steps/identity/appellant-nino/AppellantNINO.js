@@ -21,7 +21,7 @@ class AppellantNINO extends Question {
 
             textField('nino').joi(
                 this.content.fields.nino.error.required,
-                Joi.string().regex(niNumber).required()),
+                Joi.string().regex(niNumber).required())
         );
     }
 

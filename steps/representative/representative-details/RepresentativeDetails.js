@@ -71,7 +71,7 @@ class RepresentativeDetails extends Question {
             textField('phoneNumber').joi(
                 fields.phoneNumber.error.invalid,
                 Joi.string().regex(phoneNumber).allow('')
-            ),
+            )
         );
     }
 
