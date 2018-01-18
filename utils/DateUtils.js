@@ -55,7 +55,7 @@ class DateUtils {
 
     static isGreaterThanOrEqualToFourWeeks(date) {
         const dateFourWeeksLater = moment().add(4, 'weeks');
-        return dateFourWeeksLater.isSameOrAfter(date);
+        return date.isSameOrAfter(dateFourWeeksLater);
     }
 
     static isLessThanOrEqualToThirtyWeeks(date) {

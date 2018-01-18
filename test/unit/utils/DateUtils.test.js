@@ -214,17 +214,17 @@ describe('DateUtils.js', () => {
         let date;
 
         it('should return false if date is under four weeks', () => {
-            date = moment();
+            date = moment().add(4, 'weeks').subtract(1, 'day');
             expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.false;
-        });
-
-        it('should return true if date is over four weeks', () => {
-            date = moment().add(5, 'weeks');
-            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
         });
 
         it('should return true if date is exactly four weeks', () => {
             date = moment().add(4, 'weeks');
+            expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
+        });
+
+        it('should return true if date is over four weeks', () => {
+            date = moment().add(4, 'weeks').add(1, 'day');
             expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
         });
 
