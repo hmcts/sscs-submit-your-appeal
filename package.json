@@ -14,7 +14,7 @@
     "test:coverage": "cross-env NODE_PATH=. istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
     "test:nsp": "nsp check",
     "test:a11y": "echo 'a11y tests not implemented'",
-    "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
+    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=node_modules/**,test/**,assets/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info",
     "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
