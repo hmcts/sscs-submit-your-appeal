@@ -1,5 +1,6 @@
 {
   "title": "Your appeal has been submitted",
+  "imageAlt": "A picture of the track your appeal progress bar",
   "next": {
     "heading": "What happens next",
     "notify": "DWP will be notified that you want to appeal against their decision. You’ll be told the next steps when DWP have responded.",
