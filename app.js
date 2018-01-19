@@ -21,10 +21,9 @@ const protocol = config.node.protocol;
 const hostname = config.node.hostname;
 const port =     config.node.port;
 
-let baseUrl;
-if(process.env.NODE_ENV === 'production') {
-    baseUrl = `${protocol}://${hostname}`;
-} else if (process.env.NODE_ENV === 'development') {
+let baseUrl = `${protocol}://${hostname}`;
+
+if(process.env.NODE_ENV !== 'production') {
     baseUrl = `${protocol}://${hostname}:${port}`;
 }
 
@@ -35,6 +34,10 @@ Logger.config({
 });
 
 logger.info('SYA base Url: ', baseUrl);
+
+// Tests
+app.set('portFrom', port);
+app.set('portTo', port + 50);
 
 lookAndFeel.configure(app, {
     baseUrl,
