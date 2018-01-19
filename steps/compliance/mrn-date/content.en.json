@@ -2,6 +2,7 @@
   "title": "When is your Mandatory Reconsideration Notice (MRN) dated?",
   "dateLegend": "Enter the date from the top right of your MRN letter",
   "dateHint": "For example, 31 3 2017",
+  "imageAlt": "A copy of your MRN",
   "fields": {
     "date": {
       "day": "Day",

@@ -1,6 +1,7 @@
 {
   "title": "Find DWP's address on the top right of your Mandatory Reconsideration Notice (MRN)",
   "noMRN": "I don’t have a Mandatory Reconsideration Notice",
+  "imageAlt": "A number of the DWP issuing office",
   "fields": {
     "pipNumber": {
       "header": "Enter the Personal Independence Payment number from DWP’s address",
