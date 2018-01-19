@@ -1,9 +1,10 @@
 .idea
 .DS_Store
-public
 node_modules
 .nyc_output
 dump.rdb
 test/e2e/output
 test/unit/coverage
 .sonar/
+.sonar_lock
+report-task.txt
