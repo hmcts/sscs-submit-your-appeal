@@ -60,7 +60,7 @@ class DateUtils {
 
     static isLessThanOrEqualToThirtyWeeks(date) {
         const dateThirtyWeeksLater = moment().add(30, 'weeks');
-        return date.isSameOrBefore(dateThirtyWeeksLater);
+        return date.isSameOrBefore(dateThirtyWeeksLater, 'day');
     }
 
     static isDateOnTheWeekend(date) {
