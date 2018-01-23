@@ -234,19 +234,20 @@ describe('DateUtils.js', () => {
 
         let date;
 
-        it('should return false if date is over thirty weeks', () => {
-            date = moment().add(31, 'weeks');
-            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.false;
-        });
-
         it('should return true if date is under thirty weeks', () => {
-            date = moment();
+            date = moment().add(30, 'weeks').subtract(1, 'day');
             expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
         });
+
 
         it('should return true if date is exactly thirty weeks', () => {
             date = moment().add(30, 'weeks');
             expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
+        });
+
+        it('should return false if date is over thirty weeks', () => {
+            date = moment().add(30, 'weeks').add(1, 'day');
+            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.false;
         });
 
     });
