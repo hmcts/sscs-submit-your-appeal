@@ -17,6 +17,12 @@ variable "infrastructure_env" {
   description = "Infrastructure environment to point to"
 }
 
+variable "subscription" {
+  type = "string"
+}
+
+variable "ilbIp"{}
+
 variable "sya_server_port" {
   default = "3000"
 }
