@@ -18,7 +18,7 @@ module "submit-your-appeal-frontend" {
 
 
 module "redis-cache" {
-  source   = "git@github.com:contino/moj-module-redis?ref=master"
+  source   = "git@github.com:contino/moj-module-redis?ref=fix-arm-outputs"
   product  = "${var.product}-redis"
   location = "${var.location}"
   env      = "${var.env}"
