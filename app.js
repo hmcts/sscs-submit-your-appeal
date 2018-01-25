@@ -21,12 +21,10 @@ const protocol = config.node.protocol;
 const hostname = config.node.hostname;
 const port =     config.node.port;
 
-
 let baseUrl = `${protocol}://${hostname}`;
-
-//if(process.env.NODE_ENV !== 'production') {
-//    baseUrl = `${protocol}://${hostname}:${port}`;
-//}
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+    baseUrl = `${protocol}://${hostname}:${port}`;
+}
 
 Logger.config({
     microservice: "submit-your-appeal-frontend",
