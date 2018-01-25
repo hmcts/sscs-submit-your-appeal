@@ -21,6 +21,8 @@ const protocol = config.node.protocol;
 const hostname = config.node.hostname;
 const port =     config.node.port;
 
+console.log('SYA ==> protocol:%s,hostname:%s, port:%port');
+
 let baseUrl = `${protocol}://${hostname}`;
 
 if(process.env.NODE_ENV !== 'production') {
