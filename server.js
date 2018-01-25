@@ -5,4 +5,4 @@ const config = require('config');
 const logger = Logger.getLogger('server.js');
 
 const server = app.listen(config.node.port);
-logger.info(`SYA server listening on port: ${server.address().port}`);
+logger.info(`SYA server listening on port: ${config.node.port}`);
