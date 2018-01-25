@@ -13,6 +13,7 @@ module "submit-your-appeal-frontend" {
     NODE_ENV                     = "${var.node_environment}"
     HTTP_PROTOCOL                = "https"
     PORT                         = "${var.sya_server_port}"
+    WEBSITE_NODE_DEFAULT_VERSION = "8.9.0"
   }
 }
 
