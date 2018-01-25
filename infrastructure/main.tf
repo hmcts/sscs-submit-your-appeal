@@ -13,7 +13,6 @@ module "submit-your-appeal-frontend" {
     HTTP_PROTOCOL                = "https"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.3"
     EXTERNAL_HOSTNAME            = "www.nonprod.benefit-appeal.platform.hmcts.net"
-    EXTERNAL_PORT                = "80"
   }
 }
 
