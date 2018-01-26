@@ -28,7 +28,7 @@ variable "sya_server_port" {
 }
 
 variable "node_environment" {
-  default = "development"
+  default = "sandbox"
 }
 
 
