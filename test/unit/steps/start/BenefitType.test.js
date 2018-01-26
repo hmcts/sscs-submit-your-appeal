@@ -73,7 +73,7 @@ describe('BenefitType.js', () => {
     describe('answers() and values()', () => {
 
         const question = 'A Question';
-        const value = 'PIP';
+        const value = 'Personal Independence Payment (PIP)';
 
         beforeEach(() => {
 
@@ -102,7 +102,12 @@ describe('BenefitType.js', () => {
 
         it('should contain a value object', () => {
             const values = benefitType.values();
-            expect(values).to.eql( { benefitType: 'PIP' });
+            expect(values).to.deep.equal({
+                benefitType: {
+                    code: 'PIP',
+                    description: 'Personal Independence Payment'
+                }
+            });
         });
     });
 

@@ -3,7 +3,6 @@
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { numbers } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
