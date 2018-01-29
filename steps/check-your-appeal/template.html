@@ -15,8 +15,10 @@
 {% endblock %}
 
 {% block statement_of_truth_fields %}
+
     {% call formSection() %}
         {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
     {% endcall %}
+
 {%- endblock %}
 

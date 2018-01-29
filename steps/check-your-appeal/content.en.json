@@ -28,7 +28,7 @@
       "label": "Enter your name",
       "hint": "This should be the person who is named on the appeal",
       "error": {
-        "required": "Enter a Name"
+        "required": "You need to enter your name before submitting your appeal. Enter your name and click ‘submit your appeal’"
       }
     }
   },
