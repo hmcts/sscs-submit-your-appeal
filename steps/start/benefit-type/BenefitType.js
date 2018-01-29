@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { splitBenefitType } = require('utils/stringUtils');
 
 class BenefitType extends Question {
 
@@ -40,8 +41,8 @@ class BenefitType extends Question {
     values() {
 
         return {
-            benefitType: this.fields.benefitType.value
-        };
+            benefitType: splitBenefitType(this.fields.benefitType.value)
+        }
     }
 
     next() {

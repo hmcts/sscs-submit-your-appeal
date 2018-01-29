@@ -17,4 +17,20 @@ const titleise = string => {
     return `${firstChar}${rest}`;
 };
 
-module.exports = { titleise };
+const splitBenefitType = benefitType => {
+
+    let code = '';
+    let description = benefitType;
+
+    if(benefitType.includes('(') &&  benefitType.includes(')')) {
+        const index = benefitType.indexOf('(');
+        description = benefitType.substring(0,index).trim();
+        code = benefitType.substring(index, benefitType.length)
+            .replace('(', '')
+            .replace(')', '');
+    }
+
+    return { description, code }
+}
+
+module.exports = { titleise, splitBenefitType };
