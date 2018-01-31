@@ -22,14 +22,6 @@ After((I) => {
 
 });
 
-// Scenario.only('Textfield allows to enter new lines', (I) => {
-//
-//     const text = 'This is a text. \r This is a new line';
-//     I.enterReasonForAppealingAndContinue(text);
-//     I.seeInCurrentUrl(paths.reasonsForAppealing.otherReasonForAppealing);
-//
-// });
-
 Scenario('When I go to the page and there are no reasons I see the Add reason link', (I) => {
 
     I.see(content.noReasons);

@@ -3,6 +3,7 @@
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 
 describe('ReasonForAppealing.js', () => {
 
@@ -18,7 +19,9 @@ describe('ReasonForAppealing.js', () => {
             }
         });
 
-        reasonForAppealing.fields = {};
+        reasonForAppealing.fields = {
+            items: {}
+        };
 
     });
 
@@ -30,7 +33,29 @@ describe('ReasonForAppealing.js', () => {
 
     });
 
-    describe('get form()', () => {
+    describe('get addAnotherLinkContent()', () => {
+
+        it('returns false when items is undefined', () => {
+            reasonForAppealing.fields.items = undefined;
+            expect(reasonForAppealing.addAnotherLinkContent).to.be.false;
+        });
+
+        it('returns add link when there are no items in the list', () => {
+            reasonForAppealing.fields.items.value = [];
+            expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.add);
+        });
+
+        it('returns addAnother link when there are items in the list', () => {
+            reasonForAppealing.fields.items.value = [{
+                whatYouDisagreeWith: 'disagree',
+                reasonForAppealing: 'because I do'
+            }];
+            expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.addAnother);
+        });
+
+    });
+
+    describe('get field()', () => {
 
         let fields;
         let field;
@@ -41,21 +66,18 @@ describe('ReasonForAppealing.js', () => {
 
         it('should contain 1 field', () => {
             expect(Object.keys(fields).length).to.equal(1);
-            expect(fields).to.have.all.keys('reasonForAppealing');
+            expect(fields).to.have.all.keys('items');
         });
 
-        describe('reasonForAppealing field', () => {
+        describe('items field', () => {
 
             beforeEach(() => {
-                field = fields.reasonForAppealing;
+                field = fields.items;
+                console.log(field);
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name reasonForAppealing', () => {
-                expect(field.name).to.equal('reasonForAppealing');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
