@@ -1,24 +1,39 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% extends "look-and-feel/layouts/add_another.html" %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
 {% from "components/formElements.html" import textarea %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-    {{ content.title | safe }}
+    {{ content.title | safe if isListMode }}
+    {{ content.titleEdit | safe if isEditMode }}
 {% endset %}
 
-{% block fields %}
+{% set pageContent = {
+    addAnotherLink: addAnotherLinkContent,
+    itemLabel: content.itemLabel,
+    noItemsMessage: content.noReasons,
+    itemsListLabel: content.itemsListLabel,
+    editItemLabel: content.itemLabel
+} %}
 
-{% call formSection() %}
-
-<p>{{ content.dwpExplained }}</p>
-
-<p>{{ content.readYouMRN }}</p>
-
-{{ textarea(fields.reasonForAppealing, "", hint="") }}
-
-{% endcall %}
-
+{% block item %}
+    <p>{{ item.whatYouDisagreeWith.value }}</p>
+    <p>{{ item.reasonForAppealing.value }}</p>
 {% endblock %}
+
+{% block listItems %}
+    <p>{{ content.dwpExplained }}</p>
+    <p>{{ content.readYouMRN }}</p>
+    {{ super() }}
+{% endblock %}
+
+{% block editItem %}
+    <p>{{ content.dwpExplained }}</p>
+    <p>{{ content.readYouMRN }}</p>
+    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
+    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label) }}
+{% endblock %}
+
+

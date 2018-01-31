@@ -1,40 +1,62 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { AddAnother } = require('@hmcts/one-per-page/steps');
+const { goTo } = require('@hmcts/one-per-page');
+const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
-const paths = require('paths');
-const Joi = require('joi');
+const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 
-class ReasonForAppealing extends Question {
+const emptyStringValidation = value => value !== undefined;
 
-    static get path() {
+class ReasonForAppealing extends AddAnother {
 
-        return paths.reasonsForAppealing.reasonForAppealing;
+    get addAnotherLinkContent() {
+
+        if (this.fields.items !== undefined) {
+            return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
+        }
+        return false;
     }
 
-    get form() {
+    get field() {
 
-        const reasonForAppealing = this.content.fields.reasonForAppealing;
+        return object({
+            whatYouDisagreeWith: text,
+            reasonForAppealing: text
+        }).check(
+            errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
+            value => emptyStringValidation(value.whatYouDisagreeWith)
+        ).check(
+            errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
+            value => emptyStringValidation(value.reasonForAppealing)
+        )
+    }
 
-        return form(
+    validateList(list) {
 
-            textField('reasonForAppealing').joi(
-                reasonForAppealing.error.required,
-                Joi.string().regex(whitelist).trim().required())
-        );
+        return list.check(content.listError, arr => arr.length > 0);
     }
 
     answers() {
+
+        const a = this.fields.items.value.map(values => {
+           return [`${values.whatYouDisagreeWith} \n`, values.reasonForAppealing]
+        });
+
+
+        console.log(this.fields.items.value);
+
+
+        console.log(a)
 
         return [
 
             answer(this, {
                 question: this.content.cya.reasonForAppealing.question,
                 section: sections.reasonsForAppealing,
-                answer: this.fields.reasonForAppealing.value
+                answer: a
             })
         ];
     }
@@ -43,7 +65,7 @@ class ReasonForAppealing extends Question {
 
         return {
             reasonsForAppealing: {
-                reasons: this.fields.reasonForAppealing.value
+                reasons: 'eggs'
             }
         };
     }
