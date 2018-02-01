@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const os = require('os');
 const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
@@ -37,6 +39,48 @@ logger.info('SYA base Url: ', baseUrl);
 // Tests
 app.set('portFrom', port);
 app.set('portTo', port + 50);
+
+// Protect against some well known web vulnerabilities
+// by setting HTTP headers appropriately.
+app.use(helmet());
+
+// Helmet content security policy (CSP) to allow only assets from same domain.
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        fontSrc: ["'self' data:"],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'www.google-analytics.com'],
+        connectSrc: ["'self'"],
+        mediaSrc: ["'self'"],
+        frameSrc: ["'none'"],
+        imgSrc: ["'self'", 'www.google-analytics.com'],
+    }
+}));
+
+// Helmet HTTP public key pinning
+app.use(helmet.hpkp({
+    maxAge: 900,
+    sha256s: ['AbCdEf123=', 'XyzABC123=']
+}));
+
+// Helmet referrer policy
+app.use(helmet.referrerPolicy({
+    policy: 'origin'
+}));
+
+// Disallow search index indexing
+app.use((req, res, next) => {
+    // Setting headers stops pages being indexed even if indexed pages link to them.
+    res.setHeader('X-Robots-Tag', 'noindex');
+    res.setHeader('X-Served-By', os.hostname());
+    res.setHeader('Cache-Control' , 'no-cache, max-age=0, must-revalidate, no-store' );
+    next();
+});
+
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send('User-agent: *\nDisallow: /');
+});
 
 lookAndFeel.configure(app, {
     baseUrl,
