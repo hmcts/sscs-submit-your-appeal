@@ -41,22 +41,16 @@ class ReasonForAppealing extends AddAnother {
 
     answers() {
 
-        const a = this.fields.items.value.map(values => {
-           return [`${values.whatYouDisagreeWith} \r`, values.reasonForAppealing]
+        const reasonForAppealing = this.fields.items.value.map(values => {
+           return values.reasonForAppealing;
         });
-
-
-        console.log(this.fields.items.value);
-
-
-        console.log(a)
 
         return [
 
             answer(this, {
                 question: this.content.cya.reasonForAppealing.question,
                 section: sections.reasonsForAppealing,
-                answer: this.fields.items
+                answer: reasonForAppealing
             })
         ];
     }
