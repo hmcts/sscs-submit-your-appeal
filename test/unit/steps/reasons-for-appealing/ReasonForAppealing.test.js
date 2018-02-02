@@ -88,15 +88,18 @@ describe('ReasonForAppealing.js', () => {
 
     });
 
-    describe('get answers()', () => {
+    describe('answers() and values()', () => {
 
         let answers;
 
         beforeEach(() => {
 
             reasonForAppealing.fields = {
-                reasonForAppealing: {
-                    value: "my answer"
+                items: {
+                    value: [{
+                        whatYouDisagreeWith: 'my first answer',
+                        reasonForAppealing: 'my second answer'
+                    }]
                 }
             };
 
@@ -117,11 +120,16 @@ describe('ReasonForAppealing.js', () => {
         });
 
         it('should return expected answers', () => {
-            expect(answers.answer).to.equal('my answer');
+            expect(answers.answer).to.eql(['my second answer']);
         });
 
         it('should return expected question', () => {
             expect(answers.question).to.equal('my question');
+        });
+
+        it('should contain a value object', () => {
+            const values = reasonForAppealing.values();
+            expect(values).to.eql( { reasonsForAppealing: { reasons: reasonForAppealing.fields.items.value } });
         });
 
     });
