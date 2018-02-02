@@ -73,7 +73,6 @@ describe('ReasonForAppealing.js', () => {
 
             beforeEach(() => {
                 field = fields.items;
-                console.log(field);
             });
 
             it('has constructor name FieldDescriptor', () => {
