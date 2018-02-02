@@ -1,11 +1,3 @@
-function enterReasonForAppealingAndContinue(reason) {
-
-    const I = this;
-
-    I.fillField('#reasonForAppealing', reason);
-    I.click('Continue');
-}
-
 function enterAnythingElseAndContinue(anythingElse) {
 
     const I = this;
@@ -25,28 +17,7 @@ function enterReasonForAppealAndContinue(reason, link) {
 
 }
 
-function seeReasonForAppealInList(reason) {
-
-    const I = this;
-
-    I.see(reason.what);
-    I.see(reason.why);
-
-}
-
-function dontSeeReasonForAppealInList(reason) {
-
-    const I = this;
-
-    I.dontSee(reason.what);
-    I.dontSee(reason.why);
-
-}
-
 module.exports = {
     enterReasonForAppealAndContinue,
-    seeReasonForAppealInList,
-    dontSeeReasonForAppealInList,
-    enterReasonForAppealingAndContinue,
     enterAnythingElseAndContinue
 };

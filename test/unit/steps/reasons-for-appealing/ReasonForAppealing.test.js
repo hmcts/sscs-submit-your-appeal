@@ -120,7 +120,7 @@ describe('ReasonForAppealing.js', () => {
         });
 
         it('should return expected answers', () => {
-            expect(answers.answer).to.eql(['my second answer']);
+            expect(answers.answer).to.eql(['my first answer', 'my second answer']);
         });
 
         it('should return expected question', () => {

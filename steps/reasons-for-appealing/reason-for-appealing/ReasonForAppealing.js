@@ -7,6 +7,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { flatten } = require('lodash');
 
 const emptyStringValidation = value => value !== undefined;
 
@@ -42,7 +43,7 @@ class ReasonForAppealing extends AddAnother {
     answers() {
 
         const reasonForAppealing = this.fields.items.value.map(values => {
-           return values.reasonForAppealing;
+           return Object.values(values);
         });
 
         return [
@@ -50,7 +51,7 @@ class ReasonForAppealing extends AddAnother {
             answer(this, {
                 question: this.content.cya.reasonForAppealing.question,
                 section: sections.reasonsForAppealing,
-                answer: reasonForAppealing
+                answer: flatten(reasonForAppealing)
             })
         ];
     }

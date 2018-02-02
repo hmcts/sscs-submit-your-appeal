@@ -42,7 +42,7 @@ Scenario('When I click the Add reason link, I go to the page where I can enter m
 Scenario('When I add a reason I see the reason in the list', (I) => {
 
     I.enterReasonForAppealAndContinue(reason, content.links.add);
-    I.seeReasonForAppealInList(reason);
+    I.see(reason.what);
 
 });
 
@@ -57,17 +57,17 @@ Scenario('When I add multiple reasons, I see them in the list', (I) => {
 
     I.enterReasonForAppealAndContinue(reason, content.links.add);
     I.enterReasonForAppealAndContinue(additionalReason, content.links.addAnother);
-    I.seeReasonForAppealInList(reason);
-    I.seeReasonForAppealInList(additionalReason);
+    I.see(reason.what);
+    I.see(additionalReason.what);
 
 });
 
 Scenario('When I add a reason and click the delete link, the reason is removed', (I) => {
 
     I.enterReasonForAppealAndContinue(reason, content.links.add);
-    I.seeReasonForAppealInList(reason);
+    I.see(reason.what);
     I.click('Delete');
-    I.dontSeeReasonForAppealInList(reason)
+    I.dontSee(reason.what);
 
 });
 
@@ -91,10 +91,10 @@ Scenario('When I click Continue without adding a reason, I see errors', (I) => {
 Scenario('When I add a reason and the edit it, I see the new reason', (I) => {
 
     I.enterReasonForAppealAndContinue(reason, content.links.add);
-    I.seeReasonForAppealInList(reason);
+    I.see(reason.what);
     I.enterReasonForAppealAndContinue(additionalReason, 'Edit');
-    I.dontSeeReasonForAppealInList(reason);
-    I.seeReasonForAppealInList(additionalReason);
+    I.dontSee(reason.what);
+    I.see(additionalReason.what);
 
 });
 
