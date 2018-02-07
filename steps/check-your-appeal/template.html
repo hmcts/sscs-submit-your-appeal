@@ -2,6 +2,8 @@
 {% extends "look-and-feel/layouts/check_your_answers.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, formSection %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set pageContent = {
     sendApplication: content.submitButton.value
     }
