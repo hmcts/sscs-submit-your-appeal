@@ -2,6 +2,8 @@
 {% extends "look-and-feel/layouts/add_another.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection, date %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set title %}
 {{ content.title | safe if isListMode }}
 {{ content.titleEdit | safe if isEditMode }}

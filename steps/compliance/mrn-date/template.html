@@ -2,6 +2,8 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection, date %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set title %}
     {{ content.title | safe }}
 {% endset %}
