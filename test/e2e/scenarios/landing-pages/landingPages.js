@@ -51,3 +51,19 @@ Scenario('When I go to the start an appeal landing page and click start appeal, 
     I.seeInCurrentUrl(paths.start.benefitType);
 
 });
+
+Scenario('When I go to the Overview landing page and click the cookies link in the footer, I am taken to the cookies policy page', (I) => {
+
+    I.amOnPage(paths.landingPages.overview);
+    I.click('Cookies');
+    I.seeInCurrentUrl(paths.policy.cookiePolicy);
+
+});
+
+Scenario('When I go to the Overview landing page and click the terms and conditions link in the footer, I am taken to the terms and conditions policy page', (I) => {
+
+    I.amOnPage(paths.landingPages.overview);
+    I.click('Terms and conditions');
+    I.seeInCurrentUrl(paths.policy.termsAndConditions);
+
+});
