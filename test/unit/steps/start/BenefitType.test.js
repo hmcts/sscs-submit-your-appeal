@@ -14,7 +14,7 @@ describe('BenefitType.js', () => {
         benefitType = new BenefitType({
             journey: {
                 steps: {
-                    AppointeeFormDownload: paths.identity.appointeeFormDownload,
+                    AppealFormDownload: paths.appealFormDownload,
                     PostcodeChecker: paths.start.postcodeCheck
                 }
             }
@@ -113,9 +113,9 @@ describe('BenefitType.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step path /mrn-date with benefit type value is not PIP', () => {
+        it('returns the next step path /appeal-form-download when benefit type value is not PIP', () => {
             benefitType.fields.benefitType.value = 'not PIP';
-            expect(benefitType.next().step).to.eql(paths.identity.appointeeFormDownload);
+            expect(benefitType.next().step).to.eql(paths.appealFormDownload);
         });
 
         it('returns the next step path /postcode-check with benefit type value is PIP', () => {

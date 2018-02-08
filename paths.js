@@ -34,6 +34,8 @@ module.exports = {
         independence:                   '/independence'
     },
 
+    appealFormDownload:                 '/appeal-form-download',
+
     compliance: {
         haveAMRN:                       '/have-a-mrn',
         haveContactedDWP:               '/have-contacted-dwp',
@@ -52,8 +54,7 @@ module.exports = {
         enterAppellantName:             '/enter-appellant-name',
         enterAppellantDOB:              '/enter-appellant-dob',
         enterAppellantNINO:             '/enter-appellant-nino',
-        enterAppellantContactDetails:   '/enter-appellant-contact-details',
-        appointeeFormDownload:          '/appointee-form-download'
+        enterAppellantContactDetails:   '/enter-appellant-contact-details'
     },
 
     smsNotify: {
