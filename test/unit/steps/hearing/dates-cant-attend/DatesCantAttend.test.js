@@ -115,6 +115,7 @@ describe('DatesCantAttend.js', () => {
             expect(answers[0].question).to.equal(question);
             expect(answers[0].section).to.equal(sections.theHearing);
             expect(answers[0].answer).to.eql(answersMappedValue);
+            expect(answers[0].url).to.eql(paths.hearing.hearingAvailability);
         });
 
         it('should contain a value object', () => {
