@@ -11,7 +11,7 @@
     "start-dev": "cross-env NODE_PATH=. node-dev server.js",
     "setup": "exit 0",
     "test": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
-    "test-all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",
+    "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",
     "lint": "echo 'linting not implemented'",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --steps",
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",

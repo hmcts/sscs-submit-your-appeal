@@ -2,7 +2,11 @@
 
 const paths = require('paths');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+
 const selectors = require('steps/check-your-appeal/selectors');
+const appellantPhoneNumberAnswer   =  `${selectors.appellant.phoneNumber} ${selectors.answer}`;
+const textMsgRemindersMobileAnswer =  `${selectors.textMsgReminders.mobileNumber} ${selectors.answer}`;
+const receiveTxtMsgRemindersAnswer =  `${selectors.textMsgReminders.receiveTxtMsgReminders} ${selectors.answer}`;
 
 Feature('Appellant PIP, one month ago, does not attend hearing.');
 
@@ -23,8 +27,8 @@ Scenario('Appellant does not define an optional phone number and does not sign u
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('Not provided', selectors.appellant.phoneNumber);
-    I.see('No', selectors.textMsgReminders.receiveTxtMsgReminders);
+    I.see('Not provided', appellantPhoneNumberAnswer);
+    I.see('No', receiveTxtMsgRemindersAnswer);
 
 });
 
@@ -38,8 +42,8 @@ Scenario('Appellant does not define an optional phone number, however, enters mo
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('Not provided', selectors.appellant.phoneNumber);
-    I.see('07455678444', selectors.textMsgReminders.mobileNumber);
+    I.see('Not provided', appellantPhoneNumberAnswer);
+    I.see('07455678444', textMsgRemindersMobileAnswer);
 
 });
 
@@ -54,8 +58,8 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', selectors.appellant.phoneNumber);
-    I.see('07411738663', selectors.textMsgReminders.mobileNumber);
+    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see('07411738663', textMsgRemindersMobileAnswer);
 
 });
 
@@ -71,21 +75,20 @@ Scenario('Appellant defines an optional phone number, then provides an additiona
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', selectors.appellant.phoneNumber);
-    I.see('07411333333', selectors.textMsgReminders.mobileNumber);
+    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see('07411333333', textMsgRemindersMobileAnswer);
 
 });
 
 Scenario('Appellant defines an optional phone number, but does not sign up for text msg reminders.', (I) => {
 
     I.enterDetailsFromStartToNINO();
-
     I.enterAppellantContactDetailsWithMobileAndContinue('07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', selectors.appellant.phoneNumber);
-    I.see('No', selectors.textMsgReminders.receiveTxtMsgReminders);
+    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see('No', receiveTxtMsgRemindersAnswer);
 
 });
