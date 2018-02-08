@@ -16,13 +16,15 @@
     "whatYouDisagreeWith": {
       "label": "What you disagree with",
       "error": {
-        "required": "Enter what you disagree with"
+        "required": "Enter what you disagree with",
+        "notEnough": "You have not said enough about what you want to appeal. Briefly explain what you disagree with."
       }
     },
     "reasonForAppealing": {
       "label": "Why you disagree with it",
       "error": {
-        "required": "You need to give at least one reason for appealing"
+        "required": "You need to give at least one reason for appealing",
+        "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision."
       }
     }
   },

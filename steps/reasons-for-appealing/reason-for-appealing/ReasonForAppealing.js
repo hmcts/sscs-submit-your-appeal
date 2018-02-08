@@ -10,6 +10,7 @@ const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { flatten } = require('lodash');
 
 const emptyStringValidation = value => value !== undefined;
+const isMoreOrEqualToFiveCharacters = value => value.length > 4;
 
 class ReasonForAppealing extends AddAnother {
 
@@ -30,8 +31,14 @@ class ReasonForAppealing extends AddAnother {
             errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
             value => emptyStringValidation(value.whatYouDisagreeWith)
         ).check(
+            errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
+            value => isMoreOrEqualToFiveCharacters(value.whatYouDisagreeWith)
+        ).check(
             errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
             value => emptyStringValidation(value.reasonForAppealing)
+        ).check(
+            errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
+            value => isMoreOrEqualToFiveCharacters(value.reasonForAppealing)
         )
     }
 
