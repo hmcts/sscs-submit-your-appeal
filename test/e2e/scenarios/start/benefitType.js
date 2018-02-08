@@ -1,6 +1,6 @@
 'use strict';
 
-const content = require('steps/identity/appointee-form-download/content.en');
+const content = require('steps/appeal-form-download/content.en');
 const benefitTypesObj = require('steps/start/benefit-type/types');
 const benefitTypesArr = Object.values(benefitTypesObj);
 const paths = require('paths');
@@ -29,7 +29,7 @@ benefitTypesArr.forEach((benefitType) => {
         Scenario(`When I enter ${benefitType} I am taken to the download form page`, (I) => {
 
             I.enterBenefitTypeAndContinue(benefitType);
-            I.seeInCurrentUrl(paths.identity.appointeeFormDownload);
+            I.seeInCurrentUrl(paths.appealFormDownload);
             I.see(content.title);
             I.see(content.button.text);
 

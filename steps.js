@@ -22,7 +22,7 @@ const AppellantContactDetails = require('steps/identity/appellant-contact-detail
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
-const AppointeeFormDownload = require('steps/identity/appointee-form-download/AppointeeFormDownload');
+const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownload');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
@@ -75,7 +75,7 @@ const identity = [
     AppellantName,
     AppellantNINO,
     Appointee,
-    AppointeeFormDownload
+    AppealFormDownload
 ];
 
 const smsNotify = [

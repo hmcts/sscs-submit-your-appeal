@@ -1,7 +1,7 @@
 'use strict';
 
 const appellantName = require('steps/identity/appellant-name/content.en.json');
-const appointeeFormDownload = require('steps/identity/appointee-form-download/content.en.json');
+const appealFormDownload = require('steps/appeal-form-download/content.en.json');
 const appointee = require('steps/identity/appointee/content.en');
 const paths = require('paths');
 
@@ -19,8 +19,8 @@ After((I) => {
 Scenario('When I select Yes, I am taken to the download appointee form page', (I) => {
 
     I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.yes);
-    I.seeInCurrentUrl(paths.identity.appointeeFormDownload);
-    I.see(appointeeFormDownload.title);
+    I.seeInCurrentUrl(paths.appealFormDownload);
+    I.see(appealFormDownload.title);
 
 });
 

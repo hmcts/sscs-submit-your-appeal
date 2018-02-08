@@ -1,6 +1,6 @@
 const benefitTypes = require('steps/start/benefit-type/types');
 
-Feature('Appointee form download page');
+Feature('Appeal form download page');
 
 Before((I) => {
     I.createTheSession();
