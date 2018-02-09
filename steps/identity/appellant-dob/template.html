@@ -6,6 +6,8 @@
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set title %}
         {{ content.title | safe }}
 {% endset %}

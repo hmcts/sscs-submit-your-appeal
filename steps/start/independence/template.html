@@ -2,6 +2,8 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set title %}
     {{ content.title | safe }}
 {% endset %}

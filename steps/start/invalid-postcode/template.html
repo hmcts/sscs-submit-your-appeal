@@ -3,6 +3,8 @@
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 {% from "look-and-feel/components/header.njk" import header %}
 
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
 {% set title = content.title %}
 
 {% block two_thirds %}

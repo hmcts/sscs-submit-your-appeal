@@ -2,7 +2,7 @@
 {% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+{% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(phase) %}
