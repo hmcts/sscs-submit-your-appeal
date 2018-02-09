@@ -6,11 +6,11 @@ const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-class AppointeeFormDownload extends Question {
+class AppealFormDownload extends Question {
 
     static get path() {
 
-        return paths.identity.appointeeFormDownload;
+        return paths.appealFormDownload;
     }
 
     get benefitType() {
@@ -44,4 +44,4 @@ class AppointeeFormDownload extends Question {
 
 }
 
-module.exports = AppointeeFormDownload;
+module.exports = AppealFormDownload;

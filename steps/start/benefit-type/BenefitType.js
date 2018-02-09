@@ -51,7 +51,7 @@ class BenefitType extends Question {
 
         return branch(
             goTo(this.journey.steps.PostcodeChecker).if(isPIPBenefitType),
-            goTo(this.journey.steps.AppointeeFormDownload)
+            goTo(this.journey.steps.AppealFormDownload)
         );
     }
 }
