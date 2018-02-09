@@ -35,7 +35,7 @@ label.form-label[for="signer"] {
   width: 100%;
 }
 
-#addressLine1, #addressLine2, #townCity, #county, #emailAddress {
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName {
   &.form-control {
     @extend .form-control-3-4;
   }
