@@ -41,7 +41,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#postcode {
+#postcode, #nino {
   &.form-control {
     @extend .form-control-1-4;
   }
