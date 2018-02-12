@@ -17,8 +17,8 @@
     <form action="{{ path if path else url }}" method="post" class="form">
 
         {% block fields %}
-            <p>{{ content.reviewed }}</p>
-            <p>{{ content.separate }}</p>
+            <p class="lede">{{ content.reviewed }}</p>
+            <p class="lede">{{ content.separate }}</p>
         {% endblock %}
 
         <input class="button" type="submit" value="Continue">
