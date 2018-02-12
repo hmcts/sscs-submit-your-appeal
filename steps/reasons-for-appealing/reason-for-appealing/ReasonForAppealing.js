@@ -7,7 +7,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { flatten } = require('lodash');
 const paths = require('paths');
 
 const emptyStringValidation = value => value !== undefined;
