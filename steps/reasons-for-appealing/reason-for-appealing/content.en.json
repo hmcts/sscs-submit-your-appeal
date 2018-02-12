@@ -30,7 +30,11 @@
   },
   "cya": {
     "reasonForAppealing": {
-      "question": "Reason for appealing"
+      "questions": {
+        "whatYouDisagreeWith": "What you disagree with",
+        "reasonForAppealing": "Why you disagree with it"
+      },
+      "changeLink": "Change"
     }
   }
 }

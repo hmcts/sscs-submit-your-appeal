@@ -102,14 +102,6 @@ describe('ReasonForAppealing.js', () => {
                 }
             };
 
-            reasonForAppealing.content = {
-                cya: {
-                    reasonForAppealing: {
-                        question: 'my question'
-                    }
-                }
-            };
-
             answers = reasonForAppealing.answers()[0];
 
         });
@@ -118,12 +110,8 @@ describe('ReasonForAppealing.js', () => {
             expect(answers.section).to.equal('reasons-for-appealing');
         });
 
-        it('should return expected answers', () => {
-            expect(answers.answer).to.eql(['my first answer', 'my second answer']);
-        });
-
-        it('should return expected question', () => {
-            expect(answers.question).to.equal('my question');
+        it('should return expected template', () => {
+            expect(answers.template).to.equal('answer.html');
         });
 
         it('should contain a value object', () => {

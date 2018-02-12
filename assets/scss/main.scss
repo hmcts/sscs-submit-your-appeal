@@ -157,3 +157,10 @@ label.form-label[for="signer"] {
     padding-right: 10%
   }
 }
+
+.cya-whatYouDisagreeWith {
+  dt, dd {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}

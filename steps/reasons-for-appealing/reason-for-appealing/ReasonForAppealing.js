@@ -8,11 +8,17 @@ const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { flatten } = require('lodash');
+const paths = require('paths');
 
 const emptyStringValidation = value => value !== undefined;
 const isMoreOrEqualToFiveCharacters = value => value.length > 4;
 
 class ReasonForAppealing extends AddAnother {
+
+    static get path() {
+
+        return paths.reasonsForAppealing.reasonForAppealing;
+    }
 
     get addAnotherLinkContent() {
 
@@ -49,16 +55,11 @@ class ReasonForAppealing extends AddAnother {
 
     answers() {
 
-        const reasonForAppealing = this.fields.items.value.map(values => {
-           return Object.values(values);
-        });
-
         return [
 
             answer(this, {
-                question: this.content.cya.reasonForAppealing.question,
                 section: sections.reasonsForAppealing,
-                answer: flatten(reasonForAppealing)
+                template: 'answer.html'
             })
         ];
     }
