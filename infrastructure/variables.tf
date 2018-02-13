@@ -17,3 +17,16 @@ variable "subscription" {
 }
 
 variable "ilbIp"{}
+
+variable "infrastructure_env" {
+  default     = "dev"
+  description = "Infrastructure environment to point to"
+}
+
+variable "sya_server_port" {
+  default = "3000"
+}
+
+variable "node_environment" {
+  default = "sandbox"
+}
