@@ -1,19 +1,5 @@
-variable "infrastructure_env" {
-  default     = "dev"
-}
-
-variable "sya_server_port" {
-  default = "3000"
-}
-
-variable "node_environment" {
-  default = "sandbox"
-}
-
-variable "tribunals_case_api" {
-  default = "http://sscs-tribunals-api-sandbox-staging.service.core-compute-sandbox.internal/"
-}
-
-variable "sya_hostname" {
-  default = "benefit-appeal.demo.platform.hmcts.net"
-}
+infrastructure_env = "dev"
+sya_server_port = "3000"
+node_environment = "sandbox"
+tribunals_case_api = "http://sscs-tribunals-api-sandbox-staging.service.core-compute-sandbox.internal/"
+sya_hostname  = "benefit-appeal.demo.platform.hmcts.net"
