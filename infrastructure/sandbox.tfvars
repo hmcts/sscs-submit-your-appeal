@@ -1,6 +1,5 @@
 variable "infrastructure_env" {
   default     = "dev"
-  description = "Infrastructure environment to point to"
 }
 
 variable "sya_server_port" {
