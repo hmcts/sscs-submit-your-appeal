@@ -30,3 +30,7 @@ variable "sya_server_port" {
 variable "node_environment" {
   default = "sandbox"
 }
+
+variable "sya_hostname" {
+  default = "localhost"
+}
