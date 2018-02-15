@@ -1,3 +1,4 @@
+require('app-insights');
 const { Logger, Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
