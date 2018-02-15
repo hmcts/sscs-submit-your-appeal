@@ -2,7 +2,8 @@
   "node": {
     "protocol": "HTTP_PROTOCOL",
     "hostname": "EXTERNAL_HOSTNAME",
-    "port": "PORT"
+    "port": "PORT",
+    "insights": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
   "redis": {
     "url": "REDIS_URL",
@@ -10,6 +11,9 @@
     "useSSL": "USE_SSL"
   },
   "api": {
+    "url":  "TRIBUNALS_CASE_API_URL"
+  },
+  "appInsights": {
     "url":  "TRIBUNALS_CASE_API_URL"
   }
 }
