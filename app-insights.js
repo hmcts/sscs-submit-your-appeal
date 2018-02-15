@@ -1,6 +1,7 @@
+const config = require('config');
 const appInsights = require("applicationinsights");
 
-appInsights.setup()
+appInsights.setup(config.node.insights)
 
 // Default settings.
 .setAutoDependencyCorrelation(true)
