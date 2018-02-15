@@ -1,6 +1,7 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "look-and-feel/layouts/two_thirds.html" %}
 {% from "look-and-feel/components/header.njk" import header %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -8,20 +9,24 @@
     {{ content.title | safe }}
 {% endset %}
 
-{% block two_thirds %}
+{% block full_width %}
+    <div class="grid-row">
 
-    <div class="banner-blue">
-        {{ header(title, size='xlarge') }}
+        <div class="banner-blue">
+            {{ header(title, size='xlarge') }}
+        </div>
+
+        <div class="column-two-thirds">
+            <form action="{{ path if path else url }}" method="post" class="form">
+
+                {% block fields %}
+                    <p class="lede">{{ content.reviewed }}</p>
+                    <p class="lede">{{ content.separate }}</p>
+                {% endblock %}
+
+                <input class="button" type="submit" value="Continue">
+            </form>
+        </div>
+
     </div>
-
-    <form action="{{ path if path else url }}" method="post" class="form">
-
-        {% block fields %}
-            <p>{{ content.reviewed }}</p>
-            <p>{{ content.separate }}</p>
-        {% endblock %}
-
-        <input class="button" type="submit" value="Continue">
-    </form>
-
-{% endblock %}
+{% endblock %}}
