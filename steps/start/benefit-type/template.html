@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection, select %}
+{% from "look-and-feel/components/fields.njk" import textbox, select %}
 
 {% block head -%}
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
@@ -15,12 +15,10 @@
 
 {% block fields %}
 
-    {% call formSection() %}
-
         {{ select(
             fields.benefitType,
-            "",
-            hint = '',
+            content.label,
+            hideLabel = true,
             options = [
                 { label: content.benefitTypes.aa,  value: 'Attendance Allowance' },
                 { label: content.benefitTypes.bb,  value: 'Bereavement Benefit' },
@@ -41,7 +39,5 @@
                 { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' }
             ])
         }}
-
-    {% endcall %}
 
 {% endblock %}
