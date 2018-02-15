@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection, textbox %}
+{% from "look-and-feel/components/fields.njk" import textbox %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -10,14 +10,10 @@
 
 {% block fields %}
 
-    <img class="mrn-image" src="{{ asset_path }}images/pip-number.png" alt="{{ content.imageAlt }}">
+    <img class="mrn-image issuing-office" src="{{ asset_path }}images/pip-number.png" alt="{{ content.imageAlt }}">
 
     <p><h3 class="heading-small">{{ content.fields.pipNumber.header }}</h3></p>
 
-    {% call formSection() %}
-
-        {{ textbox(fields.pipNumber, content.fields.pipNumber.label) }}
-
-    {% endcall %}
+    {{ textbox(fields.pipNumber, content.fields.pipNumber.label) }}
 
 {% endblock %}

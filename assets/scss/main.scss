@@ -26,6 +26,10 @@ label.form-label[for="signer"] {
 .mrn-image {
   padding-bottom: 1.5em;
   width: 100%;
+
+  &.issuing-office {
+    padding-bottom: 0;
+  }
 }
 
 .confirmation-image {
