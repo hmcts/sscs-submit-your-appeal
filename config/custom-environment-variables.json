@@ -2,7 +2,8 @@
   "node": {
     "protocol": "HTTP_PROTOCOL",
     "hostname": "EXTERNAL_HOSTNAME",
-    "port": "PORT"
+    "port": "PORT",
+    "insights": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
   "redis": {
     "url": "REDIS_URL",
