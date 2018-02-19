@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const { titleise, splitBenefitType } = require('utils/stringUtils');
+const { titleise, splitBenefitType, formatMobileNumber } = require('utils/stringUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('stringUtils.js', () => {
@@ -17,6 +17,22 @@ describe('stringUtils.js', () => {
         it('should return an empty string when being passed one', () => {
             const str = '';
             expect(titleise(str)).to.equal(str);
+        });
+
+    });
+
+    describe.only('formatMobileNumber', () => {
+
+        it('returns correct format when number includes + and is over 11 digits', () => {
+            expect(formatMobileNumber('+447557128316')).to.equal('+44 7557 128 316');
+        });
+
+        it('returns correct format when number doesn\t include + but is over 11 digits', () => {
+            expect(formatMobileNumber('447557128316')).to.equal('44 7557 128 316');
+        });
+
+        it('returns correct format when number doesn\t include + and isn\t over 11 digits', () => {
+            expect(formatMobileNumber('07557128316')).to.equal('0755 712 8316');
         });
 
     });

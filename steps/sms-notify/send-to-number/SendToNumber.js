@@ -4,6 +4,7 @@ const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
+const { formatMobileNumber } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -17,7 +18,7 @@ class SendToNumber extends Question {
 
     get phoneNumber() {
 
-        return this.fields.phoneNumber.value;
+        return formatMobileNumber(this.fields.phoneNumber.value);
     }
 
     get form() {

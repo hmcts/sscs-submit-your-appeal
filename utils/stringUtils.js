@@ -31,6 +31,27 @@ const splitBenefitType = benefitType => {
     }
 
     return { description, code }
-}
+};
 
-module.exports = { titleise, splitBenefitType };
+const formatMobileNumber = number => {
+
+    let formattedNumber;
+
+    if (number.length > 11 && number.includes('+')) {
+
+        formattedNumber = `${number.substring(0, 3)} ${number.substring(3, 7)} ${number.substring(7, 10)} ${number.substring(10)}`;
+
+    } else if (number.length > 11 && !number.includes('+')) {
+
+        formattedNumber = `${number.substring(0, 2)} ${number.substring(2, 6)} ${number.substring(6, 9)} ${number.substring(9)}`;
+
+    } else {
+
+        formattedNumber = `${number.substring(0, 4)} ${number.substring(4, 7)} ${number.substring(7)}`;
+    }
+
+    return formattedNumber
+
+};
+
+module.exports = { titleise, splitBenefitType, formatMobileNumber };
