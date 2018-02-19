@@ -1,7 +1,8 @@
 'use strict';
 
-const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const { expect } = require('test/util/chai');
+const { formatMobileNumber } = require('utils/stringUtils');
+const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const userAnswer = require('utils/answer');
 const paths = require('paths');
 
@@ -41,7 +42,7 @@ describe('SendToNumber.js', () => {
 
         it('should be defined', () => {
             expect(sendToNumber.phoneNumber).to.eq(
-                sendToNumber.fields.phoneNumber.value
+                formatMobileNumber(sendToNumber.fields.phoneNumber.value)
             );
         });
 

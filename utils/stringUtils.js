@@ -35,13 +35,14 @@ const splitBenefitType = benefitType => {
 
 const formatMobileNumber = number => {
 
+    const ELEVEN_DIGITS = 11;
     let formattedNumber;
 
-    if (number.length > 11 && number.includes('+')) {
+    if (number.length > ELEVEN_DIGITS && number.includes('+')) {
 
         formattedNumber = `${number.substring(0, 3)} ${number.substring(3, 7)} ${number.substring(7, 10)} ${number.substring(10)}`;
 
-    } else if (number.length > 11 && !number.includes('+')) {
+    } else if (number.length > ELEVEN_DIGITS && !number.includes('+')) {
 
         formattedNumber = `${number.substring(0, 2)} ${number.substring(2, 6)} ${number.substring(6, 9)} ${number.substring(9)}`;
 

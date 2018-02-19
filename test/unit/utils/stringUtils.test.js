@@ -21,17 +21,17 @@ describe('stringUtils.js', () => {
 
     });
 
-    describe.only('formatMobileNumber', () => {
+    describe('formatMobileNumber', () => {
 
         it('returns correct format when number includes + and is over 11 digits', () => {
             expect(formatMobileNumber('+447557128316')).to.equal('+44 7557 128 316');
         });
 
-        it('returns correct format when number doesn\t include + but is over 11 digits', () => {
+        it('returns correct format when number doesn\'t include + but is over 11 digits', () => {
             expect(formatMobileNumber('447557128316')).to.equal('44 7557 128 316');
         });
 
-        it('returns correct format when number doesn\t include + and isn\t over 11 digits', () => {
+        it('returns correct format when number doesn\'t include + and isn\'t over 11 digits', () => {
             expect(formatMobileNumber('07557128316')).to.equal('0755 712 8316');
         });
 
