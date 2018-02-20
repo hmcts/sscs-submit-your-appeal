@@ -12,8 +12,7 @@ module "submit-your-appeal-frontend" {
     NODE_ENV                     = "${var.node_environment}"
     HTTP_PROTOCOL                = "https"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.3"
-    EXTERNAL_HOSTNAME            = "www.nonprod.benefit-appeal.platform.hmcts.net"
-    VARFILES_DEBUG               = "${var.sya_hostname}"
+    EXTERNAL_HOSTNAME            = "${var.sya_hostname}"
   }
 }
 
