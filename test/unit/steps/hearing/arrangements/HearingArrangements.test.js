@@ -4,7 +4,7 @@ const { expect } = require('test/util/chai');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
 const paths = require('paths');
 
-describe('HearingArrangements.js', () => {
+describe.only('HearingArrangements.js', () => {
 
     let hearingArrangements;
 
@@ -38,8 +38,8 @@ describe('HearingArrangements.js', () => {
         });
 
         it('should contain 2 fields', () => {
-            expect(Object.keys(fields).length).to.equal(2);
-            expect(fields).to.have.all.keys('selection', 'anythingElse');
+            expect(Object.keys(fields).length).to.equal(4);
+            expect(fields).to.have.all.keys('selection', 'anythingElse', 'interpreterLanguageType', 'signLanguageType');
         });
 
         describe('selection field', () => {
@@ -66,6 +66,46 @@ describe('HearingArrangements.js', () => {
 
             it('has constructor name FieldDescriptor', () => {
                 expect(field.constructor.name).to.eq('FieldDescriptor');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
+        });
+
+        describe('interpreterLanguageType field', () => {
+
+            beforeEach(() => {
+                field = fields.interpreterLanguageType;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name interpreterLanguageType', () => {
+                expect(field.name).to.equal('interpreterLanguageType');
+            });
+
+            it('contains validation', () => {
+                expect(field.validations).to.not.be.empty;
+            });
+
+        });
+
+        describe('signLanguageType field', () => {
+
+            beforeEach(() => {
+                field = fields.signLanguageType;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDesriptor');
+            });
+
+            it('contains the field name signLanguageType', () => {
+                expect(field.name).to.equal('signLanguageType');
             });
 
             it('contains validation', () => {

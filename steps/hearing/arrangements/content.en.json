@@ -12,8 +12,22 @@
       "signLanguageInterpreter": "Sign language interpreter",
       "hearingLoop": "Hearing loop",
       "disabledAccess": "Disabled access",
+      "other": "Other",
       "error": {
         "required": "You need to provide some information about the support you need"
+      }
+    },
+    "interpreterLanguageType": {
+      "label": "Enter the language",
+      "hint": "Include a dialect if needed.",
+      "error": {
+        "invalid": "You have entered a special character that is not allowed. Delete it before continuing"
+      }
+    },
+    "signLanguageType": {
+      "hint": "Enter what type of sign language you need. For example, British Sign Language.",
+      "error": {
+        "invalid": "You have entered a special character that is not allowed. Delete it before continuing"
       }
     },
     "anythingElse": {
@@ -24,11 +38,10 @@
     }
   },
   "cya": {
-    "selection": {
-      "question": "Your hearing arrangement"
-    },
-    "anythingElse": {
-      "question": "Any other arrangements"
-    }
+    "languageInterpreter": "Language interpreter",
+    "signLanguageInterpreter": "Sign language interpreter",
+    "hearingLoop": "Hearing loop",
+    "disabledAccess": "Disabled access",
+    "other": "Other"
   }
 }

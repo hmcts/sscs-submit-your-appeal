@@ -43,7 +43,7 @@ label.form-label[for="signer"] {
   width: 100%;
 }
 
-#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #reasonForBeingLate, #reasonForNoMRN {
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #anythingElse, #reasonForBeingLate, #reasonForNoMRN {
   &.form-control {
     @extend .form-control-3-4;
   }
@@ -167,5 +167,18 @@ label.form-label[for="signer"] {
   dt, dd {
     border-bottom: none;
     padding-bottom: 0;
+  }
+}
+
+.cya-hearingArrangements {
+  dt, dd {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &:last-child {
+    dt, dd {
+      border-bottom: 1px solid #bfc1c3;
+    }
   }
 }
