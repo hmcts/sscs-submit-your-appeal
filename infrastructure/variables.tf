@@ -34,7 +34,3 @@ variable "node_environment" {
 variable "sya_hostname" {
   default = "localhost"
 }
-
-variable "tribunals_case_api" {
-  default = "localhost"
-}

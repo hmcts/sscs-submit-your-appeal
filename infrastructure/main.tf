@@ -6,7 +6,7 @@ module "submit-your-appeal-frontend" {
   ilbIp    = "${var.ilbIp}"
 
   app_settings = {
-    TRIBUNALS_CASE_API_URL       = "${var.tribunals_case_api}"
+    TRIBUNALS_CASE_API_URL       = "http://sscs-tribunals-api-${var.env}.service.${data.terraform_remote_state.core_apps_compute.ase_name[0]}.internal"
     REDIS_URL                    = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     SESSION_SECRET               = "${module.redis-cache.access_key}"
     NODE_ENV                     = "${var.node_environment}"
