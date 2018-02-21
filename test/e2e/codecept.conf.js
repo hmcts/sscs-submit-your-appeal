@@ -1,5 +1,5 @@
 exports.config = {
-    'tests': './scenarios/**/*.js',
+    'tests': './**/*.test.js',
     'output': './output',
     'timeout': 1000,
     'helpers': {
