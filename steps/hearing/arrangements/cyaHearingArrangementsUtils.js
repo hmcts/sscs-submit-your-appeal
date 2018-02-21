@@ -26,7 +26,7 @@ const getHiddenFieldValue = (fields, arrangement) => {
 
     const field = hiddenFields[arrangement];
 
-    return fields[field].value;
+    return fields[field] !== undefined ? fields[field].value : undefined;
 
 };
 

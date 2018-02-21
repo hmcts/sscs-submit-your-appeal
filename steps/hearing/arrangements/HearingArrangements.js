@@ -4,7 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text, list } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
-const { getHearingArrangementsAnswer } = require('utils/cyaHearingArrangementsUtils');
+const { getHearingArrangementsAnswer } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -29,7 +29,6 @@ class HearingArrangements extends Question {
         let arrangementType = {};
 
         Object.keys(arrangements).forEach(arrangement => {
-
             arrangementType[arrangement] = getHearingArrangementsAnswer(this.fields, arrangement);
         });
 
@@ -66,11 +65,6 @@ class HearingArrangements extends Question {
 
     answers() {
 
-
-        // console.log(this.fields.selection.value.map((arrangement) => {
-        //     return arrangements[arrangement]
-        // }).join(', '))
-
         return [
 
             answer(this, {
@@ -84,19 +78,24 @@ class HearingArrangements extends Question {
 
         const values = {
             hearing: {
-                anythingElse: this.fields.anythingElse.value,
                 arrangements: {
                     languageInterpreter: false,
                     signLanguageInterpreter: false,
                     hearingLoop: false,
-                    disabledAccess: false
-                }
+                    disabledAccess: false,
+                    other: false
+                },
+                interpreterLanguageType: this.fields.interpreterLanguageType.value,
+                signLanguageType: this.fields.signLanguageType.value,
+                anythingElse: this.fields.anythingElse.value,
             }
         };
 
         this.fields.selection.value.forEach((arrangement) => {
             values.hearing.arrangements[arrangement] = true;
         });
+
+        console.log(values);
 
         return values;
     }

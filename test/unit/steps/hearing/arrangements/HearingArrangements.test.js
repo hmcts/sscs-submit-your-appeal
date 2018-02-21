@@ -4,7 +4,7 @@ const { expect } = require('test/util/chai');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
 const paths = require('paths');
 
-describe.only('HearingArrangements.js', () => {
+describe('HearingArrangements.js', () => {
 
     let hearingArrangements;
 
@@ -18,12 +18,39 @@ describe.only('HearingArrangements.js', () => {
             }
         });
 
+        hearingArrangements.fields = {
+            selection: {
+                value: ['languageInterpreter', 'hearingLoop', 'other']
+            },
+            interpreterLanguageType: {
+                value: 'A language'
+            },
+            signLanguageType: {},
+            anythingElse: {
+                value: 'more support'
+            }
+        }
+
     });
 
     describe('get path()', () => {
 
         it('returns path /arrangements', () => {
             expect(HearingArrangements.path).to.equal(paths.hearing.hearingArrangements);
+        });
+
+    });
+
+    describe('get cyaArrangements()', () => {
+
+        it('returns object of the selection fields where the value us replaced by the hidden fields', () => {
+           expect(hearingArrangements.cyaArrangements).to.eql({
+               languageInterpreter: 'A language',
+               signLanguageInterpreter: 'Not required',
+               hearingLoop: 'Required',
+               disabledAccess: 'Not required',
+               other: 'more support'
+           });
         });
 
     });
@@ -116,40 +143,43 @@ describe.only('HearingArrangements.js', () => {
 
     });
 
-    describe('answers', () => {
+    describe('answers()', () => {
 
-        beforeEach(() => {
+        let answers;
 
-            hearingArrangements.content = {
-                cya: {
-                    selection: {
-                        question: 'Your hearing arrangement'
-                    },
-                    anythingElse: {
-                        question: 'Any other arrangements'
-                    }
-                }
-            };
-
-            hearingArrangements.fields = {
-                selection: {
-                    value: []
-                },
-                anythingElse: {
-                    value: 'Nope, not today!'
-                }
-            };
-
+        before(() => {
+            answers = hearingArrangements.answers()[0];
         });
 
-        it('should set the question and section', () => {
-            const answers = hearingArrangements.answers();
-            expect(answers.length).to.equal(2);
+        it('should return expected section', () => {
+            expect(answers.section).to.equal('hearing-arrangements');
+        });
+
+        it('should return expected template', () => {
+            expect(answers.template).to.equal('answer.html');
         });
 
     });
 
-    describe('values', () => {
+    describe('values()', () => {
+
+        it('should contain a value object', () => {
+            const values = hearingArrangements.values();
+            expect(values).to.eql({
+                hearing: {
+                    arrangements: {
+                        languageInterpreter: true,
+                        signLanguageInterpreter: false,
+                        hearingLoop: true,
+                        disabledAccess: false,
+                        other: true
+                    },
+                    interpreterLanguageType: 'A language',
+                    signLanguageType: undefined,
+                    anythingElse: 'more support'
+                }
+            });
+        });
 
     });
 
