@@ -40,13 +40,13 @@ timestamps {
                     sh 'make test'
                 }
 
-                stage("Sonar Scan"){
-                    sh 'make sonarscan-tactical'
-                }
+//                stage("Sonar Scan"){
+//                    sh 'make sonarscan-tactical'
+//                }
 
-                stage("Security checks") {
-                    sh 'make test-nsp-tactical'
-                }
+//                stage("Security checks") {
+//                    sh 'make test-nsp-tactical'
+//                }
 
                 stage('Package application (RPM)') {
                     syaFrontendRPMVersion = packager.nodeRPM('submit-your-appeal')
