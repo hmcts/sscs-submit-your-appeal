@@ -1,5 +1,6 @@
 'use strict';
 
+const { formatMobileNumber } = require('utils/stringUtils');
 const paths = require('paths');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 
@@ -43,7 +44,7 @@ Scenario('Appellant does not define an optional phone number, however, enters mo
 
     I.confirmDetailsArePresent();
     I.see('Not provided', appellantPhoneNumberAnswer);
-    I.see('07455678444', textMsgRemindersMobileAnswer);
+    I.see(formatMobileNumber('07455678444'), textMsgRemindersMobileAnswer);
 
 });
 
@@ -59,7 +60,7 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
 
     I.confirmDetailsArePresent();
     I.see('07411738663', appellantPhoneNumberAnswer);
-    I.see('07411738663', textMsgRemindersMobileAnswer);
+    I.see(formatMobileNumber('07411738663'), textMsgRemindersMobileAnswer);
 
 });
 
@@ -76,7 +77,7 @@ Scenario('Appellant defines an optional phone number, then provides an additiona
 
     I.confirmDetailsArePresent();
     I.see('07411738663', appellantPhoneNumberAnswer);
-    I.see('07411333333', textMsgRemindersMobileAnswer);
+    I.see(formatMobileNumber('07411333333'), textMsgRemindersMobileAnswer);
 
 });
 
