@@ -95,8 +95,6 @@ class HearingArrangements extends Question {
             values.hearing.arrangements[arrangement] = true;
         });
 
-        console.log(values);
-
         return values;
     }
 

@@ -22,6 +22,7 @@ Scenario('I do not select any checkboxes and continue to see errors', (I) => {
 });
 
 Scenario('I enter illegal characters < $ > to see errors', (I) => {
+    I.click(fields.selection.other);
     I.fillField('#anythingElse', '< $ >');
     I.click(Continue);
     I.seeInCurrentUrl(paths.hearing.hearingArrangements);
