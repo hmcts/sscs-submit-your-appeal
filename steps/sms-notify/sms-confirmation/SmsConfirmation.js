@@ -3,6 +3,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, textField } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { formatMobileNumber } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const regex = require('utils/regex');
 const paths = require('paths');
@@ -18,13 +19,16 @@ class SmsConfirmation extends Question {
     get mobileNumber() {
 
         const isMobile = regex.internationalMobileNumber.test(this.fields.phoneNumber.value);
+        let number;
 
         if(isMobile) {
-            return this.fields.useSameNumber.value === userAnswer.YES ?
+            number =  this.fields.useSameNumber.value === userAnswer.YES ?
                 this.fields.phoneNumber.value : this.fields.enterMobile.value;
+        } else {
+            number = this.fields.enterMobile.value
         }
 
-        return this.fields.enterMobile.value;
+        return formatMobileNumber(number);
     }
 
     get form() {
