@@ -2,10 +2,6 @@
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection, date %}
 
-{% block head -%}
-    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-{% endblock %}
-
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
