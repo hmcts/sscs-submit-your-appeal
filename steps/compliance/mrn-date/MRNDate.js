@@ -6,7 +6,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
-const Joi = require('joi');
 
 class MRNDate extends Question {
 

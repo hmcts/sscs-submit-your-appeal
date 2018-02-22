@@ -118,9 +118,15 @@ describe('DatesCantAttend.js', () => {
             expect(answers[0].url).to.eql(paths.hearing.hearingAvailability);
         });
 
-        it('should contain a value object', () => {
+        it('should contain a value object when dates array is not empty', () => {
             const values = datesCantAttend.values();
             expect(values).to.eql( { hearing: { datesCantAttend: valuesMappedValue } });
+        });
+
+        it('should contain an empty object when dates array is empty', () => {
+            datesCantAttend.fields.items.value = [];
+            const values = datesCantAttend.values();
+            expect(values).to.eql({});
         });
 
     });

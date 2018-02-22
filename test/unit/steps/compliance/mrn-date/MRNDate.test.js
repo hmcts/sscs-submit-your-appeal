@@ -45,6 +45,7 @@ describe('MRNDate.js', () => {
         });
 
         it('should contain 1 field', () => {
+            console.log(fields)
             expect(Object.keys(fields).length).to.equal(1);
             expect(fields).to.have.all.keys('mrnDate');
         });
@@ -56,6 +57,7 @@ describe('MRNDate.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
+                console.log(field.filledCheck());
                 expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 

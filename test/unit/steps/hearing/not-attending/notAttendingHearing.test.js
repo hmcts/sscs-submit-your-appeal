@@ -76,6 +76,15 @@ describe('HearingArrangements.js', () => {
 
     });
 
+    describe('answers()', () => {
+
+        it('should contain hide index which is set to true', () => {
+            const answers = notAttendingHearing.answers();
+            expect(answers.hide).to.equal(true);
+        });
+
+    });
+
 
     describe('next()', () => {
 

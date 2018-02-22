@@ -3,6 +3,7 @@
 const HearingSupport = require('steps/hearing/support/HearingSupport');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('HearingSupport.js', () => {
 
@@ -17,6 +18,10 @@ describe('HearingSupport.js', () => {
                 }
             }
         });
+
+        hearingSupport.fields = {
+            arrangements: {}
+        }
     });
 
     describe('get path()', () => {
@@ -59,6 +64,28 @@ describe('HearingSupport.js', () => {
                 expect(field.validations).to.not.be.empty;
             });
 
+        });
+
+    });
+
+    describe('values()', () => {
+
+        before(() => {
+            hearingSupport.fields.arrangements.value = userAnswer.NO
+        });
+
+        it('should contain a value object', () => {
+            const values = hearingSupport.values();
+            expect(values).to.eql( { hearing: { wantsSupport: false } });
+        });
+
+    });
+
+    describe('answers()', () => {
+
+        it('should contain hide index which is set to true', () => {
+            const answers = hearingSupport.answers();
+            expect(answers.hide).to.equal(true);
         });
 
     });
