@@ -1,7 +1,6 @@
 'use strict';
 
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
-const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 
@@ -27,6 +26,20 @@ describe('NoRepresentativeDetails.js', () => {
 
         it('returns path /no-representative-details', () => {
             expect(noRepresentativeDetails.path).to.equal(paths.representative.noRepresentativeDetails);
+        });
+
+    });
+
+    describe('get form()', () => {
+
+        let fields;
+
+        before(() => {
+            fields = noRepresentativeDetails.form.fields
+        });
+
+        it('should contain 0 fields', () => {
+            expect(Object.keys(fields).length).to.equal(0);
         });
 
     });

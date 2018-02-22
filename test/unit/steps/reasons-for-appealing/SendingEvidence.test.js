@@ -32,7 +32,7 @@ describe('SendingEvidence.js', () => {
         });
 
         it('should be false when the email address has not been defined', () => {
-            sendingEvidence.fields.emailAddress.value = '';
+            sendingEvidence.fields.emailAddress.value = undefined;
             expect(sendingEvidence.hasSignedUpForEmail).to.be.false;
         });
 
@@ -42,6 +42,38 @@ describe('SendingEvidence.js', () => {
 
         it('returns path /sending-evidence', () => {
             expect(SendingEvidence.path).to.equal(paths.reasonsForAppealing.sendingEvidence);
+        });
+
+    });
+
+    describe('get form()', () => {
+
+        let fields;
+        let field;
+
+        before(() => {
+            fields = sendingEvidence.form.fields
+        });
+
+        it('should contain 1 field', () => {
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('emailAddress');
+        });
+
+        describe('emailAddress ref field', () => {
+
+            beforeEach(() => {
+                field = fields.emailAddress;
+            });
+
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('Reference');
+            });
+
+            it('contains the field name emailAddress', () => {
+                expect(field.name).to.equal('emailAddress');
+            });
+
         });
 
     });

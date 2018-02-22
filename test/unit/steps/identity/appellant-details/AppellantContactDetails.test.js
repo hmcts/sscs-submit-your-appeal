@@ -4,10 +4,8 @@ const AppellantContactDetails = require('steps/identity/appellant-contact-detail
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const sections = require('steps/check-your-appeal/sections');
-const questions = require('steps/identity/appellant-contact-details/content.en').cya;
 
-describe.only('AppellantContactDetails.js', () => {
+describe('AppellantContactDetails.js', () => {
 
     let appellantContactDetails;
 
@@ -62,6 +60,25 @@ describe.only('AppellantContactDetails.js', () => {
                     'postCode',
                     'phoneNumber',
                     'emailAddress');
+            });
+
+        });
+
+        describe('optional fields defaulting to \'Not provided\' on CYA', () => {
+
+            it('should display \'Not provided\' when the user omits the addressLine2', () => {
+                const addressLine2 = appellantContactDetails.answers()[1];
+                expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the phoneNumber', () => {
+                const phoneNumber = appellantContactDetails.answers()[5];
+                expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
+            });
+
+            it('should display \'Not provided\' when the user omits the emailAddress', () => {
+                const emailAddress = appellantContactDetails.answers()[6];
+                expect(emailAddress.answer).to.equal(userAnswer.NOT_PROVIDED);
             });
 
         });
@@ -208,46 +225,30 @@ describe.only('AppellantContactDetails.js', () => {
 
     });
 
-    describe('answers()', () => {
+    describe('values()', () => {
 
-        let answers;
-
-        before(() => {
-            answers = appellantContactDetails.answers();
-        });
-
-        describe('fields containing the correct data', () => {
-
-            it('should contain 7 answers', () => {
-                expect(answers.length).to.equal(7);
+        it('should contain a value object', () => {
+            appellantContactDetails.fields.addressLine1.value = 'First line of my address';
+            appellantContactDetails.fields.addressLine2.value = 'Second line of my address';
+            appellantContactDetails.fields.townCity.value = 'Town or City';
+            appellantContactDetails.fields.county.value = 'County';
+            appellantContactDetails.fields.postCode.value = 'Postcode';
+            appellantContactDetails.fields.phoneNumber.value = '0800109756';
+            appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+            const values = appellantContactDetails.values();
+            expect(values).to.eql({
+                appellant: {
+                    contactDetails: {
+                        addressLine1: 'First line of my address',
+                        addressLine2: 'Second line of my address',
+                        townCity: 'Town or City',
+                        county: 'County',
+                        postCode: 'Postcode',
+                        phoneNumber: '0800109756',
+                        emailAddress: 'myemailaddress@sscs.com',
+                    }
+                }
             });
-
-            it('should contain field addressLine1', () => {
-                // const addressLine1 = answers[0];
-                expect(addressLine1.question).to.equal(questions.addressLine1);
-                expect(addressLine1.section).to.equal(sections.appellantDetails);
-                // expect(answers[0].answer).to.equal('Mr Harry Potter');
-            });
-
-        });
-
-        describe('optional fields defaulting to \'Not provided\' on CYA', () => {
-
-            it('should display \'Not provided\' when the user omits the addressLine2', () => {
-                const addressLine2 = answers[1];
-                expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
-            it('should display \'Not provided\' when the user omits the phoneNumber', () => {
-                const phoneNumber = answers[5];
-                expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
-            it('should display \'Not provided\' when the user omits the emailAddress', () => {
-                const emailAddress = answers[6];
-                expect(emailAddress.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
         });
 
     });

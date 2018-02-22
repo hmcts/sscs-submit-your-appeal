@@ -293,6 +293,40 @@ describe('RepresentativeDetails.js', () => {
 
     });
 
+    describe('values()', () => {
+
+        it('should contain a value object', () => {
+            representativeDetails.fields.firstName.value = 'First name';
+            representativeDetails.fields.lastName.value = 'Last name';
+            representativeDetails.fields.organisation.value = 'Organisation';
+            representativeDetails.fields.addressLine1.value = 'First line of my address';
+            representativeDetails.fields.addressLine2.value = 'Second line of my address';
+            representativeDetails.fields.townCity.value = 'Town or City';
+            representativeDetails.fields.county.value = 'County';
+            representativeDetails.fields.postCode.value = 'Postcode';
+            representativeDetails.fields.phoneNumber.value = '0800109756';
+            representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+            const values = representativeDetails.values();
+            expect(values).to.eql({
+                representative: {
+                    firstName: 'First name',
+                    lastName: 'Last name',
+                    organisation: 'Organisation',
+                    contactDetails: {
+                        addressLine1: 'First line of my address',
+                        addressLine2: 'Second line of my address',
+                        townCity: 'Town or City',
+                        county: 'County',
+                        postCode: 'Postcode',
+                        phoneNumber: '0800109756',
+                        emailAddress: 'myemailaddress@sscs.com',
+                    }
+                }
+            });
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /reason-for-appealing', () => {

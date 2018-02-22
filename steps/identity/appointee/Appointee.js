@@ -45,7 +45,7 @@ class Appointee extends Question {
 
     next() {
 
-        const isAppointee = () => this.fields.isAppointee.value === userAnswer.YES;
+        const isAppointee = this.fields.isAppointee.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.AppealFormDownload).if(isAppointee),

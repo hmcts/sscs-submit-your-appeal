@@ -50,7 +50,7 @@ class SendToNumber extends Question {
 
     next() {
 
-        const useSameNumber = () => this.fields.useSameNumber.value === userAnswer.YES;
+        const useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.SmsConfirmation).if(useSameNumber),

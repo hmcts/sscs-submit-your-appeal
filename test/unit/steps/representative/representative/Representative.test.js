@@ -21,6 +21,10 @@ describe('Representative.js', () => {
             }
         });
 
+        representative.fields = {
+            hasRepresentative: {}
+        }
+
     });
 
     describe('get path()', () => {
@@ -121,11 +125,13 @@ describe('Representative.js', () => {
     describe('next()', () => {
 
         it('nextStep equals /representative-details', () => {
+            representative.fields.hasRepresentative.value = userAnswer.YES;
             const branches = representative.next().branches[0];
             expect(branches.redirector).to.eql({ nextStep: paths.representative.representativeDetails })
         });
 
         it('nextStep equals /reason-for-appealing', () => {
+            representative.fields.hasRepresentative.value = userAnswer.NO;
             const fallback = representative.next().fallback;
             expect(fallback).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
         });
