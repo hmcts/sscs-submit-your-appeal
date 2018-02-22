@@ -225,6 +225,34 @@ describe('AppellantContactDetails.js', () => {
 
     });
 
+    describe('values()', () => {
+
+        it('should contain a value object', () => {
+            appellantContactDetails.fields.addressLine1.value = 'First line of my address';
+            appellantContactDetails.fields.addressLine2.value = 'Second line of my address';
+            appellantContactDetails.fields.townCity.value = 'Town or City';
+            appellantContactDetails.fields.county.value = 'County';
+            appellantContactDetails.fields.postCode.value = 'Postcode';
+            appellantContactDetails.fields.phoneNumber.value = '0800109756';
+            appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+            const values = appellantContactDetails.values();
+            expect(values).to.eql({
+                appellant: {
+                    contactDetails: {
+                        addressLine1: 'First line of my address',
+                        addressLine2: 'Second line of my address',
+                        townCity: 'Town or City',
+                        county: 'County',
+                        postCode: 'Postcode',
+                        phoneNumber: '0800109756',
+                        emailAddress: 'myemailaddress@sscs.com',
+                    }
+                }
+            });
+        });
+
+    });
+
     describe('next()', () => {
 
         it('returns the next step path /appellant-text-reminders', () => {

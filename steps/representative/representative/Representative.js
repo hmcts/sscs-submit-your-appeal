@@ -46,7 +46,7 @@ class Representative extends Question {
 
     next() {
 
-        const hasARepresentative = () => this.fields.hasRepresentative.value === userAnswer.YES;
+        const hasARepresentative = this.fields.hasRepresentative.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative),

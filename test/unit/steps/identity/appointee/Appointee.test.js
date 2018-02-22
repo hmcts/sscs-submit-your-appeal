@@ -21,6 +21,10 @@ describe('Appointee.js', () => {
             }
         });
 
+        appointee.fields = {
+            isAppointee: {}
+        }
+
     });
 
     describe('get path()', () => {
@@ -121,11 +125,13 @@ describe('Appointee.js', () => {
     describe('next()', () => {
 
         it('returns the next step path /appeal-form-download', () => {
+            appointee.fields.isAppointee.value = userAnswer.YES;
             const nextStep = appointee.next().branches[0].redirector.nextStep;
             expect(nextStep).to.eq(paths.appealFormDownload);
         });
 
         it('returns the next step path /enter-appellant-name', () => {
+            appointee.fields.isAppointee.value = userAnswer.NO;
             const nextStep = appointee.next().fallback.nextStep;
             expect(nextStep).to.eq(paths.identity.enterAppellantName);
         });

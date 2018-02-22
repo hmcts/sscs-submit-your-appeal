@@ -53,7 +53,7 @@ class TextReminders extends Question {
 
     next() {
 
-        const wantsTextMsgReminders = () => this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
+        const wantsTextMsgReminders = this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
         const nextStep = regex.mobileNumber.test(this.fields.phoneNumber.value) ?
             this.journey.steps.SendToNumber : this.journey.steps.EnterMobile;
 

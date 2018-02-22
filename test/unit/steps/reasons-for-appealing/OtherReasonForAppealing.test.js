@@ -4,6 +4,7 @@ const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reaso
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('OtherReasonForAppealing.js', () => {
 
@@ -86,12 +87,26 @@ describe('OtherReasonForAppealing.js', () => {
 
         });
 
-        it('should contain a single answer', () => {
-            const answers = otherReasonForAppealing.answers();
-            expect(answers.length).to.equal(1);
-            expect(answers[0].question).to.equal(question);
-            expect(answers[0].section).to.equal(sections.reasonsForAppealing);
-            expect(answers[0].answer).to.equal(value);
+        describe('answers()', () => {
+
+            it('should contain a single answer', () => {
+                const answers = otherReasonForAppealing.answers();
+                expect(answers.length).to.equal(1);
+                expect(answers[0].question).to.equal(question);
+                expect(answers[0].section).to.equal(sections.reasonsForAppealing);
+            });
+
+            it('should set the answer index as the field value when it has been set', () => {
+                const answers = otherReasonForAppealing.answers();
+                expect(answers[0].answer).to.equal(value);
+            });
+
+            it('should set the answer index as Not Required when it hasn\'t been set', () => {
+                otherReasonForAppealing.fields.otherReasonForAppealing.value = undefined;
+                const answers = otherReasonForAppealing.answers();
+                expect(answers[0].answer).to.equal(userAnswer.NOT_REQUIRED);
+            });
+
         });
 
         it('should contain a value object', () => {

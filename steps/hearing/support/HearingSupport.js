@@ -41,7 +41,7 @@ class HearingSupport extends Question {
 
     next() {
 
-        const makeHearingArrangements = () => this.fields.arrangements.value === userAnswer.YES;
+        const makeHearingArrangements = this.fields.arrangements.value === userAnswer.YES;
 
         return branch(
             goTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
