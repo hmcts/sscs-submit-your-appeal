@@ -1,5 +1,7 @@
 'use strict';
 
+const appellant = require('test/e2e/data').appellant;
+
 function enterAppellantNameAndContinue(title, firstName, lastName) {
 
     const I = this;
@@ -62,11 +64,11 @@ function enterAppellantContactDetailsWithEmailAndContinue() {
 
 function IenterAddressDetails(I) {
 
-    I.fillField('#addressLine1', '4 Privet Drive');
-    I.fillField('#addressLine2', 'Off Wizards close');
-    I.fillField('#townCity', 'Little Whinging');
-    I.fillField('#county', 'Kent');
-    I.fillField('#postCode', 'PA80 5UU');
+    I.fillField('#addressLine1', appellant.contactDetails.addressLine1);
+    I.fillField('#addressLine2', appellant.contactDetails.addressLine2);
+    I.fillField('#townCity',     appellant.contactDetails.townCity);
+    I.fillField('#county',       appellant.contactDetails.county);
+    I.fillField('#postCode',     appellant.contactDetails.postCode);
 
 }
 
