@@ -9,21 +9,25 @@ const datesCantAttendContent = require('steps/hearing/dates-cant-attend/content.
 const oneMonthAgo = DateUtils.oneMonthAgo();
 const selectors = require('steps/check-your-appeal/selectors');
 const moment = require('moment');
+const paths = require('paths');
+
+const data = require('test/e2e/data');
+const appellant = data.appellant;
 
 function enterDetailsFromStartToNINO() {
 
     const I = this;
 
-    I.enterBenefitTypeAndContinue('PIP');
-    I.enterPostcodeAndContinue('WV11 2HE');
+    I.enterBenefitTypeAndContinue(data.benefitType.code);
+    I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
     I.continueFromIndependance();
     I.selectHaveYouGotAMRNAndContinue(haveAMRNContent.fields.haveAMRN.yes);
-    I.enterDWPIssuingOfficeAndContinue('1');
+    I.enterDWPIssuingOfficeAndContinue(data.mrn.dwpIssuingOffice);
     I.enterAnMRNDateAndContinue(oneMonthAgo);
     I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
-    I.enterAppellantNameAndContinue('Mr','Harry','Potter');
-    I.enterAppellantDOBAndContinue('25','01','1980');
-    I.enterAppellantNINOAndContinue('NX877564C');
+    I.enterAppellantNameAndContinue(appellant.title,appellant.firstName,appellant.lastName);
+    I.enterAppellantDOBAndContinue(appellant.dob.day,appellant.dob.month,appellant.dob.year);
+    I.enterAppellantNINOAndContinue(appellant.nino);
 
 }
 
@@ -33,7 +37,7 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
 
     I.selectDoYouHaveARepresentativeAndContinue(representativeContent.fields.hasRepresentative.no);
     I.enterReasonForAppealingAndContinue('A reason...');
-    I.enterAnythingElseAndContinue('Anything else...');
+    I.enterAnythingElseAndContinue(data.reasonsForAppealing.otherReasons);
     I.readSendingEvidenceAndContinue();
 
 }
@@ -61,48 +65,55 @@ function enterDetailsFromAttendingTheHearingToEnd() {
 
 }
 
-function confirmDetailsArePresent() {
+function confirmDetailsArePresent(hasMRN=true) {
 
     const I = this;
 
     // We are on CYA
-    I.seeCurrentUrlEquals('/check-your-appeal');
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
 
     // Type of benefit
-    I.see('Personal Independence Payment (PIP)');
+    I.see(data.benefitType.description);
 
-    // MRN address number
-    I.see('1', selectors.mrn.dwpIssuingOffice);
+    if(hasMRN) {
 
-    // Date of MRN
-    I.see(oneMonthAgo.format('DD MMMM YYYY'));
+        // MRN address number
+        I.see(data.mrn.dwpIssuingOffice, selectors.mrn.dwpIssuingOffice);
+
+        // Date of MRN
+        I.see(oneMonthAgo.format('DD MMMM YYYY'));
+    } else {
+
+        // Reason for no MRN
+        I.see(data.mrn.reasonForNoMRN, selectors.mrn.noMRN);
+    }
 
     // Appellant name
-    I.see('Mr Harry Potter');
+    I.see(`${appellant.title} ${appellant.firstName} ${appellant.lastName}`);
 
     // Appellant DOB
     I.see('25 January 1980');
 
     // Appellant NINO
-    I.see('NX877564C');
+    I.see(appellant.nino);
 
     // Appellant address
-    I.see('4 Privet Drive');
-    I.see('Off Wizards close');
-    I.see('Little Whinging');
-    I.see('Kent');
-    I.see('PA80 5UU');
+    I.see(appellant.contactDetails.addressLine1);
+    I.see(appellant.contactDetails.addressLine2);
+    I.see(appellant.contactDetails.townCity);
+    I.see(appellant.contactDetails.county);
+    I.see(appellant.contactDetails.postCode);
 
     // Appellant Reason for appealing
     I.see('A reason...');
 
     // Anything else the appellant wants to tell the tribunal
-    I.see('Anything else...');
+    I.see(data.reasonsForAppealing.otherReasons);
 
     // Shows when the appeal is complete
     I.see('Sign and submit');
 
-};
+}
 
 module.exports = {
     enterDetailsFromStartToNINO,
