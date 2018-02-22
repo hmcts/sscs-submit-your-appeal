@@ -55,11 +55,10 @@ class HearingArrangements extends Question {
             answer(this, {
                 question: this.content.cya.anythingElse.question,
                 section: sections.hearingArrangements,
-                answer: this.fields.anythingElse.value === '' ? 'Not required' : this.fields.anythingElse.value
+                answer: this.fields.anythingElse.value ? this.fields.anythingElse.value : 'Not required'
             })
         ];
     }
-
 
     values() {
 
