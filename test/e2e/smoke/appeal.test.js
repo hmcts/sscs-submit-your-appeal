@@ -27,6 +27,7 @@ Scenario('Appellant full journey from \'/start-an-appeal\' to the \'/confirmatio
     I.see(appellant.contactDetails.phoneNumber, appellantPhoneNumberAnswer);
     I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), textMsgRemindersMobileAnswer);
     I.signAndSubmit(`${appellant.firstName} ${appellant.lastName}`);
+    I.wait(2);
     I.seeCurrentUrlEquals(paths.confirmation);
 
 });
