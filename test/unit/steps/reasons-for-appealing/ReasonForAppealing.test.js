@@ -3,6 +3,7 @@
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 
 describe('ReasonForAppealing.js', () => {
 
@@ -18,7 +19,9 @@ describe('ReasonForAppealing.js', () => {
             }
         });
 
-        reasonForAppealing.fields = {};
+        reasonForAppealing.fields = {
+            items: {}
+        };
 
     });
 
@@ -30,7 +33,29 @@ describe('ReasonForAppealing.js', () => {
 
     });
 
-    describe('get form()', () => {
+    describe('get addAnotherLinkContent()', () => {
+
+        it('returns false when items is undefined', () => {
+            reasonForAppealing.fields.items = undefined;
+            expect(reasonForAppealing.addAnotherLinkContent).to.be.false;
+        });
+
+        it('returns add link when there are no items in the list', () => {
+            reasonForAppealing.fields.items.value = [];
+            expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.add);
+        });
+
+        it('returns addAnother link when there are items in the list', () => {
+            reasonForAppealing.fields.items.value = [{
+                whatYouDisagreeWith: 'disagree',
+                reasonForAppealing: 'because I do'
+            }];
+            expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.addAnother);
+        });
+
+    });
+
+    describe('get field()', () => {
 
         let fields;
         let field;
@@ -41,21 +66,17 @@ describe('ReasonForAppealing.js', () => {
 
         it('should contain 1 field', () => {
             expect(Object.keys(fields).length).to.equal(1);
-            expect(fields).to.have.all.keys('reasonForAppealing');
+            expect(fields).to.have.all.keys('items');
         });
 
-        describe('reasonForAppealing field', () => {
+        describe('items field', () => {
 
             beforeEach(() => {
-                field = fields.reasonForAppealing;
+                field = fields.items;
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name reasonForAppealing', () => {
-                expect(field.name).to.equal('reasonForAppealing');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -66,23 +87,18 @@ describe('ReasonForAppealing.js', () => {
 
     });
 
-    describe('get answers()', () => {
+    describe('answers() and values()', () => {
 
         let answers;
 
         beforeEach(() => {
 
             reasonForAppealing.fields = {
-                reasonForAppealing: {
-                    value: "my answer"
-                }
-            };
-
-            reasonForAppealing.content = {
-                cya: {
-                    reasonForAppealing: {
-                        question: 'my question'
-                    }
+                items: {
+                    value: [{
+                        whatYouDisagreeWith: 'my first answer',
+                        reasonForAppealing: 'my second answer'
+                    }]
                 }
             };
 
@@ -94,12 +110,13 @@ describe('ReasonForAppealing.js', () => {
             expect(answers.section).to.equal('reasons-for-appealing');
         });
 
-        it('should return expected answers', () => {
-            expect(answers.answer).to.equal('my answer');
+        it('should return expected template', () => {
+            expect(answers.template).to.equal('answer.html');
         });
 
-        it('should return expected question', () => {
-            expect(answers.question).to.equal('my question');
+        it('should contain a value object', () => {
+            const values = reasonForAppealing.values();
+            expect(values).to.eql( { reasonsForAppealing: { reasons: reasonForAppealing.fields.items.value } });
         });
 
     });

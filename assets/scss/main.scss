@@ -10,7 +10,8 @@ label.form-label[for="signer"] {
   font-weight: bold;
 }
 
-#reasonForAppealing,
+#item\.whatYouDisagreeWith,
+#item\.reasonForAppealing,
 #otherReasonForAppealing {
   width: 100%;
 }
@@ -121,9 +122,11 @@ label.form-label[for="signer"] {
 }
 
 .add-another-list div {
-    padding: 15px 0;
-    width: 100%;
-    border-bottom: 1px solid $border-colour;
+  padding: 15px 0;
+  width: 100%;
+  border-bottom: 1px solid $border-colour;
+  white-space: nowrap;
+
 
   &:first-child {
     border-top: 1px solid $border-colour;
@@ -131,11 +134,13 @@ label.form-label[for="signer"] {
 
   .add-another-list-item {
     width: 70%;
-    display: inline-table;
+    display: inline-block;
   }
 
   .add-another-list-controls{
-    display: inline-table;
+    display: inline-block;
+    float: right;
+    width: 30%;
 
     .add-another-edit-link {
       padding-right: 40%;
@@ -143,8 +148,19 @@ label.form-label[for="signer"] {
   }
 }
 
+.add-another-add-link{
+  @include button($grey-3);
+}
+
 .policy-links {
   a {
     padding-right: 10%
+  }
+}
+
+.cya-whatYouDisagreeWith {
+  dt, dd {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 }

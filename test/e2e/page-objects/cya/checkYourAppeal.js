@@ -6,11 +6,11 @@ const theHearingContent = require('steps/hearing/the-hearing/content.en');
 const supportContent = require('steps/hearing/support/content.en');
 const availabilityContent = require('steps/hearing/availability/content.en');
 const datesCantAttendContent = require('steps/hearing/dates-cant-attend/content.en');
+const reasonsForAppealingContent = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const oneMonthAgo = DateUtils.oneMonthAgo();
 const selectors = require('steps/check-your-appeal/selectors');
 const moment = require('moment');
 const paths = require('paths');
-
 const data = require('test/e2e/data');
 const appellant = data.appellant;
 
@@ -36,7 +36,7 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
     const I = this;
 
     I.selectDoYouHaveARepresentativeAndContinue(representativeContent.fields.hasRepresentative.no);
-    I.enterReasonForAppealingAndContinue('A reason...');
+    I.addReasonsForAppealingAndContinue(data.reasonsForAppealing.reasons[0], reasonsForAppealingContent.links.add);
     I.enterAnythingElseAndContinue(data.reasonsForAppealing.otherReasons);
     I.readSendingEvidenceAndContinue();
 
@@ -105,7 +105,8 @@ function confirmDetailsArePresent(hasMRN=true) {
     I.see(appellant.contactDetails.postCode);
 
     // Appellant Reason for appealing
-    I.see('A reason...');
+    I.see(data.reasonsForAppealing.reasons[0].whatYouDisagreeWith);
+    I.see(data.reasonsForAppealing.reasons[0].reasonForAppealing);
 
     // Anything else the appellant wants to tell the tribunal
     I.see(data.reasonsForAppealing.otherReasons);

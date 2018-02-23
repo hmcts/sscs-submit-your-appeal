@@ -50,9 +50,9 @@
     on-finished "^2.3.0"
     uuid "^3.1.0"
 
-"@hmcts/one-per-page@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-2.3.0.tgz#9351945cbff5cc8b8a2d900dcc6e176265b5bb29"
+"@hmcts/one-per-page@2.4.0-1":
+  version "2.4.0-1"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-2.4.0-1.tgz#f350e0a29526a5ae49edff649c9b1c3cb27869c0"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"
