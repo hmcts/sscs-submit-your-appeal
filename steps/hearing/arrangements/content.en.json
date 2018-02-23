@@ -8,7 +8,7 @@
   "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
   "fields": {
     "selection": {
-      "languageInterpreter": "Language interpreter",
+      "languageInterpreter": "Language interpreter (Enter the language in the box below)",
       "signLanguageInterpreter": "Sign language interpreter",
       "hearingLoop": "Hearing loop",
       "disabledAccess": "Disabled access",
