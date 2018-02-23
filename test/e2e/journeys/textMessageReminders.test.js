@@ -59,7 +59,7 @@ Scenario('Appellant defines an optional phone number and signs up for text msg r
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
     I.see(formatMobileNumber('07411738663'), textMsgRemindersMobileAnswer);
 
 });
@@ -76,7 +76,7 @@ Scenario('Appellant defines an optional phone number, then provides an additiona
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
     I.see(formatMobileNumber('07411333333'), textMsgRemindersMobileAnswer);
 
 });
@@ -89,7 +89,7 @@ Scenario('Appellant defines an optional phone number, but does not sign up for t
     I.enterDetailsFromNoRepresentativeToEnd();
 
     I.confirmDetailsArePresent();
-    I.see('07411738663', appellantPhoneNumberAnswer);
+    I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
     I.see('No', receiveTxtMsgRemindersAnswer);
 
 });
