@@ -38,6 +38,8 @@ const formatMobileNumber = number => {
     const ELEVEN_DIGITS = 11;
     let formattedNumber;
 
+    number = number.replace(/\s/g,'');
+
     if (number.length > ELEVEN_DIGITS && number.includes('+')) {
 
         formattedNumber = `${number.substring(0, 3)} ${number.substring(3, 7)} ${number.substring(7, 10)} ${number.substring(10)}`;

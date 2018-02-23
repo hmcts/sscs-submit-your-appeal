@@ -26,7 +26,7 @@ describe('AppellantContactDetails.js', () => {
             townCity: { value: '' },
             county: { value: '' },
             postCode: { value: '' },
-            phoneNumber: { value: '' },
+            phoneNumber: {},
             emailAddress: { value: '' }
         }
     });
