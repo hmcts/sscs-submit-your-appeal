@@ -13,10 +13,6 @@ const moment = require('moment');
 const paths = require('paths');
 const data = require('test/e2e/data');
 const appellant = data.appellant;
-const reason = {
-    what: 'What I disagree with',
-    why: 'Why I disagree with it'
-};
 
 function enterDetailsFromStartToNINO() {
 
@@ -40,8 +36,8 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
     const I = this;
 
     I.selectDoYouHaveARepresentativeAndContinue(representativeContent.fields.hasRepresentative.no);
-    I.enterReasonForAppealAndContinue(reason, reasonsForAppealingContent.links.add);
-    I.enterAnythingElseAndContinue('Anything else...');
+    I.addReasonsForAppealingAndContinue(data.reasonsForAppealing.reasons[0], reasonsForAppealingContent.links.add);
+    I.enterAnythingElseAndContinue(data.reasonsForAppealing.otherReasons);
     I.readSendingEvidenceAndContinue();
 
 }
@@ -109,8 +105,8 @@ function confirmDetailsArePresent(hasMRN=true) {
     I.see(appellant.contactDetails.postCode);
 
     // Appellant Reason for appealing
-    I.see(reason.what);
-    I.see(reason.why);
+    I.see(data.reasonsForAppealing.reasons[0].whatYouDisagreeWith);
+    I.see(data.reasonsForAppealing.reasons[0].reasonForAppealing);
 
     // Anything else the appellant wants to tell the tribunal
     I.see(data.reasonsForAppealing.otherReasons);

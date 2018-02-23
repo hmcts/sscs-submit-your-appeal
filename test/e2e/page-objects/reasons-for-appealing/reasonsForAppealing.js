@@ -11,13 +11,23 @@ function enterReasonForAppealAndContinue(reason, link) {
     const I = this;
 
     I.click(link);
-    I.fillField('input[name="item.whatYouDisagreeWith"]', reason.what);
-    I.fillField('textarea[name="item.reasonForAppealing"]', reason.why);
+    I.fillField('input[name="item.whatYouDisagreeWith"]', reason.whatYouDisagreeWith);
+    I.fillField('textarea[name="item.reasonForAppealing"]', reason.reasonForAppealing);
+    I.click('Continue');
+
+}
+
+function addReasonsForAppealingAndContinue(reason, link) {
+
+    const I = this;
+
+    I.enterReasonForAppealAndContinue(reason, link);
     I.click('Continue');
 
 }
 
 module.exports = {
     enterReasonForAppealAndContinue,
-    enterAnythingElseAndContinue
+    enterAnythingElseAndContinue,
+    addReasonsForAppealingAndContinue
 };
