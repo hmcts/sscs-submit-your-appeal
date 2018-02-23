@@ -4,9 +4,9 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { goTo } = require('@hmcts/one-per-page');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const paths = require('paths');
 
 const emptyStringValidation = value => value !== undefined;
