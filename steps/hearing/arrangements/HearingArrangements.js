@@ -4,32 +4,18 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text, list } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
+const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
+const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
-const REQUIRED = 'Required';
-const NOT_REQUIRED = 'Not required';
 const arrangements = {
     languageInterpreter: 'Language interpreter',
     signLanguageInterpreter: 'Sign language interpreter',
     hearingLoop: 'Hearing loop',
     accessibleHearingRoom: 'Accessible hearing rooms',
     other: 'Other'
-};
-
-const setCYAValue = (arrangementValue, hiddenFieldValue) => {
-
-    let cyaValue;
-
-    if (arrangementValue === REQUIRED && (hiddenFieldValue !== undefined && hiddenFieldValue !== '')) {
-        cyaValue = hiddenFieldValue;
-    } else {
-        cyaValue = arrangementValue;
-    }
-
-    return cyaValue;
-
 };
 
 class HearingArrangements extends Question {
@@ -42,15 +28,15 @@ class HearingArrangements extends Question {
     get cyaArrangements() {
 
         const arrangementsAnswer = {
-            languageInterpreter: NOT_REQUIRED,
-            signLanguageInterpreter: NOT_REQUIRED,
-            hearingLoop: NOT_REQUIRED,
-            accessibleHearingRoom: NOT_REQUIRED,
-            other: NOT_REQUIRED
+            languageInterpreter: cyaContent.notRequired,
+            signLanguageInterpreter: cyaContent.notRequired,
+            hearingLoop: cyaContent.notRequired,
+            accessibleHearingRoom: cyaContent.notRequired,
+            other: cyaContent.notRequired
         };
 
         this.fields.selection.value.forEach((arrangement) => {
-            arrangementsAnswer[arrangement] = REQUIRED;
+            arrangementsAnswer[arrangement] = cyaContent.required;
         });
 
         arrangementsAnswer.languageInterpreter = setCYAValue(arrangementsAnswer.languageInterpreter, this.fields.interpreterLanguageType.value);

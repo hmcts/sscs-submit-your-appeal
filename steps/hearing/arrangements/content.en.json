@@ -42,6 +42,8 @@
     "signLanguageInterpreter": "Sign language interpreter",
     "hearingLoop": "Hearing loop",
     "accessibleHearingRoom": "Accessible hearing rooms",
-    "other": "Other"
+    "other": "Other",
+    "required": "Required",
+    "notRequired": "Not required"
   }
 }
