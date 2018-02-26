@@ -33,7 +33,7 @@ Scenario('I select all checkboxes and continue', (I) => {
     I.checkOption(fields.selection.languageInterpreter);
     I.checkOption(fields.selection.signLanguageInterpreter);
     I.checkOption(fields.selection.hearingLoop);
-    I.checkOption(fields.selection.disabledAccess);
+    I.checkOption(fields.selection.accessibleHearingRoom);
     I.click(Continue);
     I.seeInCurrentUrl(paths.hearing.hearingAvailability);
 });

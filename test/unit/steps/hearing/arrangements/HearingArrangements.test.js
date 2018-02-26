@@ -48,7 +48,7 @@ describe('HearingArrangements.js', () => {
                languageInterpreter: 'A language',
                signLanguageInterpreter: 'Not required',
                hearingLoop: 'Required',
-               disabledAccess: 'Not required',
+               accessibleHearingRoom: 'Not required',
                other: 'more support'
            });
         });
@@ -171,7 +171,7 @@ describe('HearingArrangements.js', () => {
                         languageInterpreter: true,
                         signLanguageInterpreter: false,
                         hearingLoop: true,
-                        disabledAccess: false,
+                        accessibleHearingRoom: false,
                         other: true
                     },
                     interpreterLanguageType: 'A language',

@@ -70,7 +70,7 @@
       "languageInterpreter": true,
       "signLanguageInterpreter": true,
       "hearingLoop": true,
-      "disabledAccess": false
+      "accessibleHearingRoom": false
     },
     "scheduleHearing": true,
     "datesCantAttend": [

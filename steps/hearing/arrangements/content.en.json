@@ -11,7 +11,7 @@
       "languageInterpreter": "Language interpreter (Enter the language in the box below)",
       "signLanguageInterpreter": "Sign language interpreter",
       "hearingLoop": "Hearing loop",
-      "disabledAccess": "Disabled access",
+      "accessibleHearingRoom": "Accessible hearing rooms",
       "other": "Other",
       "error": {
         "required": "You need to provide some information about the support you need"
@@ -41,7 +41,7 @@
     "languageInterpreter": "Language interpreter",
     "signLanguageInterpreter": "Sign language interpreter",
     "hearingLoop": "Hearing loop",
-    "disabledAccess": "Disabled access",
+    "accessibleHearingRoom": "Accessible hearing rooms",
     "other": "Other"
   }
 }

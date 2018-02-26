@@ -13,7 +13,7 @@ const arrangements = {
     languageInterpreter: 'Language interpreter',
     signLanguageInterpreter: 'Sign language interpreter',
     hearingLoop: 'Hearing loop',
-    disabledAccess: 'Disabled access',
+    accessibleHearingRoom: 'Accessible hearing rooms',
     other: 'Other'
 };
 
@@ -82,7 +82,7 @@ class HearingArrangements extends Question {
                     languageInterpreter: false,
                     signLanguageInterpreter: false,
                     hearingLoop: false,
-                    disabledAccess: false,
+                    accessibleHearingRoom: false,
                     other: false
                 },
                 interpreterLanguageType: this.fields.interpreterLanguageType.value,
