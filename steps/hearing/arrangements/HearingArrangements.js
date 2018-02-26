@@ -26,13 +26,23 @@ class HearingArrangements extends Question {
 
     get cyaArrangements() {
 
-        let arrangementType = {};
+        const arrangementsAnswer = {
+            languageInterpreter: 'Not required',
+            signLanguageInterpreter: 'Not required',
+            hearingLoop: 'Not required',
+            accessibleHearingRoom: 'Not required',
+            other: 'Not required'
+        };
 
-        Object.keys(arrangements).forEach(arrangement => {
-            arrangementType[arrangement] = getHearingArrangementsAnswer(this.fields, arrangement);
+        this.fields.selection.value.forEach((arrangement) => {
+            arrangementsAnswer[arrangement] = 'Required';
         });
 
-        return arrangementType;
+        arrangementsAnswer.languageInterpreter = this.fields.interpreterLanguageType.value || arrangementsAnswer.languageInterpreter;
+        arrangementsAnswer.signLanguageInterpreter = this.fields.signLanguageType.value || arrangementsAnswer.signLanguageInterpreter;
+        arrangementsAnswer.other = this.fields.anythingElse.value || arrangementsAnswer.other;
+
+        return arrangementsAnswer;
     }
 
     get form() {
