@@ -66,11 +66,14 @@
     "wantsToAttend": true,
     "wantsSupport": true,
     "anythingElse": "Yes, this...",
+    "interpreterLanguageType": "Interpreter language",
+    "signLanguageType": "Sign language",
     "arrangements": {
       "languageInterpreter": true,
       "signLanguageInterpreter": true,
       "hearingLoop": true,
-      "accessibleHearingRoom": false
+      "accessibleHearingRoom": false,
+      "other": false
     },
     "scheduleHearing": true,
     "datesCantAttend": [

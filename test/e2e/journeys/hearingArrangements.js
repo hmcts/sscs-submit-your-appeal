@@ -1,15 +1,9 @@
 'use strict';
 
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
-const moment = require('moment');
 const paths = require('paths');
-
-const selectors = require('steps/check-your-appeal/selectors');
-const datesYouCantAttendHearingAnswer = `${selectors.theHearing.datesYouCantAttend}  ${selectors.answer}`;
-const datesYouCantAttendHearingChange = `${selectors.theHearing.datesYouCantAttend}  ${selectors.change}`;
-
 const fields = require('steps/hearing/arrangements/content.en').fields;
-
+const data = require('test/e2e/data');
 
 Feature('Appellant PIP, one month ago, attends hearing with support');
 
@@ -30,10 +24,10 @@ Scenario('Appellant selects sign language interpreter and enters the language ty
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd([fields.selection.signLanguageInterpreter], [{
         id: '#signLanguageType',
-        content: 'A language'
+        content: data.hearing.signLanguageType
     }]);
     I.confirmDetailsArePresent();
-    I.see('A language');
+    I.see(data.hearing.signLanguageType);
 
 });
 
@@ -50,15 +44,15 @@ Scenario('Appellant selects sign language interpreter and other and then enters 
         ],
         [{
             id: '#signLanguageType',
-            content: 'A language'
+            content: data.hearing.signLanguageType
         }, {
             id: '#anythingElse',
-            content: 'More support'
+            content: data.hearing.anythingElse
         }]
     );
     I.confirmDetailsArePresent();
-    I.see('A language');
-    I.see('More support');
+    I.see(data.hearing.signLanguageType);
+    I.see(data.hearing.anythingElse);
 
 });
 
@@ -76,18 +70,18 @@ Scenario('Appellant selects sign language interpreter, language interpreter and 
         ],
         [{
             id: '#signLanguageType',
-            content: 'A language'
+            content: data.hearing.signLanguageType
         }, {
             id: '#anythingElse',
-            content: 'More support'
+            content: data.hearing.anythingElse
         }, {
             id: '#interpreterLanguageType',
-            content: 'Another language'
+            content: data.hearing.interpreterLanguageType
         }]
     );
     I.confirmDetailsArePresent();
-    I.see('A language');
-    I.see('More support');
-    I.see('Another language');
+    I.see(data.hearing.signLanguageType);
+    I.see(data.hearing.anythingElse);
+    I.see(data.hearing.interpreterLanguageType);
 
 });
