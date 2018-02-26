@@ -25,21 +25,28 @@ class HearingArrangements extends Question {
 
     get cyaArrangements() {
 
+        const REQUIRED = 'Required';
+        const NOT_REQUIRED = 'Not required';
         const arrangementsAnswer = {
-            languageInterpreter: 'Not required',
-            signLanguageInterpreter: 'Not required',
-            hearingLoop: 'Not required',
-            accessibleHearingRoom: 'Not required',
-            other: 'Not required'
+            languageInterpreter: NOT_REQUIRED,
+            signLanguageInterpreter: NOT_REQUIRED,
+            hearingLoop: NOT_REQUIRED,
+            accessibleHearingRoom: NOT_REQUIRED,
+            other: NOT_REQUIRED
         };
 
         this.fields.selection.value.forEach((arrangement) => {
-            arrangementsAnswer[arrangement] = 'Required';
+            arrangementsAnswer[arrangement] = REQUIRED;
         });
 
-        arrangementsAnswer.languageInterpreter = this.fields.interpreterLanguageType.value || arrangementsAnswer.languageInterpreter;
-        arrangementsAnswer.signLanguageInterpreter = this.fields.signLanguageType.value || arrangementsAnswer.signLanguageInterpreter;
-        arrangementsAnswer.other = this.fields.anythingElse.value || arrangementsAnswer.other;
+        arrangementsAnswer.languageInterpreter = arrangementsAnswer.languageInterpreter === REQUIRED ?
+            this.fields.interpreterLanguageType.value : arrangementsAnswer.languageInterpreter;
+
+        arrangementsAnswer.signLanguageInterpreter = arrangementsAnswer.signLanguageInterpreter === REQUIRED ?
+            this.fields.signLanguageType.value : arrangementsAnswer.signLanguageInterpreter;
+
+        arrangementsAnswer.other = arrangementsAnswer.other === REQUIRED ?
+        this.fields.anythingElse.value : arrangementsAnswer.other;
 
         return arrangementsAnswer;
     }
