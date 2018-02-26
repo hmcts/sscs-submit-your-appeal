@@ -8,12 +8,28 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
+const REQUIRED = 'Required';
+const NOT_REQUIRED = 'Not required';
 const arrangements = {
     languageInterpreter: 'Language interpreter',
     signLanguageInterpreter: 'Sign language interpreter',
     hearingLoop: 'Hearing loop',
     accessibleHearingRoom: 'Accessible hearing rooms',
     other: 'Other'
+};
+
+const setCYAValue = (arrangementValue, hiddenFieldValue) => {
+
+    let cyaValue;
+
+    if (arrangementValue === REQUIRED && (hiddenFieldValue !== undefined && hiddenFieldValue !== '')) {
+        cyaValue = hiddenFieldValue;
+    } else {
+        cyaValue = arrangementValue;
+    }
+
+    return cyaValue;
+
 };
 
 class HearingArrangements extends Question {
@@ -25,8 +41,6 @@ class HearingArrangements extends Question {
 
     get cyaArrangements() {
 
-        const REQUIRED = 'Required';
-        const NOT_REQUIRED = 'Not required';
         const arrangementsAnswer = {
             languageInterpreter: NOT_REQUIRED,
             signLanguageInterpreter: NOT_REQUIRED,
@@ -39,14 +53,9 @@ class HearingArrangements extends Question {
             arrangementsAnswer[arrangement] = REQUIRED;
         });
 
-        arrangementsAnswer.languageInterpreter = arrangementsAnswer.languageInterpreter === REQUIRED ?
-            this.fields.interpreterLanguageType.value : arrangementsAnswer.languageInterpreter;
-
-        arrangementsAnswer.signLanguageInterpreter = arrangementsAnswer.signLanguageInterpreter === REQUIRED ?
-            this.fields.signLanguageType.value : arrangementsAnswer.signLanguageInterpreter;
-
-        arrangementsAnswer.other = arrangementsAnswer.other === REQUIRED ?
-        this.fields.anythingElse.value : arrangementsAnswer.other;
+        arrangementsAnswer.languageInterpreter = setCYAValue(arrangementsAnswer.languageInterpreter, this.fields.interpreterLanguageType.value);
+        arrangementsAnswer.signLanguageInterpreter = setCYAValue(arrangementsAnswer.signLanguageInterpreter, this.fields.signLanguageType.value);
+        arrangementsAnswer.other = setCYAValue(arrangementsAnswer.other, this.fields.anythingElse.value);
 
         return arrangementsAnswer;
     }
