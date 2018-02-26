@@ -4,7 +4,6 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text, list } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
-const { getHearingArrangementsAnswer } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
