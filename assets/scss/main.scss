@@ -125,15 +125,13 @@ label.form-label[for="signer"] {
   padding: 15px 0;
   width: 100%;
   border-bottom: 1px solid $border-colour;
-  white-space: nowrap;
-
 
   &:first-child {
     border-top: 1px solid $border-colour;
   }
 
   .add-another-list-item {
-    width: 70%;
+    width: 65%;
     display: inline-block;
   }
 
