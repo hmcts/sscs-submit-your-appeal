@@ -1,9 +1,12 @@
 module "submit-your-appeal-frontend" {
-  source   = "git@github.com:contino/moj-module-webapp?ref=master"
-  product  = "${var.product}-frontend"
-  location = "${var.location}"
-  env      = "${var.env}"
-  ilbIp    = "${var.ilbIp}"
+  source       = "git@github.com:contino/moj-module-webapp?ref=master"
+  product      = "${var.product}-frontend"
+  location     = "${var.location}"
+  env          = "${var.env}"
+  ilbIp        = "${var.ilbIp}"
+  is_frontend  = true
+  subscription = "${var.subscription}"
+
 
   app_settings = {
     TRIBUNALS_CASE_API_URL       = "http://sscs-tribunals-api-${var.env}.service.${data.terraform_remote_state.core_apps_compute.ase_name[0]}.internal"
