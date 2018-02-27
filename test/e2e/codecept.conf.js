@@ -1,3 +1,5 @@
+const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
+const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 2000;
 exports.config = {
     'tests': './**/*.test.js',
     'output': './output',
@@ -5,7 +7,9 @@ exports.config = {
     'helpers': {
         'Nightmare': {
             'url': process.env.E2E_FRONTEND_URL || 'http://localhost:3000',
-            'waitForTimeout': 2000,
+            'waitForTimeout': waitForTimeout,
+            'typeInterval': 20,
+            'waitForAction': waitForAction,
             'show': false,
             'windowSize': ' 800x1000'
         },
@@ -21,5 +25,5 @@ exports.config = {
             'inlineAssets': true
         }
     },
-    'name': 'frontEnd Tests'
+    'name': 'Submit Your Appeal Tests'
 };

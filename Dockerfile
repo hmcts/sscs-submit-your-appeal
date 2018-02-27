@@ -1,4 +1,4 @@
-FROM node:8.1.4
+FROM node:8.9.0
 
 ENV NODE_PATH .
 ENV NODE_ENV development

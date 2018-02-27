@@ -1,7 +1,6 @@
 function enterDoYouWantToAttendTheHearing(option) {
 
     const I = this;
-
     I.checkOption(option);
     I.click('Continue');
 }
