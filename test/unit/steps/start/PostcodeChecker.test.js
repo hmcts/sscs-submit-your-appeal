@@ -13,7 +13,7 @@ describe('PostcodeChecker.js', () => {
         postcodeChecker = new PostcodeChecker({
             journey: {
                 steps: {
-                    Independence: paths.start.independence,
+                    Appointee: paths.identity.areYouAnAppointee,
                     InvalidPostcode: paths.start.invalidPostcode
                 }
             }
@@ -91,9 +91,9 @@ describe('PostcodeChecker.js', () => {
 
     describe('next()', () => {
 
-        it('returns the next step path /independence if postcode is on the list of acceptable postcodes', () => {
+        it('returns the next step path /are-you-an-appointee if postcode is on the list of acceptable postcodes', () => {
             postcodeChecker.fields.postcode.value = 'WV11 2HE';
-            expect(postcodeChecker.next().step).to.eql(paths.start.independence);
+            expect(postcodeChecker.next().step).to.eql(paths.identity.areYouAnAppointee);
         });
 
         it('returns the next step path /invalid-postcode if postcode is not on the list of acceptable postcodes', () => {

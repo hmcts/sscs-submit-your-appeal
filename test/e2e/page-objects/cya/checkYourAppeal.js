@@ -20,11 +20,11 @@ function enterDetailsFromStartToNINO() {
 
     I.enterBenefitTypeAndContinue(data.benefitType.code);
     I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
+    I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
     I.continueFromIndependance();
     I.selectHaveYouGotAMRNAndContinue(haveAMRNContent.fields.haveAMRN.yes);
     I.enterDWPIssuingOfficeAndContinue(data.mrn.dwpIssuingOffice);
     I.enterAnMRNDateAndContinue(oneMonthAgo);
-    I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
     I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
     I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
     I.enterAppellantNINOAndContinue(appellant.nino);

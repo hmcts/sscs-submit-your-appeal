@@ -16,7 +16,7 @@ describe('MRNDate.js', () => {
         mrnDate = new MRNDate({
             journey: {
                 steps: {
-                    Appointee: paths.identity.areYouAnAppointee,
+                    AppellantName: paths.identity.enterAppellantName,
                     CheckMRN:  paths.compliance.checkMRNDate
                 }
             }
@@ -109,14 +109,14 @@ describe('MRNDate.js', () => {
             mrnDate.fields.mrnDate.value = date
         };
 
-        it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        it('returns the next step path /enter-appellant-name if date less than a month', () => {
             setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+            expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantName);
         });
 
-        it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        it('returns the next step path /enter-appellant-name if date is equal to a month', () => {
             setMRNDate(DateUtils.oneMonthAgo());
-            expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+            expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantName);
         });
 
         it('returns the next step path /check-mrn-date if date more than a month', () => {
