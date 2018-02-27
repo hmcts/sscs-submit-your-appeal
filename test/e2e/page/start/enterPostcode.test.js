@@ -16,11 +16,11 @@ Scenario('When I go to the enter postcode page I see the page heading', (I) => {
 
 });
 
-Scenario('When I enter a valid postcode that is on the list, I go to the Independence page', (I) => {
+Scenario('When I enter a valid postcode that is on the list, I go to the are-you-an-appointee page', (I) => {
 
     I.fillField('#postcode', 'WV11 2HE');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.start.independence);
+    I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
 
 });
 

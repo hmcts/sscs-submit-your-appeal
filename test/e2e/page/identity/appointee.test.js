@@ -1,6 +1,6 @@
 'use strict';
 
-const appellantName = require('steps/identity/appellant-name/content.en.json');
+const independence = require('steps/start/independence/content.en.json');
 const appealFormDownload = require('steps/appeal-form-download/content.en.json');
 const appointee = require('steps/identity/appointee/content.en');
 const paths = require('paths');
@@ -24,10 +24,10 @@ Scenario('When I select Yes, I am taken to the download appointee form page', (I
 
 });
 
-Scenario('When I select No, I am taken to the enter your details page', (I) => {
+Scenario('When I select No, I am taken to the independence page', (I) => {
 
     I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
-    I.seeInCurrentUrl(paths.identity.enterAppellantName);
-    I.see(appellantName.title);
+    I.seeInCurrentUrl(paths.start.independence);
+    I.see(independence.title);
 
 });
