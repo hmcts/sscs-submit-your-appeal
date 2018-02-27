@@ -65,7 +65,7 @@ function enterDetailsFromAttendingTheHearingToEnd() {
 
 }
 
-function confirmDetailsArePresent(hasMRN=true) {
+function confirmDetailsArePresent(hasMRN=true, mrnDate=oneMonthAgo) {
 
     const I = this;
 
@@ -80,8 +80,15 @@ function confirmDetailsArePresent(hasMRN=true) {
         // MRN address number
         I.see(data.mrn.dwpIssuingOffice, selectors.mrn.dwpIssuingOffice);
 
-        // Date of MRN
-        I.see(oneMonthAgo.format('DD MMMM YYYY'));
+        // The Date of the MRN
+        I.see(mrnDate.format('DD MMMM YYYY'));
+
+        if(mrnDate.isAfter(oneMonthAgo)) {
+
+            // Reason why the MRN is late
+            I.see(data.mrn.reasonWhyMRNisLate);
+        }
+
     } else {
 
         // Reason for no MRN

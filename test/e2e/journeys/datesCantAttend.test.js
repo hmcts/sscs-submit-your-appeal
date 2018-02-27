@@ -1,6 +1,6 @@
 'use strict';
 
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+const doYouWantTextMsgReminders = require('steps/sms-notify/text-reminders/content.en.json').fields.doYouWantTextMsgReminders;
 const moment = require('moment');
 const paths = require('paths');
 
@@ -23,7 +23,7 @@ Scenario('Appellant provides date of when they cannot attend the hearing', (I) =
 
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
-    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDetailsFromAttendingTheHearingToEnd();
 
@@ -39,7 +39,7 @@ Scenario('Appellant provides a single date for when they cannot attend the heari
 
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
-    I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDetailsFromAttendingTheHearingToEnd();
     I.see(tenWeeksFromNow.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
