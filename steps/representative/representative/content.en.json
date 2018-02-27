@@ -6,7 +6,7 @@
   "info": "receive information about your appeal",
   "evidence": "submit evidence (and see any that’s submitted)",
   "talkToUs": "talk to us on your behalf during your appeal",
-  "phoneUp": "If you don’t have their details now, you can register them over the phone later. You'll be sent the number after you've submitted your appeal.",
+  "phoneUp": "You can register them after you’ve submitted your appeal if you don’t have their details to hand.",
   "fields": {
     "hasRepresentative": {
       "yes": "Yes, I want to register a representative",
