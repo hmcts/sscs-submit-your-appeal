@@ -58,9 +58,9 @@ class DateUtils {
         return date.isSameOrAfter(dateFourWeeksLater, 'day');
     }
 
-    static isLessThanOrEqualToThirtyWeeks(date) {
-        const dateThirtyWeeksLater = moment().add(30, 'weeks');
-        return date.isSameOrBefore(dateThirtyWeeksLater, 'day');
+    static isLessThanOrEqualToTwentyTwoWeeks(date) {
+        const dateTwentyTwoWeeksLater = moment().add(22, 'weeks');
+        return date.isSameOrBefore(dateTwentyTwoWeeksLater, 'day');
     }
 
     static isDateOnTheWeekend(date) {

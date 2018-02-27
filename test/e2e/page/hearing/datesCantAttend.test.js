@@ -140,10 +140,10 @@ Scenario('When I enter a date that is under four weeks from now, I see errors', 
 
 });
 
-Scenario('When I enter a date that is over thirty weeks from now, I see errors', (I) => {
+Scenario('When I enter a date that is over twenty two weeks from now, I see errors', (I) => {
 
-    const dateOverThirtyWeeks = moment().add(31, 'weeks');
-    I.enterDateCantAttendAndContinue(dateOverThirtyWeeks, content.links.add);
-    I.see(content.fields.cantAttendDate.error.overThirtyWeeks);
+    const dateOverTwentyTwoWeeks = moment().add(23, 'weeks');
+    I.enterDateCantAttendAndContinue(dateOverTwentyTwoWeeks, content.links.add);
+    I.see(content.fields.cantAttendDate.error.overTwentyTwoWeeks);
 
 });
