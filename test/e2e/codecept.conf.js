@@ -1,5 +1,5 @@
-const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
-const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 2000;
+const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 1000;
+const waitForAction  = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE)  || 500;
 exports.config = {
     'tests': './**/*.test.js',
     'output': './output',
@@ -8,7 +8,6 @@ exports.config = {
         'Nightmare': {
             'url': process.env.E2E_FRONTEND_URL || 'http://localhost:3000',
             'waitForTimeout': waitForTimeout,
-            'typeInterval': 20,
             'waitForAction': waitForAction,
             'show': false,
             'windowSize': ' 800x1000'
