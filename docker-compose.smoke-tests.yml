@@ -3,7 +3,7 @@ version: '3.1'
 services:
   syatests:
     container_name: sscs-tests
-    image: reform/codeceptjs:8
+    image: docker.artifactory.reform.hmcts.net/reform/codeceptjs:8
     command: bash -c "sleep 30 & Xvfb :0 -screen 0 1240x780x24  & NODE_PATH=. codeceptjs run -c test/e2e/ --steps --grep @smoke"
     environment:
       - E2E_FRONTEND_URL=${TEST_URL}
