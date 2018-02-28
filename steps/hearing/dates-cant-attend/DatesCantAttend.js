@@ -43,8 +43,8 @@ class DatesCantAttend extends AddAnother {
             fields.cantAttendDate.error.underFourWeeks,
             value => DateUtils.isGreaterThanOrEqualToFourWeeks(value)
         ).check(
-            fields.cantAttendDate.error.overThirtyWeeks,
-            value => DateUtils.isLessThanOrEqualToThirtyWeeks(value)
+            fields.cantAttendDate.error.overTwentyTwoWeeks,
+            value => DateUtils.isLessThanOrEqualToTwentyTwoWeeks(value)
         ).check(
             fields.cantAttendDate.error.weekend,
             value => !DateUtils.isDateOnTheWeekend(value)

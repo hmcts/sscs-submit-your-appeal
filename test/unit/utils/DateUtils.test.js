@@ -230,24 +230,24 @@ describe('DateUtils.js', () => {
 
     });
 
-    describe('isLessThanOrEqualToThirtyWeeks', () => {
+    describe('isLessThanOrEqualToTwentyTwoWeeks', () => {
 
         let date;
 
-        it('should return true if date is under thirty weeks', () => {
-            date = moment().add(30, 'weeks').subtract(1, 'day');
-            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
+        it('should return true if date is under twenty two weeks', () => {
+            date = moment().add(22, 'weeks').subtract(1, 'day');
+            expect(DateUtils.isLessThanOrEqualToTwentyTwoWeeks(date)).to.be.true;
         });
 
 
-        it('should return true if date is exactly thirty weeks', () => {
-            date = moment().add(30, 'weeks');
-            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.true;
+        it('should return true if date is exactly twenty two weeks', () => {
+            date = moment().add(22, 'weeks');
+            expect(DateUtils.isLessThanOrEqualToTwentyTwoWeeks(date)).to.be.true;
         });
 
-        it('should return false if date is over thirty weeks', () => {
-            date = moment().add(30, 'weeks').add(1, 'day');
-            expect(DateUtils.isLessThanOrEqualToThirtyWeeks(date)).to.be.false;
+        it('should return false if date is over twenty two weeks', () => {
+            date = moment().add(22, 'weeks').add(1, 'day');
+            expect(DateUtils.isLessThanOrEqualToTwentyTwoWeeks(date)).to.be.false;
         });
 
     });
