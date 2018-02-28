@@ -2,6 +2,10 @@
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import 'look-and-feel/check-your-answers';
 
+.form-section {
+  margin-bottom: 30px;
+}
+
 p.contact-us::first-line {
   font-weight: bold;
 }
