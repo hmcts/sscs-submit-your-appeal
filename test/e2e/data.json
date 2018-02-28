@@ -5,7 +5,8 @@
   },
   "mrn": {
     "dwpIssuingOffice": "1",
-    "reasonForNoMRN": "I do not have a MRN because..."
+    "reasonForNoMRN": "I do not have a MRN because...",
+    "reasonWhyMRNisLate": "My MRN is late because..."
   },
   "isAppointee": false,
   "appellant": {
