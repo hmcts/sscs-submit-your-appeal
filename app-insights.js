@@ -9,6 +9,6 @@ appInsights.setup(config.node.insights)
 .setAutoCollectPerformance(true)
 .setAutoCollectExceptions(true)
 .setAutoCollectDependencies(true)
-.setAutoCollectConsole(true)
+.setAutoCollectConsole(true, true)
 .setUseDiskRetryCaching(true)
 .start();
