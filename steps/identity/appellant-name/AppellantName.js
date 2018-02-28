@@ -27,11 +27,11 @@ class AppellantName extends Question {
 
             textField('firstName')
                 .joi(fields.firstName.error.required, Joi.string().required())
-                .joi(fields.firstName.error.invalid, Joi.string().regex(firstName)),
+                .joi(fields.firstName.error.invalid, Joi.string().trim().regex(firstName)),
 
             textField('lastName')
                 .joi(fields.lastName.error.required, Joi.string().required())
-                .joi(fields.lastName.error.invalid, Joi.string().regex(lastName))
+                .joi(fields.lastName.error.invalid, Joi.string().trim().regex(lastName))
         );
     }
 
