@@ -68,7 +68,7 @@ class CheckYourAppeal extends CYA {
 
             textField('signer').joi(
                 this.content.fields.signer.error.required,
-                Joi.string().regex(lastName).required())
+                Joi.string().regex(lastName).trim().required())
         );
     }
 
