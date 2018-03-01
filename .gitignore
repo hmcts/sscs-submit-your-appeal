@@ -8,3 +8,5 @@ test/unit/coverage
 .sonar/
 .sonar_lock
 report-task.txt
+smoke-output/
+functional-output/

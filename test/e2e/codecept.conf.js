@@ -10,8 +10,11 @@ exports.config = {
             'waitForTimeout': waitForTimeout,
             'waitForAction': waitForAction,
             'show': false,
-            'windowSize': ' 800x1000'
-        },
+            'windowSize': ' 800x1000',
+            'switches': {
+                            'ignore-certificate-errors': true
+                        }
+        }
     },
     'include': {
         'I': './page-objects/steps.js'
