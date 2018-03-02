@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, selectionButton, selectionButtons %}
+{% from "look-and-feel/components/fields.njk" import textbox, select, selectionButton, selectionButtons %}
 {% from "components/formElements.html" import textarea %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
@@ -29,44 +29,56 @@
     ) %}
 
         {{ selectionButton(
-            fields.selection,
-            { label: content.fields.selection.languageInterpreter, value: 'languageInterpreter', target: 'languageInterpreterTextField' },
+            fields.selection.interpreterLanguage.requested,
+            { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
             type = 'checkbox')
         }}
         <div class="panel panel-border-wide js-hidden" id="languageInterpreterTextField">
-            {{ textbox(fields.interpreterLanguageType, content.fields.interpreterLanguageType.label, hint = content.fields.interpreterLanguageType.hint) }}
+            {{ select(
+                fields.selection.interpreterLanguage.language,
+                content.fields.selection.languageInterpreter.language.label,
+                hint = '',
+                options = languagesList
+            ) }}
         </div>
 
         {{ selectionButton(
-            fields.selection,
-            { label: content.fields.selection.signLanguageInterpreter, value: 'signLanguageInterpreter', target: 'signLanguageInterpreterTextField' },
+            fields.selection.signLanguage.requested,
+            { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
             type = 'checkbox')
         }}
         <div class="panel panel-border-wide js-hidden" id="signLanguageInterpreterTextField">
-            {{ textbox(fields.signLanguageType, '', hint = content.fields.signLanguageType.hint) }}
+            {{ select(
+                fields.selection.signLanguage.language,
+                content.fields.selection.signLanguage.language.label,
+                hint = content.fields.selection.signLanguage.language.hint,
+                options = languagesList
+            ) }}
         </div>
 
         {{ selectionButton(
-            fields.selection,
-            { label: content.fields.selection.hearingLoop, value: 'hearingLoop' },
+            fields.selection.hearingLoop.requested,
+            { label: content.fields.selection.hearingLoop.requested.label, value: 'true' },
             type = 'checkbox')
         }}
 
         {{ selectionButton(
-            fields.selection,
-            { label: content.fields.selection.accessibleHearingRoom, value: 'accessibleHearingRoom' },
+            fields.selection.accessibleHearingRoom.requested,
+            { label: content.fields.selection.accessibleHearingRoom.requested.label, value: 'true' },
             type = 'checkbox')
         }}
 
         {{ selectionButton(
-            fields.selection,
-            { label: content.fields.selection.other, value: 'other', target: 'anythingElseTextArea' },
+            fields.selection.anythingElse.requested,
+            { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
             type = 'checkbox')
         }}
         <div class="panel panel-border-wide js-hidden" id="anythingElseTextArea">
-            {{ textarea(fields.anythingElse, content.fields.anythingElse.title) }}
+            {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
         </div>
 
     {% endcall %}
+
+
 
 {% endblock %}

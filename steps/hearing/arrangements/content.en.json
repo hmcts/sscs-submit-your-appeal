@@ -8,41 +8,64 @@
   "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
   "fields": {
     "selection": {
-      "languageInterpreter": "Language interpreter (Enter the language in the box below)",
-      "signLanguageInterpreter": "Sign language interpreter",
-      "hearingLoop": "Hearing loop",
-      "accessibleHearingRoom": "Accessible hearing rooms",
-      "other": "Other",
       "error": {
         "required": "You need to provide some information about the support you need"
-      }
-    },
-    "interpreterLanguageType": {
-      "label": "Enter the language",
-      "hint": "Include a dialect if needed.",
-      "error": {
-        "invalid": "You have entered a special character that is not allowed. Delete it before continuing"
-      }
-    },
-    "signLanguageType": {
-      "hint": "Enter what type of sign language you need. For example, British Sign Language.",
-      "error": {
-        "invalid": "You have entered a special character that is not allowed. Delete it before continuing"
-      }
-    },
-    "anythingElse": {
-      "title": "Any other support you need",
-      "error": {
-        "required": "You have entered a special character that is not allowed. Delete it before continuing"
+      },
+      "languageInterpreter": {
+        "requested": {
+          "label": "Language interpreter"
+        },
+        "language": {
+          "label": "Enter the language",
+          "error": {
+            "required": "You need to say which language you need a translator for.",
+            "invalid": "You need to say which language you need a translator for."
+          }
+        }
+      },
+      "signLanguage": {
+        "requested": {
+          "label": "Sign language interpreter"
+        },
+        "language": {
+          "label": "Enter the language",
+          "hint": "Enter what type of sign language you need. For example, British Sign Language.",
+          "error": {
+            "required": "You need to enter which sign language you need a translator for.",
+            "invalid": "You need to enter which sign language you need a translator for."
+          }
+        }
+      },
+      "hearingLoop": {
+        "requested": {
+          "label": "Hearing loop"
+        }
+      },
+      "accessibleHearingRoom": {
+        "requested": {
+          "label": "Accessible hearing rooms"
+        }
+      },
+      "anythingElse": {
+        "requested": {
+          "label": "Other"
+        },
+        "language": {
+          "label": "Any other support you need",
+          "error": {
+            "required": "You need to provide some information about the support you need",
+            "invalid": "You have entered a special character that is not allowed. Delete it before continuing."
+          }
+        }
       }
     }
   },
   "cya": {
-    "languageInterpreter": "Language interpreter",
-    "signLanguageInterpreter": "Sign language interpreter",
+    "interpreterLanguage": "Language interpreter",
+    "signLanguage": "Sign language interpreter",
     "hearingLoop": "Hearing loop",
     "accessibleHearingRoom": "Accessible hearing rooms",
-    "other": "Other",
+    "anythingElse": "Other",
     "required": "Required",
     "notRequired": "Not required"
   }
