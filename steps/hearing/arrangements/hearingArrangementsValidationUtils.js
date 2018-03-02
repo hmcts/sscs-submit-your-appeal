@@ -16,29 +16,12 @@ const optionSelected = options => {
 
 const languageInList = value => {
 
-    let inList;
-
-    if (value.requested === true) {
-        inList = languages.includes(value.language);
-    } else {
-        inList =  true;
-    }
-
-    return inList;
-
+    return value.requested ? languages.includes(value.language) : true;
 };
 
 const emptyLanguageFieldValidation = value => {
 
-    let validated;
-
-    if (value.requested && !value.language) {
-        validated = false;
-    } else {
-        validated = true
-    }
-
-    return validated;
+    return value.requested && !value.language ? false : true;
 };
 
 const validCharacters = value => {

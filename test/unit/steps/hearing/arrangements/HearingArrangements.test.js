@@ -20,14 +20,25 @@ describe('HearingArrangements.js', () => {
 
         hearingArrangements.fields = {
             selection: {
-                value: ['languageInterpreter', 'hearingLoop', 'other']
-            },
-            interpreterLanguageType: {
-                value: 'A language'
-            },
-            signLanguageType: {},
-            anythingElse: {
-                value: 'more support'
+                value: {
+                    interpreterLanguage: {
+                        requested: true,
+                        language: 'A language'
+                    },
+                    signLanguage: {
+                        requested: false
+                    },
+                    hearingLoop: {
+                        requested: true
+                    },
+                    accessibleHearingRoom: {
+                      requested: false
+                    },
+                    anythingElse: {
+                        requested: true,
+                        language: 'more support'
+                    }
+                }
             }
         }
 
@@ -45,11 +56,11 @@ describe('HearingArrangements.js', () => {
 
         it('returns object of the selection fields where the value us replaced by the hidden fields', () => {
            expect(hearingArrangements.cyaArrangements).to.eql({
-               languageInterpreter: 'A language',
-               signLanguageInterpreter: 'Not required',
+               interpreterLanguage: 'A language',
+               signLanguage: 'Not required',
                hearingLoop: 'Required',
                accessibleHearingRoom: 'Not required',
-               other: 'more support'
+               anythingElse: 'more support'
            });
         });
 
@@ -65,8 +76,8 @@ describe('HearingArrangements.js', () => {
         });
 
         it('should contain 2 fields', () => {
-            expect(Object.keys(fields).length).to.equal(4);
-            expect(fields).to.have.all.keys('selection', 'anythingElse', 'interpreterLanguageType', 'signLanguageType');
+            expect(Object.keys(fields).length).to.equal(1);
+            expect(fields).to.have.all.keys('selection');
         });
 
         describe('selection field', () => {
