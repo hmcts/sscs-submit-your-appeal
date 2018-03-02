@@ -11,6 +11,12 @@
     "useSSL": "USE_SSL"
   },
   "api": {
-    "url":  "TRIBUNALS_CASE_API_URL"
+    "url": "TRIBUNALS_CASE_API_URL"
+  },
+  "ssl": {
+    "hpkp": {
+     "maxAge": "TO_BE_DEFINED",
+     "sha256s": "TO_BE_DEFINED"
+    }
   }
 }

@@ -60,8 +60,8 @@ app.use(helmet.contentSecurityPolicy({
 
 // Helmet HTTP public key pinning
 app.use(helmet.hpkp({
-    maxAge: 900,
-    sha256s: ['AbCdEf123=', 'XyzABC123=']
+    maxAge: config.ssl.hpkp.maxAge,
+    sha256s: config.ssl.hpkp.sha256s
 }));
 
 // Helmet referrer policy
