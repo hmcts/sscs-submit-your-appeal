@@ -5,6 +5,10 @@ const paths = require('paths');
 const fields = require('steps/hearing/arrangements/content.en').fields;
 const data = require('test/e2e/data');
 
+const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';
+const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
+const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
+
 Feature('Appellant PIP, one month ago, attends hearing with support');
 
 Before((I) => {
@@ -22,8 +26,8 @@ Scenario('Appellant selects sign language interpreter and enters the language ty
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(textRemindersContent.fields.doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingWithSupportToEnd([fields.selection.signLanguageInterpreter], [{
-        id: '#signLanguageType',
+    I.enterDetailsFromAttendingTheHearingWithSupportToEnd([fields.selection.signLanguage.requested.label], [{
+        id: signLanguageTextField,
         content: data.hearing.signLanguageType
     }]);
     I.confirmDetailsArePresent();
@@ -39,14 +43,14 @@ Scenario('Appellant selects sign language interpreter and other and then enters 
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
         [
-            fields.selection.signLanguageInterpreter,
-            fields.selection.other
+            fields.selection.signLanguage.requested.label,
+            fields.selection.anythingElse.requested.label
         ],
         [{
-            id: '#signLanguageType',
+            id: signLanguageTextField,
             content: data.hearing.signLanguageType
         }, {
-            id: '#anythingElse',
+            id: anythingElseTextField,
             content: data.hearing.anythingElse
         }]
     );
@@ -64,18 +68,18 @@ Scenario('Appellant selects sign language interpreter, language interpreter and 
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
         [
-            fields.selection.languageInterpreter,
-            fields.selection.signLanguageInterpreter,
-            fields.selection.other
+            fields.selection.languageInterpreter.requested.label,
+            fields.selection.signLanguage.requested.label,
+            fields.selection.anythingElse.requested.label
         ],
         [{
-            id: '#signLanguageType',
+            id: signLanguageTextField,
             content: data.hearing.signLanguageType
         }, {
-            id: '#anythingElse',
+            id: anythingElseTextField,
             content: data.hearing.anythingElse
         }, {
-            id: '#interpreterLanguageType',
+            id: languageInterpreterTextField,
             content: data.hearing.interpreterLanguageType
         }]
     );

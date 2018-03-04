@@ -64,7 +64,11 @@ class DateUtils {
     }
 
     static isDateOnTheWeekend(date) {
-        return date.weekday() === 0 || date.weekday() === 6
+        return date.weekday() === 0 || date.weekday() === 6;
+    }
+
+    static dateNotOnWeekend(date) {
+        return date.weekday() === 0 || date.weekday() === 6 ? date.add(4, 'days') : date;
     }
 
     static getRandomWeekDayFromDate(date) {

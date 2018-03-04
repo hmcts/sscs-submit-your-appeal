@@ -124,32 +124,32 @@ class HearingArrangements extends Question {
         ];
     }
 
-    // values() {
-    //
-    //     const values = {
-    //         hearing: {
-    //             arrangements: {
-    //                 languageInterpreter: false,
-    //                 signLanguageInterpreter: false,
-    //                 hearingLoop: false,
-    //                 accessibleHearingRoom: false,
-    //                 other: false
-    //             },
-    //             interpreterLanguageType: this.fields.interpreterLanguageType.value,
-    //             signLanguageType: this.fields.signLanguageType.value,
-    //             anythingElse: this.fields.anythingElse.value,
-    //         }
-    //     };
-    //
-    //     this.fields.selection.value.forEach((arrangement) => {
-    //         values.hearing.arrangements[arrangement] = true;
-    //     });
-    //
-    //
-    //     console.log(values);
-    //
-    //     return values;
-    // }
+    values() {
+
+        const values = {
+            hearing: {
+                arrangements: {
+                    languageInterpreter: false,
+                    signLanguageInterpreter: false,
+                    hearingLoop: false,
+                    accessibleHearingRoom: false,
+                    other: false
+                },
+                interpreterLanguageType: this.fields.interpreterLanguageType.value,
+                signLanguageType: this.fields.signLanguageType.value,
+                anythingElse: this.fields.anythingElse.value,
+            }
+        };
+
+        this.fields.selection.value.forEach((arrangement) => {
+            values.hearing.arrangements[arrangement] = true;
+        });
+
+
+        console.log(values);
+
+        return values;
+    }
 
     next() {
 

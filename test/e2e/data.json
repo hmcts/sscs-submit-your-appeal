@@ -66,8 +66,8 @@
     "wantsToAttend": true,
     "wantsSupport": true,
     "anythingElse": "Yes, this...",
-    "interpreterLanguageType": "Interpreter language",
-    "signLanguageType": "Sign language",
+    "interpreterLanguageType": "Portuguese",
+    "signLanguageType": "Sign (American Sign)",
     "arrangements": {
       "languageInterpreter": true,
       "signLanguageInterpreter": true,
