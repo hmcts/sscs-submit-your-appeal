@@ -6,10 +6,13 @@ services:
     image: docker.artifactory.reform.hmcts.net/reform/codeceptjs:8
     command: bash -c "sleep 30 & Xvfb :0 -screen 0 1240x780x24  & NODE_PATH=. codeceptjs run -c test/e2e/ --steps --grep @smoke"
     environment:
-      - E2E_FRONTEND_URL=${TEST_URL}
+      - E2E_FRONTEND_URL=${ACTUAL_TEST_URL}
       - http_proxy=
       - https_proxy=
       - no_proxy=
       - DISPLAY=:0
     volumes:
         - ".:/tests"
+        - "./hosts:/etc/hosts"
+
+
