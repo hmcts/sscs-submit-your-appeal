@@ -14,5 +14,4 @@ services:
     volumes:
         - ".:/tests"
         - "./hosts:/etc/hosts"
-
-
+        - "./smoke-output:/tests/test/e2e/output"
