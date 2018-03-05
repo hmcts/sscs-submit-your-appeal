@@ -137,9 +137,9 @@ class HearingArrangements extends Question {
                     accessibleHearingRoom: fieldValues.accessibleHearingRoom.requested,
                     other: fieldValues.anythingElse.requested
                 },
-                interpreterLanguageType: fieldValues.interpreterLanguage.language,
-                signLanguageType: fieldValues.signLanguage.language,
-                anythingElse: fieldValues.anythingElse.language,
+                interpreterLanguageType: fieldValues.interpreterLanguage.requested ? fieldValues.interpreterLanguage.language : undefined,
+                signLanguageType: fieldValues.signLanguage.requested ? fieldValues.signLanguage.language : undefined,
+                anythingElse: fieldValues.anythingElse.requested ? fieldValues.anythingElse.language : undefined,
             }
         };
 
