@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/add_another.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
 {% from "components/formElements.html" import textarea %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
@@ -17,6 +17,22 @@
     itemsListLabel: '',
     editItemLabel: content.itemLabel
 } %}
+
+{% block noItems %}
+    <div id="items" class="noItems {{ errorClass(fields.items) }}">
+
+        {% if fields.validated and not fields.valid %}
+            {%- for error in fields.errors -%}
+                <span class="error-message">
+                    {{ error.message }}
+                </span>
+            {%- endfor -%}
+        {% endif %}
+
+        {{ content.noReasons }}
+
+    </div>
+{% endblock %}
 
 {% block item %}
     {{ item.whatYouDisagreeWith.value }}
