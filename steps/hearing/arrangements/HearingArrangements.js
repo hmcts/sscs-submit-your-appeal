@@ -126,27 +126,22 @@ class HearingArrangements extends Question {
 
     values() {
 
+        const fieldValues = this.fields.selection.value;
+
         const values = {
             hearing: {
                 arrangements: {
-                    languageInterpreter: false,
-                    signLanguageInterpreter: false,
-                    hearingLoop: false,
-                    accessibleHearingRoom: false,
-                    other: false
+                    languageInterpreter: fieldValues.interpreterLanguage.requested,
+                    signLanguageInterpreter: fieldValues.signLanguage.requested,
+                    hearingLoop: fieldValues.hearingLoop.requested,
+                    accessibleHearingRoom: fieldValues.accessibleHearingRoom.requested,
+                    other: fieldValues.anythingElse.requested
                 },
-                interpreterLanguageType: this.fields.interpreterLanguageType.value,
-                signLanguageType: this.fields.signLanguageType.value,
-                anythingElse: this.fields.anythingElse.value,
+                interpreterLanguageType: fieldValues.interpreterLanguage.language,
+                signLanguageType: fieldValues.signLanguage.language,
+                anythingElse: fieldValues.anythingElse.language,
             }
         };
-
-        this.fields.selection.value.forEach((arrangement) => {
-            values.hearing.arrangements[arrangement] = true;
-        });
-
-
-        console.log(values);
 
         return values;
     }

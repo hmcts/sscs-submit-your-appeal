@@ -88,6 +88,11 @@ describe('hearingArrangementsValidationUtils.js', () => {
             expect(optionSelected(options)).to.equal(true);
         });
 
+        it('returns true when a checkbox field has been set on first iteration of the loop', () => {
+            options.interpreterLanguage.requested = true;
+            expect(optionSelected(options)).to.equal(true);
+        });
+
     });
 
 });

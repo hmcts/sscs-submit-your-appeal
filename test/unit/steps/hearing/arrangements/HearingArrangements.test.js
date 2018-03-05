@@ -3,6 +3,7 @@
 const { expect } = require('test/util/chai');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
 const paths = require('paths');
+const languages = require('steps/hearing/arrangements/languages');
 
 describe('HearingArrangements.js', () => {
 
@@ -48,6 +49,21 @@ describe('HearingArrangements.js', () => {
 
         it('returns path /arrangements', () => {
             expect(HearingArrangements.path).to.equal(paths.hearing.hearingArrangements);
+        });
+
+    });
+
+    describe('get languagesList()', () => {
+
+        it('returns an object', () => {
+            expect(hearingArrangements.languagesList).to.be.an('array');
+        });
+
+        it('should have an array of objects', () => {
+            expect(hearingArrangements.languagesList[0]).to.eql({
+                label: languages[0],
+                value: languages[0]
+            });
         });
 
     });
