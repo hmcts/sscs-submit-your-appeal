@@ -126,12 +126,15 @@ label.form-label[for="signer"] {
 }
 
 .add-another-list div {
-  padding: 15px 0;
-  width: 100%;
-  border-bottom: 1px solid $border-colour;
 
-  &:first-child {
-    border-top: 1px solid $border-colour;
+  &:not(.noItems) {
+    padding: 15px 0;
+    width: 100%;
+    border-bottom: 1px solid $border-colour;
+
+    &:first-child {
+      border-top: 1px solid $border-colour;
+    }
   }
 
   .add-another-list-item {
