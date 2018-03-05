@@ -43,7 +43,7 @@ label.form-label[for="signer"] {
   width: 100%;
 }
 
-#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName {
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #reasonForBeingLate, #reasonForNoMRN {
   &.form-control {
     @extend .form-control-3-4;
   }
