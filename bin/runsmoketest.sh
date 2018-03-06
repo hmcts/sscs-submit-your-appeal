@@ -26,7 +26,7 @@ elif [[ ${TEST_URL} == *"prod.internal" ]]; then
   
 elif [[ ${TEST_URL} == *"sandbox.internal" ]]; then
 
-  cat "${TEST_URL} benefit-appeal.demo.platform.hmcts.net/" > hosts
+  cat "${TEST_URL} benefit-appeal.demo.platform.hmcts.net" > hosts
   EXPORT ACTUAL_TEST_URL="https://benefit-appeal.demo.platform.hmcts.net/"
 else
   EXPORT ACTUAL_TEST_URL=${TEST_URL}
