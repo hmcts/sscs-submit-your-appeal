@@ -148,7 +148,7 @@ journey(app, {
             message: content.errors.serverError.message
         }
     },
-    timeoutDelay: 100,
+    timeoutDelay: 2000,
     apiUrl: `${config.api.url}/appeals`
 });
 
