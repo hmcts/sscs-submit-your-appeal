@@ -43,5 +43,5 @@ function initSYAAnalyticsTrack() {
     // GOVUK.analyticsPlugins.printIntent();
 
     // Track initial pageview
-    window.GOVUK.analytics.trackPageview(window.location.pathname);
+    window.GOVUK.analytics.trackPageview();
 }
