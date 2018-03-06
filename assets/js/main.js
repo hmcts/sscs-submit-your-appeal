@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import ShowHideContent from 'govuk/show-hide-content';
 import accessibleAutocomplete from 'accessible-autocomplete';
-import GoogleAnalyticsUniversalTracker from 'govuk/analytics/google-analytics-universal-tracker.js';
-import Analytics from 'govuk/analytics/analytics.js';
+import Analytics from 'govuk/analytics/analytics';
 
 $(document).ready(() => {
     initShowHideContent();
@@ -25,18 +24,15 @@ function initAutocomplete() {
 }
 
 function initSYAAnalyticsTrack() {
-    // Load Google Analytics libraries
     Analytics.load();
 
     // Use document.domain in dev, preview and staging so that tracking works
     // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
     const cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
 
-    // Configure profiles and make interface public
-    // for custom dimensions, virtual pageviews and events
-    const analytics = new Analytics({
+    window.GOVUK.analytics = new Analytics({
         universalId: 'UA-91309785-4',
-        cookieDomain: cookieDomain
+        cookieDomain
     });
 
     // Set custom dimensions before tracking pageviews
@@ -47,5 +43,5 @@ function initSYAAnalyticsTrack() {
     // GOVUK.analyticsPlugins.printIntent();
 
     // Track initial pageview
-    analytics.trackPageview();
+    window.GOVUK.analytics.trackPageview(window.location.pathname);
 }
