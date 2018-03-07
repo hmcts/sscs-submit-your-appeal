@@ -3,8 +3,8 @@
 
 
 "@hmcts/look-and-feel@^1.10.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.12.0.tgz#b3b8a734ef65abf2e476d4a9abcfade5b73224fa"
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.13.1.tgz#9e8fe6fd7349d6d783467f44bdb4607dab42631b"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -2870,10 +2870,6 @@ govuk-elements-sass@^3.1.1:
   resolved "https://registry.yarnpkg.com/govuk-elements-sass/-/govuk-elements-sass-3.1.2.tgz#4c79a6893c500e5c817ade8d5008e709f718a3c3"
   dependencies:
     govuk_frontend_toolkit "^7.1.0"
-
-govuk_frontend_toolkit@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/govuk_frontend_toolkit/-/govuk_frontend_toolkit-6.0.4.tgz#fc4b741b16d27ec1a3cd1c4f3830972d333c7044"
 
 govuk_frontend_toolkit@^7.1.0:
   version "7.4.2"
