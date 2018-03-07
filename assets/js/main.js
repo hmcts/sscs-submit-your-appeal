@@ -36,11 +36,11 @@ function initSYAAnalyticsTrack() {
     });
 
     // Set custom dimensions before tracking pageviews
-    // GOVUK.analytics.setDimension(…)
+    // analytics.setDimension(…)
 
     // Activate any event plugins eg. print intent, error tracking
-    // GOVUK.analyticsPlugins.error();
-    // GOVUK.analyticsPlugins.printIntent();
+    // analyticsPlugins.error();
+    // analyticsPlugins.printIntent();
 
     // Track initial pageview
     window.GOVUK.analytics.trackPageview();
