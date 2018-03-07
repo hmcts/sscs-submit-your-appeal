@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
 const officeIds = require('steps/compliance/dwp-issuing-office/ids');
@@ -18,10 +18,9 @@ class DWPIssuingOffice extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('pipNumber')
-
+            pipNumber: text
                 .joi(
                     this.content.fields.pipNumber.error.required,
                     Joi.string().required())
@@ -33,8 +32,8 @@ class DWPIssuingOffice extends Question {
                 .joi(
                     this.content.fields.pipNumber.error.invalid,
                     Joi.string().valid(officeIds)
-            )
-        )
+                )
+        });
     }
 
     answers() {

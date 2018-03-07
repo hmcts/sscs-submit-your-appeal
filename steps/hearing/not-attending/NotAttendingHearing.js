@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
@@ -14,10 +14,10 @@ class NotAttendingHearing extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
-        );
+            emailAddress: text.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
+        });
     }
 
     answers() {

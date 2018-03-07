@@ -63,15 +63,13 @@ describe('SendToNumber.js', () => {
 
         it('should contain a textField reference called \'phoneNumber\'', () => {
             const textField = fields.phoneNumber;
-            expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('phoneNumber');
+            expect(textField.constructor.name).to.eq('FieldDescriptor');
             expect(textField.validations).to.be.empty;
         });
 
         it('should contain a textField called useSameNumber', () => {
             const textField = fields.useSameNumber;
-            expect(textField.constructor.name).to.eq('FieldDesriptor');
-            expect(textField.name).to.equal('useSameNumber');
+            expect(textField.constructor.name).to.eq('FieldDescriptor');
             expect(textField.validations).to.not.be.empty;
         });
 

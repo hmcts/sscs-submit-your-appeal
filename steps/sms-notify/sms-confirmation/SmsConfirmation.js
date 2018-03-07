@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { formatMobileNumber } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
@@ -33,12 +33,12 @@ class SmsConfirmation extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField.ref(this.journey.steps.EnterMobile, 'enterMobile'),
-            textField.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
-            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
-        )
+            enterMobile: text.ref(this.journey.steps.EnterMobile, 'enterMobile'),
+            useSameNumber: text.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
+            phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
+        });
     }
 
     answers() {

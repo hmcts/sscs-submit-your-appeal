@@ -5,7 +5,7 @@ const {
     section
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action } = require('@hmcts/one-per-page/flow');
 const { Logger } = require('@hmcts/nodejs-logging');
 const { lastName } = require('utils/regex');
@@ -64,12 +64,14 @@ class CheckYourAppeal extends CYA {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('signer').joi(
-                this.content.fields.signer.error.required,
-                Joi.string().regex(lastName).trim().required())
-        );
+            signer: text
+                .joi(
+                    this.content.fields.signer.error.required,
+                    Joi.string().regex(lastName).trim().required()
+                )
+        });
     }
 
     values() {

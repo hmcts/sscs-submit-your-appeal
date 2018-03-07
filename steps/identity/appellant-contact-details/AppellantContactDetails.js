@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
 const { formatMobileNumber } = require('utils/stringUtils');
@@ -22,43 +22,46 @@ class AppellantContactDetails extends Question {
 
         const fields = this.content.fields;
 
-        return form(
+        return form({
 
-            textField('addressLine1').joi(
-                fields.addressLine1.error.required,
-                Joi.string().regex(whitelist).required()
-            ),
+            addressLine1: text
+                .joi(
+                    fields.addressLine1.error.required,
+                    Joi.string().regex(whitelist).required()
+                ),
+            addressLine2: text
+                .joi(
+                    fields.addressLine2.error.invalid,
+                    Joi.string().regex(whitelist).allow('')
+                ),
+            townCity: text
+                .joi(
+                    fields.townCity.error.required,
+                    Joi.string().regex(whitelist).required()
+                ),
+            county: text
+                .joi(
+                    fields.county.error.required,
+                    Joi.string().regex(whitelist).required()
+                ),
+            postCode: text
+                .joi(
+                    fields.postCode.error.required,
+                    Joi.string().regex(postCode).required()
+                ),
+            phoneNumber: text
+                .joi(
+                    fields.phoneNumber.error.invalid,
+                    Joi.string().regex(phoneNumber).allow('')
+                ),
+            emailAddress: text
+                .joi(
+                    fields.emailAddress.error.invalid,
+                    Joi.string().email(emailOptions).allow('')
+                ),
 
-            textField('addressLine2').joi(
-                fields.addressLine2.error.invalid,
-                Joi.string().regex(whitelist).allow('')
-            ),
 
-            textField('townCity').joi(
-                fields.townCity.error.required,
-                Joi.string().regex(whitelist).required()
-            ),
-
-            textField('county').joi(
-                fields.county.error.required,
-                Joi.string().regex(whitelist).required()
-            ),
-
-            textField('postCode').joi(
-                fields.postCode.error.required,
-                Joi.string().regex(postCode).required()
-            ),
-
-            textField('phoneNumber').joi(
-                fields.phoneNumber.error.invalid,
-                Joi.string().regex(phoneNumber).allow('')
-            ),
-
-            textField('emailAddress').joi(
-                fields.emailAddress.error.invalid,
-                Joi.string().email(emailOptions).allow('')
-            )
-        );
+        });
     }
 
     answers() {

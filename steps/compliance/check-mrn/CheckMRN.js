@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
-const { form, text, ref, date } = require('@hmcts/one-per-page/forms');
+const { form, text, date, ref } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
@@ -20,10 +20,11 @@ class CheckMRN extends Question {
         return form({
 
             mrnDate: ref(this.journey.steps.MRNDate, date),
-            checkedMRN: text.joi(
-                this.content.fields.checkedMRN.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
-            )
+            checkedMRN: text
+                .joi(
+                    this.content.fields.checkedMRN.error.required,
+                    Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+                )
         });
     }
 

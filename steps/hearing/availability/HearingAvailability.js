@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
@@ -16,13 +16,14 @@ class HearingAvailability extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('scheduleHearing').joi(
-                this.content.fields.scheduleHearing.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
-            )
-        );
+            scheduleHearing: text
+                .joi(
+                    this.content.fields.scheduleHearing.error.required,
+                    Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+                )
+        });
     }
 
     answers() {

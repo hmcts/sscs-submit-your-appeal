@@ -53,11 +53,7 @@ describe('TheHearing.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name attendHearing', () => {
-                expect(field.name).to.equal('attendHearing');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

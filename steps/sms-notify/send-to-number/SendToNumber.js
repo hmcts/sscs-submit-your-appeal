@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const { formatMobileNumber } = require('utils/stringUtils');
@@ -23,15 +23,15 @@ class SendToNumber extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
-
-            textField('useSameNumber').joi(
-                this.content.fields.useSameNumber.error.required,
-                Joi.string().regex(whitelist).required()
-            )
-        );
+            phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+            useSameNumber: text
+                .joi(
+                    this.content.fields.useSameNumber.error.required,
+                    Joi.string().regex(whitelist).required()
+                )
+        });
     }
 
     answers() {

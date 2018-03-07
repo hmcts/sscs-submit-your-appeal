@@ -53,11 +53,7 @@ describe('OtherReasonForAppealing.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name otherReasonForAppealing', () => {
-                expect(field.name).to.equal('otherReasonForAppealing');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

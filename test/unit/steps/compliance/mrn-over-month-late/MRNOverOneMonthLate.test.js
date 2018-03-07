@@ -49,11 +49,7 @@ describe('MRNOverOneMonth.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name reasonForBeingLate', () => {
-                expect(field.name).to.equal('reasonForBeingLate');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

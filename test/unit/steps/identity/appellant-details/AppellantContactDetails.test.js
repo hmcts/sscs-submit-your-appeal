@@ -90,11 +90,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name addressLine1', () => {
-                expect(field.name).to.equal('addressLine1');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -110,11 +106,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name addressLine2', () => {
-                expect(field.name).to.equal('addressLine2');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -130,11 +122,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name townCity', () => {
-                expect(field.name).to.equal('townCity');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -150,11 +138,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name county', () => {
-                expect(field.name).to.equal('county');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -170,11 +154,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name postCode', () => {
-                expect(field.name).to.equal('postCode');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -190,11 +170,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name phoneNumber', () => {
-                expect(field.name).to.equal('phoneNumber');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
@@ -210,11 +186,7 @@ describe('AppellantContactDetails.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name emailAddress', () => {
-                expect(field.name).to.equal('emailAddress');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

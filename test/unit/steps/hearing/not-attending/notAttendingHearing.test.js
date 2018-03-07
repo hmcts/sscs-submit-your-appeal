@@ -51,12 +51,8 @@ describe('HearingArrangements.js', () => {
                 field = fields.emailAddress;
             });
 
-            it('has constructor name Reference', () => {
-                expect(field.constructor.name).to.eq('Reference');
-            });
-
-            it('contains the field name emailAddress', () => {
-                expect(field.name).to.equal('emailAddress');
+            it('has constructor name FieldDescriptor', () => {
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
         });

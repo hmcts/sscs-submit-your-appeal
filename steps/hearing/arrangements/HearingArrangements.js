@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField, arrayField } = require('@hmcts/one-per-page/forms');
+const { form, text, list } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -26,18 +26,19 @@ class HearingArrangements extends Question {
 
         const validAnswers = Object.keys(arrangements);
 
-        return form(
+        return form({
 
-            arrayField('selection').joi(
-                this.content.fields.selection.error.required,
-                Joi.array().items(validAnswers).min(1)
-            ),
-
-            textField('anythingElse').joi(
-                this.content.fields.anythingElse.error.required,
-                Joi.string().regex(whitelist).allow('')
-            )
-        );
+            selection: list(text)
+                .joi(
+                    this.content.fields.selection.error.required,
+                    Joi.array().items(validAnswers).min(1)
+                ),
+            anythingElse: text
+                .joi(
+                    this.content.fields.anythingElse.error.required,
+                    Joi.string().regex(whitelist).allow('')
+                )
+        });
     }
 
     answers() {

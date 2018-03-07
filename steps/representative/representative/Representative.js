@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
@@ -18,13 +18,14 @@ class Representative extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('hasRepresentative').joi(
-                this.content.fields.hasRepresentative.error.required,
-                Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
-            )
-        );
+            hasRepresentative: text
+                .joi(
+                    this.content.fields.hasRepresentative.error.required,
+                    Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+                )
+        });
     }
 
     answers() {

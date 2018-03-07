@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist, firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -19,20 +19,33 @@ class AppellantName extends Question {
 
         const fields = this.content.fields;
 
-        return form(
+        return form({
 
-            textField('title')
-                .joi(fields.title.error.required, Joi.string().required())
-                .joi(fields.title.error.invalid, Joi.string().regex(whitelist)),
-
-            textField('firstName')
-                .joi(fields.firstName.error.required, Joi.string().required())
-                .joi(fields.firstName.error.invalid, Joi.string().trim().regex(firstName)),
-
-            textField('lastName')
-                .joi(fields.lastName.error.required, Joi.string().required())
-                .joi(fields.lastName.error.invalid, Joi.string().trim().regex(lastName))
-        );
+            title: text
+                .joi(
+                    fields.title.error.required,
+                    Joi.string().required()
+                ).joi(
+                    fields.title.error.invalid,
+                    Joi.string().regex(whitelist)
+                ),
+            firstName: text
+                .joi(
+                    fields.firstName.error.required,
+                    Joi.string().required()
+                ).joi(
+                    fields.firstName.error.invalid,
+                    Joi.string().trim().regex(firstName)
+                ),
+            lastName: text
+                .joi(
+                    fields.lastName.error.required,
+                    Joi.string().required()
+                ).joi(
+                    fields.lastName.error.invalid,
+                    Joi.string().trim().regex(lastName)
+                )
+        });
     }
 
     answers() {
