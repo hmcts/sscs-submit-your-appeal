@@ -1,6 +1,6 @@
 'use strict';
 
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { Question } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const urls = require('urls');
@@ -36,10 +36,10 @@ class AppealFormDownload extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField.ref(this.journey.steps.BenefitType, 'benefitType')
-        );
+            benefitType: text.ref(this.journey.steps.BenefitType, 'benefitType')
+        });
     }
 
 }

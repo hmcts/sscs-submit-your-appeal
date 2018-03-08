@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { internationalMobileNumber } = require('utils/regex');
 const Joi = require('joi');
@@ -16,15 +16,17 @@ class EnterMobile extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('enterMobile').joi(
-                this.content.fields.enterMobile.error.emptyField,
-                Joi.string().required()).joi(
-                this.content.fields.enterMobile.error.invalidNumber,
-                Joi.string().regex(internationalMobileNumber).required()
-            )
-        );
+            enterMobile: text
+                .joi(
+                    this.content.fields.enterMobile.error.emptyField,
+                    Joi.string().required()
+                ).joi(
+                    this.content.fields.enterMobile.error.invalidNumber,
+                    Joi.string().regex(internationalMobileNumber).required()
+                )
+        });
     }
 
     answers() {

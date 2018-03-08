@@ -52,11 +52,7 @@ describe('AppellantNINO.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains a field with the name nino', () => {
-                expect(field.name).to.equal('nino');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

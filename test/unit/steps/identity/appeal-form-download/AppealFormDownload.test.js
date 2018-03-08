@@ -72,8 +72,7 @@ describe('AppealFormDownload.js', () => {
 
         it('should contain a textField reference called \'benefitType\'', () => {
             const textField = appealFormDownload.form.fields.benefitType;
-            expect(textField.constructor.name).to.eq('Reference');
-            expect(textField.name).to.equal('benefitType');
+            expect(textField.constructor.name).to.eq('FieldDescriptor');
             expect(textField.validations).to.be.empty;
         });
 

@@ -49,11 +49,7 @@ describe('DWPIssuingOffice.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name pipNumber', () => {
-                expect(field.name).to.equal('pipNumber');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

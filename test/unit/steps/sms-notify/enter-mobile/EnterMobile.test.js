@@ -49,11 +49,7 @@ describe('EnterMobile.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name enterMobile', () => {
-                expect(field.name).to.equal('enterMobile');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

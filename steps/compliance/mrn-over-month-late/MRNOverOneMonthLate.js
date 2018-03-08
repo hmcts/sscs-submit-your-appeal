@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -17,13 +17,14 @@ class MRNOverOneMonthLate extends Question {
 
     get form() {
 
-        return form(
+        return form({
 
-            textField('reasonForBeingLate').joi(
-                this.content.fields.reasonForBeingLate.error.required,
-                Joi.string().regex(whitelist).required()
-            )
-        );
+            reasonForBeingLate: text
+                .joi(
+                    this.content.fields.reasonForBeingLate.error.required,
+                    Joi.string().regex(whitelist).required()
+                )
+        });
     }
 
     answers() {

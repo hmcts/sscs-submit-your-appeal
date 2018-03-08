@@ -1,7 +1,7 @@
 'use strict';
 
 const { Question, branch, goTo } = require('@hmcts/one-per-page');
-const { form, textField } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
@@ -20,13 +20,13 @@ class BenefitType extends Question {
 
         const types = Object.values(benefitTypes);
 
-        return form(
-
-            textField('benefitType').joi(
-                this.content.fields.benefitType.error.required,
-                Joi.string().valid(types).required()
-            )
-        );
+        return form({
+            benefitType: text
+                .joi(
+                    this.content.fields.benefitType.error.required,
+                    Joi.string().valid(types).required()
+                )
+        });
     }
 
     answers() {

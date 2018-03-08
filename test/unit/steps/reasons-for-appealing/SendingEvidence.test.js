@@ -67,11 +67,7 @@ describe('SendingEvidence.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('Reference');
-            });
-
-            it('contains the field name emailAddress', () => {
-                expect(field.name).to.equal('emailAddress');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
         });

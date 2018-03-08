@@ -54,11 +54,7 @@ describe('HaveContactedDWP.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name haveContactedDWP', () => {
-                expect(field.name).to.equal('haveContactedDWP');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {

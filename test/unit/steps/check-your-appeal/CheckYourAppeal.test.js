@@ -109,11 +109,7 @@ describe('CheckYourAppeal.js', () => {
             });
 
             it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains a field with the name signer', () => {
-                expect(field.name).to.equal('signer');
+                expect(field.constructor.name).to.eq('FieldDescriptor');
             });
 
             it('contains validation', () => {
