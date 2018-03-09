@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page/steps');
+const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -46,7 +47,7 @@ class HearingAvailability extends Question {
 
         return branch(
             goTo(this.journey.steps.CheckYourAppeal).if(shouldScheduleHearing),
-            goTo(this.journey.steps.DatesCantAttend)
+            redirectTo(this.journey.steps.DatesCantAttend)
         );
     }
 }

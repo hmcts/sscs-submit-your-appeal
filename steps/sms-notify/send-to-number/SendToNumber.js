@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page/steps');
+const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
@@ -53,7 +54,7 @@ class SendToNumber extends Question {
         const useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.steps.SmsConfirmation).if(useSameNumber),
+            redirectTo(this.journey.steps.SmsConfirmation).if(useSameNumber),
             goTo(this.journey.steps.EnterMobile)
         );
     }

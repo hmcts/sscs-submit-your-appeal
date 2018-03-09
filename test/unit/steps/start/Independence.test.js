@@ -20,14 +20,6 @@ describe('Independence.js', () => {
 
     });
 
-    describe('answers()', () => {
-
-        it('should be hidden', () => {
-            expect(independence.answers().hide).to.be.true;
-        });
-
-    });
-
     describe('get path()', () => {
 
         it('returns path /independence', () => {

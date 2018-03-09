@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page/steps');
+const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text, date, ref } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -52,7 +53,7 @@ class CheckMRN extends Question {
         return branch(
             goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
             goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
-            goTo(this.journey.steps.MRNDate)
+            redirectTo(this.journey.steps.MRNDate)
         );
     }
 }

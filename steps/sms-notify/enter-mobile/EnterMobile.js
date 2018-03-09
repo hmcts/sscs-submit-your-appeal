@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page/steps');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { internationalMobileNumber } = require('utils/regex');
@@ -45,7 +46,7 @@ class EnterMobile extends Question {
 
     next() {
 
-        return goTo(this.journey.steps.SmsConfirmation);
+        return redirectTo(this.journey.steps.SmsConfirmation);
     }
 }
 

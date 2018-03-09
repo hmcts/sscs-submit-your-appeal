@@ -1,6 +1,7 @@
 'use strict';
 
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
@@ -55,7 +56,7 @@ class TheHearing extends Question {
 
         return branch(
             goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
-            goTo(this.journey.steps.NotAttendingHearing)
+            redirectTo(this.journey.steps.NotAttendingHearing)
         );
     }
 }
