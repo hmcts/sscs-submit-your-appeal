@@ -36,8 +36,6 @@ class CheckYourAppeal extends CYA {
 
     sendToAPI() {
 
-        console.log(this.journey.values)
-
         return request
             .post(this.journey.settings.apiUrl)
             .send(this.journey.values)

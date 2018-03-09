@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
-    "start-dev": "cross-env NODE_PATH=. node-dev --inspect=0.0.0.0:9229 server.js",
+    "start-dev": "cross-env NODE_PATH=. node-dev server.js",
     "setup": "exit 0",
     "test": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",
