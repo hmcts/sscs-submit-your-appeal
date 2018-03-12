@@ -15,8 +15,9 @@
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.isAppointee, "",
-    hint = '',
+    fields.isAppointee,
+    content.fields.isAppointee.label,
+    hideQuestion=true,
     options = [
         { label: content.fields.isAppointee.yes, value: "yes" },
         { label: content.fields.isAppointee.no, value: "no" }

@@ -15,8 +15,9 @@
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.scheduleHearing, "",
-    hint = '',
+    fields.scheduleHearing,
+    content.fields.scheduleHearing.label,
+    hideQuestion=true,
     options = [
         { label: content.fields.scheduleHearing.yes, value: "yes" },
         { label: content.fields.scheduleHearing.no, value: "no" }

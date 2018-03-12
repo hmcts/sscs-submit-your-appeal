@@ -37,11 +37,11 @@
 
 {% endmacro %}
 
-{% macro textarea(field, label, hint) %}
+{% macro textarea(field, label, hint="", hideLabel=false) %}
 
 <div class="form-group {{ errorClass(field) }}">
 
-    <label class="form-label" for="{{ field.id }}">{{ label | safe }}</label>
+    <label class="form-label {{ 'visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
     {% if hint %}
     <span class="form-hint">{{ hint | safe }}</span>

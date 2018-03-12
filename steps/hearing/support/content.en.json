@@ -6,6 +6,7 @@
   "bringYourOwn": "bring your own interpreter to the hearing.",
   "fields": {
     "arrangements": {
+      "label": "Select whether you need support at the hearing or not",
       "yes": "Yes, I need support at the hearing",
       "no": "No, I don't need support at the hearing",
       "error": {
