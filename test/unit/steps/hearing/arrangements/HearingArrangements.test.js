@@ -112,62 +112,6 @@ describe('HearingArrangements.js', () => {
 
         });
 
-        describe('anythingElse field', () => {
-
-            beforeEach(() => {
-                field = fields.anythingElse;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDescriptor');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('interpreterLanguageType field', () => {
-
-            beforeEach(() => {
-                field = fields.interpreterLanguageType;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name interpreterLanguageType', () => {
-                expect(field.name).to.equal('interpreterLanguageType');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('signLanguageType field', () => {
-
-            beforeEach(() => {
-                field = fields.signLanguageType;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDesriptor');
-            });
-
-            it('contains the field name signLanguageType', () => {
-                expect(field.name).to.equal('signLanguageType');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
     });
 
     describe('answers()', () => {
