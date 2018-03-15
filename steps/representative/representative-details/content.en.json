@@ -71,35 +71,21 @@
     }
   },
   "cya": {
-    "firstName":{
-      "question": "First name"
-    },
-    "lastName":{
-      "question": "Last name"
+    "name":{
+      "question": "Name"
     },
     "organisation":{
-      "question": "Organisation (if they work for one)"
+      "question": "Organisation"
     },
-    "addressLine1": {
-      "question": "Address line 1"
-    },
-    "addressLine2": {
-      "question": "Address line 2"
-    },
-    "townCity": {
-      "question": "Town/City"
-    },
-    "county": {
-      "question": "County"
-    },
-    "postCode": {
-      "question": "Postcode"
+    "address":{
+      "question": "Address"
     },
     "phoneNumber": {
       "question": "Phone number"
     },
     "emailAddress": {
       "question": "Email address"
-    }
+    },
+    "change": "Change"
   }
 }

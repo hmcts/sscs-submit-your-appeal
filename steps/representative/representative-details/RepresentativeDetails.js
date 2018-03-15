@@ -4,6 +4,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
+const { formatMobileNumber } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -15,6 +16,21 @@ class RepresentativeDetails extends Question {
     static get path() {
 
         return paths.representative.representativeDetails;
+    }
+
+    get CYAOrganisation() {
+
+        return this.fields.organisation.value || userAnswer.NOT_PROVIDED;
+    }
+
+    get CYAPhoneNumber() {
+
+        return this.fields.phoneNumber.value ? formatMobileNumber(this.fields.phoneNumber.value) : userAnswer.NOT_PROVIDED;
+    }
+
+    get CYAEmailAddress() {
+
+        return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
     }
 
     get form() {
@@ -87,63 +103,8 @@ class RepresentativeDetails extends Question {
         return [
 
             answer(this, {
-                question: this.content.cya.firstName.question,
                 section: sections.representative,
-                answer: this.fields.firstName.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.lastName.question,
-                section: sections.representative,
-                answer: this.fields.lastName.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.organisation.question,
-                section: sections.representative,
-                answer: this.fields.organisation.value || userAnswer.NOT_PROVIDED
-            }),
-
-            answer(this, {
-                question: this.content.cya.addressLine1.question,
-                section: sections.representative,
-                answer: this.fields.addressLine1.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.addressLine2.question,
-                section: sections.representative,
-                answer: this.fields.addressLine2.value || userAnswer.NOT_PROVIDED
-            }),
-
-            answer(this, {
-                question: this.content.cya.townCity.question,
-                section: sections.representative,
-                answer: this.fields.townCity.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.county.question,
-                section: sections.representative,
-                answer: this.fields.county.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.postCode.question,
-                section: sections.representative,
-                answer: this.fields.postCode.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.phoneNumber.question,
-                section: sections.representative,
-                answer: this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED
-            }),
-
-            answer(this, {
-                question: this.content.cya.emailAddress.question,
-                section: sections.representative,
-                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
+                template: 'answer.html'
             })
         ];
     }
