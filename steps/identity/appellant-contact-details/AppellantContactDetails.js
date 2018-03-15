@@ -47,7 +47,7 @@ class AppellantContactDetails extends Question {
             postCode: text
                 .joi(
                     fields.postCode.error.required,
-                    Joi.string().regex(postCode).required()
+                    Joi.string().trim().regex(postCode).required()
                 ),
             phoneNumber: text
                 .joi(
@@ -57,7 +57,7 @@ class AppellantContactDetails extends Question {
             emailAddress: text
                 .joi(
                     fields.emailAddress.error.invalid,
-                    Joi.string().email(emailOptions).allow('')
+                    Joi.string().trim().email(emailOptions).allow('')
                 ),
 
 

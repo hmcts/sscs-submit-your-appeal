@@ -25,7 +25,7 @@ class PostcodeChecker extends Question {
                     Joi.string().required()
                 ).joi(
                     this.content.fields.postcode.error.invalid,
-                    Joi.string().regex(postCode)
+                    Joi.string().trim().regex(postCode)
                 )
         });
     }
