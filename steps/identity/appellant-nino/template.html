@@ -14,7 +14,7 @@
 
         <p>{{ content.subtitle }}</p>
 
-        {{ textbox(fields.nino, "") }}
+        {{ textbox(fields.nino, content.fields.nino.label, hideLabel=true) }}
 
     {% endcall %}
 

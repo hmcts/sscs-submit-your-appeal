@@ -4,6 +4,7 @@
   "subtitle": "This is to check whether you can take part in the online trial.",
   "fields": {
     "postcode": {
+      "label": "Postcode",
       "error": {
         "emptyField": "Enter your postcode to continue",
         "invalid": "You have entered an invalid postcode. Enter your postcode to continue"
