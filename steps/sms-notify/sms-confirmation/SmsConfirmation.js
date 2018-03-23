@@ -49,7 +49,7 @@ class SmsConfirmation extends Question {
                 question: this.content.cya.mobileNumber.question,
                 section: sections.textMsgReminders,
                 answer: this.mobileNumber,
-                url: paths.smsNotify.sendToNumber
+                url: paths.smsNotify.appellantTextReminders
             })
         ];
     }
