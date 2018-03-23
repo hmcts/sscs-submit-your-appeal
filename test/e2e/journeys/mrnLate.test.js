@@ -28,13 +28,13 @@ After((I) => {
 
         I.enterBenefitTypeAndContinue(data.benefitType.code);
         I.enterPostcodeAndContinue(data.appellant.contactDetails.postCode);
+        I.checkOptionAndContinue(isAppointee.no);
         I.continueFromIndependance();
         I.checkOptionAndContinue(haveAMRN.yes);
         I.enterDWPIssuingOfficeAndContinue(data.mrn.dwpIssuingOffice);
         I.enterAnMRNDateAndContinue(obj.mrnDate);
         I.checkOptionAndContinue(checkMRN.yes);
         I.enterReasonsForBeingLateAndContinue(data.mrn.reasonWhyMRNisLate);
-        I.checkOptionAndContinue(isAppointee.no);
         I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
         I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
         I.enterAppellantNINOAndContinue(appellant.nino);
