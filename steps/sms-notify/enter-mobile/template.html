@@ -13,7 +13,7 @@
     {% call formSection() %}
 
         <p>{{ content.description | safe }}</p>
-        {{ textbox(fields.enterMobile, "", hint="") }}
+        {{ textbox(fields.enterMobile, content.fields.enterMobile.label, hideLabel=true) }}
 
     {% endcall %}
 
