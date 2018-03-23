@@ -2,7 +2,6 @@
 
 const paths = require('paths');
 const content = require('steps/start/invalid-postcode/content.en.json');
-const urls = require('urls');
 
 Feature('Invalid postcode');
 
