@@ -50,7 +50,7 @@ class Appointee extends Question {
 
         return branch(
             goTo(this.journey.steps.AppealFormDownload).if(isAppointee),
-            goTo(this.journey.steps.AppellantName)
+            goTo(this.journey.steps.Independence)
         );
     }
 }

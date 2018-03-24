@@ -14,11 +14,11 @@ After((I) => {
     I.endTheSession();
 });
 
-Scenario('When I enter a reason for lateness and click continue, I am taken to the are-you-an-appointee page', (I) => {
+Scenario('When I enter a reason for lateness and click continue, I am taken to the enter-appellant-name page', (I) => {
 
     I.fillField('#reasonForBeingLate', 'Late');
     I.click('Continue');
-    I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
+    I.seeInCurrentUrl(paths.identity.enterAppellantName);
 
 });
 

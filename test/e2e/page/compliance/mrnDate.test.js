@@ -17,14 +17,14 @@ After((I) => {
 Scenario('I have an MRN dated one day short of a month ago', (I) => {
 
     I.enterAnMRNDateAndContinue(DateUtils.oneDayShortOfAMonthAgo());
-    I.seeCurrentUrlEquals(paths.identity.areYouAnAppointee);
+    I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
 
 });
 
 Scenario('I have an MRN dated one month ago', (I) => {
 
     I.enterAnMRNDateAndContinue(DateUtils.oneMonthAgo());
-    I.seeCurrentUrlEquals(paths.identity.areYouAnAppointee);
+    I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
 
 });
 

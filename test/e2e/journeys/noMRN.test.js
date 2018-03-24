@@ -6,6 +6,8 @@ const isAppointee = require('steps/identity/appointee/content.en.json').fields.i
 const doYouWantTextMsgReminders = require('steps/sms-notify/text-reminders/content.en.json').fields.doYouWantTextMsgReminders;
 const contactDWP = require('steps/compliance/contact-dwp/content.en');
 
+const DateUtils = require('utils/DateUtils');
+const moment = require('moment');
 const data = require('test/e2e/data');
 const appellant = data.appellant;
 
@@ -24,22 +26,24 @@ After((I) => {
 
 Scenario('Appellant has contacted DWP', (I) => {
 
+    const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+
     const hasMRN = false;
 
     I.enterBenefitTypeAndContinue(data.benefitType.code);
     I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
+    I.checkOptionAndContinue(isAppointee.no);
     I.continueFromIndependance();
     I.checkOptionAndContinue(haveAMRN.no);
     I.checkOptionAndContinue(haveContactedDWP.yes);
     I.enterReasonForNoMRNAndContinue(data.mrn.reasonForNoMRN);
-    I.checkOptionAndContinue(isAppointee.no);
     I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
     I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
     I.enterAppellantNINOAndContinue(appellant.nino);
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingToEnd();
+    I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
     I.confirmDetailsArePresent(hasMRN);
 
 });
@@ -48,6 +52,7 @@ Scenario('Appellant has not contacted DWP and exits the service', (I) => {
 
     I.enterBenefitTypeAndContinue(data.benefitType.code);
     I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
+    I.checkOptionAndContinue(isAppointee.no);
     I.continueFromIndependance();
     I.selectHaveYouGotAMRNAndContinue(haveAMRN.no);
     I.checkOptionAndContinue(haveContactedDWP.no);

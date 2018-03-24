@@ -15,7 +15,7 @@ describe('Appointee.js', () => {
         appointee = new Appointee({
             journey: {
                 steps: {
-                    AppellantName: paths.identity.enterAppellantName,
+                    Independence: paths.start.independence,
                     AppealFormDownload: paths.appealFormDownload
                 }
             }
@@ -126,10 +126,10 @@ describe('Appointee.js', () => {
             expect(nextStep).to.eq(paths.appealFormDownload);
         });
 
-        it('returns the next step path /enter-appellant-name', () => {
+        it('returns the next step path /independence', () => {
             appointee.fields.isAppointee.value = userAnswer.NO;
             const nextStep = appointee.next().fallback.nextStep;
-            expect(nextStep).to.eq(paths.identity.enterAppellantName);
+            expect(nextStep).to.eq(paths.start.independence);
         });
 
     });

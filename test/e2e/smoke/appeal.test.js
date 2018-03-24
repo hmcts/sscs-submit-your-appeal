@@ -1,6 +1,8 @@
 const { formatMobileNumber } = require('utils/stringUtils');
 const startAnAppealContent = require('landing-pages/start-an-appeal/content.en');
 const doYouWantTextMsgReminders = require('steps/sms-notify/text-reminders/content.en').fields.doYouWantTextMsgReminders;
+const DateUtils = require('utils/DateUtils');
+const moment = require('moment');
 
 const paths = require('paths');
 const data = require('test/e2e/data');
@@ -14,6 +16,8 @@ Feature('Full Journey');
 
 Scenario('Appellant full journey from \'/start-an-appeal\' to the \'/confirmation\' page @smoke', (I) => {
 
+    const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+
     I.amOnPage(paths.landingPages.startAnAppeal);
     I.click(startAnAppealContent.start);
     I.enterDetailsFromStartToNINO();
@@ -22,7 +26,7 @@ Scenario('Appellant full journey from \'/start-an-appeal\' to the \'/confirmatio
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingToEnd();
+    I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
     I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), appellantPhoneNumberAnswer);
     I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), textMsgRemindersMobileAnswer);
