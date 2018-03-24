@@ -40,3 +40,19 @@ View the application
 
 [Dockerfile]:Dockerfile
 [docker-compose.yml]:docker-compose.yml
+
+## Running Smoke tests
+On local :
+After setting up local environment by folowing above make sure
+1. Tribunal API is also running locally
+2. PDF service 
+3. Docker daemon running then execute
+
+   yarn test:smoke
+
+On Environment:
+1. set TEST_URL to your desired environment ex: EXPORT TEST_URL=<environment url>
+ 
+   Then execute  
+   yarn test:smoke
+   
