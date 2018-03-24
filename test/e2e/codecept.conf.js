@@ -12,8 +12,8 @@ exports.config = {
             'show': false,
             'windowSize': ' 800x1000',
             'switches': {
-                            'ignore-certificate-errors': true
-                        }
+                'ignore-certificate-errors': true
+            }
         }
     },
     'include': {

@@ -67,6 +67,14 @@ class DateUtils {
         return date.weekday() === 0 || date.weekday() === 6
     }
 
+    static getRandomWeekDayFromDate(date) {
+        return date.clone().weekday(DateUtils.getRandomInt(1, 5));
+    }
+
+    static getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
 }
 
 module.exports = DateUtils;

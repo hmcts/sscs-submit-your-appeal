@@ -1,6 +1,7 @@
 'use strict';
 
 const doYouWantTextMsgReminders = require('steps/sms-notify/text-reminders/content.en.json').fields.doYouWantTextMsgReminders;
+const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const paths = require('paths');
 
@@ -21,35 +22,36 @@ After((I) => {
 
 Scenario('Appellant provides date of when they cannot attend the hearing', (I) => {
 
+    const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingToEnd();
-
+    I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
-    I.see(moment().add(10, 'weeks').format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
 });
 
 Scenario('Appellant provides a single date for when they cannot attend the hearing and later edits it', (I) => {
 
-    const tenWeeksFromNow    = moment().add(10, 'weeks');
-    const elevenWeeksFromNow = moment().add(11, 'weeks');
+    const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+    const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
 
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingToEnd();
-    I.see(tenWeeksFromNow.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDayIn5Weeks);
+    I.see(randomWeekDayIn5Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
     // Now edit the single date from 10 to 11 weeks.
     I.click('Change', datesYouCantAttendHearingChange);
     I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
     I.click('Continue');
-    I.enterDateCantAttendAndContinue(elevenWeeksFromNow, 'Edit');
+    I.enterDateCantAttendAndContinue(randomWeekDayIn6Weeks, 'Edit');
     I.click('Continue');
-    I.see(elevenWeeksFromNow.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.see(randomWeekDayIn6Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
 });

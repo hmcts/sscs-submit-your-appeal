@@ -9,7 +9,6 @@ const datesCantAttendContent = require('steps/hearing/dates-cant-attend/content.
 const reasonsForAppealingContent = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const oneMonthAgo = DateUtils.oneMonthAgo();
 const selectors = require('steps/check-your-appeal/selectors');
-const moment = require('moment');
 const paths = require('paths');
 const data = require('test/e2e/data');
 const appellant = data.appellant;
@@ -52,7 +51,7 @@ function enterDetailsFromNoRepresentativeToEnd() {
 
 }
 
-function enterDetailsFromAttendingTheHearingToEnd() {
+function enterDetailsFromAttendingTheHearingToEnd(date) {
 
     const I = this;
 
@@ -60,7 +59,7 @@ function enterDetailsFromAttendingTheHearingToEnd() {
     I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
     I.checkAllArrangementsAndContinue();
     I.selectHearingAvailabilityAndContinue(availabilityContent.fields.scheduleHearing.yes);
-    I.enterDateCantAttendAndContinue(moment().add(10, 'weeks'), datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(date, datesCantAttendContent.links.add);
     I.click('Continue');
 
 }

@@ -273,4 +273,25 @@ describe('DateUtils.js', () => {
 
     });
 
+    describe('getRandomWeekDayFromDate', () => {
+
+        const weeks = 12;
+
+        for (let i = 1; i <= weeks; i++) {
+
+            it(`should select a random day of the week when the date is ${i} weeks time`, () => {
+                const date = moment().add(i, 'week');
+                const weekday = DateUtils.getRandomWeekDayFromDate(date);
+                expect(DateUtils.isDateOnTheWeekend(weekday)).to.equal(false);
+            });
+
+            it(`should select a random day of the week when the date is ${i} months time`, () => {
+                const date = moment().add(i, 'month');
+                const weekday = DateUtils.getRandomWeekDayFromDate(date);
+                expect(DateUtils.isDateOnTheWeekend(weekday)).to.equal(false);
+            });
+        }
+
+    });
+
 });

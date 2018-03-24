@@ -6,6 +6,8 @@ const isAppointee = require('steps/identity/appointee/content.en.json').fields.i
 const doYouWantTextMsgReminders = require('steps/sms-notify/text-reminders/content.en.json').fields.doYouWantTextMsgReminders;
 const contactDWP = require('steps/compliance/contact-dwp/content.en');
 
+const DateUtils = require('utils/DateUtils');
+const moment = require('moment');
 const data = require('test/e2e/data');
 const appellant = data.appellant;
 
@@ -24,6 +26,8 @@ After((I) => {
 
 Scenario('Appellant has contacted DWP', (I) => {
 
+    const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+
     const hasMRN = false;
 
     I.enterBenefitTypeAndContinue(data.benefitType.code);
@@ -39,7 +43,7 @@ Scenario('Appellant has contacted DWP', (I) => {
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
-    I.enterDetailsFromAttendingTheHearingToEnd();
+    I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
     I.confirmDetailsArePresent(hasMRN);
 
 });

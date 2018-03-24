@@ -3,8 +3,9 @@
 const content = require('steps/hearing/dates-cant-attend/content.en');
 const paths = require('paths');
 const moment = require('moment');
-const validDate = moment().add(5, 'weeks');
-const additionalValidDate = moment().add(10, 'weeks');
+const DateUtils = require('utils/DateUtils');
+const validDate = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+const additionalValidDate = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
 
 Feature('Dates can\'t attend');
 
