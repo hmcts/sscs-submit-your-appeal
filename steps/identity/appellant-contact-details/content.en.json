@@ -49,26 +49,15 @@
     }
   },
   "cya": {
-    "addressLine1": {
-      "question": "Address line 1"
-    },
-    "addressLine2": {
-      "question": "Address line 2"
-    },
-    "townCity": {
-      "question": "Town/City"
-    },
-    "county": {
-      "question": "County"
-    },
-    "postCode": {
-      "question": "Postcode"
+    "address": {
+      "question": "Address"
     },
     "phoneNumber": {
       "question": "Phone number"
     },
     "emailAddress": {
       "question": "Email"
-    }
+    },
+    "change": "Change"
   }
 }

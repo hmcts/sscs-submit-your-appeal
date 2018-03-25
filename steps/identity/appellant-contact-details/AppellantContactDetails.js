@@ -18,6 +18,16 @@ class AppellantContactDetails extends Question {
         return paths.identity.enterAppellantContactDetails;
     }
 
+    get CYAPhoneNumber() {
+
+        return this.fields.phoneNumber.value ? formatMobileNumber(this.fields.phoneNumber.value) : userAnswer.NOT_PROVIDED;
+    }
+
+    get CYAEmailAddress() {
+
+        return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
+    }
+
     get form() {
 
         const fields = this.content.fields;
@@ -69,46 +79,9 @@ class AppellantContactDetails extends Question {
         return [
 
             answer(this, {
-                question: this.content.cya.addressLine1.question,
                 section: sections.appellantDetails,
-                answer: this.fields.addressLine1.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.addressLine2.question,
-                section: sections.appellantDetails,
-                answer: this.fields.addressLine2.value || userAnswer.NOT_PROVIDED
-            }),
-
-            answer(this, {
-                question: this.content.cya.townCity.question,
-                section: sections.appellantDetails,
-                answer: this.fields.townCity.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.county.question,
-                section: sections.appellantDetails,
-                answer: this.fields.county.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.postCode.question,
-                section: sections.appellantDetails,
-                answer: this.fields.postCode.value
-            }),
-
-            answer(this, {
-                question: this.content.cya.emailAddress.question,
-                section: sections.appellantDetails,
-                answer: this.fields.emailAddress.value || userAnswer.NOT_PROVIDED
-            }),
-
-            answer(this, {
-                question: this.content.cya.phoneNumber.question,
-                section: sections.appellantDetails,
-                answer: this.fields.phoneNumber.value ? formatMobileNumber(this.fields.phoneNumber.value) : userAnswer.NOT_PROVIDED
-            }),
+                template: 'answer.html'
+            })
         ];
     }
 

@@ -1,7 +1,8 @@
 'use strict';
 
-const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const { expect } = require('test/util/chai');
+const { formatMobileNumber } = require('utils/stringUtils');
+const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
@@ -39,6 +40,32 @@ describe('AppellantContactDetails.js', () => {
 
     });
 
+    describe('get CYAPhoneNumber()', () => {
+
+        it('should return Not Provided if there is no phoneNumber value', () => {
+           expect(appellantContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED)
+        });
+
+        it('should return a formatted mobile number if a phoneNumber value has been set', () => {
+            appellantContactDetails.fields.phoneNumber.value = '0800109756';
+            expect(appellantContactDetails.CYAPhoneNumber).to.equal(formatMobileNumber(appellantContactDetails.fields.phoneNumber.value))
+        });
+
+    });
+
+    describe('get CYAEmailAddress()', () => {
+
+        it('should return Not Provided if there is no email value', () => {
+            expect(appellantContactDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED)
+        });
+
+        it('should return the email address if an emailaddress value has been set', () => {
+            appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+            expect(appellantContactDetails.CYAEmailAddress).to.equal(appellantContactDetails.fields.emailAddress.value)
+        });
+
+    });
+
     describe('get form()', () => {
 
         let fields;
@@ -60,25 +87,6 @@ describe('AppellantContactDetails.js', () => {
                     'postCode',
                     'phoneNumber',
                     'emailAddress');
-            });
-
-        });
-
-        describe('optional fields defaulting to \'Not provided\' on CYA', () => {
-
-            it('should display \'Not provided\' when the user omits the addressLine2', () => {
-                const addressLine2 = appellantContactDetails.answers()[1];
-                expect(addressLine2.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
-            it('should display \'Not provided\' when the user omits the phoneNumber', () => {
-                const phoneNumber = appellantContactDetails.answers()[5];
-                expect(phoneNumber.answer).to.equal(userAnswer.NOT_PROVIDED);
-            });
-
-            it('should display \'Not provided\' when the user omits the emailAddress', () => {
-                const emailAddress = appellantContactDetails.answers()[6];
-                expect(emailAddress.answer).to.equal(userAnswer.NOT_PROVIDED);
             });
 
         });
@@ -193,6 +201,24 @@ describe('AppellantContactDetails.js', () => {
                 expect(field.validations).to.not.be.empty;
             });
 
+        });
+
+    });
+
+    describe('answers()', () => {
+
+        let answers;
+
+        before(() => {
+           answers = appellantContactDetails.answers()[0];
+        });
+
+        it('should return expected section', () => {
+            expect(answers.section).to.equal('appellant-details');
+        });
+
+        it('should return expected template', () => {
+            expect(answers.template).to.equal('answer.html');
         });
 
     });
