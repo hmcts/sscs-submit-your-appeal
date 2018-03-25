@@ -23,8 +23,8 @@
 
         {{ selectionButtons(
             fields.hasRepresentative,
-            "",
-            hint = '',
+            content.fields.hasRepresentative.label,
+            hideQuestion=true,
             options = [
                 { label: content.fields.hasRepresentative.yes, value: "yes" },
                 { label: content.fields.hasRepresentative.no,  value: "no" }

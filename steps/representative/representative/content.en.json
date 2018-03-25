@@ -9,6 +9,7 @@
   "phoneUp": "You can register them after you’ve submitted your appeal if you don’t have their details to hand.",
   "fields": {
     "hasRepresentative": {
+      "label": "Select whether you want to register a representative or not",
       "yes": "Yes, I want to register a representative",
       "no": "No, I don't want to register a representative",
       "error": {

@@ -15,7 +15,7 @@
 
 <p>{{ content.subtitle }}</p>
 
-{{ textarea(fields.reasonForNoMRN, "", hint="") }}
+{{ textarea(fields.reasonForNoMRN, content.fields.reasonForNoMRN.label, hideLabel=true) }}
 
 {% endcall %}
 

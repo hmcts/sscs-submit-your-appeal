@@ -15,8 +15,9 @@
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.arrangements, "",
-    hint = '',
+    fields.arrangements,
+    content.fields.arrangements.label,
+    hideQuestion=true,
     options = [
         { label: content.fields.arrangements.yes, value: "yes" },
         { label: content.fields.arrangements.no, value: "no" }

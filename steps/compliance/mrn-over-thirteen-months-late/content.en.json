@@ -6,6 +6,7 @@
   "noGoodReasonWhyLate": "I don’t have a good reason why my appeal is late",
   "fields": {
     "reasonForBeingLate": {
+      "label": "Reason for being late",
       "error": {
         "required": "If you want to appeal, you must say why your appeal is late"
       }

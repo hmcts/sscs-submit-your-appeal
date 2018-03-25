@@ -14,19 +14,14 @@
 <p>{{ content.explainReasons | safe }}</p>
 <p>{{ content.arrangeSupport | safe }}</p>
 
-{% call formSection() %}
-
-<h2 class="heading-medium">{{ content.fields.attendHearing.title }}</h2>
-
 {{ selectionButtons(
-    fields.attendHearing, "",
-    hint = '',
+    fields.attendHearing,
+    content.fields.attendHearing.title,
+    hideQuestion=false,
     options = [
         { label: content.fields.attendHearing.yes, value: "yes" },
         { label: content.fields.attendHearing.no, value: "no" }
     ])
 }}
-
-{% endcall %}
 
 {% endblock %}

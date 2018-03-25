@@ -4,6 +4,7 @@
   "subtitle": "You’ll only get them when you need to do something important, like send evidence or go to the hearing.",
   "fields": {
     "doYouWantTextMsgReminders": {
+      "label": "Select whether you want text reminders or not",
       "yes": "Yes",
       "no": "No",
       "error": {
