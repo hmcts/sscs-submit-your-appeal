@@ -1,6 +1,7 @@
 'use strict';
 
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page/steps');
+const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -42,7 +43,7 @@ class HaveContactedDWP extends Question {
         const hasContactDWP = this.fields.haveContactedDWP.value === userAnswer.YES;
 
         return branch(
-            goTo(this.journey.steps.NoMRN).if(hasContactDWP),
+            redirectTo(this.journey.steps.NoMRN).if(hasContactDWP),
             goTo(this.journey.steps.ContactDWP)
         );
     }

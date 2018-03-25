@@ -25,7 +25,7 @@
     "@hmcts/look-and-feel": "^1.10.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^2.2.0",
-    "@hmcts/one-per-page": "3.1.2",
+    "@hmcts/one-per-page": "^3.3.0",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.1",
     "body-parser": "^1.18.2",

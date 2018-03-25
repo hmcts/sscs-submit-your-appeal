@@ -1,7 +1,7 @@
 'use strict';
 
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-const { goTo } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
@@ -74,7 +74,7 @@ class ReasonForAppealing extends AddAnother {
 
     next() {
 
-        return goTo(this.journey.steps.OtherReasonForAppealing);
+        return redirectTo(this.journey.steps.OtherReasonForAppealing);
     }
 }
 
