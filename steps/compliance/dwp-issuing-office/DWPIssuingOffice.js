@@ -27,11 +27,11 @@ class DWPIssuingOffice extends Question {
 
                 .joi(
                     this.content.fields.pipNumber.error.notNumeric,
-                    Joi.string().regex(numbers))
+                    Joi.string().trim().regex(numbers))
 
                 .joi(
                     this.content.fields.pipNumber.error.invalid,
-                    Joi.string().valid(officeIds)
+                    Joi.string().trim().valid(officeIds)
                 )
         });
     }
