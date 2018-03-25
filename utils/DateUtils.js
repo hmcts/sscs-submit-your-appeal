@@ -67,10 +67,6 @@ class DateUtils {
         return date.weekday() === 0 || date.weekday() === 6;
     }
 
-    static dateNotOnWeekend(date) {
-        return date.weekday() === 0 || date.weekday() === 6 ? date.add(4, 'days') : date;
-    }
-
     static getRandomWeekDayFromDate(date) {
         return date.clone().weekday(DateUtils.getRandomInt(1, 5));
     }
