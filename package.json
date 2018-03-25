@@ -22,7 +22,7 @@
     "health-check": "echo 'not implemented yet'"
   },
   "dependencies": {
-    "@hmcts/look-and-feel": "^1.10.0",
+    "@hmcts/look-and-feel": "^1.13.2",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^2.2.0",
     "@hmcts/one-per-page": "^3.3.0",
