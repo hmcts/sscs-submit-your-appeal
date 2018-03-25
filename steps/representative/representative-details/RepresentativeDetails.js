@@ -1,10 +1,12 @@
 'use strict';
 
 const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const { formatMobileNumber } = require('utils/stringUtils');
+const { isNotEmptyString, regexValidation } = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -39,27 +41,39 @@ class RepresentativeDetails extends Question {
 
         return form({
 
-            firstName: text
-                .joi(
-                    fields.firstName.error.required,
-                    Joi.string().required()
-                ).joi(
-                    fields.firstName.error.invalid,
-                    Joi.string().trim().regex(firstName)
-                ),
-            lastName: text
-                .joi(
-                    fields.lastName.error.required,
-                    Joi.string().required()
-                ).joi(
-                    fields.lastName.error.invalid,
-                    Joi.string().trim().regex(lastName)
-                ),
-            organisation: text
-                .joi(
-                    fields.organisation.error.invalid,
-                    Joi.string().regex(whitelist).allow('')
-                ),
+            blah: object({
+                firstName: text,
+                lastName: text,
+                organisation: text
+            }).check(
+                errorFor('firstName', fields.firstName.error.required),
+                value => isNotEmptyString(value.firstName)
+            ).check(
+                errorFor('firstName', fields.firstName.error.invalid),
+                value => regexValidation(value.firstName)
+            ),
+
+            // firstName: text
+            //     .joi(
+            //         fields.firstName.error.required,
+            //         Joi.string().required()
+            //     ).joi(
+            //         fields.firstName.error.invalid,
+            //         Joi.string().trim().regex(firstName)
+            //     ),
+            // lastName: text
+            //     .joi(
+            //         fields.lastName.error.required,
+            //         Joi.string().required()
+            //     ).joi(
+            //         fields.lastName.error.invalid,
+            //         Joi.string().trim().regex(lastName)
+            //     ),
+            // organisation: text
+            //     .joi(
+            //         fields.organisation.error.invalid,
+            //         Joi.string().regex(whitelist).allow('')
+            //     ),
             addressLine1: text
                 .joi(
                     fields.addressLine1.error.required,
