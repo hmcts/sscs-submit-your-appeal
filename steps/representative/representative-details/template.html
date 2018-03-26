@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -10,21 +10,24 @@
 
 {% block fields %}
 
-    {% call formSection() %}
-
         <p>{{ content.subtitle}}</p>
 
-        {{ textbox(fields.blah.firstName,    content.fields.firstName.title,     hint="") }}
-        {{ textbox(fields.blah.lastName,     content.fields.lastName.title,      hint="") }}
-        {{ textbox(fields.blah.organisation, content.fields.organisation.title,  hint="") }}
+        <fieldset id="{{ fields.nameOrganisation.id }}" class="form-group {{ errorClass(fields.nameOrganisation) }}">
+
+            {{ errorsFor(fields.nameOrganisation) }}
+
+            {{ textbox(fields.nameOrganisation.firstName,    content.fields.nameOrganisation.firstName.title) }}
+            {{ textbox(fields.nameOrganisation.lastName,     content.fields.nameOrganisation.lastName.title) }}
+            {{ textbox(fields.nameOrganisation.organisation, content.fields.nameOrganisation.organisation.title) }}
+
+        </fieldset>
+
         {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
-        {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
-        {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
-        {{ textbox(fields.county,       content.fields.county.title,        hint="") }}
-        {{ textbox(fields.postCode,     content.fields.postCode.title,      hint="") }}
+        {{ textbox(fields.addressLine2, content.fields.addressLine2.title) }}
+        {{ textbox(fields.townCity,     content.fields.townCity.title) }}
+        {{ textbox(fields.county,       content.fields.county.title) }}
+        {{ textbox(fields.postCode,     content.fields.postCode.title) }}
         {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
-
-    {% endcall %}
 
 {% endblock %}

@@ -7,6 +7,7 @@ const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const { formatMobileNumber } = require('utils/stringUtils');
 const { isNotEmptyString, regexValidation } = require('utils/validationUtils');
+const { joiValidation } = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -41,39 +42,23 @@ class RepresentativeDetails extends Question {
 
         return form({
 
-            blah: object({
+            nameOrganisation: object({
                 firstName: text,
                 lastName: text,
                 organisation: text
             }).check(
-                errorFor('firstName', fields.firstName.error.required),
-                value => isNotEmptyString(value.firstName)
+                fields.nameOrganisation.error.required,
+                value => Object.keys(value).length > 0
             ).check(
-                errorFor('firstName', fields.firstName.error.invalid),
-                value => regexValidation(value.firstName)
+                errorFor('firstName', fields.nameOrganisation.firstName.error.invalid),
+                value => joiValidation(value.firstName, Joi.string().trim().regex(firstName))
+            ).check(
+                errorFor('lastName', fields.nameOrganisation.lastName.error.invalid),
+                value => joiValidation(value.lastName, Joi.string().trim().regex(lastName))
+            ).check(
+                errorFor('organisation', fields.nameOrganisation.organisation.error.invalid),
+                value => joiValidation(value.organisation,  Joi.string().regex(whitelist))
             ),
-
-            // firstName: text
-            //     .joi(
-            //         fields.firstName.error.required,
-            //         Joi.string().required()
-            //     ).joi(
-            //         fields.firstName.error.invalid,
-            //         Joi.string().trim().regex(firstName)
-            //     ),
-            // lastName: text
-            //     .joi(
-            //         fields.lastName.error.required,
-            //         Joi.string().required()
-            //     ).joi(
-            //         fields.lastName.error.invalid,
-            //         Joi.string().trim().regex(lastName)
-            //     ),
-            // organisation: text
-            //     .joi(
-            //         fields.organisation.error.invalid,
-            //         Joi.string().regex(whitelist).allow('')
-            //     ),
             addressLine1: text
                 .joi(
                     fields.addressLine1.error.required,
@@ -127,9 +112,9 @@ class RepresentativeDetails extends Question {
 
         return {
             representative: {
-                firstName: this.fields.firstName.value,
-                lastName: this.fields.lastName.value,
-                organisation: this.fields.organisation.value,
+                firstName: this.fields.nameOrganisation.firstName.value,
+                lastName: this.fields.nameOrganisation.lastName.value,
+                organisation: this.fields.nameOrganisation.organisation.value,
                 contactDetails: {
                     addressLine1: this.fields.addressLine1.value,
                     addressLine2: this.fields.addressLine2.value,

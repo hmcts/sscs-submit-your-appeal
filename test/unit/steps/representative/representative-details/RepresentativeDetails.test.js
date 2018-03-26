@@ -21,9 +21,11 @@ describe('RepresentativeDetails.js', () => {
         });
 
         representativeDetails.fields = {
-            firstName: { value: '' },
-            lastName: { value: '' },
-            organisation: { value: '' },
+            nameOrganisation: {
+                firstName: { value: '' },
+                lastName: { value: '' },
+                organisation: { value: '' }
+            },
             addressLine1: { value: '' },
             addressLine2: { value: '' },
             townCity: { value: '' },
@@ -92,11 +94,9 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('should contain 10 fields', () => {
-            expect(Object.keys(fields).length).to.equal(10);
+            expect(Object.keys(fields).length).to.equal(8);
             expect(fields).to.have.all.keys(
-                'firstName',
-                'lastName',
-                'organisation',
+                'nameOrganisation',
                 'addressLine1',
                 'addressLine2',
                 'townCity',
@@ -142,7 +142,7 @@ describe('RepresentativeDetails.js', () => {
         describe('organisation field', () => {
 
             beforeEach(() => {
-                field = fields.organisation;
+                field = fields.nameOrganisation;
             });
 
             it('has constructor name FieldDescriptor', () => {
@@ -290,9 +290,9 @@ describe('RepresentativeDetails.js', () => {
     describe('values()', () => {
 
         it('should contain a value object', () => {
-            representativeDetails.fields.firstName.value = 'First name';
-            representativeDetails.fields.lastName.value = 'Last name';
-            representativeDetails.fields.organisation.value = 'Organisation';
+            representativeDetails.fields.nameOrganisation.firstName.value = 'First name';
+            representativeDetails.fields.nameOrganisation.lastName.value = 'Last name';
+            representativeDetails.fields.nameOrganisation.organisation.value = 'Organisation';
             representativeDetails.fields.addressLine1.value = 'First line of my address';
             representativeDetails.fields.addressLine2.value = 'Second line of my address';
             representativeDetails.fields.townCity.value = 'Town or City';
