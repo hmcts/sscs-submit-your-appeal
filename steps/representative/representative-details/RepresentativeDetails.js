@@ -6,7 +6,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
 const { formatMobileNumber } = require('utils/stringUtils');
-const { isNotEmptyString, regexValidation } = require('utils/validationUtils');
 const { joiValidation } = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
