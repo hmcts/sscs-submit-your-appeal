@@ -45,6 +45,35 @@ describe('RepresentativeDetails.js', () => {
 
     });
 
+    describe('get getCYAName()', () => {
+
+        beforeEach(() => {
+            representativeDetails.fields.nameOrganisation.firstName.value = '';
+            representativeDetails.fields.nameOrganisation.lastName.value = '';
+        });
+
+        it('should return Not Provided if firstName or lastName has not been set', () => {
+            expect(representativeDetails.CYAName).to.equal(userAnswer.NOT_PROVIDED);
+        });
+
+        it('should return the firstName if only the firstName has been set', () => {
+            representativeDetails.fields.nameOrganisation.firstName.value = 'FirstName';
+            expect(representativeDetails.CYAName).to.equal('FirstName');
+        });
+
+        it('should return the lastName if only the lastName has been set', () => {
+            representativeDetails.fields.nameOrganisation.lastName.value = 'LastName';
+            expect(representativeDetails.CYAName).to.equal('LastName');
+        });
+
+        it('should return the full name if both firstName and lastName has been set', () => {
+            representativeDetails.fields.nameOrganisation.firstName.value = 'FirstName';
+            representativeDetails.fields.nameOrganisation.lastName.value = 'LastName';
+            expect(representativeDetails.CYAName).to.equal('FirstName LastName');
+        });
+
+    });
+
     describe('get CYAOrganisation()', () => {
 
         it('should return Not Provided if there is no organisation value', () => {
@@ -52,8 +81,8 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('should return the organisation if an organisation value has been set', () => {
-            representativeDetails.fields.organisation.value = 'Organisation';
-            expect(representativeDetails.CYAOrganisation).to.equal(representativeDetails.fields.organisation.value)
+            representativeDetails.fields.nameOrganisation.organisation.value = 'Organisation';
+            expect(representativeDetails.CYAOrganisation).to.equal(representativeDetails.fields.nameOrganisation.organisation.value)
         });
 
     });
@@ -93,7 +122,7 @@ describe('RepresentativeDetails.js', () => {
             fields = representativeDetails.form.fields;
         });
 
-        it('should contain 10 fields', () => {
+        it('should contain 8 fields', () => {
             expect(Object.keys(fields).length).to.equal(8);
             expect(fields).to.have.all.keys(
                 'nameOrganisation',
@@ -107,39 +136,7 @@ describe('RepresentativeDetails.js', () => {
             );
         });
 
-        describe('firstName field', () => {
-
-            beforeEach(() => {
-                field = fields.firstName;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDescriptor');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('lastName field', () => {
-
-            beforeEach(() => {
-                field = fields.lastName;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDescriptor');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('organisation field', () => {
+        describe('nameOrganisation field', () => {
 
             beforeEach(() => {
                 field = fields.nameOrganisation;

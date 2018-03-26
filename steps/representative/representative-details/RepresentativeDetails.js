@@ -21,9 +21,16 @@ class RepresentativeDetails extends Question {
         return paths.representative.representativeDetails;
     }
 
+    get CYAName() {
+
+        const firstName = this.fields.nameOrganisation.firstName.value || '';
+        const lastName = this.fields.nameOrganisation.lastName.value || '';
+        return firstName === '' && lastName === '' ? userAnswer.NOT_PROVIDED : `${firstName} ${lastName}`.trim();
+    }
+
     get CYAOrganisation() {
 
-        return this.fields.organisation.value || userAnswer.NOT_PROVIDED;
+        return this.fields.nameOrganisation.organisation.value || userAnswer.NOT_PROVIDED;
     }
 
     get CYAPhoneNumber() {
