@@ -5,7 +5,12 @@ const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { optionSelected, languageInList, emptyLanguageFieldValidation, validCharacters } = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
+const {
+    optionSelected,
+    languageInList,
+    emptyLanguageFieldValidation,
+    validCharacters
+} = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
 const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
