@@ -1,9 +1,14 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons, errorsFor, errorClass %}
+{% from "look-and-feel/components/fields.njk" import textbox, select, selectionButton, selectionButtons %}
 {% from "components/formElements.html" import textarea %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+<script src="{{ asset_path }}main.js" type="text/javascript"></script>
+{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -14,27 +19,66 @@
 <p>{{ content.clickAllArrangements | safe }}</p>
 <p>{{ content.you }}<strong class="bold-small"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
 
-{% call formSection() %}
+    {% call selectionButtons(
+        field = fields.selection,
+        question = '',
+        hideQuestion = true,
+        hint = '',
+        inline = false,
+        type = 'checkbox'
+    ) %}
 
-    {{
-        selectionButtons(
-            field = fields.selection,
-            question = '',
-            hideQuestion = true,
-            hint = '',
-            inline = false,
-            type = 'checkbox',
-            options = [
-                { label: content.fields.selection.languageInterpreter,      value: 'languageInterpreter' },
-                { label: content.fields.selection.signLanguageInterpreter,  value: 'signLanguageInterpreter' },
-                { label: content.fields.selection.hearingLoop,              value: 'hearingLoop' },
-                { label: content.fields.selection.disabledAccess,           value: 'disabledAccess' }
-            ]
-        )
-    }}
+        {{ selectionButton(
+            fields.selection.interpreterLanguage.requested,
+            { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
+            type = 'checkbox')
+        }}
+        <div class="panel panel-border-wide js-hidden" id="languageInterpreterTextField">
+            {{ select(
+                fields.selection.interpreterLanguage.language,
+                content.fields.selection.languageInterpreter.language.label,
+                hint = '',
+                options = languagesList
+            ) }}
+        </div>
 
-    {{ textarea(fields.anythingElse, content.fields.anythingElse.title, hint="") }}
+        {{ selectionButton(
+            fields.selection.signLanguage.requested,
+            { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
+            type = 'checkbox')
+        }}
+        <div class="panel panel-border-wide js-hidden" id="signLanguageInterpreterTextField">
+            {{ select(
+                fields.selection.signLanguage.language,
+                content.fields.selection.signLanguage.language.label,
+                hint = content.fields.selection.signLanguage.language.hint,
+                options = languagesList
+            ) }}
+        </div>
 
-{% endcall %}
+        {{ selectionButton(
+            fields.selection.hearingLoop.requested,
+            { label: content.fields.selection.hearingLoop.requested.label, value: 'true' },
+            type = 'checkbox')
+        }}
+
+        {{ selectionButton(
+            fields.selection.accessibleHearingRoom.requested,
+            { label: content.fields.selection.accessibleHearingRoom.requested.label, value: 'true' },
+            type = 'checkbox')
+        }}
+
+        {{ selectionButton(
+            fields.selection.anythingElse.requested,
+            { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
+            type = 'checkbox')
+        }}
+        <div class="panel panel-border-wide js-hidden" id="anythingElseTextArea">
+            {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
+        </div>
+
+    {% endcall %}
+
+
 
 {% endblock %}

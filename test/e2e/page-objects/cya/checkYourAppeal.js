@@ -64,6 +64,23 @@ function enterDetailsFromAttendingTheHearingToEnd(date) {
 
 }
 
+function enterDetailsFromAttendingTheHearingWithSupportToEnd(options, fields = []) {
+
+    const I = this;
+
+    I.enterDoYouWantToAttendTheHearing(theHearingContent.fields.attendHearing.yes);
+    I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
+    options.forEach(option => {
+        I.click(option);
+    });
+    fields.forEach(field => {
+       I.fillField(field.id, field.content);
+    });
+    I.click('Continue');
+    I.selectHearingAvailabilityAndContinue(availabilityContent.fields.scheduleHearing.no);
+
+}
+
 function confirmDetailsArePresent(hasMRN=true, mrnDate=oneMonthAgo) {
 
     const I = this;
@@ -127,5 +144,6 @@ module.exports = {
     enterDetailsFromNoRepresentativeToSendingEvidence,
     enterDetailsFromAttendingTheHearingToEnd,
     enterDetailsFromNoRepresentativeToEnd,
-    confirmDetailsArePresent
+    confirmDetailsArePresent,
+    enterDetailsFromAttendingTheHearingWithSupportToEnd
 };

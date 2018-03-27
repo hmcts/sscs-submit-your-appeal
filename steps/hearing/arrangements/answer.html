@@ -1,0 +1,9 @@
+{% for question, answer in cyaArrangements %}
+
+    <div class="cya-hearingArrangements">
+        <dt class="cya-question">{{ content.cya[question] }}</dt>
+        <dd class="cya-answer">{{ answer }}</dd>
+        <dd class="cya-change">{% if loop.first %}<a href="{{ path }}">Change</a>{% endif %}</dd>
+    </div>
+
+{% endfor %}
