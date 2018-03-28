@@ -20,9 +20,9 @@ const urls = require('urls');
 const logger = Logger.getLogger('server.js');
 const app = express();
 
-const protocol = config.node.protocol;
-const hostname = config.node.hostname;
-const port =     config.node.port;
+const protocol = config.get('node.protocol');
+const hostname = config.get('node.hostname');
+const port =     config.get('node.port');
 
 let baseUrl = `${protocol}://${hostname}`;
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
@@ -58,16 +58,17 @@ app.use(helmet.contentSecurityPolicy({
     }
 }));
 
+const maxAge = config.get('ssl.hpkp.maxAge');
+const sha256s = [
+    config.get('ssl.hpkp.sha256s'),
+    config.get('ssl.hpkp.sha256sBackup')
+] ;
+
 // Helmet HTTP public key pinning
-app.use(helmet.hpkp({
-    maxAge: config.ssl.hpkp.maxAge,
-    sha256s: config.ssl.hpkp.sha256s
-}));
+app.use(helmet.hpkp( { maxAge, sha256s }));
 
 // Helmet referrer policy
-app.use(helmet.referrerPolicy({
-    policy: 'origin'
-}));
+app.use(helmet.referrerPolicy( { policy: 'origin' } ));
 
 // Disallow search index indexing
 app.use((req, res, next) => {
