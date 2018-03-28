@@ -22,14 +22,14 @@ class RepresentativeDetails extends Question {
 
     get CYAName() {
 
-        const firstName = this.fields.nameOrganisation.firstName.value || '';
-        const lastName = this.fields.nameOrganisation.lastName.value || '';
+        const firstName = this.fields.name.first.value || '';
+        const lastName = this.fields.name.last.value || '';
         return firstName === '' && lastName === '' ? userAnswer.NOT_PROVIDED : `${firstName} ${lastName}`.trim();
     }
 
     get CYAOrganisation() {
 
-        return this.fields.nameOrganisation.organisation.value || userAnswer.NOT_PROVIDED;
+        return this.fields.name.organisation.value || userAnswer.NOT_PROVIDED;
     }
 
     get CYAPhoneNumber() {
@@ -48,21 +48,21 @@ class RepresentativeDetails extends Question {
 
         return form({
 
-            nameOrganisation: object({
-                firstName: text,
-                lastName: text,
+            name: object({
+                first: text,
+                last: text,
                 organisation: text
             }).check(
-                fields.nameOrganisation.error.required,
+                fields.name.error.required,
                 value => Object.keys(value).length > 0
             ).check(
-                errorFor('firstName', fields.nameOrganisation.firstName.error.invalid),
-                value => joiValidation(value.firstName, Joi.string().trim().regex(firstName))
+                errorFor('first', fields.name.first.error.invalid),
+                value => joiValidation(value.first, Joi.string().trim().regex(firstName))
             ).check(
-                errorFor('lastName', fields.nameOrganisation.lastName.error.invalid),
-                value => joiValidation(value.lastName, Joi.string().trim().regex(lastName))
+                errorFor('last', fields.name.last.error.invalid),
+                value => joiValidation(value.last, Joi.string().trim().regex(lastName))
             ).check(
-                errorFor('organisation', fields.nameOrganisation.organisation.error.invalid),
+                errorFor('organisation', fields.name.organisation.error.invalid),
                 value => joiValidation(value.organisation,  Joi.string().regex(whitelist))
             ),
             addressLine1: text
@@ -118,9 +118,9 @@ class RepresentativeDetails extends Question {
 
         return {
             representative: {
-                firstName: this.fields.nameOrganisation.firstName.value,
-                lastName: this.fields.nameOrganisation.lastName.value,
-                organisation: this.fields.nameOrganisation.organisation.value,
+                firstName: this.fields.name.first.value,
+                lastName: this.fields.name.last.value,
+                organisation: this.fields.name.organisation.value,
                 contactDetails: {
                     addressLine1: this.fields.addressLine1.value,
                     addressLine2: this.fields.addressLine2.value,

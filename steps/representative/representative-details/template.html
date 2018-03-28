@@ -12,13 +12,13 @@
 
         <p>{{ content.subtitle}}</p>
 
-        <fieldset id="{{ fields.nameOrganisation.id }}" class="form-group {{ errorClass(fields.nameOrganisation) }}">
+        <fieldset id="{{ fields.name.id }}" class="form-group {{ errorClass(fields.name) }}">
 
-            {{ errorsFor(fields.nameOrganisation) }}
+            {{ errorsFor(fields.name) }}
 
-            {{ textbox(fields.nameOrganisation.firstName,    content.fields.nameOrganisation.firstName.title) }}
-            {{ textbox(fields.nameOrganisation.lastName,     content.fields.nameOrganisation.lastName.title) }}
-            {{ textbox(fields.nameOrganisation.organisation, content.fields.nameOrganisation.organisation.title) }}
+            {{ textbox(fields.name.first,    content.fields.name.first.title) }}
+            {{ textbox(fields.name.last,     content.fields.name.last.title) }}
+            {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
 
         </fieldset>
 
