@@ -18,7 +18,7 @@ module "submit-your-appeal-frontend" {
   ilbIp                = "${var.ilbIp}"
   is_frontend          = true
   subscription         = "${var.subscription}"
-  additional_host_name = "${var.sya_hostname}
+  additional_host_name = "${var.sya_hostname}"
 
 
 
