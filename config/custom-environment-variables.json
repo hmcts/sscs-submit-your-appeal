@@ -15,9 +15,9 @@
   },
   "ssl": {
     "hpkp": {
-      "maxAge": "TO_BE_DEFINED",
-      "sha256s": "TO_BE_DEFINED",
-      "sha256sBackup": "TO_BE_DEFINED"
+      "maxAge": "HPKP_MAXAGE",
+      "sha256s": "HPKP_SHA256",
+      "sha256sBackup": "HPKP_SHA256_BACKUP"
     }
   }
 }
