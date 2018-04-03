@@ -21,7 +21,7 @@ class MRNDate extends Question {
 
         return form({
             mrnDate: convert(
-                d => DateUtils.createMoment(d.day, d.month, d.year),
+                d => DateUtils.createMoment(d.day, DateUtils.getMonthValueFromString(d), d.year),
                 date.required({
                     allRequired: fields.date.error.allRequired,
                     dayRequired: fields.date.error.dayRequired,

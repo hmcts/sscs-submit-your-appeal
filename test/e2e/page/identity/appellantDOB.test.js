@@ -56,7 +56,6 @@ Scenario('When I click Continue when only entering the year field I see errors',
 Scenario('When I enter an invalid date I see errors', (I) => {
 
     I.enterAppellantDOBAndContinue('30','02','1981');
-    I.click('Continue');
     I.see(appellantDOB.date.error.invalid);
 
 });
@@ -64,7 +63,28 @@ Scenario('When I enter an invalid date I see errors', (I) => {
 Scenario('When I enter a date in the future I see errors', (I) => {
 
     I.enterAppellantDOBAndContinue('25','02','3400');
-    I.click('Continue');
     I.see(appellantDOB.date.error.future);
+
+});
+
+Scenario('I enter a dob with name of month', (I) => {
+
+    I.enterAppellantDOBAndContinue('21','March','1981');
+    I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
+
+});
+
+Scenario('I enter a dob with the short name of month', (I) => {
+
+    I.enterAppellantDOBAndContinue('21','Jul','1981');
+    I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
+
+});
+
+
+Scenario('I enter a dob with an invalid name of month', (I) => {
+
+    I.enterAppellantDOBAndContinue('21','invalidMonth','1981');
+    I.see(appellantDOB.date.error.invalid);
 
 });

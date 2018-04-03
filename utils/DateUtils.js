@@ -75,6 +75,10 @@ class DateUtils {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    static getMonthValueFromString(date) {
+        return isNaN(date.month) ? new Date(`${date.day} ${date.month} ${date.year}`).getMonth() + 1 : date.month;
+    }
+
 }
 
 module.exports = DateUtils;

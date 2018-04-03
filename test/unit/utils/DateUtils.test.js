@@ -294,4 +294,84 @@ describe('DateUtils.js', () => {
 
     });
 
+    describe('getMonthValueFromString', () => {
+
+        const monthsLong = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
+
+        const monthsShort = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ];
+
+        const date = {
+            day: '12',
+            year: '2018'
+        };
+
+        describe('month when is not a numerical value', () => {
+
+            monthsLong.forEach((month, index) => {
+
+                it(`should return the numerical value for ${month}`, () => {
+                    date.month = month;
+                    expect(DateUtils.getMonthValueFromString(date)).to.equal(index + 1);
+                });
+
+            });
+
+            monthsShort.forEach((month, index) => {
+
+                it(`should return the numerical value for ${month}`, () => {
+                    date.month = month;
+                    expect(DateUtils.getMonthValueFromString(date)).to.equal(index + 1);
+                });
+
+            });
+
+            it('should return NaN when the string passed is not an actual month', () => {
+                date.month = 'Ja';
+                expect(DateUtils.getMonthValueFromString(date)).to.be.NaN;
+            });
+
+            it('should return NaN when the string passed is composed of a number and words', () => {
+                date.month = '01month';
+                expect(DateUtils.getMonthValueFromString(date)).to.be.NaN;
+            });
+
+        });
+
+        describe('month when is a numerical value', () => {
+
+            it('should return the month value that is passed when it is a numerical value', () => {
+                date.month = '10';
+                expect(DateUtils.getMonthValueFromString(date)).to.equal(date.month);
+            });
+
+        });
+
+    });
+
 });
