@@ -386,7 +386,7 @@ describe('validating strings with special characters', () => {
     });
 
     it('should validate a string that contains double quotes', () => {
-        const string = ''special characters'';
+        const string = '"special characters"';
         const stringValidator = string.match(whitelist);
         expect(stringValidator).to.not.equal(null);
     });
