@@ -19,7 +19,7 @@ module "submit-your-appeal-frontend" {
   is_frontend          = true
   subscription         = "${var.subscription}"
   additional_host_name = "${var.sya_hostname}"
-
+  https_only           = true
 
 
   app_settings = {
