@@ -1,7 +1,7 @@
+const { includes } = require('lodash');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 const months = require('utils/months');
-const { includes } = require('lodash');
 
 class DateUtils {
 
