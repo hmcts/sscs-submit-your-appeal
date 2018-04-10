@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const months = require('utils/months');
 
 describe('DateUtils.js', () => {
 
@@ -294,37 +295,10 @@ describe('DateUtils.js', () => {
 
     });
 
-    describe('getMonthValueFromString', () => {
+    describe('getMonthValue', () => {
 
-        const monthsLong = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
-
-        const monthsShort = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-        ];
+        const monthsLong = months.slice(0, 11);
+        const monthsShort = months.slice(12, 23);
 
         const date = {
             day: '12',
@@ -337,7 +311,7 @@ describe('DateUtils.js', () => {
 
                 it(`should return the numerical value for ${month}`, () => {
                     date.month = month;
-                    expect(DateUtils.getMonthValueFromString(date)).to.equal(index + 1);
+                    expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
                 });
 
             });
@@ -346,19 +320,19 @@ describe('DateUtils.js', () => {
 
                 it(`should return the numerical value for ${month}`, () => {
                     date.month = month;
-                    expect(DateUtils.getMonthValueFromString(date)).to.equal(index + 1);
+                    expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
                 });
 
             });
 
-            it('should return NaN when the string passed is not an actual month', () => {
+            it('should return false when the string passed is not an actual month', () => {
                 date.month = 'Ja';
-                expect(DateUtils.getMonthValueFromString(date)).to.be.NaN;
+                expect(DateUtils.getMonthValue(date)).to.be.false;
             });
 
-            it('should return NaN when the string passed is composed of a number and words', () => {
+            it('should return false when the string passed is composed of a number and words', () => {
                 date.month = '01month';
-                expect(DateUtils.getMonthValueFromString(date)).to.be.NaN;
+                expect(DateUtils.getMonthValue(date)).to.be.false;
             });
 
         });
@@ -367,7 +341,7 @@ describe('DateUtils.js', () => {
 
             it('should return the month value that is passed when it is a numerical value', () => {
                 date.month = '10';
-                expect(DateUtils.getMonthValueFromString(date)).to.equal(date.month);
+                expect(DateUtils.getMonthValue(date)).to.equal(date.month);
             });
 
         });

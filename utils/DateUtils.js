@@ -1,5 +1,7 @@
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const months = require('utils/months');
+const { includes } = require('lodash');
 
 class DateUtils {
 
@@ -75,8 +77,13 @@ class DateUtils {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    static getMonthValueFromString(date) {
-        return isNaN(date.month) ? new Date(`${date.day} ${date.month} ${date.year}`).getMonth() + 1 : date.month;
+    static getMonthValue(date) {
+        if (isNaN(date.month)) {
+            return includes(months, date.month) ? moment(`${date.day} ${date.month} ${date.year}`, 'DD MMMM YY').month() + 1 : false;
+        } else {
+            return date.month;
+        }
+
     }
 
 }
