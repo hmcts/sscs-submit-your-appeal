@@ -1,3 +1,3 @@
-infrastructure_env = "dev"
+infrastructure_env = "test"
 node_environment = "sandbox"
-sya_hostname  = "benefit-appeal.demo.platform.hmcts.net"
+sya_hostname  = "benefit-appeal.sandbox.platform.hmcts.net"
