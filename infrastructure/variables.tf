@@ -1,6 +1,9 @@
 variable "product" {
   type    = "string"
-  default = "sscs-tribunals"
+}
+
+variable "component" {
+  type    = "string"
 }
 
 variable "location" {
