@@ -117,7 +117,7 @@ Scenario('When I enter a date that is the same as the date on the image I see er
 
 Scenario('I enter a MRN date with name of month', (I) => {
 
-    date.month = 'October';
+    date.month = 'ocToBer';
     I.enterADateAndContinue(date.day, date.month, date.year);
     I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
 
@@ -125,7 +125,7 @@ Scenario('I enter a MRN date with name of month', (I) => {
 
 Scenario('I enter a MRN date with the short name of month', (I) => {
 
-    date.month = 'Aug';
+    date.month = 'aUg';
     I.enterADateAndContinue(date.day, date.month, date.year);
     I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
 

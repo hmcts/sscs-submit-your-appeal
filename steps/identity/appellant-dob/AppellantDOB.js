@@ -20,7 +20,7 @@ class AppellantDOB extends Question {
 
         return form({
             date: convert(
-                d => DateUtils.createMoment(d.day, DateUtils.getMonthValueFromString(d), d.year),
+                d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
                 date.required({
                     allRequired: fields.date.error.allRequired,
                     dayRequired: fields.date.error.dayRequired,

@@ -2,7 +2,7 @@ const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
-const months = require('utils/months');
+const { long, short } = require('utils/months');
 
 describe('DateUtils.js', () => {
 
@@ -297,9 +297,6 @@ describe('DateUtils.js', () => {
 
     describe('getMonthValue', () => {
 
-        const monthsLong = months.slice(0, 11);
-        const monthsShort = months.slice(12, 23);
-
         const date = {
             day: '12',
             year: '2018'
@@ -307,7 +304,7 @@ describe('DateUtils.js', () => {
 
         describe('month when is not a numerical value', () => {
 
-            monthsLong.forEach((month, index) => {
+            long.forEach((month, index) => {
 
                 it(`should return the numerical value for ${month}`, () => {
                     date.month = month;
@@ -316,7 +313,7 @@ describe('DateUtils.js', () => {
 
             });
 
-            monthsShort.forEach((month, index) => {
+            short.forEach((month, index) => {
 
                 it(`should return the numerical value for ${month}`, () => {
                     date.month = month;
