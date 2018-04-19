@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const { long, short } = require('utils/months');
 
 describe('DateUtils.js', () => {
 
@@ -291,6 +292,56 @@ describe('DateUtils.js', () => {
                 expect(DateUtils.isDateOnTheWeekend(weekday)).to.equal(false);
             });
         }
+
+    });
+
+    describe('getMonthValue', () => {
+
+        const date = {
+            day: '12',
+            year: '2018'
+        };
+
+        describe('month when is not a numerical value', () => {
+
+            long.forEach((month, index) => {
+
+                it(`should return the numerical value for ${month}`, () => {
+                    date.month = month;
+                    expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
+                });
+
+            });
+
+            short.forEach((month, index) => {
+
+                it(`should return the numerical value for ${month}`, () => {
+                    date.month = month;
+                    expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
+                });
+
+            });
+
+            it('should return false when the string passed is not an actual month', () => {
+                date.month = 'Ja';
+                expect(DateUtils.getMonthValue(date)).to.be.false;
+            });
+
+            it('should return false when the string passed is composed of a number and words', () => {
+                date.month = '01month';
+                expect(DateUtils.getMonthValue(date)).to.be.false;
+            });
+
+        });
+
+        describe('month when is a numerical value', () => {
+
+            it('should return the month value that is passed when it is a numerical value', () => {
+                date.month = '10';
+                expect(DateUtils.getMonthValue(date)).to.equal(date.month);
+            });
+
+        });
 
     });
 
