@@ -22,7 +22,7 @@ const short = [
     'jun',
     'jul',
     'aug',
-    'sep',
+    'sept',
     'oct',
     'nov',
     'dec'
