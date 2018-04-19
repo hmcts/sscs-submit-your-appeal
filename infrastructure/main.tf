@@ -15,6 +15,9 @@ locals {
 
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
   ApiUrl = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
+  
+  localAdditionalHostname = "${var.sya_hostname}"
+  AdditionalHostname = "${var.env == "preview" ? "${var.deployment_namespace}-${var.sya_hostname}" : local.localAdditionalHostname}"
 }
 
 module "submit-your-appeal-frontend" {
@@ -25,7 +28,7 @@ module "submit-your-appeal-frontend" {
   ilbIp                = "${var.ilbIp}"
   is_frontend          = true
   subscription         = "${var.subscription}"
-  additional_host_name = "${var.sya_hostname}"
+  additional_host_name = "${local.AdditionalHostname}"
   https_only           = "true"
 
 
