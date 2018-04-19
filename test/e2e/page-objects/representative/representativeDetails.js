@@ -4,8 +4,8 @@ function enterRequiredRepresentativeDetails() {
 
     const I = this;
 
-    I.fillField('#firstName', 'Harry');
-    I.fillField('#lastName', 'Potter');
+    I.fillField('input[name="name.first"]', 'Harry');
+    I.fillField('input[name="name.last"]', 'Potter');
     I.fillField('#addressLine1', '4 Privet Drive');
     I.fillField('#addressLine2', 'Off Wizards close');
     I.fillField('#county', 'Wizard county');

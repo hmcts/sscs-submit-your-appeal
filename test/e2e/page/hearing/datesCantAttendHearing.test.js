@@ -148,3 +148,31 @@ Scenario('When I enter a date that is over twenty two weeks from now, I see erro
     I.see(content.fields.cantAttendDate.error.overTwentyTwoWeeks);
 
 });
+
+Scenario('I enter a date I cant attend with the long name of month', (I) => {
+
+    const month = validDate.format('MMMM');
+    I.click(content.links.add);
+    I.enterADateAndContinue(validDate.date(), month, validDate.year());
+    I.click('Continue');
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
+
+});
+
+Scenario('I enter a date I cant attend with the short name of month', (I) => {
+
+    const month = validDate.format('MMM');
+    I.click(content.links.add);
+    I.enterADateAndContinue(validDate.date(), month, validDate.year());
+    I.click('Continue');
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
+
+});
+
+Scenario('I enter a date I cant attend with an invalid name of month', (I) => {
+
+    I.click(content.links.add);
+    I.enterADateAndContinue(validDate.date(), 'invalidMonth', validDate.year());
+    I.see(content.fields.cantAttendDate.error.invalid);
+
+});

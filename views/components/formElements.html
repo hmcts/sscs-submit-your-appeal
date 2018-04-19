@@ -1,36 +1,52 @@
 {% from "look-and-feel/components/fields.njk" import errorsFor, errorClass %}
 
-{% macro date(dayField, monthField, yearField, hint='', legend='') %}
-<fieldset class="form-group form-date {{ errorClass(field) }}">
+{% macro date(field, question, hint='', hideQuestion=false, labels={}) %}
+<fieldset
+        id="{{ field.id }}"
+        class="form-group form-date {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
 
-    {% if legend %}
-    <legend class="form-label-bold">{{ legend | safe }}</legend>
+    {% if not hideQuestion %}
+    <legend class="form-label-bold">{{ question | safe }}</legend>
     {% endif %}
 
     {% if hint %}
     <span class="form-hint">{{ hint | safe }}</span>
     {% endif %}
 
-    {{ errorsFor(dayField) }}
-    {{ errorsFor(monthField) }}
-    {{ errorsFor(yearField) }}
+    {{ errorsFor(field) }}
+    {{ errorsFor(field.day) }}
+    {{ errorsFor(field.month) }}
+    {{ errorsFor(field.year) }}
 
     <div class="form-group form-group-day">
-        <label for="{{ dayField.id }}">Day</label>
-        <input class="form-control {{ 'form-control-error' if dayField.errors }}" id="{{ dayField.id }}" type="number" pattern="[0-9]*" min="1" max="31"
-               name="{{ dayField.id }}" {% if dayField.value %} value="{{ dayField.value }}" {% endif %}>
+        <label for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
+        <input class="form-control {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
+               id="{{ field.day.id }}"
+               type="number"
+               pattern="[0-9]*"
+               min="1"
+               max="31"
+               name="{{ field.day.id }}"
+               {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
     </div>
 
     <div class="form-group form-group-month">
-        <label for="{{ monthField.id }}">Month</label>
-        <input class="form-control {{ 'form-control-error' if monthField.errors }}" id="{{ monthField.id }}" type="number" pattern="[0-9]*" min="1" max="12"
-               name="{{ monthField.id }}" {% if monthField.value %} value="{{ monthField.value }}" {% endif %}>
+        <label for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
+        <input class="form-control {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
+               id="{{ field.month.id }}"
+               name="{{ field.month.id }}"
+               {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
     </div>
 
     <div class="form-group form-group-year">
-        <label for="{{ yearField.id }}">Year</label>
-        <input class="form-control {{ 'form-control-error' if yearField.errors }}" id="{{ yearField.id }}" type="number" pattern="[0-9]*" min="1"
-               name="{{ yearField.id }}" {% if yearField.value %} value="{{ yearField.value }}" {% endif %}>
+        <label for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
+        <input class="form-control {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
+               id="{{ field.year.id }}"
+               type="number"
+               pattern="[0-9]*"
+               min="1"
+               name="{{ field.year.id }}"
+               {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>
     </div>
 
 </fieldset>

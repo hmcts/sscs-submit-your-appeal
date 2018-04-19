@@ -4,24 +4,29 @@
   "subtitle": "If you have a professional representative, you can find their contact detais on any letter you've received from them.",
   "noDetails": "I don’t have their details to hand",
   "fields": {
-    "firstName": {
-      "title": "First name",
+    "name": {
       "error": {
-        "required": "Enter your representative's first name",
-        "invalid": "You have entered an invalid first name. Check it and enter it again"
-      }
-    },
-    "lastName": {
-      "title": "Last name(s)",
-      "error": {
-        "required": "Enter your representative's surname",
-        "invalid": "You have entered an invalid surname. Check it and enter it again"
-      }
-    },
-    "organisation": {
-      "title": "Organisation (if they work for one)",
-      "error": {
-        "invalid": "You have entered an invalid name. Check it and enter it again"
+        "required": "Enter your representative's name or the organisation they work for"
+      },
+      "first": {
+        "title": "First name",
+        "error": {
+          "required": "Enter your representative's first name",
+          "invalid": "You have entered an invalid first name. Check it and enter it again"
+        }
+      },
+      "last": {
+        "title": "Last name(s)",
+        "error": {
+          "required": "Enter your representative's surname",
+          "invalid": "You have entered an invalid surname. Check it and enter it again"
+        }
+      },
+      "organisation": {
+        "title": "Organisation (if they work for one)",
+        "error": {
+          "invalid": "You have entered an invalid name. Check it and enter it again"
+        }
       }
     },
     "addressLine1": {

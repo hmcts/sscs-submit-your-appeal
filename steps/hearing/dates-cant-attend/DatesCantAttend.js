@@ -29,7 +29,7 @@ class DatesCantAttend extends AddAnother {
         const fields = this.content.fields;
 
         return convert(
-            d => DateUtils.createMoment(d.day, d.month, d.year),
+            d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
             date.required({
                 allRequired: fields.cantAttendDate.error.allRequired,
                 dayRequired: fields.cantAttendDate.error.dayRequired,
