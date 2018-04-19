@@ -37,3 +37,7 @@ variable "node_environment" {
 variable "sya_hostname" {
   default = "localhost"
 }
+
+variable "deployment_namespace" {
+  type = "string"
+}
