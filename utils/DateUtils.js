@@ -1,5 +1,9 @@
+const { includes } = require('lodash');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const {long, short} = require('utils/months');
+
+const months = long.concat(short);
 
 class DateUtils {
 
@@ -73,6 +77,16 @@ class DateUtils {
 
     static getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    static getMonthValue(date) {
+        if (isNaN(date.month)) {
+            const month = date.month.toLowerCase();
+            return includes(months, month) ? moment(`${date.day} ${month} ${date.year}`, 'DD MMMM YY').month() + 1 : false;
+        } else {
+            return date.month;
+        }
+
     }
 
 }

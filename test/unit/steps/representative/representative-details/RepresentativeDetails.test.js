@@ -21,9 +21,11 @@ describe('RepresentativeDetails.js', () => {
         });
 
         representativeDetails.fields = {
-            firstName: { value: '' },
-            lastName: { value: '' },
-            organisation: { value: '' },
+            name: {
+                first: { value: '' },
+                last: { value: '' },
+                organisation: { value: '' }
+            },
             addressLine1: { value: '' },
             addressLine2: { value: '' },
             townCity: { value: '' },
@@ -43,6 +45,51 @@ describe('RepresentativeDetails.js', () => {
 
     });
 
+    describe('get getCYAName()', () => {
+
+        beforeEach(() => {
+            representativeDetails.fields.name.first.value = '';
+            representativeDetails.fields.name.last.value = '';
+        });
+
+        it('should return Not Provided if firstName or lastName has not been set', () => {
+            expect(representativeDetails.CYAName).to.equal(userAnswer.NOT_PROVIDED);
+        });
+
+        it('should return the firstName if only the firstName has been set', () => {
+            representativeDetails.fields.name.first.value = 'FirstName';
+            expect(representativeDetails.CYAName).to.equal('FirstName');
+        });
+
+        it('should return the lastName if only the lastName has been set', () => {
+            representativeDetails.fields.name.last.value = 'LastName';
+            expect(representativeDetails.CYAName).to.equal('LastName');
+        });
+
+        it('should return the full name if both firstName and lastName has been set', () => {
+            representativeDetails.fields.name.first.value = 'FirstName';
+            representativeDetails.fields.name.last.value = 'LastName';
+            expect(representativeDetails.CYAName).to.equal('FirstName LastName');
+        });
+
+        it('should return the full name without whitespace before or after the name', () => {
+            representativeDetails.fields.name.first.value = '    FirstName';
+            representativeDetails.fields.name.last.value = 'LastName    ';
+            expect(representativeDetails.CYAName).to.equal('FirstName LastName');
+        });
+
+        it('should return the first name without whitespace before or after the name', () => {
+            representativeDetails.fields.name.first.value = '    FirstName    ';
+            expect(representativeDetails.CYAName).to.equal('FirstName');
+        });
+
+        it('should return the last name without whitespace before or after the name', () => {
+            representativeDetails.fields.name.last.value = '    LastName    ';
+            expect(representativeDetails.CYAName).to.equal('LastName');
+        });
+
+    });
+
     describe('get CYAOrganisation()', () => {
 
         it('should return Not Provided if there is no organisation value', () => {
@@ -50,8 +97,8 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('should return the organisation if an organisation value has been set', () => {
-            representativeDetails.fields.organisation.value = 'Organisation';
-            expect(representativeDetails.CYAOrganisation).to.equal(representativeDetails.fields.organisation.value)
+            representativeDetails.fields.name.organisation.value = 'Organisation';
+            expect(representativeDetails.CYAOrganisation).to.equal(representativeDetails.fields.name.organisation.value)
         });
 
     });
@@ -91,12 +138,10 @@ describe('RepresentativeDetails.js', () => {
             fields = representativeDetails.form.fields;
         });
 
-        it('should contain 10 fields', () => {
-            expect(Object.keys(fields).length).to.equal(10);
+        it('should contain 8 fields', () => {
+            expect(Object.keys(fields).length).to.equal(8);
             expect(fields).to.have.all.keys(
-                'firstName',
-                'lastName',
-                'organisation',
+                'name',
                 'addressLine1',
                 'addressLine2',
                 'townCity',
@@ -107,42 +152,10 @@ describe('RepresentativeDetails.js', () => {
             );
         });
 
-        describe('firstName field', () => {
+        describe('name field', () => {
 
             beforeEach(() => {
-                field = fields.firstName;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDescriptor');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('lastName field', () => {
-
-            beforeEach(() => {
-                field = fields.lastName;
-            });
-
-            it('has constructor name FieldDescriptor', () => {
-                expect(field.constructor.name).to.eq('FieldDescriptor');
-            });
-
-            it('contains validation', () => {
-                expect(field.validations).to.not.be.empty;
-            });
-
-        });
-
-        describe('organisation field', () => {
-
-            beforeEach(() => {
-                field = fields.organisation;
+                field = fields.name;
             });
 
             it('has constructor name FieldDescriptor', () => {
@@ -290,9 +303,9 @@ describe('RepresentativeDetails.js', () => {
     describe('values()', () => {
 
         it('should contain a value object', () => {
-            representativeDetails.fields.firstName.value = 'First name';
-            representativeDetails.fields.lastName.value = 'Last name';
-            representativeDetails.fields.organisation.value = 'Organisation';
+            representativeDetails.fields.name.first.value = 'First name';
+            representativeDetails.fields.name.last.value = 'Last name';
+            representativeDetails.fields.name.organisation.value = 'Organisation';
             representativeDetails.fields.addressLine1.value = 'First line of my address';
             representativeDetails.fields.addressLine2.value = 'Second line of my address';
             representativeDetails.fields.townCity.value = 'Town or City';
