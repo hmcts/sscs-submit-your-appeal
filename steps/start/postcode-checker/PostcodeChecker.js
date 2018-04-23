@@ -45,7 +45,7 @@ class PostcodeChecker extends Question {
     next() {
 
         const postcode = this.fields.postcode.value;
-        const outcode = postcode.replace(inwardPostcode, "").replace(/\s+/, "");
+        const outcode = postcode.trim().replace(inwardPostcode, "").replace(/\s+/, "");
         const isPostcodeOnList = () => postcodeList.includes(outcode.toUpperCase());
 
         return branch(
