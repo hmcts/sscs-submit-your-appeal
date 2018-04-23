@@ -15,9 +15,6 @@ locals {
 
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
   ApiUrl = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
-  
-  localAdditionalHostname = "${var.sya_hostname}"
-  AdditionalHostname = "${var.env == "preview" ? "${var.deployment_namespace}-${var.sya_hostname}" : local.localAdditionalHostname}"
 }
 
 module "submit-your-appeal-frontend" {
@@ -26,9 +23,9 @@ module "submit-your-appeal-frontend" {
   location             = "${var.location}"
   env                  = "${var.env}"
   ilbIp                = "${var.ilbIp}"
-  is_frontend          = true
+  is_frontend          = "${var.env != "preview" ? 1: 0}"
   subscription         = "${var.subscription}"
-  additional_host_name = "${local.AdditionalHostname}"
+  additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "true"
 
 
@@ -39,7 +36,7 @@ module "submit-your-appeal-frontend" {
     NODE_ENV                     = "${var.node_environment}"
     HTTP_PROTOCOL                = "https"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.3"
-    EXTERNAL_HOSTNAME            = "${var.sya_hostname}"
+    EXTERNAL_HOSTNAME            = "${var.env != "preview" ? var.sya_hostname : "http://${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
     HPKP_SHA256                  = "${data.vault_generic_secret.hpkp_sya_sha_1.data["value"]}"
     HPKP_SHA256_BACKUP           = "${data.vault_generic_secret.hpkp_sya_sha_2.data["value"]}"
   }
