@@ -26,15 +26,15 @@ module "submit-your-appeal-frontend" {
   is_frontend          = "${var.env != "preview" ? 1: 0}"
   subscription         = "${var.subscription}"
   additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
-  https_only           = "true"
+  https_only           = "${var.env != "preview" ? "true" : "false"}"
 
 
   app_settings = {
     TRIBUNALS_CASE_API_URL       = "${local.ApiUrl}"
-    REDIS_URL                    = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
+    REDIS_URL                    = "${var.env != "preview" ? "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true" : "null"}"
     SESSION_SECRET               = "${module.redis-cache.access_key}"
     NODE_ENV                     = "${var.node_environment}"
-    HTTP_PROTOCOL                = "https"
+    HTTP_PROTOCOL                = "${var.env != "preview" ? "https" : "http"}"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.3"
     EXTERNAL_HOSTNAME            = "${var.env != "preview" ? var.sya_hostname : "http://${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
     HPKP_SHA256                  = "${data.vault_generic_secret.hpkp_sya_sha_1.data["value"]}"
