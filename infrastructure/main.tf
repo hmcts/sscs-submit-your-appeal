@@ -31,7 +31,7 @@ module "submit-your-appeal-frontend" {
 
   app_settings = {
     TRIBUNALS_CASE_API_URL       = "${local.ApiUrl}"
-    REDIS_URL                    = "${var.env != "preview" ? "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true" : "null"}"
+    REDIS_URL                    = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     SESSION_SECRET               = "${module.redis-cache.access_key}"
     NODE_ENV                     = "${var.node_environment}"
     HTTP_PROTOCOL                = "${var.env != "preview" ? "https" : "http"}"
@@ -44,7 +44,7 @@ module "submit-your-appeal-frontend" {
 
 module "redis-cache" {
   source   = "git@github.com:contino/moj-module-redis?ref=master"
-  product  = "${var.product}-redis"
+  product  = "${var.env != "preview" ? ${var.product}-redis : "sscs-tribunals-redis-preview"}"
   location = "${var.location}"
   env      = "${var.env}"
   subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
