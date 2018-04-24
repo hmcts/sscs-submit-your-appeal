@@ -15,7 +15,7 @@
 
 <p>{{ content.subtitle }}</p>
 
-{{ textarea(fields.otherReasonForAppealing, "", hint="") }}
+{{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true) }}
 
 {% endcall %}
 
