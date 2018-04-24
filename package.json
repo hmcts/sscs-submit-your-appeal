@@ -1,14 +1,14 @@
 {
   "name": "sya",
   "description": "Submit Your Appeal",
-  "version": "0.0.1",
+  "version": "0.0.1"
   "license": "MIT",
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=8.9.4"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
-    "start-dev": "cross-env NODE_PATH=. node-dev server.js",
+    "dev": "cross-env NODE_PATH=. node-dev server.js",
     "setup": "exit 0",
     "test": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",

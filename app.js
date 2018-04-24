@@ -25,8 +25,8 @@ const hostname = config.get('node.hostname');
 const port =     config.get('node.port');
 
 let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-    baseUrl = `${protocol}://${hostname}:${port}`;
+if (process.env.NODE_ENV === 'development') {
+    baseUrl = `${baseUrl}:${port}`;
 }
 
 Logger.config({
