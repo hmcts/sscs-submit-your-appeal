@@ -14,6 +14,8 @@
 
         <fieldset id="{{ fields.name.id }}" class="form-group {{ errorClass(fields.name) }}">
 
+            <legend class="visually-hidden">{{ content.title | safe }}</legend>
+
             {{ errorsFor(fields.name) }}
 
             {{ textbox(fields.name.first,    content.fields.name.first.title) }}

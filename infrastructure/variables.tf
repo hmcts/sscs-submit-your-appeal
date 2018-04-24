@@ -1,6 +1,9 @@
 variable "product" {
   type    = "string"
-  default = "sscs-tribunals"
+}
+
+variable "component" {
+  type    = "string"
 }
 
 variable "location" {
@@ -33,4 +36,8 @@ variable "node_environment" {
 
 variable "sya_hostname" {
   default = "localhost"
+}
+
+variable "deployment_namespace" {
+  type = "string"
 }

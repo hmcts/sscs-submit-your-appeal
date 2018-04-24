@@ -21,7 +21,7 @@
 
     {% call selectionButtons(
         field = fields.selection,
-        question = '',
+        question = content.fields.selection.label,
         hideQuestion = true,
         hint = '',
         inline = false,
@@ -78,7 +78,5 @@
         </div>
 
     {% endcall %}
-
-
 
 {% endblock %}

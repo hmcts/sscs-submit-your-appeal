@@ -4,6 +4,7 @@
   "subtitle": "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
   "fields": {
     "otherReasonForAppealing": {
+      "label": "Other reasons for appealing",
       "error": {
         "invalid": "You've entered a special character. Delete it before continuing"
       }

@@ -3,6 +3,7 @@
   "title": "Shall we send them to the number you provided earlier?",
   "fields": {
     "useSameNumber": {
+      "label": "Select whether to use the same number provided earlier or not",
       "yes": "Yes, send them to {{ phoneNumber }}",
       "no": "No, send them to a different number",
       "error": {
