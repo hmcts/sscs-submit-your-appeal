@@ -232,7 +232,11 @@ const languages = [
     'Visayan',
     'Welsh',
     'Wolof',
-    'Xhosa'
+    'Xhosa',
+    'Yoruba',
+    'Zaghawa',
+    'Zaza',
+    'Zulu'
 ];
 
 module.exports = languages;
