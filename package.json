@@ -1,7 +1,7 @@
 {
   "name": "sya",
   "description": "Submit Your Appeal",
-  "version": "0.0.1"
+  "version": "0.0.1",
   "license": "MIT",
   "engines": {
     "node": ">=8.9.4"
