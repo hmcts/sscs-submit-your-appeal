@@ -22,7 +22,15 @@ class MRNOverOneMonthLate extends Question {
             reasonForBeingLate: text
                 .joi(
                     this.content.fields.reasonForBeingLate.error.required,
-                    Joi.string().regex(whitelist).required()
+                    Joi.string().required()
+                )
+                .joi(
+                    this.content.fields.reasonForBeingLate.error.notEnough,
+                    Joi.string().min(5)
+                )
+                .joi(
+                    this.content.fields.reasonForBeingLate.error.invalid,
+                    Joi.string().regex(whitelist)
                 )
         });
     }
