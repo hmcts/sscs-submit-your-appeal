@@ -8,6 +8,7 @@
   "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
   "fields": {
     "selection": {
+      "label": "Select the support you need",
       "error": {
         "required": "You need to provide some information about the support you need"
       },
