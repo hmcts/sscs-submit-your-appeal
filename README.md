@@ -68,8 +68,8 @@ View the application
     
 ## End-to-end testing
 
-Ensure both SYA (from one of the methods above) and the [API] are up. At present these tests do not run within Docker, 
-therefore, open a new terminal window
+Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up. At 
+present these tests do not run within Docker, therefore, open a new terminal window
 
 Functional tests 
 
@@ -90,7 +90,6 @@ Smoke tests
 
 [Dockerfile]:Dockerfile
 [docker-compose.yml]:docker-compose.yml
-[API]:(https://github.com/hmcts/tribunals-case-api/)
 
 ## Useful docker commands
 
