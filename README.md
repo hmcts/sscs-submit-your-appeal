@@ -8,8 +8,9 @@ and Child Support tribunal.
 
 Should an appellant wish to appeal online this node.js web application allows them to do so. The application takes the
 appellant on a journey, presenting a single question per page (GDS guidelines), at the end of their journey we present 
-an appeal summary page. Should the user wish to edit any part of their appeal they can jump back to their answer, 
-edit it, then jump forward to the summary missing out intermediate pages saving considerable time.
+an appeal summary page. Should the user wish to edit any part of their appeal, they may do so by jumping back to their 
+answer, editing it, then jumping forward to the summary missing out intermediate pages saving considerable time 
+especially when the edit is at the beginning of their journey.
 
 ## Dependencies
  - [Docker](https://www.docker.com/)
@@ -17,65 +18,66 @@ edit it, then jump forward to the summary missing out intermediate pages saving 
 
 ## Development
 
-Install Redis: download, extract, build and start 
+Install Redis: download, extract and build:
     
     http://download.redis.io/redis-stable.tar.gz
     tar xvzf redis-stable.tar.gz
     cd redis-stable
     make
 
-Sanity check
+Sanity check:
 
     make test 
 
-Add this to your path
+Add this to your path:
 
     /usr/local/bin 
     
-Copy over both the Redis server and the command line interface
+Copy over both the Redis server and the command line interface:
 
     sudo cp src/redis-server /usr/local/bin/
     sudo cp src/redis-cli /usr/local/bin/
 
-Start redis
+Start redis:
 
     redis-server
     
-Bring up SYA in a new terminal window
+Bring up SYA in a new terminal window:
 
     yarn dev
     
-View the application
+View the application:
 
     http://localhost:3000
 
 ## Docker
 
-We use the [Dockerfile] and [docker-compose.yml] to create a development container to bring up the app which includes 
-Redis.
+If you would like to view the application without having to setup Redis you can via Docker.
 
-Build the node.js Dockerfile containing SYA into a local image
+We use the [Dockerfile] and [docker-compose.yml] to create a container to bring up the app which includes Redis.
+
+Build the node.js Dockerfile containing SYA into a local image:
 
     docker build -t hmcts/submit-your-appeal:latest .
 
-Bring up the container
+Bring up the container:
 
     docker-compose up sya
 
-View the application
+View the application:
 
     http://localhost:3000
     
 ## End-to-end testing
 
 Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up. At 
-present these tests do not run within Docker, therefore, open a new terminal window
+present these tests do not run within Docker, therefore, open a new terminal window.
 
-Functional tests 
+Functional tests:
 
     yarn test:functional
     
-Smoke tests
+Smoke tests:
 
     yarn test:smoke
 
