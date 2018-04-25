@@ -36,7 +36,7 @@ module "submit-your-appeal-frontend" {
     NODE_ENV                     = "${var.node_environment}"
     HTTP_PROTOCOL                = "${var.env != "preview" ? "https" : "http"}"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.4"
-    EXTERNAL_HOSTNAME            = "${var.env != "preview" ? var.sya_hostname : "http://${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
+    EXTERNAL_HOSTNAME            = "${var.env != "preview" ? var.sya_hostname : "${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
     HPKP_SHA256                  = "${data.vault_generic_secret.hpkp_sya_sha_1.data["value"]}"
     HPKP_SHA256_BACKUP           = "${data.vault_generic_secret.hpkp_sya_sha_2.data["value"]}"
   }
