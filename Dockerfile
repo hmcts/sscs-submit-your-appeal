@@ -11,7 +11,6 @@ COPY . /usr/src/sya/
 RUN yarn config set proxy "$http_proxy" \
  && yarn config set https-proxy "$https_proxy"
 
-RUN rm -rf node_modules
 RUN yarn install --production && yarn cache clean
 
 CMD [ "node", "server.js" ]
