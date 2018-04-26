@@ -1,4 +1,4 @@
-require('app-insights');
+require('app-insights')();
 const { Logger, Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
@@ -17,7 +17,7 @@ const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 
-const logger = Logger.getLogger('server.js');
+const logger = Logger.getLogger('app.js');
 const app = express();
 
 const protocol = config.get('node.protocol');
@@ -28,12 +28,6 @@ let baseUrl = `${protocol}://${hostname}`;
 if (process.env.NODE_ENV === 'development') {
     baseUrl = `${baseUrl}:${port}`;
 }
-
-Logger.config({
-    microservice: "submit-your-appeal-frontend",
-    team: "sscs",
-    environment: process.env.NODE_ENV,
-});
 
 logger.info('SYA base Url: ', baseUrl);
 
