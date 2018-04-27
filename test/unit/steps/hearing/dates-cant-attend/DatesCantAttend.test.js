@@ -1,9 +1,12 @@
+'use strict';
+
 const { expect } = require('test/util/chai');
 const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
 const content = require('steps/hearing/dates-cant-attend/content.en');
+const bankHolidaysMiddleware = require('steps/hearing/dates-cant-attend/bankHolidaysMiddleware');
 
 describe('DatesCantAttend.js', () => {
   let datesCantAttend = null;
@@ -20,6 +23,10 @@ describe('DatesCantAttend.js', () => {
 
     datesCantAttend.fields = {
       items: {}
+    };
+
+    datesCantAttend.res = {
+      locals: {}
     };
   });
 
@@ -43,6 +50,17 @@ describe('DatesCantAttend.js', () => {
     it('returns addAnother link when there are items in the list', () => {
       datesCantAttend.fields.items.value = [moment()];
       expect(datesCantAttend.addAnotherLinkContent).to.equal(content.links.addAnother);
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns an array', () => {
+      expect(datesCantAttend.middleware).to.be.an('array');
+    });
+
+
+    it('should contain the bankHolidaysMiddleware', () => {
+      expect(datesCantAttend.middleware).to.include(bankHolidaysMiddleware);
     });
   });
 
