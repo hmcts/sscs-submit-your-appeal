@@ -26,8 +26,7 @@
     <p>{{ content.itsImportant }}</p>
     <p>{{ content.yourHearing }}</p>
 
-
-    <div class="datepicker"></div>
+    <div id="date-picker" class="datepicker" data-dates="{{ fields.items.fields }}"></div>
     {{ super() }}
 {% endblock %}
 
