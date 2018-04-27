@@ -42,7 +42,7 @@
     },
     "emailAddress": {
       "title": "Email address (optional)",
-      "hint": "You’ll get updates and a link so you can track your appeal online",
+      "hint": "You’ll get updates on your appeal, if you choose to attend a hearing",
       "error": {
         "invalid": "You have entered an invalid email address. Check it and enter it again"
       }
