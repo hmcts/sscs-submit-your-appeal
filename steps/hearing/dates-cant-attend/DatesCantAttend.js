@@ -8,16 +8,7 @@ const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const content = require('steps/hearing/dates-cant-attend/content.en');
 const paths = require('paths');
-const UKBankHolidays = require('@hmcts/uk-bank-holidays');
-
-const bankHolidaysMiddleware = async (req, res, next) => {
-    const ukBankHolidays = new UKBankHolidays(['england-and-wales']);
-    await ukBankHolidays.loadBankHolidayDates(error => {
-        next(error);
-    });
-    res.locals.ukBankHolidays = ukBankHolidays;
-    next();
-};
+const bankHolidaysMiddleware = require('steps/hearing/dates-cant-attend/bankHolidaysMiddleware');
 
 class DatesCantAttend extends AddAnother {
 
@@ -68,8 +59,8 @@ class DatesCantAttend extends AddAnother {
             fields.cantAttendDate.error.weekend,
             value => !DateUtils.isDateOnTheWeekend(value)
         ).check(
-            'BANK HOLIDAY',
-            value => !ukBankHolidays.isDateInList(value)
+            fields.cantAttendDate.error.bankHoliday,
+            value => !ukBankHolidays.isDateABankHoliday(value)
         );
     }
 

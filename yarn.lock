@@ -79,8 +79,9 @@
     slug "^0.9.1"
     url-parse "^1.2.0"
 
-"@hmcts/uk-bank-holidays@file:../uk-bank-holidays":
-  version "0.0.1"
+"@hmcts/uk-bank-holidays@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/uk-bank-holidays/-/uk-bank-holidays-1.0.1.tgz#ede22d6d6d2d0501557fe9c292a154b823c1549c"
   dependencies:
     cross-env "^5.1.4"
     lodash "^4.17.5"
