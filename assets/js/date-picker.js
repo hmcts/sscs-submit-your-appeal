@@ -5,8 +5,7 @@ import { indexOf, last } from "lodash";
 
 $(document).ready(() => {
 
-    dp.getDatesInSession();
-
+    $('.add-another-add-link').hide();
 
     $('#date-picker').datepicker({
         multidate: true,
@@ -33,12 +32,9 @@ $(document).ready(() => {
             url: `/dates-cant-attend/item-${index}`,
             data: body,
             success: () => {
-                const meow = dp.getDatesInSession();
-                meow.push(lastestDateAdded.toString());
-                $('#date-picker').attr('data-dates', meow.toString());
 
                 dates.forEach((date, i) => {
-                    elements += `<div id="add-another-list-items-${i}"><dd class="add-another-list-item">${date}</dd></div>`;
+                    elements += `<div id="add-another-list-items-${i}"><dd class="add-another-list-item">${dp.formatDateForDisplay(date)}</dd></div>`;
                 });
                 if (elements === '') {
                     const noItems = '<div><dd class="add-another-list-item">No dates added yet</dd></div>';
@@ -54,25 +50,9 @@ $(document).ready(() => {
 
 const dp = {
 
-    getDatesInSession: () => {
-
-        const blah = $('#date-picker').data('dates');
-        console.log(blah)
-
-        console.log(Object.values(blah));
-
-        blah.forEach((value, index) => {
-           console.log(value);
-           console.log(index)
-        });
-
-
-        // return $('#date-picker').attr('data-dates').split(',');
-    },
-
-    isDateUnselected: (d) => {
-        const datesStored = this.getDatesInSession();
-        return datesStored.length > d.length;
+    formatDateForDisplay: d => {
+        const date = moment(d)
+        return date.format('dddd D MMMM YYYY');
     }
 
 };
