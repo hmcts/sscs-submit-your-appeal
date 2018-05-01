@@ -1,14 +1,9 @@
+const applicationInsights = require('applicationinsights');
 const config = require('config');
-const appInsights = require("applicationinsights");
 
-appInsights.setup(config.node.insights)
+const appInsights = () => {
+    const iKey = config.get('appInsights.instrumentationKey');
+    applicationInsights.setup(iKey).start();
+};
 
-// Default settings.
-.setAutoDependencyCorrelation(true)
-.setAutoCollectRequests(true)
-.setAutoCollectPerformance(true)
-.setAutoCollectExceptions(true)
-.setAutoCollectDependencies(true)
-.setAutoCollectConsole(true, true)
-.setUseDiskRetryCaching(true)
-.start();
+module.exports = appInsights;

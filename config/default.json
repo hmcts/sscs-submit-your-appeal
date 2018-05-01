@@ -2,8 +2,7 @@
   "node": {
     "protocol": "http",
     "hostname": "localhost",
-    "port": 3000,
-    "insights": "ikey"
+    "port": 3000
   },
   "redis": {
     "url": "redis://127.0.0.1:6379",
@@ -12,6 +11,9 @@
   },
   "api": {
     "url":  "http://localhost:8080"
+  },
+  "appInsights": {
+    "instrumentationKey": "iKey"
   },
   "ssl": {
     "hpkp": {
