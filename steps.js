@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit/Exit');
@@ -43,86 +44,82 @@ const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 
 const init = [
-    Entry,
-    Exit,
-    Sessions,
-    Error500
+  Entry,
+  Exit,
+  Sessions,
+  Error500
 ];
 
 const startAnAppeal = [
-    BenefitType,
-    PostcodeChecker,
-    InvalidPostcode,
-    Independence
+  BenefitType,
+  PostcodeChecker,
+  InvalidPostcode,
+  Independence
 ];
 
 const compliance = [
-    HaveAMRN,
-    HaveContactedDWP,
-    DWPIssuingOffice,
-    CantAppeal,
-    CheckMRN,
-    ContactDWP,
-    MRNDate,
-    NoMRN,
-    MRNOverOneMonthLate,
-    MRNOverThirteenMonthsLate
+  HaveAMRN,
+  HaveContactedDWP,
+  DWPIssuingOffice,
+  CantAppeal,
+  CheckMRN,
+  ContactDWP,
+  MRNDate,
+  NoMRN,
+  MRNOverOneMonthLate,
+  MRNOverThirteenMonthsLate
 ];
 
 const identity = [
-    AppellantContactDetails,
-    AppellantDOB,
-    AppellantName,
-    AppellantNINO,
-    Appointee,
-    AppealFormDownload
+  AppellantContactDetails,
+  AppellantDOB,
+  AppellantName,
+  AppellantNINO,
+  Appointee,
+  AppealFormDownload
 ];
 
 const smsNotify = [
-    TextReminders,
-    SendToNumber,
-    EnterMobile,
-    SmsConfirmation
+  TextReminders,
+  SendToNumber,
+  EnterMobile,
+  SmsConfirmation
 ];
 
 const representative = [
-    Representative,
-    RepresentativeDetails,
-    NoRepresentativeDetails
+  Representative,
+  RepresentativeDetails,
+  NoRepresentativeDetails
 ];
 
 const reasonsForAppealing = [
-    ReasonForAppealing,
-    OtherReasonForAppealing,
-    SendingEvidence
+  ReasonForAppealing,
+  OtherReasonForAppealing,
+  SendingEvidence
 ];
 
 const hearing = [
-    HearingAvailability,
-    HearingSupport,
-    HearingArrangements,
-    DatesCantAttend,
-    NotAttendingHearing,
-    TheHearing
- ];
-
-const checkYourAppeal = [
-    CheckYourAppeal
+  HearingAvailability,
+  HearingSupport,
+  HearingArrangements,
+  DatesCantAttend,
+  NotAttendingHearing,
+  TheHearing
 ];
 
-const confirmation = [
-    Confirmation
-];
+const checkYourAppeal = [ CheckYourAppeal ];
+
+const confirmation = [ Confirmation ];
 
 module.exports = concat(
-    init,
-    startAnAppeal,
-    compliance,
-    identity,
-    smsNotify,
-    representative,
-    reasonsForAppealing,
-    hearing,
-    checkYourAppeal,
-    confirmation
+  init,
+  startAnAppeal,
+  compliance,
+  identity,
+  smsNotify,
+  representative,
+  reasonsForAppealing,
+  hearing,
+  checkYourAppeal,
+  confirmation
 );

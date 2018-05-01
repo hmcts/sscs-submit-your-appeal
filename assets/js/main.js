@@ -3,45 +3,45 @@ import ShowHideContent from 'govuk/show-hide-content';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import Analytics from 'govuk/analytics/analytics';
 
-$(document).ready(() => {
-    initShowHideContent();
-    initAutocomplete();
-    initSYAAnalyticsTrack()
-});
-
 function initShowHideContent() {
-    const showHideContent = new ShowHideContent();
-    showHideContent.init();
+  const showHideContent = new ShowHideContent();
+  showHideContent.init();
 }
 
 function initAutocomplete() {
-    const selects = document.querySelectorAll('select');
-    selects.forEach(select => {
-        accessibleAutocomplete.enhanceSelectElement({
-            selectElement: select
-        });
+  const selects = document.querySelectorAll('select');
+  selects.forEach(select => {
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: select
     });
+  });
 }
 
 function initSYAAnalyticsTrack() {
-    Analytics.load();
+  Analytics.load();
 
-    // Use document.domain in dev, preview and staging so that tracking works
-    // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
-    const cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
+  // Use document.domain in dev, preview and staging so that tracking works
+  // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
+  const cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
 
-    window.GOVUK.analytics = new Analytics({
-        universalId: 'UA-91309785-4',
-        cookieDomain
-    });
+  window.GOVUK.analytics = new Analytics({
+    universalId: 'UA-91309785-4',
+    cookieDomain
+  });
 
-    // Set custom dimensions before tracking pageviews
-    // analytics.setDimension(…)
+  // Set custom dimensions before tracking pageviews
+  // analytics.setDimension(…)
 
-    // Activate any event plugins eg. print intent, error tracking
-    // analyticsPlugins.error();
-    // analyticsPlugins.printIntent();
+  // Activate any event plugins eg. print intent, error tracking
+  // analyticsPlugins.error();
+  // analyticsPlugins.printIntent();
 
-    // Track initial pageview
-    window.GOVUK.analytics.trackPageview();
+  // Track initial pageview
+  window.GOVUK.analytics.trackPageview();
 }
+
+$(document).ready(() => {
+  initShowHideContent();
+  initAutocomplete();
+  initSYAAnalyticsTrack();
+});

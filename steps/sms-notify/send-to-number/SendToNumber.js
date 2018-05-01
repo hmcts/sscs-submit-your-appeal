@@ -1,5 +1,3 @@
-'use strict';
-
 const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
@@ -11,53 +9,44 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 
 class SendToNumber extends Question {
+  static get path() {
+    return paths.smsNotify.sendToNumber;
+  }
 
-    static get path() {
+  get phoneNumber() {
+    return formatMobileNumber(this.fields.phoneNumber.value);
+  }
 
-        return paths.smsNotify.sendToNumber;
-    }
+  get form() {
+    return form({
+      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      useSameNumber: text.joi(
+        this.content.fields.useSameNumber.error.required,
+        Joi.string().regex(whitelist).required()
+      )
+    });
+  }
 
-    get phoneNumber() {
+  answers() {
+    return answer(this, { hide: true });
+  }
 
-        return formatMobileNumber(this.fields.phoneNumber.value);
-    }
+  values() {
+    return {
+      smsNotify: {
+        useSameNumber: this.fields.useSameNumber.value === userAnswer.YES
+      }
+    };
+  }
 
-    get form() {
+  next() {
+    const useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
 
-        return form({
-
-            phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
-            useSameNumber: text
-                .joi(
-                    this.content.fields.useSameNumber.error.required,
-                    Joi.string().regex(whitelist).required()
-                )
-        });
-    }
-
-    answers() {
-
-        return answer(this, { hide: true });
-    }
-
-    values() {
-
-        return {
-            smsNotify: {
-                useSameNumber: this.fields.useSameNumber.value === userAnswer.YES
-            }
-        };
-    }
-
-    next() {
-
-        const useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
-
-        return branch(
-            redirectTo(this.journey.steps.SmsConfirmation).if(useSameNumber),
-            goTo(this.journey.steps.EnterMobile)
-        );
-    }
+    return branch(
+      redirectTo(this.journey.steps.SmsConfirmation).if(useSameNumber),
+      goTo(this.journey.steps.EnterMobile)
+    );
+  }
 }
 
 module.exports = SendToNumber;

@@ -1,11 +1,8 @@
-'use strict';
-
 function selectHearingAvailabilityAndContinue(option) {
+  const I = this;
 
-    const I = this;
-
-    I.checkOption(option);
-    I.click('Continue');
+  I.checkOption(option);
+  I.click('Continue');
 }
 
 module.exports = { selectHearingAvailabilityAndContinue };

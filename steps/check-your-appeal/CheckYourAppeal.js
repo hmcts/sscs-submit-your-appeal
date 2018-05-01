@@ -1,8 +1,6 @@
-'use strict';
-
 const {
-    CheckYourAnswers: CYA,
-    section
+  CheckYourAnswers: CYA,
+  section
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
 const { form, text } = require('@hmcts/one-per-page/forms');
@@ -16,79 +14,67 @@ const paths = require('paths');
 const Joi = require('joi');
 
 class CheckYourAppeal extends CYA {
+  constructor(...args) {
+    super(...args);
+    this.logger = Logger.getLogger('CheckYourAppeal.js');
+    this.sendToAPI = this.sendToAPI.bind(this);
+  }
 
-    constructor(...args) {
+  static get path() {
+    return paths.checkYourAppeal;
+  }
 
-        super(...args);
-        this.logger = Logger.getLogger('CheckYourAppeal.js');
-        this.sendToAPI = this.sendToAPI.bind(this);
-    }
+  get termsAndConditionPath() {
+    return paths.policy.termsAndConditions;
+  }
 
-    static get path() {
+  sendToAPI() {
+    return request.post(this.journey.settings.apiUrl).send(this.journey.values).then(result => {
+      this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
+    }).catch(error => {
+      const errMsg = `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
+      this.logger.error(errMsg);
+      return Promise.reject(error);
+    });
+  }
 
-        return paths.checkYourAppeal
-    }
+  sections() {
+    return [
+      section(sections.benefitType, { title: this.content.benefitType }),
+      section(sections.mrnDate, { title: this.content.compliance.mrnDate }),
+      section(sections.noMRN, { title: this.content.compliance.noMRN }),
+      section(sections.appellantDetails, { title: this.content.appellantDetails }),
+      section(sections.textMsgReminders, { title: this.content.smsNotify.textMsgReminders }),
+      section(sections.representative, { title: this.content.representative }),
+      section(sections.reasonsForAppealing, { title: this.content.reasonsForAppealing }),
+      section(sections.theHearing, { title: this.content.hearing.theHearing }),
+      section(sections.hearingArrangements, { title: this.content.hearing.arrangements })
+    ];
+  }
 
-    get termsAndConditionPath() {
+  get form() {
+    return form({
 
-        return paths.policy.termsAndConditions
-    }
+      signer: text.joi(
+        this.content.fields.signer.error.required,
+        Joi.string().regex(lastName).trim().required()
+      )
+    });
+  }
 
-    sendToAPI() {
+  values() {
+    return {
+      signAndSubmit: {
+        signer: this.fields.signer.value
+      }
+    };
+  }
 
-        return request
-            .post(this.journey.settings.apiUrl)
-            .send(this.journey.values)
-            .then((result) => {
-                this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
-            }).catch((err) => {
-                this.logger.error(`${err.message} status:${err.status || HttpStatus.INTERNAL_SERVER_ERROR}`);
-                return Promise.reject(err);
-            });
-    }
-
-    sections() {
-
-        return [
-            section(sections.benefitType,           { title: this.content.benefitType }),
-            section(sections.mrnDate,               { title: this.content.compliance.mrnDate }),
-            section(sections.noMRN,                 { title: this.content.compliance.noMRN }),
-            section(sections.appellantDetails,      { title: this.content.appellantDetails }),
-            section(sections.textMsgReminders,      { title: this.content.smsNotify.textMsgReminders }),
-            section(sections.representative,        { title: this.content.representative }),
-            section(sections.reasonsForAppealing,   { title: this.content.reasonsForAppealing }),
-            section(sections.theHearing,            { title: this.content.hearing.theHearing }),
-            section(sections.hearingArrangements,   { title: this.content.hearing.arrangements })
-        ];
-    }
-
-    get form() {
-
-        return form({
-
-            signer: text
-                .joi(
-                    this.content.fields.signer.error.required,
-                    Joi.string().regex(lastName).trim().required()
-                )
-        });
-    }
-
-    values() {
-
-        return {
-            signAndSubmit: {
-                signer: this.fields.signer.value
-            }
-        };
-    }
-
-    next() {
-
-        return action(this.sendToAPI)
-            .then(goTo(this.journey.steps.Confirmation))
-            .onFailure(goTo(this.journey.steps.Error500));
-    }
+  next() {
+    return action(this.sendToAPI)
+      .then(goTo(this.journey.steps.Confirmation))
+      .onFailure(goTo(this.journey.steps.Error500));
+  }
 }
 
 module.exports = CheckYourAppeal;

@@ -1,33 +1,28 @@
 function enterAnythingElseAndContinue(anythingElse) {
+  const I = this;
 
-    const I = this;
-
-    I.fillField('#otherReasonForAppealing', anythingElse);
-    I.click('Continue');
+  I.fillField('#otherReasonForAppealing', anythingElse);
+  I.click('Continue');
 }
 
 function enterReasonForAppealAndContinue(reason, link) {
+  const I = this;
 
-    const I = this;
-
-    I.click(link);
-    I.fillField('input[name="item.whatYouDisagreeWith"]', reason.whatYouDisagreeWith);
-    I.fillField('textarea[name="item.reasonForAppealing"]', reason.reasonForAppealing);
-    I.click('Continue');
-
+  I.click(link);
+  I.fillField('input[name="item.whatYouDisagreeWith"]', reason.whatYouDisagreeWith);
+  I.fillField('textarea[name="item.reasonForAppealing"]', reason.reasonForAppealing);
+  I.click('Continue');
 }
 
 function addReasonsForAppealingAndContinue(reason, link) {
+  const I = this;
 
-    const I = this;
-
-    I.enterReasonForAppealAndContinue(reason, link);
-    I.click('Continue');
-
+  I.enterReasonForAppealAndContinue(reason, link);
+  I.click('Continue');
 }
 
 module.exports = {
-    enterReasonForAppealAndContinue,
-    enterAnythingElseAndContinue,
-    addReasonsForAppealingAndContinue
+  enterReasonForAppealAndContinue,
+  enterAnythingElseAndContinue,
+  addReasonsForAppealingAndContinue
 };

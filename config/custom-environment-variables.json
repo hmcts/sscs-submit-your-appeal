@@ -21,5 +21,11 @@
       "sha256s": "HPKP_SHA256",
       "sha256sBackup": "HPKP_SHA256_BACKUP"
     }
+  },
+  "e2e": {
+    "waitForTimeout": "E2E_WAIT_FOR_TIMEOUT_VALUE",
+    "waitForAction": "E2E_WAIT_FOR_ACTION_VALUE",
+    "outputDir": "E2E_OUTPUT_DIR",
+    "frontendUrl": "E2E_FRONTEND_URL"
   }
 }

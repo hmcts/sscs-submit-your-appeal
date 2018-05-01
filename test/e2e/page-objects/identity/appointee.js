@@ -1,9 +1,8 @@
 function selectAreYouAnAppointeeAndContinue(option) {
+  const I = this;
 
-    const I = this;
-
-    I.checkOption(option);
-    I.click('Continue');
+  I.checkOption(option);
+  I.click('Continue');
 }
 
 module.exports = { selectAreYouAnAppointeeAndContinue };

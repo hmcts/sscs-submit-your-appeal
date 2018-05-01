@@ -1,5 +1,3 @@
-'use strict';
-
 const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
@@ -11,49 +9,40 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 
 class Appointee extends Question {
+  static get path() {
+    return paths.identity.areYouAnAppointee;
+  }
 
-    static get path() {
+  get form() {
+    return form({
+      isAppointee: text.joi(
+        this.content.fields.isAppointee.error.required,
+        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+      )
+    });
+  }
 
-        return paths.identity.areYouAnAppointee;
-    }
+  answers() {
+    return answer(this, {
+      question: this.content.cya.isAppointee.question,
+      section: sections.appellantDetails,
+      answer: titleise(this.fields.isAppointee.value)
+    });
+  }
 
-    get form() {
+  values() {
+    return {
+      isAppointee: this.fields.isAppointee.value === userAnswer.YES
+    };
+  }
 
-        return form({
-
-            isAppointee: text
-                .joi(
-                    this.content.fields.isAppointee.error.required,
-                    Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
-                )
-        });
-    }
-
-    answers() {
-
-        return answer(this, {
-            question: this.content.cya.isAppointee.question,
-            section: sections.appellantDetails,
-            answer: titleise(this.fields.isAppointee.value)
-        });
-    }
-
-    values() {
-
-        return {
-            isAppointee: this.fields.isAppointee.value === userAnswer.YES
-        }
-    }
-
-    next() {
-
-        const isAppointee = this.fields.isAppointee.value === userAnswer.YES;
-
-        return branch(
-            redirectTo(this.journey.steps.AppealFormDownload).if(isAppointee),
-            goTo(this.journey.steps.Independence)
-        );
-    }
+  next() {
+    const isAppointee = this.fields.isAppointee.value === userAnswer.YES;
+    return branch(
+      redirectTo(this.journey.steps.AppealFormDownload).if(isAppointee),
+      goTo(this.journey.steps.Independence)
+    );
+  }
 }
 
 module.exports = Appointee;

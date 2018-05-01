@@ -1,17 +1,17 @@
+/* eslint-disable max-len, no-undefined  */
+
 const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 
 const setCYAValue = (arrangementValue, hiddenFieldValue) => {
+  let cyaValue = null;
 
-    let cyaValue;
+  if (arrangementValue === cyaContent.required && (hiddenFieldValue !== undefined && hiddenFieldValue !== '')) {
+    cyaValue = hiddenFieldValue;
+  } else {
+    cyaValue = arrangementValue;
+  }
 
-    if (arrangementValue === cyaContent.required && (hiddenFieldValue !== undefined && hiddenFieldValue !== '')) {
-        cyaValue = hiddenFieldValue;
-    } else {
-        cyaValue = arrangementValue;
-    }
-
-    return cyaValue;
-
+  return cyaValue;
 };
 
 module.exports = { setCYAValue };

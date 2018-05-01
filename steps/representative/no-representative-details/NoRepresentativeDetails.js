@@ -1,40 +1,32 @@
-'use strict';
-
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class NoRepresentativeDetails extends Question {
+  static get path() {
+    return paths.representative.noRepresentativeDetails;
+  }
 
-    static get path() {
+  get form() {
+    return form();
+  }
 
-        return paths.representative.noRepresentativeDetails;
-    }
+  answers() {
+    return answer(this, { hide: true });
+  }
 
-    get form() {
+  values() {
+    return {
+      representative: {
+        hasRepresentative: false
+      }
+    };
+  }
 
-        return form();
-    }
-
-    answers() {
-
-        return answer(this, { hide: true });
-    }
-
-    values() {
-
-        return {
-            representative: {
-                hasRepresentative: false
-            }
-        }
-    }
-
-    next() {
-
-        return goTo(this.journey.steps.ReasonForAppealing);
-    }
+  next() {
+    return goTo(this.journey.steps.ReasonForAppealing);
+  }
 }
 
 module.exports = NoRepresentativeDetails;

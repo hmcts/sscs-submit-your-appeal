@@ -1,10 +1,9 @@
 function enterBenefitTypeAndContinue(type) {
+  const I = this;
 
-    const I = this;
-
-    I.fillField('#benefitType', type);
-    I.click('#benefitType__option--0');
-    I.click('Continue');
+  I.fillField('#benefitType', type);
+  I.click('#benefitType__option--0');
+  I.click('Continue');
 }
 
 module.exports = { enterBenefitTypeAndContinue };
