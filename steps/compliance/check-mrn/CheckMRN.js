@@ -1,5 +1,3 @@
-'use strict';
-
 const { Question } = require('@hmcts/one-per-page/steps');
 const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text, date, ref } = require('@hmcts/one-per-page/forms');
@@ -10,52 +8,44 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 
 class CheckMRN extends Question {
+  static get path() {
+    return paths.compliance.checkMRNDate;
+  }
 
-    static get path() {
+  get form() {
+    return form({
+      mrnDate: ref(this.journey.steps.MRNDate, date),
+      checkedMRN: text.joi(
+        this.content.fields.checkedMRN.error.required,
+        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+      )
+    });
+  }
 
-        return paths.compliance.checkMRNDate;
-    }
+  answers() {
+    return answer(this, { hide: true });
+  }
 
-    get form() {
+  values() {
+    return {};
+  }
 
-        return form({
+  next() {
+    const mrnDate = DateUtils.createMoment(
+      this.fields.mrnDate.day.value,
+      this.fields.mrnDate.month.value,
+      this.fields.mrnDate.year.value
+    );
 
-            mrnDate: ref(this.journey.steps.MRNDate, date),
-            checkedMRN: text
-                .joi(
-                    this.content.fields.checkedMRN.error.required,
-                    Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
-                )
-        });
-    }
+    const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
+    const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 
-    answers() {
-
-        return answer(this, { hide: true });
-    }
-
-    values() {
-
-        return {};
-    }
-
-    next() {
-
-        const mrnDate = DateUtils.createMoment(
-            this.fields.mrnDate.day.value,
-            this.fields.mrnDate.month.value,
-            this.fields.mrnDate.year.value
-        );
-
-        const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
-        const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
-
-        return branch(
-            goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
-            goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
-            redirectTo(this.journey.steps.MRNDate)
-        );
-    }
+    return branch(
+      goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
+      goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
+      redirectTo(this.journey.steps.MRNDate)
+    );
+  }
 }
 
 module.exports = CheckMRN;

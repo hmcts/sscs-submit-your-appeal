@@ -1,39 +1,30 @@
-'use strict';
-
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 class NotAttendingHearing extends Question {
+  static get path() {
+    return paths.hearing.notAttendingHearing;
+  }
 
-    static get path() {
+  get form() {
+    return form({
+      emailAddress: text.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
+    });
+  }
 
-        return paths.hearing.notAttendingHearing;
-    }
+  answers() {
+    return answer(this, { hide: true });
+  }
 
-    get form() {
+  get byPostOrEmail() {
+    return this.fields.emailAddress.value ? 'email' : 'post';
+  }
 
-        return form({
-
-            emailAddress: text.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
-        });
-    }
-
-    answers() {
-
-        return answer(this, { hide: true });
-    }
-
-    get byPostOrEmail() {
-
-        return this.fields.emailAddress.value ? 'email' : 'post';
-    }
-
-    next() {
-
-        return goTo(this.journey.steps.CheckYourAppeal);
-    }
+  next() {
+    return goTo(this.journey.steps.CheckYourAppeal);
+  }
 }
 
 module.exports = NotAttendingHearing;

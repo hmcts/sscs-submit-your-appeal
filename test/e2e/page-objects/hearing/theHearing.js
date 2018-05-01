@@ -1,15 +1,17 @@
 function enterDoYouWantToAttendTheHearing(option) {
+  const I = this;
 
-    const I = this;
-
-    I.checkOption(option);
-    I.click('Continue');
+  I.checkOption(option);
+  I.click('Continue');
 }
+
 function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue() {
+  const I = this;
 
-    const I = this;
-
-    I.click('Continue');
+  I.click('Continue');
 }
 
-module.exports = { enterDoYouWantToAttendTheHearing, readYouHaveChosenNotToAttendTheHearingNoticeAndContinue };
+module.exports = {
+  enterDoYouWantToAttendTheHearing,
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue
+};

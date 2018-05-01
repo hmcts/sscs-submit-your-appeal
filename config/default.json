@@ -21,5 +21,11 @@
       "sha256s": "AbCdEf123=",
       "sha256sBackup": "ZyXwVu456="
     }
+  },
+  "e2e": {
+    "waitForTimeout": "1000",
+    "waitForAction": "500",
+    "outputDir": "./output",
+    "frontendUrl": "http://localhost:3000"
   }
 }

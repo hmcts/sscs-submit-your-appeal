@@ -1,9 +1,8 @@
 function enterReasonsForBeingLateAndContinue(reason) {
+  const I = this;
 
-    const I = this;
-
-    I.fillField('#reasonForBeingLate', reason);
-    I.click('Continue');
+  I.fillField('#reasonForBeingLate', reason);
+  I.click('Continue');
 }
 
 module.exports = { enterReasonsForBeingLateAndContinue };

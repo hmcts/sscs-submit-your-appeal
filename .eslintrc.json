@@ -1,0 +1,25 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true,
+    "browser": true
+  },
+  "extends": "@hmcts",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-process-env": "off",
+    "newline-per-chained-call": "off",
+    "object-curly-newline": ["error", {
+      "consistent": true
+    }],
+    "max-len": [
+      "error",
+      {
+        "code": 100
+      }
+    ]
+  }
+}

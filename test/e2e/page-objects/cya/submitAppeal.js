@@ -1,11 +1,8 @@
-'use strict';
-
 function signAndSubmit(name) {
+  const I = this;
 
-    const I = this;
-
-    I.fillField('#signer', name);
-    I.click('Submit your appeal');
+  I.fillField('#signer', name);
+  I.click('Submit your appeal');
 }
 
 module.exports = { signAndSubmit };

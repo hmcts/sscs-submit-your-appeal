@@ -1,0 +1,28 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": "@hmcts/eslint-config/test",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "object-curly-newline": ["error", {
+      "consistent": true
+    }],
+    "no-invalid-this":"off",
+    "new-cap": "off",
+    "max-len": ["error", {
+        "code": 100
+      }
+    ]
+  },
+  "globals": {
+    "After": true,
+    "Before": true,
+    "Feature": true,
+    "Scenario": true
+  }
+}

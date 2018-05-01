@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-undefined */
 
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
@@ -9,73 +9,65 @@ const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
 
+const MIN_CHAR_COUNT = 5;
 const emptyStringValidation = value => value !== undefined;
-const isMoreOrEqualToFiveCharacters = value => value.length > 4;
+const isGreaterThanOrEqualToFiveCharacters = value => value.length >= MIN_CHAR_COUNT;
 
 class ReasonForAppealing extends AddAnother {
+  static get path() {
+    return paths.reasonsForAppealing.reasonForAppealing;
+  }
 
-    static get path() {
-
-        return paths.reasonsForAppealing.reasonForAppealing;
+  get addAnotherLinkContent() {
+    if (this.fields.items !== undefined) {
+      return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
     }
+    return false;
+  }
 
-    get addAnotherLinkContent() {
+  get field() {
+    return object({
+      whatYouDisagreeWith: text,
+      reasonForAppealing: text
+    }).check(
+      errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
+      value => emptyStringValidation(value.whatYouDisagreeWith)
+    ).check(
+      errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
+      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
+    ).check(
+      errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
+      value => emptyStringValidation(value.reasonForAppealing)
+    ).check(
+      errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
+      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing)
+    );
+  }
 
-        if (this.fields.items !== undefined) {
-            return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
-        }
-        return false;
-    }
+  validateList(list) {
+    return list.check(content.listError, arr => arr.length > 0);
+  }
 
-    get field() {
+  answers() {
+    return [
+      answer(this, {
+        section: sections.reasonsForAppealing,
+        template: 'answer.html'
+      })
+    ];
+  }
 
-        return object({
-            whatYouDisagreeWith: text,
-            reasonForAppealing: text
-        }).check(
-            errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
-            value => emptyStringValidation(value.whatYouDisagreeWith)
-        ).check(
-            errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-            value => isMoreOrEqualToFiveCharacters(value.whatYouDisagreeWith)
-        ).check(
-            errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
-            value => emptyStringValidation(value.reasonForAppealing)
-        ).check(
-            errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
-            value => isMoreOrEqualToFiveCharacters(value.reasonForAppealing)
-        )
-    }
+  values() {
+    return {
+      reasonsForAppealing: {
+        reasons: this.fields.items.value
+      }
+    };
+  }
 
-    validateList(list) {
-
-        return list.check(content.listError, arr => arr.length > 0);
-    }
-
-    answers() {
-
-        return [
-
-            answer(this, {
-                section: sections.reasonsForAppealing,
-                template: 'answer.html'
-            })
-        ];
-    }
-
-    values() {
-
-        return {
-            reasonsForAppealing: {
-                reasons: this.fields.items.value
-            }
-        };
-    }
-
-    next() {
-
-        return redirectTo(this.journey.steps.OtherReasonForAppealing);
-    }
+  next() {
+    return redirectTo(this.journey.steps.OtherReasonForAppealing);
+  }
 }
 
 module.exports = ReasonForAppealing;

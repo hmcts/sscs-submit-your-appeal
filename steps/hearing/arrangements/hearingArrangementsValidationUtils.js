@@ -1,46 +1,39 @@
+/* eslint-disable no-unneeded-ternary, no-confusing-arrow */
+
 const { whitelist } = require('utils/regex');
 const languages = require('steps/hearing/arrangements/languages');
 const Joi = require('joi');
 
 const optionSelected = options => {
+  const optionValues = Object.values(options);
+  let valueSet = false;
 
-    const optionValues = Object.values(options);
-    let valueSet = false;
+  optionValues.forEach(arrangement => {
+    valueSet = valueSet ? valueSet : arrangement.requested;
+  });
 
-    optionValues.forEach(arrangement => {
-        valueSet = valueSet ? valueSet : arrangement.requested;
-    });
-
-    return valueSet
+  return valueSet;
 };
 
-const languageInList = value => {
-
-    return value.requested ? languages.includes(value.language) : true;
-};
-
-const emptyLanguageFieldValidation = value => {
-
-    return value.requested && !value.language ? false : true;
-};
+const languageInList = value => value.requested ? languages.includes(value.language) : true;
+const emptyLanguageFieldValidation = value => value.requested && !value.language ? false : true;
 
 const validCharacters = value => {
+  let validated = null;
 
-    let validated;
+  if (value.requested) {
+    const validString = Joi.validate(value.language, Joi.string().regex(whitelist));
+    validated = validString.error === null;
+  } else {
+    validated = true;
+  }
 
-    if (value.requested) {
-        const validString = Joi.validate(value.language, Joi.string().regex(whitelist));
-        validated = validString.error === null;
-    } else {
-        validated = true;
-    }
-
-    return validated;
+  return validated;
 };
 
 module.exports = {
-    optionSelected,
-    languageInList,
-    emptyLanguageFieldValidation,
-    validCharacters
+  optionSelected,
+  languageInList,
+  emptyLanguageFieldValidation,
+  validCharacters
 };

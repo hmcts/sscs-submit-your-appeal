@@ -1,5 +1,3 @@
-'use strict';
-
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -9,49 +7,40 @@ const Joi = require('joi');
 const paths = require('paths');
 
 class NoMRN extends Question {
+  static get path() {
+    return paths.compliance.noMRN;
+  }
 
-    static get path() {
+  get form() {
+    return form({
+      reasonForNoMRN: text.joi(
+        this.content.fields.reasonForNoMRN.error.required,
+        Joi.string().regex(whitelist).required()
+      )
+    });
+  }
 
-        return paths.compliance.noMRN;
-    }
+  answers() {
+    return [
+      answer(this, {
+        question: this.content.cya.reasonForNoMRN.question,
+        section: sections.mrnDate,
+        answer: this.fields.reasonForNoMRN.value
+      })
+    ];
+  }
 
-    get form() {
+  values() {
+    return {
+      mrn: {
+        reasonForNoMRN: this.fields.reasonForNoMRN.value
+      }
+    };
+  }
 
-        return form({
-
-            reasonForNoMRN: text
-                .joi(
-                    this.content.fields.reasonForNoMRN.error.required,
-                    Joi.string().regex(whitelist).required()
-                )
-        });
-    }
-
-    answers() {
-
-        return [
-
-            answer(this, {
-                question: this.content.cya.reasonForNoMRN.question,
-                section: sections.mrnDate,
-                answer: this.fields.reasonForNoMRN.value
-            })
-        ];
-    }
-
-    values() {
-
-        return {
-            mrn: {
-                reasonForNoMRN: this.fields.reasonForNoMRN.value
-            }
-        };
-    }
-
-    next() {
-
-        return goTo(this.journey.steps.AppellantName);
-    }
+  next() {
+    return goTo(this.journey.steps.AppellantName);
+  }
 }
 
 module.exports = NoMRN;
