@@ -1,7 +1,7 @@
 import datePicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
-import moment from "moment/moment";
-import { differenceWith, find, indexOf, isEqual, last } from "lodash";
+import moment from 'moment/moment';
+import { differenceWith, find, indexOf, isEqual, last } from 'lodash';
 
 $(document).ready(() => {
 
@@ -36,53 +36,76 @@ const dp = {
     dateRange: () => {
 
         const dates = [
-            '12-25-2018',
-            '12-26-2018',
-            '12-28-2018'
+            new Date('12-25-2018'),
+            new Date('12-26-2018'),
+            new Date('12-28-2018')
         ];
 
-        dates.forEach((date, index) => {
-            console.log('***********')
-          const prevIndex = index === 0 ? undefined : index - 1;
-          const prevDate = prevIndex !== undefined ? dates[prevIndex] : undefined;
-          console.log(prevDate)
-            console.log(date)
 
-          if (prevDate !== undefined) {
-              const a = new Date(prevDate);
-              const b = new Date(date);
-              const c = new Date(prevDate);
-              c.setDate(c.getDate() + 1);
+        dates.sort((date1, date2) => {
+            if (date1 > date2) return 1;
+            if (date1 < date2) return -1;
+            return 0;
+        });
 
-              console.log(a);
-              console.log(b.getTime());
-              console.log(c.getTime());
+        console.log(dates);
+        //
+        // dates.forEach((date, index) => {
+        //     console.log('***********')
+        //   const prevIndex = index === 0 ? undefined : index - 1;
+        //   const prevDate = prevIndex !== undefined ? dates[prevIndex] : undefined;
+        //   console.log(prevDate)
+        //     console.log(date)
+        //
+        //   if (prevDate !== undefined) {
+        //
+        //
+        //       const a = new Date(prevDate);
+        //       const b = new Date(date);
+        //       const c = new Date(prevDate);
+        //       c.setDate(c.getDate() + 1);
+        //
+        //       console.log(a);
+        //       console.log(b.getTime());
+        //       console.log(c.getTime());
+        //
+        //       // console.log(a.add(1, 'days'))
+        //
+        //
+        //
+        //
+        //       if (c.getTime() === b.getTime()) {
+        //           console.log('here');
+        //           const meow = `${dp.formatDateForDisplay(a)} to ${dp.formatDateForDisplay(b)}`;
+        //           console.log(meow);
+        //       } else {
+        //           console.log('not here')
+        //           console.log(dp.formatDateForDisplay(b))
+        //       }
+        //   }
+        //
+        // });
+    },
 
-              // console.log(a.add(1, 'days'))
-
-
-
-              if (c.getTime() === b.getTime()) {
-                  console.log('here');
-                  const meow = `${dp.formatDateForDisplay(a)} to ${dp.formatDateForDisplay(b)}`;
-                  console.log(meow);
-              } else {
-                  console.log('not here')
-                  console.log(dp.formatDateForDisplay(b))
-              }
-          }
-
+    sortDates: dates => {
+        return dates.sort((date1, date2) => {
+            if (date1.value > date2.value) return 1;
+            if (date1.value < date2.value) return -1;
+            return 0;
         });
     },
 
     displayDateList: dates => {
 
+        const datesIndex = dates.map((date, index) => dp.buildDatesArray(index, date));
         let elements = '';
 
-        dates.forEach((date, i) => {
-            elements += `<div id="add-another-list-items-${i}">
+        dates = dp.sortDates(datesIndex);
+
+        dates.forEach(date => {
+            elements += `<div id="add-another-list-items-${date.index}">
                             <dd class="add-another-list-item">
-                                <span data-index="items-${i}">${dp.formatDateForDisplay(date)}</span>
+                                <span data-index="items-${date.index}">${dp.formatDateForDisplay(date.value)}</span>
                             </dd>
                         </div>`;
         });
@@ -149,15 +172,17 @@ const dp = {
         return list.map(item => dp.getValueOfDate(item));
     },
 
+    buildDatesArray: (index, value) => {
+        return {
+            index,
+            value
+        };
+    },
+
     getData: () => {
       // loop over table and get results
         const list = $('.add-another-list .add-another-list-item > span').toArray();
-        return list.map(item => {
-            return {
-                index: dp.getIndexOfDate(item),
-                value: dp.getValueOfDate(item)
-            };
-        });
+        return list.map(item => dp.buildDatesArray(dp.getIndexOfDate(item), dp.getValueOfDate(item)));
     },
 
     formatDateForDisplay: d => {
