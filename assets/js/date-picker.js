@@ -6,6 +6,7 @@ import { differenceWith, find, indexOf, isEqual, last } from "lodash";
 $(document).ready(() => {
 
     $('.add-another-add-link').hide();
+    dp.dateRange();
 
     $('#date-picker').datepicker({
         multidate: true,
@@ -32,12 +33,58 @@ $(document).ready(() => {
 
 const dp = {
 
+    dateRange: () => {
+
+        const dates = [
+            '12-25-2018',
+            '12-26-2018',
+            '12-28-2018'
+        ];
+
+        dates.forEach((date, index) => {
+            console.log('***********')
+          const prevIndex = index === 0 ? undefined : index - 1;
+          const prevDate = prevIndex !== undefined ? dates[prevIndex] : undefined;
+          console.log(prevDate)
+            console.log(date)
+
+          if (prevDate !== undefined) {
+              const a = new Date(prevDate);
+              const b = new Date(date);
+              const c = new Date(prevDate);
+              c.setDate(c.getDate() + 1);
+
+              console.log(a);
+              console.log(b.getTime());
+              console.log(c.getTime());
+
+              // console.log(a.add(1, 'days'))
+
+
+
+              if (c.getTime() === b.getTime()) {
+                  console.log('here');
+                  const meow = `${dp.formatDateForDisplay(a)} to ${dp.formatDateForDisplay(b)}`;
+                  console.log(meow);
+              } else {
+                  console.log('not here')
+                  console.log(dp.formatDateForDisplay(b))
+              }
+          }
+
+        });
+    },
+
     displayDateList: dates => {
 
         let elements = '';
 
         dates.forEach((date, i) => {
-            elements += `<div id="add-another-list-items-${i}"><dd class="add-another-list-item"><span data-index="items-${i}">${dp.formatDateForDisplay(date)}</span></dd></div>`;
+            elements += `<div id="add-another-list-items-${i}">
+                            <dd class="add-another-list-item">
+                                <span data-index="items-${i}">${dp.formatDateForDisplay(date)}</span>
+                            </dd>
+                        </div>`;
         });
         if (elements === '') {
             const noItems = '<div><dd class="add-another-list-item">No dates added yet</dd></div>';
@@ -70,7 +117,6 @@ const dp = {
     },
 
     removeDate: dates => {
-        console.log('********************');
         const oldDates = dp.getDates();
         const newDates = dates;
         const dateToRemove = differenceWith(oldDates, newDates, isEqual).toString();
@@ -106,7 +152,6 @@ const dp = {
     getData: () => {
       // loop over table and get results
         const list = $('.add-another-list .add-another-list-item > span').toArray();
-        console.log(list)
         return list.map(item => {
             return {
                 index: dp.getIndexOfDate(item),
