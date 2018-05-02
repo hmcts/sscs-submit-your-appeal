@@ -16,6 +16,7 @@ const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
+const HttpStatus = require('http-status-codes');
 
 const logger = Logger.getLogger('app.js');
 const app = express();
@@ -77,6 +78,10 @@ app.use((req, res, next) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send('User-agent: *\nDisallow: /');
+});
+
+app.use('/sessions', (req, res) => {
+  res.sendStatus(HttpStatus.NOT_FOUND);
 });
 
 lookAndFeel.configure(app, {
