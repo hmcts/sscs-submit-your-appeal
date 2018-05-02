@@ -203,31 +203,69 @@ label.form-label[for="signer"] {
     width: 70%;
 
     table {
+
+      table-layout: fixed;
+
+      thead {
+        tr {
+          .prev, .next {
+            background-color: $grey-2;
+            border-radius: 0;
+          }
+
+          .datepicker-switch {
+            background-color: $grey-2;
+            border-radius: 0;
+          }
+        }
+      }
+
       tbody {
         tr {
-          //height: 50%;
-          border-bottom: 1px solid grey;
           &:first-child {
-            border-top: 2px solid grey;
+            border-top: 2px solid $grey-1;
           }
           &:last-child {
-            border-bottom: 2px solid grey;
+            border-bottom: 2px solid $grey-1;
           }
           td {
-            border-right: 1px solid grey;
+            color: black;
+            border-radius: 0;
+            &:not(.disabled) {
+              border-left: 1px solid $grey-3;
+              border-top: 1px solid $grey-3;
+            }
             font-weight: 600;
-            line-height: 2;
+            height: 58px;
+            padding: 0;
+            vertical-align: top;
+            text-align: left;
 
-            .disabled {
+            &.active {
+              background-color: #76B2D2;
+            }
 
+            &.day:hover {
+              &:not(.disabled) {
+                background-color: #BBD9E9;
+              }
+            }
+
+            &.disabled {
+              background: url("../images/date-disabled.png");
               font-weight: 400;
             }
 
-            &:first-child {
-              border-left: 1px solid grey;
-            }
             &:last-child {
+              border-right: 1px solid $grey-3;
               padding-right: 1.05263em;
+            }
+
+            .first-of-month {
+              margin: 7px 0 0 0;
+              text-align: center;
+              background-color: $grey-2;
+              color: white;
             }
           }
         }
