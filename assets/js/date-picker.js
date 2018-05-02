@@ -10,10 +10,28 @@ $(document).ready(() => {
 
     $('#date-picker').datepicker({
         multidate: true,
-        daysOfWeekDisabled: '06',
+        daysOfWeekDisabled: '0',
         startDate: '+4w',
         endDate: '+22w',
-        weekStart: 1
+        weekStart: 1,
+        maxViewMode: 0,
+        // templates: {
+        //     rightArrow: '<p>Hello</p>'
+        // }
+        beforeShowDay: date => {
+            const mDate = moment(date);
+            const day = mDate.format('D');
+            const month = mDate.format('MMM');
+            console.log(day)
+            if (day === '1') {
+                const html = `${day} <p class="first-of-month">${month}</p>`;
+                return {content: html}
+            }
+
+            return;
+            // const html = `${day}    <p>${date.getMonth()}</p>`;
+            // return day === 1 ? {content: html} : undefined;
+        }
     }).on('changeDate', e => {
         const dates = e.dates;
 
@@ -48,7 +66,7 @@ const dp = {
             return 0;
         });
 
-        console.log(dates);
+        // console.log(dates);
         //
         // dates.forEach((date, index) => {
         //     console.log('***********')
