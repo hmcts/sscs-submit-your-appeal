@@ -191,3 +191,42 @@ label.form-label[for="signer"] {
     }
   }
 }
+
+#date-picker {
+
+  .datepicker-inline {
+    width: 70%;
+
+    table {
+      tbody {
+        tr {
+          //height: 50%;
+          border-bottom: 1px solid grey;
+          &:first-child {
+            border-top: 2px solid grey;
+          }
+          &:last-child {
+            border-bottom: 2px solid grey;
+          }
+          td {
+            border-right: 1px solid grey;
+            font-weight: 600;
+            line-height: 2;
+
+            .disabled {
+
+              font-weight: 400;
+            }
+
+            &:first-child {
+              border-left: 1px solid grey;
+            }
+            &:last-child {
+              padding-right: 1.05263em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
