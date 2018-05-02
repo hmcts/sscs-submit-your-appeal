@@ -96,7 +96,6 @@ const dp = {
     },
 
     displayDateList: dates => {
-
         const datesIndex = dates.map((date, index) => dp.buildDatesArray(index, date));
         let elements = '';
 
@@ -119,7 +118,6 @@ const dp = {
     },
 
     postDate: dates => {
-
         const lastestDateAdded = last(dates);
         const mDate = moment(lastestDateAdded);
         const body = {
