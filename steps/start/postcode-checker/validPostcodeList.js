@@ -1,4 +1,7 @@
 /* eslint-disable max-lines */
+const { concat } = require('lodash');
+const southEastPostCodes = require('steps/start/postcode-checker/southEastPostcodes');
+
 const postCodes = [
   'B1',
   'B1',
@@ -2038,4 +2041,7 @@ const postCodes = [
   'WV9'
 ];
 
-module.exports = postCodes;
+module.exports = concat(
+  postCodes,
+  southEastPostCodes
+);
