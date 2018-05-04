@@ -1,15 +1,23 @@
-'use strict';
-
-const { expect } = require('test/util/chai');
-const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
-const sections = require('steps/check-your-appeal/sections');
-const paths = require('paths');
-const moment = require('moment');
+const { expect, sinon } = require('test/util/chai');
 const content = require('steps/hearing/dates-cant-attend/content.en');
-const bankHolidaysMiddleware = require('steps/hearing/dates-cant-attend/bankHolidaysMiddleware');
+const sections = require('steps/check-your-appeal/sections');
+const proxyquire = require('proxyquire');
+const moment = require('moment');
+const paths = require('paths');
 
 describe('DatesCantAttend.js', () => {
   let datesCantAttend = null;
+
+  class UKBankHolidays {
+    constructor(countries) {
+      this.countries = countries;
+      this.load = sinon.stub();
+    }
+  }
+
+  const DatesCantAttend = proxyquire('steps/hearing/dates-cant-attend/DatesCantAttend', {
+    '@hmcts/uk-bank-holidays': UKBankHolidays
+  });
 
   beforeEach(() => {
     datesCantAttend = new DatesCantAttend({
@@ -28,6 +36,13 @@ describe('DatesCantAttend.js', () => {
     datesCantAttend.res = {
       locals: {}
     };
+  });
+
+  describe('constructor', () => {
+    it('should call the loadBankHolidayDates() function', () => {
+      expect(datesCantAttend).to.have.a.property('ukBankHolidays');
+      expect(datesCantAttend.ukBankHolidays.load).to.be.called;
+    });
   });
 
   describe('get path()', () => {
@@ -56,11 +71,6 @@ describe('DatesCantAttend.js', () => {
   describe('get middleware()', () => {
     it('returns an array', () => {
       expect(datesCantAttend.middleware).to.be.an('array');
-    });
-
-
-    it('should contain the bankHolidaysMiddleware', () => {
-      expect(datesCantAttend.middleware).to.include(bankHolidaysMiddleware);
     });
   });
 
