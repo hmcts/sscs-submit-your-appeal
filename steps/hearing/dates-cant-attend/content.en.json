@@ -27,7 +27,7 @@
         "underFourWeeks": "Only enter dates at least 4 weeks in the future",
         "overTwentyTwoWeeks": "Only enter dates up to 22 weeks in the future",
         "weekend": "Enter a date that is not a weekend",
-        "bankHoliday": "Enter a date this is not a bank holiday"
+        "bankHoliday": "Enter a date that is not a bank holiday"
       }
     }
   },
