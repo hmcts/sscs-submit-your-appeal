@@ -1,7 +1,7 @@
 @import 'govuk-elements';
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import 'look-and-feel/check-your-answers';
-@import './bootstrap4.1.0.min.css';
+//@import './bootstrap4.1.0.min.css';
 @import './bootstrap-datepicker1.8.0.min.css';
 //@import './datepicker.css';
 
@@ -231,7 +231,7 @@ label.form-label[for="signer"] {
               border-top: 1px solid $grey-3;
             }
             font-weight: 600;
-            height: 58px;
+            height: 57px;
             padding: 0;
             vertical-align: top;
             text-align: left;
@@ -249,11 +249,14 @@ label.form-label[for="signer"] {
             &.disabled {
               background: url("../images/date-disabled.png");
               font-weight: 400;
+
+              .first-of-month {
+                margin-top: 8px;
+              }
             }
 
             &:last-child {
               border-right: 1px solid $grey-3;
-              padding-right: 1.05263em;
             }
 
             .first-of-month {
@@ -268,3 +271,5 @@ label.form-label[for="signer"] {
     }
   }
 }
+
+//@media
