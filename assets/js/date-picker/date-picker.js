@@ -8,6 +8,24 @@ import { differenceWith, find, flatten, head, includes, indexOf, isEqual, last }
 const dp = {
 
   init: () => {
+    dp.getBankHolidays(bankholidays => {
+      dp.buildDatePicker(bankholidays);
+    });
+  },
+
+  getBankHolidays: callback => {
+    $.ajax({
+      type: 'GET',
+      url: 'https://www.gov.uk/bank-holidays.json',
+      success: res => {
+        const events = res['england-and-wales'].events;
+        const dates = events.map(event => moment(event.date).format('MM-D-YYYY'));
+        callback(dates);
+      }
+    });
+  },
+
+  buildDatePicker: datesDisabled => {
     dp.selector().datepicker({
       multidate: true,
       daysOfWeekDisabled: '0',
@@ -15,11 +33,11 @@ const dp = {
       endDate: '+22w',
       weekStart: 1,
       maxViewMode: 0,
+      datesDisabled,
       beforeShowDay: date => dp.displayFirstOfMonth(date)
     }).on('changeDate', event => {
       dp.changeDateHandler(event);
     });
-
     // Update the date-picker with dates that have already been added.
     dp.selector().datepicker('setDates', dp.getData().map(date => date.value));
   },
