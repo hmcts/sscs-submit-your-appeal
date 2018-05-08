@@ -27,8 +27,4 @@ router.get(paths.landingPages.afterYouAppeal, (req, res) => {
   res.render('after-you-appeal/template.html', afterYouAppealContent);
 });
 
-router.get('/blah', (req, res) => {
-    res.render('blah')
-})
-
 module.exports = router;
