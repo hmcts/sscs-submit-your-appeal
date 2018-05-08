@@ -240,7 +240,7 @@ label.form-label[for="signer"] {
               background-color: #76B2D2;
             }
 
-            &.day:hover {
+            &.day:hover, &.day.focused {
               &:not(.disabled) {
                 background-color: #BBD9E9;
               }

@@ -4,6 +4,7 @@ import datePicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
 import moment from 'moment/moment';
 import { differenceWith, find, flatten, head, includes, indexOf, isEqual, last } from 'lodash';
+const four = 4;
 
 const dp = {
 
@@ -29,6 +30,7 @@ const dp = {
     dp.selector().datepicker({
       multidate: true,
       daysOfWeekDisabled: '0',
+      defaultViewDate: moment().add(four, 'weeks').format('MM-D-YYYY'),
       startDate: '+4w',
       endDate: '+22w',
       weekStart: 1,
@@ -46,7 +48,6 @@ const dp = {
 
   changeDateHandler: event => {
     const dates = event.dates;
-
     if (dp.isDateAdded(dates)) {
       dp.postDate(dates);
     } else if (dp.isDateRemoved(dates)) {
