@@ -109,6 +109,14 @@ lookAndFeel.configure(app, {
       path.resolve(__dirname, 'assets/scss/main.scss'),
       path.resolve(__dirname, 'assets/js/main.js')
     ],
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg)$/i,
+          loaders: ['file-loader']
+        }
+      ]
+    },
     plugins: [
       new CopyWebpackPlugin(
         [
