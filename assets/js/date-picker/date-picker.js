@@ -9,6 +9,10 @@ const four = 4;
 const dp = {
 
   init: () => {
+    $('html').keydown(e => {
+      console.log('hello');
+      dp.access()
+    });
     dp.getBankHolidays(bankholidays => {
       dp.buildDatePicker(bankholidays);
     });
@@ -36,12 +40,16 @@ const dp = {
       weekStart: 1,
       maxViewMode: 0,
       datesDisabled,
+      // forceParse: false,
       beforeShowDay: date => dp.displayFirstOfMonth(date)
+    }).on('show', event => {
+      console.log('show')
     }).on('changeDate', event => {
       dp.changeDateHandler(event);
     });
     // Update the date-picker with dates that have already been added.
     dp.selector().datepicker('setDates', dp.getData().map(date => date.value));
+    dp.access();
   },
 
   selector: () => $('#date-picker'),
@@ -61,7 +69,9 @@ const dp = {
     const mDate = moment(date);
     const day = mDate.format('D');
     const month = mDate.format('MMM');
-    const displayMonth = {};
+    const displayMonth = {
+      // content: `<span tabindex="-1" role="gridcell" aria-selected="false">${day}</span>`
+    };
     if (day === '1') {
       const html = `${day} <p class="first-of-month">${month}</p>`;
       displayMonth.content = html;
@@ -165,6 +175,34 @@ const dp = {
   isDateRemoved: newDateList => {
     const currentDateList = dp.getData();
     return currentDateList.length > newDateList.length;
+  },
+
+  access: () => {
+
+    $('.prev').attr('role', 'button').attr('aria-pressed', 'false').attr('aria-labelledby', 'datepicker-bn-prev-label');
+    const prevLabel = '<div id="datepicker-bn-prev-label" class="datepicker-bn-prev-label offscreen">Go to previous month</div>';
+    dp.selector().append(prevLabel);
+
+    $('.next').attr('role', 'button').attr('aria-pressed', 'false').attr('aria-labelledby', 'datepicker-bn-next-label');
+    const nextLabel = '<div id="datepicker-bn-next-label" class="datepicker-bn-next-label offscreen">Go to next month</div>';
+    dp.selector().append(nextLabel);
+
+
+    $('tbody tr td').attr('tabindex', '0').attr('role', 'button').attr('aria-selected', 'false');
+
+    // $('tbody tr td').keydown(e => {
+    //   if (e.keyCode === 9) {
+    //     e.preventDefault();
+    //     const currentCell = e.currentTarget;
+    //     console.log($(currentCell).next('td').text());
+    //     $(currentCell).next('td').focus();
+    //   }
+    // });
+
+
+
+
+
   }
 
 };
