@@ -1,20 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-blacklist */
-import datePicker from './bootstrap-datepicker1.8.0.min';
+import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
 import moment from 'moment/moment';
 import { differenceWith, find, flatten, head, includes, indexOf, isEqual, last } from 'lodash';
+import datePickerUtils from './date-picker-utils';
 const four = 4;
 
-const dp = {
+const datePicker = {
 
   init: () => {
-    $('html').keydown(e => {
-      console.log('hello');
-      dp.access()
-    });
-    dp.getBankHolidays(bankholidays => {
-      dp.buildDatePicker(bankholidays);
+    datePicker.getBankHolidays(bankholidays => {
+      datePicker.buildDatePicker(bankholidays);
     });
   },
 
@@ -31,7 +28,7 @@ const dp = {
   },
 
   buildDatePicker: datesDisabled => {
-    dp.selector().datepicker({
+    datePicker.selector().datepicker({
       multidate: true,
       daysOfWeekDisabled: '0',
       defaultViewDate: moment().add(four, 'weeks').format('MM-D-YYYY'),
@@ -40,60 +37,37 @@ const dp = {
       weekStart: 1,
       maxViewMode: 0,
       datesDisabled,
-      // forceParse: false,
-      beforeShowDay: date => dp.displayFirstOfMonth(date)
-    }).on('show', event => {
-      console.log('show')
+      beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
     }).on('changeDate', event => {
-      dp.changeDateHandler(event);
+      datePicker.changeDateHandler(event);
     });
     // Update the date-picker with dates that have already been added.
-    dp.selector().datepicker('setDates', dp.getData().map(date => date.value));
-    dp.access();
+    datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
   },
 
   selector: () => $('#date-picker'),
 
   changeDateHandler: event => {
     const dates = event.dates;
-    if (dp.isDateAdded(dates)) {
-      dp.postDate(dates);
-    } else if (dp.isDateRemoved(dates)) {
-      dp.removeDate(dates);
+    const currentDates = datePicker.getData();
+    if (datePickerUtils.isDateAdded(currentDates, dates)) {
+      datePicker.postDate(dates);
+    } else if (datePickerUtils.isDateRemoved(currentDates, dates)) {
+      datePicker.removeDate(dates);
     } else {
-      dp.displayDateList(dates);
+      datePicker.displayDateList(dates);
     }
   },
-
-  displayFirstOfMonth: date => {
-    const mDate = moment(date);
-    const day = mDate.format('D');
-    const month = mDate.format('MMM');
-    const displayMonth = {
-      // content: `<span tabindex="-1" role="gridcell" aria-selected="false">${day}</span>`
-    };
-    if (day === '1') {
-      const html = `${day} <p class="first-of-month">${month}</p>`;
-      displayMonth.content = html;
-    }
-    return displayMonth;
-  },
-
-  sortDates: dates => dates.sort((date1, date2) => {
-    if (date1.value > date2.value) return 1;
-    if (date1.value < date2.value) return -1;
-    return 0;
-  }),
 
   displayDateList: dates => {
-    const datesIndex = dates.map((date, index) => dp.buildDatesArray(index, date));
-    const orderDates = dp.sortDates(datesIndex);
+    const datesIndex = dates.map((date, index) => datePickerUtils.buildDatesArray(index, date));
+    const orderDates = datePickerUtils.sortDates(datesIndex);
     let elements = '';
 
     orderDates.forEach(date => {
       elements += `<div id="add-another-list-items-${date.index}">
            <dd class="add-another-list-item">
-             <span data-index="items-${date.index}">${dp.formatDateForDisplay(date.value)}</span>
+             <span data-index="items-${date.index}">${datePickerUtils.formatDateForDisplay(date.value)}</span>
            </dd>
            <dd class="add-another-list-controls">
               <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
@@ -123,88 +97,32 @@ const dp = {
       url: `/dates-cant-attend/item-${index}`,
       data: body,
       success: () => {
-        dp.displayDateList(dates);
+        datePicker.displayDateList(dates);
       }
     });
   },
 
   removeDate: dates => {
-    const data = dp.getData();
+    const data = datePicker.getData();
     const oldDates = data.map(date => date.value);
     const newDates = dates;
     const dateToRemove = differenceWith(oldDates, newDates, isEqual).toString();
-    const index = dp.getIndexFromDate(data, dateToRemove);
+    const index = datePickerUtils.getIndexFromDate(data, dateToRemove);
 
     $.ajax({
       type: 'GET',
       url: `/dates-cant-attend/item-${index}/delete`,
       success: () => {
-        dp.displayDateList(newDates);
+        datePicker.displayDateList(newDates);
       }
     });
   },
 
-  getIndexFromDate: (data, date) => find(data, { value: new Date(date) }).index,
-
-  getIndexOfDate: element => $(element).data('index').split('-').pop(),
-
-  getValueOfDate: element => new Date($(element).text()),
-
-  buildDatesArray: (index, value) => {
-    return {
-      index,
-      value
-    };
-  },
-
   getData: () => {
     const list = $('.add-another-list .add-another-list-item > span').toArray();
-    return list.map(item => dp.buildDatesArray(dp.getIndexOfDate(item), dp.getValueOfDate(item)));
-  },
-
-  formatDateForDisplay: d => {
-    const date = moment(new Date(d));
-    return date.format('dddd D MMMM YYYY');
-  },
-
-  isDateAdded: newDateList => {
-    const currentDateList = dp.getData();
-    return newDateList.length > currentDateList.length;
-  },
-
-  isDateRemoved: newDateList => {
-    const currentDateList = dp.getData();
-    return currentDateList.length > newDateList.length;
-  },
-
-  access: () => {
-
-    $('.prev').attr('role', 'button').attr('aria-pressed', 'false').attr('aria-labelledby', 'datepicker-bn-prev-label');
-    const prevLabel = '<div id="datepicker-bn-prev-label" class="datepicker-bn-prev-label offscreen">Go to previous month</div>';
-    dp.selector().append(prevLabel);
-
-    $('.next').attr('role', 'button').attr('aria-pressed', 'false').attr('aria-labelledby', 'datepicker-bn-next-label');
-    const nextLabel = '<div id="datepicker-bn-next-label" class="datepicker-bn-next-label offscreen">Go to next month</div>';
-    dp.selector().append(nextLabel);
-
-
-    $('tbody tr td').attr('tabindex', '0').attr('role', 'button').attr('aria-selected', 'false');
-
-    // $('tbody tr td').keydown(e => {
-    //   if (e.keyCode === 9) {
-    //     e.preventDefault();
-    //     const currentCell = e.currentTarget;
-    //     console.log($(currentCell).next('td').text());
-    //     $(currentCell).next('td').focus();
-    //   }
-    // });
-
-
-
-
-
+    return list.map(item => datePickerUtils.buildDatesArray(datePickerUtils.getIndexOfDate(item), datePickerUtils.getValueOfDate(item)));
   }
 
 };
 
-module.exports = dp;
+module.exports = datePicker;

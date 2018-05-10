@@ -9,7 +9,7 @@ exports.config = {
       url: config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
-      show: false,
+      show: true,
       windowSize: ' 800x1000',
       switches: {
         'ignore-certificate-errors': true
