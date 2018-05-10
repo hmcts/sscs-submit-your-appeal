@@ -8,8 +8,19 @@ const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const content = require('steps/hearing/dates-cant-attend/content.en');
 const paths = require('paths');
+const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 
 class DatesCantAttend extends AddAnother {
+  constructor(...args) {
+    super(...args);
+    this.loadBankHolidayDates();
+  }
+
+  loadBankHolidayDates() {
+    this.ukBankHolidays = new UKBankHolidays(['england-and-wales']);
+    this.ukBankHolidays.load();
+  }
+
   static get path() {
     return paths.hearing.datesCantAttend;
   }
@@ -21,8 +32,13 @@ class DatesCantAttend extends AddAnother {
     return false;
   }
 
+  get middleware() {
+    return [...super.middleware];
+  }
+
   get field() {
     const fields = this.content.fields;
+
     return convert(
       d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
       date.required({
@@ -43,6 +59,9 @@ class DatesCantAttend extends AddAnother {
     ).check(
       fields.cantAttendDate.error.weekend,
       value => !DateUtils.isDateOnTheWeekend(value)
+    ).check(
+      fields.cantAttendDate.error.bankHoliday,
+      value => !this.ukBankHolidays.isDateABankHoliday(value)
     );
   }
 
@@ -63,6 +82,7 @@ class DatesCantAttend extends AddAnother {
 
   values() {
     const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+
     if (datesCantAttend.length === 0) {
       return {};
     }
