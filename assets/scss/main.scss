@@ -240,6 +240,8 @@ label.form-label[for="signer"] {
             padding: 0;
             vertical-align: top;
             text-align: left;
+            width: 100%;
+            display: table-cell;
 
             &.active {
               background-color: #76B2D2;
