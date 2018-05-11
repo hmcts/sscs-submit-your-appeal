@@ -8,11 +8,7 @@ and Child Support tribunal.
 
 Should an appellant wish to appeal online this node.js web application allows them to do so. The application takes the
 appellant on a journey, presenting a single question per page (GDS guidelines), at the end of their journey we present 
-an appeal summary page, allowing the user to edit their answers or sign and submit. 
-
-Should the user wish to edit any part of their appeal, they may do so by jumping back to their 
-answer, editing it, then jumping forward to the summary missing out intermediate pages saving considerable time 
-especially when the edit is at the beginning of their journey.
+an appeal summary page, allowing the user to edit their answers or sign and submit.
 
 ## Dependencies
  - [Docker](https://www.docker.com/)
