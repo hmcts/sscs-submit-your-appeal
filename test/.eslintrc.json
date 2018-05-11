@@ -6,7 +6,8 @@
   },
   "extends": "@hmcts/eslint-config/test",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 2017
   },
   "rules": {
     "object-curly-newline": ["error", {
