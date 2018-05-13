@@ -10,7 +10,7 @@ exports.config = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
-      windowSize: ' 1000x1000',
+      windowSize: '1000x1000',
       ignoreHTTPSErrors: true
     },
     MyHelper: {
