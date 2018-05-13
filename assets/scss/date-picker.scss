@@ -1,5 +1,3 @@
-$border: 1px solid $grey-3;
-
 #date-picker {
 
   .datepicker-inline {
@@ -11,7 +9,12 @@ $border: 1px solid $grey-3;
 
       thead {
         tr {
-          .prev, .next, .datepicker-switch {
+          .prev, .next {
+            background-color: $grey-2;
+            border-radius: 0;
+          }
+
+          .datepicker-switch {
             background-color: $grey-2;
             border-radius: 0;
           }
@@ -20,12 +23,19 @@ $border: 1px solid $grey-3;
 
       tbody {
         tr {
-          &:first-child, &:last-child{
+          &:first-child {
             border-top: 2px solid $grey-1;
+          }
+          &:last-child {
+            border-bottom: 2px solid $grey-1;
           }
           td {
             color: black;
             border-radius: 0;
+            &:not(.disabled) {
+              border-left: 1px solid $grey-3;
+              border-top: 1px solid $grey-3;
+            }
             font-weight: 600;
             height: 57px;
             padding: 0;
@@ -34,20 +44,15 @@ $border: 1px solid $grey-3;
             width: 100%;
             display: table-cell;
 
-            &:not(.disabled) {
-              border-left: $border;
-              border-top: $border;
-            }
-
             &.active {
               background-color: #76B2D2;
             }
 
             &.day:hover, &.day.focused {
-              &:not(.disabled) {
-                background-color: #BBD9E9;
+                &:not(.disabled) {
+                  background-color: #BBD9E9;
+                }
               }
-            }
 
             &.disabled {
               background: url("../images/date-disabled.png");
@@ -59,7 +64,7 @@ $border: 1px solid $grey-3;
             }
 
             &:last-child {
-              border-right: $border;
+              border-right: 1px solid $grey-3;
             }
 
             .first-of-month {

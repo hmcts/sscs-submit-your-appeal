@@ -30,7 +30,7 @@ const datePicker = {
   buildDatePicker: datesDisabled => {
     datePicker.selector().datepicker({
       multidate: true,
-      daysOfWeekDisabled: '0',
+      daysOfWeekDisabled: '06',
       defaultViewDate: moment().add(four, 'weeks').format('MM-D-YYYY'),
       startDate: '+4w',
       endDate: '+22w',
