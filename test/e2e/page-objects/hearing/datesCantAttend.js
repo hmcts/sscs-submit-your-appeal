@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const assert = require('assert');
 const moment = require('moment');
 
@@ -23,41 +24,43 @@ function dontSeeFormattedDate(date) {
   I.dontSee(date.format('dddd D MMMM YYYY'));
 }
 
-function* hasSelectedClass(element) {
+async function hasSelectedClass(element) {
   const I = this;
 
-  const classes = yield I.grabAttributeFrom(element, 'class');
+  const classes = await I.grabAttributeFrom(element, 'class');
   const hasClass = classes.includes('active');
   assert.equal(hasClass, true);
 }
 
-function* doesntHaveSelectedClass(element) {
+async function doesntHaveSelectedClass(element) {
   const I = this;
 
-  const classes = yield I.grabAttributeFrom(element, 'class');
+  const classes = await I.grabAttributeFrom(element, 'class');
   const hasClass = classes.includes('active');
   assert.equal(hasClass, false);
 }
 
-function* selectDates(dates) {
+async function selectDates(dates) {
   const I = this;
 
-   for (let date of dates) {
-     const element = `//*[@data-date="${date}"]`;
-     I.click(element);
-     I.seeFormattedDate(moment(date));
-     yield * I.hasSelectedClass(element);
-   }
+  I.waitForElement('#date-picker table', 10);
+  for (const date of dates) {
+    const element = `//*[@data-date="${date}"]`;
+    I.click(element);
+    I.seeFormattedDate(moment(date));
+    await I.hasSelectedClass(element);
+  }
 }
 
-function* deselectDates(dates) {
+async function deselectDates(dates) {
   const I = this;
 
-  for (let date of dates) {
+  I.waitForElement('#date-picker table', 10);
+  for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     I.click(element);
     I.dontSeeFormattedDate(moment(date));
-    yield * I.doesntHaveSelectedClass(element);
+    await I.doesntHaveSelectedClass(element);
   }
 }
 

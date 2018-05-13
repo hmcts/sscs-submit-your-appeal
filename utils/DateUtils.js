@@ -99,6 +99,10 @@ class DateUtils {
     }
     return monthValue;
   }
+
+  static getDateInMilliseconds(mDate) {
+    return mDate.add(1, 'hour').valueOf();
+  }
 }
 
 module.exports = DateUtils;
