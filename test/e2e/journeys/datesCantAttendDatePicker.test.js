@@ -22,7 +22,7 @@ After(I => {
 
 Scenario('Selects date of when they cannot attend the hearing', async I => {
   const randomWeekDay = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
   );
 
   I.enterDetailsFromStartToNINO();
@@ -36,10 +36,10 @@ Scenario('Selects date of when they cannot attend the hearing', async I => {
 
 Scenario('Selects a date when they cannot attend the hearing, then edits the date', async I => {
   const randomWeekDayIn5Weeks = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
   );
   const randomWeekDayIn6Weeks = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(6, 'weeks'))
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(6, 'weeks'))
   );
 
   I.enterDetailsFromStartToNINO();
