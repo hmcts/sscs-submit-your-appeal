@@ -3,7 +3,7 @@
 import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
 import moment from 'moment/moment';
-import { differenceWith, find, flatten, head, includes, indexOf, isEqual, last } from 'lodash';
+import { differenceWith, indexOf, isEqual, last } from 'lodash';
 import datePickerUtils from './date-picker-utils';
 const four = 4;
 
