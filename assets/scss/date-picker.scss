@@ -79,3 +79,19 @@
     }
   }
 }
+
+@media (max-width: 480px) {
+  #date-picker {
+    table {
+      width: 140%;
+    }
+  }
+}
+
+@media (min-width: 641px) and (max-width: 750px) {
+  #date-picker {
+    table {
+      width: 120%;
+    }
+  }
+}
