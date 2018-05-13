@@ -9,7 +9,7 @@ const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
 
-Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend');
+Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker');
 
 Before(I => {
   I.createTheSession();
@@ -20,34 +20,41 @@ After(I => {
   I.endTheSession();
 });
 
-xScenario('Provides date of when they cannot attend the hearing', I => {
-  const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+Scenario('Selects date of when they cannot attend the hearing', async I => {
+  const randomWeekDay = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
+  );
 
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToSendingEvidence();
-  I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
   I.confirmDetailsArePresent();
-  I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.see(moment(randomWeekDay).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 });
 
-xScenario('Provides a single date when they cannot attend the hearing, then edits the date', I => {
-  const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-  const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
+Scenario('Selects a date when they cannot attend the hearing, then edits the date', async I => {
+  const randomWeekDayIn5Weeks = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
+  );
+  const randomWeekDayIn6Weeks = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(6, 'weeks'))
+  );
 
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToSendingEvidence();
-  I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDayIn5Weeks);
-  I.see(randomWeekDayIn5Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDayIn5Weeks);
+  I.see(moment(randomWeekDayIn5Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
-  // Now edit the single date from 10 to 11 weeks.
+  // Now edit the single date from 5 to 6 weeks.
   I.click('Change', datesYouCantAttendHearingChange);
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click('Continue');
-  I.enterDateCantAttendAndContinue(randomWeekDayIn6Weeks, 'Edit');
+  await I.deselectDates([randomWeekDayIn5Weeks]);
+  await I.selectDates([randomWeekDayIn6Weeks]);
   I.click('Continue');
-  I.see(randomWeekDayIn6Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.see(moment(randomWeekDayIn6Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 });

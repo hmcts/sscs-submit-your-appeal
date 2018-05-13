@@ -66,12 +66,14 @@ const datePicker = {
 
     orderDates.forEach(date => {
       elements += `<div id="add-another-list-items-${date.index}">
-           <dd class="add-another-list-item">
-             <span data-index="items-${date.index}">${datePickerUtils.formatDateForDisplay(date.value)}</span>
-           </dd>
-           <dd class="add-another-list-controls">
-              <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
-          </dd>
+        <dd class="add-another-list-item">
+          <span data-index="items-${date.index}">
+            ${datePickerUtils.formatDateForDisplay(date.value)}
+          </span>
+        </dd>
+        <dd class="add-another-list-controls">
+          <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
+        </dd>
        </div>`;
     });
     if (elements === '') {
@@ -120,7 +122,10 @@ const datePicker = {
 
   getData: () => {
     const list = $('.add-another-list .add-another-list-item > span').toArray();
-    return list.map(item => datePickerUtils.buildDatesArray(datePickerUtils.getIndexOfDate(item), datePickerUtils.getValueOfDate(item)));
+    return list.map(item => datePickerUtils.buildDatesArray(
+      datePickerUtils.getIndexOfDate(item),
+      datePickerUtils.getValueOfDate(item)
+    ));
   }
 
 };

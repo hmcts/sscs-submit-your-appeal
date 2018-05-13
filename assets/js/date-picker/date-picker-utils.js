@@ -4,7 +4,7 @@ const { find } = require('lodash');
 
 const datePickerUtils = {
 
-  getIndexFromDate: (data, date) => find(data, { value: new Date(date) }).index,
+  getIndexFromDate: (dateList, date) => find(dateList, { value: new Date(date) }).index,
 
   getIndexOfDate: element => $(element).data('index').split('-').pop(),
 

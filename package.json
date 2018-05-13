@@ -13,8 +13,8 @@
     "test": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint .",
-    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @smoke --steps ",
-    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @smoke --invert --steps",
+    "test:smoke": "cross-env NODE_PATH=. process.env.NODE_ENV=test codeceptjs run -c test/e2e/ --grep @smoke --steps",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test DISPLAY_DATE_PICKER=false codeceptjs run -c test/e2e/ --grep '@smoke' --invert --steps",
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
     "test:nsp": "nsp check",
     "test:a11y": "echo 'a11y tests not implemented'",
@@ -41,6 +41,7 @@
     "moment": "^2.18.1",
     "nsp": "^3.1.0",
     "proxyquire": "^2.0.1",
+    "puppeteer": "^1.4.0",
     "superagent": "^3.8.2"
   },
   "devDependencies": {
