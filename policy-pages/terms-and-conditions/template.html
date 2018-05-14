@@ -10,8 +10,10 @@
     {% endset %}
 
     <h1 class="heading-large">{{ title }}</h1>
-    <p>{{ termsAndConditions.termsOfUse }}</p>
-    <p>{{ termsAndConditions.govPrivacy | safe }}</p>
+    <p>
+        {{ termsAndConditions.termsOfUse }}
+        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+    </p>
 
     <h2 class="heading-medium">{{ whoWeAre.title }}</h2>
     <p>{{ whoWeAre.managedBy }}</p>
@@ -22,58 +24,73 @@
     <p>{{ informationProvided.questions }}</p>
 
     <h2 class="heading-medium">{{ dataStored.title }}</h2>
-    <p>{{ dataStored.dataCentres }}</p>
-    <p>{{ dataStored.notify }}</p>
+    <p>
+        {{ dataStored.our }}
+        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+        {{ dataStored.privacy }}
+    </p>
+    <p>
+        {{ dataStored.our }}
+        <a href="/cookie-policy">{{ termsAndConditions.links.cookie.name }}</a>
+        {{ dataStored.cookie }}
+    </p>
 
-    <h2 class="heading-medium">{{ shareYourData.title }}</h2>
-    <p>{{ shareYourData.dwp }}</p>
-    <p>{{ shareYourData.representative }}</p>
-
-    <h2 class="heading-medium">{{ applicableLaw.title }}</h2>
-    <p>{{ applicableLaw.law }}</p>
+    <h2 class="heading-medium">{{ laws.title }}</h2>
+    <p>{{ laws.use }}</p>
     <ul class="list list-bullet">
-        <li>{{ applicableLaw.misuse }}</li>
-        <li>{{ applicableLaw.data }}</li>
-        <li>{{ applicableLaw.mental }}</li>
+        {% for act in laws.acts %}
+            <li>{{ act }}</li>
+        {% endfor %}
     </ul>
 
     <h2 class="heading-medium">{{ responsibleUse.title }}</h2>
-    <p>{{ responsibleUse.designedFor }}</p>
-    <p>{{ responsibleUse.risks }}</p>
+    <p>{{ responsibleUse.aware }}</p>
     <p>{{ responsibleUse.precautions }}</p>
     <ul class="list list-bullet">
-        <li>{{ responsibleUse.viruses }}</li>
-        <li>{{ responsibleUse.malicious }}</li>
-        <li>{{ responsibleUse.interference }}</li>
+        {% for risk in responsibleUse.risks %}
+            <li>{{ risk }}</li>
+        {% endfor %}
     </ul>
     <p>{{ responsibleUse.mustNot }}</p>
-    <p>{{ responsibleUse.freeText }}</p>
 
-    <h2 class="heading-medium">{{ changes.title }}</h2>
-    <p>{{ changes.check }}</p>
-    <p>{{ changes.agree }}</p>
+    <h2 class="heading-medium">{{ sensitiveInfo.title }}</h2>
+    <p>{{ sensitiveInfo.freeText }}</p>
+    <p>{{ sensitiveInfo.enter }}</p>
+    <ul class="list list-bullet">
+        {% for info in sensitiveInfo.infoList %}
+        <li>{{ info }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ sensitiveInfo.consent }}</p>
+    <p>{{ sensitiveInfo.moreInfo }}</p>
 
-    <h2 class="heading-medium">{{ contactUs.title }}</h2>
-    <p class="contact-us">
-        {{ contactUs.EnglandAndWales.text }}<br/>
-        {{ contactUs.EnglandAndWales.phone }}<br/>
-        {{ contactUs.EnglandAndWales.open }}
-    </p>
-    <p class="contact-us">
-        {{ contactUs.Scotland.text }}<br/>
-        {{ contactUs.Scotland.phone }}<br/>
-        {{ contactUs.Scotland.open }}
-    </p>
+    <h2 class="heading-medium">{{ disclaimer.title }}</h2>
+    <p>{{ disclaimer.upToDate }}</p>
+    <ul class="list list-bullet">
+        {% for condition in disclaimer.conditions %}
+        <li>{{ condition }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ disclaimer.publish }}</p>
+    <p>{{ disclaimer.loss }}</p>
+    <ul class="list list-bullet">
+        {% for damage in disclaimer.damages %}
+        <li>{{ damage }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ disclaimer.applies }}</p>
+    <p>{{ disclaimer.includes }}</p>
+    <ul class="list list-bullet">
+        {% for loss in disclaimer.losses %}
+        <li>{{ loss }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ disclaimer.liable }}</p>
+    <ul class="list list-bullet">
+        {% for liability in disclaimer.liabilities %}
+        <li>{{ liability }}</li>
+        {% endfor %}
+    </ul>
+    <p><a href="/contact-us">{{ termsAndConditions.links.contact.name }}</a>{{ disclaimer.furtherInfo }}</p>
+
 {%- endblock %}
-
-{% block one_third %}
-    <aside class="govuk-related-items">
-        <h2 class="heading-medium">{{ relatedLinks.title }}</h2>
-        <nav role="navigation"></nav>
-        <ul class="font-xsmall">
-            <li><a href="{{relatedLinks.cookie.url}}">{{ relatedLinks.cookie.text }}</a></li>
-            <li><a href="{{relatedLinks.privacy.url}}">{{ relatedLinks.privacy.text }}</a></li>
-            <li><a href="{{relatedLinks.conditions.url}}">{{ relatedLinks.conditions.text }}</a></li>
-        </ul>
-    </aside>
- {%- endblock %}

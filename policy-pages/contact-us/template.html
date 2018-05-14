@@ -1,0 +1,28 @@
+{% extends "components/globals.html" %}
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block page_title %}{{ titleHead }}{% endblock %}
+
+{% set title = cookies.title %}
+
+{% block two_thirds %}
+
+    <h1 class="heading-large">{{ contact.title }}</h1>
+    <p>{{ contact.description }}</p>
+
+    <h2 class="heading-medium">{{ englandAndWales.title }}</h2>
+    <p>
+        {{ englandAndWales.phone }}<br/>
+        {{ englandAndWales.days }}<br/>
+        <a href="https://www.gov.uk/call-charges">{{ englandAndWales.callCharge }}</a>
+    </p>
+
+    <h2 class="heading-medium">{{ scotland.title }}</h2>
+    <p>
+        {{ scotland.phone }}<br/>
+        {{ scotland.days }}<br/>
+        <a href="https://www.gov.uk/call-charges">{{ scotland.callCharge }}</a>
+    </p>
+
+{% endblock %}
