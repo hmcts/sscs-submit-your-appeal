@@ -4,7 +4,7 @@ const Helper = codecept_helper;
 
 class MyHelper extends Helper {
   async createSessionWithJsOff() {
-    const browser = this.helpers.puppeteer.browser;
+    const browser = this.helpers.Puppeteer.browser;
     const page = await browser.newPage();
     await page.setJavaScriptEnabled(false);
     await page.goto(`${this.config.url}/entry`);
@@ -12,7 +12,7 @@ class MyHelper extends Helper {
   }
 
   async endTheSessionWithJsOff() {
-    const browser = this.helpers.puppeteer.browser;
+    const browser = this.helpers.Puppeteer.browser;
     const currentPage = await this.getCurrentPage();
     await currentPage.close();
     await browser.close();
@@ -52,7 +52,7 @@ class MyHelper extends Helper {
   }
 
   async getCurrentPage() {
-    const browser = this.helpers.puppeteer.browser;
+    const browser = this.helpers.Puppeteer.browser;
     const currentPages = await browser.pages();
     return currentPages.find(page => page.url().includes(this.config.url));
   }

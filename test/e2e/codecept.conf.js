@@ -5,7 +5,7 @@ exports.config = {
   output: './output',
   timeout: 1000,
   helpers: {
-    puppeteer: {
+    Puppeteer: {
       url: config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
