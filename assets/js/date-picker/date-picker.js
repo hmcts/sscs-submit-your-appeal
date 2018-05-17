@@ -85,15 +85,14 @@ const datePicker = {
   },
 
   postDate: dates => {
-    const lastestDateAdded = last(dates);
-    const mDate = moment(lastestDateAdded);
+    const latestDateAdded = last(dates);
+    const mDate = moment(latestDateAdded);
     const body = {
       'item.day': mDate.date().toString(),
       'item.month': (mDate.month() + 1).toString(),
       'item.year': mDate.year().toString()
     };
-    const index = indexOf(dates, lastestDateAdded);
-
+    const index = indexOf(dates, latestDateAdded);
     $.ajax({
       type: 'POST',
       url: `/dates-cant-attend/item-${index}`,

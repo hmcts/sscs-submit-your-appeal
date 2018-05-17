@@ -66,11 +66,12 @@ class DatesCantAttend extends AddAnother {
   }
 
   answers() {
+    const orderedItems = DateUtils.sortDates(this.fields.items.value);
     return [
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: this.fields.items.value.map(d => d.format('DD MMMM YYYY')),
+        answer: orderedItems.map(d => d.format('DD MMMM YYYY')),
         url: paths.hearing.hearingAvailability
       })
     ];
