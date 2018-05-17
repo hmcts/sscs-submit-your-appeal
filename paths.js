@@ -24,6 +24,7 @@ module.exports = {
     createSession: '/create-session',
     entry: '/entry',
     exit: '/exit',
+    timeout: '/session-timeout',
     sessions: '/sessions'
   },
 
