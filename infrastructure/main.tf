@@ -18,7 +18,7 @@ locals {
 }
 
 module "submit-your-appeal-frontend" {
-  source               = "git@github.com:contino/moj-module-webapp?ref=master"
+  source               = "git@github.com:hmcts/moj-module-webapp.git?ref=RPE-389/local-cache"
   product              = "${var.product}-${var.component}"
   location             = "${var.location}"
   env                  = "${var.env}"
