@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const SessionTimeout = require('steps/exit/session-timeout/SessionTimeout');
+const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
 const paths = require('paths');
 
 describe('SessionTimeout.js', () => {
