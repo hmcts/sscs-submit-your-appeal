@@ -17,7 +17,7 @@ Feature('Full Journey');
 Scenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
   async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(
-      DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
+      DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
     );
 
     I.amOnPage(paths.landingPages.startAnAppeal);
