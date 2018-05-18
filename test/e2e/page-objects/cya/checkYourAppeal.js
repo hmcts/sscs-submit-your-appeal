@@ -6,6 +6,7 @@ const theHearing = require('steps/hearing/the-hearing/content.en');
 const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
 const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -54,7 +55,8 @@ async function enterDetailsFromAttendingTheHearingToEnd(date) {
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue();
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
-  await I.enterDateCantAttendWithoutJs(date, '.add-another-add-link');
+  await I.turnOffJsAndReloadThePage();
+  I.enterDateCantAttendAndContinue(date, datesCantAttend.links.add);
   I.click('Continue');
 }
 
