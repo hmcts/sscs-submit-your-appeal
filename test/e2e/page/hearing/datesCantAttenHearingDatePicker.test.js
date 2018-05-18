@@ -3,13 +3,13 @@ const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
 
 const dateFiveWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(5, 'weeks'))
+  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
 );
 const dateSixWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(6, 'weeks'))
+  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(6, 'weeks'))
 );
 const dateSevenWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().startOf('day').add(7, 'weeks'))
+  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(7, 'weeks'))
 );
 
 Feature('Dates can\'t attend date picker');
@@ -56,7 +56,9 @@ Scenario('When I select a date and then click remove, the date is removed and de
   });
 
 Scenario('When I select a disabled date, I don\'t see it in the table', async I => {
-  const date = DateUtils.getDateInMilliseconds(moment().add(5, 'weeks').day(0).startOf('day'));
+  const date = DateUtils.getDateInMilliseconds(
+    moment().utc().add(5, 'weeks').day(0).startOf('day')
+  );
   const element = `//*[@data-date="${date}"]`;
   I.click(element);
   I.dontSeeFormattedDate(moment(date));

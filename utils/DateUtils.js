@@ -101,7 +101,7 @@ class DateUtils {
   }
 
   static getDateInMilliseconds(mDate) {
-    return mDate.add(1, 'hour').valueOf();
+    return mDate.valueOf();
   }
 
   static sortDates(dates) {
