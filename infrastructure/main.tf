@@ -34,9 +34,9 @@ module "submit-your-appeal-frontend" {
     REDIS_URL                    = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     SESSION_SECRET               = "${module.redis-cache.access_key}"
     NODE_ENV                     = "${var.node_environment}"
-    HTTP_PROTOCOL                = "${var.env != "preview" ? "https" : "http"}"
+    HTTP_PROTOCOL                = "${(var.env != "preview" || var.env != "saat") ? "https" : "http"}"
     WEBSITE_NODE_DEFAULT_VERSION = "8.9.4"
-    EXTERNAL_HOSTNAME            = "${var.env != "preview" ? var.sya_hostname : "${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
+    EXTERNAL_HOSTNAME            = "${(var.env != "preview" || var.env != "saat") ? var.sya_hostname : "${var.deployment_namespace}-sscs-tribunals-frontend-${var.env}.service.${local.aseName}.internal"}"
     HPKP_SHA256                  = "${data.vault_generic_secret.hpkp_sya_sha_1.data["value"]}"
     HPKP_SHA256_BACKUP           = "${data.vault_generic_secret.hpkp_sya_sha_2.data["value"]}"
   }
