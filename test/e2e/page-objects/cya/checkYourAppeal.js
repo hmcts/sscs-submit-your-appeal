@@ -5,8 +5,8 @@ const representative = require('steps/representative/representative/content.en')
 const theHearing = require('steps/hearing/the-hearing/content.en');
 const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
-const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -48,14 +48,26 @@ function enterDetailsFromNoRepresentativeToEnd() {
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
 }
 
-function enterDetailsFromAttendingTheHearingToEnd(date) {
+async function enterDetailsFromAttendingTheHearingToEnd(date) {
   const I = this;
 
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue();
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  await I.turnOffJsAndReloadThePage();
   I.enterDateCantAttendAndContinue(date, datesCantAttend.links.add);
+  I.click('Continue');
+}
+
+async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
+  const I = this;
+
+  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
+  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
+  I.checkAllArrangementsAndContinue();
+  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  await I.selectDates([date]);
   I.click('Continue');
 }
 
@@ -130,6 +142,7 @@ module.exports = {
   enterDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToSendingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
+  enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
   enterDetailsFromAttendingTheHearingWithSupportToEnd

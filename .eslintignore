@@ -1,3 +1,4 @@
 node_modules/
 test/e2e/page-objects/steps.js
 test/unit/coverage/
+assets/js/date-picker/bootstrap-datepicker1.8.0.min.js
