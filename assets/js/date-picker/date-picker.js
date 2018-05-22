@@ -26,7 +26,85 @@ const datePicker = {
       }
     });
   },
-
+  hijackTabIndex: () => {
+    const prevTb = 1;
+    const switchTb = 2;
+    const nextTb = 3;
+    const dowTb = 4;
+    const dTb = 11;
+    /* eslint-disable no-invalid-this */
+    $('.prev').attr('tabindex', prevTb);
+    $('.datepicker-switch').attr('tabindex', switchTb);
+    $('.next').attr('tabindex', nextTb);
+    $('.dow').each(function tabIndexOnWeekDays(index) {
+      $(this).attr('tabindex', dowTb + index);
+    });
+    $('.day:not(".disabled")').each(function addTabIndex(index) {
+      $(this).attr('tabindex', dTb + index);
+    });
+    /* eslint-enable no-invalid-this */
+  },
+  addAriaAttributes: () => {
+    /* eslint-disable no-invalid-this */
+    $('.dow').each(function tabIndexOnWeekDays(index) {
+      const content = $(this).text();
+      $(this).html(`<div aria-label="${[
+        'Monday', 'Tuesday',
+        'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+      ][index]}">${content}</div>`);
+    });
+    $('.day:not(".disabled")').each(function addAriaRole() {
+      const attrib = parseInt($(this).attr('data-date'), 10);
+      const content = $(this).text();
+      $(this).attr('aria-role', 'button');
+      $(this).attr('aria-pressed', $(this).hasClass('active') ? 'true' : 'false');
+      $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
+      ${$(this).hasClass('active') ? ' selected' : ''}">${content}</div>`);
+    });
+    /* eslint-enable no-invalid-this */
+  },
+  addAccessibilityFeatures: () => {
+    datePicker.hijackTabIndex();
+    datePicker.addAriaAttributes();
+  },
+  enableKeyActions: () => {
+    const enterKey = 13;
+    const leftArrowKey = 37;
+    const upArrowKey = 38;
+    const rightArrowKey = 39;
+    const downArrowKey = 40;
+    /* eslint-disable consistent-return */
+    datePicker.selector().on('keydown', event => {
+      const index = $(document.activeElement)
+        .closest('tr').children().index($(document.activeElement));
+      switch (event.keyCode) {
+      case enterKey:
+        // Why this? Because the synthetic event triggered by
+        // datePicker.selector().datepicker('setDate',
+        // document.activeElement.getAttribute('data-date'));
+        // doesn't contain the same set of information contained in the dom-generated event.
+        $(document.activeElement).trigger('click');
+        break;
+      case leftArrowKey:
+        $(document.activeElement).prev('td').focus();
+        break;
+      case rightArrowKey:
+        $(document.activeElement).next('td').focus();
+        break;
+      case upArrowKey:
+        event.preventDefault();
+        $(document.activeElement).closest('tr').prev().find(`td:eq(${index})`).focus();
+        break;
+      case downArrowKey:
+        event.preventDefault();
+        $(document.activeElement).closest('tr').next().find(`td:eq(${index})`).focus();
+        break;
+      default:
+        return true;
+      }
+    });
+    /* eslint-enable consistent-return */
+  },
   buildDatePicker: datesDisabled => {
     datePicker.selector().datepicker({
       multidate: true,
@@ -38,25 +116,26 @@ const datePicker = {
       maxViewMode: 0,
       datesDisabled,
       beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
-    }).on('changeDate', event => {
-      datePicker.changeDateHandler(event);
-    });
+    }).on('changeDate', event => datePicker.changeDateHandler(event));
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
+    datePicker.selector().off('keydown');
+    datePicker.enableKeyActions();
+    window.setTimeout(datePicker.addAccessibilityFeatures, 0);
   },
 
   selector: () => $('#date-picker'),
 
   changeDateHandler: event => {
     const dates = event.dates;
+    datePicker.addAccessibilityFeatures();
     const currentDates = datePicker.getData();
     if (datePickerUtils.isDateAdded(currentDates, dates)) {
-      datePicker.postDate(dates);
+      return datePicker.postDate(dates);
     } else if (datePickerUtils.isDateRemoved(currentDates, dates)) {
-      datePicker.removeDate(dates);
-    } else {
-      datePicker.displayDateList(dates);
+      return datePicker.removeDate(dates);
     }
+    return datePicker.displayDateList(dates);
   },
 
   displayDateList: dates => {
@@ -77,7 +156,8 @@ const datePicker = {
        </div>`;
     });
     if (elements === '') {
-      const noItems = '<div><dd class="add-another-list-item">No dates added yet</dd></div>';
+      const noItems = `<dt class="add-another-list-item">
+                    <div>No dates added yet</div></dt><dd></dd>`;
       $('.add-another-list').empty().append(noItems);
     } else {
       $('.add-another-list').empty().append(elements);
@@ -85,21 +165,20 @@ const datePicker = {
   },
 
   postDate: dates => {
-    const latestDateAdded = last(dates);
-    const mDate = moment(latestDateAdded);
+    const lastestDateAdded = last(dates);
+    const mDate = moment(lastestDateAdded);
     const body = {
       'item.day': mDate.date().toString(),
       'item.month': (mDate.month() + 1).toString(),
       'item.year': mDate.year().toString()
     };
-    const index = indexOf(dates, latestDateAdded);
-    $.ajax({
+    const index = indexOf(dates, lastestDateAdded);
+
+    return $.ajax({
       type: 'POST',
       url: `/dates-cant-attend/item-${index}`,
       data: body,
-      success: () => {
-        datePicker.displayDateList(dates);
-      }
+      success: () => datePicker.displayDateList(dates)
     });
   },
 
@@ -110,12 +189,10 @@ const datePicker = {
     const dateToRemove = differenceWith(oldDates, newDates, isEqual).toString();
     const index = datePickerUtils.getIndexFromDate(data, dateToRemove);
 
-    $.ajax({
+    return $.ajax({
       type: 'GET',
       url: `/dates-cant-attend/item-${index}/delete`,
-      success: () => {
-        datePicker.displayDateList(newDates);
-      }
+      success: () => datePicker.displayDateList(newDates)
     });
   },
 
