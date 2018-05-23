@@ -52,7 +52,7 @@ app.use(helmet.contentSecurityPolicy({
       'www.google-analytics.com',
       'www.googletagmanager.com'
     ],
-    connectSrc: ['\'self\''],
+    connectSrc: ['\'self\'', 'www.gov.uk'],
     mediaSrc: ['\'self\''],
     frameSrc: ['\'none\''],
     imgSrc: [
