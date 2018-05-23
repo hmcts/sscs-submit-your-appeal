@@ -57,9 +57,9 @@ const datePicker = {
       const attrib = parseInt($(this).attr('data-date'), 10);
       const content = $(this).text();
       $(this).attr('aria-role', 'button');
-      $(this).attr('aria-pressed', $(this).hasClass('active') ? 'true' : 'false');
+      $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
       $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
-      ${$(this).hasClass('active') ? ' selected' : ''}">${content}</div>`);
+      ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
     });
     /* eslint-enable no-invalid-this */
   },
@@ -126,13 +126,27 @@ const datePicker = {
 
   selector: () => $('#date-picker'),
 
+  updateAriaAttributesOnSelect: (cell, select) => {
+    window.setTimeout(() => {
+      cell.attr('aria-selected', select ? 'true' : 'false');
+      cell.focus();
+    }, 0);
+  },
+
   changeDateHandler: event => {
     const dates = event.dates;
     datePicker.addAccessibilityFeatures();
     const currentDates = datePicker.getData();
-    if (datePickerUtils.isDateAdded(currentDates, dates)) {
+    const added = datePickerUtils.isDateAdded(currentDates, dates);
+    const removed = datePickerUtils.isDateRemoved(currentDates, dates);
+    if (added) {
+      const selected = datePickerUtils.findCellByTimestamp(last(dates));
+      datePicker.updateAriaAttributesOnSelect(selected, true);
       return datePicker.postDate(dates);
-    } else if (datePickerUtils.isDateRemoved(currentDates, dates)) {
+    } else if (removed) {
+      const deselected = differenceWith(currentDates.map(value => value.value), dates, isEqual);
+      const deselectedCell = datePickerUtils.findCellByTimestamp(deselected[0]);
+      datePicker.updateAriaAttributesOnSelect(deselectedCell, false);
       return datePicker.removeDate(dates);
     }
     return datePicker.displayDateList(dates);
