@@ -13,6 +13,13 @@
     <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
 {% endblock %}
 
+{% block full_width %}
+{{ super() }}
+    <div>
+        {% include "../components/inactivity-alert.html" %}
+    </div>
+{% endblock %}
+
 {% block cookie_message %}
     <p>
         GOV.UK uses cookies to make the site simpler.

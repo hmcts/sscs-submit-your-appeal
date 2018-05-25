@@ -1,5 +1,7 @@
 import $ from 'jquery';
+import { frontend } from '../../config/default';
 import ShowHideContent from 'govuk/show-hide-content';
+import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import Analytics from 'govuk/analytics/analytics';
 
@@ -40,8 +42,13 @@ function initSYAAnalyticsTrack() {
   window.GOVUK.analytics.trackPageview();
 }
 
+function initTM(showAfterSeconds) {
+  const timeoutM = new InactivityAlert(showAfterSeconds);
+}
+
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initSYAAnalyticsTrack();
+  initTM(frontend.inactivityAlert);
 });
