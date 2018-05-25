@@ -49,10 +49,10 @@
       },
       "anythingElse": {
         "requested": {
-          "label": "Other"
+          "label": "Other support"
         },
         "language": {
-          "label": "Any other support you need",
+          "label": "Explain what other support you need at your appeal hearing",
           "error": {
             "required": "You need to provide some information about the support you need",
             "invalid": "You have entered a special character that is not allowed. Delete it before continuing."
