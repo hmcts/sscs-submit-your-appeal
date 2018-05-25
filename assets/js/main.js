@@ -5,6 +5,8 @@ import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import Analytics from 'govuk/analytics/analytics';
 
+let timeoutM;
+
 function initShowHideContent() {
   const showHideContent = new ShowHideContent();
   showHideContent.init();
@@ -43,7 +45,13 @@ function initSYAAnalyticsTrack() {
 }
 
 function initTM(showAfterSeconds) {
-  const timeoutM = new InactivityAlert(showAfterSeconds);
+  timeoutM = new InactivityAlert(showAfterSeconds);
+}
+
+function destroyTM() {
+  if (timeoutM) {
+    timeoutM.destroy();
+  }
 }
 
 $(document).ready(() => {
@@ -51,4 +59,8 @@ $(document).ready(() => {
   initAutocomplete();
   initSYAAnalyticsTrack();
   initTM(frontend.inactivityAlert);
+});
+
+$(window).on('unload', () => {
+  destroyTM();
 });
