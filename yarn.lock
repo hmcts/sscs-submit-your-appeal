@@ -6,9 +6,9 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
 
-"@hmcts/look-and-feel@^1.13.3":
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.13.3.tgz#c7421e44e890398cd0d6d2f741f04006e655782e"
+"@hmcts/look-and-feel@1.13.4":
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.13.4.tgz#32c30087c299a4a3757b2b2fd92e803054b6e5b3"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -53,7 +53,7 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
-"@hmcts/one-per-page@^3.3.3":
+"@hmcts/one-per-page@3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.3.3.tgz#dfc7991836405d80061cf24e1963f4d5521c1a5a"
   dependencies:
