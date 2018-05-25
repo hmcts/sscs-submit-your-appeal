@@ -17,7 +17,9 @@ module.exports = {
 
   policy: {
     cookiePolicy: '/cookie-policy',
-    termsAndConditions: '/terms-and-conditions'
+    termsAndConditions: '/terms-and-conditions',
+    privacy: '/privacy-policy',
+    contactUs: '/contact-us'
   },
 
   session: {

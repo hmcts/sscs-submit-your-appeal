@@ -46,11 +46,20 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ['\'self\''],
     fontSrc: ['\'self\' data:'],
-    scriptSrc: ['\'self\'', '\'unsafe-inline\'', 'www.google-analytics.com'],
-    connectSrc: ['\'self\''],
+    scriptSrc: [
+      '\'self\'',
+      '\'unsafe-inline\'',
+      'www.google-analytics.com',
+      'www.googletagmanager.com'
+    ],
+    connectSrc: ['\'self\'', 'www.gov.uk'],
     mediaSrc: ['\'self\''],
     frameSrc: ['\'none\''],
-    imgSrc: ['\'self\'', 'www.google-analytics.com']
+    imgSrc: [
+      '\'self\'',
+      'www.google-analytics.com',
+      'www.googletagmanager.com'
+    ]
   }
 }));
 
@@ -120,14 +129,15 @@ lookAndFeel.configure(app, {
       isArray(value) {
         return Array.isArray(value);
       },
-      timeOut: config.get('redis.timeout'),
       "inactivityTimeout": {
         "title": `${content.inactivityTimeout.title}`,
         "expiringIn": `${content.inactivityTimeout.expiringIn}`,
         "text": `${content.inactivityTimeout.text}`,
         "yes": `${content.inactivityTimeout.yes}`,
         "no": `${content.inactivityTimeout.no}`,
-      }
+      },
+      timeOut: config.get('redis.timeout'),
+      timeOutMessage: content.timeout.message
     }
   },
   development: {

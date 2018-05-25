@@ -24,5 +24,8 @@
       "title": "Sorry, we’re experiencing technical difficulties",
       "message": "Please try again in a few minutes."
     }
+  },
+  "timeout": {
+    "message": "This page will time out in 20 minutes if there is no activity. This is to protect your data."
   }
 }

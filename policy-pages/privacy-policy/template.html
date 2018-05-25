@@ -1,0 +1,165 @@
+{% extends "components/globals.html" %}
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block page_title %}{{ titleHead }}{% endblock %}
+
+{% set title = cookies.title %}
+
+{% block two_thirds %}
+
+    <h1 class="heading-large">{{ privacy.title }}</h1>
+    <p>{{ privacy.description }}</p>
+
+    <h2 class="heading-medium">{{ manages.title }}</h2>
+    <p>{{ manages.managedBy }}</p>
+    <p>
+        {{ manages.data.controller }}
+        <a href="https://www.gov.uk/government/organisations/ministry-of-justice/about/personal-information-charter">{{ manages.data.link }}</a>
+        {{ manages.data.process }}
+    </p>
+
+    <p>{{ manages.responsible }}</p>
+    <p>
+        {{ manages.moreInfo.service }}
+        <a href="/terms-and-conditions">{{ manages.moreInfo.link }}</a>
+    </p>
+
+    <h2 class="heading-medium">{{ whyWeCollect.title }}</h2>
+    <p>{{ whyWeCollect.collect }}</p>
+    <ul class="list list-bullet">
+        {% for collect in whyWeCollect.collectList %}
+            <li>{{ collect }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ whyWeCollect.staffUseData }}</p>
+
+    <h2 class="heading-medium">{{ personalData.title }}</h2>
+    <p>{{ personalData.collect }}</p>
+    <ul class="list list-bullet">
+        {% for collect in personalData.collectList %}
+            <li>{{ collect }}</li>
+        {% endfor %}
+    </ul>
+    <p>
+        {{ personalData.more.data }}
+        <a href="#using-data">{{ personalData.more.link }}</a>
+    </p>
+
+    <h2 id="using-data" class="heading-medium">{{ usingYourData.title }}</h2>
+    <p>{{ usingYourData.account }}</p>
+    <p>{{ usingYourData.permission }}</p>
+    <p>
+        {{ usingYourData.cookies.we }}
+        <a href="/cookie-policy">{{ usingYourData.cookies.link }}</a>
+        {{ usingYourData.cookies.collect }}
+    </p>
+    <ul class="list list-bullet">
+        {% for data in usingYourData.dataList %}
+        <li>{{ data }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="heading-medium">{{ storingData.title }}</h2>
+    <p>{{ storingData.dataProvided }}</p>
+    <p>
+        {{ storingData.findOut.more }}
+        <a href="#appeal-benefit-heading">{{ storingData.findOut.link }}</a>
+    </p>
+
+    <h2 class="heading-medium">{{ shareDate.title }}</h2>
+    <p>{{ shareDate.involved }}</p>
+    <p>{{ shareDate.contact }}</p>
+    <p>{{ shareDate.share }}</p>
+    <p>
+        {{ shareDate.google.used }}
+        <a href="/terms-and-conditions">{{ shareDate.google.link }}</a>
+    </p>
+
+    <h2 class="heading-medium">{{ internationally.title }}</h2>
+    <p>{{ internationally.outsideUK }}</p>
+
+    <h2 class="heading-medium">{{ yourRights.title }}</h2>
+    <p>{{ yourRights.ask }}</p>
+    <ul class="list list-bullet">
+        {% for question in yourRights.questions %}
+        <li>{{ question }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ yourRights.seeData }}</p>
+    <ul class="list list-bullet">
+        <li>
+            {{ yourRights.form.complete }}
+            <a href="https://www.gov.uk/government/publications/request-your-personal-data-from-moj">{{ yourRights.form.link }}</a>
+            {{ yourRights.form.controller }}
+        </li>
+        <li>{{ yourRights.write }}</li>
+    </ul>
+    <p>{{ yourRights.moreInfo }}</p>
+    <ul class="list list-bullet">
+        {% for info in yourRights.infoList %}
+        <li>{{ info }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ yourRights.contactOfficer }}</p>
+    <ul class="list list-bullet">
+        {% for contact in yourRights.contactList %}
+        <li>{{ contact }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="heading-medium">{{ complain.title }}</h2>
+    <p>
+        {{ complain.complaints.procedure }}
+        <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/complaints-procedure">{{ complain.complaints.link }}</a>
+        {{ complain.complaints.personalData }}
+    </p>
+    <p>
+        {{ complain.write }}<br>
+        {{ complain.email }}
+    </p>
+    <p>
+        {{ complain.commissioner.canAlso }}
+        <a href="https://ico.org.uk/global/contact-us">{{ complain.commissioner.link }}</a>
+        {{ complain.commissioner.notSatisifed }}
+    </p>
+
+    <h2 id="appeal-benefit-heading" class="heading-large">{{ appealBenefit.title }}</h2>
+
+    <h3 class="heading-medium">{{ appealBenefit.personalData.title }}</h3>
+    <p>{{ appealBenefit.personalData.weAskFor }}</p>
+    <ul class="list list-bullet">
+        {% for details in appealBenefit.personalData.yourDetails %}
+        <li>{{ details }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ appealBenefit.personalData.rep }}</p>
+    <ul class="list list-bullet">
+        {% for details in appealBenefit.personalData.repDetails %}
+        <li>{{ details }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ appealBenefit.personalData.onBehalf }}</p>
+    <ul class="list list-bullet">
+        {% for details in appealBenefit.personalData.theirDetails %}
+        <li>{{ details }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3 class="heading-medium">{{ appealBenefit.notifications.title }}</h3>
+    <p>{{ appealBenefit.notifications.receive }}</p>
+    <p>{{ appealBenefit.notifications.cancel }}</p>
+    <p>
+        {{ appealBenefit.notifications.updates.rep }}
+        <a href="/contact-us">{{ appealBenefit.notifications.updates.link }}</a>
+    </p>
+
+    <h3 class="heading-medium">{{ appealBenefit.storing.title }}</h3>
+    <p>{{ appealBenefit.storing.shared }}</p>
+
+    <h3 class="heading-medium">{{ appealBenefit.after.title }}</h3>
+    <p>{{ appealBenefit.after.deleted }}</p>
+    <p>{{ appealBenefit.after.noDecision }}</p>
+    <p>{{ appealBenefit.after.complaint }}</p>
+
+{% endblock %}

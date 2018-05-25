@@ -9,58 +9,43 @@
 
 {% block two_thirds %}
 
-<h1 class="heading-xlarge">{{ cookies.title }}</h1>
+    <h1 class="heading-large">{{ cookies.title }}</h1>
 
-<p>{{ cookies.description }}</p>
+    <p>{{ cookies.description }}</p>
 
-<p>{{ cookies.whatAreThey.listHeading }}</p>
-<ul class="list list-bullet">
-    {% for listItem in cookies.whatAreThey.list %}
-    <li>{{ listItem }}</li>
-    {% endfor %}
-</ul>
+    <h2 class="heading-medium">{{ usedInService.title }}</h2>
+    <p>{{ usedInService.uses }}</p>
+    <ul class="list list-bullet">
+        {% for use in usedInService.usesList %}
+        <li>{{ use }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ usedInService.more }}<a href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
 
-{% for description in cookies.whatAreThey.description %}
-<p>{{ description }}</p>
-{% endfor %}
+    <h2 class="heading-medium">{{ howAreTheyUsed.title }}</h2>
+    <p>{{ howAreTheyUsed.description }}</p>
+    <p>{{ howAreTheyUsed.info }}</p>
+    <ul class="list list-bullet">
+        {% for info in howAreTheyUsed.infoList %}
+        <li>{{ info }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ howAreTheyUsed.googleShare }}<a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
+    <p>
+        {{ howAreTheyUsed.optOut.youCan }}
+        <a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google }}</a>
+        {{ howAreTheyUsed.optOut.access }}
+    </p>
 
-<p>{{ cookies.whatAreThey.preLink }}
-    <a href="https://www.aboutcookies.org" rel="external">{{ cookies.whatAreThey.link }}</a>
-</p>
+    <p>{{ howAreTheyUsed.googleCookies }}</p>
+    {{ cookieTable( howAreTheyUsed.cookieTable.items, howAreTheyUsed.cookieTable.columnNames ) }}
 
-<h2 class="heading-large">{{ howAreTheyUsed.title }}</h2>
-<h3 class="heading-medium">{{ howAreTheyUsed.subtitle }}</h3>
+    <h2 class="heading-medium">{{ introMessage.title }}</h2>
+    <p>{{ introMessage.description }}</p>
+    {{ cookieTable( introMessage.cookieTable.items, introMessage.cookieTable.columnNames ) }}
 
-<p>{{ howAreTheyUsed.description }}
-    <a href="https://insidegovuk.blog.gov.uk/2015/03/26/new-tool-to-see-trending-searches" rel="external">{{ howAreTheyUsed.descriptionLink }}</a>
-</p>
-
-<p>{{ howAreTheyUsed.googleAnalytics.listHeading }}</p>
-<ul class="list list-bullet">
-    {% for listItem in howAreTheyUsed.googleAnalytics.list %}
-    <li>{{ listItem }}</li>
-    {% endfor %}
-</ul>
-
-{% for description in howAreTheyUsed.googleAnalytics.description %}
-<p>{{ description }}</p>
-{% endfor %}
-
-<h3 class="heading-medium">{{ universalAnalytics.title }}</h3>
-{{ cookieTable( universalAnalytics.items, universalAnalytics.columnNames ) }}
-
-<h3 class="heading-medium">{{ googleAnalytics.title }}</h3>
-{{ cookieTable( googleAnalytics.items, googleAnalytics.columnNames ) }}
-
-<h3 class="heading-medium">{{ govUkEvents.title }}</h3>
-{{ cookieTable( govUkEvents.items, govUkEvents.columnNames ) }}
-
-<p class="google-opt-out-link">{{ govUkEvents.preLink }}
-    <a href="https://tools.google.com/dlpage/gaoptout" rel="external">{{ govUkEvents.link }}</a>
-</p>
-
-<h3 class="heading-medium">{{ ourIntroductoryMessage.title }}</h3>
-<p>{{ ourIntroductoryMessage.description }}</p>
-{{ cookieTable( ourIntroductoryMessage.items, ourIntroductoryMessage.columnNames ) }}
+    <h2 class="heading-medium">{{ sessionCookie.title }}</h2>
+    <p>{{ sessionCookie.description }}</p>
+    {{ cookieTable( sessionCookie.cookieTable.items, sessionCookie.cookieTable.columnNames ) }}
 
 {% endblock %}

@@ -26,7 +26,12 @@
 
                 <input class="button" type="submit" value="Continue">
             </form>
+
+            {% block after_form -%}
+                {% include "components/sessionTimeoutMessage.html" %}
+            {%- endblock %}
         </div>
 
     </div>
+
 {% endblock %}}
