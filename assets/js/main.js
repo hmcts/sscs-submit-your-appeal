@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { frontend } from '../../config/default';
+import { frontend, redis } from '../../config/default';
 import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
@@ -44,8 +44,8 @@ function initSYAAnalyticsTrack() {
   window.GOVUK.analytics.trackPageview();
 }
 
-function initTM(showAfterSeconds) {
-  timeoutM = new InactivityAlert(showAfterSeconds);
+function initTM(sessionSeconds, showAfterSeconds) {
+  timeoutM = new InactivityAlert(sessionSeconds, showAfterSeconds);
 }
 
 function destroyTM() {
@@ -58,7 +58,7 @@ $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initSYAAnalyticsTrack();
-  initTM(frontend.inactivityAlert);
+  initTM(redis.timeout, frontend.inactivityAlert);
 });
 
 $(window).on('unload', () => {
