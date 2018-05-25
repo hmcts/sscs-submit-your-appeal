@@ -120,7 +120,8 @@ lookAndFeel.configure(app, {
       isArray(value) {
         return Array.isArray(value);
       },
-      timeOut: config.get('redis.timeout')
+      timeOut: config.get('redis.timeout'),
+      timeOutMessage: content.timeout.message
     }
   },
   development: {

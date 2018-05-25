@@ -26,3 +26,7 @@
         <a href="/terms-and-conditions">Terms and conditions</a>
     </div>
 {% endblock %}
+
+{% block after_form -%}
+    {% include "components/sessionTimeoutMessage.html" %}
+{%- endblock %}
