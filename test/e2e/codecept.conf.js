@@ -5,17 +5,15 @@ exports.config = {
   output: './output',
   timeout: 1000,
   helpers: {
-    Puppeteer: {
+    Nightmare: {
       url: config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
-      windowSize: '1000x1000',
-      ignoreHTTPSErrors: true
-    },
-    MyHelper: {
-      require: './helper.js',
-      url: config.get('e2e.frontendUrl')
+      windowSize: ' 1200x1200',
+      switches: {
+        'ignore-certificate-errors': true
+      }
     }
   },
   include: {
