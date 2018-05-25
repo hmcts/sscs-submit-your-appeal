@@ -17,6 +17,7 @@
     <!-- End Google Tag Manager -->
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
     <script src="{{ asset_path }}main.js" type="text/javascript"></script>
+    <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
 {% endblock %}
 
 {% block body_start %}
@@ -48,3 +49,7 @@
         <a href="/terms-and-conditions">Terms and conditions</a>
     </div>
 {% endblock %}
+
+{% block after_form -%}
+    {% include "components/sessionTimeoutMessage.html" %}
+{%- endblock %}

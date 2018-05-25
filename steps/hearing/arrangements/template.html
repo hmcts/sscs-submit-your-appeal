@@ -5,11 +5,6 @@
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
-{% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
-<script src="{{ asset_path }}main.js" type="text/javascript"></script>
-{% endblock %}
-
 {% set title %}
     {{ content.title | safe }}
 {% endset %}

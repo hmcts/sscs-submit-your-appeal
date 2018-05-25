@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const Exit = require('steps/exit/Exit');
+const Exit = require('steps/exit-points/exit/Exit');
 const paths = require('paths');
 
 describe('Exit.js', () => {

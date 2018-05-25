@@ -1,0 +1,25 @@
+{% extends "components/globals.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+{% extends "look-and-feel/layouts/two_thirds.html" %}
+{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+
+{% block page_title %}
+    {{ content.titleHead }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+{% block two_thirds %}
+
+    {{ header(content.title, size='large') }}
+
+    <p>{{ content.ends }}</p>
+    <p>{{ content.detailsDeleted }}</p>
+
+    <a class="button" href="/start-an-appeal">{{ content.start }}</a>
+
+{%- endblock %}

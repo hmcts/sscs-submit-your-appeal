@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
-const Exit = require('steps/exit/Exit');
+const Exit = require('steps/exit-points/exit/Exit');
+const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
 const Sessions = require('steps/session/Sessions');
 const Error500 = require('steps/errors/500/Error500');
 const BenefitType = require('steps/start/benefit-type/BenefitType');
@@ -47,7 +48,8 @@ const init = [
   Entry,
   Exit,
   Sessions,
-  Error500
+  Error500,
+  SessionTimeout
 ];
 
 const startAnAppeal = [

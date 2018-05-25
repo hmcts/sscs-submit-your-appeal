@@ -128,7 +128,9 @@ lookAndFeel.configure(app, {
         </a>${content.phaseBanner.improve}`,
       isArray(value) {
         return Array.isArray(value);
-      }
+      },
+      timeOut: config.get('redis.timeout'),
+      timeOutMessage: content.timeout.message
     }
   },
   development: {

@@ -7,7 +7,8 @@
   "redis": {
     "url": "REDIS_URL",
     "secret": "SESSION_SECRET",
-    "useSSL": "USE_SSL"
+    "useSSL": "USE_SSL",
+    "timeout": "SESSION_TIME_OUT"
   },
   "api": {
     "url": "TRIBUNALS_CASE_API_URL"
