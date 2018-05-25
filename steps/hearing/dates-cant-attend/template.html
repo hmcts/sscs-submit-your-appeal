@@ -19,12 +19,14 @@
 } %}
 
 {% block item %}
-  {{ item.value.format('dddd D MMMM YYYY') }}
+<span data-index="{{ safeId(item.id) }}">{{ item.value.format('dddd D MMMM YYYY') }}</span>
 {% endblock %}
 
 {% block listItems %}
     <p>{{ content.itsImportant }}</p>
     <p>{{ content.yourHearing }}</p>
+
+    <div id="date-picker" class="datepicker"></div>
     {{ super() }}
 {% endblock %}
 

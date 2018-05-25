@@ -8,9 +8,10 @@ const additionalValidDate = DateUtils.getRandomWeekDayFromDate(moment().add(10, 
 
 Feature('Dates can\'t attend');
 
-Before(I => {
+Before(async I => {
   I.createTheSession();
   I.amOnPage(paths.hearing.datesCantAttend);
+  await I.turnOffJsAndReloadThePage();
 });
 
 After(I => {
@@ -84,7 +85,7 @@ Scenario('When I click Continue without filling in the date fields, I see errors
 
 Scenario('When I click Continue when only entering the day field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.form-group-day input', validDate.date());
+  I.fillField('.form-group-day input', validDate.date().toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.monthRequired);
   I.see(content.fields.cantAttendDate.error.yearRequired);
@@ -92,7 +93,7 @@ Scenario('When I click Continue when only entering the day field, I see errors',
 
 Scenario('When I click Continue when only entering the month field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.form-group-month input', validDate.month() + 1);
+  I.fillField('.form-group-month input', (validDate.month() + 1).toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.dayRequired);
   I.see(content.fields.cantAttendDate.error.yearRequired);
@@ -100,7 +101,7 @@ Scenario('When I click Continue when only entering the month field, I see errors
 
 Scenario('When I click Continue when only entering the year field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.form-group-year input', validDate.year());
+  I.fillField('.form-group-year input', validDate.year().toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.dayRequired);
   I.see(content.fields.cantAttendDate.error.monthRequired);
@@ -121,7 +122,7 @@ Scenario('When I enter a date that is over twenty two weeks from now, I see erro
 Scenario('I enter a date I cant attend with the long name of month', I => {
   const month = validDate.format('MMMM');
   I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date(), month, validDate.year());
+  I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
   I.click('Continue');
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
 });
@@ -129,13 +130,13 @@ Scenario('I enter a date I cant attend with the long name of month', I => {
 Scenario('I enter a date I cant attend with the short name of month', I => {
   const month = validDate.format('MMM');
   I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date(), month, validDate.year());
+  I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
   I.click('Continue');
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
 });
 
 Scenario('I enter a date I cant attend with an invalid name of month', I => {
   I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date(), 'invalidMonth', validDate.year());
+  I.enterADateAndContinue(validDate.date().toString(), 'invalidMonth', validDate.year().toString());
   I.see(content.fields.cantAttendDate.error.invalid);
 });
