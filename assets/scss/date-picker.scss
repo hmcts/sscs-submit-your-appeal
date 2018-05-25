@@ -1,0 +1,97 @@
+#date-picker {
+
+  .datepicker-inline {
+    width: 70%;
+
+    table {
+
+      table-layout: fixed;
+
+      thead {
+        tr {
+          .prev, .next {
+            background-color: $grey-2;
+            border-radius: 0;
+          }
+
+          .datepicker-switch {
+            background-color: $grey-2;
+            border-radius: 0;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &:first-child {
+            border-top: 2px solid $grey-1;
+          }
+          &:last-child {
+            border-bottom: 2px solid $grey-1;
+          }
+          td {
+            color: black;
+            border-radius: 0;
+            &:not(.disabled) {
+              border-left: 1px solid $grey-3;
+              border-top: 1px solid $grey-3;
+            }
+            font-weight: 600;
+            height: 57px;
+            padding: 0;
+            vertical-align: top;
+            text-align: left;
+            width: 100%;
+            display: table-cell;
+
+            &.active {
+              background-color: #76B2D2;
+            }
+
+            &.day:hover, &.day.focused {
+                &:not(.disabled) {
+                  background-color: #BBD9E9;
+                }
+              }
+
+            &.disabled {
+              background: url("../images/date-disabled.png");
+              font-weight: 400;
+
+              .first-of-month {
+                margin-top: 8px;
+              }
+            }
+
+            &:last-child {
+              border-right: 1px solid $grey-3;
+            }
+
+            .first-of-month {
+              margin: 7px 0 0 0;
+              text-align: center;
+              background-color: $grey-2;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #date-picker {
+    table {
+      width: 140%;
+    }
+  }
+}
+
+@media (min-width: 641px) and (max-width: 750px) {
+  #date-picker {
+    table {
+      width: 120%;
+    }
+  }
+}

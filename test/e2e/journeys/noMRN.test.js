@@ -26,8 +26,10 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('Appellant has contacted DWP', I => {
-  const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+Scenario('Appellant has contacted DWP', async I => {
+  const randomWeekDay = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
+  );
 
   const hasMRN = false;
 
@@ -44,7 +46,7 @@ Scenario('Appellant has contacted DWP', I => {
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToSendingEvidence();
-  I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
   I.confirmDetailsArePresent(hasMRN);
 });
 

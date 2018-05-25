@@ -10,7 +10,7 @@ exports.config = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
-      windowSize: ' 800x1000',
+      windowSize: ' 1200x1200',
       switches: {
         'ignore-certificate-errors': true
       }
