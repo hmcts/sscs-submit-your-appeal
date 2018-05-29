@@ -116,8 +116,7 @@ const datePicker = {
       maxViewMode: 0,
       datesDisabled,
       beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
-    }).on('changeDate', event => datePicker.changeDateHandler(event))
-      .on('destroy', event => console.info.bind(this, 'vabffabma'))
+    }).on('changeDate', event => datePicker.changeDateHandler(event));
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
     datePicker.selector().off('keydown');
