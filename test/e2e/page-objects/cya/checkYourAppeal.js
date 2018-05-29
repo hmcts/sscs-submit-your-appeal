@@ -71,17 +71,6 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
   I.click('Continue');
 }
 
-async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
-  const I = this;
-
-  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
-  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue();
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
-  await I.selectDates([date]);
-  I.click('Continue');
-}
-
 function enterDetailsFromAttendingTheHearingWithSupportToEnd(options, fields = []) {
   const I = this;
 
@@ -156,6 +145,5 @@ module.exports = {
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
-  enterDetailsFromAttendingTheHearingWithSupportToEnd,
-  enterDetailsFromAttendingTheHearingDatePickerToEnd
+  enterDetailsFromAttendingTheHearingWithSupportToEnd
 };
