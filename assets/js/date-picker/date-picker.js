@@ -84,11 +84,6 @@ const datePicker = {
         // document.activeElement.getAttribute('data-date'));
         // doesn't contain the same set of information contained in the dom-generated event.
         $(document.activeElement).trigger('click');
-        // not my finest code ever, but can't help it
-        // as the changeMonth event doesn't fire
-        if ($(event.target).hasClass('prev') || $(event.target).hasClass('next')) {
-          window.setTimeout(datePicker.addAccessibilityFeatures, 0);
-        }
         break;
       case leftArrowKey:
         $(document.activeElement).prev('td').focus();
@@ -121,11 +116,17 @@ const datePicker = {
       maxViewMode: 0,
       datesDisabled,
       beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
-    }).on('changeDate', event => datePicker.changeDateHandler(event));
+    }).on('changeDate', event => datePicker.changeDateHandler(event))
+      .on('destroy', event => console.info.bind(this, 'vabffabma'))
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
     datePicker.selector().off('keydown');
     datePicker.enableKeyActions();
+    $('.prev, .next').on('click', event => {
+      if ($(event.target).hasClass('prev') || $(event.target).hasClass('next')) {
+        window.setTimeout(datePicker.addAccessibilityFeatures, 0);
+      }
+    });
     window.setTimeout(datePicker.addAccessibilityFeatures, 0);
   },
 
