@@ -14,22 +14,25 @@ const txtMsgRemindersMobAnswer = `${selectors.textMsgReminders.mobileNumber} ${s
 
 Feature('Full Journey');
 
-Scenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke', I => {
-  const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+Scenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
+  async I => {
+    const randomWeekDay = DateUtils.getDateInMilliseconds(
+      DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
+    );
 
-  I.amOnPage(paths.landingPages.startAnAppeal);
-  I.click(startAnAppealContent.start);
-  I.enterDetailsFromStartToNINO();
-  I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
-  I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
-  I.checkOptionAndContinue('#useSameNumber-yes');
-  I.readSMSConfirmationAndContinue();
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
-  I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
-  I.confirmDetailsArePresent();
-  I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), appellantPhoneNumberAnswer);
-  I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), txtMsgRemindersMobAnswer);
-  I.signAndSubmit(`${appellant.firstName} ${appellant.lastName}`);
-  I.wait(2);
-  I.seeCurrentUrlEquals(paths.confirmation);
-});
+    I.amOnPage(paths.landingPages.startAnAppeal);
+    I.click(startAnAppealContent.start);
+    I.enterDetailsFromStartToNINO();
+    I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
+    I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
+    I.checkOptionAndContinue('#useSameNumber-yes');
+    I.readSMSConfirmationAndContinue();
+    I.enterDetailsFromNoRepresentativeToSendingEvidence();
+    await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
+    I.confirmDetailsArePresent();
+    I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), appellantPhoneNumberAnswer);
+    I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), txtMsgRemindersMobAnswer);
+    I.signAndSubmit(`${appellant.firstName} ${appellant.lastName}`);
+    I.wait(2);
+    I.seeCurrentUrlEquals(paths.confirmation);
+  });

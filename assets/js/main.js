@@ -3,6 +3,7 @@ import { frontend, redis } from '../../config/default';
 import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
+import datePicker from './date-picker/date-picker';
 import Analytics from 'govuk/analytics/analytics';
 
 let timeoutM;
@@ -19,6 +20,13 @@ function initAutocomplete() {
       selectElement: select
     });
   });
+}
+
+function initDatePicker() {
+  if ($('#date-picker').length) {
+    $('.add-another-add-link').hide();
+    datePicker.init();
+  }
 }
 
 function initSYAAnalyticsTrack() {
@@ -59,6 +67,7 @@ $(document).ready(() => {
   initAutocomplete();
   initSYAAnalyticsTrack();
   initTM(redis.timeout, frontend.inactivityAlert);
+  initDatePicker();
 });
 
 $(window).on('unload', () => {

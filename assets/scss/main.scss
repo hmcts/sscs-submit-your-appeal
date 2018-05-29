@@ -2,6 +2,8 @@
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import '~jquery-modal/jquery.modal.css';
 @import 'look-and-feel/check-your-answers';
+@import 'bootstrap-datepicker1.8.0.min';
+@import 'date-picker';
 
 .form-section {
   margin-bottom: 30px;
@@ -194,35 +196,50 @@ label.form-label[for="signer"] {
     }
   }
 }
+.modal {
 
-.modal-dialog-box {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
 
-  h2 {
-    background-color: #df3034;
-    background-image: image-url('icon-important-red-inverse.png');
-    background-position: 15px center;
-    background-repeat: no-repeat;
-    color: $white;
-    font-size: 19px;
-    font-weight: bold;
-    line-height: 60px;
-    padding-left: 60px;
-  }
+  padding: 0;
 
-  p {
-    margin: 15px;
-    font-size: 19px;
-    a {
-      margin-left: 5px;
-      &:focus {
-        background-color: transparent;
-        border: 3px solid $yellow;
+  .modal-dialog-box {
+
+    h2 {
+      background-color: #df3034;
+      background-image: image-url('icon-important-red-inverse.png');
+      background-position: 15px center;
+      background-repeat: no-repeat;
+      color: $white;
+      font-size: 19px;
+      font-weight: bold;
+      line-height: 60px;
+      padding-left: 60px;
+      &.icon-important {
+        width: auto;
+        height: auto;
       }
     }
-  }
 
-  .button.no {
-    @include button($grey-3);
+    p {
+      margin: 15px;
+      font-size: 19px;
+      a {
+        margin-left: 5px;
+        &:focus {
+          background-color: transparent;
+          border: 3px solid $yellow;
+        }
+      }
+    }
+    .button {
+      width: inherit;
+    }
+    .button.abort {
+      @include button($grey-3);
+    }
   }
 }
-

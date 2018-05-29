@@ -99,6 +99,18 @@ class DateUtils {
     }
     return monthValue;
   }
+
+  static getDateInMilliseconds(mDate) {
+    return mDate.valueOf();
+  }
+
+  static sortDates(dates) {
+    return dates.sort((date1, date2) => {
+      if (date1 > date2) return 1;
+      if (date1 < date2) return -1;
+      return 0;
+    });
+  }
 }
 
 module.exports = DateUtils;
