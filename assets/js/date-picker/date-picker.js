@@ -84,6 +84,11 @@ const datePicker = {
         // document.activeElement.getAttribute('data-date'));
         // doesn't contain the same set of information contained in the dom-generated event.
         $(document.activeElement).trigger('click');
+        // not my finest code ever, but can't help it
+        // as the changeMonth event doesn't fire
+        if ($(event.target).hasClass('prev') || $(event.target).hasClass('next')) {
+          window.setTimeout(datePicker.addAccessibilityFeatures, 0);
+        }
         break;
       case leftArrowKey:
         $(document.activeElement).prev('td').focus();
