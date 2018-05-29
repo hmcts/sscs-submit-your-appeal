@@ -5,6 +5,13 @@
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
+{% block head %}
+{{ super() }}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
+{% endblock %}
+
 {% set title %}
     {{ content.title | safe if isListMode }}
     {{ content.titleEdit | safe if isEditMode }}
@@ -50,5 +57,4 @@
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label) }}
 {% endblock %}
-
 

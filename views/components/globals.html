@@ -17,9 +17,6 @@
     <!-- End Google Tag Manager -->
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
     <script src="{{ asset_path }}main.js" type="text/javascript"></script>
-    <noscript>
-        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
-    </noscript>
 {% endblock %}
 
 {% block body_start %}
@@ -36,14 +33,6 @@
         </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
-{% endblock %}
-
-{% block full_width %}
-{{ super() }}
-    <div>
-        {% include "../components/inactivity-alert.html" %}
-    </div>
 {% endblock %}
 
 {% block cookie_message %}
