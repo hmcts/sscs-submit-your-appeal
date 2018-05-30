@@ -55,7 +55,7 @@ const datePicker = {
     });
     $('.day:not(".disabled")').each(function addAriaRole() {
       const attrib = parseInt($(this).attr('data-date'), 10);
-      const content = $(this).text();
+      const content = $(this).html();
       $(this).attr('aria-role', 'button');
       $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
       $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
