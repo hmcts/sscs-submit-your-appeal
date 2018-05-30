@@ -12,7 +12,12 @@ function initAutocomplete() {
   const selects = document.querySelectorAll('select');
   selects.forEach(select => {
     accessibleAutocomplete.enhanceSelectElement({
-      selectElement: select
+      selectElement: select,
+      source: (query, populateResults) => {
+        const options = Array.from(select.options).map(opt => opt.value);
+        const filteredResults = options.filter(opt => opt.match(new RegExp(`^${query}+`, 'i')));
+        return populateResults(filteredResults);
+      }
     });
   });
 }
