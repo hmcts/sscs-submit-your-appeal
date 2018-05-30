@@ -35,4 +35,20 @@
             ])
         }}
 
+
 {% endblock %}
+
+{% block after_form -%}
+
+    <details role="group">
+        <summary role="button" aria-controls="details-content" aria-expanded="false">
+            <span class="summary">{{ content.help.link }}</span></summary>
+        <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
+            <p>
+                {{ content.help.text }}
+            </p>
+        </div>
+    </details>
+
+{{ super() }}
+{%- endblock %}
