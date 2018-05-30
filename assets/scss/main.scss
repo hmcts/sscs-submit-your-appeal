@@ -210,7 +210,6 @@ label.form-label[for="signer"] {
 
     h2 {
       background-color: #df3034;
-      background-image: image-url('icon-important-red-inverse.png');
       background-position: 15px center;
       background-repeat: no-repeat;
       color: $white;
@@ -221,6 +220,7 @@ label.form-label[for="signer"] {
       &.icon-important {
         width: auto;
         height: auto;
+        background-image: url('/assets/images/icon-important-red-inverse.png');
       }
     }
 
@@ -239,6 +239,7 @@ label.form-label[for="signer"] {
       width: inherit;
     }
     .button.abort {
+      margin-left: 30px;
       @include button($grey-3);
     }
   }

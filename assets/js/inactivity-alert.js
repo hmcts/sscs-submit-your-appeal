@@ -1,9 +1,10 @@
 import $ from 'jquery';
-import * as jQM from 'jquery-modal';
+import 'jquery-modal';
+
+const secondsToMilliseconds = 1000;
 
 class InactivityAlert {
   constructor(sessionSeconds, showAfterSeconds) {
-
     this.timeoutForModal = null;
     this.timeoutForSession = null;
 
@@ -20,11 +21,13 @@ class InactivityAlert {
     window.location.href = '/session-timeout';
   }
   setSessionTimeout() {
-    this.timeoutForSession = window.setTimeout(InactivityAlert.navigateAway, this.sessionSeconds * 1000);
+    this.timeoutForSession = window
+      .setTimeout(InactivityAlert.navigateAway, this.sessionSeconds * secondsToMilliseconds);
   }
   setTimeoutForModal() {
     const el = $('#timeout-dialog');
-    this.timeoutForModal = window.setTimeout(el.modal.bind(el), this.showAfterSeconds * 1000);
+    this.timeoutForModal = window
+      .setTimeout(el.modal.bind(el), this.showAfterSeconds * secondsToMilliseconds);
   }
   startCountdown() {
     this.setTimeoutForModal();

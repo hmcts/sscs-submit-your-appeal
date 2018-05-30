@@ -1,7 +1,14 @@
-{% extends "components/form-template.html" %}
+{% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/add_another.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection %}
 {% from "components/formElements.html" import date %}
+
+{% block head %}
+{{ super() }}
+<noscript>
+    <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+</noscript>
+{% endblock %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -17,6 +24,13 @@
   itemsListLabel: content.fields.cantAttendDate.legendList,
   editItemLabel: content.fields.cantAttendDate.legend
 } %}
+
+{% block full_width %}
+{{ super() }}
+<div>
+    {% include "components/inactivity-alert.html" %}
+</div>
+{% endblock %}
 
 {% block item %}
 <span data-index="{{ safeId(item.id) }}">{{ item.value.format('dddd D MMMM YYYY') }}</span>

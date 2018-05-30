@@ -6,7 +6,10 @@ import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import Analytics from 'govuk/analytics/analytics';
 
+/* eslint-disable init-declarations */
 let timeoutM;
+/* eslint-enable init-declarations */
+
 
 function initShowHideContent() {
   const showHideContent = new ShowHideContent();

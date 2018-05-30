@@ -25,6 +25,13 @@
     editItemLabel: content.itemLabel
 } %}
 
+{% block full_width %}
+{{ super() }}
+    <div>
+        {% include "components/inactivity-alert.html" %}
+    </div>
+{% endblock %}
+
 {% block noItems %}
     <div id="items" class="noItems {{ errorClass(fields.items) }}">
 
