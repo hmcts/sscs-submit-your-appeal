@@ -1,6 +1,7 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, select %}
+{% from "look-and-feel/components/toggle_help.njk" import toggleHelp %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -40,15 +41,9 @@
 
 {% block after_form -%}
 
-    <details role="group">
-        <summary role="button" aria-controls="details-content" aria-expanded="false">
-            <span class="summary">{{ content.help.link }}</span></summary>
-        <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="true">
-            <p>
-                {{ content.help.text }}
-            </p>
-        </div>
-    </details>
+    <p>
+        {{ toggleHelp(content.help.link, content.help.text, 'details-content', false) }}
+    </p>
 
 {{ super() }}
 {%- endblock %}
