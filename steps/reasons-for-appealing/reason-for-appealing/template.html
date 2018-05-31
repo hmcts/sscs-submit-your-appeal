@@ -48,7 +48,7 @@
     <p>{{ content.dwpExplained }}</p>
     <p>{{ content.readYouMRN }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
-    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label) }}
+    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 
 
