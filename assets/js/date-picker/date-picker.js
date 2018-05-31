@@ -65,16 +65,16 @@ const datePicker = {
     let elements = '';
 
     orderDates.forEach(date => {
-      elements += `<div id="add-another-list-items-${date.index}">
-        <dd class="add-another-list-item">
+      elements += `
+        <dt class="visually-hidden">items-${date.index}</dt>
+        <dd id="add-another-list-items-${date.index}" class="add-another-list-item">
           <span data-index="items-${date.index}">
             ${datePickerUtils.formatDateForDisplay(date.value)}
           </span>
         </dd>
         <dd class="add-another-list-controls">
           <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
-        </dd>
-       </div>`;
+        </dd>`;
     });
     if (elements === '') {
       const noItems = '<div><dd class="add-another-list-item">No dates added yet</dd></div>';
