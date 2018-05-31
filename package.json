@@ -25,7 +25,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "1.13.4",
+    "@hmcts/look-and-feel": "^1.14.2",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/one-per-page": "3.3.3",
