@@ -1,12 +1,14 @@
 {% for item in fields.items.value %}
-    <dl class="cya-whatYouDisagreeWith">
-        <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith }}</dt>
-        <dd class="cya-answer">{{ item.whatYouDisagreeWith }}</dd>
-        <dd class="cya-change"><a href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a></dd>
-    </dl>
-    <dl>
-        <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
-        <dd class="cya-answer">{{ item.reasonForAppealing }}</dd>
-        <dd class="cya-change"></dd>
-    </dl>
+    <div class="govuk-check-your-answers cya-questions-short">
+        <dl class="cya-whatYouDisagreeWith">
+            <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith }}</dt>
+            <dd class="cya-answer">{{ item.whatYouDisagreeWith }}</dd>
+            <dd class="cya-change"><a href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a></dd>
+        </dl>
+        <dl>
+            <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
+            <dd class="cya-answer">{{ item.reasonForAppealing }}</dd>
+            <dd class="cya-change"></dd>
+        </dl>
+    </div>
 {% endfor %}
