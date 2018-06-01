@@ -29,3 +29,10 @@ $(document).ready(() => {
   initAutocomplete();
   initDatePicker();
 });
+
+$(window).on('unload', () => {
+  // cautious cleanup -- probably unneeded
+  if ($('#date-picker').length) {
+    $('.prev, .next').off('click');
+  }
+});
