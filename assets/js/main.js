@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { remove } from 'lodash';
 import ShowHideContent from 'govuk/show-hide-content';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
@@ -14,9 +15,16 @@ function initAutocomplete() {
     accessibleAutocomplete.enhanceSelectElement({
       selectElement: select,
       source: (query, populateResults) => {
+        const minQueryLength = 2;
+        if (query.length < minQueryLength) {
+          return null;
+        }
         const options = Array.from(select.options).map(opt => opt.value);
-        const filteredResults = options.filter(opt => opt.match(new RegExp(`^${query}+`, 'i')));
-        return populateResults(filteredResults);
+        const startingWithLetter = remove(options, opt =>
+          opt.match(new RegExp(`^${query}.+`, 'i')));
+        const containingLetter = remove(options, opt =>
+          opt.match(new RegExp(`^.+${query}+`, 'i')));
+        return populateResults([...startingWithLetter, ...containingLetter]);
       }
     });
   });
