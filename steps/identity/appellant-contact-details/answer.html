@@ -8,7 +8,10 @@
             {{ fields.county.value }}<br>
             {{ fields.postCode.value }}<br>
         </dd>
-        <dd class="cya-change"><a href="{{ path }}">{{ content.cya.change }}</a></dd>
+        <dd class="cya-change">
+            <a href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="visually-hidden"> {{ content.cya.yourDetails }}</span>
+        </dd>
     </dl>
     <dl id="cya-appellantcontactdetails-email-address" class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.emailAddress.question }}</dt>
