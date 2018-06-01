@@ -175,8 +175,6 @@ const datePicker = {
         </dd>`;
     });
     if (elements === '') {
-      const noItems = `<dt class="add-another-list-item">
-                    <div>No dates added yet</div></dt><dd></dd>`;
       const noItems = `<dt class="visually-hidden">No items</dt>
         <dd class="add-another-list-item  noItems">No dates added yet</dd>`;
       $('.add-another-list').empty().append(noItems);
