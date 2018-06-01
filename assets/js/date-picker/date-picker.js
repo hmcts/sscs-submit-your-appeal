@@ -163,20 +163,22 @@ const datePicker = {
     let elements = '';
 
     orderDates.forEach(date => {
-      elements += `<div id="add-another-list-items-${date.index}">
-        <dd class="add-another-list-item">
+      elements += `
+        <dt class="visually-hidden">items-${date.index}</dt>
+        <dd id="add-another-list-items-${date.index}" class="add-another-list-item">
           <span data-index="items-${date.index}">
             ${datePickerUtils.formatDateForDisplay(date.value)}
           </span>
         </dd>
         <dd class="add-another-list-controls">
           <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
-        </dd>
-       </div>`;
+        </dd>`;
     });
     if (elements === '') {
       const noItems = `<dt class="add-another-list-item">
                     <div>No dates added yet</div></dt><dd></dd>`;
+      const noItems = `<dt class="visually-hidden">No items</dt>
+        <dd class="add-another-list-item  noItems">No dates added yet</dd>`;
       $('.add-another-list').empty().append(noItems);
     } else {
       $('.add-another-list').empty().append(elements);
