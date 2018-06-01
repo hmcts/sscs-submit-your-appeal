@@ -35,7 +35,8 @@
         "whatYouDisagreeWith": "What you disagree with",
         "reasonForAppealing": "Why you disagree with it"
       },
-      "changeLink": "Change"
+      "changeLink": "Change",
+      "reason": "Reason For Appealing"
     }
   }
 }

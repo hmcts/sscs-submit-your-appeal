@@ -2,7 +2,10 @@
     <dl class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.name.question }}</dt>
         <dd class="cya-answer">{{ CYAName }}</dd>
-        <dd class="cya-change"><a href="{{ path }}">{{ content.cya.change }}</a></dd>
+        <dd class="cya-change">
+            <a href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="visually-hidden"> {{ content.cya.repDetails }}</span>
+        </dd>
     </dl>
     <dl id="cya-representativedetails-organisation-if-they-work-for-one" class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.organisation.question }}</dt>
