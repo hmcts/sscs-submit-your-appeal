@@ -1,5 +1,4 @@
 const { expect } = require('test/util/chai');
-const { formatMobileNumber } = require('utils/stringUtils');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const userAnswer = require('utils/answer');
 const paths = require('paths');
@@ -33,8 +32,7 @@ describe('SendToNumber.js', () => {
 
   describe('get phoneNumber()', () => {
     it('should be defined', () => {
-      const formatNumber = formatMobileNumber(sendToNumber.fields.phoneNumber.value);
-      expect(sendToNumber.phoneNumber).to.eq(formatNumber);
+      expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.phoneNumber.value);
     });
   });
 

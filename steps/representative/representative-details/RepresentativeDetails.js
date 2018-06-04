@@ -3,7 +3,6 @@ const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
-const { formatMobileNumber } = require('utils/stringUtils');
 const { joiValidation } = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
@@ -27,11 +26,7 @@ class RepresentativeDetails extends Question {
   }
 
   get CYAPhoneNumber() {
-    let cyaPhoneNumber = userAnswer.NOT_PROVIDED;
-    if (this.fields.phoneNumber.value) {
-      cyaPhoneNumber = formatMobileNumber(this.fields.phoneNumber.value);
-    }
-    return cyaPhoneNumber;
+    return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
   }
 
   get CYAEmailAddress() {
