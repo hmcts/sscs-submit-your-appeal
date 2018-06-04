@@ -75,4 +75,7 @@ $(document).ready(() => {
 
 $(window).on('unload', () => {
   destroyTM();
+  if ($('#date-picker').length) {
+    $('.prev, .next').off('click');
+  }
 });

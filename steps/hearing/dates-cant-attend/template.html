@@ -18,11 +18,12 @@
 {% endset %}
 
 {% set pageContent = {
-  addAnotherLink: addAnotherLinkContent,
-  itemLabel: content.fields.cantAttendDate.legend,
-  noItemsMessage: content.noDates,
-  itemsListLabel: content.fields.cantAttendDate.legendList,
-  editItemLabel: content.fields.cantAttendDate.legend
+    addAnotherLink: addAnotherLinkContent,
+    itemLabel: content.fields.cantAttendDate.legend,
+    noItemsMessage: content.noDates,
+    itemsListLabel: content.fields.cantAttendDate.legendList,
+    hideItemsListLabel: true,
+    editItemLabel: content.fields.cantAttendDate.legend
 } %}
 
 {% block full_width %}

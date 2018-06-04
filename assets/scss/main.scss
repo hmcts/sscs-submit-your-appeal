@@ -34,7 +34,7 @@ label.form-label[for="signer"] {
 }
 
 .after-form {
-  padding-top: 4em;
+  padding-top: 2em;
 
   &.time-out-message {
     color: #454a4c;
@@ -139,27 +139,28 @@ label.form-label[for="signer"] {
   }
 }
 
-.add-another-list div {
+.add-another-list {
 
-  &:not(.noItems) {
-    padding: 15px 0;
-    width: 100%;
+  border-top: 1px solid $border-colour;
+
+  > * {
     border-bottom: 1px solid $border-colour;
-
-    &:first-child {
-      border-top: 1px solid $border-colour;
-    }
+    padding: 15px 0;
   }
 
   .add-another-list-item {
     width: 65%;
     display: inline-block;
+
+    &.noItems {
+      width: 100%;
+    }
   }
 
-  .add-another-list-controls{
+  .add-another-list-controls {
     display: inline-block;
     float: right;
-    width: 30%;
+    width: 35%;
 
     .add-another-edit-link {
       padding-right: 40%;

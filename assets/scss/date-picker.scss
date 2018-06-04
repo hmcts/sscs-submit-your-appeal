@@ -1,8 +1,9 @@
 #date-picker {
 
+  padding-bottom: 30px;
+
   .datepicker-inline {
     width: 70%;
-
     table {
 
       table-layout: fixed;
@@ -43,7 +44,7 @@
             text-align: left;
             width: 100%;
             display: table-cell;
-
+            line-height: 110%;
             &.active {
               background-color: #76B2D2;
             }
@@ -59,7 +60,7 @@
               font-weight: 400;
 
               .first-of-month {
-                margin-top: 8px;
+                margin-top: 17px;
               }
             }
 
@@ -68,9 +69,9 @@
             }
 
             .first-of-month {
-              margin: 7px 0 0 0;
+              margin: 17px 0 0 0;
               text-align: center;
-              background-color: $grey-2;
+              background-color: $grey-1;
               color: white;
             }
           }

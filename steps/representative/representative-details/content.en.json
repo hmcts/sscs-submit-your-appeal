@@ -91,6 +91,7 @@
     "emailAddress": {
       "question": "Email address"
     },
-    "change": "Change"
+    "change": "Change",
+    "repDetails": "Representative Contact Details"
   }
 }

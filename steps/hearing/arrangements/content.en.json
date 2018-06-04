@@ -62,6 +62,8 @@
     }
   },
   "cya": {
+    "arrangements": "Hearing arrangements",
+    "change": "Change",
     "interpreterLanguage": "Language interpreter",
     "signLanguage": "Sign language interpreter",
     "hearingLoop": "Hearing loop",
