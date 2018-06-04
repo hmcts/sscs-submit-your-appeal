@@ -12,7 +12,10 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
       windowSize: '1000x1000',
-      ignoreHTTPSErrors: true
+      chrome: {
+        ignoreHTTPSErrors: true,
+        args: ['--no-sandbox']
+      }
     },
     MyHelper: {
       require: './helper.js',
