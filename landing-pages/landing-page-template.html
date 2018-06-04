@@ -19,8 +19,10 @@
 {% block two_thirds -%}
 
     {{ header(title, size='xlarge') }}
-    {% block navList -%}{%- endblock %}
-    <hr>
+    <aside class="nav-container" role="complementary">
+        {% block navList -%}{%- endblock %}
+    </aside>
+
     {% block infoContent -%}{%- endblock %}
 
 {%- endblock %}

@@ -99,13 +99,39 @@ label.form-label[for="signer"] {
   };
 }
 
-.nav-list {
-  column-count: 2;
-  column-gap: 6em;
-  list-style-type: decimal;
-  padding-left: 20px;
-  font-size: 16px;
-  line-height: 30px;
+.nav-container {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $grey-2;
+
+  .nav-section {
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 20px;
+
+    .part-title {
+      @include bold-27;
+      margin-bottom: $gutter-half;
+      margin-top: $gutter-half;
+
+      @include media(tablet) {
+        margin-bottom: $gutter-two-thirds;
+        margin-top: $gutter-two-thirds;
+      }
+    }
+
+    .nav-list {
+      list-style-type: none;
+      padding-left: 20px;
+      li {
+        &:before {
+          content: '— ';
+          margin-left: -25px;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
 }
 
 .internal-server-error {
