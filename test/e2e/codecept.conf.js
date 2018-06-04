@@ -1,3 +1,4 @@
+/* eslint-disable no-process-env */
 const config = require('config');
 
 exports.config = {
@@ -6,7 +7,7 @@ exports.config = {
   timeout: 1000,
   helpers: {
     Puppeteer: {
-      url: config.get('e2e.frontendUrl'),
+      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
