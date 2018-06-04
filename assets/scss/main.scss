@@ -108,17 +108,6 @@ label.form-label[for="signer"] {
     line-height: 30px;
     margin-bottom: 20px;
 
-    .part-title {
-      @include bold-27;
-      margin-bottom: $gutter-half;
-      margin-top: $gutter-half;
-
-      @include media(tablet) {
-        margin-bottom: $gutter-two-thirds;
-        margin-top: $gutter-two-thirds;
-      }
-    }
-
     .nav-list {
       list-style-type: none;
       padding-left: 20px;
@@ -131,7 +120,54 @@ label.form-label[for="signer"] {
       }
     }
   }
+}
 
+.part-title {
+  @include bold-27;
+  margin-bottom: $gutter-half;
+  margin-top: $gutter-half;
+
+  @include media(tablet) {
+    margin-bottom: $gutter-two-thirds;
+    margin-top: $gutter-two-thirds;
+  }
+}
+
+.pagination {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .pagination-next {
+    float: right;
+    text-align: right;
+
+    .pagination-link {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+
+      .pagination-title {
+        font-size: 27px;
+        line-height: 1.25;
+      }
+
+      .pagination-icon {
+        display: inline-block;
+        margin-bottom: 1px;
+        height: .482em;
+        width: .63em;
+      }
+
+      .pagination-label {
+        display: inline-block;
+        margin-top: 0.1em;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .internal-server-error {
