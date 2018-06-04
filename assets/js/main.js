@@ -5,6 +5,9 @@ import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
+import AddReason from './add-reason';
+
+let addReasonForm;
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -62,11 +65,24 @@ function destroyTM() {
   }
 }
 
+function initAddReason() {
+  console.info('there we go')
+  if (AddReason.startAddReason()) {
+    if (addReasonForm) {
+      addReasonForm.render();
+    } else {
+      addReasonForm = new AddReason();
+      addReasonForm.render();
+    }
+  }
+}
+
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();
+  initAddReason();
 });
 
 $(window).on('unload', () => {

@@ -117,6 +117,10 @@ lookAndFeel.configure(app, {
         {
           test: /\.(png|jpg)$/i,
           loaders: ['file-loader']
+        },
+        {
+          test: /\.(njk|nunjucks)$/,
+          loader: 'nunjucks-loader'
         }
       ]
     },
@@ -126,6 +130,10 @@ lookAndFeel.configure(app, {
           {
             from: path.resolve(__dirname, 'assets/images'),
             to: 'images'
+          },
+          {
+            from: path.resolve(__dirname, 'node_modules/@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk'),
+            to: 'nunjucks/'
           }
         ])
     ]
