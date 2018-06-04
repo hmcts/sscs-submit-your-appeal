@@ -138,11 +138,11 @@ lookAndFeel.configure(app, {
         return Array.isArray(value);
       },
       inactivityTimeout: {
-        title: `${content.inactivityTimeout.title}`,
-        expiringIn: `${content.inactivityTimeout.expiringIn}`,
-        text: `${content.inactivityTimeout.text}`,
-        yes: `${content.inactivityTimeout.yes}`,
-        no: `${content.inactivityTimeout.no}`
+        title: content.inactivityTimeout.title,
+        expiringIn: content.inactivityTimeout.expiringIn,
+        text: content.inactivityTimeout.text,
+        yes: content.inactivityTimeout.yes,
+        no: content.inactivityTimeout.no
       },
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message
