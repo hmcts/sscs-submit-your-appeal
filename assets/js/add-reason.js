@@ -8,7 +8,8 @@ import $ from 'jquery';
 class AddReason {
 
   constructor() {
-
+    // todo increment the counter. Probably the simplest it's to read the dom of the list of the reasons already entered,
+    // instead of struggling to maintain an internal status.
     this.counter = 0;
     this.formId = 'dynamic-form';
     this.textboxId = 'item.whatYouDisagreeWith';
