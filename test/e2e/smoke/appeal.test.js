@@ -14,7 +14,7 @@ const txtMsgRemindersMobAnswer = `${selectors.textMsgReminders.mobileNumber} ${s
 
 Feature('Full Journey');
 
-Scenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
+xScenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
   async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
