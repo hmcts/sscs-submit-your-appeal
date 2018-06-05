@@ -7,24 +7,29 @@ import $ from 'jquery';
 class AddReason {
 
   constructor() {
+    this.counter = 0;
+    this.formId = 'dynamic-form';
     $('.grid-row').append(`
-      <form id="dynamic-form" action="/reason-for-appealing/item-0" method="post" class="form"></form>`);
+      <form id="${this.formId}" action="/reason-for-appealing/item-${this.counter}" method="post" class="form"></form>`);
     fields.getExported((err, components) => {
       const textbox = components.textbox;
       const renderedTextbox = textbox({
         id: 'item.whatYouDisagreeWith'
       }, 'What you disagree with');
-      $('#dynamic-form').append(renderedTextbox.val)
+      $(`#${this.formId}`).append(renderedTextbox.val);
       formElements.getExported((err, comps) => {
-        console.info('an so it contnues')
         const textarea = comps.textarea;
         const renderedTextarea = textarea({
           id: 'item.reasonForAppealing'
         }, 'Why you disagree with it', null, false, 'You can write as much as you want');
-        $('#dynamic-form').append(renderedTextarea.val);
-        $('#dynamic-form').append('<input class="button" type="submit" value="Continue">');
+        $(`#${this.formId}`).append(renderedTextarea.val);
+        $(`#${this.formId}`).append(`<input class="button" type="submit" id="${this.formId}-submit" value="Continue">`);
       })
-    })
+    });
+    this.addClickHandlers();
+  }
+  addClickHandlers() {
+
   }
   render() {
     console.info('yo! render!');
