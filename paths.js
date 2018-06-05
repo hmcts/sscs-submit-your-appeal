@@ -1,3 +1,5 @@
+const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+
 module.exports = {
 
   health: '/health',
@@ -77,7 +79,8 @@ module.exports = {
   reasonsForAppealing: {
     reasonForAppealing: '/reason-for-appealing',
     otherReasonForAppealing: '/other-reason-for-appealing',
-    sendingEvidence: '/sending-evidence'
+    sendingEvidence: '/sending-evidence',
+    evidenceUpload: evidenceUploadEnabled ? '/evidence-upload' :  undefined
   },
 
   hearing: {

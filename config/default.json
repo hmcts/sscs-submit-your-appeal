@@ -28,5 +28,10 @@
     "waitForAction": "500",
     "outputDir": "./output",
     "frontendUrl": "http://localhost:3000"
+  },
+  "features": {
+    "evidenceUpload": {
+      "enabled": true
+    }
   }
 }

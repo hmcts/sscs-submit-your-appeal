@@ -1,0 +1,15 @@
+{% extends "components/globals.html" %}
+{% extends "look-and-feel/layouts/question.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+there we go
+
+{% call formSection() %}
+{% endcall %}
+
