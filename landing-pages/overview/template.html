@@ -1,4 +1,5 @@
 {% extends "landing-page-template.html" %}
+{% from "components/landingPagePagination.html" import pagination %}
 
 {% block page_title %}{{ titleHead }}{% endblock %}
 
@@ -7,10 +8,10 @@
     <h2>Contents</h2>
     <ol class="nav-list">
         <li>{{ navList.overview }}</li>
-        <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
-        <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
-        <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
-        <li><a href="/after-you-appeal">{{ navList.after }}</a></li>
+        <li><a href="{{ paths.landingPages.beforeYouAppeal }}">{{ navList.before }}</a></li>
+        <li><a href="{{ paths.landingPages.helpWithAppeal }}">{{ navList.help }}</a></li>
+        <li><a href="{{ paths.landingPages.startAnAppeal }}">{{ navList.start }}</a></li>
+        <li><a href="{{ paths.landingPages.afterYouAppeal }}">{{ navList.after }}</a></li>
     </ol>
 </nav>
 {% endblock %}
@@ -48,19 +49,6 @@
     <p>{{ upToAMonth }}</p>
 </div>
 
-<nav class="pagination" role="navigation" aria-label="Pagination">
-    <ul>
-        <li class="pagination-next">
-            <a class="pagination-link" href="/meow">
-                <span class="pagination-title">
-                    Next
-                <img class="pagination-icon"/>
-                </span>
-                <span class="visually-hidden">:</span>
-                <span class="pagination-label">Before you appeal</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+{{ pagination(nextLink=paths.landingPages.beforeYouAppeal, nextLabel=navList.before) }}
 
 {%- endblock %}
