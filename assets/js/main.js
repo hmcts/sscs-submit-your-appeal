@@ -66,7 +66,8 @@ function destroyTM() {
 }
 
 function initAddReason() {
-  console.info('there we go')
+  // wrote this because I was thinking to memoize it but it turns out it's not possible nor needed, so
+  // this can be substantially simplified -- just get rid of render and instantiate the thing
   if (AddReason.startAddReason()) {
     if (addReasonForm) {
       addReasonForm.render();
