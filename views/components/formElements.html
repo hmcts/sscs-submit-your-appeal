@@ -67,3 +67,14 @@
     <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7">{{ field.value | default('') }}</textarea>
 </div>
 {% endmacro %}
+
+{% macro fileupload(id="file-upload", label="Upload file") %}
+
+<div class="form-group {{ errorClass(id) }}">
+
+    <label for="{{ id }}">{{ label }}</label>
+    <input id="{{ id }}" type="file" />
+
+</div>
+
+{% endmacro %}

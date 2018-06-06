@@ -1,6 +1,8 @@
 {% extends "components/globals.html" %}
 {% extends "look-and-feel/layouts/question.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/formElements.html" import fileupload %}
+
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -8,8 +10,9 @@
 {{ content.title | safe }}
 {% endset %}
 
-there we go
-
 {% call formSection() %}
+
+{{ fileupload('uploadEv') }}
+
 {% endcall %}
 
