@@ -1,21 +1,26 @@
-<dl class="cya-whatYouDisagreeWith">
-    <dt class="cya-question">{{ content.cya.address.question }}</dt>
-    <dd class="cya-answer">
-        {{ fields.addressLine1.value }}<br>
-        {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
-        {{ fields.townCity.value }}<br>
-        {{ fields.county.value }}<br>
-        {{ fields.postCode.value }}<br>
-    </dd>
-    <dd class="cya-change"><a href="{{ path }}">{{ content.cya.change }}</a></dd>
-</dl>
-<dl id="cya-appellantcontactdetails-email-address" class="cya-whatYouDisagreeWith">
-    <dt class="cya-question">{{ content.cya.emailAddress.question }}</dt>
-    <dd class="cya-answer">{{ CYAEmailAddress }}</dd>
-    <dd class="cya-change"></dd>
-</dl>
-<dl id="cya-appellantcontactdetails-phone-number">
-    <dt class="cya-question ">{{ content.cya.phoneNumber.question }}</dt>
-    <dd class="cya-answer">{{ CYAPhoneNumber }}</dd>
-    <dd class="cya-change"></dd>
-</dl>
+<div class="govuk-check-your-answers cya-questions-short">
+    <dl class="cya-whatYouDisagreeWith">
+        <dt class="cya-question">{{ content.cya.address.question }}</dt>
+        <dd class="cya-answer">
+            {{ fields.addressLine1.value }}<br>
+            {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
+            {{ fields.townCity.value }}<br>
+            {{ fields.county.value }}<br>
+            {{ fields.postCode.value }}<br>
+        </dd>
+        <dd class="cya-change">
+            <a href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="visually-hidden"> {{ content.cya.yourDetails }}</span>
+        </dd>
+    </dl>
+    <dl id="cya-appellantcontactdetails-email-address" class="cya-whatYouDisagreeWith">
+        <dt class="cya-question">{{ content.cya.emailAddress.question }}</dt>
+        <dd class="cya-answer">{{ CYAEmailAddress }}</dd>
+        <dd class="cya-change"></dd>
+    </dl>
+    <dl id="cya-appellantcontactdetails-phone-number">
+        <dt class="cya-question ">{{ content.cya.phoneNumber.question }}</dt>
+        <dd class="cya-answer">{{ CYAPhoneNumber }}</dd>
+        <dd class="cya-change"></dd>
+    </dl>
+</div>

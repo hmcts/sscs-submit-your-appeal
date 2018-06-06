@@ -58,6 +58,7 @@
     "emailAddress": {
       "question": "Email"
     },
-    "change": "Change"
+    "change": "Change",
+    "yourDetails": "Your Contact Details"
   }
 }

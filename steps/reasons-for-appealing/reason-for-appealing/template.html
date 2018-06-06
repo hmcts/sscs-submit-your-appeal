@@ -14,7 +14,8 @@
     addAnotherLink: addAnotherLinkContent,
     itemLabel: content.itemLabel,
     noItemsMessage: content.noReasons,
-    itemsListLabel: '',
+    itemsListLabel: content.itemsListLabel,
+    hideItemsListLabel: true,
     editItemLabel: content.itemLabel
 } %}
 
@@ -48,7 +49,7 @@
     <p>{{ content.dwpExplained }}</p>
     <p>{{ content.readYouMRN }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
-    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label) }}
+    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 
 

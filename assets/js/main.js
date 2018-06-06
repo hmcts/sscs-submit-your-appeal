@@ -11,7 +11,7 @@ function initShowHideContent() {
 
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
-  selects.forEach(select => {
+  $.each(selects, (index, select) => {
     accessibleAutocomplete.enhanceSelectElement({
       selectElement: select,
       source: (query, populateResults) => {
@@ -41,4 +41,11 @@ $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initDatePicker();
+});
+
+$(window).on('unload', () => {
+  // cautious cleanup -- probably unneeded
+  if ($('#date-picker').length) {
+    $('.prev, .next').off('click');
+  }
 });

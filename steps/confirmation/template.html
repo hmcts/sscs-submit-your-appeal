@@ -20,7 +20,44 @@
         <h1 class="bold-large">{{ content.title }}</h1>
     </div>
 
-    <img class="confirmation-image" src="{{ asset_path }}images/progress-bar-appeal-received.svg" alt="{{ content.imageAlt }}">
+    <section class="progress-bar">
+
+        <div class="appeal-received active">
+            <div class="ring">
+                <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+            </div>
+            <h4 class="current" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
+            <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
+        </div>
+
+        <div class="dwp-respond">
+            <div class="leg"></div>
+            <div class="ring">
+                <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+            </div>
+            <h4 aria-hidden="true">{{ content.progressBar.response.text }}</h4>
+            <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+        </div>
+
+        <div class="hearing-booked">
+            <div class="leg"></div>
+            <div class="ring">
+                <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+            </div>
+            <h4 aria-hidden="true">{{ content.progressBar.hearingBooked.text }}</h4>
+            <span class="screen-reader-text">{{ content.progressBar.hearingBooked.srText }}</span>
+        </div>
+
+        <div class="hearing">
+            <div class="leg"></div>
+            <div class="ring">
+                <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+            </div>
+            <h4 aria-hidden="true">{{ content.progressBar.hearing.text }}</h4>
+            <span class="screen-reader-text">{{ content.progressBar.hearing.srText }}</span>
+        </div>
+
+    </section>
 
     <div class="description">
         <h2 class="heading-small">{{ content.next.heading }}</h2>
