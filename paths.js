@@ -80,7 +80,7 @@ module.exports = {
     reasonForAppealing: '/reason-for-appealing',
     otherReasonForAppealing: '/other-reason-for-appealing',
     sendingEvidence: '/sending-evidence',
-    evidenceUpload: evidenceUploadEnabled ? '/evidence-upload' :  undefined
+    evidenceUpload: evidenceUploadEnabled ? '/evidence-upload' : null
   },
 
   hearing: {

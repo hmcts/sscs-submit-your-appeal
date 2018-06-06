@@ -1,6 +1,5 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -12,17 +11,14 @@ class EvidenceUpload extends Question {
   }
 
   static handleUpload(req, res, next) {
-    // for now
     if (req.method.toLowerCase() === 'post') {
-      const form = new formidable.IncomingForm({
+      const uploader = new formidable.IncomingForm({
         uploadDir: pt.resolve(__dirname, './../../../uploads'),
         keepExtensions: true,
         type: 'multipart'
       });
-      form.once('error', console.log)
-      return form.parse(req, function (err, fields, files) {
-        return next();
-      })
+      // uploader.once('error', console.log);
+      return uploader.parse(req, (/* error, fields, files*/) => next());
     }
     return next();
   }

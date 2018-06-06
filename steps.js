@@ -104,7 +104,9 @@ const reasonsForAppealing = [
   SendingEvidence
 ];
 
-evidenceUploadEnabled && reasonsForAppealing.push(EvidenceUpload);
+if (evidenceUploadEnabled) {
+  reasonsForAppealing.push(EvidenceUpload);
+}
 
 const hearing = [
   HearingAvailability,
