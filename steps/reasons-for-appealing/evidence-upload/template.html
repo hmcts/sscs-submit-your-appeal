@@ -10,6 +10,8 @@
 {{ content.title | safe }}
 {% endset %}
 
+{% set enc_type = 'multipart/form-data' %}
+
 {% block fields %}
 
 {% call formSection() %}
