@@ -10,9 +10,14 @@
 {{ content.title | safe }}
 {% endset %}
 
+{% block fields %}
+
 {% call formSection() %}
 
 {{ fileupload('uploadEv') }}
 
 {% endcall %}
+
+{% endblock %}
+
 
