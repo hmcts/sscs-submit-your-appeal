@@ -9,6 +9,16 @@ class EvidenceUpload extends Question {
     return paths.reasonsForAppealing.evidenceUpload;
   }
 
+  static handleUpload(req, res, next) {
+    // for now
+    console.info('there goes the upload')
+    return next();
+  }
+
+  get middleware() {
+    return [EvidenceUpload.handleUpload, ...super.middleware];
+  }
+
   get form() {
     return form({
       uploadEv: text.joi(
