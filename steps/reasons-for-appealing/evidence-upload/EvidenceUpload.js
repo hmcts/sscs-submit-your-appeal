@@ -5,6 +5,7 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
+const http = require('http');
 const FormData = require('form-data');
 const { PassThrough } = require('stream');
 
@@ -44,12 +45,38 @@ class EvidenceUpload extends Question {
       return incoming.parse(req, function(error, fields, files) {
         console.info('where am i');
         const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + files.uploadEv.name;
+
         const outgoing = new FormData();
         outgoing.append(files.uploadEv.name, fs.createReadStream(pathToFile));
-        outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
+
+        const request = http.request({
+          method: 'post',
+          host: 'localhost',
+          port: 3010,
+          path: `/upload/${files.uploadEv.name}`,
+          encoding: null,
+          headers: {
+            'cache-control': 'no-cache',
+            'content-disposition': 'attachment; filename='+files.uploadEv.name,
+            'Content-Type' : 'multipart/form-data'
+          }
+        });
+
+        outgoing.pipe(request);
+
+        request.on('error', (e) => {
+          console.info('argh error ', e)
+        });
+
+        return request.on('response', (res) => {
+          console.log('all done', res.statusCode);
+          return next();
+        });
+
+/*        outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
           console.info('sent ', err);
           res.resume();
-        });
+        });*/
         return next();
       });
     }
