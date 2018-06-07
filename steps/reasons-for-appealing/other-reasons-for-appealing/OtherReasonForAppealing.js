@@ -40,7 +40,6 @@ class OtherReasonForAppealing extends Question {
   }
 
   next() {
-    // console.log(this.journey);
     return goTo(this.journey.steps.SendingEvidence);
   }
 }
