@@ -73,11 +73,6 @@ class EvidenceUpload extends Question {
           return next();
         });
 
-/*        outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
-          console.info('sent ', err);
-          res.resume();
-        });*/
-        return next();
       });
     }
     return next();
