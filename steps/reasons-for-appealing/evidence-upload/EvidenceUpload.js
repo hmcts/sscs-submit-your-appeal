@@ -1,13 +1,13 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
+const { api } = require('../../../config/default');
+const { Logger } = require('@hmcts/nodejs-logging');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
-const http = require('http');
-const FormData = require('form-data');
-const { PassThrough } = require('stream');
+const request = require('request');
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -15,67 +15,46 @@ class EvidenceUpload extends Question {
   }
 
   static handleUpload(req, res, next) {
-    if (req.method.toLowerCase() === 'post') {
+    const pathToUploadFolder = './../../../uploads';
+    const logger = Logger.getLogger('EvidenceUpload.js');
 
+    if (req.method.toLowerCase() === 'post') {
       const incoming = new formidable.IncomingForm({
-        uploadDir: pt.resolve(__dirname, './../../../uploads'),
+        uploadDir: pt.resolve(__dirname, pathToUploadFolder),
         keepExtensions: true,
         type: 'multipart'
       });
 
       incoming.once('error', er => {
-        console.info('error while receiving the file from the client', er);
+        logger.info('error while receiving the file from the client', er);
       });
 
-      incoming.on('file', function(field, file) {
-        const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + file.name;
+      incoming.on('file', (field, file) => {
+        const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
         fs.rename(file.path, pathToFile);
       });
 
-      incoming.on('error', function(err) {
-        console.log("an error has occured with form upload");
-        console.log(err);
+      incoming.on('error', error => {
+        logger.warn('an error has occured with form upload', error);
         req.resume();
       });
 
-      incoming.on('aborted', function() {
-        console.log("user aborted upload");
+      incoming.on('aborted', () => {
+        logger.log('user aborted upload');
       });
 
-      incoming.on('end', function() {
-        console.log('-> upload done');
+      incoming.on('end', () => {
+        logger.log('-> upload done');
       });
 
-      return incoming.parse(req, function(error, fields, files) {
-        const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + files.uploadEv.name;
-
-        const outgoing = new FormData();
-        outgoing.append(files.uploadEv.name, fs.createReadStream(pathToFile));
-
-        const request = http.request({
-          method: 'post',
-          host: 'localhost',
-          port: 3010,
-          path: `/upload/${files.uploadEv.name}`,
-          encoding: null,
-          headers: {
-            'cache-control': 'no-cache',
-            'content-disposition': `attachment; filename=${files.uploadEv.name}`,
-            'Content-Type' : 'multipart/form-data'
-          }
-        });
-
-        outgoing.pipe(request);
-
-        request.on('error', (e) => {
-          console.info('Error while sending the file to the remote server ', e)
-        });
-
-        return request.on('response', (res) => {
-          console.info('all done', res.statusCode);
-          return next();
-        });
-
+      return incoming.parse(req, (error, fields, files) => {
+        if (error) {
+          return next(error);
+        }
+        const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
+        return fs.createReadStream(pathToFile)
+          .pipe(request.post(`${api.uploadEvidenceUrl}/${files.uploadEv.name}`,
+            outgoingError => next(outgoingError)));
       });
     }
     return next();
