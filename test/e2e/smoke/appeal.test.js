@@ -1,4 +1,3 @@
-const { formatMobileNumber } = require('utils/stringUtils');
 const startAnAppealContent = require('landing-pages/start-an-appeal/content.en');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 const DateUtils = require('utils/DateUtils');
@@ -30,8 +29,8 @@ Scenario('Appellant full journey from /start-an-appeal to the /confirmation page
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
-    I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), appellantPhoneNumberAnswer);
-    I.see(formatMobileNumber(appellant.contactDetails.phoneNumber), txtMsgRemindersMobAnswer);
+    I.see(appellant.contactDetails.phoneNumber, appellantPhoneNumberAnswer);
+    I.see(appellant.contactDetails.phoneNumber, txtMsgRemindersMobAnswer);
     I.signAndSubmit(`${appellant.firstName} ${appellant.lastName}`);
     I.wait(2);
     I.seeCurrentUrlEquals(paths.confirmation);

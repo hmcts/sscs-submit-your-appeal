@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 
 const { expect } = require('test/util/chai');
-const { formatMobileNumber } = require('utils/stringUtils');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -42,9 +41,9 @@ describe('AppellantContactDetails.js', () => {
       expect(appellantContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
     });
 
-    it('should return a formatted mobile number if a phoneNumber value has been set', () => {
+    it('should return the phone number if a phoneNumber value has been set', () => {
       appellantContactDetails.fields.phoneNumber.value = '0800109756';
-      expect(appellantContactDetails.CYAPhoneNumber).to.equal(formatMobileNumber(appellantContactDetails.fields.phoneNumber.value));
+      expect(appellantContactDetails.CYAPhoneNumber).to.equal(appellantContactDetails.fields.phoneNumber.value);
     });
   });
 
