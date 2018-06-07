@@ -54,7 +54,12 @@ class EvidenceUpload extends Question {
         const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
         return fs.createReadStream(pathToFile)
           .pipe(request.post(`${api.uploadEvidenceUrl}/${files.uploadEv.name}`,
-            outgoingError => next(outgoingError)));
+            outgoingError => {
+            req.body = {
+              uploadEv: files.uploadEv.name
+            };
+            return next(outgoingError);
+          }));
       });
     }
     return next();
@@ -67,8 +72,8 @@ class EvidenceUpload extends Question {
   get form() {
     return form({
       uploadEv: text.joi(
-        'some error',
-        Joi.any().required()
+        'Please choose a file',
+        Joi.string().required()
       )
     });
   }
