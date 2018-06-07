@@ -3,7 +3,6 @@ const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { whitelist } = require('utils/regex');
-const { formatMobileNumber } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -14,7 +13,7 @@ class SendToNumber extends Question {
   }
 
   get phoneNumber() {
-    return formatMobileNumber(this.fields.phoneNumber.value);
+    return this.fields.phoneNumber.value;
   }
 
   get form() {

@@ -138,7 +138,10 @@ lookAndFeel.configure(app, {
         return Array.isArray(value);
       },
       timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message
+      timeOutMessage: content.timeout.message,
+      relatedContent: content.relatedContent,
+      paths,
+      urls
     }
   },
   development: {

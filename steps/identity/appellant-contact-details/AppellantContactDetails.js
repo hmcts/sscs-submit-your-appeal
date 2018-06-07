@@ -2,7 +2,6 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
-const { formatMobileNumber } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -15,13 +14,7 @@ class AppellantContactDetails extends Question {
   }
 
   get CYAPhoneNumber() {
-    let cyaPhoneNumber = null;
-    if (this.fields.phoneNumber.value) {
-      cyaPhoneNumber = formatMobileNumber(this.fields.phoneNumber.value);
-    } else {
-      cyaPhoneNumber = userAnswer.NOT_PROVIDED;
-    }
-    return cyaPhoneNumber;
+    return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
   }
 
   get CYAEmailAddress() {

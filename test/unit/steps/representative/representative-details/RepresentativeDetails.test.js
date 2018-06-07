@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 const { expect } = require('test/util/chai');
-const { formatMobileNumber } = require('utils/stringUtils');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -98,9 +97,9 @@ describe('RepresentativeDetails.js', () => {
       expect(representativeDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
     });
 
-    it('should return a formatted mobile number if a phoneNumber value has been set', () => {
+    it('should return the phone number if a phoneNumber value has been set', () => {
       representativeDetails.fields.phoneNumber.value = '0800109756';
-      expect(representativeDetails.CYAPhoneNumber).to.equal(formatMobileNumber(representativeDetails.fields.phoneNumber.value));
+      expect(representativeDetails.CYAPhoneNumber).to.equal(representativeDetails.fields.phoneNumber.value);
     });
   });
 
