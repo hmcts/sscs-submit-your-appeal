@@ -15,27 +15,42 @@ class EvidenceUpload extends Question {
 
   static handleUpload(req, res, next) {
     if (req.method.toLowerCase() === 'post') {
-      const uploader = new formidable.IncomingForm({
+      const incoming = new formidable.IncomingForm({
         uploadDir: pt.resolve(__dirname, './../../../uploads'),
         keepExtensions: true,
         type: 'multipart'
       });
-      uploader.once('error', console.log);
-      uploader.on('file', function(field, file) {
+      incoming.once('error', console.log);
+      incoming.on('file', function(field, file) {
         //rename the incoming file to the file's name
-        fs.rename(file.path, pt.resolve(__dirname, './../../../uploads') + '/' + file.name);
-      });
-/*      return uploader.parse(req, (error, fields, files) => {
-        console.info('file uploaded ', typeof files, typeof files.uploadEv, typeof files.uploadEv.File);
-        const sender = new FormData();
-        const filename = files.uploadEv.name;
-        console.info('filename ', filename)
-        sender.append(filename, fs.createReadStream(pt.resolve(__dirname, `./../../../uploads/${filename}`)));
-        sender.submit(`http://localhost:3010/${filename}`, function(err, res) {
+        const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + file.name;
+        fs.rename(file.path, pathToFile);
+        console.info('where am i');
+        const outgoing = new FormData();
+        outgoing.append(file.name, pathToFile);
+        outgoing.submit(`http://localhost:3010/upload/${file.name}`, function(err, res) {
           console.info('sent ', err);
           res.resume();
         });
-      });*/
+      });
+
+      incoming.on('error', function(err) {
+        console.log("an error has occured with form upload");
+        console.log(err);
+        req.resume();
+      });
+
+      incoming.on('aborted', function(err) {
+        console.log("user aborted upload");
+      });
+
+      incoming.on('end', function() {
+        console.log('-> upload done');
+      });
+
+      return incoming.parse(req, function() {
+        return next();
+      });
     }
     return next();
   }

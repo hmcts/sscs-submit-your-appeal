@@ -8,6 +8,7 @@ const app = express();
 app.set('port', 3010);
 
 app.post('/upload/:filename', function (req, res) {
+  console.info('file acceptor handler invoked ', req.files)
   let filename = path.basename(req.params.filename);
   filename = path.resolve(__dirname, filename);
   const dst = fs.createWriteStream(filename);
