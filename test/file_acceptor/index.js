@@ -18,6 +18,7 @@ app.post('/upload/:filename', function (req, res) {
   });
   req.on('error', (er) => console.error);
   req.on('end', function () {
+    console.info('happily ended!')
     res.send(200);
   });
 });
