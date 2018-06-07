@@ -1,21 +1,23 @@
 {% extends "landing-page-template.html" %}
+{% from "components/landingPagePagination.html" import pagination %}
 
 {% block page_title %}{{ titleHead }}{% endblock %}
 
 {% block navList -%}
-<div>
+<nav class="nav-section" role="navigation">
+    <h2>Contents</h2>
     <ol class="nav-list">
-        <li><a href="/">{{ navList.overview }}</a></li>
-        <li><a href="/before-you-appeal">{{ navList.before }}</a></li>
-        <li><a href="/help-with-appeal">{{ navList.help }}</a></li>
-        <li><a href="/start-an-appeal">{{ navList.start }}</a></li>
+        <li><a href="{{ paths.landingPages.overview }}">{{ navList.overview }}</a></li>
+        <li><a href="{{ paths.landingPages.beforeYouAppeal }}">{{ navList.before }}</a></li>
+        <li><a href="{{ paths.landingPages.helpWithAppeal }}">{{ navList.help }}</a></li>
+        <li><a href="{{ paths.landingPages.startAnAppeal }}">{{ navList.start }}</a></li>
         <li>{{ navList.after }}</li>
     </ol>
-</div>
+</nav>
 {% endblock %}
 
 {% block infoContent %}
-<h1 class="heading-large">{{ heading }}</h1>
+<h1 class="part-title">{{ heading }}</h1>
 
 <div>
     <h2 class="heading-medium">{{ sentToDepartment.subHeading }}</h2>
@@ -55,4 +57,10 @@
         <p>{{ sendEvidence.sendASAP }}</p>
     </div>
 </div>
+
+{{ pagination(
+    prevLink=paths.landingPages.startAnAppeal,
+    prevLabel=navList.start
+) }}
+
 {%- endblock %}

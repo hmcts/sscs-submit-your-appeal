@@ -20,5 +20,18 @@
   },
   "timeout": {
     "message": "This page will time out in 20 minutes if there is no activity. This is to protect your data."
+  },
+  "relatedContent": {
+    "heading": "Related Content",
+    "benefit": {
+      "calculator": "Benefits calculators",
+      "overPayments": "Benefit overpayments",
+      "fraud": "Benefit fraud"
+    },
+    "explore": {
+      "heading": "Explore the topic",
+      "howItWorks": "How benefits work",
+      "courts": "Courts, sentencing and tribunals"
+    }
   }
 }
