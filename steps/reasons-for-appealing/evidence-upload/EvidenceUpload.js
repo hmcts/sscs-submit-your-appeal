@@ -25,13 +25,6 @@ class EvidenceUpload extends Question {
         //rename the incoming file to the file's name
         const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + file.name;
         fs.rename(file.path, pathToFile);
-        console.info('where am i');
-        const outgoing = new FormData();
-        outgoing.append(file.name, pathToFile);
-        outgoing.submit(`http://localhost:3010/upload/${file.name}`, function(err, res) {
-          console.info('sent ', err);
-          res.resume();
-        });
       });
 
       incoming.on('error', function(err) {
@@ -48,7 +41,15 @@ class EvidenceUpload extends Question {
         console.log('-> upload done');
       });
 
-      return incoming.parse(req, function() {
+      return incoming.parse(req, function(error, fields, files) {
+        console.info('where am i');
+        const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + files.uploadEv.name;
+        const outgoing = new FormData();
+        outgoing.append(files.uploadEv.name, fs.createReadStream(pathToFile));
+        outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
+          console.info('sent ', err);
+          res.resume();
+        });
         return next();
       });
     }
