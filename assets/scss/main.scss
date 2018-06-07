@@ -3,6 +3,9 @@
 @import 'look-and-feel/check-your-answers';
 @import 'bootstrap-datepicker1.8.0.min';
 @import 'date-picker';
+@import 'h-progress-bar';
+@import 'v-progress-bar';
+@import 'landing-pages';
 
 .form-section {
   margin-bottom: 30px;
@@ -97,45 +100,8 @@ label.form-label[for="signer"] {
   };
 }
 
-.nav-list {
-  column-count: 2;
-  column-gap: 6em;
-  list-style-type: decimal;
-  padding-left: 20px;
-  font-size: 16px;
-  line-height: 30px;
-}
-
 .internal-server-error {
   margin-top: 30px;
-}
-
-@media (max-width: 640px) {
-  .nav-list {
-    column-count: 1;
-    padding-left: 0;
-
-    li {
-      margin-left: 1.5em;
-      padding-left: 0.3em;
-    }
-  }
-}
-
-.govuk-related-items {
-  border-top: 10px solid $govuk-blue;
-  margin-top: $gutter;
-  padding-top: 5px;
-
-  .heading-medium {
-    margin-bottom: .5em;
-    margin-top: .3em;
-  }
-
-  li {
-    list-style-type: none;
-    margin-bottom: 10px;
-  }
 }
 
 .add-another-list {
@@ -196,3 +162,79 @@ label.form-label[for="signer"] {
     }
   }
 }
+
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  top: -999px;
+  left: -999px;
+}
+
+.progress-bar {
+
+  // Display a horizontal progress bar when on larger devices.
+  @include h-progress-bar;
+
+  // Display a vertical progress bar when on smaller devices.
+  @include v-progress-bar;
+
+  // Wrap the progress bar text depending what device you're on.
+  @include wrap-progress-bar-text;
+}
+
+.events {
+  background-color: #eef7ff;
+  padding: 20px 20px;
+
+  .heading-small {
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+
+  a {
+    display: block;
+    padding-bottom: 20px;
+  }
+
+  details {
+
+    summary {
+      span {
+        margin-left: -5px;
+      }
+    }
+
+    div {
+      position: relative;
+      padding-top: 15px;
+      padding-bottom: 10px;
+      a {
+        display: block;
+        padding-bottom: 15px;
+      }
+    }
+
+    div:after {
+      content: "";
+      background: $grey-2;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 95%;
+      height: 1px;
+    }
+
+    div:last-child {
+      padding-bottom: 0;
+    }
+
+    div:last-child:after {
+      display: none;
+    }
+  }
+}
+
+

@@ -1,4 +1,3 @@
-const { formatMobileNumber } = require('utils/stringUtils');
 const paths = require('paths');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 const selectors = require('steps/check-your-appeal/selectors');
@@ -44,7 +43,7 @@ Scenario('Appellant omits optional phone number, enters mobile for text msg remi
 
   I.confirmDetailsArePresent();
   I.see('Not provided', appellantPhoneNumberAnswer);
-  I.see(formatMobileNumber('07455678444'), textMsgRemindersMobileAnswer);
+  I.see('07455678444', textMsgRemindersMobileAnswer);
 });
 
 Scenario('Appellant adds a phone number and uses it to sign up for text msg reminders.', I => {
@@ -58,8 +57,8 @@ Scenario('Appellant adds a phone number and uses it to sign up for text msg remi
   I.enterDetailsFromNoRepresentativeToEnd();
 
   I.confirmDetailsArePresent();
-  I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
-  I.see(formatMobileNumber('07411738663'), textMsgRemindersMobileAnswer);
+  I.see('07411738663', appellantPhoneNumberAnswer);
+  I.see('07411738663', textMsgRemindersMobileAnswer);
 });
 
 Scenario('Appellant adds a phone number, provides a separate number for text msg reminders.', I => {
@@ -74,8 +73,8 @@ Scenario('Appellant adds a phone number, provides a separate number for text msg
   I.enterDetailsFromNoRepresentativeToEnd();
 
   I.confirmDetailsArePresent();
-  I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
-  I.see(formatMobileNumber('07411333333'), textMsgRemindersMobileAnswer);
+  I.see('07411738663', appellantPhoneNumberAnswer);
+  I.see('07411333333', textMsgRemindersMobileAnswer);
 });
 
 Scenario('Appellant adds a phone number, but does not sign up for text msg reminders.', I => {
@@ -86,6 +85,6 @@ Scenario('Appellant adds a phone number, but does not sign up for text msg remin
   I.enterDetailsFromNoRepresentativeToEnd();
 
   I.confirmDetailsArePresent();
-  I.see(formatMobileNumber('07411738663'), appellantPhoneNumberAnswer);
+  I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);
 });

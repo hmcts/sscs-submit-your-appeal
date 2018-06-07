@@ -10,7 +10,7 @@ function initShowHideContent() {
 
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
-  selects.forEach(select => {
+  $.each(selects, (index, select) => {
     accessibleAutocomplete.enhanceSelectElement({
       selectElement: select
     });
