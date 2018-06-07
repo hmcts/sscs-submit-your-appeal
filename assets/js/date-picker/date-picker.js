@@ -162,7 +162,7 @@ const datePicker = {
     const orderDates = datePickerUtils.sortDates(datesIndex);
     let elements = '';
 
-    orderDates.forEach(date => {
+    $.each(orderDates, (index, date) => {
       elements += `
         <dt class="visually-hidden">items-${date.index}</dt>
         <dd id="add-another-list-items-${date.index}" class="add-another-list-item">

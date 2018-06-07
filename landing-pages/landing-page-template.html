@@ -16,11 +16,43 @@
     </div>
 {% endblock %}
 
-{% block two_thirds -%}
 
-    {{ header(title, size='xlarge') }}
-    {% block navList -%}{%- endblock %}
-    <hr>
-    {% block infoContent -%}{%- endblock %}
+
+{% block full_width -%}
+
+    <div class="grid-row">
+
+        <div class="column-two-thirds">
+            {{ header(title, size='xlarge') }}
+            <aside class="nav-container" role="complementary">
+                {% block navList -%}{%- endblock %}
+            </aside>
+        </div>
+
+        <div class="column-two-thirds">
+            {% block infoContent -%}{%- endblock %}
+        </div>
+
+        <div class="column-one-third">
+            <aside class="govuk-related-items">
+                <h2 class="heading-small">{{ relatedContent.heading }}</h2>
+                <nav role="navigation">
+                    <ul class="font-xsmall">
+                        <li><a href="{{ urls.relatedContent.benefit.calculator }}">{{ relatedContent.benefit.calculator }}</a></li>
+                        <li><a href="{{ urls.relatedContent.benefit.overPayments }}">{{ relatedContent.benefit.overPayments }}</a></li>
+                        <li><a href="{{ urls.relatedContent.benefit.fraud }}">{{ relatedContent.benefit.fraud }}</a></li>
+                    </ul>
+                </nav>
+                <nav>
+                    <h3 class="sub-heading">{{ relatedContent.explore.heading }}</h3>
+                    <ul class="font-xsmall">
+                        <li class="bold"><a href="{{ urls.relatedContent.explore.howItWorks }}">{{ relatedContent.explore.howItWorks }}</a></li>
+                        <li class="bold"><a href="{{ urls.relatedContent.explore.courts }}">{{ relatedContent.explore.courts }}</a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+
+    </div>
 
 {%- endblock %}

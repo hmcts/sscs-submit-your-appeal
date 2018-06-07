@@ -145,7 +145,10 @@ lookAndFeel.configure(app, {
         no: content.inactivityTimeout.no
       },
       timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message
+      timeOutMessage: content.timeout.message,
+      relatedContent: content.relatedContent,
+      paths,
+      urls
     }
   },
   development: {
