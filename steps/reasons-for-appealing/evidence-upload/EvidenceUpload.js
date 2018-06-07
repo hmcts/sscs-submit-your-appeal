@@ -16,14 +16,18 @@ class EvidenceUpload extends Question {
 
   static handleUpload(req, res, next) {
     if (req.method.toLowerCase() === 'post') {
+
       const incoming = new formidable.IncomingForm({
         uploadDir: pt.resolve(__dirname, './../../../uploads'),
         keepExtensions: true,
         type: 'multipart'
       });
-      incoming.once('error', console.log);
+
+      incoming.once('error', er => {
+        console.info('error while receiving the file from the client', er);
+      });
+
       incoming.on('file', function(field, file) {
-        //rename the incoming file to the file's name
         const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + file.name;
         fs.rename(file.path, pathToFile);
       });
@@ -34,7 +38,7 @@ class EvidenceUpload extends Question {
         req.resume();
       });
 
-      incoming.on('aborted', function(err) {
+      incoming.on('aborted', function() {
         console.log("user aborted upload");
       });
 
@@ -43,7 +47,6 @@ class EvidenceUpload extends Question {
       });
 
       return incoming.parse(req, function(error, fields, files) {
-        console.info('where am i');
         const pathToFile = pt.resolve(__dirname, './../../../uploads') + '/' + files.uploadEv.name;
 
         const outgoing = new FormData();
@@ -57,7 +60,7 @@ class EvidenceUpload extends Question {
           encoding: null,
           headers: {
             'cache-control': 'no-cache',
-            'content-disposition': 'attachment; filename='+files.uploadEv.name,
+            'content-disposition': `attachment; filename=${files.uploadEv.name}`,
             'Content-Type' : 'multipart/form-data'
           }
         });
@@ -65,11 +68,11 @@ class EvidenceUpload extends Question {
         outgoing.pipe(request);
 
         request.on('error', (e) => {
-          console.info('argh error ', e)
+          console.info('Error while sending the file to the remote server ', e)
         });
 
         return request.on('response', (res) => {
-          console.log('all done', res.statusCode);
+          console.info('all done', res.statusCode);
           return next();
         });
 
