@@ -55,11 +55,11 @@ class EvidenceUpload extends Question {
         return fs.createReadStream(pathToFile)
           .pipe(request.post(`${api.uploadEvidenceUrl}/${files.uploadEv.name}`,
             outgoingError => {
-            req.body = {
-              uploadEv: files.uploadEv.name
-            };
-            return next(outgoingError);
-          }));
+              req.body = {
+                uploadEv: files.uploadEv.name
+              };
+              return next(outgoingError);
+            }));
       });
     }
     return next();
