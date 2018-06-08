@@ -7,7 +7,7 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
-const request = require('request');
+const FormData = require('form-data');
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -52,14 +52,25 @@ class EvidenceUpload extends Question {
           return next(error);
         }
         const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
-        return fs.createReadStream(pathToFile)
+        const outgoing = new FormData();
+        outgoing.append('file', fs.createReadStream(pathToFile));
+
+        return outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
+          req.body = {
+            uploadEv: files.uploadEv.name
+          };
+          return next(err)
+        });
+
+        /*
+            return fs.createReadStream(pathToFile)
           .pipe(request.post(`${api.uploadEvidenceUrl}/${files.uploadEv.name}`,
             outgoingError => {
               req.body = {
                 uploadEv: files.uploadEv.name
               };
               return next(outgoingError);
-            }));
+            }));*/
       });
     }
     return next();
