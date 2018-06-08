@@ -19,6 +19,7 @@ class InactivityAlert {
 
     this.init = this.init.bind(this);
     this.destroy = this.destroy.bind(this);
+    this.restartCounters = this.restartCounters.bind(this);
     this.init();
   }
   static navigateAway() {
@@ -35,6 +36,8 @@ class InactivityAlert {
         let count = 1000;
         let startTime = 120000;
         const splitMessage = this.elMessage.length ? this.elMessage.html().split(/ [0-9:]+ /) : '';
+
+        this.detachHandlers();
 
         const updateMessage = function() {
           // here update the time displayed in the modal
@@ -54,20 +57,35 @@ class InactivityAlert {
     this.setTimeoutForModal();
     this.setSessionTimeout();
   }
-  init() {
-    this.startCountdown();
-    this.elExtend.on('click', () => {
-      window.clearTimeout(this.timeoutForSession);
-      window.clearInterval(this.intervalToUpdate);
-      this.startCountdown();
-      $.modal.close();
-    });
-    this.elDestroy.on('click', InactivityAlert.navigateAway);
-  }
-  destroy() {
+  stopAllCounters() {
     window.clearTimeout(this.timeoutForModal);
     window.clearTimeout(this.timeoutForSession);
     window.clearInterval(this.intervalToUpdate);
+  }
+  restartCounters() {
+    this.stopAllCounters();
+    this.startCountdown();
+    return true;
+  }
+  init() {
+    this.startCountdown();
+    this.elExtend.on('click', () => {
+      this.restartCounters();
+      $.modal.close();
+      this.attachHandlers();
+    });
+    this.elDestroy.on('click', InactivityAlert.navigateAway);
+    this.attachHandlers();
+  }
+  attachHandlers() {
+    $(document).on('keypress mousemove', this.restartCounters);
+  }
+  detachHandlers() {
+    $(document).off('keypress mousemove', this.restartCounters);
+  }
+  destroy() {
+    this.detachHandlers();
+    this.stopAllCounters();
     this.elExtend.off('click');
     this.elDestroy.off('click');
   }
