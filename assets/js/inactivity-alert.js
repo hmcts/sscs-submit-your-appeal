@@ -33,24 +33,26 @@ class InactivityAlert {
     const el = $('#timeout-dialog');
     this.timeoutForModal = window
       .setTimeout(() => {
-        let count = 1000;
+        const count = 1000;
+        /* eslint-disable no-magic-numbers */
         let startTime = 120000;
+        /* eslint-enable no-magic-numbers */
         const splitMessage = this.elMessage.length ? this.elMessage.html().split(/ [0-9:]+ /) : '';
 
         this.detachHandlers();
 
-        const updateMessage = function() {
+        const updateMessage = function uM() {
           // here update the time displayed in the modal
           if (this.elMessage.length) {
             const formatted = moment.utc(startTime).format('m:ss');
-            this.elMessage.html(`${splitMessage[0]} ${formatted} ${splitMessage[1]}`)
+            this.elMessage.html(`${splitMessage[0]} ${formatted} ${splitMessage[1]}`);
           }
           startTime -= count;
         }.bind(this);
 
         updateMessage();
         this.intervalToUpdate = window.setInterval(updateMessage, count);
-        el.modal.call(el);
+        el.modal();
       }, this.showAfterSeconds * secondsToMilliseconds);
   }
   startCountdown() {
