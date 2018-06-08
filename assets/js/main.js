@@ -15,7 +15,7 @@ function initAutocomplete() {
     accessibleAutocomplete.enhanceSelectElement({
       selectElement: select,
       source: (query, populateResults) => {
-        const minQueryLength = 2;
+        const minQueryLength = 1;
         if (query.length < minQueryLength) {
           return null;
         }
