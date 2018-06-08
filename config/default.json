@@ -11,7 +11,7 @@
     "timeout": 1200
   },
   "frontend": {
-    "inactivityAlert": 900
+    "inactivityAlert": 1080
   },
   "api": {
     "url":  "http://localhost:8080"

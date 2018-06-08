@@ -2,10 +2,12 @@
 {% extends "look-and-feel/layouts/question.html" %}
 
 {% block head %}
-{{ super() }}
+
 <noscript>
     <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
 </noscript>
+
+{{ super() }}
 {% endblock %}
 
 

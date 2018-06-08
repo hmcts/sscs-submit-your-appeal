@@ -55,8 +55,18 @@ function initSYAAnalyticsTrack() {
   window.GOVUK.analytics.trackPageview();
 }
 
+function hasMetaRefresh() {
+  // document.querySelectorAll('noscript meta') doesn't work! :-o
+  const noscripts = document.querySelectorAll('noscript');
+  return Array.from(noscripts).some((el) => {
+    return el.innerHTML.indexOf('refresh') !== -1;
+  })
+}
+
 function initTM(sessionSeconds, showAfterSeconds) {
-  timeoutM = new InactivityAlert(sessionSeconds, showAfterSeconds);
+  if (hasMetaRefresh()) {
+    timeoutM = new InactivityAlert(sessionSeconds, showAfterSeconds);
+  }
 }
 
 function destroyTM() {
