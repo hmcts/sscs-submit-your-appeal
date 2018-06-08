@@ -7,7 +7,7 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
-const FormData = require('form-data');
+const request = require('request');
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -52,15 +52,31 @@ class EvidenceUpload extends Question {
           return next(error);
         }
         const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
-        const outgoing = new FormData();
-        outgoing.append('file', fs.createReadStream(pathToFile));
 
-        return outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
+        //const outgoing = new FormData();
+        //outgoing.append('file', fs.createReadStream(pathToFile));
+
+        return request.post({
+          url: `http://localhost:3010/upload/${files.uploadEv.name}`,
+          formData: {
+            file: fs.createReadStream(pathToFile)
+          },
+        }, function (err, resp, body) {
+          if (!err) {
+            req.body = {
+              uploadEv: files.uploadEv.name
+            };
+          }
+          console.info('file posted. The outcome was ', body);
+          return next(err)
+        });
+
+/*        return outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
           req.body = {
             uploadEv: files.uploadEv.name
           };
           return next(err)
-        });
+        });*/
 
         /*
             return fs.createReadStream(pathToFile)

@@ -25,7 +25,9 @@ app.post('/upload/:filename', (req, res) => {
   });
   req.on('end', () => {
     console.info('happily ended!');
-    res.send(200);
+    return res.json({
+      file: 'ugo!.pdf'
+    });
   });
 });
 
