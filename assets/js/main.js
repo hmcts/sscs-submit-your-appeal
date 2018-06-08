@@ -4,7 +4,6 @@ import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
-import Analytics from 'govuk/analytics/analytics';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -32,29 +31,6 @@ function initDatePicker() {
   }
 }
 
-function initSYAAnalyticsTrack() {
-  Analytics.load();
-
-  // Use document.domain in dev, preview and staging so that tracking works
-  // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
-  const cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
-
-  window.GOVUK.analytics = new Analytics({
-    universalId: 'UA-91309785-4',
-    cookieDomain
-  });
-
-  // Set custom dimensions before tracking pageviews
-  // analytics.setDimension(…)
-
-  // Activate any event plugins eg. print intent, error tracking
-  // analyticsPlugins.error();
-  // analyticsPlugins.printIntent();
-
-  // Track initial pageview
-  window.GOVUK.analytics.trackPageview();
-}
-
 function hasMetaRefresh() {
   // document.querySelectorAll('noscript meta') doesn't work! :-o
   const noscripts = document.querySelectorAll('noscript');
@@ -76,7 +52,6 @@ function destroyTM() {
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
-  initSYAAnalyticsTrack();
   initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();
 });
