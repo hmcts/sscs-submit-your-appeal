@@ -66,7 +66,7 @@ class EvidenceUpload extends Question {
             return next(uploadingError);
           }
           const pathToFile = `${pt
-            .resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
+            .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
 
           return request.post({
             url: api.uploadEvidenceUrl,
