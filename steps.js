@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
-const { get } = require('lodash');
+const { get, concat } = require('lodash');
 
 const evidenceUploadEnabled = get(require('config'), 'features.evidenceUpload.enabled');
 
-const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit-points/exit/Exit');
 const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');

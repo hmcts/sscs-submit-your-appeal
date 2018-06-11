@@ -1,7 +1,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { api } = require('../../../config/default');
 const { Logger } = require('@hmcts/nodejs-logging');
+const { api } = require('config/default.json');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
