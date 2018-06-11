@@ -63,10 +63,9 @@ class EvidenceUpload extends Question {
             const b = JSON.parse(body);
             req.body = {
               uploadEv: b.documents[0].originalDocumentName,
-              link: b.documents[0]._links.self
+              link: b.documents[0]._links.self.href
             };
           }
-          console.info('error is ', err)
           return next(err)
         });
       });
