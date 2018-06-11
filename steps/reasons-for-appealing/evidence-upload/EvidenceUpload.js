@@ -1,7 +1,8 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
-const { api } = require('config/default.json');
+const config = require('config');
+const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -69,7 +70,7 @@ class EvidenceUpload extends Question {
             .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
 
           return request.post({
-            url: api.uploadEvidenceUrl,
+            url: uploadEvidenceUrl,
             formData: {
               file: fs.createReadStream(pathToFile)
             }

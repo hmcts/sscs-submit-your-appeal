@@ -2,9 +2,9 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
-const { get } = require('lodash');
 
-const evidenceUploadEnabled = get(require('config'), 'features.evidenceUpload.enabled');
+const config = require('config');
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 class SendingEvidence extends Question {
   static get path() {
