@@ -2,8 +2,15 @@ const nunjucks = require('nunjucks');
 // todo: how on Earth do I define correctly this path for both dev and prod? Ben, heeelp... !
 // ps: this works but doesn't strike me as very robust
 const fields = require('../../dist/nunjucks/look-and-feel/components/fields.njk');
-const formElements = require('../../dist/nunjucks/formElements.njk');
+// const formElements = require('../../dist/nunjucks/formElements.njk');
 import $ from 'jquery';
+
+
+
+
+// get the results that have already been posted
+// post results - counter is shit
+// Validation????
 
 class AddReason {
 
@@ -15,28 +22,67 @@ class AddReason {
     this.textboxId = 'item.whatYouDisagreeWith';
     this.textareaId = 'item.reasonForAppealing';
     // you'll need a custom element to append the form to, this is just to play with it
-    $('.grid-row').append(`
-      <form id="${this.formId}" action="/reason-for-appealing/item-${this.counter}" method="post" class="form"></form>`);
+    $('.add-another-add-link').before(`<div id="${this.formId}"></div>`);
+
+    this.addFields();
+    this.addAnother();
+    this.addClickHandlers();
+  }
+
+  addFields() {
+
+    if ($('.add-another-list').length) {
+      $('.add-another-list').remove();
+    }
 
     fields.getExported((err, components) => {
       const textbox = components.textbox;
+      const textarea = components.textarea;
       // todo: be a star and import the json tokens as well, instead of hardcoding the text. We may as well go the whole hog!
       const renderedTextbox = textbox({
         id: this.textboxId
       }, 'What you disagree with');
-      $(`#${this.formId}`).append(renderedTextbox.val);
+      const renderedTextarea = textarea({
+        id: this.textareaId
+      }, 'Why you disagree with it', null, false, 'You can write as much as you want');
+      $(`#${this.formId}`).append(`<div id="items-${this.counter}">`);
+      $(`#items-${this.counter}`).append(renderedTextbox.val);
+      $(`#items-${this.counter}`).append(renderedTextarea.val);
+      // $(`#${this.formId}`).append(`<input class="button" type="submit" id="${this.formId}-submit" value="Continue">`);
+    });
+  }
 
-      formElements.getExported((err, comps) => {
-        const textarea = comps.textarea;
-        const renderedTextarea = textarea({
-          id: this.textareaId
-        }, 'Why you disagree with it', null, false, 'You can write as much as you want');
-        $(`#${this.formId}`).append(renderedTextarea.val);
-        $(`#${this.formId}`).append(`<input class="button" type="submit" id="${this.formId}-submit" value="Continue">`);
+  addAnother() {
+    $('.add-another-add-link').click(event => {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: `/reason-for-appealing/item-${this.counter}`,
+        data: this.buildBodyJson(),
+        success: (data) => {
+          this.counter ++;
+          this.addFields();
+          console.log('here');
+
+          // build new form underneath
+          // refresh the page so you get the updated list
+        },
+        error: (err) => {
+          // display the errors on the ajax form!
+        }
       });
     });
-    this.addClickHandlers();
   }
+
+  buildBodyJson() {
+    const whatYouDisagreeWith = $('#item\\.whatYouDisagreeWith').val();
+    const whyYouDisagreeWith = $('#item\\.reasonForAppealing').val();
+    return {
+      'item.whatYouDisagreeWith': whatYouDisagreeWith,
+      'item.reasonForAppealing': whyYouDisagreeWith
+    };
+  }
+
   addClickHandlers() {
     $(`#${this.formId}`).on('submit', (event) => {
       event.preventDefault();
