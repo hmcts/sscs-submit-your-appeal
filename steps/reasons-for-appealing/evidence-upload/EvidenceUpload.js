@@ -53,11 +53,8 @@ class EvidenceUpload extends Question {
         }
         const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
 
-        //const outgoing = new FormData();
-        //outgoing.append('file', fs.createReadStream(pathToFile));
-
         return request.post({
-          url: `http://localhost:3010/upload/${files.uploadEv.name}`,
+          url: api.uploadEvidenceUrl,
           formData: {
             file: fs.createReadStream(pathToFile)
           },
@@ -69,6 +66,7 @@ class EvidenceUpload extends Question {
               link: b.documents[0]._links.self
             };
           }
+          console.info('error is ', err)
           return next(err)
         });
       });

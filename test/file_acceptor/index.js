@@ -1,6 +1,7 @@
 // this is to simulate the upload evidence api. It's not part of the main app.
 
 const express = require('express');
+const formidable = require('formidable');
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
@@ -10,28 +11,47 @@ const app = express();
 /* eslint-disable no-console */
 
 app.set('port', 3010);
-app.post('/upload/:filename', (req, res) => {
-  console.info('file acceptor handler invoked ', req.files);
-  let filename = path.basename(req.params.filename);
-  filename = path.resolve(__dirname, filename);
-  const dst = fs.createWriteStream(filename);
-  req.pipe(dst);
-  dst.on('drain', () => {
-    console.log('drain', new Date());
+app.post('/upload', (req, res) => {
+
+  const incoming = new formidable.IncomingForm({
+    uploadDir: path.resolve(__dirname, '.'),
+    keepExtensions: true,
+    type: 'multipart'
+  });
+
+  incoming.once('error', er => {
+    console.info('error while receiving the file from the client', er);
+  });
+
+  incoming.on('file', (field, file) => {
+    const pathToFile = `${path.resolve(__dirname, '.')}/${file.name}`;
+    fs.rename(file.path, pathToFile);
+  });
+
+  incoming.on('error', error => {
+    console.warn('an error has occured with form upload', error);
     req.resume();
   });
-  req.on('error', error => {
-    console.error('Error on file_acceptor', error);
+
+  incoming.on('aborted', () => {
+    console.log('user aborted upload');
   });
-  req.on('end', () => {
-    console.info('happily ended!');
+
+  incoming.on('end', () => {
+    console.log('-> upload done');
+  });
+
+  return incoming.parse(req, (error, fields, files) => {
+    if (error) {
+      return next(error);
+    }
     return res.json({
       "documents": [
         {
           "classification": "RESTRICTED",
           "size": 15471,
           "mimeType": "application/pdf",
-          "originalDocumentName": req.params.filename,
+          "originalDocumentName": files.file.name,
           "createdBy": null,
           "modifiedOn": new Date().valueOf(),
           "createdOn": new Date().valueOf(),
@@ -45,8 +65,10 @@ app.post('/upload/:filename', (req, res) => {
           }
         }
       ]
-    });
+    })
+
   });
+
 });
 
 http.createServer(app).listen(app.get('port'), () => {
