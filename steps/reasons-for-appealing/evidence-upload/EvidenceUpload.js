@@ -58,15 +58,18 @@ class EvidenceUpload extends Question {
           formData: {
             file: fs.createReadStream(pathToFile)
           },
-        }, function (err, resp, body) {
+        }, (err, resp, body) => {
           if (!err) {
             const b = JSON.parse(body);
             req.body = {
               uploadEv: b.documents[0].originalDocumentName,
               link: b.documents[0]._links.self.href
             };
+            fs.unlink(pathToFile, (err) => {
+              // ignore deletion errors
+              return next(err)
+            });
           }
-          return next(err)
         });
       });
     }
