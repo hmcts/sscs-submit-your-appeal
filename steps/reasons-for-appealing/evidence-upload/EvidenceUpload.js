@@ -63,30 +63,14 @@ class EvidenceUpload extends Question {
           },
         }, function (err, resp, body) {
           if (!err) {
+            const b = JSON.parse(body);
             req.body = {
-              uploadEv: files.uploadEv.name
+              uploadEv: b.documents[0].originalDocumentName,
+              link: b.documents[0]._links.self
             };
           }
-          console.info('file posted. The outcome was ', body);
           return next(err)
         });
-
-/*        return outgoing.submit(`http://localhost:3010/upload/${files.uploadEv.name}`, function(err, res) {
-          req.body = {
-            uploadEv: files.uploadEv.name
-          };
-          return next(err)
-        });*/
-
-        /*
-            return fs.createReadStream(pathToFile)
-          .pipe(request.post(`${api.uploadEvidenceUrl}/${files.uploadEv.name}`,
-            outgoingError => {
-              req.body = {
-                uploadEv: files.uploadEv.name
-              };
-              return next(outgoingError);
-            }));*/
       });
     }
     return next();
@@ -101,7 +85,8 @@ class EvidenceUpload extends Question {
       uploadEv: text.joi(
         'Please choose a file',
         Joi.string().required()
-      )
+      ),
+      link: text.joi('Unexpected error', Joi.string().required())
     });
   }
 

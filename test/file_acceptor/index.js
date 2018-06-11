@@ -26,7 +26,25 @@ app.post('/upload/:filename', (req, res) => {
   req.on('end', () => {
     console.info('happily ended!');
     return res.json({
-      file: 'ugo!.pdf'
+      "documents": [
+        {
+          "classification": "RESTRICTED",
+          "size": 15471,
+          "mimeType": "application/pdf",
+          "originalDocumentName": req.params.filename,
+          "createdBy": null,
+          "modifiedOn": new Date().valueOf(),
+          "createdOn": new Date().valueOf(),
+          "_links": {
+            "self": {
+              "href": "http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d"
+            },
+            "binary": {
+              "href": "http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d/binary"
+            }
+          }
+        }
+      ]
     });
   });
 });
