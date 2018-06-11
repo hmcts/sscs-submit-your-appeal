@@ -12,7 +12,6 @@ const app = express();
 
 app.set('port', 3010);
 app.post('/upload', (req, res) => {
-
   const incoming = new formidable.IncomingForm({
     uploadDir: path.resolve(__dirname, '.'),
     keepExtensions: true,
@@ -43,32 +42,32 @@ app.post('/upload', (req, res) => {
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      return next(error);
+      console.info('About to respond with error');
+      return res.send(422, 'Cannot save the uploaded file');
     }
+    console.info('About to respond correctly');
     return res.json({
-      "documents": [
+      documents: [
         {
-          "classification": "RESTRICTED",
-          "size": 15471,
-          "mimeType": "application/pdf",
-          "originalDocumentName": files.file.name,
-          "createdBy": null,
-          "modifiedOn": new Date().valueOf(),
-          "createdOn": new Date().valueOf(),
-          "_links": {
-            "self": {
-              "href": "http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d"
+          classification: 'RESTRICTED',
+          size: 15471,
+          mimeType: 'application/pdf',
+          originalDocumentName: files.file.name,
+          createdBy: null,
+          modifiedOn: new Date().valueOf(),
+          createdOn: new Date().valueOf(),
+          _links: {
+            self: {
+              href: 'http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d'
             },
-            "binary": {
-              "href": "http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d/binary"
+            binary: {
+              href: 'http://localhost:4603/documents/6d90a26f-7560-4f70-9ff7-7e5e0591133d/binary'
             }
           }
         }
       ]
-    })
-
+    });
   });
-
 });
 
 http.createServer(app).listen(app.get('port'), () => {

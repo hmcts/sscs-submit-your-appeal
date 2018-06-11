@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
+const _ = require('lodash');
 
-const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+const evidenceUploadEnabled = _.get(require('config'), 'features.evidenceUpload.enabled');
 
 const { concat } = require('lodash');
 const Entry = require('steps/entry/Entry');

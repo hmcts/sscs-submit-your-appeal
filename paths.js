@@ -1,4 +1,6 @@
-const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+const _ = require('lodash');
+
+const evidenceUploadEnabled = _.get(require('config'), 'features.evidenceUpload.enabled');
 
 module.exports = {
 

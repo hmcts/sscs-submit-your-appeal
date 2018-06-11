@@ -32,7 +32,7 @@
   },
   "features": {
     "evidenceUpload": {
-      "enabled": true
+      "enabled": false
     }
   }
 }

@@ -34,8 +34,8 @@ class EvidenceUpload extends Question {
         fs.rename(file.path, pathToFile);
       });
 
-      incoming.on('error', error => {
-        logger.warn('an error has occured with form upload', error);
+      incoming.on('error', incomingError => {
+        logger.warn('an error has occured with form upload', incomingError);
         req.resume();
       });
 
@@ -47,9 +47,9 @@ class EvidenceUpload extends Question {
         logger.log('-> upload done');
       });
 
-      return incoming.parse(req, (error, fields, files) => {
-        if (error) {
-          return next(error);
+      return incoming.parse(req, (uploadingError, fields, files) => {
+        if (uploadingError) {
+          return next(uploadingError);
         }
         const pathToFile = `${pt.resolve(__dirname, './../../../uploads')}/${files.uploadEv.name}`;
 
@@ -57,19 +57,18 @@ class EvidenceUpload extends Question {
           url: api.uploadEvidenceUrl,
           formData: {
             file: fs.createReadStream(pathToFile)
-          },
-        }, (err, resp, body) => {
-          if (!err) {
+          }
+        }, (forwardingError, resp, body) => {
+          if (!forwardingError) {
+            logger.info('No forwarding error, about to save data');
             const b = JSON.parse(body);
             req.body = {
               uploadEv: b.documents[0].originalDocumentName,
               link: b.documents[0]._links.self.href
             };
-            fs.unlink(pathToFile, (err) => {
-              // ignore deletion errors
-              return next(err)
-            });
+            return fs.unlink(pathToFile, next);
           }
+          return next(forwardingError);
         });
       });
     }
