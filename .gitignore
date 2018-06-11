@@ -10,6 +10,6 @@ test/unit/coverage
 report-task.txt
 smoke-output/
 functional-output/
-dist
 submit-your-appeal.iml
+dist/
 mochawesome-report/

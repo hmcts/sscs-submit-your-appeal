@@ -92,9 +92,9 @@ app.get('/robots.txt', (req, res) => {
   res.send('User-agent: *\nDisallow: /');
 });
 
-app.use('/sessions', (req, res) => {
-  res.sendStatus(HttpStatus.NOT_FOUND);
-});
+// app.use('/sessions', (req, res) => {
+//   res.sendStatus(HttpStatus.NOT_FOUND);
+// });
 
 lookAndFeel.configure(app, {
   baseUrl,
