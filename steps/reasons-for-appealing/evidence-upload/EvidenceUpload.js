@@ -28,12 +28,11 @@ class EvidenceUpload extends Question {
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
-
-    EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-      if (mkdirError) {
-        return next(mkdirError);
-      }
-      if (req.method.toLowerCase() === 'post') {
+    if (req.method.toLowerCase() === 'post') {
+      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
+        if (mkdirError) {
+          return next(mkdirError);
+        }
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
@@ -87,9 +86,9 @@ class EvidenceUpload extends Question {
             return next(forwardingError);
           });
         });
-      }
-      return next();
-    });
+      });
+    }
+    return next();
   }
 
   get middleware() {
