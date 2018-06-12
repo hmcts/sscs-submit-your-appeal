@@ -65,6 +65,7 @@ class InactivityAlert {
     window.clearInterval(this.intervalToUpdate);
   }
   restartCounters() {
+    console.info('pushing back timeout')
     this.stopAllCounters();
     this.startCountdown();
     return true;
@@ -80,10 +81,10 @@ class InactivityAlert {
     this.attachHandlers();
   }
   attachHandlers() {
-    $(document).on('keypress mousemove', this.restartCounters);
+    $(document).on('keydown mousemove', this.restartCounters);
   }
   detachHandlers() {
-    $(document).off('keypress mousemove', this.restartCounters);
+    $(document).off('keydown mousemove', this.restartCounters);
   }
   destroy() {
     this.detachHandlers();
