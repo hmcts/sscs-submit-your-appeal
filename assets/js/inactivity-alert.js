@@ -65,7 +65,6 @@ class InactivityAlert {
     window.clearInterval(this.intervalToUpdate);
   }
   restartCounters() {
-    console.info('pushing back timeout')
     this.stopAllCounters();
     this.startCountdown();
     return true;
