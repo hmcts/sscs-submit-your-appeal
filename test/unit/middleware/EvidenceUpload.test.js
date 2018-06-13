@@ -2,8 +2,13 @@ const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
 
+/* eslint-disable init-declarations */
+/* eslint-disable no-shadow */
+/* eslint-disable max-len */
+/* eslint-disable no-empty-function */
+/* eslint-disable func-names */
+/* eslint-disable object-shorthand */
 describe('The EvidenceUpload middleware', () => {
-
   const stubs = {
     fs: {
       stat: sinon.stub().yields(null, {
@@ -12,10 +17,9 @@ describe('The EvidenceUpload middleware', () => {
       mkdir: sinon.stub().callsArg(1)
     }
   };
-  let EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
+  const EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
 
   describe('static makedir', () => {
-
     beforeEach(() => {
       stubs.fs.mkdir.reset();
     });
@@ -26,12 +30,11 @@ describe('The EvidenceUpload middleware', () => {
       });
       return EvidenceUpload.makeDir('/uploads', () => {
         return expect(stubs.fs.mkdir).to.not.have.been.called;
-      })
+      });
     });
   });
 
   describe('static handleUpload', () => {
-
     let EvidenceUpload;
     let stubs;
     let parser = sinon.stub().yields(null, [], {
@@ -39,8 +42,8 @@ describe('The EvidenceUpload middleware', () => {
         name: 'giacomo'
       }
     });
-    let unlinker = sinon.stub().yields();
-    let poster = sinon.stub().yields(null, null, `{
+    const unlinker = sinon.stub().yields();
+    const poster = sinon.stub().yields(null, null, `{
       "documents": [{
         "originalDocumentName": "ugo",
         "_links": {
@@ -50,11 +53,11 @@ describe('The EvidenceUpload middleware', () => {
         }
       }]}`);
 
-    beforeEach(function () {
+    beforeEach(function() {
       this.timeout(2500);
       stubs = {
         formidable: {
-          IncomingForm: function () {
+          IncomingForm: function() {
             this.parse = parser;
             this.once = () => {};
             this.on = () => {};
@@ -84,10 +87,10 @@ describe('The EvidenceUpload middleware', () => {
       EvidenceUpload.handleUpload({
         method: 'post'
       }, {}, error => {
-        expect (EvidenceUpload.makeDir).to.have.been.called;
-        expect (parser).to.have.been.called;
-        expect (poster).to.have.been.called;
-        expect (unlinker).to.have.been.called;
+        expect(EvidenceUpload.makeDir).to.have.been.called;
+        expect(parser).to.have.been.called;
+        expect(poster).to.have.been.called;
+        expect(unlinker).to.have.been.called;
         expect(error).not.to.exist;
         done();
       });
@@ -97,10 +100,10 @@ describe('The EvidenceUpload middleware', () => {
       EvidenceUpload.handleUpload({
         method: 'post'
       }, {}, error => {
-        expect (EvidenceUpload.makeDir).to.have.been.called;
-        expect (parser).not.to.have.been.called;
-        expect (poster).not.to.have.been.called;
-        expect (unlinker).not.to.have.been.called;
+        expect(EvidenceUpload.makeDir).to.have.been.called;
+        expect(parser).not.to.have.been.called;
+        expect(poster).not.to.have.been.called;
+        expect(unlinker).not.to.have.been.called;
         expect(error).to.exist;
         done();
       });
@@ -114,10 +117,10 @@ describe('The EvidenceUpload middleware', () => {
       EvidenceUpload.handleUpload({
         method: 'post'
       }, {}, error => {
-        expect (EvidenceUpload.makeDir).to.have.been.called;
-        expect (parser).to.have.been.called;
-        expect (poster).not.to.have.been.called;
-        expect (unlinker).not.to.have.been.called;
+        expect(EvidenceUpload.makeDir).to.have.been.called;
+        expect(parser).to.have.been.called;
+        expect(poster).not.to.have.been.called;
+        expect(unlinker).not.to.have.been.called;
         expect(error).to.exist;
         done();
       });
@@ -126,12 +129,18 @@ describe('The EvidenceUpload middleware', () => {
       EvidenceUpload.handleUpload({
         method: 'get'
       }, {}, error => {
-        expect (EvidenceUpload.makeDir).not.to.have.been.called;
-        expect (parser).not.to.have.been.called;
-        expect (poster).not.to.have.been.called;
+        expect(EvidenceUpload.makeDir).not.to.have.been.called;
+        expect(parser).not.to.have.been.called;
+        expect(poster).not.to.have.been.called;
         expect(error).not.to.exist;
         done();
       });
     });
   });
 });
+/* eslint-enable init-declarations */
+/* eslint-enable no-shadow */
+/* eslint-enable max-len */
+/* eslint-enable no-empty-function */
+/* eslint-enable func-names */
+/* eslint-enable object-shorthand */
