@@ -27,7 +27,7 @@ module "submit-your-appeal-frontend" {
   subscription         = "${var.subscription}"
   additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "${var.env != "preview" ? "true" : "false"}"
-
+  capacity             = "${(var.env == "preview") ? 1 : 2}"
 
   app_settings = {
     TRIBUNALS_CASE_API_URL       = "${local.ApiUrl}"
