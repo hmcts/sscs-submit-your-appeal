@@ -5,9 +5,17 @@
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
+{% block head %}
+{{ super() }}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
+{% endblock %}
+
 {% set title %}
     {{ content.title | safe }}
 {% endset %}
+
 
 {% block full_width %}
     <div class="grid-row column-full">
@@ -32,6 +40,10 @@
             {%- endblock %}
         </div>
 
+    </div>
+
+    <div>
+        {% include "components/inactivity-alert.html" %}
     </div>
 
 {% endblock %}}

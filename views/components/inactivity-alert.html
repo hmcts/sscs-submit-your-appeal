@@ -1,0 +1,16 @@
+<div id="timeout-dialog" class="modal">
+    <div class="modal-dialog-box" role="dialog" aria-labelledby="aria-timeout-label">
+        <span class="visuallyhidden" id="aria-timeout-label">
+            <!-- content of aria label -->
+        </span>
+        <h2 class="icon-important red-inverse">{{ inactivityTimeout.title }}</h2>
+        <p id="expiring-in-message">
+            {{ inactivityTimeout.expiringIn }}
+        </p>
+        <p>{{ inactivityTimeout.text }}</p>
+        <p>
+            <button class="button secondary extend" id="extend" href="#" rel="modal:close">{{ inactivityTimeout.yes }}</button>
+            <button class="button secondary abort" id="destroy" href="#">{{ inactivityTimeout.no }}</button>
+        </p>
+    </div>
+</div>

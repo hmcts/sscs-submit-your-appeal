@@ -1,8 +1,15 @@
 import $ from 'jquery';
 import { remove } from 'lodash';
+import { frontend, redis } from '../../config/default';
 import ShowHideContent from 'govuk/show-hide-content';
+import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
+
+/* eslint-disable init-declarations */
+let timeoutM;
+/* eslint-enable init-declarations */
+
 
 function initShowHideContent() {
   const showHideContent = new ShowHideContent();
@@ -37,14 +44,33 @@ function initDatePicker() {
   }
 }
 
+function hasMetaRefresh() {
+  // document.querySelectorAll('noscript meta') doesn't work! :-o
+  const noscripts = document.querySelectorAll('noscript');
+  return Array.from(noscripts).some(el => el.innerHTML.indexOf('refresh') !== -1);
+}
+
+function initTM(sessionSeconds, showAfterSeconds) {
+  if (hasMetaRefresh()) {
+    timeoutM = new InactivityAlert(sessionSeconds, showAfterSeconds);
+  }
+}
+
+function destroyTM() {
+  if (timeoutM) {
+    timeoutM.destroy();
+  }
+}
+
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
+  initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();
 });
 
 $(window).on('unload', () => {
-  // cautious cleanup -- probably unneeded
+  destroyTM();
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');
   }
