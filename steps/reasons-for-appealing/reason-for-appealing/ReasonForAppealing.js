@@ -45,6 +45,8 @@ class ReasonForAppealing extends AddAnother {
   }
 
   validateList(list) {
+
+
     return list.check(content.listError, arr => arr.length > 0);
   }
 
