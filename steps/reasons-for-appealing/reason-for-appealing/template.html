@@ -60,6 +60,9 @@
 {% endblock %}
 
 {% block editItem %}
+
+{{ something | default('something else') }}
+
     <p>{{ content.dwpExplained }}</p>
     <p>{{ content.readYouMRN }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}

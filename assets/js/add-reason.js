@@ -45,7 +45,7 @@ class AddReason {
       const renderedTextarea = textarea({
         id: this.textareaId
       }, 'Why you disagree with it', null, false, 'You can write as much as you want');
-      $(`#${this.formId}`).append(`<div id="items-${this.counter}">`);
+      $(`#${this.formId}`).append(`<div id="items-${this.counter}" class="items-container">`);
       $(`#items-${this.counter}`).append(renderedTextbox.val);
       $(`#items-${this.counter}`).append(renderedTextarea.val);
       // $(`#${this.formId}`).append(`<input class="button" type="submit" id="${this.formId}-submit" value="Continue">`);
@@ -59,19 +59,39 @@ class AddReason {
         type: 'POST',
         url: `/reason-for-appealing/item-${this.counter}`,
         data: this.buildBodyJson(),
-        success: (data) => {
+        success: (a, b, c) => {
           this.counter ++;
           this.addFields();
           console.log('here');
+          console.log(a);
+          console.log(b);
+          console.log(c);
 
           // build new form underneath
           // refresh the page so you get the updated list
         },
         error: (err) => {
+          console.log('meow')
+          console.log(err);
           // display the errors on the ajax form!
         }
       });
     });
+  }
+
+  getReasons() {
+    let reasons;
+
+    if ($('.noItems').length) {
+      return [];
+    } else {
+      return
+    }
+
+    return
+
+    const reasonsList = $('.add-another-list-item');
+    return $('.add-another-list-item');
   }
 
   buildBodyJson() {
