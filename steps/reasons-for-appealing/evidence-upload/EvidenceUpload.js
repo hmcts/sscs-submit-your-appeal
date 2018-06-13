@@ -106,16 +106,16 @@ class EvidenceUpload extends Question {
     });
   }
 
-
   values() {
     return {
-      evidence:
-        [
+      reasonsForAppealing: {
+        evidence: [
           {
             url: this.fields.link.value,
             fileName: this.fields.uploadEv.value
           }
         ]
+      }
     };
   }
 
