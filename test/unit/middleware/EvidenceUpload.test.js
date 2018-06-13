@@ -32,6 +32,14 @@ describe('The EvidenceUpload middleware', () => {
         return expect(stubs.fs.mkdir).to.not.have.been.called;
       });
     });
+    it('does create the folder uploads if needed', () => {
+      stubs.fs.stat = sinon.stub().yields(null, {
+        isDirectory: () => false
+      });
+      return EvidenceUpload.makeDir('/uploads', () => {
+        return expect(stubs.fs.mkdir).to.have.been.called;
+      });
+    });
   });
 
   describe('static handleUpload', () => {
