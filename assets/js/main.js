@@ -70,10 +70,11 @@ function initAddReason() {
   // this can be substantially simplified -- just get rid of render and instantiate the thing
   if (AddReason.startAddReason()) {
     if (addReasonForm) {
-      addReasonForm.render();
+      // addReasonForm.render();
+      addReasonForm = new AddReason();
     } else {
       addReasonForm = new AddReason();
-      addReasonForm.render();
+      // addReasonForm.render();
     }
   }
 }
