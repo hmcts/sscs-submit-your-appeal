@@ -1,4 +1,5 @@
 const nunjucks = require('nunjucks');
+const request = require('superagent');
 // todo: how on Earth do I define correctly this path for both dev and prod? Ben, heeelp... !
 // ps: this works but doesn't strike me as very robust
 const fields = require('../../dist/nunjucks/look-and-feel/components/fields.njk');
@@ -21,44 +22,39 @@ class AddReason {
     // you'll need a custom element to append the form to, this is just to play with it
     $('.add-another-add-link').before(`<div id="${this.formId}"></div>`);
 
-    this.textbox = '';
-
-    this.addFields();
-    this.addAnother();
-    this.onSubmit();
-    // this.addClickHandlers();
-  }
-
-  addFields() {
+    this.textboxField = '';
+    this.textareaField = '';
 
     if ($('.add-another-list').length) {
       $('.add-another-list').remove();
     }
 
-    fields.getExported((err, components) => {
-      const textbox = components.textbox;
+    this.setUpFields()
+    this.addFields();
+    this.addAnother();
+    // this.onSubmit();
+    this.onMeow();
+    // this.addClickHandlers();
+  }
 
-      this.textbox = textbox;
-
-      const textarea = components.textarea;
-
-      this.textarea = textarea;
-      // todo: be a star and import the json tokens as well, instead of hardcoding the text. We may as well go the whole hog!
-      const renderedTextbox = textbox({
-        id: this.textboxId
-      }, 'What you disagree with');
-      const renderedTextarea = textarea({
-        id: this.textareaId
-      }, 'Why you disagree with it', null, false, 'You can write as much as you want');
-      $(`#${this.formId}`).append(`<div id="items-${this.counter}" class="items-container">`);
-      $(`#items-${this.counter}`).append(renderedTextbox.val);
-      $(`#items-${this.counter}`).append(renderedTextarea.val);
-      // $(`#${this.formId}`).append(`<input class="button" type="submit" id="${this.formId}-submit" value="Continue">`);
+  setUpFields() {
+    fields.getExported((error, components) => {
+      this.textboxField = components.textbox;
+      this.textareaField = components.textarea;
     });
   }
 
+  addFields() {
+    const whatYouDisagreeWithField = this.buildWhatYouDisagreeWithField();
+    const whyYouDisagreeField = this.buildWhyYouDisagreeField();
+    $(`#${this.formId}`).append(`<div id="items-${this.counter}" class="items-container">`);
+    $(`#items-${this.counter}`)
+      .append(whatYouDisagreeWithField.val)
+      .append(whyYouDisagreeField.val);
+  }
+
   buildWhatYouDisagreeWithField(errors = [], value = '') {
-    return this.textbox({
+    return this.textboxField({
       id: this.textboxId,
       errors,
       value
@@ -66,35 +62,117 @@ class AddReason {
   }
 
   buildWhyYouDisagreeField(errors, value) {
-    return this.textarea({
+    return this.textareaField({
       id: this.textareaId,
       errors: errors || [],
       value: value || ''
     }, 'Why you disagree with it', null, false, 'You can write as much as you want');
   }
 
+  createReqs(index, body) {
+    return request
+      .post(`/reason-for-appealing/item-${index}`)
+      .set('Content-Type', 'application/json')
+      .set('accept', 'json')
+      .send(body);
+
+  }
+
+  onMeow() {
+    const that = this;
+    $('form').submit(function(event) {
+      event.preventDefault();
+
+      const containers = $('.items-container');
+      let answers = [];
+
+      $.each(containers, (index) => {
+        answers.push(that.buildAnswers(index));
+      });
+
+      const promiseSerial = funcs =>
+        funcs.reduce((promise, func) =>
+            promise.then(result => func().then(Array.prototype.concat.bind(result))),
+          Promise.resolve([]));
+
+      const posts = answers.map((answer, index) => () => {
+        return $.ajax({
+          type: 'POST',
+          url: `/reason-for-appealing/item-${index}`,
+          data: answer,
+          success: response => {
+            if (response.validationErrors) {
+              that.handleValidationError(index, response.validationErrors);
+            } else {
+              if ($(`#items-${index}`).children().hasClass('form-group-error')) {
+                $(`#items-${index} .form-group`)
+                  .removeClass('form-group-error')
+                  .children()
+                  .remove('.error-message');
+              }
+            }
+          }
+        });
+      });
+
+      return promiseSerial(posts)
+        .then(responses => {
+          const a = responses.filter(response => {
+            return response.validationErrors;
+          });
+
+          if (a.length === 0) {
+           this.submit();
+          }
+        });
+    });
+  }
+
+  handleValidationError(index, validationErrors) {
+      const whatYouDisagreeWith = validationErrors[0];
+      const whyYouDisagree = validationErrors[1];
+      const errorTextbox = this.buildWhatYouDisagreeWithField(whatYouDisagreeWith.errors, whatYouDisagreeWith.value);
+      const errorTextArea = this.buildWhyYouDisagreeField(whyYouDisagree.errors, whyYouDisagree.value);
+      $(`#items-${index}`).empty()
+        .append(errorTextbox.val)
+        .append(errorTextArea.val);
+  }
+
+
   onSubmit() {
-    $('input[type="submit"]').click(event => {
+    const that = this;
+    $('input[type="submit"]').click(function(event) {
       event.preventDefault();
 
       const containers = $('.items-container');
       let postCounter = 0;
+      console.log('beginning of loop')
+
       $.each(containers, (index) => {
-        const values = this.buildAnswers(index);
-        $.ajax({
+        const values = that.buildAnswers(index);
+        console.log(values);
+
+        console.log('index = ' + index)
+        return $.ajax({
           type: 'POST',
           url: `/reason-for-appealing/item-${index}`,
           data: values,
-          success: response => {
+          complete: (response, b, c) => {
             if (response.validationErrors) {
               const whatYouDisagreeWith = response.validationErrors[0];
               const whyYouDisagree = response.validationErrors[1];
-              const errorTextbox = this.buildWhatYouDisagreeWithField(whatYouDisagreeWith.errors, whatYouDisagreeWith.value);
-              const errorTextArea = this.buildWhyYouDisagreeField(whyYouDisagree.errors, whyYouDisagree.value);
+              const errorTextbox = that.buildWhatYouDisagreeWithField(whatYouDisagreeWith.errors, whatYouDisagreeWith.value);
+              const errorTextArea = that.buildWhyYouDisagreeField(whyYouDisagree.errors, whyYouDisagree.value);
               $(`#items-${index}`).empty().append(errorTextbox.val).append(errorTextArea.val);
               return false;
             } else {
               postCounter ++;
+
+              console.log(response);
+              console.log(b);
+              console.log(c);
+
+              console.log('post counter = ' + postCounter);
               if ($(`#items-${index}`).children().hasClass('form-group-error')) {
                 $(`#items-${index} .form-group`)
                   .removeClass('form-group-error')
@@ -102,14 +180,14 @@ class AddReason {
                   .remove('.error-message');
               }
 
-
-              console.log('added ' + index);
-
               if (postCounter === containers.length) {
                 console.log('ACTUALLY FINISHED');
+                // this.submit();
+                // return true;
               }
-
               return true;
+
+
               // CONTINUE LOOP
             }
             // build new form underneath
@@ -118,12 +196,23 @@ class AddReason {
         });
       });
 
+      console.log('outside end of loop')
+
+        // if (postCounter === containers.length) {
+        //   console.log('ACTUALLY FINISHED');
+        //   return true;
+        // }
+
       // GET ALL THE VALUES
       // LOOP OVER AND POST ALL VALUES
       // IF SUCCESSFUL THEN POST AGAIN TO PAGE
       // ELSE DISPLAY VALIDATION
 
     });
+  }
+
+  postIt() {
+
   }
 
   buildAnswers(index) {
