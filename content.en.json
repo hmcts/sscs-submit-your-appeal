@@ -26,7 +26,7 @@
     }
   },
   "timeout": {
-    "message": "This page will time out in 20 minutes if there is no activity. This is to protect your data."
+    "message": "This page will time out if there is no activity for 20 minutes. This is to protect your personal information."
   },
   "relatedContent": {
     "heading": "Related Content",
