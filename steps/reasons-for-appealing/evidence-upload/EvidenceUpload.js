@@ -10,6 +10,7 @@ const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
 const request = require('request');
+const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -44,9 +45,9 @@ class EvidenceUpload extends Question {
           logger.info('error while receiving the file from the client', er);
         });
 
-        incoming.on('fileBegin', function(field, file) {
-          if (file.type !== 'image/jpeg') {
-            return this.emit('error', 'Size must not be over 3MB');
+        incoming.once('fileBegin', function(field, file) {
+          if (!fileTypeWhitelist.find(el => el === file.type)) {
+            return this.emit('error', 'File is of the wrong type');
           }
         });
 
