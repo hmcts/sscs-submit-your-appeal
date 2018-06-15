@@ -13,20 +13,12 @@ const pa11yTest = pa11y({
       Cookie: ''
     }
   },
-  ignore: [
-    'WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID',
-    'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail'
-  ],
   hideElements: '#logo, #footer, link[rel=mask-icon]'
 });
 
 const test = promisify(pa11yTest.run, pa11yTest);
 
-const excludeSteps = [
-  '/oauth2/callback',
-  '/save-and-close',
-  '/session'
-];
+const excludeSteps = ['/sessions'];
 
 
 function ensurePageCallWillSucceed(url) {
