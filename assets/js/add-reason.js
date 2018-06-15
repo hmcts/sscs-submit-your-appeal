@@ -24,17 +24,45 @@ class AddReason {
 
     this.textboxField = '';
     this.textareaField = '';
+    this.items = [];
 
     if ($('.add-another-list').length) {
       $('.add-another-list').remove();
     }
 
-    this.setUpFields()
-    this.addFields();
+    this.setUpFields();
+
+    this.getValues();
+
+    // if (this.items.length > 0) {
+    //   this.buildForm();
+    // } else {
+      this.addFields();
+    // }
+
     this.addAnother();
-    // this.onSubmit();
-    this.onMeow();
-    // this.addClickHandlers();
+    this.onSubmit();
+  }
+
+  buildForm() {
+    const values = this.items.map((item, index) => {
+      return {
+        index,
+
+      }
+    })
+  }
+
+  getValues() {
+    return $.ajax({
+      type: 'GET',
+      url: `/reason-for-appealing`,
+      success: (response, b, c) => {
+        if (response.length > 0) {
+          this.items = response;
+        }
+      }
+    })
   }
 
   setUpFields() {
@@ -69,16 +97,7 @@ class AddReason {
     }, 'Why you disagree with it', null, false, 'You can write as much as you want');
   }
 
-  createReqs(index, body) {
-    return request
-      .post(`/reason-for-appealing/item-${index}`)
-      .set('Content-Type', 'application/json')
-      .set('accept', 'json')
-      .send(body);
-
-  }
-
-  onMeow() {
+  onSubmit() {
     const that = this;
     $('form').submit(function(event) {
       event.preventDefault();
@@ -138,83 +157,6 @@ class AddReason {
         .append(errorTextArea.val);
   }
 
-
-  onSubmit() {
-    const that = this;
-    $('input[type="submit"]').click(function(event) {
-      event.preventDefault();
-
-      const containers = $('.items-container');
-      let postCounter = 0;
-      console.log('beginning of loop')
-
-      $.each(containers, (index) => {
-        const values = that.buildAnswers(index);
-        console.log(values);
-
-        console.log('index = ' + index)
-        return $.ajax({
-          type: 'POST',
-          url: `/reason-for-appealing/item-${index}`,
-          data: values,
-          complete: (response, b, c) => {
-            if (response.validationErrors) {
-              const whatYouDisagreeWith = response.validationErrors[0];
-              const whyYouDisagree = response.validationErrors[1];
-              const errorTextbox = that.buildWhatYouDisagreeWithField(whatYouDisagreeWith.errors, whatYouDisagreeWith.value);
-              const errorTextArea = that.buildWhyYouDisagreeField(whyYouDisagree.errors, whyYouDisagree.value);
-              $(`#items-${index}`).empty().append(errorTextbox.val).append(errorTextArea.val);
-              return false;
-            } else {
-              postCounter ++;
-
-              console.log(response);
-              console.log(b);
-              console.log(c);
-
-              console.log('post counter = ' + postCounter);
-              if ($(`#items-${index}`).children().hasClass('form-group-error')) {
-                $(`#items-${index} .form-group`)
-                  .removeClass('form-group-error')
-                  .children()
-                  .remove('.error-message');
-              }
-
-              if (postCounter === containers.length) {
-                console.log('ACTUALLY FINISHED');
-                // this.submit();
-                // return true;
-              }
-              return true;
-
-
-              // CONTINUE LOOP
-            }
-            // build new form underneath
-            // refresh the page so you get the updated list
-          }
-        });
-      });
-
-      console.log('outside end of loop')
-
-        // if (postCounter === containers.length) {
-        //   console.log('ACTUALLY FINISHED');
-        //   return true;
-        // }
-
-      // GET ALL THE VALUES
-      // LOOP OVER AND POST ALL VALUES
-      // IF SUCCESSFUL THEN POST AGAIN TO PAGE
-      // ELSE DISPLAY VALIDATION
-
-    });
-  }
-
-  postIt() {
-
-  }
-
   buildAnswers(index) {
     const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith`).val();
     const whyYouDisagreeWith = $(`#items-${index} #item\\.reasonForAppealing`).val();
@@ -227,72 +169,11 @@ class AddReason {
   addAnother() {
     $('.add-another-add-link').click(event => {
       event.preventDefault();
-      console.log(this.counter);
       this.counter ++;
       this.addFields();
-      // $.ajax({
-      //   type: 'POST',
-      //   url: `/reason-for-appealing/item-${this.counter}`,
-      //   data: this.buildBodyJson(),
-      //   success: response => {
-      //
-      //     if (response.validationErrors) {
-      //       // display the errors
-      //     } else {
-      //
-      //     }
-      //     // build new form underneath
-      //     // refresh the page so you get the updated list
-      //   }
-      // });
     });
   }
 
-  getReasons() {
-    let reasons;
-
-    if ($('.noItems').length) {
-      console.log('NO Items')
-      return [];
-    } else {
-      return $('.add-another-list-item').text();
-    }
-
-    // return
-    //
-    // const reasonsList = $('.add-another-list-item');
-    // return $('.add-another-list-item');
-  }
-
-  buildBodyJson() {
-    const whatYouDisagreeWith = $(`#items-${this.counter} #item\\.whatYouDisagreeWith`).val();
-    const whyYouDisagreeWith = $(`#items-${this.counter} #item\\.reasonForAppealing`).val();
-    return {
-      'item.whatYouDisagreeWith': whatYouDisagreeWith,
-      'item.reasonForAppealing': whyYouDisagreeWith
-    };
-  }
-
-  addClickHandlers() {
-    $(`#${this.formId}`).on('submit', (event) => {
-      event.preventDefault();
-      $.ajax({
-        url: `/reason-for-appealing/item-${this.counter}`,
-        type: 'post',
-        dataType: 'json',
-        accepts: {
-          onlyJson: 'application/json'
-        },
-        success: (data) => {
-          // refresh the page so you get the updated list
-        },
-        error: (err) => {
-          // display the errors on the ajax form!
-        },
-        data: $(`#${this.formId}`).serializeArray()
-      });
-    })
-  }
   render() {
     // this method is pointless
     console.info('yo! render!');
