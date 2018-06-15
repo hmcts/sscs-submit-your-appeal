@@ -44,27 +44,36 @@ class EvidenceUpload extends Question {
           logger.info('error while receiving the file from the client', er);
         });
 
-        incoming.on('file', (field, file) => {
+        incoming.on('fileBegin', function(field, file) {
+          if (file.type !== 'image/jpeg') {
+            return this.emit('error', 'Size must not be over 3MB');
+          }
+        });
+
+        incoming.once('file', (field, file) => {
           const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
           fs.rename(file.path, pathToFile);
         });
 
-        incoming.on('error', incomingError => {
-          logger.warn('an error has occured with form upload', incomingError);
-          req.resume();
-        });
 
-        incoming.on('aborted', () => {
+        incoming.once('aborted', () => {
           logger.log('user aborted upload');
+          return next(new Error())
         });
 
-        incoming.on('end', () => {
+        incoming.once('end', () => {
           logger.log('-> upload done');
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (uploadingError) {
-            return next(uploadingError);
+            logger.warn('an error has occured with form upload', uploadingError);
+            res.header('Connection', 'close');
+            res.status(400).send({ status:'error' });
+            //res.status(400).render(req.journey.instances.EvidenceUpload.template ));
+
+            setTimeout(function() { res.end(); }, 500);
+            return;
           }
           const pathToFile = `${pt
             .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
@@ -93,7 +102,7 @@ class EvidenceUpload extends Question {
   }
 
   get middleware() {
-    return [EvidenceUpload.handleUpload, ...super.middleware];
+    return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
   get form() {
