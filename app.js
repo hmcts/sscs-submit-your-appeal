@@ -24,6 +24,7 @@ const app = express();
 const protocol = config.get('node.protocol');
 const hostname = config.get('node.hostname');
 const port = config.get('node.port');
+const startStep = require('steps/entry/Entry');
 
 let baseUrl = `${protocol}://${hostname}`;
 if (process.env.NODE_ENV === 'development') {
@@ -156,35 +157,83 @@ lookAndFeel.configure(app, {
   }
 });
 
-journey(app, {
-  baseUrl,
-  steps,
-  session: {
-    redis: {
-      url: config.redis.url,
-      connect_timeout: 15000
-    },
-    cookie: {
-      secure: config.redis.useSSL === 'true'
-    },
-    secret: config.redis.secret
-  },
-  errorPages: {
-    notFound: {
-      template: 'errors/Error404.html',
-      title: content.errors.notFound.title,
-      message: content.errors.notFound.message,
-      nextSteps: content.errors.notFound.nextSteps
-    },
-    serverError: {
-      template: 'errors/500/Error500.html',
-      title: content.errors.serverError.title,
-      message: content.errors.serverError.message
+function isTest() {
+  return process.env.NODE_ENV === 'mocha';
+}
+
+
+if (isTest()) {
+  const noSessionHandler = (req, res, next) => {
+    if (req.url === '/check-your-appeal' || req.url === '/done') {
+      if (req.session) {
+        req.session.entryPoint = {};
+        req.session.entryPoint = startStep;
+      }
     }
-  },
-  timeoutDelay: 2000,
-  apiUrl: `${config.api.url}/appeals`
-});
+
+    next();
+  };
+  journey(app, {
+    baseUrl,
+    steps,
+    session: {
+      redis: {
+        url: config.redis.url,
+        connect_timeout: 15000
+      },
+      cookie: {
+        secure: config.redis.useSSL === 'true'
+      },
+      secret: config.redis.secret
+    },
+    noSessionHandler,
+    errorPages: {
+      notFound: {
+        template: 'errors/Error404.html',
+        title: content.errors.notFound.title,
+        message: content.errors.notFound.message,
+        nextSteps: content.errors.notFound.nextSteps
+      },
+      serverError: {
+        template: 'errors/500/Error500.html',
+        title: content.errors.serverError.title,
+        message: content.errors.serverError.message
+      }
+    },
+    timeoutDelay: 2000,
+    apiUrl: `${config.api.url}/appeals`
+  });
+} else {
+  journey(app, {
+    baseUrl,
+    steps,
+    session: {
+      redis: {
+        url: config.redis.url,
+        connect_timeout: 15000
+      },
+      cookie: {
+        secure: config.redis.useSSL === 'true'
+      },
+      secret: config.redis.secret
+    },
+    errorPages: {
+      notFound: {
+        template: 'errors/Error404.html',
+        title: content.errors.notFound.title,
+        message: content.errors.notFound.message,
+        nextSteps: content.errors.notFound.nextSteps
+      },
+      serverError: {
+        template: 'errors/500/Error500.html',
+        title: content.errors.serverError.title,
+        message: content.errors.serverError.message
+      }
+    },
+    timeoutDelay: 2000,
+    apiUrl: `${config.api.url}/appeals`
+  });
+}
 
 app.use(bodyParser.urlencoded({
   extended: true
