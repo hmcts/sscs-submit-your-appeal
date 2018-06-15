@@ -69,6 +69,7 @@ class EvidenceUpload extends Question {
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (uploadingError) {
             logger.warn('an error has occured with form upload', uploadingError);
+            console.info('files is ', files)
             res.header('Connection', 'close');
             res.status(400).send({ status:'error' });
             //res.status(400).render(req.journey.instances.EvidenceUpload.template ));

@@ -68,12 +68,12 @@
 </div>
 {% endmacro %}
 
-{% macro fileupload(id="file-upload", label="Upload file") %}
+{% macro fileupload(id="file-upload", label="Upload file", acceptFileTypes="") %}
 
 <div class="form-group {{ errorClass(id) }}">
 
     <label for="{{ id }}">{{ label }}</label>
-    <input name="{{ id }}" id="{{ id }}" type="file" />
+    <input name="{{ id }}" id="{{ id }}" type="file" accept="{{ acceptFileTypes }}"  />
 
 </div>
 
