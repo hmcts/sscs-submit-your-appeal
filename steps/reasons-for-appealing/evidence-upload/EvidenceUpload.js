@@ -2,6 +2,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
+
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const Joi = require('joi');
 const paths = require('paths');
@@ -9,6 +10,7 @@ const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
 const request = require('request');
+const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -28,12 +30,11 @@ class EvidenceUpload extends Question {
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
-
-    EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-      if (mkdirError) {
-        return next(mkdirError);
-      }
-      if (req.method.toLowerCase() === 'post') {
+    if (req.method.toLowerCase() === 'post') {
+      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
+        if (mkdirError) {
+          return next(mkdirError);
+        }
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
@@ -44,27 +45,36 @@ class EvidenceUpload extends Question {
           logger.info('error while receiving the file from the client', er);
         });
 
-        incoming.on('file', (field, file) => {
+        incoming.once('fileBegin', function(field, file) {
+          if (!fileTypeWhitelist.find(el => el === file.type)) {
+            return this.emit('error', 'File is of the wrong type');
+          }
+        });
+
+        incoming.once('file', (field, file) => {
           const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
           fs.rename(file.path, pathToFile);
         });
 
-        incoming.on('error', incomingError => {
-          logger.warn('an error has occured with form upload', incomingError);
-          req.resume();
-        });
 
-        incoming.on('aborted', () => {
+        incoming.once('aborted', () => {
           logger.log('user aborted upload');
+          return next(new Error())
         });
 
-        incoming.on('end', () => {
+        incoming.once('end', () => {
           logger.log('-> upload done');
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (uploadingError) {
-            return next(uploadingError);
+            logger.warn('an error has occured with form upload', uploadingError);
+            res.header('Connection', 'close');
+            res.status(400).send({ status:'error' });
+            //res.status(400).render(req.journey.instances.EvidenceUpload.template ));
+
+            setTimeout(function() { res.end(); }, 500);
+            return;
           }
           const pathToFile = `${pt
             .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
@@ -87,13 +97,13 @@ class EvidenceUpload extends Question {
             return next(forwardingError);
           });
         });
-      }
-      return next();
-    });
+      });
+    }
+    return next();
   }
 
   get middleware() {
-    return [EvidenceUpload.handleUpload, ...super.middleware];
+    return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
   get form() {
@@ -106,11 +116,15 @@ class EvidenceUpload extends Question {
     });
   }
 
-
   values() {
     return {
       reasonsForAppealing: {
-        otherReasons: this.fields.otherReasonForAppealing.value
+        evidence: [
+          {
+            url: this.fields.link.value,
+            fileName: this.fields.uploadEv.value
+          }
+        ]
       }
     };
   }

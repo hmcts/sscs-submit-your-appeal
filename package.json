@@ -44,7 +44,6 @@
     "jquery-modal": "^0.9.1",
     "moment": "^2.18.1",
     "nsp": "^3.1.0",
-    "proxyquire": "^2.0.1",
     "request": "^2.87.0",
     "superagent": "^3.8.2"
   },
@@ -65,6 +64,7 @@
     "nyc": "^11.4.0",
     "portscanner": "^2.1.1",
     "pre-commit": "^1.2.2",
+    "proxyquire": "^2.0.1",
     "sinon": "^5.0.7",
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
