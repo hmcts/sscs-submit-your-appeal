@@ -52,8 +52,10 @@ class EvidenceUpload extends Question {
         });
 
         incoming.once('file', (field, file) => {
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-          fs.rename(file.path, pathToFile);
+          if (file.name && file.size) {
+            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
+            fs.rename(file.path, pathToFile);
+          }
         });
 
 
@@ -67,9 +69,8 @@ class EvidenceUpload extends Question {
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
-          if (uploadingError) {
+          if (uploadingError || !files.uploadEv.name) {
             logger.warn('an error has occured with form upload', uploadingError);
-            console.info('files is ', files)
             res.header('Connection', 'close');
             res.status(400).send({ status:'error' });
             //res.status(400).render(req.journey.instances.EvidenceUpload.template ));
@@ -93,6 +94,7 @@ class EvidenceUpload extends Question {
                 uploadEv: b.documents[0].originalDocumentName,
                 link: b.documents[0]._links.self.href
               };
+
               return fs.unlink(pathToFile, next);
             }
             return next(forwardingError);
