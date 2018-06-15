@@ -1,12 +1,7 @@
 import $ from 'jquery';
-const fieldTemplates = require('../../dist/nunjucks/look-and-feel/components/fields.njk');
-
-// sort asset fields.njk
-// get content
-
+import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 
 class AddReason {
-
   constructor() {
     this.counter = 0;
     this.formId = 'dynamic-form';
@@ -197,10 +192,6 @@ class AddReason {
     });
   }
 
-  render() {
-    // this method is pointless
-    console.info('yo! render!');
-  }
   static startAddReason() {
     return (window.location.pathname === '/reason-for-appealing');
   }

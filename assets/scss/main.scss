@@ -287,3 +287,12 @@ label.form-label[for="signer"] {
 }
 
 
+
+#dynamic-form {
+  .items-container {
+    .form-group:last-child {
+      padding-bottom: 20px;
+      border-bottom: 2px solid $grey-2;
+    }
+  }
+}

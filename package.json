@@ -25,10 +25,10 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "1.15.1",
+    "@hmcts/look-and-feel": "https://github.com/hmcts/look-and-feel#add-textarea",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
-    "@hmcts/one-per-page": "file:../one-per-page",
+    "@hmcts/one-per-page": "https://github.com/hmcts/one-per-page#ajax-validation-handling",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.1",
