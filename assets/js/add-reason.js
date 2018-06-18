@@ -42,7 +42,7 @@ class AddReason {
 
     $.each(values, (i, value) => {
       if (i > 0) {
-        this.counter ++;
+        this.counter += 1;
       }
       this.addFields(value.whatYouDisagreeWith, value.reasonForAppealing);
     });
