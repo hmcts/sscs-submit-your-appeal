@@ -17,8 +17,7 @@ const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 const HttpStatus = require('http-status-codes');
-const fileTypeWhitelist = require(`steps/reasons-for-appealing/
-  evidence-upload/fileTypeWhitelist.js`);
+const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
 const logger = Logger.getLogger('app.js');
 const app = express();

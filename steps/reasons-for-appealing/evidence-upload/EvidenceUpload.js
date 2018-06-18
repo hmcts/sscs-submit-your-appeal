@@ -4,6 +4,7 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -28,8 +29,10 @@ class EvidenceUpload extends Question {
   }
 
   static handleUpload(req, res, next) {
+
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
+
     if (req.method.toLowerCase() === 'post') {
       return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
         if (mkdirError) {
@@ -50,6 +53,9 @@ class EvidenceUpload extends Question {
             /* eslint-disable no-invalid-this */
             return this.emit('error', 'File is of the wrong type');
             /* eslint-enable no-invalid-this */
+          }
+          if (file.size > maxFileSize) {
+            return this.emit('error', 'File is too big');
           }
           return true;
         });
@@ -74,7 +80,9 @@ class EvidenceUpload extends Question {
         return incoming.parse(req, (uploadingError, fields, files) => {
           const statusForImperfectRequest = 422;
           const statusForServerError = 500;
+
           if (uploadingError || !files.uploadEv.name) {
+
             logger.warn('an error has occured with form upload', uploadingError);
             res.header('Connection', 'close');
             res.status(statusForImperfectRequest)
@@ -88,6 +96,7 @@ class EvidenceUpload extends Question {
             /* eslint-enable brace-style */
             return;
           }
+
           const pathToFile = `${pt
             .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
 
