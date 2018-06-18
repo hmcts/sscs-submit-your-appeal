@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
+import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+import { flatten } from 'lodash';
 
 class AddReason {
   constructor() {
@@ -9,12 +11,13 @@ class AddReason {
     this.textareaId = 'item.reasonForAppealing';
     this.textboxField = '';
     this.textareaField = '';
+    this.errorSummary = '';
     this.items = [];
 
     $('.add-another-add-link').before(`<div id="${this.formId}"></div>`);
 
     this.removeDisplayList();
-    this.setUpFields();
+    this.setUpTemplateComponents();
     this.getValues();
   }
 
@@ -63,10 +66,13 @@ class AddReason {
     });
   }
 
-  setUpFields() {
+  setUpTemplateComponents() {
     fieldTemplates.getExported((error, components) => {
       this.textboxField = components.textbox;
       this.textareaField = components.textarea;
+    });
+    errorSummary.getExported((error, components) => {
+      this.errorSummary = components.errorSummary;
     });
   }
 
@@ -93,6 +99,14 @@ class AddReason {
       .append(reasonForAppealingField.val);
   }
 
+  buildErrorSummary(errors) {
+    return this.errorSummary({
+      validated: true,
+      valid: false,
+      errors
+    });
+  }
+
   buildWhatYouDisagreeWithField(errors, value) {
     return this.textboxField({
       id: this.textboxId,
@@ -110,14 +124,14 @@ class AddReason {
   }
 
   onSubmit() {
-    const that = this;
+    const self = this;
     $('form').submit(function(event) {
       event.preventDefault();
       const containers = $('.items-container');
-      let answers = [];
+      const answers = [];
 
-      $.each(containers, (index) => {
-        answers.push(that.buildAnswers(index));
+      $.each(containers, index => {
+        answers.push(self.buildAnswers(index));
       });
 
       const promiseSequence = funcs =>
@@ -132,7 +146,7 @@ class AddReason {
           data: answer,
           success: response => {
             if (response.validationErrors.length > 0) {
-              that.handleValidationError(index, response.validationErrors);
+              self.handleValidationError(index, response.validationErrors);
             } else {
               if ($(`#items-${index}`).children().hasClass('form-group-error')) {
                 $(`#items-${index} .form-group`)
@@ -147,16 +161,29 @@ class AddReason {
 
       return promiseSequence(posts)
         .then(responses => {
-          const fieldErrors = responses.filter(response => {
-            const errors = response.validationErrors;
-            return errors && errors.length > 0;
-          });
-
-          if (fieldErrors.length === 0) {
-           this.submit();
+          const validationErrors = responses.filter(response => response.validationErrors);
+          const actualErrors = validationErrors.filter(error => error.validationErrors.length > 0);
+          if (actualErrors.length === 0) {
+            this.submit();
+          } else {
+            self.handleErrorSummary(validationErrors);
           }
         });
     });
+  }
+
+  handleErrorSummary(fieldErrors) {
+    const errorSummaryList = fieldErrors.map((fieldError, index) => {
+      return fieldError.validationErrors.map(validationError => {
+        return {
+          id: `items-${index}`,
+          message: validationError.errors[0]
+        };
+      });
+    });
+    const summary = this.buildErrorSummary(flatten(errorSummaryList));
+    $('.error-summary').remove();
+    $('.column-two-thirds').prepend(summary.val);
   }
 
   handleValidationError(index, validationErrors) {
