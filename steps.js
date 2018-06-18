@@ -2,6 +2,7 @@
 const { concat } = require('lodash');
 
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 

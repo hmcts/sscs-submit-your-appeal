@@ -4,6 +4,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 class SendingEvidence extends Question {

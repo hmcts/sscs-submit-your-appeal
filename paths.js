@@ -1,4 +1,5 @@
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 module.exports = {
