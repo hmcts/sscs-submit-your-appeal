@@ -29,7 +29,7 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('Adds reasons for appealing and sees them in check your answers', async I => {
+Scenario('Adds reasons for appealing and sees them in check your answers', I => {
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);

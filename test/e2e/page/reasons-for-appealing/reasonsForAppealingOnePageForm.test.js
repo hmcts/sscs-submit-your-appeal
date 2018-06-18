@@ -74,7 +74,7 @@ Scenario('When I add multiple reasons and click Continue I am taken to /other-re
     );
     I.click('Continue');
     I.seeInCurrentUrl(paths.reasonsForAppealing.otherReasonForAppealing);
-});
+  });
 
 Scenario(`When I go to add another reason and then click Continue without entering any data, 
 I see an error around that field`, async I => {
@@ -99,8 +99,3 @@ Scenario(`When I click add Reason multiple times and click Continue without ente
   I.seeElement('.error-summary-list');
   await I.seeNumberOfElements('.error-summary-list li', numberOfReasons * 2);
 });
-
-// WRITE TEST TO CHANGE ANSWERS
-// MORE CYA VALIDATION
-
-// SOMEONE HAS CHANGED THE JOURNEY

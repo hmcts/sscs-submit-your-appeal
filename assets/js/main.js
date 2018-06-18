@@ -7,8 +7,6 @@ import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
 
-let addReasonForm;
-
 /* eslint-disable init-declarations */
 let timeoutM;
 /* eslint-enable init-declarations */
@@ -67,6 +65,7 @@ function destroyTM() {
 
 function initAddReason() {
   if (AddReason.startAddReason()) {
+    /* eslint-disable no-new */
     new AddReason();
   }
 }
