@@ -3,6 +3,10 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 
+const config = require('config');
+
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+
 class SendingEvidence extends Question {
   static get path() {
     return paths.reasonsForAppealing.sendingEvidence;
@@ -27,7 +31,8 @@ class SendingEvidence extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.TheHearing);
+    const followingStep = evidenceUploadEnabled ? 'EvidenceUpload' : 'TheHearing';
+    return goTo(this.journey.steps[followingStep]);
   }
 }
 

@@ -14,7 +14,8 @@
     "inactivityAlert": "SESSION_ENDING_ALERT"
   },
   "api": {
-    "url": "TRIBUNALS_CASE_API_URL"
+    "url": "TRIBUNALS_CASE_API_URL",
+    "uploadEvidenceUrl": "UPLOAD_EVIDENCE_URL"
   },
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
@@ -31,5 +32,10 @@
     "waitForAction": "E2E_WAIT_FOR_ACTION_VALUE",
     "outputDir": "E2E_OUTPUT_DIR",
     "frontendUrl": "E2E_FRONTEND_URL"
+  },
+  "features": {
+    "evidenceUpload": {
+      "enabled": "EVIDENCE_UPLOAD_ENABLED"
+    }
   }
 }
