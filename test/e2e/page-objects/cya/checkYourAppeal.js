@@ -6,7 +6,6 @@ const theHearing = require('steps/hearing/the-hearing/content.en');
 const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
-const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -34,8 +33,7 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
   const I = this;
 
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
-  I.addReasonsForAppealingAndContinue(
-    testData.reasonsForAppealing.reasons[0], reasonsForAppealing.links.add);
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(testData.reasonsForAppealing.reasons[0]);
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
   I.readSendingEvidenceAndContinue();
 }
