@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
@@ -125,6 +126,7 @@ class AddReason {
 
   onSubmit() {
     const self = this;
+
     $('form').submit(function(event) {
       event.preventDefault();
       const containers = $('.items-container');
@@ -135,35 +137,37 @@ class AddReason {
       });
 
       const promiseSequence = funcs =>
-        funcs.reduce((promise, func) =>
-          promise.then(result => func().then(Array.prototype.concat.bind(result))),
+        funcs.reduce((promise, func) => promise
+          .then(result => func().then(Array.prototype.concat.bind(result))),
         Promise.resolve([]));
 
-      const posts = answers.map((answer, index) => () => {
-        return $.ajax({
-          type: 'POST',
-          url: `/reason-for-appealing/item-${index}`,
-          data: answer,
-          success: response => {
-            if (response.validationErrors.length > 0) {
-              self.handleValidationError(index, response.validationErrors);
-            } else {
-              if ($(`#items-${index}`).children().hasClass('form-group-error')) {
+      const posts = answers.map((answer, index) => (
+        () => (
+          $.ajax({
+            type: 'POST',
+            url: `/reason-for-appealing/item-${index}`,
+            // eslint-disable-next-line id-blacklist
+            data: answer,
+            success: response => {
+              if (response.validationErrors.length > 0) {
+                self.handleValidationError(index, response.validationErrors);
+              } else if ($(`#items-${index}`).children().hasClass('form-group-error')) {
                 $(`#items-${index} .form-group`)
                   .removeClass('form-group-error')
                   .children()
                   .remove('.error-message');
               }
             }
-          }
-        });
-      });
+          })
+        ))
+      );
 
       return promiseSequence(posts)
         .then(responses => {
           const validationErrors = responses.filter(response => response.validationErrors);
           const actualErrors = validationErrors.filter(error => error.validationErrors.length > 0);
           if (actualErrors.length === 0) {
+            // eslint-disable-next-line no-invalid-this
             this.submit();
           } else {
             self.handleErrorSummary(validationErrors);
@@ -173,14 +177,13 @@ class AddReason {
   }
 
   handleErrorSummary(fieldErrors) {
-    const errorSummaryList = fieldErrors.map((fieldError, index) => {
-      return fieldError.validationErrors.map(validationError => {
-        return {
-          id: `items-${index}`,
-          message: validationError.errors[0]
-        };
-      });
-    });
+    const errorSummaryList = fieldErrors.map((fieldError, index) => (
+      // eslint-disable-next-line arrow-body-style
+      fieldError.validationErrors.map(validationError => ({
+        id: `items-${index}`,
+        message: validationError.errors[0]
+      }))
+    ));
     const summary = this.buildErrorSummary(flatten(errorSummaryList));
     $('.error-summary').remove();
     $('.column-two-thirds').prepend(summary.val);
@@ -214,7 +217,7 @@ class AddReason {
   addAnother() {
     $('.add-another-add-link').click(event => {
       event.preventDefault();
-      this.counter ++;
+      this.counter += 1;
       this.addFields();
     });
   }
