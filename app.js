@@ -130,6 +130,7 @@ lookAndFeel.configure(app, {
   nunjucks: {
     globals: {
       phase: 'BETA',
+      environment: process.env.NODE_ENV,
       banner: `${content.phaseBanner.newService}
         <a href="${urls.phaseBanner}" target="_blank">
             ${content.phaseBanner.reportProblem}
