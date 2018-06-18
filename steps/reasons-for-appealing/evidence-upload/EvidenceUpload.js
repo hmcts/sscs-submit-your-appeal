@@ -45,10 +45,13 @@ class EvidenceUpload extends Question {
           logger.info('error while receiving the file from the client', er);
         });
 
-        incoming.once('fileBegin', function(field, file) {
+        incoming.once('fileBegin', function fileBegin(field, file) {
           if (!fileTypeWhitelist.find(el => el === file.type)) {
+            /* eslint-disable no-invalid-this */
             return this.emit('error', 'File is of the wrong type');
+            /* eslint-enable no-invalid-this */
           }
+          return true;
         });
 
         incoming.once('file', (field, file) => {
@@ -61,7 +64,7 @@ class EvidenceUpload extends Question {
 
         incoming.once('aborted', () => {
           logger.log('user aborted upload');
-          return next(new Error())
+          return next(new Error());
         });
 
         incoming.once('end', () => {
@@ -69,13 +72,20 @@ class EvidenceUpload extends Question {
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
+          const statusForImperfectRequest = 422;
+          const statusForServerError = 500;
           if (uploadingError || !files.uploadEv.name) {
             logger.warn('an error has occured with form upload', uploadingError);
             res.header('Connection', 'close');
-            res.status(400).send({ status:'error' });
-            //res.status(400).render(req.journey.instances.EvidenceUpload.template ));
-
-            setTimeout(function() { res.end(); }, 500);
+            res.status(statusForImperfectRequest)
+              .send({
+                status: 'error'
+              });
+            // res.status(400).render(req.journey.instances.EvidenceUpload.template ));
+            /* eslint-disable brace-style */
+            setTimeout(() => { res.end(); },
+              statusForServerError);
+            /* eslint-enable brace-style */
             return;
           }
           const pathToFile = `${pt
