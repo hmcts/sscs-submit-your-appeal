@@ -5,6 +5,13 @@
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
+{% block head %}
+{{ super() }}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
+{% endblock %}
+
 {% set title %}
     {{ content.title | safe if isListMode }}
     {{ content.titleEdit | safe if isEditMode }}
@@ -18,6 +25,13 @@
     hideItemsListLabel: true,
     editItemLabel: content.itemLabel
 } %}
+
+{% block full_width %}
+{{ super() }}
+    <div>
+        {% include "components/inactivity-alert.html" %}
+    </div>
+{% endblock %}
 
 {% block noItems %}
     <div id="items" class="noItems {{ errorClass(fields.items) }}">
@@ -51,5 +65,4 @@
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
-
 

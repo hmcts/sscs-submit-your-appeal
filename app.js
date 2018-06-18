@@ -138,6 +138,13 @@ lookAndFeel.configure(app, {
       isArray(value) {
         return Array.isArray(value);
       },
+      inactivityTimeout: {
+        title: content.inactivityTimeout.title,
+        expiringIn: content.inactivityTimeout.expiringIn,
+        text: content.inactivityTimeout.text,
+        yes: content.inactivityTimeout.yes,
+        no: content.inactivityTimeout.no
+      },
       accept: fileTypeWhitelist,
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message,

@@ -1,5 +1,6 @@
 @import 'govuk-elements';
 @import '~accessible-autocomplete/src/autocomplete.css';
+@import '~jquery-modal/jquery.modal.css';
 @import 'look-and-feel/check-your-answers';
 @import 'bootstrap-datepicker1.8.0.min';
 @import 'date-picker';
@@ -159,6 +160,54 @@ label.form-label[for="signer"] {
   &:last-child {
     dt, dd {
       border-bottom: 1px solid #bfc1c3;
+    }
+  }
+}
+.modal {
+
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+
+  padding: 0;
+
+  .modal-dialog-box {
+
+    h2 {
+      background-color: #df3034;
+      background-position: 15px center;
+      background-repeat: no-repeat;
+      color: $white;
+      font-size: 19px;
+      font-weight: bold;
+      line-height: 60px;
+      padding-left: 60px;
+      &.icon-important {
+        width: auto;
+        height: auto;
+        background-image: url('/assets/images/icon-important-red-inverse.png');
+      }
+    }
+
+    p {
+      margin: 15px;
+      font-size: 19px;
+      a {
+        margin-left: 5px;
+        &:focus {
+          background-color: transparent;
+          border: 3px solid $yellow;
+        }
+      }
+    }
+    .button {
+      width: inherit;
+    }
+    .button.abort {
+      margin-left: 30px;
+      @include button($grey-3);
     }
   }
 }

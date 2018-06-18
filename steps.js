@@ -49,7 +49,7 @@ const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend
 const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
-const EvidenceUpload = require('steps/reasons-for-appealing/evidence-Upload/EvidenceUpload');
+const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 
 const init = [
   Entry,

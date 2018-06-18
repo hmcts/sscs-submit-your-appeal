@@ -10,6 +10,9 @@
     "useSSL": "USE_SSL",
     "timeout": "SESSION_TIME_OUT"
   },
+  "frontend": {
+    "inactivityAlert": "SESSION_ENDING_ALERT"
+  },
   "api": {
     "url": "TRIBUNALS_CASE_API_URL",
     "uploadEvidenceUrl": "UPLOAD_EVIDENCE_URL"
