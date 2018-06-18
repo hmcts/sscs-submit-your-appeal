@@ -13,6 +13,9 @@ const fs = require('fs');
 const request = require('request');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
+const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+const wrongFileTypeError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+
 class EvidenceUpload extends Question {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -51,11 +54,11 @@ class EvidenceUpload extends Question {
         incoming.once('fileBegin', function fileBegin(field, file) {
           if (!fileTypeWhitelist.find(el => el === file.type)) {
             /* eslint-disable no-invalid-this */
-            return this.emit('error', 'File is of the wrong type');
+            return this.emit('error', wrongFileTypeError);
             /* eslint-enable no-invalid-this */
           }
           if (file.size > maxFileSize) {
-            return this.emit('error', 'File is too big');
+            return this.emit('error', maxFileSizeExceededError);
           }
           return true;
         });
@@ -82,19 +85,12 @@ class EvidenceUpload extends Question {
           const statusForServerError = 500;
 
           if (uploadingError || !files.uploadEv.name) {
-
             logger.warn('an error has occured with form upload', uploadingError);
-            res.header('Connection', 'close');
-            res.status(statusForImperfectRequest)
-              .send({
-                status: 'error'
-              });
-            // res.status(400).render(req.journey.instances.EvidenceUpload.template ));
-            /* eslint-disable brace-style */
-            setTimeout(() => { res.end(); },
-              statusForServerError);
-            /* eslint-enable brace-style */
-            return;
+            res.status = 422;
+            req.body = {
+              uploadEv: uploadingError
+            };
+            return next();
           }
 
           const pathToFile = `${pt
@@ -133,6 +129,12 @@ class EvidenceUpload extends Question {
       uploadEv: text.joi(
         'Please choose a file',
         Joi.string().required()
+      ).joi(
+        'wrong file type',
+        Joi.string().disallow(wrongFileTypeError)
+      ).joi(
+        'file too big',
+        Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('Unexpected error', Joi.string().required())
     });
