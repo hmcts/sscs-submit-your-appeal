@@ -1,6 +1,6 @@
 {% for item in fields.items.value %}
     <div class="govuk-check-your-answers cya-questions-short">
-        <dl class="cya-whatYouDisagreeWith">
+        <dl id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="cya-whatYouDisagreeWith">
             <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith }}</dt>
             <dd class="cya-answer">{{ item.whatYouDisagreeWith }}</dd>
             <dd class="cya-change">
