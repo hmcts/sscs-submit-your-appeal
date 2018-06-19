@@ -13,11 +13,13 @@
 <p>{{ content.writeStatement }}</p>
 <p>{{ content.sendEvidence }}</p>
 
-{% if hasSignedUpForEmail %}
-    {{ content.postEvidenceWithEmail }}
-{% else %}
-    {{ content.postEvidence }}
-{% endif %}
+<p>
+    {% if hasSignedUpForEmail %}
+        {{ content.postEvidenceWithEmail }}
+    {% else %}
+        {{ content.postEvidence }}
+    {% endif %}
+</p>
 
 {% call formSection() %}
 {% endcall %}

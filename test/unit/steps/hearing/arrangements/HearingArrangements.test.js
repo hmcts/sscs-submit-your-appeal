@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
 const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
+const signLanguages = require('steps/hearing/arrangements/signLanguages');
 
 describe('HearingArrangements.js', () => {
   let hearingArrangements = null;
@@ -56,6 +57,33 @@ describe('HearingArrangements.js', () => {
         label: languages[0],
         value: languages[0]
       });
+    });
+  });
+
+  describe('get signLanguagesList()', () => {
+    it('returns an object', () => {
+      expect(hearingArrangements.signLanguagesList).to.be.an('array');
+    });
+
+    it('should have an array of objects', () => {
+      expect(hearingArrangements.signLanguagesList[0]).to.eql({
+        label: signLanguages[0],
+        value: signLanguages[0]
+      });
+    });
+  });
+
+  describe('static selectify', () => {
+    it('returns an array of objects', () => {
+      const outcome = HearingArrangements.selectify(signLanguages);
+      expect(outcome).to.be.an('array');
+      expect(outcome[0]).to.be.an('object');
+    });
+    it('such objects have a value / label structure', () => {
+      const outcome = HearingArrangements.selectify(signLanguages)[0];
+      expect(outcome).to.be.an('object');
+      expect(outcome.label).to.equal(signLanguages[0]);
+      expect(outcome.value).to.equal(signLanguages[0]);
     });
   });
 
