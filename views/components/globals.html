@@ -9,11 +9,21 @@
 
 {% block head -%}
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    {% if environment === 'prod' %}
+        <!-- Live analytics -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T56C5T7');</script>
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=UuZZs4BGR3tNzCze2MIbBw&gtm_preview=env-2&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T56C5T7');</script>
+    {% else %}
+        <!-- Dev analytics -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=uYQEEAOU5-Kwl3yix5HG_A&gtm_preview=env-87&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T56C5T7');</script>
+    {% endif %}
     <!-- End Google Tag Manager -->
     <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
     <script src="{{ asset_path }}main.js" type="text/javascript"></script>
@@ -21,17 +31,15 @@
 
 {% block body_start %}
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe
-          title="Intentionally blank"
-          aria-hidden="true"
-          src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7"
-          height="0"
-          width="0"
-          style="display:none;
-          visibility:hidden">
-        </iframe>
-    </noscript>
+    {% if environment === 'prod' %}
+        <!-- Live analytics -->
+        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=UuZZs4BGR3tNzCze2MIbBw&gtm_preview=env-2&gtm_cookies_win=x"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {% else %}
+        <!-- Dev analytics -->
+        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=uYQEEAOU5-Kwl3yix5HG_A&gtm_preview=env-87&gtm_cookies_win=x"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {% endif %}
     <!-- End Google Tag Manager (noscript) -->
 {% endblock %}
 
