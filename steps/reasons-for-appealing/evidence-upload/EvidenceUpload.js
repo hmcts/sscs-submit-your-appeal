@@ -7,6 +7,7 @@ const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
+const moment = require('moment');
 const pt = require('path');
 const fs = require('fs');
 const request = require('request');
@@ -107,11 +108,16 @@ class EvidenceUpload extends Question {
     });
   }
 
-
   values() {
     return {
       reasonsForAppealing: {
-        otherReasons: this.fields.otherReasonForAppealing.value
+        evidences: [
+          {
+            url: this.fields.link.value,
+            fileName: this.fields.uploadEv.value,
+            uploadedDate: moment().format('YYYY-MM-DD')
+          }
+        ]
       }
     };
   }
