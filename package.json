@@ -28,7 +28,7 @@
     "@hmcts/look-and-feel": "1.15.1",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
-    "@hmcts/one-per-page": "3.3.3",
+    "@hmcts/one-per-page": "https://github.com/hmcts/one-per-page#status422",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.1",

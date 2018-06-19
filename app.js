@@ -17,7 +17,9 @@ const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 const HttpStatus = require('http-status-codes');
+/* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
+/* eslint-enable max-len */
 
 const logger = Logger.getLogger('app.js');
 const app = express();

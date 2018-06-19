@@ -10,11 +10,12 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('fs');
+const moment = require('moment');
 const request = require('request');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
-const wrongFileTypeError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -32,7 +33,6 @@ class EvidenceUpload extends Question {
   }
 
   static handleUpload(req, res, next) {
-
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
 
@@ -41,10 +41,12 @@ class EvidenceUpload extends Question {
         if (mkdirError) {
           return next(mkdirError);
         }
+        const multiplier = 1024;
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
-          type: 'multipart'
+          type: 'multipart',
+          maxFileSize: maxFileSize * multiplier * multiplier
         });
 
         incoming.once('error', er => {
@@ -56,9 +58,6 @@ class EvidenceUpload extends Question {
             /* eslint-disable no-invalid-this */
             return this.emit('error', wrongFileTypeError);
             /* eslint-enable no-invalid-this */
-          }
-          if (file.size > maxFileSize) {
-            return this.emit('error', maxFileSizeExceededError);
           }
           return true;
         });
@@ -81,12 +80,17 @@ class EvidenceUpload extends Question {
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
-          const statusForImperfectRequest = 422;
-          const statusForServerError = 500;
+          const unprocessableEntityStatus = 422;
 
           if (uploadingError || !files.uploadEv.name) {
-            logger.warn('an error has occured with form upload', uploadingError);
-            res.status = 422;
+            logger.warn('an error has occured with form upload', uploadingError.message);
+            if (uploadingError.message && uploadingError.message.match(/maxFileSize exceeded/)) {
+              // cater for the horrible formidable.js error
+              /* eslint-disable no-param-reassign */
+              uploadingError = maxFileSizeExceededError;
+              /* eslint-enable no-param-reassign */
+            }
+            res.status = unprocessableEntityStatus;
             req.body = {
               uploadEv: uploadingError
             };
@@ -127,16 +131,16 @@ class EvidenceUpload extends Question {
   get form() {
     return form({
       uploadEv: text.joi(
-        'Please choose a file',
+        this.content.fields.uploadEv.error.required,
         Joi.string().required()
       ).joi(
-        'wrong file type',
+        this.content.fields.uploadEv.error.wrongFileType,
         Joi.string().disallow(wrongFileTypeError)
       ).joi(
-        'file too big',
+        this.content.fields.uploadEv.error.maxFileSizeExceeded,
         Joi.string().disallow(maxFileSizeExceededError)
       ),
-      link: text.joi('Unexpected error', Joi.string().required())
+      link: text.joi('', Joi.string().optional())
     });
   }
 
