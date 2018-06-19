@@ -143,10 +143,11 @@ class EvidenceUpload extends Question {
   values() {
     return {
       reasonsForAppealing: {
-        evidence: [
+        evidences: [
           {
             url: this.fields.link.value,
-            fileName: this.fields.uploadEv.value
+            fileName: this.fields.uploadEv.value,
+            uploadedDate: moment().format('YYYY-MM-DD')
           }
         ]
       }
