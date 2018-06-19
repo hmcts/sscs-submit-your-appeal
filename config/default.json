@@ -35,7 +35,7 @@
   },
   "features": {
     "evidenceUpload": {
-      "enabled": true,
+      "enabled": false,
       "maxFileSize": 2
     }
   }
