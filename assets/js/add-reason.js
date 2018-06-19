@@ -54,7 +54,7 @@ class AddReason {
       type: 'GET',
       url: '/reason-for-appealing',
       success: response => {
-        const fieldValues = Object.values(response);
+        const fieldValues = Object.values(response.items.fields);
         if (fieldValues.length > 0) {
           this.items = fieldValues;
           this.buildForm();
