@@ -12,6 +12,7 @@ const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
 const request = require('request');
+const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
@@ -54,7 +55,7 @@ class EvidenceUpload extends Question {
         });
 
         incoming.once('fileBegin', function fileBegin(field, file) {
-          if (!fileTypeWhitelist.find(el => el === file.type)) {
+          if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
             /* eslint-disable no-invalid-this */
             return this.emit('error', wrongFileTypeError);
             /* eslint-enable no-invalid-this */
@@ -82,9 +83,15 @@ class EvidenceUpload extends Question {
         return incoming.parse(req, (uploadingError, fields, files) => {
           const unprocessableEntityStatus = 422;
 
-          if (uploadingError || !files.uploadEv.name) {
-            logger.warn('an error has occured with form upload', uploadingError.message);
-            if (uploadingError.message && uploadingError.message.match(/maxFileSize exceeded/)) {
+          if (uploadingError || !get(files, 'uploadEv.name')) {
+            logger.warn('an error has occured with form upload',
+              uploadingError && uploadingError.message);
+            /* eslint-disable operator-linebreak */
+            if (files.uploadEv &&
+              files.uploadEv.name &&
+              uploadingError.message &&
+              uploadingError.message.match(/maxFileSize exceeded/)) {
+              /* eslint-enable operator-linebreak */
               // cater for the horrible formidable.js error
               /* eslint-disable no-param-reassign */
               uploadingError = maxFileSizeExceededError;
