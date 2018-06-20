@@ -84,11 +84,8 @@ class EvidenceUpload extends Question {
           const unprocessableEntityStatus = 422;
 
           if (uploadingError || !get(files, 'uploadEv.name')) {
-            logger.warn('an error has occured with form upload',
-              uploadingError && uploadingError.message);
             /* eslint-disable operator-linebreak */
-            if (files.uploadEv &&
-              files.uploadEv.name &&
+            if (uploadingError &&
               uploadingError.message &&
               uploadingError.message.match(/maxFileSize exceeded/)) {
               /* eslint-enable operator-linebreak */
