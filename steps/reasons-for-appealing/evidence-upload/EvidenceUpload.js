@@ -94,6 +94,8 @@ class EvidenceUpload extends Question {
               uploadingError = maxFileSizeExceededError;
               /* eslint-enable no-param-reassign */
             }
+            // this is an obvious mistake but achieves our goal somehow.
+            // I'll have to come back to this.
             res.status = unprocessableEntityStatus;
             req.body = {
               uploadEv: uploadingError
