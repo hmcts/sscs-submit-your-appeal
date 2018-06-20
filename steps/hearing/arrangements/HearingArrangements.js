@@ -15,6 +15,7 @@ const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
+const signLanguages = require('steps/hearing/arrangements/signLanguages');
 
 class HearingArrangements extends Question {
   static get path() {
@@ -22,16 +23,17 @@ class HearingArrangements extends Question {
   }
 
   get languagesList() {
-    const list = [];
+    return HearingArrangements.selectify(languages);
+  }
 
-    languages.forEach(language => {
-      const obj = {};
-      obj.label = language;
-      obj.value = language;
-      list.push(obj);
+  get signLanguagesList() {
+    return HearingArrangements.selectify(signLanguages);
+  }
+
+  static selectify(ar) {
+    return ar.map(el => {
+      return { label: el, value: el };
     });
-
-    return list;
   }
 
   get cyaArrangements() {

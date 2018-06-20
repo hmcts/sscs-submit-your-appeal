@@ -1,5 +1,11 @@
 /* eslint-disable max-len */
 const { concat } = require('lodash');
+
+const config = require('config');
+
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+
+
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit-points/exit/Exit');
 const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
@@ -43,6 +49,7 @@ const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend
 const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
+const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 
 const init = [
   Entry,
@@ -99,6 +106,10 @@ const reasonsForAppealing = [
   OtherReasonForAppealing,
   SendingEvidence
 ];
+
+if (evidenceUploadEnabled) {
+  reasonsForAppealing.push(EvidenceUpload);
+}
 
 const hearing = [
   HearingAvailability,

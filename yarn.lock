@@ -6,9 +6,9 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
 
-"@hmcts/look-and-feel@1.14.2":
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.14.2.tgz#e1c7040999c21d2730afbb59f66c368759e15e0e"
+"@hmcts/look-and-feel@1.15.1":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.15.1.tgz#0422c15a631ca5717254857a764ff199e17af127"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -2803,7 +2803,7 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
-form-data@^2.3.1, form-data@~2.3.1:
+form-data@^2.3.1, form-data@^2.3.2, form-data@~2.3.1:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.2.tgz#4970498be604c20c005d4f5c23aecd21d6b49099"
   dependencies:
@@ -2819,7 +2819,7 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-formidable@^1.1.1, formidable@^1.2.0:
+formidable@^1.1.1, formidable@^1.2.0, formidable@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
 
@@ -5889,7 +5889,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2, request@^2.45.0:
+request@2, request@^2.45.0, request@^2.87.0:
   version "2.87.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
   dependencies:

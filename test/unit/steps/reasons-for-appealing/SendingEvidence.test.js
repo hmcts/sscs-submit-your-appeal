@@ -1,22 +1,54 @@
-const { expect } = require('test/util/chai');
-const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
+const { expect, sinon } = require('test/util/chai');
+const proxyquire = require('proxyquire');
 const paths = require('paths');
 
 describe('SendingEvidence.js', () => {
-  let sendingEvidence = null;
-
-  before(() => {
-    sendingEvidence = new SendingEvidence({
+  const retrieveValue = value => {
+    return {
+      retrieve: sinon.stub().returns({
+        emailAddress: {
+          value
+        }
+      })
+    };
+  };
+  const createClassInstance = retrieve => {
+    return proxyquire('steps/reasons-for-appealing/sending-evidence/SendingEvidence', {
+      '@hmcts/one-per-page/forms': {
+        form: sinon.stub().returns(retrieve)
+      }
+    });
+  };
+  const instantiateClass = Class => {
+    return new Class({
       journey: {
         steps: {
-          TheHearing: paths.hearing.theHearing
+          TheHearing: paths.hearing.theHearing,
+          AppellantContactDetails: paths.reasonsForAppealing.sendingEvidence
         }
       }
     });
+  };
+  let SendingEvidence = createClassInstance(retrieveValue('harry.potter@wizards.com'));
+  let sendingEvidence = null;
 
+  before(() => {
+    sendingEvidence = instantiateClass(SendingEvidence);
     sendingEvidence.fields = {
       emailAddress: {}
     };
+  });
+
+  describe('get path()', () => {
+    it('returns path /sending-evidence', () => {
+      expect(SendingEvidence.path).to.equal(paths.reasonsForAppealing.sendingEvidence);
+    });
+  });
+
+  describe('next()', () => {
+    it('nextStep equals /the-hearing', () => {
+      expect(sendingEvidence.next().step).to.eql(paths.hearing.theHearing);
+    });
   });
 
   describe('get hasSignedUpForEmail()', () => {
@@ -26,50 +58,12 @@ describe('SendingEvidence.js', () => {
     });
 
     it('should be false when the email address has not been defined', () => {
-      sendingEvidence.fields.emailAddress.value = undefined;
+      SendingEvidence = createClassInstance(retrieveValue(undefined));
+      sendingEvidence = instantiateClass(SendingEvidence);
+      sendingEvidence.fields = {
+        emailAddress: {}
+      };
       expect(sendingEvidence.hasSignedUpForEmail).to.be.false;
-    });
-  });
-
-  describe('get path()', () => {
-    it('returns path /sending-evidence', () => {
-      expect(SendingEvidence.path).to.equal(paths.reasonsForAppealing.sendingEvidence);
-    });
-  });
-
-  describe('get form()', () => {
-    let fields = null;
-    let field = null;
-
-    before(() => {
-      fields = sendingEvidence.form.fields;
-    });
-
-    it('should contain 1 field', () => {
-      expect(Object.keys(fields).length).to.equal(1);
-      expect(fields).to.have.all.keys('emailAddress');
-    });
-
-    describe('emailAddress ref field', () => {
-      beforeEach(() => {
-        field = fields.emailAddress;
-      });
-
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
-    });
-  });
-
-  describe('answers()', () => {
-    it('should be hidden', () => {
-      expect(sendingEvidence.answers().hide).to.be.true;
-    });
-  });
-
-  describe('next()', () => {
-    it('nextStep equals /the-hearing', () => {
-      expect(sendingEvidence.next().step).to.eql(paths.hearing.theHearing);
     });
   });
 });

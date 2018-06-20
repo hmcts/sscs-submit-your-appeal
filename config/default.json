@@ -14,7 +14,8 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url":  "http://localhost:8080"
+    "url":  "http://localhost:8080",
+    "uploadEvidenceUrl": "http://localhost:3010/upload"
   },
   "appInsights": {
     "instrumentationKey": "iKey"
@@ -31,5 +32,10 @@
     "waitForAction": "500",
     "outputDir": "./output",
     "frontendUrl": "http://localhost:3000"
+  },
+  "features": {
+    "evidenceUpload": {
+      "enabled": false
+    }
   }
 }

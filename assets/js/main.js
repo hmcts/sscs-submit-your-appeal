@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { remove } from 'lodash';
 import { frontend, redis } from '../../config/default';
 import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
@@ -19,7 +20,19 @@ function initAutocomplete() {
   const selects = document.querySelectorAll('select');
   $.each(selects, (index, select) => {
     accessibleAutocomplete.enhanceSelectElement({
-      selectElement: select
+      selectElement: select,
+      source: (query, populateResults) => {
+        const minQueryLength = 1;
+        if (query.length < minQueryLength) {
+          return null;
+        }
+        const options = Array.from(select.options).map(opt => opt.value);
+        const startingWithLetter = remove(options, opt =>
+          opt.match(new RegExp(`^${query}.+`, 'i')));
+        const containingLetter = remove(options, opt =>
+          opt.match(new RegExp(`^.+${query}+`, 'i')));
+        return populateResults([...startingWithLetter, ...containingLetter]);
+      }
     });
   });
 }
