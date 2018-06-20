@@ -25,7 +25,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "https://github.com/hmcts/look-and-feel#add-textarea",
+    "@hmcts/look-and-feel": "1.16.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/one-per-page": "https://github.com/hmcts/one-per-page#ajax-validation-handling",
