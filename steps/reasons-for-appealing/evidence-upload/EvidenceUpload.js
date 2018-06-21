@@ -1,131 +1,95 @@
-const {Question, goTo} = require('@hmcts/one-per-page');
-const {form, text} = require('@hmcts/one-per-page/forms');
-const {Logger} = require('@hmcts/nodejs-logging');
+const { Question, goTo } = require('@hmcts/one-per-page');
+const { form, text } = require('@hmcts/one-per-page/forms');
+const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
-const paths = require('paths');
 const formidable = require('formidable');
-const pt = require('path');
-const fs = require('fs');
 const moment = require('moment');
 const request = require('request');
-const {get} = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
-var stream = require('stream');
-const {Duplex} = stream;
+const stream = require('stream');
 
 class EvidenceUpload extends Question {
-  static get path() {
-    return paths.reasonsForAppealing.evidenceUpload;
-  }
-
-  static makeDir(path, dirCallback) {
-    const p = pt.join(__dirname, path);
-    fs.stat(p, (fsError, stats) => {
-      if (fsError || !stats.isDirectory()) {
-        return fs.mkdir(p, dirCallback);
-      }
-      return dirCallback();
-    });
-  }
-
   static handleUpload(req, res, next) {
-    const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
 
     if (req.method.toLowerCase() === 'post') {
-      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-        if (mkdirError) {
-          return next(mkdirError);
+      const multiplier = 1024;
+      const incoming = new formidable.IncomingForm({
+        keepExtensions: true,
+        type: 'multipart',
+        maxFileSize: maxFileSize * multiplier * multiplier
+      });
+
+      incoming.once('error', er => {
+        logger.info('error while receiving the file from the client', er);
+      });
+
+      incoming.once('fileBegin', function fileBegin(field, file) {
+        if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
+          /* eslint-disable no-invalid-this */
+          return this.emit('error', wrongFileTypeError);
+          /* eslint-enable no-invalid-this */
         }
-        const multiplier = 1024;
-        const incoming = new formidable.IncomingForm({
-          uploadDir: pt.resolve(__dirname, pathToUploadFolder),
-          keepExtensions: true,
-          type: 'multipart',
-          maxFileSize: maxFileSize * multiplier * multiplier
-        });
+        return true;
+      });
 
-        incoming.once('error', er => {
-          logger.info('error while receiving the file from the client', er);
-        });
+      incoming.once('aborted', () => {
+        logger.log('user aborted upload');
+        return next(new Error());
+      });
 
-        incoming.once('fileBegin', function fileBegin(field, file) {
-          if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
-            /* eslint-disable no-invalid-this */
-            return this.emit('error', wrongFileTypeError);
-            /* eslint-enable no-invalid-this */
-          }
-          return true;
-        });
+      incoming.once('end', () => {
+        logger.log('-> upload done');
+      });
 
-        incoming.once('file', (field, file) => {
-          if (file.name && file.size) {
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-            fs.rename(file.path, pathToFile);
-          }
-        });
+      incoming.onPart = part => {
+        if (!part.filename) {
+          // let formidable handle all non-file parts
+          form.handlePart(part);
+          return;
+        }
 
+        const fileName = part.filename;
+        const fileData = new stream.PassThrough();
 
-        incoming.once('aborted', () => {
-          logger.log('user aborted upload');
-          return next(new Error());
-        });
-
-        incoming.once('end', () => {
-          logger.log('-> upload done');
-        });
-
-        incoming.onPart = part => {
-          if (!part.filename) {
-            // let formidable handle all non-file parts
-            form.handlePart(part);
-            return;
-          }
-
-          let fileName = part.filename;
-
-          let foo = fs.createReadStream("/Users/chris/Desktop/test.txt");
-
-          let fileData = new stream.PassThrough();
-
-          request.post({
-            url: uploadEvidenceUrl,
-            formData: {
-              file: {
-                value: fileData,
-                options: {
-                  filename: fileName,
-                  contentType: part.mime,
-                  knownLength: req.headers['content-length']
-                }
+        request.post({
+          url: uploadEvidenceUrl,
+          formData: {
+            file: {
+              value: fileData,
+              options: {
+                filename: fileName,
+                contentType: part.mime,
+                knownLength: req.headers['content-length']
               }
             }
-          }, (forwardingError, resp, body) => {
-            if (!forwardingError) {
-              logger.info('No forwarding error, about to save data');
-              const b = JSON.parse(body);
-              req.body = {
-                uploadEv: b.documents[0].originalDocumentName,
-                link: b.documents[0]._links.self.href
-              };
+          }
+        }, (forwardingError, resp, body) => {
+          if (!forwardingError) {
+            logger.info('No forwarding error, about to save data');
+            const b = JSON.parse(body);
+            req.body = {
+              uploadEv: b.documents[0].originalDocumentName,
+              link: b.documents[0]._links.self.href
+            };
 
-              return next();
-            }
-            return next(forwardingError);
-          });
+            return next();
+          }
+          return next(forwardingError);
+        });
 
-          part.on('data', incomingData => {
-            fileData.push(incomingData);
-          });
-          part.on('error', uploadingError => {
-            const unprocessableEntityStatus = 422;
+        part.on('data', incomingData => {
+          fileData.push(incomingData);
+        });
+        part.on('error', uploadingError => {
+          const unprocessableEntityStatus = 422;
 
             /* eslint-disable operator-linebreak */
             if (uploadingError &&
@@ -145,13 +109,12 @@ class EvidenceUpload extends Question {
             };
             return next();
           });
-          part.on('end', function() {
+          part.on('end', () => {
             fileData.end();
           });
         };
 
-        return incoming.parse(req);
-      });
+      return incoming.parse(req);
     }
     return next();
   }
