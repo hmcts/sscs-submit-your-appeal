@@ -1,6 +1,6 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { Logger } = require('@hmcts/nodejs-logging');
+const {Question, goTo} = require('@hmcts/one-per-page');
+const {form, text} = require('@hmcts/one-per-page/forms');
+const {Logger} = require('@hmcts/nodejs-logging');
 const config = require('config');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
@@ -12,11 +12,13 @@ const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
 const request = require('request');
-const { get } = require('lodash');
+const {get} = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
+var stream = require('stream');
+const {Duplex} = stream;
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -80,10 +82,51 @@ class EvidenceUpload extends Question {
           logger.log('-> upload done');
         });
 
-        return incoming.parse(req, (uploadingError, fields, files) => {
-          const unprocessableEntityStatus = 422;
+        incoming.onPart = part => {
+          if (!part.filename) {
+            // let formidable handle all non-file parts
+            form.handlePart(part);
+            return;
+          }
 
-          if (uploadingError || !get(files, 'uploadEv.name')) {
+          let fileName = part.filename;
+
+          let foo = fs.createReadStream("/Users/chris/Desktop/test.txt");
+
+          let fileData = new stream.PassThrough();
+
+          request.post({
+            url: uploadEvidenceUrl,
+            formData: {
+              file: {
+                value: fileData,
+                options: {
+                  filename: fileName,
+                  contentType: part.mime,
+                  knownLength: req.headers['content-length']
+                }
+              }
+            }
+          }, (forwardingError, resp, body) => {
+            if (!forwardingError) {
+              logger.info('No forwarding error, about to save data');
+              const b = JSON.parse(body);
+              req.body = {
+                uploadEv: b.documents[0].originalDocumentName,
+                link: b.documents[0]._links.self.href
+              };
+
+              return next();
+            }
+            return next(forwardingError);
+          });
+
+          part.on('data', incomingData => {
+            fileData.push(incomingData);
+          });
+          part.on('error', uploadingError => {
+            const unprocessableEntityStatus = 422;
+
             /* eslint-disable operator-linebreak */
             if (uploadingError &&
               uploadingError.message &&
@@ -101,30 +144,13 @@ class EvidenceUpload extends Question {
               uploadEv: uploadingError
             };
             return next();
-          }
-
-          const pathToFile = `${pt
-            .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
-
-          return request.post({
-            url: uploadEvidenceUrl,
-            formData: {
-              file: fs.createReadStream(pathToFile)
-            }
-          }, (forwardingError, resp, body) => {
-            if (!forwardingError) {
-              logger.info('No forwarding error, about to save data');
-              const b = JSON.parse(body);
-              req.body = {
-                uploadEv: b.documents[0].originalDocumentName,
-                link: b.documents[0]._links.self.href
-              };
-
-              return fs.unlink(pathToFile, next);
-            }
-            return next(forwardingError);
           });
-        });
+          part.on('end', function() {
+            fileData.end();
+          });
+        };
+
+        return incoming.parse(req);
       });
     }
     return next();
