@@ -77,7 +77,7 @@ Scenario('When I add multiple reasons and click Continue I am taken to /other-re
   });
 
 Scenario(`When I go to add another reason and then click Continue without entering any data, 
-I see an error around that field`, async I => {
+I see no errors and am taken to /other-reason-for-appealing`, I => {
   I.addAReasonForAppealing(
     `#items-0 ${whatYouDisagreeWithField}`,
     `#items-0 ${reasonForAppealingField}`,
@@ -85,17 +85,40 @@ I see an error around that field`, async I => {
   );
   I.click('Add reason');
   I.click('Continue');
-  await I.hasErrorClass('#items-1');
+  I.seeInCurrentUrl(paths.reasonsForAppealing.otherReasonForAppealing);
 });
 
 
 Scenario(`When I click add Reason multiple times and click Continue without entering any data,
- I see a list of errors`, async I => {
-  const numberOfReasons = 5;
-  for (let i = 1; i < numberOfReasons; i++) {
+ I only see error for the first reason fields`, async I => {
+  for (let i = 1; i < 5; i++) {
     I.click('Add reason');
   }
   I.click('Continue');
   I.seeElement('.error-summary-list');
-  await I.seeNumberOfElements('.error-summary-list li', numberOfReasons * 2);
+  await I.seeNumberOfElements('.error-summary-list li', 2);
+  I.see(content.fields.reasonForAppealing.error.required);
+  I.see(content.fields.whatYouDisagreeWith.error.required);
+});
+
+Scenario(`When I add a reasons then click the add another reason button and enter the least amount 
+of data, I see error`, async I => {
+  I.addAReasonForAppealing(
+    `#items-0 ${whatYouDisagreeWithField}`,
+    `#items-0 ${reasonForAppealingField}`,
+    reasons[0]
+  );
+  I.click('Add reason');
+  I.addAReasonForAppealing(
+    `#items-1 ${whatYouDisagreeWithField}`,
+    `#items-1 ${reasonForAppealingField}`,
+    {
+      whatYouDisagreeWith: 'a',
+      reasonForAppealing: 'a'
+    }
+  );
+  I.click('Continue');
+  await I.hasErrorClass('#items-1');
+  I.see(content.fields.whatYouDisagreeWith.error.notEnough);
+  I.see(content.fields.reasonForAppealing.error.notEnough);
 });
