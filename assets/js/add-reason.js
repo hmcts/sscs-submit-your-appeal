@@ -2,7 +2,8 @@
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
-import { flatten } from 'lodash';
+import { flatten, includes } from 'lodash';
+import content from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
 
 class AddReason {
   constructor() {
@@ -29,17 +30,16 @@ class AddReason {
   }
 
   buildForm() {
-    const values = this.items.map((item, index) => {
-      const obj = {};
-      const fields = Object.keys(item.fields);
-      obj.index = index;
-      $.each(fields, (i, field) => {
-        obj[field] = {
-          value: item.fields[field].value
-        };
-      });
-      return obj;
-    });
+    // eslint-disable-next-line arrow-body-style
+    const values = this.items.map((item, index) => ({
+      index,
+      whatYouDisagreeWith: {
+        value: item['item.whatYouDisagreeWith']
+      },
+      reasonForAppealing: {
+        value: item['item.reasonForAppealing']
+      }
+    }));
 
     $.each(values, (i, value) => {
       if (i > 0) {
@@ -54,9 +54,13 @@ class AddReason {
       type: 'GET',
       url: '/reason-for-appealing',
       success: response => {
-        const fieldValues = Object.values(response.items.fields);
+        const fieldValues = Object.values(response);
         if (fieldValues.length > 0) {
-          this.items = fieldValues;
+          // eslint-disable-next-line arrow-body-style
+          this.items = fieldValues.map(value => ({
+            'item.whatYouDisagreeWith': value.fields.whatYouDisagreeWith.value,
+            'item.reasonForAppealing': value.fields.reasonForAppealing.value
+          }));
           this.buildForm();
         } else {
           this.addFields();
@@ -131,17 +135,35 @@ class AddReason {
       event.preventDefault();
       const containers = $('.items-container');
       const answers = [];
+      let firstItemValid = true;
+      let otherErrors = false;
+      let deleteItems = [];
 
+      // Creates an array of answers to post
       $.each(containers, index => {
         answers.push(self.buildAnswers(index));
       });
 
-      const promiseSequence = funcs =>
-        funcs.reduce((promise, func) => promise
-          .then(result => func().then(Array.prototype.concat.bind(result))),
-        Promise.resolve([]));
+      // Removes any element of the answers array that needs to be deleted
+      // Creates the array of ajax to delete the items
+      const itemsToDelete = self.itemsToDelete(answers);
+      if (itemsToDelete.length > 0) {
+        itemsToDelete.sort((a, b) => b - a);
+        $.each(itemsToDelete, (index, itemIndex) => {
+          answers.splice(itemIndex, 1);
+        });
 
-      const posts = answers.map((answer, index) => (
+        deleteItems = itemsToDelete.map(itemIndex => (
+          () => (
+            $.ajax({
+              type: 'GET',
+              url: `/reason-for-appealing/item-${itemIndex}/delete`
+            })
+          )
+        ));
+      }
+      // Creates the array of ajax to post the items
+      const postItems = answers.map((answer, index) => (
         () => (
           $.ajax({
             type: 'POST',
@@ -150,7 +172,13 @@ class AddReason {
             data: answer,
             success: response => {
               if (response.validationErrors.length > 0) {
-                self.handleValidationError(index, response.validationErrors);
+                if (index === 0) {
+                  firstItemValid = false;
+                  self.handleValidationError(index, response.validationErrors);
+                } else if (self.isMinCharacterError(response.validationErrors)) {
+                  otherErrors = true;
+                  self.handleValidationError(index, response.validationErrors);
+                }
               } else if ($(`#items-${index}`).children().hasClass('form-group-error')) {
                 $(`#items-${index} .form-group`)
                   .removeClass('form-group-error')
@@ -161,12 +189,19 @@ class AddReason {
           })
         ))
       );
+      // Puts the promises in sequence rather than parellel
+      const promiseSequence = funcs =>
+        funcs.reduce((promise, func) => promise
+          .then(result => func().then(Array.prototype.concat.bind(result))),
+        Promise.resolve([]));
 
-      return promiseSequence(posts)
+      // Call the ajax promises, deleting the items first and then posting
+      return promiseSequence([...deleteItems, ...postItems])
         .then(responses => {
           const validationErrors = responses.filter(response => response.validationErrors);
           const actualErrors = validationErrors.filter(error => error.validationErrors.length > 0);
-          if (actualErrors.length === 0) {
+          if (actualErrors.length === 0 || (firstItemValid && !otherErrors)) {
+            $('.error-summary').remove();
             // eslint-disable-next-line no-invalid-this
             this.submit();
           } else {
@@ -174,6 +209,33 @@ class AddReason {
           }
         });
     });
+  }
+
+  itemsToDelete(answers) {
+    const itemsToDelete = [];
+    $.each(answers, (index, answer) => {
+      if (index === 0) {
+        return true;
+      } else if (
+        answer['item.whatYouDisagreeWith'] !== '' && answer['item.reasonForAppealing'] !== ''
+      ) {
+        return true;
+      }
+      itemsToDelete.push(index);
+      return true;
+    });
+    return itemsToDelete;
+  }
+
+  isMinCharacterError(validationErrors) {
+    const errors = validationErrors.map(error => error.errors[0]);
+    const contentErrors = Object.values(content.fields).map(field => field.error.notEnough);
+    let hasError = false;
+    $.each(errors, (index, error) => {
+      hasError = includes(contentErrors, error);
+      return !hasError;
+    });
+    return hasError;
   }
 
   handleErrorSummary(fieldErrors) {
