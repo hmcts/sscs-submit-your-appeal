@@ -6,6 +6,7 @@ const config = require('config');
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
+const paths = require('paths');
 const formidable = require('formidable');
 const moment = require('moment');
 const request = require('request');
@@ -16,6 +17,10 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const stream = require('stream');
 
 class EvidenceUpload extends Question {
+  static get path() {
+    return paths.reasonsForAppealing.evidenceUpload;
+  }
+
   static handleUpload(req, res, next) {
     const logger = Logger.getLogger('EvidenceUpload.js');
 
