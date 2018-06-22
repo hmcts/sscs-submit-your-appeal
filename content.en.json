@@ -7,9 +7,9 @@
   "inactivityTimeout": {
     "title": "Want more time to continue?",
     "expiringIn": "Your session will expire in 2:00 minutes",
-    "text": "For security reasons, any unsaved details will be deleted.",
-    "yes": "Yes, continue",
-    "no": "No, end session"
+    "text": "The information you have entered will be deleted to protect your personal data.",
+    "yes": "Continue with appeal",
+    "no": "End session"
   },
   "errors": {
     "notFound": {
