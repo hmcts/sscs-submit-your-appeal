@@ -8,6 +8,7 @@ const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
+const moment = require('moment');
 const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
