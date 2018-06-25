@@ -79,7 +79,7 @@ describe('The other methods of EvidenceUpload', () => {
       expect(instance.values()).to.exist;
     });
     it('evidence should be an array', () => {
-      expect(instance.values().reasonsForAppealing.evidence).to.be.an('array');
+      expect(instance.values().reasonsForAppealing.evidences).to.be.an('array');
     });
   });
 

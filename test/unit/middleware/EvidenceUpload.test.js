@@ -45,7 +45,7 @@ describe('The EvidenceUpload middleware', () => {
   describe('static handleUpload', () => {
     let EvidenceUpload;
     let stubs;
-    let parser = sinon.stub().yields(null, [], {
+    const parser = sinon.stub().yields(null, [], {
       uploadEv: {
         name: 'giacomo'
       }
@@ -110,23 +110,6 @@ describe('The EvidenceUpload middleware', () => {
       }, {}, error => {
         expect(EvidenceUpload.makeDir).to.have.been.called;
         expect(parser).not.to.have.been.called;
-        expect(poster).not.to.have.been.called;
-        expect(unlinker).not.to.have.been.called;
-        expect(error).to.exist;
-        done();
-      });
-    });
-    it('if uploading fails, it invokes the callback with the error', done => {
-      parser = sinon.stub().yields(new Error('argh!'), [], {
-        uploadEv: {
-          name: 'giacomo'
-        }
-      });
-      EvidenceUpload.handleUpload({
-        method: 'post'
-      }, {}, error => {
-        expect(EvidenceUpload.makeDir).to.have.been.called;
-        expect(parser).to.have.been.called;
         expect(poster).not.to.have.been.called;
         expect(unlinker).not.to.have.been.called;
         expect(error).to.exist;
