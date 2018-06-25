@@ -7,6 +7,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+let server;
 
 /* eslint-disable no-console */
 
@@ -70,8 +71,22 @@ app.post('/upload', (req, res) => {
   });
 });
 
-http.createServer(app).listen(app.get('port'), () => {
-  console.log(`Express server listening on port ${app.get('port')}`);
-});
+function teardown(callback) {
+  if (server && server.close) {
+    return server.close(callback);
+  }
+}
+
+function bootstrap(callback) {
+  server = http.createServer(app).listen(app.get('port'), callback);
+}
+
+process.on('SIGINT', stop);
+process.on('SIGTERM', stop);
+
+module.exports = {
+  bootstrap: bootstrap,
+  teardown: teardown
+};
 
 /* eslint-enable no-console */
