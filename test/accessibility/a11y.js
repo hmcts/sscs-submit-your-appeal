@@ -1,9 +1,8 @@
 const { fail } = require('assert');
-const { it } = require('mocha');
 const promisify = require('es6-promisify');
 const pa11y = require('pa11y');
 const supertest = require('supertest');
-const app = require('app');
+const app = require('test/accessibility/testApp');
 const steps = require('steps');
 
 const agent = supertest.agent(app);
@@ -19,7 +18,6 @@ const pa11yTest = pa11y({
 const test = promisify(pa11yTest.run, pa11yTest);
 
 const excludeSteps = ['/sessions'];
-
 
 function ensurePageCallWillSucceed(url) {
   const res = agent.get(url);
@@ -54,7 +52,7 @@ function accessibilityCheck(url) {
 describe('Accessibility', () => {
   steps.forEach(step => {
     const url = step.path;
-    const excluded = excludeSteps.some(_ => _ === url);
+    const excluded = excludeSteps.some(stepUrl => stepUrl === url);
 
     if (!excluded) {
       accessibilityCheck(url);
