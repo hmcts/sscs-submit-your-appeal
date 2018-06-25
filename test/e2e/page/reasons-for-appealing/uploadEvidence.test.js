@@ -1,9 +1,17 @@
 const paths = require('paths');
-const content = require('steps/reasons-for-appealing/sending-evidence/content.en.json');
+const config = require('config');
 
-Feature('Sending Evidence - appellant contact details');
+Feature('Uploading Evidence');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.identity.enterAppellantContactDetails);
-});
+if (config.get('features.evidenceUpload.enabled')) {
+  Before(I => {
+    I.createTheSession();
+    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
+  });
+
+  Scenario('I can upload correctly a file', I => {
+    I.click('Continue');
+    I.attachFile('#uploadEv', 'evidence.txt');
+    I.click('.button');
+  });
+}
