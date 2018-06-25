@@ -2,7 +2,7 @@
 
 const paths = require('paths');
 
-Feature('Not Attending Hearing @blah');
+Feature('Not Attending Hearing');
 
 Before(I => {
   I.createTheSession();
