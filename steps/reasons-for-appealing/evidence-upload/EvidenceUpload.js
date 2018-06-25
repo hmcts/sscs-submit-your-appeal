@@ -4,13 +4,19 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
-const moment = require('moment');
 const pt = require('path');
 const fs = require('fs');
+const moment = require('moment');
 const request = require('request');
+const { get } = require('lodash');
+const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
+
+const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 
 class EvidenceUpload extends Question {
   static get path() {
@@ -31,43 +37,72 @@ class EvidenceUpload extends Question {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
 
-    EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-      if (mkdirError) {
-        return next(mkdirError);
-      }
-      if (req.method.toLowerCase() === 'post') {
+    if (req.method.toLowerCase() === 'post') {
+      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
+        if (mkdirError) {
+          return next(mkdirError);
+        }
+        const multiplier = 1024;
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
-          type: 'multipart'
+          type: 'multipart',
+          maxFileSize: maxFileSize * multiplier * multiplier
         });
 
         incoming.once('error', er => {
           logger.info('error while receiving the file from the client', er);
         });
 
-        incoming.on('file', (field, file) => {
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-          fs.rename(file.path, pathToFile);
+        incoming.once('fileBegin', function fileBegin(field, file) {
+          if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
+            /* eslint-disable no-invalid-this */
+            return this.emit('error', wrongFileTypeError);
+            /* eslint-enable no-invalid-this */
+          }
+          return true;
         });
 
-        incoming.on('error', incomingError => {
-          logger.warn('an error has occured with form upload', incomingError);
-          req.resume();
+        incoming.once('file', (field, file) => {
+          if (file.name && file.size) {
+            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
+            fs.rename(file.path, pathToFile);
+          }
         });
 
-        incoming.on('aborted', () => {
+
+        incoming.once('aborted', () => {
           logger.log('user aborted upload');
+          return next(new Error());
         });
 
-        incoming.on('end', () => {
+        incoming.once('end', () => {
           logger.log('-> upload done');
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
-          if (uploadingError) {
-            return next(uploadingError);
+          const unprocessableEntityStatus = 422;
+
+          if (uploadingError || !get(files, 'uploadEv.name')) {
+            /* eslint-disable operator-linebreak */
+            if (uploadingError &&
+              uploadingError.message &&
+              uploadingError.message.match(/maxFileSize exceeded/)) {
+              /* eslint-enable operator-linebreak */
+              // cater for the horrible formidable.js error
+              /* eslint-disable no-param-reassign */
+              uploadingError = maxFileSizeExceededError;
+              /* eslint-enable no-param-reassign */
+            }
+            // this is an obvious mistake but achieves our goal somehow.
+            // I'll have to come back to this.
+            res.status = unprocessableEntityStatus;
+            req.body = {
+              uploadEv: uploadingError
+            };
+            return next();
           }
+
           const pathToFile = `${pt
             .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
 
@@ -84,27 +119,34 @@ class EvidenceUpload extends Question {
                 uploadEv: b.documents[0].originalDocumentName,
                 link: b.documents[0]._links.self.href
               };
+
               return fs.unlink(pathToFile, next);
             }
             return next(forwardingError);
           });
         });
-      }
-      return next();
-    });
+      });
+    }
+    return next();
   }
 
   get middleware() {
-    return [EvidenceUpload.handleUpload, ...super.middleware];
+    return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
   get form() {
     return form({
       uploadEv: text.joi(
-        'Please choose a file',
+        this.content.fields.uploadEv.error.required,
         Joi.string().required()
+      ).joi(
+        this.content.fields.uploadEv.error.wrongFileType,
+        Joi.string().disallow(wrongFileTypeError)
+      ).joi(
+        this.content.fields.uploadEv.error.maxFileSizeExceeded,
+        Joi.string().disallow(maxFileSizeExceededError)
       ),
-      link: text.joi('Unexpected error', Joi.string().required())
+      link: text.joi('', Joi.string().optional())
     });
   }
 
