@@ -5,6 +5,8 @@ const moment = require('moment');
 const paths = require('paths');
 const mockData = require('test/e2e/data');
 const selectors = require('steps/check-your-appeal/selectors');
+const config = require('config');
+const hasEvidenceUpload = config.get('features.evidenceUpload.enabled');
 
 const appellant = mockData.appellant;
 const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
@@ -27,6 +29,9 @@ xScenario('Appellant full journey from /start-an-appeal to the /confirmation pag
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
+    if (hasEvidenceUpload) {
+        await I.uploadAPieceOfEvidence();
+    }
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
     I.see(appellant.contactDetails.phoneNumber, appellantPhoneNumberAnswer);
