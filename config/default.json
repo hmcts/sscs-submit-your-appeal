@@ -38,5 +38,10 @@
       "enabled": false,
       "maxFileSize": 10
     }
+  },
+  "postcodeChecker": {
+    "url": "http://localhost:3011/postcodes",
+    "token": "someToken",
+    "allowedCountries": ["england", "wales"]
   }
 }

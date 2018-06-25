@@ -38,5 +38,9 @@
       "enabled": "EVIDENCE_UPLOAD_ENABLED",
       "maxFileSize": "MAX_FILE_SIZE"
     }
+  },
+  "postcodeChecker": {
+    "url": "POSTCODE_CHECKER_URL",
+    "token": "POSTCODE_CHECKER_TOKEN"
   }
 }
