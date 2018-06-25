@@ -81,8 +81,8 @@ function bootstrap(callback) {
   server = http.createServer(app).listen(app.get('port'), callback);
 }
 
-process.on('SIGINT', stop);
-process.on('SIGTERM', stop);
+process.on('SIGINT', teardown);
+process.on('SIGTERM', teardown);
 
 module.exports = {
   bootstrap: bootstrap,
