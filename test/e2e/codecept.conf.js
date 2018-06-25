@@ -26,8 +26,8 @@ exports.config = {
   include: {
     I: './page-objects/steps.js'
   },
-  bootstrap: './file_acceptor',
-  teardown: './file_acceptor',
+  bootstrap: './../file_acceptor',
+  teardown: './../file_acceptor',
   mocha: {
     reporterOptions: {
       reportDir: config.get('e2e.outputDir'),
