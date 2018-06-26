@@ -2,6 +2,7 @@ const paths = require('paths');
 const content = require('steps/reasons-for-appealing/sending-evidence/content.en.json');
 
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 Feature('Sending Evidence - appellant contact details @batch-10');
@@ -37,5 +38,7 @@ Scenario('When clicking continue I see the correct path', I => {
   I.enterAppellantContactDetailsAndContinue();
   I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
   I.click('Continue');
+  /* eslint-disable max-len */
   I.seeInCurrentUrl(evidenceUploadEnabled ? paths.hearing.theHearing : paths.reasonsForAppealing.evidenceUpload);
+  /* eslint-enable max-len */
 });
