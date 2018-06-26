@@ -1,6 +1,6 @@
-async function uploadAPieceOfEvidence() {
+function uploadAPieceOfEvidence() {
   const I = this;
-  await I.attachFile('#uploadEv', 'evidence.txt');
+  I.attachFile('#uploadEv', 'evidence.txt');
   I.click('.button');
 }
 
