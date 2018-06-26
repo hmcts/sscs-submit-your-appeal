@@ -29,7 +29,7 @@ xScenario('Appellant full journey from /start-an-appeal to the /confirmation pag
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
-    I.enterDetailsFromNoRepresentativeToSendingEvidence();
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence();
     if (hasEvidenceUpload) {
         I.uploadAPieceOfEvidence();
     }
