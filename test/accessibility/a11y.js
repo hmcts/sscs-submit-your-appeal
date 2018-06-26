@@ -12,6 +12,10 @@ const pa11yTest = pa11y({
       Cookie: ''
     }
   },
+  ignore: [
+    'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name',
+    'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.NoLegend'
+  ],
   hideElements: '#logo, #footer, link[rel=mask-icon]'
 });
 
