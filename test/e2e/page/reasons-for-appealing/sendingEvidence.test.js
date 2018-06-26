@@ -1,6 +1,9 @@
 const paths = require('paths');
 const content = require('steps/reasons-for-appealing/sending-evidence/content.en.json');
 
+const config = require('config');
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+
 Feature('Sending Evidence - appellant contact details @batch-10');
 
 Before(I => {
@@ -30,9 +33,9 @@ Scenario('When I go to the /sending-evidence page I see the title', I => {
   I.see(content.title);
 });
 
-Scenario('When clicking continue I see the path /the-hearing', I => {
+Scenario('When clicking continue I see the correct path', I => {
   I.enterAppellantContactDetailsAndContinue();
   I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
   I.click('Continue');
-  I.seeInCurrentUrl(paths.hearing.theHearing);
+  I.seeInCurrentUrl(evidenceUploadEnabled ? paths.hearing.theHearing : paths.reasonsForAppealing.evidenceUpload);
 });
