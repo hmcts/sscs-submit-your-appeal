@@ -9,6 +9,7 @@ const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appe
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 const selectors = require('steps/check-your-appeal/selectors');
@@ -147,7 +148,7 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
 
 module.exports = {
   enterDetailsFromStartToNINO,
-  enterDetailsFromNoRepresentativeToUploadingEvidence: enterDetailsFromNoRepresentativeToUploadingEvidence,
+  enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,

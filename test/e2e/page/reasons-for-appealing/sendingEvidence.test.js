@@ -38,5 +38,7 @@ Scenario('When clicking continue I see the correct path', I => {
   I.enterAppellantContactDetailsAndContinue();
   I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
   I.click('Continue');
+  /* eslint-disable max-len */
   I.seeInCurrentUrl(evidenceUploadEnabled ? paths.hearing.theHearing : paths.reasonsForAppealing.evidenceUpload);
+  /* eslint-enable max-len */
 });
