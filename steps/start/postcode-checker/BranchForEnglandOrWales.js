@@ -55,6 +55,10 @@ class BranchForEnglandOrWales {
       goTo(this.errorStep).redirect(req, res);
     });
   }
+
+  get step() {
+    return this.englandOrWalesStep;
+  }
 }
 
 module.exports = BranchForEnglandOrWales;
