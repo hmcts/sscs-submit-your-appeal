@@ -66,16 +66,4 @@ describe('PostcodeChecker.js', () => {
       expect(values).to.eql({ postCodeCheck: value });
     });
   });
-
-  describe('next()', () => {
-    it('returns /are-you-an-appointee if postcode is in England', () => {
-      postcodeChecker.fields.postcode.value = 'WV11 2HE';
-      expect(postcodeChecker.next().step).to.eql(paths.identity.areYouAnAppointee);
-    });
-
-    it('returns /invalid-postcode if postcode is not on the list of acceptable postcodes', () => {
-      postcodeChecker.fields.postcode.value = 'SW1P 4DF';
-      expect(postcodeChecker.next().step).to.eql(paths.start.invalidPostcode);
-    });
-  });
 });
