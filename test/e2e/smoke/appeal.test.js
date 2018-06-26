@@ -31,7 +31,7 @@ xScenario('Appellant full journey from /start-an-appeal to the /confirmation pag
     I.readSMSConfirmationAndContinue();
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     if (hasEvidenceUpload) {
-      await I.uploadAPieceOfEvidence();
+        I.uploadAPieceOfEvidence();
     }
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
