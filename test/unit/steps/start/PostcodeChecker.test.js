@@ -68,7 +68,7 @@ describe('PostcodeChecker.js', () => {
   });
 
   describe('next()', () => {
-    it('returns /are-you-an-appointee if postcode is on the list of acceptable postcodes', () => {
+    it('returns /are-you-an-appointee if postcode is in England', () => {
       postcodeChecker.fields.postcode.value = 'WV11 2HE';
       expect(postcodeChecker.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
