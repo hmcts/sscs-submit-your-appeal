@@ -6,6 +6,7 @@ const paths = require('paths');
 const mockData = require('test/e2e/data');
 const selectors = require('steps/check-your-appeal/selectors');
 const config = require('config');
+
 const hasEvidenceUpload = config.get('features.evidenceUpload.enabled');
 
 const appellant = mockData.appellant;
@@ -30,7 +31,7 @@ xScenario('Appellant full journey from /start-an-appeal to the /confirmation pag
     I.readSMSConfirmationAndContinue();
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     if (hasEvidenceUpload) {
-        await I.uploadAPieceOfEvidence();
+      await I.uploadAPieceOfEvidence();
     }
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();

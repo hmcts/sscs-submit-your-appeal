@@ -1,5 +1,6 @@
 /* eslint-disable no-process-env */
 const config = require('config');
+
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 const getChunks = (chunks, amountOfTests, tests) => {
