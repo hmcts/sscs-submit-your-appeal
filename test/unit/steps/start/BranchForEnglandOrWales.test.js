@@ -2,7 +2,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 
-describe.only('BranchForEnglandOrWales.js', () => {
+describe('BranchForEnglandOrWales.js', () => {
   describe('Is England or Wales Postcode', () => {
     const requireStub = {};
     let branchForEnglandOrWales = null;
@@ -13,13 +13,14 @@ describe.only('BranchForEnglandOrWales.js', () => {
         request: requireStub
       });
       /* eslint-disable max-len */
-      branchForEnglandOrWales = new BranchForEnglandOrWales('somePostcode', paths.Appointee, paths.InvalidPostcode, paths.Error500);
+      branchForEnglandOrWales = new BranchForEnglandOrWales('somePostcode', paths.identity.areYouAnAppointee, paths.start.invalidPostcode, paths.errors.internalServerError);
     });
 
     function setCountryTo(countryName) {
       requireStub.get = (args, handleResponse) => {
-        const response = JSON.stringify({ country: { name: countryName } });
-        handleResponse(undefined, '', response);
+        const response = { statusCode: 200 };
+        const responseBody = JSON.stringify({ country: { name: countryName } });
+        handleResponse(undefined, response, responseBody);
       };
     }
 
@@ -47,6 +48,20 @@ describe.only('BranchForEnglandOrWales.js', () => {
 
     it('postcode is in Scotland', () => {
       setCountryTo('Scotland');
+
+      return branchForEnglandOrWales.isEnglandOrWalesPostcode()
+        .then(isEnglandOrWalesPostcode => {
+          expect(isEnglandOrWalesPostcode).to.equal(false);
+        }).catch(error => {
+          expect.fail(error);
+        });
+    });
+
+    it('postcode is not found', () => {
+      requireStub.get = (args, handleResponse) => {
+        const response = { responseCode: 404 };
+        handleResponse(undefined, response, null);
+      };
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
