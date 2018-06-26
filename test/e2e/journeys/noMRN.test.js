@@ -45,7 +45,7 @@ Scenario('Appellant has contacted DWP', async I => {
   I.enterAppellantNINOAndContinue(appellant.nino);
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
   I.confirmDetailsArePresent(hasMRN);
 }).retry(1);
