@@ -1,0 +1,17 @@
+
+{
+  "NODE_ENV": "testing",
+  "useCSRFProtection": true,
+  "security": {
+    "referrerPolicy": "origin",
+    "hpkp": {
+      "maxAge": 2592000,
+      "sha256s": ["TODO", "Set proper SHA256s"]
+    }
+  },
+  "redis": {
+    "url": "redis://localhost:6379",
+    "secret": "defaultsecret",
+    "useSSL": "false"
+  }
+}
