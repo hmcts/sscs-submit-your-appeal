@@ -17,7 +17,7 @@ exports.config = {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
-      show: true,
+      show: false,
       windowSize: ' 1200x1200',
       switches: {
         'ignore-certificate-errors': true
