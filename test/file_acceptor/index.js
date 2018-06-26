@@ -7,9 +7,12 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+/* eslint-disable init-declarations */
 let server;
 
 /* eslint-disable no-console */
+/* eslint-disable id-blacklist */
+/* eslint-disable consistent-return */
 
 app.set('port', 3010);
 app.post('/upload', (req, res) => {
@@ -79,14 +82,17 @@ function teardown(callback) {
 
 function bootstrap(callback) {
   server = http.createServer(app).listen(app.get('port'), callback);
+  return server;
 }
 
 process.on('SIGINT', teardown);
 process.on('SIGTERM', teardown);
 
 module.exports = {
-  bootstrap: bootstrap,
-  teardown: teardown
+  bootstrap, teardown
 };
 
 /* eslint-enable no-console */
+/* eslint-enable id-blacklist */
+/* eslint-enable consistent-return */
+/* eslint-enable init-declarations */

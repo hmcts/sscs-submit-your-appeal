@@ -6,6 +6,7 @@ const paths = require('paths');
 const mockData = require('test/e2e/data');
 const selectors = require('steps/check-your-appeal/selectors');
 const config = require('config');
+
 const hasEvidenceUpload = config.get('features.evidenceUpload.enabled');
 
 const appellant = mockData.appellant;
@@ -15,7 +16,7 @@ const txtMsgRemindersMobAnswer = `${selectors.textMsgReminders.mobileNumber} ${s
 
 Feature('Full Journey');
 
-Scenario.only('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
+Scenario('Appellant full journey from /start-an-appeal to the /confirmation page @smoke',
   async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
@@ -30,7 +31,7 @@ Scenario.only('Appellant full journey from /start-an-appeal to the /confirmation
     I.readSMSConfirmationAndContinue();
     I.enterDetailsFromNoRepresentativeToSendingEvidence();
     if (hasEvidenceUpload) {
-        await I.uploadAPieceOfEvidence();
+      await I.uploadAPieceOfEvidence();
     }
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
