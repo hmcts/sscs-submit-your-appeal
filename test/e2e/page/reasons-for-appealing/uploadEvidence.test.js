@@ -11,22 +11,22 @@ if (config.get('features.evidenceUpload.enabled')) {
     I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
   });
 
-  Scenario('I can upload correctly a file', async I => {
+  Scenario('I can upload correctly a file', I => {
     I.click('Continue');
-    await I.attachFile('#uploadEv', 'evidence.txt');
+    I.attachFile('#uploadEv', 'evidence.txt');
     I.click('.button');
     I.dontSeeElement('.error-summary');
   });
-  Scenario('I cannot upload the wrong type of file', async I => {
+  Scenario('I cannot upload the wrong type of file', I => {
     I.click('Continue');
-    await I.attachFile('#uploadEv', 'evidence.zip');
+    I.attachFile('#uploadEv', 'evidence.zip');
     I.click('.button');
     I.seeElement('.error-summary');
     I.see(content.fields.uploadEv.error.wrongFileType);
   });
-  Scenario('I cannot upload a very large file', async I => {
+  Scenario('I cannot upload a very large file', I => {
     I.click('Continue');
-    await I.attachFile('#uploadEv', 'largefile.txt');
+    I.attachFile('#uploadEv', 'largefile.txt');
     I.click('.button');
     I.seeElement('.error-summary');
     I.see(content.fields.uploadEv.error.maxFileSizeExceeded);
