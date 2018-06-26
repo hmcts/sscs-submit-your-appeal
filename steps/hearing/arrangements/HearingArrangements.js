@@ -8,6 +8,7 @@ const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {
   optionSelected,
   languageInList,
+  signLanguageInList,
   emptyLanguageFieldValidation,
   validCharacters
 } = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
@@ -85,7 +86,7 @@ class HearingArrangements extends Question {
           value => emptyLanguageFieldValidation(value)
         ).check(
           errorFor('language', selectionField.signLanguage.language.error.invalid),
-          value => languageInList(value)
+          value => signLanguageInList(value)
         ),
 
         anythingElse: object({
