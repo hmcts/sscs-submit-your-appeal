@@ -7,7 +7,6 @@ const paths = require('paths');
 
 const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForEnglandOrWales');
 
-
 class PostcodeChecker extends Question {
   static get path() {
     return paths.start.postcodeCheck;

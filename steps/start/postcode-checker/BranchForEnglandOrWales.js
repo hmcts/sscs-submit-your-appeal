@@ -29,6 +29,11 @@ class BranchForEnglandOrWales {
         if (error) {
           return reject(error);
         }
+
+        const okStatusCode = 200;
+        if (resp.statusCode !== okStatusCode) {
+          return resolve(false);
+        }
         const postcodeLook = JSON.parse(body);
 
         const country = postcodeLook.country.name.toLocaleLowerCase();
