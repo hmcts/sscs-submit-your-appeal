@@ -2,6 +2,8 @@
 
 const { whitelist } = require('utils/regex');
 const languages = require('steps/hearing/arrangements/languages');
+const signLanguages = require('steps/hearing/arrangements/signLanguages');
+
 const Joi = require('joi');
 
 const optionSelected = options => {
@@ -16,6 +18,7 @@ const optionSelected = options => {
 };
 
 const languageInList = value => value.requested ? languages.includes(value.language) : true;
+const signLanguageInList = value => value.requested ? signLanguages.includes(value.language) : true;
 const emptyLanguageFieldValidation = value => value.requested && !value.language ? false : true;
 
 const validCharacters = value => {
@@ -34,6 +37,7 @@ const validCharacters = value => {
 module.exports = {
   optionSelected,
   languageInList,
+  signLanguageInList,
   emptyLanguageFieldValidation,
   validCharacters
 };
