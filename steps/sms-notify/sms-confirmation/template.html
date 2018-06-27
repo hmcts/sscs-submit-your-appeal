@@ -10,7 +10,7 @@
 {% block fields %}
 
     <p>{{ content.mobileNumber }}
-        <span class="bold-small">{{ mobileNumber }}</span>
+        <span class="bold-small">{{ mobileNumber | default('') }}</span>
     </p>
     <p>{{ content.firstMessage }}</p>
 
