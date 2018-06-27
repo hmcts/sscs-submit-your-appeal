@@ -9,15 +9,6 @@ const proxyquire = require('proxyquire');
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
 describe('The EvidenceUpload middleware', () => {
-  const stubs = {
-    fs: {
-      stat: sinon.stub().yields(null, {
-        isDirectory: () => true
-      }),
-      mkdir: sinon.stub().callsArg(1)
-    }
-  };
-
   describe('static handleUpload', () => {
     let EvidenceUpload;
     let stubs;
