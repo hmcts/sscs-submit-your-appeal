@@ -41,6 +41,7 @@
   },
   "postcodeChecker": {
     "url": "https://postcodeinfo.service.justice.gov.uk/postcodes",
-    "token": "f7aca590ce1da8c64c9ed11b9678265f86f81209"
+    "token": "f7aca590ce1da8c64c9ed11b9678265f86f81209",
+    "enabled": false
   }
 }
