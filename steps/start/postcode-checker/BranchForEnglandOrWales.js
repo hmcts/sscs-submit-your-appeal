@@ -1,11 +1,12 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
+const { Logger } = require('@hmcts/nodejs-logging');
 const request = require('request');
 const config = require('config');
-const { Logger } = require('@hmcts/nodejs-logging');
+const HttpStatus = require('http-status-codes');
 
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const postcodeCountryLookupToken = config.get('postcodeChecker.token');
-const postcodeCountryLookupAllowedCountries = config.get('postcodeChecker.allowedCountries');
+const postcodeCountryLookupAllowedCountries = ['england', 'wales'];
 
 const logger = Logger.getLogger('PostcodeChecker.js');
 
@@ -30,8 +31,7 @@ class BranchForEnglandOrWales {
           return reject(error);
         }
 
-        const okStatusCode = 200;
-        if (resp.statusCode !== okStatusCode) {
+        if (resp.statusCode !== HttpStatus.OK) {
           return resolve(false);
         }
         const postcodeLook = JSON.parse(body);

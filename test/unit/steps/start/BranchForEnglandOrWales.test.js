@@ -1,6 +1,7 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
+const HttpStatus = require('http-status-codes');
 
 describe('BranchForEnglandOrWales.js', () => {
   describe('Is England or Wales Postcode', () => {
@@ -18,7 +19,7 @@ describe('BranchForEnglandOrWales.js', () => {
 
     function setCountryTo(countryName) {
       requireStub.get = (args, handleResponse) => {
-        const response = { statusCode: 200 };
+        const response = { statusCode: HttpStatus.OK };
         const responseBody = JSON.stringify({ country: { name: countryName } });
         handleResponse(undefined, response, responseBody);
       };
