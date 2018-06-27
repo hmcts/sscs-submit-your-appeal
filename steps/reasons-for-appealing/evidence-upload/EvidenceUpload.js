@@ -57,7 +57,7 @@ class EvidenceUpload extends Question {
       incoming.onPart = part => {
         if (!part.filename) {
           // let formidable handle all non-file parts
-          form.handlePart(part);
+          incoming.handlePart(part);
           return;
         }
 
@@ -90,34 +90,42 @@ class EvidenceUpload extends Question {
           return next(forwardingError);
         });
 
+        let fileSize = 0;
         part.on('data', incomingData => {
+          fileSize += incomingData.length;
+          if (fileSize > maxFileSize * multiplier * multiplier) {
+            const errorMessage = `maxFileSize exceeded, received ${fileSize} bytes of file data`;
+            incoming._error(new Error(errorMessage));
+            return;
+          }
           fileData.push(incomingData);
         });
-        part.on('error', uploadingError => {
-          const unprocessableEntityStatus = 422;
 
-            /* eslint-disable operator-linebreak */
-            if (uploadingError &&
-              uploadingError.message &&
-              uploadingError.message.match(/maxFileSize exceeded/)) {
-              /* eslint-enable operator-linebreak */
-              // cater for the horrible formidable.js error
-              /* eslint-disable no-param-reassign */
-              uploadingError = maxFileSizeExceededError;
-              /* eslint-enable no-param-reassign */
-            }
-            // this is an obvious mistake but achieves our goal somehow.
-            // I'll have to come back to this.
-            res.status = unprocessableEntityStatus;
-            req.body = {
-              uploadEv: uploadingError
-            };
-            return next();
-          });
-          part.on('end', () => {
-            fileData.end();
-          });
+        part.on('end', () => {
+          fileData.end();
+        });
+      };
+
+      incoming.on('error', uploadingError => {
+        /* eslint-disable operator-linebreak */
+        const unprocessableEntityStatus = 422;
+        if (uploadingError &&
+          uploadingError.message &&
+          uploadingError.message.match(/maxFileSize exceeded/)) {
+          /* eslint-enable operator-linebreak */
+          // cater for the horrible formidable.js error
+          /* eslint-disable no-param-reassign */
+          uploadingError = maxFileSizeExceededError;
+          /* eslint-enable no-param-reassign */
+        }
+        // this is an obvious mistake but achieves our goal somehow.
+        // I'll have to come back to this.
+        res.status = unprocessableEntityStatus;
+        req.body = {
+          uploadEv: uploadingError
         };
+        return next();
+      });
 
       return incoming.parse(req);
     }
