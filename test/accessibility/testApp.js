@@ -21,7 +21,7 @@ const port = config.get('node.port');
 const startStep = require('steps/entry/Entry');
 
 let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'mocha') {
+if (process.env.NODE_ENV === 'a11y') {
   baseUrl = `${baseUrl}:${port}`;
 }
 
