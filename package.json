@@ -14,7 +14,7 @@
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:nsp && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint .",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @smoke --steps",
-    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel -c test/e2e/ --steps --reporter mocha-multi",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
     "test:nsp": "nsp check",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
