@@ -1,16 +1,17 @@
-// this is to simulate the upload evidence api. It's not part of the main app.
+// this is to simulate the postcode api. It's not part of the main app.
 
+const { Logger } = require('@hmcts/nodejs-logging');
 const express = require('express');
 const http = require('http');
 
+const logger = Logger.getLogger('PostcodeChecker.js');
 const app = express();
 
-/* eslint-disable no-console */
-
+/* eslint-disable no-magic-numbers */
 app.set('port', 3011);
 app.get('/postcodes/:postcode', (req, res) => {
   const postcode = req.params.postcode;
-  console.log(`postcode request for ${postcode}`);
+  logger.log(`postcode request for ${postcode}`);
 
   const cannedRes = {
     'EH8 8DX': {
@@ -54,7 +55,7 @@ app.get('/postcodes/:postcode', (req, res) => {
 });
 
 http.createServer(app).listen(app.get('port'), () => {
-  console.log(`Express server listening on port ${app.get('port')}`);
+  logger.log(`Express server listening on port ${app.get('port')}`);
 });
 
-/* eslint-enable no-console */
+/* eslint-enable no-magic-numbers */
