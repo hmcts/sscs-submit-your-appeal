@@ -3,7 +3,7 @@ const config = require('config');
 
 exports.config = {
   tests: './**/*.test.js',
-  output: './output',
+  output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
   timeout: 1000,
   helpers: {
     Puppeteer: {
@@ -12,6 +12,7 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
       windowSize: '1000x1000',
+      // restart: false,
       chrome: {
         ignoreHTTPSErrors: true,
         args: ['--no-sandbox']
@@ -28,9 +29,24 @@ exports.config = {
   bootstrap: false,
   mocha: {
     reporterOptions: {
-      reportDir: config.get('e2e.outputDir'),
-      reportName: 'index',
-      inlineAssets: true
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      mochawesome: {
+        stdout: './functional-output/console.log',
+        options: {
+          reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+          reportName: 'index',
+          inlineAssets: true
+        }
+      }
+    }
+  },
+  multiple: {
+    parallel: {
+      chunks: 5,
+      browsers: ['chrome']
     }
   },
   name: 'Submit Your Appeal Tests'
