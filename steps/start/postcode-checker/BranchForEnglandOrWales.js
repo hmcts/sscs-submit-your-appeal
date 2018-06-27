@@ -1,8 +1,8 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { Logger } = require('@hmcts/nodejs-logging');
-const request = require('request');
 const config = require('config');
 const HttpStatus = require('http-status-codes');
+const request = require('superagent');
 
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const postcodeCountryLookupToken = config.get('postcodeChecker.token');
@@ -21,26 +21,19 @@ class BranchForEnglandOrWales {
   isEnglandOrWalesPostcode() {
     const postcode = this.postcode;
     return new Promise((resolve, reject) => {
-      request.get({
-        headers: {
-          Authorization: `Token ${postcodeCountryLookupToken}`
-        },
-        url: `${postcodeCountryLookupUrl}/${postcode}`
-      }, (error, resp, body) => {
-        if (error) {
-          return reject(error);
-        }
+      request.get(`${postcodeCountryLookupUrl}/${postcode}`)
+        .set('Authorization', `Token ${postcodeCountryLookupToken}`)
+        .then(resp => {
+          if (resp.statusCode !== HttpStatus.OK) {
+            resolve(false);
+          }
 
-        if (resp.statusCode !== HttpStatus.OK) {
-          return resolve(false);
-        }
-        const postcodeLook = JSON.parse(body);
-
-        const country = postcodeLook.country.name.toLocaleLowerCase();
-        return resolve(
-          postcodeCountryLookupAllowedCountries.includes(country)
-        );
-      });
+          const country = resp.body.country.name.toLocaleLowerCase();
+          resolve(postcodeCountryLookupAllowedCountries.includes(country));
+        })
+        .catch(error => {
+          reject(error);
+        });
     });
   }
 

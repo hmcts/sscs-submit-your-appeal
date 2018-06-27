@@ -1,4 +1,5 @@
 const { expect } = require('test/util/chai');
+const { merge } = require('lodash');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const HttpStatus = require('http-status-codes');
@@ -11,18 +12,26 @@ describe('BranchForEnglandOrWales.js', () => {
     beforeEach(() => {
       /* eslint-disable max-len */
       const BranchForEnglandOrWales = proxyquire('steps/start/postcode-checker/BranchForEnglandOrWales', {
-        request: requireStub
+        superagent: requireStub
       });
       /* eslint-disable max-len */
       branchForEnglandOrWales = new BranchForEnglandOrWales('somePostcode', paths.identity.areYouAnAppointee, paths.start.invalidPostcode, paths.errors.internalServerError);
     });
 
+    function setResponse(response) {
+      merge(requireStub, {
+        get: () => requireStub,
+        set: () => requireStub,
+        then: handleResponse => {
+          handleResponse(response);
+          return requireStub;
+        },
+        catch: () => requireStub
+      });
+    }
+
     function setCountryTo(countryName) {
-      requireStub.get = (args, handleResponse) => {
-        const response = { statusCode: HttpStatus.OK };
-        const responseBody = JSON.stringify({ country: { name: countryName } });
-        handleResponse(undefined, response, responseBody);
-      };
+      setResponse({ statusCode: HttpStatus.OK, body: { country: { name: countryName } } });
     }
 
     it('postcode is in England', () => {
@@ -59,10 +68,7 @@ describe('BranchForEnglandOrWales.js', () => {
     });
 
     it('postcode is not found', () => {
-      requireStub.get = (args, handleResponse) => {
-        const response = { responseCode: 404 };
-        handleResponse(undefined, response, null);
-      };
+      setResponse({ responseCode: 404 });
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
@@ -75,9 +81,14 @@ describe('BranchForEnglandOrWales.js', () => {
     it('error getting country', () => {
       const expectedError = 'Some error';
 
-      requireStub.get = (args, handlreResponse) => {
-        handlreResponse(expectedError);
-      };
+      merge(requireStub, {
+        get: () => requireStub,
+        set: () => requireStub,
+        then: () => requireStub,
+        catch: handleError => {
+          handleError(expectedError);
+        }
+      });
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .catch(error => {
