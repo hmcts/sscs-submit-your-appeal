@@ -38,7 +38,7 @@ class BranchForEnglandOrWales {
   }
 
   redirect(req, res) {
-    this.isEnglandOrWalesPostcode().then(isEnglandOrWalesPostcode => {
+    return this.isEnglandOrWalesPostcode().then(isEnglandOrWalesPostcode => {
       branch(
         goTo(this.englandOrWalesStep).if(isEnglandOrWalesPostcode),
         goTo(this.otherStep)
