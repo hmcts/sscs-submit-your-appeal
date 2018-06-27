@@ -107,7 +107,7 @@ describe('PostcodeChecker.js', () => {
     });
 
     describe('next()', () => {
-      it('delegates to BranchForEnglandOrWales', () => {
+      it('next step is /are-you-an-appointee', () => {
         expect(postcodeChecker.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
     });
