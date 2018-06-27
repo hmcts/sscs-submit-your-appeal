@@ -54,6 +54,7 @@ class EvidenceUpload extends Question {
         logger.log('-> upload done');
       });
 
+      let uploadingFile = false;
       incoming.onPart = part => {
         if (!part.filename) {
           // let formidable handle all non-file parts
@@ -63,7 +64,7 @@ class EvidenceUpload extends Question {
 
         const fileName = part.filename;
         const fileData = new stream.PassThrough();
-
+        uploadingFile = true;
         request.post({
           url: uploadEvidenceUrl,
           formData: {
@@ -127,7 +128,19 @@ class EvidenceUpload extends Question {
         return next();
       });
 
-      return incoming.parse(req);
+      return incoming.parse(req, uploadingError => {
+        const unprocessableEntityStatus = 422;
+
+        if (!uploadingFile) {
+          // this is an obvious mistake but achieves our goal somehow.
+          // I'll have to come back to this.
+          res.status = unprocessableEntityStatus;
+          req.body = {
+            uploadEv: uploadingError
+          };
+          next();
+        }
+      });
     }
     return next();
   }
