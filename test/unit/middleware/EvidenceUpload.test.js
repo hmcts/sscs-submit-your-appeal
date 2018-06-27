@@ -17,30 +17,6 @@ describe('The EvidenceUpload middleware', () => {
       mkdir: sinon.stub().callsArg(1)
     }
   };
-  const EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
-
-  describe('static makedir', () => {
-    beforeEach(() => {
-      stubs.fs.mkdir.reset();
-    });
-
-    it('doesn\'t create the folder uploads if there is one', () => {
-      stubs.fs.stat = sinon.stub().yields(null, {
-        isDirectory: () => true
-      });
-      return EvidenceUpload.makeDir('/uploads', () => {
-        return expect(stubs.fs.mkdir).to.not.have.been.called;
-      });
-    });
-    it('does create the folder uploads if needed', () => {
-      stubs.fs.stat = sinon.stub().yields(null, {
-        isDirectory: () => false
-      });
-      return EvidenceUpload.makeDir('/uploads', () => {
-        return expect(stubs.fs.mkdir).to.have.been.called;
-      });
-    });
-  });
 
   describe('static handleUpload', () => {
     let EvidenceUpload;
@@ -90,31 +66,6 @@ describe('The EvidenceUpload middleware', () => {
       parser.reset();
       unlinker.reset();
       poster.reset();
-    });
-    it('creates a directory, forwards the file to the api then deletes it', done => {
-      EvidenceUpload.handleUpload({
-        method: 'post'
-      }, {}, error => {
-        expect(EvidenceUpload.makeDir).to.have.been.called;
-        expect(parser).to.have.been.called;
-        expect(poster).to.have.been.called;
-        expect(unlinker).to.have.been.called;
-        expect(error).not.to.exist;
-        done();
-      });
-    });
-    it('if create directory fails, it invokes the callback with the error', done => {
-      EvidenceUpload.makeDir = sinon.stub().yields(new Error('Bad dir!'));
-      EvidenceUpload.handleUpload({
-        method: 'post'
-      }, {}, error => {
-        expect(EvidenceUpload.makeDir).to.have.been.called;
-        expect(parser).not.to.have.been.called;
-        expect(poster).not.to.have.been.called;
-        expect(unlinker).not.to.have.been.called;
-        expect(error).to.exist;
-        done();
-      });
     });
     it('if req.method is not post, it doesn\'t do anything apart from just invoking the callback', done => {
       EvidenceUpload.handleUpload({
