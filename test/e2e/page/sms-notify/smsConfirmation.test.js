@@ -1,4 +1,3 @@
-const { formatMobileNumber } = require('utils/stringUtils');
 const paths = require('paths');
 const smsConfirmationContent = require('steps/sms-notify/sms-confirmation/content.en.json');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
@@ -30,7 +29,7 @@ Scenario('Enter a mobile and click use same number, I see the number in SMS conf
   I.click('Continue');
   I.selectUseSameNumberAndContinue('#useSameNumber-yes');
   I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
-  I.see(`${smsConfirmationContent.mobileNumber}${formatMobileNumber('07466748336')}`);
+  I.see(`${smsConfirmationContent.mobileNumber}07466748336`);
 });
 
 Scenario('Enter a mobile, click use different number, I see enter mobile number', I => {
@@ -42,7 +41,7 @@ Scenario('Enter a mobile, click use different number, I see enter mobile number'
   I.fillField('#enterMobile', '+447123456789');
   I.click('Continue');
   I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
-  I.see(`${smsConfirmationContent.mobileNumber}${formatMobileNumber('+447123456789')}`);
+  I.see(`${smsConfirmationContent.mobileNumber}+447123456789`);
 });
 
 Scenario('Do not enter a mobile, I see the mobile number I provided for enter mobile', I => {
@@ -52,5 +51,5 @@ Scenario('Do not enter a mobile, I see the mobile number I provided for enter mo
   I.fillField('#enterMobile', '+447987654321');
   I.click('Continue');
   I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
-  I.see(`${smsConfirmationContent.mobileNumber}${formatMobileNumber('+447987654321')}`);
+  I.see(`${smsConfirmationContent.mobileNumber}+447987654321`);
 });

@@ -1,5 +1,4 @@
 const { expect } = require('test/util/chai');
-const { formatMobileNumber } = require('utils/stringUtils');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
@@ -34,31 +33,26 @@ describe('SmsConfirmation.js', () => {
     it('should return enterMobile when the appellantPhoneNumber is an empty string', () => {
       smsConfirmation.fields.phoneNumber.value = '';
       smsConfirmation.fields.enterMobile.value = '07411738663';
-      const formattedNumber = formatMobileNumber(smsConfirmation.fields.enterMobile.value);
-      expect(smsConfirmation.mobileNumber).to.eq(formattedNumber);
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
     });
 
     it('should return enterMobile when the appellantPhoneNumber is not a mobile', () => {
       smsConfirmation.fields.phoneNumber.value = '01277345672';
       smsConfirmation.fields.enterMobile.value = '07411738663';
-      const formattedNumber = formatMobileNumber(smsConfirmation.fields.enterMobile.value);
-      expect(smsConfirmation.mobileNumber).to.eq(formattedNumber);
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
     });
 
     it('should return enterMobile, appellantPhoneNumber is a mobile but provides another', () => {
       smsConfirmation.fields.phoneNumber.value = '07411738765';
       smsConfirmation.fields.useSameNumber.value = userAnswer.NO;
       smsConfirmation.fields.enterMobile.value = '07411738371';
-      const formattedNumber = formatMobileNumber(smsConfirmation.fields.enterMobile.value);
-      expect(smsConfirmation.mobileNumber).to.eq(formattedNumber);
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
     });
 
     it('should return appellantPhoneNumber which is a mobile', () => {
       smsConfirmation.fields.phoneNumber.value = '07411738765';
       smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
-      expect(smsConfirmation.mobileNumber)
-        .to
-        .eq(formatMobileNumber(smsConfirmation.fields.phoneNumber.value));
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.phoneNumber.value);
     });
   });
 

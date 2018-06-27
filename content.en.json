@@ -4,6 +4,13 @@
     "reportProblem": "Report a problem",
     "improve": " and help improve it for others."
   },
+  "inactivityTimeout": {
+    "title": "Want more time to continue?",
+    "expiringIn": "Your session will expire in 2:00 minutes",
+    "text": "The information you have entered will be deleted to protect your personal data.",
+    "yes": "Continue with appeal",
+    "no": "End session"
+  },
   "errors": {
     "notFound": {
       "title": "Page cannot be found",
@@ -19,6 +26,19 @@
     }
   },
   "timeout": {
-    "message": "This page will time out in 20 minutes if there is no activity. This is to protect your data."
+    "message": "This page will time out if there is no activity for 20 minutes. This is to protect your personal information."
+  },
+  "relatedContent": {
+    "heading": "Related Content",
+    "benefit": {
+      "calculator": "Benefits calculators",
+      "overPayments": "Benefit overpayments",
+      "fraud": "Benefit fraud"
+    },
+    "explore": {
+      "heading": "Explore the topic",
+      "howItWorks": "How benefits work",
+      "courts": "Courts, sentencing and tribunals"
+    }
   }
 }

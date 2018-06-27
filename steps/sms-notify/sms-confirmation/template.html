@@ -1,5 +1,4 @@
-{% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
@@ -11,7 +10,7 @@
 {% block fields %}
 
     <p>{{ content.mobileNumber }}
-        <span class="bold-small">{{ mobileNumber }}</span>
+        <span class="bold-small">{{ mobileNumber | default('') }}</span>
     </p>
     <p>{{ content.firstMessage }}</p>
 

@@ -3,6 +3,13 @@
 {% from "look-and-feel/components/header.njk" import header %}
 {% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
 
+{% block head %}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
+    {{ super() }}
+{% endblock %}
+
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% block breadcrumbs %}
@@ -29,4 +36,11 @@
     {% include "components/sessionTimeoutMessage.html" %}
 {%- endblock %}
 
+{% endblock %}
+
+{% block full_width %}
+    {{ super() }}
+    <div>
+        {% include "components/inactivity-alert.html" %}
+    </div>
 {% endblock %}

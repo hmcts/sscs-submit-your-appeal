@@ -1,5 +1,4 @@
-{% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
@@ -10,7 +9,7 @@
 
 {% block fields %}
 
-    <img class="mrn-image issuing-office" src="{{ asset_path }}images/pip-number.png" alt="{{ content.imageAlt }}">
+    <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-number.png" alt="{{ content.imageAlt }}">
 
     <p><h2 class="heading-small">{{ content.fields.pipNumber.header }}</h2></p>
 

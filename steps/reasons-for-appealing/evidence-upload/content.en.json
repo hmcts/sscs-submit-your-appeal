@@ -1,0 +1,14 @@
+{
+    "titleHead": "Evidence Upload - Appeal a benefit decision - GOV.UK",
+    "title": "Evidence upload",
+    "fields": {
+        "uploadEv": {
+            "label": "Upload file",
+            "error": {
+                "maxFileSizeExceeded": "The file is too big. The maximum size is 10 mb",
+                "wrongFileType": "The document is not in an allowed format",
+                "required": "Please choose a file"
+            }
+        }
+    }
+}

@@ -1,5 +1,4 @@
-{% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, select, selectionButton, selectionButtons %}
 {% from "components/formElements.html" import textarea %}
 
@@ -47,7 +46,7 @@
                 fields.selection.signLanguage.language,
                 content.fields.selection.signLanguage.language.label,
                 hint = content.fields.selection.signLanguage.language.hint,
-                options = languagesList
+                options = signLanguagesList
             ) }}
         </div>
 

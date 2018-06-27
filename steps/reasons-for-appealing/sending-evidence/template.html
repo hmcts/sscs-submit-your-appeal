@@ -1,5 +1,4 @@
-{% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
@@ -14,11 +13,13 @@
 <p>{{ content.writeStatement }}</p>
 <p>{{ content.sendEvidence }}</p>
 
-{% if hasSignedUpForEmail %}
-    {{ content.postEvidenceWithEmail }}
-{% else %}
-    {{ content.postEvidence }}
-{% endif %}
+<p>
+    {% if hasSignedUpForEmail %}
+        {{ content.postEvidenceWithEmail }}
+    {% else %}
+        {{ content.postEvidence }}
+    {% endif %}
+</p>
 
 {% call formSection() %}
 {% endcall %}

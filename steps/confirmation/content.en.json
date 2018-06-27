@@ -8,5 +8,23 @@
     "contact": "The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can."
   },
   "email": "If you've signed up for emails or SMS and have chosen to attend a hearing, then you'll get a message within 3 working days with a link so you can track your appeal online.",
-  "surveyLink": "Continue"
+  "surveyLink": "Continue",
+  "progressBar": {
+    "appeal": {
+      "text": "Appeal",
+      "srText": "Appeal received. This step is complete."
+    },
+    "response": {
+      "text": "DWP response",
+      "srText": "DWP respond to your appeal. This has not happened yet."
+    },
+    "hearingBooked": {
+      "text": "Hearing booked",
+      "srText": "Hearing booked. This has not happened yet."
+    },
+    "hearing": {
+      "text": "Hearing",
+      "srText": "Hearing for your appeal. This has not happened yet."
+    }
+  }
 }

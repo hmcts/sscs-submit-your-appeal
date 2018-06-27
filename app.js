@@ -17,6 +17,9 @@ const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 const HttpStatus = require('http-status-codes');
+/* eslint-disable max-len */
+const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
+/* eslint-enable max-len */
 
 const logger = Logger.getLogger('app.js');
 const app = express();
@@ -130,6 +133,7 @@ lookAndFeel.configure(app, {
   nunjucks: {
     globals: {
       phase: 'BETA',
+      environment: process.env.NODE_ENV,
       banner: `${content.phaseBanner.newService}
         <a href="${urls.phaseBanner}" target="_blank">
             ${content.phaseBanner.reportProblem}
@@ -137,8 +141,19 @@ lookAndFeel.configure(app, {
       isArray(value) {
         return Array.isArray(value);
       },
+      inactivityTimeout: {
+        title: content.inactivityTimeout.title,
+        expiringIn: content.inactivityTimeout.expiringIn,
+        text: content.inactivityTimeout.text,
+        yes: content.inactivityTimeout.yes,
+        no: content.inactivityTimeout.no
+      },
+      accept: fileTypeWhitelist,
       timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message
+      timeOutMessage: content.timeout.message,
+      relatedContent: content.relatedContent,
+      paths,
+      urls
     }
   },
   development: {
