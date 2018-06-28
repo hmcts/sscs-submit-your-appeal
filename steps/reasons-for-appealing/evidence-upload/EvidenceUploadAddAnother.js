@@ -1,6 +1,6 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-
+const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
@@ -17,10 +17,9 @@ const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 
-const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
-const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 
-class EvidenceUpload extends AddAnother {
+class EvidenceUploadAddAnother extends AddAnother {
+
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
   }
@@ -177,4 +176,4 @@ class EvidenceUpload extends AddAnother {
   }
 }
 
-module.exports = EvidenceUpload;
+module.exports = EvidenceUploadAddAnother;
