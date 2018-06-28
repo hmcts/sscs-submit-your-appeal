@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable func-names */
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
@@ -30,14 +31,17 @@ class AddReason {
   }
 
   buildForm() {
+    const hasNoReasonsError = $(`.error-summary-list:contains(${content.listError})`).length;
     // eslint-disable-next-line arrow-body-style
     const values = this.items.map((item, index) => ({
       index,
       whatYouDisagreeWith: {
-        value: item['item.whatYouDisagreeWith'].trim()
+        value: item['item.whatYouDisagreeWith'].trim(),
+        errors: index === 0 && hasNoReasonsError ? [content.listError] : []
       },
       reasonForAppealing: {
-        value: item['item.reasonForAppealing'].trim()
+        value: item['item.reasonForAppealing'].trim(),
+        errors: index === 0 && hasNoReasonsError ? [content.listError] : []
       }
     }));
 
@@ -77,7 +81,7 @@ class AddReason {
       'name',
       'validations'
     ];
-    for (let key in items) {
+    for (const key in items) {
       if (includes(removeKeys, key)) delete items[key];
     }
     return Object.values(items);
@@ -103,11 +107,11 @@ class AddReason {
       reasonForAppealing: reasonFieldDetails || nullObj
     };
     const whatYouDisagreeWithField = this.buildWhatYouDisagreeWithField(
-      [],
+      opts.whatYouDisagreeWith.errors || [],
       opts.whatYouDisagreeWith.value
     );
     const reasonForAppealingField = this.buildReasonForAppealingField(
-      [],
+      opts.reasonForAppealing.errors || [],
       opts.reasonForAppealing.value
     );
     $(`#${this.formId}`).append(`<div id="items-${this.counter}" class="items-container">`);
