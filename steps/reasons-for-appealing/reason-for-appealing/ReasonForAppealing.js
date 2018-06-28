@@ -1,4 +1,6 @@
 /* eslint-disable no-undefined */
+/* eslint-disable multiline-ternary */
+/* eslint-disable operator-linebreak */
 
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
@@ -10,6 +12,7 @@ const content = require('steps/reasons-for-appealing/reason-for-appealing/conten
 const paths = require('paths');
 
 const MIN_CHAR_COUNT = 5;
+/* eslint-disable-next-line no-confusing-arrow */
 const isGreaterThanOrEqualToFiveCharacters = value => value ? value.length >= MIN_CHAR_COUNT : true;
 
 class ReasonForAppealing extends AddAnother {
@@ -38,7 +41,11 @@ class ReasonForAppealing extends AddAnother {
   }
 
   validateList(list) {
-    return list.check(content.listError, arr => arr.length > 0);
+    return list.check(content.listError, arr => (
+      arr.length > 0 &&
+        (arr[0].whatYouDisagreeWith !== ' ' &&
+          arr[0].reasonForAppealing !== ' ')
+    ));
   }
 
   answers() {
@@ -56,7 +63,7 @@ class ReasonForAppealing extends AddAnother {
         whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
           item.whatYouDisagreeWith : content.cya.reasonForAppealing.notProvided,
         reasonForAppealing: item.reasonForAppealing && item.reasonForAppealing !== ' ' ?
-          item.reasonForAppealing : content.cya.reasonForAppealing.notProvided,
+          item.reasonForAppealing : content.cya.reasonForAppealing.notProvided
       };
     });
 
