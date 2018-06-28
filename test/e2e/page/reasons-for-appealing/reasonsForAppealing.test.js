@@ -59,7 +59,7 @@ xScenario('When adding a single reason, then remove it, I see Add reason', I => 
 
 xScenario('When I click Continue without adding a reason, I see errors', I => {
   I.click('Continue');
-  I.see(content.noReasons);
+  I.see(content.listError);
 });
 
 xScenario('When I add a reason and the edit it, I see the new reason', I => {
@@ -68,25 +68,4 @@ xScenario('When I add a reason and the edit it, I see the new reason', I => {
   I.enterReasonForAppealAndContinue(reasons[1], 'Edit');
   I.dontSee(reasons[0].whatYouDisagreeWith);
   I.see(reasons[1].whatYouDisagreeWith);
-});
-
-xScenario('When I click Continue without filling in the reason fields, I see errors', I => {
-  I.click(content.links.add);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-  I.see(content.fields.reasonForAppealing.error.required);
-});
-
-xScenario('When omitting what you disagree with it and continuing I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[0].reasonForAppealing);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-});
-
-xScenario('When omitting why you disagree with it and continuing I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[0].whatYouDisagreeWith);
-  I.click('Continue');
-  I.see(content.fields.reasonForAppealing.error.required);
 });

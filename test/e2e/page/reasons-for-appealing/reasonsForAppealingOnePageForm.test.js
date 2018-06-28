@@ -5,7 +5,7 @@ const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
 
-Feature('Reason For Appealing');
+Feature('Reason For Appealing @meow');
 
 Before(I => {
   I.createTheSession();
@@ -23,8 +23,7 @@ Scenario('When I go to the page I see two input fields', I => {
 
 Scenario('When I click Continue without adding a reason, I see errors', I => {
   I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-  I.see(content.fields.reasonForAppealing.error.required);
+  I.see(content.listError);
 });
 
 Scenario('When I click add Another I see new fields', I => {
@@ -41,18 +40,6 @@ Scenario('When I enter one character in each field and click Continue, I see err
   I.click('Continue');
   I.see(content.fields.whatYouDisagreeWith.error.notEnough);
   I.see(content.fields.reasonForAppealing.error.notEnough);
-});
-
-Scenario('When omitting what you disagree with it and continuing I see errors', I => {
-  I.fillField(reasonForAppealingField, reasons[0].reasonForAppealing);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-});
-
-Scenario('When omitting why you disagree with it and continuing I see errors', I => {
-  I.fillField(whatYouDisagreeWithField, reasons[0].whatYouDisagreeWith);
-  I.click('Continue');
-  I.see(content.fields.reasonForAppealing.error.required);
 });
 
 Scenario('When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing',
@@ -89,16 +76,15 @@ I see no errors and am taken to /other-reason-for-appealing`, I => {
 });
 
 
-Scenario(`When I click add Reason multiple times and click Continue without entering any data,
- I only see error for the first reason fields`, async I => {
+Scenario(`When I click add Reason multiple times and click Continue without entering any data, 
+I see an error in the error summary`, async I => {
   for (let i = 1; i < 5; i++) {
     I.click('Add reason');
   }
   I.click('Continue');
   I.seeElement('.error-summary-list');
-  await I.seeNumberOfElements('.error-summary-list li', 2);
-  I.see(content.fields.reasonForAppealing.error.required);
-  I.see(content.fields.whatYouDisagreeWith.error.required);
+  await I.seeNumberOfElements('.error-summary-list li', 1);
+  I.see(content.listError);
 });
 
 Scenario(`When I add a reasons then click the add another reason button and enter the least amount 
