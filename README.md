@@ -72,6 +72,8 @@ Ensure both SYA (from one of the methods above) and the [API](https://github.com
 present these tests do not run within Docker, therefore, open a new terminal window.
 
 Functional tests:
+    
+Remove ``` --grep @functional ``` tag from  yarn test:functional in package.json and run them locally.
 
     yarn test:functional
     
