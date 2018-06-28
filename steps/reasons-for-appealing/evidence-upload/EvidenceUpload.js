@@ -14,6 +14,7 @@ const moment = require('moment');
 const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
+const { makeDir } = require('steps/reasons-for-appealing/evidence-upload/uploadMethods');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
@@ -23,22 +24,12 @@ class EvidenceUpload extends Question {
     return paths.reasonsForAppealing.evidenceUpload;
   }
 
-  static makeDir(path, dirCallback) {
-    const p = pt.join(__dirname, path);
-    fs.stat(p, (fsError, stats) => {
-      if (fsError || !stats.isDirectory()) {
-        return fs.mkdir(p, dirCallback);
-      }
-      return dirCallback();
-    });
-  }
-
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
 
     if (req.method.toLowerCase() === 'post') {
-      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
+      return makeDir(pathToUploadFolder, mkdirError => {
         if (mkdirError) {
           return next(mkdirError);
         }
