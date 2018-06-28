@@ -34,10 +34,10 @@ class AddReason {
     const values = this.items.map((item, index) => ({
       index,
       whatYouDisagreeWith: {
-        value: item['item.whatYouDisagreeWith']
+        value: item['item.whatYouDisagreeWith'].trim()
       },
       reasonForAppealing: {
-        value: item['item.reasonForAppealing']
+        value: item['item.reasonForAppealing'].trim()
       }
     }));
 
@@ -54,7 +54,7 @@ class AddReason {
       type: 'GET',
       url: '/reason-for-appealing',
       success: response => {
-        const fieldValues = Object.values(response);
+        const fieldValues = this.getFieldValues(response.items.fields);
         if (fieldValues.length > 0) {
           // eslint-disable-next-line arrow-body-style
           this.items = fieldValues.map(value => ({
@@ -69,6 +69,18 @@ class AddReason {
         this.onSubmit();
       }
     });
+  }
+
+  getFieldValues(items) {
+    const removeKeys = [
+      'id',
+      'name',
+      'validations'
+    ];
+    for (let key in items) {
+      if (includes(removeKeys, key)) delete items[key];
+    }
+    return Object.values(items);
   }
 
   setUpTemplateComponents() {
@@ -271,8 +283,8 @@ class AddReason {
     const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith`).val();
     const reasonForAppealing = $(`#items-${index} #item\\.reasonForAppealing`).val();
     return {
-      'item.whatYouDisagreeWith': whatYouDisagreeWith,
-      'item.reasonForAppealing': reasonForAppealing
+      'item.whatYouDisagreeWith': whatYouDisagreeWith || ' ',
+      'item.reasonForAppealing': reasonForAppealing || ' '
     };
   }
 

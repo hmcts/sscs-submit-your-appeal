@@ -10,8 +10,7 @@ const content = require('steps/reasons-for-appealing/reason-for-appealing/conten
 const paths = require('paths');
 
 const MIN_CHAR_COUNT = 5;
-const emptyStringValidation = value => value !== undefined;
-const isGreaterThanOrEqualToFiveCharacters = value => value.length >= MIN_CHAR_COUNT;
+const isGreaterThanOrEqualToFiveCharacters = value => value ? value.length >= MIN_CHAR_COUNT : true;
 
 class ReasonForAppealing extends AddAnother {
   static get path() {
@@ -30,17 +29,11 @@ class ReasonForAppealing extends AddAnother {
       whatYouDisagreeWith: text,
       reasonForAppealing: text
     }).check(
-      errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
-      value => emptyStringValidation(value.whatYouDisagreeWith)
-    ).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
-    ).check(
-      errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
-      value => emptyStringValidation(value.reasonForAppealing)
+      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith.trim())
     ).check(
       errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing)
+      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
     );
   }
 
@@ -58,9 +51,18 @@ class ReasonForAppealing extends AddAnother {
   }
 
   values() {
+    const reasons = this.fields.items.value.map(item => {
+      return {
+        whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
+          item.whatYouDisagreeWith : content.cya.reasonForAppealing.notProvided,
+        reasonForAppealing: item.reasonForAppealing && item.reasonForAppealing !== ' ' ?
+          item.reasonForAppealing : content.cya.reasonForAppealing.notProvided,
+      };
+    });
+
     return {
       reasonsForAppealing: {
-        reasons: this.fields.items.value
+        reasons
       }
     };
   }
