@@ -5,8 +5,7 @@ const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
-const postcodeCountryLookupToken = config.get('postcodeChecker.token');
-const postcodeCountryLookupAllowedCountries = ['england', 'wales'];
+const postcodeCountryLookupRegionCentres = ['glasgow'];
 
 const logger = Logger.getLogger('PostcodeChecker.js');
 
@@ -22,14 +21,15 @@ class BranchForEnglandOrWales {
     const postcode = this.postcode;
     return new Promise((resolve, reject) => {
       request.get(`${postcodeCountryLookupUrl}/${postcode}`)
-        .set('Authorization', `Token ${postcodeCountryLookupToken}`)
+        .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
         .then(resp => {
-          if (resp.statusCode !== HttpStatus.OK) {
+          if (resp.status !== HttpStatus.OK) {
             resolve(false);
+            return;
           }
 
-          const country = resp.body.country.name.toLocaleLowerCase();
-          resolve(postcodeCountryLookupAllowedCountries.includes(country));
+          const regionalCentre = resp.body.regionalcentre.toLocaleLowerCase();
+          resolve(!postcodeCountryLookupRegionCentres.includes(regionalCentre));
         })
         .catch(error => {
           reject(error);
