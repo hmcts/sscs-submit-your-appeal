@@ -9,7 +9,7 @@ describe('BranchForEnglandOrWales.js', () => {
   describe('Is England or Wales Postcode', () => {
     const requireStub = {};
     const branchRedirectStub = sinon.stub();
-    const gotoRedirectStub = sinon.stub();
+    const redirectStub = sinon.stub();
     let branchForEnglandOrWales = null;
 
     beforeEach(() => {
@@ -19,12 +19,11 @@ describe('BranchForEnglandOrWales.js', () => {
         '@hmcts/one-per-page': {
           branch: () => {
             return { redirect: branchRedirectStub };
-          },
-          goTo: () => {
-            return {
-              redirect: gotoRedirectStub,
-              if: () => this
-            };
+          }
+        },
+        '@hmcts/one-per-page/flow': {
+          redirectTo: () => {
+            return { redirect: redirectStub };
           }
         }
       });
@@ -35,7 +34,7 @@ describe('BranchForEnglandOrWales.js', () => {
     function setResponse(response) {
       merge(requireStub, {
         get: () => requireStub,
-        set: () => requireStub,
+        ok: () => requireStub,
         then: handleResponse => {
           handleResponse(response);
           return requireStub;
@@ -44,12 +43,12 @@ describe('BranchForEnglandOrWales.js', () => {
       });
     }
 
-    function setCountryTo(countryName) {
-      setResponse({ statusCode: HttpStatus.OK, body: { country: { name: countryName } } });
+    function setRegionalCenterTo(regionalCentre) {
+      setResponse({ status: HttpStatus.OK, body: { regionalcentre: regionalCentre } });
     }
 
     it('postcode is in England', () => {
-      setCountryTo('England');
+      setRegionalCenterTo('London');
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
@@ -60,7 +59,7 @@ describe('BranchForEnglandOrWales.js', () => {
     });
 
     it('postcode is in Wales', () => {
-      setCountryTo('Wales');
+      setRegionalCenterTo('Cardiff');
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
@@ -71,7 +70,7 @@ describe('BranchForEnglandOrWales.js', () => {
     });
 
     it('postcode is in Scotland', () => {
-      setCountryTo('Scotland');
+      setRegionalCenterTo('Glasgow');
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
@@ -82,7 +81,7 @@ describe('BranchForEnglandOrWales.js', () => {
     });
 
     it('postcode is not found', () => {
-      setResponse({ responseCode: 404 });
+      setResponse({ status: 404 });
 
       return branchForEnglandOrWales.isEnglandOrWalesPostcode()
         .then(isEnglandOrWalesPostcode => {
@@ -120,7 +119,7 @@ describe('BranchForEnglandOrWales.js', () => {
         isEnglandOrWalesStub = sinon.stub(branchForEnglandOrWales, 'isEnglandOrWalesPostcode');
 
         branchRedirectStub.reset();
-        gotoRedirectStub.reset();
+        redirectStub.reset();
       });
 
       afterEach(() => {
@@ -147,7 +146,7 @@ describe('BranchForEnglandOrWales.js', () => {
 
         return branchForEnglandOrWales.redirect(req, resp)
           .then(() => {
-            expect(gotoRedirectStub).to.have.been.calledWith(req, resp);
+            expect(redirectStub).to.have.been.calledWith(req, resp);
             expect(branchRedirectStub).not.to.have.been.called;
           });
       });
