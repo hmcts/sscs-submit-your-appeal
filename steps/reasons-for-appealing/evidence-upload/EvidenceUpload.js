@@ -65,7 +65,7 @@ class EvidenceUpload extends Question {
         const fileName = part.filename;
         const fileData = new stream.PassThrough();
         uploadingFile = true;
-        request.post({
+        const apiRequest = request.post({
           url: uploadEvidenceUrl,
           formData: {
             file: {
@@ -97,6 +97,7 @@ class EvidenceUpload extends Question {
           if (fileSize > maxFileSize * multiplier * multiplier) {
             const errorMessage = `maxFileSize exceeded, received ${fileSize} bytes of file data`;
             incoming._error(new Error(errorMessage));
+            apiRequest.abort();
             return;
           }
           fileData.push(incomingData);
