@@ -1,4 +1,5 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 const HttpStatus = require('http-status-codes');
@@ -45,7 +46,7 @@ class BranchForEnglandOrWales {
       ).redirect(req, res);
     }).catch(error => {
       logger.error(error);
-      goTo(this.errorStep).redirect(req, res);
+      redirectTo(this.errorStep).redirect(req, res);
     });
   }
 
