@@ -44,7 +44,20 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 5,
+      chunks: files => {
+        const journeyTests = files.filter(file => file.includes('journey'));
+        const otherTests = files.filter(file => !file.includes('journey'));
+
+        const testChunks = [];
+        for (let i = 0; i < journeyTests.length; i++) {
+          const arr = [];
+          arr.push(...otherTests.slice(i * 7, (i + 1) * 7));
+          arr.push(journeyTests[i]);
+          testChunks.push(arr);
+        }
+
+        return testChunks;
+      },
       browsers: ['chrome']
     }
   },
