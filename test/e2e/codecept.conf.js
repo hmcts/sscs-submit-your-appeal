@@ -12,7 +12,6 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       show: false,
       windowSize: '1000x1000',
-      // restart: false,
       chrome: {
         ignoreHTTPSErrors: true,
         args: ['--no-sandbox']
