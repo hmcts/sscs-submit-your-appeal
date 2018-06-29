@@ -1,10 +1,14 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
+{% extends "look-and-feel/layouts/add_another.html" %}
 {% from "look-and-feel/components/fields.njk" import formSection %}
 {% from "components/formElements.html" import fileupload %}
 
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set pageContent = {
+addAnotherLink: addAnotherLinkContent
+} %}
 
 {% set title %}
 {{ content.title | safe }}
@@ -12,7 +16,7 @@
 
 {% set enc_type = 'multipart/form-data' %}
 
-{% block fields %}
+{% block editItem %}
 
 {% call formSection() %}
 
