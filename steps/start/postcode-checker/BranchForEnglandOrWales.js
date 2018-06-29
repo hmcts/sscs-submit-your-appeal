@@ -7,6 +7,7 @@ const request = require('superagent');
 
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const postcodeCountryLookupRegionCentres = ['glasgow'];
+const northernIslandPostcodeStart = 'bt';
 
 const logger = Logger.getLogger('PostcodeChecker.js');
 
@@ -20,6 +21,10 @@ class BranchForEnglandOrWales {
 
   isEnglandOrWalesPostcode() {
     const postcode = this.postcode;
+    if (postcode.toLocaleLowerCase().startsWith(northernIslandPostcodeStart)) {
+      return Promise.resolve(false);
+    }
+
     return new Promise((resolve, reject) => {
       request.get(`${postcodeCountryLookupUrl}/${postcode}`)
         .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
