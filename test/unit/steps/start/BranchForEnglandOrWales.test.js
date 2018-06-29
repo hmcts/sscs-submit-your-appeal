@@ -80,6 +80,17 @@ describe('BranchForEnglandOrWales.js', () => {
         });
     });
 
+    it('postcode starts with BT so is in Northern Island', () => {
+      branchForEnglandOrWales.postcode = 'BT1 2AB';
+
+      return branchForEnglandOrWales.isEnglandOrWalesPostcode()
+        .then(isEnglandOrWalesPostcode => {
+          expect(isEnglandOrWalesPostcode).to.equal(false);
+        }).catch(error => {
+          expect.fail(error);
+        });
+    });
+
     it('postcode is not found', () => {
       setResponse({ status: 404 });
 
