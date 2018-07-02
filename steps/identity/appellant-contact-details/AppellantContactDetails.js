@@ -9,7 +9,9 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const postcodeChecker = require('utils/postcodeChecker');
+const config = require('config');
 
+const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const logger = Logger.getLogger('AppellantContactDetails.js');
 
 const customJoi = Joi.extend(joi => {
@@ -85,7 +87,10 @@ class AppellantContactDetails extends Question {
   }
 
   static isEnglandOrWalesPostcode(req, resp, next) {
-    if (req.method.toLowerCase() === 'post') {
+    if (!usePostcodeChecker) {
+      req.session.invalidPostcode = false;
+      next();
+    } else if (req.method.toLowerCase() === 'post') {
       const postcode = req.body.postCode;
 
       postcodeChecker(postcode).then(isEnglandOrWalesPostcode => {
