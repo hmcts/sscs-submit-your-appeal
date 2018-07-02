@@ -130,7 +130,7 @@ class AddReason {
 
   buildWhatYouDisagreeWithField(errors, value) {
     return this.textboxField({
-      id: this.textboxId,
+      id: `${this.textboxId}-${this.counter}`,
       errors: errors || [],
       value: value || ''
     }, 'What you disagree with');
@@ -138,7 +138,7 @@ class AddReason {
 
   buildReasonForAppealingField(errors, value) {
     return this.textareaField({
-      id: this.textareaId,
+      id: `${this.textareaId}-${this.counter}`,
       errors: errors || [],
       value: value || ''
     }, 'Why you disagree with it', null, false, 'You can write as much as you want');
@@ -284,8 +284,8 @@ class AddReason {
   }
 
   buildAnswers(index) {
-    const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith`).val();
-    const reasonForAppealing = $(`#items-${index} #item\\.reasonForAppealing`).val();
+    const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith-${index}`).val();
+    const reasonForAppealing = $(`#items-${index} #item\\.reasonForAppealing-${index}`).val();
     return {
       'item.whatYouDisagreeWith': whatYouDisagreeWith || ' ',
       'item.reasonForAppealing': reasonForAppealing || ' '
