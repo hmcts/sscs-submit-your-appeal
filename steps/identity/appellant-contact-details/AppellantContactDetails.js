@@ -2,19 +2,15 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
+const { Logger } = require('@hmcts/nodejs-logging');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
+const postcodeChecker = require('utils/postcodeChecker');
 
-const config = require('config');
-const HttpStatus = require('http-status-codes');
-const request = require('superagent');
-
-const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
-const disallowedRegionCentres = ['glasgow'];
-const northernIrelandPostcodeStart = 'bt';
+const logger = Logger.getLogger('AppellantContactDetails.js');
 
 const customJoi = Joi.extend(joi => {
   return {
@@ -92,27 +88,14 @@ class AppellantContactDetails extends Question {
     if (req.method.toLowerCase() === 'post') {
       const postcode = req.body.postCode;
 
-      if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
-        req.session.invalidPostcode = true;
+      postcodeChecker(postcode).then(isEnglandOrWalesPostcode => {
+        req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
-        return;
-      }
-
-      request.get(`${postcodeCountryLookupUrl}/${postcode}`)
-        .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
-        .then(postcodeResponse => {
-          if (postcodeResponse.status === HttpStatus.OK) {
-            const regionalCentre = postcodeResponse.body.regionalcentre.toLocaleLowerCase();
-            req.session.invalidPostcode = disallowedRegionCentres.includes(regionalCentre);
-          } else {
-            req.session.invalidPostcode = true;
-          }
-          next();
-        })
-        .catch(error => {
-          req.session.invalidPostcode = true;
-          next(error);
-        });
+      }).catch(error => {
+        logger.error(error);
+        req.session.invalidPostcode = true;
+        next(error);
+      });
     } else {
       next();
     }
