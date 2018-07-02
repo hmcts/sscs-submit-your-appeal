@@ -90,7 +90,7 @@ describe('AppellantContactDetails.js', () => {
       beforeEach(() => {
         appellantContactDetailsWithoutPostcodeChecker = proxyquire('steps/identity/appellant-contact-details/AppellantContactDetails', {
           config: { get: () => true },
-          postcodeChecker: () => {
+          'utils/postcodeChecker': () => {
             return responseFromPostcodeChecker;
           }
         });
