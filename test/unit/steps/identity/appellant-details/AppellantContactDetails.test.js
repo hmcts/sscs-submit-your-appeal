@@ -4,6 +4,8 @@ const { expect } = require('test/util/chai');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const proxyquire = require('proxyquire');
+const sinon = require('sinon');
 
 describe('AppellantContactDetails.js', () => {
   let appellantContactDetails = null;
@@ -56,6 +58,70 @@ describe('AppellantContactDetails.js', () => {
     it('should return the email address if an emailaddress value has been set', () => {
       appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       expect(appellantContactDetails.CYAEmailAddress).to.equal(appellantContactDetails.fields.emailAddress.value);
+    });
+  });
+
+  describe('isEnglandOrWalesPostcode', () => {
+    describe('postcode checker disabled', () => {
+      it('does not check postcode when postcode checker disabled', () => {
+        const appellantContactDetailsWithoutPostcodeChecker = proxyquire('steps/identity/appellant-contact-details/AppellantContactDetails', {
+          config: { get: () => false }
+        });
+
+        const theSession = {};
+        const req = { session: theSession };
+        const resp = sinon.stub();
+        const next = sinon.stub();
+
+        appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, resp, next);
+
+        expect(theSession.invalidPostcode).to.equal(false);
+        expect(next).to.have.been.called;
+      });
+    });
+
+
+    describe('postcode checker enabled', () => {
+      let responseFromPostcodeChecker = null;
+      let appellantContactDetailsWithoutPostcodeChecker = null;
+      const theSession = {};
+      const req = { session: theSession, method: 'POST', body: { postCode: 'S10 2FG' } };
+
+      beforeEach(() => {
+        appellantContactDetailsWithoutPostcodeChecker = proxyquire('steps/identity/appellant-contact-details/AppellantContactDetails', {
+          config: { get: () => true },
+          postcodeChecker: () => {
+            return responseFromPostcodeChecker;
+          }
+        });
+      });
+
+      it('checks postcode and it is valid', done => {
+        responseFromPostcodeChecker = Promise.resolve(true);
+
+        appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
+          expect(theSession.invalidPostcode).to.equal(false);
+          done();
+        });
+      });
+
+      it('checks postcode and it is invalid', done => {
+        responseFromPostcodeChecker = Promise.resolve(false);
+
+        appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
+          expect(theSession.invalidPostcode).to.equal(true);
+          done();
+        });
+      });
+
+      it('error checking postcode', done => {
+        responseFromPostcodeChecker = Promise.reject(new Error());
+
+        appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
+          expect(theSession.invalidPostcode).to.equal(true);
+          done();
+        });
+      });
     });
   });
 
