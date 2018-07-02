@@ -22,7 +22,6 @@ After(I => {
 
 Scenario('Provides date of when they cannot attend the hearing', async I => {
   const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
@@ -36,7 +35,6 @@ Scenario('Provides a single date when they cannot attend the hearing, then edits
   async I => {
     const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
-
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);

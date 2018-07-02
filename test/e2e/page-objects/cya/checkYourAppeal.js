@@ -17,7 +17,6 @@ const oneMonthAgo = DateUtils.oneMonthAgo();
 
 function enterDetailsFromStartToNINO() {
   const I = this;
-
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
@@ -66,7 +65,9 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue();
+  I.wait(2);
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.wait(2);
   await I.selectDates([date]);
   I.click('Continue');
 }

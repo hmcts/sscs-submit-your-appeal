@@ -20,7 +20,7 @@ function seeFormattedDate(date) {
 
 function dontSeeFormattedDate(date) {
   const I = this;
-
+  I.wait(2);
   I.dontSee(date.format('dddd D MMMM YYYY'));
 }
 
@@ -42,8 +42,9 @@ async function doesntHaveSelectedClass(element) {
 
 async function selectDates(dates) {
   const I = this;
-
   I.waitForElement('#date-picker table', 10);
+  I.click('th.next');
+  I.waitForElement('#date-picker table', 5);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     I.click(element);

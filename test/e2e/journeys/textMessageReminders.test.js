@@ -26,7 +26,6 @@ Scenario('Appellant omits optional phone number, does not sign up for text msg r
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToEnd();
-
   I.confirmDetailsArePresent();
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);
@@ -40,7 +39,6 @@ Scenario('Appellant omits optional phone number, enters mobile for text msg remi
   I.enterMobileAndContinue('07455678444');
   I.readSMSConfirmationAndContinue();
   I.enterDetailsFromNoRepresentativeToEnd();
-
   I.confirmDetailsArePresent();
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('07455678444', textMsgRemindersMobileAnswer);
@@ -55,7 +53,6 @@ Scenario('Appellant adds a phone number and uses it to sign up for text msg remi
   I.selectUseSameNumberAndContinue('#useSameNumber-yes');
   I.readSMSConfirmationAndContinue();
   I.enterDetailsFromNoRepresentativeToEnd();
-
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411738663', textMsgRemindersMobileAnswer);
@@ -63,7 +60,6 @@ Scenario('Appellant adds a phone number and uses it to sign up for text msg remi
 
 Scenario('Appellant adds a phone number, provides a separate number for text msg reminders.', I => {
   I.enterDetailsFromStartToNINO();
-
   I.enterAppellantContactDetailsWithMobileAndContinue('07411738663');
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.yes);
@@ -71,7 +67,6 @@ Scenario('Appellant adds a phone number, provides a separate number for text msg
   I.enterMobileAndContinue('07411333333');
   I.readSMSConfirmationAndContinue();
   I.enterDetailsFromNoRepresentativeToEnd();
-
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411333333', textMsgRemindersMobileAnswer);
@@ -83,7 +78,6 @@ Scenario('Appellant adds a phone number, but does not sign up for text msg remin
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToEnd();
-
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);

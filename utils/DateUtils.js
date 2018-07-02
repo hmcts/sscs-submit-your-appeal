@@ -78,7 +78,7 @@ class DateUtils {
   }
 
   static getRandomWeekDayFromDate(date) {
-    return date.clone().weekday(DateUtils.getRandomInt(1, 5));
+    return date.clone().weekday(DateUtils.getRandomInt(3, 4));
   }
 
   static getRandomInt(min, max) {

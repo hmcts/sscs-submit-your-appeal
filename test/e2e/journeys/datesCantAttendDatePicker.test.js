@@ -24,7 +24,6 @@ Scenario('Selects date of when they cannot attend the hearing', async I => {
   const randomWeekDay = DateUtils.getDateInMilliseconds(
     DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
   );
-
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
@@ -54,6 +53,8 @@ Scenario('Selects a date when they cannot attend the hearing, then edits the dat
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click('Continue');
   await I.deselectDates([randomWeekDayIn5Weeks]);
+  I.wait(2);
+  I.click('th.prev');
   await I.selectDates([randomWeekDayIn6Weeks]);
   I.click('Continue');
   I.see(moment(randomWeekDayIn6Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
