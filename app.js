@@ -49,6 +49,7 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ['\'self\''],
     fontSrc: ['\'self\' data:'],
+    styleSrc: ['*'],
     scriptSrc: [
       '\'self\'',
       '\'unsafe-inline\'',
@@ -119,10 +120,10 @@ lookAndFeel.configure(app, {
           loaders: ['file-loader']
         },
         {
-          test: /\.(njk|nunjucks)$/,
+          test: /\.(njk|nunjucks|html)$/,
           loader: 'nunjucks-loader',
           query: {
-            root: path.resolve(__dirname, '/dist/nunjucks')
+            root: __dirname + '/node_modules/@hmcts/look-and-feel/templates'
           }
         }
       ]
@@ -134,7 +135,7 @@ lookAndFeel.configure(app, {
             from: path.resolve(__dirname, 'assets/images'),
             to: 'images'
           },
-          {
+/*          {
             from: path.resolve(__dirname,
               'node_modules/@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk'),
             to: 'nunjucks/look-and-feel/components/fields.njk'
@@ -142,7 +143,7 @@ lookAndFeel.configure(app, {
           {
             from: path.resolve(__dirname, 'views/components/formElements.html'),
             to: 'nunjucks/formElements.njk'
-          }
+          }*/
         ])
     ]
   },

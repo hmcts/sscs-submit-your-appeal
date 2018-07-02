@@ -73,7 +73,7 @@ function destroyEvidenceUpload() {
 
 function initEvidenceUpload() {
   if ($('#evidence-upload').length) {
-    evidenceUpload = new EvidenceUpload();
+    evidenceUpload = new EvidenceUpload('#evidence-upload');
   }
 }
 
@@ -87,7 +87,7 @@ $(document).ready(() => {
 
 $(window).on('unload', () => {
   destroyTM();
-  destroyEvidenceUpload()
+  destroyEvidenceUpload();
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');
   }
