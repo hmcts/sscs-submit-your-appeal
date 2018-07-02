@@ -14,7 +14,8 @@ describe('AppellantContactDetails.js', () => {
         steps: {
           TextReminders: paths.smsNotify.appellantTextReminders
         }
-      }
+      },
+      session: {}
     });
 
     appellantContactDetails.fields = {
