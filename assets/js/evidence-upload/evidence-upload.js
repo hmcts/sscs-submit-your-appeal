@@ -3,26 +3,41 @@ import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/compone
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
 
 class EvidenceUpload {
-  constructor(el) {
-    this.el = el;
+  constructor(elContainer) {
+    this.elContainer = elContainer;
+    this.elId = 'file-upload-input';
+    this.doTheUpload = this.doTheUpload.bind(this);
     fieldTemplates.getExported((error, components) => {
       if (components && components.fileupload) {
-        this.fileupload = components.fileupload();
+        this.fileupload = components.fileupload(this.elId);
         this.appendForm();
       }
     });
   }
   buildForm() {
-    console.info('stuff ', this.fileupload)
-    return `<div id="fileUpload">${this.fileupload}</div>`;
+    return `<div id="upload-container">${this.fileupload}</div>`;
+  }
+  hideUnnecessaryMarkup() {
+    $('.add-another-add-link').hide();
+  }
+  doTheUpload() {
+    console.info('do the upload')
+  }
+  attachEventListeners() {
+    $('#' + this.elId).on('change', this.doTheUpload)
+  }
+  detachEventListeners() {
+    $('#' + this.elId).off('change', this.doTheUpload)
   }
   appendForm() {
     const markup = this.buildForm();
-    console.info('meh 2')
-    $(this.el).append(this.buildForm());
+    $(this.elContainer).append(this.buildForm());
+    this.hideUnnecessaryMarkup();
+    this.attachEventListeners();
   }
   destroy() {
-    $(this.el).empty();
+    this.detachEventListeners();
+    $(this.elContainer).empty();
   }
 }
 
