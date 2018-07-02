@@ -17,8 +17,8 @@ After(I => {
 });
 
 Scenario('When I go to the page I see two input fields', I => {
-  I.seeElement(`#items-0 ${whatYouDisagreeWithField}`);
-  I.seeElement(`#items-0 ${reasonForAppealingField}`);
+  I.seeElement(`#items-0 ${whatYouDisagreeWithField}-0`);
+  I.seeElement(`#items-0 ${reasonForAppealingField}-0`);
 });
 
 Scenario('When I click Continue without adding a reason, I see errors', I => {
@@ -28,12 +28,12 @@ Scenario('When I click Continue without adding a reason, I see errors', I => {
 
 Scenario('When I click add Another I see new fields', I => {
   I.click('Add reason');
-  I.seeElement(`#items-1 ${whatYouDisagreeWithField}`);
-  I.seeElement(`#items-1 ${reasonForAppealingField}`);
+  I.seeElement(`#items-1 ${whatYouDisagreeWithField}-1`);
+  I.seeElement(`#items-1 ${reasonForAppealingField}-1`);
 });
 
 Scenario('When I enter one character in each field and click Continue, I see errors', I => {
-  I.addAReasonForAppealing(whatYouDisagreeWithField, reasonForAppealingField, {
+  I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
     whatYouDisagreeWith: 'a',
     reasonForAppealing: 'a'
   });
@@ -45,18 +45,18 @@ Scenario('When I enter one character in each field and click Continue, I see err
 Scenario('When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing',
   I => {
     I.addAReasonForAppealingAndThenClickAddAnother(
-      `#items-0 ${whatYouDisagreeWithField}`,
-      `#items-0 ${reasonForAppealingField}`,
+      `#items-0 ${whatYouDisagreeWithField}-0`,
+      `#items-0 ${reasonForAppealingField}-0`,
       reasons[0]
     );
     I.addAReasonForAppealingAndThenClickAddAnother(
-      `#items-1 ${whatYouDisagreeWithField}`,
-      `#items-1 ${reasonForAppealingField}`,
+      `#items-1 ${whatYouDisagreeWithField}-1`,
+      `#items-1 ${reasonForAppealingField}-1`,
       reasons[1]
     );
     I.addAReasonForAppealing(
-      `#items-2 ${whatYouDisagreeWithField}`,
-      `#items-2 ${reasonForAppealingField}`,
+      `#items-2 ${whatYouDisagreeWithField}-2`,
+      `#items-2 ${reasonForAppealingField}-2`,
       reasons[2]
     );
     I.click('Continue');
@@ -66,8 +66,8 @@ Scenario('When I add multiple reasons and click Continue I am taken to /other-re
 Scenario(`When I go to add another reason and then click Continue without entering any data, 
 I see no errors and am taken to /other-reason-for-appealing`, I => {
   I.addAReasonForAppealing(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
   );
   I.click('Add reason');
@@ -90,14 +90,14 @@ I see an error in the error summary`, async I => {
 Scenario(`When I add a reasons then click the add another reason button and enter the least amount 
 of data, I see error`, async I => {
   I.addAReasonForAppealing(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
   );
   I.click('Add reason');
   I.addAReasonForAppealing(
-    `#items-1 ${whatYouDisagreeWithField}`,
-    `#items-1 ${reasonForAppealingField}`,
+    `#items-1 ${whatYouDisagreeWithField}-1`,
+    `#items-1 ${reasonForAppealingField}-1`,
     {
       whatYouDisagreeWith: 'a',
       reasonForAppealing: 'a'
