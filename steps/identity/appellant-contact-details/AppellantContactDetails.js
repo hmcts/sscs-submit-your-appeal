@@ -12,8 +12,6 @@ const config = require('config');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 
-const bodyParser = require('body-parser');
-
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const disallowedRegionCentres = ['glasgow'];
 const northernIrelandPostcodeStart = 'bt';
@@ -26,10 +24,10 @@ const customJoi = Joi.extend(joi => {
       {
         name: 'validatePostcode',
         params: {
-          isValidPostcode: joi.alternatives([joi.boolean().required(), joi.func().ref()])
+          invalidPostcode: joi.alternatives([joi.boolean().required(), joi.func().ref()])
         },
         validate(params, value, state, options) {
-          if (!params.isValidPostcode) {
+          if (params.invalidPostcode) {
             return this.createError('string.validatePostcode', { v: value }, state, options);
           }
 
@@ -77,7 +75,7 @@ class AppellantContactDetails extends Question {
         Joi.string().trim().regex(postCode).required()
       ).joi(
         fields.postCode.error.invalidPostcode,
-        customJoi.string().trim().validatePostcode(this.req.body.isValidPostcode)
+        customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
       ),
       phoneNumber: text.joi(
         fields.phoneNumber.error.invalid,
@@ -95,8 +93,7 @@ class AppellantContactDetails extends Question {
       const postcode = req.body.postCode;
 
       if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
-        resp.status = 422;
-        req.body.isValidPostcode = false;
+        req.session.invalidPostcode = true;
         next();
         return;
       }
@@ -106,16 +103,14 @@ class AppellantContactDetails extends Question {
         .then(postcodeResponse => {
           if (postcodeResponse.status === HttpStatus.OK) {
             const regionalCentre = postcodeResponse.body.regionalcentre.toLocaleLowerCase();
-            req.body.isValidPostcode = !disallowedRegionCentres.includes(regionalCentre);
+            req.session.invalidPostcode = disallowedRegionCentres.includes(regionalCentre);
           } else {
-            resp.status = 422;
-            req.body.isValidPostcode = false;
+            req.session.invalidPostcode = true;
           }
           next();
         })
         .catch(error => {
-          resp.status = 422;
-          req.body.isValidPostcode = false;
+          req.session.invalidPostcode = true;
           next(error);
         });
     } else {
@@ -123,11 +118,16 @@ class AppellantContactDetails extends Question {
     }
   }
 
+  static saveSession(req, resp, next) {
+    req.session.save();
+    next();
+  }
+
   get middleware() {
     return [
-      bodyParser.urlencoded({ extended: true }),
+      ...super.middleware,
       AppellantContactDetails.isEnglandOrWalesPostcode,
-      ...super.middleware
+      AppellantContactDetails.saveSession
     ];
   }
 
