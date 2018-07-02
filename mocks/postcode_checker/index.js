@@ -3,6 +3,7 @@
 const { Logger } = require('@hmcts/nodejs-logging');
 const express = require('express');
 const http = require('http');
+const HttpStatus = require('http-status-codes');
 
 const logger = Logger.getLogger('PostcodeChecker.js');
 const app = express();
@@ -14,9 +15,9 @@ app.get('/regionalcentre/:postcode', (req, res) => {
   logger.log(`postcode request for ${postcode}`);
 
   const cannedRes = {
-    'EH8 8DX': { status: 200, body: { regionalcentre: 'Glasgow' } },
-    'ZX99 1AB': { status: 404, body: { } },
-    default: { status: 200, body: { regionalcentre: 'London' } }
+    'EH8 8DX': { status: HttpStatus.OK, body: { regionalcentre: 'Glasgow' } },
+    'ZX99 1AB': { status: HttpStatus.NOT_FOUND, body: { } },
+    default: { status: HttpStatus.OK, body: { regionalcentre: 'London' } }
   };
   const resJson = (postcode in cannedRes) ? cannedRes[postcode] : cannedRes.default;
 
