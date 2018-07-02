@@ -26,4 +26,13 @@ addAnotherLink: addAnotherLinkContent
 
 {% endblock %}
 
+{% block item %}
+<span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value }}</span>
+{% endblock %}
+
+{% block listItems %}
+<p>This goes some text I guess</p>
+
+{{ super() }}
+{% endblock %}
 

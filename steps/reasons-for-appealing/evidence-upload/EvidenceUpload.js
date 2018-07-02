@@ -1,7 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 
-const { form, text, object } = require('@hmcts/one-per-page/forms');
+const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
@@ -117,13 +117,10 @@ class EvidenceUpload extends AddAnother {
             if (!forwardingError) {
               logger.info('No forwarding error, about to save data');
               const b = JSON.parse(body);
-              console.info('am i what i think ', req.body)
               req.body = {
-                uploadEv: b.documents[0].originalDocumentName,
-                link: b.documents[0]._links.self.href
+                'item.uploadEv': b.documents[0].originalDocumentName,
+                'item.link': b.documents[0]._links.self.href
               };
-
-              console.info('do i even arrive here ', req.body)
               return fs.unlink(pathToFile, next);
             }
             return next(forwardingError);
@@ -136,21 +133,23 @@ class EvidenceUpload extends AddAnother {
   }
 
   get middleware() {
-    return [...super.middleware, EvidenceUpload.handleUpload, (req, res, next) => {
-      console.info('what on earth ', req.body)
-      next()
-    }];
+    return [
+      ...super.middleware, EvidenceUpload.handleUpload, (req, res, next) => {
+        next();
+      }
+    ];
   }
 
   get addAnotherLinkContent() {
+    /* eslint-disable no-undefined */
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0 ? 'add ugo' : 'add';
+      return this.fields.items.value.length > 0 ? 'Add new' : 'Add';
     }
     return false;
+    /* eslint-enable no-undefined */
   }
 
   get field() {
-    console.info('what on earth ', this.fields)
     return object({
       uploadEv: text.joi(
         this.content.fields.uploadEv.error.required,
@@ -165,20 +164,6 @@ class EvidenceUpload extends AddAnother {
       link: text.joi('', Joi.string().optional())
     });
   }
-/*  validateList(list) {
-    return list.check('upload at least one file', arr => {
-      console.info('wtf is array ', arr)
-      return arr.length > 0
-    });
-  }*/
-/*  answers() {
-    return [
-      answer(this, {
-        section: 'ugolino',
-        template: 'answer.html'
-      })
-    ];
-  }*/
 
   values() {
     return {
