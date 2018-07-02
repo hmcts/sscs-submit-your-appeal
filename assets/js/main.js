@@ -5,9 +5,11 @@ import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
+import EvidenceUpload from './evidence-upload/evidence-upload';
 
 /* eslint-disable init-declarations */
 let timeoutM;
+let evidenceUpload;
 /* eslint-enable init-declarations */
 
 
@@ -62,15 +64,30 @@ function destroyTM() {
   }
 }
 
+function destroyEvidenceUpload() {
+  if (evidenceUpload) {
+    evidenceUpload.destroy();
+    evidenceUpload = null;
+  }
+}
+
+function initEvidenceUpload() {
+  if ($('#evidence-upload').length) {
+    evidenceUpload = new EvidenceUpload();
+  }
+}
+
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();
+  initEvidenceUpload();
 });
 
 $(window).on('unload', () => {
   destroyTM();
+  destroyEvidenceUpload()
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');
   }
