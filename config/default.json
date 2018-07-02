@@ -41,6 +41,6 @@
   },
   "postcodeChecker": {
     "url": "http://localhost:3011/regionalcentre",
-    "enabled": false
+    "enabled": true
   }
 }
