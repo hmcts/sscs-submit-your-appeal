@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-undefined, no-confusing-arrow  */
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
@@ -12,15 +12,20 @@ const {
   emptyLanguageFieldValidation,
   validCharacters
 } = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
+const QuestionWithRequiredNextStep = require('steps/hearing/the-hearing/QuestionWithNextStep');
 const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
 
-class HearingArrangements extends Question {
+class HearingArrangements extends QuestionWithRequiredNextStep {
   static get path() {
     return paths.hearing.hearingArrangements;
+  }
+
+  requiredNextSteps() {
+    return [this.journey.steps.HearingAvailability];
   }
 
   get languagesList() {

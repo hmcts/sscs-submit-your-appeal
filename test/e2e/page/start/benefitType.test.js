@@ -22,7 +22,7 @@ Scenario('When I enter PIP, I am taken to the postcode-check page', I => {
 benefitTypesArr.forEach(benefitType => {
   if (benefitType !== benefitTypesObj.personalIndependencePayment) {
     Scenario(`When I enter ${benefitType} I am taken to the download form page`, I => {
-      I.enterBenefitTypeAndContinue(benefitType);
+      I.enterBenefitTypeAndContinue(benefitType.substring(0, benefitType.length - 3));
       I.seeInCurrentUrl(paths.appealFormDownload);
       I.see(content.title);
       I.see(content.button.text);

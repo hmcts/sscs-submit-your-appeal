@@ -4,6 +4,8 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { goTo } = require('@hmcts/one-per-page');
 const { date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+// eslint-disable-next-line max-len
+const { ifCompleteAndNotForceShowThenContinue } = require('@hmcts/one-per-page/src/flow/treeWalker');
 const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
@@ -15,6 +17,10 @@ class DatesCantAttend extends AddAnother {
   constructor(...args) {
     super(...args);
     this.loadBankHolidayDates();
+  }
+
+  get flowControl() {
+    return ifCompleteAndNotForceShowThenContinue(this);
   }
 
   loadBankHolidayDates() {

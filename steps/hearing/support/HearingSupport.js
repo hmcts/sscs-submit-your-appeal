@@ -1,11 +1,12 @@
-const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const QuestionWithRequiredNextStep = require('steps/hearing/the-hearing/QuestionWithNextStep');
 
-class HearingSupport extends Question {
+class HearingSupport extends QuestionWithRequiredNextStep {
   static get path() {
     return paths.hearing.hearingSupport;
   }
@@ -17,6 +18,13 @@ class HearingSupport extends Question {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  requiredNextSteps() {
+    return [
+      this.journey.steps.HearingArrangements,
+      this.journey.steps.HearingAvailability
+    ];
   }
 
   answers() {

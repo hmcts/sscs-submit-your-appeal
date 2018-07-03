@@ -1,14 +1,18 @@
-const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
+const QuestionWithRequiredNextStep = require('steps/hearing/the-hearing/QuestionWithNextStep');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
-class HearingAvailability extends Question {
+class HearingAvailability extends QuestionWithRequiredNextStep {
   static get path() {
     return paths.hearing.hearingAvailability;
+  }
+
+  requiredNextSteps() {
+    return [this.journey.steps.DatesCantAttend];
   }
 
   get form() {
