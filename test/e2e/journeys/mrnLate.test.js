@@ -32,9 +32,8 @@ After(I => {
 
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
   Scenario(`Appellant has a MRN that is over ${obj.label}`, I => {
-    I.wait(3);
-    I.enterBenefitTypeAndContinue(testData.benefitType.code);
     I.wait(2);
+    I.enterBenefitTypeAndContinue(testData.benefitType.code);
     I.enterPostcodeAndContinue(testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(isAppointee.no);
     I.continueFromIndependance();
@@ -50,5 +49,5 @@ After(I => {
     I.checkOptionAndContinue(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToEnd();
     I.confirmDetailsArePresent(true, obj.mrnDate);
-  });
+  }).retry(1);
 });

@@ -29,7 +29,7 @@ Scenario('Provides date of when they cannot attend the hearing', async I => {
   await I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
   I.confirmDetailsArePresent();
   I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-});
+}).retry(1);
 
 Scenario('Provides a single date when they cannot attend the hearing, then edits the date',
   async I => {
@@ -49,4 +49,4 @@ Scenario('Provides a single date when they cannot attend the hearing, then edits
     I.enterDateCantAttendAndContinue(randomWeekDayIn6Weeks, 'Edit');
     I.click('Continue');
     I.see(randomWeekDayIn6Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-  });
+  }).retry(1);

@@ -29,7 +29,7 @@ Scenario('Appellant omits optional phone number, does not sign up for text msg r
   I.confirmDetailsArePresent();
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);
-});
+}).retry(2);
 
 Scenario('Appellant omits optional phone number, enters mobile for text msg reminders.', I => {
   I.enterDetailsFromStartToNINO();
@@ -42,7 +42,7 @@ Scenario('Appellant omits optional phone number, enters mobile for text msg remi
   I.confirmDetailsArePresent();
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('07455678444', textMsgRemindersMobileAnswer);
-});
+}).retry(2);
 
 Scenario('Appellant adds a phone number and uses it to sign up for text msg reminders.', I => {
   I.enterDetailsFromStartToNINO();
@@ -56,7 +56,7 @@ Scenario('Appellant adds a phone number and uses it to sign up for text msg remi
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411738663', textMsgRemindersMobileAnswer);
-});
+}).retry(2);
 
 Scenario('Appellant adds a phone number, provides a separate number for text msg reminders.', I => {
   I.enterDetailsFromStartToNINO();
@@ -70,7 +70,7 @@ Scenario('Appellant adds a phone number, provides a separate number for text msg
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411333333', textMsgRemindersMobileAnswer);
-});
+}).retry(2);
 
 Scenario('Appellant adds a phone number, but does not sign up for text msg reminders.', I => {
   I.enterDetailsFromStartToNINO();
@@ -81,4 +81,4 @@ Scenario('Appellant adds a phone number, but does not sign up for text msg remin
   I.confirmDetailsArePresent();
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);
-});
+}).retry(2);

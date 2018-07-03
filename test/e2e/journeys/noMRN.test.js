@@ -34,7 +34,6 @@ Scenario('Appellant has contacted DWP', async I => {
   const hasMRN = false;
 
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
-  I.wait(2);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);
   I.continueFromIndependance();
@@ -49,11 +48,10 @@ Scenario('Appellant has contacted DWP', async I => {
   I.enterDetailsFromNoRepresentativeToSendingEvidence();
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
   I.confirmDetailsArePresent(hasMRN);
-});
+}).retry(1);
 
 Scenario('Appellant has not contacted DWP and exits the service', I => {
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
-  I.wait(2);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);
   I.continueFromIndependance();
@@ -62,4 +60,4 @@ Scenario('Appellant has not contacted DWP and exits the service', I => {
   I.see(contactDWP.title);
   I.click(contactDWP.govuk);
   I.seeCurrentUrlEquals('https://www.gov.uk/');
-});
+}).retry(1);

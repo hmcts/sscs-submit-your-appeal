@@ -31,7 +31,7 @@ Scenario('Selects date of when they cannot attend the hearing', async I => {
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
   I.confirmDetailsArePresent();
   I.see(moment(randomWeekDay).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-});
+}).retry(1);
 
 Scenario('Selects a date when they cannot attend the hearing, then edits the date', async I => {
   const randomWeekDayIn5Weeks = DateUtils.getDateInMilliseconds(
@@ -58,4 +58,4 @@ Scenario('Selects a date when they cannot attend the hearing, then edits the dat
   await I.selectDates([randomWeekDayIn6Weeks]);
   I.click('Continue');
   I.see(moment(randomWeekDayIn6Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-});
+}).retry(1);
