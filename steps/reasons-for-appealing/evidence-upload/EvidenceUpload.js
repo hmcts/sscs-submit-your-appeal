@@ -100,7 +100,7 @@ class EvidenceUpload extends AddAnother {
             // I'll have to come back to this.
             res.status = unprocessableEntityStatus;
             req.body = {
-              uploadEv: uploadingError
+              'item.uploadEv': uploadingError
             };
             return next();
           }
@@ -134,9 +134,7 @@ class EvidenceUpload extends AddAnother {
 
   get middleware() {
     return [
-      ...super.middleware, EvidenceUpload.handleUpload, (req, res, next) => {
-        next();
-      }
+      ...super.middleware, EvidenceUpload.handleUpload
     ];
   }
 

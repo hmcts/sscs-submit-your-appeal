@@ -7,6 +7,7 @@ class EvidenceUpload {
   constructor(elContainer) {
     this.elContainer = elContainer;
     this.formAction = '/evidence-upload/item-0';
+    this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
     this.doTheUpload = this.doTheUpload.bind(this);
     fieldTemplates.getExported((error, components) => {
@@ -18,20 +19,15 @@ class EvidenceUpload {
   }
   buildForm() {
     return `<div id="upload-container">
-    <form name=""></form>    
-    ${this.fileupload}</div>`;
+    <form id="${this.formId}" name="${this.formId}">    
+    ${this.fileupload}</form></div>`;
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
   }
   doTheUpload() {
-    console.info('do the upload');
-    const formData = new FormData();
-    jQuery.each(jQuery('#' + this.elId)[0].files, function(i, file) {
-      console.info('filez ', file);
-      formData.append('file-' + i, file);
-    });
-    jQuery.ajax({
+    const formData = new FormData(document.getElementById(this.formId));
+    $.ajax({
       url: this.formAction,
       data: formData,
       cache: false,
@@ -39,7 +35,7 @@ class EvidenceUpload {
       processData: false,
       method: 'POST',
       success: function(data){
-        alert(data);
+        console.info('helloooo ', data);
       }
     });
   }
