@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+
 // todo add accepts to the input
 // todo increase the counter
 class EvidenceUpload {
@@ -19,14 +20,24 @@ class EvidenceUpload {
   }
   buildForm() {
     return `<div id="upload-container">
-    <form id="${this.formId}" name="${this.formId}">    
-    ${this.fileupload}</form></div>`;
+        <form 
+        id="${this.formId}" 
+        name="${this.formId}" 
+        action="${this.formAction}" 
+        method="post" 
+        enctype="multipart/form-data">    
+            ${this.fileupload}
+        </form>
+    </div>`;
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
   }
   doTheUpload() {
-    const formData = new FormData(document.getElementById(this.formId));
+    $('#' + this.formId)[0].submit();
+    // the following works nicely but I guess it's simpler to just submit the form
+/*    const formData = new FormData(document.getElementById(this.formId));
+    const docName = $('#' + this.elId).val().split('\\').pop();
     $.ajax({
       url: this.formAction,
       data: formData,
@@ -35,15 +46,18 @@ class EvidenceUpload {
       processData: false,
       method: 'POST',
       success: function(data){
-        console.info('helloooo ', data);
+        console.info('helloooo ', data, docName);
       }
-    });
+    });*/
   }
   attachEventListeners() {
     $('#' + this.elId).on('change', this.doTheUpload)
   }
   detachEventListeners() {
     $('#' + this.elId).off('change', this.doTheUpload)
+  }
+  appendLineToList() {
+
   }
   appendForm() {
     const markup = this.buildForm();
