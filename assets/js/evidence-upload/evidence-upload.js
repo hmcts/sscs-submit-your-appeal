@@ -9,13 +9,16 @@ class EvidenceUpload {
     this.elContainer = elContainer;
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
+    this.listToRead = '.add-another-list';
+
+    this.handleClickOnList = this.handleClickOnList.bind(this);
     this.doTheUpload = this.doTheUpload.bind(this);
+
     fieldTemplates.getExported(this.setup.bind(this));
   }
   getNumberForNextItem() {
     // todo make this less fragile
-    const listToRead = 'add-another-list';
-    const nodes = $('.' + listToRead + ' dd.add-another-list-item')
+    const nodes = $(this.listToRead + ' dd.add-another-list-item')
       .toArray()
       .map((item) => {
         return parseInt(item.id.split('-').pop(), 10);
@@ -70,11 +73,21 @@ class EvidenceUpload {
       }
     });*/
   }
+  handleClickOnList(e) {
+    if ($(e.target).hasClass('add-another-edit-link')) {
+      e.preventDefault();
+      window.location.href = window.location.href + '?item=1'
+      // read the number, set that as index
+      // edit mode
+    }
+  }
   attachEventListeners() {
-    $('#' + this.elId).on('change', this.doTheUpload)
+    $('#' + this.elId).on('change', this.doTheUpload);
+    $(this.listToRead).on('click', this.handleClickOnList);
   }
   detachEventListeners() {
-    $('#' + this.elId).off('change', this.doTheUpload)
+    $('#' + this.elId).off('change', this.doTheUpload);
+    $(this.listToRead).off('click', this.handleClickOnList)
   }
   appendLineToList() {
 
