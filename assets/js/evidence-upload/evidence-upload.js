@@ -1,9 +1,8 @@
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+import fileTypeWhiteList from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
 
-// todo add accepts to the input
-// todo increase the counter
 class EvidenceUpload {
   constructor(elContainer) {
     this.elContainer = elContainer;
@@ -36,7 +35,7 @@ class EvidenceUpload {
       if (components && components.fileupload) {
         this.numberForNextItem = this.getNumberForNextItem();
         this.formAction = '/evidence-upload/item-' + this.numberForNextItem;
-        this.fileupload = components.fileupload(this.elId);
+        this.fileupload = components.fileupload(this.elId, null, fileTypeWhiteList);
         this.appendForm();
       }
     }, 0);
@@ -88,9 +87,6 @@ class EvidenceUpload {
   detachEventListeners() {
     $('#' + this.elId).off('change', this.doTheUpload);
     $(this.listToRead).off('click', this.handleClickOnList)
-  }
-  appendLineToList() {
-
   }
   appendForm() {
     const markup = this.buildForm();
