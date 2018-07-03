@@ -7,16 +7,36 @@ import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/component
 class EvidenceUpload {
   constructor(elContainer) {
     this.elContainer = elContainer;
-    this.formAction = '/evidence-upload/item-0';
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
     this.doTheUpload = this.doTheUpload.bind(this);
-    fieldTemplates.getExported((error, components) => {
+    fieldTemplates.getExported(this.setup.bind(this));
+  }
+  getNumberForNextItem() {
+    // todo make this less fragile
+    const listToRead = 'add-another-list';
+    const nodes = $('.' + listToRead + ' dd.add-another-list-item')
+      .toArray()
+      .map((item) => {
+        return parseInt(item.id.split('-').pop(), 10);
+      })
+      .sort();
+    let num = 0;
+    while (nodes.indexOf(num) !== -1) {
+      num++;
+    }
+    return num;
+  }
+  setup(error, components) {
+    // give it the time to finish painting the dom...
+    window.setTimeout(() => {
       if (components && components.fileupload) {
+        this.numberForNextItem = this.getNumberForNextItem();
+        this.formAction = '/evidence-upload/item-' + this.numberForNextItem;
         this.fileupload = components.fileupload(this.elId);
         this.appendForm();
       }
-    });
+    }, 0);
   }
   buildForm() {
     return `<div id="upload-container">
