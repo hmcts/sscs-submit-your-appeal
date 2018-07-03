@@ -104,9 +104,12 @@ const representative = [
 
 const reasonsForAppealing = [
   ReasonForAppealing,
-  OtherReasonForAppealing,
-  SendingEvidence
+  OtherReasonForAppealing
 ];
+
+if (!evidenceUploadEnabled) {
+  reasonsForAppealing.push(SendingEvidence);
+}
 
 if (evidenceUploadEnabled) {
   reasonsForAppealing.push(EvidenceProvide);
