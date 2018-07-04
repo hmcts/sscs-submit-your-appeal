@@ -72,10 +72,17 @@ Ensure both SYA (from one of the methods above) and the [API](https://github.com
 present these tests do not run within Docker, therefore, open a new terminal window.
 
 Functional tests:
-    
-Remove ``` --grep @functional ``` tag from  yarn test:functional in package.json and run them locally.
+We have split our functional tests into two.
+Firstly we have tests for entire journeys through the form:
 
     yarn test:functional
+    
+However, in order to get this command to run properly you currently have to remove ``` --grep @functional ``` tag from 
+the ```test:functional``` script in package.json. 
+
+Secondly, we have tests for various pages in the form:
+    
+    yarn test:e2e-pages
     
 Smoke tests:
 

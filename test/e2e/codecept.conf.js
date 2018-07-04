@@ -1,6 +1,16 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 
+const getChunks = (chunks, amountOfTests, tests) => {
+  const testChunks = [];
+  for (let i = 0; i < chunks; i++) {
+    const arr = [];
+    arr.push(...tests.slice(i * amountOfTests, (i + 1) * amountOfTests));
+    testChunks.push(arr);
+  }
+  return testChunks;
+};
+
 exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
@@ -43,29 +53,17 @@ exports.config = {
     }
   },
   multiple: {
-    parallel: {
+    pages: {
       chunks: files => {
-        const otherTests = files.filter(file => !file.includes('journey'));
-        const testChunks = [];
-        for (let i = 0; i < 5; i++) {
-          const arr = [];
-          arr.push(...otherTests.slice(i * 7, (i + 1) * 7));
-          testChunks.push(arr);
-        }
-        return testChunks;
+        const pageTests = files.filter(file => !file.includes('journey'));
+        return getChunks(5, 7, pageTests);
       },
       browsers: ['chrome']
     },
     functional: {
       chunks: files => {
         const journeyTests = files.filter(file => file.includes('journey'));
-        const testChunks = [];
-        for (let i = 0; i < 3; i++) {
-          const arr = [];
-          arr.push(...journeyTests.slice(i * 2, (i + 1) * 2));
-          testChunks.push(arr);
-        }
-        return testChunks;
+        return getChunks(3, 2, journeyTests);
       },
       browsers: ['chrome']
     }

@@ -54,7 +54,6 @@ Scenario('Selects a date when they cannot attend the hearing, then edits the dat
   I.click('Continue');
   await I.deselectDates([randomWeekDayIn5Weeks]);
   I.wait(2);
-  I.click('th.prev');
   await I.selectDates([randomWeekDayIn6Weeks]);
   I.click('Continue');
   I.see(moment(randomWeekDayIn6Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
