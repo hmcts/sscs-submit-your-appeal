@@ -1,5 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { goTo } = require('@hmcts/one-per-page');
+const { AddAnother } = require('@hmcts/one-per-page/steps');
+
+const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
@@ -8,6 +10,8 @@ const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
+const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+
 const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
@@ -18,7 +22,7 @@ const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/f
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 
-class EvidenceUpload extends Question {
+class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
   }
@@ -96,9 +100,10 @@ class EvidenceUpload extends Question {
             }
             // this is an obvious mistake but achieves our goal somehow.
             // I'll have to come back to this.
-            res.status = unprocessableEntityStatus;
+            res.statusCode = unprocessableEntityStatus;
             req.body = {
-              uploadEv: uploadingError
+              'item.uploadEv': uploadingError,
+              'item.link': ''
             };
             return next();
           }
@@ -116,10 +121,9 @@ class EvidenceUpload extends Question {
               logger.info('No forwarding error, about to save data');
               const b = JSON.parse(body);
               req.body = {
-                uploadEv: b.documents[0].originalDocumentName,
-                link: b.documents[0]._links.self.href
+                'item.uploadEv': b.documents[0].originalDocumentName,
+                'item.link': b.documents[0]._links.self.href
               };
-
               return fs.unlink(pathToFile, next);
             }
             return next(forwardingError);
@@ -127,23 +131,42 @@ class EvidenceUpload extends Question {
         });
       });
     }
+
     return next();
   }
 
   get middleware() {
-    return [...super.middleware, EvidenceUpload.handleUpload];
+    return [
+      ...super.middleware, EvidenceUpload.handleUpload
+    ];
   }
 
-  get form() {
-    return form({
+  get addAnotherLinkContent() {
+    /* eslint-disable no-undefined */
+    if (this.fields.items !== undefined) {
+      return this.fields.items.value.length > 0 ? 'Add new' : 'Add';
+    }
+    return false;
+    /* eslint-enable no-undefined */
+  }
+
+  get field() {
+/*    return object({
+      uploadEv: text,
+      link: text
+    }).check(
+      errorFor('uploadEv', this.content.fields.uploadEv.error.maxFileSizeExceeded),
+      value => value !== maxFileSizeExceededError)*/
+
+    return object({
       uploadEv: text.joi(
-        this.content.fields.uploadEv.error.required,
+        'file missing',
         Joi.string().required()
       ).joi(
-        this.content.fields.uploadEv.error.wrongFileType,
+        'wrong file type',
         Joi.string().disallow(wrongFileTypeError)
       ).joi(
-        this.content.fields.uploadEv.error.maxFileSizeExceeded,
+        'stupid file is too big',
         Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional())

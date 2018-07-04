@@ -1,10 +1,12 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/question.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import fileupload %}
-
+{% extends "look-and-feel/layouts/add_another.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, fileupload %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set pageContent = {
+addAnotherLink: addAnotherLinkContent
+} %}
 
 {% set title %}
 {{ content.title | safe }}
@@ -12,7 +14,7 @@
 
 {% set enc_type = 'multipart/form-data' %}
 
-{% block fields %}
+{% block editItem %}
 
 {% call formSection() %}
 
@@ -22,4 +24,14 @@
 
 {% endblock %}
 
+{% block item %}
+<span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value }}</span>
+{% endblock %}
+
+{% block listItems %}
+<p>This goes some text I guess</p>
+<div id="evidence-upload"></div>
+
+{{ super() }}
+{% endblock %}
 
