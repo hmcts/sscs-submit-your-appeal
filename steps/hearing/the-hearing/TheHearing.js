@@ -1,4 +1,4 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { goTo, branch, QuestionWithRequiredNextSteps } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -8,9 +8,13 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 
-class TheHearing extends Question {
+class TheHearing extends QuestionWithRequiredNextSteps {
   static get path() {
     return paths.hearing.theHearing;
+  }
+
+  requiredNextSteps() {
+    return [this.journey.steps.HearingSupport];
   }
 
   get form() {

@@ -53,9 +53,9 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
-"@hmcts/one-per-page@https://github.com/hmcts/one-per-page#status422":
+"@hmcts/one-per-page@git+https://github.com/hmcts/one-per-page.git#force-next-steps":
   version "3.3.6"
-  resolved "https://github.com/hmcts/one-per-page#9cf2bfbe6839fc16ed3908355105696bc3b4899e"
+  resolved "git+https://github.com/hmcts/one-per-page.git#3986f0296c6ff7e485c6b5d95f436efec618bd4a"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"

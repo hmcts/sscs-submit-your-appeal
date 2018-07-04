@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-undefined, no-confusing-arrow  */
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo, QuestionWithRequiredNextSteps } = require('@hmcts/one-per-page');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
@@ -18,9 +18,13 @@ const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
 
-class HearingArrangements extends Question {
+class HearingArrangements extends QuestionWithRequiredNextSteps {
   static get path() {
     return paths.hearing.hearingArrangements;
+  }
+
+  requiredNextSteps() {
+    return [this.journey.steps.HearingAvailability];
   }
 
   get languagesList() {
