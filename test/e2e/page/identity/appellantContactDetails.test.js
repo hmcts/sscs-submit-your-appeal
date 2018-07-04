@@ -46,6 +46,6 @@ Scenario('When I click Continue with a postcode that is not in England or Wales 
     I.fillField('emailAddress', appellant.contactDetails.emailAddress);
     I.click('Continue');
 
-    I.see(appellantContent.postCode.error.invalidPostcode);
+    I.seeCurrentUrlEquals(paths.smsNotify.appellantTextReminders);
   }
 });

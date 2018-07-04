@@ -93,7 +93,7 @@ class AppellantContactDetails extends Question {
     } else if (req.method.toLowerCase() === 'post') {
       const postcode = req.body.postCode;
 
-      postcodeChecker(postcode).then(isEnglandOrWalesPostcode => {
+      postcodeChecker(postcode, true).then(isEnglandOrWalesPostcode => {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
       }).catch(error => {

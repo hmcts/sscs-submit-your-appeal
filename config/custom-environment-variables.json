@@ -41,7 +41,6 @@
   },
   "postcodeChecker": {
     "url": "POSTCODE_CHECKER_URL",
-    "token": "POSTCODE_CHECKER_TOKEN",
     "enabled": "POSTCODE_CHECKER_ENABLED"
   }
 }
