@@ -74,10 +74,21 @@ describe('PostcodeChecker.js', () => {
         });
     });
 
-    it('postcode is not found', () => {
+    it('allow postcode that are not found', () => {
       setResponse({ status: 404 });
 
-      return postcodeChecker('CM15 8DL')
+      return postcodeChecker('CM15 8DL', true)
+        .then(isEnglandOrWalesPostcode => {
+          expect(isEnglandOrWalesPostcode).to.equal(true);
+        }).catch(error => {
+          expect.fail(error);
+        });
+    });
+
+    it('do not allow postcode that are not found', () => {
+      setResponse({ status: 404 });
+
+      return postcodeChecker('CM15 8DL', false)
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
         }).catch(error => {

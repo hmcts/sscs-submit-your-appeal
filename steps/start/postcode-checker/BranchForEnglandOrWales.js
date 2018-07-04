@@ -14,7 +14,7 @@ class BranchForEnglandOrWales {
   }
 
   isEnglandOrWalesPostcode() {
-    return postcodeChecker(this.postcode);
+    return postcodeChecker(this.postcode, false);
   }
 
   redirect(req, res) {

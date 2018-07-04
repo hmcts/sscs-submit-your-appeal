@@ -6,7 +6,7 @@ const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const disallowedRegionCentres = ['glasgow'];
 const northernIrelandPostcodeStart = 'bt';
 
-const postcodeChecker = postcode => {
+const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
     return Promise.resolve(false);
   }
@@ -16,7 +16,7 @@ const postcodeChecker = postcode => {
       .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
       .then(resp => {
         if (resp.status !== HttpStatus.OK) {
-          resolve(false);
+          resolve(allowUnknownPostcodes);
           return;
         }
 
