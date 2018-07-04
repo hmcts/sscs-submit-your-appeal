@@ -12,7 +12,7 @@ const dateSevenWeeksFromNow = DateUtils.getDateInMilliseconds(
   DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(7, 'weeks'))
 );
 
-Feature('Dates can\'t attend date picker');
+Feature('Dates can\'t attend date picker @batch-08');
 
 Before(I => {
   I.createTheSession();

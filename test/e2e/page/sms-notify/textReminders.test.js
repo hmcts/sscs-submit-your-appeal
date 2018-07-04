@@ -1,7 +1,7 @@
 const paths = require('paths');
 const content = require('steps/sms-notify/text-reminders/content.en.json');
 
-Feature('Text Reminders - appellant contact details');
+Feature('Text Reminders - appellant contact details @batch-11');
 
 Before(I => {
   I.createTheSession();

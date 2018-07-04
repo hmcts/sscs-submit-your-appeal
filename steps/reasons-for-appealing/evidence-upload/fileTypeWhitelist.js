@@ -10,7 +10,9 @@ XLSX
 PPT
 PPTX
 JPG (and .jpeg)
-PNG*/
+PNG
+BMP
+TIFF*/
 
 module.exports = [
   'application/pdf',
@@ -26,5 +28,9 @@ module.exports = [
   'application/vnd.ms-powerpoint',
   'application/vnd.openxmlformats-officedocument.presentationml.presentation',
   'image/jpeg',
-  'image/png'
+  'image/png',
+  'image/x-windows-bmp',
+  'image/bmp',
+  'image/x-tiff',
+  'image/tiff'
 ];

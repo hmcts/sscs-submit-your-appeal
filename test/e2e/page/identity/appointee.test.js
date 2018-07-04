@@ -3,7 +3,7 @@ const appealFormDownload = require('steps/appeal-form-download/content.en.json')
 const appointee = require('steps/identity/appointee/content.en');
 const paths = require('paths');
 
-Feature('Appointee form');
+Feature('Appointee form @batch-09');
 
 Before(I => {
   I.createTheSession();

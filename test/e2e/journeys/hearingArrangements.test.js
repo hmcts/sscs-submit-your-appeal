@@ -7,7 +7,7 @@ const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.la
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
 const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
 
-Feature('Appellant PIP, one month ago, attends hearing with support');
+Feature('Appellant PIP, one month ago, attends hearing with support @batch-02');
 
 Before(I => {
   I.createTheSession();

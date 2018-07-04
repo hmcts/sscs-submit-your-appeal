@@ -1,7 +1,7 @@
 const paths = require('paths');
 const content = require('steps/compliance/mrn-over-thirteen-months-late/content.en.json');
 
-Feature('MRN Over thirteen months late');
+Feature('MRN Over thirteen months late @batch-07');
 
 Before(I => {
   I.createTheSession();

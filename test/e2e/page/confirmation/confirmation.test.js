@@ -2,7 +2,7 @@ const paths = require('paths');
 const content = require('steps/confirmation/content.en.json');
 const urls = require('urls');
 
-Feature('Confirmation');
+Feature('Confirmation @batch-08');
 
 Before(I => {
   I.createTheSession();

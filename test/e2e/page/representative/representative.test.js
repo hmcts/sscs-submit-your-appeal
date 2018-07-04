@@ -1,6 +1,6 @@
 const paths = require('paths');
 
-Feature('Representative');
+Feature('Representative @batch-10');
 
 Before(I => {
   I.createTheSession();
