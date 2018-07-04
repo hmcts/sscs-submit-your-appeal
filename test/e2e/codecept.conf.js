@@ -20,6 +20,7 @@ exports.config = {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
+      waitForNavigation: 'networkidle0',
       show: false,
       windowSize: '1000x1000',
       chrome: {
