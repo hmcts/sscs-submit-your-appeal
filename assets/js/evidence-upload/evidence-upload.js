@@ -54,11 +54,11 @@ class EvidenceUpload {
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
+    $('.add-another-edit-link').css('visibility', 'hidden');
   }
   doTheUpload() {
-    $('#' + this.formId)[0].submit();
-    // the following works nicely but I guess it's simpler to just submit the form
-/*    const formData = new FormData(document.getElementById(this.formId));
+    //$('#' + this.formId)[0].submit();
+    const formData = new FormData(document.getElementById(this.formId));
     const docName = $('#' + this.elId).val().split('\\').pop();
     $.ajax({
       url: this.formAction,
@@ -67,18 +67,18 @@ class EvidenceUpload {
       contentType: false,
       processData: false,
       method: 'POST',
-      success: function(data){
-        console.info('helloooo ', data, docName);
+      success: () => {
+        window.location.reload();
+      },
+      error: (error) => {
+        console.info('$deity give me strength', error)
       }
-    });*/
+    });
   }
   handleClickOnList(e) {
-    if ($(e.target).hasClass('add-another-edit-link')) {
+/*    if ($(e.target).hasClass('add-another-edit-link')) {
       e.preventDefault();
-      window.location.href = window.location.href + '?item=1'
-      // read the number, set that as index
-      // edit mode
-    }
+    }*/
   }
   attachEventListeners() {
     $('#' + this.elId).on('change', this.doTheUpload);

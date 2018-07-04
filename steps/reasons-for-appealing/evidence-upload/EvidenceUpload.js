@@ -100,7 +100,8 @@ class EvidenceUpload extends AddAnother {
             // I'll have to come back to this.
             res.status = unprocessableEntityStatus;
             req.body = {
-              'item.uploadEv': uploadingError
+              'item.uploadEv': uploadingError,
+              'item.link': ''
             };
             return next();
           }
