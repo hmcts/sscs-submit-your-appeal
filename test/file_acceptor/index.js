@@ -7,8 +7,12 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+/* eslint-disable init-declarations */
+let server;
 
 /* eslint-disable no-console */
+/* eslint-disable id-blacklist */
+/* eslint-disable consistent-return */
 
 app.set('port', 3010);
 app.post('/upload', (req, res) => {
@@ -70,8 +74,25 @@ app.post('/upload', (req, res) => {
   });
 });
 
-http.createServer(app).listen(app.get('port'), () => {
-  console.log(`Express server listening on port ${app.get('port')}`);
-});
+function teardown(callback) {
+  if (server && server.close) {
+    return server.close(callback);
+  }
+}
+
+function bootstrap(callback) {
+  server = http.createServer(app).listen(app.get('port'), callback);
+  return server;
+}
+
+process.on('SIGINT', teardown);
+process.on('SIGTERM', teardown);
+
+module.exports = {
+  bootstrap, teardown
+};
 
 /* eslint-enable no-console */
+/* eslint-enable id-blacklist */
+/* eslint-enable consistent-return */
+/* eslint-enable init-declarations */
