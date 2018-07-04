@@ -1,7 +1,7 @@
 const appellant = require('steps/identity/appellant-name/content.en').fields;
 const paths = require('paths');
 
-Feature('Appellant Name form');
+Feature('Appellant Name form @batch-09');
 
 Before(I => {
   I.createTheSession();

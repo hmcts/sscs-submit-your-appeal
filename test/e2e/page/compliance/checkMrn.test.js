@@ -2,7 +2,7 @@ const paths = require('paths');
 const moment = require('moment');
 const answer = require('utils/answer');
 
-Feature('Check MRN');
+Feature('Check MRN @batch-07');
 
 Before(I => {
   I.createTheSession();

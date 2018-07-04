@@ -9,7 +9,8 @@ const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
 
-Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker');
+/* eslint-disable max-len */
+Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01');
 
 Before(I => {
   I.createTheSession();

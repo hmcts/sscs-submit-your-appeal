@@ -6,7 +6,7 @@ const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.la
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
 const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
 
-Feature('Hearing arrangements');
+Feature('Hearing arrangements @batch-08');
 
 Before(I => {
   I.createTheSession();

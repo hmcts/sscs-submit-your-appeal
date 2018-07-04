@@ -1,7 +1,7 @@
 const paths = require('paths');
 const termsAndConditionsContent = require('policy-pages/terms-and-conditions/content.en.json');
 
-Feature('Terms and Conditions Page');
+Feature('Terms and Conditions Page @batch-10');
 
 Before(I => {
   I.amOnPage(paths.policy.termsAndConditions);

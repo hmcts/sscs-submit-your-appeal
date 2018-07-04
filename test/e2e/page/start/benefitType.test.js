@@ -4,7 +4,7 @@ const paths = require('paths');
 
 const benefitTypesArr = Object.values(benefitTypesObj);
 
-Feature('Benefit Type');
+Feature('Benefit Type @batch-12');
 
 Before(I => {
   I.createTheSession();
