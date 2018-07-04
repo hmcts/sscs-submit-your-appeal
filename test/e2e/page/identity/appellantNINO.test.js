@@ -1,7 +1,7 @@
 const content = require('steps/identity/appellant-nino/content.en.json');
 const paths = require('paths');
 
-Feature('Appellant NINO form');
+Feature('Appellant NINO form @batch-09');
 
 Before(I => {
   I.createTheSession();

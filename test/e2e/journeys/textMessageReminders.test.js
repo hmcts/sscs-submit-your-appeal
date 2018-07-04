@@ -9,7 +9,7 @@ const appellantPhoneNumberAnswer = `${appellant.phoneNumber} ${selectors.answer}
 const textMsgRemindersMobileAnswer = `${txtMsgRemnders.mobileNumber} ${selectors.answer}`;
 const receiveTxtMsgRemindersAnswer = `${txtMsgRemnders.receiveTxtMsgReminders} ${selectors.answer}`;
 
-Feature('Appellant PIP, one month ago, does not attend hearing.');
+Feature('Appellant PIP, one month ago, does not attend hearing. @batch-05');
 
 Before(I => {
   I.createTheSession();

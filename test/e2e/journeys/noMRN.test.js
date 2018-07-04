@@ -15,7 +15,7 @@ const haveAMRN = haveAMRNContent.fields.haveAMRN;
 const isAppointee = appointeeContent.fields.isAppointee;
 const appellant = testData.appellant;
 
-Feature('Appellant does not have a MRN');
+Feature('Appellant does not have a MRN @batch-04');
 
 Before(I => {
   I.createTheSession();

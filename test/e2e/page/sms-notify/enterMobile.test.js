@@ -1,6 +1,6 @@
 const paths = require('paths');
 
-Feature('Enter Mobile');
+Feature('Enter Mobile @batch-11');
 
 Before(I => {
   I.createTheSession();

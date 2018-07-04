@@ -1,6 +1,6 @@
 const paths = require('paths');
 
-Feature('Check-your-appeal');
+Feature('Check-your-appeal @batch-06');
 
 Before(I => {
   I.createTheSession();

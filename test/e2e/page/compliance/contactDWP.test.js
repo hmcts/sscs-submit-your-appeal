@@ -1,7 +1,7 @@
 const content = require('steps/compliance/contact-dwp/content.en.json');
 const paths = require('paths');
 
-Feature('Contact DWP');
+Feature('Contact DWP @batch-07');
 
 Before(I => {
   I.createTheSession();

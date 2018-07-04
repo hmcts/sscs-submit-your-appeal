@@ -1,7 +1,7 @@
 const paths = require('paths');
 const content = require('steps/start/invalid-postcode/content.en.json');
 
-Feature('Invalid postcode');
+Feature('Invalid postcode @batch-12');
 
 Before(I => {
   I.amOnPage(paths.start.invalidPostcode);

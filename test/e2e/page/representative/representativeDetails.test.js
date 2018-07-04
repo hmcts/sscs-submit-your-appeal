@@ -1,7 +1,7 @@
 const paths = require('paths');
 const representative = require('steps/representative/representative-details/content.en').fields;
 
-Feature('Representative Details');
+Feature('Representative Details @batch-10');
 
 Before(I => {
   I.createTheSession();

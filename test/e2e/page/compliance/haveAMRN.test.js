@@ -1,7 +1,7 @@
 const paths = require('paths');
 const content = require('steps/compliance/have-a-mrn/content.en.json');
 
-Feature('Check MRN');
+Feature('Check MRN @batch-07');
 
 Before(I => {
   I.createTheSession();
