@@ -10,8 +10,6 @@ const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-
 const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
@@ -21,6 +19,7 @@ const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/f
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
+const fileMissingError = 'FILE_MISSING_ERROR';
 
 class EvidenceUpload extends AddAnother {
   static get path() {
@@ -100,7 +99,7 @@ class EvidenceUpload extends AddAnother {
             }
             // this is an obvious mistake but achieves our goal somehow.
             // I'll have to come back to this.
-            res.statusCode = unprocessableEntityStatus;
+            res.status = unprocessableEntityStatus;
             req.body = {
               'item.uploadEv': uploadingError,
               'item.link': ''
@@ -151,17 +150,10 @@ class EvidenceUpload extends AddAnother {
   }
 
   get field() {
-/*    return object({
-      uploadEv: text,
-      link: text
-    }).check(
-      errorFor('uploadEv', this.content.fields.uploadEv.error.maxFileSizeExceeded),
-      value => value !== maxFileSizeExceededError)*/
-
     return object({
       uploadEv: text.joi(
         'file missing',
-        Joi.string().required()
+        Joi.string().disallow(fileMissingError)
       ).joi(
         'wrong file type',
         Joi.string().disallow(wrongFileTypeError)
