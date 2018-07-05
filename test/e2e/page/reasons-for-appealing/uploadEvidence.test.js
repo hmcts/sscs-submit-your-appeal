@@ -3,7 +3,7 @@ const config = require('config');
 const content = require('steps/reasons-for-appealing/evidence-upload/content.en');
 
 
-Feature('Uploading Evidence');
+Feature('Uploading Evidence @batch-10');
 
 if (config.get('features.evidenceUpload.enabled')) {
   Before(I => {

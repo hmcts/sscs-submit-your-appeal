@@ -7,6 +7,7 @@ const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
 const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
+const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
 
 const config = require('config');
 
@@ -40,8 +41,11 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence() {
   I.addReasonsForAppealingAndContinue(
     testData.reasonsForAppealing.reasons[0], reasonsForAppealing.links.add);
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
-  I.readSendingEvidenceAndContinue();
+  if (!evidenceUploadEnabled) {
+    I.readSendingEvidenceAndContinue();
+  }
   if (evidenceUploadEnabled) {
+    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
   }
 }

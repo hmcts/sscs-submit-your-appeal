@@ -7,38 +7,39 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 Feature('Sending Evidence - appellant contact details @batch-10');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.identity.enterAppellantContactDetails);
-});
+/* eslint-disable max-len */
+if (!evidenceUploadEnabled) {
+  Before(I => {
+    I.createTheSession();
+    I.amOnPage(paths.identity.enterAppellantContactDetails);
+  });
 
-After(I => {
-  I.endTheSession();
-});
+  After(I => {
+    I.endTheSession();
+  });
 
-Scenario('When I omit my email address I see the correct content on /sending-evidence', I => {
-  I.enterAppellantContactDetailsAndContinue();
-  I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-  I.see(content.postEvidence);
-});
+  Scenario('When I omit my email address I see the correct content on /sending-evidence', I => {
+    I.enterAppellantContactDetailsAndContinue();
+    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
+    I.see(content.postEvidence);
+  });
 
-Scenario('When I add my email address I should see the correct content on /sending-evidence', I => {
-  I.enterAppellantContactDetailsWithEmailAndContinue();
-  I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-  I.see(content.postEvidenceWithEmail);
-});
+  Scenario('When I add my email address I should see the correct content on /sending-evidence', I => {
+    I.enterAppellantContactDetailsWithEmailAndContinue();
+    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
+    I.see(content.postEvidenceWithEmail);
+  });
 
-Scenario('When I go to the /sending-evidence page I see the title', I => {
-  I.enterAppellantContactDetailsAndContinue();
-  I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-  I.see(content.title);
-});
+  Scenario('When I go to the /sending-evidence page I see the title', I => {
+    I.enterAppellantContactDetailsAndContinue();
+    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
+    I.see(content.title);
+  });
 
-Scenario('When clicking continue I see the correct path', I => {
-  I.enterAppellantContactDetailsAndContinue();
-  I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-  I.click('Continue');
-  /* eslint-disable max-len */
-  I.seeInCurrentUrl(evidenceUploadEnabled ? paths.hearing.theHearing : paths.reasonsForAppealing.evidenceUpload);
-  /* eslint-enable max-len */
-});
+  Scenario('When clicking continue I see the correct path', I => {
+    I.enterAppellantContactDetailsAndContinue();
+    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
+    I.click('Continue');
+    I.seeInCurrentUrl(paths.hearing.theHearing);
+  });
+}
