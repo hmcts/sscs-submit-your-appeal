@@ -109,13 +109,13 @@ class EvidenceUpload extends AddAnother {
 
         let fileSize = 0;
         part.on('data', incomingData => {
-          fileSize += incomingData.length;
+/*          fileSize += incomingData.length;
           if (fileSize > maxFileSize * multiplier * multiplier) {
             const errorMessage = `maxFileSize exceeded, received ${fileSize} bytes of file data`;
             incoming._error(new Error(errorMessage));
             apiRequest.abort();
             return;
-          }
+          }*/
           fileData.push(incomingData);
         });
 
@@ -186,7 +186,7 @@ class EvidenceUpload extends AddAnother {
         'wrong file type',
         Joi.string().disallow(wrongFileTypeError)
       ).joi(
-        'stupid file is too big',
+        'The file is too big',
         Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional())

@@ -2,6 +2,7 @@ import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
 import fileTypeWhiteList from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
+import { flatten } from "lodash";
 
 class EvidenceUpload {
   constructor(elContainer) {
@@ -9,14 +10,14 @@ class EvidenceUpload {
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
     this.listToRead = '.add-another-list';
-
-    this.handleClickOnList = this.handleClickOnList.bind(this);
     this.doTheUpload = this.doTheUpload.bind(this);
 
     fieldTemplates.getExported(this.setup.bind(this));
+    errorSummary.getExported((error, components) => {
+      this.errorSummary = components.errorSummary;
+    });
   }
   getNumberForNextItem() {
-    // todo make this less fragile
     const nodes = $(this.listToRead + ' dd.add-another-list-item')
       .toArray()
       .map((item) => {
@@ -52,12 +53,27 @@ class EvidenceUpload {
         </form>
     </div>`;
   }
+  buildErrorSummary(errors) {
+    return this.errorSummary({
+      validated: true,
+      valid: false,
+      errors
+    });
+  }
+  handleErrorSummary(fieldErrors) {
+      const errorSummaryList = fieldErrors.map((validationError, index) => ({
+        id: validationError.field,
+        message: validationError.errors[0]
+      }));
+    const summary = this.buildErrorSummary(errorSummaryList);
+    $('.error-summary').remove();
+    $('.column-two-thirds').prepend(summary.val);
+  }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
     $('.add-another-edit-link').css('visibility', 'hidden');
   }
   doTheUpload() {
-    //$('#' + this.formId)[0].submit();
     const formData = new FormData(document.getElementById(this.formId));
     const docName = $('#' + this.elId).val().split('\\').pop();
     $.ajax({
@@ -71,22 +87,19 @@ class EvidenceUpload {
         window.location.reload();
       },
       error: (error) => {
-        console.info('$deity give me strength', error)
+        if (error &&
+          error.responseJSON &&
+          error.responseJSON.validationErrors) {
+          this.handleErrorSummary(error.responseJSON.validationErrors)
+        }
       }
     });
   }
-  handleClickOnList(e) {
-/*    if ($(e.target).hasClass('add-another-edit-link')) {
-      e.preventDefault();
-    }*/
-  }
   attachEventListeners() {
     $('#' + this.elId).on('change', this.doTheUpload);
-    $(this.listToRead).on('click', this.handleClickOnList);
   }
   detachEventListeners() {
     $('#' + this.elId).off('change', this.doTheUpload);
-    $(this.listToRead).off('click', this.handleClickOnList)
   }
   appendForm() {
     const markup = this.buildForm();
