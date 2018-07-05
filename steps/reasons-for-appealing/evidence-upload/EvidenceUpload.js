@@ -26,7 +26,6 @@ class EvidenceUpload extends Question {
 
     if (req.method.toLowerCase() === 'post') {
       const multiplier = 1024;
-
       const incoming = new formidable.IncomingForm({
         keepExtensions: true,
         type: 'multipart',
