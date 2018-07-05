@@ -1,9 +1,7 @@
 const paths = require('paths');
 const content = require('steps/reasons-for-appealing/sending-evidence/content.en.json');
 
-const config = require('config');
-
-const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
 Feature('Sending Evidence - appellant contact details @batch-10');
 
