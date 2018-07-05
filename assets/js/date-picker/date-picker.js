@@ -27,19 +27,14 @@ const datePicker = {
     });
   },
   hijackTabIndex: () => {
-    const prevTb = 1;
-    const switchTb = 2;
-    const nextTb = 3;
-    const dowTb = 4;
-    const dTb = 11;
     /* eslint-disable no-invalid-this */
     $('.prev').attr('tabindex', 0);
     $('.datepicker-switch').attr('tabindex', 0);
     $('.next').attr('tabindex', 0);
-    $('.dow').each(function tabIndexOnWeekDays(index) {
+    $('.dow').each(function tabIndexOnWeekDays() {
       $(this).attr('tabindex', 0);
     });
-    $('.day:not(".disabled")').each(function addTabIndex(index) {
+    $('.day:not(".disabled")').each(function addTabIndex() {
       $(this).attr('tabindex', 0);
     });
     /* eslint-enable no-invalid-this */
@@ -53,12 +48,14 @@ const datePicker = {
         'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
       ][index]}">${content}</div>`);
     });
+    $('.prev').attr('role', 'button').attr('aria-label', 'previous month');
+    $('.next').attr('role', 'button').attr('aria-label', 'next month');
     $('.day:not(".disabled")').each(function addAriaRole() {
       const attrib = parseInt($(this).attr('data-date'), 10);
       const content = $(this).html();
       $(this).attr('role', 'button');
       $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
-      $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
+      $(this).html(`<div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
     });
     /* eslint-enable no-invalid-this */
