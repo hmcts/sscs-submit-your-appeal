@@ -1,6 +1,8 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+
 const getChunks = (chunks, amountOfTests, tests) => {
   const testChunks = [];
   for (let i = 0; i < chunks; i++) {
@@ -15,6 +17,11 @@ exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
   timeout: 1000,
+  features: {
+    evidenceUpload: {
+      enabled: evidenceUploadEnabled
+    }
+  },
   helpers: {
     Puppeteer: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
@@ -36,7 +43,8 @@ exports.config = {
   include: {
     I: './page-objects/steps.js'
   },
-  bootstrap: false,
+  // bootstrap: './../file_acceptor',
+  // teardown: './../file_acceptor',
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {

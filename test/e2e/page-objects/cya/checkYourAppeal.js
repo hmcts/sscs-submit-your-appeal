@@ -8,6 +8,10 @@ const availability = require('steps/hearing/availability/content.en');
 const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 
+const config = require('config');
+
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 const testData = require('test/e2e/data');
@@ -29,7 +33,7 @@ function enterDetailsFromStartToNINO() {
   I.enterAppellantNINOAndContinue(appellant.nino);
 }
 
-function enterDetailsFromNoRepresentativeToSendingEvidence() {
+function enterDetailsFromNoRepresentativeToUploadingEvidence() {
   const I = this;
 
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
@@ -37,12 +41,15 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
     testData.reasonsForAppealing.reasons[0], reasonsForAppealing.links.add);
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
   I.readSendingEvidenceAndContinue();
+  if (evidenceUploadEnabled) {
+    I.uploadAPieceOfEvidence();
+  }
 }
 
 function enterDetailsFromNoRepresentativeToEnd() {
   const I = this;
 
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
 }
@@ -141,7 +148,7 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
 
 module.exports = {
   enterDetailsFromStartToNINO,
-  enterDetailsFromNoRepresentativeToSendingEvidence,
+  enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
