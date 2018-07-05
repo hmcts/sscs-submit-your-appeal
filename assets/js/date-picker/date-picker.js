@@ -33,14 +33,14 @@ const datePicker = {
     const dowTb = 4;
     const dTb = 11;
     /* eslint-disable no-invalid-this */
-    $('.prev').attr('tabindex', prevTb);
-    $('.datepicker-switch').attr('tabindex', switchTb);
-    $('.next').attr('tabindex', nextTb);
+    $('.prev').attr('tabindex', 0);
+    $('.datepicker-switch').attr('tabindex', 0);
+    $('.next').attr('tabindex', 0);
     $('.dow').each(function tabIndexOnWeekDays(index) {
-      $(this).attr('tabindex', dowTb + index);
+      $(this).attr('tabindex', 0);
     });
     $('.day:not(".disabled")').each(function addTabIndex(index) {
-      $(this).attr('tabindex', dTb + index);
+      $(this).attr('tabindex', 0);
     });
     /* eslint-enable no-invalid-this */
   },
@@ -56,7 +56,7 @@ const datePicker = {
     $('.day:not(".disabled")').each(function addAriaRole() {
       const attrib = parseInt($(this).attr('data-date'), 10);
       const content = $(this).html();
-      $(this).attr('aria-role', 'button');
+      $(this).attr('role', 'button');
       $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
       $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
