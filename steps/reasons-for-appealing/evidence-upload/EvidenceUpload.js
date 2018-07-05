@@ -35,22 +35,9 @@ class EvidenceUpload extends AddAnother {
         type: 'multipart'
       });
 
-      incoming.once('error', er => {
-        logger.info('error while receiving the file from the client', er);
-      });
-
-      incoming.once('aborted', () => {
-        logger.log('user aborted upload');
-        return next(new Error());
-      });
-
-      incoming.once('end', () => {
-        logger.log('-> upload done');
-      });
-
       let uploadingFile = false;
       incoming.onPart = part => {
-        if (incoming.bytesExpected < 200) {
+        if (incoming.bytesExpected <= 200) {
           req.body = {
             'item.uploadEv': fileMissingError
           };
