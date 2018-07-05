@@ -136,7 +136,19 @@ class EvidenceUpload extends AddAnother {
   }
 
   values() {
+    const evidences = this.fields.items.value.map(file => {
+      return {
+        url: file.link.value,
+        fileName: file.uploadEv.value,
+        uploadedDate: moment().format('YYYY-MM-DD')
+      }
+    });
     return {
+      reasonsForAppealing: {
+        evidences: evidences
+      }
+    }
+/*    return {
       reasonsForAppealing: {
         evidences: [
           {
@@ -146,7 +158,7 @@ class EvidenceUpload extends AddAnother {
           }
         ]
       }
-    };
+    }*/;
   }
 
   next() {
