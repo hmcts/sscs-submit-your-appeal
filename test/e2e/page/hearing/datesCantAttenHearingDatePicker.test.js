@@ -40,13 +40,13 @@ Scenario('When I select and deselect a date, it isn\'t highlighted and not shown
 
 Scenario('When I select multiple dates, I see them in the table', async I => {
   await I.selectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow, dateSevenWeeksFromNow]);
-});
+}).retry(2);
 
 Scenario('When I select multiple dates and them deselect them, I don\'t see them in the table',
   async I => {
     await I.selectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow]);
     await I.deselectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow]);
-  });
+  }).retry(2);
 
 Scenario('When I select a date and then click remove, the date is removed and deselected',
   async I => {
