@@ -40,15 +40,6 @@ class EvidenceUpload extends AddAnother {
         logger.info('error while receiving the file from the client', er);
       });
 
-      incoming.once('fileBegin', function fileBegin(field, file) {
-        if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
-          /* eslint-disable no-invalid-this */
-          return this.emit('error', wrongFileTypeError);
-          /* eslint-enable no-invalid-this */
-        }
-        return true;
-      });
-
       incoming.once('aborted', () => {
         logger.log('user aborted upload');
         return next(new Error());
@@ -64,6 +55,15 @@ class EvidenceUpload extends AddAnother {
           // let formidable handle all non-file parts
           incoming.handlePart(part);
           return;
+        }
+        if (part && part.filename && !fileTypeWhitelist.find(el => el === part.mime)) {
+          /* eslint-disable no-invalid-this */
+          //return incoming.emit('error', wrongFileTypeError);
+          req.body = {
+            'item.uploadEv': wrongFileTypeError
+          };
+          return next();
+          /* eslint-enable no-invalid-this */
         }
 
         const fileName = part.filename;
@@ -134,7 +134,7 @@ class EvidenceUpload extends AddAnother {
       });
 
       return incoming.parse(req, uploadingError => {
-        const unprocessableEntityStatus = 422;
+/*        const unprocessableEntityStatus = 422;
 
         if (!uploadingFile) {
           // this is an obvious mistake but achieves our goal somehow.
@@ -144,7 +144,7 @@ class EvidenceUpload extends AddAnother {
             uploadEv: uploadingError
           };
           next();
-        }
+        }*/
       });
     }
     return next();
