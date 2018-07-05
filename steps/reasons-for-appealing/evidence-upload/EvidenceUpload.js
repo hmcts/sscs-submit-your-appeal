@@ -33,7 +33,7 @@ class EvidenceUpload extends AddAnother {
       const incoming = new formidable.IncomingForm({
         keepExtensions: true,
         type: 'multipart',
-        maxFileSize: maxFileSize * multiplier * multiplier
+  //      maxFileSize: maxFileSize * multiplier * multiplier
       });
 
       incoming.once('error', er => {
@@ -55,6 +55,12 @@ class EvidenceUpload extends AddAnother {
           // let formidable handle all non-file parts
           incoming.handlePart(part);
           return;
+        }
+        if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+          req.body = {
+            'item.uploadEv': maxFileSizeExceededError
+          };
+          return next();
         }
         if (part && part.filename && !fileTypeWhitelist.find(el => el === part.mime)) {
           /* eslint-disable no-invalid-this */
