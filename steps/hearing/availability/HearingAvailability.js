@@ -1,5 +1,5 @@
-const { Question } = require('@hmcts/one-per-page/steps');
-const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
+const { Question } = require('@hmcts/one-per-page');
+const { redirectTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -35,7 +35,7 @@ class HearingAvailability extends Question {
   next() {
     const shouldScheduleHearing = () => this.fields.scheduleHearing.value === userAnswer.NO;
     return branch(
-      goTo(this.journey.steps.CheckYourAppeal).if(shouldScheduleHearing),
+      redirectTo(this.journey.steps.CheckYourAppeal).if(shouldScheduleHearing),
       redirectTo(this.journey.steps.DatesCantAttend)
     );
   }

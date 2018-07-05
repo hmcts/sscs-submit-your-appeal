@@ -1,4 +1,5 @@
-const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { branch, Question } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -34,8 +35,8 @@ class HearingSupport extends Question {
   next() {
     const makeHearingArrangements = this.fields.arrangements.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
-      goTo(this.journey.steps.HearingAvailability)
+      redirectTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
+      redirectTo(this.journey.steps.HearingAvailability)
     );
   }
 }
