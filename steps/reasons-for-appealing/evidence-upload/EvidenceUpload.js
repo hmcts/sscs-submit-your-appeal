@@ -51,6 +51,12 @@ class EvidenceUpload extends AddAnother {
 
       let uploadingFile = false;
       incoming.onPart = part => {
+        if (incoming.bytesExpected < 200) {
+          req.body = {
+            'item.uploadEv': fileMissingError
+          };
+          return next();
+        }
         if (!part.filename) {
           // let formidable handle all non-file parts
           incoming.handlePart(part);
