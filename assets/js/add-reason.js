@@ -186,14 +186,15 @@ class AddReason {
             url: `/reason-for-appealing/item-${index}`,
             // eslint-disable-next-line id-blacklist
             data: answer,
-            success: response => {
-              if (response.validationErrors.length > 0) {
+            error: errorResponse => {
+              const resJson = errorResponse.responseJSON;
+              if (resJson.validationErrors.length > 0) {
                 if (index === 0) {
                   firstItemValid = false;
-                  self.handleValidationError(index, response.validationErrors);
-                } else if (self.isMinCharacterError(response.validationErrors)) {
+                  self.handleValidationError(index, resJson.validationErrors);
+                } else if (self.isMinCharacterError(resJson.validationErrors)) {
                   otherErrors = true;
-                  self.handleValidationError(index, response.validationErrors);
+                  self.handleValidationError(index, resJson.validationErrors);
                 }
               } else if ($(`#items-${index}`).children().hasClass('form-group-error')) {
                 $(`#items-${index} .form-group`)
@@ -287,8 +288,8 @@ class AddReason {
     const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith-${index}`).val();
     const reasonForAppealing = $(`#items-${index} #item\\.reasonForAppealing-${index}`).val();
     return {
-      'item.whatYouDisagreeWith': whatYouDisagreeWith || ' ',
-      'item.reasonForAppealing': reasonForAppealing || ' '
+      'item.whatYouDisagreeWith': whatYouDisagreeWith || '',
+      'item.reasonForAppealing': reasonForAppealing || ''
     };
   }
 

@@ -33,19 +33,15 @@ class ReasonForAppealing extends AddAnother {
       reasonForAppealing: text
     }).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith.trim())
+      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
     ).check(
       errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
+      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing)
     );
   }
 
   validateList(list) {
-    return list.check(content.listError, arr => (
-      arr.length > 0 &&
-        (arr[0].whatYouDisagreeWith !== ' ' &&
-          arr[0].reasonForAppealing !== ' ')
-    ));
+    return list.check(content.listError, arr => arr.length > 0);
   }
 
   answers() {
