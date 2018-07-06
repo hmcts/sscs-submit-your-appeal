@@ -77,7 +77,7 @@ class EvidenceUpload {
     $('.column-two-thirds').prepend(summary.val);
   }
   handleInlineError(errors) {
-    const hasErrors = !!(errors && errors.length);
+    const hasErrors = Boolean(errors && errors.length);
     $('.form-group').toggleClass('form-group-error', hasErrors);
     if (hasErrors) {
       $('label').after(`<span class="error-message">${errors[0].errors[0]}</span>`);
@@ -102,7 +102,7 @@ class EvidenceUpload {
       error: error => {
         if (error && error.responseJSON && error.responseJSON.validationErrors) {
           this.handleErrorSummary(error.responseJSON.validationErrors);
-          this.handleInlineError(error.responseJSON.validationErrors)
+          this.handleInlineError(error.responseJSON.validationErrors);
         }
       }
     });

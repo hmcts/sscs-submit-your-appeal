@@ -19,7 +19,7 @@ const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 
-
+/* eslint-disable consistent-return */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -35,9 +35,9 @@ class EvidenceUpload extends AddAnother {
         type: 'multipart'
       });
 
-      let uploadingFile = false;
       incoming.onPart = part => {
-        if (incoming.bytesExpected <= 200) {
+        const emptyRequestApproxSizeInBytes = 200;
+        if (incoming.bytesExpected <= emptyRequestApproxSizeInBytes) {
           req.body = {
             'item.uploadEv': fileMissingError
           };
@@ -63,7 +63,6 @@ class EvidenceUpload extends AddAnother {
 
         const fileName = part.filename;
         const fileData = new stream.PassThrough();
-        uploadingFile = true;
         request.post({
           url: uploadEvidenceUrl,
           formData: {
@@ -145,18 +144,7 @@ class EvidenceUpload extends AddAnother {
       reasonsForAppealing: {
         evidences
       }
-    }
-    /*    return {
-      reasonsForAppealing: {
-        evidences: [
-          {
-            url: this.fields.link.value,
-            fileName: this.fields.uploadEv.value,
-            uploadedDate: moment().format('YYYY-MM-DD')
-          }
-        ]
-      }
-    }*/;
+    };
   }
 
   next() {
