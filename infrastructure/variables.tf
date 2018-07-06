@@ -41,3 +41,6 @@ variable "sya_hostname" {
 variable "deployment_namespace" {
   type = "string"
 }
+variable "common_tags" {
+  type = "map"
+}
