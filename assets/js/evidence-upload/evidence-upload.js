@@ -36,7 +36,12 @@ class EvidenceUpload {
       if (components && components.fileupload) {
         this.numberForNextItem = this.getNumberForNextItem();
         this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
-        this.fileupload = components.fileupload(this.elId, null, fileTypeWhiteList);
+        this.fileupload = components.fileupload({
+          id: this.elId,
+          name: this.elId,
+          value: '',
+          errors: this.errors
+        }, null, fileTypeWhiteList);
         this.appendForm();
       }
     }, 0);
@@ -71,6 +76,10 @@ class EvidenceUpload {
     $('.error-summary').remove();
     $('.column-two-thirds').prepend(summary.val);
   }
+  handleInlineError(errors) {
+    const hasErrors = !!(errors && errors.length);
+    $('.form-group').toggleClass('form-group-error', hasErrors);
+  }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
     $('.add-another-edit-link').css('visibility', 'hidden');
@@ -90,6 +99,7 @@ class EvidenceUpload {
       error: error => {
         if (error && error.responseJSON && error.responseJSON.validationErrors) {
           this.handleErrorSummary(error.responseJSON.validationErrors);
+          this.handleInlineError(error.responseJSON.validationErrors)
         }
       }
     });
