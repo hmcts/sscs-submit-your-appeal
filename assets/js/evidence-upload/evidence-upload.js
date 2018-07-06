@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
-import fileTypeWhiteList from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
-import { flatten } from "lodash";
-
+import fileTypeWhiteList
+  from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
+/* eslint-disable id-blacklist */
 class EvidenceUpload {
   constructor(elContainer) {
     this.elContainer = elContainer;
@@ -18,15 +18,15 @@ class EvidenceUpload {
     });
   }
   getNumberForNextItem() {
-    const nodes = $(this.listToRead + ' dd.add-another-list-item')
+    const nodes = $(`${this.listToRead} dd.add-another-list-item`)
       .toArray()
-      .map((item) => {
-        return parseInt(item.id.split('-').pop(), 10);
-      })
+      .map(item => parseInt(item.id.split('-').pop(), 10))
       .sort();
     let num = 0;
     while (nodes.indexOf(num) !== -1) {
+      /* eslint-disable no-plusplus */
       num++;
+      /* eslint-enable no-plusplus */
     }
     return num;
   }
@@ -35,7 +35,7 @@ class EvidenceUpload {
     window.setTimeout(() => {
       if (components && components.fileupload) {
         this.numberForNextItem = this.getNumberForNextItem();
-        this.formAction = '/evidence-upload/item-' + this.numberForNextItem;
+        this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
         this.fileupload = components.fileupload(this.elId, null, fileTypeWhiteList);
         this.appendForm();
       }
@@ -61,10 +61,12 @@ class EvidenceUpload {
     });
   }
   handleErrorSummary(fieldErrors) {
-      const errorSummaryList = fieldErrors.map((validationError, index) => ({
+    const errorSummaryList = fieldErrors.map(validationError => {
+      return {
         id: validationError.field,
         message: validationError.errors[0]
-      }));
+      };
+    });
     const summary = this.buildErrorSummary(errorSummaryList);
     $('.error-summary').remove();
     $('.column-two-thirds').prepend(summary.val);
@@ -75,7 +77,6 @@ class EvidenceUpload {
   }
   doTheUpload() {
     const formData = new FormData(document.getElementById(this.formId));
-    const docName = $('#' + this.elId).val().split('\\').pop();
     $.ajax({
       url: this.formAction,
       data: formData,
@@ -86,24 +87,22 @@ class EvidenceUpload {
       success: () => {
         window.location.reload();
       },
-      error: (error) => {
-        if (error &&
-          error.responseJSON &&
-          error.responseJSON.validationErrors) {
-          this.handleErrorSummary(error.responseJSON.validationErrors)
+      error: error => {
+        if (error && error.responseJSON && error.responseJSON.validationErrors) {
+          this.handleErrorSummary(error.responseJSON.validationErrors);
         }
       }
     });
   }
   attachEventListeners() {
-    $('#' + this.elId).on('change', this.doTheUpload);
+    $(`#${this.elId}`).on('change', this.doTheUpload);
   }
   detachEventListeners() {
-    $('#' + this.elId).off('change', this.doTheUpload);
+    $(`#${this.elId}`).off('change', this.doTheUpload);
   }
   appendForm() {
     const markup = this.buildForm();
-    $(this.elContainer).append(this.buildForm());
+    $(this.elContainer).append(markup);
     this.hideUnnecessaryMarkup();
     this.attachEventListeners();
   }

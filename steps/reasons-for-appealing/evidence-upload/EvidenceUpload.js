@@ -105,9 +105,7 @@ class EvidenceUpload extends AddAnother {
   }
 
   get middleware() {
-    return [
-      ...super.middleware, EvidenceUpload.handleUpload
-    ];
+    return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
   get addAnotherLinkContent() {
@@ -141,14 +139,14 @@ class EvidenceUpload extends AddAnother {
         url: file.link.value,
         fileName: file.uploadEv.value,
         uploadedDate: moment().format('YYYY-MM-DD')
-      }
+      };
     });
     return {
       reasonsForAppealing: {
-        evidences: evidences
+        evidences
       }
     }
-/*    return {
+    /*    return {
       reasonsForAppealing: {
         evidences: [
           {
