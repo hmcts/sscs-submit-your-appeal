@@ -1,6 +1,7 @@
 const config = require('config');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
+const { inwardPostcode } = require('utils/regex');
 
 const postcodeCountryLookupUrl = config.get('postcodeChecker.url');
 const disallowedRegionCentres = ['glasgow'];
@@ -12,7 +13,9 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   }
 
   return new Promise((resolve, reject) => {
-    request.get(`${postcodeCountryLookupUrl}/${postcode}`)
+    const outcode = postcode.trim().replace(inwardPostcode, '').replace(/\s+/, '');
+
+    request.get(`${postcodeCountryLookupUrl}/${outcode}`)
       .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
       .then(resp => {
         if (resp.status !== HttpStatus.OK) {
