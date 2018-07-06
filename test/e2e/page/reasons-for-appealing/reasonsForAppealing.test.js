@@ -2,7 +2,7 @@ const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 
-Feature('Reason For Appealing');
+Feature('Reason For Appealing @batch-10');
 
 Before(I => {
   I.createTheSession();

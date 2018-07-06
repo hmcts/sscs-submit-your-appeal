@@ -5,6 +5,7 @@ const representative = require('steps/representative/representative/content.en')
 const theHearing = require('steps/hearing/the-hearing/content.en');
 const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
+const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 
 const selectors = require('steps/check-your-appeal/selectors');
@@ -16,7 +17,6 @@ const oneMonthAgo = DateUtils.oneMonthAgo();
 
 function enterDetailsFromStartToNINO() {
   const I = this;
-
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
@@ -33,7 +33,8 @@ function enterDetailsFromNoRepresentativeToSendingEvidence() {
   const I = this;
 
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(testData.reasonsForAppealing.reasons[0]);
+  I.addReasonsForAppealingAndContinue(
+    testData.reasonsForAppealing.reasons[0], reasonsForAppealing.links.add);
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
   I.readSendingEvidenceAndContinue();
 }
@@ -46,13 +47,14 @@ function enterDetailsFromNoRepresentativeToEnd() {
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
 }
 
-function enterDetailsFromAttendingTheHearingToEnd(date) {
+async function enterDetailsFromAttendingTheHearingToEnd(date) {
   const I = this;
 
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue();
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  await I.turnOffJsAndReloadThePage();
   I.enterDateCantAttendAndContinue(date, datesCantAttend.links.add);
   I.click('Continue');
 }
@@ -63,7 +65,9 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue();
+  I.wait(2);
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.wait(2);
   await I.selectDates([date]);
   I.click('Continue');
 }
@@ -139,8 +143,8 @@ module.exports = {
   enterDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToSendingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
+  enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
-  enterDetailsFromAttendingTheHearingWithSupportToEnd,
-  enterDetailsFromAttendingTheHearingDatePickerToEnd
+  enterDetailsFromAttendingTheHearingWithSupportToEnd
 };

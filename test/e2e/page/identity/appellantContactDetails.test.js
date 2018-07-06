@@ -3,7 +3,7 @@ const paths = require('paths');
 
 const appellant = require('test/e2e/data').appellant;
 
-Feature('Appellant details form');
+Feature('Appellant details form @batch-09');
 
 Before(I => {
   I.createTheSession();

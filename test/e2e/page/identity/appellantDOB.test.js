@@ -1,7 +1,7 @@
 const appellantDOB = require('steps/identity/appellant-dob/content.en').fields;
 const paths = require('paths');
 
-Feature('Appellant DOB form');
+Feature('Appellant DOB form @batch-09');
 
 Before(I => {
   I.createTheSession();

@@ -33,7 +33,7 @@ function initAutocomplete() {
         const startingWithLetter = remove(options, opt =>
           opt.match(new RegExp(`^${query}.+`, 'i')));
         const containingLetter = remove(options, opt =>
-          opt.match(new RegExp(`^.+${query}+`, 'i')));
+          opt.match(new RegExp(`^.*${query}*`, 'i')));
         return populateResults([...startingWithLetter, ...containingLetter]);
       }
     });

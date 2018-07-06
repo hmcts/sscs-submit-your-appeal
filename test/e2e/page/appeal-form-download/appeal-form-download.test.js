@@ -3,7 +3,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 const dynamicContent = (formType, benefitType) =>
   `Download and fill out a ${formType} form to appeal a ${benefitType} benefit decision.`;
 
-Feature('Appeal form download page');
+Feature('Appeal form download page @batch-06');
 
 Before(I => {
   I.createTheSession();

@@ -2,7 +2,7 @@ const paths = require('paths');
 const smsConfirmationContent = require('steps/sms-notify/sms-confirmation/content.en.json');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
 
-Feature('SMS Confirmation - appellant contact details');
+Feature('SMS Confirmation - appellant contact details @batch-11');
 
 Before(I => {
   I.createTheSession();

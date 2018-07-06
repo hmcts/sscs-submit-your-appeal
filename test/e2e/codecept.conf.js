@@ -1,20 +1,36 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 
+const getChunks = (chunks, amountOfTests, tests) => {
+  const testChunks = [];
+  for (let i = 0; i < chunks; i++) {
+    const arr = [];
+    arr.push(...tests.slice(i * amountOfTests, (i + 1) * amountOfTests));
+    testChunks.push(arr);
+  }
+  return testChunks;
+};
+
 exports.config = {
   tests: './**/*.test.js',
-  output: './output',
+  output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
   timeout: 1000,
   helpers: {
-    Nightmare: {
+    Puppeteer: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
+      waitForNavigation: 'networkidle0',
       show: false,
-      windowSize: ' 1200x1200',
-      switches: {
-        'ignore-certificate-errors': true
+      windowSize: '1000x1000',
+      chrome: {
+        ignoreHTTPSErrors: true,
+        args: ['--no-sandbox']
       }
+    },
+    MyHelper: {
+      require: './helper.js',
+      url: config.get('e2e.frontendUrl')
     }
   },
   include: {
@@ -23,9 +39,34 @@ exports.config = {
   bootstrap: false,
   mocha: {
     reporterOptions: {
-      reportDir: config.get('e2e.outputDir'),
-      reportName: 'index',
-      inlineAssets: true
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      mochawesome: {
+        stdout: './functional-output/console.log',
+        options: {
+          reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+          reportName: 'index',
+          inlineAssets: true
+        }
+      }
+    }
+  },
+  multiple: {
+    pages: {
+      chunks: files => {
+        const pageTests = files.filter(file => !file.includes('journey'));
+        return getChunks(5, 7, pageTests);
+      },
+      browsers: ['chrome']
+    },
+    functional: {
+      chunks: files => {
+        const journeyTests = files.filter(file => file.includes('journey'));
+        return getChunks(3, 2, journeyTests);
+      },
+      browsers: ['chrome']
     }
   },
   name: 'Submit Your Appeal Tests'

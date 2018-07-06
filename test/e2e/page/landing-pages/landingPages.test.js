@@ -5,7 +5,7 @@ const helpWithAppealContent = require('landing-pages/help-with-appeal/content.en
 const afterYouAppealContent = require('landing-pages/after-you-appeal/content.en.json');
 const startAnAppealContent = require('landing-pages/start-an-appeal/content.en.json');
 
-Feature('Landing Pages');
+Feature('Landing Pages @batch-10');
 
 Scenario('When I go to the Overview landing page, I see the page heading', I => {
   I.amOnPage(paths.landingPages.overview);

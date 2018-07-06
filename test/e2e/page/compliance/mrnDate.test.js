@@ -8,7 +8,7 @@ const date = {
   year: '2016'
 };
 
-Feature('User has an MRN');
+Feature('User has an MRN @batch-07');
 
 Before(I => {
   I.createTheSession();

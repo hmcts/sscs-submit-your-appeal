@@ -1,7 +1,7 @@
 const content = require('steps/compliance/cant-appeal/content.en.json');
 const paths = require('paths');
 
-Feature('Cannot appeal');
+Feature('Cannot appeal @batch-07');
 
 Before(I => {
   I.createTheSession();

@@ -4,7 +4,7 @@ const paths = require('paths');
 
 const benefitTypesArr = Object.values(benefitTypesObj);
 
-Feature('Benefit Type');
+Feature('Benefit Type @batch-12');
 
 Before(I => {
   I.createTheSession();
@@ -17,7 +17,7 @@ After(I => {
 Scenario('When I enter PIP, I am taken to the postcode-check page', I => {
   I.enterBenefitTypeAndContinue('pip');
   I.seeInCurrentUrl(paths.start.postcodeCheck);
-});
+}).retry(2);
 
 benefitTypesArr.forEach(benefitType => {
   if (benefitType !== benefitTypesObj.personalIndependencePayment) {
@@ -26,6 +26,6 @@ benefitTypesArr.forEach(benefitType => {
       I.seeInCurrentUrl(paths.appealFormDownload);
       I.see(content.title);
       I.see(content.button.text);
-    });
+    }).retry(2);
   }
 });

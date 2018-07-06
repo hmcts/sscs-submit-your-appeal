@@ -1,7 +1,7 @@
 const content = require('content.en');
 const paths = require('paths');
 
-Feature('Error Pages');
+Feature('Error Pages @batch-08');
 
 Before(I => {
   I.createTheSession();

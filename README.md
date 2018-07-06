@@ -72,8 +72,33 @@ Ensure both SYA (from one of the methods above) and the [API](https://github.com
 present these tests do not run within Docker, therefore, open a new terminal window.
 
 Functional tests:
+We have split our functional tests into two.
+Firstly we have tests for entire journeys through the form:
 
     yarn test:functional
+    
+However, in order to get this command to run properly you currently have to remove ``` --grep @functional ``` tag from 
+the ```test:functional``` script in package.json. 
+
+Secondly, we have tests for various pages in the form:
+    
+    yarn test:e2e-pages
+    
+Functional test batches:
+
+To improve reliability running the functional tests locally you can run them in batches using the following command
+
+```bash
+yarn test:functional:all-batches
+```
+
+If you wish to increase the speed of the tests, you can decrease the wait time between each action, the default is set 
+to 500ms. Override this by setting the env var `E2E_WAIT_FOR_ACTION_VALUE`, I find 50ms works fine. 
+Use this together with batching like so:
+
+```bash
+E2E_WAIT_FOR_ACTION_VALUE=50 yarn test:functional:batches
+```
     
 Smoke tests:
 
