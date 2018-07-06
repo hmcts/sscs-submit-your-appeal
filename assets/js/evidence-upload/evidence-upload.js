@@ -79,6 +79,9 @@ class EvidenceUpload {
   handleInlineError(errors) {
     const hasErrors = !!(errors && errors.length);
     $('.form-group').toggleClass('form-group-error', hasErrors);
+    if (hasErrors) {
+      $('label').after(`<span class="error-message">${errors[0].errors[0]}</span>`);
+    }
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
