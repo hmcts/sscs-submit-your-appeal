@@ -53,9 +53,9 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
-"@hmcts/one-per-page@https://github.com/hmcts/one-per-page#ajax-validation-handling":
-  version "3.3.6"
-  resolved "https://github.com/hmcts/one-per-page#2b3c17063daeac60e09987a72b4ddd595622a65b"
+"@hmcts/one-per-page@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.4.0.tgz#9bc270e89372d4218433b1d4817f03571c521d67"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"
@@ -1389,10 +1389,6 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
-
-circular-json@^0.5.4:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.5.5.tgz#64182ef359042d37cd8e767fc9de878b1e9447d3"
 
 clap@^1.0.9:
   version "1.2.3"
