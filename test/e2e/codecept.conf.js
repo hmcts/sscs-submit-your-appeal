@@ -1,5 +1,6 @@
 /* eslint-disable no-process-env */
 const config = require('config');
+const fileAcceptor = require('test/file_acceptor');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
@@ -43,8 +44,12 @@ exports.config = {
   include: {
     I: './page-objects/steps.js'
   },
-  bootstrap: './../file_acceptor',
-  teardown: './../file_acceptor',
+  bootstrapAll: done => {
+    fileAcceptor.bootstrap(done);
+  },
+  teardownAll: done => {
+    fileAcceptor.teardown(done);
+  },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
