@@ -1,4 +1,4 @@
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const { merge } = require('lodash');
 const proxyquire = require('proxyquire');
 const HttpStatus = require('http-status-codes');
@@ -6,6 +6,7 @@ const HttpStatus = require('http-status-codes');
 describe('PostcodeChecker.js', () => {
   describe('Is England or Wales Postcode', () => {
     const requireStub = {};
+    const getStub = sinon.stub();
     let postcodeChecker = null;
 
     beforeEach(() => {
@@ -14,11 +15,17 @@ describe('PostcodeChecker.js', () => {
         superagent: requireStub
       });
       /* eslint-disable max-len */
+
+      getStub.returns(requireStub);
+    });
+
+    afterEach(() => {
+      getStub.reset();
     });
 
     function setResponse(response) {
       merge(requireStub, {
-        get: () => requireStub,
+        get: getStub,
         ok: () => requireStub,
         then: handleResponse => {
           handleResponse(response);
@@ -32,12 +39,17 @@ describe('PostcodeChecker.js', () => {
       setResponse({ status: HttpStatus.OK, body: { regionalcentre: regionalCentre } });
     }
 
+    function buildExpectedUrl(outcode) {
+      return `http://localhost:3011/regionalcentre/${outcode}`;
+    }
+
     it('postcode is in England', () => {
       setRegionalCenterTo('London');
 
-      return postcodeChecker('CM15 8DL')
+      return postcodeChecker('AB1 2CD')
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         }).catch(error => {
           expect.fail(error);
         });
@@ -46,9 +58,10 @@ describe('PostcodeChecker.js', () => {
     it('postcode is in Wales', () => {
       setRegionalCenterTo('Cardiff');
 
-      return postcodeChecker('CM15 8DL')
+      return postcodeChecker('AB1 2CD')
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         }).catch(error => {
           expect.fail(error);
         });
@@ -57,9 +70,10 @@ describe('PostcodeChecker.js', () => {
     it('postcode is in Scotland', () => {
       setRegionalCenterTo('Glasgow');
 
-      return postcodeChecker('CM15 8DL')
+      return postcodeChecker('AB1 2CD')
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         }).catch(error => {
           expect.fail(error);
         });
@@ -69,17 +83,17 @@ describe('PostcodeChecker.js', () => {
       return postcodeChecker('BT1 2AB')
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
-        }).catch(error => {
-          expect.fail(error);
+          expect(getStub).not.to.have.been.called;
         });
     });
 
     it('allow postcode that are not found', () => {
       setResponse({ status: 404 });
 
-      return postcodeChecker('CM15 8DL', true)
+      return postcodeChecker('AB1 2CD', true)
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         }).catch(error => {
           expect.fail(error);
         });
@@ -88,9 +102,10 @@ describe('PostcodeChecker.js', () => {
     it('do not allow postcode that are not found', () => {
       setResponse({ status: 404 });
 
-      return postcodeChecker('CM15 8DL', false)
+      return postcodeChecker('AB1 2CD', false)
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         }).catch(error => {
           expect.fail(error);
         });
@@ -108,7 +123,7 @@ describe('PostcodeChecker.js', () => {
         }
       });
 
-      return postcodeChecker('CM15 8DL')
+      return postcodeChecker('AB1 2CD')
         .catch(error => {
           expect(error).to.equal(expectedError);
         });
