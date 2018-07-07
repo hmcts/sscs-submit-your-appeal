@@ -27,6 +27,7 @@ module "submit-your-appeal-frontend" {
   subscription         = "${var.subscription}"
   additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "${var.env != "preview" ? "true" : "false"}"
+  common_tags = "${var.common_tags}"
 
 
   app_settings = {
