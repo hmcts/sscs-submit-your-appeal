@@ -5,7 +5,9 @@
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set pageContent = {
-addAnotherLink: addAnotherLinkContent
+addAnotherLink: addAnotherLinkContent,
+itemsListLabel: content.itemsListLabel,
+noItemsMessage: content.noItemsMessage
 } %}
 
 {% set title %}
@@ -29,9 +31,12 @@ addAnotherLink: addAnotherLinkContent
 {% endblock %}
 
 {% block listItems %}
-<p>This goes some text I guess</p>
+
+<p>{{ content.description | safe }}</p>
+
 <div id="evidence-upload"></div>
 
 {{ super() }}
+
 {% endblock %}
 

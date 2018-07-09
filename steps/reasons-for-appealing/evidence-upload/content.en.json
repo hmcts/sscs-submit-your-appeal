@@ -1,6 +1,9 @@
 {
-    "titleHead": "Evidence Upload - Appeal a benefit decision - GOV.UK",
-    "title": "Evidence upload",
+    "titleHead": "Upload evidence - Appeal a benefit decision - GOV.UK",
+    "title": "Upload evidence",
+    "description": "You can upload letters, documents or photos. For example you could take a photo of a letter from your doctor and upload it. Make sure the letter or document is on a flat surface and the photo is taken from above.",
+    "itemsListLabel": "Uploaded files",
+    "noItemsMessage": "No files uploaded",
     "fields": {
         "uploadEv": {
             "label": "Upload file",
