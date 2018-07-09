@@ -3,6 +3,8 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 /* eslint-disable init-declarations */
 
+const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+
 describe('The other methods of EvidenceUpload', () => {
   let instance;
 
@@ -27,7 +29,11 @@ describe('The other methods of EvidenceUpload', () => {
 
   describe('get path()', () => {
     it('returns the correct path', () => {
-      expect(instance.path).to.equal('/evidence-upload');
+      if (evidenceUploadEnabled) {
+        expect(instance.path).to.equal('/evidence-upload');
+      } else {
+        expect(instance.path).to.be.null;
+      }
     });
   });
 
