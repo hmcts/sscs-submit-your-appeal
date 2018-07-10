@@ -35,13 +35,13 @@ Scenario('Adds reasons for appealing and sees them in check your answers', I => 
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
   I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
   );
   I.addAReasonForAppealing(
-    `#items-1 ${whatYouDisagreeWithField}`,
-    `#items-1 ${reasonForAppealingField}`,
+    `#items-1 ${whatYouDisagreeWithField}-1`,
+    `#items-1 ${reasonForAppealingField}-1`,
     reasons[1]
   );
   I.click('Continue');
@@ -62,13 +62,13 @@ Scenario('Enters a reason for appealing, then edits the reason', I => {
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
   I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
   );
   I.addAReasonForAppealing(
-    `#items-1 ${whatYouDisagreeWithField}`,
-    `#items-1 ${reasonForAppealingField}`,
+    `#items-1 ${whatYouDisagreeWithField}-1`,
+    `#items-1 ${reasonForAppealingField}-1`,
     reasons[1]
   );
   I.click('Continue');
@@ -89,8 +89,8 @@ Scenario('Enters a reason for appealing, then edits the reason', I => {
   I.waitForElement('#items-0');
 
   I.addAReasonForAppealing(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[2]
   );
   I.click('Continue');
@@ -101,20 +101,15 @@ Scenario('Enters a reason for appealing, then edits the reason', I => {
   I.see(reasons[2].reasonForAppealing);
 });
 
-Scenario('Enters a reason for appealing, then removes the reason and sees errors', async I => {
+Scenario('Enters a reason for appealing, then removes the reason and sees errors', I => {
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
   I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
-  );
-  I.addAReasonForAppealing(
-    `#items-1 ${whatYouDisagreeWithField}`,
-    `#items-1 ${reasonForAppealingField}`,
-    reasons[1]
   );
   I.click('Continue');
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
@@ -122,11 +117,8 @@ Scenario('Enters a reason for appealing, then removes the reason and sees errors
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
   I.confirmDetailsArePresent();
-
-  twoReasons.forEach(reason => {
-    I.see(reason.whatYouDisagreeWith);
-    I.see(reason.reasonForAppealing);
-  });
+  I.see(reasons[0].whatYouDisagreeWith);
+  I.see(reasons[0].reasonForAppealing);
 
   // Now Change the reason a different answer.
   I.click('Change', reasonForAppealingChange);
@@ -134,18 +126,18 @@ Scenario('Enters a reason for appealing, then removes the reason and sees errors
   I.waitForElement('#items-0');
 
   I.addAReasonForAppealing(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     {
       whatYouDisagreeWith: '',
       reasonForAppealing: ''
     }
   );
   I.click('Continue');
-  await I.hasErrorClass('#items-0');
+  I.seeElement('#error-summary-heading');
   I.addAReasonForAppealing(
-    `#items-0 ${whatYouDisagreeWithField}`,
-    `#items-0 ${reasonForAppealingField}`,
+    `#items-0 ${whatYouDisagreeWithField}-0`,
+    `#items-0 ${reasonForAppealingField}-0`,
     reasons[2]
   );
   I.click('Continue');

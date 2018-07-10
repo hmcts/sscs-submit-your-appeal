@@ -231,9 +231,7 @@ class AddReason {
   itemsToDelete(answers) {
     const itemsToDelete = [];
     $.each(answers, (index, answer) => {
-      if (index === 0) {
-        return true;
-      } else if (
+      if (
         answer['item.whatYouDisagreeWith'] !== '' && answer['item.reasonForAppealing'] !== ''
       ) {
         return true;
