@@ -2,11 +2,39 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
+const { Logger } = require('@hmcts/nodejs-logging');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
+const postcodeChecker = require('utils/postcodeChecker');
+const config = require('config');
+
+const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const logger = Logger.getLogger('AppellantContactDetails.js');
+
+const customJoi = Joi.extend(joi => {
+  return {
+    base: joi.string(),
+    name: 'string',
+    rules: [
+      {
+        name: 'validatePostcode',
+        params: {
+          invalidPostcode: joi.alternatives([joi.boolean().required(), joi.func().ref()])
+        },
+        validate(params, value, state, options) {
+          if (params.invalidPostcode) {
+            return this.createError('string.validatePostcode', { v: value }, state, options);
+          }
+
+          return value;
+        }
+      }
+    ]
+  };
+});
 
 class AppellantContactDetails extends Question {
   static get path() {
@@ -43,6 +71,9 @@ class AppellantContactDetails extends Question {
       postCode: text.joi(
         fields.postCode.error.required,
         Joi.string().trim().regex(postCode).required()
+      ).joi(
+        fields.postCode.error.invalidPostcode,
+        customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
       ),
       phoneNumber: text.joi(
         fields.phoneNumber.error.invalid,
@@ -53,6 +84,39 @@ class AppellantContactDetails extends Question {
         Joi.string().trim().email(emailOptions).allow('')
       )
     });
+  }
+
+  static isEnglandOrWalesPostcode(req, resp, next) {
+    if (!usePostcodeChecker) {
+      req.session.invalidPostcode = false;
+      next();
+    } else if (req.method.toLowerCase() === 'post') {
+      const postcode = req.body.postCode;
+
+      postcodeChecker(postcode, true).then(isEnglandOrWalesPostcode => {
+        req.session.invalidPostcode = !isEnglandOrWalesPostcode;
+        next();
+      }).catch(error => {
+        logger.error(error);
+        req.session.invalidPostcode = true;
+        next(error);
+      });
+    } else {
+      next();
+    }
+  }
+
+  static saveSession(req, resp, next) {
+    req.session.save();
+    next();
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      AppellantContactDetails.isEnglandOrWalesPostcode,
+      AppellantContactDetails.saveSession
+    ];
   }
 
   answers() {
