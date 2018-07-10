@@ -41,7 +41,7 @@ class EvidenceUpload {
           name: this.elId,
           value: '',
           errors: this.errors
-        }, null, fileTypeWhiteList);
+        }, 'Choose file', fileTypeWhiteList);
         this.appendForm();
       }
     }, 0);
@@ -86,6 +86,7 @@ class EvidenceUpload {
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
     $('.add-another-edit-link').css('visibility', 'hidden');
+    $(`#${this.elId}`).hide();
   }
   doTheUpload() {
     const formData = new FormData(document.getElementById(this.formId));

@@ -134,7 +134,7 @@ label.form-label[for="signer"] {
   }
 }
 
-.add-another-add-link{
+.add-another-add-link, [for=uploadEv]{
   @include button($grey-3);
 }
 
