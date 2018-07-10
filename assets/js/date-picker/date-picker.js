@@ -40,6 +40,7 @@ const datePicker = {
     /* eslint-enable no-invalid-this */
   },
   addAriaAttributes: () => {
+    $('tfoot').remove();
     /* eslint-disable no-invalid-this */
     $('.dow').each(function tabIndexOnWeekDays(index) {
       const content = $(this).text();
@@ -54,7 +55,6 @@ const datePicker = {
       const attrib = parseInt($(this).attr('data-date'), 10);
       const content = $(this).html();
       $(this).attr('role', 'button');
-      $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
       $(this).html(`<div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
     });
@@ -128,9 +128,8 @@ const datePicker = {
 
   selector: () => $('#date-picker'),
 
-  updateAriaAttributesOnSelect: (cell, select) => {
+  updateAriaAttributesOnSelect: cell => {
     window.setTimeout(() => {
-      cell.attr('aria-selected', select ? 'true' : 'false');
       cell.focus();
     }, 0);
   },
@@ -143,12 +142,12 @@ const datePicker = {
     const removed = datePickerUtils.isDateRemoved(currentDates, dates);
     if (added) {
       const selected = datePickerUtils.findCellByTimestamp(last(dates));
-      datePicker.updateAriaAttributesOnSelect(selected, true);
+      datePicker.updateAriaAttributesOnSelect(selected);
       return datePicker.postDate(dates);
     } else if (removed) {
       const deselected = differenceWith(currentDates.map(value => value.value), dates, isEqual);
       const deselectedCell = datePickerUtils.findCellByTimestamp(deselected[0]);
-      datePicker.updateAriaAttributesOnSelect(deselectedCell, false);
+      datePicker.updateAriaAttributesOnSelect(deselectedCell);
       return datePicker.removeDate(dates);
     }
     return datePicker.displayDateList(dates);
