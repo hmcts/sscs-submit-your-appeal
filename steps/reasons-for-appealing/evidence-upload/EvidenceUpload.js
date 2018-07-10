@@ -112,10 +112,17 @@ class EvidenceUpload extends AddAnother {
   get addAnotherLinkContent() {
     /* eslint-disable no-undefined */
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0 ? 'Add new' : 'Add';
+      return this.fields.items.value.length > 0 ? 'Add another file' : 'Add file';
     }
     return false;
     /* eslint-enable no-undefined */
+  }
+
+  editUrl(index) {
+    if (!this.fields.items || index === this.fields.items.value.length) {
+      return super.editUrl(index);
+    }
+    return false;
   }
 
   get field() {

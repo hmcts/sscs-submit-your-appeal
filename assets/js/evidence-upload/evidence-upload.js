@@ -85,7 +85,6 @@ class EvidenceUpload {
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
-    $('.add-another-edit-link').css('visibility', 'hidden');
     $(`#${this.elId}`).hide();
   }
   doTheUpload() {
