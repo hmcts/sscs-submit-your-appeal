@@ -97,11 +97,6 @@ module.exports = {
   bootstrap, teardown
 };
 
-http.createServer(app).listen(app.get('port'), () => {
-  logger.log(`Express server listening on port ${app.get('port')}`);
-});
-
-
 /* eslint-enable no-console */
 /* eslint-enable id-blacklist */
 /* eslint-enable consistent-return */
