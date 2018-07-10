@@ -7,6 +7,8 @@ const paths = require('paths');
 const Joi = require('joi');
 const userAnswer = require('utils/answer');
 
+const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
+
 class OtherReasonForAppealing extends Question {
   static get path() {
     return paths.reasonsForAppealing.otherReasonForAppealing;
@@ -40,7 +42,8 @@ class OtherReasonForAppealing extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.SendingEvidence);
+    const followingStep = evidenceUploadEnabled ? 'EvidenceProvide' : 'SendingEvidence';
+    return goTo(this.journey.steps[followingStep]);
   }
 }
 

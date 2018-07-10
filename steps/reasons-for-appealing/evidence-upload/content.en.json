@@ -8,7 +8,7 @@
         "uploadEv": {
             "label": "Upload file",
             "error": {
-                "maxFileSizeExceeded": "The file is too big. The maximum size is 10 mb",
+                "maxFileSizeExceeded": "The file you have added is too large. It should be less than 10MB.",
                 "wrongFileType": "The document is not in an allowed format",
                 "required": "Please choose a file"
             }

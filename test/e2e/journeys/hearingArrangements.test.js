@@ -23,7 +23,7 @@ Scenario('Selects sign language interpreter and enters a language', I => {
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     [ fields.selection.signLanguage.requested.label ],
     [{ id: signLanguageTextField, content: testData.hearing.signLanguageType }]);
@@ -36,7 +36,7 @@ Scenario('Selects sign language interpreter and other, enters a language', I => 
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     [
       fields.selection.signLanguage.requested.label,
@@ -57,7 +57,7 @@ Scenario('Selects sign language interpreter, language interpreter, other, enters
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(
     textRemindersContent.fields.doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     [
       fields.selection.languageInterpreter.requested.label,

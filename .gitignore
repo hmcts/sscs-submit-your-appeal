@@ -13,3 +13,6 @@ functional-output/
 submit-your-appeal.iml
 dist/
 mochawesome-report/
+.vscode/
+yarn-error.log
+uploads/

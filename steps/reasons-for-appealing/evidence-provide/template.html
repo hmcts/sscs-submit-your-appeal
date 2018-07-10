@@ -1,0 +1,29 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+<p>{{ content.descriptionPara1 | safe }}</p>
+<p>{{ content.descriptionPara2 | safe }}</p>
+
+{% call formSection() %}
+
+{{ selectionButtons(
+    fields.evidenceProvide,
+    content.fields.evidenceProvide.label,
+    hideQuestion=false,
+    options = [
+        { label: content.fields.evidenceProvide.yes, value: "yes" },
+        { label: content.fields.evidenceProvide.no, value: "no" }
+    ])
+}}
+
+{% endcall %}
+
+{% endblock %}
