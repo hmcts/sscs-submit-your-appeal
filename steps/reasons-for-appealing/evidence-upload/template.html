@@ -7,7 +7,7 @@
 {% set pageContent = {
 addAnotherLink: addAnotherLinkContent,
 itemsListLabel: content.itemsListLabel,
-noItemsMessage: content.noItemsMessage
+hideItemsListLabel: true
 } %}
 
 {% set title %}
@@ -36,6 +36,7 @@ noItemsMessage: content.noItemsMessage
 
 <div id="evidence-upload"></div>
 
+{{ header(content.itemsListLabel, size='small') }}
 {{ super() }}
 
 {% endblock %}
