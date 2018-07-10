@@ -23,7 +23,7 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
           return;
         }
 
-        const regionalCentre = resp.body.regionalcentre.toLocaleLowerCase();
+        const regionalCentre = resp.body.regionalCentre.toLocaleLowerCase();
         resolve(!disallowedRegionCentres.includes(regionalCentre));
       })
       .catch(error => {
