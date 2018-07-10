@@ -28,7 +28,7 @@ class EvidenceUpload extends AddAnother {
   static handleUpload(req, res, next) {
     const logger = Logger.getLogger('EvidenceUpload.js');
 
-    const urlRegex = RegExp(`/${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
+    const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
       const multiplier = 1024;
       const incoming = new formidable.IncomingForm({
