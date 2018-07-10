@@ -41,6 +41,7 @@ const NoRepresentativeDetails = require('steps/representative/no-representative-
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
+const EvidenceProvide = require('steps/reasons-for-appealing/evidence-provide/EvidenceProvide');
 const HearingSupport = require('steps/hearing/support/HearingSupport');
 const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
@@ -103,11 +104,15 @@ const representative = [
 
 const reasonsForAppealing = [
   ReasonForAppealing,
-  OtherReasonForAppealing,
-  SendingEvidence
+  OtherReasonForAppealing
 ];
 
+if (!evidenceUploadEnabled) {
+  reasonsForAppealing.push(SendingEvidence);
+}
+
 if (evidenceUploadEnabled) {
+  reasonsForAppealing.push(EvidenceProvide);
   reasonsForAppealing.push(EvidenceUpload);
 }
 

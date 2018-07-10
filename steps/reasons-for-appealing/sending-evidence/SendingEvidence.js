@@ -3,10 +3,6 @@ const { form, text, ref } = require('@hmcts/one-per-page/forms');
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const paths = require('paths');
 
-const config = require('config');
-
-const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-
 class SendingEvidence extends Interstitial {
   static get path() {
     return paths.reasonsForAppealing.sendingEvidence;
@@ -29,8 +25,7 @@ class SendingEvidence extends Interstitial {
   }
 
   next() {
-    const followingStep = evidenceUploadEnabled ? 'EvidenceUpload' : 'TheHearing';
-    return goTo(this.journey.steps[followingStep]);
+    return goTo(this.journey.steps.TheHearing);
   }
 }
 
