@@ -4,6 +4,7 @@ const request = require('superagent');
 const { inwardPostcode } = require('utils/regex');
 
 const postcodeCountryLookupUrl = config.get('api.url') + config.get('postcodeChecker.endpoint');
+
 const disallowedRegionCentres = ['glasgow'];
 const northernIrelandPostcodeStart = 'bt';
 
