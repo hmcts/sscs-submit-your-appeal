@@ -14,6 +14,7 @@ const moment = require('moment');
 const stream = require('stream');
 const request = require('request');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
+const content = require('./content.en.json');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
@@ -120,13 +121,13 @@ class EvidenceUpload extends AddAnother {
   get field() {
     return object({
       uploadEv: text.joi(
-        'file missing',
+        content.fields.uploadEv.error.required,
         Joi.string().disallow(fileMissingError)
       ).joi(
-        'wrong file type',
+        content.fields.uploadEv.error.wrongFileType,
         Joi.string().disallow(wrongFileTypeError)
       ).joi(
-        'The file is too big',
+        content.fields.uploadEv.error.maxFileSizeExceeded,
         Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional())
