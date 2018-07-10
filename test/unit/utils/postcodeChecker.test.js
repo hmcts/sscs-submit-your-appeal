@@ -35,12 +35,12 @@ describe('PostcodeChecker.js', () => {
       });
     }
 
-    function setRegionalCenterTo(regionalCentre) {
-      setResponse({ status: HttpStatus.OK, body: { regionalcentre: regionalCentre } });
+    function setRegionalCenterTo(regionalCentreValue) {
+      setResponse({ status: HttpStatus.OK, body: { regionalCentre: regionalCentreValue } });
     }
 
     function buildExpectedUrl(outcode) {
-      return `http://localhost:3011/regionalcentre/${outcode}`;
+      return `http://localhost:8080/regionalcentre/${outcode}`;
     }
 
     it('postcode is in England', () => {

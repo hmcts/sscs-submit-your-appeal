@@ -9,7 +9,7 @@ const logger = Logger.getLogger('PostcodeChecker.js');
 const app = express();
 
 /* eslint-disable no-magic-numbers */
-app.set('port', 3011);
+app.set('port', 8080);
 app.get('/regionalcentre/:postcode', (req, res) => {
   const postcode = req.params.postcode;
   logger.log(`postcode request for ${postcode}`);
