@@ -71,27 +71,6 @@ Scenario('When I add a reason and the edit it, I see the new reason', I => {
   I.see(reasons[1].whatYouDisagreeWith);
 });
 
-Scenario('When I click Continue without filling in the reason fields, I see errors', I => {
-  I.click(content.links.add);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-  I.see(content.fields.reasonForAppealing.error.required);
-});
-
-Scenario('When omitting what you disagree with and continuing I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[0].reasonForAppealing);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-});
-
-Scenario('When omitting reason for appealing it and continuing I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[0].whatYouDisagreeWith);
-  I.click('Continue');
-  I.see(content.fields.reasonForAppealing.error.required);
-});
-
 Scenario('When I do not add enough what you disagree with it, I see errors', I => {
   I.click(content.links.add);
   I.fillField('textarea[name="item.reasonForAppealing"]', reasons[0].reasonForAppealing);
