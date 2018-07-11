@@ -38,5 +38,9 @@
       "enabled": false,
       "maxFileSize": 10
     }
+  },
+  "postcodeChecker": {
+    "endpoint": "/regionalcentre",
+    "enabled": false
   }
 }
