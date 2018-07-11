@@ -28,10 +28,10 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "1.15.1",
+    "@hmcts/look-and-feel": "1.16.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
-    "@hmcts/one-per-page": "3.3.3",
+    "@hmcts/one-per-page": "3.4.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.1",
@@ -48,6 +48,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "nsp": "^3.1.0",
+    "nunjucks-loader": "^3.0.0",
     "request": "^2.87.0",
     "superagent": "^3.8.2"
   },

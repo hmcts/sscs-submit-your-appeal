@@ -35,6 +35,7 @@
         "whatYouDisagreeWith": "What you disagree with",
         "reasonForAppealing": "Why you disagree with it"
       },
+      "notProvided": "Not provided",
       "changeLink": "Change",
       "reason": "Reason For Appealing"
     }
