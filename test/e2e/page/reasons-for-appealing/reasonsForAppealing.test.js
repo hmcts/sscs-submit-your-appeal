@@ -4,9 +4,10 @@ const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 
 Feature('Reason For Appealing @batch-10');
 
-Before(I => {
+Before(async I => {
   I.createTheSession();
   I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
+  await I.turnOffJsAndReloadThePage();
 });
 After(I => {
   I.endTheSession();

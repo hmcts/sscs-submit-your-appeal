@@ -1,5 +1,6 @@
 // this is to simulate the upload evidence api. It's not part of the main app.
 
+const { Logger } = require('@hmcts/nodejs-logging');
 const express = require('express');
 const formidable = require('formidable');
 const http = require('http');
@@ -13,6 +14,10 @@ let server;
 /* eslint-disable no-console */
 /* eslint-disable id-blacklist */
 /* eslint-disable consistent-return */
+/* eslint-disable no-magic-numbers */
+
+const logger = Logger.getLogger('PostcodeChecker.js');
+
 
 app.set('port', 3010);
 app.post('/upload', (req, res) => {
@@ -23,7 +28,7 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    console.info('error while receiving the file from the client', er);
+    logger.info('error while receiving the file from the client', er);
   });
 
   incoming.on('file', (field, file) => {
@@ -32,24 +37,24 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.on('error', error => {
-    console.warn('an error has occured with form upload', error);
+    logger.warn('an error has occured with form upload', error);
     req.resume();
   });
 
   incoming.on('aborted', () => {
-    console.log('user aborted upload');
+    logger.log('user aborted upload');
   });
 
   incoming.on('end', () => {
-    console.log('-> upload done');
+    logger.log('-> upload done');
   });
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      console.info('About to respond with error');
+      logger.info('About to respond with error');
       return res.send(422, 'Cannot save the uploaded file');
     }
-    console.info('About to respond correctly');
+    logger.info('About to respond correctly');
     return res.json({
       documents: [
         {
@@ -96,3 +101,4 @@ module.exports = {
 /* eslint-enable id-blacklist */
 /* eslint-enable consistent-return */
 /* eslint-enable init-declarations */
+/* eslint-enable no-magic-numbers */

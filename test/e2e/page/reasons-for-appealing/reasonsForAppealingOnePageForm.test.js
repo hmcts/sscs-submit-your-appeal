@@ -5,7 +5,7 @@ const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
 
-Feature('Reason For Appealing');
+Feature('Reason For Appealing One Page Form @batch-10');
 
 Before(I => {
   I.createTheSession();

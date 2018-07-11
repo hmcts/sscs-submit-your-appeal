@@ -11,6 +11,7 @@ async function hasErrorClass(item) {
 function addAReasonForAppealing(whatYouDisagreeWithField, reasonForAppealingField, reason) {
   const I = this;
 
+  I.waitForElement(whatYouDisagreeWithField, 5);
   I.fillField(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
   I.fillField(reasonForAppealingField, reason.reasonForAppealing);
 }
@@ -27,8 +28,8 @@ function addReasonForAppealingUsingTheOnePageFormAndContinue(reason) {
   const I = this;
 
   I.addAReasonForAppealing(
-    '#items-0 #item\\.whatYouDisagreeWith',
-    '#items-0 #item\\.reasonForAppealing',
+    '#items-0 #item\\.whatYouDisagreeWith-0',
+    '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
   I.click('Continue');

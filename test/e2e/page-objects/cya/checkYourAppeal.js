@@ -5,7 +5,6 @@ const representative = require('steps/representative/representative/content.en')
 const theHearing = require('steps/hearing/the-hearing/content.en');
 const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
-const reasonsForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
 
@@ -38,8 +37,7 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence() {
   const I = this;
 
   I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
-  I.addReasonsForAppealingAndContinue(
-    testData.reasonsForAppealing.reasons[0], reasonsForAppealing.links.add);
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(testData.reasonsForAppealing.reasons[0]);
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     I.readSendingEvidenceAndContinue();
