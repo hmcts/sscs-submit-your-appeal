@@ -156,6 +156,10 @@ class EvidenceUpload extends AddAnother {
     };
   }
 
+  validateList(list) {
+    return list.check(content.noItemsError, arr => arr.length > 0);
+  }
+
   next() {
     return goTo(this.journey.steps.TheHearing);
   }
