@@ -10,6 +10,15 @@
 
       thead {
         tr {
+          th {
+            text-align: center;
+
+            &.dow {
+              padding-right: 0;
+              background-color: $grey-4;
+            }
+          }
+
           .prev, .next {
             background-color: $grey-2;
             border-radius: 0;

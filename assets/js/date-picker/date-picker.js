@@ -112,8 +112,13 @@ const datePicker = {
       weekStart: 1,
       maxViewMode: 0,
       datesDisabled,
+      templates: {
+        leftArrow: datePicker.toggleArrows('previous'),
+        rightArrow: datePicker.toggleArrows('next')
+      },
       beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
     }).on('changeDate', event => datePicker.changeDateHandler(event));
+    datePicker.setUpDOWHeading();
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
     datePicker.selector().off('keydown');
@@ -128,7 +133,31 @@ const datePicker = {
 
   selector: () => $('#date-picker'),
 
-  updateAriaAttributesOnSelect: cell => {
+  toggleArrows: nextOrPrevArrow => {
+    const assetPath = $('#asset-path').data('path');
+    return `<img 
+                src="${assetPath}images/${nextOrPrevArrow}_arrow.png" 
+                alt="${nextOrPrevArrow} month"
+            >`;
+  },
+
+  setUpDOWHeading: () => {
+    const days = [
+      'MON',
+      'TUE',
+      'WED',
+      'THU',
+      'FRI',
+      'SAT',
+      'SUN'
+    ];
+    const dow = $('.dow');
+    $.each(dow, function(index) {
+      $(this).text(days[index]);
+    });
+  },
+
+  updateAriaAttributesOnSelect: (cell) => {
     window.setTimeout(() => {
       cell.focus();
     }, 0);
