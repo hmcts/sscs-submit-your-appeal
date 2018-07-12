@@ -1,3 +1,9 @@
 language: node_js
 node_js:
   - "8"
+services:
+  - redis
+script:
+  - yarn dev &
+  - sleep 10
+  - yarn test:functional:batches
