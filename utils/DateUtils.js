@@ -111,6 +111,10 @@ class DateUtils {
       return 0;
     });
   }
+
+  static getCurrentDate() {
+    return moment().format('DD-MM-YYYY');
+  }
 }
 
 module.exports = DateUtils;
