@@ -37,9 +37,18 @@ const datePickerUtils = {
     const day = mDate.format('D');
     const month = mDate.format('MMM');
     const fullMonth = mDate.format('MMMM');
-    const displayMonth = {};
+    const displayMonth = {
+      content: `<span>${day}</span>`
+    };
     if (day === '1') {
-      const html = `${day} <p class="first-of-month" aria-label="${fullMonth}">${month}</p>`;
+      const html = `
+        <span>
+            ${day}
+        </span>
+        <p class="first-of-month" aria-label="${fullMonth}">
+            ${month}
+        </p>
+      `;
       displayMonth.content = html;
     }
     return displayMonth;
