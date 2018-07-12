@@ -3,7 +3,12 @@
 {% from "look-and-feel/components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
 {% from "components/formElements.html" import textarea %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% set titleHead %}
+    {{ content.titleHead | safe if isListMode }}
+    {{ content.titleHeadEdit | safe if isEditMode }}
+{% endset %}
+
+{% block page_title %}{{ titleHead }}{% endblock %}
 
 {% block head %}
 {{ super() }}
