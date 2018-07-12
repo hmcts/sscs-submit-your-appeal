@@ -27,24 +27,20 @@ const datePicker = {
     });
   },
   hijackTabIndex: () => {
-    const prevTb = 1;
-    const switchTb = 2;
-    const nextTb = 3;
-    const dowTb = 4;
-    const dTb = 11;
     /* eslint-disable no-invalid-this */
-    $('.prev').attr('tabindex', prevTb);
-    $('.datepicker-switch').attr('tabindex', switchTb);
-    $('.next').attr('tabindex', nextTb);
-    $('.dow').each(function tabIndexOnWeekDays(index) {
-      $(this).attr('tabindex', dowTb + index);
+    $('.prev').attr('tabindex', 0);
+    $('.datepicker-switch').attr('tabindex', 0);
+    $('.next').attr('tabindex', 0);
+    $('.dow').each(function tabIndexOnWeekDays() {
+      $(this).attr('tabindex', 0);
     });
-    $('.day:not(".disabled")').each(function addTabIndex(index) {
-      $(this).attr('tabindex', dTb + index);
+    $('.day:not(".disabled")').each(function addTabIndex() {
+      $(this).attr('tabindex', 0);
     });
     /* eslint-enable no-invalid-this */
   },
   addAriaAttributes: () => {
+    $('tfoot').remove();
     /* eslint-disable no-invalid-this */
     $('.dow').each(function tabIndexOnWeekDays(index) {
       const content = $(this).text();
@@ -53,12 +49,13 @@ const datePicker = {
         'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
       ][index]}">${content}</div>`);
     });
+    $('.prev').attr('role', 'button').attr('aria-label', 'previous month');
+    $('.next').attr('role', 'button').attr('aria-label', 'next month');
     $('.day:not(".disabled")').each(function addAriaRole() {
       const attrib = parseInt($(this).attr('data-date'), 10);
       const content = $(this).html();
-      $(this).attr('aria-role', 'button');
-      $(this).attr('aria-selected', $(this).hasClass('active') ? 'true' : 'false');
-      $(this).html(`<div aria-label="${moment(attrib).format('DD MMMM YYYY')}
+      $(this).attr('role', 'button');
+      $(this).html(`<div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
     });
     /* eslint-enable no-invalid-this */
@@ -131,9 +128,8 @@ const datePicker = {
 
   selector: () => $('#date-picker'),
 
-  updateAriaAttributesOnSelect: (cell, select) => {
+  updateAriaAttributesOnSelect: cell => {
     window.setTimeout(() => {
-      cell.attr('aria-selected', select ? 'true' : 'false');
       cell.focus();
     }, 0);
   },
@@ -146,12 +142,12 @@ const datePicker = {
     const removed = datePickerUtils.isDateRemoved(currentDates, dates);
     if (added) {
       const selected = datePickerUtils.findCellByTimestamp(last(dates));
-      datePicker.updateAriaAttributesOnSelect(selected, true);
+      datePicker.updateAriaAttributesOnSelect(selected);
       return datePicker.postDate(dates);
     } else if (removed) {
       const deselected = differenceWith(currentDates.map(value => value.value), dates, isEqual);
       const deselectedCell = datePickerUtils.findCellByTimestamp(deselected[0]);
-      datePicker.updateAriaAttributesOnSelect(deselectedCell, false);
+      datePicker.updateAriaAttributesOnSelect(deselectedCell);
       return datePicker.removeDate(dates);
     }
     return datePicker.displayDateList(dates);

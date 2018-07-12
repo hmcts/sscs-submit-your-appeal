@@ -116,7 +116,7 @@ describe('date-picker-utils.js', () => {
     it('returns an object with html string when the day is  the first of the month', () => {
       const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-01'));
       expect(displayMonth).to.eql({
-        content: '1 <p class="first-of-month">Dec</p>'
+        content: '1 <p class="first-of-month" aria-label="December">Dec</p>'
       });
     });
   });
