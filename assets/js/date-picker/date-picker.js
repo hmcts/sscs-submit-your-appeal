@@ -52,11 +52,14 @@ const datePicker = {
     $('.prev').attr('role', 'button').attr('aria-label', 'previous month');
     $('.next').attr('role', 'button').attr('aria-label', 'next month');
     $('.day:not(".disabled")').each(function addAriaRole() {
-      const attrib = parseInt($(this).attr('data-date'), 10);
-      const content = $(this).html();
-      $(this).attr('role', 'button');
-      $(this).html(`<div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
+      if (!$(this).children('div').length) {
+        const attrib = parseInt($(this).attr('data-date'), 10);
+        const content = $(this).html();
+        $(this).attr('role', 'button');
+        $(this).html(`
+        <div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
+      }
     });
     /* eslint-enable no-invalid-this */
   },
@@ -152,12 +155,13 @@ const datePicker = {
       'SUN'
     ];
     const dow = $('.dow');
-    $.each(dow, function(index) {
+    $.each(dow, function changeText(index) {
+      // eslint-disable-next-line no-invalid-this
       $(this).text(days[index]);
     });
   },
 
-  updateAriaAttributesOnSelect: (cell) => {
+  updateAriaAttributesOnSelect: cell => {
     window.setTimeout(() => {
       cell.focus();
     }, 0);

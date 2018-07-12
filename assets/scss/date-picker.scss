@@ -1,6 +1,8 @@
-#date-picker {
+#date-picker-content {
+  display: none;
+}
 
-  padding-bottom: 30px;
+#date-picker {
 
   .datepicker-inline {
     width: 70%;
@@ -53,7 +55,6 @@
             text-align: left;
             width: 100%;
             display: table-cell;
-            line-height: 110%;
             &.active {
               background-color: #76B2D2;
             }
@@ -69,7 +70,7 @@
               font-weight: 400;
 
               .first-of-month {
-                margin-top: 17px;
+                margin-top: 28px;
               }
             }
 
@@ -77,20 +78,23 @@
               border-right: 1px solid $grey-3;
             }
 
-                        &.day {
-                          span {
-                            display: inline-block;
-                            padding-top: 4px;
-                            padding-left: 5px;
-                          }
-                        }
+            &.day {
+              span {
+                display: inline-block;
+                padding-top: 3px;
+                padding-left: 5px;
+                line-height: 110%;
+                height: 20px;
+                margin: 0;
+              }
+            }
 
             .first-of-month {
-              margin: 8px 0 0 0;
+              margin: 28px 0 0 0;
               line-height: 1.6;
-              text-align: center;
               background-color: $grey-1;
               color: white;
+              text-align: center;
             }
           }
         }
