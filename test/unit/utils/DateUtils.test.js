@@ -289,4 +289,9 @@ describe('getMonthValue', () => {
       expect(DateUtils.getMonthValue(date)).to.equal(date.month);
     });
   });
+
+  describe('should return current date in DD-MM-YYYY format', () => {
+    const currentDate = moment().format('DD-MM-YYYY');
+    expect(DateUtils.getCurrentDate()).to.equal(currentDate);
+  });
 });

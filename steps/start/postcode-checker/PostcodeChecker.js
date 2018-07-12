@@ -5,6 +5,10 @@ const { postCode, inwardPostcode } = require('utils/regex');
 const postcodeList = require('steps/start/postcode-checker/validPostcodeList');
 const Joi = require('joi');
 const paths = require('paths');
+const config = require('config');
+const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForEnglandOrWales');
+
+const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
 class PostcodeChecker extends Question {
   static get path() {
@@ -30,6 +34,15 @@ class PostcodeChecker extends Question {
   }
 
   next() {
+    if (usePostcodeChecker) {
+      return new BranchForEnglandOrWales(
+        this.fields.postcode.value,
+        this.journey.steps.Appointee,
+        this.journey.steps.InvalidPostcode,
+        this.journey.steps.Error500
+      );
+    }
+
     const postcode = this.fields.postcode.value;
     const outcode = postcode.trim().replace(inwardPostcode, '').replace(/\s+/, '');
     const isPostcodeOnList = () => postcodeList.includes(outcode.toUpperCase());

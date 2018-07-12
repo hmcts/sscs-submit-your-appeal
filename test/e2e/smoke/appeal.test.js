@@ -26,7 +26,7 @@ xScenario('Appellant full journey from /start-an-appeal to the /check-your-appea
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
-    I.enterDetailsFromNoRepresentativeToSendingEvidence();
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence();
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
     I.confirmDetailsArePresent();
     I.see(appellant.contactDetails.phoneNumber, appellantPhoneNumberAnswer);

@@ -1,17 +1,16 @@
 /* eslint-disable no-undefined */
+/* eslint-disable multiline-ternary */
+/* eslint-disable operator-linebreak */
 
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { isGreaterThanOrEqualToFiveCharacters } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
-
-const MIN_CHAR_COUNT = 5;
-const emptyStringValidation = value => value !== undefined;
-const isGreaterThanOrEqualToFiveCharacters = value => value.length >= MIN_CHAR_COUNT;
 
 class ReasonForAppealing extends AddAnother {
   static get path() {
@@ -30,14 +29,8 @@ class ReasonForAppealing extends AddAnother {
       whatYouDisagreeWith: text,
       reasonForAppealing: text
     }).check(
-      errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.required),
-      value => emptyStringValidation(value.whatYouDisagreeWith)
-    ).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
       value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
-    ).check(
-      errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.required),
-      value => emptyStringValidation(value.reasonForAppealing)
     ).check(
       errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
       value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing)
@@ -58,9 +51,18 @@ class ReasonForAppealing extends AddAnother {
   }
 
   values() {
+    const reasons = this.fields.items.value.map(item => {
+      return {
+        whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
+          item.whatYouDisagreeWith : content.cya.reasonForAppealing.notProvided,
+        reasonForAppealing: item.reasonForAppealing && item.reasonForAppealing !== ' ' ?
+          item.reasonForAppealing : content.cya.reasonForAppealing.notProvided
+      };
+    });
+
     return {
       reasonsForAppealing: {
-        reasons: this.fields.items.value
+        reasons
       }
     };
   }

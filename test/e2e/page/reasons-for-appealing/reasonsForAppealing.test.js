@@ -4,9 +4,10 @@ const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 
 Feature('Reason For Appealing @batch-10');
 
-Before(I => {
+Before(async I => {
   I.createTheSession();
   I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
+  await I.turnOffJsAndReloadThePage();
 });
 After(I => {
   I.endTheSession();
@@ -59,7 +60,7 @@ Scenario('When adding a single reason, then remove it, I see Add reason', I => {
 
 Scenario('When I click Continue without adding a reason, I see errors', I => {
   I.click('Continue');
-  I.see(content.noReasons);
+  I.see(content.listError);
 });
 
 Scenario('When I add a reason and the edit it, I see the new reason', I => {
@@ -70,23 +71,34 @@ Scenario('When I add a reason and the edit it, I see the new reason', I => {
   I.see(reasons[1].whatYouDisagreeWith);
 });
 
-Scenario('When I click Continue without filling in the reason fields, I see errors', I => {
-  I.click(content.links.add);
-  I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
-  I.see(content.fields.reasonForAppealing.error.required);
-});
-
-Scenario('When omitting what you disagree with it and continuing I see errors', I => {
+Scenario('When I do not add enough what you disagree with it, I see errors', I => {
   I.click(content.links.add);
   I.fillField('textarea[name="item.reasonForAppealing"]', reasons[0].reasonForAppealing);
+  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[3].whatYouDisagreeWith);
   I.click('Continue');
-  I.see(content.fields.whatYouDisagreeWith.error.required);
+  I.see(content.fields.whatYouDisagreeWith.error.notEnough);
 });
 
-Scenario('When omitting why you disagree with it and continuing I see errors', I => {
+Scenario('When I do not add enough reason for appealing, I see errors', I => {
   I.click(content.links.add);
+  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[3].reasonForAppealing);
   I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[0].whatYouDisagreeWith);
   I.click('Continue');
-  I.see(content.fields.reasonForAppealing.error.required);
+  I.see(content.fields.reasonForAppealing.error.notEnough);
+});
+
+Scenario('When I use whitespace to pad out what you disagree with it, I see errors', I => {
+  I.click(content.links.add);
+  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[0].reasonForAppealing);
+  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[4].whatYouDisagreeWith);
+  I.click('Continue');
+  I.see(content.fields.whatYouDisagreeWith.error.notEnough);
+});
+
+Scenario('When I use whitespace to pad out reason for appealing, I see errors', I => {
+  I.click(content.links.add);
+  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[4].reasonForAppealing);
+  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[0].whatYouDisagreeWith);
+  I.click('Continue');
+  I.see(content.fields.reasonForAppealing.error.notEnough);
 });

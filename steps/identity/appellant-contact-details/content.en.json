@@ -30,7 +30,8 @@
     "postCode": {
       "title": "Postcode",
       "error": {
-        "required": "Enter the postcode from your address"
+        "required": "Enter the postcode from your address",
+        "invalidPostcode": "Postcode must be in England or Wales"
       }
     },
     "phoneNumber": {

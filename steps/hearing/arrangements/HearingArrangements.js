@@ -1,6 +1,7 @@
 /* eslint-disable max-len, no-undefined, no-confusing-arrow  */
 
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
@@ -145,7 +146,7 @@ class HearingArrangements extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.HearingAvailability);
+    return redirectTo(this.journey.steps.HearingAvailability);
   }
 }
 

@@ -1,4 +1,4 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question, branch } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -43,7 +43,7 @@ class TheHearing extends Question {
   next() {
     const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
+      redirectTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
       redirectTo(this.journey.steps.NotAttendingHearing)
     );
   }

@@ -1,5 +1,10 @@
 const { expect } = require('test/util/chai');
-const { titleise, splitBenefitType } = require('utils/stringUtils');
+const {
+  titleise,
+  splitBenefitType,
+  isNotEmptyString,
+  isGreaterThanOrEqualToFiveCharacters
+} = require('utils/stringUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('stringUtils.js', () => {
@@ -15,6 +20,34 @@ describe('stringUtils.js', () => {
     it('should return an empty string when being passed one', () => {
       const str = '';
       expect(titleise(str)).to.equal(str);
+    });
+  });
+
+  describe('isNotEmptyString', () => {
+    it('should return false for an empty string', () => {
+      expect(isNotEmptyString('')).to.equal(false);
+    });
+
+    it('should return true for a non-empty string', () => {
+      expect(isNotEmptyString('badgers')).to.equal(true);
+    });
+  });
+
+  describe('isGreaterThanOrEqualToFiveCharacters', () => {
+    it('should return false for an empty string', () => {
+      expect(isGreaterThanOrEqualToFiveCharacters('')).to.equal(false);
+    });
+
+    it('should return false for a string with less than 5 characters', () => {
+      expect(isGreaterThanOrEqualToFiveCharacters('ABCD')).to.equal(false);
+    });
+
+    it('should return true for a string with exactly 5 characters', () => {
+      expect(isGreaterThanOrEqualToFiveCharacters('ABCDE')).to.equal(true);
+    });
+
+    it('should return true for a string with more than 5 characters', () => {
+      expect(isGreaterThanOrEqualToFiveCharacters('ABCDEF')).to.equal(true);
     });
   });
 });

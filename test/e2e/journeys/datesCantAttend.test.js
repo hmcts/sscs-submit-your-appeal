@@ -25,7 +25,7 @@ Scenario('Provides date of when they cannot attend the hearing', async I => {
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToSendingEvidence();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
   await I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDay);
   I.confirmDetailsArePresent();
   I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
@@ -38,7 +38,7 @@ Scenario('Provides a single date when they cannot attend the hearing, then edits
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsAndContinue();
     I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToSendingEvidence();
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence();
     await I.enterDetailsFromAttendingTheHearingToEnd(randomWeekDayIn5Weeks);
     I.see(randomWeekDayIn5Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
