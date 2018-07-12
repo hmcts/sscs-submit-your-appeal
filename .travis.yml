@@ -6,4 +6,4 @@ services:
 script:
   - yarn dev &
   - sleep 20
-  - BATCH=06 yarn test:functional:batch
+  - yarn test:functional:batches
