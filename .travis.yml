@@ -4,6 +4,9 @@ node_js:
 services:
   - redis
 script:
+  - yarn test
+  - yarn test:nsp
   - yarn dev &
   - sleep 20
-  - yarn test:functional:batches
+  - yarn test:e2e-pages
+  - yarn test:functional:travis
