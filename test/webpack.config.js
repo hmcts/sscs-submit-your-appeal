@@ -6,14 +6,25 @@ module.exports = {
   context: __dirname,
 
   entry: 'mocha!./web.js',*/
+//context: __dirname,
 context: '/',
-  entry: [
+/*  entry: [
     path.resolve(__dirname, '.'),
     path.resolve(__dirname, 'assets/scss/main.scss'),
     path.resolve(__dirname, 'assets/js/main.js')
-  ],
-  resolveLoader: {
-    modules: ["node_modules"],
+  ],*/
+  resolve: {
+     modules: [
+       '.',
+      __dirname,
+      __dirname + '/fixtures/templates',
+      __dirname + '/fixtures/custom_modules',
+      __dirname + '/node_modules',
+      __dirname + '../../node_modules'
+    ]
+  },
+    resolveLoader: {
+    modules: [path.resolve(__dirname, '../node_modules')],
   },
   module: {
     loaders: [
