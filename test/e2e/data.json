@@ -58,6 +58,12 @@
       }, {
         "whatYouDisagreeWith": "Disagree with C",
         "reasonForAppealing": "Reason for appealing C"
+      }, {
+        "whatYouDisagreeWith": "All",
+        "reasonForAppealing": "None"
+      }, {
+        "whatYouDisagreeWith": "          ",
+        "reasonForAppealing": "          "
       }
     ],
     "otherReasons": "Others reasons.."

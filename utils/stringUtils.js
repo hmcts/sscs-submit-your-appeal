@@ -1,4 +1,8 @@
-/* eslint-disable no-magic-numbers, max-len */
+/* eslint-disable no-magic-numbers, max-len, no-undefined */
+
+const MIN_CHAR_COUNT = 5;
+const isNotEmptyString = value => value !== undefined && value.length > 0;
+const isGreaterThanOrEqualToFiveCharacters = value => value.replace(/\s\s+/g, ' ').length >= MIN_CHAR_COUNT;
 
 const titleise = string => {
   if (typeof string === 'undefined' || string === null) {
@@ -32,4 +36,9 @@ const splitBenefitType = benefitType => {
   return { description, code };
 };
 
-module.exports = { titleise, splitBenefitType };
+module.exports = {
+  titleise,
+  splitBenefitType,
+  isNotEmptyString,
+  isGreaterThanOrEqualToFiveCharacters
+};
