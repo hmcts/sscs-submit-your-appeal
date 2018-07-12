@@ -5,5 +5,5 @@ services:
   - redis
 script:
   - yarn dev &
-  - sleep 10
+  - sleep 20
   - BATCH=06 yarn test:functional:batch
