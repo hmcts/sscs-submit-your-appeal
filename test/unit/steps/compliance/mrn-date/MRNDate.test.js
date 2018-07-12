@@ -86,7 +86,8 @@ describe('MRNDate.js', () => {
 
     it('should contain a value object', () => {
       const values = mrnDate.values();
-      expect(values).to.eql({ mrn: { date: '13-12-2017' } });
+      const currentDate = moment().format('DD-MM-YYYY');
+      expect(values).to.eql({ mrn: { date: '13-12-2017', dateAppealSubmitted: currentDate } });
     });
   });
 

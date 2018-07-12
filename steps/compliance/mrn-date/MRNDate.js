@@ -50,7 +50,8 @@ class MRNDate extends Question {
   values() {
     return {
       mrn: {
-        date: this.fields.mrnDate.value.format('DD-MM-YYYY')
+        date: this.fields.mrnDate.value.format('DD-MM-YYYY'),
+        dateAppealSubmitted: DateUtils.getCurrentDate()
       }
     };
   }
