@@ -1,4 +1,5 @@
 import path from 'path';
+const nodeExternals = require('webpack-node-externals');
 module.exports = {
 /*
   target: 'web',
@@ -7,6 +8,9 @@ module.exports = {
 
   entry: 'mocha!./web.js',*/
 //context: __dirname,
+  externals: [nodeExternals({
+    whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/]
+  })],
   node: {
   //  console: false,
     fs: 'empty',
@@ -15,6 +19,7 @@ module.exports = {
     child_process: 'empty',
     module: 'empty'
   },
+  target: 'web',
 context: '/',
 /*  entry: [
     path.resolve(__dirname, '.'),
@@ -26,6 +31,7 @@ context: '/',
        '.',
       __dirname,
       __dirname + '/node_modules',
+      __dirname + '../node_modules',
       __dirname + '../../node_modules'
     ]
   },
