@@ -7,13 +7,10 @@ const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { isGreaterThanOrEqualToFiveCharacters } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
-
-const MIN_CHAR_COUNT = 5;
-/* eslint-disable-next-line no-confusing-arrow */
-const isGreaterThanOrEqualToFiveCharacters = value => value ? value.length >= MIN_CHAR_COUNT : true;
 
 class ReasonForAppealing extends AddAnother {
   static get path() {

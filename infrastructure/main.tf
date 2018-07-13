@@ -18,7 +18,7 @@ locals {
 }
 
 module "submit-your-appeal-frontend" {
-  source               = "git@github.com:hmcts/moj-module-webapp.git?ref=RPE-389/local-cache"
+  source               = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
   product              = "${var.product}-${var.component}"
   location             = "${var.location}"
   env                  = "${var.env}"
@@ -44,10 +44,11 @@ module "submit-your-appeal-frontend" {
 }
 
 module "redis-cache" {
-  source   = "git@github.com:contino/moj-module-redis?ref=master"
-  product  = "${var.env != "preview" ? "${var.product}-redis" : "sscs-tribunals-redis-preview"}"
-  location = "${var.location}"
-  env      = "${var.env}"
-  subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  source      = "git@github.com:contino/moj-module-redis?ref=master"
+  product     = "${var.env != "preview" ? "${var.product}-redis" : "sscs-tribunals-redis-preview"}"
+  location    = "${var.location}"
+  env         = "${var.env}"
+  subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  common_tags = "${var.common_tags}"
 }
 
