@@ -1,5 +1,6 @@
 import path from 'path';
 const nodeExternals = require('webpack-node-externals');
+
 module.exports = {
 /*
   target: 'web',
@@ -7,10 +8,12 @@ module.exports = {
   context: __dirname,
 
   entry: 'mocha!./web.js',*/
-//context: __dirname,
-  externals: [nodeExternals({
-    whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/]
-  })],
+// context: __dirname,
+  externals: [
+    nodeExternals({
+      whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/]
+    })
+  ],
   node: {
   //  console: false,
     fs: 'empty',
@@ -20,23 +23,23 @@ module.exports = {
     module: 'empty'
   },
   target: 'web',
-context: '/',
-/*  entry: [
+  context: '/',
+  /*  entry: [
     path.resolve(__dirname, '.'),
     path.resolve(__dirname, 'assets/scss/main.scss'),
     path.resolve(__dirname, 'assets/js/main.js')
   ],*/
   resolve: {
-     modules: [
-       '.',
+    modules: [
+      '.',
       __dirname,
-      __dirname + '/node_modules',
-      __dirname + '../node_modules',
-      __dirname + '../../node_modules'
+      `${__dirname}/node_modules`,
+      `${__dirname}../node_modules`,
+      `${__dirname}../../node_modules`
     ]
   },
-    resolveLoader: {
-    modules: [path.resolve(__dirname, '../node_modules')],
+  resolveLoader: {
+    modules: [path.resolve(__dirname, '../node_modules')]
   },
   module: {
     loaders: [
@@ -47,7 +50,7 @@ context: '/',
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: [ "env" ] }
+            options: { presets: [ 'env' ] }
           }
         ]
       },
@@ -59,7 +62,7 @@ context: '/',
         }
       }
     ]
-  },
+  }
 
 /*  resolve: {
     root: [

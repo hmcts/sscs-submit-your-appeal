@@ -1,5 +1,6 @@
-//const { expect } = require('test/util/chai');
+// const { expect } = require('test/util/chai');
 const chai = require('chai');
+
 const expect = chai.expect;
 const datePickerUtils = require('assets/js/date-picker/date-picker-utils');
 
