@@ -1,5 +1,7 @@
-const { expect } = require('test/util/chai');
-const AddReason = require('assets/js/add-reason');
+const chai = require('chai');
+const expect = chai.expect;
+const AddReason = require('assets/js/add-reason').default;
+const asn = require('parse-asn1');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 

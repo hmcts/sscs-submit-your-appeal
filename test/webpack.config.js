@@ -7,6 +7,14 @@ module.exports = {
 
   entry: 'mocha!./web.js',*/
 //context: __dirname,
+  node: {
+  //  console: false,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
+    module: 'empty'
+  },
 context: '/',
 /*  entry: [
     path.resolve(__dirname, '.'),
@@ -17,8 +25,6 @@ context: '/',
      modules: [
        '.',
       __dirname,
-      __dirname + '/fixtures/templates',
-      __dirname + '/fixtures/custom_modules',
       __dirname + '/node_modules',
       __dirname + '../../node_modules'
     ]

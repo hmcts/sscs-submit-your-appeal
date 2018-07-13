@@ -4,6 +4,7 @@ const chaiJq = require('chai-jq');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 
+console.info('what chai is ', chai)
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 chai.use(chaiJq);
