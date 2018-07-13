@@ -48,7 +48,7 @@ class EvidenceUpload extends AddAnother {
         if (!part.filename) {
           // let formidable handle all non-file parts
           incoming.handlePart(part);
-          return;
+          return next();
         }
         if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
           req.body = {
