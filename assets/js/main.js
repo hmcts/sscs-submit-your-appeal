@@ -7,9 +7,11 @@ import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
+import EvidenceUpload from './evidence-upload/evidence-upload';
 
 /* eslint-disable init-declarations */
 let timeoutM;
+let evidenceUpload;
 /* eslint-enable init-declarations */
 
 
@@ -64,6 +66,19 @@ function destroyTM() {
   }
 }
 
+function destroyEvidenceUpload() {
+  if (evidenceUpload) {
+    evidenceUpload.destroy();
+    evidenceUpload = null;
+  }
+}
+
+function initEvidenceUpload() {
+  if ($('#evidence-upload').length) {
+    evidenceUpload = new EvidenceUpload('#evidence-upload');
+  }
+}
+
 function initAddReason() {
   if (AddReason.startAddReason()) {
     /* eslint-disable no-new */
@@ -76,11 +91,13 @@ $(document).ready(() => {
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();
+  initEvidenceUpload();
   initAddReason();
 });
 
 $(window).on('unload', () => {
   destroyTM();
+  destroyEvidenceUpload();
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');
   }
