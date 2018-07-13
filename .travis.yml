@@ -9,4 +9,4 @@ script:
   - yarn dev &
   - sleep 20
   - yarn test:e2e-pages
-  - yarn test:functional:travis
+  - BATCH=01 yarn test:functional:batch
