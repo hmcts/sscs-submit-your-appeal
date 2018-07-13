@@ -8,5 +8,8 @@ script:
   - yarn test:nsp
   - yarn dev &
   - sleep 20
-  - yarn test:e2e-pages
+#  - yarn test:e2e-pages
   - BATCH=01 yarn test:functional:batch
+addons:
+  artifacts:
+    s3_region: "eu-west-2"
