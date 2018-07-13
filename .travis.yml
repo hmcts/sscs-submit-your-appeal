@@ -6,6 +6,7 @@ services:
 script:
   - yarn test
   - yarn test:nsp
+  - echo output_dir = $E2E_OUTPUT_DIR
   - yarn dev &
   - sleep 20
 #  - yarn test:e2e-pages
