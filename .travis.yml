@@ -11,6 +11,8 @@ script:
   - sleep 20
 #  - yarn test:e2e-pages
   - BATCH=01 yarn test:functional:batch
+  - ls ./functional-output
+  - ls ./test/e2e/output
 addons:
   artifacts:
     s3_region: "eu-west-2"
