@@ -11,7 +11,7 @@ const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgRe
 const appellantPhoneNumberAnswer = `${selectors.appellant.phoneNumber} ${selectors.answer}`;
 const txtMsgRemindersMobAnswer = `${selectors.textMsgReminders.mobileNumber} ${selectors.answer}`;
 
-Feature('Full Journey  ');
+Feature('Full Journey');
 
 xScenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke',
   async I => {
