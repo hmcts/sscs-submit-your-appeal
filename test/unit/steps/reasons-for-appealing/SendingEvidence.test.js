@@ -1,6 +1,9 @@
 const { expect, sinon } = require('test/util/chai');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
+const config = require('config');
+
+const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 describe('SendingEvidence.js', () => {
   const retrieveValue = value => {
@@ -24,7 +27,8 @@ describe('SendingEvidence.js', () => {
       journey: {
         steps: {
           TheHearing: paths.hearing.theHearing,
-          AppellantContactDetails: paths.reasonsForAppealing.sendingEvidence
+          AppellantContactDetails: paths.reasonsForAppealing.sendingEvidence,
+          EvidenceUpload: paths.reasonsForAppealing.evidenceUpload
         }
       }
     });
@@ -47,7 +51,15 @@ describe('SendingEvidence.js', () => {
 
   describe('next()', () => {
     it('nextStep equals /the-hearing', () => {
-      expect(sendingEvidence.next().step).to.eql(paths.hearing.theHearing);
+      sendingEvidence = instantiateClass(SendingEvidence);
+      sendingEvidence.fields = {
+        emailAddress: {}
+      };
+      const next = sendingEvidence.next();
+      const step = next.step;
+      /* eslint-disable max-len */
+      expect(step).to.eql(evidenceUploadEnabled ? paths.reasonsForAppealing.evidenceUpload : paths.hearing.theHearing);
+      /* eslint-enable max-len */
     });
   });
 

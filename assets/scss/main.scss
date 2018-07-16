@@ -134,7 +134,7 @@ label.form-label[for="signer"] {
   }
 }
 
-.add-another-add-link{
+.add-another-add-link, [for=uploadEv]{
   @include button($grey-3);
 }
 
@@ -300,4 +300,8 @@ label.form-label[for="signer"] {
       border-bottom: 2px solid $grey-2;
     }
   }
+}
+
+#evidence-upload-form .error-message {
+  margin-top: 20px;
 }

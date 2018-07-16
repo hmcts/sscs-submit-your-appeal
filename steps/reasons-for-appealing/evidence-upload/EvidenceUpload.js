@@ -1,5 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { goTo } = require('@hmcts/one-per-page');
+const { AddAnother } = require('@hmcts/one-per-page/steps');
+
+const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
@@ -8,124 +10,97 @@ const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
-const pt = require('path');
-const fs = require('fs');
 const moment = require('moment');
+const stream = require('stream');
 const request = require('request');
-const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
+const content = require('./content.en.json');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
+const fileMissingError = 'FILE_MISSING_ERROR';
 
-class EvidenceUpload extends Question {
+/* eslint-disable consistent-return */
+class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
   }
 
-  static makeDir(path, dirCallback) {
-    const p = pt.join(__dirname, path);
-    fs.stat(p, (fsError, stats) => {
-      if (fsError || !stats.isDirectory()) {
-        return fs.mkdir(p, dirCallback);
-      }
-      return dirCallback();
-    });
-  }
-
   static handleUpload(req, res, next) {
-    const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
 
-    if (req.method.toLowerCase() === 'post') {
-      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-        if (mkdirError) {
-          return next(mkdirError);
+    const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
+    if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
+      const multiplier = 1024;
+      const incoming = new formidable.IncomingForm({
+        keepExtensions: true,
+        type: 'multipart'
+      });
+
+      incoming.onPart = part => {
+        const emptyRequestApproxSizeInBytes = 200;
+        if (incoming.bytesExpected <= emptyRequestApproxSizeInBytes) {
+          req.body = {
+            'item.uploadEv': fileMissingError
+          };
+          return next();
         }
-        const multiplier = 1024;
-        const incoming = new formidable.IncomingForm({
-          uploadDir: pt.resolve(__dirname, pathToUploadFolder),
-          keepExtensions: true,
-          type: 'multipart',
-          maxFileSize: maxFileSize * multiplier * multiplier
-        });
+        if (!part.filename) {
+          // let formidable handle all non-file parts
+          incoming.handlePart(part);
+          return next();
+        }
+        if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+          req.body = {
+            'item.uploadEv': maxFileSizeExceededError
+          };
+          return next();
+        }
+        if (part && part.filename && !fileTypeWhitelist.find(el => el === part.mime)) {
+          req.body = {
+            'item.uploadEv': wrongFileTypeError
+          };
+          return next();
+        }
 
-        incoming.once('error', er => {
-          logger.info('error while receiving the file from the client', er);
-        });
-
-        incoming.once('fileBegin', function fileBegin(field, file) {
-          if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
-            /* eslint-disable no-invalid-this */
-            return this.emit('error', wrongFileTypeError);
-            /* eslint-enable no-invalid-this */
-          }
-          return true;
-        });
-
-        incoming.once('file', (field, file) => {
-          if (file.name && file.size) {
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-            fs.rename(file.path, pathToFile);
-          }
-        });
-
-
-        incoming.once('aborted', () => {
-          logger.log('user aborted upload');
-          return next(new Error());
-        });
-
-        incoming.once('end', () => {
-          logger.log('-> upload done');
-        });
-
-        return incoming.parse(req, (uploadingError, fields, files) => {
-          const unprocessableEntityStatus = 422;
-
-          if (uploadingError || !get(files, 'uploadEv.name')) {
-            /* eslint-disable operator-linebreak */
-            if (uploadingError &&
-              uploadingError.message &&
-              uploadingError.message.match(/maxFileSize exceeded/)) {
-              /* eslint-enable operator-linebreak */
-              // cater for the horrible formidable.js error
-              /* eslint-disable no-param-reassign */
-              uploadingError = maxFileSizeExceededError;
-              /* eslint-enable no-param-reassign */
+        const fileName = part.filename;
+        const fileData = new stream.PassThrough();
+        request.post({
+          url: uploadEvidenceUrl,
+          formData: {
+            file: {
+              value: fileData,
+              options: {
+                filename: fileName,
+                contentType: part.mime,
+                knownLength: req.headers['content-length']
+              }
             }
-            // this is an obvious mistake but achieves our goal somehow.
-            // I'll have to come back to this.
-            res.status = unprocessableEntityStatus;
+          }
+        }, (forwardingError, resp, body) => {
+          if (!forwardingError) {
+            logger.info('No forwarding error, about to save data');
+            const b = JSON.parse(body);
             req.body = {
-              uploadEv: uploadingError
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href
             };
+
             return next();
           }
-
-          const pathToFile = `${pt
-            .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
-
-          return request.post({
-            url: uploadEvidenceUrl,
-            formData: {
-              file: fs.createReadStream(pathToFile)
-            }
-          }, (forwardingError, resp, body) => {
-            if (!forwardingError) {
-              logger.info('No forwarding error, about to save data');
-              const b = JSON.parse(body);
-              req.body = {
-                uploadEv: b.documents[0].originalDocumentName,
-                link: b.documents[0]._links.self.href
-              };
-
-              return fs.unlink(pathToFile, next);
-            }
-            return next(forwardingError);
-          });
+          return next(forwardingError);
         });
-      });
+
+        part.on('data', incomingData => {
+          fileData.push(incomingData);
+        });
+
+        part.on('end', () => {
+          fileData.end();
+        });
+      };
+
+      return incoming.parse(req);
     }
     return next();
   }
@@ -134,16 +109,32 @@ class EvidenceUpload extends Question {
     return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
-  get form() {
-    return form({
+  get addAnotherLinkContent() {
+    /* eslint-disable no-undefined */
+    if (this.fields.items !== undefined) {
+      return this.fields.items.value.length > 0 ? 'Add another file' : 'Add file';
+    }
+    return false;
+    /* eslint-enable no-undefined */
+  }
+
+  editUrl(index) {
+    if (!this.fields.items || index === this.fields.items.value.length) {
+      return super.editUrl(index);
+    }
+    return false;
+  }
+
+  get field() {
+    return object({
       uploadEv: text.joi(
-        this.content.fields.uploadEv.error.required,
-        Joi.string().required()
+        content.fields.uploadEv.error.required,
+        Joi.string().disallow(fileMissingError)
       ).joi(
-        this.content.fields.uploadEv.error.wrongFileType,
+        content.fields.uploadEv.error.wrongFileType,
         Joi.string().disallow(wrongFileTypeError)
       ).joi(
-        this.content.fields.uploadEv.error.maxFileSizeExceeded,
+        content.fields.uploadEv.error.maxFileSizeExceeded,
         Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional())
@@ -151,17 +142,22 @@ class EvidenceUpload extends Question {
   }
 
   values() {
+    const evidences = this.fields.items.value.map(file => {
+      return {
+        url: file.link.value,
+        fileName: file.uploadEv.value,
+        uploadedDate: moment().format('YYYY-MM-DD')
+      };
+    });
     return {
       reasonsForAppealing: {
-        evidences: [
-          {
-            url: this.fields.link.value,
-            fileName: this.fields.uploadEv.value,
-            uploadedDate: moment().format('YYYY-MM-DD')
-          }
-        ]
+        evidences
       }
     };
+  }
+
+  validateList(list) {
+    return list.check(content.noItemsError, arr => arr.length > 0);
   }
 
   next() {
