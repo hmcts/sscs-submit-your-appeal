@@ -3,11 +3,10 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 /* eslint-disable init-declarations */
 
+const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+
 describe('The other methods of EvidenceUpload', () => {
   let instance;
-
-  // the feature flag would make this null
-  paths.reasonsForAppealing.evidenceUpload = '/upl';
 
   beforeEach(() => {
     instance = new EvidenceUpload({
@@ -30,7 +29,11 @@ describe('The other methods of EvidenceUpload', () => {
 
   describe('get path()', () => {
     it('returns the correct path', () => {
-      expect(instance.path).to.equal('/upl');
+      if (evidenceUploadEnabled) {
+        expect(instance.path).to.equal('/evidence-upload');
+      } else {
+        expect(instance.path).to.be.null;
+      }
     });
   });
 
@@ -43,46 +46,18 @@ describe('The other methods of EvidenceUpload', () => {
     });
   });
 
-  describe('get form()', () => {
+  describe('get field()', () => {
     let fields = null;
-    let field = null;
 
     before(() => {
-      fields = instance.form.fields;
+      fields = instance.fields;
     });
 
     it('should contain 2 field', () => {
       expect(Object.keys(fields).length).to.equal(2);
       expect(fields).to.have.all.keys(['link', 'uploadEv']);
     });
-
-    describe('uploadEv field', () => {
-      beforeEach(() => {
-        field = fields.uploadEv;
-      });
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
-    });
-    describe('link field', () => {
-      beforeEach(() => {
-        field = fields.link;
-      });
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
-    });
   });
-
-  describe('values', () => {
-    it('should have values', () => {
-      expect(instance.values()).to.exist;
-    });
-    it('evidence should be an array', () => {
-      expect(instance.values().reasonsForAppealing.evidences).to.be.an('array');
-    });
-  });
-
   describe('next', () => {
     it('the next step is /the-hearing', () => {
       expect(instance.next().step).to.equal(paths.hearing.theHearing);

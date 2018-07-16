@@ -27,7 +27,7 @@ module "submit-your-appeal-frontend" {
   subscription         = "${var.subscription}"
   additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "${var.env != "preview" ? "true" : "false"}"
-  common_tags = "${var.common_tags}"
+  common_tags          = "${var.common_tags}"
 
 
   app_settings = {
@@ -45,7 +45,7 @@ module "submit-your-appeal-frontend" {
 
 module "redis-cache" {
   source      = "git@github.com:contino/moj-module-redis?ref=master"
-  product     = "${var.env != "preview" ? "${var.product}-redis" : "sscs-tribunals-redis-preview"}"
+  product     = "${var.product}-redis"
   location    = "${var.location}"
   env         = "${var.env}"
   subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
