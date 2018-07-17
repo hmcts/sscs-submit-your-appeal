@@ -115,6 +115,32 @@ class DateUtils {
   static getCurrentDate() {
     return moment().format('DD-MM-YYYY');
   }
+
+  static getDateRanges(dates) {
+    const rangeDates = [];
+    let firstDateInRange = null;
+
+    dates.forEach((date, index) => {
+      const current = moment(date);
+      const next = moment(dates[index + 1]);
+
+      if (current.add(1, 'day').isSame(next)) {
+        if (firstDateInRange === null) {
+          firstDateInRange = date;
+        }
+      } else {
+        // eslint-disable-next-line no-lonely-if
+        if (firstDateInRange === null) {
+          rangeDates.push(date);
+        } else {
+          rangeDates.push(`${firstDateInRange} to ${date}`);
+          firstDateInRange = null;
+        }
+      }
+    });
+
+    return rangeDates;
+  }
 }
 
 module.exports = DateUtils;

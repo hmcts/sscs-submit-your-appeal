@@ -295,3 +295,52 @@ describe('getMonthValue', () => {
     expect(DateUtils.getCurrentDate()).to.equal(currentDate);
   });
 });
+
+describe.only('getDateRanges', () => {
+  it('returns dates in mixture of single dates and ranges', () => {
+    const dates = [
+      '2018-12-08',
+      '2018-12-09',
+      '2018-12-10',
+      '2019-01-01',
+      '2019-03-02',
+      '2019-03-03',
+      '2019-05-06',
+      '2019-12-25'
+    ];
+    const ranges = [
+      '2018-12-08 to 2018-12-10',
+      '2019-01-01',
+      '2019-03-02 to 2019-03-03',
+      '2019-05-06',
+      '2019-12-25'
+    ];
+    expect(DateUtils.getDateRanges(dates)).to.eql(ranges);
+  });
+
+  it('returns dates in a range', () => {
+    const dates = [
+      '2018-10-01',
+      '2018-10-02',
+      '2018-10-03',
+      '2018-10-04',
+      '2018-10-05',
+      '2018-10-06',
+      '2018-10-07',
+      '2018-10-08'
+    ];
+    const ranges = ['2018-10-01 to 2018-10-08'];
+    expect(DateUtils.getDateRanges(dates)).to.eql(ranges);
+  });
+
+  it('returns dates in a list of single dates when not in a range', () => {
+    const dates = [
+      '2018-10-01',
+      '2018-10-03',
+      '2018-10-05',
+      '2018-10-07',
+      '2018-10-09'
+    ];
+    expect(DateUtils.getDateRanges(dates)).to.eql(dates);
+  });
+});
