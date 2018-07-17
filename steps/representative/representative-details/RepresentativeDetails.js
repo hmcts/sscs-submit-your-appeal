@@ -27,9 +27,12 @@ class RepresentativeDetails extends Question {
   }
 
   get CYAName() {
+    const nameTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    return first === '' && last === '' ? userAnswer.NOT_PROVIDED : `${first} ${last}`.trim();
+    return first === '' && last === '' ?
+      userAnswer.NOT_PROVIDED :
+      `${nameTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -119,6 +122,7 @@ class RepresentativeDetails extends Question {
   values() {
     return {
       representative: {
+        title: this.fields.name.title.value,
         firstName: this.fields.name.first.value,
         lastName: this.fields.name.last.value,
         organisation: this.fields.name.organisation.value,
