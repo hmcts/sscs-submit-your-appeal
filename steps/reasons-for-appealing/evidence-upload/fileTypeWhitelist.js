@@ -69,7 +69,6 @@ module.exports = [
   'application/excel',
   'application/x-excel',
   'application/x-msexcel',
-  'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
   'application/vnd.ms-powerpoint',
   'application/mspowerpoint',
   'application/x-mspowerpoint',
