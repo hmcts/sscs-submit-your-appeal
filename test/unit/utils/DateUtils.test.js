@@ -296,7 +296,7 @@ describe('getMonthValue', () => {
   });
 });
 
-describe.only('getDateRanges', () => {
+describe('getDateRanges', () => {
   it('returns dates in mixture of single dates and ranges', () => {
     const dates = [
       '2018-12-08',
