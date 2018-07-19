@@ -111,14 +111,16 @@ describe('date-picker-utils.js', () => {
     });
   });
   describe('displayFirstOfMonth()', () => {
-    it('returns empty object when the day is not the first of the month', () => {
+    it('returns span with the day when the day is not the first of the month', () => {
       const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-25'));
-      expect(displayMonth).to.eql({});
+      expect(displayMonth).to.eql({
+        content: '<span>25</span>'
+      });
     });
-    it('returns an object with html string when the day is  the first of the month', () => {
+    it('returns an object with html string when the day is the first of the month', () => {
       const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-01'));
       expect(displayMonth).to.eql({
-        content: '1 <p class="first-of-month" aria-label="December">Dec</p>'
+        content: '<span>1</span><p class="first-of-month" aria-label="December">Dec</p>'
       });
     });
   });

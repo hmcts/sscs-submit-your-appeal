@@ -44,6 +44,7 @@ function initAutocomplete() {
 function initDatePicker() {
   if ($('#date-picker').length) {
     $('.add-another-add-link').hide();
+    $('#date-picker-content').show();
     datePicker.init();
   }
 }
