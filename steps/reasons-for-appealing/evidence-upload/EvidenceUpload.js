@@ -21,9 +21,16 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 
 /* eslint-disable consistent-return */
+/* eslint-disable operator-linebreak */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
+  }
+
+  static isCorrectFileType(mimetype, filename) {
+    const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
+    return hasCorrectMT || (filename &&
+      fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
   }
 
   static handleUpload(req, res, next) {
@@ -56,7 +63,7 @@ class EvidenceUpload extends AddAnother {
           };
           return next();
         }
-        if (part && part.filename && !fileTypeWhitelist.find(el => el === part.mime)) {
+        if (part && part.filename && !EvidenceUpload.isCorrectFileType(part.mime, part.filename)) {
           req.body = {
             'item.uploadEv': wrongFileTypeError
           };
@@ -166,3 +173,6 @@ class EvidenceUpload extends AddAnother {
 }
 
 module.exports = EvidenceUpload;
+
+/* eslint-enable consistent-return */
+/* eslint-enable operator-linebreak */
