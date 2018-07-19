@@ -186,7 +186,7 @@ journey(app, {
       connect_timeout: 15000
     },
     cookie: {
-      secure: config.redis.useSSL === 'true'
+      secure: process.env.NODE_ENV !== 'development'
     },
     secret: config.redis.secret
   },
