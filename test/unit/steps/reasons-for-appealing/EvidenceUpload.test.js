@@ -70,8 +70,8 @@ describe('The other methods of EvidenceUpload', () => {
   });
 
   describe('next', () => {
-    it('the next step is /the-hearing', () => {
-      expect(instance.next().step).to.equal(paths.hearing.theHearing);
+    it('the next step is /evidence-description', () => {
+      expect(instance.next().step).to.equal(paths.reasonsForAppealing.evidenceDescription);
     });
   });
 });

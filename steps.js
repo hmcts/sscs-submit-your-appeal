@@ -51,6 +51,7 @@ const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHea
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
+const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
 
 const init = [
   Entry,
@@ -114,6 +115,7 @@ if (!evidenceUploadEnabled) {
 if (evidenceUploadEnabled) {
   reasonsForAppealing.push(EvidenceProvide);
   reasonsForAppealing.push(EvidenceUpload);
+  reasonsForAppealing.push(EvidenceDescription);
 }
 
 const hearing = [
