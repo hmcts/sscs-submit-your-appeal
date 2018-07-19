@@ -29,7 +29,7 @@ class EvidenceUpload extends AddAnother {
 
   static isCorrectFileType(mimetype, filename) {
     const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
-    return hasCorrectMT || (filename &&
+    return hasCorrectMT && (filename &&
       fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
   }
 
