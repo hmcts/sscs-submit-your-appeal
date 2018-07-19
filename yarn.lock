@@ -53,9 +53,9 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
-"@hmcts/one-per-page@3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.4.3.tgz#e0cce5886c840b5f26ab8cf92e00de138e6da147"
+"@hmcts/one-per-page@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.4.1.tgz#8a93bff8545a8c6fdff68eaba3d3cfd9a283e7e6"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"
