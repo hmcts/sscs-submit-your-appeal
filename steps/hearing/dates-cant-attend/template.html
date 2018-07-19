@@ -38,14 +38,23 @@
 {% endblock %}
 
 {% block listItems %}
-    <p>{{ content.itsImportant }}</p>
-    <p>{{ content.yourHearing }}</p>
+
+    <div id="date-picker-content">
+        <p>{{ content.datePicker.itsImportant }}</p>
+        <p>{{ content.datePicker.select }} <span class="bold">{{ content.datePicker.cant }}</span> {{ content.datePicker.hearing }}</p>
+    </div>
+    <noscript>
+        <p>{{ content.nonJS.itsImportant }}</p>
+        <p>{{ content.nonJS.yourHearing }}</p>
+    </noscript>
 
     <div id="date-picker" class="datepicker"></div>
+
+    <h2 class="heading-medium">{{ content.fields.cantAttendDate.legendList }}</h2>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p>{{ content.yourHearing }}</p>
+    <p>{{ content.nonJS.yourHearing }}</p>
   {{ date(fields.item, content.fields.cantAttendDate.legend) }}
 {% endblock %}

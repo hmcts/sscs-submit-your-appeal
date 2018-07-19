@@ -2,8 +2,16 @@
   "titleHead": "Dates cannot attend hearing - Appeal a benefit decision - GOV.UK",
   "title": "Enter the dates when you can't go to a hearing",
   "titleEdit": "Enter a date you can't go to a hearing",
-  "itsImportant": "It’s important that you make yourself available for a hearing. If you postpone or don’t show up, your appeal could go ahead in your absence or be delayed by several months.",
-  "yourHearing": "Your hearing will take some time to book so only enter dates between 4 and 22 weeks in the future. Don’t include weekends or bank holidays.",
+  "datePicker": {
+    "itsImportant": "It’s important that you make yourself available for a hearing. If you don’t show up, the appeal could go ahead in your absence or be delayed by several months.",
+    "select": "Select dates you",
+    "cant": "can't",
+    "hearing": "go to a hearing."
+  },
+  "nonJS": {
+    "itsImportant": "It’s important that you make yourself available for a hearing. If you postpone or don’t show up, your appeal could go ahead in your absence or be delayed by several months.",
+    "yourHearing": "Your hearing will take some time to book so only enter dates between 4 and 22 weeks in the future. Don’t include weekends or bank holidays."
+  },
   "links": {
     "add": "Add date",
     "addAnother": "Add another date"
