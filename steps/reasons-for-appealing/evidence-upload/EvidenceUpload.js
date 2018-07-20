@@ -79,6 +79,7 @@ class EvidenceUpload extends AddAnother {
         logger.info('Evidence upload: about to post to the api the file of name ', fileName);
         logger.info('Evidence upload: i am using the url  ', uploadEvidenceUrl);
         logger.info('Evidence upload: the length of the file is   ', req.headers['content-length']);
+        logger.info(`req.headers: ${req.headers}`);
         request.post({
           url: uploadEvidenceUrl,
           formData: {
