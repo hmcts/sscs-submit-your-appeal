@@ -37,7 +37,7 @@ describe('The other methods of EvidenceUpload', () => {
   });
 
   describe('values()', () => {
-    it('', () => {
+    it('values contains evidence description', () => {
       const values = instance.values();
 
       const expectedValue = {
