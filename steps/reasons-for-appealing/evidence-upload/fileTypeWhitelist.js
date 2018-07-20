@@ -1,36 +1,70 @@
 /*
-PDF
-RTF
-TXT
-ODF (.odt, .odp, .ods, .odg)
-DOCX
+BMP
 DOC
-XLS
-XLSX
+DOCX
+DOT
+DOTX
+JPEG
+JPG
+PDF
+PNG
+POT
+POTX
+PPA
+PPS
+PPSX
 PPT
 PPTX
-JPG (and .jpeg)
-PNG
-BMP
-TIFF*/
-
+TIF
+TIFF
+TXT
+XLA
+XLS
+XLSB
+XLSX
+XLT
+XLTX
+*/
 module.exports = [
+  '.jpg',
+  '.jpeg',
+  '.bmp',
+  '.tif',
+  '.tiff',
+  '.png',
+  '.pdf',
+  '.txt',
+  '.doc',
+  '.dot',
+  '.docx',
+  '.dotx',
+  '.xls',
+  '.xlt',
+  '.xla',
+  '.xlsx',
+  '.xltx',
+  '.xlsb',
+  '.ppt',
+  '.pot',
+  '.pps',
+  '.ppa',
+  '.pptx',
+  '.potx',
+  '.ppsx',
+  'image/jpeg',
   'application/pdf',
-  'application/rtf',
+  'image/tiff',
+  'image/png',
+  'image/bmp',
   'text/plain',
-  'application/vnd.oasis.opendocument.presentation',
-  'application/vnd.oasis.opendocument.spreadsheet',
-  'application/vnd.oasis.opendocument.text',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
   'application/vnd.ms-excel',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
   'application/vnd.ms-powerpoint',
   'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'image/jpeg',
-  'image/png',
-  'image/x-windows-bmp',
-  'image/bmp',
-  'image/x-tiff',
-  'image/tiff'
+  'application/vnd.openxmlformats-officedocument.presentationml.template',
+  'application/vnd.openxmlformats-officedocument.presentationml.slideshow'
 ];
