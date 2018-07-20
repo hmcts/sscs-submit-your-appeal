@@ -82,6 +82,9 @@ class EvidenceUpload extends AddAnother {
         logger.info(`req.headers: ${JSON.stringify(req.headers)}`);
         request.post({
           url: uploadEvidenceUrl,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
           formData: {
             file: {
               value: fileData,
