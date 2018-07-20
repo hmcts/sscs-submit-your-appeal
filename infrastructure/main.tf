@@ -42,7 +42,6 @@ module "submit-your-appeal-frontend" {
     HPKP_SHA256_BACKUP           = "${data.vault_generic_secret.hpkp_sya_sha_2.data["value"]}"
     EVIDENCE_UPLOAD_ENABLED      = "true"
     UPLOAD_EVIDENCE_URL          = "${local.ApiUrl}/evidence/upload"
-    NODE_TLS_REJECT_UNAUTHORIZED = "0"
   }
 }
 
