@@ -51,6 +51,7 @@ class EvidenceUpload extends AddAnother {
           req.body = {
             'item.uploadEv': fileMissingError
           };
+          logger.error('Evidence upload error: no file is being uploaded');
           return next();
         }
         if (!part.filename) {
@@ -62,17 +63,20 @@ class EvidenceUpload extends AddAnother {
           req.body = {
             'item.uploadEv': maxFileSizeExceededError
           };
+          logger.error('Evidence upload error: the file is too big');
           return next();
         }
         if (part && part.filename && !EvidenceUpload.isCorrectFileType(part.mime, part.filename)) {
           req.body = {
             'item.uploadEv': wrongFileTypeError
           };
+          logger.error('Evidence upload error: wrong type of file');
           return next();
         }
 
         const fileName = part.filename;
         const fileData = new stream.PassThrough();
+        logger.info('Evidence upload: about to post to the api the file of name ', fileName);
         request.post({
           url: uploadEvidenceUrl,
           formData: {
@@ -87,6 +91,7 @@ class EvidenceUpload extends AddAnother {
           }
         }, (forwardingError, resp, body) => {
           if (forwardingError) {
+            logger.error('Evidence upload error from the api: ', forwardingError);
             return next(forwardingError);
           }
           if (resp.statusCode === HttpStatus.OK) {
