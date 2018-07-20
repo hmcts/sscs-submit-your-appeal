@@ -13,6 +13,7 @@ const formidable = require('formidable');
 const moment = require('moment');
 const stream = require('stream');
 const request = require('request');
+const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
 
@@ -21,9 +22,16 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 
 /* eslint-disable consistent-return */
+/* eslint-disable operator-linebreak */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
+  }
+
+  static isCorrectFileType(mimetype, filename) {
+    const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
+    return hasCorrectMT && (filename &&
+      fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
   }
 
   static handleUpload(req, res, next) {
@@ -56,7 +64,7 @@ class EvidenceUpload extends AddAnother {
           };
           return next();
         }
-        if (part && part.filename && !fileTypeWhitelist.find(el => el === part.mime)) {
+        if (part && part.filename && !EvidenceUpload.isCorrectFileType(part.mime, part.filename)) {
           req.body = {
             'item.uploadEv': wrongFileTypeError
           };
@@ -78,17 +86,23 @@ class EvidenceUpload extends AddAnother {
             }
           }
         }, (forwardingError, resp, body) => {
-          if (!forwardingError) {
+          if (forwardingError) {
+            return next(forwardingError);
+          }
+          if (resp.statusCode === HttpStatus.OK) {
             logger.info('No forwarding error, about to save data');
             const b = JSON.parse(body);
             req.body = {
               'item.uploadEv': b.documents[0].originalDocumentName,
               'item.link': b.documents[0]._links.self.href
             };
-
             return next();
           }
-          return next(forwardingError);
+          logger.info('Error streaming documents', resp.statusCode, body);
+          req.body = {
+            'item.uploadEv': wrongFileTypeError
+          };
+          return next();
         });
 
         part.on('data', incomingData => {
@@ -166,3 +180,6 @@ class EvidenceUpload extends AddAnother {
 }
 
 module.exports = EvidenceUpload;
+
+/* eslint-enable consistent-return */
+/* eslint-enable operator-linebreak */
