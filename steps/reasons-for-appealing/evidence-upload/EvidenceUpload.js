@@ -77,6 +77,8 @@ class EvidenceUpload extends AddAnother {
         const fileName = part.filename;
         const fileData = new stream.PassThrough();
         logger.info('Evidence upload: about to post to the api the file of name ', fileName);
+        logger.info('Evidence upload: i am using the url  ', uploadEvidenceUrl);
+        logger.info('Evidence upload: the length of the file is   ', req.headers['content-length']);
         request.post({
           url: uploadEvidenceUrl,
           formData: {
