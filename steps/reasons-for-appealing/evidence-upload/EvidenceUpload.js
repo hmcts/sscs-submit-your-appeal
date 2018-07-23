@@ -62,13 +62,6 @@ class EvidenceUpload extends AddAnother {
           maxFileSize: maxFileSize * multiplier * multiplier
         });
 
-        incoming.once('file', (field, file) => {
-          if (file.name && file.size) {
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-            fs.rename(file.path, pathToFile);
-          }
-        });
-
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (files && files.uploadEv &&
             !fileTypeWhitelist.find(el => el === files.uploadEv.type)) {
@@ -96,13 +89,17 @@ class EvidenceUpload extends AddAnother {
             return next();
           }
 
-          const pathToFile = `${pt
-            .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
-
           return request.post({
             url: uploadEvidenceUrl,
             formData: {
-              file: fs.createReadStream(pathToFile)
+              file: {
+                value: fs.createReadStream(files.uploadEv.path),
+                options: {
+                  filename: files.uploadEv.name,
+                  contentType: files.uploadEv.type,
+                  knownLength: req.headers['content-length']
+                }
+              }
             }
           }, (forwardingError, resp, body) => {
             if (!forwardingError) {
@@ -112,7 +109,7 @@ class EvidenceUpload extends AddAnother {
                 'item.uploadEv': b.documents[0].originalDocumentName,
                 'item.link': b.documents[0]._links.self.href
               };
-              return fs.unlink(pathToFile, next);
+              return fs.unlink(files.uploadEv.path, next);
             }
             return next(forwardingError);
           });
