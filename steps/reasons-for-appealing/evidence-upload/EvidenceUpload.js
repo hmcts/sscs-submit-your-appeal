@@ -13,6 +13,7 @@ const formidable = require('formidable');
 const moment = require('moment');
 const stream = require('stream');
 const request = require('request');
+require('request-debug')(request);
 const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
