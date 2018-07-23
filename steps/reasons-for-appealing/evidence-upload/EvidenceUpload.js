@@ -6,10 +6,12 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
-const multiparty = require('multiparty');
+const formidable = require('formidable');
 const moment = require('moment');
+const stream = require('stream');
 const request = require('request');
 
 require('request-debug')(request);
@@ -39,56 +41,93 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      const form = new multiparty.Form();
-
-      // Parts are emitted when parsing the form
-      form.on('part', part => {
-        if (!part.filename) {
-          part.resume();
-        }
-
-        if (part.filename) {
-          logger.info(`got file named ${part.name}`);
-          // ignore file's content here
-          request.post({
-            url: uploadEvidenceUrl,
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            },
-            formData: {
-              file: {
-                value: part,
-                options: {
-                  filename: part.name,
-                  contentType: part.headers['content-type'],
-                  knownLength: part.byteCount
-                }
-              }
-            }
-          }, (forwardingError, resp, body) => {
-            if (forwardingError) {
-              logger.error('Evdence upload error from the api: ', forwardingError);
-              return next(forwardingError);
-            }
-            if (resp.statusCode === HttpStatus.OK) {
-              logger.info('No forwarding error, about to save data');
-              const b = JSON.parse(body);
-              req.body = {
-                'item.uploadEv': b.documents[0].originalDocumentName,
-                'item.link': b.documents[0]._links.self.href
-              };
-              return next();
-            }
-            logger.info('Error streaming documents', resp.statusCode, body);
-            req.body = {
-              'item.uploadEv': wrongFileTypeError
-            };
-            return next();
-          });
-        }
+      const multiplier = 1024;
+      const incoming = new formidable.IncomingForm({
+        keepExtensions: true,
+        type: 'multipart'
       });
 
-      return form.parse(req);
+      incoming.onPart = part => {
+        const emptyRequestApproxSizeInBytes = 200;
+        if (incoming.bytesExpected <= emptyRequestApproxSizeInBytes) {
+          req.body = {
+            'item.uploadEv': fileMissingError
+          };
+          logger.error('Evidence upload error: no file is being uploaded');
+          return next();
+        }
+        if (!part.filename) {
+          // let formidable handle all non-file parts
+          incoming.handlePart(part);
+          return next();
+        }
+        if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+          req.body = {
+            'item.uploadEv': maxFileSizeExceededError
+          };
+          logger.error('Evidence upload error: the file is too big');
+          return next();
+        }
+        if (part && part.filename && !EvidenceUpload.isCorrectFileType(part.mime, part.filename)) {
+          req.body = {
+            'item.uploadEv': wrongFileTypeError
+          };
+          logger.error('Evidence upload error: wrong type of file');
+          return next();
+        }
+
+        const fileName = part.filename;
+        const fileData = new stream.PassThrough();
+        logger.info('Evidence upload: about to post to the api the file of name ', fileName);
+        logger.info('Evidence upload: i am using the url  ', uploadEvidenceUrl);
+        logger.info('Evidence upload: the length of the file is   ', req.headers['content-length']);
+        logger.info(`req.headers: ${JSON.stringify(req.headers)}`);
+        request.post({
+          url: uploadEvidenceUrl,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          formData: {
+            file: {
+              value: fileData,
+              options: {
+                filename: fileName,
+                contentType: part.mime,
+                knownLength: req.headers['content-length']
+              }
+            }
+          }
+        }, (forwardingError, resp, body) => {
+          if (forwardingError) {
+            logger.error('Evidence upload error from the api: ', forwardingError);
+            return next(forwardingError);
+          }
+          if (resp.statusCode === HttpStatus.OK) {
+            logger.info('No forwarding error, about to save data');
+            const b = JSON.parse(body);
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href
+            };
+            return next();
+          }
+          logger.info('Error streaming documents', resp.statusCode, body);
+          req.body = {
+            'item.uploadEv': wrongFileTypeError
+          };
+          return next();
+        });
+
+        part.on('data', incomingData => {
+          fileData.push(incomingData);
+        });
+
+        part.on('end', () => {
+          fileData.end();
+        });
+      };
+
+      return incoming.parse(req);
     }
     return next();
   }
