@@ -13,6 +13,8 @@ const formidable = require('formidable');
 const moment = require('moment');
 const stream = require('stream');
 const request = require('request');
+
+require('request-debug')(request);
 const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
@@ -79,8 +81,12 @@ class EvidenceUpload extends AddAnother {
         logger.info('Evidence upload: about to post to the api the file of name ', fileName);
         logger.info('Evidence upload: i am using the url  ', uploadEvidenceUrl);
         logger.info('Evidence upload: the length of the file is   ', req.headers['content-length']);
+        logger.info(`req.headers: ${JSON.stringify(req.headers)}`);
         request.post({
           url: uploadEvidenceUrl,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
           formData: {
             file: {
               value: fileData,
