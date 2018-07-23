@@ -62,14 +62,17 @@ class EvidenceUpload extends AddAnother {
           maxFileSize: maxFileSize * multiplier * multiplier
         });
 
+
         incoming.once('fileBegin', function fileBegin(field, file) {
           if (file && file.name && !fileTypeWhitelist.find(el => el === file.type)) {
-            /* eslint-disable no-invalid-this */
-            return this.emit('error', wrongFileTypeError);
-            /* eslint-enable no-invalid-this */
+            req.body = {
+              'item.uploadEv': wrongFileTypeError,
+              'item.link': ''
+            };
           }
           return true;
         });
+
 
         incoming.once('file', (field, file) => {
           if (file.name && file.size) {
@@ -80,7 +83,9 @@ class EvidenceUpload extends AddAnother {
 
         return incoming.parse(req, (uploadingError, fields, files) => {
           const unprocessableEntityStatus = 422;
-
+          if (req.body['item.uploadEv'] === wrongFileTypeError) {
+            return next();
+          }
           if (uploadingError || !get(files, 'uploadEv.name')) {
             /* eslint-disable operator-linebreak */
             if (uploadingError &&
@@ -92,9 +97,6 @@ class EvidenceUpload extends AddAnother {
               uploadingError = maxFileSizeExceededError;
               /* eslint-enable no-param-reassign */
             }
-            // this is an obvious mistake but achieves our goal somehow.
-            // I'll have to come back to this.
-            res.statusCode = unprocessableEntityStatus;
             req.body = {
               'item.uploadEv': uploadingError,
               'item.link': ''
