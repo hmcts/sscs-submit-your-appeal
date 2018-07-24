@@ -25,6 +25,8 @@ const fileMissingError = 'FILE_MISSING_ERROR';
 /* eslint-disable consistent-return */
 /* eslint-disable operator-linebreak */
 /* eslint-disable complexity */
+/* eslint-disable arrow-body-style */
+/* eslint-disable max-nested-callbacks */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -112,30 +114,26 @@ class EvidenceUpload extends AddAnother {
             return next();
           }
 
-          return request.post({
-            url: uploadEvidenceUrl,
-            formData: {
-              // note: this goes with the temp name. If it works I'll sort it later.
-              file: fs.createReadStream(files['item.uploadEv'].path)
-
-              /*              file: {
-                          value: fs.createReadStream(files['item.uploadEv'].path),
-                          options: {
-                            filename: files['item.uploadEv'].name
-                          }
-                        }*/
-            }
-          }, (forwardingError, resp, body) => {
-            if (!forwardingError) {
-              logger.info('No forwarding error, about to save data');
-              const b = JSON.parse(body);
-              req.body = {
-                'item.uploadEv': b.documents[0].originalDocumentName,
-                'item.link': b.documents[0]._links.self.href
-              };
-              return fs.unlink(files['item.uploadEv'].path, next);
-            }
-            return fs.unlink(files['item.uploadEv'].path, next.bind(null, forwardingError));
+          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/
+          ${files['item.uploadEv'].name}`;
+          return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
+            return request.post({
+              url: uploadEvidenceUrl,
+              formData: {
+                file: fs.createReadStream(pathToFile)
+              }
+            }, (forwardingError, resp, body) => {
+              if (!forwardingError) {
+                logger.info('No forwarding error, about to save data');
+                const b = JSON.parse(body);
+                req.body = {
+                  'item.uploadEv': b.documents[0].originalDocumentName,
+                  'item.link': b.documents[0]._links.self.href
+                };
+                return fs.unlink(pathToFile, next);
+              }
+              return fs.unlink(pathToFile, next.bind(null, forwardingError));
+            });
           });
         });
       });
@@ -208,3 +206,5 @@ module.exports = EvidenceUpload;
 /* eslint-enable consistent-return */
 /* eslint-enable operator-linebreak */
 /* eslint-enable complexity */
+/* eslint-enable arrow-body-style */
+/* eslint-enable max-nested-callbacks */
