@@ -3,7 +3,7 @@ const config = require('config');
 
 const enable = () => {
   const iKey = config.get('appInsights.instrumentationKey');
-  applicationInsights.setup(iKey).start();
+  applicationInsights.setup(iKey).setAutoCollectConsole(true, true).start();
 };
 
 const trackException = exception => {
