@@ -118,9 +118,7 @@ class EvidenceUpload extends AddAnother {
               file: {
                 value: fs.createReadStream(files['item.uploadEv'].path),
                 options: {
-                  filename: files['item.uploadEv'].name,
-                  contentType: files['item.uploadEv'].type,
-                  knownLength: req.headers['content-length']
+                  filename: files['item.uploadEv'].name
                 }
               }
             }
