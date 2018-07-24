@@ -115,12 +115,15 @@ class EvidenceUpload extends AddAnother {
           return request.post({
             url: uploadEvidenceUrl,
             formData: {
-              file: {
-                value: fs.createReadStream(files['item.uploadEv'].path),
-                options: {
-                  filename: files['item.uploadEv'].name
-                }
-              }
+              // note: this goes with the temp name. If it works I'll sort it later.
+              file: fs.createReadStream(files['item.uploadEv'].path)
+
+              /*              file: {
+                          value: fs.createReadStream(files['item.uploadEv'].path),
+                          options: {
+                            filename: files['item.uploadEv'].name
+                          }
+                        }*/
             }
           }, (forwardingError, resp, body) => {
             if (!forwardingError) {
