@@ -77,10 +77,12 @@ class EvidenceUpload {
     $('.column-two-thirds').prepend(summary.val);
   }
   handleInlineError(errors) {
+    const errorId = 'inline-errors-list';
     const hasErrors = Boolean(errors && errors.length);
+    $(`#${errorId}`).remove();
     $('.form-group').toggleClass('form-group-error', hasErrors);
     if (hasErrors) {
-      $('label').after(`<span class="error-message">${errors[0].errors[0]}</span>`);
+      $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
     }
   }
   hideUnnecessaryMarkup() {
