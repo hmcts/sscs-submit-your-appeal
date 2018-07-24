@@ -12,6 +12,8 @@
   },
   "rules": {
     "no-process-env": "off",
+    "multiline-ternary": ["error", "always-multiline"],
+    "operator-linebreak": ["error", "after"],
     "newline-per-chained-call": "off",
     "object-curly-newline": ["error", {
       "consistent": true
