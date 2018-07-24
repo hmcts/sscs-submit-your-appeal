@@ -27,6 +27,7 @@ const fileMissingError = 'FILE_MISSING_ERROR';
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-nested-callbacks */
+/* eslint-disable max-len */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -114,8 +115,7 @@ class EvidenceUpload extends AddAnother {
             return next();
           }
 
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/
-          ${files['item.uploadEv'].name}`;
+          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
           return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
             return request.post({
               url: uploadEvidenceUrl,
@@ -208,3 +208,4 @@ module.exports = EvidenceUpload;
 /* eslint-enable complexity */
 /* eslint-enable arrow-body-style */
 /* eslint-enable max-nested-callbacks */
+/* eslint-enable max-len */
