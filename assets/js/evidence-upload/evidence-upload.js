@@ -38,7 +38,7 @@ class EvidenceUpload {
         this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
         this.fileupload = components.fileupload({
           id: this.elId,
-          name: this.elId,
+          name: `item.${this.elId}`,
           value: '',
           errors: this.errors
         }, 'Choose file', fileTypeWhiteList);

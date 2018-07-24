@@ -24,6 +24,7 @@ const fileMissingError = 'FILE_MISSING_ERROR';
 
 /* eslint-disable consistent-return */
 /* eslint-disable operator-linebreak */
+/* eslint-disable complexity */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -58,27 +59,42 @@ class EvidenceUpload extends AddAnother {
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
-          type: 'multipart',
-          maxFileSize: maxFileSize * multiplier * multiplier
+          type: 'multipart'
         });
 
-        incoming.once('file', (field, file) => {
-          if (file.name && file.size) {
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${file.name}`;
-            fs.rename(file.path, pathToFile);
+        incoming.on('fileBegin', () => {
+          const emptyRequestSize = 200;
+          if (incoming.bytesExpected === null ||
+            incoming.bytesExpected <= emptyRequestSize) {
+            req.body = {
+              'item.uploadEv': fileMissingError,
+              'item.link': ''
+            };
+            logger.error('Evidence upload error: you need to choose a file');
+          } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+            req.body = {
+              'item.uploadEv': maxFileSizeExceededError,
+              'item.link': ''
+            };
+            logger.error('Evidence upload error: the file is too big');
           }
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
-          if (files && files.uploadEv &&
-            !fileTypeWhitelist.find(el => el === files.uploadEv.type)) {
+          if (req.body && req.body['item.uploadEv'] &&
+            (req.body['item.uploadEv'] === maxFileSizeExceededError ||
+              req.body['item.uploadEv'] === fileMissingError)) {
+            return fs.unlink(files['item.uploadEv'].path, next);
+          }
+          if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
+            !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
             req.body = {
               'item.uploadEv': wrongFileTypeError,
               'item.link': ''
             };
-            return next();
+            return fs.unlink(files['item.uploadEv'].path, next);
           }
-          if (uploadingError || !get(files, 'uploadEv.name')) {
+          if (uploadingError || !get(files, '["item.uploadEv"].name')) {
             /* eslint-disable operator-linebreak */
             if (uploadingError &&
               uploadingError.message &&
@@ -96,13 +112,17 @@ class EvidenceUpload extends AddAnother {
             return next();
           }
 
-          const pathToFile = `${pt
-            .resolve(__dirname, pathToUploadFolder)}/${files.uploadEv.name}`;
-
           return request.post({
             url: uploadEvidenceUrl,
             formData: {
-              file: fs.createReadStream(pathToFile)
+              file: {
+                value: fs.createReadStream(files['item.uploadEv'].path),
+                options: {
+                  filename: files['item.uploadEv'].name,
+                  contentType: files['item.uploadEv'].type,
+                  knownLength: req.headers['content-length']
+                }
+              }
             }
           }, (forwardingError, resp, body) => {
             if (!forwardingError) {
@@ -112,9 +132,9 @@ class EvidenceUpload extends AddAnother {
                 'item.uploadEv': b.documents[0].originalDocumentName,
                 'item.link': b.documents[0]._links.self.href
               };
-              return fs.unlink(pathToFile, next);
+              return fs.unlink(files['item.uploadEv'].path, next);
             }
-            return next(forwardingError);
+            return fs.unlink(files['item.uploadEv'].path, next.bind(null, forwardingError));
           });
         });
       });
@@ -186,3 +206,4 @@ module.exports = EvidenceUpload;
 
 /* eslint-enable consistent-return */
 /* eslint-enable operator-linebreak */
+/* eslint-enable complexity */
