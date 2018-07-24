@@ -10,10 +10,12 @@ describe('CheckYourAppeal.js', () => {
   let fields = null;
 
   const request = {};
+  const appInsightsStub = {};
 
   before(() => {
     CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
-      superagent: request
+      superagent: request,
+      'app-insights': appInsightsStub
     });
 
     cya = new CheckYourAppeal({
@@ -59,11 +61,13 @@ describe('CheckYourAppeal.js', () => {
       });
     });
 
-    it('should log a message when unsuccessfully making an API call', () => {
+    it('should log error and track in app insights when unsuccessfully making an API call', () => {
+      appInsightsStub.trackException = sinon.stub().returns();
       request.post = () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) });
       cya.logger.error = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(cya.logger.error).calledWith('Internal server error status:500');
+        expect(appInsightsStub.trackException).calledWith('Internal server error status:500');
       });
     });
   });
