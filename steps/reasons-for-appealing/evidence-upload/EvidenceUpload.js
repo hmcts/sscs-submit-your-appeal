@@ -63,13 +63,13 @@ class EvidenceUpload extends AddAnother {
         });
 
         return incoming.parse(req, (uploadingError, fields, files) => {
-          if (files && files.uploadEv &&
+          if (files && files.uploadEv && files.uploadEv.path &&
             !fileTypeWhitelist.find(el => el === files.uploadEv.type)) {
             req.body = {
               'item.uploadEv': wrongFileTypeError,
               'item.link': ''
             };
-            return next();
+            return fs.unlink(files.uploadEv.path, next);
           }
           if (uploadingError || !get(files, 'uploadEv.name')) {
             /* eslint-disable operator-linebreak */
@@ -111,7 +111,7 @@ class EvidenceUpload extends AddAnother {
               };
               return fs.unlink(files.uploadEv.path, next);
             }
-            return next(forwardingError);
+            return fs.unlink(files.uploadEv.path, next.bind(null, forwardingError));
           });
         });
       });
