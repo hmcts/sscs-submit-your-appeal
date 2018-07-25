@@ -1,13 +1,10 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
 const appInsights = require('app-insights');
-
-const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
-const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -16,6 +13,10 @@ const stream = require('stream');
 const request = require('request');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
+const sections = require('steps/check-your-appeal/sections');
+
+const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
@@ -140,6 +141,13 @@ class EvidenceUpload extends AddAnother {
         Joi.string().disallow(maxFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional())
+    });
+  }
+
+  answers() {
+    return answer(this, {
+      section: sections.reasonsForAppealing,
+      answer: this.fields.items.value.map(file => file.uploadEv)
     });
   }
 
