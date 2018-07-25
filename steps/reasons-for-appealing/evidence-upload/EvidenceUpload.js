@@ -21,6 +21,7 @@ const content = require('./content.en.json');
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
+const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
 
 /* eslint-disable consistent-return */
 /* eslint-disable operator-linebreak */
@@ -132,7 +133,11 @@ class EvidenceUpload extends AddAnother {
                 };
                 return fs.unlink(pathToFile, next);
               }
-              return fs.unlink(pathToFile, next.bind(null, forwardingError));
+              req.body = {
+                'item.uploadEv': technicalProblemError,
+                'item.link': ''
+              };
+              return fs.unlink(pathToFile, next);
             });
           });
         });
@@ -172,6 +177,9 @@ class EvidenceUpload extends AddAnother {
       ).joi(
         content.fields.uploadEv.error.maxFileSizeExceeded,
         Joi.string().disallow(maxFileSizeExceededError)
+      ).joi(
+        content.fields.uploadEv.error.technical,
+        Joi.string().disallow(technicalProblemError)
       ),
       link: text.joi('', Joi.string().optional())
     });
