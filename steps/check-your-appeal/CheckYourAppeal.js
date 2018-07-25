@@ -8,6 +8,7 @@ const { goTo, action } = require('@hmcts/one-per-page/flow');
 const { Logger } = require('@hmcts/nodejs-logging');
 const { lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
+const appInsights = require('app-insights');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const paths = require('paths');
@@ -33,6 +34,7 @@ class CheckYourAppeal extends CYA {
       this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
     }).catch(error => {
       const errMsg = `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
+      appInsights.trackException(errMsg);
       this.logger.error(errMsg);
       return Promise.reject(error);
     });

@@ -4,6 +4,7 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
 const config = require('config');
+const appInsights = require('app-insights');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
@@ -88,6 +89,7 @@ class EvidenceUpload extends AddAnother {
 
             return next();
           }
+          appInsights.trackException(forwardingError);
           return next(forwardingError);
         });
 
