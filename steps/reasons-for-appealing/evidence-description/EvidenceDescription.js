@@ -2,6 +2,7 @@ const { goTo } = require('@hmcts/one-per-page/flow');
 const { text, form } = require('@hmcts/one-per-page/forms');
 const { Question } = require('@hmcts/one-per-page/steps');
 const { whitelist } = require('utils/regex');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -19,7 +20,7 @@ class EvidenceDescription extends Question {
         Joi.string().regex(whitelist))
         .joi(
           this.content.fields.describeTheEvidence.error.tooShort,
-          Joi.string().min(minNumberOfCharactersInDescription)
+          Joi.string().min(minNumberOfCharactersInDescription).required()
         )
     });
   }
@@ -30,6 +31,10 @@ class EvidenceDescription extends Question {
         evidenceDescription: this.fields.describeTheEvidence.value
       }
     };
+  }
+
+  answers() {
+    return answer(this, { hide: true });
   }
 
   next() {
