@@ -25,7 +25,6 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 
 /* eslint-disable consistent-return */
-/* eslint-disable operator-linebreak */
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-nested-callbacks */
@@ -113,14 +112,13 @@ class EvidenceUpload extends AddAnother {
             }
             if (uploadingError || !get(files, '["item.uploadEv"].name')) {
               /* eslint-disable operator-linebreak */
+              /* eslint-disable no-param-reassign */
               if (uploadingError &&
                 uploadingError.message &&
                 uploadingError.message.match(/maxFileSize exceeded/)) {
-                /* eslint-enable operator-linebreak */
-                // cater for the horrible formidable.js error
-                /* eslint-disable no-param-reassign */
                 uploadingError = maxFileSizeExceededError;
                 /* eslint-enable no-param-reassign */
+                /* eslint-enable operator-linebreak */
               }
               req.body = {
                 'item.uploadEv': uploadingError,
@@ -226,7 +224,6 @@ class EvidenceUpload extends AddAnother {
 module.exports = EvidenceUpload;
 
 /* eslint-enable consistent-return */
-/* eslint-enable operator-linebreak */
 /* eslint-enable complexity */
 /* eslint-enable arrow-body-style */
 /* eslint-enable max-nested-callbacks */
