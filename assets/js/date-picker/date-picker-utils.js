@@ -51,8 +51,9 @@ const datePickerUtils = {
   findCellByTimestamp: date => {
     const timestamp = parseInt(moment.utc(date).format('x'));
     const bstOffset = 3600000;
-    return $(`td[data-date="${timestamp}"]`)
-      .length ? $(`td[data-date="${timestamp}"]`) : $(`td[data-date="${timestamp + bstOffset}"]`);
+    return $(`td[data-date="${timestamp}"]`).length ?
+      $(`td[data-date="${timestamp}"]`) :
+      $(`td[data-date="${timestamp + bstOffset}"]`);
   }
 
 };
