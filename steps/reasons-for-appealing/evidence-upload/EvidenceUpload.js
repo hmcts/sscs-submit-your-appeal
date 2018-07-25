@@ -40,12 +40,12 @@ class EvidenceUpload extends AddAnother {
     const mkdir = promisify(fs.mkdir);
 
     return stat(p)
-      .then((stats) => {
+      .then(stats => {
         if (!stats.isDirectory()) {
           return mkdir(p);
         }
       })
-      .catch((fsError) => {
+      .catch(() => {
         return mkdir(p);
       });
   }
@@ -59,12 +59,11 @@ class EvidenceUpload extends AddAnother {
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
-    const seshId = req.session.id;
+    // const seshId = req.session.id;
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     const unlink = promisify(fs.unlink);
 
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-
       return EvidenceUpload.makeDir(pathToUploadFolder)
         .then(() => {
           const multiplier = 1024;
@@ -152,10 +151,9 @@ class EvidenceUpload extends AddAnother {
                   .catch(next.bind(null, forwardingError));
               });
             });
-          })
-
+          });
         })
-        .catch((mkdirError) => {
+        .catch(mkdirError => {
           return next(mkdirError);
         });
     }
