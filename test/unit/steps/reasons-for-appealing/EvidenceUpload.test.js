@@ -58,6 +58,17 @@ describe('The other methods of EvidenceUpload', () => {
       expect(fields).to.have.all.keys(['link', 'uploadEv']);
     });
   });
+
+  describe('answer', () => {
+    it('answer', () => {
+      instance.fields = { items: {
+        value: [{ uploadEv: 'firstFile.png' }, { uploadEv: 'secondFile.pdf' }]
+      } };
+      const answers = instance.answers();
+      expect(answers.answer).to.deep.equal(['firstFile.png', 'secondFile.pdf']);
+    });
+  });
+
   describe('next', () => {
     it('the next step is /the-hearing', () => {
       expect(instance.next().step).to.equal(paths.hearing.theHearing);
