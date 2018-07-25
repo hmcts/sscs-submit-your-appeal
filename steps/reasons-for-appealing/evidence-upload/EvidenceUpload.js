@@ -55,6 +55,15 @@ class EvidenceUpload extends AddAnother {
       fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
   }
 
+  static forwardFileToApi(pathToFile, forwardCallback) {
+    return request.post({
+      url: uploadEvidenceUrl,
+      formData: {
+        file: fs.createReadStream(pathToFile)
+      }
+    }, forwardCallback);
+  }
+
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
@@ -94,8 +103,11 @@ class EvidenceUpload extends AddAnother {
 
           return incoming.parse(req, (uploadingError, fields, files) => {
             if (req.body && req.body['item.uploadEv'] &&
-              (req.body['item.uploadEv'] === maxFileSizeExceededError ||
-                req.body['item.uploadEv'] === fileMissingError)) {
+              req.body['item.uploadEv'] === fileMissingError) {
+              return next();
+            }
+            if (req.body && req.body['item.uploadEv'] &&
+              req.body['item.uploadEv'] === maxFileSizeExceededError) {
               return unlink(files['item.uploadEv'].path)
                 .then(next)
                 .catch(next);
@@ -130,14 +142,8 @@ class EvidenceUpload extends AddAnother {
             const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
             return rename(files['item.uploadEv'].path, pathToFile)
               .then(() => {
-                return request.post({
-                  url: uploadEvidenceUrl,
-                  formData: {
-                    file: fs.createReadStream(pathToFile)
-                  }
-                }, (forwardingError, resp, body) => {
+                return EvidenceUpload.forwardFileToApi(pathToFile, (forwardingError, resp, body) => {
                   if (!forwardingError) {
-                    logger.info('No forwarding error, about to save data');
                     const b = JSON.parse(body);
                     req.body = {
                       'item.uploadEv': b.documents[0].originalDocumentName,

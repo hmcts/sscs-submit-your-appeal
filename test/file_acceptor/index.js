@@ -86,6 +86,7 @@ function teardown(callback) {
 }
 
 function bootstrap(callback) {
+  console.info('hello');
   server = http.createServer(app).listen(app.get('port'), callback);
   return server;
 }
