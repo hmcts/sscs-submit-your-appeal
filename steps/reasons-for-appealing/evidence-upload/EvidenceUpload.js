@@ -48,13 +48,6 @@ class EvidenceUpload extends AddAnother {
       .catch((fsError) => {
         return mkdir(p);
       });
-/*
-    fs.stat(p, (fsError, stats) => {
-      if (fsError || !stats.isDirectory()) {
-        return fs.mkdir(p, dirCallback);
-      }
-      return dirCallback();
-    });*/
   }
 
   static isCorrectFileType(mimetype, filename) {
@@ -68,6 +61,8 @@ class EvidenceUpload extends AddAnother {
     const logger = Logger.getLogger('EvidenceUpload.js');
     const seshId = req.session.id;
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
+    const unlink = promisify(fs.unlink);
+
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
 
       return EvidenceUpload.makeDir(pathToUploadFolder)
@@ -101,7 +96,9 @@ class EvidenceUpload extends AddAnother {
             if (req.body && req.body['item.uploadEv'] &&
               (req.body['item.uploadEv'] === maxFileSizeExceededError ||
                 req.body['item.uploadEv'] === fileMissingError)) {
-              return fs.unlink(files['item.uploadEv'].path, next);
+              return unlink(files['item.uploadEv'].path)
+                .then(next)
+                .catch(next);
             }
             if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
               !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
@@ -109,7 +106,9 @@ class EvidenceUpload extends AddAnother {
                 'item.uploadEv': wrongFileTypeError,
                 'item.link': ''
               };
-              return fs.unlink(files['item.uploadEv'].path, next);
+              return unlink(files['item.uploadEv'].path)
+                .then(next)
+                .catch(next);
             }
             if (uploadingError || !get(files, '["item.uploadEv"].name')) {
               /* eslint-disable operator-linebreak */
@@ -144,9 +143,13 @@ class EvidenceUpload extends AddAnother {
                     'item.uploadEv': b.documents[0].originalDocumentName,
                     'item.link': b.documents[0]._links.self.href
                   };
-                  return fs.unlink(pathToFile, next);
+                  return unlink(pathToFile)
+                    .then(next)
+                    .catch(next);
                 }
-                return fs.unlink(pathToFile, next.bind(null, forwardingError));
+                return unlink(pathToFile)
+                  .then(next.bind(null, forwardingError))
+                  .catch(next.bind(null, forwardingError));
               });
             });
           })
