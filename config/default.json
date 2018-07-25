@@ -41,6 +41,7 @@
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
-    "enabled": false
+    "enabled": false,
+    "allowedRpcs": "birmingham"
   }
 }
