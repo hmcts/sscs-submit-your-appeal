@@ -4,7 +4,9 @@ const request = require('superagent');
 const { inwardPostcode } = require('utils/regex');
 
 const postcodeCountryLookupUrl = config.get('api.url') + config.get('postcodeChecker.endpoint');
-const disallowedRegionCentres = ['glasgow'];
+const allowedRegionCentres = config.get('postcodeChecker.allowedRpcs')
+  .split(',')
+  .map(rpc => rpc.trim().toLocaleLowerCase());
 const northernIrelandPostcodeStart = 'bt';
 
 const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
@@ -24,7 +26,7 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
         }
 
         const regionalCentre = resp.body.regionalCentre.toLocaleLowerCase();
-        resolve(!disallowedRegionCentres.includes(regionalCentre));
+        resolve(allowedRegionCentres.includes(regionalCentre));
       })
       .catch(error => {
         reject(error);
