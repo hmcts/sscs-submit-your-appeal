@@ -102,15 +102,17 @@ class EvidenceUpload extends AddAnother {
           });
 
           return incoming.parse(req, (uploadingError, fields, files) => {
-            if (req.body && req.body['item.uploadEv'] &&
-              req.body['item.uploadEv'] === fileMissingError) {
-              return next();
-            }
-            if (req.body && req.body['item.uploadEv'] &&
-              req.body['item.uploadEv'] === maxFileSizeExceededError) {
-              return unlink(files['item.uploadEv'].path)
-                .then(next)
-                .catch(next);
+            if (req.body && req.body['item.uploadEv']) {
+              if (req.body['item.uploadEv'] === fileMissingError ||
+                req.body['item.uploadEv'] === maxFileSizeExceededError) {
+                try {
+                  return unlink(files['item.uploadEv'].path)
+                    .then(next)
+                    .catch(next);
+                } catch (e) {
+                  return next();
+                }
+              }
             }
             if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
               !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
