@@ -61,7 +61,9 @@ class EvidenceUpload extends AddAnother {
     const logger = Logger.getLogger('EvidenceUpload.js');
     // const seshId = req.session.id;
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
+
     const unlink = promisify(fs.unlink);
+    const rename = promisify(fs.rename);
 
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
       return EvidenceUpload.makeDir(pathToUploadFolder)
@@ -128,29 +130,30 @@ class EvidenceUpload extends AddAnother {
             }
 
             const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-            return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
-              return request.post({
-                url: uploadEvidenceUrl,
-                formData: {
-                  file: fs.createReadStream(pathToFile)
-                }
-              }, (forwardingError, resp, body) => {
-                if (!forwardingError) {
-                  logger.info('No forwarding error, about to save data');
-                  const b = JSON.parse(body);
-                  req.body = {
-                    'item.uploadEv': b.documents[0].originalDocumentName,
-                    'item.link': b.documents[0]._links.self.href
-                  };
+            return rename(files['item.uploadEv'].path, pathToFile)
+              .then(() => {
+                return request.post({
+                  url: uploadEvidenceUrl,
+                  formData: {
+                    file: fs.createReadStream(pathToFile)
+                  }
+                }, (forwardingError, resp, body) => {
+                  if (!forwardingError) {
+                    logger.info('No forwarding error, about to save data');
+                    const b = JSON.parse(body);
+                    req.body = {
+                      'item.uploadEv': b.documents[0].originalDocumentName,
+                      'item.link': b.documents[0]._links.self.href
+                    };
+                    return unlink(pathToFile)
+                      .then(next)
+                      .catch(next);
+                  }
                   return unlink(pathToFile)
-                    .then(next)
-                    .catch(next);
-                }
-                return unlink(pathToFile)
-                  .then(next.bind(null, forwardingError))
-                  .catch(next.bind(null, forwardingError));
+                    .then(next.bind(null, forwardingError))
+                    .catch(next.bind(null, forwardingError));
+                });
               });
-            });
           });
         })
         .catch(mkdirError => {
