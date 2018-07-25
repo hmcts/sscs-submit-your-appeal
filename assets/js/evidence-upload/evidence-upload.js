@@ -102,9 +102,20 @@ class EvidenceUpload {
         window.location.reload();
       },
       error: error => {
-        if (error && error.responseJSON && error.responseJSON.validationErrors) {
-          this.handleErrorSummary(error.responseJSON.validationErrors);
-          this.handleInlineError(error.responseJSON.validationErrors);
+        if (error) {
+          $('.error-message').remove();
+          $(`#${this.elId}`).val('');
+          const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
+            error.responseJSON.validationErrors :
+            [
+              {
+                field: 'uploadEv',
+                errors: ['Sorry, we are experiencing technical problems. Please try again later.']
+              }
+            ];
+
+          this.handleErrorSummary(pageErrors);
+          this.handleInlineError(pageErrors);
         }
       }
     });
