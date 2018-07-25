@@ -16,8 +16,6 @@ const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
-const request = require('request');
-const fs = require('fs');
 const HttpStatus = require('http-status-codes');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
@@ -92,33 +90,6 @@ app.use((req, res, next) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send('User-agent: *\nDisallow: /');
-});
-
-app.get('/test-file-upload', (req, res) => {
-  const url = 'http://sscs-tribunals-api-demo.service.core-compute-demo.internal';
-  const fileData = fs.createReadStream('evidence.txt');
-
-  request.post({
-    url: `${url}/evidence/upload`,
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    formData: {
-      file: {
-        value: fileData,
-        options: {
-          filename: 'evidence.txt',
-          contentType: 'text/plain'
-        }
-      }
-    }
-  }, (forwardingError, resp, body) => {
-    logger.info('forwardingError', forwardingError);
-    logger.info('resp.statusCode', resp.statusCode);
-    logger.info('body', body);
-    res.type('html');
-    res.send(`<p>Status: ${resp.statusCode}</p>`);
-  });
 });
 
 app.use('/sessions', (req, res) => {
