@@ -18,6 +18,8 @@ const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
 
+const { promisify } = require('util');
+
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
@@ -32,14 +34,27 @@ class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
   }
-  static makeDir(path, dirCallback) {
+  static makeDir(path) {
     const p = pt.join(__dirname, path);
+    const stat = promisify(fs.stat);
+    const mkdir = promisify(fs.mkdir);
+
+    return stat(p)
+      .then((stats) => {
+        if (!stats.isDirectory()) {
+          return mkdir(p);
+        }
+      })
+      .catch((fsError) => {
+        return mkdir(p);
+      });
+/*
     fs.stat(p, (fsError, stats) => {
       if (fsError || !stats.isDirectory()) {
         return fs.mkdir(p, dirCallback);
       }
       return dirCallback();
-    });
+    });*/
   }
 
   static isCorrectFileType(mimetype, filename) {
@@ -51,92 +66,95 @@ class EvidenceUpload extends AddAnother {
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
-
+    const seshId = req.session.id;
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-        if (mkdirError) {
-          return next(mkdirError);
-        }
-        const multiplier = 1024;
-        const incoming = new formidable.IncomingForm({
-          uploadDir: pt.resolve(__dirname, pathToUploadFolder),
-          keepExtensions: true,
-          type: 'multipart'
-        });
 
-        incoming.on('fileBegin', () => {
-          const emptyRequestSize = 200;
-          if (incoming.bytesExpected === null ||
-            incoming.bytesExpected <= emptyRequestSize) {
-            req.body = {
-              'item.uploadEv': fileMissingError,
-              'item.link': ''
-            };
-            logger.error('Evidence upload error: you need to choose a file');
-          } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
-            req.body = {
-              'item.uploadEv': maxFileSizeExceededError,
-              'item.link': ''
-            };
-            logger.error('Evidence upload error: the file is too big');
-          }
-        });
-
-        return incoming.parse(req, (uploadingError, fields, files) => {
-          if (req.body && req.body['item.uploadEv'] &&
-            (req.body['item.uploadEv'] === maxFileSizeExceededError ||
-              req.body['item.uploadEv'] === fileMissingError)) {
-            return fs.unlink(files['item.uploadEv'].path, next);
-          }
-          if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
-            !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
-            req.body = {
-              'item.uploadEv': wrongFileTypeError,
-              'item.link': ''
-            };
-            return fs.unlink(files['item.uploadEv'].path, next);
-          }
-          if (uploadingError || !get(files, '["item.uploadEv"].name')) {
-            /* eslint-disable operator-linebreak */
-            if (uploadingError &&
-              uploadingError.message &&
-              uploadingError.message.match(/maxFileSize exceeded/)) {
-              /* eslint-enable operator-linebreak */
-              // cater for the horrible formidable.js error
-              /* eslint-disable no-param-reassign */
-              uploadingError = maxFileSizeExceededError;
-              /* eslint-enable no-param-reassign */
-            }
-            req.body = {
-              'item.uploadEv': uploadingError,
-              'item.link': ''
-            };
-            return next();
-          }
-
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-          return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
-            return request.post({
-              url: uploadEvidenceUrl,
-              formData: {
-                file: fs.createReadStream(pathToFile)
-              }
-            }, (forwardingError, resp, body) => {
-              if (!forwardingError) {
-                logger.info('No forwarding error, about to save data');
-                const b = JSON.parse(body);
-                req.body = {
-                  'item.uploadEv': b.documents[0].originalDocumentName,
-                  'item.link': b.documents[0]._links.self.href
-                };
-                return fs.unlink(pathToFile, next);
-              }
-              return fs.unlink(pathToFile, next.bind(null, forwardingError));
-            });
+      return EvidenceUpload.makeDir(pathToUploadFolder)
+        .then(() => {
+          const multiplier = 1024;
+          const incoming = new formidable.IncomingForm({
+            uploadDir: pt.resolve(__dirname, pathToUploadFolder),
+            keepExtensions: true,
+            type: 'multipart'
           });
+
+          incoming.on('fileBegin', () => {
+            const emptyRequestSize = 200;
+            if (incoming.bytesExpected === null ||
+              incoming.bytesExpected <= emptyRequestSize) {
+              req.body = {
+                'item.uploadEv': fileMissingError,
+                'item.link': ''
+              };
+              logger.error('Evidence upload error: you need to choose a file');
+            } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+              req.body = {
+                'item.uploadEv': maxFileSizeExceededError,
+                'item.link': ''
+              };
+              logger.error('Evidence upload error: the file is too big');
+            }
+          });
+
+          return incoming.parse(req, (uploadingError, fields, files) => {
+            if (req.body && req.body['item.uploadEv'] &&
+              (req.body['item.uploadEv'] === maxFileSizeExceededError ||
+                req.body['item.uploadEv'] === fileMissingError)) {
+              return fs.unlink(files['item.uploadEv'].path, next);
+            }
+            if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
+              !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
+              req.body = {
+                'item.uploadEv': wrongFileTypeError,
+                'item.link': ''
+              };
+              return fs.unlink(files['item.uploadEv'].path, next);
+            }
+            if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+              /* eslint-disable operator-linebreak */
+              if (uploadingError &&
+                uploadingError.message &&
+                uploadingError.message.match(/maxFileSize exceeded/)) {
+                /* eslint-enable operator-linebreak */
+                // cater for the horrible formidable.js error
+                /* eslint-disable no-param-reassign */
+                uploadingError = maxFileSizeExceededError;
+                /* eslint-enable no-param-reassign */
+              }
+              req.body = {
+                'item.uploadEv': uploadingError,
+                'item.link': ''
+              };
+              return next();
+            }
+
+            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+            return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
+              return request.post({
+                url: uploadEvidenceUrl,
+                formData: {
+                  file: fs.createReadStream(pathToFile)
+                }
+              }, (forwardingError, resp, body) => {
+                if (!forwardingError) {
+                  logger.info('No forwarding error, about to save data');
+                  const b = JSON.parse(body);
+                  req.body = {
+                    'item.uploadEv': b.documents[0].originalDocumentName,
+                    'item.link': b.documents[0]._links.self.href
+                  };
+                  return fs.unlink(pathToFile, next);
+                }
+                return fs.unlink(pathToFile, next.bind(null, forwardingError));
+              });
+            });
+          })
+
+        })
+        .catch((mkdirError) => {
+          return next(mkdirError);
         });
-      });
     }
     return next();
   }
