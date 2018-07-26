@@ -6,6 +6,8 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
+const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
+
 describe('OtherReasonForAppealing.js', () => {
   let otherReasonForAppealing = null;
 
@@ -13,7 +15,8 @@ describe('OtherReasonForAppealing.js', () => {
     otherReasonForAppealing = new OtherReasonForAppealing({
       journey: {
         steps: {
-          SendingEvidence: paths.reasonsForAppealing.sendingEvidence
+          SendingEvidence: paths.reasonsForAppealing.sendingEvidence,
+          EvidenceProvide: paths.reasonsForAppealing.evidenceProvide
         }
       }
     });
@@ -100,8 +103,10 @@ describe('OtherReasonForAppealing.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /sending-evidence', () => {
-      expect(otherReasonForAppealing.next().step).to.eq(paths.reasonsForAppealing.sendingEvidence);
+    const expectedPath = evidenceUploadEnabled ? 'evidence-provide' : 'sending-evidence';
+    const pathObjectName = evidenceUploadEnabled ? 'evidenceProvide' : 'sendingEvidence';
+    it(`returns the next step path /${expectedPath}`, () => {
+      expect(otherReasonForAppealing.next().step).to.eq(paths.reasonsForAppealing[pathObjectName]);
     });
   });
 });

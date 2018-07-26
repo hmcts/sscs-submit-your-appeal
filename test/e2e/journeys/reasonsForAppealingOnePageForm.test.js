@@ -12,11 +12,13 @@ const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 
 const testData = require('test/e2e/data');
 const representative = require('steps/representative/representative/content.en');
+const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
 
 const twoReasons = [
   reasons[0],
   reasons[1]
 ];
+const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
 Feature('Appellant PIP, one month ago, attends hearing with reasons for appealing one page form');
 
@@ -46,7 +48,13 @@ Scenario('Adds reasons for appealing and sees them in check your answers', I => 
   );
   I.click('Continue');
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
-  I.readSendingEvidenceAndContinue();
+  if (!evidenceUploadEnabled) {
+    I.readSendingEvidenceAndContinue();
+  }
+  if (evidenceUploadEnabled) {
+    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+    I.uploadAPieceOfEvidence();
+  }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
   I.confirmDetailsArePresent();
@@ -73,7 +81,13 @@ Scenario('Enters a reason for appealing, then edits the reason', I => {
   );
   I.click('Continue');
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
-  I.readSendingEvidenceAndContinue();
+  if (!evidenceUploadEnabled) {
+    I.readSendingEvidenceAndContinue();
+  }
+  if (evidenceUploadEnabled) {
+    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+    I.uploadAPieceOfEvidence();
+  }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
   I.confirmDetailsArePresent();
@@ -113,7 +127,13 @@ Scenario('Enters a reason for appealing, then removes the reason and sees errors
   );
   I.click('Continue');
   I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
-  I.readSendingEvidenceAndContinue();
+  if (!evidenceUploadEnabled) {
+    I.readSendingEvidenceAndContinue();
+  }
+  if (evidenceUploadEnabled) {
+    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+    I.uploadAPieceOfEvidence();
+  }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
   I.confirmDetailsArePresent();
