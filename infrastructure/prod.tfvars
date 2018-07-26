@@ -1,3 +1,3 @@
 infrastructure_env = "prod"
 node_environment = "prod"
-sya_hostname  = "appeal-benefit-decision.service.gov.uk"
+sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
