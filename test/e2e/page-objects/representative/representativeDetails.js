@@ -1,6 +1,7 @@
 function enterRequiredRepresentativeDetails() {
   const I = this;
 
+  I.fillField('input[name="name.title"]', 'Mr');
   I.fillField('input[name="name.first"]', 'Harry');
   I.fillField('input[name="name.last"]', 'Potter');
   I.fillField('#addressLine1', '4 Privet Drive');
