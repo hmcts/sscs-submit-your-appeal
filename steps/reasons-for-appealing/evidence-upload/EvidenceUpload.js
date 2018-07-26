@@ -1,12 +1,10 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
-
-const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
-const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
+const appInsights = require('app-insights');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -17,6 +15,10 @@ const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
+const sections = require('steps/check-your-appeal/sections');
+
+const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
@@ -137,6 +139,7 @@ class EvidenceUpload extends AddAnother {
                 'item.uploadEv': technicalProblemError,
                 'item.link': ''
               };
+              appInsights.trackException(forwardingError);
               return fs.unlink(pathToFile, next);
             });
           });
@@ -185,11 +188,18 @@ class EvidenceUpload extends AddAnother {
     });
   }
 
+  answers() {
+    return answer(this, {
+      section: sections.reasonsForAppealing,
+      answer: this.fields.items.value.map(file => file.uploadEv)
+    });
+  }
+
   values() {
     const evidences = this.fields.items.value.map(file => {
       return {
-        url: file.link.value,
-        fileName: file.uploadEv.value,
+        url: file.link,
+        fileName: file.uploadEv,
         uploadedDate: moment().format('YYYY-MM-DD')
       };
     });
