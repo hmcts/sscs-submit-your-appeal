@@ -54,6 +54,7 @@ Scenario('Adds reasons for appealing and sees them in check your answers', I => 
   if (evidenceUploadEnabled) {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
+    I.enterDescription('Some description of the evidence');
   }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
@@ -87,6 +88,7 @@ Scenario('Enters a reason for appealing, then edits the reason', I => {
   if (evidenceUploadEnabled) {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
+    I.enterDescription('Some description of the evidence');
   }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
@@ -133,6 +135,7 @@ Scenario('Enters a reason for appealing, then removes the reason and sees errors
   if (evidenceUploadEnabled) {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
+    I.enterDescription('Some description of the evidence');
   }
   I.enterDoYouWantToAttendTheHearing('No');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
