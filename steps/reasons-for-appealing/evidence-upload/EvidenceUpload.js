@@ -198,8 +198,8 @@ class EvidenceUpload extends AddAnother {
   values() {
     const evidences = this.fields.items.value.map(file => {
       return {
-        url: file.link.value,
-        fileName: file.uploadEv.value,
+        url: file.link,
+        fileName: file.uploadEv,
         uploadedDate: moment().format('YYYY-MM-DD')
       };
     });
