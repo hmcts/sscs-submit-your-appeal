@@ -32,7 +32,7 @@
     "@hmcts/look-and-feel": "1.18.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
-    "@hmcts/one-per-page": "3.4.1",
+    "@hmcts/one-per-page": "3.4.3",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.1",
