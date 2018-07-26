@@ -185,9 +185,6 @@ journey(app, {
       url: config.redis.url,
       connect_timeout: 15000
     },
-    cookie: {
-      secure: true
-    },
     secret: config.redis.secret
   },
   errorPages: {
