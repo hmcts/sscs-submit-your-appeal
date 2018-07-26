@@ -14,6 +14,9 @@ const moment = require('moment');
 const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
+
 const content = require('./content.en.json');
 const sections = require('steps/check-your-appeal/sections');
 
@@ -208,6 +211,15 @@ class EvidenceUpload extends AddAnother {
         evidences
       }
     };
+  }
+
+  answers() {
+    return [
+      answer(this, {
+        section: sections.reasonsForAppealing,
+        template: 'answer.html'
+      })
+    ];
   }
 
   validateList(list) {
