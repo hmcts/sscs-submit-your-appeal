@@ -20,7 +20,8 @@ const twoReasons = [
 ];
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Appellant PIP, one month ago, attends hearing with reasons for appealing one page form');
+Feature(`Appellant PIP, one month ago, attends hearing 
+with reasons for appealing one page form @batch-06`);
 
 Before(I => {
   I.createTheSession();
