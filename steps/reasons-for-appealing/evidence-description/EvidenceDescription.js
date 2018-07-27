@@ -19,8 +19,12 @@ class EvidenceDescription extends Question {
         this.content.fields.describeTheEvidence.error.invalid,
         Joi.string().regex(whitelist))
         .joi(
+          this.content.fields.describeTheEvidence.error.noContent,
+          Joi.string().required()
+        )
+        .joi(
           this.content.fields.describeTheEvidence.error.tooShort,
-          Joi.string().min(minNumberOfCharactersInDescription).required()
+          Joi.string().min(minNumberOfCharactersInDescription)
         )
     });
   }
