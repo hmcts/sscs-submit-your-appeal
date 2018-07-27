@@ -9,7 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
     "dev": "cross-env NODE_PATH=. node-dev server.js",
-    "pr-dev": "(yarn start &) && sleep 10",
+    "pr-dev": "(NODE_ENV=development USE_MEMORY_STORE=true yarn start &) && sleep 15",
     "setup": "exit 0",
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
     "test:assets": "cross-env NODE_PATH=. NODE_ENV=test mocha-webpack 'test/assets/**/*.test.js' --webpack-config test/webpack.config.js --require babel-core/register",
