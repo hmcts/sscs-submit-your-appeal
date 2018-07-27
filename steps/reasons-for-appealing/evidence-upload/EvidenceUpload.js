@@ -1,12 +1,10 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
-
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
-
-const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
-const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
+const appInsights = require('app-insights');
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -17,12 +15,17 @@ const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
+const sections = require('steps/check-your-appeal/sections');
+
+const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
+const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 
 const { promisify } = require('util');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
+const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
 
 /* eslint-disable consistent-return */
 /* eslint-disable complexity */
@@ -141,30 +144,33 @@ class EvidenceUpload extends AddAnother {
               return next();
             }
 
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-            return rename(files['item.uploadEv'].path, pathToFile)
-              .then(() => {
-                return EvidenceUpload.forwardFileToApi(pathToFile, (forwardingError, resp, body) => {
-                  if (!forwardingError) {
-                    const b = JSON.parse(body);
-                    req.body = {
-                      'item.uploadEv': b.documents[0].originalDocumentName,
-                      'item.link': b.documents[0]._links.self.href
-                    };
-                    return unlink(pathToFile)
-                      .then(next)
-                      .catch(next);
-                  }
-                  return unlink(pathToFile)
-                    .then(next.bind(null, forwardingError))
-                    .catch(next.bind(null, forwardingError));
-                });
-              });
+          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+          return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
+            return request.post({
+              url: uploadEvidenceUrl,
+              formData: {
+                file: fs.createReadStream(pathToFile)
+              }
+            }, (forwardingError, resp, body) => {
+              if (!forwardingError) {
+                logger.info('No forwarding error, about to save data');
+                const b = JSON.parse(body);
+                req.body = {
+                  'item.uploadEv': b.documents[0].originalDocumentName,
+                  'item.link': b.documents[0]._links.self.href
+                };
+                return fs.unlink(pathToFile, next);
+              }
+              req.body = {
+                'item.uploadEv': technicalProblemError,
+                'item.link': ''
+              };
+              appInsights.trackException(forwardingError);
+              return fs.unlink(pathToFile, next);
+            });
           });
-        })
-        .catch(mkdirError => {
-          return next(mkdirError);
         });
+      });
     }
     return next();
   }
@@ -200,16 +206,26 @@ class EvidenceUpload extends AddAnother {
       ).joi(
         content.fields.uploadEv.error.maxFileSizeExceeded,
         Joi.string().disallow(maxFileSizeExceededError)
+      ).joi(
+        content.fields.uploadEv.error.technical,
+        Joi.string().disallow(technicalProblemError)
       ),
       link: text.joi('', Joi.string().optional())
+    });
+  }
+
+  answers() {
+    return answer(this, {
+      section: sections.reasonsForAppealing,
+      answer: this.fields.items.value.map(file => file.uploadEv)
     });
   }
 
   values() {
     const evidences = this.fields.items.value.map(file => {
       return {
-        url: file.link.value,
-        fileName: file.uploadEv.value,
+        url: file.link,
+        fileName: file.uploadEv,
         uploadedDate: moment().format('YYYY-MM-DD')
       };
     });
@@ -232,6 +248,7 @@ class EvidenceUpload extends AddAnother {
 module.exports = EvidenceUpload;
 
 /* eslint-enable consistent-return */
+/* eslint-enable operator-linebreak */
 /* eslint-enable complexity */
 /* eslint-enable arrow-body-style */
 /* eslint-enable max-nested-callbacks */
