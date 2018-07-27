@@ -9,7 +9,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const moment = require('moment');
 const request = require('request');
 const { get } = require('lodash');
@@ -20,12 +20,15 @@ const sections = require('steps/check-your-appeal/sections');
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 
-const { promisify } = require('util');
-
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
+
+/*const { promisify } = require('util');
+const stat = promisify(fs.stat);
+const mkdir = promisify(fs.mkdir);*/
 
 /* eslint-disable consistent-return */
 /* eslint-disable complexity */
@@ -38,18 +41,7 @@ class EvidenceUpload extends AddAnother {
   }
   static makeDir(path) {
     const p = pt.join(__dirname, path);
-    const stat = promisify(fs.stat);
-    const mkdir = promisify(fs.mkdir);
-
-    return stat(p)
-      .then(stats => {
-        if (!stats.isDirectory()) {
-          return mkdir(p);
-        }
-      })
-      .catch(() => {
-        return mkdir(p);
-      });
+    return fs.ensureDir(p);
   }
 
   static isCorrectFileType(mimetype, filename) {
@@ -69,18 +61,17 @@ class EvidenceUpload extends AddAnother {
 
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
+    const seshId = req.session.id;
+    const folderPathForThisSession = `${pathToUploadFolder}/${seshId}`;
     const logger = Logger.getLogger('EvidenceUpload.js');
-    // const seshId = req.session.id;
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
 
-    const unlink = promisify(fs.unlink);
-
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      return EvidenceUpload.makeDir(pathToUploadFolder)
+      return EvidenceUpload.makeDir(folderPathForThisSession)
         .then(() => {
           const multiplier = 1024;
           const incoming = new formidable.IncomingForm({
-            uploadDir: pt.resolve(__dirname, pathToUploadFolder),
+            uploadDir: pt.resolve(__dirname, folderPathForThisSession),
             keepExtensions: true,
             type: 'multipart'
           });
@@ -108,7 +99,7 @@ class EvidenceUpload extends AddAnother {
               if (req.body['item.uploadEv'] === fileMissingError ||
                 req.body['item.uploadEv'] === maxFileSizeExceededError) {
                 try {
-                  return unlink(files['item.uploadEv'].path)
+                  return fs.unlink(files['item.uploadEv'].path)
                     .then(next)
                     .catch(next);
                 } catch (unlinkError) {
@@ -122,7 +113,7 @@ class EvidenceUpload extends AddAnother {
                 'item.uploadEv': wrongFileTypeError,
                 'item.link': ''
               };
-              return unlink(files['item.uploadEv'].path)
+              return fs.unlink(files['item.uploadEv'].path)
                 .then(next)
                 .catch(next);
             }
@@ -143,7 +134,7 @@ class EvidenceUpload extends AddAnother {
               return next();
             }
 
-            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+            const pathToFile = `${pt.resolve(__dirname, folderPathForThisSession)}/${files['item.uploadEv'].name}`;
             return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
               return request.post({
                 url: uploadEvidenceUrl,
@@ -158,14 +149,14 @@ class EvidenceUpload extends AddAnother {
                     'item.uploadEv': b.documents[0].originalDocumentName,
                     'item.link': b.documents[0]._links.self.href
                   };
-                  return fs.unlink(pathToFile, next);
+                  return fs.remove(pt.join(__dirname, folderPathForThisSession), next);
                 }
                 req.body = {
                   'item.uploadEv': technicalProblemError,
                   'item.link': ''
                 };
                 appInsights.trackException(forwardingError);
-                return fs.unlink(pathToFile, next);
+                return fs.remove(pt.join(__dirname, folderPathForThisSession), next);
               });
             });
           });
