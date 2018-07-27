@@ -26,10 +26,6 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
 
-/*const { promisify } = require('util');
-const stat = promisify(fs.stat);
-const mkdir = promisify(fs.mkdir);*/
-
 /* eslint-disable consistent-return */
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
@@ -43,7 +39,6 @@ class EvidenceUpload extends AddAnother {
     const p = pt.join(__dirname, path);
     return fs.ensureDir(p);
   }
-
   static isCorrectFileType(mimetype, filename) {
     const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
     return hasCorrectMT && (filename &&
