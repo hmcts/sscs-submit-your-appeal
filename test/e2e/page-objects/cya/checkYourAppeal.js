@@ -45,6 +45,7 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence() {
   if (evidenceUploadEnabled) {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
+    I.enterDescription('Some description of the evidence');
   }
 }
 
