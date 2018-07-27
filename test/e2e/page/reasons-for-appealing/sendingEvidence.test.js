@@ -3,7 +3,7 @@ const content = require('steps/reasons-for-appealing/sending-evidence/content.en
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Sending Evidence - appellant contact details @batch-10');
+Feature('Sending Evidence - appellant contact details @evidence-upload @batch-10');
 
 /* eslint-disable max-len */
 if (!evidenceUploadEnabled) {
