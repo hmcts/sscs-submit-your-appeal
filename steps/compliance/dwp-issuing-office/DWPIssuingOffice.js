@@ -38,7 +38,7 @@ class DWPIssuingOffice extends Question {
   values() {
     return {
       mrn: {
-        dwpIssuingOffice: this.fields.pipNumber.value
+        dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`
       }
     };
   }

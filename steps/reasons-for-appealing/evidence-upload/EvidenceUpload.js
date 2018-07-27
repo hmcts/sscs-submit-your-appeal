@@ -1,4 +1,4 @@
-const { goTo } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { Logger } = require('@hmcts/nodejs-logging');
@@ -171,7 +171,7 @@ class EvidenceUpload extends AddAnother {
   }
 
   next() {
-    return goTo(this.journey.steps.TheHearing);
+    return redirectTo(this.journey.steps.EvidenceDescription);
   }
 }
 

@@ -13,7 +13,8 @@ describe('The other methods of EvidenceUpload', () => {
       journey: {
         steps: {
           EvidenceUpload: paths.reasonsForAppealing.evidenceUpload,
-          TheHearing: paths.hearing.theHearing
+          TheHearing: paths.hearing.theHearing,
+          EvidenceDescription: paths.reasonsForAppealing.evidenceDescription
         }
       }
     });
@@ -70,8 +71,8 @@ describe('The other methods of EvidenceUpload', () => {
   });
 
   describe('next', () => {
-    it('the next step is /the-hearing', () => {
-      expect(instance.next().step).to.equal(paths.hearing.theHearing);
+    it('the next step is /evidence-description', () => {
+      expect(instance.next().step).to.equal(paths.reasonsForAppealing.evidenceDescription);
     });
   });
 });
