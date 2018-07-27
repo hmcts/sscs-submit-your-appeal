@@ -74,7 +74,6 @@ class EvidenceUpload extends AddAnother {
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
 
     const unlink = promisify(fs.unlink);
-    const rename = promisify(fs.rename);
 
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
       return EvidenceUpload.makeDir(pathToUploadFolder)
@@ -112,7 +111,7 @@ class EvidenceUpload extends AddAnother {
                   return unlink(files['item.uploadEv'].path)
                     .then(next)
                     .catch(next);
-                } catch (e) {
+                } catch (unlinkError) {
                   return next();
                 }
               }
@@ -144,33 +143,33 @@ class EvidenceUpload extends AddAnother {
               return next();
             }
 
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-          return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
-            return request.post({
-              url: uploadEvidenceUrl,
-              formData: {
-                file: fs.createReadStream(pathToFile)
-              }
-            }, (forwardingError, resp, body) => {
-              if (!forwardingError) {
-                logger.info('No forwarding error, about to save data');
-                const b = JSON.parse(body);
+            const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+            return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
+              return request.post({
+                url: uploadEvidenceUrl,
+                formData: {
+                  file: fs.createReadStream(pathToFile)
+                }
+              }, (forwardingError, resp, body) => {
+                if (!forwardingError) {
+                  logger.info('No forwarding error, about to save data');
+                  const b = JSON.parse(body);
+                  req.body = {
+                    'item.uploadEv': b.documents[0].originalDocumentName,
+                    'item.link': b.documents[0]._links.self.href
+                  };
+                  return fs.unlink(pathToFile, next);
+                }
                 req.body = {
-                  'item.uploadEv': b.documents[0].originalDocumentName,
-                  'item.link': b.documents[0]._links.self.href
+                  'item.uploadEv': technicalProblemError,
+                  'item.link': ''
                 };
+                appInsights.trackException(forwardingError);
                 return fs.unlink(pathToFile, next);
-              }
-              req.body = {
-                'item.uploadEv': technicalProblemError,
-                'item.link': ''
-              };
-              appInsights.trackException(forwardingError);
-              return fs.unlink(pathToFile, next);
+              });
             });
           });
         });
-      });
     }
     return next();
   }
