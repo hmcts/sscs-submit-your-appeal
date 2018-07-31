@@ -136,7 +136,7 @@ class AppellantContactDetails extends Question {
           addressLine2: this.fields.addressLine2.value,
           townCity: this.fields.townCity.value,
           county: this.fields.county.value,
-          postCode: this.fields.postCode.value,
+          postCode: this.fields.postCode.value.trim(),
           phoneNumber: this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }

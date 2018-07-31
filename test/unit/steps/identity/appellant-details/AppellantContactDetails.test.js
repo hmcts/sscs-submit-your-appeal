@@ -286,6 +286,13 @@ describe('AppellantContactDetails.js', () => {
         }
       });
     });
+
+    it('removes whitespace from before and after the postcode string', () => {
+      appellantContactDetails.fields.postCode.value = ' Post code ';
+      const postcode = appellantContactDetails.values().appellant.contactDetails.postCode;
+      expect(postcode).to.not.equal(' Post code ');
+      expect(postcode).to.equal('Post code');
+    });
   });
 
   describe('next()', () => {
