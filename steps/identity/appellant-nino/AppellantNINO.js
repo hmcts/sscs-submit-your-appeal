@@ -33,7 +33,7 @@ class AppellantNINO extends Question {
   values() {
     return {
       appellant: {
-        nino: this.fields.nino.value
+        nino: this.fields.nino.value.trim()
       }
     };
   }
