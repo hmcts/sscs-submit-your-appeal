@@ -286,6 +286,20 @@ describe('AppellantContactDetails.js', () => {
         }
       });
     });
+
+    it('removes whitespace from before and after the postcode string', () => {
+      appellantContactDetails.fields.postCode.value = ' Post code ';
+      const postcode = appellantContactDetails.values().appellant.contactDetails.postCode;
+      expect(postcode).to.not.equal(' Post code ');
+      expect(postcode).to.equal('Post code');
+    });
+
+    it('removes whitespace from before and after the phone number string', () => {
+      appellantContactDetails.fields.phoneNumber.value = ' 0800109756 ';
+      const phoneNumber = appellantContactDetails.values().appellant.contactDetails.phoneNumber;
+      expect(phoneNumber).to.not.equal(' 0800109756 ');
+      expect(phoneNumber).to.equal('0800109756');
+    });
   });
 
   describe('next()', () => {
