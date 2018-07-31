@@ -20,7 +20,8 @@ const twoReasons = [
 ];
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Appellant PIP, one month ago, attends hearing with reasons for appealing one page form');
+Feature(`Appellant PIP, one month ago, attends hearing 
+with reasons for appealing one page form`);
 
 Before(I => {
   I.createTheSession();
@@ -31,7 +32,7 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('Adds reasons for appealing and sees them in check your answers', I => {
+Scenario('Adds reasons for appealing and sees them in check your answers @batch-06', I => {
   I.enterDetailsFromStartToNINO();
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);

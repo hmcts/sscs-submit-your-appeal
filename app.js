@@ -6,6 +6,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('config');
 const express = require('express');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const os = require('os');
@@ -177,10 +178,18 @@ lookAndFeel.configure(app, {
   }
 });
 
+/* eslint-disable init-declarations */
+let store;
+/* eslint-enable init-declarations */
+if (config.redis.useMemoryStore === 'true') {
+  store = new expressSession.MemoryStore();
+}
+
 journey(app, {
   baseUrl,
   steps,
   session: {
+    store,
     redis: {
       url: config.redis.url,
       connect_timeout: 15000

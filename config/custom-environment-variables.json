@@ -8,7 +8,8 @@
     "url": "REDIS_URL",
     "secret": "SESSION_SECRET",
     "useSSL": "USE_SSL",
-    "timeout": "SESSION_TIME_OUT"
+    "timeout": "SESSION_TIME_OUT",
+    "useMemoryStore": "USE_MEMORY_STORE"
   },
   "frontend": {
     "inactivityAlert": "SESSION_ENDING_ALERT"
