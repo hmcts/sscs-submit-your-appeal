@@ -54,7 +54,7 @@
 
 {% endmacro %}
 
-{% macro textarea(field, label, hint="", hideLabel=false, placeholder="") %}
+{% macro textarea(field, label, hint="", hideLabel=false, placeholder="", maxlength=0) %}
 
 <div class="form-group {{ errorClass(field) }}">
 
@@ -65,6 +65,6 @@
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7">{{ field.value | default('') }}</textarea>
+    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') }}</textarea>
 </div>
 {% endmacro %}

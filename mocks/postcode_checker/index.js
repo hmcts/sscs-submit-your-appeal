@@ -17,7 +17,7 @@ app.get('/regionalcentre/:postcode', (req, res) => {
   const cannedRes = {
     EH8: { status: HttpStatus.OK, body: { regionalCentre: 'Glasgow' } },
     ZX99: { status: HttpStatus.NOT_FOUND, body: { } },
-    default: { status: HttpStatus.OK, body: { regionalCentre: 'London' } }
+    default: { status: HttpStatus.OK, body: { regionalCentre: 'Birmingham' } }
   };
   const resJson = (postcode in cannedRes) ? cannedRes[postcode] : cannedRes.default;
 

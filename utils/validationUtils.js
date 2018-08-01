@@ -5,4 +5,14 @@ const joiValidation = (value, joiSchema) => {
   return valid.error === null;
 };
 
-module.exports = { joiValidation };
+const hasNameButNoTitleValidation = value => !(
+  (value.first && !value.title) || (value.last && !value.title)
+);
+
+const hasTitleButNoNameValidation = value => !(value.title && !(value.first || value.last));
+
+module.exports = {
+  joiValidation,
+  hasNameButNoTitleValidation,
+  hasTitleButNoNameValidation
+};

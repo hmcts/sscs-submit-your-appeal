@@ -28,7 +28,8 @@ label.form-label[for="signer"] {
 
 #item\.whatYouDisagreeWith,
 #item\.reasonForAppealing,
-#otherReasonForAppealing {
+#otherReasonForAppealing,
+#describeTheEvidence {
   width: 100%;
 }
 
@@ -72,7 +73,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#title, #pipNumber {
+#name\.title, #title, #pipNumber {
   &.form-control {
     @extend .form-control-1-8;
   }

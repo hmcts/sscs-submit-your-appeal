@@ -2,8 +2,19 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { postCode, firstName, lastName, whitelist, phoneNumber } = require('utils/regex');
-const { joiValidation } = require('utils/validationUtils');
+const {
+  postCode,
+  firstName,
+  lastName,
+  whitelist,
+  phoneNumber,
+  title
+} = require('utils/regex');
+const {
+  joiValidation,
+  hasNameButNoTitleValidation,
+  hasTitleButNoNameValidation
+} = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -16,9 +27,12 @@ class RepresentativeDetails extends Question {
   }
 
   get CYAName() {
+    const nameTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    return first === '' && last === '' ? userAnswer.NOT_PROVIDED : `${first} ${last}`.trim();
+    return first === '' && last === '' ?
+      userAnswer.NOT_PROVIDED :
+      `${nameTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -39,12 +53,22 @@ class RepresentativeDetails extends Question {
     return form({
 
       name: object({
+        title: text,
         first: text,
         last: text,
         organisation: text
       }).check(
         fields.name.error.required,
         value => Object.keys(value).length > 0
+      ).check(
+        fields.name.error.nameNoTitle,
+        value => hasNameButNoTitleValidation(value)
+      ).check(
+        fields.name.error.titleNoName,
+        value => hasTitleButNoNameValidation(value)
+      ).check(
+        errorFor('title', fields.name.title.error.invalid),
+        value => joiValidation(value.title, Joi.string().trim().regex(title))
       ).check(
         errorFor('first', fields.name.first.error.invalid),
         value => joiValidation(value.first, Joi.string().trim().regex(firstName))
@@ -98,6 +122,7 @@ class RepresentativeDetails extends Question {
   values() {
     return {
       representative: {
+        title: this.fields.name.title.value,
         firstName: this.fields.name.first.value,
         lastName: this.fields.name.last.value,
         organisation: this.fields.name.organisation.value,
@@ -106,8 +131,10 @@ class RepresentativeDetails extends Question {
           addressLine2: this.fields.addressLine2.value,
           townCity: this.fields.townCity.value,
           county: this.fields.county.value,
-          postCode: this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value.trim(),
+          phoneNumber: this.fields.phoneNumber.value ?
+            this.fields.phoneNumber.value.trim() :
+            this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }
