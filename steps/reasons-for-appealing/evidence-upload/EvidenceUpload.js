@@ -126,6 +126,7 @@ class EvidenceUpload extends AddAnother {
                 file: fs.createReadStream(pathToFile)
               }
             }, (forwardingError, resp, body) => {
+              console.log('after api request');
               if (!forwardingError) {
                 logger.info('No forwarding error, about to save data');
                 const b = JSON.parse(body);
@@ -170,6 +171,7 @@ class EvidenceUpload extends AddAnother {
   }
 
   get field() {
+    console.log('field()', this.fields.items);
     return object({
       uploadEv: text.joi(
         content.fields.uploadEv.error.required,
@@ -211,10 +213,13 @@ class EvidenceUpload extends AddAnother {
   }
 
   validateList(list) {
+    console.log('validateList()', arguments);
     return list.check(content.noItemsError, arr => arr.length > 0);
   }
 
   next() {
+    console.log('next()');
+    console.log(this.journey.steps.EvidenceDescription);
     return redirectTo(this.journey.steps.EvidenceDescription);
   }
 }
