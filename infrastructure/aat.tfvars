@@ -1,3 +1,3 @@
 infrastructure_env = "preprod"
 node_environment = "aat"
-sya_hostname  = "benefit-appeal.nonprod.platform.hmcts.net"
+sya_hostname  = "sscs-tribunals-frontend-aat.service.core-compute-aat.internal"
