@@ -173,7 +173,7 @@ class EvidenceUpload extends AddAnother {
 
   get field() {
     // eslint-disable-next-line no-console
-    console.log('field()', this.fields.items);
+    console.log('field()');
     return object({
       uploadEv: text.joi(
         content.fields.uploadEv.error.required,
