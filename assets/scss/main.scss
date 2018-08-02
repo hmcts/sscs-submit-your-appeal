@@ -90,7 +90,6 @@ label.form-label[for="signer"] {
 }
 
 .banner-blue h1{
-  width: 100%;
   background: #005ea5;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -100,6 +99,9 @@ label.form-label[for="signer"] {
     bottom: 30px;
     left:29px;
   };
+  @media (min-width: 641px) {
+    width: 100%;
+  }
 }
 
 .internal-server-error {

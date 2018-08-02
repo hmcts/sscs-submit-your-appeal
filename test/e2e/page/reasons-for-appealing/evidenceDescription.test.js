@@ -24,7 +24,6 @@ if (evidenceUploadEnabled) {
 
   Scenario('When I enter special characters and select continue, I see errors', I => {
     I.enterDescription('Description with special characters |');
-    I.selectContinue();
     I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceDescription);
     I.see(content.title);
     I.see(content.fields.describeTheEvidence.error.invalid);
@@ -32,7 +31,6 @@ if (evidenceUploadEnabled) {
 
   Scenario('When I enter too sort description and select continue, I see errors', I => {
     I.enterDescription('one');
-    I.selectContinue();
     I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceDescription);
     I.see(content.title);
     I.see(content.fields.describeTheEvidence.error.tooShort);

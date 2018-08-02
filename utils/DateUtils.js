@@ -55,7 +55,7 @@ class DateUtils {
   }
 
   static isDateInPast(date) {
-    return moment().isAfter(date, 'day');
+    return moment().isSameOrAfter(date, 'day');
   }
 
   static mrnDateSameAsImage(date) {

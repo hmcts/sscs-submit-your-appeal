@@ -8,6 +8,7 @@ function enterDescription(description) {
   const I = this;
 
   I.fillField('textarea[name="describeTheEvidence"]', description);
+  I.click('Continue');
 }
 
 module.exports = { selectContinue, enterDescription };
