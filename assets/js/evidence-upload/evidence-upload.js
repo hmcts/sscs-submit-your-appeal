@@ -52,7 +52,8 @@ class EvidenceUpload {
         id="${this.formId}" 
         name="${this.formId}" 
         action="${this.formAction}" 
-        method="post">    
+        method="post" 
+        enctype="multipart/form-data">    
             ${this.fileupload}
         </form>
     </div>`;
