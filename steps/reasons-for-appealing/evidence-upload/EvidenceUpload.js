@@ -126,8 +126,6 @@ class EvidenceUpload extends AddAnother {
                 file: fs.createReadStream(pathToFile)
               }
             }, (forwardingError, resp, body) => {
-              // eslint-disable-next-line no-console
-              console.log('after api request');
               if (!forwardingError) {
                 logger.info('No forwarding error, about to save data');
                 const b = JSON.parse(body);
@@ -172,8 +170,6 @@ class EvidenceUpload extends AddAnother {
   }
 
   get field() {
-    // eslint-disable-next-line no-console
-    console.log('field()');
     return object({
       uploadEv: text.joi(
         content.fields.uploadEv.error.required,
@@ -215,16 +211,10 @@ class EvidenceUpload extends AddAnother {
   }
 
   validateList(list) {
-    // eslint-disable-next-line no-console
-    console.log('validateList()', list);
     return list.check(content.noItemsError, arr => arr.length > 0);
   }
 
   next() {
-    // eslint-disable-next-line no-console
-    console.log('next()');
-    // eslint-disable-next-line no-console
-    console.log(this.journey.steps.EvidenceDescription);
     return redirectTo(this.journey.steps.EvidenceDescription);
   }
 }
