@@ -6,6 +6,8 @@ const paths = require('paths');
 const mockData = require('test/e2e/data');
 const selectors = require('steps/check-your-appeal/selectors');
 
+const config = require('config');
+
 const appellant = mockData.appellant;
 const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
 const appellantPhoneNumberAnswer = `${selectors.appellant.phoneNumber} ${selectors.answer}`;
@@ -18,6 +20,9 @@ Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal
     const randomWeekDay = DateUtils.getDateInMilliseconds(
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
     );
+
+    console.log(process.env.TEST_URL);
+    console.log(config.get('e2e.frontendUrl'));
 
     I.amOnPage(paths.landingPages.startAnAppeal);
     I.click(startAnAppealContent.start);
