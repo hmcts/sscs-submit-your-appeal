@@ -14,6 +14,8 @@ hideItemsListLabel: true
 {{ content.title | safe }}
 {% endset %}
 
+{% set enc_type = 'multipart/form-data' %}
+
 {% block editItem %}
 
 {% call formSection() %}
