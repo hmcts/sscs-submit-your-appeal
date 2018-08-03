@@ -21,7 +21,9 @@ Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
     );
 
-    console.log(process.env.TEST_URL);
+    // eslint-disable-next-line no-console
+    console.log(process.env.TEST_URL); // eslint-disable-line no-process-env
+    // eslint-disable-next-line no-console
     console.log(config.get('e2e.frontendUrl'));
 
     I.amOnPage(paths.landingPages.startAnAppeal);
