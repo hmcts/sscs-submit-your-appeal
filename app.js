@@ -180,7 +180,6 @@ lookAndFeel.configure(app, {
 app.set('trust proxy', 1);
 
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {
