@@ -38,7 +38,7 @@ class EvidenceUpload {
         this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
         this.fileupload = components.fileupload({
           id: this.elId,
-          name: this.elId,
+          name: `item.${this.elId}`,
           value: '',
           errors: this.errors
         }, 'Choose file', fileTypeWhiteList);
@@ -77,10 +77,12 @@ class EvidenceUpload {
     $('.column-two-thirds').prepend(summary.val);
   }
   handleInlineError(errors) {
+    const errorId = 'inline-errors-list';
     const hasErrors = Boolean(errors && errors.length);
+    $(`#${errorId}`).remove();
     $('.form-group').toggleClass('form-group-error', hasErrors);
     if (hasErrors) {
-      $('label').after(`<span class="error-message">${errors[0].errors[0]}</span>`);
+      $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
     }
   }
   hideUnnecessaryMarkup() {
@@ -100,9 +102,20 @@ class EvidenceUpload {
         window.location.reload();
       },
       error: error => {
-        if (error && error.responseJSON && error.responseJSON.validationErrors) {
-          this.handleErrorSummary(error.responseJSON.validationErrors);
-          this.handleInlineError(error.responseJSON.validationErrors);
+        if (error) {
+          $('.error-message').remove();
+          $(`#${this.elId}`).val('');
+          const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
+            error.responseJSON.validationErrors :
+            [
+              {
+                field: 'uploadEv',
+                errors: ['Sorry, we are experiencing technical problems. Please try again later.']
+              }
+            ];
+
+          this.handleErrorSummary(pageErrors);
+          this.handleInlineError(pageErrors);
         }
       }
     });
