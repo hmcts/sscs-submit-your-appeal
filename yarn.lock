@@ -6,9 +6,9 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
 
-"@hmcts/look-and-feel@1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.18.0.tgz#304db2e7a9af843a1b37589a0f5031ecf04efb53"
+"@hmcts/look-and-feel@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.18.1.tgz#ea057dc19b2b650c1966c509593ecfadd8c04dcc"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
