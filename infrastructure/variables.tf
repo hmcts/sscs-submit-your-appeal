@@ -47,5 +47,5 @@ variable "common_tags" {
 
 variable "evidence_upload_enabled" {
   type = "string"
-  default = "false"
+  default = ""
 }
