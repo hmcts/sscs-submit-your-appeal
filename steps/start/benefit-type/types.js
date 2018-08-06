@@ -15,7 +15,18 @@ const types = {
   personalIndependencePayment: 'Personal Independence Payment (PIP)',
   severeDisablementAllowance: 'Severe Disablement Allowance',
   socialFund: 'Social Fund',
-  universalCredit: 'Universal Credit (UC)'
+  universalCredit: 'Universal Credit (UC)',
+  childCare: '30 hours Free Childcare Scheme',
+  bereavementSupport: 'Bereavement Support Payment Scheme',
+  taxCredits: 'Tax Credits',
+  contractedOut: 'Contracted Out Employment Group',
+  compensationRecovery: 'Compensation Recovery Unit',
+  healthPregnancy: 'Health in Pregnancy Grant',
+  industrialDeath: 'Industrial Death Benefit',
+  pensionCredits: 'Pension Credits',
+  retirementPension: 'Retirement Pension',
+  taxFreeChildcare: 'Tax-Free Childcare Scheme',
+  disabilityWorkAllowance: 'Disability Working Allowance'
 };
 
 module.exports = types;
