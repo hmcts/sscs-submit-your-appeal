@@ -20,7 +20,7 @@ Scenario('When I enter PIP, I am taken to the postcode-check page', I => {
 }).retry(2);
 
 
-const sccs1 = [
+const sscs1 = [
   'attendanceAllowance',
   'bereavementBenefit',
   'carersAllowance',
@@ -42,22 +42,26 @@ const sccs1 = [
   'industrialDeath',
   'pensionCredits',
   'retirementPension',
-  'disabilityWorkAllowance'];
+  'disabilityWorkAllowance'
+];
 const sscs3 = ['compensationRecovery'];
 const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
-
+/* eslint-disable init-declarations */
+/* eslint-disable no-negated-condition */
 benefitTypesArr.forEach(benefitTypeKey => {
   if (benefitTypeKey !== 'personalIndependencePayment') {
-    Scenario(`When I enter ${benefitTypesObj[benefitTypeKey]} I am taken to the download form page`, I => {
-      let benefitForm = 'SSCS1';
-      if (sscs3.indexOf(benefitTypeKey) !== -1) {
+    Scenario(`When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, I => {
+      let benefitForm;
+      if (sscs1.indexOf(benefitTypeKey) !== -1) {
+        benefitForm = 'SSCS1';
+      } else if (sscs3.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS3';
       } else if (sscs5.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS5';
       } else {
-        throw new Error('I do not know which form this is supposed to go to')
+        throw new Error('I do not know which form this is supposed to go to');
       }
-      I.enterBenefitTypeAndContinue(benefitType);
+      I.enterBenefitTypeAndContinue(benefitTypesObj[benefitTypeKey]);
       I.seeInCurrentUrl(paths.appealFormDownload);
       I.see(content.title);
       I.see(content.button.text);
@@ -65,3 +69,5 @@ benefitTypesArr.forEach(benefitTypeKey => {
     }).retry(2);
   }
 });
+/* eslint-enable init-declarations */
+/* eslint-enable no-negated-condition */
