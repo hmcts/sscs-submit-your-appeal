@@ -19,9 +19,7 @@ withPipeline("nodejs", product, component) {
             println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
         }
     }
-    after("deploy:aat") {
-        stage("Wait for approval") {
-            input "Are you sure?"
-        }
+    before('buildinfra:preview') {
+        input "Would you like to continue to buildinfra:preview?"
     }
 }
