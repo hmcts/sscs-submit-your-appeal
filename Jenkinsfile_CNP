@@ -20,8 +20,6 @@ withPipeline("nodejs", product, component) {
         }
     }
     before('buildinfra:preview') {
-        stage("Wait for approval") {
-            input "Would you like to continue to buildinfra:preview?"
-        }
+        input "Would you like to continue to buildinfra:preview?"
     }
 }
