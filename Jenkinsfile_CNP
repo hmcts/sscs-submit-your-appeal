@@ -19,7 +19,7 @@ withPipeline("nodejs", product, component) {
             println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
         }
     }
-    before('Build Infrastructure - preview') {
+    before('build:preview') {
         stage("Wait for approval") {
             input "Would you like to continue?"
         }
@@ -29,7 +29,7 @@ withPipeline("nodejs", product, component) {
             input "Would you like to continue from smoketest:preview?"
         }
     }
-    after('functional:preview') {
+    after('functionaltest:preview') {
         stage("Wait for approval") {
             input "Would you like to continue from functional:preview?"
         }
