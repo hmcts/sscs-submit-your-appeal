@@ -24,4 +24,9 @@ withPipeline("nodejs", product, component) {
             input "Are you sure?"
         }
     }
+    after('Build Infrastructure - preview') {
+        stage("Wait for approval") {
+            input "Would you like to continue?"
+        }
+    }
 }
