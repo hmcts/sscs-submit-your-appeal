@@ -41,7 +41,9 @@ class EvidenceUpload {
           name: `item.${this.elId}`,
           value: '',
           errors: this.errors
-        }, 'Choose file', fileTypeWhiteList);
+        }, 'Choose file', fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
+        // ^^^ because of a bug with iphone, we need to remove the mime types from accept
+        );
         this.appendForm();
       }
     }, 0);

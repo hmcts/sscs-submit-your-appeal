@@ -95,6 +95,8 @@ app.get('/robots.txt', (req, res) => {
 app.use('/sessions', (req, res) => {
   res.sendStatus(HttpStatus.NOT_FOUND);
 });
+// because of a bug with iphone, we need to remove the mime types from accept
+const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
   baseUrl,
@@ -164,7 +166,8 @@ lookAndFeel.configure(app, {
         yes: content.inactivityTimeout.yes,
         no: content.inactivityTimeout.no
       },
-      accept: fileTypeWhitelist,
+      // because of a bug with iphone, we need to remove the mime types from accept
+      accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message,
       relatedContent: content.relatedContent,
