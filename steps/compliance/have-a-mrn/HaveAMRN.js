@@ -4,6 +4,8 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const DateUtils = require('utils/DateUtils');
+
 
 class HaveAMRN extends Question {
   static get path() {
@@ -24,7 +26,11 @@ class HaveAMRN extends Question {
   }
 
   values() {
-    return {};
+    return {
+      mrn: {
+        dateAppealSubmitted: DateUtils.getCurrentDate()
+      }
+    };
   }
 
   next() {

@@ -83,12 +83,6 @@ describe('MRNDate.js', () => {
       expect(answers[0].section).to.equal(sections.mrnDate);
       expect(answers[0].answer).to.equal('13 December 2017');
     });
-
-    it('should contain a value object', () => {
-      const values = mrnDate.values();
-      const currentDate = moment().format('DD-MM-YYYY');
-      expect(values).to.eql({ mrn: { date: '13-12-2017', dateAppealSubmitted: currentDate } });
-    });
   });
 
   describe('next()', () => {

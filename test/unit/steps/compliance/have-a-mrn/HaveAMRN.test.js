@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
+const moment = require('moment');
 
 describe('HaveAMRN.js', () => {
   let haveAMRN = null;
@@ -62,8 +63,10 @@ describe('HaveAMRN.js', () => {
   });
 
   describe('values()', () => {
-    it('should be empty', () => {
-      expect(haveAMRN.values()).to.be.empty;
+    it('should contain the submitted date', () => {
+      const values = haveAMRN.values();
+      const currentDate = moment().format('DD-MM-YYYY');
+      expect(values).to.eql({ mrn: { dateAppealSubmitted: currentDate } });
     });
   });
 
