@@ -29,7 +29,7 @@ exports.config = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'networkidle0',
-      show: true,
+      show: false,
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
