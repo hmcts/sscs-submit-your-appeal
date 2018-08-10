@@ -183,7 +183,6 @@ lookAndFeel.configure(app, {
 app.set('trust proxy', 1);
 
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {
@@ -191,7 +190,7 @@ journey(app, {
       connect_timeout: 15000
     },
     cookie: {
-      secure: protocol === 'https'
+      secure: true
     },
     secret: config.redis.secret
   },

@@ -6,6 +6,8 @@ const paths = require('paths');
 const mockData = require('test/e2e/data');
 const selectors = require('steps/check-your-appeal/selectors');
 
+const config = require('config');
+
 const appellant = mockData.appellant;
 const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
 const appellantPhoneNumberAnswer = `${selectors.appellant.phoneNumber} ${selectors.answer}`;
@@ -13,11 +15,16 @@ const txtMsgRemindersMobAnswer = `${selectors.textMsgReminders.mobileNumber} ${s
 
 Feature('Full Journey');
 
-xScenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke',
+Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke',
   async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
     );
+
+    // eslint-disable-next-line no-console
+    console.log(process.env.TEST_URL); // eslint-disable-line no-process-env
+    // eslint-disable-next-line no-console
+    console.log(config.get('e2e.frontendUrl'));
 
     I.amOnPage(paths.landingPages.startAnAppeal);
     I.click(startAnAppealContent.start);
