@@ -41,6 +41,16 @@ function initAutocomplete() {
   });
 }
 
+function doNotSubmitTwice() {
+  $('.button').attr('disabled', true);
+}
+
+function initDoNotSubmitTwice() {
+  if ($('#signer').length) {
+    $('form').on('submit', doNotSubmitTwice);
+  }
+}
+
 function initDatePicker() {
   if ($('#date-picker').length) {
     $('.add-another-add-link').hide();
@@ -94,6 +104,7 @@ $(document).ready(() => {
   initDatePicker();
   initEvidenceUpload();
   initAddReason();
+  initDoNotSubmitTwice();
 });
 
 $(window).on('unload', () => {
@@ -101,5 +112,8 @@ $(window).on('unload', () => {
   destroyEvidenceUpload();
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');
+  }
+  if ($('#signer').length) {
+    $('form').off('submit', doNotSubmitTwice);
   }
 });

@@ -148,8 +148,8 @@ describe('isDateInPast', () => {
   it('should return true if the date is in the past', () => {
     expect(DateUtils.isDateInPast(moment().subtract(1, 'day'))).to.be.true;
   });
-  it('should return false if the date is now', () => {
-    expect(DateUtils.isDateInPast(moment())).to.be.false;
+  it('should return true if the date is now', () => {
+    expect(DateUtils.isDateInPast(moment())).to.be.true;
   });
   it('should return false if the date is in the future', () => {
     expect(DateUtils.isDateInPast(moment().add(1, 'day'))).to.be.false;
