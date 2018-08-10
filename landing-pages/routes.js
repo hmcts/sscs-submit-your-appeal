@@ -7,7 +7,7 @@ const helpWithAppealContent = require('landing-pages/help-with-appeal/content.en
 const afterYouAppealContent = require('landing-pages/after-you-appeal/content.en.json');
 const startAnAppealContent = require('landing-pages/start-an-appeal/content.en.json');
 
-router.get(paths.landingPages.overview, (req, res) => {
+/*router.get(paths.landingPages.overview, (req, res) => {
   res.render('overview/template.html', overviewContent);
 });
 
@@ -25,6 +25,6 @@ router.get(paths.landingPages.startAnAppeal, (req, res) => {
 
 router.get(paths.landingPages.afterYouAppeal, (req, res) => {
   res.render('after-you-appeal/template.html', afterYouAppealContent);
-});
+});*/
 
 module.exports = router;

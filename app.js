@@ -12,7 +12,6 @@ const os = require('os');
 const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
-const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
@@ -220,6 +219,8 @@ app.use(paths.health, healthcheck.configure({
 }));
 
 app.use(Express.accessLogger());
-app.use('/', landingPages, policyPages);
+app.use('/', (req, res) => {
+  return res.redirect('/entry');
+});
 
 module.exports = app;

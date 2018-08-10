@@ -11,14 +11,6 @@ module.exports = {
     internalServerError: '/internal-server-error'
   },
 
-  landingPages: {
-    overview: '/',
-    beforeYouAppeal: '/before-you-appeal',
-    helpWithAppeal: '/help-with-appeal',
-    startAnAppeal: '/start-an-appeal',
-    afterYouAppeal: '/after-you-appeal'
-  },
-
   policy: {
     cookiePolicy: '/cookie-policy',
     termsAndConditions: '/terms-and-conditions',
