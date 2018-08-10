@@ -13,7 +13,7 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('I see SSCS1 content when not selecting Carer’s Allowance or Child Benefit', I => {
+Scenario('I see SSCS1 content when not selecting Carer\'s Allowance or Child Benefit', I => {
   I.enterBenefitTypeAndContinue(benefitTypes.disabilityLivingAllowance);
   I.see(dynamicContent('SSCS1', 'Disability Living Allowance (DLA)'));
 });
