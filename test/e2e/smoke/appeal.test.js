@@ -1,4 +1,3 @@
-const startAnAppealContent = require('landing-pages/start-an-appeal/content.en');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
@@ -19,8 +18,7 @@ xScenario('Appellant full journey from /start-an-appeal to the /check-your-appea
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
     );
 
-    I.amOnPage(paths.landingPages.startAnAppeal);
-    I.click(startAnAppealContent.start);
+    I.amOnPage(paths.session.root);
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);

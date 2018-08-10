@@ -12,6 +12,7 @@ const os = require('os');
 const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
+const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 const HttpStatus = require('http-status-codes');
@@ -99,7 +100,6 @@ lookAndFeel.configure(app, {
   express: {
     views: [
       path.resolve(__dirname, 'steps'),
-      path.resolve(__dirname, 'landing-pages'),
       path.resolve(__dirname, 'views/compliance'),
       path.resolve(__dirname, 'policy-pages'),
       path.resolve(__dirname, 'error-pages')
@@ -218,6 +218,7 @@ app.use(paths.health, healthcheck.configure({
 }));
 
 app.use(Express.accessLogger());
+app.use('/', policyPages);
 app.use('/', (req, res) => res.redirect('/entry'));
 
 module.exports = app;

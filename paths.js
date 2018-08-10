@@ -19,6 +19,7 @@ module.exports = {
   },
 
   session: {
+    root: '/',
     createSession: '/create-session',
     entry: '/entry',
     exit: '/exit',
