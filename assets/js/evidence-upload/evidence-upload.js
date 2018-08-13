@@ -97,7 +97,7 @@ class EvidenceUpload {
       const errors = [
         {
           field: 'uploadEv',
-          errors: ['Please upload at least one file']
+          errors: ['Upload at least one file']
         }
       ];
       this.handleErrorSummary(errors);
