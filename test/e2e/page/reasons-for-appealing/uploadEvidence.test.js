@@ -40,8 +40,7 @@ if (evidenceUploadEnabled) {
     I.seeElement('.error-summary');
     I.see(content.noItemsError);
     I.attachFile('#uploadEv', 'evidence.txt');
-    I.click('.button');
     I.dontSeeElement('.error-summary');
-    I.amOnPage(paths.reasonsForAppealing.evidenceUpload);
+    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
   });
 }
