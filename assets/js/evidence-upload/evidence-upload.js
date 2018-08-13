@@ -11,6 +11,7 @@ class EvidenceUpload {
     this.elId = 'uploadEv';
     this.listToRead = '.add-another-list';
     this.doTheUpload = this.doTheUpload.bind(this);
+    this.interceptSubmission = this.interceptSubmission.bind(this);
 
     fieldTemplates.getExported(this.setup.bind(this));
     errorSummary.getExported((error, components) => {
@@ -90,6 +91,21 @@ class EvidenceUpload {
     $('.add-another-add-link').hide();
     $(`#${this.elId}`).hide();
   }
+  interceptSubmission(e) {
+    if ($('.noItems').length) {
+      e.preventDefault();
+      const errors = [
+        {
+          field: 'uploadEv',
+          errors: ['Please upload at least one file']
+        }
+      ];
+      this.handleErrorSummary(errors);
+      this.handleInlineError(errors);
+      return false;
+    }
+    return true;
+  }
   doTheUpload() {
     const formData = new FormData(document.getElementById(this.formId));
     $.ajax({
@@ -123,9 +139,11 @@ class EvidenceUpload {
   }
   attachEventListeners() {
     $(`#${this.elId}`).on('change', this.doTheUpload);
+    $('.button').on('click', this.interceptSubmission);
   }
   detachEventListeners() {
     $(`#${this.elId}`).off('change', this.doTheUpload);
+    $('.button').off('click', this.interceptSubmission);
   }
   appendForm() {
     const markup = this.buildForm();
