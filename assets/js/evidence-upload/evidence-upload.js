@@ -41,7 +41,8 @@ class EvidenceUpload {
           name: `item.${this.elId}`,
           value: '',
           errors: this.errors
-        }, 'Choose file', fileTypeWhiteList);
+        }, 'Choose file', fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
+        );
         this.appendForm();
       }
     }, 0);
