@@ -35,4 +35,13 @@ if (evidenceUploadEnabled) {
     I.seeElement('.error-summary');
     I.see(content.noItemsError);
   });
+  Scenario('SSCS-3768 bug', I => {
+    I.click('.button');
+    I.seeElement('.error-summary');
+    I.see(content.noItemsError);
+    I.attachFile('#uploadEv', 'evidence.txt');
+    I.click('.button');
+    I.dontSeeElement('.error-summary');
+    I.amOnPage(paths.reasonsForAppealing.evidenceUpload);
+  });
 }
