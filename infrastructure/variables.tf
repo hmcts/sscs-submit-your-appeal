@@ -52,5 +52,5 @@ variable "evidence_upload_enabled" {
 
 variable "https_only_flag" {
   type = "string"
-  value = "true"
+  default = "true"
 }
