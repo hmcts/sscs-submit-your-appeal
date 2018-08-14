@@ -38,19 +38,31 @@ class CheckYourAppeal extends CYA {
       ' the benefit code is ',
       get(this, 'journey.values.benefitType.code')
     );
-    return request.post(this.journey.settings.apiUrl).send(this.journey.values).then(result => {
-      this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
-    }).catch(error => {
-      const errMsg = `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
-      appInsights.trackException(errMsg);
-      this.logger.error('Error on submission: ',
-        get(this, 'journey.req.session.id'),
-        errMsg, ' the NINO is ',
-        get(this, 'journey.values.appellant.nino'),
-        ' the benefit code is ',
-        get(this, 'journey.values.benefitType.code'));
-      return Promise.reject(error);
-    });
+    return request.post(this.journey.settings.apiUrl).send(this.journey.values)
+      .then(result => {
+        this.logger.info('Successfully submitted application for session id ',
+          get(this, 'journey.req.session.id'),
+          ' and nino ',
+          get(this, 'journey.values.appellant.nino'),
+          ' the benefit code is ',
+          get(this, 'journey.values.benefitType.code'),
+          ' the status is ',
+          result.status
+        );
+        this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
+      }).catch(error => {
+        const errMsg =
+          `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
+        appInsights.trackException(errMsg);
+        this.logger.error(errMsg);
+        this.logger.error('Error on submission: ',
+          get(this, 'journey.req.session.id'),
+          errMsg, ' the NINO is ',
+          get(this, 'journey.values.appellant.nino'),
+          ' the benefit code is ',
+          get(this, 'journey.values.benefitType.code'));
+        return Promise.reject(error);
+      });
   }
 
   sections() {
@@ -87,16 +99,7 @@ class CheckYourAppeal extends CYA {
 
   next() {
     return action(this.sendToAPI)
-      .then(() => {
-        this.logger.info('Successfully submitted application for session id ',
-          get(this, 'journey.req.session.id'),
-          ' and nino ',
-          get(this, 'journey.values.appellant.nino'),
-          ' the benefit code is ',
-          get(this, 'journey.values.benefitType.code')
-        );
-        return goTo(this.journey.steps.Confirmation);
-      })
+      .then(goTo(this.journey.steps.Confirmation))
       .onFailure(goTo(this.journey.steps.Error500));
   }
 }
