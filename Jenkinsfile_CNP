@@ -1,4 +1,8 @@
 #!groovy
+import java.util.logging.Logger
+
+Logger logger = Logger.getLogger("")
+
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
@@ -23,6 +27,16 @@ withPipeline("nodejs", product, component) {
         input "Would you like to continue to buildinfra:prod?"
     }
     after('buildinfra:preview') {
+        logger.info ("I am doing buildinfra:preview")
         sh('yarn test:smoke')
+    }
+    after('deploy:preview') {
+        logger.info ("I am doing deploy:preview")
+    }
+    after('smoketest:preview') {
+        logger.info ("I am doing smoketest:preview")
+    }
+    after('smokeTest:preview') {
+        logger.info ("I am doing smokeTest:preview")
     }
 }
