@@ -22,4 +22,7 @@ withPipeline("nodejs", product, component) {
     before('buildinfra:prod') {
         input "Would you like to continue to buildinfra:prod?"
     }
+    after('buildinfra:preview') {
+        sh('yarn test:smoke')
+    }
 }
