@@ -1,8 +1,4 @@
 #!groovy
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-final Logger logger = LoggerFactory.getLogger("wonkyLogger");
 
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
@@ -28,16 +24,15 @@ withPipeline("nodejs", product, component) {
         input "Would you like to continue to buildinfra:prod?"
     }
     after('buildinfra:preview') {
-        logger.info ("I am doing buildinfra:preview")
-        sh('yarn test:smoke')
+        sh('echo I am doing buildinfra:preview')
     }
     after('deploy:preview') {
-        logger.info ("I am doing deploy:preview")
+        sh('echo I am doing deploy:preview')
     }
     after('smoketest:preview') {
-        logger.info ("I am doing smoketest:preview")
+        sh('echo I am doing smoketest:preview')
     }
     after('smokeTest:preview') {
-        logger.info ("I am doing smokeTest:preview")
+        sh('echo I am doing smokeTest:preview')
     }
 }
