@@ -12,7 +12,7 @@
                 "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 10MB.",
                 "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
                 "required": "You have not uploaded a file. Please upload your file again.",
-                "technical": "Sorry, we are experiencing technical problems. Please try again later."
+                "technical": "There was a problem with your upload, please try again"
             }
         }
     }

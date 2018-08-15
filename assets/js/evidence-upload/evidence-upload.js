@@ -111,7 +111,7 @@ class EvidenceUpload {
             [
               {
                 field: 'uploadEv',
-                errors: ['Sorry, we are experiencing technical problems. Please try again later.']
+                errors: ['There was a problem with your upload, please try again']
               }
             ];
 
