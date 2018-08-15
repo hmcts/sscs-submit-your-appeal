@@ -33,6 +33,6 @@ withPipeline("nodejs", product, component) {
         sh('echo I am doing smoketest:preview')
     }
     after('smokeTest:preview') {
-        sh('echo I am doing smokeTest:preview')
+        sh('echo I am doing smokeTest:preview hope')
     }
 }
