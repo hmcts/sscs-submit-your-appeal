@@ -1,7 +1,8 @@
 #!groovy
-import java.util.logging.Logger
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-Logger logger = Logger.getLogger("")
+final Logger logger = LoggerFactory.getLogger("wonkyLogger");
 
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
