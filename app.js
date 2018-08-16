@@ -76,7 +76,7 @@ const sha256s = [
 app.use(helmet.hpkp({ maxAge, sha256s }));
 
 // Helmet referrer policy
-app.use(helmet.referrerPolicy({ policy: 'origin' }));
+// app.use(helmet.referrerPolicy({ policy: 'origin' }));
 
 // Disallow search index indexing
 app.use((req, res, next) => {
