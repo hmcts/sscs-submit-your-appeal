@@ -84,6 +84,13 @@ describe('AppellantNINO.js', () => {
       const values = appellantNINO.values();
       expect(values).to.eql({ appellant: { nino: value } });
     });
+
+    it('removes whitespace from before and after the nino string', () => {
+      appellantNINO.fields.nino.value = ' AB 123 456 C ';
+      const nino = appellantNINO.values().appellant.nino;
+      expect(nino).to.not.equal(' AB 123 456 C ');
+      expect(nino).to.equal('AB 123 456 C');
+    });
   });
 
   describe('next()', () => {

@@ -80,7 +80,7 @@ app.use(helmet.referrerPolicy({ policy: 'origin' }));
 
 // Disallow search index indexing
 app.use((req, res, next) => {
-  // Setting headers stops pages being indexed even if indexed pages link to them.
+  // Setting headers stops pages being indexed even if indexed pages link to them
   res.setHeader('X-Robots-Tag', 'noindex');
   res.setHeader('X-Served-By', os.hostname());
   res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
@@ -95,6 +95,8 @@ app.get('/robots.txt', (req, res) => {
 app.use('/sessions', (req, res) => {
   res.sendStatus(HttpStatus.NOT_FOUND);
 });
+// because of a bug with iphone, we need to remove the mime types from accept
+const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
   baseUrl,
@@ -164,7 +166,8 @@ lookAndFeel.configure(app, {
         yes: content.inactivityTimeout.yes,
         no: content.inactivityTimeout.no
       },
-      accept: fileTypeWhitelist,
+      // because of a bug with iphone, we need to remove the mime types from accept
+      accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message,
       relatedContent: content.relatedContent,
@@ -177,6 +180,8 @@ lookAndFeel.configure(app, {
   }
 });
 
+app.set('trust proxy', 1);
+
 journey(app, {
   baseUrl,
   steps,
@@ -186,7 +191,7 @@ journey(app, {
       connect_timeout: 15000
     },
     cookie: {
-      secure: config.redis.useSSL === 'true'
+      secure: protocol === 'https'
     },
     secret: config.redis.secret
   },

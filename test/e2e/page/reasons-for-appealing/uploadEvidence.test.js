@@ -4,7 +4,7 @@ const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/co
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Uploading Evidence @batch-10');
+Feature('Uploading Evidence @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   Before(I => {

@@ -131,8 +131,10 @@ class RepresentativeDetails extends Question {
           addressLine2: this.fields.addressLine2.value,
           townCity: this.fields.townCity.value,
           county: this.fields.county.value,
-          postCode: this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value.trim(),
+          phoneNumber: this.fields.phoneNumber.value ?
+            this.fields.phoneNumber.value.trim() :
+            this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

@@ -44,3 +44,13 @@ variable "deployment_namespace" {
 variable "common_tags" {
   type = "map"
 }
+
+variable "evidence_upload_enabled" {
+  type = "string"
+  default = ""
+}
+
+variable "https_only_flag" {
+  type = "string"
+  default = "true"
+}
