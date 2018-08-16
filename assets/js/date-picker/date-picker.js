@@ -5,7 +5,7 @@ import $ from 'jquery';
 import moment from 'moment/moment';
 import { differenceWith, indexOf, isEqual, last } from 'lodash';
 import datePickerUtils from './date-picker-utils';
-const four = 4;
+const eight = 8;
 
 const datePicker = {
 
@@ -109,8 +109,8 @@ const datePicker = {
     datePicker.selector().datepicker({
       multidate: true,
       daysOfWeekDisabled: '06',
-      defaultViewDate: moment().add(four, 'weeks').format('MM-D-YYYY'),
-      startDate: '+4w',
+      defaultViewDate: moment().add(eight, 'weeks').format('MM-D-YYYY'),
+      startDate: '+8w',
       endDate: '+22w',
       weekStart: 1,
       maxViewMode: 0,

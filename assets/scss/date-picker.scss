@@ -19,6 +19,10 @@
               padding-right: 0;
               background-color: $grey-4;
             }
+            &.disabled {
+              visibility: visible;
+              opacity: 0.5;
+            }
           }
 
           .prev, .next {
@@ -30,6 +34,7 @@
             background-color: $grey-2;
             border-radius: 0;
           }
+
         }
       }
 
@@ -68,7 +73,6 @@
             &.disabled {
               background: url("../images/date-disabled.png");
               font-weight: 400;
-
               .first-of-month {
                 margin-top: 28px;
               }
