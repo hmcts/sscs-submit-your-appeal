@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const os = require('os');
 const path = require('path');
 const steps = require('steps');
@@ -42,7 +42,7 @@ app.set('portTo', port + PORT_RANGE);
 
 // Protect against some well known web vulnerabilities
 // by setting HTTP headers appropriately.
-app.use(helmet());
+// app.use(helmet());
 
 // Helmet content security policy (CSP) to allow only assets from same domain.
 /* app.use(helmet.contentSecurityPolicy({
@@ -66,14 +66,14 @@ app.use(helmet());
   }
 }));*/
 
-const maxAge = config.get('ssl.hpkp.maxAge');
+/* const maxAge = config.get('ssl.hpkp.maxAge');
 const sha256s = [
   config.get('ssl.hpkp.sha256s'),
   config.get('ssl.hpkp.sha256sBackup')
-];
+];*/
 
 // Helmet HTTP public key pinning
-app.use(helmet.hpkp({ maxAge, sha256s }));
+// app.use(helmet.hpkp({ maxAge, sha256s }));
 
 // Helmet referrer policy
 // app.use(helmet.referrerPolicy({ policy: 'origin' }));
