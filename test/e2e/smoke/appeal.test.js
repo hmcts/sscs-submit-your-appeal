@@ -27,6 +27,7 @@ if (!evidenceUploadEnabled && !isStaging) {
       );*/
 
       I.amOnPage(paths.landingPages.startAnAppeal);
+      I.see(startAnAppealContent.start);
       I.click(startAnAppealContent.start);
       I.enterDetailsFromStartToNINO();
       I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
