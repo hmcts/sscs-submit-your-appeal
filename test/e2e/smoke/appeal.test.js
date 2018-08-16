@@ -14,9 +14,12 @@ const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgRe
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
+/* eslint-disable no-process-env */
+const isStaging = process.env.TEST_URL.indexOf('staging') !== -1;
+
 Feature('Full Journey');
 
-if (!evidenceUploadEnabled) {
+if (!evidenceUploadEnabled && !isStaging) {
   Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke',
     I => {
     /*      const randomWeekDay = DateUtils.getDateInMilliseconds(
@@ -42,3 +45,4 @@ if (!evidenceUploadEnabled) {
     });
 }
 /* eslint-enable max-len */
+/* eslint-enable no-process-env */
