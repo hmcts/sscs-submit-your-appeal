@@ -45,7 +45,7 @@ app.set('portTo', port + PORT_RANGE);
 app.use(helmet());
 
 // Helmet content security policy (CSP) to allow only assets from same domain.
-app.use(helmet.contentSecurityPolicy({
+/* app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ['\'self\''],
     fontSrc: ['\'self\' data:'],
@@ -64,7 +64,7 @@ app.use(helmet.contentSecurityPolicy({
       'www.googletagmanager.com'
     ]
   }
-}));
+}));*/
 
 const maxAge = config.get('ssl.hpkp.maxAge');
 const sha256s = [
