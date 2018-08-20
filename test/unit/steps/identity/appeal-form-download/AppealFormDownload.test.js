@@ -32,22 +32,22 @@ describe('AppealFormDownload.js', () => {
   });
 
   describe('get getFormLink()', () => {
-    it('returns SSCS5 form link when Benefit type is Child Benefit', () => {
+    it('returns SSCS5 form link when Benefit type is Child Benefit Lone Parent', () => {
       appealFormDownload.fields.benefitType.value = benefitTypes.childBenefit;
       expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs5);
     });
 
-    it('returns SSCS5 form type when Benefit type is Child Benefit', () => {
+    it('returns SSCS5 form type when Benefit type is Child Benefit Lone Parent', () => {
       appealFormDownload.fields.benefitType.value = benefitTypes.childBenefit;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS5');
     });
 
-    it('returns SSCS1 form link when Benefit type is not Child Benefit', () => {
+    it('returns SSCS1 form link when Benefit type is not Child Benefit Lone Parent', () => {
       appealFormDownload.fields.benefitType.value = benefitTypes.socialFund;
       expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs1);
     });
 
-    it('returns SSCS1 form type when Benefit type is not Child Benefit', () => {
+    it('returns SSCS1 form type when Benefit type is not Child Benefit Lone Parent', () => {
       appealFormDownload.fields.benefitType.value = benefitTypes.socialFund;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS1');
     });

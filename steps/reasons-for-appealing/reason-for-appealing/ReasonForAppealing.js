@@ -30,10 +30,12 @@ class ReasonForAppealing extends AddAnother {
       reasonForAppealing: text
     }).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
+      value => value.whatYouDisagreeWith &&
+        isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
     ).check(
       errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
+      value => value.reasonForAppealing &&
+        isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
     );
   }
 
