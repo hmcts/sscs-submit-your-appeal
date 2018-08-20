@@ -99,6 +99,23 @@ describe('evidence upload', () => {
     evidenceUpload.destroy();
     expect($('#evidence-upload *').length).to.equal(0);
   });
+  it('will submit only if there are items', () => {
+    const syntheticEvent = {
+      preventDefault: () => {}
+    };
+    let returnValue;
+    sinon.stub(evidenceUpload, 'handleErrorSummary');
+    returnValue = evidenceUpload.interceptSubmission(syntheticEvent);
+    expect(evidenceUpload.handleErrorSummary).not.to.have.been.called;
+    expect(returnValue).to.be.true;
+    evidenceUpload.handleErrorSummary.reset();
+    $('.add-another-list').empty();
+    $('.add-another-list').append('<dl class="noItems"></dl>');
+    returnValue = evidenceUpload.interceptSubmission(syntheticEvent);
+    expect(returnValue).to.be.false;
+    expect(evidenceUpload.handleErrorSummary).to.have.been.called;
+    evidenceUpload.handleErrorSummary.restore();
+  });
 });
 
 /* eslint-enable init-declarations */
