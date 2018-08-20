@@ -8,6 +8,12 @@
     {{ content.title | safe }}
 {% endset %}
 
+{% block breadcrumbs %}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
 {% block fields %}
 
         {{ select(
