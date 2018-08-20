@@ -122,15 +122,16 @@ class EvidenceUpload {
         if (error) {
           $('.error-message').remove();
           $(`#${this.elId}`).val('');
+          /* eslint-disable max-len */
           const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
             error.responseJSON.validationErrors :
             [
               {
                 field: 'uploadEv',
-                errors: ['Sorry, we are experiencing technical problems. Please try again later.']
+                errors: ['Your file could not be uploaded as it is too big in size or it contains a virus.']
               }
             ];
-
+          /* eslint-enable max-len */
           this.handleErrorSummary(pageErrors);
           this.handleInlineError(pageErrors);
         }
