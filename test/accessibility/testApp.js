@@ -17,6 +17,7 @@ const app = express();
 const startStep = require('steps/entry/Entry');
 
 lookAndFeel.configure(app, {
+  baseUrl: '/',
   express: {
     views: [
       path.resolve(__dirname, '../../steps'),
