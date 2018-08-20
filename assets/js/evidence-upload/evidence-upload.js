@@ -11,6 +11,7 @@ class EvidenceUpload {
     this.elId = 'uploadEv';
     this.listToRead = '.add-another-list';
     this.doTheUpload = this.doTheUpload.bind(this);
+    this.interceptSubmission = this.interceptSubmission.bind(this);
 
     fieldTemplates.getExported(this.setup.bind(this));
     errorSummary.getExported((error, components) => {
@@ -90,6 +91,21 @@ class EvidenceUpload {
     $('.add-another-add-link').hide();
     $(`#${this.elId}`).hide();
   }
+  interceptSubmission(e) {
+    if ($('.noItems').length) {
+      e.preventDefault();
+      const errors = [
+        {
+          field: 'uploadEv',
+          errors: ['Upload at least one file']
+        }
+      ];
+      this.handleErrorSummary(errors);
+      this.handleInlineError(errors);
+      return false;
+    }
+    return true;
+  }
   doTheUpload() {
     const formData = new FormData(document.getElementById(this.formId));
     $.ajax({
@@ -106,15 +122,16 @@ class EvidenceUpload {
         if (error) {
           $('.error-message').remove();
           $(`#${this.elId}`).val('');
+          /* eslint-disable max-len */
           const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
             error.responseJSON.validationErrors :
             [
               {
                 field: 'uploadEv',
-                errors: ['Sorry, we are experiencing technical problems. Please try again later.']
+                errors: ['Your file could not be uploaded as it is too big in size or it contains a virus.']
               }
             ];
-
+          /* eslint-enable max-len */
           this.handleErrorSummary(pageErrors);
           this.handleInlineError(pageErrors);
         }
@@ -123,9 +140,11 @@ class EvidenceUpload {
   }
   attachEventListeners() {
     $(`#${this.elId}`).on('change', this.doTheUpload);
+    $('.button').on('click', this.interceptSubmission);
   }
   detachEventListeners() {
     $(`#${this.elId}`).off('change', this.doTheUpload);
+    $('.button').off('click', this.interceptSubmission);
   }
   appendForm() {
     const markup = this.buildForm();
