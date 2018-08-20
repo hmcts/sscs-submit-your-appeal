@@ -19,13 +19,7 @@ const hostname = config.get('node.hostname');
 const port = config.get('node.port');
 const startStep = require('steps/entry/Entry');
 
-let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'a11y') {
-  baseUrl = `${baseUrl}:${port}`;
-}
-
 lookAndFeel.configure(app, {
-  baseUrl,
   express: {
     views: [
       path.resolve(__dirname, '../../steps'),
@@ -98,7 +92,6 @@ const noSessionHandler = (req, res, next) => {
   next();
 };
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {

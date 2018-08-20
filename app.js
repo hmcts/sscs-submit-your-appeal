@@ -27,13 +27,6 @@ const protocol = config.get('node.protocol');
 const hostname = config.get('node.hostname');
 const port = config.get('node.port');
 
-let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = `${baseUrl}:${port}`;
-}
-
-logger.info('SYA base Url: ', baseUrl);
-
 // Tests
 const PORT_RANGE = 50;
 app.set('portFrom', port);
@@ -98,7 +91,6 @@ app.use('/sessions', (req, res) => {
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
-  baseUrl,
   express: {
     views: [
       path.resolve(__dirname, 'steps'),
@@ -181,7 +173,6 @@ lookAndFeel.configure(app, {
 app.set('trust proxy', 1);
 
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {
