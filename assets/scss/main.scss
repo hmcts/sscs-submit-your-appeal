@@ -7,6 +7,7 @@
 @import 'h-progress-bar';
 @import 'v-progress-bar';
 @import 'landing-pages';
+@import 'super-wrap';
 
 .form-section {
   margin-bottom: 30px;
@@ -120,7 +121,7 @@ label.form-label[for="signer"] {
   .add-another-list-item {
     width: 65%;
     display: inline-block;
-
+    @include wrap;
     &.noItems {
       width: 100%;
     }
@@ -307,4 +308,8 @@ label.form-label[for="signer"] {
 
 #evidence-upload-form .error-message {
   margin-top: 20px;
+}
+
+.cya-answer {
+  @include wrap;
 }

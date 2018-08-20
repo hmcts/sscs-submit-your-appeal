@@ -10,7 +10,7 @@
 {% block two_thirds %}
 
     {{ header(content.title, size='large') }}
-    <p>{{ content.subtitle }}</p>
+    <p>{{ content.subtitle | safe }}</p>
 
     <a class="button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
 

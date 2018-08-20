@@ -1,7 +1,7 @@
 {
   "titleHead": "Enter postcode - Appeal a benefit decision - GOV.UK",
   "title": "Enter your postcode",
-  "subtitle": "This is to check whether you can take part in the online trial.",
+  "subtitle": "This is a new online service and only available to people who live in certain regions.",
   "fields": {
     "postcode": {
       "label": "Postcode",
