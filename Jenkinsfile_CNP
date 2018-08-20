@@ -1,4 +1,5 @@
 #!groovy
+
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
@@ -21,5 +22,17 @@ withPipeline("nodejs", product, component) {
     }
     before('buildinfra:prod') {
         input "Would you like to continue to buildinfra:prod?"
+    }
+    after('buildinfra:preview') {
+        sh('echo I am doing buildinfra:preview')
+    }
+    after('deploy:preview') {
+        sh('echo I am doing deploy:preview')
+    }
+    after('smoketest:preview') {
+        sh('echo I am doing smoketest:preview')
+    }
+    after('smokeTest:preview') {
+        sh('echo I am doing smokeTest:preview hope')
     }
 }
