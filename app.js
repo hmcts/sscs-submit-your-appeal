@@ -1,5 +1,5 @@
 require('app-insights').enable();
-const { Logger, Express } = require('@hmcts/nodejs-logging');
+const { Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
@@ -20,11 +20,9 @@ const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 /* eslint-enable max-len */
 
-const logger = Logger.getLogger('app.js');
 const app = express();
 
 const protocol = config.get('node.protocol');
-const hostname = config.get('node.hostname');
 const port = config.get('node.port');
 
 // Tests
@@ -91,6 +89,7 @@ app.use('/sessions', (req, res) => {
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
+  baseUrl: '/',
   express: {
     views: [
       path.resolve(__dirname, 'steps'),

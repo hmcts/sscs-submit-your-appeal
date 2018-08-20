@@ -14,9 +14,6 @@ const urls = require('urls');
 
 const app = express();
 
-const protocol = config.get('node.protocol');
-const hostname = config.get('node.hostname');
-const port = config.get('node.port');
 const startStep = require('steps/entry/Entry');
 
 lookAndFeel.configure(app, {
