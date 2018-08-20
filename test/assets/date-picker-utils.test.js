@@ -15,16 +15,17 @@ describe('date-picker-utils.js', () => {
   });
   describe('getIndexFromDate()', () => {
     it('returns the index from the list of dates', () => {
+      const testDate = new Date();
       const dateList = [
         {
           index: '1',
-          value: new Date()
+          value: testDate
         }, {
           index: '2',
           value: new Date('2018-12-24')
         }
       ];
-      const index = datePickerUtils.getIndexFromDate(dateList, new Date());
+      const index = datePickerUtils.getIndexFromDate(dateList, testDate);
       expect(index).to.equal(dateList[0].index);
     });
   });

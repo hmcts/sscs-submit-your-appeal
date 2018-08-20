@@ -13,13 +13,23 @@ class AppealFormDownload extends Question {
     return this.fields.benefitType.value;
   }
 
+  isBenefitInList(list, benefit) {
+    return list.some(key => benefitTypes[key] === benefit);
+  }
+
   get formDownload() {
     const benefitType = this.fields.benefitType.value;
     const formDownload = {};
 
-    if (benefitType === benefitTypes.childBenefit) {
+    const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
+    const sscs3 = ['compensationRecovery'];
+
+    if (this.isBenefitInList(sscs5, benefitType)) {
       formDownload.link = urls.formDownload.sscs5;
       formDownload.type = 'SSCS5';
+    } else if (this.isBenefitInList(sscs3, benefitType)) {
+      formDownload.link = urls.formDownload.sscs3;
+      formDownload.type = 'SSCS3';
     } else {
       formDownload.link = urls.formDownload.sscs1;
       formDownload.type = 'SSCS1';
