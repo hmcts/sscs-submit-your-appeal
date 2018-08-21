@@ -33,7 +33,7 @@ exports.config = {
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
-        args: ['--no-sandbox']
+        args: ['--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
       }
     },
     MyHelper: {
