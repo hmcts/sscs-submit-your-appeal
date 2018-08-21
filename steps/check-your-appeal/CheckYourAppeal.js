@@ -4,7 +4,7 @@ const {
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo, action } = require('@hmcts/one-per-page/flow');
+const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
 const { Logger } = require('@hmcts/nodejs-logging');
 const { lastName } = require('utils/regex');
 const { get } = require('lodash');
@@ -100,7 +100,7 @@ class CheckYourAppeal extends CYA {
   next() {
     return action(this.sendToAPI)
       .then(goTo(this.journey.steps.Confirmation))
-      .onFailure(goTo(this.journey.steps.Error500));
+      .onFailure(redirectTo(this.journey.steps.Error500));
   }
 }
 
