@@ -1,4 +1,4 @@
-const startAnAppealContent = require('start/benefit-type/content.en');
+const startAnAppealContent = require('steps/start/benefit-type/content.en');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 // const DateUtils = require('utils/DateUtils');
 // const moment = require('moment');
