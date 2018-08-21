@@ -42,6 +42,6 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham"
+    "allowedRpcs": "birmingham,liverpool"
   }
 }

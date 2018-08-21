@@ -54,3 +54,8 @@ variable "https_only_flag" {
   type = "string"
   default = "true"
 }
+
+variable "postcode_checker_enabled" {
+  type = "string"
+  default = ""
+}
