@@ -1,4 +1,4 @@
-const startAnAppealContent = require('landing-pages/start-an-appeal/content.en');
+const startAnAppealContent = require('start/benefit-type/content.en');
 const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 // const DateUtils = require('utils/DateUtils');
 // const moment = require('moment');
@@ -26,9 +26,8 @@ if (!evidenceUploadEnabled && !isStaging) {
         DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
       );*/
 
-      I.amOnPage(paths.landingPages.startAnAppeal);
-      I.see(startAnAppealContent.start);
-      I.click(startAnAppealContent.start);
+      I.amOnPage(paths.start.benefitType);
+      I.see(startAnAppealContent.title);
       I.enterDetailsFromStartToNINO();
       I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
       I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
