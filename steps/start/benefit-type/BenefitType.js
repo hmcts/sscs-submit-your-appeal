@@ -7,24 +7,10 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const csurf = require('csurf');
-
-const csrfProtection = csurf({ cookie: false });
 
 class BenefitType extends Question {
   static get path() {
     return paths.start.benefitType;
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      csrfProtection
-    ];
-  }
-
-  get csurfCsrfToken() {
-    return this.req.csrfToken();
   }
 
   get form() {

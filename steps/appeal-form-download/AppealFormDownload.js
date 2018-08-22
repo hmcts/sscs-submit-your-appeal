@@ -3,24 +3,10 @@ const { Question } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
-const csurf = require('csurf');
-
-const csrfProtection = csurf({ cookie: false });
 
 class AppealFormDownload extends Question {
   static get path() {
     return paths.appealFormDownload;
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      csrfProtection
-    ];
-  }
-
-  get csurfCsrfToken() {
-    return this.req.csrfToken();
   }
 
   get benefitType() {
