@@ -14,12 +14,26 @@ const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const paths = require('paths');
 const Joi = require('joi');
+const csurf = require('csurf');
+
+const csrfProtection = csurf({ cookie: false });
 
 class CheckYourAppeal extends CYA {
   constructor(...args) {
     super(...args);
     this.logger = Logger.getLogger('CheckYourAppeal.js');
     this.sendToAPI = this.sendToAPI.bind(this);
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      csrfProtection
+    ];
+  }
+
+  get csurfCsrfToken() {
+    return this.req.csrfToken();
   }
 
   static get path() {

@@ -23,7 +23,7 @@ class BenefitType extends Question {
     ];
   }
 
-  get csrf() {
+  get csurfCsrfToken() {
     return this.req.csrfToken();
   }
 
