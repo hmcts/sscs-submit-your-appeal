@@ -31,7 +31,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "1.18.1",
+    "@hmcts/look-and-feel": "1.19.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/nodejs-logging": "^3.0.0",
     "@hmcts/one-per-page": "3.4.3",
@@ -43,6 +43,7 @@
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.2",
     "cross-env": "^5.1.3",
+    "csurf": "^1.9.0",
     "express": "^4.15.3",
     "file-loader": "^1.1.11",
     "form-data": "^2.3.2",
