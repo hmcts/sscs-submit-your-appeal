@@ -6,7 +6,7 @@ function selectContinue() {
 
 function enterDescription(description) {
   const I = this;
-
+  I.seeInCurrentUrl('evidence-description');
   I.fillField('textarea[name="describeTheEvidence"]', description);
   I.click('Continue');
 }
