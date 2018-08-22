@@ -59,3 +59,7 @@ variable "postcode_checker_enabled" {
   type = "string"
   default = ""
 }
+variable "postcode_checker_allowed_rpcs" {
+  type = "string"
+  default = "birmingham"
+}
