@@ -1,5 +1,5 @@
 require('app-insights').enable();
-const { Logger, Express } = require('@hmcts/nodejs-logging');
+const { Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
@@ -20,19 +20,10 @@ const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 /* eslint-enable max-len */
 
-const logger = Logger.getLogger('app.js');
 const app = express();
 
 const protocol = config.get('node.protocol');
-const hostname = config.get('node.hostname');
 const port = config.get('node.port');
-
-let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = `${baseUrl}:${port}`;
-}
-
-logger.info('SYA base Url: ', baseUrl);
 
 // Tests
 const PORT_RANGE = 50;
@@ -98,7 +89,7 @@ app.use('/sessions', (req, res) => {
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
-  baseUrl,
+  baseUrl: '/',
   express: {
     views: [
       path.resolve(__dirname, 'steps'),
@@ -181,7 +172,6 @@ lookAndFeel.configure(app, {
 app.set('trust proxy', 1);
 
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {

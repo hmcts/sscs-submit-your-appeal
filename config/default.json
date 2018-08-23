@@ -35,13 +35,13 @@
   },
   "features": {
     "evidenceUpload": {
-      "enabled": false,
+      "enabled": true,
       "maxFileSize": 10
     }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham"
+    "allowedRpcs": "birmingham,liverpool"
   }
 }
