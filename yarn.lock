@@ -6,9 +6,9 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
 
-"@hmcts/look-and-feel@1.18.1":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.18.1.tgz#ea057dc19b2b650c1966c509593ecfadd8c04dcc"
+"@hmcts/look-and-feel@1.18.2":
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-1.18.2.tgz#87ad9d7124ad909de6ef0af75eb7e85b47fba9b5"
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -53,9 +53,9 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
-"@hmcts/one-per-page@3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.4.1.tgz#8a93bff8545a8c6fdff68eaba3d3cfd9a283e7e6"
+"@hmcts/one-per-page@3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-3.5.1.tgz#7e1f039e723a12e341d42d537ddb36e2e3720166"
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"
@@ -268,7 +268,7 @@ append-transform@^0.4.0:
   dependencies:
     default-require-extensions "^1.0.0"
 
-applicationinsights@^1.0.1:
+applicationinsights@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.0.3.tgz#ddbf503612cbbfd7c28e087894dd28cfb06450a1"
   dependencies:
