@@ -9,7 +9,7 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 
-const allowESA = config.get('features.allowESA') === 'true';
+const allowESA = config.get('features.allowESA.enabled') === 'true';
 
 class BenefitType extends Question {
   static get path() {
