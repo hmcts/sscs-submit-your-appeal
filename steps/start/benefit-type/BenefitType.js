@@ -7,6 +7,9 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
+
+const allowESA = config.get('features.allowESA') === 'true';
 
 class BenefitType extends Question {
   static get path() {
@@ -38,10 +41,13 @@ class BenefitType extends Question {
   }
 
   next() {
-    const isPIPBenefitType = () =>
-      this.fields.benefitType.value === 'Personal Independence Payment (PIP)';
+    const allowedTypes = [benefitTypes.personalIndependencePayment];
+    if (allowESA) {
+      allowedTypes.push(benefitTypes.employmentAndSupportAllowance);
+    }
+    const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     return branch(
-      goTo(this.journey.steps.PostcodeChecker).if(isPIPBenefitType),
+      goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
       redirectTo(this.journey.steps.AppealFormDownload)
     );
   }
