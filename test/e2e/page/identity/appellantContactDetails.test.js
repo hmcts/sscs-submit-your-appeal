@@ -49,3 +49,6 @@ Scenario('When I click Continue with a postcode that is not in England or Wales 
     I.seeCurrentUrlEquals(paths.smsNotify.appellantTextReminders);
   }
 });
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
+});

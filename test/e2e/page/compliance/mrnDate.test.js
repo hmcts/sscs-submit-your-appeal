@@ -114,3 +114,7 @@ Scenario('I enter a MRN date with an invalid name of month', I => {
   I.enterADateAndContinue(date.day, date.month, date.year);
   I.see(mrnDateFields.date.error.invalid);
 });
+
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
+});

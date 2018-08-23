@@ -20,3 +20,7 @@ Scenario('When I select No, I am taken to the reason for appealing page', I => {
   I.selectDoYouHaveARepresentativeAndContinue('#hasRepresentative-no');
   I.seeInCurrentUrl(paths.reasonsForAppealing.reasonForAppealing);
 });
+
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
+});

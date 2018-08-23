@@ -102,3 +102,7 @@ Scenario('When I use whitespace to pad out reason for appealing, I see errors', 
   I.click('Continue');
   I.see(content.fields.reasonForAppealing.error.notEnough);
 });
+
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
+});
