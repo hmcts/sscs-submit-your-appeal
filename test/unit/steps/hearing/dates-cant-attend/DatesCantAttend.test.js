@@ -25,7 +25,8 @@ describe('DatesCantAttend.js', () => {
         steps: {
           CheckYourAppeal: paths.checkYourAppeal,
           DatesCantAttend: paths.hearing.datesCantAttend
-        }
+        },
+        settings: {}
       }
     });
 
