@@ -38,6 +38,8 @@ const splitBenefitType = benefitType => {
 
 const getBenefitCode = ben => splitBenefitType(ben).code;
 
+const getBenefitName = ben => splitBenefitType(ben).description;
+
 const getTribunalPanel = ben => {
   const key = splitBenefitType(ben).code;
   return {
@@ -52,5 +54,6 @@ module.exports = {
   isNotEmptyString,
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
-  getTribunalPanel
+  getTribunalPanel,
+  getBenefitName
 };
