@@ -36,9 +36,21 @@ const splitBenefitType = benefitType => {
   return { description, code };
 };
 
+const getBenefitCode = ben => splitBenefitType(ben).code;
+
+const getTribunalPanel = ben => {
+  const key = splitBenefitType(ben).code;
+  return {
+    PIP: 'judge, doctor and disability expert',
+    ESA: 'judge and a doctor'
+  }[key];
+};
+
 module.exports = {
   titleise,
   splitBenefitType,
   isNotEmptyString,
-  isGreaterThanOrEqualToFiveCharacters
+  isGreaterThanOrEqualToFiveCharacters,
+  getBenefitCode,
+  getTribunalPanel
 };
