@@ -1,10 +1,10 @@
 {
     "titleHead": "Upload additional evidence - Appeal a benefit decision - GOV.UK",
     "title": "Upload additional evidence",
-    "description": "You can upload letters, documents or photos. For example, you could take a photo of a letter from your doctor and upload it. Make sure the letter or document is on a flat surface and the photo is taken from above.",
+    "description": "You can upload letters, documents or photos. For example, you could take a picture of a letter from your doctor using your phone. Place it on a flat surface and take the photo from above.",
     "itemsListLabel": "Uploaded files",
-    "noItemsMessage": "No files uploaded",
-    "noItemsError": "Upload at least one file",
+    "noItemsMessage": "You have not uploaded any files. Upload at least one file before you continue. Click 'back' if you do not want to upload anything.",
+    "noItemsError": "You have not uploaded any files. Upload at least one file before you continue. Click 'back' if you do not want to upload anything.",
     "fields": {
         "uploadEv": {
             "label": "Choose file",
@@ -12,7 +12,7 @@
                 "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 10MB.",
                 "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
                 "required": "You have not uploaded a file. Please upload your file again.",
-                "technical": "Your file could not be uploaded as it is too big in size or it contains a virus."
+                "technical": "Your file could not be uploaded because of a technical issue with the file. Please try converting it to another format or post it to the tirbunal."
             }
         }
     }
