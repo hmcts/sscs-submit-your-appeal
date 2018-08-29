@@ -47,7 +47,7 @@ variable "common_tags" {
 
 variable "evidence_upload_enabled" {
   type = "string"
-  default = "true"
+  default = "false"
 }
 
 variable "https_only_flag" {
