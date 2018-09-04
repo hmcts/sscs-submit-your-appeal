@@ -2,7 +2,7 @@ const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
 
-Feature('Reason For Appealing @batch-10 @crespo');
+Feature('Reason For Appealing @batch-10');
 
 Before(async I => {
   I.createTheSession();
@@ -13,12 +13,12 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('When I go to the page and there are no reasons I see the Add reason link', I => {
+xScenario('When I go to the page and there are no reasons I see the Add reason link', I => {
   I.see(content.noReasons);
   I.see(content.links.add);
 });
 
-Scenario('When I click the Add reason link I am taken to /reason-for-appealing/item-0', I => {
+xScenario('When I click the Add reason link I am taken to /reason-for-appealing/item-0', I => {
   I.see(content.noReasons);
   I.click(content.links.add);
   I.see(content.titleEdit);
@@ -26,31 +26,31 @@ Scenario('When I click the Add reason link I am taken to /reason-for-appealing/i
   I.seeElement('textarea[name="item.reasonForAppealing"]');
 });
 
-Scenario('When I add a reason I see the reason in the list', I => {
+xScenario('When I add a reason I see the reason in the list', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.see(reasons[0].whatYouDisagreeWith);
 });
 
-Scenario('When I add a reason I see the add another reason link', I => {
+xScenario('When I add a reason I see the add another reason link', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.see(content.links.addAnother);
 });
 
-Scenario('When I add multiple reasons, I see them in the list', I => {
+xScenario('When I add multiple reasons, I see them in the list', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.enterReasonForAppealAndContinue(reasons[1], content.links.addAnother);
   I.see(reasons[0].whatYouDisagreeWith);
   I.see(reasons[1].whatYouDisagreeWith);
 });
 
-Scenario('When I add a reason and click the delete link, the reason is removed', I => {
+xScenario('When I add a reason and click the delete link, the reason is removed', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.see(reasons[0].whatYouDisagreeWith);
   I.click('Delete');
   I.dontSee(reasons[0].whatYouDisagreeWith);
 });
 
-Scenario('When adding a single reason, then remove it, I see Add reason', I => {
+xScenario('When adding a single reason, then remove it, I see Add reason', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.see(content.links.addAnother);
   I.click('Delete');
@@ -58,12 +58,12 @@ Scenario('When adding a single reason, then remove it, I see Add reason', I => {
   I.see(content.links.add);
 });
 
-Scenario('When I click Continue without adding a reason, I see errors', I => {
+xScenario('When I click Continue without adding a reason, I see errors', I => {
   I.click('Continue');
   I.see(content.listError);
 });
 
-Scenario('When I add a reason and the edit it, I see the new reason', I => {
+xScenario('When I add a reason and the edit it, I see the new reason', I => {
   I.enterReasonForAppealAndContinue(reasons[0], content.links.add);
   I.see(reasons[0].whatYouDisagreeWith);
   I.enterReasonForAppealAndContinue(reasons[1], 'Edit');
@@ -93,14 +93,6 @@ Scenario('When I use whitespace to pad out what you disagree with it, I see erro
   I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[4].whatYouDisagreeWith);
   I.click('Continue');
   I.see(content.fields.whatYouDisagreeWith.error.notEnough);
-});
-
-Scenario('When I use whitespace to pad out reason for appealing, I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('textarea[name="item.reasonForAppealing"]', reasons[4].reasonForAppealing);
-  I.fillField('input[name="item.whatYouDisagreeWith"]', reasons[0].whatYouDisagreeWith);
-  I.click('Continue');
-  I.see(content.fields.reasonForAppealing.error.notEnough);
 });
 
 Scenario('When I use whitespace to pad out reason for appealing, I see errors', I => {
