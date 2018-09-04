@@ -110,5 +110,3 @@ Scenario('When I use whitespace to pad out reason for appealing, I see errors', 
   I.click('Continue');
   I.see(content.fields.reasonForAppealing.error.notEnough);
 });
-
-
