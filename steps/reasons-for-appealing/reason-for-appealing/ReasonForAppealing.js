@@ -30,8 +30,10 @@ class ReasonForAppealing extends AddAnother {
     return object({
       whatYouDisagreeWith: text.joi(
         content.fields.error.invalid,
-        Joi.string().regex(whitelist).allow('')),
-      reasonForAppealing: text
+        Joi.string().regex(whitelist)),
+      reasonForAppealing: text.joi(
+        content.fields.error.invalid,
+        Joi.string().regex(whitelist))
     }).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
       value => value.whatYouDisagreeWith &&
