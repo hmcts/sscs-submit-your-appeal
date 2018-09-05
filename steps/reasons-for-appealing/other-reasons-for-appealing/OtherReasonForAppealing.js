@@ -3,7 +3,6 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const Joi = require('joi');
 const userAnswer = require('utils/answer');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
@@ -15,10 +14,7 @@ class OtherReasonForAppealing extends Question {
 
   get form() {
     return form({
-      otherReasonForAppealing: text.joi(
-        this.content.fields.otherReasonForAppealing.error.invalid,
-        Joi.string().allow('')
-      )
+      otherReasonForAppealing: text
     });
   }
 

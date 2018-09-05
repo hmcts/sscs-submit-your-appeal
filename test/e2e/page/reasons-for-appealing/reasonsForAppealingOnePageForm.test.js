@@ -48,7 +48,7 @@ Scenario('When I enter special chars then I see no errors', I => {
     reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
   });
   I.click('Continue');
-  I.dontSee(content.fields.error.invalid);
+  I.seeInCurrentUrl(paths.reasonsForAppealing.otherReasonForAppealing);
 });
 
 Scenario('When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing',

@@ -28,9 +28,6 @@
         "required": "You need to give at least one reason for appealing",
         "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision."
       }
-    },
-    "error": {
-      "invalid": "You've entered a special character. Delete it before continuing"
     }
   },
   "cya": {
