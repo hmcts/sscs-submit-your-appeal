@@ -42,11 +42,11 @@ Scenario('When I enter one character in each field and click Continue, I see err
   I.see(content.fields.reasonForAppealing.error.notEnough);
 });
 
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-undef
 const chars = new DataTable(['chars', 'specialChar']);
 chars.add(['aaaa&', false]);
 chars.add(['aaaa^', true]);
+// eslint-disable-next-line no-undef
 Data(chars).Scenario('When I enter special chars then I see an error', (I, current) => {
   I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
     whatYouDisagreeWith: current.chars,
