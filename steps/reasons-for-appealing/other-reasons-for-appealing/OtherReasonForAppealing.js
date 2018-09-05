@@ -1,7 +1,6 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
@@ -18,7 +17,7 @@ class OtherReasonForAppealing extends Question {
     return form({
       otherReasonForAppealing: text.joi(
         this.content.fields.otherReasonForAppealing.error.invalid,
-        Joi.string().regex(whitelist).allow('')
+        Joi.string().allow('')
       )
     });
   }
