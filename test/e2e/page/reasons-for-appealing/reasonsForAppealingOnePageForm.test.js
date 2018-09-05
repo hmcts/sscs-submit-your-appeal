@@ -42,22 +42,13 @@ Scenario('When I enter one character in each field and click Continue, I see err
   I.see(content.fields.reasonForAppealing.error.notEnough);
 });
 
-// eslint-disable-next-line no-undef
-const chars = new DataTable(['chars', 'specialChar']);
-chars.add(['aaaa&', false]);
-chars.add(['aaaa^', true]);
-// eslint-disable-next-line no-undef
-Data(chars).Scenario('When I enter special chars then I see an error', (I, current) => {
+Scenario('When I enter special chars then I see no errors', I => {
   I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
-    whatYouDisagreeWith: current.chars,
-    reasonForAppealing: current.chars
+    whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
+    reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
   });
   I.click('Continue');
-  if (current.specialChar) {
-    I.see(content.fields.error.invalid);
-  } else {
-    I.dontSee(content.fields.error.invalid);
-  }
+  I.dontSee(content.fields.error.invalid);
 });
 
 Scenario('When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing',

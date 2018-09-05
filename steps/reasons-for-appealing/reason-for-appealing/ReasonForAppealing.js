@@ -11,8 +11,6 @@ const { isGreaterThanOrEqualToFiveCharacters } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
-const { whitelist } = require('utils/regex');
-const Joi = require('joi');
 
 class ReasonForAppealing extends AddAnother {
   static get path() {
@@ -28,12 +26,8 @@ class ReasonForAppealing extends AddAnother {
 
   get field() {
     return object({
-      whatYouDisagreeWith: text.joi(
-        content.fields.error.invalid,
-        Joi.string().regex(whitelist)),
-      reasonForAppealing: text.joi(
-        content.fields.error.invalid,
-        Joi.string().regex(whitelist))
+      whatYouDisagreeWith: text,
+      reasonForAppealing: text
     }).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
       value => value.whatYouDisagreeWith &&
