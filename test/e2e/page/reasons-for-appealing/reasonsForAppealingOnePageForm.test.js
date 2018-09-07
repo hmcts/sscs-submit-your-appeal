@@ -96,9 +96,7 @@ I see an error in the error summary`, async I => {
   I.see(content.listError);
 });
 
-// this test is not passing.
-// Ticket was raised to fix it https://tools.hmcts.net/jira/browse/SSCS-3929
-xScenario(`When I add a reasons then click the add another reason button and enter the least amount 
+Scenario(`When I add a reasons then click the add another reason button and enter the least amount 
 of data, I see error`, async I => {
   I.addAReasonForAppealing(
     `#items-0 ${whatYouDisagreeWithField}-0`,
