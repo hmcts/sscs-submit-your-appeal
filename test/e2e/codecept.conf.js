@@ -4,16 +4,6 @@ const fileAcceptor = require('test/file_acceptor');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
-const getChunks = (chunks, amountOfTests, tests) => {
-  const testChunks = [];
-  for (let i = 0; i < chunks; i++) {
-    const arr = [];
-    arr.push(...tests.slice(i * amountOfTests, (i + 1) * amountOfTests));
-    testChunks.push(arr);
-  }
-  return testChunks;
-};
-
 exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
@@ -54,7 +44,9 @@ exports.config = {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
         stdout: '-',
-        options: { steps: true }
+        options: {
+          steps: true
+        }
       },
       mochawesome: {
         stdout: './functional-output/console.log',
@@ -68,18 +60,13 @@ exports.config = {
   },
   multiple: {
     pages: {
-      chunks: files => {
-        const pageTests = files.filter(file => file.includes('page'));
-        return getChunks(5, 7, pageTests);
-      },
-      browsers: ['chrome']
+      grep: '@pages'
     },
     functional: {
-      chunks: files => {
-        const journeyTests = files.filter(file => file.includes('journey'));
-        return getChunks(3, 2, journeyTests);
-      },
-      browsers: ['chrome']
+      grep: '@functional'
+    },
+    smoke: {
+      grep: '@smoke'
     }
   },
   name: 'Submit Your Appeal Tests'
