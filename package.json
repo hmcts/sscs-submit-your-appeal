@@ -14,7 +14,7 @@
     "test:assets": "cross-env NODE_PATH=. NODE_ENV=test mocha-webpack 'test/assets/**/*.test.js' --webpack-config test/webpack.config.js --require babel-core/register",
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:nsp && yarn test:smoke",
-    "lint": "cross-env NODE_PATH=. eslint .",
+    "lint": "cross-env NODE_PATH=. eslint --fix .",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple smoke -c test/e2e/ --steps --verbose --debug",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
     "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple journeys pages -c test/e2e/ --steps --reporter mocha-multi --verbose --debug",
