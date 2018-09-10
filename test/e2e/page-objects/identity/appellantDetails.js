@@ -26,11 +26,11 @@ function enterAppellantNINOAndContinue(nino) {
 }
 
 function IenterAddressDetails(I) {
-  I.fillField('#addressLine1', appellant.contactDetails.addressLine1);
-  I.fillField('#addressLine2', appellant.contactDetails.addressLine2);
-  I.fillField('#townCity', appellant.contactDetails.townCity);
-  I.fillField('#county', appellant.contactDetails.county);
-  I.fillField('#postCode', appellant.contactDetails.postCode);
+  I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
+  I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
+  I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
+  I.fillField({ id: 'county' }, appellant.contactDetails.county);
+  I.fillField({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
 
 function enterAppellantContactDetailsAndContinue() {
