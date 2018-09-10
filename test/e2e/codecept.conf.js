@@ -69,7 +69,7 @@ exports.config = {
   multiple: {
     pages: {
       chunks: files => {
-        const pageTests = files.filter(file => !file.includes('journey'));
+        const pageTests = files.filter(file => file.includes('page'));
         return getChunks(5, 7, pageTests);
       },
       browsers: ['chrome']
