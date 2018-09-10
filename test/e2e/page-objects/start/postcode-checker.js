@@ -1,7 +1,7 @@
 function enterPostcodeAndContinue(postcode) {
   const I = this;
 
-  I.fillField('postcode', postcode);
+  I.fillField({ id: 'postcode' }, postcode);
   I.click('Continue');
 }
 
