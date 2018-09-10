@@ -3,9 +3,9 @@ const appellant = require('test/e2e/data').appellant;
 function enterAppellantNameAndContinue(title, firstName, lastName) {
   const I = this;
 
-  I.fillField('#title', title);
-  I.fillField('#firstName', firstName);
-  I.fillField('#lastName', lastName);
+  I.fillField({ id: 'title' }, title);
+  I.fillField({ id: 'firstName' }, firstName);
+  I.fillField({ id: 'lastName' }, lastName);
   I.click('Continue');
 }
 
