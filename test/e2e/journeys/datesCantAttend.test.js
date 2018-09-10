@@ -9,7 +9,7 @@ const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
 
-Feature('PIP, one month ago, attends hearing with dates cannot attend @batch-01 @functional');
+Feature('PIP, one month ago, attends hearing with dates cannot attend @batch-01 @journeys');
 
 Before(I => {
   I.createTheSession();

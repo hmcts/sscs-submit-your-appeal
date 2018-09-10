@@ -62,8 +62,8 @@ exports.config = {
     pages: {
       grep: '@pages'
     },
-    functional: {
-      grep: '@functional'
+    journeys: {
+      grep: '@journeys'
     },
     smoke: {
       grep: '@smoke'
