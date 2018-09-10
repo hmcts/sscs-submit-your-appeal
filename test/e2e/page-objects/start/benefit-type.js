@@ -4,7 +4,6 @@ function enterBenefitTypeAndContinue(type) {
   I.fillField('#benefitType', type);
   I.waitForElement('#benefitType__option--0', 5);
   I.click('#benefitType__option--0');
-  // I.wait(1);
   I.click('Continue');
 }
 
