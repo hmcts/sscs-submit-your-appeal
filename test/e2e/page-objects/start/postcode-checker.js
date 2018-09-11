@@ -1,11 +1,12 @@
 function enterPostcodeAndContinue(postcode) {
   const I = this;
 
-  /* global locate*/
-  /* eslint no-undef: "error"*/
-  const locator = locate('input')
-    .withAttr({ id: 'postcode' });
-  I.fillField(locator, postcode);
+  I.waitForElement({
+    id: 'postcode'
+  }, 5);
+  I.fillField({
+    id: 'postcode'
+  }, postcode);
   I.click('Continue');
 }
 
