@@ -58,16 +58,5 @@ exports.config = {
       }
     }
   },
-  multiple: {
-    pages: {
-      grep: '@pages'
-    },
-    journeys: {
-      grep: '@journeys'
-    },
-    smoke: {
-      grep: '@smoke'
-    }
-  },
   name: 'Submit Your Appeal Tests'
 };

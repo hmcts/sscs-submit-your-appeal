@@ -28,8 +28,8 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "7000",
-    "waitForAction": "5000",
+    "waitForTimeout": "4000",
+    "waitForAction": "3000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
