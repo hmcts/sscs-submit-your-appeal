@@ -81,9 +81,9 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'DLA', description: 'Disability Living Allowance' });
   });
 
-  it('should split Employment Support Allowance (ESA) into an array', () => {
+  it('should split Employment and Support Allowance (ESA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.employmentAndSupportAllowance);
-    expect(obj).to.include({ code: 'ESA', description: 'Employment Support Allowance' });
+    expect(obj).to.include({ code: 'ESA', description: 'Employment and Support Allowance' });
   });
 
   it('should split \'Home Responsibilities Protection\' into an array', () => {
@@ -160,7 +160,7 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for esa', () => {
       const bcode = getBenefitName(benefitTypes.employmentAndSupportAllowance);
-      expect(bcode).to.equal('Employment Support Allowance');
+      expect(bcode).to.equal('Employment and Support Allowance');
     });
   });
   describe('getTribunalPanel', () => {
