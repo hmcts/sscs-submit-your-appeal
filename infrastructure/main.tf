@@ -14,7 +14,7 @@ locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
-  ApiUrl = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
+  ApiUrl      = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
 }
 
 module "submit-your-appeal-frontend" {
@@ -28,7 +28,8 @@ module "submit-your-appeal-frontend" {
   additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "${var.https_only_flag}"
   common_tags          = "${var.common_tags}"
-
+  asp_rg               = "${var.product}-${var.component}-${var.env}"
+  asp_name             = "${var.product}-${var.component}-${var.env}"
 
   app_settings = {
     TRIBUNALS_CASE_API_URL        = "${local.ApiUrl}"
@@ -56,4 +57,3 @@ module "redis-cache" {
   subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
   common_tags = "${var.common_tags}"
 }
-
