@@ -9,7 +9,7 @@ const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
 
-Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend @batch-01');
+Feature('PIP, one month ago, attends hearing with dates cannot attend');
 
 Before(I => {
   I.createTheSession();
@@ -31,7 +31,7 @@ Scenario('Provides date of when they cannot attend the hearing', async I => {
   I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario('Provides a single date when they cannot attend the hearing, then edits the date',
+Scenario('Provides a date when they cannot attend the hearing then edits the date @functional',
   async I => {
     const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));

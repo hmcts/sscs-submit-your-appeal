@@ -35,4 +35,8 @@ if (evidenceUploadEnabled) {
     I.see(content.title);
     I.see(content.fields.describeTheEvidence.error.tooShort);
   });
+
+  Scenario('I have a csrf token', I => {
+    I.seeElementInDOM('form input[name="_csrf"]');
+  });
 }
