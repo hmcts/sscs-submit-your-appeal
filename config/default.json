@@ -27,8 +27,8 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "1000",
-    "waitForAction": "500",
+    "waitForTimeout": "4000",
+    "waitForAction": "3000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
