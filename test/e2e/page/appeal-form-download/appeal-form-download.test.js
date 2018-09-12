@@ -22,3 +22,7 @@ Scenario('I see SSCS5 content when I select CBLP as a benefit type', I => {
   I.enterBenefitTypeAndContinue(benefitTypes.childBenefit);
   I.see(dynamicContent('SSCS5', 'Child Benefit Lone Parent'));
 });
+
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
+});

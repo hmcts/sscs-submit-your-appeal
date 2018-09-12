@@ -144,6 +144,11 @@ class AddReason {
     }, 'Why you disagree with it', null, false, 'You can write as much as you want');
   }
 
+  static readToken() {
+    const selector = '[name=_csrf]';
+    return $(selector).length && $(selector).val();
+  }
+
   onSubmit() {
     const self = this;
 
@@ -186,6 +191,9 @@ class AddReason {
             url: `/reason-for-appealing/item-${index}`,
             // eslint-disable-next-line id-blacklist
             data: answer,
+            headers: {
+              'CSRF-Token': AddReason.readToken()
+            },
             error: errorResponse => {
               const resJson = errorResponse.responseJSON;
               if (resJson.validationErrors.length > 0) {
