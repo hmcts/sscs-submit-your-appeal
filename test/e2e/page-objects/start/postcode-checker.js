@@ -1,9 +1,12 @@
 function enterPostcodeAndContinue(postcode) {
   const I = this;
 
-  I.waitForElement('#postcode', 5);
-  I.fillField('#postcode', postcode);
+  I.fillField({
+    id: 'postcode'
+  }, postcode);
   I.click('Continue');
 }
 
-module.exports = { enterPostcodeAndContinue };
+module.exports = {
+  enterPostcodeAndContinue
+};

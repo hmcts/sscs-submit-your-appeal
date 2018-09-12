@@ -3,6 +3,7 @@ import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/compone
 import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
 import fileTypeWhiteList
   from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
+
 /* eslint-disable id-blacklist */
 class EvidenceUpload {
   constructor(elContainer) {
@@ -17,6 +18,10 @@ class EvidenceUpload {
     errorSummary.getExported((error, components) => {
       this.errorSummary = components.errorSummary;
     });
+  }
+  static readToken() {
+    const selector = '[name=_csrf]';
+    return $(selector).length && $(selector).val();
   }
   getNumberForNextItem() {
     const nodes = $(`${this.listToRead} dd.add-another-list-item`)
@@ -114,6 +119,9 @@ class EvidenceUpload {
       cache: false,
       contentType: false,
       processData: false,
+      headers: {
+        'CSRF-Token': EvidenceUpload.readToken()
+      },
       method: 'POST',
       success: () => {
         window.location.reload();
