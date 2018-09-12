@@ -15,7 +15,8 @@ describe('The other methods of EvidenceUpload', () => {
           EvidenceUpload: paths.reasonsForAppealing.evidenceUpload,
           TheHearing: paths.hearing.theHearing,
           EvidenceDescription: paths.reasonsForAppealing.evidenceDescription
-        }
+        },
+        settings: {}
       }
     });
     instance.fields = {

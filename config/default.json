@@ -36,6 +36,9 @@
     "evidenceUpload": {
       "enabled": true,
       "maxFileSize": 10
+    },
+    "allowESA": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
