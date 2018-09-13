@@ -4,7 +4,7 @@ const types = {
   carersAllowance: "Carer's Allowance",
   childBenefit: 'Child Benefit Lone Parent',
   disabilityLivingAllowance: 'Disability Living Allowance (DLA)',
-  employmentAndSupportAllowance: 'Employment Support Allowance (ESA)',
+  employmentAndSupportAllowance: 'Employment and Support Allowance (ESA)',
   homeResponsibilitiesProtection: 'Home Responsibilities Protection',
   housingBenefit: 'Housing Benefit (HB)',
   incapacityBenefit: 'Incapacity Benefit',

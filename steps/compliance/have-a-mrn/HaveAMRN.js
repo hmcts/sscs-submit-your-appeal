@@ -4,10 +4,16 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { getBenefitCode } = require('utils/stringUtils');
+
 
 class HaveAMRN extends Question {
   static get path() {
     return paths.compliance.haveAMRN;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.req.session.BenefitType.benefitType);
   }
 
   get form() {

@@ -197,7 +197,8 @@ journey(app, {
     }
   },
   timeoutDelay: 2000,
-  apiUrl: `${config.api.url}/appeals`
+  apiUrl: `${config.api.url}/appeals`,
+  useCsrfToken: true
 });
 
 app.use(bodyParser.urlencoded({
