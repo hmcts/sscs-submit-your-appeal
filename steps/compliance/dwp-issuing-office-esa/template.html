@@ -1,0 +1,18 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import select, selectionButtons %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-location.png" alt="{{ content.imageAlt }}">
+
+    <p><h2 class="heading-small">{{ content.fields.dwpIssuingOffice.header }}</h2></p>
+
+    {{ select(fields.dwpIssuingOffice, content.fields.dwpIssuingOffice.label, '', false, options) }}
+
+{% endblock %}
