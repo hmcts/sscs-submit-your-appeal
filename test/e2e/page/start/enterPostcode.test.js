@@ -1,7 +1,7 @@
 const paths = require('paths');
 const content = require('steps/start/postcode-checker/content.en.json');
 
-Feature('Enter postcode @batch-12');
+Feature('Enter postcode');
 
 Before(I => {
   I.createTheSession();
