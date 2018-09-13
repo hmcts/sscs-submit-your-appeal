@@ -7,7 +7,6 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
-  timeout: 1000,
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
@@ -18,7 +17,8 @@ exports.config = {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: 'load',
+      waitForNavigation: 'networkidle0',
+      getPageTimeout: 60000,
       show: false,
       windowSize: '1000x1000',
       chrome: {
