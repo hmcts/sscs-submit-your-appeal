@@ -5,12 +5,12 @@
   "imageAlt": "A number of the DWP issuing office",
   "fields": {
     "pipNumber": {
-      "header": "Enter the Personal Independence Payment number from DWP’s address",
-      "label": "Personal Independence Payment",
+      "header": "Enter the {{benefitName}} number from DWP’s address",
+      "label": "{{benefitName}}",
       "error": {
-        "required": "Enter the Personal Independence Payment number from your MRN",
-        "notNumeric": "You have not entered a number. Enter the Personal Independence Payment number from your MRN",
-        "invalid": "The number you have entered is invalid. Enter the Personal Independence Payment number from your MRN"
+        "required": "Enter the {{benefitName}} number from your MRN",
+        "notNumeric": "You have not entered a number. Enter the {{benefitName}} number from your MRN",
+        "invalid": "The number you have entered is invalid. Enter the {{benefitName}} number from your MRN"
       }
     }
   },

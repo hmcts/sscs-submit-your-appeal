@@ -1,7 +1,7 @@
 {
   "titleHead": "Have MRN - Appeal a benefit decision - GOV.UK",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
-  "subtitle": "This is the letter DWP sent you when you asked them to reconsider their decision about the PIP benefit.",
+  "subtitle": "This is the letter DWP sent you when you asked them to reconsider their decision about the {{benefitType}} benefit.",
   "fields": {
     "haveAMRN": {
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
