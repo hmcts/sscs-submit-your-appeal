@@ -27,8 +27,8 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "4000",
-    "waitForAction": "3000",
+    "waitForTimeout": "60000",
+    "waitForAction": "7000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
@@ -44,6 +44,6 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham,liverpool"
+    "allowedRpcs": "birmingham,liverpool,sutton"
   }
 }
