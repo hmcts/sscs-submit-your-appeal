@@ -7,7 +7,7 @@ const paths = require('paths');
 
 class DWPIssuingOfficeEsa extends Question {
   static get path() {
-    return paths.compliance.dwpIssuingOfficeEsa;
+    return paths.compliance.dwpIssuingOfficeESA;
   }
 
   static selectify(ar) {
@@ -52,7 +52,7 @@ class DWPIssuingOfficeEsa extends Question {
   values() {
     return {
       mrn: {
-        dwpIssuingOffice: `DWP PIP (${this.fields.dwpIssuingOffice.value})`
+        dwpIssuingOffice: this.fields.dwpIssuingOffice.value
       }
     };
   }
