@@ -1,13 +1,13 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
+const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeESA');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
-describe('DWPIssuingOffice.js', () => {
-  let dWPIssuingOffice = null;
+describe('DWPIssuingOfficeESA.js', () => {
+  let dwpIssuingOfficeESA = null;
 
   beforeEach(() => {
-    dWPIssuingOffice = new DWPIssuingOffice({
+    dwpIssuingOfficeESA = new DWPIssuingOfficeESA({
       journey: {
         steps: {
           AppellantName: paths.identity.enterAppellantName
@@ -18,7 +18,7 @@ describe('DWPIssuingOffice.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office', () => {
-      expect(dWPIssuingOffice.path).to.equal(paths.compliance.dwpIssuingOffice);
+      expect(dwpIssuingOfficeESA.path).to.equal(paths.compliance.dwpIssuingOfficeESA);
     });
   });
 
@@ -27,17 +27,17 @@ describe('DWPIssuingOffice.js', () => {
     let field = null;
 
     before(() => {
-      fields = dWPIssuingOffice.form.fields;
+      fields = dwpIssuingOfficeESA.form.fields;
     });
 
     it('should contain 1 field', () => {
       expect(Object.keys(fields).length).to.equal(1);
-      expect(fields).to.have.all.keys('pipNumber');
+      expect(fields).to.have.all.keys('dwpIssuingOffice');
     });
 
-    describe('pipNumber field', () => {
+    describe('dwpIssuingOffice field', () => {
       beforeEach(() => {
-        field = fields.pipNumber;
+        field = fields.dwpIssuingOffice;
       });
 
       it('has constructor name FieldDescriptor', () => {
@@ -54,15 +54,15 @@ describe('DWPIssuingOffice.js', () => {
     const question = 'A Question';
 
     beforeEach(() => {
-      dWPIssuingOffice.fields = {
-        pipNumber: {
-          value: 5
+      dwpIssuingOfficeESA.fields = {
+        dwpIssuingOffice: {
+          value: 'Office name'
         }
       };
 
-      dWPIssuingOffice.content = {
+      dwpIssuingOfficeESA.content = {
         cya: {
-          pipNumber: {
+          dwpIssuingOffice: {
             question
           }
         }
@@ -70,22 +70,22 @@ describe('DWPIssuingOffice.js', () => {
     });
 
     it('should contain a single answer', () => {
-      const answers = dWPIssuingOffice.answers();
+      const answers = dwpIssuingOfficeESA.answers();
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
-      expect(answers[0].answer).to.equal(5);
+      expect(answers[0].answer).to.equal('Office name');
     });
 
     it('should contain a value object', () => {
-      const values = dWPIssuingOffice.values();
-      expect(values).to.eql({ mrn: { dwpIssuingOffice: 'DWP PIP (5)' } });
+      const values = dwpIssuingOfficeESA.values();
+      expect(values).to.eql({ mrn: { dwpIssuingOffice: 'Office name' } });
     });
   });
 
   describe('next()', () => {
     it('returns the next step path /enter-appellant-name', () => {
-      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
+      expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
     });
   });
 });
