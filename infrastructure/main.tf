@@ -25,6 +25,7 @@ module "submit-your-appeal-frontend" {
   ilbIp                = "${var.ilbIp}"
   is_frontend          = "${var.env != "preview" ? 1: 0}"
   subscription         = "${var.subscription}"
+  additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
   https_only           = "${var.https_only_flag}"
   common_tags          = "${var.common_tags}"
 

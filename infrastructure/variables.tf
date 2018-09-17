@@ -34,6 +34,10 @@ variable "node_environment" {
   default = "sandbox"
 }
 
+variable "sya_hostname" {
+  default = "localhost"
+}
+
 variable "deployment_namespace" {
   type = "string"
 }
