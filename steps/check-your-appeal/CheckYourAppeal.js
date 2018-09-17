@@ -14,6 +14,9 @@ const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const paths = require('paths');
 const Joi = require('joi');
+const csurf = require('csurf');
+
+const csrfProtection = csurf({ cookie: false });
 
 class CheckYourAppeal extends CYA {
   constructor(...args) {
@@ -24,6 +27,18 @@ class CheckYourAppeal extends CYA {
 
   static get path() {
     return paths.checkYourAppeal;
+  }
+
+  get middleware() {
+    const mw = [...super.middleware];
+    if (this.journey.settings.useCsrfToken) {
+      mw.push(csrfProtection);
+    }
+    return mw;
+  }
+
+  get csurfCsrfToken() {
+    return this.req.csrfToken && this.req.csrfToken();
   }
 
   get termsAndConditionPath() {

@@ -4,6 +4,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { numbers } = require('utils/regex');
 const officeIds = require('steps/compliance/dwp-issuing-office/ids');
 const sections = require('steps/check-your-appeal/sections');
+const { getBenefitName } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -23,6 +24,10 @@ class DWPIssuingOffice extends Question {
         Joi.string().trim().valid(officeIds)
       )
     });
+  }
+
+  get benefitName() {
+    return getBenefitName(this.req.session.BenefitType.benefitType);
   }
 
   answers() {

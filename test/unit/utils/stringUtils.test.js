@@ -3,7 +3,10 @@ const {
   titleise,
   splitBenefitType,
   isNotEmptyString,
-  isGreaterThanOrEqualToFiveCharacters
+  isGreaterThanOrEqualToFiveCharacters,
+  getBenefitCode,
+  getBenefitName,
+  getTribunalPanel
 } = require('utils/stringUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
@@ -78,9 +81,9 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'DLA', description: 'Disability Living Allowance' });
   });
 
-  it('should split Employment Support Allowance (ESA) into an array', () => {
+  it('should split Employment and Support Allowance (ESA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.employmentAndSupportAllowance);
-    expect(obj).to.include({ code: 'ESA', description: 'Employment Support Allowance' });
+    expect(obj).to.include({ code: 'ESA', description: 'Employment and Support Allowance' });
   });
 
   it('should split \'Home Responsibilities Protection\' into an array', () => {
@@ -136,5 +139,38 @@ describe('splitBenefitType()', () => {
   it('should split Universal Credit (UC) into an array', () => {
     const obj = splitBenefitType(benefitTypes.universalCredit);
     expect(obj).to.include({ code: 'UC', description: 'Universal Credit' });
+  });
+});
+
+describe('the dynamic content utils', () => {
+  describe('getBenefitCode', () => {
+    it('returns the right code for pip', () => {
+      const bcode = getBenefitCode(benefitTypes.personalIndependencePayment);
+      expect(bcode).to.equal('PIP');
+    });
+    it('returns the right code for esa', () => {
+      const bcode = getBenefitCode(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('ESA');
+    });
+  });
+  describe('getBenefitName', () => {
+    it('returns the right name for pip', () => {
+      const bcode = getBenefitName(benefitTypes.personalIndependencePayment);
+      expect(bcode).to.equal('Personal Independence Payment');
+    });
+    it('returns the right name for esa', () => {
+      const bcode = getBenefitName(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('Employment and Support Allowance');
+    });
+  });
+  describe('getTribunalPanel', () => {
+    it('returns the right tribunal panel for pip', () => {
+      const bcode = getTribunalPanel(benefitTypes.personalIndependencePayment);
+      expect(bcode).to.equal('judge, doctor and disability expert');
+    });
+    it('returns the right name for esa', () => {
+      const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('judge and a doctor');
+    });
   });
 });
