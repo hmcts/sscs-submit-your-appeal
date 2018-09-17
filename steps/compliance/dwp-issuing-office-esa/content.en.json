@@ -6,7 +6,7 @@
   "fields": {
     "dwpIssuingOffice": {
       "header": "Select the office which is shown in the first line of DWP's address",
-      "label": "DWP office",
+      "label": "",
       "error": {
         "required": "You must select the office which is shown in the first line of DWP's address"
       }
