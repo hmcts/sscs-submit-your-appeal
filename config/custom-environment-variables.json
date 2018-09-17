@@ -1,7 +1,6 @@
 {
   "node": {
     "protocol": "HTTP_PROTOCOL",
-    "hostname": "EXTERNAL_HOSTNAME",
     "port": "PORT"
   },
   "redis": {
