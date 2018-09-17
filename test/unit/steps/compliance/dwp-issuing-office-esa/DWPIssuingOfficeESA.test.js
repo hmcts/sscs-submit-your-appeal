@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeESA');
+const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 
