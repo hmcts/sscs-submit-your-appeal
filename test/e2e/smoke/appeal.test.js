@@ -15,4 +15,4 @@ Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
-  });
+  }).retry(2);

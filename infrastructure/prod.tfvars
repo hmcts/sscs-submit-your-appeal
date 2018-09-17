@@ -1,7 +1,7 @@
 infrastructure_env = "prod"
 node_environment = "prod"
-sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
 evidence_upload_enabled = "true"
 https_only_flag = "false"
 postcode_checker_enabled = "true"
 postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton"
+sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"

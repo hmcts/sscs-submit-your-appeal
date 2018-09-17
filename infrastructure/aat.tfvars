@@ -1,7 +1,7 @@
 infrastructure_env = "preprod"
 node_environment = "aat"
-sya_hostname  = "benefit-appeal.nonprod.platform.hmcts.net"
 evidence_upload_enabled = "true"
 https_only_flag = "false"
 postcode_checker_enabled = "true"
 postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton"
+sya_hostname  = "benefit-appeal.nonprod.platform.hmcts.net"
