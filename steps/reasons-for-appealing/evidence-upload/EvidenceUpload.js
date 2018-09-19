@@ -106,7 +106,8 @@ class EvidenceUpload extends AddAnother {
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (req.body && req.body['item.uploadEv'] &&
             (req.body['item.uploadEv'] === maxFileSizeExceededError ||
-              req.body['item.uploadEv'] === fileMissingError)) {
+              req.body['item.uploadEv'] === fileMissingError ||
+              req.body['item.uploadEv'] === totalFileSizeExceededError)) {
             return fs.unlink(files['item.uploadEv'].path, next);
           }
           if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
@@ -205,6 +206,9 @@ class EvidenceUpload extends AddAnother {
       ).joi(
         content.fields.uploadEv.error.technical,
         Joi.string().disallow(technicalProblemError)
+      ).joi(
+        content.fields.uploadEv.error.totalFileSizeExceeded,
+        Joi.string().disallow(totalFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional())
