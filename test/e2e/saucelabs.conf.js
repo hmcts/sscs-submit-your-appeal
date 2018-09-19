@@ -47,7 +47,7 @@ const setupConfig = {
       desiredCapabilities: {}
     },
     MyHelper: {
-      require: './helper.js',
+      require: './helpers/helper.js',
       url: config.get('e2e.frontendUrl')
     },
     SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' }
