@@ -26,8 +26,8 @@ function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code
   I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
   I.continueFromIndependance();
   I.selectHaveYouGotAMRNAndContinue(haveAMRN.fields.haveAMRN.yes);
-  I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
   I.enterAnMRNDateAndContinue(oneMonthAgo);
+  I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
   I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
   I.enterAppellantNINOAndContinue(appellant.nino);
