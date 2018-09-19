@@ -74,13 +74,15 @@ class EvidenceUpload extends AddAnother {
             incoming.bytesExpected <= emptyRequestSize) {
             req.body = {
               'item.uploadEv': fileMissingError,
-              'item.link': ''
+              'item.link': '',
+              'item.size': 0
             };
             logger.error('Evidence upload error: you need to choose a file');
           } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
             req.body = {
               'item.uploadEv': maxFileSizeExceededError,
-              'item.link': ''
+              'item.link': '',
+              'item.size': 0
             };
             logger.error('Evidence upload error: the file is too big');
           }
@@ -96,7 +98,8 @@ class EvidenceUpload extends AddAnother {
             !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
             req.body = {
               'item.uploadEv': wrongFileTypeError,
-              'item.link': ''
+              'item.link': '',
+              'item.size': 0
             };
             return fs.unlink(files['item.uploadEv'].path, next);
           }
@@ -113,12 +116,14 @@ class EvidenceUpload extends AddAnother {
             }
             req.body = {
               'item.uploadEv': uploadingError,
-              'item.link': ''
+              'item.link': '',
+              'item.size': 0
             };
             return next();
           }
 
           const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+          const size = files['item.uploadEv'].size;
           return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
             return request.post({
               url: uploadEvidenceUrl,
@@ -131,13 +136,15 @@ class EvidenceUpload extends AddAnother {
                 const b = JSON.parse(body);
                 req.body = {
                   'item.uploadEv': b.documents[0].originalDocumentName,
-                  'item.link': b.documents[0]._links.self.href
+                  'item.link': b.documents[0]._links.self.href,
+                  'item.size': size
                 };
                 return fs.unlink(pathToFile, next);
               }
               req.body = {
                 'item.uploadEv': technicalProblemError,
-                'item.link': ''
+                'item.link': '',
+                'item.size': 0
               };
               appInsights.trackException(forwardingError);
               return fs.unlink(pathToFile, next);
@@ -184,7 +191,8 @@ class EvidenceUpload extends AddAnother {
         content.fields.uploadEv.error.technical,
         Joi.string().disallow(technicalProblemError)
       ),
-      link: text.joi('', Joi.string().optional())
+      link: text.joi('', Joi.string().optional()),
+      size: text.joi(0, Joi.number().optional())
     });
   }
 
