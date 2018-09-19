@@ -35,7 +35,7 @@
   "features": {
     "evidenceUpload": {
       "enabled": true,
-      "maxFileSize": 10
+      "maxFileSize": 6
     },
     "allowESA": {
       "enabled": "false"
