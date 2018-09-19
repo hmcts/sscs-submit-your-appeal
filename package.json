@@ -22,7 +22,7 @@
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
     "test:functional:batches": "for i in `seq -w 1 12`; do BATCH=$i yarn test:functional:batch; [ $? -ne 0 ] && exit $?; done; exit 0;",
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
-    "test:crossbrowser": "exit 0",
+    "test:crossbrowser": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --steps --reporter mocha-multi --verbose",
     "test:nsp": "nsp check",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
     "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=app.js,app-insights.js,server.js,node_modules/**,test/**,assets/**,dist/**,mochawesome-report/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info"
@@ -86,6 +86,7 @@
     "sinon": "^5.0.7",
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webdriverio": "^4.13.2"
   }
 }
