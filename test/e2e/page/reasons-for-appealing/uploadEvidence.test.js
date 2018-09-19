@@ -29,7 +29,17 @@ if (evidenceUploadEnabled) {
     I.seeElement('.error-summary');
     I.see(content.fields.uploadEv.error.maxFileSizeExceeded);
   });
-
+  Scenario('I cannot upload more than the total amount of bytes', I => {
+    I.attachFile('#uploadEv', 'largeimage.jpg');
+    I.wait(2);
+    I.attachFile('#uploadEv', 'largeimage.jpg');
+    I.wait(2);
+    I.attachFile('#uploadEv', 'largeimage.jpg');
+    I.wait(2);
+    I.attachFile('#uploadEv', 'largeimage.jpg');
+    I.seeElement('.error-summary');
+    I.see(content.fields.uploadEv.error.totalFileSizeExceeded);
+  });
   Scenario('I see an error if I submit the form without uploading a file', I => {
     I.click('.button');
     I.seeElement('.error-summary');
