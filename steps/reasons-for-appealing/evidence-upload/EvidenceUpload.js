@@ -53,8 +53,11 @@ class EvidenceUpload extends AddAnother {
   }
 
   static getTotalSize(items, bytesExpected) {
+    if (!items) {
+      return parseInt(bytesExpected, 10);
+    }
     const bytesSoFar = items.reduce((accumulator, currentValue) => {
-      return parseInt(currentValue.size, 10) + accumulator
+      return parseInt(currentValue.size, 10) + accumulator;
     }, 0);
     return bytesSoFar + parseInt(bytesExpected, 10);
   }
@@ -93,7 +96,7 @@ class EvidenceUpload extends AddAnother {
               'item.size': 0
             };
             logger.error('Evidence upload error: the file is too big');
-          } else if (EvidenceUpload.getTotalSize(req.session.EvidenceUpload.items, incoming.bytesExpected) >
+          } else if (EvidenceUpload.getTotalSize(get(req, 'session.EvidenceUpload.items'), incoming.bytesExpected) >
             (maxFileSize * multiplier * multiplier)) {
             req.body = {
               'item.uploadEv': totalFileSizeExceededError,

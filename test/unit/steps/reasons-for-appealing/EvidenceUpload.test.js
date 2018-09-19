@@ -29,6 +29,25 @@ describe('The other methods of EvidenceUpload', () => {
     };
   });
 
+  describe('static methods', () => {
+    describe('total file size', () => {
+      it('returns the sum of the items plus what is being uploaded', () => {
+        const total = EvidenceUpload.getTotalSize([
+          {
+            size: 1000
+          }, {
+            size: 2001
+          }
+        ], '392');
+        expect(total).to.equal(3393);
+      });
+      it('returns the expected bytes if not passed items', () => {
+        const total = EvidenceUpload.getTotalSize(null, '392');
+        expect(total).to.equal(392);
+      });
+    });
+  });
+
   describe('get path()', () => {
     it('returns the correct path', () => {
       if (evidenceUploadEnabled) {
