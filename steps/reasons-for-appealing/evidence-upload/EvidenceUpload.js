@@ -21,6 +21,7 @@ const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
 
 const maxFileSizeExceededError = 'MAX_FILESIZE_EXCEEDED_ERROR';
+const totalFileSizeExceededError = 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
@@ -49,6 +50,13 @@ class EvidenceUpload extends AddAnother {
     const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
     return hasCorrectMT && (filename &&
       fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
+  }
+
+  static getTotalSize(items, bytesExpected) {
+    const bytesSoFar = items.reduce((accumulator, currentValue) => {
+      return parseInt(currentValue.size, 10) + accumulator
+    }, 0);
+    return bytesSoFar + parseInt(bytesExpected, 10);
   }
 
   static handleUpload(req, res, next) {
@@ -85,6 +93,13 @@ class EvidenceUpload extends AddAnother {
               'item.size': 0
             };
             logger.error('Evidence upload error: the file is too big');
+          } else if (EvidenceUpload.getTotalSize(req.session.EvidenceUpload.items, incoming.bytesExpected) >
+            (maxFileSize * multiplier * multiplier)) {
+            req.body = {
+              'item.uploadEv': totalFileSizeExceededError,
+              'item.link': '',
+              'item.size': 0
+            };
           }
         });
 
