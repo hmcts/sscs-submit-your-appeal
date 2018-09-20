@@ -44,6 +44,6 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham,liverpool,sutton"
+    "allowedRpcs": "birmingham,liverpool,sutton,newcastle"
   }
 }
