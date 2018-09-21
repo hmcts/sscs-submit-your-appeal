@@ -78,18 +78,12 @@ const setupConfig = {
     }
   },
   multiple: {
-    // microsoft: {
-    //   browsers: getBrowserConfig('microsoft')
-    // },
     chrome: {
       browsers: getBrowserConfig('chrome')
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
     }
-    // safari: {
-    //   browsers: getBrowserConfig('safari')
-    // }
   },
   name: 'Submit Your Appeal Crossbrowser Tests'
 };
