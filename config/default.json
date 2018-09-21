@@ -45,5 +45,12 @@
     "endpoint": "/regionalcentre",
     "enabled": false,
     "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle"
+  },
+  "saucelabs": {
+    "browser": "chrome",
+    "username": "username",
+    "key": "privatekey",
+    "tunnelId": "reformtunnel",
+    "smartWait": "10000"
   }
 }
