@@ -211,7 +211,6 @@ const datePicker = {
       $('.add-another-list').empty().append(elements);
     }
   },
-
   postDate: dates => {
     const lastestDateAdded = last(dates);
     const mDate = moment(lastestDateAdded);
@@ -221,10 +220,13 @@ const datePicker = {
       'item.year': mDate.year().toString()
     };
     const index = indexOf(dates, lastestDateAdded);
-
+    const tokenSelector = '[name=_csrf]';
     return $.ajax({
       type: 'POST',
       url: `/dates-cant-attend/item-${index}`,
+      headers: {
+        'CSRF-Token': $(tokenSelector).length && $(tokenSelector).val()
+      },
       data: body,
       success: () => datePicker.displayDateList(dates)
     });
