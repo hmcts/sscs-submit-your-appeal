@@ -1,17 +1,23 @@
-provider "vault" {
-  address = "https://vault.reform.hmcts.net:6200"
+data "azurerm_key_vault" "sscs_key_vault" {
+  name = "${local.vaultName}"
+  resource_group_name = "${local.vaultName}"
 }
 
-data "vault_generic_secret" "hpkp_sya_sha_1" {
-  path = "secret/${var.infrastructure_env}/sscs/hpkp_sya_sha_1"
+data "azurerm_key_vault_secret" "hpkp-sya-sha-1" {
+  name = "hpkp-sya-sha-1"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
-
-data "vault_generic_secret" "hpkp_sya_sha_2" {
-  path = "secret/${var.infrastructure_env}/sscs/hpkp_sya_sha_2"
+data "azurerm_key_vault_secret" "hpkp-sya-sha-2" {
+  name = "hpkp-sya-sha-2"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+
+  previewVaultName = "${var.raw_product}-aat"
+  nonPreviewVaultName = "${var.raw_product}-${var.env}"
+  vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
   ApiUrl = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
@@ -37,8 +43,8 @@ module "submit-your-appeal-frontend" {
     NODE_ENV                      = "${var.node_environment}"
     HTTP_PROTOCOL                 = "${var.env != "preview" ? "https" : "http"}"
     WEBSITE_NODE_DEFAULT_VERSION  = "8.9.4"
-    HPKP_SHA256                   = "${data.vault_generic_secret.hpkp_sya_sha_1.data["value"]}"
-    HPKP_SHA256_BACKUP            = "${data.vault_generic_secret.hpkp_sya_sha_2.data["value"]}"
+    HPKP_SHA256                   = "${data.azurerm_key_vault_secret.hpkp-sya-sha-1.value}"
+    HPKP_SHA256_BACKUP            = "${data.azurerm_key_vault_secret.hpkp-sya-sha-2.value}"
     EVIDENCE_UPLOAD_ENABLED       = "${var.evidence_upload_enabled}"
     UPLOAD_EVIDENCE_URL           = "${local.ApiUrl}/evidence/upload"
     POSTCODE_CHECKER_URL          = "${local.ApiUrl}/regionalcentre"
