@@ -27,8 +27,8 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "60000",
-    "waitForAction": "7000",
+    "waitForTimeout": "30000",
+    "waitForAction": "2000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
@@ -44,6 +44,13 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham,liverpool,sutton"
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle"
+  },
+  "saucelabs": {
+    "browser": "chrome",
+    "username": "username",
+    "key": "privatekey",
+    "tunnelId": "reformtunnel",
+    "smartWait": "10000"
   }
 }
