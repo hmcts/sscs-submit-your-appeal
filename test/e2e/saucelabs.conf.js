@@ -27,7 +27,7 @@ const getBrowserConfig = browserGroup => {
 
 const setupConfig = {
   tests: './smoke/appeal.test.js',
-  output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+  output: config.get('saucelabs.outputDir'),
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
@@ -70,7 +70,7 @@ const setupConfig = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+          reportDir: config.get('saucelabs.outputDir'),
           reportName: 'index',
           inlineAssets: true
         }
