@@ -11,14 +11,6 @@ module.exports = {
     internalServerError: '/internal-server-error'
   },
 
-  landingPages: {
-    overview: '/',
-    beforeYouAppeal: '/before-you-appeal',
-    helpWithAppeal: '/help-with-appeal',
-    startAnAppeal: '/start-an-appeal',
-    afterYouAppeal: '/after-you-appeal'
-  },
-
   policy: {
     cookiePolicy: '/cookie-policy',
     termsAndConditions: '/terms-and-conditions',
@@ -27,6 +19,7 @@ module.exports = {
   },
 
   session: {
+    root: '/',
     createSession: '/create-session',
     entry: '/entry',
     exit: '/exit',
@@ -83,7 +76,8 @@ module.exports = {
     otherReasonForAppealing: '/other-reason-for-appealing',
     sendingEvidence: '/sending-evidence',
     evidenceProvide: evidenceUploadEnabled ? '/evidence-provide' : null,
-    evidenceUpload: evidenceUploadEnabled ? '/evidence-upload' : null
+    evidenceUpload: evidenceUploadEnabled ? '/evidence-upload' : null,
+    evidenceDescription: evidenceUploadEnabled ? '/evidence-description' : null
   },
 
   hearing: {

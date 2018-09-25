@@ -31,7 +31,7 @@
       "title": "Postcode",
       "error": {
         "required": "Enter the postcode from your address",
-        "invalidPostcode": "Postcode must be in England or Wales"
+        "invalidPostcode": "The online appeal service is not available to people from this region. This postcode should match the postcode you entered to access the service."
       }
     },
     "phoneNumber": {

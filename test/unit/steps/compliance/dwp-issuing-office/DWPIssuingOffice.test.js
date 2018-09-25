@@ -79,7 +79,7 @@ describe('DWPIssuingOffice.js', () => {
 
     it('should contain a value object', () => {
       const values = dWPIssuingOffice.values();
-      expect(values).to.eql({ mrn: { dwpIssuingOffice: 5 } });
+      expect(values).to.eql({ mrn: { dwpIssuingOffice: 'DWP PIP (5)' } });
     });
   });
 

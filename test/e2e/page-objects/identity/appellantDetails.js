@@ -3,9 +3,9 @@ const appellant = require('test/e2e/data').appellant;
 function enterAppellantNameAndContinue(title, firstName, lastName) {
   const I = this;
 
-  I.fillField('#title', title);
-  I.fillField('#firstName', firstName);
-  I.fillField('#lastName', lastName);
+  I.fillField({ id: 'title' }, title);
+  I.fillField({ id: 'firstName' }, firstName);
+  I.fillField({ id: 'lastName' }, lastName);
   I.click('Continue');
 }
 
@@ -26,11 +26,11 @@ function enterAppellantNINOAndContinue(nino) {
 }
 
 function IenterAddressDetails(I) {
-  I.fillField('#addressLine1', appellant.contactDetails.addressLine1);
-  I.fillField('#addressLine2', appellant.contactDetails.addressLine2);
-  I.fillField('#townCity', appellant.contactDetails.townCity);
-  I.fillField('#county', appellant.contactDetails.county);
-  I.fillField('#postCode', appellant.contactDetails.postCode);
+  I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
+  I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
+  I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
+  I.fillField({ id: 'county' }, appellant.contactDetails.county);
+  I.fillField({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
 
 function enterAppellantContactDetailsAndContinue() {

@@ -18,6 +18,7 @@ describe('RepresentativeDetails.js', () => {
 
     representativeDetails.fields = {
       name: {
+        title: { value: '' },
         first: { value: '' },
         last: { value: '' },
         organisation: { value: '' }
@@ -267,6 +268,7 @@ describe('RepresentativeDetails.js', () => {
 
   describe('values()', () => {
     it('should contain a value object', () => {
+      representativeDetails.fields.name.title.value = 'Title';
       representativeDetails.fields.name.first.value = 'First name';
       representativeDetails.fields.name.last.value = 'Last name';
       representativeDetails.fields.name.organisation.value = 'Organisation';
@@ -280,6 +282,7 @@ describe('RepresentativeDetails.js', () => {
       const values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
+          title: 'Title',
           firstName: 'First name',
           lastName: 'Last name',
           organisation: 'Organisation',
@@ -294,6 +297,20 @@ describe('RepresentativeDetails.js', () => {
           }
         }
       });
+    });
+
+    it('removes whitespace from before and after the postcode string', () => {
+      representativeDetails.fields.postCode.value = ' Post code ';
+      const postcode = representativeDetails.values().representative.contactDetails.postCode;
+      expect(postcode).to.not.equal(' Post code ');
+      expect(postcode).to.equal('Post code');
+    });
+
+    it('removes whitespace from before and after the phone number string', () => {
+      representativeDetails.fields.phoneNumber.value = ' 0800109756 ';
+      const phoneNumber = representativeDetails.values().representative.contactDetails.phoneNumber;
+      expect(phoneNumber).to.not.equal(' 0800109756 ');
+      expect(phoneNumber).to.equal('0800109756');
     });
   });
 

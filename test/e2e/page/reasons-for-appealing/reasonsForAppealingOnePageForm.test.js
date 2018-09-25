@@ -42,6 +42,15 @@ Scenario('When I enter one character in each field and click Continue, I see err
   I.see(content.fields.reasonForAppealing.error.notEnough);
 });
 
+Scenario('When I enter special chars then I see no errors', I => {
+  I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+    whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
+    reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
+  });
+  I.click('Continue');
+  I.seeInCurrentUrl(paths.reasonsForAppealing.otherReasonForAppealing);
+});
+
 Scenario('When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing',
   I => {
     I.addAReasonForAppealingAndThenClickAddAnother(

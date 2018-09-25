@@ -11,7 +11,8 @@
             "error": {
                 "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 10MB.",
                 "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
-                "required": "You have not uploaded a file. Please upload your file again."
+                "required": "You have not uploaded a file. Please upload your file again.",
+                "technical": "Your file could not be uploaded as it is too big in size or it contains a virus."
             }
         }
     }

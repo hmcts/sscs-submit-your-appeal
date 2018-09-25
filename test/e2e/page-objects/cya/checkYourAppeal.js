@@ -19,9 +19,9 @@ const testData = require('test/e2e/data');
 const appellant = testData.appellant;
 const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO() {
+function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code) {
   const I = this;
-  I.enterBenefitTypeAndContinue(testData.benefitType.code);
+  I.enterBenefitTypeAndContinue(benefitTypeCode);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
   I.continueFromIndependance();
@@ -45,6 +45,7 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence() {
   if (evidenceUploadEnabled) {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
+    I.enterDescription('Some description of the evidence');
   }
 }
 

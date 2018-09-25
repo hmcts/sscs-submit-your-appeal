@@ -33,6 +33,9 @@
 {% block statement_of_truth_fields %}
 
     {% call formSection() %}
+        {% if csurfCsrfToken %}
+            <input type="hidden" name="_csrf" value="{{csurfCsrfToken}}">
+        {% endif %}
         {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
     {% endcall %}
 

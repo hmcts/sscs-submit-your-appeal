@@ -37,9 +37,12 @@ const datePickerUtils = {
     const day = mDate.format('D');
     const month = mDate.format('MMM');
     const fullMonth = mDate.format('MMMM');
-    const displayMonth = {};
+    const displayMonth = {
+      content: `<span>${day}</span>`
+    };
     if (day === '1') {
-      const html = `${day} <p class="first-of-month" aria-label="${fullMonth}">${month}</p>`;
+      // eslint-disable-next-line max-len
+      const html = `<span>${day}</span><p class="first-of-month" aria-label="${fullMonth}">${month}</p>`;
       displayMonth.content = html;
     }
     return displayMonth;
@@ -48,8 +51,9 @@ const datePickerUtils = {
   findCellByTimestamp: date => {
     const timestamp = parseInt(moment.utc(date).format('x'));
     const bstOffset = 3600000;
-    return $(`td[data-date="${timestamp}"]`)
-      .length ? $(`td[data-date="${timestamp}"]`) : $(`td[data-date="${timestamp + bstOffset}"]`);
+    return $(`td[data-date="${timestamp}"]`).length ?
+      $(`td[data-date="${timestamp}"]`) :
+      $(`td[data-date="${timestamp + bstOffset}"]`);
   }
 
 };

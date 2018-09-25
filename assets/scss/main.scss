@@ -7,6 +7,7 @@
 @import 'h-progress-bar';
 @import 'v-progress-bar';
 @import 'landing-pages';
+@import 'super-wrap';
 
 .form-section {
   margin-bottom: 30px;
@@ -28,7 +29,8 @@ label.form-label[for="signer"] {
 
 #item\.whatYouDisagreeWith,
 #item\.reasonForAppealing,
-#otherReasonForAppealing {
+#otherReasonForAppealing,
+#describeTheEvidence {
   width: 100%;
 }
 
@@ -72,7 +74,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#title, #pipNumber {
+#name\.title, #title, #pipNumber {
   &.form-control {
     @extend .form-control-1-8;
   }
@@ -89,7 +91,6 @@ label.form-label[for="signer"] {
 }
 
 .banner-blue h1{
-  width: 100%;
   background: #005ea5;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -99,6 +100,9 @@ label.form-label[for="signer"] {
     bottom: 30px;
     left:29px;
   };
+  @media (min-width: 641px) {
+    width: 100%;
+  }
 }
 
 .internal-server-error {
@@ -117,7 +121,7 @@ label.form-label[for="signer"] {
   .add-another-list-item {
     width: 65%;
     display: inline-block;
-
+    @include wrap;
     &.noItems {
       width: 100%;
     }
@@ -304,4 +308,8 @@ label.form-label[for="signer"] {
 
 #evidence-upload-form .error-message {
   margin-top: 20px;
+}
+
+.cya-answer {
+  @include wrap;
 }

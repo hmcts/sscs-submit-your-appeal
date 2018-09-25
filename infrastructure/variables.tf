@@ -44,3 +44,26 @@ variable "deployment_namespace" {
 variable "common_tags" {
   type = "map"
 }
+
+variable "evidence_upload_enabled" {
+  type = "string"
+  default = "false"
+}
+
+variable "https_only_flag" {
+  type = "string"
+  default = "true"
+}
+
+variable "postcode_checker_enabled" {
+  type = "string"
+  default = ""
+}
+variable "postcode_checker_allowed_rpcs" {
+  type = "string"
+  default = "birmingham"
+}
+
+variable "raw_product" {
+  default = "sscs"
+}

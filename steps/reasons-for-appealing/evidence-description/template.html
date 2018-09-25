@@ -1,0 +1,21 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/formElements.html" import textarea %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+<p>{{ content.description | safe }}</p>
+
+{% call formSection() %}
+
+{{ textarea(fields.describeTheEvidence, content.fields.describeTheEvidence.label, hideLabel = true, maxlength = 2000 ) }}
+
+{% endcall %}
+
+{% endblock %}

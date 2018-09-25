@@ -1,7 +1,6 @@
 {
   "node": {
     "protocol": "HTTP_PROTOCOL",
-    "hostname": "EXTERNAL_HOSTNAME",
     "port": "PORT"
   },
   "redis": {
@@ -37,10 +36,14 @@
     "evidenceUpload": {
       "enabled": "EVIDENCE_UPLOAD_ENABLED",
       "maxFileSize": "MAX_FILE_SIZE"
+    },
+    "allowESA": {
+      "enabled": "ALLOW_ESA_ENABLED"
     }
   },
   "postcodeChecker": {
     "url": "POSTCODE_CHECKER_URL",
-    "enabled": "POSTCODE_CHECKER_ENABLED"
+    "enabled": "POSTCODE_CHECKER_ENABLED",
+    "allowedRpcs": "POSTCODE_CHECKER_ALLOWED_RPCS"
   }
 }

@@ -1,3 +1,6 @@
 infrastructure_env = "preprod"
 node_environment = "preview"
-sya_hostname  = "benefit-appeal.preview.platform.hmcts.net"
+evidence_upload_enabled = "true"
+https_only_flag = "false"
+postcode_checker_enabled = "true"
+postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle"

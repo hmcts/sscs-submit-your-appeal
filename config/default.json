@@ -1,7 +1,6 @@
 {
   "node": {
     "protocol": "http",
-    "hostname": "localhost",
     "port": 3000
   },
   "redis": {
@@ -28,19 +27,31 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "1000",
-    "waitForAction": "500",
+    "waitForTimeout": "30000",
+    "waitForAction": "2000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
   "features": {
     "evidenceUpload": {
-      "enabled": false,
+      "enabled": true,
       "maxFileSize": 10
+    },
+    "allowESA": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
-    "enabled": false
+    "enabled": false,
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle"
+  },
+  "saucelabs": {
+    "browser": "chrome",
+    "username": "username",
+    "key": "privatekey",
+    "tunnelId": "reformtunnel",
+    "smartWait": "10000",
+    "outputDir": "./functional-output/crossbrowser/reports"
   }
 }

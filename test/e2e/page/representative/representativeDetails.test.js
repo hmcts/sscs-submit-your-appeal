@@ -46,6 +46,12 @@ Scenario('When I enter a name and continue, I do not see errors', I => {
   I.dontSee(representative.name.error.required);
 });
 
+Scenario('When I enter a name with special characters and continue, I do not see errors', I => {
+  I.fillField('input[name="name.first"]', 'André-Ottö');
+  I.click('Continue');
+  I.dontSee(representative.name.error.required);
+});
+
 Scenario('When I enter an organisation and continue, I do not see errors', I => {
   I.fillField('input[name="name.organisation"]', 'Hogwarts');
   I.click('Continue');

@@ -4,46 +4,54 @@ const proxyquire = require('proxyquire');
 const HttpStatus = require('http-status-codes');
 
 describe('PostcodeChecker.js', () => {
-  describe('Is England or Wales Postcode', () => {
-    const requireStub = {};
-    const getStub = sinon.stub();
-    let postcodeChecker = null;
+  const requireStub = {};
+  const getStub = sinon.stub();
+  const configGetStub = sinon.stub();
+  const configStub = { get: configGetStub };
+  let postcodeChecker = null;
 
-    beforeEach(() => {
-      /* eslint-disable max-len */
-      postcodeChecker = proxyquire('utils/postcodeChecker', {
-        superagent: requireStub
-      });
-      /* eslint-disable max-len */
-
-      getStub.returns(requireStub);
+  function setupPostcodeChecker(allowedRPCs) {
+    configGetStub.withArgs('api.url').returns('http://localhost:8080');
+    configGetStub.withArgs('postcodeChecker.endpoint').returns('/regionalcentre');
+    configGetStub.withArgs('postcodeChecker.allowedRpcs').returns(allowedRPCs);
+    /* eslint-disable max-len */
+    postcodeChecker = proxyquire('utils/postcodeChecker', {
+      superagent: requireStub,
+      config: configStub
     });
+    /* eslint-disable max-len */
 
-    afterEach(() => {
-      getStub.reset();
+    getStub.returns(requireStub);
+  }
+
+  afterEach(() => {
+    getStub.reset();
+    configGetStub.reset();
+  });
+
+  function setResponse(response) {
+    merge(requireStub, {
+      get: getStub,
+      ok: () => requireStub,
+      then: handleResponse => {
+        handleResponse(response);
+        return requireStub;
+      },
+      catch: () => requireStub
     });
+  }
 
-    function setResponse(response) {
-      merge(requireStub, {
-        get: getStub,
-        ok: () => requireStub,
-        then: handleResponse => {
-          handleResponse(response);
-          return requireStub;
-        },
-        catch: () => requireStub
-      });
-    }
+  function setRegionalCenterTo(regionalCentreValue) {
+    setResponse({ status: HttpStatus.OK, body: { regionalCentre: regionalCentreValue } });
+  }
 
-    function setRegionalCenterTo(regionalCentreValue) {
-      setResponse({ status: HttpStatus.OK, body: { regionalCentre: regionalCentreValue } });
-    }
+  function buildExpectedUrl(outcode) {
+    return `http://localhost:8080/regionalcentre/${outcode}`;
+  }
 
-    function buildExpectedUrl(outcode) {
-      return `http://localhost:8080/regionalcentre/${outcode}`;
-    }
-
-    it('postcode is in England', () => {
+  describe('can set allowed RPC from property', () => {
+    it('matched multiple RPCs', () => {
+      setupPostcodeChecker('birmingham, london');
       setRegionalCenterTo('London');
 
       return postcodeChecker('AB1 2CD')
@@ -55,8 +63,27 @@ describe('PostcodeChecker.js', () => {
         });
     });
 
-    it('postcode is in Wales', () => {
-      setRegionalCenterTo('Cardiff');
+    it('matched single RPCs and case', () => {
+      setupPostcodeChecker('London');
+      setRegionalCenterTo('London');
+
+      return postcodeChecker('AB1 2CD')
+        .then(isEnglandOrWalesPostcode => {
+          expect(isEnglandOrWalesPostcode).to.equal(true);
+          expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
+        }).catch(error => {
+          expect.fail(error);
+        });
+    });
+  });
+
+  describe('Is England or Wales Postcode', () => {
+    beforeEach(() => {
+      setupPostcodeChecker('london');
+    });
+
+    it('postcode is in England', () => {
+      setRegionalCenterTo('London');
 
       return postcodeChecker('AB1 2CD')
         .then(isEnglandOrWalesPostcode => {

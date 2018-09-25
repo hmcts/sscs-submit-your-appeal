@@ -5,7 +5,7 @@ import $ from 'jquery';
 import moment from 'moment/moment';
 import { differenceWith, indexOf, isEqual, last } from 'lodash';
 import datePickerUtils from './date-picker-utils';
-const four = 4;
+const eight = 8;
 
 const datePicker = {
 
@@ -52,11 +52,14 @@ const datePicker = {
     $('.prev').attr('role', 'button').attr('aria-label', 'previous month');
     $('.next').attr('role', 'button').attr('aria-label', 'next month');
     $('.day:not(".disabled")').each(function addAriaRole() {
-      const attrib = parseInt($(this).attr('data-date'), 10);
-      const content = $(this).html();
-      $(this).attr('role', 'button');
-      $(this).html(`<div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
+      if (!$(this).children('div').length) {
+        const attrib = parseInt($(this).attr('data-date'), 10);
+        const content = $(this).html();
+        $(this).attr('role', 'button');
+        $(this).html(`
+        <div aria-label="${moment(attrib).format('dddd DD MMMM YYYY')}
       ${$(this).hasClass('active') ? ' selected' : ' deselected'}">${content}</div>`);
+      }
     });
     /* eslint-enable no-invalid-this */
   },
@@ -106,14 +109,19 @@ const datePicker = {
     datePicker.selector().datepicker({
       multidate: true,
       daysOfWeekDisabled: '06',
-      defaultViewDate: moment().add(four, 'weeks').format('MM-D-YYYY'),
-      startDate: '+4w',
+      defaultViewDate: moment().add(eight, 'weeks').format('MM-D-YYYY'),
+      startDate: '+8w',
       endDate: '+22w',
       weekStart: 1,
       maxViewMode: 0,
       datesDisabled,
+      templates: {
+        leftArrow: datePicker.toggleArrows('previous'),
+        rightArrow: datePicker.toggleArrows('next')
+      },
       beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date)
     }).on('changeDate', event => datePicker.changeDateHandler(event));
+    datePicker.setUpDOWHeading();
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
     datePicker.selector().off('keydown');
@@ -127,6 +135,31 @@ const datePicker = {
   },
 
   selector: () => $('#date-picker'),
+
+  toggleArrows: nextOrPrevArrow => {
+    const assetPath = $('#asset-path').data('path');
+    return `<img 
+                src="${assetPath}images/${nextOrPrevArrow}_arrow.png" 
+                alt="${nextOrPrevArrow} month"
+            >`;
+  },
+
+  setUpDOWHeading: () => {
+    const days = [
+      'MON',
+      'TUE',
+      'WED',
+      'THU',
+      'FRI',
+      'SAT',
+      'SUN'
+    ];
+    const dow = $('.dow');
+    $.each(dow, function changeText(index) {
+      // eslint-disable-next-line no-invalid-this
+      $(this).text(days[index]);
+    });
+  },
 
   updateAriaAttributesOnSelect: cell => {
     window.setTimeout(() => {
@@ -178,7 +211,6 @@ const datePicker = {
       $('.add-another-list').empty().append(elements);
     }
   },
-
   postDate: dates => {
     const lastestDateAdded = last(dates);
     const mDate = moment(lastestDateAdded);
@@ -188,10 +220,13 @@ const datePicker = {
       'item.year': mDate.year().toString()
     };
     const index = indexOf(dates, lastestDateAdded);
-
+    const tokenSelector = '[name=_csrf]';
     return $.ajax({
       type: 'POST',
       url: `/dates-cant-attend/item-${index}`,
+      headers: {
+        'CSRF-Token': $(tokenSelector).length && $(tokenSelector).val()
+      },
       data: body,
       success: () => datePicker.displayDateList(dates)
     });

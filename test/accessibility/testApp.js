@@ -8,29 +8,19 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
-const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 
 const app = express();
 
-const protocol = config.get('node.protocol');
-const hostname = config.get('node.hostname');
-const port = config.get('node.port');
 const startStep = require('steps/entry/Entry');
 
-let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'a11y') {
-  baseUrl = `${baseUrl}:${port}`;
-}
-
 lookAndFeel.configure(app, {
-  baseUrl,
+  baseUrl: '/',
   express: {
     views: [
       path.resolve(__dirname, '../../steps'),
-      path.resolve(__dirname, 'landing-pages'),
       path.resolve(__dirname, 'views/compliance'),
       path.resolve(__dirname, 'policy-pages'),
       path.resolve(__dirname, 'error-pages')
@@ -100,7 +90,6 @@ const noSessionHandler = (req, res, next) => {
   next();
 };
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {
@@ -127,13 +116,15 @@ journey(app, {
     }
   },
   timeoutDelay: 2000,
-  apiUrl: `${config.api.url}/appeals`
+  apiUrl: `${config.api.url}/appeals`,
+  useCsrfToken: false
 });
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use('/', landingPages, policyPages);
+app.use('/', policyPages);
+app.use('/', (req, res) => res.redirect('/entry'));
 
 module.exports = app;

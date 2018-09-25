@@ -5,7 +5,7 @@ const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Evidence provide page @batch-10');
+Feature('Evidence provide page @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   Before(I => {

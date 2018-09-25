@@ -2,6 +2,7 @@ const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const mrnDateFields = require('steps/compliance/mrn-date/content.en').fields;
 const dateOnImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const moment = require('moment');
 
 const date = {
   day: '20',
@@ -21,6 +22,11 @@ After(I => {
 
 Scenario('I have an MRN dated one day short of a month ago', I => {
   I.enterAnMRNDateAndContinue(DateUtils.oneDayShortOfAMonthAgo());
+  I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
+});
+
+Scenario('I have an MRN dated as the current date', I => {
+  I.enterAnMRNDateAndContinue(moment());
   I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
 });
 
@@ -107,4 +113,8 @@ Scenario('I enter a MRN date with an invalid name of month', I => {
   date.month = 'invalidMonth';
   I.enterADateAndContinue(date.day, date.month, date.year);
   I.see(mrnDateFields.date.error.invalid);
+});
+
+Scenario('I have a csrf token', I => {
+  I.seeElementInDOM('form input[name="_csrf"]');
 });

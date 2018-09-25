@@ -1,5 +1,5 @@
-require('app-insights')();
-const { Logger, Express } = require('@hmcts/nodejs-logging');
+require('app-insights').enable();
+const { Express } = require('@hmcts/nodejs-logging');
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
@@ -12,7 +12,6 @@ const os = require('os');
 const path = require('path');
 const steps = require('steps');
 const paths = require('paths');
-const landingPages = require('landing-pages/routes');
 const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
@@ -21,19 +20,10 @@ const HttpStatus = require('http-status-codes');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 /* eslint-enable max-len */
 
-const logger = Logger.getLogger('app.js');
 const app = express();
 
 const protocol = config.get('node.protocol');
-const hostname = config.get('node.hostname');
 const port = config.get('node.port');
-
-let baseUrl = `${protocol}://${hostname}`;
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = `${baseUrl}:${port}`;
-}
-
-logger.info('SYA base Url: ', baseUrl);
 
 // Tests
 const PORT_RANGE = 50;
@@ -80,7 +70,7 @@ app.use(helmet.referrerPolicy({ policy: 'origin' }));
 
 // Disallow search index indexing
 app.use((req, res, next) => {
-  // Setting headers stops pages being indexed even if indexed pages link to them.
+  // Setting headers stops pages being indexed even if indexed pages link to them
   res.setHeader('X-Robots-Tag', 'noindex');
   res.setHeader('X-Served-By', os.hostname());
   res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
@@ -95,13 +85,14 @@ app.get('/robots.txt', (req, res) => {
 app.use('/sessions', (req, res) => {
   res.sendStatus(HttpStatus.NOT_FOUND);
 });
+// because of a bug with iphone, we need to remove the mime types from accept
+const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
 lookAndFeel.configure(app, {
-  baseUrl,
+  baseUrl: '/',
   express: {
     views: [
       path.resolve(__dirname, 'steps'),
-      path.resolve(__dirname, 'landing-pages'),
       path.resolve(__dirname, 'views/compliance'),
       path.resolve(__dirname, 'policy-pages'),
       path.resolve(__dirname, 'error-pages')
@@ -164,7 +155,8 @@ lookAndFeel.configure(app, {
         yes: content.inactivityTimeout.yes,
         no: content.inactivityTimeout.no
       },
-      accept: fileTypeWhitelist,
+      // because of a bug with iphone, we need to remove the mime types from accept
+      accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message,
       relatedContent: content.relatedContent,
@@ -177,8 +169,9 @@ lookAndFeel.configure(app, {
   }
 });
 
+app.set('trust proxy', 1);
+
 journey(app, {
-  baseUrl,
   steps,
   session: {
     redis: {
@@ -186,7 +179,7 @@ journey(app, {
       connect_timeout: 15000
     },
     cookie: {
-      secure: config.redis.useSSL === 'true'
+      secure: protocol === 'https'
     },
     secret: config.redis.secret
   },
@@ -204,7 +197,8 @@ journey(app, {
     }
   },
   timeoutDelay: 2000,
-  apiUrl: `${config.api.url}/appeals`
+  apiUrl: `${config.api.url}/appeals`,
+  useCsrfToken: true
 });
 
 app.use(bodyParser.urlencoded({
@@ -218,6 +212,7 @@ app.use(paths.health, healthcheck.configure({
 }));
 
 app.use(Express.accessLogger());
-app.use('/', landingPages, policyPages);
+app.use('/', policyPages);
+app.use('/', (req, res) => res.redirect('/entry'));
 
 module.exports = app;

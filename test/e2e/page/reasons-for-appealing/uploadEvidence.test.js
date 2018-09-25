@@ -4,7 +4,7 @@ const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/co
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature('Uploading Evidence @batch-10');
+Feature('Uploading Evidence @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   Before(I => {
@@ -34,5 +34,13 @@ if (evidenceUploadEnabled) {
     I.click('.button');
     I.seeElement('.error-summary');
     I.see(content.noItemsError);
+  });
+  Scenario('SSCS-3768 bug', I => {
+    I.click('.button');
+    I.seeElement('.error-summary');
+    I.see(content.noItemsError);
+    I.attachFile('#uploadEv', 'evidence.txt');
+    I.dontSeeElement('.error-summary');
+    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
   });
 }

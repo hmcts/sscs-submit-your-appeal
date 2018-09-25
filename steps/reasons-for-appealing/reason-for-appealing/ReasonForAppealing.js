@@ -7,7 +7,7 @@ const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { isGreaterThanOrEqualToFiveCharacters } = require('utils/stringUtils');
+const { isGreaterThanOrEqualToFiveCharacters, getBenefitCode } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
@@ -15,6 +15,10 @@ const paths = require('paths');
 class ReasonForAppealing extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.reasonForAppealing;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.req.session.BenefitType.benefitType);
   }
 
   get addAnotherLinkContent() {
@@ -30,11 +34,13 @@ class ReasonForAppealing extends AddAnother {
       reasonForAppealing: text
     }).check(
       errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
-    ).check(
-      errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
-      value => isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
-    );
+      value => value.whatYouDisagreeWith &&
+        isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith))
+      .check(
+        errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
+        value => value.reasonForAppealing &&
+        isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
+      );
   }
 
   validateList(list) {
