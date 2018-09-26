@@ -1,4 +1,4 @@
-/* eslint-disable no-process-env, func-names */
+/* eslint-disable no-process-env, func-names, no-console */
 
 const event = require('codeceptjs').event;
 const container = require('codeceptjs').container;
@@ -12,6 +12,8 @@ const sauceKey = process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key');
 function updateSauceLabsResult(result, sessionId) {
   const sauceUrl = `https://saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
+  // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
+  console.log(`SauceOnDemandSessionID=${sessionId}`);
   return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
 }
 
