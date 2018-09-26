@@ -3,7 +3,7 @@
 import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
 import moment from 'moment/moment';
-import { differenceWith, indexOf, isEqual, last, intersectionBy } from 'lodash';
+import { differenceWith, indexOf, isEqual, last, intersectionBy, get } from 'lodash';
 import datePickerUtils from './date-picker-utils';
 const eight = 8;
 
@@ -132,6 +132,7 @@ const datePicker = {
         window.setTimeout(datePicker.addAccessibilityFeatures, 0);
       }
     });
+    $('.add-another-list-controls a').on('click', datePicker.deleteRangeHandler);
     window.setTimeout(datePicker.addAccessibilityFeatures, 0);
   },
 
@@ -202,15 +203,35 @@ const datePicker = {
     /* eslint-disable max-len */
     ranges = ranges.map(range => {
       if (range.length === 1) {
-        return {value: datePickerUtils.formatDateForDisplay(range[0].value), index: [range[0].index]};
+        return { value: datePickerUtils.formatDateForDisplay(range[0].value), index: [range[0].index] };
       }
-      return {value: `${datePickerUtils.formatDateForDisplay(range[0].value)} to ${datePickerUtils.formatDateForDisplay(last(range).value)}`,
-        index: range.map(r => r.index)};
+      return { value: `${datePickerUtils.formatDateForDisplay(range[0].value)} to ${datePickerUtils.formatDateForDisplay(last(range).value)}`,
+        index: range.map(r => r.index) };
     });
     return ranges;
     /* eslint-enable max-len */
   },
-
+  deleteRangeHandler: event => {
+    const originalDestination = get(event, 'target.href');
+    if (originalDestination.indexOf('delete') !== -1 && originalDestination.indexOf(',') !== -1) {
+      // it's a multiple-item deletion!
+      event.preventDefault();
+      let itemsToRemove = get(event, 'target').getAttribute('data-index').split(',');
+      itemsToRemove = itemsToRemove.map(item => {
+        return $.ajax({
+          type: 'GET',
+          url: `/dates-cant-attend/item-${item}/delete`,
+          success: () => {
+            console.info('i managed')
+          }
+        });
+      });
+      return Promise.all(itemsToRemove)
+        .then(() => {
+          console.info('i managed them all')
+        })
+    }
+  },
   displayDateList: dates => {
     const datesIndex = dates.map((date, index) => datePickerUtils.buildDatesArray(index, date));
     const orderDates = datePicker.getDateRanges(datePickerUtils.sortDates(datesIndex));
@@ -225,7 +246,7 @@ const datePicker = {
           </span>
         </dd>
         <dd class="add-another-list-controls">
-          <a href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
+          <a data-index="${date.index}" href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
         </dd>`;
     });
     if (elements === '') {
