@@ -3,7 +3,7 @@
 import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
 import $ from 'jquery';
 import moment from 'moment/moment';
-import { differenceWith, indexOf, isEqual, last } from 'lodash';
+import { differenceWith, indexOf, isEqual, last, intersectionBy } from 'lodash';
 import datePickerUtils from './date-picker-utils';
 const eight = 8;
 
@@ -14,6 +14,7 @@ const datePicker = {
       datePicker.buildDatePicker(bankholidays);
     });
   },
+
 
   getBankHolidays: callback => {
     $.ajax({
@@ -186,9 +187,32 @@ const datePicker = {
     return datePicker.displayDateList(dates);
   },
 
+  getDateRanges: dates => {
+    let ranges = [];
+    dates.forEach(date => {
+      const current = moment(date.value);
+      const previous = moment(date.value).subtract(1, 'day');
+      const veryLast = last(last(ranges));
+      if (veryLast && veryLast.isSame(previous)) {
+        last(ranges).push(current);
+      } else {
+        ranges.push([current]);
+      }
+    });
+    /* eslint-disable max-len */
+    ranges = ranges.map(range => {
+      if (range.length === 1) {
+        return datePickerUtils.formatDateForDisplay(range[0]);
+      }
+      return `${datePickerUtils.formatDateForDisplay(range[0])} to ${datePickerUtils.formatDateForDisplay(last(range))}`;
+    });
+    return ranges;
+    /* eslint-enable max-len */
+  },
+
   displayDateList: dates => {
     const datesIndex = dates.map((date, index) => datePickerUtils.buildDatesArray(index, date));
-    const orderDates = datePickerUtils.sortDates(datesIndex);
+    const orderDates = datePicker.getDateRanges(datePickerUtils.sortDates(datesIndex));
     let elements = '';
 
     $.each(orderDates, (index, date) => {
@@ -196,7 +220,7 @@ const datePicker = {
         <dt class="visually-hidden">items-${date.index}</dt>
         <dd id="add-another-list-items-${date.index}" class="add-another-list-item">
           <span data-index="items-${date.index}">
-            ${datePickerUtils.formatDateForDisplay(date.value)}
+            ${date}
           </span>
         </dd>
         <dd class="add-another-list-controls">
