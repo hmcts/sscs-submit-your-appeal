@@ -190,21 +190,22 @@ const datePicker = {
   getDateRanges: dates => {
     let ranges = [];
     dates.forEach(date => {
-      const current = moment(date.value);
       const previous = moment(date.value).subtract(1, 'day');
+      date.value = moment(date.value);
       const veryLast = last(last(ranges));
-      if (veryLast && veryLast.isSame(previous)) {
-        last(ranges).push(current);
+      if (veryLast && veryLast.value.isSame(previous)) {
+        last(ranges).push(date);
       } else {
-        ranges.push([current]);
+        ranges.push([date]);
       }
     });
     /* eslint-disable max-len */
     ranges = ranges.map(range => {
       if (range.length === 1) {
-        return datePickerUtils.formatDateForDisplay(range[0]);
+        return {value: datePickerUtils.formatDateForDisplay(range[0].value), index: [range[0].index]};
       }
-      return `${datePickerUtils.formatDateForDisplay(range[0])} to ${datePickerUtils.formatDateForDisplay(last(range))}`;
+      return {value: `${datePickerUtils.formatDateForDisplay(range[0].value)} to ${datePickerUtils.formatDateForDisplay(last(range).value)}`,
+        index: range.map(r => r.index)};
     });
     return ranges;
     /* eslint-enable max-len */
@@ -220,7 +221,7 @@ const datePicker = {
         <dt class="visually-hidden">items-${date.index}</dt>
         <dd id="add-another-list-items-${date.index}" class="add-another-list-item">
           <span data-index="items-${date.index}">
-            ${date}
+            ${date.value}
           </span>
         </dd>
         <dd class="add-another-list-controls">
