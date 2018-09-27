@@ -12,6 +12,7 @@ const datePicker = {
   init: () => {
     datePicker.getBankHolidays(bankholidays => {
       datePicker.buildDatePicker(bankholidays);
+      $('body').on('click', datePicker.deleteRangeHandler);
     });
   },
 
@@ -132,7 +133,6 @@ const datePicker = {
         window.setTimeout(datePicker.addAccessibilityFeatures, 0);
       }
     });
-    $('.add-another-list-controls a').on('click', datePicker.deleteRangeHandler);
     window.setTimeout(datePicker.addAccessibilityFeatures, 0);
   },
 
@@ -217,19 +217,14 @@ const datePicker = {
       // it's a multiple-item deletion!
       event.preventDefault();
       let itemsToRemove = get(event, 'target').getAttribute('data-index').split(',');
-      itemsToRemove = itemsToRemove.map(item => {
-        return $.ajax({
-          type: 'GET',
-          url: `/dates-cant-attend/item-${item}/delete`,
-          success: () => {
-            console.info('i managed')
-          }
-        });
-      });
+      itemsToRemove = itemsToRemove.map(item => $.ajax({
+        type: 'GET',
+        url: `/dates-cant-attend/item-${item}/delete`
+      }));
       return Promise.all(itemsToRemove)
         .then(() => {
-          console.info('i managed them all')
-        })
+          window.location.reload();
+        });
     }
   },
   displayDateList: dates => {
