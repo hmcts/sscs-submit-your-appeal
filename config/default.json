@@ -43,8 +43,8 @@
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
-    "enabled": true,
-    "allowedRpcs": "birmingham,liverpool"
+    "enabled": false,
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
   },
   "saucelabs": {
     "browser": "chrome",
