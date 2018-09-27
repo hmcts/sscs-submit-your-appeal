@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-blacklist */
 import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
@@ -15,7 +16,6 @@ const datePicker = {
       $('body').on('click', datePicker.deleteRangeHandler);
     });
   },
-
 
   getBankHolidays: callback => {
     $.ajax({
@@ -222,16 +222,15 @@ const datePicker = {
         url: `/dates-cant-attend/item-${item}/delete`
       }));
       return Promise.all(itemsToRemove)
-        .then(() => {
-          window.location.reload();
-        });
+        .then(window.location.reload);
     }
+    return true;
   },
   displayDateList: dates => {
     const datesIndex = dates.map((date, index) => datePickerUtils.buildDatesArray(index, date));
     const orderDates = datePicker.getDateRanges(datePickerUtils.sortDates(datesIndex));
     let elements = '';
-
+    /* eslint-disable max-len */
     $.each(orderDates, (index, date) => {
       elements += `
         <dt class="visually-hidden">items-${date.index}</dt>
@@ -244,6 +243,7 @@ const datePicker = {
           <a data-index="${date.index}" href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
         </dd>`;
     });
+    /* eslint-enable max-len */
     if (elements === '') {
       const noItems = `<dt class="visually-hidden">No items</dt>
         <dd class="add-another-list-item  noItems">No dates added yet</dd>`;
@@ -298,3 +298,4 @@ const datePicker = {
 };
 
 module.exports = datePicker;
+/* eslint-enable max-lines */
