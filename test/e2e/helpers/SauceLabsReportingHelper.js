@@ -13,7 +13,7 @@ function updateSauceLabsResult(result, sessionId) {
   const sauceUrl = `https://saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
   // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
-  console.log(`SauceOnDemandSessionID=${sessionId}`);
+  console.log(`SauceOnDemandSessionID=${sessionId} job-name=sscs-submit-your-appeal`);
   return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
 }
 
