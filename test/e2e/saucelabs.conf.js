@@ -14,6 +14,7 @@ const getBrowserConfig = browserGroup => {
       const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
       desiredCapability.tunnelIdentifier = tunnelName;
       desiredCapability.tags = ['sscs'];
+      desiredCapability.build = `${process.env.JOB_NAME}__${process.env.BUILD_NUMBER}`;
       browserConfig.push({
         browser: desiredCapability.browserName,
         desiredCapabilities: desiredCapability
