@@ -215,7 +215,7 @@ const datePicker = {
         return { value: datePickerUtils.formatDateForDisplay(range[0].value), index: [range[0].index] };
       }
       return { value: datePicker.formatRange(range[0].value, last(range).value),
-        index: range.map(r => r.index) };
+        index: range.map(r => r.index), range: range.map(r => r.value) };
     });
     return ranges;
     /* eslint-enable max-len */
@@ -226,14 +226,30 @@ const datePicker = {
       // it's a multiple-item deletion!
       event.preventDefault();
       let itemsToRemove = get(event, 'target').getAttribute('data-index').split(',');
-      itemsToRemove = itemsToRemove.map(item => $.ajax({
-        type: 'GET',
-        url: `/dates-cant-attend/item-${item}/delete`
-      }));
-      return Promise.all(itemsToRemove)
-        .then(() => {
-          window.location.reload();
-        });
+
+      itemsToRemove = itemsToRemove.map(item => {
+        return `/dates-cant-attend/item-${item}/delete`;
+      });
+
+      const funcs = itemsToRemove.map(url => () => {
+        return $.ajax({
+          type: 'GET',
+          url: url,
+          success: (result) => {
+            console.info('done', JSON.stringify(result))
+          }
+        })
+      });
+
+      const promiseSerial = funcs =>
+        funcs.reduce((promise, func) =>
+            promise.then(result => func().then(Array.prototype.concat.bind(result))),
+          Promise.resolve([]));
+
+      promiseSerial(funcs)
+        .then(console.log.bind(console))
+        .catch(console.error.bind(console));
+
     }
     return true;
   },
@@ -251,7 +267,7 @@ const datePicker = {
           </span>
         </dd>
         <dd class="add-another-list-controls">
-          <a data-index="${date.index}" href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
+          <a data-index="${date.index}" data-range="${date.range || ''}" href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
         </dd>`;
     });
     /* eslint-enable max-len */
