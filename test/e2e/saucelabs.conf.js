@@ -59,6 +59,11 @@ const setupConfig = {
     fileAcceptor.bootstrap(done);
   },
   teardownAll: done => {
+    // Pause to allow SauceLabs to finish updating before Jenkins queries it for results
+    console.log('Wait for 10 seconds before Jenkins queries SauceLabs results...');
+    setTimeout(() => {
+      return true;
+    }, 10000);
     fileAcceptor.teardown(done);
   },
   mocha: {
