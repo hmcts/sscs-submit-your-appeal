@@ -13,7 +13,7 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url":  "http://localhost:8080",
+    "url":  "http://localhost:8080/",
     "uploadEvidenceUrl": "http://localhost:3010/upload"
   },
   "appInsights": {
@@ -43,8 +43,8 @@
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
-    "enabled": false,
-    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle"
+    "enabled": true,
+    "allowedRpcs": "birmingham,liverpool"
   },
   "saucelabs": {
     "browser": "chrome",
