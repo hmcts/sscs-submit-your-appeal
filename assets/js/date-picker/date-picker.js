@@ -187,7 +187,16 @@ const datePicker = {
     }
     return datePicker.displayDateList(dates);
   },
-
+  formatRange: (startDate, endDate) => {
+    const completeFormat = 'dddd DD MMMM YYYY';
+    let format = 'dddd DD';
+    if (startDate.year() !== endDate.year()) {
+      format = completeFormat;
+    } else if (startDate.month() !== endDate.month()) {
+      format = 'dddd DD MMMM';
+    }
+    return `${startDate.format(format)} to ${endDate.format(completeFormat)}`;
+  },
   getDateRanges: dates => {
     let ranges = [];
     dates.forEach(date => {
@@ -205,7 +214,7 @@ const datePicker = {
       if (range.length === 1) {
         return { value: datePickerUtils.formatDateForDisplay(range[0].value), index: [range[0].index] };
       }
-      return { value: `${datePickerUtils.formatDateForDisplay(range[0].value)} to ${datePickerUtils.formatDateForDisplay(last(range).value)}`,
+      return { value: datePicker.formatRange(range[0].value, last(range).value),
         index: range.map(r => r.index) };
     });
     return ranges;
@@ -222,7 +231,9 @@ const datePicker = {
         url: `/dates-cant-attend/item-${item}/delete`
       }));
       return Promise.all(itemsToRemove)
-        .then(window.location.reload);
+        .then(() => {
+          window.location.reload();
+        });
     }
     return true;
   },
