@@ -25,6 +25,12 @@ const getBrowserConfig = browserGroup => {
   return browserConfig;
 };
 
+const pauseFor = seconds => {
+  setTimeout(() => {
+    return true;
+  }, seconds * 1000);
+};
+
 const setupConfig = {
   tests: './smoke/appeal.test.js',
   output: config.get('saucelabs.outputDir'),
@@ -61,9 +67,7 @@ const setupConfig = {
   teardownAll: done => {
     // Pause to allow SauceLabs to finish updating before Jenkins queries it for results
     console.log('Wait for 10 seconds before Jenkins queries SauceLabs results...');
-    setTimeout(() => {
-      return true;
-    }, 10000);
+    pauseFor(10);
     fileAcceptor.teardown(done);
   },
   mocha: {
