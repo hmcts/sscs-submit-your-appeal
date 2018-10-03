@@ -34,7 +34,7 @@ const pauseFor = seconds => {
 };
 
 const setupConfig = {
-  tests: './smoke/appeal.test.js',
+  tests: './**/*.test.js',
   output: config.get('saucelabs.outputDir'),
   features: {
     evidenceUpload: {
