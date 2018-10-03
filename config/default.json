@@ -52,6 +52,6 @@
     "key": "privatekey",
     "tunnelId": "reformtunnel",
     "smartWait": "10000",
-    "outputDir": "./functional-output/crossbrowser/reports"
+    "outputDir": "/functional-output/crossbrowser/reports"
   }
 }

@@ -35,7 +35,7 @@ const pauseFor = seconds => {
 
 const setupConfig = {
   tests: './**/*.test.js',
-  output: config.get('saucelabs.outputDir'),
+  output: process.cwd() + config.get('saucelabs.outputDir'),
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
@@ -81,7 +81,7 @@ const setupConfig = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: config.get('saucelabs.outputDir'),
+          reportDir: `.${config.get('saucelabs.outputDir')}`,
           reportName: 'index',
           inlineAssets: true
         }
