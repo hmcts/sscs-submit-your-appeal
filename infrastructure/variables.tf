@@ -63,7 +63,3 @@ variable "postcode_checker_allowed_rpcs" {
   type = "string"
   default = "birmingham"
 }
-
-variable "raw_product" {
-  default = "sscs"
-}
