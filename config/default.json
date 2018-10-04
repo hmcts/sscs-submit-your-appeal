@@ -44,13 +44,14 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle"
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
   },
   "saucelabs": {
     "browser": "chrome",
     "username": "username",
     "key": "privatekey",
     "tunnelId": "reformtunnel",
-    "smartWait": "10000"
+    "smartWait": "10000",
+    "outputDir": "./functional-output/crossbrowser/reports"
   }
 }

@@ -1,9 +1,11 @@
-/* eslint-disable no-console, no-process-env */
+/* eslint-disable no-process-env */
 
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
 const supportedBrowsers = require('./crossbrowser/supportedBrowsers.js');
+const { Logger } = require('@hmcts/nodejs-logging');
 
+const logger = Logger.getLogger('saucelabs.conf.js');
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId');
 
@@ -19,15 +21,21 @@ const getBrowserConfig = browserGroup => {
         desiredCapabilities: desiredCapability
       });
     } else {
-      console.error('ERROR: supportedBrowsers.js is empty or incorrectly defined');
+      logger.error('supportedBrowsers.js is empty or incorrectly defined');
     }
   }
   return browserConfig;
 };
 
+const pauseFor = seconds => {
+  setTimeout(() => {
+    return true;
+  }, seconds * 1000);
+};
+
 const setupConfig = {
   tests: './smoke/appeal.test.js',
-  output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+  output: config.get('saucelabs.outputDir'),
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
@@ -59,6 +67,9 @@ const setupConfig = {
     fileAcceptor.bootstrap(done);
   },
   teardownAll: done => {
+    // Pause to allow SauceLabs to finish updating before Jenkins queries it for results
+    logger.info('Wait for 30 seconds before Jenkins queries SauceLabs results...');
+    pauseFor(30);
     fileAcceptor.teardown(done);
   },
   mocha: {
@@ -70,7 +81,7 @@ const setupConfig = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
+          reportDir: config.get('saucelabs.outputDir'),
           reportName: 'index',
           inlineAssets: true
         }
