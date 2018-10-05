@@ -19,4 +19,7 @@ withPipeline("nodejs", product, component) {
             println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
         }
     }
+    before('buildinfra:prod') {
+        input "Would you like to continue to buildinfra:prod?"
+    }
 }
