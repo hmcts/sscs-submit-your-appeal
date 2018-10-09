@@ -70,6 +70,63 @@ describe('The EvidenceUpload middleware', () => {
       });
     });
   });
+
+  describe('static handleFileBegin', () => {
+    let EvidenceUpload;
+    const stubs = {};
+
+    beforeEach(() => {
+      EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
+      EvidenceUpload.makeDir = sinon.stub().callsArg(1);
+    });
+
+    describe('when receiving a zero byte upload', () => {
+      const req = {};
+      const incoming = { bytesExpected: 0 };
+      const logger = { error: sinon.stub() };
+      it('should error accordingly', () => {
+        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.fileMissingError);
+        expect(req.body['item.link']).to.equal('');
+        expect(req.body['item.size']).to.equal(0);
+        expect(logger.error).to.have.been.calledWith('Evidence upload error: you need to choose a file');
+      });
+    });
+
+    describe('when receiving a file that is too big', () => {
+      const req = {};
+      const incoming = { bytesExpected: 5242881 };
+      const logger = { error: sinon.stub() };
+      it('should error accordingly', () => {
+        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.maxFileSizeExceededError);
+        expect(req.body['item.link']).to.equal('');
+        expect(req.body['item.size']).to.equal(0);
+        expect(logger.error).to.have.been.calledWith('Evidence upload error: the file is too big');
+      });
+    });
+
+    describe('when total size too big', () => {
+      const req = { session: {
+        EvidenceUpload: {
+          items: [
+            { size: 1048576 },
+            { size: 1048576 },
+            { size: 1048576 },
+            { size: 1048576 }
+          ]
+        }
+      } };
+      const incoming = { bytesExpected: 1048577 };
+      const logger = { error: sinon.stub() };
+      it('should error accordingly', () => {
+        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.totalFileSizeExceededError);
+        expect(req.body['item.link']).to.equal('');
+        expect(req.body['item.size']).to.equal(0);
+      });
+    });
+  });
 });
 /* eslint-enable init-declarations */
 /* eslint-enable no-shadow */

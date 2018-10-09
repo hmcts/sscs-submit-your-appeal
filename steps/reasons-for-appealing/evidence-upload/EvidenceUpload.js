@@ -62,6 +62,34 @@ class EvidenceUpload extends AddAnother {
     return bytesSoFar + parseInt(bytesExpected, 10);
   }
 
+  static handleFileBegin(req, incoming, logger) {
+    const emptyRequestSize = 200;
+    const multiplier = 1024;
+
+    if (incoming.bytesExpected === null ||
+      incoming.bytesExpected <= emptyRequestSize) {
+      req.body = {
+        'item.uploadEv': fileMissingError,
+        'item.link': '',
+        'item.size': 0
+      };
+      logger.error('Evidence upload error: you need to choose a file');
+    } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+      req.body = {
+        'item.uploadEv': maxFileSizeExceededError,
+        'item.link': '',
+        'item.size': 0
+      };
+      logger.error('Evidence upload error: the file is too big');
+    } else if (EvidenceUpload.getTotalSize(get(req, 'session.EvidenceUpload.items'), incoming.bytesExpected) >
+      (maxFileSize * multiplier * multiplier)) {
+      req.body = {
+        'item.uploadEv': totalFileSizeExceededError,
+        'item.link': '',
+        'item.size': 0
+      };
+    }
+  }
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
     const logger = Logger.getLogger('EvidenceUpload.js');
@@ -72,39 +100,13 @@ class EvidenceUpload extends AddAnother {
         if (mkdirError) {
           return next(mkdirError);
         }
-        const multiplier = 1024;
         const incoming = new formidable.IncomingForm({
           uploadDir: pt.resolve(__dirname, pathToUploadFolder),
           keepExtensions: true,
           type: 'multipart'
         });
 
-        incoming.on('fileBegin', () => {
-          const emptyRequestSize = 200;
-          if (incoming.bytesExpected === null ||
-            incoming.bytesExpected <= emptyRequestSize) {
-            req.body = {
-              'item.uploadEv': fileMissingError,
-              'item.link': '',
-              'item.size': 0
-            };
-            logger.error('Evidence upload error: you need to choose a file');
-          } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
-            req.body = {
-              'item.uploadEv': maxFileSizeExceededError,
-              'item.link': '',
-              'item.size': 0
-            };
-            logger.error('Evidence upload error: the file is too big');
-          } else if (EvidenceUpload.getTotalSize(get(req, 'session.EvidenceUpload.items'), incoming.bytesExpected) >
-            (maxFileSize * multiplier * multiplier)) {
-            req.body = {
-              'item.uploadEv': totalFileSizeExceededError,
-              'item.link': '',
-              'item.size': 0
-            };
-          }
-        });
+        incoming.on('fileBegin', () => EvidenceUpload.handleFileBegin(req, incoming, logger));
 
         return incoming.parse(req, (uploadingError, fields, files) => {
           if (req.body && req.body['item.uploadEv'] &&
@@ -248,6 +250,12 @@ class EvidenceUpload extends AddAnother {
     return redirectTo(this.journey.steps.EvidenceDescription);
   }
 }
+
+EvidenceUpload.maxFileSizeExceededError = maxFileSizeExceededError;
+EvidenceUpload.totalFileSizeExceededError = totalFileSizeExceededError;
+EvidenceUpload.wrongFileTypeError = wrongFileTypeError;
+EvidenceUpload.fileMissingError = fileMissingError;
+EvidenceUpload.technicalProblemError = technicalProblemError;
 
 module.exports = EvidenceUpload;
 
