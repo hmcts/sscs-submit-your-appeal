@@ -183,8 +183,6 @@ describe('The EvidenceUpload middleware', () => {
   });
 });
 
-// work in progress. below this point tests imported
-
 describe('The other methods of EvidenceUpload', () => {
   // eslint-disable-next-line
   const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js');
@@ -276,6 +274,22 @@ describe('The other methods of EvidenceUpload', () => {
   describe('next', () => {
     it('the next step is /evidence-description', () => {
       expect(instance.next().step).to.equal(paths.reasonsForAppealing.evidenceDescription);
+    });
+  });
+
+  describe('isCorrectFileType', () => {
+    describe('when the file is of a permitted type', () => {
+      it('should return the file extension', () => {
+        const result = EvidenceUpload.isCorrectFileType('image/jpeg', 'foo.jpeg');
+        expect(result).to.equal('.jpeg');
+      });
+    });
+
+    describe('when the file is NOT of a permitted type', () => {
+      it('should return `false`', () => {
+        const result = EvidenceUpload.isCorrectFileType('foo/bar', 'foo.bar');
+        expect(result).to.equal(false);
+      });
     });
   });
 });
