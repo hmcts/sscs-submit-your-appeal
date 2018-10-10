@@ -127,6 +127,57 @@ describe('The EvidenceUpload middleware', () => {
       });
     });
   });
+
+  describe('static makeDir', () => {
+    const getStubs = isDirectory => ({
+      fs: {
+        stat: (path, cback) => {
+          cback(false, {
+            isDirectory
+          });
+        },
+        mkdir: (path, cback) => {
+          cback();
+        }
+      },
+      pt: {
+        join: () => ''
+      }
+    });
+
+    describe('when directory already exists', () => {
+      const EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        getStubs(() => {
+          return true;
+        })
+      );
+      it('should call back', () => {
+        const path = 'foobar';
+        const cback = sinon.stub();
+        EvidenceUpload.makeDir(path, cback);
+        expect(cback).to.have.been.called;
+      });
+    });
+
+    describe('when directory doesn\'t exist', () => {
+      const EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        getStubs(() => {
+          return false;
+        })
+      );
+      it('should call back', () => {
+        const path = 'foobar';
+        const cback = sinon.stub();
+        EvidenceUpload.makeDir(path, cback);
+        expect(cback).to.have.been.called;
+      });
+      it('should follow basic logic', () => {
+        expect(true).to.equal(true);
+      });
+    });
+  });
 });
 /* eslint-enable init-declarations */
 /* eslint-enable no-shadow */
