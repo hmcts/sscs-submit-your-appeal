@@ -25,7 +25,7 @@
     "test:crossbrowser": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --steps --reporter mocha-multi --verbose",
     "test:nsp": "nsp check",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
-    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js,app.js,app-insights.js,server.js,node_modules/**,test/**,assets/**,dist/**,mochawesome-report/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info"
+    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=app.js,app-insights.js,server.js,node_modules/**,test/**,assets/**,dist/**,mochawesome-report/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info"
   },
   "pre-commit": [
     "lint"
