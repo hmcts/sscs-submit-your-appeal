@@ -1,3 +1,9 @@
+/* eslint-disable consistent-return */
+/* eslint-disable operator-linebreak */
+/* eslint-disable complexity */
+/* eslint-disable arrow-body-style */
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-len */
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const { text, object } = require('@hmcts/one-per-page/forms');
@@ -26,12 +32,6 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
 
-/* eslint-disable consistent-return */
-/* eslint-disable operator-linebreak */
-/* eslint-disable complexity */
-/* eslint-disable arrow-body-style */
-/* eslint-disable max-nested-callbacks */
-/* eslint-disable max-len */
 class EvidenceUpload extends AddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
@@ -96,85 +96,99 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      return EvidenceUpload.makeDir(pathToUploadFolder, mkdirError => {
-        if (mkdirError) {
-          return next(mkdirError);
-        }
-        const incoming = new formidable.IncomingForm({
-          uploadDir: pt.resolve(__dirname, pathToUploadFolder),
-          keepExtensions: true,
-          type: 'multipart'
-        });
-
-        incoming.on('fileBegin', () => EvidenceUpload.handleFileBegin(req, incoming, logger));
-
-        return incoming.parse(req, (uploadingError, fields, files) => {
-          if (req.body && req.body['item.uploadEv'] &&
-            (req.body['item.uploadEv'] === maxFileSizeExceededError ||
-              req.body['item.uploadEv'] === fileMissingError ||
-              req.body['item.uploadEv'] === totalFileSizeExceededError)) {
-            return fs.unlink(files['item.uploadEv'].path, next);
-          }
-          if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
-            !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
-            req.body = {
-              'item.uploadEv': wrongFileTypeError,
-              'item.link': '',
-              'item.size': 0
-            };
-            return fs.unlink(files['item.uploadEv'].path, next);
-          }
-          if (uploadingError || !get(files, '["item.uploadEv"].name')) {
-            /* eslint-disable operator-linebreak */
-            if (uploadingError &&
-              uploadingError.message &&
-              uploadingError.message.match(/maxFileSize exceeded/)) {
-              /* eslint-enable operator-linebreak */
-              // cater for the horrible formidable.js error
-              /* eslint-disable no-param-reassign */
-              uploadingError = maxFileSizeExceededError;
-              /* eslint-enable no-param-reassign */
-            }
-            req.body = {
-              'item.uploadEv': uploadingError,
-              'item.link': '',
-              'item.size': 0
-            };
-            return next();
-          }
-
-          const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-          const size = files['item.uploadEv'].size;
-          return fs.rename(files['item.uploadEv'].path, pathToFile, () => {
-            return request.post({
-              url: uploadEvidenceUrl,
-              formData: {
-                file: fs.createReadStream(pathToFile)
-              }
-            }, (forwardingError, resp, body) => {
-              if (!forwardingError) {
-                logger.info('No forwarding error, about to save data');
-                const b = JSON.parse(body);
-                req.body = {
-                  'item.uploadEv': b.documents[0].originalDocumentName,
-                  'item.link': b.documents[0]._links.self.href,
-                  'item.size': size
-                };
-                return fs.unlink(pathToFile, next);
-              }
-              req.body = {
-                'item.uploadEv': technicalProblemError,
-                'item.link': '',
-                'item.size': 0
-              };
-              appInsights.trackException(forwardingError);
-              return fs.unlink(pathToFile, next);
-            });
-          });
-        });
-      });
+      return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger));
     }
     return next();
+  }
+
+  static handleMakeDir(next, pathToUploadFolder, req, logger) {
+    return mkdirError => {
+      if (mkdirError) {
+        return next(mkdirError);
+      }
+      const incoming = new formidable.IncomingForm({
+        uploadDir: pt.resolve(__dirname, pathToUploadFolder),
+        keepExtensions: true,
+        type: 'multipart'
+      });
+      incoming.on('fileBegin', () => EvidenceUpload.handleFileBegin(req, incoming, logger));
+      return incoming.parse(req, EvidenceUpload.handleIcomingParse(req, next, pathToUploadFolder, logger));
+    };
+  }
+
+  static handleIcomingParse(req, next, pathToUploadFolder, logger) {
+    return (uploadingError, fields, files) => {
+      if (req.body && req.body['item.uploadEv'] &&
+        (req.body['item.uploadEv'] === maxFileSizeExceededError ||
+          req.body['item.uploadEv'] === fileMissingError ||
+          req.body['item.uploadEv'] === totalFileSizeExceededError)) {
+        return fs.unlink(files['item.uploadEv'].path, next);
+      }
+
+      if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
+        !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
+        req.body = {
+          'item.uploadEv': wrongFileTypeError,
+          'item.link': '',
+          'item.size': 0
+        };
+        return fs.unlink(files['item.uploadEv'].path, next);
+      }
+
+      if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+        if (uploadingError &&
+          uploadingError.message &&
+          uploadingError.message.match(/maxFileSize exceeded/)) {
+          // cater for the horrible formidable.js error
+          // eslint-disable-next-line no-param-reassign
+          uploadingError = maxFileSizeExceededError;
+        }
+
+        req.body = {
+          'item.uploadEv': uploadingError,
+          'item.link': '',
+          'item.size': 0
+        };
+        return next();
+      }
+
+      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
+      const size = files['item.uploadEv'].size;
+      return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, logger, req, size, next));
+    };
+  }
+
+  static handleRename(pathToFile, logger, req, size, next) {
+    return () => {
+      return request.post({
+        url: uploadEvidenceUrl,
+        formData: {
+          file: fs.createReadStream(pathToFile)
+        }
+      }, EvidenceUpload.handlePostResponse(logger, req, size, pathToFile, next));
+    };
+  }
+
+  static handlePostResponse(logger, req, size, pathToFile, next) {
+    return (forwardingError, resp, body) => {
+      if (!forwardingError) {
+        logger.info('No forwarding error, about to save data');
+        const b = JSON.parse(body);
+        req.body = {
+          'item.uploadEv': b.documents[0].originalDocumentName,
+          'item.link': b.documents[0]._links.self.href,
+          'item.size': size
+        };
+        return fs.unlink(pathToFile, next);
+      }
+      req.body = {
+        'item.uploadEv': technicalProblemError,
+        'item.link': '',
+        'item.size': 0
+      };
+      appInsights.trackException(forwardingError);
+      return fs.unlink(pathToFile, next);
+    };
   }
 
   get middleware() {
@@ -182,12 +196,11 @@ class EvidenceUpload extends AddAnother {
   }
 
   get addAnotherLinkContent() {
-    /* eslint-disable no-undefined */
+    // eslint-disable-next-line no-undefined
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0 ? 'Add another file' : 'Add file';
     }
     return false;
-    /* eslint-enable no-undefined */
   }
 
   editUrl(index) {
@@ -258,10 +271,3 @@ EvidenceUpload.fileMissingError = fileMissingError;
 EvidenceUpload.technicalProblemError = technicalProblemError;
 
 module.exports = EvidenceUpload;
-
-/* eslint-enable consistent-return */
-/* eslint-enable operator-linebreak */
-/* eslint-enable complexity */
-/* eslint-enable arrow-body-style */
-/* eslint-enable max-nested-callbacks */
-/* eslint-enable max-len */
