@@ -49,6 +49,9 @@ describe('The EvidenceUpload middleware', () => {
         createReadStream: () => {},
         rename: renamer
       },
+      appInsights: {
+        trackException: p => p
+      },
       path: {
         resolve: () => 'a string'
       }
@@ -62,6 +65,27 @@ describe('The EvidenceUpload middleware', () => {
     unlinker.reset();
     poster.reset();
     renamer.reset();
+  });
+
+  describe('handlePostResponse', () => {
+    describe('when there isn\'t a forwarding error', () => {
+      it('should call fs.unlink', () => {
+        const logger = {
+          info: sinon.mock()
+        };
+        const req = {};
+
+        const size = 42;
+        const pathToFile = '__path__';
+        const next = sinon.mock();
+        const body = '{"documents":[{"originalDocumentName":"__originalDocumentName__","_links":{"self":{"href":"__href__"}}}]}';
+
+        const handlePostResponse = EvidenceUpload.handlePostResponse(logger, req, size, pathToFile, next);
+
+        handlePostResponse(undefined, undefined, body);
+        expect(unlinker).to.have.been.called;
+      });
+    });
   });
 
   describe('handleMakeDir', () => {
@@ -243,7 +267,6 @@ describe('The EvidenceUpload middleware', () => {
       });
     });
   });
-
 
   describe('static handleUpload', () => {
     it('if req.method is NOT post, it doesn\'t do anything apart from just invoking the callback', done => {
