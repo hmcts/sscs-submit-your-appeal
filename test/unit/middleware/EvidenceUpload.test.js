@@ -20,6 +20,7 @@ describe('The EvidenceUpload middleware', () => {
     }
   });
   const unlinker = sinon.stub().yields();
+  const renamer = sinon.stub().yields();
   const poster = sinon.stub().yields(null, null, `{
     "documents": [{
       "originalDocumentName": "ugo",
@@ -45,7 +46,8 @@ describe('The EvidenceUpload middleware', () => {
       },
       fs: {
         unlink: unlinker,
-        createReadStream: () => {}
+        createReadStream: () => {},
+        rename: renamer
       },
       path: {
         resolve: () => 'a string'
@@ -59,6 +61,7 @@ describe('The EvidenceUpload middleware', () => {
     parser.reset();
     unlinker.reset();
     poster.reset();
+    renamer.reset();
   });
 
   describe('handleMakeDir', () => {
@@ -85,6 +88,158 @@ describe('The EvidenceUpload middleware', () => {
         const handleMakeDir = EvidenceUpload.handleMakeDir(next);
         handleMakeDir();
         expect(EvidenceUpload.handleIcomingParse).to.have.been.called;
+      });
+    });
+  });
+
+  describe('handleIcomingParse', () => {
+    describe('when there is an `maxFileSizeExceededError`', () => {
+      it('should call fs.unlink', () => {
+        const req = {
+          body: {
+            'item.uploadEv': EvidenceUpload.maxFileSizeExceededError
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            path: ''
+          }
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(unlinker).to.have.been.called;
+      });
+    });
+
+    describe('when there is an `fileMissingError`', () => {
+      it('should call fs.unlink', () => {
+        const req = {
+          body: {
+            'item.uploadEv': EvidenceUpload.fileMissingError
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            path: ''
+          }
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(unlinker).to.have.been.called;
+      });
+    });
+
+    describe('when there is an `totalFileSizeExceededError`', () => {
+      it('should call fs.unlink', () => {
+        const req = {
+          body: {
+            'item.uploadEv': EvidenceUpload.totalFileSizeExceededError
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            path: '__path__'
+          }
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(unlinker).to.have.been.called;
+      });
+    });
+
+    describe('when uploaded file is of an unsupported type', () => {
+      it('should call fs.unlink', () => {
+        const req = {
+          body: {
+            'item.uploadEv': {
+              path: '__path__'
+            }
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            path: '__path__',
+            type: 'foobar'
+          }
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(unlinker).to.have.been.called;
+      });
+    });
+
+    describe('when an uploading error happens', () => {
+      it('should call next', () => {
+        const req = {
+          body: {
+            'item.uploadEv': {
+              path: '__path__'
+            }
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            name: 'foo.bar'
+          }
+        };
+        const uploadingError = { message: 'maxFileSize exceeded' };
+
+        handleIcomingParse(uploadingError, undefined, files);
+        expect(next).to.have.been.called;
+      });
+    });
+
+    describe('when name file is absent', () => {
+      it('should call next', () => {
+        const req = {
+          body: {
+            'item.uploadEv': {
+              path: '__path__'
+            }
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {}
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(next).to.have.been.called;
+      });
+    });
+
+    describe('when upload is successful', () => {
+      it('should call fs.rename', () => {
+        const req = {
+          body: {
+            'item.uploadEv': {
+              path: '__path__'
+            }
+          }
+        };
+        const next = sinon.stub();
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': {
+            path: '__path__',
+            type: 'image/jpeg',
+            name: 'foo.jpg'
+          }
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(renamer).to.have.been.called;
       });
     });
   });
