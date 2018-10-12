@@ -15,13 +15,15 @@ function enterDateCantAttendAndContinue(date, link) {
 function seeFormattedDate(date) {
   const I = this;
 
-  I.see(date.format('dddd D MMMM YYYY'));
+  I.scrollTo('.form-section');
+  I.waitForText(date.format('dddd D MMMM YYYY'), 10, '.form-section');
 }
 
 function dontSeeFormattedDate(date) {
   const I = this;
-  I.wait(5);
-  I.dontSee(date.format('dddd D MMMM YYYY'));
+  I.waitForFunction(text => {
+    return document.documentElement.textContent.indexOf(text) === -1;
+  }, [date.format('dddd D MMMM YYYY')]);
 }
 
 async function hasSelectedClass(element) {
@@ -46,8 +48,8 @@ async function selectDates(dates) {
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     await I.clickNextIfDateNotVisible(date);
+    I.scrollTo('#date-picker table');
     I.click(element);
-    I.wait(3);
     I.seeFormattedDate(moment(date));
     await I.hasSelectedClass(element);
   }
@@ -59,6 +61,8 @@ async function deselectDates(dates) {
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
+    await I.clickNextIfDateNotVisible(date);
+    I.scrollTo('#date-picker table');
     I.click(element);
     I.dontSeeFormattedDate(moment(date));
     await I.doesntHaveSelectedClass(element);

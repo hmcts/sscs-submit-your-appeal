@@ -10,7 +10,7 @@ const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answ
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
 
 /* eslint-disable max-len */
-Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01');
+Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01 @crossbrowser');
 
 Before(I => {
   I.createTheSession();
@@ -35,8 +35,8 @@ Scenario('Selects date of when they cannot attend the hearing', async I => {
 }).retry(1);
 
 Scenario('Selects a date when they cannot attend the hearing, then edits the date', async I => {
-  const randomWeekDayIn8Weeks = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(8, 'weeks'))
+  const randomWeekDayIn9Weeks = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
   );
   const randomWeekDayIn10Weeks = DateUtils.getDateInMilliseconds(
     DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(10, 'weeks'))
@@ -46,14 +46,15 @@ Scenario('Selects a date when they cannot attend the hearing, then edits the dat
   I.enterAppellantContactDetailsAndContinue();
   I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
   I.enterDetailsFromNoRepresentativeToUploadingEvidence();
-  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDayIn8Weeks);
-  I.see(moment(randomWeekDayIn8Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDayIn9Weeks);
+  I.see(moment(randomWeekDayIn9Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
   // Now edit the single date from 5 to 6 weeks.
   I.click('Change', datesYouCantAttendHearingChange);
-  I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
+  I.waitUrlEquals(paths.hearing.hearingAvailability);
   I.click('Continue');
-  await I.deselectDates([randomWeekDayIn8Weeks]);
+  I.waitUrlEquals(paths.hearing.datesCantAttend);
+  await I.deselectDates([randomWeekDayIn9Weeks]);
   I.wait(2);
   await I.selectDates([randomWeekDayIn10Weeks]);
   I.click('Continue');

@@ -8,6 +8,7 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const logger = Logger.getLogger('saucelabs.conf.js');
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId');
+const crossbrowserTag = '@crossbrowser';
 
 const getBrowserConfig = browserGroup => {
   const browserConfig = [];
@@ -58,6 +59,7 @@ const setupConfig = {
       require: './helpers/helper.js',
       url: config.get('e2e.frontendUrl')
     },
+    JSWait: { require: './helpers/JSWait.js' },
     SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' }
   },
   include: {
@@ -90,9 +92,11 @@ const setupConfig = {
   },
   multiple: {
     chrome: {
+      grep: crossbrowserTag,
       browsers: getBrowserConfig('chrome')
     },
     firefox: {
+      grep: crossbrowserTag,
       browsers: getBrowserConfig('firefox')
     }
   },

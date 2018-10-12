@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 const Helper = codecept_helper;
+const { Logger } = require('@hmcts/nodejs-logging');
+
+const logger = Logger.getLogger('saucelabs.conf.js');
 
 class MyHelper extends Helper {
   async turnOffJsAndReloadThePage() {
@@ -14,10 +17,14 @@ class MyHelper extends Helper {
   }
 
   async clickNextIfDateNotVisible(dateElement) {
-    const page = this.helpers.Puppeteer.page;
+    const helper = this.helpers.WebDriverIO || this.helpers.Puppeteer;
     try {
-      const hasDate = Boolean(await page.$(`[data-date="${dateElement}"]`));
-      if (!hasDate) page.click('.next');
+      const dateCssSelector = `[data-date="${dateElement}"]`;
+      const hasDate = Boolean(await helper.grabNumberOfVisibleElements(dateCssSelector));
+      if (!hasDate) {
+        logger.info("Can't find date, clicking next...");
+        helper.click('.next');
+      }
     } catch (error) {
       throw new Error(error);
     }
