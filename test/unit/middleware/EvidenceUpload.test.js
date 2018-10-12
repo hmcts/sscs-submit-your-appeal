@@ -1,3 +1,9 @@
+/* eslint-disable init-declarations */
+/* eslint-disable no-shadow */
+/* eslint-disable max-len */
+/* eslint-disable no-empty-function */
+/* eslint-disable func-names */
+/* eslint-disable object-shorthand */
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
@@ -5,63 +11,87 @@ const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
-/* eslint-disable init-declarations */
-/* eslint-disable no-shadow */
-/* eslint-disable max-len */
-/* eslint-disable no-empty-function */
-/* eslint-disable func-names */
-/* eslint-disable object-shorthand */
 describe('The EvidenceUpload middleware', () => {
-  describe('static handleUpload', () => {
-    let EvidenceUpload;
-    let stubs;
-    const parser = sinon.stub().yields(null, [], {
-      uploadEv: {
-        name: 'giacomo'
+  let EvidenceUpload;
+  let stubs;
+  const parser = sinon.stub().yields(null, [], {
+    uploadEv: {
+      name: 'giacomo'
+    }
+  });
+  const unlinker = sinon.stub().yields();
+  const poster = sinon.stub().yields(null, null, `{
+    "documents": [{
+      "originalDocumentName": "ugo",
+      "_links": {
+        "self": {
+          "href": "www.bigcheese.com"
+        }
       }
-    });
-    const unlinker = sinon.stub().yields();
-    const poster = sinon.stub().yields(null, null, `{
-      "documents": [{
-        "originalDocumentName": "ugo",
-        "_links": {
-          "self": {
-            "href": "www.bigcheese.com"
-          }
-        }
-      }]}`);
+    }]}`);
 
-    beforeEach(function() {
-      this.timeout(2500);
-      stubs = {
-        formidable: {
-          IncomingForm: function() {
-            this.parse = parser;
-            this.once = () => {};
-            this.on = () => {};
-          }
-        },
-        request: {
-          post: poster
-        },
-        fs: {
-          unlink: unlinker,
-          createReadStream: () => {}
-        },
-        path: {
-          resolve: () => 'a string'
+  beforeEach(function() {
+    this.timeout(2500);
+    stubs = {
+      formidable: {
+        IncomingForm: function() {
+          this.parse = parser;
+          this.once = () => {};
+          this.on = () => {};
         }
-      };
-      EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
-      EvidenceUpload.makeDir = sinon.stub().callsArg(1);
+      },
+      request: {
+        post: poster
+      },
+      fs: {
+        unlink: unlinker,
+        createReadStream: () => {}
+      },
+      path: {
+        resolve: () => 'a string'
+      }
+    };
+    EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
+    EvidenceUpload.makeDir = sinon.stub().callsArg(1);
+  });
+
+  afterEach(() => {
+    parser.reset();
+    unlinker.reset();
+    poster.reset();
+  });
+
+  describe('handleMakeDir', () => {
+    beforeEach(() => {
+      sinon.spy(EvidenceUpload, 'handleIcomingParse');
     });
 
     afterEach(() => {
-      parser.reset();
-      unlinker.reset();
-      poster.reset();
+      EvidenceUpload.handleIcomingParse.restore();
     });
-    it('if req.method is not post, it doesn\'t do anything apart from just invoking the callback', done => {
+
+    describe('when there is an error', () => {
+      it('should call next with the error', () => {
+        const next = sinon.stub();
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next);
+        handleMakeDir('error');
+        expect(next).to.have.been.calledWith('error');
+      });
+    });
+
+    describe('when there is NOT an error', () => {
+      it('should return', () => {
+        const next = sinon.stub();
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next);
+        handleMakeDir();
+        expect(EvidenceUpload.handleIcomingParse).to.have.been.called;
+      });
+    });
+  });
+
+
+  describe('static handleUpload', () => {
+    it('if req.method is NOT post, it doesn\'t do anything apart from just invoking the callback', done => {
       EvidenceUpload.handleUpload({
         method: 'get'
       }, {}, error => {
@@ -130,55 +160,56 @@ describe('The EvidenceUpload middleware', () => {
       });
     });
   });
+});
 
-  describe('static makeDir', () => {
-    const getStubs = isDirectory => ({
-      fs: {
-        stat: (path, cback) => {
-          cback(false, {
-            isDirectory
-          });
-        },
-        mkdir: (path, cback) => {
-          cback();
-        }
+
+describe('static makeDir', () => {
+  const getStubs = isDirectory => ({
+    fs: {
+      stat: (path, cback) => {
+        cback(false, {
+          isDirectory
+        });
       },
-      pt: {
-        join: () => ''
+      mkdir: (path, cback) => {
+        cback();
       }
-    });
+    },
+    pt: {
+      join: () => ''
+    }
+  });
 
-    describe('when directory already exists', () => {
-      const EvidenceUpload = proxyquire(
-        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
-        getStubs(() => {
-          return true;
-        })
-      );
-      it('should call back', () => {
-        const path = 'foobar';
-        const cback = sinon.stub();
-        EvidenceUpload.makeDir(path, cback);
-        expect(cback).to.have.been.called;
-      });
+  describe('when directory already exists', () => {
+    const EvidenceUpload = proxyquire(
+      'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+      getStubs(() => {
+        return true;
+      })
+    );
+    it('should call back', () => {
+      const path = 'foobar';
+      const cback = sinon.stub();
+      EvidenceUpload.makeDir(path, cback);
+      expect(cback).to.have.been.called;
     });
+  });
 
-    describe('when directory doesn\'t exist', () => {
-      const EvidenceUpload = proxyquire(
-        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
-        getStubs(() => {
-          return false;
-        })
-      );
-      it('should call back', () => {
-        const path = 'foobar';
-        const cback = sinon.stub();
-        EvidenceUpload.makeDir(path, cback);
-        expect(cback).to.have.been.called;
-      });
-      it('should follow basic logic', () => {
-        expect(true).to.equal(true);
-      });
+  describe('when directory doesn\'t exist', () => {
+    const EvidenceUpload = proxyquire(
+      'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+      getStubs(() => {
+        return false;
+      })
+    );
+    it('should call back', () => {
+      const path = 'foobar';
+      const cback = sinon.stub();
+      EvidenceUpload.makeDir(path, cback);
+      expect(cback).to.have.been.called;
+    });
+    it('should follow basic logic', () => {
+      expect(true).to.equal(true);
     });
   });
 });
@@ -293,10 +324,3 @@ describe('The other methods of EvidenceUpload', () => {
     });
   });
 });
-
-/* eslint-enable init-declarations */
-/* eslint-enable no-shadow */
-/* eslint-enable max-len */
-/* eslint-enable no-empty-function */
-/* eslint-enable func-names */
-/* eslint-enable object-shorthand */
