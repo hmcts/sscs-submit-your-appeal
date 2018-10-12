@@ -257,6 +257,16 @@ describe('The EvidenceUpload middleware', () => {
         done();
       });
     });
+
+    it('if req.method is post, it calls makeDir', () => {
+      EvidenceUpload.handleUpload({
+        method: 'post',
+        originalUrl: `${paths.reasonsForAppealing.evidenceUpload}/item-42`
+      }, {}, () => {
+        expect(EvidenceUpload.makeDir).not.to.have.been.called;
+        expect(EvidenceUpload.handleMakeDir).not.to.have.been.called;
+      });
+    });
   });
 
   describe('static handleFileBegin', () => {
