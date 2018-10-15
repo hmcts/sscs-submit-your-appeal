@@ -21,19 +21,6 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario('Selects date of when they cannot attend the hearing', async I => {
-  const randomWeekDay = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
-  );
-  I.enterDetailsFromStartToNINO();
-  I.enterAppellantContactDetailsAndContinue();
-  I.selectDoYouWantToReceiveTextMessageReminders(doYouWantTextMsgReminders.no);
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
-  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(randomWeekDay);
-  I.confirmDetailsArePresent();
-  I.see(moment(randomWeekDay).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(1);
-
 Scenario('Selects a date when they cannot attend the hearing, then edits the date', async I => {
   const randomWeekDayIn9Weeks = DateUtils.getDateInMilliseconds(
     DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
@@ -58,5 +45,6 @@ Scenario('Selects a date when they cannot attend the hearing, then edits the dat
   I.wait(2);
   await I.selectDates([randomWeekDayIn10Weeks]);
   I.click('Continue');
+  I.confirmDetailsArePresent();
   I.see(moment(randomWeekDayIn10Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
