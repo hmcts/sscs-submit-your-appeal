@@ -38,13 +38,15 @@ const supportedBrowsers = {
       browserName: 'firefox',
       name: 'WIN_FIREFOX_LATEST',
       platform: 'Windows 10',
-      version: 'latest'
+      version: 'latest',
+      'moz:webdriverClick': false
     },
     firefox_mac_latest: {
       browserName: 'firefox',
       name: 'MAC_FIREFOX_LATEST',
       platform: 'macOS 10.13',
-      version: 'latest'
+      version: 'latest',
+      'moz:webdriverClick': false
     }
   },
   safari: {
