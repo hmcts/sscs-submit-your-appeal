@@ -11,12 +11,15 @@ const sauceUsername = process.env.SAUCE_USERNAME || config.get('saucelabs.userna
 const sauceKey = process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key');
 
 
-function updateSauceLabsResult(result, sessionId, jobName) {
+function updateSauceLabsResult(result, sessionId) {
   const sauceUrl = `https://saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
+  return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
+}
+
+function logSauceOnDemandSessionID(sessionId, jobName) {
   // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
   logger.info(`SauceOnDemandSessionID=${sessionId} job-name=${jobName}`);
-  return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
 }
 
 module.exports = function() {
@@ -24,13 +27,17 @@ module.exports = function() {
   event.dispatcher.on(event.test.passed, () => {
     const sessionId = container.helpers('WebDriverIO').browser.requestHandler.sessionID;
     const jobName = container.helpers('WebDriverIO').config.desiredCapabilities.name;
-    exec(updateSauceLabsResult('true', sessionId, jobName));
+    exec(updateSauceLabsResult('true', sessionId));
+    logSauceOnDemandSessionID(sessionId, jobName);
   });
 
   // Setting test failure on SauceLabs
-  event.dispatcher.on(event.test.failed, () => {
+  event.dispatcher.on(event.test.failed, test => {
     const sessionId = container.helpers('WebDriverIO').browser.requestHandler.sessionID;
     const jobName = container.helpers('WebDriverIO').config.desiredCapabilities.name;
-    exec(updateSauceLabsResult('false', sessionId, jobName));
+    exec(updateSauceLabsResult('false', sessionId));
+    if (test._retries === test.retryNum) {
+      logSauceOnDemandSessionID(sessionId, jobName);
+    }
   });
 };
