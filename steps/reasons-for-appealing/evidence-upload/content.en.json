@@ -12,7 +12,7 @@
                 "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 5MB.",
                 "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
                 "required": "You have not uploaded a file. Please upload your file again.",
-                "technical": "Your file could not be uploaded as it is too big in size or it contains a virus.",
+                "technical": "There is a technical problem with the service. Please try and upload your file again.",
                 "totalFileSizeExceeded": "You can only upload a maximum of 5mb of evidence. Please print and send the rest by post. The address will be sent to you after you have submitted your appeal."
             }
         }
