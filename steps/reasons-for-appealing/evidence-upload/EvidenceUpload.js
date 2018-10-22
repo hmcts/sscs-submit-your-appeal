@@ -4,11 +4,22 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-len */
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { AddAnother } = require('@hmcts/one-per-page/steps');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { Logger } = require('@hmcts/nodejs-logging');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const {
+  redirectTo
+} = require('@hmcts/one-per-page/flow');
+const {
+  AddAnother
+} = require('@hmcts/one-per-page/steps');
+const {
+  text,
+  object
+} = require('@hmcts/one-per-page/forms');
+const {
+  Logger
+} = require('@hmcts/nodejs-logging');
+const {
+  answer
+} = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
 const appInsights = require('app-insights');
 const Joi = require('joi');
@@ -18,7 +29,9 @@ const pt = require('path');
 const fs = require('fs');
 const moment = require('moment');
 const request = require('request');
-const { get } = require('lodash');
+const {
+  get
+} = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const content = require('./content.en.json');
 const sections = require('steps/check-your-appeal/sections');
@@ -157,6 +170,7 @@ class EvidenceUpload extends AddAnother {
       return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, logger, req, size, next));
     };
   }
+
 
   static handleRename(pathToFile, logger, req, size, next) {
     return () => {
