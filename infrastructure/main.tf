@@ -21,21 +21,26 @@ locals {
 
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
   ApiUrl      = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
+
+  shared_app_service_plan     = "${var.product}-${var.env}"
+  non_shared_app_service_plan = "${var.product}-${var.component}-${var.env}"
+  app_service_plan            = "${(var.env == "saat" || var.env == "sandbox") ?  local.shared_app_service_plan : local.non_shared_app_service_plan}"
+
 }
 
 module "submit-your-appeal-frontend" {
-  source                          = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
-  product                         = "${var.product}-${var.component}"
-  location                        = "${var.location}"
-  env                             = "${var.env}"
-  ilbIp                           = "${var.ilbIp}"
-  is_frontend                     = "${var.env != "preview" ? 1: 0}"
-  subscription                    = "${var.subscription}"
-  additional_host_name            = "${var.env != "preview" ? var.sya_hostname : "null"}"
-  https_only                      = "${var.https_only_flag}"
-  common_tags                     = "${var.common_tags}"
-  asp_rg                          = "${var.product}-${var.component}-${var.env}"
-  asp_name                        = "${var.product}-${var.component}-${var.env}"
+  source               = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
+  product              = "${var.product}-${var.component}"
+  location             = "${var.location}"
+  env                  = "${var.env}"
+  ilbIp                = "${var.ilbIp}"
+  is_frontend          = "${var.env != "preview" ? 1: 0}"
+  subscription         = "${var.subscription}"
+  additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
+  https_only           = "${var.https_only_flag}"
+  common_tags          = "${var.common_tags}"
+  asp_rg               = "${local.app_service_plan}"
+  asp_name             = "${local.app_service_plan}"
   appinsights_instrumentation_key = "${var.appinsights_instrumentation_key}"
 
   app_settings = {
