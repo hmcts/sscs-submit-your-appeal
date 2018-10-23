@@ -40,6 +40,10 @@ Start redis:
 
     redis-server
     
+Install npm dependencies:
+
+    yarn
+
 Bring up SYA in a new terminal window:
 
     yarn dev
