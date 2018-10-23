@@ -6,6 +6,8 @@ module.exports = {
 
   health: '/health',
 
+  monitoring: '/monitoring',
+
   errors: {
     doesNotExist: '/does-not-exist',
     internalServerError: '/internal-server-error'
