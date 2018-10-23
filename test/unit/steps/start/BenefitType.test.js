@@ -3,7 +3,7 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 
-describe('BenefitType.js', () => {
+xdescribe('BenefitType.js', () => {
   let benefitType = null;
 
   beforeEach(() => {

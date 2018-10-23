@@ -2,6 +2,7 @@ const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const appInsights = require('app-insights');
 const { splitBenefitType } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
@@ -41,6 +42,8 @@ class BenefitType extends Question {
   }
 
   next() {
+    appInsights.trackException('test entry');
+
     const allowedTypes = [benefitTypes.personalIndependencePayment];
     if (allowESA) {
       allowedTypes.push(benefitTypes.employmentAndSupportAllowance);
