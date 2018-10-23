@@ -207,7 +207,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(paths.health, healthcheck.configure({
   checks: {
-    'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
+    // Disabled api check to be able to provide separate health checks.
+    // See https://tools.hmcts.net/jira/browse/SSCS-4203
+    // 'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
   }
 }));
 
