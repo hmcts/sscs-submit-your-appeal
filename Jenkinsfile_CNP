@@ -6,8 +6,8 @@ properties(
 
 @Library("Infrastructure")
 
-def product = "sscs-tribunals"
-def component = "frontend"
+def product = "sscs"
+def component = "tribunals-frontend"
 
 withPipeline("nodejs", product, component) {
     after("smoketest:preview") {

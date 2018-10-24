@@ -1,3 +1,13 @@
+provider "vault" {
+  //  # It is strongly recommended to configure this provider through the
+  //  # environment variables described above, so that each user can have
+  //  # separate credentials set in the environment.
+  //  #
+  //  # This will default to using $VAULT_ADDR
+  //  # But can be set explicitly
+  address = "https://vault.reform.hmcts.net:6200"
+}
+
 data "azurerm_key_vault" "sscs_key_vault" {
   name = "${local.vaultName}"
   resource_group_name = "${local.vaultName}"
@@ -22,9 +32,11 @@ locals {
   localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
   ApiUrl      = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
 
+  use_shared_asp = "${contains(list("saat", "sandbox", "demo"), var.env)}"
+
   shared_app_service_plan     = "${var.product}-${var.env}"
   non_shared_app_service_plan = "${var.product}-${var.component}-${var.env}"
-  app_service_plan            = "${(var.env == "saat" || var.env == "sandbox") ?  local.shared_app_service_plan : local.non_shared_app_service_plan}"
+  app_service_plan            = "${local.use_shared_asp ?  local.shared_app_service_plan : local.non_shared_app_service_plan}"
 
 }
 
