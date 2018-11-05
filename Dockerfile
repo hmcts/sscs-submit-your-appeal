@@ -1,4 +1,4 @@
-FROM node:8.9.4-alpine
+FROM node:8.9.4-slim
 
 ENV NODE_PATH .
 ENV NODE_ENV development
