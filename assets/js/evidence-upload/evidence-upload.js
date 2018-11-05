@@ -136,7 +136,7 @@ class EvidenceUpload {
             [
               {
                 field: 'uploadEv',
-                errors: ['Your file could not be uploaded as it is too big in size or it contains a virus.']
+                errors: ['Your file could not be uploaded due to a technical error. Please try again.']
               }
             ];
           /* eslint-enable max-len */
