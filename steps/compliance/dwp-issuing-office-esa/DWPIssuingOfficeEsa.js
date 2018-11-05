@@ -19,7 +19,9 @@ class DWPIssuingOfficeEsa extends Question {
   get options() {
     return DWPIssuingOfficeEsa.selectify([
       'Balham DRT',
+      'Birkenhead LM DRT',
       'Chesterfield DRT',
+      'Coatbridge Benefit Centre',
       'Inverness DRT',
       'Lowestoft DRT',
       'Milton Keynes DRT',
