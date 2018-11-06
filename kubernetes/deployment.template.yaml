@@ -28,13 +28,13 @@ spec:
         - name: HTTP_PROTOCOL
           value: http
         - name: EVIDENCE_UPLOAD_ENABLED
-          value: true
+          value: "true"
         - name: UPLOAD_EVIDENCE_URL
           value: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload"
         - name: POSTCODE_CHECKER_URL
           value: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre"
         - name: POSTCODE_CHECKER_ENABLED
-          value: true
+          value: "true"
         - name: POSTCODE_CHECKER_ALLOWED_RPCS
           value: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
         ports:
