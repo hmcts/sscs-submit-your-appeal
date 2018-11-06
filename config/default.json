@@ -39,7 +39,7 @@
       "maxFileSize": 5
     },
     "allowESA": {
-      "enabled": "false"
+      "enabled": "true"
     },
     "allowAppointee": {
       "enabled": "false"
