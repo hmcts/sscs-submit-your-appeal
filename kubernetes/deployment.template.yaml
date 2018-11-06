@@ -24,7 +24,7 @@ spec:
         - name: SESSION_SECRET
           value:
         - name: NODE_ENV
-          value: test
+          value: preview
         - name: HTTP_PROTOCOL
           value: http
         - name: EVIDENCE_UPLOAD_ENABLED
@@ -78,3 +78,48 @@ spec:
         backend:
           serviceName: ${SERVICE_NAME}
           servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:4-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 6379
+
+        livenessProbe:
+          initialDelaySeconds: 1
+          periodSeconds: 1
+          exec:
+            command:
+            - redis-cli
+            - ping
+
+        readinessProbe:
+          initialDelaySeconds: 1
+          periodSeconds: 1
+          exec:
+            command:
+            - redis-cli
+            - ping
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis
