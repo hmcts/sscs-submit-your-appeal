@@ -73,7 +73,7 @@ app.use((req, res, next) => {
   // Setting headers stops pages being indexed even if indexed pages link to them
   res.setHeader('X-Robots-Tag', 'noindex');
   res.setHeader('X-Served-By', os.hostname());
-  res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
+  res.setHeader('Cache-Control', 'max-age=7200');
   next();
 });
 
