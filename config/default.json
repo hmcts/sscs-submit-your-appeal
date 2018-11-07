@@ -40,6 +40,9 @@
     },
     "allowESA": {
       "enabled": "false"
+    },
+    "allowAppointee": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
