@@ -1,0 +1,29 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/formElements.html" import date %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+        {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    {% call formSection() %}
+
+        {{ date(
+            fields.date,
+            content.titleNoAppointee,
+            hideQuestion = true,
+            hint = content.fields.date.hint,
+            labels = {
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
+            }
+        ) }}
+
+    {% endcall %}
+
+{% endblock %}
