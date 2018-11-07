@@ -62,7 +62,8 @@ module.exports = {
 
   appointee: {
     enterAppointeeName: '/enter-appointee-name',
-    enterAppointeeDOB: '/enter-appointee-dob'
+    enterAppointeeDOB: '/enter-appointee-dob',
+    enterAppointeeContactDetails: '/appointee-contact-details'
   },
 
   smsNotify: {

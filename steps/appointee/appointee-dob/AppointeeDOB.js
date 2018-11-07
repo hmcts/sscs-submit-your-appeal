@@ -50,7 +50,7 @@ class AppointeeDOB extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.AppointeeNINO);
+    return goTo(this.journey.steps.AppointeeContactDetails);
   }
 }
 
