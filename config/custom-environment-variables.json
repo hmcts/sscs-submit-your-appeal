@@ -39,6 +39,9 @@
     },
     "allowESA": {
       "enabled": "ALLOW_ESA_ENABLED"
+    },
+    "allowAppointee": {
+      "enabled": "ALLOW_APPOINTEE_ENABLED"
     }
   },
   "postcodeChecker": {
