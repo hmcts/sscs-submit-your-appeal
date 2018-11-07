@@ -1,0 +1,65 @@
+{
+  "titleHead": "Enter contact details - Appeal a benefit decision - GOV.UK",
+  "title": "Enter your contact details",
+  "subtitle": "These will be used to send you information about your appeal.",
+  "fields": {
+    "addressLine1": {
+      "title": "Address line 1",
+      "error": {
+        "required": "Enter the first line of your address"
+      }
+    },
+    "addressLine2": {
+      "title": "Address line 2 (optional)",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your address and enter it again"
+      }
+    },
+    "townCity": {
+      "title": "Town/City",
+      "error": {
+        "required": "Enter the town or city from your address"
+      }
+    },
+    "county": {
+      "title": "County",
+      "error": {
+        "required": "Enter the county from your address"
+      }
+    },
+    "postCode": {
+      "title": "Postcode",
+      "error": {
+        "required": "Enter the postcode from your address",
+        "invalidPostcode": "The online appeal service is not available to people from this region. This postcode should match the postcode you entered to access the service."
+      }
+    },
+    "phoneNumber": {
+      "title": "Phone number (optional)",
+      "hint": "This may be used to contact you about your appeal",
+      "error": {
+        "invalid": "You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "Email address (optional)",
+      "hint": "You’ll get updates on your appeal and a link so you can track your appeal online",
+      "error": {
+        "invalid": "You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "address": {
+      "question": "Address"
+    },
+    "phoneNumber": {
+      "question": "Phone number"
+    },
+    "emailAddress": {
+      "question": "Email"
+    },
+    "change": "Change",
+    "yourDetails": "Your Contact Details"
+  }
+}
