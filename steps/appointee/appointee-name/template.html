@@ -1,0 +1,20 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+{{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    {% call formSection() %}
+
+        {{ textbox(fields.title, content.fields.title.title, hint="") }}
+        {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
+        {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
+
+    {% endcall %}
+
+{% endblock %}

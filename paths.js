@@ -60,6 +60,10 @@ module.exports = {
     enterAppellantContactDetails: '/enter-appellant-contact-details'
   },
 
+  appointee: {
+    enterAppointeeName: '/enter-appointee-name'
+  },
+
   smsNotify: {
     enterMobile: '/enter-mobile',
     sendToNumber: '/send-to-number',
