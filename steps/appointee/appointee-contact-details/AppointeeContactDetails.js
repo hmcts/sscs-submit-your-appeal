@@ -147,7 +147,7 @@ class AppointeeContactDetails extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.TextReminders);
+    return goTo(this.journey.steps.TheirName);
   }
 }
 
