@@ -49,7 +49,7 @@ class DWPIssuingOffice extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.MRNDate);
+    return goTo(this.journey.steps.AppellantName);
   }
 }
 

@@ -14,30 +14,42 @@ let timeoutM;
 let evidenceUpload;
 /* eslint-enable init-declarations */
 
+/*
+  Some selects are not to be enhanced, the following array and function are
+  there to manage the exceptions, read discussion on SSCS-3960 for context
+*/
+const nonEhanceableSelects = ['dwpIssuingOffice'];
+
+function isNonEhanceableSelect(select) {
+  return nonEhanceableSelects.includes(select.id);
+}
 
 function initShowHideContent() {
   const showHideContent = new ShowHideContent();
   showHideContent.init();
 }
 
+
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
   $.each(selects, (index, select) => {
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: select,
-      source: (query, populateResults) => {
-        const minQueryLength = 1;
-        if (query.length < minQueryLength) {
-          return null;
+    if (!isNonEhanceableSelect(select)) {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: select,
+        source: (query, populateResults) => {
+          const minQueryLength = 1;
+          if (query.length < minQueryLength) {
+            return null;
+          }
+          const options = Array.from(select.options).map(opt => opt.value);
+          const startingWithLetter = remove(options, opt =>
+            opt.match(new RegExp(`^${query}.+`, 'i')));
+          const containingLetter = remove(options, opt =>
+            opt.match(new RegExp(`^.*${query}*`, 'i')));
+          return populateResults([...startingWithLetter, ...containingLetter]);
         }
-        const options = Array.from(select.options).map(opt => opt.value);
-        const startingWithLetter = remove(options, opt =>
-          opt.match(new RegExp(`^${query}.+`, 'i')));
-        const containingLetter = remove(options, opt =>
-          opt.match(new RegExp(`^.*${query}*`, 'i')));
-        return populateResults([...startingWithLetter, ...containingLetter]);
-      }
-    });
+      });
+    }
   });
 }
 
