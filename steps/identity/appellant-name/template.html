@@ -4,12 +4,16 @@
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-{{ content.title | safe }}
+{{ title | safe }}
 {% endset %}
 
 {% block fields %}
-
     {% call formSection() %}
+
+        {% if subtitle %}
+            <p>{{ subtitle | safe }}</p>
+        {% endif %}
+
 
         {{ textbox(fields.title, content.fields.title.title, hint="") }}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
