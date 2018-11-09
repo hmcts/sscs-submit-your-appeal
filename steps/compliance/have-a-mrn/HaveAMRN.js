@@ -36,7 +36,7 @@ class HaveAMRN extends Question {
   next() {
     const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.DWPIssuingOffice).if(hasAMRN),
+      goTo(this.journey.steps.MRNDate).if(hasAMRN),
       goTo(this.journey.steps.HaveContactedDWP)
     );
   }
