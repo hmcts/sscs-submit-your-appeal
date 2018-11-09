@@ -1,12 +1,21 @@
 {
   "titleHead": "Enter national insurance number - Appeal a benefit decision - GOV.UK",
-  "title": "Enter your National Insurance number",
-  "subtitle": "You can find your National Insurance number on any letter about the benefit.",
+  "title": {
+    "withoutAppointee": "Enter your National Insurance number",
+    "withAppointee": "Enter their National Insurance number"
+  },
+  "subtitle": {
+    "withoutAppointee": "You can find your National Insurance number on any letter about the benefit.",
+    "withAppointee": "This will be on any letter about the benefit."
+  },
   "fields": {
     "nino": {
       "label": "National Insurance number",
       "error": {
-        "required": "Enter your National Insurance number"
+        "required": {
+          "withoutAppointee": "Enter your National Insurance number",
+          "withAppointee": "Enter their National Insurance number"
+        }
       }
     }
   },
