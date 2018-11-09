@@ -16,40 +16,41 @@ class AppellantName extends Question {
     return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
   }
 
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
   get title() {
-    return this.isAppointee() ?
-      get(this, 'content.titleWithAppointee') :
-      get(this, 'content.title');
+    return this.content.title[this.contentPrefix()];
   }
 
   get subtitle() {
-    return this.isAppointee() ?
-      get(this, 'content.subtitleWithAppointee') :
-      get(this, 'content.subtitle');
+    return this.content.subtitle[this.contentPrefix()];
   }
 
   get form() {
     const fields = this.content.fields;
+    const prefix = this.contentPrefix();
+
     return form({
       title: text.joi(
-        fields.title.error.required,
+        fields.title.error[prefix].required,
         Joi.string().required()
       ).joi(
-        fields.title.error.invalid,
+        fields.title.error[prefix].invalid,
         Joi.string().regex(whitelist)
       ),
       firstName: text.joi(
-        fields.firstName.error.required,
+        fields.firstName.error[prefix].required,
         Joi.string().required()
       ).joi(
-        fields.firstName.error.invalid,
+        fields.firstName.error[prefix].invalid,
         Joi.string().trim().regex(firstName)
       ),
       lastName: text.joi(
-        fields.lastName.error.required,
+        fields.lastName.error[prefix].required,
         Joi.string().required()
       ).joi(
-        fields.lastName.error.invalid,
+        fields.lastName.error[prefix].invalid,
         Joi.string().trim().regex(lastName)
       )
     });
