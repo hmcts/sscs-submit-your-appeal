@@ -56,6 +56,9 @@ class AppellantNINO extends Question {
   }
 
   next() {
+    if (this.isAppointee()) {
+      return goTo(this.journey.steps.SameAddress);
+    }
     return goTo(this.journey.steps.AppellantContactDetails);
   }
 }

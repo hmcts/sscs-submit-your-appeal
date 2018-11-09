@@ -35,6 +35,7 @@ const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownloa
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
 const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
+const SameAddress = require('steps/appointee/same-address/SameAddress');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
@@ -98,7 +99,8 @@ const identity = [
 const appointee = [
   AppointeeName,
   AppointeeDOB,
-  AppointeeContactDetails
+  AppointeeContactDetails,
+  SameAddress
 ];
 
 const smsNotify = [
