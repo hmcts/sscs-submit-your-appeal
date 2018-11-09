@@ -4,14 +4,14 @@
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-    {{ content.title | safe }}
+    {{ title | safe }}
 {% endset %}
 
 {% block fields %}
 
     {% call formSection() %}
 
-        <p>{{ content.subtitle}}</p>
+        <p>{{ subtitle}}</p>
 
         {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
         {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
