@@ -15,13 +15,17 @@ class AppellantDOB extends Question {
     return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
   }
 
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
+
   get title() {
-    return this.isAppointee() ? this.content.titleWithAppointee : this.content.title;
+    return this.content.title[this.contentPrefix()];
   }
 
   get form() {
     const fields = this.content.fields;
-    const error = this.isAppointee() ? fields.date.errorWithAppointee : fields.date.error;
+    const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
         d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
