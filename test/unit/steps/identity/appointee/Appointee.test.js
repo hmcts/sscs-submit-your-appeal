@@ -12,7 +12,8 @@ describe('Appointee.js', () => {
       journey: {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
-          AppellantName: paths.identity.enterAppellantName
+          AppellantName: paths.identity.enterAppellantName,
+          AppointeeName: paths.appointee.enterAppointeeName
         }
       }
     });
@@ -105,9 +106,14 @@ describe('Appointee.js', () => {
   });
 
   describe('next()', () => {
+    it('returns the next step path /enter-appointee-name', () => {
+      const nextStep = appointee.next().branches[0].redirector.nextStep;
+      expect(nextStep).to.eq(paths.appointee.enterAppointeeName);
+    });
+
     it('returns the next step path /appeal-form-download', () => {
       appointee.fields.isAppointee.value = userAnswer.YES;
-      const nextStep = appointee.next().branches[0].redirector.nextStep;
+      const nextStep = appointee.next().branches[1].redirector.nextStep;
       expect(nextStep).to.eq(paths.appealFormDownload);
     });
 
