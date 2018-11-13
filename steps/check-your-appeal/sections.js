@@ -3,6 +3,7 @@ module.exports = {
   mrnDate: 'mrn-date',
   noMRN: 'no-mrn',
   appellantDetails: 'appellant-details',
+  appointeeDetails: 'appointee-details',
   textMsgReminders: 'text-msg-reminders',
   representative: 'representative',
   reasonsForAppealing: 'reasons-for-appealing',
