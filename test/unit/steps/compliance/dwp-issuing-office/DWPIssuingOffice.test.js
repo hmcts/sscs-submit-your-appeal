@@ -10,7 +10,7 @@ describe('DWPIssuingOffice.js', () => {
     dWPIssuingOffice = new DWPIssuingOffice({
       journey: {
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -84,8 +84,8 @@ describe('DWPIssuingOffice.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
+    it('returns the next step path /are-you-an-appointee', () => {
+      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 });
