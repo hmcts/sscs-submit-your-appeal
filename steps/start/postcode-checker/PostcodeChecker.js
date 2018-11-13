@@ -48,7 +48,7 @@ class PostcodeChecker extends Question {
     const isPostcodeOnList = () => postcodeList.includes(outcode.toUpperCase());
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isPostcodeOnList),
+      goTo(this.journey.steps.Independence).if(isPostcodeOnList),
       goTo(this.journey.steps.InvalidPostcode)
     );
   }

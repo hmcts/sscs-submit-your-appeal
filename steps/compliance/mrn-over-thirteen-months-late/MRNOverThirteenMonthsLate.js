@@ -47,7 +47,7 @@ class MRNOverThirteenMonthsLate extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.AppellantName);
+    return goTo(this.journey.steps.Appointee);
   }
 }
 

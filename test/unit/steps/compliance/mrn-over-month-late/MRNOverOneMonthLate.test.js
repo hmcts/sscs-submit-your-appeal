@@ -10,7 +10,7 @@ describe('MRNOverOneMonth.js', () => {
     mrnOverOneMonth = new MRNOverOneMonthLate({
       journey: {
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -85,8 +85,8 @@ describe('MRNOverOneMonth.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      expect(mrnOverOneMonth.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
+    it('returns the next step path /are-you-an-appointee', () => {
+      expect(mrnOverOneMonth.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 });

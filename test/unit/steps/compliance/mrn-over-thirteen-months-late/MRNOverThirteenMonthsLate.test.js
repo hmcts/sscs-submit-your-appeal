@@ -12,7 +12,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     mrnOverThirteenMonthsLate = new MRNOverThirteenMonthsLate({
       journey: {
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -87,8 +87,8 @@ describe('MRNOverThirteenMonthsLate.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      const nextStep = { nextStep: paths.identity.enterAppellantName };
+    it('returns the next step path /are-you-an-appointee', () => {
+      const nextStep = { nextStep: paths.identity.areYouAnAppointee };
       expect(mrnOverThirteenMonthsLate.next()).to.eql(nextStep);
     });
   });
