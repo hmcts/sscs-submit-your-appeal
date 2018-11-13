@@ -25,7 +25,7 @@ class SameAddress extends Question {
   answers() {
     return answer(this, {
       question: this.content.cya.isSameAddress.question,
-      section: sections.appellantDetails,
+      section: sections.appointeeDetails,
       answer: titleise(this.fields.isSameAddress.value)
     });
   }
