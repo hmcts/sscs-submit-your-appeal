@@ -37,7 +37,7 @@ class PostcodeChecker extends Question {
     if (usePostcodeChecker) {
       return new BranchForEnglandOrWales(
         this.fields.postcode.value,
-        this.journey.steps.Appointee,
+        this.journey.steps.Independence,
         this.journey.steps.InvalidPostcode,
         this.journey.steps.Error500
       );
@@ -48,7 +48,7 @@ class PostcodeChecker extends Question {
     const isPostcodeOnList = () => postcodeList.includes(outcode.toUpperCase());
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isPostcodeOnList),
+      goTo(this.journey.steps.Independence).if(isPostcodeOnList),
       goTo(this.journey.steps.InvalidPostcode)
     );
   }
