@@ -11,6 +11,7 @@ def component = "frontend"
 
 withPipeline("nodejs", product, component) {
     enableDockerBuild()
+    enableDeployToAKS()
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
