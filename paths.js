@@ -6,6 +6,8 @@ module.exports = {
 
   health: '/health',
 
+  monitoring: '/monitoring',
+
   errors: {
     doesNotExist: '/does-not-exist',
     internalServerError: '/internal-server-error'
@@ -40,6 +42,7 @@ module.exports = {
     haveAMRN: '/have-a-mrn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
+    dwpIssuingOfficeESA: '/dwp-issuing-office-esa',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
     contactDWP: '/contact-dwp',

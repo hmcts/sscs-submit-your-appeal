@@ -41,6 +41,8 @@ module "submit-your-appeal-frontend" {
   common_tags          = "${var.common_tags}"
   asp_rg               = "${local.app_service_plan}"
   asp_name             = "${local.app_service_plan}"
+  appinsights_instrumentation_key = "${var.appinsights_instrumentation_key}"
+
 
   app_settings = {
     TRIBUNALS_CASE_API_URL        = "${local.ApiUrl}"

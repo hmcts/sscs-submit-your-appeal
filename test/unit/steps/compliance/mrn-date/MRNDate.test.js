@@ -4,6 +4,7 @@ const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('MRNDate.js', () => {
   let mrnDate = null;
@@ -11,9 +12,17 @@ describe('MRNDate.js', () => {
   beforeEach(() => {
     mrnDate = new MRNDate({
       journey: {
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: null
+            }
+          }
+        },
         steps: {
-          AppellantName: paths.identity.enterAppellantName,
-          CheckMRN: paths.compliance.checkMRNDate
+          CheckMRN: paths.compliance.checkMRNDate,
+          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
+          DWPIssuingOffice: paths.compliance.dwpIssuingOffice
         }
       }
     });
@@ -96,19 +105,39 @@ describe('MRNDate.js', () => {
       mrnDate.fields.mrnDate.value = date;
     };
 
-    it('returns the next step path /enter-appellant-name if date less than a month', () => {
+    const setBenefitType = benefitType => {
+      mrnDate.req.journey.req.session.BenefitType.benefitType = benefitType;
+    };
+
+    it('returns the next step path /dwp-issuing-office if date less than a month', () => {
       setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-      expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantName);
+      expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /enter-appellant-name if date is equal to a month', () => {
+    it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
       setMRNDate(DateUtils.oneMonthAgo());
-      expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantName);
+      expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /check-mrn-date if date more than a month', () => {
-      setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-      expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
+    describe('when benefit type is ESA', () => {
+      it('returns the next step path /dwp-issuing-office-esa if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.employmentAndSupportAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      });
+
+      it('returns the next step path /dwp-issuing-office-esa if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.employmentAndSupportAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      });
+    });
+
+    describe('when date is more than a month ago', () => {
+      it('returns the next step path /check-mrn-date if date more than a month', () => {
+        setMRNDate(DateUtils.oneMonthAndOneDayAgo());
+        expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
+      });
     });
   });
 });
