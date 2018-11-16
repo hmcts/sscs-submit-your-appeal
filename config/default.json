@@ -14,7 +14,7 @@
   },
   "api": {
     "url":  "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:3010/upload"
+    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload"
   },
   "appInsights": {
     "instrumentationKey": "iKey",
