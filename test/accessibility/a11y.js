@@ -23,7 +23,12 @@ const pa11yTest = pa11y({
 
 const test = promisify(pa11yTest.run, pa11yTest);
 
-const excludeSteps = ['/sessions', '/internal-server-error', '/enter-appellant-contact-details'];
+const excludeSteps = [
+  '/sessions',
+  '/internal-server-error',
+  '/enter-appellant-contact-details',
+  '/appointee-contact-details'
+];
 
 function ensurePageCallWillSucceed(url) {
   const res = agent.get(url);
