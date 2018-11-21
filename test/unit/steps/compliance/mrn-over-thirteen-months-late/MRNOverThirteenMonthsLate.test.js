@@ -4,6 +4,7 @@ const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
   let mrnOverThirteenMonthsLate = null;
@@ -11,8 +12,16 @@ describe('MRNOverThirteenMonthsLate.js', () => {
   beforeEach(() => {
     mrnOverThirteenMonthsLate = new MRNOverThirteenMonthsLate({
       journey: {
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: null
+            }
+          }
+        },
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
+          DWPIssuingOffice: paths.compliance.dwpIssuingOffice
         }
       }
     });
@@ -87,9 +96,18 @@ describe('MRNOverThirteenMonthsLate.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      const nextStep = { nextStep: paths.identity.enterAppellantName };
-      expect(mrnOverThirteenMonthsLate.next()).to.eql(nextStep);
+    const setBenefitType = benefitType => {
+      mrnOverThirteenMonthsLate.req.journey.req.session.BenefitType.benefitType = benefitType;
+    };
+
+    it('returns the next step path /dwp-issuing-office', () => {
+      setBenefitType(benefitTypes.personalIndependencePayment);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office-esa', () => {
+      setBenefitType(benefitTypes.employmentAndSupportAllowance);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
     });
   });
 });
