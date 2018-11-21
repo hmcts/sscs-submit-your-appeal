@@ -1,12 +1,10 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { get } = require('lodash');
 const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const benefitTypes = require('steps/start/benefit-type/types');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -49,15 +47,7 @@ class MRNOverThirteenMonthsLate extends Question {
   }
 
   next() {
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
-
-    return branch(
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
-      goTo(this.journey.steps.DWPIssuingOffice)
-    );
+    return goTo(this.journey.steps.AppellantName);
   }
 }
 
