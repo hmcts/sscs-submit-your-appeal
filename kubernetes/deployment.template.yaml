@@ -39,6 +39,7 @@ spec:
           value: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
         ports:
           - containerPort: 3000
+
         resources:
           requests:
             memory: "64Mi"
@@ -46,6 +47,13 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 1
+          httpGet:
+            path: /health
+            port: 3000
 ---
 apiVersion: v1
 kind: Service
