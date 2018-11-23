@@ -28,7 +28,7 @@ class Appointee extends Question {
   answers() {
     return answer(this, {
       question: this.content.cya.isAppointee.question,
-      section: sections.appellantDetails,
+      section: sections.appointeeDetails,
       answer: titleise(this.fields.isAppointee.value)
     });
   }
