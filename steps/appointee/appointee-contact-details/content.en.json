@@ -36,14 +36,14 @@
     },
     "phoneNumber": {
       "title": "Phone number (optional)",
-      "hint": "This may be used to contact you about your appeal",
+      "hint": "This may be used to contact you about the appeal",
       "error": {
         "invalid": "You have entered an invalid phone number. Check it and enter it again"
       }
     },
     "emailAddress": {
       "title": "Email address (optional)",
-      "hint": "You’ll get updates on your appeal and a link so you can track your appeal online",
+      "hint": "You’ll get updates and a link so you can track the appeal online",
       "error": {
         "invalid": "You have entered an invalid email address. Check it and enter it again"
       }
