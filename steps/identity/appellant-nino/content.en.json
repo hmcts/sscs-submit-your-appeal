@@ -6,7 +6,7 @@
   },
   "subtitle": {
     "withoutAppointee": "You can find your National Insurance number on any letter about the benefit.",
-    "withAppointee": "This will be on any letter about the benefit."
+    "withAppointee": "This will be on any letter from DWP about the benefit."
   },
   "fields": {
     "nino": {
