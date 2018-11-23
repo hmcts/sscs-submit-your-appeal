@@ -8,8 +8,8 @@
     "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
     "noMRN": "Why you don't have a Mandatory Reconsideration Notice (MRN)"
   },
-  "appellantDetails": "Your details",
-  "appointeeDetails": "Appointee details",
+  "appellantDetails": "Claimant",
+  "appointeeDetails": "Appointee",
   "hearing": {
     "arrangements":  "Hearing arrangements",
     "datesCantAttend": "Date you cant attend the hearing",
