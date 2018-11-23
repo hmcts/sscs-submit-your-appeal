@@ -50,6 +50,10 @@ class AppellantContactDetails extends Question {
     return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
   }
 
+  get isAppointeeJourney() {
+    return this.isAppointee();
+  }
+
   get title() {
     return this.content.title[this.contentPrefix()];
   }

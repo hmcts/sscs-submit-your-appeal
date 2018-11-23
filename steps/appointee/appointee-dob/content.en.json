@@ -1,6 +1,7 @@
 {
   "titleHead": "Enter date of birth - Appeal a benefit decision - GOV.UK",
   "title": "Enter your date of birth",
+  "description": "As the appointee, enter your date of birth",
   "fields": {
     "date": {
       "hint": "For example, 7 5 1981",

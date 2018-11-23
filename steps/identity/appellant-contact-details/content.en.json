@@ -2,7 +2,7 @@
   "titleHead": "Enter contact details - Appeal a benefit decision - GOV.UK",
   "title": {
     "withoutAppointee": "Enter your contact details",
-    "withAppointee": "Enter their contact details"
+    "withAppointee": "Enter their address"
   },
   "subtitle": {
     "withoutAppointee": "These will be used to send you information about your appeal.",
