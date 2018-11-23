@@ -1,6 +1,7 @@
 {
   "titleHead": "Enter name - Appeal a benefit decision - GOV.UK",
   "title": "Enter your name",
+  "description": "As the appointee, enter your name",
   "fields": {
     "title": {
       "title": "Title",
