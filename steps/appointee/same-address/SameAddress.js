@@ -15,8 +15,8 @@ class SameAddress extends Question {
 
   get form() {
     return form({
-      isSameAddress: text.joi(
-        this.content.fields.isSameAddress.error.required,
+      isAddressSameAsAppointee: text.joi(
+        this.content.fields.isAddressSameAsAppointee.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -24,22 +24,22 @@ class SameAddress extends Question {
 
   answers() {
     return answer(this, {
-      question: this.content.cya.isSameAddress.question,
-      section: sections.appointeeDetails,
-      answer: titleise(this.fields.isSameAddress.value)
+      question: this.content.cya.isAddressSameAsAppointee.question,
+      section: sections.appellantDetails,
+      answer: titleise(this.fields.isAddressSameAsAppointee.value)
     });
   }
 
   values() {
     return {
-      isSameAddress: this.fields.isSameAddress.value === userAnswer.YES
+      isAddressSameAsAppointee: this.fields.isAddressSameAsAppointee.value === userAnswer.YES
     };
   }
 
   next() {
-    const isSameAddress = this.fields.isSameAddress.value === userAnswer.YES;
+    const isAddressSameAsAppointee = this.fields.isAddressSameAsAppointee.value === userAnswer.YES;
     return branch(
-      redirectTo(this.journey.steps.TextReminders).if(isSameAddress),
+      redirectTo(this.journey.steps.TextReminders).if(isAddressSameAsAppointee),
       goTo(this.journey.steps.AppellantContactDetails)
     );
   }
