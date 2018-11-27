@@ -2,7 +2,7 @@
   "titleHead": "Is their address the same as yours - Appeal a benefit decision - GOV.UK",
   "title": "Is their address the same as yours?",
   "fields": {
-    "isSameAddress": {
+    "isAddressSameAsAppointee": {
       "label": "Select whether the appellant name is the same as yours",
       "yes": "Yes",
       "no": "No",
@@ -12,8 +12,8 @@
     }
   },
   "cya": {
-    "isSameAddress": {
-      "question": "SameAddress"
+    "isAddressSameAsAppointee": {
+      "question": "Same address as appointee"
     }
   }
 }

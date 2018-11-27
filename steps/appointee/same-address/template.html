@@ -12,12 +12,12 @@
 {% call formSection() %}
 
 {{ selectionButtons(
-    fields.isSameAddress,
-    content.fields.isSameAddress.label,
+    fields.isAddressSameAsAppointee,
+    content.fields.isAddressSameAsAppointee.label,
     hideQuestion=true,
     options = [
-        { label: content.fields.isSameAddress.yes, value: "yes" },
-        { label: content.fields.isSameAddress.no, value: "no" }
+        { label: content.fields.isAddressSameAsAppointee.yes, value: "yes" },
+        { label: content.fields.isAddressSameAsAppointee.no, value: "no" }
     ])
 }}
 
