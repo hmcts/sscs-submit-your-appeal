@@ -10,7 +10,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     dwpIssuingOfficeESA = new DWPIssuingOfficeESA({
       journey: {
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -84,8 +84,8 @@ describe('DWPIssuingOfficeESA.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
+    it('returns the next step path /are-you-an-appointee', () => {
+      expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 });
