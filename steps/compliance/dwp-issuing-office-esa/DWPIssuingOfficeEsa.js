@@ -60,7 +60,7 @@ class DWPIssuingOfficeEsa extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.Appointee);
+    return goTo(this.journey.steps.AppellantName);
   }
 }
 

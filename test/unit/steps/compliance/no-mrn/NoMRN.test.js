@@ -10,7 +10,7 @@ describe('NoMRN.js', () => {
     noMRN = new NoMRN({
       journey: {
         steps: {
-          Appointee: paths.identity.areYouAnAppointee
+          AppellantName: paths.identity.enterAppellantName
         }
       }
     });
@@ -85,8 +85,8 @@ describe('NoMRN.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /are-you-an-appointee', () => {
-      expect(noMRN.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+    it('returns the next step path /enter-appellant-name', () => {
+      expect(noMRN.next()).to.eql({ nextStep: paths.identity.enterAppellantName });
     });
   });
 });
