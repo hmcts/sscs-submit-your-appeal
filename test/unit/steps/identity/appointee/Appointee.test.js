@@ -77,7 +77,7 @@ describe('Appointee.js', () => {
     it('should set the question and section', () => {
       const answers = appointee.answers();
       expect(answers.question).to.equal(question);
-      expect(answers.section).to.equal(sections.appellantDetails);
+      expect(answers.section).to.equal(sections.appointeeDetails);
     });
 
     it('should titleise the users selection to \'No\' for CYA', () => {
