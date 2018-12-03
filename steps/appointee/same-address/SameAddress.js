@@ -32,7 +32,9 @@ class SameAddress extends Question {
 
   values() {
     return {
-      isAddressSameAsAppointee: this.fields.isAddressSameAsAppointee.value === userAnswer.YES
+      appellant: {
+        isAddressSameAsAppointee: this.fields.isAddressSameAsAppointee.value === userAnswer.YES
+      }
     };
   }
 
