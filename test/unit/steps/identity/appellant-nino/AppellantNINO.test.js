@@ -9,8 +9,10 @@ describe('AppellantNINO.js', () => {
   beforeEach(() => {
     appellantNINO = new AppellantNINO({
       journey: {
+        req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          AppellantContactDetails: paths.identity.enterAppellantContactDetails
+          AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+          SameAddress: paths.appointee.sameAddress
         }
       }
     });
@@ -21,6 +23,20 @@ describe('AppellantNINO.js', () => {
   describe('get path()', () => {
     it('returns path /enter-appellant-nino', () => {
       expect(AppellantNINO.path).to.equal(paths.identity.enterAppellantNINO);
+    });
+  });
+
+  describe('contentPrefix', () => {
+    describe('when is Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        appellantNINO.journey.req.session.Appointee.isAppointee = 'yes';
+        expect(appellantNINO.contentPrefix()).to.equal('withAppointee');
+      });
+    });
+    describe('when is NOT Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        expect(appellantNINO.contentPrefix()).to.equal('withoutAppointee');
+      });
     });
   });
 
@@ -97,6 +113,13 @@ describe('AppellantNINO.js', () => {
     it('returns the next step path /enter-appellant-contact-details', () => {
       expect(appellantNINO.next()).to.eql({
         nextStep: paths.identity.enterAppellantContactDetails
+      });
+    });
+
+    it('returns the next step path /appointee-same-address', () => {
+      appellantNINO.journey.req.session.Appointee.isAppointee = 'yes';
+      expect(appellantNINO.next()).to.eql({
+        nextStep: paths.appointee.sameAddress
       });
     });
   });
