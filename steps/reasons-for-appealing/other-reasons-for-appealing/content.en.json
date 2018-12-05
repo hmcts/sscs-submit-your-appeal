@@ -5,10 +5,7 @@
   "additonalInfo": "You don't have to write anything, if you have nothing further to add.",
   "fields": {
     "otherReasonForAppealing": {
-      "label": "Other reasons for appealing",
-      "error": {
-        "invalid": "You've entered a special character. Delete it before continuing"
-      }
+      "label": "Other reasons for appealing"
     }
   },
   "cya": {

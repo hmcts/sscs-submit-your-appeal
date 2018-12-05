@@ -1,0 +1,21 @@
+#!groovy
+
+properties([
+        pipelineTriggers([cron('00 20 * * *')]),
+        parameters([
+                string(name: 'URL_TO_TEST', defaultValue: 'https://benefit-appeal.nonprod.platform.hmcts.net', description: 'The URL you want to run these tests against'),
+        ])
+])
+
+@Library("Infrastructure")
+
+def product = "sscs-tribunals"
+def component = "frontend"
+
+withNightlyPipeline("nodejs", product, component) {
+    env.TEST_URL = params.URL_TO_TEST
+
+    enableCrossBrowserTest()
+
+//    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
+}

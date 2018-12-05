@@ -6,6 +6,8 @@ module.exports = {
 
   health: '/health',
 
+  monitoring: '/monitoring',
+
   errors: {
     doesNotExist: '/does-not-exist',
     internalServerError: '/internal-server-error'
@@ -40,6 +42,7 @@ module.exports = {
     haveAMRN: '/have-a-mrn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
+    dwpIssuingOfficeESA: '/dwp-issuing-office-esa',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
     contactDWP: '/contact-dwp',
@@ -55,6 +58,13 @@ module.exports = {
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details'
+  },
+
+  appointee: {
+    enterAppointeeName: '/enter-appointee-name',
+    enterAppointeeDOB: '/enter-appointee-dob',
+    enterAppointeeContactDetails: '/appointee-contact-details',
+    sameAddress: '/appointee-same-address'
   },
 
   smsNotify: {

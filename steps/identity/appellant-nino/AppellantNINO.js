@@ -2,6 +2,7 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { niNumber } = require('utils/regex');
+const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
@@ -11,10 +12,26 @@ class AppellantNINO extends Question {
     return paths.identity.enterAppellantNINO;
   }
 
+  isAppointee() {
+    return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
+  }
+
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
+
+  get title() {
+    return this.content.title[this.contentPrefix()];
+  }
+
+  get subtitle() {
+    return this.content.subtitle[this.contentPrefix()];
+  }
+
   get form() {
     return form({
       nino: text.joi(
-        this.content.fields.nino.error.required,
+        this.content.fields.nino.error.required[this.contentPrefix()],
         Joi.string().regex(niNumber).required()
       )
     });
@@ -39,6 +56,9 @@ class AppellantNINO extends Question {
   }
 
   next() {
+    if (this.isAppointee()) {
+      return goTo(this.journey.steps.SameAddress);
+    }
     return goTo(this.journey.steps.AppellantContactDetails);
   }
 }

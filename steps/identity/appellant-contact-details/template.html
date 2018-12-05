@@ -4,22 +4,24 @@
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-    {{ content.title | safe }}
+    {{ title | safe }}
 {% endset %}
 
 {% block fields %}
 
     {% call formSection() %}
 
-        <p>{{ content.subtitle}}</p>
+        <p>{{ subtitle}}</p>
 
         {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
         {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
         {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}
         {{ textbox(fields.county,               content.fields.county.title,                hint="") }}
         {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
-        {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
-        {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
+        {% if not isAppointeeJourney %}
+            {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
+            {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
+        {% endif %}
 
     {% endcall %}
 

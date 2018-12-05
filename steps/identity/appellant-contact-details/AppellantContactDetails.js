@@ -1,6 +1,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { get } = require('lodash');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
 const { Logger } = require('@hmcts/nodejs-logging');
 const sections = require('steps/check-your-appeal/sections');
@@ -41,6 +42,26 @@ class AppellantContactDetails extends Question {
     return paths.identity.enterAppellantContactDetails;
   }
 
+  isAppointee() {
+    return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
+  }
+
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
+
+  get isAppointeeJourney() {
+    return this.isAppointee();
+  }
+
+  get title() {
+    return this.content.title[this.contentPrefix()];
+  }
+
+  get subtitle() {
+    return this.content.subtitle[this.contentPrefix()];
+  }
+
   get CYAPhoneNumber() {
     return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
   }
@@ -51,36 +72,38 @@ class AppellantContactDetails extends Question {
 
   get form() {
     const fields = this.content.fields;
+    const prefix = this.contentPrefix();
+
     return form({
       addressLine1: text.joi(
-        fields.addressLine1.error.required,
+        fields.addressLine1.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
       addressLine2: text.joi(
-        fields.addressLine2.error.invalid,
+        fields.addressLine2.error[prefix].invalid,
         Joi.string().regex(whitelist).allow('')
       ),
       townCity: text.joi(
-        fields.townCity.error.required,
+        fields.townCity.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
       county: text.joi(
-        fields.county.error.required,
+        fields.county.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
       postCode: text.joi(
-        fields.postCode.error.required,
+        fields.postCode.error[prefix].required,
         Joi.string().trim().regex(postCode).required()
       ).joi(
-        fields.postCode.error.invalidPostcode,
+        fields.postCode.error[prefix].invalidPostcode,
         customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
       ),
       phoneNumber: text.joi(
-        fields.phoneNumber.error.invalid,
+        fields.phoneNumber.error[prefix].invalid,
         Joi.string().regex(phoneNumber).allow('')
       ),
       emailAddress: text.joi(
-        fields.emailAddress.error.invalid,
+        fields.emailAddress.error[prefix].invalid,
         Joi.string().trim().email(emailOptions).allow('')
       )
     });

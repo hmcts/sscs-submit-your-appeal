@@ -34,6 +34,10 @@ variable "node_environment" {
   default = "sandbox"
 }
 
+variable "sya_hostname" {
+  default = "localhost"
+}
+
 variable "deployment_namespace" {
   type = "string"
 }
@@ -58,4 +62,13 @@ variable "postcode_checker_enabled" {
 variable "postcode_checker_allowed_rpcs" {
   type = "string"
   default = "birmingham"
+}
+
+variable "raw_product" {
+  default = "sscs"
+}
+
+variable "appinsights_instrumentation_key" {
+  description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+  default     = ""
 }

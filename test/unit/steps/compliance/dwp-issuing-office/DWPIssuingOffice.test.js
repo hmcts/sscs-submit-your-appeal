@@ -10,7 +10,7 @@ describe('DWPIssuingOffice.js', () => {
     dWPIssuingOffice = new DWPIssuingOffice({
       journey: {
         steps: {
-          MRNDate: paths.compliance.mrnDate
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -84,8 +84,8 @@ describe('DWPIssuingOffice.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /mrn-date', () => {
-      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.compliance.mrnDate });
+    it('returns the next step path /are-you-an-appointee', () => {
+      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 });

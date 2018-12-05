@@ -1,6 +1,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
@@ -10,22 +11,35 @@ class AppellantDOB extends Question {
     return paths.identity.enterAppellantDOB;
   }
 
+  isAppointee() {
+    return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
+  }
+
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
+
+  get title() {
+    return this.content.title[this.contentPrefix()];
+  }
+
   get form() {
     const fields = this.content.fields;
+    const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
         d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
         date.required({
-          allRequired: fields.date.error.allRequired,
-          dayRequired: fields.date.error.dayRequired,
-          monthRequired: fields.date.error.monthRequired,
-          yearRequired: fields.date.error.yearRequired
+          allRequired: error.allRequired,
+          dayRequired: error.dayRequired,
+          monthRequired: error.monthRequired,
+          yearRequired: error.yearRequired
         })
       ).check(
-        fields.date.error.invalid,
+        error.invalid,
         value => DateUtils.isDateValid(value)
       ).check(
-        fields.date.error.future,
+        error.future,
         value => DateUtils.isDateInPast(value)
       )
     });

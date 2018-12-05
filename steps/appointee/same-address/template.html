@@ -1,0 +1,26 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+{% call formSection() %}
+
+{{ selectionButtons(
+    fields.isSameAddress,
+    content.fields.isSameAddress.label,
+    hideQuestion=true,
+    options = [
+        { label: content.fields.isSameAddress.yes, value: "yes" },
+        { label: content.fields.isSameAddress.no, value: "no" }
+    ])
+}}
+
+{% endcall %}
+
+{% endblock %}

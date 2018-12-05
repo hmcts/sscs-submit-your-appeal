@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const { getBenefitName } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
+const PipNumberOnImage = require('./PipNumberOnImage');
 
 class DWPIssuingOffice extends Question {
   static get path() {
@@ -15,14 +16,21 @@ class DWPIssuingOffice extends Question {
 
   get form() {
     return form({
-      pipNumber: text.joi(
-        this.content.fields.pipNumber.error.required,
-        Joi.string().required()).joi(
-        this.content.fields.pipNumber.error.notNumeric,
-        Joi.string().trim().regex(numbers)).joi(
-        this.content.fields.pipNumber.error.invalid,
-        Joi.string().trim().valid(officeIds)
-      )
+      pipNumber: text
+        .joi(
+          this.content.fields.pipNumber.error.numberSameAsImage,
+          Joi.string().trim().invalid(PipNumberOnImage)
+        )
+        .joi(
+          this.content.fields.pipNumber.error.required,
+          Joi.string().required()
+        ).joi(
+          this.content.fields.pipNumber.error.notNumeric,
+          Joi.string().trim().regex(numbers)
+        ).joi(
+          this.content.fields.pipNumber.error.invalid,
+          Joi.string().trim().valid(officeIds)
+        )
     });
   }
 
@@ -49,7 +57,7 @@ class DWPIssuingOffice extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.MRNDate);
+    return goTo(this.journey.steps.Appointee);
   }
 }
 

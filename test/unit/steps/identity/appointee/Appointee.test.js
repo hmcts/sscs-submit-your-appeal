@@ -11,8 +11,9 @@ describe('Appointee.js', () => {
     appointee = new Appointee({
       journey: {
         steps: {
-          Independence: paths.start.independence,
-          AppealFormDownload: paths.appealFormDownload
+          AppealFormDownload: paths.appealFormDownload,
+          AppellantName: paths.identity.enterAppellantName,
+          AppointeeName: paths.appointee.enterAppointeeName
         }
       }
     });
@@ -105,16 +106,21 @@ describe('Appointee.js', () => {
   });
 
   describe('next()', () => {
+    it('returns the next step path /enter-appointee-name', () => {
+      const nextStep = appointee.next().branches[0].redirector.nextStep;
+      expect(nextStep).to.eq(paths.appointee.enterAppointeeName);
+    });
+
     it('returns the next step path /appeal-form-download', () => {
       appointee.fields.isAppointee.value = userAnswer.YES;
-      const nextStep = appointee.next().branches[0].redirector.nextStep;
+      const nextStep = appointee.next().branches[1].redirector.nextStep;
       expect(nextStep).to.eq(paths.appealFormDownload);
     });
 
-    it('returns the next step path /independence', () => {
+    it('returns the next step path /enter-appellant-name', () => {
       appointee.fields.isAppointee.value = userAnswer.NO;
       const nextStep = appointee.next().fallback.nextStep;
-      expect(nextStep).to.eq(paths.start.independence);
+      expect(nextStep).to.eq(paths.identity.enterAppellantName);
     });
   });
 });

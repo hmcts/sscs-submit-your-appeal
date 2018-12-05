@@ -7,6 +7,9 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const config = require('config');
+
+const allowAppointee = config.get('features.allowAppointee.enabled') === 'true';
 
 class Appointee extends Question {
   static get path() {
@@ -39,8 +42,9 @@ class Appointee extends Question {
   next() {
     const isAppointee = this.fields.isAppointee.value === userAnswer.YES;
     return branch(
+      redirectTo(this.journey.steps.AppointeeName).if(allowAppointee && isAppointee),
       redirectTo(this.journey.steps.AppealFormDownload).if(isAppointee),
-      goTo(this.journey.steps.Independence)
+      goTo(this.journey.steps.AppellantName)
     );
   }
 }

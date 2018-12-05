@@ -86,6 +86,7 @@ class CheckYourAppeal extends CYA {
       section(sections.mrnDate, { title: this.content.compliance.mrnDate }),
       section(sections.noMRN, { title: this.content.compliance.noMRN }),
       section(sections.appellantDetails, { title: this.content.appellantDetails }),
+      section(sections.appointeeDetails, { title: this.content.appointeeDetails }),
       section(sections.textMsgReminders, { title: this.content.smsNotify.textMsgReminders }),
       section(sections.representative, { title: this.content.representative }),
       section(sections.reasonsForAppealing, { title: this.content.reasonsForAppealing }),

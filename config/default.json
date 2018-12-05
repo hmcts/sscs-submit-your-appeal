@@ -14,10 +14,11 @@
   },
   "api": {
     "url":  "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:3010/upload"
+    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload"
   },
   "appInsights": {
-    "instrumentationKey": "iKey"
+    "instrumentationKey": "iKey",
+    "roleName": "sya"
   },
   "ssl": {
     "hpkp": {
@@ -27,23 +28,34 @@
     }
   },
   "e2e": {
-    "waitForTimeout": "60000",
-    "waitForAction": "7000",
+    "waitForTimeout": "30000",
+    "waitForAction": "2000",
     "outputDir": "./functional-output",
     "frontendUrl": "http://localhost:3000"
   },
   "features": {
     "evidenceUpload": {
       "enabled": true,
-      "maxFileSize": 10
+      "maxFileSize": 5
     },
     "allowESA": {
+      "enabled": "false"
+    },
+    "allowAppointee": {
       "enabled": "false"
     }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": false,
-    "allowedRpcs": "birmingham,liverpool,sutton"
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+  },
+  "saucelabs": {
+    "browser": "chrome",
+    "username": "username",
+    "key": "privatekey",
+    "tunnelId": "reformtunnel",
+    "smartWait": "10000",
+    "outputDir": "./functional-output/crossbrowser/reports"
   }
 }

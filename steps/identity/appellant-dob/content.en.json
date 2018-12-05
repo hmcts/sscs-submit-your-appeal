@@ -1,6 +1,9 @@
 {
   "titleHead": "Enter date of birth - Appeal a benefit decision - GOV.UK",
-  "title": "Enter your date of birth",
+  "title": {
+    "withoutAppointee": "Enter your date of birth",
+    "withAppointee": "Enter their date of birth"
+  },
   "fields": {
     "date": {
       "hint": "For example, 7 5 1981",
@@ -8,12 +11,22 @@
       "month": "Month",
       "year": "Year",
       "error": {
-        "allRequired": "Enter your date of birth.",
-        "dayRequired": "Enter the day from your date of birth",
-        "monthRequired": "Enter the month from your date of birth",
-        "yearRequired": "Enter the year from your date of birth",
-        "invalid": "You’ve entered an invalid date of birth. Enter your date of birth.",
-        "future": "You’ve entered a date in the future. Enter your date of birth."
+        "withoutAppointee": {
+          "allRequired": "Enter your date of birth.",
+          "dayRequired": "Enter the day from your date of birth",
+          "monthRequired": "Enter the month from your date of birth",
+          "yearRequired": "Enter the year from your date of birth",
+          "invalid": "You’ve entered an invalid date of birth. Enter your date of birth.",
+          "future": "You’ve entered a date in the future. Enter your date of birth."
+        },
+        "withAppointee": {
+          "allRequired": "Enter their date of birth.",
+          "dayRequired": "Enter the day from their date of birth",
+          "monthRequired": "Enter the month from their date of birth",
+          "yearRequired": "Enter the year from their date of birth",
+          "invalid": "You’ve entered an invalid date of birth. Enter their date of birth.",
+          "future": "You’ve entered a date in the future. Enter their date of birth."
+        }
       }
     }
   },

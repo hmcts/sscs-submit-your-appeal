@@ -9,10 +9,11 @@
         "uploadEv": {
             "label": "Choose file",
             "error": {
-                "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 10MB.",
+                "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 5MB.",
                 "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
                 "required": "You have not uploaded a file. Please upload your file again.",
-                "technical": "Your file could not be uploaded because of a technical issue with the file. Please try converting it to another format or post it to the tirbunal."
+                "technical": "Your file could not be uploaded due to a technical error. Please try again.",
+                "totalFileSizeExceeded": "You can only upload a maximum of 5mb of evidence. Please print and send the rest by post. The address will be sent to you after you have submitted your appeal."
             }
         }
     }

@@ -40,6 +40,10 @@ Start redis:
 
     redis-server
     
+Install npm dependencies:
+
+    yarn
+
 Bring up SYA in a new terminal window:
 
     yarn dev
@@ -129,3 +133,5 @@ List containers
 Execute an interactive bash shell on the container
 
     docker exec -it <container id> sh
+
+

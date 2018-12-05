@@ -4,14 +4,14 @@
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-{{ content.title | safe }}
+{{ title | safe }}
 {% endset %}
 
 {% block fields %}
 
     {% call formSection() %}
 
-        <p>{{ content.subtitle }}</p>
+        <p>{{ subtitle }}</p>
 
         {{ textbox(fields.nino, content.fields.nino.label, hideLabel=true) }}
 

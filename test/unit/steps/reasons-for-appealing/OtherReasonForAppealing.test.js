@@ -55,7 +55,7 @@ describe('OtherReasonForAppealing.js', () => {
       });
 
       it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
+        expect(field.validations).to.be.empty;
       });
     });
   });

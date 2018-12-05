@@ -10,6 +10,8 @@ def product = "sscs-tribunals"
 def component = "frontend"
 
 withPipeline("nodejs", product, component) {
+    enableDockerBuild()
+    enableDeployToAKS()
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
@@ -18,8 +20,5 @@ withPipeline("nodejs", product, component) {
             println "Healthcheck URL: " + AppDevUrl + "/health"
             println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
         }
-    }
-    before('buildinfra:prod') {
-        input "Would you like to continue to buildinfra:prod?"
     }
 }

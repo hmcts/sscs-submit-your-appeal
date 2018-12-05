@@ -10,7 +10,7 @@ describe('HaveAMRN.js', () => {
     haveAMRN = new HaveAMRN({
       journey: {
         steps: {
-          DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
+          MRNDate: paths.compliance.mrnDate,
           HaveContactedDWP: paths.compliance.haveContactedDWP
         }
       }
@@ -68,9 +68,9 @@ describe('HaveAMRN.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /dwp-issuing-office when haveAMRN equals Yes', () => {
+    it('returns the next step path /mrn-date when haveAMRN equals Yes', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
-      expect(haveAMRN.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
     });
 
     it('returns the next step path /have-contacted-dwp when haveAMRN equals No', () => {
