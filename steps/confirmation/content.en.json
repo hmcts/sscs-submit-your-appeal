@@ -25,6 +25,10 @@
     "hearing": {
       "text": "Hearing",
       "srText": "Hearing for your appeal. This has not happened yet."
+    },
+    "decision": {
+      "text": "Decision",
+      "srText": "A tribunal makes a decision on your appeal. This stage has not happened yet. "
     }
   }
 }
