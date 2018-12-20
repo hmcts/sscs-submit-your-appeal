@@ -2,17 +2,93 @@ const { expect } = require('test/util/chai');
 const Confirmation = require('steps/confirmation/Confirmation');
 const paths = require('paths');
 const urls = require('urls');
+const preserveSession = require('middleware/preserveSession');
 
-describe('Confirmation.js', () => {
+const session = {
+  paper: {
+    req: {
+      sess: {
+        TheHearing: {
+          attendHearing: 'no'
+        }
+      }
+    }
+
+  },
+  oral: {
+    req: {
+      sess: {
+        TheHearing: {
+          attendHearing: 'yes'
+        }
+      }
+    }
+  }
+};
+
+const setHearingType = (Step, type) => Object.assign(Step, session[type]);
+
+describe.only('Confirmation.js', () => {
   let confirmationClass = null;
 
   beforeEach(() => {
-    confirmationClass = new Confirmation({ journey: {} });
+    confirmationClass = new Confirmation({
+      journey: {},
+      req: {
+        sess: {
+          TheHearing: {
+            attendHearing: null
+          }
+        }
+      }
+    });
   });
 
   describe('get path()', () => {
     it('returns path /confirmation', () => {
       expect(Confirmation.path).to.equal(paths.confirmation);
+    });
+  });
+
+  describe('get session()', () => {
+    it('returns path /confirmation', () => {
+      expect(confirmationClass.session).to.equal(confirmationClass.req.sess);
+    });
+  });
+
+  describe('get paperCase()', () => {
+    describe('for oral cases', () => {
+      it('should return false', () => {
+        const OralCase = setHearingType(confirmationClass, 'oral');
+        expect(OralCase.paperCase).to.equal(false);
+      });
+    });
+    describe('for paper cases', () => {
+      it('should return true', () => {
+        const PaperCase = setHearingType(confirmationClass, 'paper');
+        expect(PaperCase.paperCase).to.equal(true);
+      });
+    });
+  });
+
+  describe('get oralCase()', () => {
+    describe('for oral cases', () => {
+      it('should return false', () => {
+        const OralCase = setHearingType(confirmationClass, 'oral');
+        expect(OralCase.oralCase).to.equal(true);
+      });
+    });
+    describe('for paper cases', () => {
+      it('should return true', () => {
+        const PaperCase = setHearingType(confirmationClass, 'paper');
+        expect(PaperCase.oralCase).to.equal(false);
+      });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns path /confirmation', () => {
+      expect(confirmationClass.middleware[0]).to.equal(preserveSession);
     });
   });
 
