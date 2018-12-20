@@ -28,7 +28,7 @@ const session = {
 
 const setHearingType = (Step, type) => Object.assign(Step, session[type]);
 
-describe.only('Confirmation.js', () => {
+describe('Confirmation.js', () => {
   let confirmationClass = null;
 
   beforeEach(() => {
