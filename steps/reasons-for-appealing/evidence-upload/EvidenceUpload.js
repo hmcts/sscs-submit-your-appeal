@@ -68,6 +68,7 @@ class EvidenceUpload extends AddAnother {
 
     if (incoming.bytesExpected === null ||
       incoming.bytesExpected <= emptyRequestSize) {
+      logger.info('File is empty');
       req.body = {
         'item.uploadEv': fileMissingError,
         'item.link': '',
@@ -75,6 +76,7 @@ class EvidenceUpload extends AddAnother {
       };
       logger.error('Evidence upload error: you need to choose a file');
     } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+      logger.info('File is not empty but max file size reached');
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
         'item.link': '',
@@ -83,6 +85,7 @@ class EvidenceUpload extends AddAnother {
       logger.error('Evidence upload error: the file is too big');
     } else if (EvidenceUpload.getTotalSize(get(req, 'session.EvidenceUpload.items'), incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
+      logger.info('File is not empty and within file size limit');
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
         'item.link': '',
@@ -96,6 +99,7 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
+      logger.info(`Url req : ${req.url}`);
       return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger));
     }
     return next();
@@ -103,7 +107,10 @@ class EvidenceUpload extends AddAnother {
 
   static handleMakeDir(next, pathToUploadFolder, req, logger) {
     return mkdirError => {
+      const logValue = `${pathToUploadFolder}, ${req.originalUrl}`;
+      logger.info(`Makedir:  ${logValue}`);
       if (mkdirError) {
+        logger.error(`Makedir error :  ${logValue}`);
         return next(mkdirError);
       }
       const incoming = new formidable.IncomingForm({
