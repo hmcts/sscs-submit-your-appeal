@@ -68,7 +68,6 @@ class EvidenceUpload extends AddAnother {
 
     if (incoming.bytesExpected === null ||
       incoming.bytesExpected <= emptyRequestSize) {
-      logger.info('File is empty');
       req.body = {
         'item.uploadEv': fileMissingError,
         'item.link': '',
@@ -76,7 +75,6 @@ class EvidenceUpload extends AddAnother {
       };
       logger.error('Evidence upload error: you need to choose a file');
     } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
-      logger.info('File is not empty but max file size reached');
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
         'item.link': '',
