@@ -100,7 +100,15 @@ describe('The EvidenceUpload middleware', () => {
     describe('when there is an error', () => {
       it('should call next with the error', () => {
         const next = sinon.stub();
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next);
+        const pathToUploadFolder = 'pathToUploadFolder';
+        const req = {
+          originalUrl: 'originalUrl'
+        };
+        const logger = {
+          error: sinon.stub(),
+          info: sinon.stub()
+        };
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger);
         handleMakeDir('error');
         expect(next).to.have.been.calledWith('error');
       });
@@ -109,7 +117,15 @@ describe('The EvidenceUpload middleware', () => {
     describe('when there is NOT an error', () => {
       it('should return', () => {
         const next = sinon.stub();
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next);
+        const pathToUploadFolder = 'pathToUploadFolder';
+        const req = {
+          originalUrl: 'originalUrl'
+        };
+        const logger = {
+          error: sinon.stub(),
+          info: sinon.stub()
+        };
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger);
         handleMakeDir();
         expect(EvidenceUpload.handleIcomingParse).to.have.been.called;
       });
@@ -339,7 +355,10 @@ describe('The EvidenceUpload middleware', () => {
         }
       } };
       const incoming = { bytesExpected: 1048577 };
-      const logger = { error: sinon.stub() };
+      const logger = {
+        error: sinon.stub(),
+        info: sinon.stub()
+      };
       it('should error accordingly', () => {
         EvidenceUpload.handleFileBegin(req, incoming, logger);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.totalFileSizeExceededError);
