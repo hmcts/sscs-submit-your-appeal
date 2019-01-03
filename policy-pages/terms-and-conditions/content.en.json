@@ -73,7 +73,14 @@
     "consent": "You give us your consent to processing this information for the purpose of dealing with your application.",
     "moreInfo": "For more information about how we collect and store your personal data, see the privacy policy "
   },
-  "disclaimer": {
+  "welsh": {
+    "title": "Appealing in Welsh",
+    "instructions": "This is a beta service is and is not currently available in Welsh. If you want to appeal in Welsh then you should",
+    "inDevelopment": "A Welsh version of this online service is in development and will be available when it's complete",
+    "formLink": "https://www.gov.uk/government/publications/appeal-a-social-security-benefits-decision-form-sscs1",
+    "linkLabel": "download the Welsh version of the paper SSCS1 form"
+  },
+"disclaimer": {
     "title": "Disclaimer",
     "upToDate": "While we make every effort to keep information up to date, we don’t provide any guarantees, conditions or warranties that it will be:",
     "conditions": [
