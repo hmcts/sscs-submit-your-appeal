@@ -19,7 +19,10 @@ describe('SendToNumber.js', () => {
     sendToNumber.fields = {
       useSameNumber: {},
       phoneNumber: {
-        value: '07411785336'
+        // value: '07411785336'
+      },
+      appointeePhoneNumber: {
+        // value: '07411785336'
       }
     };
   });
@@ -31,8 +34,18 @@ describe('SendToNumber.js', () => {
   });
 
   describe('get phoneNumber()', () => {
-    it('should be defined', () => {
-      expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.phoneNumber.value);
+    describe('when appellant phone number is given', () => {
+      it('should be defined', () => {
+        sendToNumber.fields.phoneNumber.value = '07411785336';
+        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.phoneNumber.value);
+      });
+    });
+
+    describe('when appointee phone number is given', () => {
+      it('should be defined', () => {
+        sendToNumber.fields.appointeePhoneNumber.value = '07411785336';
+        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.appointeePhoneNumber.value);
+      });
     });
   });
 
@@ -43,9 +56,19 @@ describe('SendToNumber.js', () => {
       fields = sendToNumber.form.fields;
     });
 
-    it('should contain 2 fields', () => {
-      expect(Object.keys(fields).length).to.equal(2);
-      expect(fields).to.have.all.keys('phoneNumber', 'useSameNumber');
+    it('should contain 3 fields', () => {
+      expect(Object.keys(fields).length).to.equal(3);
+      expect(fields).to.have.all.keys(
+        'appointeePhoneNumber',
+        'phoneNumber',
+        'useSameNumber'
+      );
+    });
+
+    it('should contain a textField reference called \'appointeePhoneNumber\'', () => {
+      const textField = fields.appointeePhoneNumber;
+      expect(textField.constructor.name).to.eq('FieldDescriptor');
+      expect(textField.validations).to.be.empty;
     });
 
     it('should contain a textField reference called \'phoneNumber\'', () => {
