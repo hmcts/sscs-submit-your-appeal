@@ -12,12 +12,16 @@ class SmsConfirmation extends Question {
   }
 
   get mobileNumber() {
-    const isMobile = regex.internationalMobileNumber.test(this.fields.phoneNumber.value);
+    const contactPhoneNumber = (
+      this.fields.phoneNumber.value ||
+      this.fields.appointeePhoneNumber.value
+    );
+    const isMobile = regex.internationalMobileNumber.test(contactPhoneNumber);
     let number = null;
 
     if (isMobile) {
       if (this.fields.useSameNumber.value === userAnswer.YES) {
-        number = this.fields.phoneNumber.value;
+        number = contactPhoneNumber;
       } else {
         number = this.fields.enterMobile.value;
       }
@@ -32,7 +36,8 @@ class SmsConfirmation extends Question {
     return form({
       enterMobile: text.ref(this.journey.steps.EnterMobile, 'enterMobile'),
       useSameNumber: text.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
-      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber')
+      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber')
     });
   }
 

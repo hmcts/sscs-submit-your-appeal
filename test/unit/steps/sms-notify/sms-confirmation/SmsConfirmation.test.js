@@ -18,6 +18,7 @@ describe('SmsConfirmation.js', () => {
 
     smsConfirmation.fields = {
       phoneNumber: {},
+      appointeePhoneNumber: {},
       enterMobile: {},
       useSameNumber: {}
     };
@@ -63,9 +64,14 @@ describe('SmsConfirmation.js', () => {
       fields = smsConfirmation.form.fields;
     });
 
-    it('should contain 3 fields', () => {
-      expect(Object.keys(fields).length).to.equal(3);
-      expect(fields).to.have.all.keys('enterMobile', 'useSameNumber', 'phoneNumber');
+    it('should contain 4 fields', () => {
+      expect(Object.keys(fields).length).to.equal(4);
+      expect(fields).to.have.all.keys(
+        'appointeePhoneNumber',
+        'enterMobile',
+        'useSameNumber',
+        'phoneNumber'
+      );
     });
 
     it('should contain a textField reference called \'enterMobile\'', () => {
@@ -82,6 +88,12 @@ describe('SmsConfirmation.js', () => {
 
     it('should contain a textField reference called \'phoneNumber\'', () => {
       const textField = fields.phoneNumber;
+      expect(textField.constructor.name).to.equal('FieldDescriptor');
+      expect(textField.validations).to.be.empty;
+    });
+
+    it('should contain a textField reference called \'appointeePhoneNumber\'', () => {
+      const textField = fields.appointeePhoneNumber;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });

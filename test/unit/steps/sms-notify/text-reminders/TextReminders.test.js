@@ -22,7 +22,8 @@ describe('TextReminders.js', () => {
 
     textReminders.fields = {
       doYouWantTextMsgReminders: {},
-      phoneNumber: {}
+      phoneNumber: {},
+      appointeePhoneNumber: {}
     };
   });
 
@@ -39,9 +40,13 @@ describe('TextReminders.js', () => {
       fields = textReminders.form.fields;
     });
 
-    it('should contain 2 fields', () => {
-      expect(Object.keys(fields).length).to.equal(2);
-      expect(fields).to.have.all.keys('doYouWantTextMsgReminders', 'phoneNumber');
+    it('should contain 3 fields', () => {
+      expect(Object.keys(fields).length).to.equal(3);
+      expect(fields).to.have.all.keys(
+        'appointeePhoneNumber',
+        'doYouWantTextMsgReminders',
+        'phoneNumber'
+      );
     });
 
     it('should contain a textField reference called \'doYouWantTextMsgReminders\'', () => {

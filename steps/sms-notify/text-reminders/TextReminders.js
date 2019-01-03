@@ -16,6 +16,7 @@ class TextReminders extends Question {
   get form() {
     return form({
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
       doYouWantTextMsgReminders: text.joi(
         this.content.fields.doYouWantTextMsgReminders.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
@@ -44,7 +45,10 @@ class TextReminders extends Question {
   next() {
     const wantsTextMsgReminders = this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
     let nextStep = null;
-    if (regex.mobileNumber.test(this.fields.phoneNumber.value)) {
+    if (regex.mobileNumber.test(
+      this.fields.phoneNumber.value ||
+      this.fields.appointeePhoneNumber.value)
+    ) {
       nextStep = this.journey.steps.SendToNumber;
     } else {
       nextStep = this.journey.steps.EnterMobile;

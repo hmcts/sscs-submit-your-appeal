@@ -13,12 +13,13 @@ class SendToNumber extends Question {
   }
 
   get phoneNumber() {
-    return this.fields.phoneNumber.value;
+    return this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
   }
 
   get form() {
     return form({
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
       useSameNumber: text.joi(
         this.content.fields.useSameNumber.error.required,
         Joi.string().regex(whitelist).required()
