@@ -92,6 +92,7 @@ class EvidenceUpload {
       // Trigger custom google tracking event.
       if (errors[0].value === 'MAX_FILESIZE_EXCEEDED_ERROR') {
         // eslint-disable-next-line
+        window.dataLayer =  window.dataLayer  || [];
         window.dataLayer.push({ event: 'max-filesize-exceeded-error' });
       }
       $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
