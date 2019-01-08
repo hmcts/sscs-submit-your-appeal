@@ -65,29 +65,33 @@ class EvidenceUpload extends AddAnother {
   static handleFileBegin(req, incoming, logger) {
     const emptyRequestSize = 200;
     const multiplier = 1024;
+    const items = get(req, 'session.EvidenceUpload.items');
+    const itemsCount = (items && items.length) ? items.length : 0;
 
     if (incoming.bytesExpected === null ||
       incoming.bytesExpected <= emptyRequestSize) {
       req.body = {
         'item.uploadEv': fileMissingError,
         'item.link': '',
-        'item.size': 0
+        'item.size': incoming.bytesExpected
       };
       logger.error('Evidence upload error: you need to choose a file');
     } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
         'item.link': '',
-        'item.size': 0
+        'item.size': incoming.bytesExpected,
+        'item.totalFileCount': itemsCount + 1
       };
       logger.error('Evidence upload error: the file is too big');
-    } else if (EvidenceUpload.getTotalSize(get(req, 'session.EvidenceUpload.items'), incoming.bytesExpected) >
+    } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
       logger.info('File is not empty and within file size limit');
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
         'item.link': '',
-        'item.size': 0
+        'item.size': incoming.bytesExpected,
+        'item.totalFileCount': itemsCount + 1
       };
     }
   }
@@ -234,7 +238,8 @@ class EvidenceUpload extends AddAnother {
         Joi.string().disallow(totalFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional()),
-      size: text.joi(0, Joi.number().optional())
+      size: text.joi(0, Joi.number().optional()),
+      totalFileCount: text.joi(0, Joi.number().optional())
     });
   }
 
