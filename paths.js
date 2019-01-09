@@ -39,7 +39,7 @@ module.exports = {
   appealFormDownload: '/appeal-form-download',
 
   compliance: {
-    haveAMRN: '/have-a-mrn',
+    haveAMRN: '/have-you-got-an-mrn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeESA: '/dwp-issuing-office-esa',
