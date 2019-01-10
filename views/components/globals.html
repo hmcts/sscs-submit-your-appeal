@@ -30,6 +30,13 @@
     <input id="asset-path" type="hidden" data-path="{{ asset_path }}">
 {% endblock %}
 
+{% block inside_header %}
+    <div class="header-proposition">
+        <a href="/" class="proposition-name">Appeal a benefit decision</a>
+    </div>
+{% endblock %}
+
+
 {% block body_start %}
     <!-- Google Tag Manager (noscript) -->
     {% if environment === 'prod' %}
