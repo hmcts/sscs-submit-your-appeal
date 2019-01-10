@@ -89,6 +89,19 @@ class EvidenceUpload {
     $(`#${errorId}`).remove();
     $('.form-group').toggleClass('form-group-error', hasErrors);
     if (hasErrors) {
+      // Trigger custom google tracking event.
+      if (errors[0].value === 'MAX_FILESIZE_EXCEEDED_ERROR') {
+        // eslint-disable-next-line
+        window.dataLayer =  window.dataLayer  || [];
+        window.dataLayer.push({ event: 'max-filesize-exceeded-error',
+          uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
+      } else if (errors[0].value === 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR') {
+        // eslint-disable-next-line
+        window.dataLayer =  window.dataLayer  || [];
+        window.dataLayer.push({ event: 'total-max-filesize-exceeded-error',
+          uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
+      }
+
       $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
     }
   }

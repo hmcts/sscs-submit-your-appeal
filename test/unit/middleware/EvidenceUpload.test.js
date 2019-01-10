@@ -338,7 +338,8 @@ describe('The EvidenceUpload middleware', () => {
         EvidenceUpload.handleFileBegin(req, incoming, logger);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.maxFileSizeExceededError);
         expect(req.body['item.link']).to.equal('');
-        expect(req.body['item.size']).to.equal(0);
+        expect(req.body['item.size']).to.equal(5242881);
+        expect(req.body['item.totalFileCount']).to.equal(1);
         expect(logger.error).to.have.been.calledWith('Evidence upload error: the file is too big');
       });
     });
@@ -363,7 +364,8 @@ describe('The EvidenceUpload middleware', () => {
         EvidenceUpload.handleFileBegin(req, incoming, logger);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.totalFileSizeExceededError);
         expect(req.body['item.link']).to.equal('');
-        expect(req.body['item.size']).to.equal(0);
+        expect(req.body['item.size']).to.equal(1048577);
+        expect(req.body['item.totalFileCount']).to.equal(5);
       });
     });
   });
