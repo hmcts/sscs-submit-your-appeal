@@ -63,6 +63,9 @@ module "submit-your-appeal-frontend" {
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
     WEBSITE_LOCAL_CACHE_SIZEINMB  = 0
     WEBSITE_DYNAMIC_CACHE         = 0
+
+    // Testing availability of variables in production, related to the asset outage
+    TEST_VAR = "TEST"
   }
 }
 
