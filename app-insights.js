@@ -16,6 +16,9 @@ const trackException = exception => {
 };
 
 const trackTrace = messageInfo => {
+  if (!applicationInsights.defaultClient) {
+    enable();
+  }
   applicationInsights.defaultClient.trackTrace({ message: messageInfo, severity: 1 });
 };
 
