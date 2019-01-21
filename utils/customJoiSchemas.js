@@ -24,6 +24,8 @@ const customJoi = Joi.extend(joi => {
         validate(params, value, state, options) {
           const parsedPhoneNumber = parsePhoneNumberFromString(value, 'GB');
           let isValidPhone = false;
+          // If no phone-like structure comes of the parsing, a non-object is returned
+          // so we need to explicitely check for the presence of the `isvalid` method
           if (parsedPhoneNumber && parsedPhoneNumber.isValid) {
             isValidPhone = parsedPhoneNumber.isValid();
           }
