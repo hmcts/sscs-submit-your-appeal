@@ -86,7 +86,7 @@ class EvidenceUpload extends AddAnother {
       logger.error('Evidence upload error: the file is too big');
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
-      logger.info('File is not empty and within file size limit');
+      appInsights.trackTrace('File is not empty and within file size limit');
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
         'item.link': '',
@@ -101,7 +101,7 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      logger.info(`Url req : ${req.url}`);
+      appInsights.trackTrace(`Url req : ${req.url}`);
       return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger));
     }
     return next();
@@ -110,7 +110,7 @@ class EvidenceUpload extends AddAnother {
   static handleMakeDir(next, pathToUploadFolder, req, logger) {
     return mkdirError => {
       const logValue = `${pathToUploadFolder}, ${req.originalUrl}`;
-      logger.info(`Makedir:  ${logValue}`);
+      appInsights.trackTrace(`Makedir:  ${logValue}`);
       if (mkdirError) {
         logger.error(`Makedir error :  ${logValue}`);
         return next(mkdirError);
@@ -181,7 +181,7 @@ class EvidenceUpload extends AddAnother {
   static handlePostResponse(logger, req, size, pathToFile, next) {
     return (forwardingError, resp, body) => {
       if (!forwardingError) {
-        logger.info('No forwarding error, about to save data');
+        appInsights.trackTrace('No forwarding error, about to save data');
         const b = JSON.parse(body);
         req.body = {
           'item.uploadEv': b.documents[0].originalDocumentName,
