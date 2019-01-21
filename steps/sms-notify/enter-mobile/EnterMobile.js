@@ -2,9 +2,9 @@ const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { internationalMobileNumber } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
+const customJoi = require('utils/customJoiSchemas');
 
 class EnterMobile extends Question {
   static get path() {
@@ -18,7 +18,7 @@ class EnterMobile extends Question {
         Joi.string().required()
       ).joi(
         this.content.fields.enterMobile.error.invalidNumber,
-        Joi.string().regex(internationalMobileNumber).required()
+        customJoi.string().trim().validatePhone()
       )
     });
   }
