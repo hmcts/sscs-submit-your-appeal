@@ -17,7 +17,7 @@
     "uploadEvidenceUrl": "http://localhost:8080/evidence/upload"
   },
   "appInsights": {
-    "instrumentationKey": "iKey",
+    "instrumentationKey": "",
     "roleName": "sya"
   },
   "ssl": {
