@@ -1,6 +1,6 @@
 // this is to simulate the upload evidence api. It's not part of the main app.
 
-const { Logger } = require('@hmcts/nodejs-logging');
+const appInsights = require('app-insights');
 const express = require('express');
 const formidable = require('formidable');
 const http = require('http');
@@ -16,9 +16,6 @@ let server;
 /* eslint-disable consistent-return */
 /* eslint-disable no-magic-numbers */
 
-const logger = Logger.getLogger('PostcodeChecker.js');
-
-
 app.set('port', 3010);
 app.post('/upload', (req, res) => {
   const incoming = new formidable.IncomingForm({
@@ -28,7 +25,7 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    logger.info('error while receiving the file from the client', er);
+    appInsights.trackTrace('error while receiving the file from the client', er);
   });
 
   incoming.on('file', (field, file) => {
@@ -37,24 +34,24 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.on('error', error => {
-    logger.warn('an error has occured with form upload', error);
+    appInsights.trackException('an error has occured with form upload', error);
     req.resume();
   });
 
   incoming.on('aborted', () => {
-    logger.log('user aborted upload');
+    appInsights.trackTrace('user aborted upload');
   });
 
   incoming.on('end', () => {
-    logger.log('-> upload done');
+    appInsights.trackTrace('-> upload done');
   });
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      logger.info('About to respond with error');
+      appInsights.trackTrace('About to respond with error');
       return res.send(422, 'Cannot save the uploaded file');
     }
-    logger.info('About to respond correctly');
+    appInsights.trackTrace('About to respond correctly');
     return res.json({
       documents: [
         {

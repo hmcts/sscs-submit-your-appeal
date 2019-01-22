@@ -1,6 +1,4 @@
-const { Logger } = require('@hmcts/nodejs-logging');
+const appInsights = require('app-insights');
 const { bootstrap } = require('../../test/file_acceptor');
 
-const logger = Logger.getLogger('evidence_uploader.js');
-
-bootstrap(() => logger.log('Started file acceptor'));
+bootstrap(() => appInsights.trackTrace('Started file acceptor'));
