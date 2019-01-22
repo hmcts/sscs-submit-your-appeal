@@ -50,7 +50,8 @@ describe('The EvidenceUpload middleware', () => {
         rename: renamer
       },
       appInsights: {
-        trackException: p => p
+        trackException: p => p,
+        trackTrace: p => p
       },
       path: {
         resolve: () => 'a string'
