@@ -56,14 +56,12 @@ describe('CheckYourAppeal.js', () => {
     it('should log a message when successfully making an API call', () => {
       appInsightsStub.trackTrace = sinon.stub().returns();
       request.post = () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) });
-      appInsightsStub.trackTrace = sinon.spy();
       return cya.sendToAPI().then(() => {
-        expect(appInsightsStub.trackTrace).calledWith('POST api:/appeals status:201');
+        expect(appInsightsStub.trackTrace).to.have.been.calledWith('POST api:/appeals status:201');
       });
     });
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
-      appInsightsStub.trackException = sinon.stub().returns();
       request.post = () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) });
       appInsightsStub.trackException = sinon.spy();
       return cya.sendToAPI().catch(() => {

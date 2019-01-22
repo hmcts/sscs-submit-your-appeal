@@ -1,6 +1,8 @@
 // this is to simulate the upload evidence api. It's not part of the main app.
 
 const appInsights = require('app-insights');
+
+const logPath = 'test/index.js';
 const express = require('express');
 const formidable = require('formidable');
 const http = require('http');
@@ -25,7 +27,7 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    appInsights.trackTrace('error while receiving the file from the client', er);
+    appInsights.trackTrace(`error while receiving the file from the client ${er}`, logPath);
   });
 
   incoming.on('file', (field, file) => {
@@ -34,24 +36,24 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.on('error', error => {
-    appInsights.trackException('an error has occured with form upload', error);
+    appInsights.trackException(`an error has occured with form upload ${error}`, logPath);
     req.resume();
   });
 
   incoming.on('aborted', () => {
-    appInsights.trackTrace('user aborted upload');
+    appInsights.trackTrace('user aborted upload', logPath);
   });
 
   incoming.on('end', () => {
-    appInsights.trackTrace('-> upload done');
+    appInsights.trackTrace('-> upload done', logPath);
   });
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      appInsights.trackTrace('About to respond with error');
+      appInsights.trackTrace('About to respond with error', logPath);
       return res.send(422, 'Cannot save the uploaded file');
     }
-    appInsights.trackTrace('About to respond correctly');
+    appInsights.trackTrace('About to respond correctly', logPath);
     return res.json({
       documents: [
         {
