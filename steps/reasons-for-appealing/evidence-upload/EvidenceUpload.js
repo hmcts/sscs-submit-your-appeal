@@ -10,6 +10,8 @@ const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
 const appInsights = require('app-insights');
+
+const logPath = 'EvidenceUpload.js';
 const Joi = require('joi');
 const paths = require('paths');
 const formidable = require('formidable');
@@ -74,7 +76,7 @@ class EvidenceUpload extends AddAnother {
         'item.link': '',
         'item.size': incoming.bytesExpected
       };
-      appInsights.trackException('Evidence upload error: you need to choose a file');
+      appInsights.trackException('Evidence upload error: you need to choose a file', logPath);
     } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
@@ -82,10 +84,10 @@ class EvidenceUpload extends AddAnother {
         'item.size': incoming.bytesExpected,
         'item.totalFileCount': itemsCount + 1
       };
-      appInsights.trackException('Evidence upload error: the file is too big');
+      appInsights.trackException('Evidence upload error: the file is too big', logPath);
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
-      appInsights.trackTrace('File is not empty and within file size limit');
+      appInsights.trackTrace('File is not empty and within file size limit', logPath);
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
         'item.link': '',
@@ -99,7 +101,7 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      appInsights.trackTrace(`Url req : ${req.url}`);
+      appInsights.trackTrace(`Url req : ${req.url}`, logPath);
       return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req));
     }
     return next();
@@ -108,9 +110,9 @@ class EvidenceUpload extends AddAnother {
   static handleMakeDir(next, pathToUploadFolder, req) {
     return mkdirError => {
       const logValue = `${pathToUploadFolder}, ${req.originalUrl}`;
-      appInsights.trackTrace(`Makedir:  ${logValue}`);
+      appInsights.trackTrace(`Makedir:  ${logValue}`, logPath);
       if (mkdirError) {
-        appInsights.trackException(`Makedir error :  ${logValue}`);
+        appInsights.trackException(`Makedir error :  ${logValue}`, logPath);
         return next(mkdirError);
       }
       const incoming = new formidable.IncomingForm({
@@ -179,7 +181,7 @@ class EvidenceUpload extends AddAnother {
   static handlePostResponse(req, size, pathToFile, next) {
     return (forwardingError, resp, body) => {
       if (!forwardingError) {
-        appInsights.trackTrace('No forwarding error, about to save data');
+        appInsights.trackTrace('No forwarding error, about to save data', logPath);
         const b = JSON.parse(body);
         req.body = {
           'item.uploadEv': b.documents[0].originalDocumentName,
@@ -193,7 +195,7 @@ class EvidenceUpload extends AddAnother {
         'item.link': '',
         'item.size': 0
       };
-      appInsights.trackException(forwardingError);
+      appInsights.trackException(forwardingError, logPath);
       return fs.unlink(pathToFile, next);
     };
   }

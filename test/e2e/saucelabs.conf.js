@@ -5,6 +5,7 @@ const fileAcceptor = require('test/file_acceptor');
 const supportedBrowsers = require('./crossbrowser/supportedBrowsers.js');
 const appInsights = require('app-insights');
 
+const logPath = 'saucelabs.conf.js';
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId');
 
@@ -20,7 +21,7 @@ const getBrowserConfig = browserGroup => {
         desiredCapabilities: desiredCapability
       });
     } else {
-      appInsights.trackException('supportedBrowsers.js is empty or incorrectly defined');
+      appInsights.trackException('supportedBrowsers.js is empty or incorrectly defined', logPath);
     }
   }
   return browserConfig;
@@ -67,7 +68,8 @@ const setupConfig = {
   },
   teardownAll: done => {
     // Pause to allow SauceLabs to finish updating before Jenkins queries it for results
-    appInsights.trackTrace('Wait for 30 seconds before Jenkins queries SauceLabs results...');
+    appInsights.trackTrace('Wait for 30 seconds before Jenkins queries SauceLabs results...'
+      , logPath);
     pauseFor(30);
     fileAcceptor.teardown(done);
   },
