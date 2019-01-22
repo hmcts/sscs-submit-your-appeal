@@ -22,7 +22,7 @@ const trackException = (messageInfo, pageName) => {
     msg = messageInfo;
   }
 
-  if (iKey !== 'iKey') {
+  if (iKey !== '') {
     applicationInsights.defaultClient.trackException({ msg });
   }
   // eslint-disable-next-line no-console
@@ -38,11 +38,7 @@ const trackTrace = (messageInfo, pageName) => {
     msg = messageInfo;
   }
 
-  if (!applicationInsights.defaultClient) {
-    enable();
-  }
-
-  if (iKey !== 'iKey') {
+  if (iKey !== '') {
     applicationInsights.defaultClient.trackTrace({ message: msg, severity: 1 });
   }
 
