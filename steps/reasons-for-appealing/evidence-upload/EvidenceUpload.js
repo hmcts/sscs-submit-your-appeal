@@ -133,7 +133,7 @@ class EvidenceUpload extends AddAnother {
         (req.body['item.uploadEv'] === maxFileSizeExceededError ||
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
-        appInsights.trackTrace(`req body :  ${req.body}`);
+        appInsights.trackTrace(`req body :  ${req.body['item.uploadEv']}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
