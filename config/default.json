@@ -42,7 +42,7 @@
       "enabled": "true"
     },
     "allowAppointee": {
-      "enabled": "false"
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
