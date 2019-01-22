@@ -76,6 +76,7 @@ class EvidenceUpload extends AddAnother {
         'item.size': incoming.bytesExpected
       };
       logger.error('Evidence upload error: you need to choose a file');
+      appInsights.trackTrace('Evidence upload error: you need to choose a file');
     } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
@@ -84,6 +85,7 @@ class EvidenceUpload extends AddAnother {
         'item.totalFileCount': itemsCount + 1
       };
       logger.error('Evidence upload error: the file is too big');
+      appInsights.trackTrace('Evidence upload error: the file is too big');
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
       appInsights.trackTrace('File is not empty and within file size limit');
@@ -131,6 +133,7 @@ class EvidenceUpload extends AddAnother {
         (req.body['item.uploadEv'] === maxFileSizeExceededError ||
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
+        appInsights.trackTrace(`req body :  ${req.body}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
@@ -141,6 +144,7 @@ class EvidenceUpload extends AddAnother {
           'item.link': '',
           'item.size': 0
         };
+        appInsights.trackTrace(`File path: ${files['item.uploadEv'].path}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
