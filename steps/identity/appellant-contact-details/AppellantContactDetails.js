@@ -121,7 +121,7 @@ class AppellantContactDetails extends Question {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
       }).catch(error => {
-        logger.exception(error.message, logPath);
+        logger.exception(error, logPath);
         req.session.invalidPostcode = true;
         next(error);
       });

@@ -18,13 +18,21 @@ module.exports = class Logger {
     }
   }
 
-  static exception(messageInfo, pageName) {
-    const msg = this.msgBuilder(messageInfo, pageName);
+  static exception(error, pageName) {
+    let errorObj = null;
+
+    if (error instanceof Error) {
+      errorObj = error;
+    } else {
+      const msg = this.msgBuilder(error, pageName);
+      errorObj = new Error(msg);
+    }
+
     if (iKey !== '') {
-      applicationInsights.defaultClient.trackException({ msg });
+      applicationInsights.defaultClient.trackException({ exception: errorObj });
     }
     // eslint-disable-next-line no-console
-    console.log(chalk.red(msg));
+    console.log(chalk.red(errorObj));
   }
 
   static info(messageInfo, pageName) {
