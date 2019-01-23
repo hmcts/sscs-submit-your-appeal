@@ -74,15 +74,9 @@ label.form-label[for="signer"] {
   }
 }
 
-#name\.title, #pipNumber {
+#name\.title, #title, #pipNumber {
   &.form-control {
     @extend .form-control-1-8;
-  }
-}
-
-#title {
-  &.form-control {
-    @extend .form-control-1-4;
   }
 }
 
