@@ -4,7 +4,7 @@ const event = require('codeceptjs').event;
 const container = require('codeceptjs').container;
 const exec = require('child_process').exec;
 const config = require('config');
-const appInsights = require('app-insights');
+const logger = require('logger');
 
 const logPath = 'SauceLabs.ReportigHelper.js';
 
@@ -17,7 +17,7 @@ function updateSauceLabsResult(result, sessionId, jobName) {
   const sauceUrl = `https://saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
   // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
-  appInsights.trackTrace(`SauceOnDemandSessionID=${sessionId} job-name=${jobName}`, logPath);
+  logger.info(`SauceOnDemandSessionID=${sessionId} job-name=${jobName}`, logPath);
   return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
 }
 

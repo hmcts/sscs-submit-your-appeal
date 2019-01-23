@@ -6,7 +6,7 @@
 /* eslint-disable object-shorthand */
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
-const appInsights = require('app-insights');
+const logger = require('logger');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
 
@@ -15,7 +15,7 @@ const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 describe('The EvidenceUpload middleware', () => {
   let EvidenceUpload;
   let stubs;
-  let appinsightsExceptionSpy;
+  let loggerExceptionSpy;
   const parser = sinon.stub().yields(null, [], {
     uploadEv: {
       name: 'giacomo'
@@ -56,7 +56,7 @@ describe('The EvidenceUpload middleware', () => {
       }
     };
 
-    appinsightsExceptionSpy = sinon.spy(appInsights, 'trackException');
+    loggerExceptionSpy = sinon.spy(logger, 'exception');
     EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
     EvidenceUpload.makeDir = sinon.stub().callsArg(1);
   });
@@ -66,7 +66,7 @@ describe('The EvidenceUpload middleware', () => {
     unlinker.reset();
     poster.reset();
     renamer.reset();
-    appinsightsExceptionSpy.restore();
+    loggerExceptionSpy.restore();
   });
 
   describe('handlePostResponse', () => {
@@ -316,7 +316,7 @@ describe('The EvidenceUpload middleware', () => {
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.fileMissingError);
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(0);
-        expect(appinsightsExceptionSpy).to.have.been.calledWith('Evidence upload error: you need to choose a file');
+        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: you need to choose a file');
       });
     });
 
@@ -329,7 +329,7 @@ describe('The EvidenceUpload middleware', () => {
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(5242881);
         expect(req.body['item.totalFileCount']).to.equal(1);
-        expect(appinsightsExceptionSpy).to.have.been.calledWith('Evidence upload error: the file is too big');
+        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: the file is too big');
       });
     });
 

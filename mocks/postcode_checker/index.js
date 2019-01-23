@@ -1,6 +1,6 @@
 // this is to simulate the postcode api. It's not part of the main app.
 
-const appInsights = require('app-insights');
+const logger = require('logger');
 
 const logPath = 'index.js';
 const express = require('express');
@@ -13,7 +13,7 @@ const app = express();
 app.set('port', 8080);
 app.get('/regionalcentre/:postcode', (req, res) => {
   const postcode = req.params.postcode;
-  appInsights.trackTrace(`postcode request for ${postcode}`, logPath);
+  logger.info(`postcode request for ${postcode}`, logPath);
 
   const cannedRes = {
     EH8: { status: HttpStatus.OK, body: { regionalCentre: 'Glasgow' } },
@@ -27,7 +27,7 @@ app.get('/regionalcentre/:postcode', (req, res) => {
 });
 
 http.createServer(app).listen(app.get('port'), () => {
-  appInsights.trackTrace(`Express server listening on port ${app.get('port')}`, logPath);
+  logger.info(`Express server listening on port ${app.get('port')}`, logPath);
 });
 
 /* eslint-enable no-magic-numbers */

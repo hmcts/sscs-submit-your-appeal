@@ -10,12 +10,12 @@ describe('CheckYourAppeal.js', () => {
   let fields = null;
 
   const request = {};
-  const appInsightsStub = {};
+  const loggerStub = {};
 
   before(() => {
     CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
       superagent: request,
-      'app-insights': appInsightsStub
+      logger: loggerStub
     });
 
     cya = new CheckYourAppeal({
@@ -54,18 +54,18 @@ describe('CheckYourAppeal.js', () => {
 
   describe('sendToAPI()', () => {
     it('should log a message when successfully making an API call', () => {
-      appInsightsStub.trackTrace = sinon.stub().returns();
+      loggerStub.info = sinon.stub().returns();
       request.post = () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) });
       return cya.sendToAPI().then(() => {
-        expect(appInsightsStub.trackTrace).to.have.been.calledWith('POST api:/appeals status:201');
+        expect(loggerStub.info).to.have.been.calledWith('POST api:/appeals status:201');
       });
     });
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
       request.post = () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) });
-      appInsightsStub.trackException = sinon.spy();
+      loggerStub.exception = sinon.spy();
       return cya.sendToAPI().catch(() => {
-        expect(appInsightsStub.trackException).to.have.been.calledOnce;
+        expect(loggerStub.exception).to.have.been.calledOnce;
       });
     });
   });

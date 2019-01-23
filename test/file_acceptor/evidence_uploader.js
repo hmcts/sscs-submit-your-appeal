@@ -1,4 +1,4 @@
-const appInsights = require('app-insights');
+const logger = require('logger');
 const { bootstrap } = require('../../test/file_acceptor');
 
-bootstrap(() => appInsights.trackTrace('Started file acceptor', __filename));
+bootstrap(() => logger.info('Started file acceptor', __filename));

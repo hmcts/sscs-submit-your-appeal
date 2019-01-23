@@ -1,4 +1,4 @@
-require('app-insights').enable();
+require('logger').startAppInsights();
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');

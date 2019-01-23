@@ -2,7 +2,7 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
-const appInsights = require('app-insights');
+const logger = require('logger');
 
 const logPath = 'AppointeeContactDetails.js';
 const sections = require('steps/check-your-appeal/sections');
@@ -99,7 +99,7 @@ class AppointeeContactDetails extends Question {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
       }).catch(error => {
-        appInsights.trackException(error, logPath);
+        logger.exception(error, logPath);
         req.session.invalidPostcode = true;
         next(error);
       });

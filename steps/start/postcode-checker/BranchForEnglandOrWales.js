@@ -1,6 +1,6 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const appInsights = require('app-insights');
+const logger = require('logger');
 const postcodeChecker = require('utils/postcodeChecker');
 
 const logPath = 'BranchForEnglandWales.js';
@@ -23,7 +23,7 @@ class BranchForEnglandOrWales {
         goTo(this.otherStep)
       ).redirect(req, res);
     }).catch(error => {
-      appInsights.trackTrace(error, logPath);
+      logger.info(error, logPath);
       redirectTo(this.errorStep).redirect(req, res);
     });
   }
