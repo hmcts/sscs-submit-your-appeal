@@ -5,10 +5,15 @@ const { whitelist, firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const titlesList = require('../../../utils/titlesList');
 
 class AppointeeName extends Question {
   static get path() {
     return paths.appointee.enterAppointeeName;
+  }
+
+  get titlesList() {
+    return titlesList;
   }
 
   get form() {
