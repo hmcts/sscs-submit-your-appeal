@@ -20,13 +20,13 @@ module.exports = class Logger {
     }
   }
 
-  static exception(error, pageName, postToAppInsights = true) {
+  static exception(error, label, postToAppInsights = true) {
     let errorObj = null;
 
     if (error instanceof Error) {
       errorObj = error;
     } else {
-      const msg = this.msgBuilder(error, pageName);
+      const msg = this.msgBuilder(error, label);
       errorObj = new Error(msg);
     }
 
@@ -39,8 +39,8 @@ module.exports = class Logger {
     this.console(errorObj, 3);
   }
 
-  static trace(messageInfo, pageName, severity = 1, properties = {}, postToAppInsights = true) {
-    const msg = this.msgBuilder(messageInfo, pageName);
+  static trace(messageInfo, label, severity = 1, properties = {}, postToAppInsights = true) {
+    const msg = this.msgBuilder(messageInfo, label);
 
     // Pass it to appinsights
     if (iKey !== '' && postToAppInsights) {
@@ -58,11 +58,11 @@ module.exports = class Logger {
     }
   }
 
-  static msgBuilder(messageInfo, pageName) {
+  static msgBuilder(messageInfo, label) {
     let msg = '';
 
-    if (pageName) {
-      msg = `[${pageName}] - ${messageInfo}`;
+    if (label) {
+      msg = `[${label}] - ${messageInfo}`;
     } else {
       msg = messageInfo;
     }
