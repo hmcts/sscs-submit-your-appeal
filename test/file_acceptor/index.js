@@ -27,7 +27,7 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    logger.info(`error while receiving the file from the client ${er}`, logPath);
+    logger.trace(`error while receiving the file from the client ${er}`, logPath);
   });
 
   incoming.on('file', (field, file) => {
@@ -41,19 +41,19 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.on('aborted', () => {
-    logger.info('user aborted upload', logPath);
+    logger.trace('user aborted upload', logPath);
   });
 
   incoming.on('end', () => {
-    logger.info('-> upload done', logPath);
+    logger.trace('-> upload done', logPath);
   });
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      logger.info('About to respond with error', logPath);
+      logger.trace('About to respond with error', logPath);
       return res.send(422, 'Cannot save the uploaded file');
     }
-    logger.info('About to respond correctly', logPath);
+    logger.trace('About to respond correctly', logPath);
     return res.json({
       documents: [
         {

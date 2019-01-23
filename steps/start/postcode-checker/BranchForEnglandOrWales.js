@@ -23,7 +23,7 @@ class BranchForEnglandOrWales {
         goTo(this.otherStep)
       ).redirect(req, res);
     }).catch(error => {
-      logger.info(error, logPath);
+      logger.trace(error, logPath);
       redirectTo(this.errorStep).redirect(req, res);
     });
   }

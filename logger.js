@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable no-console */
 
 const applicationInsights = require('applicationinsights');
 const config = require('config');
@@ -18,7 +20,7 @@ module.exports = class Logger {
     }
   }
 
-  static exception(error, pageName) {
+  static exception(error, pageName, postToAppInsights = true) {
     let errorObj = null;
 
     if (error instanceof Error) {
@@ -28,21 +30,32 @@ module.exports = class Logger {
       errorObj = new Error(msg);
     }
 
-    if (iKey !== '') {
+    // Pass it to appinsights
+    if (iKey !== '' && postToAppInsights) {
       applicationInsights.defaultClient.trackException({ exception: errorObj });
     }
-    // eslint-disable-next-line no-console
-    console.log(chalk.red(errorObj));
+
+    // Write Error to Console
+    this.console(errorObj, 3);
   }
 
-  static info(messageInfo, pageName) {
+  static trace(messageInfo, pageName, severity = 1, properties = {}, postToAppInsights = true) {
     const msg = this.msgBuilder(messageInfo, pageName);
-    if (iKey !== '') {
-      applicationInsights.defaultClient.trackTrace({ message: msg, severity: 1 });
+
+    // Pass it to appinsights
+    if (iKey !== '' && postToAppInsights) {
+      applicationInsights.defaultClient.trackTrace({
+        message: msg,
+        severity,
+        properties
+      });
     }
 
-    // eslint-disable-next-line no-console
-    console.log(chalk.yellow(msg));
+    if (this.isObject(properties) && Object.keys(properties) > 0) {
+      this.console(msg, severity, properties);
+    } else {
+      this.console(msg, severity);
+    }
   }
 
   static msgBuilder(messageInfo, pageName) {
@@ -54,5 +67,39 @@ module.exports = class Logger {
       msg = messageInfo;
     }
     return msg;
+  }
+
+  static console(msg, severity, properties = '') {
+    // Verbose = 0,
+    // Information = 1,
+    // Warning = 2,
+    // Error = 3,
+    // Critical = 4,
+
+    // Write to Console
+    switch (severity) {
+    case 0:
+      console.log(chalk.white(msg), properties);
+      break;
+    case 1:
+      console.log(chalk.green(msg), properties);
+      break;
+    case 2:
+      console.log(chalk.yellow(msg), properties);
+      break;
+    case 3:
+      console.log(chalk.red(msg), properties);
+      break;
+    case 4:
+      console.log(chalk.bgRed(msg), properties);
+      break;
+    default:
+      console.log(msg, properties);
+      break;
+    }
+  }
+
+  static isObject(value) {
+    return value && typeof value === 'object' && value.constructor === Object;
   }
 };

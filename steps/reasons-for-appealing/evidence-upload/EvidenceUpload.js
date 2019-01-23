@@ -87,7 +87,7 @@ class EvidenceUpload extends AddAnother {
       logger.exception('Evidence upload error: the file is too big', logPath);
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
-      logger.info('File is not empty and within file size limit', logPath);
+      logger.trace('File is not empty and within file size limit', logPath);
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
         'item.link': '',
@@ -101,7 +101,7 @@ class EvidenceUpload extends AddAnother {
 
     const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
-      logger.info(`Url req : ${req.url}`, logPath);
+      logger.trace(`Url req : ${req.url}`, logPath);
       return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req));
     }
     return next();
@@ -110,7 +110,7 @@ class EvidenceUpload extends AddAnother {
   static handleMakeDir(next, pathToUploadFolder, req) {
     return mkdirError => {
       const logValue = `${pathToUploadFolder}, ${req.originalUrl}`;
-      logger.info(`Makedir:  ${logValue}`, logPath);
+      logger.trace(`Makedir:  ${logValue}`, logPath);
       if (mkdirError) {
         logger.exception(`Makedir error :  ${logValue}`, logPath);
         return next(mkdirError);
@@ -131,7 +131,7 @@ class EvidenceUpload extends AddAnother {
         (req.body['item.uploadEv'] === maxFileSizeExceededError ||
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
-        logger.info(`req body :  ${req.body['item.uploadEv']}`);
+        logger.trace(`req body :  ${req.body['item.uploadEv']}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
@@ -142,7 +142,7 @@ class EvidenceUpload extends AddAnother {
           'item.link': '',
           'item.size': 0
         };
-        logger.info(`File path: ${files['item.uploadEv'].path}`);
+        logger.trace(`File path: ${files['item.uploadEv'].path}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
@@ -183,7 +183,7 @@ class EvidenceUpload extends AddAnother {
   static handlePostResponse(req, size, pathToFile, next) {
     return (forwardingError, resp, body) => {
       if (!forwardingError) {
-        logger.info('No forwarding error, about to save data', logPath);
+        logger.trace('No forwarding error, about to save data', logPath);
         const b = JSON.parse(body);
         req.body = {
           'item.uploadEv': b.documents[0].originalDocumentName,

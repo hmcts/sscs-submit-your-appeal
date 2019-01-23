@@ -13,7 +13,7 @@ const app = express();
 app.set('port', 8080);
 app.get('/regionalcentre/:postcode', (req, res) => {
   const postcode = req.params.postcode;
-  logger.info(`postcode request for ${postcode}`, logPath);
+  logger.trace(`postcode request for ${postcode}`, logPath);
 
   const cannedRes = {
     EH8: { status: HttpStatus.OK, body: { regionalCentre: 'Glasgow' } },
@@ -27,7 +27,7 @@ app.get('/regionalcentre/:postcode', (req, res) => {
 });
 
 http.createServer(app).listen(app.get('port'), () => {
-  logger.info(`Express server listening on port ${app.get('port')}`, logPath);
+  logger.trace(`Express server listening on port ${app.get('port')}`, logPath);
 });
 
 /* eslint-enable no-magic-numbers */

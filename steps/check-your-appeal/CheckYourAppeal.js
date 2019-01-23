@@ -46,7 +46,7 @@ class CheckYourAppeal extends CYA {
   }
 
   sendToAPI() {
-    logger.info(`About to send to api the application with session id 
+    logger.trace(`About to send to api the application with session id 
       ${get(this, 'journey.req.session.id')}
       the NINO is 
       ${get(this, 'journey.values.appellant.nino')}
@@ -54,7 +54,7 @@ class CheckYourAppeal extends CYA {
       ${get(this, 'journey.values.benefitType.code')}`, logPath);
     return request.post(this.journey.settings.apiUrl).send(this.journey.values)
       .then(result => {
-        logger.info(`Successfully submitted application for session id
+        logger.trace(`Successfully submitted application for session id
           ${get(this, 'journey.req.session.id')}
           and nino
           ${get(this, 'journey.values.appellant.nino')}
@@ -62,7 +62,7 @@ class CheckYourAppeal extends CYA {
           ${get(this, 'journey.values.benefitType.code')}
            the status is 
           ${result.status}`, logPath);
-        logger.info(
+        logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
       }).catch(error => {
         const errMsg =

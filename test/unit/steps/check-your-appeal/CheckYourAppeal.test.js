@@ -54,10 +54,10 @@ describe('CheckYourAppeal.js', () => {
 
   describe('sendToAPI()', () => {
     it('should log a message when successfully making an API call', () => {
-      loggerStub.info = sinon.stub().returns();
+      loggerStub.trace = sinon.stub().returns();
       request.post = () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) });
       return cya.sendToAPI().then(() => {
-        expect(loggerStub.info).to.have.been.calledWith('POST api:/appeals status:201');
+        expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
       });
     });
 
