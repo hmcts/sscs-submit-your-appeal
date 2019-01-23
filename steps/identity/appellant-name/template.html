@@ -1,5 +1,5 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "look-and-feel/components/fields.njk" import select, textbox, formSection %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -14,8 +14,11 @@
             <p>{{ subtitle | safe }}</p>
         {% endif %}
 
-
-        {{ textbox(fields.title, content.fields.title.title, hint="") }}
+        {{ select(
+            fields.title,
+            content.fields.title.title,
+            options = titlesList          
+        ) }}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
         {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
 

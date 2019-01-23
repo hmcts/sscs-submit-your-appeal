@@ -18,7 +18,7 @@ let evidenceUpload;
   Some selects are not to be enhanced, the following array and function are
   there to manage the exceptions, read discussion on SSCS-3960 for context
 */
-const nonEhanceableSelects = ['dwpIssuingOffice'];
+const nonEhanceableSelects = ['dwpIssuingOffice', 'title'];
 
 function isNonEhanceableSelect(select) {
   return nonEhanceableSelects.includes(select.id);
