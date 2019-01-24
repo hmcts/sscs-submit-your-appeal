@@ -60,11 +60,18 @@ module.exports = class Logger {
 
   static msgBuilder(messageInfo, label) {
     let msg = '';
+    let msgText = '';
+
+    if (Array.isArray(messageInfo)) {
+      msgText = messageInfo.join(' ');
+    } else {
+      msgText = messageInfo;
+    }
 
     if (label) {
-      msg = `[${label}] - ${messageInfo}`;
+      msg = `[${label}] - ${msgText}`;
     } else {
-      msg = messageInfo;
+      msg = msgText;
     }
     return msg;
   }

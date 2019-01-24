@@ -46,32 +46,41 @@ class CheckYourAppeal extends CYA {
   }
 
   sendToAPI() {
-    logger.trace(`About to send to api the application with session id 
-      ${get(this, 'journey.req.session.id')}
-      the NINO is 
-      ${get(this, 'journey.values.appellant.nino')}
-      the benefit code is
-      ${get(this, 'journey.values.benefitType.code')}`, logPath);
+    logger.trace([
+      'About to send to api the application with session id ',
+      get(this, 'journey.req.session.id'),
+      'the NINO is ',
+      get(this, 'journey.values.appellant.nino'),
+      'the benefit code is',
+      get(this, 'journey.values.benefitType.code')
+    ], logPath);
     return request.post(this.journey.settings.apiUrl).send(this.journey.values)
       .then(result => {
-        logger.trace(`Successfully submitted application for session id
-          ${get(this, 'journey.req.session.id')}
-          and nino
-          ${get(this, 'journey.values.appellant.nino')}
-          the benefit code is
-          ${get(this, 'journey.values.benefitType.code')}
-           the status is 
-          ${result.status}`, logPath);
+        logger.trace([
+          'Successfully submitted application for session id',
+          get(this, 'journey.req.session.id'),
+          'and nino',
+          get(this, 'journey.values.appellant.nino'),
+          'the benefit code is',
+          get(this, 'journey.values.benefitType.code'),
+          'the status is ',
+          result.status
+        ], logPath);
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
       }).catch(error => {
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
-        logger.exception(`
-        Error on submission:  ${get(this, 'journey.req.session.id')} ${errMsg} 
-        the NINO is ${get(this, 'journey.values.appellant.nino')} 
-        the benefit code is ${get(this, 'journey.values.benefitType.code')}`, logPath);
+        logger.exception([
+          'Error on submission:',
+          get(this, 'journey.req.session.id'),
+          errMsg,
+          'the NINO is',
+          get(this, 'journey.values.appellant.nino'),
+          'the benefit code is ',
+          get(this, 'journey.values.benefitType.code')
+        ], logPath);
         return Promise.reject(error);
       });
   }
