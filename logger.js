@@ -21,40 +21,43 @@ module.exports = class Logger {
   }
 
   static exception(error, label, postToAppInsights = true) {
-    let errorObj = null;
-
-    if (error instanceof Error) {
-      errorObj = error;
-    } else {
-      const msg = this.msgBuilder(error, label);
-      errorObj = new Error(msg);
+    try {
+      let errorObj = null;
+      if (error instanceof Error) {
+        errorObj = error;
+      } else {
+        const msg = this.msgBuilder(error, label);
+        errorObj = new Error(msg);
+      }
+      // Pass it to appinsights
+      if (iKey !== '' && postToAppInsights) {
+        applicationInsights.defaultClient.trackException({ exception: errorObj });
+      }
+      // Write Error to Console
+      this.console(errorObj, 3);
+    } catch (catchError) {
+      console.log('Exception Catch Error', catchError);
     }
-
-    // Pass it to appinsights
-    if (iKey !== '' && postToAppInsights) {
-      applicationInsights.defaultClient.trackException({ exception: errorObj });
-    }
-
-    // Write Error to Console
-    this.console(errorObj, 3);
   }
 
   static trace(messageInfo, label, severity = 1, properties = {}, postToAppInsights = true) {
-    const msg = this.msgBuilder(messageInfo, label);
-
-    // Pass it to appinsights
-    if (iKey !== '' && postToAppInsights) {
-      applicationInsights.defaultClient.trackTrace({
-        message: msg,
-        severity,
-        properties
-      });
-    }
-
-    if (this.isObject(properties) && Object.keys(properties) > 0) {
-      this.console(msg, severity, properties);
-    } else {
-      this.console(msg, severity);
+    try {
+      const msg = this.msgBuilder(messageInfo, label);
+      // Pass it to appinsights
+      if (iKey !== '' && postToAppInsights) {
+        applicationInsights.defaultClient.trackTrace({
+          message: msg,
+          severity,
+          properties
+        });
+      }
+      if (this.isObject(properties) && Object.keys(properties) > 0) {
+        this.console(msg, severity, properties);
+      } else {
+        this.console(msg, severity);
+      }
+    } catch (catchError) {
+      console.log('Trace Catch Error', catchError);
     }
   }
 
