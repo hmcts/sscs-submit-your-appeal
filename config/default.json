@@ -1,7 +1,8 @@
 {
   "node": {
     "protocol": "http",
-    "port": 3000
+    "port": 3000,
+    "baseUrl": "BASE_URL"
   },
   "redis": {
     "url": "redis://127.0.0.1:6379",
@@ -57,5 +58,17 @@
     "tunnelId": "reformtunnel",
     "smartWait": "10000",
     "outputDir": "./functional-output/crossbrowser/reports"
+  },
+  "paths": {
+    "authenticated": "PATHS_AUTHENTICATED",
+    "index": "PATHS_AUTHENTICATED"
+  },
+  "services": {
+    "idam": {
+      "apiUrl": "http://localhost:8001",
+      "secret": "123456",
+      "loginUrl": "http://localhost:3000/idam-mock-login",
+      "clientId": "sya"
+    }  
   }
 }
