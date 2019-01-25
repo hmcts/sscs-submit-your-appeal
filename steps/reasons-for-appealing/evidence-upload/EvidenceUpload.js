@@ -69,6 +69,8 @@ class EvidenceUpload extends AddAnother {
     const items = get(req, 'session.EvidenceUpload.items');
     const itemsCount = (items && items.length) ? items.length : 0;
 
+    appInsights.trackTrace(`Total files to upload: ${itemsCount} and total files size: ${incoming.bytesExpected}`);
+
     if (incoming.bytesExpected === null ||
       incoming.bytesExpected <= emptyRequestSize) {
       req.body = {
@@ -127,6 +129,7 @@ class EvidenceUpload extends AddAnother {
 
   static handleIcomingParse(req, next, pathToUploadFolder) {
     return (uploadingError, fields, files) => {
+      appInsights.trackTrace(`req body :  ${req.body['item.uploadEv']}`);
       if (req.body && req.body['item.uploadEv'] &&
         (req.body['item.uploadEv'] === maxFileSizeExceededError ||
           req.body['item.uploadEv'] === fileMissingError ||
@@ -147,6 +150,7 @@ class EvidenceUpload extends AddAnother {
       }
 
       if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+        appInsights.trackTrace(`File size: ${files['item.uploadEv'].size}`);
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
