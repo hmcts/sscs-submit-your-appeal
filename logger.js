@@ -5,9 +5,13 @@ const applicationInsights = require('applicationinsights');
 const config = require('config');
 const chalk = require('chalk');
 
-const iKey = config.get('appInsights.instrumentationKey');
+let iKey = config.get('appInsights.instrumentationKey');
 
 module.exports = class Logger {
+  static setIkey(iKeyVal) {
+    iKey = iKeyVal;
+  }
+
   static startAppInsights() {
     if (iKey !== '') {
       applicationInsights.setup(iKey).setAutoCollectConsole(true, true);
@@ -110,6 +114,6 @@ module.exports = class Logger {
   }
 
   static isObject(value) {
-    return value && typeof value === 'object' && value.constructor === Object;
+    return value !== null && value && typeof value === 'object' && value.constructor === Object;
   }
 };
