@@ -1,5 +1,6 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { RestoreFromDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const idam = require('middleware/idam');
 const paths = require('paths');
 
 class Entry extends RestoreFromDraftStore {
@@ -9,6 +10,10 @@ class Entry extends RestoreFromDraftStore {
 
   next() {
     return goTo(this.journey.steps.BenefitType);
+  }
+
+  get middleware() {
+    return [...super.middleware, idam.authenticate];
   }
 }
 

@@ -99,6 +99,11 @@ module.exports = {
     theHearing: '/the-hearing'
   },
 
+  idam: {
+    mockIdamLogin: '/idam-mock-login',
+    authenticated: '/authenticated'
+  },
+
   checkYourAppeal: '/check-your-appeal',
 
   confirmation: '/confirmation'

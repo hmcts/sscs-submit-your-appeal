@@ -1,7 +1,8 @@
 {
   "node": {
     "protocol": "HTTP_PROTOCOL",
-    "port": "PORT"
+    "port": "PORT",
+    "baseUrl": "BASE_URL"
   },
   "redis": {
     "url": "REDIS_URL",
@@ -48,5 +49,17 @@
     "url": "POSTCODE_CHECKER_URL",
     "enabled": "POSTCODE_CHECKER_ENABLED",
     "allowedRpcs": "POSTCODE_CHECKER_ALLOWED_RPCS"
+  },
+  "paths": {
+    "authenticated": "PATHS_AUTHENTICATED",
+    "index": "PATHS_AUTHENTICATED"
+  },
+  "services": {
+    "idam": {
+      "apiUrl": "SERVICES_IDAM_API_URL",
+      "secret": "SERVICES_IDAM_SECRET",
+      "loginUrl": "SERVICES_IDAM_LOGIN_URL",
+      "clientId": "SERVICES_IDAM_CLIENTID"
+    }  
   }
 }
