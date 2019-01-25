@@ -47,22 +47,22 @@ describe('logger.js', () => {
     expect(applicationInsightsStartSpy).to.have.been.calledOnce;
   });
 
-  it('exception should call app exception tracking', () => {
+  it('exception should call  exception tracking', () => {
     logger.exception('Error happened here', 'test.js');
     expect(consoleSpy).to.have.been.calledWith(sinon.match.any, 3);
   });
 
-  it('trace should return an function', () => {
+  it('trace should be called with proper args', () => {
     logger.trace('Info was sent', 'test.js');
     expect(consoleSpy).to.have.been.calledWith('[test.js] - Info was sent');
   });
 
-  it('msgBuilder should return an function', () => {
+  it('msgBuilder should be return expected msg text', () => {
     const result = logger.msgBuilder('builder', 'test.js');
     expect(result).to.equal('[test.js] - builder');
   });
 
-  it('console should return an function', () => {
+  it('console should return expected text in color', () => {
     const testProps = { test: '' };
     logger.console('console logging', 0, testProps);
     expect(nativeConsoleSpy).to.have.been.calledWith(chalk.white('console logging'), testProps);
@@ -83,7 +83,7 @@ describe('logger.js', () => {
     expect(nativeConsoleSpy).to.have.been.calledWith('console logging', '');
   });
 
-  it('isObject', () => {
+  it('isObject should validate correctly', () => {
     let isObject = logger.isObject({});
     expect(isObject).to.be.equal(true);
 
