@@ -6,31 +6,26 @@ const chalk = require('chalk');
 
 describe('logger.js', () => {
   let applicationInsightsStartSpy = null;
-  let startAppInsightsSpy = null;
-  let exceptionSpy = null;
-  let traceSpy = null;
-  let msgBuilderSpy = null;
+  let applicationInsightsExceptionSpy = null;
+  let applicationInsightsTraceSpy = null;
   let consoleSpy = null;
   let nativeConsoleSpy = null;
+  let sandBox = null;
 
   beforeEach(() => {
-    applicationInsightsStartSpy = sinon.spy(applicationInsights, 'start');
-    startAppInsightsSpy = sinon.spy(logger, 'startAppInsights');
-    exceptionSpy = sinon.spy(logger, 'exception');
-    traceSpy = sinon.spy(logger, 'trace');
-    msgBuilderSpy = sinon.spy(logger, 'msgBuilder');
-    consoleSpy = sinon.spy(logger, 'console');
-    nativeConsoleSpy = sinon.spy(console, 'log');
+    logger.setIkey('test-key');
+    logger.startAppInsights();
+    sandBox = sinon.sandbox.create();
+    nativeConsoleSpy = sandBox.stub(console, 'log');
+    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start');
+    applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,
+      'trackException');
+    applicationInsightsTraceSpy = sandBox.stub(applicationInsights.defaultClient, 'trackTrace');
+    consoleSpy = sandBox.spy(logger, 'console');
   });
 
   afterEach(() => {
-    applicationInsightsStartSpy.restore();
-    startAppInsightsSpy.restore();
-    exceptionSpy.restore();
-    traceSpy.restore();
-    msgBuilderSpy.restore();
-    consoleSpy.restore();
-    nativeConsoleSpy.restore();
+    sandBox.restore();
   });
 
   it('startAppInsights should be not called', () => {
@@ -39,23 +34,62 @@ describe('logger.js', () => {
     expect(applicationInsightsStartSpy).to.have.not.been.calledOnce;
   });
 
-
   it('startAppInsights should be called', () => {
     logger.setIkey('test-key');
     logger.startAppInsights();
-
     expect(applicationInsightsStartSpy).to.have.been.calledOnce;
   });
 
   it('exception should call  exception tracking', () => {
-    logger.exception('Error happened here', 'test.js');
-    expect(consoleSpy).to.have.been.calledWith(sinon.match.any, 3);
+    const error = 'Error happened here';
+    const label = 'test.js';
+
+    logger.exception(error, label);
+
+    const msgBuild = logger.msgBuilder(error, label);
+    const errorObj = new Error(msgBuild);
+
+    expect(applicationInsightsExceptionSpy).to.have.been
+      .calledWith(sinon.match({ exception: errorObj }));
+
+    expect(consoleSpy).to.have.been.calledWith(sinon.match(errorObj), 3);
   });
 
-  it('trace should be called with proper args', () => {
-    logger.trace('Info was sent', 'test.js');
-    expect(consoleSpy).to.have.been.calledWith('[test.js] - Info was sent');
+
+  it('exception should not call  appinsight tracking', () => {
+    const error = 'Error happened here';
+    const label = 'test.js';
+
+    logger.exception(error, label, false);
+
+    expect(applicationInsightsExceptionSpy).to.not.have.been.calledOnce;
+    expect(consoleSpy).to.have.been.calledOnce;
   });
+
+
+  it('trace should be called with proper args', () => {
+    const error = 'Trace happened here';
+    const label = 'test.js';
+
+    logger.trace(error, label);
+
+    const msgBuild = logger.msgBuilder(error, label);
+
+    expect(applicationInsightsTraceSpy).to.have.been.calledOnce;
+
+    expect(consoleSpy).to.have.been.calledWith(msgBuild, 1);
+  });
+
+  it('trace should not calling appinsight', () => {
+    const error = 'Trace happened here';
+    const label = 'test.js';
+
+    logger.trace(error, label, 1, {}, false);
+
+    expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
+    expect(consoleSpy).to.have.been.calledOnce;
+  });
+
 
   it('msgBuilder should be return expected msg text', () => {
     const result = logger.msgBuilder('builder', 'test.js');
