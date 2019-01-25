@@ -1,8 +1,9 @@
-const { Logger } = require('@hmcts/nodejs-logging');
+const logger = require('logger');
 const app = require('app.js');
 const config = require('config');
 
-const logger = Logger.getLogger('server.js');
-
 app.listen(config.node.port);
-logger.info(`SYA server listening on port: ${config.node.port}`);
+
+const logPath = 'server.js';
+
+logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
