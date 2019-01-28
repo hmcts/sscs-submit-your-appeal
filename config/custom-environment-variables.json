@@ -56,7 +56,7 @@
   },
   "services": {
     "idam": {
-      "apiUrl": "SERVICES_IDAM_APIURL",
+      "apiUrl": "SERVICES_IDAM_API_URL",
       "secret": "SERVICES_IDAM_SECRET",
       "loginUrl": "SERVICES_IDAM_LOGINURL",
       "clientId": "SERVICES_IDAM_CLIENTID"
