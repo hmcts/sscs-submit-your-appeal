@@ -25,6 +25,8 @@ const test = promisify(pa11yTest.run, pa11yTest);
 
 const excludeSteps = [
   '/sessions',
+  '/entry',
+  '/authenticated',
   '/internal-server-error',
   '/enter-appellant-contact-details',
   '/appointee-contact-details'
