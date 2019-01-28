@@ -79,7 +79,7 @@ variable "idam_api_url" {
   default = "http://localhost:8001"
 }
 
-variable "idam_api_login_url" {
+variable "idam_login_url" {
   description = "idam api login url"
   type = "string"
   default = "http://localhost:3000/idam-mock-login"
