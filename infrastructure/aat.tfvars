@@ -7,4 +7,5 @@ postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,car
 sya_hostname  = "benefit-appeal.nonprod.platform.hmcts.net"
 
 idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
+idam_api_login_url = "https://idam.preprod.ccidam.reform.hmcts.net/login"
 

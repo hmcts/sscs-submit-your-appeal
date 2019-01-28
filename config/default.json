@@ -68,7 +68,7 @@
       "apiUrl": "http://localhost:8001",
       "secret": "123456",
       "loginUrl": "http://localhost:3000/idam-mock-login",
-      "clientId": "sya"
+      "clientId": "sscs"
     }  
   }
 }

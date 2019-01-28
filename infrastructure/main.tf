@@ -62,6 +62,7 @@ module "submit-your-appeal-frontend" {
     WEBSITE_DYNAMIC_CACHE         = 0
 
     SERVICES_IDAM_API_URL         = "${var.idam_api_url}"
+    SERVICES_IDAM_LOGIN_URL       = "${var.idam_api_login_url}"
 
     // Testing availability of variables in production, related to the asset outage
     TEST_VAR = "TEST"
