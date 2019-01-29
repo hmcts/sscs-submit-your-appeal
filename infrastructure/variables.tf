@@ -73,15 +73,3 @@ variable "appinsights_instrumentation_key" {
   default     = ""
 }
 
-variable "idam_api_url" {
-  description = "Idam api url"
-  type = "string"
-  default = "http://localhost:8001"
-}
-
-variable "idam_login_url" {
-  description = "idam api login url"
-  type = "string"
-  default = "http://localhost:3000/idam-mock-login"
-}
-
