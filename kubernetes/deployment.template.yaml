@@ -37,6 +37,12 @@ spec:
           value: "true"
         - name: POSTCODE_CHECKER_ALLOWED_RPCS
           value: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+        - name: SERVICES_IDAM_API_URL
+          value: "https://preprod-idamapi.reform.hmcts.net:3511"
+        - name: SERVICES_IDAM_LOGIN_URL
+          value: "https://idam.preprod.ccidam.reform.hmcts.net/login"
+        - name: SERVICES_IDAM_SECRET
+          value: ${IDAM_OAUTH2_CLIENT_SECRET}
         ports:
           - containerPort: 3000
 
