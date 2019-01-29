@@ -9,6 +9,19 @@ properties(
 def product = "sscs"
 def component = "tribunals-frontend"
 
+List<LinkedHashMap<String, Object>> secrets = [
+  secret('idam_oauth2_client_secret', 'IDAM_OAUTH2_CLIENT_SECRET')
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
 withPipeline("nodejs", product, component) {
     enableDockerBuild()
     enableDeployToAKS()
