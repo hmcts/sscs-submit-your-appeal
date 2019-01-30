@@ -2,7 +2,9 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
-const { Logger } = require('@hmcts/nodejs-logging');
+const logger = require('logger');
+
+const logPath = 'AppointeeContactDetails.js';
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -12,7 +14,7 @@ const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
-const logger = Logger.getLogger('AppointeeContactDetails.js');
+
 
 const customJoi = Joi.extend(joi => {
   return {
@@ -97,7 +99,7 @@ class AppointeeContactDetails extends Question {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
       }).catch(error => {
-        logger.error(error);
+        logger.exception(error, logPath);
         req.session.invalidPostcode = true;
         next(error);
       });

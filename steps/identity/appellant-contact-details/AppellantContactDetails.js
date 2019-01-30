@@ -3,7 +3,9 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { get } = require('lodash');
 const { postCode, whitelist, phoneNumber } = require('utils/regex');
-const { Logger } = require('@hmcts/nodejs-logging');
+const logger = require('logger');
+
+const logPath = 'AppellantContactDetails.js';
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -13,7 +15,6 @@ const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
-const logger = Logger.getLogger('AppellantContactDetails.js');
 
 const customJoi = Joi.extend(joi => {
   return {
@@ -120,7 +121,7 @@ class AppellantContactDetails extends Question {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
         next();
       }).catch(error => {
-        logger.error(error);
+        logger.exception(error, logPath);
         req.session.invalidPostcode = true;
         next(error);
       });

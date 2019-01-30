@@ -1,10 +1,9 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { Logger } = require('@hmcts/nodejs-logging');
+const logger = require('logger');
 const postcodeChecker = require('utils/postcodeChecker');
 
-const logger = Logger.getLogger('PostcodeChecker.js');
-
+const logPath = 'BranchForEnglandWales.js';
 class BranchForEnglandOrWales {
   constructor(postcode, englandOrWalesStep, otherStep, errorStep) {
     this.postcode = postcode;
@@ -24,7 +23,7 @@ class BranchForEnglandOrWales {
         goTo(this.otherStep)
       ).redirect(req, res);
     }).catch(error => {
-      logger.error(error);
+      logger.trace(error, logPath);
       redirectTo(this.errorStep).redirect(req, res);
     });
   }

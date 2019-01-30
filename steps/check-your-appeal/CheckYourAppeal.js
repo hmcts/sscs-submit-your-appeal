@@ -5,11 +5,12 @@ const {
 
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
-const { Logger } = require('@hmcts/nodejs-logging');
 const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
-const appInsights = require('app-insights');
+const logger = require('logger');
+
+const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const paths = require('paths');
@@ -21,7 +22,6 @@ const csrfProtection = csurf({ cookie: false });
 class CheckYourAppeal extends CYA {
   constructor(...args) {
     super(...args);
-    this.logger = Logger.getLogger('CheckYourAppeal.js');
     this.sendToAPI = this.sendToAPI.bind(this);
   }
 
@@ -46,36 +46,41 @@ class CheckYourAppeal extends CYA {
   }
 
   sendToAPI() {
-    this.logger.info('About to send to api the application with session id ',
+    logger.trace([
+      'About to send to api the application with session id ',
       get(this, 'journey.req.session.id'),
-      ' the NINO is ',
+      'the NINO is ',
       get(this, 'journey.values.appellant.nino'),
-      ' the benefit code is ',
+      'the benefit code is',
       get(this, 'journey.values.benefitType.code')
-    );
+    ], logPath);
     return request.post(this.journey.settings.apiUrl).send(this.journey.values)
       .then(result => {
-        this.logger.info('Successfully submitted application for session id ',
+        logger.trace([
+          'Successfully submitted application for session id',
           get(this, 'journey.req.session.id'),
-          ' and nino ',
+          'and nino',
           get(this, 'journey.values.appellant.nino'),
-          ' the benefit code is ',
+          'the benefit code is',
           get(this, 'journey.values.benefitType.code'),
-          ' the status is ',
+          'the status is ',
           result.status
-        );
-        this.logger.info(`POST api:${this.journey.settings.apiUrl} status:${result.status}`);
+        ], logPath);
+        logger.trace(
+          `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
       }).catch(error => {
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
-        appInsights.trackException(errMsg);
-        this.logger.error(errMsg);
-        this.logger.error('Error on submission: ',
+
+        logger.exception([
+          'Error on submission:',
           get(this, 'journey.req.session.id'),
-          errMsg, ' the NINO is ',
+          errMsg,
+          'the NINO is',
           get(this, 'journey.values.appellant.nino'),
-          ' the benefit code is ',
-          get(this, 'journey.values.benefitType.code'));
+          'the benefit code is ',
+          get(this, 'journey.values.benefitType.code')
+        ], logPath);
         return Promise.reject(error);
       });
   }

@@ -6,6 +6,7 @@
 /* eslint-disable object-shorthand */
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
+const logger = require('logger');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
 
@@ -14,6 +15,7 @@ const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 describe('The EvidenceUpload middleware', () => {
   let EvidenceUpload;
   let stubs;
+  let loggerExceptionSpy;
   const parser = sinon.stub().yields(null, [], {
     uploadEv: {
       name: 'giacomo'
@@ -49,14 +51,12 @@ describe('The EvidenceUpload middleware', () => {
         createReadStream: () => {},
         rename: renamer
       },
-      appInsights: {
-        trackException: p => p,
-        trackTrace: p => p
-      },
       path: {
         resolve: () => 'a string'
       }
     };
+
+    loggerExceptionSpy = sinon.spy(logger, 'exception');
     EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
     EvidenceUpload.makeDir = sinon.stub().callsArg(1);
   });
@@ -66,14 +66,12 @@ describe('The EvidenceUpload middleware', () => {
     unlinker.reset();
     poster.reset();
     renamer.reset();
+    loggerExceptionSpy.restore();
   });
 
   describe('handlePostResponse', () => {
     describe('when there isn\'t a forwarding error', () => {
       it('should call fs.unlink', () => {
-        const logger = {
-          info: sinon.mock()
-        };
         const req = {};
 
         const size = 42;
@@ -81,7 +79,7 @@ describe('The EvidenceUpload middleware', () => {
         const next = sinon.mock();
         const body = '{"documents":[{"originalDocumentName":"__originalDocumentName__","_links":{"self":{"href":"__href__"}}}]}';
 
-        const handlePostResponse = EvidenceUpload.handlePostResponse(logger, req, size, pathToFile, next);
+        const handlePostResponse = EvidenceUpload.handlePostResponse(req, size, pathToFile, next);
 
         handlePostResponse(undefined, undefined, body);
         expect(unlinker).to.have.been.called;
@@ -105,11 +103,7 @@ describe('The EvidenceUpload middleware', () => {
         const req = {
           originalUrl: 'originalUrl'
         };
-        const logger = {
-          error: sinon.stub(),
-          info: sinon.stub()
-        };
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger);
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req);
         handleMakeDir('error');
         expect(next).to.have.been.calledWith('error');
       });
@@ -122,11 +116,7 @@ describe('The EvidenceUpload middleware', () => {
         const req = {
           originalUrl: 'originalUrl'
         };
-        const logger = {
-          error: sinon.stub(),
-          info: sinon.stub()
-        };
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req, logger);
+        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req);
         handleMakeDir();
         expect(EvidenceUpload.handleIcomingParse).to.have.been.called;
       });
@@ -321,27 +311,25 @@ describe('The EvidenceUpload middleware', () => {
     describe('when receiving a zero byte upload', () => {
       const req = {};
       const incoming = { bytesExpected: 0 };
-      const logger = { error: sinon.stub() };
       it('should error accordingly', () => {
-        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        EvidenceUpload.handleFileBegin(req, incoming);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.fileMissingError);
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(0);
-        expect(logger.error).to.have.been.calledWith('Evidence upload error: you need to choose a file');
+        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: you need to choose a file');
       });
     });
 
     describe('when receiving a file that is too big', () => {
       const req = {};
       const incoming = { bytesExpected: 5242881 };
-      const logger = { error: sinon.stub() };
       it('should error accordingly', () => {
-        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        EvidenceUpload.handleFileBegin(req, incoming);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.maxFileSizeExceededError);
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(5242881);
         expect(req.body['item.totalFileCount']).to.equal(1);
-        expect(logger.error).to.have.been.calledWith('Evidence upload error: the file is too big');
+        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: the file is too big');
       });
     });
 
@@ -357,12 +345,8 @@ describe('The EvidenceUpload middleware', () => {
         }
       } };
       const incoming = { bytesExpected: 1048577 };
-      const logger = {
-        error: sinon.stub(),
-        info: sinon.stub()
-      };
       it('should error accordingly', () => {
-        EvidenceUpload.handleFileBegin(req, incoming, logger);
+        EvidenceUpload.handleFileBegin(req, incoming);
         expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.totalFileSizeExceededError);
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(1048577);
