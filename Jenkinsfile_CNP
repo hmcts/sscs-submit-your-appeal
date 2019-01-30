@@ -26,6 +26,8 @@ withPipeline("nodejs", product, component) {
     enableDockerBuild()
     enableDeployToAKS()
     before('securitychecks') {sh 'yarn test:audit'}
+    loadVaultSecrets(secrets)
+    setVaultName('sscs')
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
