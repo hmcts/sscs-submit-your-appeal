@@ -65,6 +65,9 @@
     </div>
 {% endblock %}
 
+{% block saveAndClose %}{% include "./includes/save_and_close.html" %}{% endblock %}
+
+
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
 {%- endblock %}

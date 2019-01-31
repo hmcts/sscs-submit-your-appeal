@@ -8,8 +8,17 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
+const requestHandler = require('middleware/services/parseRequest');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
+
+const {
+  restoreFromDraftStore,
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStoreAndReply
+} = require('middleware/draftPetitionStoreMiddleware');
+
 
 class BenefitType extends Question {
   static get path() {
@@ -50,6 +59,26 @@ class BenefitType extends Question {
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
       redirectTo(this.journey.steps.AppealFormDownload)
     );
+  }
+
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      restoreFromDraftStore,
+      saveSessionToDraftStoreAndClose
+    ];
+  }
+
+  get postMiddleware() {
+    return [
+      ...super.middleware,
+      saveSessionToDraftStore,
+      saveSessionToDraftStoreAndReply
+    ];
   }
 }
 

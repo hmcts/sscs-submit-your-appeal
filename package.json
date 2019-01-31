@@ -63,7 +63,8 @@
     "nunjucks-loader": "^3.0.0",
     "request": "^2.87.0",
     "superagent": "^3.8.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "xss-filters": "^1.2.7"
   },
   "devDependencies": {
     "@hmcts/eslint-config": "^1.4.0",
