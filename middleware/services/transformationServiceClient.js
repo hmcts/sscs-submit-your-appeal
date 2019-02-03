@@ -51,6 +51,8 @@ const removeFromDraftStore = (options = {}, userToken = '') => {
 };
 
 const saveToDraftStore = (options = {}, userToken = '', body = {}, sendEmail = false) => {
+  // eslint-disable-next-line
+  console.log('=== saveToDraftStore');
   let uri = `${options.draftBaseUrl}`;
 
   if (sendEmail && body.petitionerEmail) {

@@ -15,7 +15,11 @@ const idamArgs = {
 };
 
 let middleware = idamExpressMiddleware;
+// eslint-disable-next-line
+console.log(`=== NODE_ENV ${process.env.NODE_ENV}`);
 if (['development'].includes(process.env.NODE_ENV)) {
+  // eslint-disable-next-line
+  console.log('=== development');
   middleware = idamExpressMiddlewareMock;
 }
 
