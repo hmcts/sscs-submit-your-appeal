@@ -15,16 +15,13 @@ data "azurerm_key_vault_secret" "hpkp-sya-sha-2" {
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
-  previewVaultName = "${var.raw_product}-aat"
-  nonPreviewVaultName = "${var.raw_product}-${var.env}"
-  vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
+  vaultName = "${var.raw_product}-${var.env}"
 
-  localApiUrl = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
-  ApiUrl      = "${var.env == "preview" ? "http://sscs-tribunals-api-aat.service.core-compute-aat.internal" : local.localApiUrl}"
+  ApiUrl      = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
 
   shared_app_service_plan     = "${var.product}-${var.env}"
   non_shared_app_service_plan = "${var.product}-${var.component}-${var.env}"
-  app_service_plan            = "${(var.env == "saat" || var.env == "sandbox") ?  local.shared_app_service_plan : local.non_shared_app_service_plan}"
+  app_service_plan            = "${(var.env == "saat" || var.env == "sandbox") ? local.shared_app_service_plan : local.non_shared_app_service_plan}"
 
 }
 
@@ -34,9 +31,9 @@ module "submit-your-appeal-frontend" {
   location             = "${var.location}"
   env                  = "${var.env}"
   ilbIp                = "${var.ilbIp}"
-  is_frontend          = "${var.env != "preview" ? 1: 0}"
+  is_frontend          = 1
   subscription         = "${var.subscription}"
-  additional_host_name = "${var.env != "preview" ? var.sya_hostname : "null"}"
+  additional_host_name = "${var.sya_hostname}"
   https_only           = "${var.https_only_flag}"
   common_tags          = "${var.common_tags}"
   asp_rg               = "${local.app_service_plan}"
@@ -49,7 +46,7 @@ module "submit-your-appeal-frontend" {
     REDIS_URL                     = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     SESSION_SECRET                = "${module.redis-cache.access_key}"
     NODE_ENV                      = "${var.node_environment}"
-    HTTP_PROTOCOL                 = "${var.env != "preview" ? "https" : "http"}"
+    HTTP_PROTOCOL                 = "https"
     WEBSITE_NODE_DEFAULT_VERSION  = "8.9.4"
     HPKP_SHA256                   = "${data.azurerm_key_vault_secret.hpkp-sya-sha-1.value}"
     HPKP_SHA256_BACKUP            = "${data.azurerm_key_vault_secret.hpkp-sya-sha-2.value}"
@@ -58,7 +55,7 @@ module "submit-your-appeal-frontend" {
     POSTCODE_CHECKER_URL          = "${local.ApiUrl}/regionalcentre"
     POSTCODE_CHECKER_ENABLED      = "${var.postcode_checker_enabled}"
     POSTCODE_CHECKER_ALLOWED_RPCS = "${var.postcode_checker_allowed_rpcs}"
-    
+
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
     WEBSITE_LOCAL_CACHE_SIZEINMB  = 0
