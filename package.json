@@ -32,7 +32,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "1.19.1",
+    "@hmcts/look-and-feel": "2.0.2",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "5.0.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
