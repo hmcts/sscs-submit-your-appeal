@@ -71,21 +71,15 @@ const restoreFromDraftStore = (req, res, next) => {
   // set flag so we do not attempt to restore from draft store again
   req.session.fetchedDraft = true;
 
-  fetch('http://localhost:3003/appeal')
+  return fetch('http://localhost:3003/appeal')
     .then(response => response.json())
-    .then(responseBody => {
-      // eslint-disable-next-line
-      console.log('==============');
-      // eslint-disable-next-line
-      console.log(responseBody);
-      // eslint-disable-next-line
-      console.log('==============');
-    });
-
-
-  // attempt to restore session from draft petition store
-  return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {
+      // eslint-disable-next-line
+      console.log('==============');
+      // eslint-disable-next-line
+      console.log(restoredSession);
+      // eslint-disable-next-line
+      console.log('==============');
       if (restoredSession && !isEmpty(restoredSession)) {
         Object.assign(req.session,
           removeBlackListedPropertiesFromSession(restoredSession));
@@ -93,13 +87,26 @@ const restoreFromDraftStore = (req, res, next) => {
       } else {
         next();
       }
-    })
-    .catch(error => {
-      if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
-      }
-      next();
     });
+
+
+  // attempt to restore session from draft petition store
+  // return client.restoreFromDraftStore(authToken, mockResponse)
+  //   .then(restoredSession => {
+  //     if (restoredSession && !isEmpty(restoredSession)) {
+  //       Object.assign(req.session,
+  //         removeBlackListedPropertiesFromSession(restoredSession));
+  //       redirectToCheckYourAnswers(req, res, next);
+  //     } else {
+  //       next();
+  //     }
+  //   })
+  //   .catch(error => {
+  //     if (error.statusCode !== httpStatus.NOT_FOUND) {
+  //       logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
+  //     }
+  //     next();
+  //   });
 };
 
 const removeFromDraftStore = (req, res, next) => {
@@ -207,36 +214,36 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
     const sessionToSave = removeBlackListedPropertiesFromSession(session);
 
     // Get user token.
-    let authToken = '';
-    if (req.cookies && req.cookies[authTokenString]) {
-      authToken = req.cookies[authTokenString];
-    }
+    // let authToken = '';
+    // if (req.cookies && req.cookies[authTokenString]) {
+    //   authToken = req.cookies[authTokenString];
+    // }
 
-    const sendEmail = true;
+    // const sendEmail = true;
 
-    const responseBody = { answer: `${new Date()}` };
+    // const responseBody = { answer: `${new Date()}` };
 
     fetch('http://localhost:3003/appeal', {
       method: 'post',
-      body: JSON.stringify(responseBody),
+      body: JSON.stringify(sessionToSave),
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => response.json())
       .then(json => console.log(json)); // eslint-disable-line
 
-    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
-      .then(() => {
-        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
-      })
-      .catch(error => {
-        logger.errorWithReq(
-          req,
-          'save_draft_and_close_error',
-          'Error restoring draft',
-          error.message
-        );
-        res.redirect('/generic-error');
-      });
+    // client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+    //   .then(() => {
+    //     res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+    //   })
+    //   .catch(error => {
+    //     logger.errorWithReq(
+    //       req,
+    //       'save_draft_and_close_error',
+    //       'Error restoring draft',
+    //       error.message
+    //     );
+    //     res.redirect('/generic-error');
+    //   });
   } else {
     next();
   }

@@ -10,6 +10,15 @@ const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForE
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
+const requestHandler = require('middleware/services/parseRequest');
+
+const {
+  restoreFromDraftStore,
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStoreAndReply
+} = require('middleware/draftPetitionStoreMiddleware');
+
 class PostcodeChecker extends Question {
   static get path() {
     return paths.start.postcodeCheck;
@@ -51,6 +60,25 @@ class PostcodeChecker extends Question {
       goTo(this.journey.steps.Independence).if(isPostcodeOnList),
       goTo(this.journey.steps.InvalidPostcode)
     );
+  }
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      restoreFromDraftStore,
+      saveSessionToDraftStoreAndClose
+    ];
+  }
+
+  get postMiddleware() {
+    return [
+      ...super.middleware,
+      saveSessionToDraftStore,
+      saveSessionToDraftStoreAndReply
+    ];
   }
 }
 

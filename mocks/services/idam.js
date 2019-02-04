@@ -10,7 +10,7 @@ const divIdamExpressMiddleware = {
     // eslint-disable-next-line
     console.log('=== authenticate');
     const cookies = new Cookies(req, res);
-    const userDetails = cookies.get('mockIdamUserDetails');
+    const userDetails = cookies.get('mockIdamUserDetailss');
     if (userDetails) {
       req.idam = { userDetails: JSON.parse(userDetails) };
       next();
@@ -44,7 +44,7 @@ const divIdamExpressMiddleware = {
 
   protect: idamArgs => (req, res, next) => {
     const cookies = new Cookies(req, res);
-    const userDetails = cookies.get('mockIdamUserDetails');
+    const userDetails = cookies.get('mockIdamUserDetailss');
     if (userDetails) {
       req.idam = { userDetails: JSON.parse(userDetails) };
       next();
@@ -55,9 +55,9 @@ const divIdamExpressMiddleware = {
 
   logout: () => (req, res, next) => {
     const cookies = new Cookies(req, res);
-    const userDetails = cookies.get('mockIdamUserDetails');
+    const userDetails = cookies.get('mockIdamUserDetailss');
     if (userDetails) {
-      res.clearCookie('mockIdamUserDetails');
+      res.clearCookie('mockIdamUserDetailss');
     }
     delete req.idam;
     next();
@@ -65,7 +65,7 @@ const divIdamExpressMiddleware = {
 
   userDetails: () => (req, res, next) => {
     const cookies = new Cookies(req, res);
-    const userDetails = cookies.get('mockIdamUserDetails');
+    const userDetails = cookies.get('mockIdamUserDetailss');
     if (userDetails) {
       req.idam = { userDetails: JSON.parse(userDetails) };
     }
