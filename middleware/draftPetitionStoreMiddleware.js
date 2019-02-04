@@ -20,10 +20,6 @@ const blacklistedProperties = [
   'csrfSecret'
 ];
 
-// const options = {
-//   draftBaseUrl: CONF.services.transformation.draftBaseUrl,
-//   baseUrl: CONF.services.transformation.baseUrl
-// };
 const options = {
   draftBaseUrl: '',
   baseUrl: ''
@@ -61,7 +57,6 @@ const restoreFromDraftStore = (req, res, next) => {
   }
 
   // test to see if we have already restored draft store
-  // const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
   const mockResponse = req.cookies.mockRestoreSession === 'true';
   const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
 
@@ -70,18 +65,11 @@ const restoreFromDraftStore = (req, res, next) => {
   }
 
   // set flag so we do not attempt to restore from draft store again
-  // req.session.fetchedDraft = true;
   hadFetchedFromDraftStore = true;
 
   return fetch('http://localhost:3003/appeal')
     .then(response => response.json())
     .then(restoredSession => {
-      // eslint-disable-next-line
-      console.log('==============');
-      // eslint-disable-next-line
-      console.log(restoredSession);
-      // eslint-disable-next-line
-      console.log('==============');
       if (restoredSession && !isEmpty(restoredSession)) {
         Object.assign(req.session,
           removeBlackListedPropertiesFromSession(restoredSession));
@@ -90,25 +78,6 @@ const restoreFromDraftStore = (req, res, next) => {
         next();
       }
     });
-
-
-  // attempt to restore session from draft petition store
-  // return client.restoreFromDraftStore(authToken, mockResponse)
-  //   .then(restoredSession => {
-  //     if (restoredSession && !isEmpty(restoredSession)) {
-  //       Object.assign(req.session,
-  //         removeBlackListedPropertiesFromSession(restoredSession));
-  //       redirectToCheckYourAnswers(req, res, next);
-  //     } else {
-  //       next();
-  //     }
-  //   })
-  //   .catch(error => {
-  //     if (error.statusCode !== httpStatus.NOT_FOUND) {
-  //       logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
-  //     }
-  //     next();
-  //   });
 };
 
 const removeFromDraftStore = (req, res, next) => {
@@ -210,20 +179,9 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
-    // const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
     const ctx = parseRequest.parse(this, req); // eslint-disable-line no-invalid-this
     const session = applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
     const sessionToSave = removeBlackListedPropertiesFromSession(session);
-
-    // Get user token.
-    // let authToken = '';
-    // if (req.cookies && req.cookies[authTokenString]) {
-    //   authToken = req.cookies[authTokenString];
-    // }
-
-    // const sendEmail = true;
-
-    // const responseBody = { answer: `${new Date()}` };
 
     fetch('http://localhost:3003/appeal', {
       method: 'post',
@@ -231,24 +189,7 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => response.json())
-      .then(json => {
-        console.log(json); // eslint-disable-line
-        return json;
-      });
-
-    // client.saveToDraftStore(authToken, sessionToSave, sendEmail)
-    //   .then(() => {
-    //     res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
-    //   })
-    //   .catch(error => {
-    //     logger.errorWithReq(
-    //       req,
-    //       'save_draft_and_close_error',
-    //       'Error restoring draft',
-    //       error.message
-    //     );
-    //     res.redirect('/generic-error');
-    //   });
+      .then(json => json);
   } else {
     next();
   }

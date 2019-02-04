@@ -7,8 +7,6 @@ const randomStringLength = 64;
 
 const divIdamExpressMiddleware = {
   authenticate: idamArgs => (req, res, next) => {
-    // eslint-disable-next-line
-    console.log('=== authenticate');
     const cookies = new Cookies(req, res);
     const userDetails = cookies.get('mockIdamUserDetailss');
     if (userDetails) {
