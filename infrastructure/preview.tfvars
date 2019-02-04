@@ -1,6 +1,0 @@
-infrastructure_env = "preprod"
-node_environment = "preview"
-evidence_upload_enabled = "true"
-https_only_flag = "false"
-postcode_checker_enabled = "true"
-postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
