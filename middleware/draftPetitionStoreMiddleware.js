@@ -8,6 +8,7 @@ const { isEmpty } = require('lodash');
 const statusCode = require('./services/statusCode');
 const fetch = require('node-fetch');
 
+let hadFetchedFromDraftStore = false;
 
 // Properties that should be removed from the session before saving to draft store
 const blacklistedProperties = [
@@ -60,7 +61,7 @@ const restoreFromDraftStore = (req, res, next) => {
   }
 
   // test to see if we have already restored draft store
-  const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
+  // const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
   const mockResponse = req.cookies.mockRestoreSession === 'true';
   const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
 
@@ -69,7 +70,8 @@ const restoreFromDraftStore = (req, res, next) => {
   }
 
   // set flag so we do not attempt to restore from draft store again
-  req.session.fetchedDraft = true;
+  // req.session.fetchedDraft = true;
+  hadFetchedFromDraftStore = true;
 
   return fetch('http://localhost:3003/appeal')
     .then(response => response.json())
@@ -229,7 +231,10 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => response.json())
-      .then(json => console.log(json)); // eslint-disable-line
+      .then(json => {
+        console.log(json); // eslint-disable-line
+        return json;
+      });
 
     // client.saveToDraftStore(authToken, sessionToSave, sendEmail)
     //   .then(() => {

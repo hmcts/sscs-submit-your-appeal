@@ -6,6 +6,16 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
+const requestHandler = require('middleware/services/parseRequest');
+
+const {
+  restoreFromDraftStore,
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStoreAndReply
+} = require('middleware/draftPetitionStoreMiddleware');
+
+
 class HaveContactedDWP extends Question {
   static get path() {
     return paths.compliance.haveContactedDWP;
@@ -36,6 +46,26 @@ class HaveContactedDWP extends Question {
       redirectTo(this.journey.steps.NoMRN).if(hasContactDWP),
       goTo(this.journey.steps.ContactDWP)
     );
+  }
+
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      restoreFromDraftStore,
+      saveSessionToDraftStoreAndClose
+    ];
+  }
+
+  get postMiddleware() {
+    return [
+      ...super.middleware,
+      saveSessionToDraftStore,
+      saveSessionToDraftStoreAndReply
+    ];
   }
 }
 
