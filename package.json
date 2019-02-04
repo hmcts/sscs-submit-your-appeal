@@ -34,7 +34,7 @@
   "dependencies": {
     "@hmcts/look-and-feel": "1.19.1",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
-    "@hmcts/one-per-page": "3.6.0",
+    "@hmcts/one-per-page": "5.0.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.0.3",
