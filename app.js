@@ -1,5 +1,4 @@
-require('app-insights').enable();
-const { Express } = require('@hmcts/nodejs-logging');
+require('logger').startAppInsights();
 const { journey } = require('@hmcts/one-per-page');
 const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
@@ -215,7 +214,6 @@ app.use(paths.monitoring, healthcheck.configure({
   }
 }));
 
-app.use(Express.accessLogger());
 app.use('/', policyPages);
 app.use('/', (req, res) => res.redirect('/entry'));
 

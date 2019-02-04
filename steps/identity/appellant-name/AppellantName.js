@@ -2,10 +2,11 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { get } = require('lodash');
-const { whitelist, firstName, lastName } = require('utils/regex');
+const { firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const titlesList = require('../../../utils/titlesList');
 
 class AppellantName extends Question {
   static get path() {
@@ -27,17 +28,19 @@ class AppellantName extends Question {
     return this.content.subtitle[this.contentPrefix()];
   }
 
+  get titlesList() {
+    return titlesList;
+  }
+
   get form() {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
+    const validTitles = titlesList.map(title => title.value);
 
     return form({
       title: text.joi(
         fields.title.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.title.error[prefix].invalid,
-        Joi.string().regex(whitelist)
+        Joi.string().valid(validTitles).required()
       ),
       firstName: text.joi(
         fields.firstName.error[prefix].required,
