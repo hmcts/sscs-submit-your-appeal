@@ -151,7 +151,6 @@ class EvidenceUpload extends AddAnother {
       }
 
       if (uploadingError || !get(files, '["item.uploadEv"].name')) {
-        logger.trace(`File size: ${files['item.uploadEv'].size}`);
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
@@ -170,6 +169,7 @@ class EvidenceUpload extends AddAnother {
 
       const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
       const size = files['item.uploadEv'].size;
+      logger.trace(`File size: ${size}`);
       return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
     };
   }
