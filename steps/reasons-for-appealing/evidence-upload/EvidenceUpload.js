@@ -68,8 +68,10 @@ class EvidenceUpload extends AddAnother {
     const multiplier = 1024;
     const items = get(req, 'session.EvidenceUpload.items');
     const itemsCount = (items && items.length) ? items.length : 0;
+    const totalUploadedFileSize = EvidenceUpload.getTotalSize(items, 0);
 
-    logger.trace(`Total files to upload: ${itemsCount} and total files size: ${incoming.bytesExpected}`);
+    logger.trace(`Total files already uploaded count: ${itemsCount}` +
+      `and files size: ${totalUploadedFileSize} , current file size: ${incoming.bytesExpected}`);
 
     if (incoming.bytesExpected === null ||
       incoming.bytesExpected <= emptyRequestSize) {
