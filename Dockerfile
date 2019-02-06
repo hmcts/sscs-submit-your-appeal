@@ -1,4 +1,4 @@
-FROM node:8.9.4-slim
+FROM hmcts.azurecr.io/hmcts/base/node/stretch-slim-lts-8:latest
 
 ENV NODE_PATH .
 ENV NODE_ENV development
