@@ -47,7 +47,9 @@ class SmsConfirmation extends Question {
         question: this.content.cya.mobileNumber.question,
         section: sections.textMsgReminders,
         answer: this.mobileNumber,
-        url: paths.smsNotify.appellantTextReminders
+        url: this.journey.req.session.SendToNumber.useSameNumber === 'yes' ?
+          paths.smsNotify.sendToNumber :
+          paths.smsNotify.enterMobile
       })
     ];
   }
