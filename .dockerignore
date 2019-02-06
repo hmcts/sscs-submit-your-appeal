@@ -12,7 +12,6 @@ test/
 .gitignore
 .idea
 .nsprc
-Dockerfile
 jenkinsfile*
 Jenkinsfile.old
 Jenkinsfile_CNP
