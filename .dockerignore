@@ -8,10 +8,12 @@ smoke-output/
 test/
 .dockerignore
 .git
+.github
 .gitignore
 .idea
 .nsprc
 Dockerfile
+jenkinsfile*
 Jenkinsfile.old
 Jenkinsfile_CNP
 Jenkinsfile_parameterized
