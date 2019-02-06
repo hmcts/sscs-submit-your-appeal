@@ -10,6 +10,8 @@ COPY package.json yarn.lock ./
 
 RUN yarn install --production && yarn cache clean
 
+FROM base as runtime
+
 COPY . .
 
 USER hmcts

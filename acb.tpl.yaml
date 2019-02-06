@@ -19,7 +19,7 @@ steps:
     build: >
       -t {{.Run.Registry}}/{{CI_IMAGE_TAG}}
       --cache-from {{.Run.Registry}}/hmcts/sscs-submit-your-appeal/base:latest
-      --target base
+      --target runtime
       .
     when:
       - base
