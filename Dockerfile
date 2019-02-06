@@ -12,4 +12,6 @@ RUN yarn install --production && yarn cache clean
 
 COPY . .
 
+USER hmcts
+
 CMD [ "node", "server.js" ]
