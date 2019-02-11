@@ -1,8 +1,9 @@
+const { parsePhoneNumberFromString } = require('libphonenumber-js');
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { get } = require('lodash');
-const { postCode, whitelist, phoneNumber } = require('utils/regex');
+const { postCode, whitelist } = require('utils/regex');
 const logger = require('logger');
 
 const logPath = 'AppellantContactDetails.js';
@@ -29,6 +30,22 @@ const customJoi = Joi.extend(joi => {
         validate(params, value, state, options) {
           if (params.invalidPostcode) {
             return this.createError('string.validatePostcode', { v: value }, state, options);
+          }
+
+          return value;
+        }
+      },
+      {
+        name: 'validatePhone',
+        validate(params, value, state, options) {
+          const parsedPhoneNumber = parsePhoneNumberFromString(value, 'GB');
+          let isValidPhone = false;
+          if (parsedPhoneNumber && parsedPhoneNumber.isValid) {
+            isValidPhone = parsedPhoneNumber.isValid();
+          }
+
+          if (!isValidPhone) {
+            return this.createError('string.validatePhone', { v: value }, state, options);
           }
 
           return value;
@@ -101,7 +118,8 @@ class AppellantContactDetails extends Question {
       ),
       phoneNumber: text.joi(
         fields.phoneNumber.error[prefix].invalid,
-        Joi.string().regex(phoneNumber).allow('')
+        // Joi.string().regex(phoneNumber).allow('')
+        customJoi.string().trim().validatePhone()
       ),
       emailAddress: text.joi(
         fields.emailAddress.error[prefix].invalid,
