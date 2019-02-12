@@ -72,7 +72,7 @@
       "title": "Phone number (optional)",
       "hint": "They will receive SMS updates about your appeal if you enter a mobile phone number",
       "error": {
-        "invalid": "You have entered an invalid phonenumber. Check it and enter it again"
+        "invalid": "You have entered an invalid phone number. Check it and enter it again"
       }
     },
     "emailAddress": {
