@@ -18,7 +18,7 @@ class EnterMobile extends Question {
         Joi.string().required()
       ).joi(
         this.content.fields.enterMobile.error.invalidNumber,
-        customJoi.string().trim().validatePhone()
+        customJoi.string().trim().validatePhone({ phoneType: 'MOBILE' })
       )
     });
   }
