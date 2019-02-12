@@ -7,7 +7,8 @@ const firstName = /^[A-Za-zÀ-ž '-]{2,}$/;
 const lastName = /^[A-Za-zÀ-ž '-]{2,}$/;
 const whitelist = /^[a-zA-ZÀ-ž0-9 \r\n."“”,'?![\]()/£:\\_+\-%&;]{2,}$/;
 const numbers = /^[0-9]+$/;
-const phoneNumber = /^[0-9\-+ ]{10,17}$/;
+// eslint-disable-next-line
+const phoneNumber = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)\d{1,4}\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/;
 const benefitType = /^[a-zA-Z ()]+$/;
 const mobileNumber = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
 const internationalMobileNumber = /^(?:00|\+|07|\(\d+\))[0-9\s./-]{7,}$/;
