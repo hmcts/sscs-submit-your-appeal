@@ -14,6 +14,4 @@ FROM base as runtime
 
 COPY . .
 
-USER hmcts
-
 CMD [ "node", "server.js" ]
