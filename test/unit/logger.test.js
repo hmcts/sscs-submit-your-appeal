@@ -47,12 +47,14 @@ describe('logger.js', () => {
     logger.exception(error, label);
 
     const msgBuild = logger.msgBuilder(error, label);
-    const errorObj = new Error(msgBuild);
 
     expect(applicationInsightsExceptionSpy).to.have.been
-      .calledWith(sinon.match({ exception: errorObj }));
+      .calledWith(sinon.match({
+        exception: sinon.match.instanceOf(Error).and(sinon.match.has('message', msgBuild))
+      }));
 
-    expect(consoleSpy).to.have.been.calledWith(sinon.match(errorObj), 3);
+    expect(consoleSpy).to.have.been.calledWith(sinon.match.instanceOf(Error)
+      .and(sinon.match.has('message', msgBuild)), 3);
   });
 
 
