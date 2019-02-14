@@ -119,13 +119,13 @@
     "@sinonjs/samsam" "^2 || ^3"
 
 "@sinonjs/samsam@^2 || ^3":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-3.1.0.tgz#38146f7be732de96f9f599d7247d71e349bf4bdb"
-  integrity sha512-IXio+GWY+Q8XUjHUOgK7wx8fpvr7IFffgyXb1bnJFfX3001KmHt35Zq4tp7MXZyjJPCLPuadesDYNk41LYtVjw==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-3.1.1.tgz#8e2eceb2353f6626e2867352e3def951d3366240"
+  integrity sha512-ILlwvQUwAiaVBzr3qz8oT1moM7AIUHqUc2UmEjQcH9lLe+E+BZPwUMuc9FFojMswRK4r96x5zDTTrowMLw/vuA==
   dependencies:
     "@sinonjs/commons" "^1.0.2"
     array-from "^2.1.1"
-    lodash.get "^4.4.2"
+    lodash "^4.17.11"
 
 "@types/node@^8.0.24":
   version "8.10.40"
@@ -331,7 +331,7 @@ append-transform@^0.4.0:
   dependencies:
     default-require-extensions "^1.0.0"
 
-applicationinsights@^1.0.3:
+applicationinsights@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.1.0.tgz#3a2be910f96885aa9089158406450b18d0736ebd"
   integrity sha512-VvPQ9TQ2pKGXWzOo1k9yZ8WUNZVt1PPCcytP7WhitmlCCLzU9DnG/eSOUafWUagKpsrIKd74Epbtll8lDjjQlw==
