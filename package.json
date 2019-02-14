@@ -37,7 +37,7 @@
     "@hmcts/one-per-page": "5.0.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
-    "applicationinsights": "1.0.3",
+    "applicationinsights": "^1.0.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
