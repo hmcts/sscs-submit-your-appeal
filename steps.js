@@ -59,7 +59,7 @@ const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/Evid
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
 
 const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
-const Authenticated = require('steps/idam/authenticated/Authenticated');
+const Authenticated = require('steps/idam/authenticated/Output');
 
 const init = [
   Entry,
