@@ -32,12 +32,12 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/look-and-feel": "2.0.2",
+    "@hmcts/look-and-feel": "2.1.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "5.0.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
-    "applicationinsights": "^1.0.3",
+    "applicationinsights": "^1.1.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",

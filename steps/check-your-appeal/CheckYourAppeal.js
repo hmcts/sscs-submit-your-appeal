@@ -121,7 +121,10 @@ class CheckYourAppeal extends CYA {
   next() {
     return action(this.sendToAPI)
       .then(goTo(this.journey.steps.Confirmation))
-      .onFailure(redirectTo(this.journey.steps.Error500));
+      .onFailure((error, req, res, next) => {
+        logger.exception(error, logPath);
+        redirectTo(this.journey.steps.Error500).redirect(req, res, next);
+      });
   }
 }
 
