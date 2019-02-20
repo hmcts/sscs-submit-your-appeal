@@ -2,12 +2,12 @@ const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,
   firstName,
   lastName,
   whitelist,
-  phoneNumber,
   title
 } = require('utils/regex');
 const {
@@ -105,7 +105,7 @@ class RepresentativeDetails extends Question {
       ),
       phoneNumber: text.joi(
         fields.phoneNumber.error.invalid,
-        Joi.string().regex(phoneNumber).allow('')
+        customJoi.string().trim().validatePhone()
       )
     });
   }
