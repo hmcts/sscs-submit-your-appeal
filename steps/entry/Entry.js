@@ -1,5 +1,5 @@
 const { EntryPoint, goTo } = require('@hmcts/one-per-page');
-const idam = require('middleware/idam');
+// const idam = require('middleware/idam');
 const paths = require('paths');
 
 class Entry extends EntryPoint {
@@ -11,9 +11,9 @@ class Entry extends EntryPoint {
     return goTo(this.journey.steps.BenefitType);
   }
 
-  get middleware() {
-    return [...super.middleware, idam.authenticate];
-  }
+  // get middleware() {
+  //   return [...super.middleware, idam.authenticate];
+  // }
 }
 
 module.exports = Entry;

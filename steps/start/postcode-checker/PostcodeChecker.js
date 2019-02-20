@@ -13,11 +13,12 @@ const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const requestHandler = require('middleware/services/parseRequest');
 
 const {
-  restoreFromDraftStore,
+  // restoreFromDraftStore,
   saveSessionToDraftStore,
-  saveSessionToDraftStoreAndClose,
+  // saveSessionToDraftStoreAndClose,
   saveSessionToDraftStoreAndReply
 } = require('middleware/draftPetitionStoreMiddleware');
+const idam = require('middleware/idam');
 
 class PostcodeChecker extends Question {
   static get path() {
@@ -68,8 +69,9 @@ class PostcodeChecker extends Question {
   get middleware() {
     return [
       ...super.middleware,
-      restoreFromDraftStore,
-      saveSessionToDraftStoreAndClose
+      // restoreFromDraftStore,
+      // saveSessionToDraftStoreAndClose
+      idam.authenticate
     ];
   }
 
