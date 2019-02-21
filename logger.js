@@ -15,11 +15,8 @@ module.exports = class Logger {
   static startAppInsights() {
     if (iKey !== '') {
       applicationInsights.setup(iKey).setAutoCollectConsole(true, true);
-      applicationInsights
-        .defaultClient
-        .context
-        // eslint-disable-next-line max-len
-        .tags[applicationInsights.defaultClient.context.keys.cloudRole] = config.appInsights.roleName;
+      const client = applicationInsights.defaultClient;
+      client.context.tags[client.context.keys.cloudRole] = config.appInsights.roleName;
       applicationInsights.start();
     }
   }
