@@ -24,6 +24,7 @@ const setArgsFromRequest = req => {
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
   args.redirectUri = `https://${req.get('host') + config.paths.authenticated}`;
+  args.state = 'foobar';
   return args;
 };
 
