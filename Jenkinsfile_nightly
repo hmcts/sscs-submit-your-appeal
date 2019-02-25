@@ -15,6 +15,7 @@ def component = "frontend"
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
+    before('DependencyCheckNightly') {sh 'yarn test:audit'}
     enableCrossBrowserTest()
 
 //    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
