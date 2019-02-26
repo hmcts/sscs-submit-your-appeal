@@ -1,14 +1,14 @@
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { Question } = require('@hmcts/one-per-page/steps');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
 const { titleise } = require('utils/stringUtils');
 const userAnswer = require('utils/answer');
 
-class EvidenceProvide extends Question {
+class EvidenceProvide extends SaveToDraftStore {
   static get path() {
     return paths.reasonsForAppealing.evidenceProvide;
   }

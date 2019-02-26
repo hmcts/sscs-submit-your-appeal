@@ -1,7 +1,7 @@
-const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { splitBenefitType } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
@@ -11,7 +11,7 @@ const config = require('config');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 
-class BenefitType extends Question {
+class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }

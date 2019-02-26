@@ -1,6 +1,7 @@
-const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { postCode, inwardPostcode } = require('utils/regex');
 const postcodeList = require('steps/start/postcode-checker/validPostcodeList');
 const Joi = require('joi');
@@ -10,7 +11,7 @@ const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForE
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
-class PostcodeChecker extends Question {
+class PostcodeChecker extends SaveToDraftStore {
   static get path() {
     return paths.start.postcodeCheck;
   }

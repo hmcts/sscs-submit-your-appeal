@@ -1,6 +1,7 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { goTo, branch } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { get } = require('lodash');
 const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -10,7 +11,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 
 const MIN_CHAR_COUNT = 5;
 
-class MRNOverOneMonthLate extends Question {
+class MRNOverOneMonthLate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnOverMonthLate;
   }

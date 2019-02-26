@@ -1,12 +1,12 @@
-const { Question } = require('@hmcts/one-per-page');
 const { redirectTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
-class HearingAvailability extends Question {
+class HearingAvailability extends SaveToDraftStore {
   static get path() {
     return paths.hearing.hearingAvailability;
   }

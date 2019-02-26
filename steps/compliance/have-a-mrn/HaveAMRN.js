@@ -1,4 +1,5 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { goTo, branch } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -7,7 +8,7 @@ const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
 
 
-class HaveAMRN extends Question {
+class HaveAMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveAMRN;
   }

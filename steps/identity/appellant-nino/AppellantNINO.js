@@ -1,13 +1,14 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { niNumber } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
 
-class AppellantNINO extends Question {
+class AppellantNINO extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantNINO;
   }

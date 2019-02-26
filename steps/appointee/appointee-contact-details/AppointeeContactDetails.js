@@ -1,6 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { postCode, whitelist } = require('utils/regex');
 const logger = require('logger');
 
@@ -16,7 +17,7 @@ const customJoi = require('utils/customJoiSchemas');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
-class AppointeeContactDetails extends Question {
+class AppointeeContactDetails extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeContactDetails;
   }

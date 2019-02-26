@@ -1,13 +1,14 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { whitelist, firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
 
-class AppointeeName extends Question {
+class AppointeeName extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeName;
   }

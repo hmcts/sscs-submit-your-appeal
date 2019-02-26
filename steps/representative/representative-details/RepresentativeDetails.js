@@ -1,7 +1,8 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,
@@ -21,7 +22,7 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 
-class RepresentativeDetails extends Question {
+class RepresentativeDetails extends SaveToDraftStore {
   static get path() {
     return paths.representative.representativeDetails;
   }

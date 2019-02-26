@@ -1,13 +1,13 @@
-const { Question } = require('@hmcts/one-per-page/steps');
 const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text, date, ref } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
-class CheckMRN extends Question {
+class CheckMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.checkMRNDate;
   }
