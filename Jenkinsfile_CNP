@@ -12,6 +12,7 @@ def component = "tribunals-frontend"
 withPipeline("nodejs", product, component) {
     enableDockerBuild()
     enableDeployToAKS()
+    before('securitychecks') {sh 'yarn test:audit'}
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
