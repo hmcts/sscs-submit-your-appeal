@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
+const Entities = require('html-entities').XmlEntities;
 
 class AppellantName extends Question {
   static get path() {
@@ -40,7 +41,10 @@ class AppellantName extends Question {
     return form({
       title: text.joi(
         fields.title.error[prefix].required,
-        Joi.string().valid(validTitles).required()
+        Joi.string().required()
+      ).joi(
+        fields.title.error[prefix].invalid,
+        Joi.string().valid(validTitles)
       ),
       firstName: text.joi(
         fields.firstName.error[prefix].required,
@@ -60,6 +64,7 @@ class AppellantName extends Question {
   }
 
   answers() {
+    const entities = new Entities();
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
@@ -67,7 +72,7 @@ class AppellantName extends Question {
       answer(this, {
         question: this.content.cya.appellantName.question,
         section: sections.appellantDetails,
-        answer: `${title} ${first} ${last}`
+        answer: entities.decode(`${title} ${first} ${last}`)
       })
     ];
   }
