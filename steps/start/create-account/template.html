@@ -1,0 +1,28 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% block page_title %}{{ content.titleHead }}{% endblock %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+    <p>{{ content.subtitle | safe}}</p>
+
+    {% call formSection() %}
+
+        {{ selectionButtons(
+            fields.createAccount,
+            content.fields.createAccount.label,
+            hideQuestion=true,
+            options = [
+                { label: content.fields.createAccount.yes, value: "yes" },
+                { label: content.fields.createAccount.no,  value: "no" }
+            ])
+        }}
+
+    {% endcall %}
+
+{% endblock %}

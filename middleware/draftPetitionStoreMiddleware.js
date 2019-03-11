@@ -1,4 +1,5 @@
 const { Question, EntryPoint } = require('@hmcts/one-per-page');
+const { Interstitial } = require('@hmcts/one-per-page/steps');
 const request = require('request-promise-native');
 const { omit } = require('lodash');
 
@@ -52,9 +53,20 @@ class RestoreFromDraftStore extends EntryPoint {
   }
 }
 
+class InterstitialSaveToDraftStore extends Interstitial {
+  get middleware() {
+    return [
+      ...super.middleware,
+      saveToDraftStore
+    ];
+  }
+}
+
+
 module.exports = {
   SaveToDraftStore,
   RestoreFromDraftStore,
   saveToDraftStore,
-  restoreFromDraftStore
+  restoreFromDraftStore,
+  InterstitialSaveToDraftStore
 };

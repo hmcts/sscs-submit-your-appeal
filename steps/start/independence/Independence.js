@@ -1,9 +1,10 @@
-const { Interstitial } = require('@hmcts/one-per-page/steps');
+// const { Interstitial } = require('@hmcts/one-per-page/steps');
+const { InterstitialSaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { getBenefitCode, getTribunalPanel } = require('utils/stringUtils');
 const paths = require('paths');
 
-class Independence extends Interstitial {
+class Independence extends InterstitialSaveToDraftStore {
   static get path() {
     return paths.start.independence;
   }
@@ -17,7 +18,7 @@ class Independence extends Interstitial {
   }
 
   next() {
-    return goTo(this.journey.steps.HaveAMRN);
+    return goTo(this.journey.steps.CreateAccount);
   }
 }
 

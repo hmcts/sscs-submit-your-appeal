@@ -33,7 +33,8 @@ module.exports = {
     benefitType: '/benefit-type',
     postcodeCheck: '/postcode-check',
     invalidPostcode: '/invalid-postcode',
-    independence: '/independence'
+    independence: '/independence',
+    createAccount: '/create-account'
   },
 
   appealFormDownload: '/appeal-form-download',

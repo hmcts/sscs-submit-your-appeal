@@ -9,12 +9,13 @@ class Authenticated extends Redirect {
   }
 
   next() {
-    return redirectTo(this.journey.steps.Entry);
+    return redirectTo(this.journey.steps.CheckYourAppeal);
   }
 
   get middleware() {
     return [
       idam.landingPage,
+      idam.authenticate,
       ...super.middleware
     ];
   }
