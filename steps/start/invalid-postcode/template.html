@@ -22,10 +22,6 @@
 
 <a href="{{ formUrl }}" target="_self" class="button">{{ content.formDownload }}</a>
 
-{% block after_form -%}
-    {% include "components/sessionTimeoutMessage.html" %}
-{%- endblock %}
-
 {% endblock %}
 
 {% block full_width %}
