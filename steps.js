@@ -58,6 +58,7 @@ const Confirmation = require('steps/confirmation/Confirmation');
 const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
 const CreateAccount = require('steps/start/create-account/CreateAccount');
+const IdamRedirect = require('steps/start/idam-redirect/IdamRedirect');
 
 const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
 const Authenticated = require('steps/idam/authenticated/Authenticated');
@@ -75,7 +76,8 @@ const startAnAppeal = [
   PostcodeChecker,
   InvalidPostcode,
   Independence,
-  CreateAccount
+  CreateAccount,
+  IdamRedirect
 ];
 
 const compliance = [

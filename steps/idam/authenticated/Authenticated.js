@@ -15,7 +15,6 @@ class Authenticated extends Redirect {
   get middleware() {
     return [
       idam.landingPage,
-      idam.authenticate,
       ...super.middleware
     ];
   }

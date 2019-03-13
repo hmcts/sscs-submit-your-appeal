@@ -34,7 +34,8 @@ module.exports = {
     postcodeCheck: '/postcode-check',
     invalidPostcode: '/invalid-postcode',
     independence: '/independence',
-    createAccount: '/create-account'
+    createAccount: '/create-account',
+    idamRedirect: '/idam-redirect'
   },
 
   appealFormDownload: '/appeal-form-download',

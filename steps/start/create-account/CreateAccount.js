@@ -1,4 +1,4 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { titleise } = require('utils/stringUtils');
@@ -36,7 +36,12 @@ class CreateAccount extends Question {
   }
 
   next() {
-    return goTo(this.journey.steps.Authenticated);
+    const createAccount = this.fields.createAccount.value === 'yes';
+
+    return branch(
+      goTo(this.journey.steps.IdamRedirect).if(createAccount),
+      goTo(this.journey.steps.HaveAMRN)
+    );
   }
 }
 
