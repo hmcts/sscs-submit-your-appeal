@@ -1,3 +1,4 @@
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { Question, goTo, branch } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -39,7 +40,7 @@ class CreateAccount extends Question {
     const createAccount = this.fields.createAccount.value === 'yes';
 
     return branch(
-      goTo(this.journey.steps.IdamRedirect).if(createAccount),
+      redirectTo(this.journey.steps.IdamRedirect).if(createAccount),
       goTo(this.journey.steps.HaveAMRN)
     );
   }
