@@ -1,0 +1,29 @@
+{% extends "components/form-template.html" %}
+{% from "look-and-feel/components/fields.njk" import textbox, select %}
+{% from "look-and-feel/components/toggle_help.njk" import toggleHelp %}
+
+ {% block page_title %}{{ content.titleHead }}{% endblock %}
+
+ {% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+ {% block breadcrumbs %}
+    {% call phaseBanner(phase) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+ {% block fields %}
+
+   {{UserDetails}}
+{% endblock %}
+
+ {% block after_form -%}
+
+     <p>
+        {{ toggleHelp(content.help.link, content.help.text, 'details-content', false) }}
+    </p>
+
+ {{ super() }}
+{%- endblock %}

@@ -15,15 +15,21 @@ const idamArgs = {
 };
 
 let middleware = idamExpressMiddleware;
+let protocol = 'http';
 if (['development'].includes(process.env.NODE_ENV)) {
   middleware = idamExpressMiddlewareMock;
+  protocol = 'http';
 }
 
 const setArgsFromRequest = req => {
   // clone args so we don't modify the global idamArgs
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
-  args.redirectUri = `https://${req.get('host') + config.paths.authenticated}`;
+  args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
+  args.state = JSON.stringify({
+    BenefitType: req.session.BenefitType,
+    PostcodeChecker: req.session.PostcodeChecker
+  });
   return args;
 };
 

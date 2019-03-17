@@ -4,7 +4,7 @@ const Independence = require('steps/start/independence/Independence');
 
 describe('Independence.js', () => {
   let independence = null;
-  const steps = { steps: { HaveAMRN: paths.compliance.haveAMRN } };
+  const steps = { steps: { CreateAccount: paths.start.createAccount } };
 
   beforeEach(() => {
     independence = new Independence({ journey: steps });
@@ -18,7 +18,7 @@ describe('Independence.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /mrn-date', () => {
-      expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
+      expect(independence.next().step).to.eql(paths.start.createAccount);
     });
   });
 });

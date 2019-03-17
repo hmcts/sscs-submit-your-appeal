@@ -1,0 +1,22 @@
+{
+  "titleHead": "Which benefit appeal - Appeal a benefit decision - GOV.UK",
+  "title": "User Id",
+  "label": "Select a benefit type",
+  "fields": {
+    "benefitType": {
+      "title": "Last name(s)",
+      "error": {
+        "required": "Enter the name of the benefit decision you want to appeal"
+      }
+    }
+  },
+  "cya": {
+    "benefitType": {
+      "question": "Benefit name"
+    }
+  },
+  "help": {
+    "link": "I can't find the benefit I am appealing",
+    "text": "Sometimes the name of the benefit can change. Check the last letter you received about it."
+  }
+}
