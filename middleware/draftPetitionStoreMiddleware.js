@@ -1,5 +1,4 @@
-const { Question, EntryPoint } = require('@hmcts/one-per-page');
-const { Interstitial } = require('@hmcts/one-per-page/steps');
+const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
 const request = require('request-promise-native');
 const { omit } = require('lodash');
 
@@ -31,6 +30,11 @@ const restoreFromDraftStore = (req, res, next) =>
     .catch(error => {
       throw error;
     });
+
+const restoreFromIdamState = (req, res, next) => {
+  Object.assign(req.session, JSON.parse(req.query.state));
+  next();
+};
 // step which saves to the draft store
 // CAVIAT: middleware is ran before any new properties are saved to the session
 // so you may want to figure our a way to run this after session has been updated with latest values
@@ -53,11 +57,11 @@ class RestoreFromDraftStore extends EntryPoint {
   }
 }
 
-class InterstitialSaveToDraftStore extends Interstitial {
+class RestoreFromIdamState extends Redirect {
   get middleware() {
     return [
       ...super.middleware,
-      saveToDraftStore
+      restoreFromIdamState
     ];
   }
 }
@@ -68,5 +72,5 @@ module.exports = {
   RestoreFromDraftStore,
   saveToDraftStore,
   restoreFromDraftStore,
-  InterstitialSaveToDraftStore
+  RestoreFromIdamState
 };
