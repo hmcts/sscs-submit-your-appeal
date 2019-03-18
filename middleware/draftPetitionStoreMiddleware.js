@@ -61,7 +61,8 @@ class RestoreFromIdamState extends Redirect {
   get middleware() {
     return [
       ...super.middleware,
-      restoreFromIdamState
+      restoreFromIdamState,
+      saveToDraftStore
     ];
   }
 }
