@@ -1,7 +1,7 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { form } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 
 class NoRepresentativeDetails extends SaveToDraftStore {

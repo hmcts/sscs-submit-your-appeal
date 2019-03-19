@@ -1,6 +1,6 @@
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { text, form } = require('@hmcts/one-per-page/forms');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { whitelist } = require('utils/regex');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');

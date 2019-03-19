@@ -1,5 +1,5 @@
 const { goTo } = require('@hmcts/one-per-page');
-const { RestoreFromDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
 // const idam = require('middleware/idam');
 const paths = require('paths');
 

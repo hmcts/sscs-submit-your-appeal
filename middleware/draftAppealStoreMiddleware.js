@@ -72,8 +72,9 @@ class RestoreFromIdamState extends Redirect {
 
 module.exports = {
   SaveToDraftStore,
-  RestoreFromDraftStore,
   saveToDraftStore,
+  RestoreFromDraftStore,
   restoreFromDraftStore,
-  RestoreFromIdamState
+  RestoreFromIdamState,
+  restoreFromIdamState
 };

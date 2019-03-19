@@ -1,7 +1,7 @@
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { titleise } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');

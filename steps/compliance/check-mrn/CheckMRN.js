@@ -1,7 +1,7 @@
 const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text, date, ref } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');

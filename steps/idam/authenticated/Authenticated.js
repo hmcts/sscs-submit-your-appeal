@@ -1,4 +1,4 @@
-const { RestoreFromIdamState } = require('middleware/draftPetitionStoreMiddleware');
+const { RestoreFromIdamState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const idam = require('middleware/idam');
 const paths = require('paths');

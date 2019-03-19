@@ -2,7 +2,7 @@ const { goTo } = require('@hmcts/one-per-page');
 const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,

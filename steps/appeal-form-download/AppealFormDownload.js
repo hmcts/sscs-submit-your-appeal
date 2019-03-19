@@ -1,5 +1,5 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');

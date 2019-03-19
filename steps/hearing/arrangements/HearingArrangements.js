@@ -3,7 +3,7 @@
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {

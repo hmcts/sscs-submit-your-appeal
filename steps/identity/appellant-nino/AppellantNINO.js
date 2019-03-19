@@ -1,7 +1,7 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStore } = require('middleware/draftPetitionStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { niNumber } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
