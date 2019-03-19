@@ -1,10 +1,21 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const Independence = require('steps/start/independence/Independence');
+const proxyquire = require('proxyquire');
+
+let Independence = proxyquire('steps/start/independence/Independence', {
+  config: {
+    get: () => 'false'
+  }
+});
 
 describe('Independence.js', () => {
   let independence = null;
-  const steps = { steps: { CreateAccount: paths.start.createAccount } };
+  const steps = {
+    steps: {
+      HaveAMRN: paths.compliance.haveAMRN,
+      CreateAccount: paths.start.createAccount
+    }
+  };
 
   beforeEach(() => {
     independence = new Independence({ journey: steps });
@@ -17,8 +28,26 @@ describe('Independence.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /mrn-date', () => {
-      expect(independence.next().step).to.eql(paths.start.createAccount);
+    describe('when save and return is DISABLED', () => {
+      it('returns the next step path /mrn-date', () => {
+        expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
+      });
+    });
+
+    describe('when save and return is ENABLED', () => {
+      beforeEach(() => {
+        Independence = proxyquire('steps/start/independence/Independence', {
+          config: {
+            get: () => 'true'
+          }
+        });
+
+        independence = new Independence({ journey: steps });
+      });
+
+      it('returns the next step path /create-account', () => {
+        expect(independence.next().step).to.eql(paths.start.createAccount);
+      });
     });
   });
 });
