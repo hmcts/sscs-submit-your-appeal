@@ -24,3 +24,4 @@ withNightlyPipeline("nodejs", product, component) {
 
 //    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
 }
+}
