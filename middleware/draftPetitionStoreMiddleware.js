@@ -2,11 +2,11 @@ const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
 const request = require('request-promise-native');
 const { omit } = require('lodash');
 
-const uri = 'http://localhost:3003/appeal';
 const headers = { 'content-type': 'application/json' };
 
 const blackList = [ 'cookie', 'expires' ];
 const saveToDraftStore = (req, res, next) => {
+  const uri = req.journey.settings.draftUrl;
   // remove any unwanted items from session
   let body = omit(req.session, blackList);
   // get session to save
@@ -20,7 +20,8 @@ const saveToDraftStore = (req, res, next) => {
       throw error;
     });
 };
-const restoreFromDraftStore = (req, res, next) =>
+const restoreFromDraftStore = (req, res, next) => {
+  const uri = req.journey.settings.draftUrl;
   // send to draft store
   request.get({ uri })
     .then(body => {
@@ -30,6 +31,7 @@ const restoreFromDraftStore = (req, res, next) =>
     .catch(error => {
       throw error;
     });
+};
 
 const restoreFromIdamState = (req, res, next) => {
   Object.assign(req.session, JSON.parse(req.query.state));

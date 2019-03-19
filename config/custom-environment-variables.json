@@ -15,7 +15,8 @@
   },
   "api": {
     "url": "TRIBUNALS_CASE_API_URL",
-    "uploadEvidenceUrl": "UPLOAD_EVIDENCE_URL"
+    "uploadEvidenceUrl": "UPLOAD_EVIDENCE_URL",
+    "draftUrl": "DRAFT_API_URL"
   },
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
