@@ -27,7 +27,8 @@ const excludeSteps = [
   '/sessions',
   '/internal-server-error',
   '/enter-appellant-contact-details',
-  '/appointee-contact-details'
+  '/appointee-contact-details',
+  '/idam-redirect'
 ];
 
 function ensurePageCallWillSucceed(url) {
