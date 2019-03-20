@@ -6,7 +6,8 @@ const post = sinon.spy(() => Promise.resolve());
 const get = sinon.spy(() => Promise.resolve('{ "foo": "bar" }'));
 
 const draftAppealStoreMiddleware = proxyquire('middleware/draftAppealStoreMiddleware', {
-  'request-promise-native': { post, get }
+  'request-promise-native': { post, get },
+  config: { get: () => 'true' }
 });
 
 const expect = chai.expect;

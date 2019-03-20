@@ -1,40 +1,54 @@
 const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
 const request = require('request-promise-native');
 const { omit } = require('lodash');
+const config = require('config');
 
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const headers = { 'content-type': 'application/json' };
-
 const blackList = [ 'cookie', 'expires' ];
+
+
 const saveToDraftStore = (req, res, next) => {
-  const uri = req.journey.settings.draftUrl;
-  // remove any unwanted items from session
-  let body = omit(req.session, blackList);
-  // get session to save
-  body = JSON.stringify(body);
-  // send to draft store
-  return request.post({ uri, body, headers })
-    .then(() => {
-      next();
-    })
-    .catch(error => {
-      throw error;
-    });
+  if (allowSaveAndReturn) {
+    const uri = req.journey.settings.draftUrl;
+    // remove any unwanted items from session
+    let body = omit(req.session, blackList);
+    // get session to save
+    body = JSON.stringify(body);
+    // send to draft store
+    request.post({ uri, body, headers })
+      .then(() => {
+        next();
+      })
+      .catch(error => {
+        throw error;
+      });
+  } else {
+    next();
+  }
 };
 const restoreFromDraftStore = (req, res, next) => {
-  const uri = req.journey.settings.draftUrl;
-  // send to draft store
-  request.get({ uri })
-    .then(body => {
-      Object.assign(req.session, JSON.parse(body));
-      next();
-    })
-    .catch(error => {
-      throw error;
-    });
+  if (allowSaveAndReturn) {
+    const uri = req.journey.settings.draftUrl;
+    // send to draft store
+    request.get({ uri })
+      .then(body => {
+        Object.assign(req.session, JSON.parse(body));
+        next();
+      })
+      .catch(error => {
+        throw error;
+      });
+  } else {
+    next();
+  }
 };
 
 const restoreFromIdamState = (req, res, next) => {
-  Object.assign(req.session, JSON.parse(req.query.state));
+  if (allowSaveAndReturn) {
+    Object.assign(req.session, JSON.parse(req.query.state));
+  }
+
   next();
 };
 // step which saves to the draft store
