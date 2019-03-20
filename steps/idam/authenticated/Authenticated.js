@@ -8,15 +8,7 @@ class Authenticated extends RestoreFromIdamState {
     return paths.idam.authenticated;
   }
 
-  get UserDetails() {
-    return JSON.stringify(this.req.idam.userDetails);
-  }
-
-  get session() {
-    return JSON.stringify(this.req.session);
-  }
   next() {
-    // return redirectTo(this.journey.steps.CheckYourAppeal);
     return goTo(this.journey.steps.CheckYourAppeal);
   }
 
