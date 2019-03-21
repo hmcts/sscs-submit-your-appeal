@@ -9,25 +9,10 @@ properties(
 def product = "sscs"
 def component = "tribunals-frontend"
 
-List<LinkedHashMap<String, Object>> secrets = [
-  secret('idam-sscs-oauth2-client-secret', 'IDAM_OAUTH2_CLIENT_SECRET')
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
-
 withPipeline("nodejs", product, component) {
     enableDockerBuild()
     enableDeployToAKS()
     before('securitychecks') {sh 'yarn test:audit'}
-    loadVaultSecrets(secrets)
-    setVaultName('sscs')
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
