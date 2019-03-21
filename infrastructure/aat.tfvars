@@ -9,3 +9,5 @@ sya_hostname  = "benefit-appeal.nonprod.platform.hmcts.net"
 idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 idam_login_url = "https://idam.preprod.ccidam.reform.hmcts.net/login"
 
+allow_save_return = "true"
+

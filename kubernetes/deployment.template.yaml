@@ -43,6 +43,8 @@ spec:
           value: "https://idam.preprod.ccidam.reform.hmcts.net/login"
         - name: SERVICES_IDAM_SECRET
           value: ${IDAM_OAUTH2_CLIENT_SECRET}
+        - name: ALLOW_SAVE_RETURN
+          value: "true"
         ports:
           - containerPort: 3000
 
