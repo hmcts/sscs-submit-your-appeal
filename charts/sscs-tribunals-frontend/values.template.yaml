@@ -1,0 +1,22 @@
+nodejs:
+  applicationPort: 3000
+  environment:
+    PUBLIC_PROTOCOL: https
+    REFORM_TEAM: sscs
+    REFORM_SERVICE_NAME: sscs-tribunals
+    REFORM_ENVIRONMENT : preview
+    COOKIE_SECRET:
+    TRIBUNALS_CASE_API_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+    REDIS_URL: redis://redis
+    SESSION_SECRET:
+    NODE_ENV: preview
+    HTTP_PROTOCOL: http
+    EVIDENCE_UPLOAD_ENABLED: "true"
+    UPLOAD_EVIDENCE_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload"
+    POSTCODE_CHECKER_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre"
+    POSTCODE_CHECKER_ENABLED: "true"
+    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+
+  # Don't modify below here
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
