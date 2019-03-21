@@ -42,7 +42,7 @@ spec:
         - name: SERVICES_IDAM_LOGIN_URL
           value: "https://idam.preprod.ccidam.reform.hmcts.net/login"
         - name: SERVICES_IDAM_SECRET
-          value: ${IDAM_OAUTH2_CLIENT_SECRET}
+          value: ${SERVICES_IDAM_SECRET}
         - name: ALLOW_SAVE_RETURN
           value: "true"
         ports:

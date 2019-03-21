@@ -57,7 +57,7 @@ module "submit-your-appeal-frontend" {
     POSTCODE_CHECKER_ALLOWED_RPCS = "${var.postcode_checker_allowed_rpcs}"
     ALLOW_SAVE_RETURN             = "${var.allow_save_return}"
 
-    IDAM_OAUTH2_CLIENT_SECRET     = "${data.azurerm_key_vault_secret.idam_oauth2_client_secret.value}"
+    SERVICES_IDAM_SECRET          = "${data.azurerm_key_vault_secret.idam_oauth2_client_secret.value}"
     
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
