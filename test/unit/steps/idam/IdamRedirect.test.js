@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const Entry = require('steps/start/idam-redirect/IdamRedirect');
+const Entry = require('steps/idam/idam-redirect/IdamRedirect');
 const paths = require('paths');
 
 describe('IdamRedirect.js', () => {
