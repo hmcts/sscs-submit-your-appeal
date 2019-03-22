@@ -6,7 +6,7 @@ const paths = require('paths');
 
 class IdamLogin extends Question {
   static get path() {
-    return paths.idam.mockIdamLogin;
+    return paths.idam.idamLogin;
   }
 
   get form() {

@@ -102,7 +102,7 @@ module.exports = {
   },
 
   idam: {
-    mockIdamLogin: '/idam-mock-login',
+    idamLogin: '/idam-login',
     authenticated: '/authenticated'
   },
 
