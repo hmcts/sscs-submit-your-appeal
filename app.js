@@ -17,17 +17,28 @@ const urls = require('urls');
 const HttpStatus = require('http-status-codes');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
+
 /* eslint-enable max-len */
+
 
 const app = express();
 
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const protocol = config.get('node.protocol');
 const port = config.get('node.port');
+
+if (allowSaveAndReturn) {
+  // eslint-disable-next-line
+  require('mocks/ccd/server')(app);
+}
 
 // Tests
 const PORT_RANGE = 50;
 app.set('portFrom', port);
 app.set('portTo', port + PORT_RANGE);
+
+app.get('/appeal');
 
 // Protect against some well known web vulnerabilities
 // by setting HTTP headers appropriately.
@@ -198,7 +209,7 @@ journey(app, {
   timeoutDelay: 2000,
   apiUrl: `${config.api.url}/appeals`,
   draftUrl: config.api.draftUrl,
-  useCsrfToken: true
+  useCsrfToken: false
 });
 
 app.use(bodyParser.urlencoded({

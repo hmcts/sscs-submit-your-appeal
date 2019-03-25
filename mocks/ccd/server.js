@@ -1,32 +1,23 @@
 const express = require('express');
 
-const PORT = 3003;
-
-const app = express();
-
 const state = {
   appeal: {}
 };
 
-app.use(express.json());
+module.exports = app => {
+  app.use(express.json());
 
-app.get('/:prefix', (req, res) => {
-  const prefix = req.params.prefix;
-  // eslint-disable-next-line
-  console.log('=== responded with ', state[prefix]);
-  res.json(state[prefix]);
-});
+  app.get('/appeal', (req, res) => {
+    // eslint-disable-next-line
+    console.log('=== responded with ', state['appeal']);
+    res.json(state.appeal);
+  });
 
-app.post('/:prefix', (req, res) => {
-  const prefix = req.params.prefix;
-  state[prefix] = req.body;
-  // eslint-disable-next-line
-  console.log('=== state updated', state);
-  // eslint-disable-next-line
-  res.status(204).send();
-});
-
-app.listen(PORT, () => {
-  // eslint-disable-next-line
-  console.log(`Listening on port ${PORT}`);
-});
+  app.post('/appeal', (req, res) => {
+    state.appeal = req.body;
+    // eslint-disable-next-line
+    console.log('=== state updated', state);
+    // eslint-disable-next-line
+    res.status(204).send();
+  });
+};
