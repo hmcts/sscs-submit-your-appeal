@@ -11,6 +11,7 @@ const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/co
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled');
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -24,6 +25,9 @@ function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code
   I.enterBenefitTypeAndContinue(benefitTypeCode);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.continueFromIndependance();
+  if (allowSaveAndReturnEnabled) {
+    I.selectIfYouWantToCreateAccount('no');
+  }
   I.selectHaveYouGotAMRNAndContinue(haveAMRN.fields.haveAMRN.yes);
   I.enterAnMRNDateAndContinue(oneMonthAgo);
   I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
