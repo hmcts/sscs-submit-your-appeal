@@ -19,7 +19,8 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {
         foo: 'bar',
         cookie: '__cookie__',
-        expires: '__expires__'
+        expires: '__expires__',
+        uuid: 'mock_uuid'
       }
     };
 
@@ -30,7 +31,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
       expect(next.calledOnce).to.eql(true);
       expect(post.getCall(0).args[0].uri).to.eql(req.journey.settings.draftUrl);
-      expect(post.getCall(0).args[0].body).to.eql('{"foo":"bar"}');
+      expect(post.getCall(0).args[0].body).to.eql('{"foo":"bar","uuid":"mock_uuid"}');
       expect(post.getCall(0).args[0].headers).to.eql({ 'content-type': 'application/json' });
     });
   });
@@ -38,7 +39,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   describe('restoreFromDraftStore,', () => {
     const req = {
       journey: { settings: { draftUrl: '__draftUrl__' } },
-      session: {}
+      session: {
+        uuid: 'mock_uuid'
+      }
     };
     const res = {};
     const next = sinon.spy();
@@ -46,21 +49,21 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     it('should restore a previously saved session', async() => {
       await draftAppealStoreMiddleware.restoreFromDraftStore(req, res, next);
       expect(next.calledOnce).to.eql(true);
-      expect(req.session).to.eql({ foo: 'bar' });
+      expect(req.session).to.eql({ foo: 'bar', uuid: 'mock_uuid' });
     });
   });
 
   describe('restoreFromIdamState,', () => {
     const req = {
-      query: { state: '{"foo": "bar"}' },
-      session: {}
+      session: { uuid: 'mock_uuid' },
+      query: { state: '{"foo":"bar"}' }
     };
     const res = {};
     const next = sinon.spy();
 
     it('should', async() => {
       await draftAppealStoreMiddleware.restoreFromIdamState(req, res, next);
-      expect(req.session).to.eql({ foo: 'bar' });
+      expect(req.session).to.eql({ uuid: 'mock_uuid', foo: 'bar' });
       expect(next.calledOnce).to.eql(true);
     });
   });
