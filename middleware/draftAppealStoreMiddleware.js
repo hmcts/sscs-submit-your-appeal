@@ -9,7 +9,7 @@ const blackList = [ 'cookie', 'expires' ];
 
 
 const saveToDraftStore = (req, res, next) => {
-  if (allowSaveAndReturn) {
+  if (allowSaveAndReturn && req.session.uuid) {
     const uri = req.journey.settings.draftUrl;
     // remove any unwanted items from session
     let body = omit(req.session, blackList);
@@ -28,7 +28,7 @@ const saveToDraftStore = (req, res, next) => {
   }
 };
 const restoreFromDraftStore = (req, res, next) => {
-  if (allowSaveAndReturn) {
+  if (allowSaveAndReturn && req.session.uuid) {
     const uri = req.journey.settings.draftUrl;
     // send to draft store
     request.get({ uri })
@@ -46,7 +46,7 @@ const restoreFromDraftStore = (req, res, next) => {
 
 const restoreFromIdamState = (req, res, next) => {
   if (allowSaveAndReturn) {
-    Object.assign(req.session, JSON.parse(req.query.state));
+    Object.assign(req.session, { uuid: JSON.parse(req.query.state) });
   }
 
   next();
