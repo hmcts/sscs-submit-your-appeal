@@ -45,8 +45,8 @@ const restoreFromDraftStore = (req, res, next) => {
 };
 
 const restoreFromIdamState = (req, res, next) => {
-  if (allowSaveAndReturn) {
-    Object.assign(req.session, { uuid: JSON.parse(req.query.state) });
+  if (allowSaveAndReturn && req.query.state) {
+    Object.assign(req.session, JSON.parse(req.query.state));
   }
 
   next();
