@@ -1,4 +1,4 @@
-const logger = require('logger');
 const { bootstrap } = require('../../test/file_acceptor');
 
-bootstrap(() => logger.trace('Started file acceptor', __filename));
+// eslint-disable-next-line
+bootstrap(() => console.log('Started file acceptor', __filename));
