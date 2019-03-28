@@ -15,10 +15,9 @@ const idamArgs = {
 };
 
 let middleware = idamExpressMiddleware;
-let protocol = 'http';
+const protocol = config.get('node.protocol');
 if (['development'].includes(process.env.NODE_ENV)) {
   middleware = idamExpressMiddlewareMock;
-  protocol = 'http';
 }
 
 const setArgsFromRequest = req => {
@@ -26,10 +25,11 @@ const setArgsFromRequest = req => {
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
-  args.state = JSON.stringify({
+  args.state = () => JSON.stringify({
     BenefitType: req.session.BenefitType,
     PostcodeChecker: req.session.PostcodeChecker
   });
+
   return args;
 };
 
