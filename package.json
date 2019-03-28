@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
-    "dev": "cross-env NODE_PATH=. node-dev server.js",
-    "debug": "cross-env NODE_PATH=. node --inspect server.js",
+    "dev": "NODE_ENV=development cross-env NODE_PATH=. node-dev server.js",
+    "debug": "NODE_ENV=development cross-env NODE_PATH=. node --inspect server.js",
     "setup": "exit 0",
     "mock": "yarn mock-uploader & yarn debug",
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --exit 'test/unit/**/*.test.js'",

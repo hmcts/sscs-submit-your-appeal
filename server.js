@@ -6,9 +6,15 @@ const fs = require('fs');
 
 const logPath = 'server.js';
 
-https.createServer({
-  key: fs.readFileSync('keys/server.key'), // eslint-disable-line
-  cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
-}, app).listen(config.node.port, () => {
-  logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
-});
+if (process.env.NODE_ENV === 'development') {
+  https.createServer({
+    key: fs.readFileSync('keys/server.key'), // eslint-disable-line
+    cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
+  }, app).listen(config.node.port, () => {
+    logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+  });
+} else {
+  app.listen(config.node.port, () => {
+    logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+  });
+}
