@@ -17,4 +17,4 @@ while !(curl -s http://0.0.0.0:1001) > /dev/null
   chown -R $(id -u):$(id -u) activescan.html
   cp *.html functional-output/
   zap-cli -p 1001 alerts -l Informational
-  ruby bin/glue -t zap --zap-host http://0.0.0.0 --zap-port 1001 --zap-passive-mode ${TEST_URL}/v2/api-docs -z 0 --finding-file glue.json
+  

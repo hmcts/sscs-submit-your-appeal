@@ -1,7 +1,5 @@
 // this is to simulate the upload evidence api. It's not part of the main app.
 
-const logger = require('logger');
-
 const logPath = 'test/index.js';
 const express = require('express');
 const formidable = require('formidable');
@@ -18,8 +16,8 @@ let server;
 /* eslint-disable consistent-return */
 /* eslint-disable no-magic-numbers */
 
-app.set('port', 3010);
-app.post('/upload', (req, res) => {
+app.set('port', 8080);
+app.post('/evidence/upload', (req, res) => {
   const incoming = new formidable.IncomingForm({
     uploadDir: path.resolve(__dirname, '.'),
     keepExtensions: true,
@@ -27,7 +25,7 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    logger.trace(`error while receiving the file from the client ${er}`, logPath);
+    console.log(`error while receiving the file from the client ${er}`, logPath);
   });
 
   incoming.on('file', (field, file) => {
@@ -36,24 +34,24 @@ app.post('/upload', (req, res) => {
   });
 
   incoming.on('error', error => {
-    logger.exception(`an error has occured with form upload ${error}`, logPath);
+    console.log(`an error has occured with form upload ${error}`, logPath);
     req.resume();
   });
 
   incoming.on('aborted', () => {
-    logger.trace('user aborted upload', logPath);
+    console.log('user aborted upload', logPath);
   });
 
   incoming.on('end', () => {
-    logger.trace('-> upload done', logPath);
+    console.log('-> upload done', logPath);
   });
 
   return incoming.parse(req, (error, fields, files) => {
     if (error) {
-      logger.trace('About to respond with error', logPath);
+      console.log('About to respond with error', logPath);
       return res.send(422, 'Cannot save the uploaded file');
     }
-    logger.trace('About to respond correctly', logPath);
+    console.log('About to respond correctly', logPath);
     return res.json({
       documents: [
         {
