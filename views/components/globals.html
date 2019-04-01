@@ -58,12 +58,16 @@
     </p>
 {% endblock %}
 
-{% block footer_top %}
-    <div class="policy-links">
-        <a href="/cookie-policy">Cookies</a>
-        <a href="/terms-and-conditions">Terms and conditions</a>
-    </div>
-{% endblock %}
+
+    {% block footer_support_links %}
+      <ul>
+        <li><a href="https://hmcts-access.service.gov.uk/contact-us">Contact us</a></li>
+        <li><a href="/terms-and-conditions">Terms and conditions</a></li>
+        <li><a href="/cookie-policy">Cookies</a></li>
+        <li><a href="/privacy-policy">Privacy policy</a></li>
+      </ul>
+    {% endblock %}
+
 
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
