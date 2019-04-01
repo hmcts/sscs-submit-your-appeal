@@ -38,9 +38,9 @@ spec:
         - name: POSTCODE_CHECKER_ALLOWED_RPCS
           value: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
         - name: SERVICES_IDAM_API_URL
-          value: "https://preprod-idamapi.reform.hmcts.net:3511"
+          value: "https://idam-api.aat.platform.hmcts.net"
         - name: SERVICES_IDAM_LOGIN_URL
-          value: "https://idam.preprod.ccidam.reform.hmcts.net/login"
+          value: "https://idam-web-public.aat.platform.hmcts.net/login"
         - name: SERVICES_IDAM_SECRET
           value: ${SERVICES_IDAM_SECRET}
         - name: ALLOW_SAVE_RETURN
