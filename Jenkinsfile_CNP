@@ -23,22 +23,8 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withPipeline("nodejs", product, component) {
-    enableDockerBuild()
-    enableDeployToAKS()
-    before('securitychecks') {sh 'yarn test:audit'}
-    loadVaultSecrets(secrets)
-    setVaultName('sscs')
-    after("smoketest:preview") {
-        stage('Application URLs') {
-            def AppDevUrl = env.TEST_URL.replace("https", "http")
-            AppDevUrl = AppDevUrl.replace("-staging.", ".")
-            println "Application URL: " + AppDevUrl
-            println "Healthcheck URL: " + AppDevUrl + "/health"
-            println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
-        }
-    }
-
-	  before('smoketest:aks') {
+	  
+    before('smoketest:aks') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
       def encodedServiceName = 'sscs'
@@ -54,5 +40,21 @@ withPipeline("nodejs", product, component) {
     } catch (err) {
       notifyBuildEvent channel: notificationsChannel, color: 'warning', message: 'Failed to update SIDAM PR whitelisting'
     }
+
+    enableDockerBuild()
+    enableDeployToAKS()
+    before('securitychecks') {sh 'yarn test:audit'}
+    loadVaultSecrets(secrets)
+    setVaultName('sscs')
+    after("smoketest:preview") {
+        stage('Application URLs') {
+            def AppDevUrl = env.TEST_URL.replace("https", "http")
+            AppDevUrl = AppDevUrl.replace("-staging.", ".")
+            println "Application URL: " + AppDevUrl
+            println "Healthcheck URL: " + AppDevUrl + "/health"
+            println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
+        }
+    }
+
   }
 }
