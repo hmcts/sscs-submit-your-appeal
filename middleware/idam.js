@@ -4,6 +4,8 @@ const config = require('config');
 const paths = require('paths');
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
+const isDevMode = ['development'].includes(process.env.NODE_ENV);
+const useMockIdam = config.get('services.idam.useMock') === 'true';
 
 const idamArgs = {
   redirectUri,
@@ -19,7 +21,7 @@ const protocol = config.get('node.protocol');
 
 // eslint-disable-next-line no-warning-comments
 // TODO fix mock middleware to enable this condition
-if (['development'].includes(process.env.NODE_ENV && false)) {
+if (isDevMode && useMockIdam) {
   middleware = idamExpressMiddlewareMock;
 }
 
