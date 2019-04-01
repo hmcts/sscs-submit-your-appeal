@@ -34,7 +34,7 @@ withPipeline("nodejs", product, component) {
   before('smoketest:aks') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
-      def encodedServiceName = 'Money%20Claims%20-%20Citizen'
+      def encodedServiceName = 'SSCS'
       def aksUrlToWhitelist = env.TEST_URL + '/authenticated'
       sh('curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/' + encodedServiceName +
         ' -H \'Content-Type: application/json\'' +
