@@ -16,7 +16,10 @@ const idamArgs = {
 
 let middleware = idamExpressMiddleware;
 const protocol = config.get('node.protocol');
-if (['development'].includes(process.env.NODE_ENV)) {
+
+// eslint-disable-next-line no-warning-comments
+// TODO fix mock middleware to enable this condition
+if (['development'].includes(process.env.NODE_ENV && false)) {
   middleware = idamExpressMiddlewareMock;
 }
 

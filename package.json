@@ -35,7 +35,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/div-idam-express-middleware": "^6.3.5",
+    "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/look-and-feel": "2.1.0",
     "@hmcts/nodejs-healthcheck": "^1.4.3",
     "@hmcts/one-per-page": "5.0.1",

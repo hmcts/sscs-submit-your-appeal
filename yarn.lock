@@ -90,10 +90,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@hmcts/div-idam-express-middleware@^6.3.5":
-  version "6.3.5"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.3.5.tgz#32c76173e33213bd0be7439c97d639dda30b0870"
-  integrity sha512-19ihrwRYQiT2MhrhvpnVJdkgRWGspp1j1g/bHWV4quvDBO1EhMRpdp/nN3SHIgQx9TY1zpA8WlKRIjd7qL0+Lg==
+"@hmcts/div-idam-express-middleware@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.5.0.tgz#357020b9d73d013268338ba9469540e2e839fee6"
+  integrity sha512-M0w0ff6hXr3gOVgERMHLUI4Eg1OCYPe8CQnGHkWsE1GAxcqNHqz9CV6H8rkDMSNrh/0TS+It4Vh64QQwZYRTFw==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     jwt-decode "^2.2.0"
