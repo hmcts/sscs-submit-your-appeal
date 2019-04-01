@@ -9,8 +9,11 @@ properties(
 def product = "sscs"
 def component = "tribunals-frontend"
 
-List<LinkedHashMap<String, Object>> secrets = [
-  secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET')
+def secrets = [
+  'sscs-${env}': 
+    [
+      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET')
+    ]
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -22,9 +25,13 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
+String notificationsChannel = '#sscs-tech'
+
 withPipeline("nodejs", product, component) {
+
+  before('securitychecks') {sh 'yarn test:audit'}
 	  
-    before('smoketest:aks') {
+  before('smoketest:aks') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
       def encodedServiceName = 'sscs'
@@ -39,13 +46,15 @@ withPipeline("nodejs", product, component) {
         '}]\'')
     } catch (err) {
       notifyBuildEvent channel: notificationsChannel, color: 'warning', message: 'Failed to update SIDAM PR whitelisting'
-    }
+  }
 
-    enableDockerBuild()
-    enableDeployToAKS()
-    before('securitychecks') {sh 'yarn test:audit'}
-    loadVaultSecrets(secrets)
-    setVaultName('sscs')
+  loadVaultSecrets(secrets)
+  enableSlackNotifications(notificationsChannel)
+  enableDockerBuild()
+  enableDeployToAKS()
+    
+    
+  setVaultName('sscs')
     after("smoketest:preview") {
         stage('Application URLs') {
             def AppDevUrl = env.TEST_URL.replace("https", "http")
@@ -55,6 +64,5 @@ withPipeline("nodejs", product, component) {
             println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
         }
     }
-
   }
 }
