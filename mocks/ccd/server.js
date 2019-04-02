@@ -4,7 +4,7 @@ const state = {
   appeal: {}
 };
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 module.exports = app => {
   app.use(express.json());
