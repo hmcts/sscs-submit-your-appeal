@@ -2,6 +2,7 @@ const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
 const request = require('request-promise-native');
 const { omit } = require('lodash');
 const config = require('config');
+const Base64 = require('js-base64').Base64;
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const headers = { 'content-type': 'application/json' };
@@ -46,7 +47,12 @@ const restoreFromDraftStore = (req, res, next) => {
 
 const restoreFromIdamState = (req, res, next) => {
   if (allowSaveAndReturn && req.query.state) {
-    Object.assign(req.session, JSON.parse(req.query.state));
+    Object.assign(
+      req.session,
+      JSON.parse(
+        Base64.decode(req.query.state)
+      )
+    );
   }
 
   next();

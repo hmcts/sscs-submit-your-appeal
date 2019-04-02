@@ -2,6 +2,7 @@ const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const idamExpressMiddlewareMock = require('mocks/services/idam');
 const config = require('config');
 const paths = require('paths');
+const Base64 = require('js-base64').Base64;
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
@@ -30,10 +31,13 @@ const setArgsFromRequest = req => {
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
-  args.state = () => JSON.stringify({
-    BenefitType: req.session.BenefitType,
-    PostcodeChecker: req.session.PostcodeChecker
-  });
+  args.state = () =>
+    Base64.encodeURI(
+      JSON.stringify({
+        BenefitType: req.session.BenefitType,
+        PostcodeChecker: req.session.PostcodeChecker
+      })
+    );
 
   return args;
 };

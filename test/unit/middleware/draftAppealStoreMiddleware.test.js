@@ -1,6 +1,7 @@
 const proxyquire = require('proxyquire').noCallThru();
 const sinon = require('sinon');
 const chai = require('chai');
+const Base64 = require('js-base64').Base64;
 
 const post = sinon.spy(() => Promise.resolve());
 const get = sinon.spy(() => Promise.resolve('{ "foo": "bar" }'));
@@ -56,7 +57,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   describe('restoreFromIdamState,', () => {
     const req = {
       session: { uuid: 'mock_uuid' },
-      query: { state: '{"foo":"bar"}' }
+      query: { state: Base64.encodeURI('{"foo":"bar"}') }
     };
     const res = {};
     const next = sinon.spy();
