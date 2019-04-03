@@ -9,7 +9,7 @@ class IdamRedirect extends Redirect {
   }
 
   next() {
-    return redirectTo(this.journey.steps.CheckYourAppeal);
+    return redirectTo(this.journey.steps.HaveAMRN);
   }
 
   get middleware() {
