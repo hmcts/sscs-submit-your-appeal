@@ -4,7 +4,7 @@
             <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
             <dd class="cya-answer">
                 {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
-                    {{ item.whatYouDisagreeWith }}
+                    {{ item.whatYouDisagreeWith|safe }}
                 {% else %}
                     {{ content.cya.reasonForAppealing.notProvided }}
                 {% endif %}
@@ -18,7 +18,7 @@
             <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
             <dd class="cya-answer">
                 {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
-                    {{ item.reasonForAppealing }}
+                    {{ item.reasonForAppealing|safe }}
                 {% else %}
                     {{ content.cya.reasonForAppealing.notProvided }}
                 {% endif %}

@@ -2,7 +2,7 @@
     {% for question, answer in cyaArrangements %}
         <dl class="cya-hearingArrangements">
             <dt class="cya-question">{{ content.cya[question] }}</dt>
-            <dd class="cya-answer">{{ answer }}</dd>
+            <dd class="cya-answer">{{ answer|safe }}</dd>
             <dd class="cya-change">
                 {% if loop.first %}
                     <a href="{{ path }}">{{ content.cya.change }}</a>
