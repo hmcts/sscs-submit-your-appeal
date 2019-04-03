@@ -1,6 +1,26 @@
 const { expect } = require('test/util/chai');
-const Entry = require('steps/idam/authenticated/Authenticated');
 const paths = require('paths');
+const sinon = require('sinon');
+const proxyquire = require('proxyquire');
+
+const mockHandler = sinon.spy();
+
+class RestoreFromIdamState {
+  constructor(params) {
+    Object.assign(this, params);
+  }
+  handler() {
+    mockHandler();
+  }
+}
+RestoreFromIdamState.handler = sinon.spy();
+
+const Entry = proxyquire('steps/idam/authenticated/Authenticated', {
+  'middleware/draftAppealStoreMiddleware': {
+    RestoreFromIdamState
+  }
+});
+
 
 describe('Authenticated.js', () => {
   let entry = null;
@@ -9,7 +29,7 @@ describe('Authenticated.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          CheckYourAppeal: paths.checkYourAppeal
+          HaveAMRN: paths.compliance.haveAMRN
         }
       }
     });
@@ -22,8 +42,37 @@ describe('Authenticated.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /check-your-appeal', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.checkYourAppeal });
+    it('returns the next step path /have-you-got-an-mrn', () => {
+      expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
+    });
+  });
+
+  describe('handler()', () => {
+    const next = sinon.spy();
+
+    describe('when method is GET', () => {
+      const req = { method: 'GET' };
+      const redirect = sinon.spy();
+      const res = { redirect };
+
+      it('should redirect to checkyour appeal', () => {
+        entry.handler(req, res, next);
+        expect(redirect.calledOnce).to.eql(true);
+      });
+    });
+
+    describe('Wen method is not GET', () => {
+      const req = { method: 'FOO' };
+      const redirect = sinon.spy();
+      const res = {
+        redirect,
+        sendStatus: sinon.spy()
+      };
+      it('should call `super.handler()`', () => {
+        entry.handler(req, res, next);
+        expect(redirect.called).to.eql(false);
+        expect(mockHandler.calledOnce).to.eql(true);
+      });
     });
   });
 });

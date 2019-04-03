@@ -9,7 +9,7 @@ describe('IdamRedirect.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          CheckYourAppeal: paths.checkYourAppeal
+          HaveAMRN: paths.compliance.haveAMRN
         }
       }
     });
@@ -22,8 +22,8 @@ describe('IdamRedirect.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /benefit-type', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.checkYourAppeal });
+    it('returns the next step path /have-you-got-an-mrn', () => {
+      expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
     });
   });
 });

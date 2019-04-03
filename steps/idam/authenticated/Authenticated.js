@@ -8,7 +8,15 @@ class Authenticated extends RestoreFromIdamState {
   }
 
   next() {
-    return goTo(this.journey.steps.CheckYourAppeal);
+    return goTo(this.journey.steps.HaveAMRN);
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET') {
+      res.redirect(paths.checkYourAppeal);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 }
 
