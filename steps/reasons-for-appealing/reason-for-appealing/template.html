@@ -72,3 +72,7 @@
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}aa
 {% endblock %}
 
+{% block after_form -%}
+    {% include "components/sessionTimeoutMessage.html" %}
+{%- endblock %}
+
