@@ -4,6 +4,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { decode } = require('utils/stringUtils');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
@@ -23,7 +24,8 @@ class OtherReasonForAppealing extends Question {
       answer(this, {
         question: this.content.cya.otherReasonForAppealing.question,
         section: sections.reasonsForAppealing,
-        answer: this.fields.otherReasonForAppealing.value || userAnswer.NOT_REQUIRED
+        answer: decode(this.fields.otherReasonForAppealing.value) ||
+          userAnswer.NOT_REQUIRED
       })
     ];
   }
@@ -31,7 +33,7 @@ class OtherReasonForAppealing extends Question {
   values() {
     return {
       reasonsForAppealing: {
-        otherReasons: this.fields.otherReasonForAppealing.value
+        otherReasons: decode(this.fields.otherReasonForAppealing.value)
       }
     };
   }

@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
+const { decode } = require('utils/stringUtils');
 
 class AppellantName extends Question {
   static get path() {
@@ -40,7 +41,10 @@ class AppellantName extends Question {
     return form({
       title: text.joi(
         fields.title.error[prefix].required,
-        Joi.string().valid(validTitles).required()
+        Joi.string().required()
+      ).joi(
+        fields.title.error[prefix].invalid,
+        Joi.string().valid(validTitles)
       ),
       firstName: text.joi(
         fields.firstName.error[prefix].required,
@@ -67,7 +71,7 @@ class AppellantName extends Question {
       answer(this, {
         question: this.content.cya.appellantName.question,
         section: sections.appellantDetails,
-        answer: `${title} ${first} ${last}`
+        answer: decode(`${title} ${first} ${last}`)
       })
     ];
   }
@@ -75,9 +79,9 @@ class AppellantName extends Question {
   values() {
     return {
       appellant: {
-        title: this.fields.title.value,
-        firstName: this.fields.firstName.value,
-        lastName: this.fields.lastName.value
+        title: decode(this.fields.title.value),
+        firstName: decode(this.fields.firstName.value),
+        lastName: decode(this.fields.lastName.value)
       }
     };
   }

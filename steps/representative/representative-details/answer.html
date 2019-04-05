@@ -1,7 +1,7 @@
 <div class="govuk-check-your-answers cya-questions-short">
     <dl class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.name.question }}</dt>
-        <dd class="cya-answer">{{ CYAName }}</dd>
+        <dd class="cya-answer">{{ CYAName|safe }}</dd>
         <dd class="cya-change">
             <a href="{{ path }}">{{ content.cya.change }}</a>
             <span class="visually-hidden"> {{ content.cya.repDetails }}</span>
@@ -9,16 +9,16 @@
     </dl>
     <dl id="cya-representativedetails-organisation-if-they-work-for-one" class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.organisation.question }}</dt>
-        <dd class="cya-answer">{{ CYAOrganisation }}</dd>
+        <dd class="cya-answer">{{ CYAOrganisation|safe }}</dd>
         <dd class="cya-change"></dd>
     </dl>
     <dl class="cya-whatYouDisagreeWith">
         <dt class="cya-question">{{ content.cya.address.question }}</dt>
         <dd class="cya-answer">
-            {{ fields.addressLine1.value }}<br>
-            {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
-            {{ fields.townCity.value }}<br>
-            {{ fields.county.value }}<br>
+            {{ fields.addressLine1.value|safe }}<br>
+            {% if fields.addressLine2.value %}{{ fields.addressLine2.value|safe }}<br>{% endif %}
+            {{ fields.townCity.value|safe }}<br>
+            {{ fields.county.value|safe }}<br>
             {{ fields.postCode.value }}<br>
         </dd>
         <dd class="cya-change"></dd>
