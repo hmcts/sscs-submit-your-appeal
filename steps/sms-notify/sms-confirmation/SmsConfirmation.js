@@ -6,6 +6,7 @@ const sections = require('steps/check-your-appeal/sections');
 const regex = require('utils/regex');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { get } = require('lodash');
 
 class SmsConfirmation extends SaveToDraftStore {
   static get path() {
@@ -48,7 +49,9 @@ class SmsConfirmation extends SaveToDraftStore {
         question: this.content.cya.mobileNumber.question,
         section: sections.textMsgReminders,
         answer: this.mobileNumber,
-        url: paths.smsNotify.appellantTextReminders
+        url: get(this, 'journey.req.session.SendToNumber.useSameNumber', 'no') === 'yes' ?
+          paths.smsNotify.sendToNumber :
+          paths.smsNotify.enterMobile
       })
     ];
   }

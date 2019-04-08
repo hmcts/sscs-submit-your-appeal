@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers, max-len, no-undefined */
+const Entities = require('html-entities').XmlEntities;
 
 const MIN_CHAR_COUNT = 5;
 const isNotEmptyString = value => value !== undefined && value.length > 0;
@@ -48,6 +49,11 @@ const getTribunalPanel = ben => {
   }[key];
 };
 
+const decode = field => {
+  const entities = new Entities();
+  return entities.decode(field);
+};
+
 module.exports = {
   titleise,
   splitBenefitType,
@@ -55,5 +61,6 @@ module.exports = {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getTribunalPanel,
-  getBenefitName
+  getBenefitName,
+  decode
 };
