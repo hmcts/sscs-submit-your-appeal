@@ -69,9 +69,9 @@
   },
   "services": {
     "idam": {
-      "apiUrl": "http://localhost:8001",
-      "secret": "123456",
-      "loginUrl": "http://localhost:3000/idam-mock-login",
+      "apiUrl": "http://localhost:4501",
+      "secret": "AAAAAAAAAAAAAAAC",
+      "loginUrl": "https://localhost:3501/login",
       "clientId": "sscs",
       "useMock": "false"
     }  
