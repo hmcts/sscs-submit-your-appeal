@@ -59,7 +59,7 @@ const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/Evid
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const IdamRedirect = require('steps/idam/idam-redirect/IdamRedirect');
-
+const IdamLogin = require('steps/idam/IdamLogin/IdamLogin');
 const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
 const Authenticated = require('steps/idam/authenticated/Authenticated');
 
@@ -153,7 +153,8 @@ const confirmation = [ Confirmation ];
 
 const idam = [
   IdamMockLogin,
-  Authenticated
+  Authenticated,
+  IdamLogin
 ];
 
 module.exports = concat(
