@@ -8,6 +8,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { decode } = require('utils/stringUtils');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -36,7 +37,7 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.reasonForBeingLate.question,
         section: sections.mrnDate,
-        answer: this.fields.reasonForBeingLate.value
+        answer: decode(this.fields.reasonForBeingLate.value)
       })
     ];
   }
@@ -44,7 +45,7 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
   values() {
     return {
       mrn: {
-        reasonForBeingLate: this.fields.reasonForBeingLate.value
+        reasonForBeingLate: decode(this.fields.reasonForBeingLate.value)
       }
     };
   }

@@ -68,7 +68,11 @@
 {% block editItem %}
     <p>{{ content.dwpExplained }}</p>
     <p>{{ content.readYouMRN }}</p>
-    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
-    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
+    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
+    {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}aa
 {% endblock %}
+
+{% block after_form -%}
+    {% include "components/sessionTimeoutMessage.html" %}
+{%- endblock %}
 

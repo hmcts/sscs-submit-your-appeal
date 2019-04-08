@@ -16,6 +16,7 @@ const config = require('config');
 const customJoi = require('utils/customJoiSchemas');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const { decode } = require('utils/stringUtils');
 
 class AppointeeContactDetails extends SaveToDraftStore {
   static get path() {
@@ -113,10 +114,10 @@ class AppointeeContactDetails extends SaveToDraftStore {
     return {
       appointee: {
         contactDetails: {
-          addressLine1: this.fields.addressLine1.value,
-          addressLine2: this.fields.addressLine2.value,
-          townCity: this.fields.townCity.value,
-          county: this.fields.county.value,
+          addressLine1: decode(this.fields.addressLine1.value),
+          addressLine2: decode(this.fields.addressLine2.value),
+          townCity: decode(this.fields.townCity.value),
+          county: decode(this.fields.county.value),
           postCode: this.fields.postCode.value.trim(),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :

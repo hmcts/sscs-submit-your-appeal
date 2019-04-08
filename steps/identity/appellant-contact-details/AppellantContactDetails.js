@@ -16,6 +16,7 @@ const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
+const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
@@ -137,10 +138,10 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
-          addressLine1: this.fields.addressLine1.value,
-          addressLine2: this.fields.addressLine2.value,
-          townCity: this.fields.townCity.value,
-          county: this.fields.county.value,
+          addressLine1: decode(this.fields.addressLine1.value),
+          addressLine2: decode(this.fields.addressLine2.value),
+          townCity: decode(this.fields.townCity.value),
+          county: decode(this.fields.county.value),
           postCode: this.fields.postCode.value.trim(),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
