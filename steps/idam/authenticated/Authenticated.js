@@ -14,8 +14,8 @@ class Authenticated extends RestoreFromIdamState {
 
   get middleware() {
     return [
-      idam.landingPage,
-      ...super.middleware
+      ...super.middleware,
+      idam.landingPage
     ];
   }
 }

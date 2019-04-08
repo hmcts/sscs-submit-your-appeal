@@ -50,7 +50,12 @@ const methods = {
   },
   landingPage: (req, res, next) => {
     const args = setArgsFromRequest(req);
-    middleware.landingPage(args)(req, res, next);
+
+    if (req.query.code) {
+      middleware.landingPage(args)(req, res, next);
+    } else {
+      middleware.authenticate(args)(req, res, next);
+    }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (...args) => middleware.logout(idamArgs, ...args),

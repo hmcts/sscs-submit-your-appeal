@@ -15,8 +15,7 @@
   },
   "api": {
     "url":  "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
-    "draftUrl": "https://localhost:3000/appeal"
+    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload"
   },
   "appInsights": {
     "instrumentationKey": "",
@@ -52,7 +51,7 @@
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
-    "enabled": true,
+    "enabled": false,
     "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
   },
   "saucelabs": {
@@ -69,9 +68,9 @@
   },
   "services": {
     "idam": {
-      "apiUrl": "http://localhost:8001",
-      "secret": "123456",
-      "loginUrl": "http://localhost:3000/idam-mock-login",
+      "apiUrl": "http://localhost:4501",
+      "secret": "QM5RQQ53LZFOSIXJ",
+      "loginUrl": "https://localhost:3501/login",
       "clientId": "sscs",
       "useMock": "false"
     }  
