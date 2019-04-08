@@ -15,7 +15,7 @@
 
     {% call formSection() %}
 
-        {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true) }}
+        {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true)|safe }}
 
     {% endcall %}
 
