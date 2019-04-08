@@ -15,7 +15,8 @@
   },
   "api": {
     "url":  "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload"
+    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
+    "draftUrl": "https://localhost:3000/appeal"
   },
   "appInsights": {
     "instrumentationKey": "",
