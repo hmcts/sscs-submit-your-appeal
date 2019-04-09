@@ -1,6 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -8,7 +9,7 @@ const { decode } = require('utils/stringUtils');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-class OtherReasonForAppealing extends Question {
+class OtherReasonForAppealing extends SaveToDraftStore {
   static get path() {
     return paths.reasonsForAppealing.otherReasonForAppealing;
   }

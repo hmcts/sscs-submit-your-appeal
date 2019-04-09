@@ -1,7 +1,8 @@
-const { EntryPoint, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
+const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 
-class Entry extends EntryPoint {
+class Entry extends RestoreFromDraftStore {
   static get path() {
     return paths.session.entry;
   }

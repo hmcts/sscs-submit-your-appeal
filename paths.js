@@ -33,7 +33,9 @@ module.exports = {
     benefitType: '/benefit-type',
     postcodeCheck: '/postcode-check',
     invalidPostcode: '/invalid-postcode',
-    independence: '/independence'
+    independence: '/independence',
+    createAccount: '/create-account',
+    idamRedirect: '/idam-redirect'
   },
 
   appealFormDownload: '/appeal-form-download',
@@ -97,6 +99,11 @@ module.exports = {
     hearingAvailability: '/hearing-availability',
     notAttendingHearing: '/not-attending-hearing',
     theHearing: '/the-hearing'
+  },
+
+  idam: {
+    idamLogin: '/idam-login',
+    authenticated: '/authenticated'
   },
 
   checkYourAppeal: '/check-your-appeal',

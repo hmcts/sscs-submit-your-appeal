@@ -1,12 +1,12 @@
-const { Question } = require('@hmcts/one-per-page/steps');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
 const customJoi = require('utils/customJoiSchemas');
 
-class EnterMobile extends Question {
+class EnterMobile extends SaveToDraftStore {
   static get path() {
     return paths.smsNotify.enterMobile;
   }

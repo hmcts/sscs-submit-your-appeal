@@ -15,19 +15,37 @@ const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
 const urls = require('urls');
 const HttpStatus = require('http-status-codes');
+const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
+
 /* eslint-enable max-len */
+const idam = require('middleware/idam');
 
 const app = express();
 
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const protocol = config.get('node.protocol');
 const port = config.get('node.port');
+
+if (allowSaveAndReturn) {
+  // eslint-disable-next-line
+  require('mocks/ccd/server')(app);
+}
 
 // Tests
 const PORT_RANGE = 50;
 app.set('portFrom', port);
 app.set('portTo', port + PORT_RANGE);
+
+app.get('/appeal');
+
+// Parsing cookies for the stored encrypted session key
+app.use(cookieParser());
+
+// Get user details from idam, sets req.idam.userDetails
+app.use(idam.userDetails());
 
 // Protect against some well known web vulnerabilities
 // by setting HTTP headers appropriately.
@@ -60,6 +78,7 @@ const sha256s = [
   config.get('ssl.hpkp.sha256s'),
   config.get('ssl.hpkp.sha256sBackup')
 ];
+
 
 // Helmet HTTP public key pinning
 app.use(helmet.hpkp({ maxAge, sha256s }));
@@ -197,7 +216,8 @@ journey(app, {
   },
   timeoutDelay: 2000,
   apiUrl: `${config.api.url}/appeals`,
-  useCsrfToken: true
+  draftUrl: config.api.draftUrl,
+  useCsrfToken: false
 });
 
 app.use(bodyParser.urlencoded({

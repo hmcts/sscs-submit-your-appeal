@@ -1,7 +1,8 @@
 // const { parsePhoneNumberFromString } = require('libphonenumber-js');
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const { postCode, whitelist } = require('utils/regex');
 const logger = require('logger');
@@ -19,7 +20,7 @@ const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
-class AppellantContactDetails extends Question {
+class AppellantContactDetails extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantContactDetails;
   }

@@ -1,9 +1,9 @@
 /* eslint-disable max-len, no-undefined, no-confusing-arrow  */
 
-const { Question } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {
@@ -20,7 +20,7 @@ const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
 const { decode } = require('utils/stringUtils');
 
-class HearingArrangements extends Question {
+class HearingArrangements extends SaveToDraftStore {
   static get path() {
     return paths.hearing.hearingArrangements;
   }
