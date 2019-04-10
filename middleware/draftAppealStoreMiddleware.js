@@ -1,29 +1,37 @@
 const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
-const request = require('request-promise-native');
-const { omit } = require('lodash');
+const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
-const headers = { 'content-type': 'application/json' };
-const blackList = [ 'cookie', 'expires' ];
+const authTokenString = '__auth-token';
 
+const idam = require('middleware/idam');
+const logger = require('logger');
+
+const logPath = 'draftAppealStoreMiddleware.js';
 
 const saveToDraftStore = (req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
-    const uri = req.journey.settings.draftUrl;
-    // remove any unwanted items from session
-    let body = omit(req.session, blackList);
-    // get session to save
-    body = JSON.stringify(body);
     // send to draft store
-    request.post({ uri, body, headers })
-      .then(() => {
-        next();
+    request.post(req.journey.settings.apiDratUrl)
+      .send(req.journey.values)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+      .then(result => {
+        logger.trace([
+          'Successfully posted a draft',
+          result.status
+        ], logPath);
+
+        logger.trace(`POST api:${req.journey.settings.apiDratUrl} status:${result.status}`,
+          logPath);
       })
       .catch(error => {
-        throw error;
+        logger.exception(error, logPath);
       });
+
+    next();
   } else {
     next();
   }
@@ -61,6 +69,7 @@ class SaveToDraftStore extends Question {
   get middleware() {
     return [
       ...super.middleware,
+      this.journey.collectSteps,
       saveToDraftStore
     ];
   }
@@ -78,8 +87,10 @@ class RestoreFromDraftStore extends EntryPoint {
 class RestoreFromIdamState extends Redirect {
   get middleware() {
     return [
-      ...super.middleware,
+      idam.landingPage,
       restoreFromIdamState,
+      this.journey.collectSteps,
+      ...super.middleware,
       saveToDraftStore
     ];
   }

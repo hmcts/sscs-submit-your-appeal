@@ -1,6 +1,5 @@
 const { RestoreFromIdamState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
-const idam = require('middleware/idam');
 const paths = require('paths');
 
 class Authenticated extends RestoreFromIdamState {
@@ -12,12 +11,6 @@ class Authenticated extends RestoreFromIdamState {
     return goTo(this.journey.steps.CheckYourAppeal);
   }
 
-  get middleware() {
-    return [
-      ...super.middleware,
-      idam.landingPage
-    ];
-  }
 }
 
 module.exports = Authenticated;
