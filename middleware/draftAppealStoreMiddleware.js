@@ -19,7 +19,7 @@ const setFeatureFlag = value => {
 const saveToDraftStore = (req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
     // send to draft store
-    request.post(req.journey.settings.apiDratUrl)
+    request.post(req.journey.settings.apiDraftUrl)
       .send(req.journey.values)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -29,7 +29,7 @@ const saveToDraftStore = (req, res, next) => {
           result.status
         ], logPath);
 
-        logger.trace(`POST api:${req.journey.settings.apiDratUrl} status:${result.status}`,
+        logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
           logPath);
       })
       .catch(error => {

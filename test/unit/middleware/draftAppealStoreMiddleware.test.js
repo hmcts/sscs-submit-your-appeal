@@ -10,7 +10,7 @@ const expect = chai.expect;
 describe('middleware/draftAppealStoreMiddleware', () => {
   describe('saveToDraftStore,', () => {
     const req = {
-      journey: { settings: { apiDratUrl: '__draftUrl__' } },
+      journey: { settings: { apiDraftUrl: '__draftUrl__' } },
       session: {
         foo: 'bar',
         cookie: '__cookie__',
