@@ -3,13 +3,18 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
-const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+
 const authTokenString = '__auth-token';
 
 const idam = require('middleware/idam');
 const logger = require('logger');
 
 const logPath = 'draftAppealStoreMiddleware.js';
+
+const setFeatureFlag = value => {
+  allowSaveAndReturn = value;
+};
 
 const saveToDraftStore = (req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
@@ -37,18 +42,7 @@ const saveToDraftStore = (req, res, next) => {
   }
 };
 const restoreFromDraftStore = (req, res, next) => {
-  if (allowSaveAndReturn && req.idam) {
-    const uri = req.journey.settings.draftUrl;
-    // send to draft store
-    request.get({ uri })
-      .then(body => {
-        Object.assign(req.session, JSON.parse(body));
-        next();
-      })
-      .catch(error => {
-        throw error;
-      });
-  } else {
+  if (allowSaveAndReturn) {
     next();
   }
 };
@@ -62,7 +56,6 @@ const restoreFromIdamState = (req, res, next) => {
       )
     );
   }
-
   next();
 };
 class SaveToDraftStore extends Question {
@@ -98,6 +91,7 @@ class RestoreFromIdamState extends Redirect {
 
 
 module.exports = {
+  setFeatureFlag,
   SaveToDraftStore,
   saveToDraftStore,
   RestoreFromDraftStore,

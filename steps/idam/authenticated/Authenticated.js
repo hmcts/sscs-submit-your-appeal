@@ -10,7 +10,6 @@ class Authenticated extends RestoreFromIdamState {
   next() {
     return goTo(this.journey.steps.CheckYourAppeal);
   }
-
 }
 
 module.exports = Authenticated;
