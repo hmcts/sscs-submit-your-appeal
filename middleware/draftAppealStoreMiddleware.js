@@ -42,9 +42,7 @@ const saveToDraftStore = (req, res, next) => {
   }
 };
 const restoreFromDraftStore = (req, res, next) => {
-  if (allowSaveAndReturn) {
-    next();
-  }
+  next();
 };
 
 const restoreFromIdamState = (req, res, next) => {
