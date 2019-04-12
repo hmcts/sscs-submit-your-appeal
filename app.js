@@ -216,6 +216,7 @@ journey(app, {
   },
   timeoutDelay: 2000,
   apiUrl: `${config.api.url}/appeals`,
+  apiDraftUrl: `${config.api.url}/drafts`,
   draftUrl: config.api.draftUrl,
   useCsrfToken: false
 });

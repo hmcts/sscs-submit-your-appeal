@@ -1,39 +1,32 @@
-const proxyquire = require('proxyquire').noCallThru();
 const sinon = require('sinon');
 const chai = require('chai');
 const Base64 = require('js-base64').Base64;
-
-const post = sinon.spy(() => Promise.resolve());
-const get = sinon.spy(() => Promise.resolve('{ "foo": "bar" }'));
-
-const draftAppealStoreMiddleware = proxyquire('middleware/draftAppealStoreMiddleware', {
-  'request-promise-native': { post, get },
-  config: { get: () => 'true' }
-});
+const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddleware');
+const logger = require('logger');
 
 const expect = chai.expect;
 
+// eslint-disable-next-line func-names
 describe('middleware/draftAppealStoreMiddleware', () => {
   describe('saveToDraftStore,', () => {
     const req = {
-      journey: { settings: { draftUrl: '__draftUrl__' } },
+      journey: { settings: { apiDraftUrl: '__draftUrl__' } },
       session: {
         foo: 'bar',
         cookie: '__cookie__',
         expires: '__expires__'
       },
-      idam: 'test_user'
+      idam: 'test_user',
+      cookies: { '__auth-token': 'xxx' }
     };
-
     const res = {};
     const next = sinon.spy();
-
-    it('should submit the draft to the API', async() => {
-      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(next.calledOnce).to.eql(true);
-      expect(post.getCall(0).args[0].uri).to.eql(req.journey.settings.draftUrl);
-      expect(post.getCall(0).args[0].body).to.eql('{"foo":"bar"}');
-      expect(post.getCall(0).args[0].headers).to.eql({ 'content-type': 'application/json' });
+    const loggerSpy = sinon.spy(logger, 'trace');
+    it('should submit the draft to the API', () => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
+      expect(loggerSpy).to.have.been.calledTwice;
+      expect(next).to.have.been.calledOnce;
     });
   });
 
@@ -46,10 +39,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     const res = {};
     const next = sinon.spy();
 
-    it('should restore a previously saved session', async() => {
-      await draftAppealStoreMiddleware.restoreFromDraftStore(req, res, next);
-      expect(next.calledOnce).to.eql(true);
-      expect(req.session).to.eql({ foo: 'bar' });
+    it('should restore a previously saved session', () => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.restoreFromDraftStore(req, res, next);
+      expect(next).to.have.been.calledOnce;
     });
   });
 
@@ -62,8 +55,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     const res = {};
     const next = sinon.spy();
 
-    it('should', async() => {
-      await draftAppealStoreMiddleware.restoreFromIdamState(req, res, next);
+    it('should restore session from state', () => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.restoreFromIdamState(req, res, next);
       expect(req.session).to.eql({ foo: 'bar' });
       expect(next.calledOnce).to.eql(true);
     });
