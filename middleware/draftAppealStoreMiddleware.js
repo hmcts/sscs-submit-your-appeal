@@ -17,10 +17,18 @@ const setFeatureFlag = value => {
 };
 
 const saveToDraftStore = (req, res, next) => {
-  if (allowSaveAndReturn && req.idam) {
+  let values = null;
+
+  try {
+    values = req.journey.values;
+  } catch (error) {
+    logger.trace('Save to draft store, journey values not ready.', logPath);
+  }
+
+  if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
-    request.post(req.journey.settings.apiDraftUrl)
-      .send(req.journey.values)
+    request.put(req.journey.settings.apiDraftUrl)
+      .send(values)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -29,14 +37,14 @@ const saveToDraftStore = (req, res, next) => {
           result.status
         ], logPath);
 
-        logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
           logPath);
+        next();
       })
       .catch(error => {
         logger.exception(error, logPath);
+        next();
       });
-
-    next();
   } else {
     next();
   }
