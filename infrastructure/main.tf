@@ -11,6 +11,10 @@ data "azurerm_key_vault_secret" "hpkp-sya-sha-2" {
   name = "hpkp-sya-sha-2"
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
+data "azurerm_key_vault_secret" "idam_oauth2_client_secret" {
+  name      = "idam-sscs-oauth2-client-secret"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
+}
 
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
