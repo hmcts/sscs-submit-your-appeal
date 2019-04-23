@@ -59,6 +59,12 @@ variable "postcode_checker_enabled" {
   type = "string"
   default = ""
 }
+
+variable "allow_save_return" {
+  type = "string"
+  default = "false"
+}
+
 variable "postcode_checker_allowed_rpcs" {
   type = "string"
   default = "birmingham"
@@ -72,3 +78,4 @@ variable "appinsights_instrumentation_key" {
   description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
   default     = ""
 }
+

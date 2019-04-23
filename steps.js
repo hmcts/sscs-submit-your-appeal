@@ -57,6 +57,11 @@ const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
+const CreateAccount = require('steps/start/create-account/CreateAccount');
+const IdamRedirect = require('steps/idam/idam-redirect/IdamRedirect');
+const IdamLogin = require('steps/idam/IdamLogin/IdamLogin');
+const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
+const Authenticated = require('steps/idam/authenticated/Authenticated');
 
 const init = [
   Entry,
@@ -70,7 +75,9 @@ const startAnAppeal = [
   BenefitType,
   PostcodeChecker,
   InvalidPostcode,
-  Independence
+  Independence,
+  CreateAccount,
+  IdamRedirect
 ];
 
 const compliance = [
@@ -144,6 +151,12 @@ const checkYourAppeal = [ CheckYourAppeal ];
 
 const confirmation = [ Confirmation ];
 
+const idam = [
+  IdamMockLogin,
+  Authenticated,
+  IdamLogin
+];
+
 module.exports = concat(
   init,
   startAnAppeal,
@@ -155,5 +168,6 @@ module.exports = concat(
   reasonsForAppealing,
   hearing,
   checkYourAppeal,
-  confirmation
+  confirmation,
+  idam
 );

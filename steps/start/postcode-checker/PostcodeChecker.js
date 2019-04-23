@@ -1,4 +1,5 @@
-const { Question, branch, goTo } = require('@hmcts/one-per-page');
+const { Question } = require('@hmcts/one-per-page');
+const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { postCode, inwardPostcode } = require('utils/regex');

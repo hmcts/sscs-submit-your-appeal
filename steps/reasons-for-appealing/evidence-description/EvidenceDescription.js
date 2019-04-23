@@ -1,6 +1,6 @@
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { text, form } = require('@hmcts/one-per-page/forms');
-const { Question } = require('@hmcts/one-per-page/steps');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { whitelist } = require('utils/regex');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
@@ -8,7 +8,7 @@ const paths = require('paths');
 
 const minNumberOfCharactersInDescription = 5;
 
-class EvidenceDescription extends Question {
+class EvidenceDescription extends SaveToDraftStore {
   static get path() {
     return paths.reasonsForAppealing.evidenceDescription;
   }

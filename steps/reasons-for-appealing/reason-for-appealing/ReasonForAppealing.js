@@ -11,6 +11,7 @@ const { isGreaterThanOrEqualToFiveCharacters, getBenefitCode } = require('utils/
 const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
+const { decode } = require('utils/stringUtils');
 
 class ReasonForAppealing extends AddAnother {
   static get path() {
@@ -60,9 +61,9 @@ class ReasonForAppealing extends AddAnother {
     const reasons = this.fields.items.value.map(item => {
       return {
         whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
-          item.whatYouDisagreeWith : content.cya.reasonForAppealing.notProvided,
+          decode(item.whatYouDisagreeWith) : content.cya.reasonForAppealing.notProvided,
         reasonForAppealing: item.reasonForAppealing && item.reasonForAppealing !== ' ' ?
-          item.reasonForAppealing : content.cya.reasonForAppealing.notProvided
+          decode(item.reasonForAppealing) : content.cya.reasonForAppealing.notProvided
       };
     });
 

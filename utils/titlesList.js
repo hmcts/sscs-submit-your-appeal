@@ -13,7 +13,7 @@ const titleList = [
     value: 'Ms.'
   }, {
     label: 'Mr & Mrs',
-    value: 'Mr & Mrs'
+    value: 'Mr &amp; Mrs'
   }, {
     label: 'Sir',
     value: 'S/M'

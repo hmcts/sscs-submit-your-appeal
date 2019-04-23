@@ -1,13 +1,15 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { whitelist, firstName, lastName } = require('utils/regex');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
+const { decode } = require('utils/stringUtils');
 
-class AppointeeName extends Question {
+class AppointeeName extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeName;
   }
@@ -18,13 +20,14 @@ class AppointeeName extends Question {
 
   get form() {
     const fields = this.content.fields;
+    const validTitles = titlesList.map(title => title.value);
     return form({
       title: text.joi(
         fields.title.error.required,
         Joi.string().required()
       ).joi(
         fields.title.error.invalid,
-        Joi.string().regex(whitelist)
+        Joi.string().valid(validTitles)
       ),
       firstName: text.joi(
         fields.firstName.error.required,
@@ -51,7 +54,7 @@ class AppointeeName extends Question {
       answer(this, {
         question: this.content.cya.appointeeName.question,
         section: sections.appointeeDetails,
-        answer: `${title} ${first} ${last}`
+        answer: decode(`${title} ${first} ${last}`)
       })
     ];
   }
@@ -59,9 +62,9 @@ class AppointeeName extends Question {
   values() {
     return {
       appointee: {
-        title: this.fields.title.value,
-        firstName: this.fields.firstName.value,
-        lastName: this.fields.lastName.value
+        title: decode(this.fields.title.value),
+        firstName: decode(this.fields.firstName.value),
+        lastName: decode(this.fields.lastName.value)
       }
     };
   }

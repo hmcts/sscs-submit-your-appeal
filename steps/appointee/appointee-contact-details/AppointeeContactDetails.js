@@ -1,6 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { postCode, whitelist } = require('utils/regex');
 const logger = require('logger');
 
@@ -15,8 +16,9 @@ const config = require('config');
 const customJoi = require('utils/customJoiSchemas');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const { decode } = require('utils/stringUtils');
 
-class AppointeeContactDetails extends Question {
+class AppointeeContactDetails extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeContactDetails;
   }
@@ -112,10 +114,10 @@ class AppointeeContactDetails extends Question {
     return {
       appointee: {
         contactDetails: {
-          addressLine1: this.fields.addressLine1.value,
-          addressLine2: this.fields.addressLine2.value,
-          townCity: this.fields.townCity.value,
-          county: this.fields.county.value,
+          addressLine1: decode(this.fields.addressLine1.value),
+          addressLine2: decode(this.fields.addressLine2.value),
+          townCity: decode(this.fields.townCity.value),
+          county: decode(this.fields.county.value),
           postCode: this.fields.postCode.value.trim(),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :

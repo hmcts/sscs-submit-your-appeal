@@ -1,16 +1,18 @@
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { goTo, branch } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { decode } = require('utils/stringUtils');
 
 const MIN_CHAR_COUNT = 5;
 
-class MRNOverThirteenMonthsLate extends Question {
+class MRNOverThirteenMonthsLate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnOverThirteenMonthsLate;
   }
@@ -35,7 +37,7 @@ class MRNOverThirteenMonthsLate extends Question {
       answer(this, {
         question: this.content.cya.reasonForBeingLate.question,
         section: sections.mrnDate,
-        answer: this.fields.reasonForBeingLate.value
+        answer: decode(this.fields.reasonForBeingLate.value)
       })
     ];
   }
@@ -43,7 +45,7 @@ class MRNOverThirteenMonthsLate extends Question {
   values() {
     return {
       mrn: {
-        reasonForBeingLate: this.fields.reasonForBeingLate.value
+        reasonForBeingLate: decode(this.fields.reasonForBeingLate.value)
       }
     };
   }

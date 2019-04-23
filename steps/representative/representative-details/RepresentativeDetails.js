@@ -1,7 +1,8 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,
@@ -20,8 +21,9 @@ const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
+const { decode } = require('utils/stringUtils');
 
-class RepresentativeDetails extends Question {
+class RepresentativeDetails extends SaveToDraftStore {
   static get path() {
     return paths.representative.representativeDetails;
   }
@@ -122,15 +124,15 @@ class RepresentativeDetails extends Question {
   values() {
     return {
       representative: {
-        title: this.fields.name.title.value,
-        firstName: this.fields.name.first.value,
-        lastName: this.fields.name.last.value,
-        organisation: this.fields.name.organisation.value,
+        title: decode(this.fields.name.title.value),
+        firstName: decode(this.fields.name.first.value),
+        lastName: decode(this.fields.name.last.value),
+        organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
-          addressLine1: this.fields.addressLine1.value,
-          addressLine2: this.fields.addressLine2.value,
-          townCity: this.fields.townCity.value,
-          county: this.fields.county.value,
+          addressLine1: decode(this.fields.addressLine1.value),
+          addressLine2: decode(this.fields.addressLine2.value),
+          townCity: decode(this.fields.townCity.value),
+          county: decode(this.fields.county.value),
           postCode: this.fields.postCode.value.trim(),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :

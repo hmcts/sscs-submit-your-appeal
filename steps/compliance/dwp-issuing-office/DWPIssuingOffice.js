@@ -1,6 +1,7 @@
-const { Question, goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { numbers } = require('utils/regex');
 const officeIds = require('steps/compliance/dwp-issuing-office/ids');
 const sections = require('steps/check-your-appeal/sections');
@@ -9,7 +10,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const PipNumberOnImage = require('./PipNumberOnImage');
 
-class DWPIssuingOffice extends Question {
+class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
     return paths.compliance.dwpIssuingOffice;
   }

@@ -1,0 +1,14 @@
+{
+  "en": {
+    "title": "Idam login successfull?",
+    "errors": {
+      "required": "Select the an option"
+    },
+    "fields": {
+      "success": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    }
+  }
+}

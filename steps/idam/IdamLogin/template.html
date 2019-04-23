@@ -1,0 +1,20 @@
+{% extends "components/form-template.html" %}
+
+{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+
+{% set title %}
+  {{ content.title | safe }}
+{% endset %}
+
+{% block fields %}
+
+  {% call formSection() %}
+    {{ selectionButtons(fields.success, content.title,
+      options = [
+        { label: content.fields.success.yes, value: "yes" },
+        { label: content.fields.success.no, value: "no" }
+      ]
+    ) }}
+  {% endcall %}
+
+{% endblock %}

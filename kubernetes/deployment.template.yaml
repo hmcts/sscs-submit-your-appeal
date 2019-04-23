@@ -26,7 +26,7 @@ spec:
         - name: NODE_ENV
           value: preview
         - name: HTTP_PROTOCOL
-          value: http
+          value: https
         - name: EVIDENCE_UPLOAD_ENABLED
           value: "true"
         - name: UPLOAD_EVIDENCE_URL
@@ -37,6 +37,14 @@ spec:
           value: "true"
         - name: POSTCODE_CHECKER_ALLOWED_RPCS
           value: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+        - name: SERVICES_IDAM_API_URL
+          value: "https://idam-api.aat.platform.hmcts.net"
+        - name: SERVICES_IDAM_LOGIN_URL
+          value: "https://idam-web-public.aat.platform.hmcts.net/login"
+        - name: SERVICES_IDAM_SECRET
+          value: ${SERVICES_IDAM_SECRET}
+        - name: ALLOW_SAVE_RETURN
+          value: "true"
         ports:
           - containerPort: 3000
 
