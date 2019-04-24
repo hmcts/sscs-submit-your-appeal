@@ -10,7 +10,7 @@ def product = "sscs"
 def component = "tribunals-frontend"
 
 def secrets = [
-  'sscs-${env}': 
+  'sscs-${env}':
     [
       secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET')
     ]
@@ -30,7 +30,7 @@ String notificationsChannel = '#sscs-tech'
 withPipeline("nodejs", product, component) {
 
   before('securitychecks') {sh 'yarn test:audit'}
-	  
+
   before('smoketest:aks') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
@@ -53,8 +53,8 @@ withPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
   enableSlackNotifications(notificationsChannel)
   enableDockerBuild()
-  enableDeployToAKS()
-    
+  installCharts()
+
   after("smoketest:preview") {
       stage('Application URLs') {
           def AppDevUrl = env.TEST_URL.replace("https", "http")
