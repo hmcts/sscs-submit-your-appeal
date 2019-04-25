@@ -7,24 +7,20 @@ nodejs:
   memoryLimits: 512Mi
   cpuLimits: 1
   environment:
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
+    TRIBUNALS_CASE_API_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
     REDIS_URL: redis://redis
     SESSION_SECRET:
     NODE_ENV: preview
     HTTP_PROTOCOL: https
-    EVIDENCE_UPLOAD_ENABLED: true
-    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
-    POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
-    POSTCODE_CHECKER_ENABLED: true
+    EVIDENCE_UPLOAD_ENABLED: "true"
+    UPLOAD_EVIDENCE_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload"
+    POSTCODE_CHECKER_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre"
+    POSTCODE_CHECKER_ENABLED: "true"
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
-    SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    SERVICES_IDAM_LOGIN_URL: https://idam-web-public.aat.platform.hmcts.net/login
+    SERVICES_IDAM_API_URL: "https://idam-api.aat.platform.hmcts.net"
+    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
     SERVICES_IDAM_SECRET: ${SERVICES_IDAM_SECRET}
-    ALLOW_SAVE_RETURN: true
-
-  # Don't modify below here
-  image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
+    ALLOW_SAVE_RETURN: "true"
 
 redis:
   cluster:
