@@ -30,24 +30,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-  describe('restoreFromDraftStore,', () => {
+  describe('restoreUserState,', () => {
     const req = {
-      journey: { settings: { draftUrl: '__draftUrl__' } },
-      idam: 'test_user',
-      session: {}
-    };
-    const res = {};
-    const next = sinon.spy();
-
-    it('should restore a previously saved session', () => {
-      draftAppealStoreMiddleware.setFeatureFlag(true);
-      draftAppealStoreMiddleware.restoreFromDraftStore(req, res, next);
-      expect(next).to.have.been.calledOnce;
-    });
-  });
-
-  describe('restoreFromIdamState,', () => {
-    const req = {
+      journey: { settings: { apiDraftUrl: '__draftUrl__' } },
+      cookies: { '__auth-token': 'xxxx' },
       idam: 'test_user',
       query: { state: Base64.encodeURI('{"foo":"bar"}') },
       session: {}
@@ -57,9 +43,8 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('should restore session from state', () => {
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      draftAppealStoreMiddleware.restoreFromIdamState(req, res, next);
-      expect(req.session).to.eql({ foo: 'bar' });
-      expect(next.calledOnce).to.eql(true);
+      draftAppealStoreMiddleware.restoreUserState(req, res, next);
+      expect(req.session).to.eql({ foo: 'bar', isUserSessionRestored: false });
     });
   });
 });

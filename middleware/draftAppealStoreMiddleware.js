@@ -83,6 +83,8 @@ const restoreUserState = (req, res, next) => {
         logger.exception(error, logPath);
         next();
       });
+  } else {
+    next();
   }
 };
 
