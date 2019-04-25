@@ -49,21 +49,43 @@ const saveToDraftStore = (req, res, next) => {
     next();
   }
 };
-const restoreFromDraftStore = (req, res, next) => {
-  next();
+
+const restoreUserSession = (req, values) => {
+  Object.assign(req.session, values);
 };
 
-const restoreFromIdamState = (req, res, next) => {
-  if (allowSaveAndReturn && req.query.state && req.idam) {
-    Object.assign(
-      req.session,
-      JSON.parse(
-        Base64.decode(req.query.state)
-      )
-    );
+const restoreUserState = (req, res, next) => {
+  if (allowSaveAndReturn && req.idam) {
+    restoreUserSession(req, { isUserSessionRestored: false });
+    // First try to restore from idam state parameter
+    if (req.query.state) {
+      restoreUserSession(req, JSON.parse(Base64.decode(req.query.state)));
+    }
+
+    // Try to Restore from backend if user already have a saved data.
+    request.get(req.journey.settings.apiDraftUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+      .then(result => {
+        logger.trace([
+          'Successfully get a draft',
+          result.status
+        ], logPath);
+
+        if (result.body) {
+          result.body.isUserSessionRestored = true;
+          result.body.entryPoint = 'Entry';
+          restoreUserSession(req, result.body);
+        }
+        next();
+      })
+      .catch(error => {
+        logger.exception(error, logPath);
+        next();
+      });
   }
-  next();
 };
+
 class SaveToDraftStore extends Question {
   get middleware() {
     return [
@@ -74,23 +96,22 @@ class SaveToDraftStore extends Question {
   }
 }
 // step which restores from the draft store
+class RestoreUserState extends Redirect {
+  get middleware() {
+    return [
+      idam.landingPage,
+      restoreUserState,
+      this.journey.collectSteps,
+      ...super.middleware,
+      saveToDraftStore
+    ];
+  }
+}
 class RestoreFromDraftStore extends EntryPoint {
   get middleware() {
     return [
       ...super.middleware,
-      restoreFromDraftStore
-    ];
-  }
-}
-
-class RestoreFromIdamState extends Redirect {
-  get middleware() {
-    return [
-      idam.landingPage,
-      restoreFromIdamState,
-      this.journey.collectSteps,
-      ...super.middleware,
-      saveToDraftStore
+      restoreUserState
     ];
   }
 }
@@ -100,8 +121,7 @@ module.exports = {
   setFeatureFlag,
   SaveToDraftStore,
   saveToDraftStore,
-  RestoreFromDraftStore,
-  restoreFromDraftStore,
-  RestoreFromIdamState,
-  restoreFromIdamState
+  RestoreUserState,
+  restoreUserState,
+  RestoreFromDraftStore
 };
