@@ -3,6 +3,7 @@ const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled');
 
 exports.config = {
   tests: './**/*.test.js',
@@ -10,6 +11,9 @@ exports.config = {
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
+    },
+    allowSaveAndReturn: {
+      enabled: allowSaveAndReturnEnabled
     }
   },
   helpers: {
@@ -19,7 +23,7 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
       getPageTimeout: 30000,
-      show: false,
+      show: true,
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
