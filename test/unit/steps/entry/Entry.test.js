@@ -73,6 +73,4 @@ describe('Entry.js', () => {
       expect(mockHandler.calledOnce).to.eql(true);
     });
   });
-
-
 });

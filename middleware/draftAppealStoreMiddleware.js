@@ -125,5 +125,6 @@ module.exports = {
   saveToDraftStore,
   RestoreUserState,
   restoreUserState,
-  RestoreFromDraftStore
+  RestoreFromDraftStore,
+  restoreUserSession
 };
