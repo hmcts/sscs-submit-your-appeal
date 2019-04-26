@@ -11,7 +11,7 @@ const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/co
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled');
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
