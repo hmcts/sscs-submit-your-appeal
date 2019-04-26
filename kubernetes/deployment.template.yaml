@@ -44,7 +44,7 @@ spec:
         - name: SERVICES_IDAM_SECRET
           value: ${SERVICES_IDAM_SECRET}
         - name: ALLOW_SAVE_RETURN
-          value: "true"
+          value: "false"
         ports:
           - containerPort: 3000
 
