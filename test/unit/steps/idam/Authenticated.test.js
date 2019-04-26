@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire');
 
 const mockHandler = sinon.spy();
 
-class RestoreFromIdamState {
+class RestoreUserState {
   constructor(params) {
     Object.assign(this, params);
   }
@@ -13,11 +13,11 @@ class RestoreFromIdamState {
     mockHandler();
   }
 }
-RestoreFromIdamState.handler = sinon.spy();
+RestoreUserState.handler = sinon.spy();
 
 const Entry = proxyquire('steps/idam/authenticated/Authenticated', {
   'middleware/draftAppealStoreMiddleware': {
-    RestoreFromIdamState
+    RestoreUserState
   }
 });
 

@@ -7,6 +7,14 @@ class Entry extends RestoreFromDraftStore {
     return paths.session.entry;
   }
 
+  handler(req, res, next) {
+    if (req.session.isUserSessionRestored) {
+      res.redirect(paths.checkYourAppeal);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   next() {
     return goTo(this.journey.steps.BenefitType);
   }
