@@ -7,11 +7,12 @@ const support = require('steps/hearing/support/content.en');
 const availability = require('steps/hearing/availability/content.en');
 const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
 const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
+const testConfig = require('test/config.js');
 
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
+const allowSaveAndReturnEnabled = testConfig.allowSaveAndReturnEnabled === 'true';
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');

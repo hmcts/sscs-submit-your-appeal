@@ -10,9 +10,6 @@ exports.config = {
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
-    },
-    allowSaveAndReturn: {
-      enabled: process.env.ALLOW_SAVE_RETURN || 'true'
     }
   },
   helpers: {
