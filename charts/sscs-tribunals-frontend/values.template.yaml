@@ -8,7 +8,7 @@ nodejs:
   cpuLimits: 1
   environment:
     TRIBUNALS_CASE_API_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
-    REDIS_URL: redis://redis
+    REDIS_URL: redis://${SERVICE_NAME}-redis-master
     SESSION_SECRET:
     NODE_ENV: preview
     HTTP_PROTOCOL: https
