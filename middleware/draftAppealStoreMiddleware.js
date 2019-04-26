@@ -91,7 +91,7 @@ const restoreUserState = (req, res, next) => {
 class SaveToDraftStore extends Question {
   next() {
     super.next();
-  }   
+  }
 
   get middleware() {
     return [
