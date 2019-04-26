@@ -3,7 +3,6 @@ const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled');
 
 exports.config = {
   tests: './**/*.test.js',
@@ -11,9 +10,6 @@ exports.config = {
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
-    },
-    allowSaveAndReturn: {
-      enabled: allowSaveAndReturnEnabled
     }
   },
   helpers: {
