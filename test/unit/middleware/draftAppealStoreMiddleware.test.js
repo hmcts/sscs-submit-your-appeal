@@ -4,6 +4,7 @@ const Base64 = require('js-base64').Base64;
 const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddleware');
 const logger = require('logger');
 const request = require('superagent');
+const paths = require('paths');
 
 const expect = chai.expect;
 
@@ -54,6 +55,22 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
+  describe('restoreUserState,', () => {
+    const req = {
+      journey: { settings: { apiDraftUrl: '__draftUrl__' } },
+      cookies: { '__auth-token': 'xxxx' },
+      query: { state: Base64.encodeURI('{"foo":"bar"}') },
+      session: {}
+    };
+    const res = {};
+    const next = sinon.spy();
+
+    it('should not restore not logged in user session from state ', () => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.restoreUserState(req, res, next);
+      expect(next).to.have.been.calledOnce;
+    });
+  });
 
   describe('restoreUserState,', () => {
     const req = {
@@ -81,6 +98,45 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       const testValues = { test: 'value' };
       draftAppealStoreMiddleware.restoreUserSession(req, testValues);
       expect(req.session).to.eql(testValues);
+    });
+  });
+
+  describe('RestoreFromDraftStore', () => {
+    it('Expected Middleware count:', () => {
+      const restoreFromDraftStore = new draftAppealStoreMiddleware.RestoreFromDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      expect(restoreFromDraftStore.middleware).to.have.length(3);
+    });
+  });
+
+  describe('RestoreUserState', () => {
+    it('Expected Middleware count:', () => {
+      const restoreFromDraftStore = new draftAppealStoreMiddleware.RestoreUserState({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      expect(restoreFromDraftStore.middleware).to.have.length(5);
+    });
+  });
+
+  describe('SaveToDraftStore', () => {
+    it('Expected Middleware count:', () => {
+      const restoreFromDraftStore = new draftAppealStoreMiddleware.SaveToDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      expect(restoreFromDraftStore.middleware).to.have.length(10);
     });
   });
 });

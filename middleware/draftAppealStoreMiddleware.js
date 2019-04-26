@@ -89,6 +89,10 @@ const restoreUserState = (req, res, next) => {
 };
 
 class SaveToDraftStore extends Question {
+  next() {
+    super.next();
+  }   
+
   get middleware() {
     return [
       ...super.middleware,
@@ -99,6 +103,10 @@ class SaveToDraftStore extends Question {
 }
 // step which restores from the draft store
 class RestoreUserState extends Redirect {
+  next() {
+    super.next();
+  }
+
   get middleware() {
     return [
       idam.landingPage,
@@ -110,6 +118,10 @@ class RestoreUserState extends Redirect {
   }
 }
 class RestoreFromDraftStore extends EntryPoint {
+  next() {
+    super.next();
+  }
+
   get middleware() {
     return [
       ...super.middleware,
