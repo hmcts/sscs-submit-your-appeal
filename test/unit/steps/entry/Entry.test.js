@@ -1,6 +1,25 @@
 const { expect } = require('test/util/chai');
-const Entry = require('steps/entry/Entry');
 const paths = require('paths');
+const sinon = require('sinon');
+const proxyquire = require('proxyquire');
+
+const mockHandler = sinon.spy();
+class RestoreFromDraftStore {
+  constructor(params) {
+    Object.assign(this, params);
+  }
+  handler() {
+    mockHandler();
+  }
+}
+
+RestoreFromDraftStore.handler = sinon.spy();
+
+const Entry = proxyquire('steps/entry/Entry', {
+  'middleware/draftAppealStoreMiddleware': {
+    RestoreFromDraftStore
+  }
+});
 
 describe('Entry.js', () => {
   let entry = null;
@@ -26,4 +45,34 @@ describe('Entry.js', () => {
       expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
     });
   });
+
+  describe('Wen method user data is restored', () => {
+    const req = { session: { isUserSessionRestored: true } };
+    const redirect = sinon.spy();
+    const res = {
+      redirect,
+      sendStatus: sinon.spy()
+    };
+    it('should not call `super.handler()`', () => {
+      entry.handler(req, res);
+      expect(redirect.called).to.eql(true);
+      expect(mockHandler.calledOnce).to.eql(false);
+    });
+  });
+
+  describe('Wen method user data is not restored', () => {
+    const req = { session: { isUserSessionRestored: false } };
+    const redirect = sinon.spy();
+    const res = {
+      redirect,
+      sendStatus: sinon.spy()
+    };
+    it('should not call `super.handler()`', () => {
+      entry.handler(req, res);
+      expect(redirect.called).to.eql(false);
+      expect(mockHandler.calledOnce).to.eql(true);
+    });
+  });
+
+
 });
