@@ -57,7 +57,7 @@
   },
   "postcodeLookup": {
     "url": "https://api.ordnancesurvey.co.uk/places/v1",
-    "token": "",
+    "token": " ",
     "enanled": true
   },
   "saucelabs": {
