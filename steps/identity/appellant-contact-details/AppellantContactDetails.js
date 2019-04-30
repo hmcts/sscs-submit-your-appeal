@@ -19,10 +19,22 @@ const config = require('config');
 const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const { postCodeLookup } = require('utils/postcodeLookup');
 
 class AppellantContactDetails extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantContactDetails;
+  }
+
+  handler(req) {
+    const fieldMap = {
+      line1: 'addressLine1',
+      line2: 'addressLine2',
+      town: 'townCity',
+      county: 'county',
+      postCode: 'postCode'
+    };
+    postCodeLookup(req, this, fieldMap);
   }
 
   isAppointee() {
@@ -97,7 +109,7 @@ class AppellantContactDetails extends SaveToDraftStore {
       req.session.invalidPostcode = false;
       next();
     } else if (req.method.toLowerCase() === 'post') {
-      const postcode = req.body.postCode;
+      const postcode = req.body.postCode || req.body.postCodeLookupPostCode;
 
       postcodeChecker(postcode, true).then(isEnglandOrWalesPostcode => {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;

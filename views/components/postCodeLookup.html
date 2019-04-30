@@ -1,0 +1,29 @@
+{% from "look-and-feel/components/fields.njk" import select, textbox %}
+
+{% macro postCodeLookup(data) %}
+    <div class="form-group">
+        <label class="form-label" for="postcode">Enter a UK postcode</label>
+        {% if data.error === true  %}
+            <span class="error-message">We cannot find an address with that postcode</span>
+        {% endif %}
+        <input class="form-control postcode" name="postCodeLookupPostCode" value="{{data.postCode}}" type="text"/>
+        <input class="button" type="submit" value="Find">
+    </div>
+    <div class="form-group">
+        <a class="link" href="?type=manual">I can't enter a UK postcode</a>
+    </div>
+{% if data.options.length > 0  %}
+    <div class="form-group">
+        <label class="form-label">Pick an address</label>
+        <select class="form-control"  name="PostcodeLookupAddress" onchange="this.form.submit()">
+            <option value="-1"=>{{data.options.length}} address found</option>
+            {% for option in data.options %}
+                <option {{ 'selected' if data.selected == option.DPA.UPRN  }} value="{{ option.DPA.UPRN }}"=>{{option.DPA.ADDRESS}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+    {% if data.selected  %}
+        {{ caller() }}
+    {% endif %}
+{% endmacro %}    

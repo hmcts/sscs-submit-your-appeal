@@ -47,13 +47,18 @@
       "enabled": "true"
     },
     "allowSaveAndReturn": {
-      "enabled": "false"
+      "enabled": false
     }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": true,
     "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+  },
+  "postcodeLookup": {
+    "url": "https://api.ordnancesurvey.co.uk/places/v1",
+    "token": "",
+    "enanled": true
   },
   "saucelabs": {
     "browser": "chrome",

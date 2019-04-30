@@ -67,6 +67,7 @@
     "moment": "^2.18.1",
     "nunjucks-loader": "^3.0.0",
     "request": "^2.87.0",
+    "request-promise": "^4.2.4",
     "superagent": "^3.8.2",
     "webpack-node-externals": "^1.7.2"
   },
