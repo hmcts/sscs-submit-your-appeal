@@ -13,7 +13,7 @@
     {% call formSection() %}
 
         <p>{{ subtitle}}</p>
-        {% call postCodeLookup(fields, addressSuggestions) %}
+        {% call postCodeLookup(fields, addressSuggestions, postcodeLookupType) %}
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
             {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
             {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}

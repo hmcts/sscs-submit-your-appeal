@@ -1,14 +1,18 @@
-{% macro postCodeLookup(fields, options) %}
-     <input type="hidden" id="submitType" name="submitType" value="" />
-    {{ textboxButton(fields.postCodeLookup,  'Enter a UK postcode', hint="") }}
-    {% if options.length > 0  %}
-        {{ customSelect(fields.postcodeAddress, 'Pick an address', options) }}
-    {% endif %}  
-    <div class="form-group">
-        <a class="link" href="?type=manual">I can't enter a UK postcode</a>
-    </div>
-    {% if fields.postcodeAddress.value %}
-        {{ caller() }}
+{% macro postCodeLookup(fields, options, postcodeLookupType) %}
+    {% if( postcodeLookupType === 'manual') %}
+           {{ caller() }}
+    {% else %}
+        <input type="hidden" id="submitType" name="submitType" value="" />
+        {{ textboxButton(fields.postCodeLookup,  'Enter a UK postcode', hint="") }}
+        {% if options.length > 0  %}
+            {{ customSelect(fields.postcodeAddress, 'Pick an address', options) }}
+        {% endif %}  
+        <div class="form-group">
+            <a class="link" href="?type=manual">I can't enter a UK postcode</a>
+        </div>
+        {% if fields.postcodeAddress.value %}
+            {{ caller() }}
+        {% endif %}
     {% endif %}
 {% endmacro %}  
 

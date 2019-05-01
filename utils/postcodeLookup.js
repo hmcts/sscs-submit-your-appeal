@@ -8,7 +8,7 @@ const { buildConcatenatedAddress } = require('utils/postcodeLookupHelper');
 
 // eslint-disable-next-line require-await
 const getPostCodeSuggestions = async(req, fieldMap, instance) => {
-  const postCode = instance.fields[fieldMap.postcode].value;
+  const postCode = instance.fields[fieldMap.postcodeLookup].value;
   const options = {
     json: true,
     uri: `${postCodeLookupUrl}/addresses/postcode?postcode=${postCode}&key=${postCodeLookupToken}`,
@@ -20,17 +20,17 @@ const getPostCodeSuggestions = async(req, fieldMap, instance) => {
       instance.addressSuggestions = body.results;
       req.session.addressSuggestions = instance.addressSuggestions;
     } else {
-      instance.fields[fieldMap.postcode].value = '';
-      instance.fields[fieldMap.postcode].validate();
+      instance.fields[fieldMap.postcodeLookup].value = '';
+      instance.fields[fieldMap.postcodeLookup].validate();
     }
     Promise.resolve();
   }).catch(() => {
-    instance.fields[fieldMap.postcode].validate();
+    instance.fields[fieldMap.postcodeLookup].validate();
     Promise.resolve();
   });
 };
 
-const resetFields = (req, instance, fieldMap) => {
+const resetFields = (req, instance, fieldMap, resetLookupPostCode) => {
   instance.addressSuggestions = [];
   req.session.addressSuggestions = [];
   instance.fields[fieldMap.postcodeAddress].value = '';
@@ -39,6 +39,10 @@ const resetFields = (req, instance, fieldMap) => {
   instance.fields[fieldMap.town].value = '';
   instance.fields[fieldMap.county].value = '';
   instance.fields[fieldMap.postCode].value = '';
+
+  if (resetLookupPostCode) {
+    instance.fields[fieldMap.postcodeLookup].value = '';
+  }
 };
 
 const fillAddressForm = (req, instance, fieldMap) => {
@@ -80,9 +84,39 @@ const addressLookup = async(req, instance, fieldMap) => {
   return Promise.resolve(false);
 };
 
+const isManual = (req, instance, fieldMap) => {
+  instance.postcodeLookupType = 'auto';
+
+  if (req.query.type && req.query.type === 'auto') {
+    req.session.postcodeLookupType = 'auto';
+    resetFields(req, instance, fieldMap, true);
+    instance.store();
+    return false;
+  }
+
+  if (req.session.postcodeLookupType === 'manual' ||
+     (req.query.type && req.query.type === 'manual')) {
+    req.session.postcodeLookupType = 'manual';
+    instance.postcodeLookupType = 'manual';
+
+    resetFields(req, instance, fieldMap, true);
+    instance.store();
+
+    return true;
+  }
+
+  return false;
+};
+
 const postCodeLookup = (req, instance, fieldMap) => {
   // try to retrieve session field values
   instance.retrieve();
+
+  if (isManual(req, instance, fieldMap)) {
+    return Promise.resolve(true);
+  }
+
+
   // try to retrive addressSuggestions.
   if (req.session.addressSuggestions) {
     instance.addressSuggestions = req.session.addressSuggestions;

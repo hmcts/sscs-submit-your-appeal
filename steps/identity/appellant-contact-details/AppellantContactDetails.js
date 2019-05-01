@@ -26,9 +26,9 @@ class AppellantContactDetails extends SaveToDraftStore {
     return paths.identity.enterAppellantContactDetails;
   }
 
-  handler(req, res, next) {
+  handler(req, res, next) { 
     const fieldMap = {
-      postcode: 'postCodeLookup',
+      postcodeLookup: 'postCodeLookup',
       postcodeAddress: 'postcodeAddress',
       line1: 'addressLine1',
       line2: 'addressLine2',
