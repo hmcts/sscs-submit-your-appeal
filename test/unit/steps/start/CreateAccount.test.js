@@ -42,21 +42,9 @@ describe('CreateAccount.js', () => {
       };
     });
 
-    it('should set the question', () => {
+    it('should have the answer hidden', () => {
       const answers = createAccount.answers();
-      expect(answers.question).to.equal(question);
-    });
-
-    it('should titleise the users selection to \'No\' for CYA', () => {
-      createAccount.fields.createAccount.value = userAnswer.NO;
-      const answers = createAccount.answers();
-      expect(answers.answer).to.equal('No');
-    });
-
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
-      createAccount.fields.createAccount.value = userAnswer.YES;
-      const answers = createAccount.answers();
-      expect(answers.answer).to.equal('Yes');
+      expect(answers.hide).to.equal(true);
     });
 
     it('should set createAccount to false', () => {
