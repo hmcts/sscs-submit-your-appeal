@@ -79,7 +79,7 @@ class AppellantContactDetails extends SaveToDraftStore {
     return form({
       postCodeLookup: text.joi(
         fields.postCodeLookup.error.required,
-        Joi.string().trim().regex(postCode).required()
+        Joi.string().trim().required()
       ).joi(
         fields.postCodeLookup.error.invalidPostcode,
         customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)

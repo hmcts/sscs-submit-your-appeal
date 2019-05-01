@@ -16,18 +16,37 @@ const getPostCodeSuggestions = async(req, fieldMap, instance) => {
   };
 
   return rp(options).then(body => {
-    if (body.results.length > 0) {
+    if (body.results && body.results.length > 0) {
       instance.addressSuggestions = body.results;
       req.session.addressSuggestions = instance.addressSuggestions;
-      Promise.resolve();
+    } else {
+      instance.fields[fieldMap.postcode].value = '';
+      instance.fields[fieldMap.postcode].validate();
     }
-  }).catch(() => Promise.resolve());
+    Promise.resolve();
+  }).catch(() => {
+    instance.fields[fieldMap.postcode].validate();
+    Promise.resolve();
+  });
+};
+
+const resetFields = (req, instance, fieldMap) => {
+  instance.addressSuggestions = [];
+  req.session.addressSuggestions = [];
+  instance.fields[fieldMap.postcodeAddress].value = '';
+  instance.fields[fieldMap.line1].value = '';
+  instance.fields[fieldMap.line2].value = '';
+  instance.fields[fieldMap.town].value = '';
+  instance.fields[fieldMap.county].value = '';
+  instance.fields[fieldMap.postCode].value = '';
 };
 
 const fillAddressForm = (req, instance, fieldMap) => {
   let selectedAddress = [];
+  instance.parse();
 
-  if (instance.fields[fieldMap.postcodeAddress].validate()) {
+  // eslint-disable-next-line max-len
+  if (instance.fields[fieldMap.postcodeAddress].validate() && instance.addressSuggestions) {
     const selectedUPRN = instance.fields[fieldMap.postcodeAddress].value;
     if (selectedUPRN) {
       // eslint-disable-next-line max-len
@@ -45,21 +64,23 @@ const fillAddressForm = (req, instance, fieldMap) => {
     instance.fields[fieldMap.postCode].value = concatenated.postCode;
     instance.validate();
   }
+  instance.store();
+  instance.res.render(instance.template, instance.locals);
+  return Promise.resolve(false);
 };
 
 const addressLookup = async(req, instance, fieldMap) => {
-  if (instance.fields[fieldMap.postcode].validate()) {
-    // Get suggestions.
-    await getPostCodeSuggestions(req, fieldMap, instance);
-    fillAddressForm(req, instance, fieldMap);
-  } else {
-    instance.fields[fieldMap.postcodeAddress].value = '';
-    instance.addressSuggestions = [];
-    req.session.addressSuggestions = [];
-  }
+  instance.parse();
+  resetFields(req, instance, fieldMap);
+  // Get suggestions.
+  await getPostCodeSuggestions(req, fieldMap, instance);
+
+  instance.store();
+  instance.res.render(instance.template, instance.locals);
+  return Promise.resolve(false);
 };
 
-const postCodeLookup = async(req, instance, fieldMap) => {
+const postCodeLookup = (req, instance, fieldMap) => {
   // try to retrieve session field values
   instance.retrieve();
   // try to retrive addressSuggestions.
@@ -67,15 +88,12 @@ const postCodeLookup = async(req, instance, fieldMap) => {
     instance.addressSuggestions = req.session.addressSuggestions;
   }
 
-  if (req.body.submitType === 'lookup' ||
-    !instance.fields[fieldMap.postcodeAddress].value ||
-    !instance.fields[fieldMap.postcode].value ||
-    !instance.addressSuggestions) {
-    instance.parse();
-    await addressLookup(req, instance, fieldMap);
-    instance.store();
-    instance.res.render(instance.template, instance.locals);
-    return Promise.resolve(false);
+  if (req.body.submitType === 'lookup') {
+    return addressLookup(req, instance, fieldMap);
+  }
+
+  if (req.body.submitType === 'addressSelection') {
+    return fillAddressForm(req, instance, fieldMap);
   }
 
   return Promise.resolve(true);
