@@ -1,29 +1,96 @@
-{% from "look-and-feel/components/fields.njk" import select, textbox %}
-
-{% macro postCodeLookup(data) %}
-    <div class="form-group">
-        <label class="form-label" for="postcode">Enter a UK postcode</label>
-        {% if data.error === true  %}
-            <span class="error-message">We cannot find an address with that postcode</span>
-        {% endif %}
-        <input class="form-control postcode" name="postCodeLookupPostCode" value="{{data.postCode}}" type="text"/>
-        <input class="button" type="submit" value="Find">
-    </div>
+{% macro postCodeLookup(fields) %}
+     <input type="hidden" id="submitType" name="submitType" value="" />
+    {{ textboxButton(fields.postCodeLookup,  'Enter a UK postcode', hint="") }}
+    {% if fields.postCodeOptions.value.length > 0  %}
+        {{ customSelect(fields.postcodeAddress, 'Pick an address', fields) }}
+    {% endif %}  
     <div class="form-group">
         <a class="link" href="?type=manual">I can't enter a UK postcode</a>
     </div>
-{% if data.options.length > 0  %}
-    <div class="form-group">
-        <label class="form-label">Pick an address</label>
-        <select class="form-control"  name="PostcodeLookupAddress" onchange="this.form.submit()">
-            <option value="-1"=>{{data.options.length}} address found</option>
-            {% for option in data.options %}
-                <option {{ 'selected' if data.selected == option.DPA.UPRN  }} value="{{ option.DPA.UPRN }}"=>{{option.DPA.ADDRESS}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    {% endif %}
-    {% if data.selected  %}
+    {% if fields.postcodeAddress.value %}
         {{ caller() }}
     {% endif %}
-{% endmacro %}    
+{% endmacro %}  
+
+
+{% macro customSelect(field, label, fields) %}
+
+<div class="form-group  {{ errorClass(field) }}">
+
+  <label class="form-label"
+         for="{{ field.id }}">
+    {{ label }}
+  </label>
+
+  {{ errorsFor(field) }}
+
+  <select 
+          name="{{ field.id }}"
+          class="form-control"
+          onchange="document.getElementById('submitType').value = 'addressSelection'; this.form.submit();"
+          >
+    {# Default option so no option is preselected #}
+    <option disabled
+            {% if not field.value %}
+            selected
+            {% endif %}
+            value>{{fields.postCodeOptions.value.length}} address found</option>
+
+    {% for option in fields.postCodeOptions.value -%}
+      {% set option_value = option.DPA.UPRN %}
+      {% set option_disabled = option.disabled or false %}
+
+      <option
+          {% if field.value == option_value %}
+          selected
+          {% endif %}
+          {% if option_disabled %}
+          disabled
+          {% endif %}
+          {% if option_value %}
+          value="{{ option_value }}"
+          {% endif %}>{{ option.DPA.ADDRESS }}</option>
+    {%- endfor %}
+
+  </select>
+
+</div>
+{% endmacro %}
+
+{% macro errorClass(field, type='group') -%}
+  {% if field.errors and field.errors|length > 0 %}
+    form-{{ type }}-error
+  {% endif %}
+{%- endmacro %}
+
+{% macro errorsFor(field) -%}
+  {% if field.errors %}
+  {% for error in field.errors -%}
+    <span class="error-message">
+      {{ error | safe}}
+    </span>
+  {%- endfor %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro textboxButton(field, label, hint=false, hideLabel=false) %}
+<div class="{{ "form-group" if field.errors.length > 0}}" {{ errorClass(field) }}">
+  <label class="form-label {{ "visually-hidden" if hideLabel }}"
+         for="{{ field.id }}">
+    {{ label }}
+    {%- if hint %}
+    <span class="form-hint">
+      {{ hint }}
+    </span>
+    {%- endif %}
+  </label>
+  {{ errorsFor(field) }}
+  <input class="form-control"
+         id="{{ field.id }}"
+         name="{{ field.id }}"
+         type="text"
+         {% if field.value %}value="{{ field.value }}"{% endif %}>
+  <input class="button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'addressLookup';">
+</div>
+{% endmacro %}

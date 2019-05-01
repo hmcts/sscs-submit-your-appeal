@@ -26,15 +26,21 @@ class AppellantContactDetails extends SaveToDraftStore {
     return paths.identity.enterAppellantContactDetails;
   }
 
-  handler(req) {
+  handler(req, res, next) {
     const fieldMap = {
+      postcode: 'postCodeLookup',
+      postcodeAddress: 'postcodeAddress',
+      postCodeOptions: 'postCodeOptions',
       line1: 'addressLine1',
       line2: 'addressLine2',
       town: 'townCity',
       county: 'county',
       postCode: 'postCode'
     };
-    postCodeLookup(req, this, fieldMap);
+
+    if (postCodeLookup(req, this, fieldMap)) {
+      super.handler(req, res, next);
+    }
   }
 
   isAppointee() {
@@ -70,6 +76,21 @@ class AppellantContactDetails extends SaveToDraftStore {
     const prefix = this.contentPrefix();
 
     return form({
+      postCodeLookup: text.joi(
+        fields.postCodeLookup.error.required,
+        Joi.string().trim().regex(postCode).required()
+      ).joi(
+        fields.postCodeLookup.error.invalidPostcode,
+        customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
+      ),
+      postcodeAddress: text.joi(
+        fields.postcodeAddress.error.required,
+        Joi.string().required()
+      ),
+      postCodeOptions: text.joi(
+        fields.postcodeAddress.error.required,
+        Joi.array().required()
+      ),
       addressLine1: text.joi(
         fields.addressLine1.error[prefix].required,
         Joi.string().regex(whitelist).required()
@@ -109,7 +130,7 @@ class AppellantContactDetails extends SaveToDraftStore {
       req.session.invalidPostcode = false;
       next();
     } else if (req.method.toLowerCase() === 'post') {
-      const postcode = req.body.postCode || req.body.postCodeLookupPostCode;
+      const postcode = req.body.postCode || req.body.postCodeLookup;
 
       postcodeChecker(postcode, true).then(isEnglandOrWalesPostcode => {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;

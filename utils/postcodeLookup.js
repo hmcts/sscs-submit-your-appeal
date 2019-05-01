@@ -6,29 +6,52 @@ const postCodeLookupUrl = conf.postcodeLookup.url;
 const postCodeLookupToken = conf.postcodeLookup.token;
 const { buildConcatenatedAddress } = require('utils/postcodeLookupHelper');
 
-const getPostCodeSuggestions = postCode => {
+// eslint-disable-next-line require-await
+const getPostCodeSuggestions = async(fieldMap, instance) => {
+  const postCode = instance.fields[fieldMap.postcode].value;
   const options = {
     json: true,
     uri: `${postCodeLookupUrl}/addresses/postcode?postcode=${postCode}&key=${postCodeLookupToken}`,
     method: 'GET'
   };
 
-  return rp(options);
+  return rp(options).then(body => {
+    if (body.results.length > 0) {
+      instance.fields[fieldMap.postCodeOptions].value = body.results;
+      Promise.resolve();
+    }
+  }).catch(() => Promise.resolve());
+};
+const addressLookup = async(instance, fieldMap) => {
+  instance.parse();
+
+  if (instance.fields[fieldMap.postcode].validate()) {
+    // Get suggestions.
+    await getPostCodeSuggestions(fieldMap, instance);
+  } else {
+    instance.fields[fieldMap.postcodeAddress].value = '';
+  }
+
+  instance.store();
+  instance.res.render(instance.template, instance.locals);
 };
 
-const fillAddressForm = (req, instance, fieldMap) => {
+const fillAddressForm = async(req, instance, fieldMap) => {
+  instance.parse();
   let selectedAddress = [];
 
-  if (req.body.PostcodeLookupAddress && req.body.PostcodeLookupAddress !== '-1') {
-    const bodySelected = req.body.PostcodeLookupAddress;
-    // eslint-disable-next-line max-len
-    selectedAddress = instance.postCodeLookupData.options.filter(address => address.DPA.UPRN === bodySelected);
+  // eslint-disable-next-line max-len
+  if (instance.fields[fieldMap.postcodeAddress].value && instance.fields[fieldMap.postcodeAddress].validate()) {
+    const selectedUPRN = instance.fields[fieldMap.postcodeAddress].value;
+    if (selectedUPRN) {
+      // Get suggestions.
+      await getPostCodeSuggestions(fieldMap, instance);
+      // eslint-disable-next-line max-len
+      selectedAddress = instance.fields[fieldMap.postCodeOptions].value.filter(address => address.DPA.UPRN === selectedUPRN);
+    }
   }
 
   if (selectedAddress.length === 1) {
-    instance.postCodeLookupData.selected = selectedAddress[0].DPA.UPRN;
-    instance.retrieve();
-
     const concatenated = buildConcatenatedAddress(selectedAddress[0]);
 
     instance.fields[fieldMap.line1].value = concatenated.line1;
@@ -36,38 +59,23 @@ const fillAddressForm = (req, instance, fieldMap) => {
     instance.fields[fieldMap.town].value = concatenated.town;
     instance.fields[fieldMap.county].value = concatenated.county;
     instance.fields[fieldMap.postCode].value = concatenated.postCode;
-    instance.store();
+    instance.validate();
   }
+
+  instance.store();
+  instance.res.render(instance.template, instance.locals);
 };
 
-const postCodeLookup = async(req, instance, fieldMap) => {
-  instance.postCodeLookupData = {
-    options: [],
-    error: false,
-    postCode: '',
-    selected: ''
-  };
-
-  if (req.method === 'POST' && req.body.postCodeLookupPostCode) {
-    let listOfAddresses = [];
-    const bodyPostCode = req.body.postCodeLookupPostCode;
-    instance.postCodeLookupData.postCode = bodyPostCode;
-
-    // Get suggestions.
-    listOfAddresses = await getPostCodeSuggestions(bodyPostCode).catch(() => {
-      instance.postCodeLookupData.error = true;
-    });
-
-    if (listOfAddresses.results.length > 0) {
-      instance.postCodeLookupData.options = listOfAddresses.results;
-      // If Address Dropdown has selected fill the form
-      fillAddressForm(req, instance, fieldMap);
-    }
-
-    instance.parse();
+const postCodeLookup = (req, instance, fieldMap) => {
+  if (req.body.submitType && req.body.submitType === 'addressLookup') {
+    addressLookup(instance, fieldMap);
+    return false;
+  } else if (req.body.submitType && req.body.submitType === 'addressSelection') {
+    fillAddressForm(req, instance, fieldMap);
+    return false;
   }
 
-  return instance.renderPage();
+  return true;
 };
 
 module.exports = { postCodeLookup };
