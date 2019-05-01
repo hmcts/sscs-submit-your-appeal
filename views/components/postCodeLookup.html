@@ -1,8 +1,8 @@
-{% macro postCodeLookup(fields) %}
+{% macro postCodeLookup(fields, options) %}
      <input type="hidden" id="submitType" name="submitType" value="" />
     {{ textboxButton(fields.postCodeLookup,  'Enter a UK postcode', hint="") }}
-    {% if fields.postCodeOptions.value.length > 0  %}
-        {{ customSelect(fields.postcodeAddress, 'Pick an address', fields) }}
+    {% if options.length > 0  %}
+        {{ customSelect(fields.postcodeAddress, 'Pick an address', options) }}
     {% endif %}  
     <div class="form-group">
         <a class="link" href="?type=manual">I can't enter a UK postcode</a>
@@ -13,7 +13,7 @@
 {% endmacro %}  
 
 
-{% macro customSelect(field, label, fields) %}
+{% macro customSelect(field, label, options) %}
 
 <div class="form-group  {{ errorClass(field) }}">
 
@@ -27,16 +27,16 @@
   <select 
           name="{{ field.id }}"
           class="form-control"
-          onchange="document.getElementById('submitType').value = 'addressSelection'; this.form.submit();"
+          onchange="document.getElementById('submitType').value = 'lookup'; this.form.submit();"
           >
     {# Default option so no option is preselected #}
     <option disabled
             {% if not field.value %}
             selected
             {% endif %}
-            value>{{fields.postCodeOptions.value.length}} address found</option>
+            value>{{options.length}} address found</option>
 
-    {% for option in fields.postCodeOptions.value -%}
+    {% for option in options -%}
       {% set option_value = option.DPA.UPRN %}
       {% set option_disabled = option.disabled or false %}
 
@@ -51,7 +51,6 @@
           value="{{ option_value }}"
           {% endif %}>{{ option.DPA.ADDRESS }}</option>
     {%- endfor %}
-
   </select>
 
 </div>
@@ -91,6 +90,6 @@
          name="{{ field.id }}"
          type="text"
          {% if field.value %}value="{{ field.value }}"{% endif %}>
-  <input class="button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'addressLookup';">
+  <input class="button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
 </div>
 {% endmacro %}

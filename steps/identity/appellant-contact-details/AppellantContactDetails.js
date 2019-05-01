@@ -30,7 +30,6 @@ class AppellantContactDetails extends SaveToDraftStore {
     const fieldMap = {
       postcode: 'postCodeLookup',
       postcodeAddress: 'postcodeAddress',
-      postCodeOptions: 'postCodeOptions',
       line1: 'addressLine1',
       line2: 'addressLine2',
       town: 'townCity',
@@ -38,9 +37,11 @@ class AppellantContactDetails extends SaveToDraftStore {
       postCode: 'postCode'
     };
 
-    if (postCodeLookup(req, this, fieldMap)) {
-      super.handler(req, res, next);
-    }
+    postCodeLookup(req, this, fieldMap).then(result => {
+      if (result) {
+        super.handler(req, res, next);
+      }
+    });
   }
 
   isAppointee() {
@@ -86,10 +87,6 @@ class AppellantContactDetails extends SaveToDraftStore {
       postcodeAddress: text.joi(
         fields.postcodeAddress.error.required,
         Joi.string().required()
-      ),
-      postCodeOptions: text.joi(
-        fields.postcodeAddress.error.required,
-        Joi.array().required()
       ),
       addressLine1: text.joi(
         fields.addressLine1.error[prefix].required,

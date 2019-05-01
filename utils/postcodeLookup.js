@@ -7,7 +7,7 @@ const postCodeLookupToken = conf.postcodeLookup.token;
 const { buildConcatenatedAddress } = require('utils/postcodeLookupHelper');
 
 // eslint-disable-next-line require-await
-const getPostCodeSuggestions = async(fieldMap, instance) => {
+const getPostCodeSuggestions = async(req, fieldMap, instance) => {
   const postCode = instance.fields[fieldMap.postcode].value;
   const options = {
     json: true,
@@ -17,37 +17,21 @@ const getPostCodeSuggestions = async(fieldMap, instance) => {
 
   return rp(options).then(body => {
     if (body.results.length > 0) {
-      instance.fields[fieldMap.postCodeOptions].value = body.results;
+      instance.addressSuggestions = body.results;
+      req.session.addressSuggestions = instance.addressSuggestions;
       Promise.resolve();
     }
   }).catch(() => Promise.resolve());
 };
-const addressLookup = async(instance, fieldMap) => {
-  instance.parse();
 
-  if (instance.fields[fieldMap.postcode].validate()) {
-    // Get suggestions.
-    await getPostCodeSuggestions(fieldMap, instance);
-  } else {
-    instance.fields[fieldMap.postcodeAddress].value = '';
-  }
-
-  instance.store();
-  instance.res.render(instance.template, instance.locals);
-};
-
-const fillAddressForm = async(req, instance, fieldMap) => {
-  instance.parse();
+const fillAddressForm = (req, instance, fieldMap) => {
   let selectedAddress = [];
 
-  // eslint-disable-next-line max-len
-  if (instance.fields[fieldMap.postcodeAddress].value && instance.fields[fieldMap.postcodeAddress].validate()) {
+  if (instance.fields[fieldMap.postcodeAddress].validate()) {
     const selectedUPRN = instance.fields[fieldMap.postcodeAddress].value;
     if (selectedUPRN) {
-      // Get suggestions.
-      await getPostCodeSuggestions(fieldMap, instance);
       // eslint-disable-next-line max-len
-      selectedAddress = instance.fields[fieldMap.postCodeOptions].value.filter(address => address.DPA.UPRN === selectedUPRN);
+      selectedAddress = instance.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
     }
   }
 
@@ -61,21 +45,40 @@ const fillAddressForm = async(req, instance, fieldMap) => {
     instance.fields[fieldMap.postCode].value = concatenated.postCode;
     instance.validate();
   }
-
-  instance.store();
-  instance.res.render(instance.template, instance.locals);
 };
 
-const postCodeLookup = (req, instance, fieldMap) => {
-  if (req.body.submitType && req.body.submitType === 'addressLookup') {
-    addressLookup(instance, fieldMap);
-    return false;
-  } else if (req.body.submitType && req.body.submitType === 'addressSelection') {
+const addressLookup = async(req, instance, fieldMap) => {
+  if (instance.fields[fieldMap.postcode].validate()) {
+    // Get suggestions.
+    await getPostCodeSuggestions(req, fieldMap, instance);
     fillAddressForm(req, instance, fieldMap);
-    return false;
+  } else {
+    instance.fields[fieldMap.postcodeAddress].value = '';
+    instance.addressSuggestions = [];
+    req.session.addressSuggestions = [];
+  }
+};
+
+const postCodeLookup = async(req, instance, fieldMap) => {
+  // try to retrieve session field values
+  instance.retrieve();
+  // try to retrive addressSuggestions.
+  if (req.session.addressSuggestions) {
+    instance.addressSuggestions = req.session.addressSuggestions;
   }
 
-  return true;
+  if (req.body.submitType === 'lookup' ||
+    !instance.fields[fieldMap.postcodeAddress].value ||
+    !instance.fields[fieldMap.postcode].value ||
+    !instance.addressSuggestions) {
+    instance.parse();
+    await addressLookup(req, instance, fieldMap);
+    instance.store();
+    instance.res.render(instance.template, instance.locals);
+    return Promise.resolve(false);
+  }
+
+  return Promise.resolve(true);
 };
 
 module.exports = { postCodeLookup };
