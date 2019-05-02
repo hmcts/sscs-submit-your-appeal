@@ -9,31 +9,6 @@ const cleanLine = function(line) {
     .replace(/^,/g, '');
 };
 
-const buildAddressBaseUk = function(selectedAddress) {
-  let line1 = `${selectedAddress.DPA.ORGANISATION_NAME} ${selectedAddress.DPA.DEPARTMENT_NAME} ${selectedAddress.DPA.PO_BOX_NUMBER}`;
-  let line2 = `${selectedAddress.DPA.BUILDING_NAME} ${selectedAddress.DPA.SUB_BUILDING_NAME} ${selectedAddress.DPA.BUILDING_NUMBER} ${selectedAddress.DPA.THOROUGHFARE_NAME}`;
-  let line3 = `${selectedAddress.DPA.DEPENDENT_LOCALITY} ${selectedAddress.DPA.DOUBLE_DEPENDENT_LOCALITY} ${selectedAddress.DPA.DEPENDENT_THOROUGHFARE_NAME}`;
-
-  if (cleanLine(line1).length === 0) {
-    line1 = line2;
-    line2 = line3;
-    line3 = '';
-  }
-
-  const addressBaseUK = {
-    addressLine1: cleanLine(line1),
-    addressLine2: cleanLine(line2),
-    addressLine3: cleanLine(line3),
-    postCode: selectedAddress.DPA.POSTCODE,
-    postTown: selectedAddress.DPA.POST_TOWN,
-    county: '',
-    country: 'UK'
-  };
-  return addressBaseUK;
-};
-
-// @todo Refactor this to reduce complexity.
-
 const buildConcatenatedAddress = function(address) {
   let firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.PO_BOX_NUMBER} ${address.DPA.SUB_BUILDING_NAME}  ${address.DPA.BUILDING_NUMBER}, ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.BUILDING_NAME}`;
   let secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY}  ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
@@ -80,4 +55,4 @@ const buildConcatenatedAddress = function(address) {
   return concatenatedAddress;
 };
 
-module.exports = { buildAddressBaseUk, buildConcatenatedAddress };
+module.exports = { buildConcatenatedAddress };
