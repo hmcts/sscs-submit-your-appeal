@@ -27,9 +27,7 @@ class CreateAccount extends Question {
   }
 
   values() {
-    return {
-      createAccount: this.fields.createAccount.value === userAnswer.YES
-    };
+    return {};
   }
 
   next() {

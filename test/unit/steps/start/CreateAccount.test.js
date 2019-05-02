@@ -1,6 +1,5 @@
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const { expect } = require('test/util/chai');
-const userAnswer = require('utils/answer');
 const paths = require('paths');
 
 describe('CreateAccount.js', () => {
@@ -47,16 +46,8 @@ describe('CreateAccount.js', () => {
       expect(answers.hide).to.equal(true);
     });
 
-    it('should set createAccount to false', () => {
-      createAccount.fields.createAccount.value = userAnswer.NO;
-      const values = createAccount.values();
-      expect(values).to.eql({ createAccount: false });
-    });
-
-    it('hould set createAccount to true', () => {
-      createAccount.fields.createAccount.value = userAnswer.YES;
-      const values = createAccount.values();
-      expect(values).to.eql({ createAccount: true });
+    it('should have values be empty', () => {
+      expect(createAccount.values()).to.be.empty;
     });
   });
 
