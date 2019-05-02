@@ -19,7 +19,8 @@ const config = require('config');
 const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
-const { postCodeLookup, postCodeForm, postcodeFieldNames } = require('utils/postcodeLookup');
+// eslint-disable-next-line max-len
+const { postCodeLookupController, postCodeFormSchemaBuilder, postCodeFieldMapper } = require('utils/postcodeLookup');
 
 class AppellantContactDetails extends SaveToDraftStore {
   static get path() {
@@ -27,11 +28,7 @@ class AppellantContactDetails extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    postCodeLookup(req, this).then(result => {
-      if (result) {
-        super.handler(req, res, next);
-      }
-    });
+    postCodeLookupController(req, res, next, this, super.handler);
   }
 
   isAppointee() {
@@ -66,7 +63,7 @@ class AppellantContactDetails extends SaveToDraftStore {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
 
-    return postCodeForm([
+    return postCodeFormSchemaBuilder([
       { validator: text.joi(
         fields.postCodeLookup.error.required,
         Joi.string().trim().required()
@@ -74,32 +71,32 @@ class AppellantContactDetails extends SaveToDraftStore {
         fields.postCodeLookup.error.invalidPostcode,
         customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
       ),
-      name: postcodeFieldNames.postcodeLookup },
+      name: postCodeFieldMapper.postcodeLookup },
       { validator: text.joi(
         fields.postcodeAddress.error.required,
         Joi.string().required()
       ),
-      name: postcodeFieldNames.postcodeAddress },
+      name: postCodeFieldMapper.postcodeAddress },
       { validator: text.joi(
         fields.addressLine1.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
-      name: postcodeFieldNames.line1 },
+      name: postCodeFieldMapper.line1 },
       { validator: text.joi(
         fields.addressLine2.error[prefix].invalid,
         Joi.string().regex(whitelist).allow('')
       ),
-      name: postcodeFieldNames.line2 },
+      name: postCodeFieldMapper.line2 },
       { validator: text.joi(
         fields.townCity.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
-      name: postcodeFieldNames.town },
+      name: postCodeFieldMapper.town },
       { validator: text.joi(
         fields.county.error[prefix].required,
         Joi.string().regex(whitelist).required()
       ),
-      name: postcodeFieldNames.county },
+      name: postCodeFieldMapper.county },
       { validator: text.joi(
         fields.postCode.error[prefix].required,
         Joi.string().trim().regex(postCode).required()
@@ -107,7 +104,7 @@ class AppellantContactDetails extends SaveToDraftStore {
         fields.postCode.error[prefix].invalidPostcode,
         customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
       ),
-      name: postcodeFieldNames.postCode },
+      name: postCodeFieldMapper.postCode },
       { validator: text.joi(
         fields.phoneNumber.error[prefix].invalid,
         customJoi.string().trim().validatePhone()

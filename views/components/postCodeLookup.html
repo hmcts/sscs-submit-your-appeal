@@ -10,7 +10,7 @@
         <div class="form-group">
             <a class="link" href="?type=manual">I can't enter a UK postcode</a>
         </div>
-        {% if fields.postcodeAddress.value %}
+        {% if fields.postcodeAddress and fields.postcodeAddress.value %}
             {{ caller() }}
         {% endif %}
     {% endif %}
