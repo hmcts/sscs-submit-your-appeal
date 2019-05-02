@@ -31,7 +31,7 @@ withPipeline("nodejs", product, component) {
 
   before('securitychecks') {sh 'yarn test:audit'}
 
-  before('smoketest:aks') {
+  before('smoketest:preview') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
       def encodedServiceName = 'SSCS'
