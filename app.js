@@ -113,7 +113,8 @@ lookAndFeel.configure(app, {
       path.resolve(__dirname, 'steps'),
       path.resolve(__dirname, 'views/compliance'),
       path.resolve(__dirname, 'policy-pages'),
-      path.resolve(__dirname, 'error-pages')
+      path.resolve(__dirname, 'error-pages'),
+      path.resolve(__dirname, 'components')
     ]
   },
   webpack: {

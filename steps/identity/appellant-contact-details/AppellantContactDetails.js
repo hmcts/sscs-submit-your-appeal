@@ -20,7 +20,7 @@ const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 // eslint-disable-next-line max-len
-const { postCodeLookupController, postCodeFormSchemaBuilder, postCodeFieldMapper } = require('utils/postcodeLookup');
+const { postCodeLookupController, postCodeFormSchemaBuilder, postCodeFieldMapper } = require('components/postcodeLookup/controller');
 
 class AppellantContactDetails extends SaveToDraftStore {
   static get path() {

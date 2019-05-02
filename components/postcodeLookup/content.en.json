@@ -1,0 +1,6 @@
+{
+    "textboxLabel": "Enter a UK postcode",
+    "addressSelectionLabel": "Pick an address",
+    "manualEntryLabel": "I can't enter a UK postcode",
+    "dropdownCount": "address found"
+}
