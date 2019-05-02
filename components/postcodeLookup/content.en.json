@@ -2,5 +2,18 @@
     "textboxLabel": "Enter a UK postcode",
     "addressSelectionLabel": "Pick an address",
     "manualEntryLabel": "I can't enter a UK postcode",
-    "dropdownCount": "address found"
+    "dropdownCount": "address found",
+    "fields": {
+        "postCodeLookup": {
+          "error": {
+              "required": "We cannot find an address with that postcode",
+              "invalidPostcode": "We cannot find an address with that postcode"
+          }
+        },
+        "postcodeAddress": {
+          "error": {
+              "required": "Please choose an address."
+          }
+        }
+    }
 }

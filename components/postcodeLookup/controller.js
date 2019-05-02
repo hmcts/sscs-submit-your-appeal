@@ -8,7 +8,7 @@ const postCodeLookupUrl = conf.postcodeLookup.url;
 const postCodeLookupToken = conf.postcodeLookup.token;
 const postCodeLookupEnabled = conf.postcodeLookup.enabled;
 const { buildConcatenatedAddress } = require('./helper');
-const content = require('./content.en.json');
+const postcodeLookupContent = require('./content.en.json');
 
 const postCodeFieldMapper = {
   postcodeLookup: 'postCodeLookup',
@@ -181,7 +181,7 @@ const handleAddressSelection = (req, instance) => {
 };
 
 const postCodeLookupController = (req, res, next, instance, superCallback) => {
-  instance.postCodeContent = content;
+  instance.postCodeContent = postcodeLookupContent;
   setPageState(req, instance);
 
   if (req.body.submitType === 'lookup') {
@@ -196,4 +196,9 @@ const postCodeLookupController = (req, res, next, instance, superCallback) => {
   }
 };
 
-module.exports = { postCodeLookupController, postCodeFormSchemaBuilder, postCodeFieldMapper };
+module.exports = {
+  postCodeLookupController,
+  postCodeFormSchemaBuilder,
+  postCodeFieldMapper,
+  postcodeLookupContent
+};

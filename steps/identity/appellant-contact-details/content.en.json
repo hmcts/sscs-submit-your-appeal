@@ -9,19 +9,6 @@
     "withAppointee": ""
   },
   "fields": {
-    "postCodeLookup": {
-      "title": "Post code address search",
-      "error": {
-          "required": "We cannot find an address with that postcode",
-          "invalidPostcode": "We cannot find an address with that postcode"
-      }
-    },
-    "postcodeAddress": {
-      "title": "List of addresses",
-      "error": {
-          "required": "Please choose an address."
-      }
-    },
     "addressLine1": {
       "title": "Address line 1",
       "error": {
