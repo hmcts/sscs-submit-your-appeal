@@ -135,7 +135,7 @@ describe('AppellantContactDetails.js', () => {
 
     describe('all field names', () => {
       it('should contain 7 fields', () => {
-        expect(Object.keys(fields).length).to.equal(7);
+        expect(Object.keys(fields).length).to.equal(9);
         expect(fields).to.have.all.keys(
           'addressLine1',
           'addressLine2',
@@ -143,7 +143,9 @@ describe('AppellantContactDetails.js', () => {
           'county',
           'postCode',
           'phoneNumber',
-          'emailAddress');
+          'emailAddress',
+          'postCodeLookup',
+          'postcodeAddress');
       });
     });
 
