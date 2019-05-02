@@ -26,6 +26,7 @@ function enterAppellantNINOAndContinue(nino) {
 }
 
 function IenterAddressDetails(I) {
+  I.click({ id: 'manualLink' });
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -35,7 +36,6 @@ function IenterAddressDetails(I) {
 
 function enterAppellantContactDetailsAndContinue() {
   const I = this;
-
   IenterAddressDetails(I);
   I.click('Continue');
 }
