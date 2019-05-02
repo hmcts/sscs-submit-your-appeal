@@ -65,8 +65,8 @@ const alldFields = () => {
   disabledFields = [];
 };
 
-const resetSuggestions = (req, instance) => {
-  instance.addressSuggestions = [];
+const resetSuggestions = (req, page) => {
+  page.addressSuggestions = [];
   req.session.addressSuggestions = [];
 };
 
@@ -86,51 +86,51 @@ const getFormType = req => {
   return 'manual';
 };
 
-const restoreValues = (instance, req) => {
+const restoreValues = (page, req) => {
   if (req.method === 'POST') {
-    instance.parse();
+    page.parse();
   } else {
-    instance.retrieve();
+    page.retrieve();
   }
 };
 
 // eslint-disable-next-line complexity
-const setPageState = (req, instance) => {
-  restoreValues(instance, req);
+const setPageState = (req, page) => {
+  restoreValues(page, req);
   // restore suggestions if they exits
-  instance.addressSuggestions = [];
+  page.addressSuggestions = [];
   if (req.body.submitType !== 'lookup' && req.session.addressSuggestions) {
-    instance.addressSuggestions = req.session.addressSuggestions;
+    page.addressSuggestions = req.session.addressSuggestions;
   }
   const formType = getFormType(req);
   if (formType === 'auto') {
     req.session.postcodeLookupType = 'auto';
-    instance.postcodeLookupType = 'auto';
+    page.postcodeLookupType = 'auto';
 
-    if (instance.fields[fieldMap.postcodeLookup] &&
-        instance.fields[fieldMap.postcodeLookup].validate() &&
-        instance.addressSuggestions.length > 0 &&
-        instance.fields[fieldMap.postcodeAddress] &&
-        instance.fields[fieldMap.postcodeAddress].validate()) {
+    if (page.fields[fieldMap.postcodeLookup] &&
+        page.fields[fieldMap.postcodeLookup].validate() &&
+        page.addressSuggestions.length > 0 &&
+        page.fields[fieldMap.postcodeAddress] &&
+        page.fields[fieldMap.postcodeAddress].validate()) {
       alldFields();
-    } else if (instance.fields[fieldMap.postcodeLookup] &&
-               instance.fields[fieldMap.postcodeLookup].validate() &&
-               instance.addressSuggestions.length > 0) {
+    } else if (page.fields[fieldMap.postcodeLookup] &&
+               page.fields[fieldMap.postcodeLookup].validate() &&
+               page.addressSuggestions.length > 0) {
       postcodeAddressFields();
     } else {
       postcodeLookupFields();
-      resetSuggestions(req, instance);
+      resetSuggestions(req, page);
     }
   } else {
     req.session.postcodeLookupType = 'manual';
-    instance.postcodeLookupType = 'manual';
+    page.postcodeLookupType = 'manual';
     manualFileds();
   }
-  restoreValues(instance, req);
+  restoreValues(page, req);
 };
 
-const handlePostCodeLookup = async(req, instance) => {
-  const postCode = instance.fields[fieldMap.postcodeLookup].value;
+const handlePostCodeLookup = async(req, page) => {
+  const postCode = page.fields[fieldMap.postcodeLookup].value;
   const options = {
     json: true,
     uri: `${url}/addresses/postcode?postcode=${postCode}&key=${token}`,
@@ -139,60 +139,60 @@ const handlePostCodeLookup = async(req, instance) => {
 
   await rp(options).then(body => {
     if (body.results && body.results.length > 0) {
-      instance.addressSuggestions = body.results;
-      req.session.addressSuggestions = instance.addressSuggestions;
+      page.addressSuggestions = body.results;
+      req.session.addressSuggestions = page.addressSuggestions;
     } else {
-      instance.fields[fieldMap.postcodeLookup].value = '';
-      instance.fields[fieldMap.postcodeLookup].validate();
+      page.fields[fieldMap.postcodeLookup].value = '';
+      page.fields[fieldMap.postcodeLookup].validate();
     }
     Promise.resolve();
   }).catch(() => {
-    instance.fields[fieldMap.postcodeLookup].validate();
+    page.fields[fieldMap.postcodeLookup].validate();
     Promise.resolve();
   });
 
-  instance.store();
-  instance.res.redirect(`${instance.path}?validate=1`);
+  page.store();
+  page.res.redirect(`${page.path}?validate=1`);
 };
 
-const handleAddressSelection = (req, instance) => {
+const handleAddressSelection = (req, page) => {
   let selectedAddress = [];
   // eslint-disable-next-line max-len
-  if (instance.fields[fieldMap.postcodeAddress].validate() && instance.addressSuggestions) {
-    const selectedUPRN = instance.fields[fieldMap.postcodeAddress].value;
+  if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
+    const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
     if (selectedUPRN) {
       // eslint-disable-next-line max-len
-      selectedAddress = instance.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
+      selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
     }
   }
 
   if (selectedAddress.length === 1) {
     const concatenated = buildConcatenatedAddress(selectedAddress[0]);
-    setPageState(req, instance);
-    instance.fields[fieldMap.line1].value = concatenated.line1;
-    instance.fields[fieldMap.line2].value = concatenated.line2;
-    instance.fields[fieldMap.town].value = concatenated.town;
-    instance.fields[fieldMap.county].value = concatenated.county;
-    instance.fields[fieldMap.postCode].value = concatenated.postCode;
-    instance.validate();
+    setPageState(req, page);
+    page.fields[fieldMap.line1].value = concatenated.line1;
+    page.fields[fieldMap.line2].value = concatenated.line2;
+    page.fields[fieldMap.town].value = concatenated.town;
+    page.fields[fieldMap.county].value = concatenated.county;
+    page.fields[fieldMap.postCode].value = concatenated.postCode;
+    page.validate();
   }
-  instance.store();
-  instance.res.redirect(`${instance.path}?validate=1`);
+  page.store();
+  page.res.redirect(`${page.path}?validate=1`);
 };
 
-const controller = (req, res, next, instance, superCallback) => {
-  instance.postCodeContent = content;
-  setPageState(req, instance);
+const controller = (req, res, next, page, superCallback) => {
+  page.postCodeContent = content;
+  setPageState(req, page);
 
   if (req.body.submitType === 'lookup') {
-    handlePostCodeLookup(req, instance);
+    handlePostCodeLookup(req, page);
   } else if (req.body.submitType === 'addressSelection') {
-    handleAddressSelection(req, instance);
+    handleAddressSelection(req, page);
   } else if (req.method === 'GET' && req.query.validate) {
-    if (instance.addressSuggestions.length === 0) instance.validate();
-    instance.res.render(instance.template, instance.locals);
+    if (page.addressSuggestions.length === 0) page.validate();
+    page.res.render(page.template, page.locals);
   } else {
-    superCallback.call(instance, req, res, next);
+    superCallback.call(page, req, res, next);
   }
 };
 
