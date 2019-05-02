@@ -168,7 +168,6 @@ const handleAddressSelection = (req, instance) => {
   if (selectedAddress.length === 1) {
     const concatenated = buildConcatenatedAddress(selectedAddress[0]);
     setPageState(req, instance);
-    restoreValues(instance, req);
     instance.fields[postCodeFieldMapper.line1].value = concatenated.line1;
     instance.fields[postCodeFieldMapper.line2].value = concatenated.line2;
     instance.fields[postCodeFieldMapper.town].value = concatenated.town;
@@ -182,7 +181,6 @@ const handleAddressSelection = (req, instance) => {
 
 const postCodeLookupController = (req, res, next, instance, superCallback) => {
   setPageState(req, instance);
-
 
   if (req.body.submitType === 'lookup') {
     handlePostCodeLookup(req, instance);
