@@ -172,7 +172,7 @@ const handleAddressSelection = (req, instance) => {
     instance.fields[postCodeFieldMapper.line1].value = concatenated.line1;
     instance.fields[postCodeFieldMapper.line2].value = concatenated.line2;
     instance.fields[postCodeFieldMapper.town].value = concatenated.town;
-    instance.fields[postCodeFieldMapper.county].value = concatenated.county;  
+    instance.fields[postCodeFieldMapper.county].value = concatenated.county;
     instance.fields[postCodeFieldMapper.postCode].value = concatenated.postCode;
     instance.validate();
   }
