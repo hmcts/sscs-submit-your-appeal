@@ -27,7 +27,7 @@ class AppellantContactDetails extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    pcl.postCodeLookupController(req, res, next, this, super.handler);
+    pcl.controller(req, res, next, this, super.handler);
   }
 
   isAppointee() {
@@ -60,11 +60,11 @@ class AppellantContactDetails extends SaveToDraftStore {
 
   get form() {
     const fields = this.content.fields;
-    const postcodeLookupFields = pcl.postcodeLookupContent.fields;
+    const postcodeLookupFields = pcl.content.fields;
     const prefix = this.contentPrefix();
 
-    return pcl.postCodeFormSchemaBuilder([
-      { name: pcl.postCodeFieldMapper.postcodeLookup,
+    return pcl.schemaBuilder([
+      { name: pcl.fieldMap.postcodeLookup,
         validator: text.joi(
           postcodeLookupFields.postCodeLookup.error.required,
           Joi.string().trim().required()
@@ -72,32 +72,32 @@ class AppellantContactDetails extends SaveToDraftStore {
           postcodeLookupFields.postCodeLookup.error.invalidPostcode,
           customJoi.string().trim().regex(postCode)
         ) },
-      { name: pcl.postCodeFieldMapper.postcodeAddress,
+      { name: pcl.fieldMap.postcodeAddress,
         validator: text.joi(
           postcodeLookupFields.postcodeAddress.error.required,
           Joi.string().required()
         ) },
-      { name: pcl.postCodeFieldMapper.line1,
+      { name: pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error[prefix].required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.postCodeFieldMapper.line2,
+      { name: pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error[prefix].invalid,
           Joi.string().regex(whitelist).allow('')
         ) },
-      { name: pcl.postCodeFieldMapper.town,
+      { name: pcl.fieldMap.town,
         validator: text.joi(
           fields.townCity.error[prefix].required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.postCodeFieldMapper.county,
+      { name: pcl.fieldMap.county,
         validator: text.joi(
           fields.county.error[prefix].required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.postCodeFieldMapper.postCode,
+      { name: pcl.fieldMap.postCode,
         validator: text.joi(
           fields.postCode.error[prefix].required,
           Joi.string().trim().regex(postCode).required()

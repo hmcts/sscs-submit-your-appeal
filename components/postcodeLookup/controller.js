@@ -4,13 +4,13 @@ const conf = require('config');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
 
-const postCodeLookupUrl = conf.postcodeLookup.url;
-const postCodeLookupToken = conf.postcodeLookup.token;
-const postCodeLookupEnabled = conf.postcodeLookup.enabled;
+const url = conf.postcodeLookup.url;
+const token = conf.postcodeLookup.token;
+const enabled = conf.postcodeLookup.enabled;
 const { buildConcatenatedAddress } = require('./helper');
-const postcodeLookupContent = require('./content.en.json');
+const content = require('./content.en.json');
 
-const postCodeFieldMapper = {
+const fieldMap = {
   postcodeLookup: 'postCodeLookup',
   postcodeAddress: 'postcodeAddress',
   line1: 'addressLine1',
@@ -22,7 +22,7 @@ const postCodeFieldMapper = {
 
 let disabledFields = [];
 
-const postCodeFormSchemaBuilder = fields => {
+const schemaBuilder = fields => {
   const newForm = Object.create(null);
   for (let i = 0; i < fields.length; i++) {
     if (!includes(disabledFields, fields[i].name)) {
@@ -35,29 +35,29 @@ const postCodeFormSchemaBuilder = fields => {
 
 const postcodeLookupFields = () => {
   disabledFields = [
-    postCodeFieldMapper.postcodeAddress,
-    postCodeFieldMapper.line1,
-    postCodeFieldMapper.line2,
-    postCodeFieldMapper.town,
-    postCodeFieldMapper.county,
-    postCodeFieldMapper.postCode
+    fieldMap.postcodeAddress,
+    fieldMap.line1,
+    fieldMap.line2,
+    fieldMap.town,
+    fieldMap.county,
+    fieldMap.postCode
   ];
 };
 
 const postcodeAddressFields = () => {
   disabledFields = [
-    postCodeFieldMapper.line1,
-    postCodeFieldMapper.line2,
-    postCodeFieldMapper.town,
-    postCodeFieldMapper.county,
-    postCodeFieldMapper.postCode
+    fieldMap.line1,
+    fieldMap.line2,
+    fieldMap.town,
+    fieldMap.county,
+    fieldMap.postCode
   ];
 };
 
 const manualFileds = () => {
   disabledFields = [
-    postCodeFieldMapper.postcodeLookup,
-    postCodeFieldMapper.postcodeAddress
+    fieldMap.postcodeLookup,
+    fieldMap.postcodeAddress
   ];
 };
 
@@ -72,15 +72,15 @@ const resetSuggestions = (req, instance) => {
 
 // eslint-disable-next-line complexity
 const getFormType = req => {
-  if ((req.query.type && req.query.type === 'manual') || !postCodeLookupEnabled) {
+  if ((req.query.type && req.query.type === 'manual') || !enabled) {
     return 'manual';
-  } else if ((req.query.type && req.query.type === 'auto') && postCodeLookupEnabled) {
+  } else if ((req.query.type && req.query.type === 'auto') && enabled) {
     return 'auto';
-  } else if (req.session.postcodeLookupType === 'auto' && postCodeLookupEnabled) {
+  } else if (req.session.postcodeLookupType === 'auto' && enabled) {
     return 'auto';
   } else if (req.session.postcodeLookupType === 'manual') {
     return 'manual';
-  } else if (postCodeLookupEnabled) {
+  } else if (enabled) {
     return 'auto';
   }
   return 'manual';
@@ -107,14 +107,14 @@ const setPageState = (req, instance) => {
     req.session.postcodeLookupType = 'auto';
     instance.postcodeLookupType = 'auto';
 
-    if (instance.fields[postCodeFieldMapper.postcodeLookup] &&
-        instance.fields[postCodeFieldMapper.postcodeLookup].validate() &&
+    if (instance.fields[fieldMap.postcodeLookup] &&
+        instance.fields[fieldMap.postcodeLookup].validate() &&
         instance.addressSuggestions.length > 0 &&
-        instance.fields[postCodeFieldMapper.postcodeAddress] &&
-        instance.fields[postCodeFieldMapper.postcodeAddress].validate()) {
+        instance.fields[fieldMap.postcodeAddress] &&
+        instance.fields[fieldMap.postcodeAddress].validate()) {
       alldFields();
-    } else if (instance.fields[postCodeFieldMapper.postcodeLookup] &&
-               instance.fields[postCodeFieldMapper.postcodeLookup].validate() &&
+    } else if (instance.fields[fieldMap.postcodeLookup] &&
+               instance.fields[fieldMap.postcodeLookup].validate() &&
                instance.addressSuggestions.length > 0) {
       postcodeAddressFields();
     } else {
@@ -130,10 +130,10 @@ const setPageState = (req, instance) => {
 };
 
 const handlePostCodeLookup = async(req, instance) => {
-  const postCode = instance.fields[postCodeFieldMapper.postcodeLookup].value;
+  const postCode = instance.fields[fieldMap.postcodeLookup].value;
   const options = {
     json: true,
-    uri: `${postCodeLookupUrl}/addresses/postcode?postcode=${postCode}&key=${postCodeLookupToken}`,
+    uri: `${url}/addresses/postcode?postcode=${postCode}&key=${token}`,
     method: 'GET'
   };
 
@@ -142,12 +142,12 @@ const handlePostCodeLookup = async(req, instance) => {
       instance.addressSuggestions = body.results;
       req.session.addressSuggestions = instance.addressSuggestions;
     } else {
-      instance.fields[postCodeFieldMapper.postcodeLookup].value = '';
-      instance.fields[postCodeFieldMapper.postcodeLookup].validate();
+      instance.fields[fieldMap.postcodeLookup].value = '';
+      instance.fields[fieldMap.postcodeLookup].validate();
     }
     Promise.resolve();
   }).catch(() => {
-    instance.fields[postCodeFieldMapper.postcodeLookup].validate();
+    instance.fields[fieldMap.postcodeLookup].validate();
     Promise.resolve();
   });
 
@@ -158,8 +158,8 @@ const handlePostCodeLookup = async(req, instance) => {
 const handleAddressSelection = (req, instance) => {
   let selectedAddress = [];
   // eslint-disable-next-line max-len
-  if (instance.fields[postCodeFieldMapper.postcodeAddress].validate() && instance.addressSuggestions) {
-    const selectedUPRN = instance.fields[postCodeFieldMapper.postcodeAddress].value;
+  if (instance.fields[fieldMap.postcodeAddress].validate() && instance.addressSuggestions) {
+    const selectedUPRN = instance.fields[fieldMap.postcodeAddress].value;
     if (selectedUPRN) {
       // eslint-disable-next-line max-len
       selectedAddress = instance.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
@@ -169,19 +169,19 @@ const handleAddressSelection = (req, instance) => {
   if (selectedAddress.length === 1) {
     const concatenated = buildConcatenatedAddress(selectedAddress[0]);
     setPageState(req, instance);
-    instance.fields[postCodeFieldMapper.line1].value = concatenated.line1;
-    instance.fields[postCodeFieldMapper.line2].value = concatenated.line2;
-    instance.fields[postCodeFieldMapper.town].value = concatenated.town;
-    instance.fields[postCodeFieldMapper.county].value = concatenated.county;
-    instance.fields[postCodeFieldMapper.postCode].value = concatenated.postCode;
+    instance.fields[fieldMap.line1].value = concatenated.line1;
+    instance.fields[fieldMap.line2].value = concatenated.line2;
+    instance.fields[fieldMap.town].value = concatenated.town;
+    instance.fields[fieldMap.county].value = concatenated.county;
+    instance.fields[fieldMap.postCode].value = concatenated.postCode;
     instance.validate();
   }
   instance.store();
   instance.res.redirect(`${instance.path}?validate=1`);
 };
 
-const postCodeLookupController = (req, res, next, instance, superCallback) => {
-  instance.postCodeContent = postcodeLookupContent;
+const controller = (req, res, next, instance, superCallback) => {
+  instance.postCodeContent = content;
   setPageState(req, instance);
 
   if (req.body.submitType === 'lookup') {
@@ -197,8 +197,8 @@ const postCodeLookupController = (req, res, next, instance, superCallback) => {
 };
 
 module.exports = {
-  postCodeLookupController,
-  postCodeFormSchemaBuilder,
-  postCodeFieldMapper,
-  postcodeLookupContent
+  controller,
+  schemaBuilder,
+  fieldMap,
+  content
 };
