@@ -112,7 +112,8 @@ const setPageState = (req, instance) => {
         instance.fields[postCodeFieldMapper.postcodeAddress] &&
         instance.fields[postCodeFieldMapper.postcodeAddress].validate()) {
       alldFields();
-    } else if (instance.fields[postCodeFieldMapper.postcodeLookup].validate() && 
+    } else if (instance.fields[postCodeFieldMapper.postcodeLookup] &&
+               instance.fields[postCodeFieldMapper.postcodeLookup].validate() &&
                instance.addressSuggestions.length > 0) {
       postcodeAddressFields();
     } else {
@@ -180,7 +181,6 @@ const handleAddressSelection = (req, instance) => {
 };
 
 const postCodeLookupController = (req, res, next, instance, superCallback) => {
-
   setPageState(req, instance);
 
 
