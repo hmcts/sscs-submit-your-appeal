@@ -1,7 +1,7 @@
 const appellant = require('test/e2e/data').appellant;
 const config = require('config');
 
-const allowSaveAndReturnEnabled = config.get('postcodeLookup.enabled');
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled');
 
 function enterAppellantNameAndContinue(title, firstName, lastName) {
   const I = this;
@@ -29,7 +29,7 @@ function enterAppellantNINOAndContinue(nino) {
 }
 
 function IenterAddressDetails(I) {
-  if (allowSaveAndReturnEnabled) {
+  if (postcodeLookupEnabled) {
     I.click({ id: 'manualLink' });
   }
 
