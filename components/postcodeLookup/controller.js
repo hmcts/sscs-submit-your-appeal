@@ -143,11 +143,10 @@ const handlePostCodeLookup = async(req, page) => {
       req.session.addressSuggestions = page.addressSuggestions;
     } else {
       page.fields[fieldMap.postcodeLookup].value = '';
-      page.fields[fieldMap.postcodeLookup].validate();
     }
     Promise.resolve();
   }).catch(() => {
-    page.fields[fieldMap.postcodeLookup].validate();
+    page.fields[fieldMap.postcodeLookup].value = '';
     Promise.resolve();
   });
 
