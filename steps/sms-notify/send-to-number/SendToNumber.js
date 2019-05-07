@@ -40,10 +40,8 @@ class SendToNumber extends SaveToDraftStore {
   }
 
   getUseSameNumber(userSameNumberValue) {
-    if (userSameNumberValue === userAnswer.YES)
-      return true;
-    if (userSameNumberValue === userAnswer.NO)
-      return false;
+    if (userSameNumberValue === userAnswer.YES) return true;
+    if (userSameNumberValue === userAnswer.NO) return false;
     return null;
   }
 
