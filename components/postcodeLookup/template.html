@@ -3,7 +3,7 @@
            {{ caller() }}
     {% else %}
         <input type="hidden" id="submitType" name="submitType" value="" />
-        {{ textboxButton(fields.postCodeLookup,  content.textboxLabel, hint="") }}
+        {{ textboxButton(fields.postCodeLookup,  content.textboxLabel, hint="", options) }}
         {% if options.length > 0  %}
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
         {% endif %}  
@@ -77,8 +77,8 @@
 {%- endmacro %}
 
 
-{% macro textboxButton(field, label, hint=false, hideLabel=false) %}
-<div class="{{ "form-group" if field.errors.length > 0}}" {{ errorClass(field) }}">
+{% macro textboxButton(field, label, hint=false, hideLabel=false, options) %}
+<div class="{{ "form-group" if options.length === 0}}" {{ errorClass(field) }}">
   <label class="form-label {{ "visually-hidden" if hideLabel }}"
          for="{{ field.id }}">
     {{ label }}
