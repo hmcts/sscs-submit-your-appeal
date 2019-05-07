@@ -108,6 +108,12 @@ describe('SendToNumber.js', () => {
       const values = sendToNumber.values();
       expect(values).to.eql({ smsNotify: { useSameNumber: true } });
     });
+
+    it('should set useSameNumber to null', () => {
+      sendToNumber.fields.useSameNumber.value = '';
+      const values = sendToNumber.values();
+      expect(values).to.eql({ smsNotify: { useSameNumber: null } });
+    });
   });
 
   describe('next()', () => {
