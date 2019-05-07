@@ -40,10 +40,10 @@ class Appointee extends SaveToDraftStore {
   }
 
   getIsAppointeeValue(getIsAppointeeValue) {
-    if (getIsAppointeeValue === userAnswer.YES) 
+    if (getIsAppointeeValue === userAnswer.YES) {
       return true;
-    if (getIsAppointeeValue === userAnswer.NO)
-      return false;
+    }
+    if (getIsAppointeeValue === userAnswer.NO) return false;
     return null;
   }
 
