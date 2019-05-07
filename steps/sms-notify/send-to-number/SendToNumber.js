@@ -34,9 +34,17 @@ class SendToNumber extends SaveToDraftStore {
   values() {
     return {
       smsNotify: {
-        useSameNumber: this.fields.useSameNumber.value === userAnswer.YES
+        useSameNumber: this.getUseSameNumber(this.fields.useSameNumber.value)
       }
     };
+  }
+
+  getUseSameNumber(userSameNumberValue) {
+    if (userSameNumberValue === userAnswer.YES)
+      return true;
+    if (userSameNumberValue === userAnswer.NO)
+      return false;
+    return null;
   }
 
   next() {

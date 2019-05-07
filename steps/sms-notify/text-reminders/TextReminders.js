@@ -38,9 +38,17 @@ class TextReminders extends SaveToDraftStore {
   values() {
     return {
       smsNotify: {
-        wantsSMSNotifications: this.fields.doYouWantTextMsgReminders.value === userAnswer.YES
+        wantsSMSNotifications: this.getSmsNotifyValue()
       }
     };
+  }
+
+  getSmsNotifyValue() {
+    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.YES)
+      return true;
+    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.NO)
+      return false;
+    return null;
   }
 
   next() {
