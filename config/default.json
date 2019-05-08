@@ -33,7 +33,7 @@
     "waitForTimeout": "30000",
     "waitForAction": "2000",
     "outputDir": "./functional-output",
-    "frontendUrl": "http://localhost:3000"
+    "frontendUrl": "https://localhost:3000"
   },
   "features": {
     "evidenceUpload": {
@@ -53,7 +53,7 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": true,
-    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
   },
   "saucelabs": {
     "browser": "chrome",
