@@ -100,6 +100,12 @@ describe('TextReminders.js', () => {
       const values = textReminders.values();
       expect(values).to.eql({ smsNotify: { wantsSMSNotifications: true } });
     });
+
+    it('should set doYouWantTextMsgReminders to null', () => {
+      textReminders.fields.doYouWantTextMsgReminders.value = '';
+      const values = textReminders.values();
+      expect(values).to.eql({ smsNotify: { wantsSMSNotifications: null } });
+    });
   });
 
   describe('next()', () => {
