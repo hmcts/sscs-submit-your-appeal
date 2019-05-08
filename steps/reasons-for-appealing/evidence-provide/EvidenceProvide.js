@@ -37,10 +37,8 @@ class EvidenceProvide extends SaveToDraftStore {
   }
 
   getEvidenceProvideValue(evidenceProvideValue) {
-    if (evidenceProvideValue === userAnswer.YES)
-      return true;
-    if (evidenceProvideValue === userAnswer.NO)
-      return false;
+    if (evidenceProvideValue === userAnswer.YES) return true;
+    if (evidenceProvideValue === userAnswer.NO) return false;
     return '';
   }
 
