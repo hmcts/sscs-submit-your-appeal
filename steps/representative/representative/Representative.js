@@ -37,9 +37,7 @@ class Representative extends SaveToDraftStore {
   }
 
   getHasRepresentativeValue(hasRepresentativeValue) {
-    if (hasRepresentativeValue === userAnswer.YES) {
-      return true;
-    }
+    if (hasRepresentativeValue === userAnswer.YES) return true;
     if (hasRepresentativeValue === userAnswer.NO) return false;
     return null;
   }
