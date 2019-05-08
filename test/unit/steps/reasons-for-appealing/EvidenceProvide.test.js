@@ -97,10 +97,16 @@ describe('EvidenceProvide.js', () => {
       expect(values).to.eql({ evidenceProvide: false });
     });
 
-    it('hould set evidenceProvide to true', () => {
+    it('should set evidenceProvide to true', () => {
       evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
       const values = evidenceProvide.values();
       expect(values).to.eql({ evidenceProvide: true });
+    });
+
+    it('should set evidenceProvide to empty string', () => {
+      evidenceProvide.fields.evidenceProvide.value = '';
+      const values = evidenceProvide.values();
+      expect(values).to.eql({ evidenceProvide: '' });
     });
   });
 

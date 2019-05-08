@@ -32,8 +32,16 @@ class EvidenceProvide extends SaveToDraftStore {
 
   values() {
     return {
-      evidenceProvide: this.fields.evidenceProvide.value === userAnswer.YES
+      evidenceProvide: this.getEvidenceProvideValue(this.fields.evidenceProvide.value)
     };
+  }
+
+  getEvidenceProvideValue(evidenceProvideValue) {
+    if (evidenceProvideValue === userAnswer.YES)
+      return true;
+    if (evidenceProvideValue === userAnswer.NO)
+      return false;
+    return '';
   }
 
   next() {
