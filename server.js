@@ -2,7 +2,7 @@ const logger = require('logger');
 const app = require('app.js');
 const config = require('config');
 const https = require('https');
-const fs = require('fs');
+const fs = require('graceful-fs');
 
 const logPath = 'server.js';
 

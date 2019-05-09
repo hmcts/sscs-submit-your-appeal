@@ -2,6 +2,7 @@
   "titleHead": "Enter postcode - Appeal a benefit decision - GOV.UK",
   "title": "Enter your postcode",
   "subtitle": "This online service is only available in England and Wales.",
+  "subtitleScotland": "This online service is only available in England, Scotland and Wales.",
   "fields": {
     "postcode": {
       "label": "Postcode",
