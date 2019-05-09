@@ -16,6 +16,11 @@ data "azurerm_key_vault_secret" "idam_oauth2_client_secret" {
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
+data "azurerm_key_vault_secret" "postcode_lookup_token" {
+  name      = "postcode_lookup_token"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
+}
+
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
