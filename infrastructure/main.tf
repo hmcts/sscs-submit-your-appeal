@@ -17,7 +17,7 @@ data "azurerm_key_vault_secret" "idam_oauth2_client_secret" {
 }
 
 data "azurerm_key_vault_secret" "postcode_lookup_token" {
-  name      = "postcode_lookup_token"
+  name      = "postcode-lookup-token"
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
