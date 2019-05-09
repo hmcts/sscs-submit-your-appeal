@@ -12,7 +12,8 @@ def component = "tribunals-frontend"
 def secrets = [
   'sscs-${env}':
     [
-      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET')
+      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET'),
+      secret('postcode_lookup_token', 'POSTCODE_LOOKUP_TOKEN')
     ]
 ]
 
