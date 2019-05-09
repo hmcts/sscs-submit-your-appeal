@@ -6,6 +6,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
+const pcl = require('components/postcodeLookup/controller');
 
 describe('AppellantContactDetails.js', () => {
   let appellantContactDetails = null;
@@ -135,7 +136,7 @@ describe('AppellantContactDetails.js', () => {
 
     describe('all field names', () => {
       it('should contain 7 fields', () => {
-        expect(Object.keys(fields).length).to.equal(7);
+        expect(Object.keys(fields).length).to.equal(9);
         expect(fields).to.have.all.keys(
           'addressLine1',
           'addressLine2',
@@ -143,7 +144,9 @@ describe('AppellantContactDetails.js', () => {
           'county',
           'postCode',
           'phoneNumber',
-          'emailAddress');
+          'emailAddress',
+          'postCodeLookup',
+          'postcodeAddress');
       });
     });
 
@@ -305,6 +308,18 @@ describe('AppellantContactDetails.js', () => {
   describe('next()', () => {
     it('returns the next step path /appellant-text-reminders', () => {
       expect(appellantContactDetails.next()).to.eql({ nextStep: paths.smsNotify.appellantTextReminders });
+    });
+  });
+
+  describe('handler()', () => {
+    const pclSpy = sinon.spy(pcl, 'controller');
+    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const next = sinon.spy();
+    const redirect = sinon.spy();
+    const res = { redirect };
+    it('call pcl controller once', () => {
+      appellantContactDetails.handler(req, res, next);
+      expect(pclSpy).to.have.been.calledOnce;
     });
   });
 });
