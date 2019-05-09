@@ -46,7 +46,7 @@ describe('The EvidenceUpload middleware', () => {
       request: {
         post: poster
       },
-      fs: {
+      'graceful-fs': {
         unlink: unlinker,
         createReadStream: () => {},
         rename: renamer
@@ -68,6 +68,7 @@ describe('The EvidenceUpload middleware', () => {
     renamer.reset();
     loggerExceptionSpy.restore();
   });
+
 
   describe('handlePostResponse', () => {
     describe('when there isn\'t a forwarding error', () => {
@@ -359,7 +360,7 @@ describe('The EvidenceUpload middleware', () => {
 
 describe('static makeDir', () => {
   const getStubs = isDirectory => ({
-    fs: {
+    'graceful-fs': {
       stat: (path, cback) => {
         cback(false, {
           isDirectory
