@@ -7,4 +7,4 @@ nodejs:
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
     SERVICES_IDAM_API_URL: "https://idam-api.aat.platform.hmcts.net"
     SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
-    ALLOW_SAVE_RETURN: "false"
+    ALLOW_SAVE_RETURN: "true"
