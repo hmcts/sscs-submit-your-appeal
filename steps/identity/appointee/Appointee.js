@@ -35,8 +35,16 @@ class Appointee extends SaveToDraftStore {
 
   values() {
     return {
-      isAppointee: this.fields.isAppointee.value === userAnswer.YES
+      isAppointee: this.getIsAppointeeValue(this.fields.isAppointee.value)
     };
+  }
+
+  getIsAppointeeValue(getIsAppointeeValue) {
+    if (getIsAppointeeValue === userAnswer.YES) {
+      return true;
+    }
+    if (getIsAppointeeValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {
