@@ -1,10 +1,10 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { Question } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-class AppealFormDownload extends SaveToDraftStore {
+class AppealFormDownload extends Question {
   static get path() {
     return paths.appealFormDownload;
   }
