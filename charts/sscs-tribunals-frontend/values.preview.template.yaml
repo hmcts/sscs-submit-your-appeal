@@ -5,11 +5,11 @@ nodejs:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     SERVICES_IDAM_SECRET: ${SERVICES_IDAM_SECRET}
     POSTCODE_LOOKUP_TOKEN: ${POSTCODE_LOOKUP_TOKEN}
-    TRIBUNALS_CASE_API_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
-    UPLOAD_EVIDENCE_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload"
-    POSTCODE_CHECKER_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre"
-    POSTCODE_CHECKER_ENABLED: "true"
+    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
+    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
+    POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
+    POSTCODE_CHECKER_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
-    SERVICES_IDAM_API_URL: "https://idam-api.aat.platform.hmcts.net"
-    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
-    ALLOW_SAVE_RETURN: "false"
+    SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
+    SERVICES_IDAM_LOGIN_URL: https://idam-web-public.aat.platform.hmcts.net/login
+    ALLOW_SAVE_RETURN: false
