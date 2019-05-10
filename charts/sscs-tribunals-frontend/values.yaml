@@ -19,6 +19,7 @@ nodejs:
     SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
     REDIS_URL: redis://unknown-redis-master
     SERVICES_IDAM_SECRET: unknown-secret
+    POSTCODE_LOOKUP_TOKEN: unknown-postcode-token
 
 redis:
   cluster:

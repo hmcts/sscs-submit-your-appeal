@@ -4,6 +4,7 @@ nodejs:
   environment:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     SERVICES_IDAM_SECRET: ${SERVICES_IDAM_SECRET}
+    POSTCODE_LOOKUP_TOKEN: ${POSTCODE_LOOKUP_TOKEN}
     TRIBUNALS_CASE_API_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
     UPLOAD_EVIDENCE_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload"
     POSTCODE_CHECKER_URL: "http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre"
