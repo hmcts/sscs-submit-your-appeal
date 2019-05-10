@@ -1,17 +1,36 @@
-FROM node:8.9.4-slim
+FROM node:8.15.1-stretch-slim as base
 
 ENV NODE_PATH .
 ENV NODE_ENV development
 
-WORKDIR /usr/src/sya
+ENV WORKDIR /opt/app
+WORKDIR ${WORKDIR}
+
+COPY package.json yarn.lock ./
 
 RUN yarn config set proxy "$http_proxy" \
     && yarn config set https-proxy "$https_proxy"
 
-COPY package.json yarn.lock ./
+# ---- Build image ----
+FROM base as build
+RUN apt-get update \
+    && apt-get install --assume-yes git bzip2
 
-RUN yarn install --production && yarn cache clean
+COPY . ./
 
-COPY . .
+RUN yarn install --production \
+    && yarn cache clean \
+    && rm -rf /opt/app/.git
 
-CMD [ "node", "server.js" ]
+# ---- Runtime image ----
+FROM base as runtime
+COPY --from=build ${WORKDIR}/app app/
+COPY --from=build ${WORKDIR}/public public/
+COPY --from=build ${WORKDIR}/config config/
+COPY --from=build ${WORKDIR}/server.js ${WORKDIR}/app.js ${WORKDIR}/git.properties.json ./
+
+EXPOSE 3000
+
+CMD ["node", "server.js" ]
+
+
