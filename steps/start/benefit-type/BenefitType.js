@@ -1,4 +1,4 @@
-const { Question } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -11,7 +11,7 @@ const config = require('config');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 
-class BenefitType extends Question {
+class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }

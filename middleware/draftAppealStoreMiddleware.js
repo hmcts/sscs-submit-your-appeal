@@ -90,6 +90,14 @@ class SaveToDraftStore extends Question {
     super.next();
   }
 
+  get continueText() {
+    if (this.req.idam) {
+      return 'Save and continue';
+    }
+
+    return 'Continue';
+  }
+
   get middleware() {
     return [
       ...super.middleware,
@@ -126,7 +134,6 @@ class RestoreFromDraftStore extends EntryPoint {
     ];
   }
 }
-
 
 module.exports = {
   setFeatureFlag,
