@@ -13,7 +13,8 @@ describe('EvidenceProvide.js', () => {
         steps: {
           EvidenceUpload: paths.reasonsForAppealing.evidenceUpload,
           TheHearing: paths.hearing.theHearing
-        }
+        },
+        noValidate: true
       }
     });
 
@@ -107,6 +108,12 @@ describe('EvidenceProvide.js', () => {
       evidenceProvide.fields.evidenceProvide.value = '';
       const values = evidenceProvide.values();
       expect(values).to.eql({ evidenceProvide: '' });
+    });
+
+    it('should contain an empty object', () => {
+      evidenceProvide.journey.noValidate = false;
+      const values = evidenceProvide.values();
+      expect(values).to.deep.equal({});
     });
   });
 
