@@ -19,7 +19,8 @@ describe('AppellantContactDetails.js', () => {
       journey: {
         steps: {
           TextReminders: paths.smsNotify.appellantTextReminders
-        }
+        },
+        noValidate: true
       },
       session: {}
     });
@@ -59,6 +60,7 @@ describe('AppellantContactDetails.js', () => {
     const redirect = sinon.spy();
     const res = { redirect };
     it('call pcl controller once', () => {
+      appellantContactDetails.journey.noValidate = false;
       appellantContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });
@@ -328,6 +330,12 @@ describe('AppellantContactDetails.js', () => {
           }
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      appellantContactDetails.journey.noValidate = false;
+      const values = appellantContactDetails.values();
+      expect(values).to.deep.equal({});
     });
 
     it('removes whitespace from before and after the postcode string', () => {

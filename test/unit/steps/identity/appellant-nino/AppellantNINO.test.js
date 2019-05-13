@@ -13,7 +13,8 @@ describe('AppellantNINO.js', () => {
         steps: {
           AppellantContactDetails: paths.identity.enterAppellantContactDetails,
           SameAddress: paths.appointee.sameAddress
-        }
+        },
+        noValidate: true
       }
     });
 
@@ -99,6 +100,12 @@ describe('AppellantNINO.js', () => {
     it('should contain a value object', () => {
       const values = appellantNINO.values();
       expect(values).to.eql({ appellant: { nino: value } });
+    });
+
+    it('should contain an empty object', () => {
+      appellantNINO.journey.noValidate = false;
+      const values = appellantNINO.values();
+      expect(values).to.deep.equal({});
     });
 
     it('removes whitespace from before and after the nino string', () => {

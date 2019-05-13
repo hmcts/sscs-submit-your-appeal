@@ -12,7 +12,8 @@ describe('AppellantDOB.js', () => {
       journey: {
         steps: {
           AppellantNINO: paths.identity.enterAppellantNINO
-        }
+        },
+        noValidate: true
       }
     });
   });
@@ -85,6 +86,12 @@ describe('AppellantDOB.js', () => {
           dob: '07-08-1980'
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      appellantDOBClass.journey.noValidate = false;
+      const values = appellantDOBClass.values();
+      expect(values).to.deep.equal({});
     });
   });
 

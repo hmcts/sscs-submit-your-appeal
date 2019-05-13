@@ -93,8 +93,6 @@ describe('AppointeeDOB.js', () => {
       const values = appointeeDOBClass.values();
       expect(values).to.deep.equal({});
     });
-
-
   });
 
   describe('next()', () => {
