@@ -3,5 +3,5 @@ dependencies:
     version: ~1.0.1
     repository: '@hmcts'
   - name: redis
-    version: ~7.1.0
+    version: ~5.1.2
     repository: "@stable"
