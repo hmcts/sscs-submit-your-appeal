@@ -2,6 +2,7 @@ const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
+const content = require('../content.en.json');
 
 
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -99,10 +100,10 @@ class SaveToDraftStore extends Question {
 
   get continueText() {
     if (this.req.idam) {
-      return 'Save and continue';
+      return content.continueButtonText.save;
     }
 
-    return 'Continue';
+    return content.continueButtonText.continue;
   }
 
   get middleware() {
