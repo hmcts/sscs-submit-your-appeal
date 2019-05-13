@@ -74,7 +74,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       cookies: { '__auth-token': 'xxx' }
     };
 
-
     it('should submit the draft to the API', () => {
       loggerSpy.resetHistory();
       draftAppealStoreMiddleware.setFeatureFlag(true);
@@ -89,7 +88,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' }
     };
-    it('Expected Successfully posted a draft:', async() => {
+    it('Expected Successfully posted a draft:', async () => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
       expect(loggerSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
@@ -105,7 +104,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {}
     };
 
-    it('should not restore not logged in user session from state ', async() => {
+    it('should not restore not logged in user session from state ', async () => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
     });
@@ -121,7 +120,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       query: {}
     };
 
-    it('Expected Successfully get a draft:', async() => {
+    it('Expected Successfully get a draft:', async () => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
@@ -166,6 +165,55 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         });
         expect(saveToDraftStore.middleware).to.have.length(10);
       });
+    });
+  });
+
+  describe('SaveToDraftStore Continue Text', () => {
+    it('continueText to be Save and continue', () => {
+      const saveToDraftStore = new draftAppealStoreMiddleware.SaveToDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      saveToDraftStore.req.idam = true;
+      expect(saveToDraftStore.continueText).to.eql('Save and continue');
+    });
+    it('continueText to be Save and continue', () => {
+      const saveToDraftStore = new draftAppealStoreMiddleware.SaveToDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      expect(saveToDraftStore.continueText).to.eql('Continue');
+    });
+  });
+
+  describe('SaveToDraftStore Valid', () => {
+    it('valid true', () => {
+      const saveToDraftStore = new draftAppealStoreMiddleware.SaveToDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          },
+          noValidate: true
+        }
+      });
+      expect(saveToDraftStore.valid).to.eql(true);
+    });
+    it('valid false', () => {
+      const saveToDraftStore = new draftAppealStoreMiddleware.SaveToDraftStore({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType
+          }
+        }
+      });
+      saveToDraftStore.fields = {};
+      expect(saveToDraftStore.valid).to.eql(undefined);
     });
   });
 });
