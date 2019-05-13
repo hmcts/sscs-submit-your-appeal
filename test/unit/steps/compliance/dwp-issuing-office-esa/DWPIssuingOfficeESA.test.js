@@ -11,7 +11,8 @@ describe('DWPIssuingOfficeESA.js', () => {
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
-        }
+        },
+        noValidate: true
       }
     });
   });
@@ -80,6 +81,12 @@ describe('DWPIssuingOfficeESA.js', () => {
     it('should contain a value object', () => {
       const values = dwpIssuingOfficeESA.values();
       expect(values).to.eql({ mrn: { dwpIssuingOffice: 'Office name' } });
+    });
+
+    it('should contain an empty object', () => {
+      dwpIssuingOfficeESA.journey.noValidate = false;
+      const values = dwpIssuingOfficeESA.values();
+      expect(values).to.deep.equal({});
     });
   });
 

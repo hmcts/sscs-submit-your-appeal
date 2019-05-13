@@ -12,7 +12,8 @@ describe('AppointeeDOB.js', () => {
       journey: {
         steps: {
           AppointeeContactDetails: paths.appointee.enterAppointeeContactDetails
-        }
+        },
+        noValidate: true
       }
     });
   });
@@ -86,6 +87,14 @@ describe('AppointeeDOB.js', () => {
         }
       });
     });
+
+    it('should contain an empty object', () => {
+      appointeeDOBClass.journey.noValidate = false;
+      const values = appointeeDOBClass.values();
+      expect(values).to.deep.equal({});
+    });
+
+
   });
 
   describe('next()', () => {

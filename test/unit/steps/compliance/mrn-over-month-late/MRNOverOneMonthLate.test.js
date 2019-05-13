@@ -20,7 +20,8 @@ describe('MRNOverOneMonth.js', () => {
         steps: {
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice
-        }
+        },
+        noValidate: true
       }
     });
   });
@@ -90,6 +91,12 @@ describe('MRNOverOneMonth.js', () => {
     it('should contain a value object', () => {
       const values = mrnOverOneMonth.values();
       expect(values).to.eql({ mrn: { reasonForBeingLate: value } });
+    });
+
+    it('should contain an empty object', () => {
+      mrnOverOneMonth.journey.noValidate = false;
+      const values = mrnOverOneMonth.values();
+      expect(values).to.deep.equal({});
     });
   });
 

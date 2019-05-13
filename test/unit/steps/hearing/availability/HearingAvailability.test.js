@@ -11,7 +11,8 @@ describe('HearingAvailability.js', () => {
         steps: {
           CheckYourAppeal: paths.checkYourAppeal,
           DatesCantAttend: paths.hearing.datesCantAttend
-        }
+        },
+        noValidate: true
       }
     });
 
@@ -74,12 +75,14 @@ describe('HearingAvailability.js', () => {
 
     it('should contain a false value object', () => {
       hearingAvailability.fields.scheduleHearing.value = 'no';
+      hearingAvailability.journey.noValidate = true;
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: false } });
     });
 
     it('should contain a true value object', () => {
       hearingAvailability.fields.scheduleHearing.value = 'yes';
+      hearingAvailability.journey.noValidate = true;
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: true } });
     });
@@ -87,7 +90,7 @@ describe('HearingAvailability.js', () => {
     it('should contain a null value object', () => {
       hearingAvailability.fields.scheduleHearing.value = '';
       const values = hearingAvailability.values();
-      expect(values).to.eql({ hearing: { scheduleHearing: null } });
+      expect(values).to.eql({ hearing: { scheduleHearing: {} } });
     });
   });
 

@@ -26,7 +26,8 @@ describe('DatesCantAttend.js', () => {
           CheckYourAppeal: paths.checkYourAppeal,
           DatesCantAttend: paths.hearing.datesCantAttend
         },
-        settings: {}
+        settings: {},
+        noValidate: true
       }
     });
 
@@ -142,6 +143,12 @@ describe('DatesCantAttend.js', () => {
       datesCantAttend.fields.items.value = [];
       const values = datesCantAttend.values();
       expect(values).to.eql({});
+    });
+
+    it('should contain an empty object', () => {
+      datesCantAttend.journey.noValidate = false;
+      const values = datesCantAttend.values();
+      expect(values).to.deep.equal({});
     });
   });
 

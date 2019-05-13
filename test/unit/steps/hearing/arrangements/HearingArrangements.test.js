@@ -12,7 +12,8 @@ describe('HearingArrangements.js', () => {
       journey: {
         steps: {
           HearingAvailability: paths.hearing.hearingAvailability
-        }
+        },
+        noValidate: true
       }
     });
 
@@ -160,6 +161,12 @@ describe('HearingArrangements.js', () => {
           anythingElse: 'more support'
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      hearingArrangements.journey.noValidate = false;
+      const values = hearingArrangements.values();
+      expect(values).to.deep.equal({});
     });
   });
 

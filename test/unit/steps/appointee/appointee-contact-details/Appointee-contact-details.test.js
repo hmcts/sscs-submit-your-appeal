@@ -16,7 +16,8 @@ describe('Appointee-contact-details.js', () => {
       journey: {
         steps: {
           AppellantName: paths.identity.enterAppellantName
-        }
+        },
+        noValidate: true
       },
       session: {}
     });
@@ -312,6 +313,12 @@ describe('Appointee-contact-details.js', () => {
           }
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      appointeeContactDetails.journey.noValidate = false;
+      const values = appointeeContactDetails.values();
+      expect(values).to.deep.equal({});
     });
 
     it('removes whitespace from before and after the postcode string', () => {
