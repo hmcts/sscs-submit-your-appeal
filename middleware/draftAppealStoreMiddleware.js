@@ -90,6 +90,13 @@ class SaveToDraftStore extends Question {
     super.next();
   }
 
+  get valid() {
+    if (this.journey.noValidate) {
+      return true;
+    }
+    return this.fields.valid;
+  }
+
   get continueText() {
     if (this.req.idam) {
       return 'Save and continue';
