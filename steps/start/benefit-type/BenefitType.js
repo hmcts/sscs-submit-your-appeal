@@ -15,7 +15,6 @@ class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }
-
   get form() {
     const types = Object.values(benefitTypes);
     return form({
@@ -35,6 +34,8 @@ class BenefitType extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       benefitType: splitBenefitType(this.fields.benefitType.value)
     };

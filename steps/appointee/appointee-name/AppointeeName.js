@@ -60,6 +60,8 @@ class AppointeeName extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       appointee: {
         title: decode(this.fields.title.value),

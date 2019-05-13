@@ -18,6 +18,8 @@ class NoRepresentativeDetails extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       representative: {
         hasRepresentative: false

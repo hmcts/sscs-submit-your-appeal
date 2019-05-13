@@ -109,8 +109,16 @@ class CheckYourAppeal extends CYA {
       )
     });
   }
+  get valid() {
+    if (this.journey.noValidate) {
+      return true;
+    }
+    return this.fields.valid;
+  }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       signAndSubmit: {
         signer: this.fields.signer.value

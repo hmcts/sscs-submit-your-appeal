@@ -43,6 +43,8 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       mrn: {
         reasonForBeingLate: decode(this.fields.reasonForBeingLate.value)

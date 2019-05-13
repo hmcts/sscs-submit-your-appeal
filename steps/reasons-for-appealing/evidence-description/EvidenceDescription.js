@@ -30,6 +30,8 @@ class EvidenceDescription extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       reasonsForAppealing: {
         evidenceDescription: this.fields.describeTheEvidence.value

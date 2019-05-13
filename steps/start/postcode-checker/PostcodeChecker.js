@@ -35,6 +35,8 @@ class PostcodeChecker extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       postCodeCheck: this.fields.postcode.value
     };

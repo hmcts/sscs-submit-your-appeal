@@ -31,6 +31,8 @@ class Representative extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       hasRepresentative: this.getHasRepresentativeValue(this.fields.hasRepresentative.value)
     };

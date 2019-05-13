@@ -25,6 +25,8 @@ class HearingAvailability extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       hearing: {
         scheduleHearing: this.getScheduleHearingValue(this.fields.scheduleHearing.value)

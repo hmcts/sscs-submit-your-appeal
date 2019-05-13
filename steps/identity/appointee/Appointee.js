@@ -34,6 +34,8 @@ class Appointee extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       isAppointee: this.getIsAppointeeValue(this.fields.isAppointee.value)
     };

@@ -76,8 +76,16 @@ class DatesCantAttend extends AddAnother {
       })
     ];
   }
+  get valid() {
+    if (this.journey.noValidate) {
+      return true;
+    }
+    return this.fields.valid;
+  }
 
   values() {
+    if (!this.valid) return {};
+
     const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
     if (datesCantAttend.length === 0) {
       return {};

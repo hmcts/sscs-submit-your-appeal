@@ -149,6 +149,8 @@ class AppellantContactDetails extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       appellant: {
         contactDetails: {

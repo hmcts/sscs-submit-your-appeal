@@ -34,6 +34,8 @@ class TheHearing extends SaveToDraftStore {
   }
 
   values() {
+    if (!this.valid) return {};
+
     return {
       hearing: {
         wantsToAttend: this.getWantsToAttendValue(this.fields.attendHearing.value)

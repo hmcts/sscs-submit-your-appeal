@@ -56,8 +56,16 @@ class ReasonForAppealing extends AddAnother {
       })
     ];
   }
+  get valid() {
+    if (this.journey.noValidate) {
+      return true;
+    }
+    return this.fields.valid;
+  }
 
   values() {
+    if (!this.valid) return {};
+
     const reasons = this.fields.items.value.map(item => {
       return {
         whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
