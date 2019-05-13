@@ -17,9 +17,9 @@ describe('RepresentativeDetails.js', () => {
       journey: {
         steps: {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        }
-      },
-      session: {}
+        },
+        noValidate: true
+      }
     });
 
     representativeDetails.fields = {
@@ -346,6 +346,12 @@ describe('RepresentativeDetails.js', () => {
           }
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      representativeDetails.journey.noValidate = false;
+      const values = representativeDetails.values();
+      expect(values).to.deep.equal({});
     });
 
     it('removes whitespace from before and after the postcode string', () => {

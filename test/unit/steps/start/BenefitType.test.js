@@ -12,10 +12,10 @@ describe('BenefitType.js', () => {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
           PostcodeChecker: paths.start.postcodeCheck
-        }
+        },
+        noValidate: true
       }
     });
-
     benefitType.fields = { benefitType: {} };
   });
 
@@ -78,6 +78,12 @@ describe('BenefitType.js', () => {
           description: 'Personal Independence Payment'
         }
       });
+    });
+
+    it('should contain an empty object', () => {
+      benefitType.journey.noValidate = false;
+      const values = benefitType.values();
+      expect(values).to.deep.equal({});
     });
   });
 

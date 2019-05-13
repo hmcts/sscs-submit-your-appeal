@@ -18,7 +18,8 @@ describe('PostcodeChecker.js', () => {
           steps: {
             Independence: paths.start.independence,
             InvalidPostcode: paths.start.invalidPostcode
-          }
+          },
+          noValidate: true
         }
       });
 
@@ -71,6 +72,12 @@ describe('PostcodeChecker.js', () => {
         postcodeChecker.fields = { postcode: { value } };
         const values = postcodeChecker.values();
         expect(values).to.eql({ postCodeCheck: value });
+      });
+
+      it('should contain an empty object', () => {
+        postcodeChecker.journey.noValidate = false;
+        const values = postcodeChecker.values();
+        expect(values).to.deep.equal({});
       });
     });
 

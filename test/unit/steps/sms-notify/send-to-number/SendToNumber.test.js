@@ -12,7 +12,8 @@ describe('SendToNumber.js', () => {
         steps: {
           SmsConfirmation: paths.smsNotify.smsConfirmation,
           EnterMobile: paths.smsNotify.enterMobile
-        }
+        },
+        noValidate: true
       }
     });
 
@@ -113,6 +114,12 @@ describe('SendToNumber.js', () => {
       sendToNumber.fields.useSameNumber.value = '';
       const values = sendToNumber.values();
       expect(values).to.eql({ smsNotify: { useSameNumber: null } });
+    });
+
+    it('should contain an empty object', () => {
+      sendToNumber.journey.noValidate = false;
+      const values = sendToNumber.values();
+      expect(values).to.deep.equal({});
     });
   });
 
