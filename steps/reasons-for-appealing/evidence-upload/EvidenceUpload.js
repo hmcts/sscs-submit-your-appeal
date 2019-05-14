@@ -5,7 +5,7 @@
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-len */
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { AddAnother } = require('@hmcts/one-per-page/steps');
+const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
@@ -33,7 +33,7 @@ const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
 
-class EvidenceUpload extends AddAnother {
+class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static get path() {
     return paths.reasonsForAppealing.evidenceUpload;
   }

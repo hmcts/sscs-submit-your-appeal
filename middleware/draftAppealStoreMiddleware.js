@@ -1,4 +1,5 @@
 const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
+const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
@@ -86,6 +87,35 @@ const restoreUserState = async(req, res, next) => {
   }
 };
 
+class SaveToDraftStoreAddAnother extends AddAnother {
+  next() {
+    super.next();
+  }
+
+  get valid() {
+    if (this.journey.noValidate) {
+      return true;
+    }
+    return this.fields.valid;
+  }
+
+  get continueText() {
+    if (this.req.idam) {
+      return content.continueButtonText.save;
+    }
+
+    return content.continueButtonText.continue;
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      this.journey.collectSteps,
+      saveToDraftStore
+    ];
+  }
+}
+
 class SaveToDraftStore extends Question {
   next() {
     super.next();
@@ -149,5 +179,6 @@ module.exports = {
   saveToDraftStore,
   RestoreUserState,
   restoreUserState,
-  RestoreFromDraftStore
+  RestoreFromDraftStore,
+  SaveToDraftStoreAddAnother
 };

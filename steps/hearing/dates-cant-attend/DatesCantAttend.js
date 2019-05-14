@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 
-const { AddAnother } = require('@hmcts/one-per-page/steps');
+const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page');
 const { date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -11,7 +11,7 @@ const content = require('steps/hearing/dates-cant-attend/content.en');
 
 const paths = require('paths');
 
-class DatesCantAttend extends AddAnother {
+class DatesCantAttend extends SaveToDraftStoreAddAnother {
   constructor(...args) {
     super(...args);
     this.loadBankHolidayDates();
