@@ -3,6 +3,8 @@ const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const sinon = require('sinon');
+const pcl = require('components/postcodeLookup/controller');
 
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
@@ -13,7 +15,8 @@ describe('RepresentativeDetails.js', () => {
         steps: {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
         }
-      }
+      },
+      session: {}
     });
 
     representativeDetails.fields = {
@@ -23,6 +26,8 @@ describe('RepresentativeDetails.js', () => {
         last: { value: '' },
         organisation: { value: '' }
       },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' },
       addressLine1: { value: '' },
       addressLine2: { value: '' },
       townCity: { value: '' },
@@ -124,7 +129,7 @@ describe('RepresentativeDetails.js', () => {
     });
 
     it('should contain 8 fields', () => {
-      expect(Object.keys(fields).length).to.equal(8);
+      expect(Object.keys(fields).length).to.equal(10);
       expect(fields).to.have.all.keys(
         'name',
         'addressLine1',
@@ -132,6 +137,8 @@ describe('RepresentativeDetails.js', () => {
         'townCity',
         'county',
         'postCode',
+        'postCodeLookup',
+        'postcodeAddress',
         'emailAddress',
         'phoneNumber'
       );
@@ -317,6 +324,18 @@ describe('RepresentativeDetails.js', () => {
   describe('next()', () => {
     it('returns the next step path /reason-for-appealing', () => {
       expect(representativeDetails.next()).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
+    });
+  });
+
+  describe('handler()', () => {
+    const pclSpy = sinon.spy(pcl, 'controller');
+    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const next = sinon.spy();
+    const redirect = sinon.spy();
+    const res = { redirect };
+    it('call pcl controller once', () => {
+      representativeDetails.handler(req, res, next);
+      expect(pclSpy).to.have.been.calledOnce;
     });
   });
 });
