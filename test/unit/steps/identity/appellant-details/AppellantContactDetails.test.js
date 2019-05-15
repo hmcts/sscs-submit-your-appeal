@@ -9,10 +9,10 @@ const sinon = require('sinon');
 const pcl = require('components/postcodeLookup/controller');
 const config = require('config');
 
-const isPostCodeLookupEnabled = config.postcodeLookup.enabled;
 
 describe('AppellantContactDetails.js', () => {
   let appellantContactDetails = null;
+  const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
 
   beforeEach(() => {
     appellantContactDetails = new AppellantContactDetails({
@@ -167,11 +167,13 @@ describe('AppellantContactDetails.js', () => {
             'emailAddress',
             'postCodeLookup');
         } else {
-          expect(Object.keys(fields).length).to.equal(7);
+          expect(Object.keys(fields).length).to.equal(9);
           expect(fields).to.have.all.keys(
             'addressLine1',
             'addressLine2',
             'townCity',
+            'postCodeLookup',
+            'postcodeAddress',
             'county',
             'phoneNumber',
             'postCode',

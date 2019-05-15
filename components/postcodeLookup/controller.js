@@ -6,7 +6,7 @@ const { form } = require('@hmcts/one-per-page/forms');
 
 const url = conf.postcodeLookup.url;
 const token = conf.postcodeLookup.token;
-const enabled = conf.postcodeLookup.enabled;
+const enabled = conf.postcodeLookup.enabled === 'true';
 const { buildConcatenatedAddress } = require('./helper');
 const content = require('./content.en.json');
 const customFieldValidations = require('./customFieldValidations.js');

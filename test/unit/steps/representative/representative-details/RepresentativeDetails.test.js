@@ -8,10 +8,9 @@ const pcl = require('components/postcodeLookup/controller');
 
 const config = require('config');
 
-const isPostCodeLookupEnabled = config.postcodeLookup.enabled;
-
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
+  const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
 
   beforeEach(() => {
     representativeDetails = new RepresentativeDetails({
@@ -163,12 +162,14 @@ describe('RepresentativeDetails.js', () => {
           'postCodeLookup'
         );
       } else {
-        expect(Object.keys(fields).length).to.equal(8);
+        expect(Object.keys(fields).length).to.equal(10);
         expect(fields).to.have.all.keys(
           'name',
           'addressLine1',
           'addressLine2',
           'townCity',
+          'postCodeLookup',
+          'postcodeAddress',
           'county',
           'postCode',
           'emailAddress',
