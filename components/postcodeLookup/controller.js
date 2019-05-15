@@ -9,6 +9,9 @@ const token = conf.postcodeLookup.token;
 const enabled = conf.postcodeLookup.enabled;
 const { buildConcatenatedAddress } = require('./helper');
 const content = require('./content.en.json');
+const customFieldValidations = require('./customFieldValidations.js');
+const { text } = require('@hmcts/one-per-page/forms');
+const Joi = require('joi');
 
 const fieldMap = {
   postcodeLookup: 'postCodeLookup',
@@ -22,11 +25,26 @@ const fieldMap = {
 
 let disabledFields = [];
 
-const schemaBuilder = fields => {
+const schemaBuilder = (fields, req) => {
   const newForm = Object.create(null);
   for (let i = 0; i < fields.length; i++) {
     if (!includes(disabledFields, fields[i].name)) {
-      newForm[fields[i].name] = fields[i].validator;
+      if (fields[i].name === fieldMap.postcodeLookup) {
+        newForm[fields[i].name] = text.joi(
+          content.fields.postCodeLookup.error.required,
+          Joi.string().trim().required()
+        ).joi(
+          content.fields.postcodeAddress.error.required,
+          customFieldValidations.string().validateAddressList(req)
+        );
+      } else if (fields[i].name === fieldMap.postcodeAddress) {
+        newForm[fields[i].name] = text.joi(
+          content.fields.postcodeAddress.error.required,
+          Joi.string().required()
+        );
+      } else {
+        newForm[fields[i].name] = fields[i].validator;
+      }
     }
   }
   return form(newForm);
@@ -124,7 +142,6 @@ const setPageState = (req, page) => {
   } else {
     req.session.postcodeLookupType = 'manual';
     page.postcodeLookupType = 'manual';
-    manualFileds();
   }
   restoreValues(page, req);
 };
@@ -179,6 +196,7 @@ const handleAddressSelection = (req, page) => {
   page.res.redirect(`${page.path}?validate=1`);
 };
 
+// eslint-disable-next-line complexity
 const controller = (req, res, next, page, superCallback) => {
   page.postCodeContent = content;
   setPageState(req, page);
@@ -187,8 +205,15 @@ const controller = (req, res, next, page, superCallback) => {
     handlePostCodeLookup(req, page);
   } else if (req.body.submitType === 'addressSelection') {
     handleAddressSelection(req, page);
+  } else if (req.body.submitType === 'manual') {
+    manualFileds();
+    page.parse();
+    page.store();
+    res.redirect(`${page.path}?type=manual`);
   } else if (req.method === 'GET' && req.query.validate) {
     if (page.addressSuggestions.length === 0) page.validate();
+    page.res.render(page.template, page.locals);
+  } else if (req.method === 'GET' && req.query.type) {
     page.res.render(page.template, page.locals);
   } else {
     superCallback.call(page, req, res, next);
@@ -198,6 +223,5 @@ const controller = (req, res, next, page, superCallback) => {
 module.exports = {
   controller,
   schemaBuilder,
-  fieldMap,
-  content
+  fieldMap
 };

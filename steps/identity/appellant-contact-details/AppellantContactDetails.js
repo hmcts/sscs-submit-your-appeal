@@ -60,23 +60,11 @@ class AppellantContactDetails extends SaveToDraftStore {
 
   get form() {
     const fields = this.content.fields;
-    const postcodeLookupFields = pcl.content.fields;
     const prefix = this.contentPrefix();
 
     return pcl.schemaBuilder([
-      { name: pcl.fieldMap.postcodeLookup,
-        validator: text.joi(
-          postcodeLookupFields.postCodeLookup.error.required,
-          Joi.string().trim().required()
-        ).joi(
-          postcodeLookupFields.postCodeLookup.error.invalidPostcode,
-          customJoi.string().trim().regex(postCode)
-        ) },
-      { name: pcl.fieldMap.postcodeAddress,
-        validator: text.joi(
-          postcodeLookupFields.postcodeAddress.error.required,
-          Joi.string().required()
-        ) },
+      { name: pcl.fieldMap.postcodeLookup },
+      { name: pcl.fieldMap.postcodeAddress },
       { name: pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error[prefix].required,
@@ -115,7 +103,7 @@ class AppellantContactDetails extends SaveToDraftStore {
           fields.emailAddress.error[prefix].invalid,
           Joi.string().trim().email(emailOptions).allow('')
         ) }
-    ]);
+    ], this.req);
   }
 
   static isEnglandOrWalesPostcode(req, resp, next) {
