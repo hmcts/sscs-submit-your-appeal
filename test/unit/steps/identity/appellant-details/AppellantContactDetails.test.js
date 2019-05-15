@@ -312,7 +312,16 @@ describe('AppellantContactDetails.js', () => {
   });
 
   describe('handler()', () => {
-    const pclSpy = sinon.spy(pcl, 'controller');
+    let pclSpy = '';
+
+    beforeEach(() => {
+      pclSpy = sinon.spy(pcl, 'controller');
+    });
+
+    afterEach(() => {
+      pcl.controller.restore();
+    });
+
     const req = { method: 'POST', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
