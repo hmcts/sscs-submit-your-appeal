@@ -352,5 +352,4 @@ describe('AppellantContactDetails.js', () => {
       expect(appellantContactDetails.next()).to.eql({ nextStep: paths.smsNotify.appellantTextReminders });
     });
   });
-
 });
