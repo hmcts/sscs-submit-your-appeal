@@ -57,7 +57,6 @@ class RepresentativeDetails extends SaveToDraftStore {
 
   get form() {
     const fields = this.content.fields;
-    const postcodeLookupFields = pcl.content.fields;
 
     return pcl.schemaBuilder([
       {
@@ -90,19 +89,8 @@ class RepresentativeDetails extends SaveToDraftStore {
           value => joiValidation(value.organisation, Joi.string().regex(whitelist))
         )
       },
-      { name: pcl.fieldMap.postcodeLookup,
-        validator: text.joi(
-          postcodeLookupFields.postCodeLookup.error.required,
-          Joi.string().trim().required()
-        ).joi(
-          postcodeLookupFields.postCodeLookup.error.invalidPostcode,
-          customJoi.string().trim().regex(postCode)
-        ) },
-      { name: pcl.fieldMap.postcodeAddress,
-        validator: text.joi(
-          postcodeLookupFields.postcodeAddress.error.required,
-          Joi.string().required()
-        ) },
+      { name: pcl.fieldMap.postcodeLookup },
+      { name: pcl.fieldMap.postcodeAddress },
       { name: pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error.required,
@@ -138,7 +126,7 @@ class RepresentativeDetails extends SaveToDraftStore {
           fields.emailAddress.error.invalid,
           Joi.string().trim().email(emailOptions).allow('')
         ) }
-    ]);
+    ], this.req);
   }
 
   answers() {
