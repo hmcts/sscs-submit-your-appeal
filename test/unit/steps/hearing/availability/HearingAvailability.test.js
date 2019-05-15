@@ -54,7 +54,7 @@ describe('HearingAvailability.js', () => {
     });
   });
 
-  describe.only('answers() and values()', () => {
+  describe('answers() and values()', () => {
     const question = 'A Question';
 
     beforeEach(() => {
