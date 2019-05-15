@@ -65,7 +65,6 @@ describe('HearingAvailability.js', () => {
           }
         }
       };
-
     });
 
     it('should contain a hidden answer', () => {
@@ -78,7 +77,7 @@ describe('HearingAvailability.js', () => {
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: false } });
     });
-    
+
     it('should contain a true value object', () => {
       hearingAvailability.fields.scheduleHearing.value = 'yes';
       const values = hearingAvailability.values();
