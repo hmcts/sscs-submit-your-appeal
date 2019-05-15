@@ -33,9 +33,16 @@ class SameAddress extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        isAddressSameAsAppointee: this.fields.isAddressSameAsAppointee.value === userAnswer.YES
+        isAddressSameAsAppointee: this.getIsAddressSameAsAppointee(
+          this.fields.isAddressSameAsAppointee.value)
       }
     };
+  }
+
+  getIsAddressSameAsAppointee(isAddressSameAsAppointeeValue) {
+    if (isAddressSameAsAppointeeValue === userAnswer.YES) return true;
+    if (isAddressSameAsAppointeeValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {
