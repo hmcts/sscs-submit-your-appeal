@@ -129,7 +129,7 @@ describe('RepresentativeDetails.js', () => {
     });
 
     it('should contain 8 fields', () => {
-      expect(Object.keys(fields).length).to.equal(10);
+      expect(Object.keys(fields).length).to.equal(8);
       expect(fields).to.have.all.keys(
         'name',
         'addressLine1',
@@ -137,8 +137,6 @@ describe('RepresentativeDetails.js', () => {
         'townCity',
         'county',
         'postCode',
-        'postCodeLookup',
-        'postcodeAddress',
         'emailAddress',
         'phoneNumber'
       );
@@ -328,7 +326,16 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('handler()', () => {
-    const pclSpy = sinon.spy(pcl, 'controller');
+    let pclSpy = '';
+
+    beforeEach(() => {
+      pclSpy = sinon.spy(pcl, 'controller');
+    });
+
+    afterEach(() => {
+      pcl.controller.restore();
+    });
+
     const req = { method: 'POST', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
