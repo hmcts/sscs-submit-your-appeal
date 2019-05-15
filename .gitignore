@@ -17,4 +17,5 @@ mochawesome-report/
 yarn-error.log
 uploads/
 evidence.txt
-test/coverage/
+test/coverage
+.nyc_output
