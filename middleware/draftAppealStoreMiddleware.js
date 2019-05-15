@@ -3,6 +3,7 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
+
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const authTokenString = '__auth-token';
@@ -16,7 +17,7 @@ const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
 
-const saveToDraftStore = (req, res, next) => {
+const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
   try {
@@ -27,7 +28,7 @@ const saveToDraftStore = (req, res, next) => {
 
   if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
-    request.put(req.journey.settings.apiDraftUrl)
+    await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -50,20 +51,16 @@ const saveToDraftStore = (req, res, next) => {
   }
 };
 
-const restoreUserSession = (req, values) => {
-  Object.assign(req.session, values);
-};
-
-const restoreUserState = (req, res, next) => {
+const restoreUserState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
-    restoreUserSession(req, { isUserSessionRestored: false });
+    Object.assign(req, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
     if (req.query.state) {
-      restoreUserSession(req, JSON.parse(Base64.decode(req.query.state)));
+      Object.assign(req, JSON.parse(Base64.decode(req.query.state)));
     }
 
     // Try to Restore from backend if user already have a saved data.
-    request.get(req.journey.settings.apiDraftUrl)
+    await request.get(req.journey.settings.apiDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -75,7 +72,7 @@ const restoreUserState = (req, res, next) => {
         if (result.body) {
           result.body.isUserSessionRestored = true;
           result.body.entryPoint = 'Entry';
-          restoreUserSession(req, result.body);
+          Object.assign(req, result.body);
         }
         next();
       })
@@ -137,6 +134,5 @@ module.exports = {
   saveToDraftStore,
   RestoreUserState,
   restoreUserState,
-  RestoreFromDraftStore,
-  restoreUserSession
+  RestoreFromDraftStore
 };
