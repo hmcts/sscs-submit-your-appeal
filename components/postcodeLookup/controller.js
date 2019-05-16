@@ -1,4 +1,3 @@
-
 const rp = require('request-promise');
 const conf = require('config');
 const { includes } = require('lodash');
@@ -142,6 +141,7 @@ const setPageState = (req, page) => {
   } else {
     req.session.postcodeLookupType = 'manual';
     page.postcodeLookupType = 'manual';
+    manualFileds();
   }
   restoreValues(page, req);
 };

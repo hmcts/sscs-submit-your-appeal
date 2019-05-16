@@ -167,13 +167,11 @@ describe('AppellantContactDetails.js', () => {
             'emailAddress',
             'postCodeLookup');
         } else {
-          expect(Object.keys(fields).length).to.equal(9);
+          expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
             'addressLine1',
             'addressLine2',
             'townCity',
-            'postCodeLookup',
-            'postcodeAddress',
             'county',
             'phoneNumber',
             'postCode',
