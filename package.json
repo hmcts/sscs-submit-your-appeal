@@ -63,7 +63,7 @@
     "js-base64": "^2.5.1",
     "libphonenumber-js": "^1.7.8",
     "lodash": "^4.17.4",
-    "mocha-webpack": "^2.0.0-beta.0",
+    "mocha-webpack": "1.1.0",
     "moment": "^2.18.1",
     "nunjucks-loader": "^3.0.0",
     "request": "^2.87.0",
