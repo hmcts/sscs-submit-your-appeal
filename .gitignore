@@ -17,3 +17,4 @@ mochawesome-report/
 yarn-error.log
 uploads/
 evidence.txt
+/test/coverage

@@ -54,6 +54,11 @@
     "enabled": "POSTCODE_CHECKER_ENABLED",
     "allowedRpcs": "POSTCODE_CHECKER_ALLOWED_RPCS"
   },
+  "postcodeLookup": {
+    "url": "POSTCODE_LOOKUP_URL",
+    "enabled": "POSTCODE_LOOKUP_ENABLED",
+    "token": "POSTCODE_LOOKUP_TOKEN"
+  },
   "paths": {
     "authenticated": "PATHS_AUTHENTICATED",
     "index": "PATHS_AUTHENTICATED"

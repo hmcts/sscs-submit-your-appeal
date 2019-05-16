@@ -1,8 +1,8 @@
-const { RestoreFromIdamState } = require('middleware/draftAppealStoreMiddleware');
+const { RestoreUserState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
 
-class Authenticated extends RestoreFromIdamState {
+class Authenticated extends RestoreUserState {
   static get path() {
     return paths.idam.authenticated;
   }

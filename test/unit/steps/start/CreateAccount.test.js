@@ -1,6 +1,5 @@
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const { expect } = require('test/util/chai');
-const userAnswer = require('utils/answer');
 const paths = require('paths');
 
 describe('CreateAccount.js', () => {
@@ -42,33 +41,13 @@ describe('CreateAccount.js', () => {
       };
     });
 
-    it('should set the question', () => {
+    it('should have the answer hidden', () => {
       const answers = createAccount.answers();
-      expect(answers.question).to.equal(question);
+      expect(answers.hide).to.equal(true);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
-      createAccount.fields.createAccount.value = userAnswer.NO;
-      const answers = createAccount.answers();
-      expect(answers.answer).to.equal('No');
-    });
-
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
-      createAccount.fields.createAccount.value = userAnswer.YES;
-      const answers = createAccount.answers();
-      expect(answers.answer).to.equal('Yes');
-    });
-
-    it('should set createAccount to false', () => {
-      createAccount.fields.createAccount.value = userAnswer.NO;
-      const values = createAccount.values();
-      expect(values).to.eql({ createAccount: false });
-    });
-
-    it('hould set createAccount to true', () => {
-      createAccount.fields.createAccount.value = userAnswer.YES;
-      const values = createAccount.values();
-      expect(values).to.eql({ createAccount: true });
+    it('should have values be empty', () => {
+      expect(createAccount.values()).to.be.empty;
     });
   });
 

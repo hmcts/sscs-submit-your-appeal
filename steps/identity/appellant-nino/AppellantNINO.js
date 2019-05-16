@@ -1,5 +1,5 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo } = require('@hmcts/one-per-page');
+const { goTo, redirectTo } = require('@hmcts/one-per-page/flow');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { niNumber } = require('utils/regex');
@@ -60,7 +60,7 @@ class AppellantNINO extends SaveToDraftStore {
     if (this.isAppointee()) {
       return goTo(this.journey.steps.SameAddress);
     }
-    return goTo(this.journey.steps.AppellantContactDetails);
+    return redirectTo(this.journey.steps.AppellantContactDetails);
   }
 }
 

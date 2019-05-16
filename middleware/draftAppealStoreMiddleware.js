@@ -3,6 +3,7 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
+
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const authTokenString = '__auth-token';
@@ -16,7 +17,7 @@ const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
 
-const saveToDraftStore = (req, res, next) => {
+const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
   try {
@@ -27,7 +28,7 @@ const saveToDraftStore = (req, res, next) => {
 
   if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
-    request.put(req.journey.settings.apiDraftUrl)
+    await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -49,22 +50,46 @@ const saveToDraftStore = (req, res, next) => {
     next();
   }
 };
-const restoreFromDraftStore = (req, res, next) => {
-  next();
+
+const restoreUserState = async(req, res, next) => {
+  if (allowSaveAndReturn && req.idam) {
+    Object.assign(req, { isUserSessionRestored: false });
+    // First try to restore from idam state parameter
+    if (req.query.state) {
+      Object.assign(req, JSON.parse(Base64.decode(req.query.state)));
+    }
+
+    // Try to Restore from backend if user already have a saved data.
+    await request.get(req.journey.settings.apiDraftUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+      .then(result => {
+        logger.trace([
+          'Successfully get a draft',
+          result.status
+        ], logPath);
+
+        if (result.body) {
+          result.body.isUserSessionRestored = true;
+          result.body.entryPoint = 'Entry';
+          Object.assign(req, result.body);
+        }
+        next();
+      })
+      .catch(error => {
+        logger.exception(error, logPath);
+        next();
+      });
+  } else {
+    next();
+  }
 };
 
-const restoreFromIdamState = (req, res, next) => {
-  if (allowSaveAndReturn && req.query.state && req.idam) {
-    Object.assign(
-      req.session,
-      JSON.parse(
-        Base64.decode(req.query.state)
-      )
-    );
-  }
-  next();
-};
 class SaveToDraftStore extends Question {
+  next() {
+    super.next();
+  }
+
   get middleware() {
     return [
       ...super.middleware,
@@ -74,23 +99,30 @@ class SaveToDraftStore extends Question {
   }
 }
 // step which restores from the draft store
-class RestoreFromDraftStore extends EntryPoint {
-  get middleware() {
-    return [
-      ...super.middleware,
-      restoreFromDraftStore
-    ];
+class RestoreUserState extends Redirect {
+  next() {
+    super.next();
   }
-}
 
-class RestoreFromIdamState extends Redirect {
   get middleware() {
     return [
       idam.landingPage,
-      restoreFromIdamState,
+      restoreUserState,
       this.journey.collectSteps,
       ...super.middleware,
       saveToDraftStore
+    ];
+  }
+}
+class RestoreFromDraftStore extends EntryPoint {
+  next() {
+    super.next();
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      restoreUserState
     ];
   }
 }
@@ -100,8 +132,7 @@ module.exports = {
   setFeatureFlag,
   SaveToDraftStore,
   saveToDraftStore,
-  RestoreFromDraftStore,
-  restoreFromDraftStore,
-  RestoreFromIdamState,
-  restoreFromIdamState
+  RestoreUserState,
+  restoreUserState,
+  RestoreFromDraftStore
 };

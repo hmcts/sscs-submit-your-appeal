@@ -10,6 +10,8 @@ const config = require('config');
 const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForEnglandOrWales');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
+const { includes } = require('lodash');
 
 class PostcodeChecker extends Question {
   static get path() {
@@ -22,6 +24,10 @@ class PostcodeChecker extends Question {
         .joi(this.content.fields.postcode.error.emptyField, Joi.string().required())
         .joi(this.content.fields.postcode.error.invalid, Joi.string().trim().regex(postCode))
     });
+  }
+
+  get isGlasgowIncluded() {
+    return includes(allowedRpcs, 'glasgow');
   }
 
   answers() {

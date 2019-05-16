@@ -98,10 +98,16 @@ describe('Appointee.js', () => {
       expect(values).to.eql({ isAppointee: false });
     });
 
-    it('hould set isAppointee to true', () => {
+    it('should set isAppointee to true', () => {
       appointee.fields.isAppointee.value = userAnswer.YES;
       const values = appointee.values();
       expect(values).to.eql({ isAppointee: true });
+    });
+
+    it('should set isAppointee to null', () => {
+      appointee.fields.isAppointee.value = '';
+      const values = appointee.values();
+      expect(values).to.eql({ isAppointee: null });
     });
   });
 

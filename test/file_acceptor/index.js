@@ -5,7 +5,7 @@ const express = require('express');
 const formidable = require('formidable');
 const http = require('http');
 const path = require('path');
-const fs = require('fs');
+const fs = require('graceful-fs');
 
 const app = express();
 /* eslint-disable init-declarations */
