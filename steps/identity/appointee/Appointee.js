@@ -39,11 +39,9 @@ class Appointee extends SaveToDraftStore {
     };
   }
 
-  getIsAppointeeValue(getIsAppointeeValue) {
-    if (getIsAppointeeValue === userAnswer.YES) {
-      return true;
-    }
-    if (getIsAppointeeValue === userAnswer.NO) return false;
+  getIsAppointeeValue(appointeeValue) {
+    if (appointeeValue === userAnswer.YES) return true;
+    if (appointeeValue === userAnswer.NO) return false;
     return null;
   }
 
