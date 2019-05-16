@@ -1,7 +1,7 @@
 const appellant = require('test/e2e/data').appellant;
 const config = require('config');
 
-const postcodeLookupEnabled = config.get('postcodeLookup.enabled');
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
 function enterAppellantNameAndContinue(title, firstName, lastName) {
   const I = this;

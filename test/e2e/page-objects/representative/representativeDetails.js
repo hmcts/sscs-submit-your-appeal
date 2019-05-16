@@ -1,6 +1,6 @@
 const config = require('config');
 
-const postcodeLookupEnabled = config.get('postcodeLookup.enabled');
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
 function enterRequiredRepresentativeDetails() {
   const I = this;
