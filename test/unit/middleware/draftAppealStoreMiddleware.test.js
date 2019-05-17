@@ -11,6 +11,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   const res = {};
   const next = sinon.spy();
   let loggerSpy = '';
+  let loggerExceptionSpy = '';
   let objectAssignSpy = '';
   const apiUrl = 'http://mockapi.com';
 
@@ -30,14 +31,17 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   beforeEach(() => {
     loggerSpy = sinon.spy(logger, 'trace');
+    loggerExceptionSpy = sinon.spy(logger, 'exception');
     objectAssignSpy = sinon.spy(Object, 'assign');
     draftAppealStoreMiddleware.setFeatureFlag(true);
   });
 
   afterEach(() => {
     loggerSpy.resetHistory();
+    loggerExceptionSpy.resetHistory();
     next.resetHistory();
     logger.trace.restore();
+    logger.exception.restore();
     Object.assign.restore();
   });
 
@@ -94,6 +98,35 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     it('Expected Successfully posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
       expect(loggerSpy).to.have.been.calledTwice;
+      expect(next).to.have.been.calledOnce;
+    });
+  });
+
+  describe('saveToDraftStore api failed call', () => {
+    const req = {
+      journey: { values: { BenefitType: 'PIP' },
+        visitedSteps: [ { benefitType: '', valid: true } ],
+        settings: { apiDraftUrl: `${apiUrl}/` } },
+      idam: 'test_user',
+      cookies: { '__auth-token': 'xxx' }
+    };
+    it('Expected Successfully posted a draft:', async() => {
+      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
+      expect(loggerExceptionSpy).to.have.been.calledOnce;
+      expect(next).to.have.been.calledOnce;
+    });
+  });
+
+  describe('restoreUserState failed next call', () => {
+    const req = {
+      journey: { settings: { apiDraftUrl: '' } },
+      cookies: { '__auth-token': 'xxxx' },
+      query: { state: Base64.encodeURI('{"foo":"bar"}') },
+      session: {}
+    };
+
+    it('should not restore not logged in user session from state ', async() => {
+      await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(next).to.have.been.calledOnce;
     });
   });
@@ -170,6 +203,23 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     });
+    // eslint-disable-next-line max-len
+    class saveToDraftStoreAnotherClass extends draftAppealStoreMiddleware.SaveToDraftStoreAddAnother {
+      next() {
+        sinon.spy();
+      }
+      field() {
+        sinon.spy();
+      }
+    }
+
+    const saveToDraftStoreAnother = new saveToDraftStoreAnotherClass({
+      journey: {
+        steps: {
+          BenefitType: paths.start.benefitType
+        }
+      }
+    });
 
     describe('RestoreFromDraftStore', () => {
       it('Expected Middleware count:', () => {
@@ -197,6 +247,17 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStore.req.idam = false;
         expect(saveToDraftStore.continueText).to.eql('Continue');
+      });
+    });
+
+    describe('SaveToDraftStoreAnother Continue Text', () => {
+      it('continueText to be Save and continue', () => {
+        saveToDraftStoreAnother.req.idam = true;
+        expect(saveToDraftStoreAnother.continueText).to.eql('Save and continue');
+      });
+      it('continueText to be Save and continue', () => {
+        saveToDraftStoreAnother.req.idam = false;
+        expect(saveToDraftStoreAnother.continueText).to.eql('Continue');
       });
     });
   });
