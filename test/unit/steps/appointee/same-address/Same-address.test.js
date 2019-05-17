@@ -37,13 +37,11 @@ describe('answers() and values()', () => {
 
   it('should contain true as the value', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = 'no';
-    sameAddress.journey.noValidate = true;
     const values = sameAddress.values();
     expect(values).to.eql({ appellant: { isAddressSameAsAppointee: false } });
   });
   it('should contain false as the value', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
-    sameAddress.journey.noValidate = true;
     const values = sameAddress.values();
     expect(values).to.eql({ appellant: { isAddressSameAsAppointee: true } });
   });

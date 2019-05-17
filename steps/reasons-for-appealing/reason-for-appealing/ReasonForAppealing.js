@@ -56,12 +56,6 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       })
     ];
   }
-  get valid() {
-    if (this.journey.noValidate) {
-      return true;
-    }
-    return this.fields.valid;
-  }
 
   values() {
     const reasons = this.fields.items.value.map(item => {

@@ -74,14 +74,12 @@ describe('HearingAvailability.js', () => {
 
     it('should contain a false value object', () => {
       hearingAvailability.fields.scheduleHearing.value = 'no';
-      hearingAvailability.journey.noValidate = true;
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: false } });
     });
 
     it('should contain a true value object', () => {
       hearingAvailability.fields.scheduleHearing.value = 'yes';
-      hearingAvailability.journey.noValidate = true;
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: true } });
     });

@@ -18,8 +18,7 @@ describe('PostcodeChecker.js', () => {
           steps: {
             Independence: paths.start.independence,
             InvalidPostcode: paths.start.invalidPostcode
-          },
-          noValidate: true
+          }
         }
       });
 
