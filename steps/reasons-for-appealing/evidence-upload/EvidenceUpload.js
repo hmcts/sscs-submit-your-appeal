@@ -259,7 +259,6 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    
     const evidences = this.fields.items.value.map(file => {
       return {
         url: file.link,

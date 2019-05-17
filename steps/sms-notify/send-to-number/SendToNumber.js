@@ -32,7 +32,6 @@ class SendToNumber extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       smsNotify: {
         useSameNumber: this.getUseSameNumber(this.fields.useSameNumber.value)

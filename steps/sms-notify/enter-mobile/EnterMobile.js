@@ -28,7 +28,6 @@ class EnterMobile extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       smsNotify: {
         smsNumber: this.fields.enterMobile.value

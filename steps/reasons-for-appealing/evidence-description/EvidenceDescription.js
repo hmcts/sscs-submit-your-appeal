@@ -30,7 +30,6 @@ class EvidenceDescription extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       reasonsForAppealing: {
         evidenceDescription: this.fields.describeTheEvidence.value

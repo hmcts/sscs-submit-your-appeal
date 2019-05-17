@@ -50,7 +50,6 @@ class MRNDate extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       mrn: {
         date: this.fields.mrnDate.value.format('DD-MM-YYYY'),

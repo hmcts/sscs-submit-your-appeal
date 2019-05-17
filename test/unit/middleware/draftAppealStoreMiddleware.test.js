@@ -104,7 +104,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {}
     };
 
-    it('should not restore not logged in user session from state ', async () => {
+    it('should not restore not logged in user session from state ', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
     });

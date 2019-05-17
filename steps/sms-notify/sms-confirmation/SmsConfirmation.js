@@ -57,7 +57,6 @@ class SmsConfirmation extends SaveToDraftStore {
   }
 
   values() {
-    
     const values = { smsNotify: {} };
     values.smsNotify.useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
 

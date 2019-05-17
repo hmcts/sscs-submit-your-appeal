@@ -43,7 +43,6 @@ class AppointeeDOB extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       appointee: {
         dob: this.fields.date.value.format('DD-MM-YYYY')

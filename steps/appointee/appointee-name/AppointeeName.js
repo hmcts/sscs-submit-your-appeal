@@ -60,7 +60,6 @@ class AppointeeName extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       appointee: {
         title: decode(this.fields.title.value),

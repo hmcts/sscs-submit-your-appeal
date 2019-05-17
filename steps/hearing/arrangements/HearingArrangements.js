@@ -128,7 +128,6 @@ class HearingArrangements extends SaveToDraftStore {
   }
 
   values() {
-    
     const fieldValues = this.fields.selection.value;
     const values = {
       hearing: {

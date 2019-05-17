@@ -149,7 +149,6 @@ class AppellantContactDetails extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       appellant: {
         contactDetails: {

@@ -32,7 +32,6 @@ class OtherReasonForAppealing extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       reasonsForAppealing: {
         otherReasons: decode(this.fields.otherReasonForAppealing.value)

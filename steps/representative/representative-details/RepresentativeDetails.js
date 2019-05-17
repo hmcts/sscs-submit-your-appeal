@@ -139,7 +139,6 @@ class RepresentativeDetails extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       representative: {
         title: decode(this.fields.name.title.value),

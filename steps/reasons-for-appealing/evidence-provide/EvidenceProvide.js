@@ -31,7 +31,6 @@ class EvidenceProvide extends SaveToDraftStore {
   }
 
   values() {
-    
     return {
       evidenceProvide: this.getEvidenceProvideValue(this.fields.evidenceProvide.value)
     };
