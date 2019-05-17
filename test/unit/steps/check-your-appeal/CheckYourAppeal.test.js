@@ -55,14 +55,17 @@ describe('CheckYourAppeal.js', () => {
   describe('sendToAPI()', () => {
     it('should log a message when successfully making an API call', () => {
       loggerStub.trace = sinon.stub().returns();
-      request.post = () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) });
+      // eslint-disable-next-line max-len
+      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
+
       return cya.sendToAPI().then(() => {
         expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
       });
     });
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
-      request.post = () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) });
+      // eslint-disable-next-line max-len
+      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
       loggerStub.exception = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
@@ -116,6 +119,20 @@ describe('CheckYourAppeal.js', () => {
   describe('termsAndConditionPath()', () => {
     it('should return /terms-and-conditions', () => {
       expect(cya.termsAndConditionPath).to.equal(paths.policy.termsAndConditions);
+    });
+  });
+
+  describe('tokenHeader()', () => {
+    it('should return /terms-and-conditions', () => {
+      const req = { cookies: { '__auth-token': 'xxx' } };
+      expect(cya.tokenHeader(req).name).to.equal('Authorization');
+      expect(cya.tokenHeader(req).value).to.equal('Bearer xxx');
+    });
+
+    it('should return /terms-and-conditions', () => {
+      const req = { cookies: {} };
+      expect(cya.tokenHeader(req).name).to.equal('');
+      expect(cya.tokenHeader(req).value).to.equal('');
     });
   });
 });
