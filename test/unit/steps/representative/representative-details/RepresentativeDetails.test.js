@@ -19,7 +19,8 @@ describe('RepresentativeDetails.js', () => {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
         },
         noValidate: true
-      }
+      },
+      session: {}
     });
 
     representativeDetails.fields = {
@@ -51,10 +52,12 @@ describe('RepresentativeDetails.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
+      representativeDetails.journey.noValidate = false;
       pclSpy = sinon.spy(pcl, 'controller');
     });
 
     afterEach(() => {
+      representativeDetails.journey.noValidate = true;
       pcl.controller.restore();
     });
 
