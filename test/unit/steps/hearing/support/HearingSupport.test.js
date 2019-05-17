@@ -12,8 +12,7 @@ describe('HearingSupport.js', () => {
         steps: {
           HearingAvailability: paths.hearing.hearingAvailability,
           HearingArrangements: paths.hearing.hearingArrangements
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -64,12 +63,6 @@ describe('HearingSupport.js', () => {
     it('should contain a value object', () => {
       const values = hearingSupport.values();
       expect(values).to.eql({ hearing: { wantsSupport: false } });
-    });
-
-    it('should contain an empty object', () => {
-      hearingSupport.journey.noValidate = false;
-      const values = hearingSupport.values();
-      expect(values).to.deep.equal({});
     });
   });
 

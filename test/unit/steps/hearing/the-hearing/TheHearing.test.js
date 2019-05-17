@@ -13,8 +13,7 @@ describe('TheHearing.js', () => {
         steps: {
           HearingSupport: paths.hearing.hearingSupport,
           NotAttendingHearing: paths.hearing.notAttendingHearing
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -90,12 +89,6 @@ describe('TheHearing.js', () => {
       theHearing.fields.attendHearing.value = '';
       const values = theHearing.values();
       expect(values).to.eql({ hearing: { wantsToAttend: null } });
-    });
-
-    it('should contain an empty object', () => {
-      theHearing.journey.noValidate = false;
-      const values = theHearing.values();
-      expect(values).to.deep.equal({});
     });
   });
 

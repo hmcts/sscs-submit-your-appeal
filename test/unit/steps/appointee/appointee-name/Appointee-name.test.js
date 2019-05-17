@@ -12,8 +12,7 @@ describe('AppointeeName.js', () => {
       journey: {
         steps: {
           AppointeeDOB: paths.appointee.enterAppointeeDOB
-        },
-        noValidate: true
+        }
       }
     });
     appointeeName.fields = {};
@@ -123,12 +122,6 @@ describe('AppointeeName.js', () => {
           lastName: 'Potter'
         }
       });
-    });
-
-    it('should contain an empty object', () => {
-      appointeeName.journey.noValidate = false;
-      const values = appointeeName.values();
-      expect(values).to.deep.equal({});
     });
   });
 

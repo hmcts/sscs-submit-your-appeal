@@ -25,6 +25,12 @@ class CheckYourAppeal extends CYA {
     this.sendToAPI = this.sendToAPI.bind(this);
   }
 
+  handler(req, res, next) {
+    // eslint-disable-next-line max-len
+    this.journey.visitedSteps = this.journey.visitedSteps.filter(step => step.valid || step.name === 'CheckYourAppeal');
+    super.handler(req, res, next);
+  }
+
   static get path() {
     return paths.checkYourAppeal;
   }
@@ -117,8 +123,6 @@ class CheckYourAppeal extends CYA {
   }
 
   values() {
-    if (!this.valid) return {};
-
     return {
       signAndSubmit: {
         signer: this.fields.signer.value

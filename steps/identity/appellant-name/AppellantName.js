@@ -78,8 +78,7 @@ class AppellantName extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       appellant: {
         title: decode(this.fields.title.value),

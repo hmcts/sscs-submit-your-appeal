@@ -23,6 +23,8 @@ const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
   try {
+    // eslint-disable-next-line max-len
+    req.journey.visitedSteps = req.journey.visitedSteps.filter(step => step.valid || step.name === 'CheckYourAppeal');
     values = req.journey.values;
   } catch (error) {
     logger.trace('Save to draft store, journey values not ready.', logPath);
@@ -88,17 +90,6 @@ const restoreUserState = async(req, res, next) => {
 };
 
 class SaveToDraftStoreAddAnother extends AddAnother {
-  next() {
-    super.next();
-  }
-
-  get valid() {
-    if (this.journey.noValidate) {
-      return true;
-    }
-    return this.fields.valid;
-  }
-
   get continueText() {
     if (this.req.idam) {
       return content.continueButtonText.save;
@@ -117,17 +108,6 @@ class SaveToDraftStoreAddAnother extends AddAnother {
 }
 
 class SaveToDraftStore extends Question {
-  next() {
-    super.next();
-  }
-
-  get valid() {
-    if (this.journey.noValidate) {
-      return true;
-    }
-    return this.fields.valid;
-  }
-
   get continueText() {
     if (this.req.idam) {
       return content.continueButtonText.save;
@@ -146,10 +126,6 @@ class SaveToDraftStore extends Question {
 }
 // step which restores from the draft store
 class RestoreUserState extends Redirect {
-  next() {
-    super.next();
-  }
-
   get middleware() {
     return [
       idam.landingPage,
@@ -161,10 +137,6 @@ class RestoreUserState extends Redirect {
   }
 }
 class RestoreFromDraftStore extends EntryPoint {
-  next() {
-    super.next();
-  }
-
   get middleware() {
     return [
       ...super.middleware,

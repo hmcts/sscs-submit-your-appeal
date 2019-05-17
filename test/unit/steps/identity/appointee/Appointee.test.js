@@ -14,8 +14,7 @@ describe('Appointee.js', () => {
           AppealFormDownload: paths.appealFormDownload,
           AppellantName: paths.identity.enterAppellantName,
           AppointeeName: paths.appointee.enterAppointeeName
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -109,12 +108,6 @@ describe('Appointee.js', () => {
       appointee.fields.isAppointee.value = '';
       const values = appointee.values();
       expect(values).to.eql({ isAppointee: null });
-    });
-
-    it('should contain an empty object', () => {
-      appointee.journey.noValidate = false;
-      const values = appointee.values();
-      expect(values).to.deep.equal({});
     });
   });
 

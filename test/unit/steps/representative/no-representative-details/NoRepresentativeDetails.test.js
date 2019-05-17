@@ -12,8 +12,7 @@ describe('NoRepresentativeDetails.js', () => {
       journey: {
         steps: {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -51,12 +50,6 @@ describe('NoRepresentativeDetails.js', () => {
     it('should contain a value object', () => {
       const values = noRepresentativeDetails.values();
       expect(values).to.eql({ representative: { hasRepresentative: false } });
-    });
-
-    it('should contain an empty object', () => {
-      noRepresentativeDetails.journey.noValidate = false;
-      const values = noRepresentativeDetails.values();
-      expect(values).to.deep.equal({});
     });
   });
 

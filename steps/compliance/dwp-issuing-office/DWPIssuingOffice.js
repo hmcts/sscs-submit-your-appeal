@@ -50,8 +50,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       mrn: {
         dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`

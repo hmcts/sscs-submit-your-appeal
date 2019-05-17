@@ -32,7 +32,7 @@ describe('answers() and values()', () => {
   it('should contain null as the value', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = '';
     const values = sameAddress.values();
-    expect(values).to.eql({});
+    expect(values).to.eql({ appellant: { isAddressSameAsAppointee: null } });
   });
 
   it('should contain true as the value', () => {

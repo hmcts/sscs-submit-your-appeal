@@ -17,8 +17,7 @@ describe('OtherReasonForAppealing.js', () => {
         steps: {
           SendingEvidence: paths.reasonsForAppealing.sendingEvidence,
           EvidenceProvide: paths.reasonsForAppealing.evidenceProvide
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -100,13 +99,6 @@ describe('OtherReasonForAppealing.js', () => {
     it('should contain a value object', () => {
       const values = otherReasonForAppealing.values();
       expect(values).to.eql({ reasonsForAppealing: { otherReasons: value } });
-    });
-
-
-    it('should contain an empty object', () => {
-      otherReasonForAppealing.journey.noValidate = false;
-      const values = otherReasonForAppealing.values();
-      expect(values).to.deep.equal({});
     });
   });
 

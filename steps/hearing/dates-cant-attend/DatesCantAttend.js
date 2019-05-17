@@ -84,8 +84,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
     if (datesCantAttend.length === 0) {
       return {};

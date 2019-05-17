@@ -13,8 +13,7 @@ describe('Representative.js', () => {
         steps: {
           RepresentativeDetails: paths.representative.representativeDetails,
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -108,12 +107,6 @@ describe('Representative.js', () => {
       representative.fields.hasRepresentative.value = '';
       const values = representative.values();
       expect(values).to.eql({ hasRepresentative: null });
-    });
-
-    it('should contain an empty object', () => {
-      representative.journey.noValidate = false;
-      const values = representative.values();
-      expect(values).to.deep.equal({});
     });
   });
 

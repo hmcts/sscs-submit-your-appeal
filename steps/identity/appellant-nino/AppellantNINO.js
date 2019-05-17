@@ -49,8 +49,7 @@ class AppellantNINO extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       appellant: {
         nino: this.fields.nino.value.trim()

@@ -11,8 +11,7 @@ describe('HearingAvailability.js', () => {
         steps: {
           CheckYourAppeal: paths.checkYourAppeal,
           DatesCantAttend: paths.hearing.datesCantAttend
-        },
-        noValidate: true
+        }
       }
     });
 

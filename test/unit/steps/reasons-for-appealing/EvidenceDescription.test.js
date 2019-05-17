@@ -15,8 +15,7 @@ describe('The other methods of EvidenceUpload', () => {
       journey: {
         steps: {
           TheHearing: paths.hearing.theHearing
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -48,12 +47,6 @@ describe('The other methods of EvidenceUpload', () => {
       };
 
       expect(values).to.deep.equal(expectedValue);
-    });
-
-    it('should contain an empty object', () => {
-      instance.journey.noValidate = false;
-      const values = instance.values();
-      expect(values).to.deep.equal({});
     });
   });
 

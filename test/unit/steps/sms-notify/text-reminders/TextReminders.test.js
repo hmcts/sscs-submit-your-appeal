@@ -16,8 +16,7 @@ describe('TextReminders.js', () => {
           EnterMobile: paths.smsNotify.enterMobile,
           Representative: paths.representative.representative,
           AppellantContactDetails: paths.identity.enterAppellantContactDetails
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -106,12 +105,6 @@ describe('TextReminders.js', () => {
       textReminders.fields.doYouWantTextMsgReminders.value = '';
       const values = textReminders.values();
       expect(values).to.eql({ smsNotify: { wantsSMSNotifications: null } });
-    });
-
-    it('should contain an empty object', () => {
-      textReminders.journey.noValidate = false;
-      const values = textReminders.values();
-      expect(values).to.deep.equal({});
     });
   });
 

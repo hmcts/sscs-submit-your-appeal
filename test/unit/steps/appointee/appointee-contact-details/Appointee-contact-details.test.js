@@ -16,8 +16,7 @@ describe('Appointee-contact-details.js', () => {
       journey: {
         steps: {
           AppellantName: paths.identity.enterAppellantName
-        },
-        noValidate: true
+        }
       },
       session: {}
     });
@@ -316,9 +315,20 @@ describe('Appointee-contact-details.js', () => {
     });
 
     it('should contain an empty object', () => {
-      appointeeContactDetails.journey.noValidate = false;
       const values = appointeeContactDetails.values();
-      expect(values).to.deep.equal({});
+      expect(values).to.deep.equal({
+        appointee: {
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            phoneNumber: undefined,
+            emailAddress: ''
+          }
+        }
+      });
     });
 
     it('removes whitespace from before and after the postcode string', () => {

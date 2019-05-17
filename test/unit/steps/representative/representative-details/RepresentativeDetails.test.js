@@ -17,8 +17,7 @@ describe('RepresentativeDetails.js', () => {
       journey: {
         steps: {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        },
-        noValidate: true
+        }
       },
       session: {}
     });
@@ -52,12 +51,10 @@ describe('RepresentativeDetails.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      representativeDetails.journey.noValidate = false;
       pclSpy = sinon.spy(pcl, 'controller');
     });
 
     afterEach(() => {
-      representativeDetails.journey.noValidate = true;
       pcl.controller.restore();
     });
 
@@ -350,13 +347,6 @@ describe('RepresentativeDetails.js', () => {
         }
       });
     });
-
-    it('should contain an empty object', () => {
-      representativeDetails.journey.noValidate = false;
-      const values = representativeDetails.values();
-      expect(values).to.deep.equal({});
-    });
-
     it('removes whitespace from before and after the postcode string', () => {
       representativeDetails.fields.postCode.value = ' Post code ';
       const postcode = representativeDetails.values().representative.contactDetails.postCode;

@@ -53,8 +53,7 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       mrn: {
         dwpIssuingOffice: this.fields.dwpIssuingOffice.value

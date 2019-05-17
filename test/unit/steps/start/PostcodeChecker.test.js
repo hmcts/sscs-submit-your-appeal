@@ -73,12 +73,6 @@ describe('PostcodeChecker.js', () => {
         const values = postcodeChecker.values();
         expect(values).to.eql({ postCodeCheck: value });
       });
-
-      it('should contain an empty object', () => {
-        postcodeChecker.journey.noValidate = false;
-        const values = postcodeChecker.values();
-        expect(values).to.deep.equal({});
-      });
     });
 
     describe('next()', () => {

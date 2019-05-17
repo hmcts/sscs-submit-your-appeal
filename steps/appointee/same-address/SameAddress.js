@@ -31,8 +31,7 @@ class SameAddress extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       appellant: {
         isAddressSameAsAppointee: this.getIsAddressSameAsAppointee(

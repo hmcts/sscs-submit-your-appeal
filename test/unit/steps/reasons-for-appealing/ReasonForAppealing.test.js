@@ -13,8 +13,7 @@ describe('ReasonForAppealing.js', () => {
       journey: {
         steps: {
           OtherReasonForAppealing: paths.reasonsForAppealing.otherReasonForAppealing
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -112,12 +111,6 @@ describe('ReasonForAppealing.js', () => {
           reasons: reasonForAppealing.fields.items.value
         }
       });
-    });
-
-    it('should contain an empty object', () => {
-      reasonForAppealing.journey.noValidate = false;
-      const values = reasonForAppealing.values();
-      expect(values).to.deep.equal({});
     });
   });
 

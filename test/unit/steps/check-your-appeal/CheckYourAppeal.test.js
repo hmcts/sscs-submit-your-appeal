@@ -33,8 +33,7 @@ describe('CheckYourAppeal.js', () => {
         },
         settings: {
           apiUrl: '/appeals'
-        },
-        noValidate: true
+        }
       }
     });
 

@@ -23,8 +23,7 @@ describe('MRNDate.js', () => {
           CheckMRN: paths.compliance.checkMRNDate,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -98,12 +97,6 @@ describe('MRNDate.js', () => {
       const values = mrnDate.values();
       const currentDate = moment().format('DD-MM-YYYY');
       expect(values).to.eql({ mrn: { date: '13-12-2017', dateAppealSubmitted: currentDate } });
-    });
-
-    it('should contain an empty object', () => {
-      mrnDate.journey.noValidate = false;
-      const values = mrnDate.values();
-      expect(values).to.deep.equal({});
     });
   });
 

@@ -11,8 +11,7 @@ describe('NoMRN.js', () => {
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
-        },
-        noValidate: true
+        }
       }
     });
   });
@@ -82,12 +81,6 @@ describe('NoMRN.js', () => {
     it('should contain a value object', () => {
       const values = noMRN.values();
       expect(values).to.eql({ mrn: { reasonForNoMRN: value } });
-    });
-
-    it('should contain an empty object', () => {
-      noMRN.journey.noValidate = false;
-      const values = noMRN.values();
-      expect(values).to.deep.equal({});
     });
   });
 

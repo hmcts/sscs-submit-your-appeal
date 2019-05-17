@@ -126,8 +126,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       appointee: {
         contactDetails: {

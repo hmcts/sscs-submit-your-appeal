@@ -12,8 +12,7 @@ describe('SmsConfirmation.js', () => {
       journey: {
         steps: {
           Representative: paths.representative.representative
-        },
-        noValidate: true
+        }
       }
     });
 
@@ -151,12 +150,6 @@ describe('SmsConfirmation.js', () => {
           smsNumber: '07411444444'
         }
       });
-    });
-
-    it('should contain an empty object', () => {
-      smsConfirmation.journey.noValidate = false;
-      const values = smsConfirmation.values();
-      expect(values).to.deep.equal({});
     });
   });
 

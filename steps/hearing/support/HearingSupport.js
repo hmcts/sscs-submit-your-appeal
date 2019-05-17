@@ -26,8 +26,7 @@ class HearingSupport extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       hearing: {
         wantsSupport: this.fields.arrangements.value === userAnswer.YES

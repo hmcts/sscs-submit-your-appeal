@@ -36,8 +36,7 @@ class TextReminders extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       smsNotify: {
         wantsSMSNotifications: this.getSmsNotifyValue()

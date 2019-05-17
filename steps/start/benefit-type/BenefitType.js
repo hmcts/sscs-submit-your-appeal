@@ -34,8 +34,6 @@ class BenefitType extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
     return {
       benefitType: splitBenefitType(this.fields.benefitType.value)
     };

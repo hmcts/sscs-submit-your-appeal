@@ -64,8 +64,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     const reasons = this.fields.items.value.map(item => {
       return {
         whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?

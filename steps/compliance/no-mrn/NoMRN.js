@@ -32,8 +32,7 @@ class NoMRN extends SaveToDraftStore {
   }
 
   values() {
-    if (!this.valid) return {};
-
+    
     return {
       mrn: {
         reasonForNoMRN: this.fields.reasonForNoMRN.value

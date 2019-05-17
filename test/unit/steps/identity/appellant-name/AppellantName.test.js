@@ -11,8 +11,7 @@ describe('AppellantName.js', () => {
       journey: {
         steps: {
           AppellantDOB: paths.identity.enterAppellantDOB
-        },
-        noValidate: true
+        }
       }
     });
     appellantName.fields = {};
@@ -122,12 +121,6 @@ describe('AppellantName.js', () => {
           lastName: 'Potter'
         }
       });
-    });
-
-    it('should contain an empty object', () => {
-      appellantName.journey.noValidate = false;
-      const values = appellantName.values();
-      expect(values).to.deep.equal({});
     });
   });
 

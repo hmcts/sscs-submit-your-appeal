@@ -10,8 +10,7 @@ describe('EnterMobile.js', () => {
       journey: {
         steps: {
           SmsConfirmation: paths.smsNotify.smsConfirmation
-        },
-        noValidate: true
+        }
       }
     });
   });
@@ -70,12 +69,6 @@ describe('EnterMobile.js', () => {
     it('should contain a value object', () => {
       const values = enterMobile.values();
       expect(values).to.eql({ smsNotify: { smsNumber: value } });
-    });
-
-    it('should contain an empty object', () => {
-      enterMobile.journey.noValidate = false;
-      const values = enterMobile.values();
-      expect(values).to.deep.equal({});
     });
   });
 
