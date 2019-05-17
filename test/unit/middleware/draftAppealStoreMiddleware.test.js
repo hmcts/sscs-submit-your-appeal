@@ -65,7 +65,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('saveToDraftStore, no values next call', () => {
     const req = {
-      journey: { settings: { apiDraftUrl: '' } },
       session: {
         foo: 'bar',
         cookie: '__cookie__',
@@ -77,8 +76,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
 
     it('should submit the draft to the API', () => {
+      loggerSpy.resetHistory();
+      draftAppealStoreMiddleware.setFeatureFlag(true);
       draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(next).to.have.been.calledOnce;
+      expect(loggerSpy).to.have.been.calledOnce;
     });
   });
 

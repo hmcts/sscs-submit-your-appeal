@@ -1,9 +1,11 @@
 const { goTo } = require('@hmcts/one-per-page');
-const { form, text, object } = require('@hmcts/one-per-page/forms');
+const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
+const pcl = require('components/postcodeLookup/controller');
+
 const {
   postCode,
   firstName,
@@ -26,6 +28,10 @@ const { decode } = require('utils/stringUtils');
 class RepresentativeDetails extends SaveToDraftStore {
   static get path() {
     return paths.representative.representativeDetails;
+  }
+
+  handler(req, res, next) {
+    pcl.controller(req, res, next, this, super.handler);
   }
 
   get CYAName() {
@@ -52,64 +58,75 @@ class RepresentativeDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
 
-    return form({
-
-      name: object({
-        title: text,
-        first: text,
-        last: text,
-        organisation: text
-      }).check(
-        fields.name.error.required,
-        value => Object.keys(value).length > 0
-      ).check(
-        fields.name.error.nameNoTitle,
-        value => hasNameButNoTitleValidation(value)
-      ).check(
-        fields.name.error.titleNoName,
-        value => hasTitleButNoNameValidation(value)
-      ).check(
-        errorFor('title', fields.name.title.error.invalid),
-        value => joiValidation(value.title, Joi.string().trim().regex(title))
-      ).check(
-        errorFor('first', fields.name.first.error.invalid),
-        value => joiValidation(value.first, Joi.string().trim().regex(firstName))
-      ).check(
-        errorFor('last', fields.name.last.error.invalid),
-        value => joiValidation(value.last, Joi.string().trim().regex(lastName))
-      ).check(
-        errorFor('organisation', fields.name.organisation.error.invalid),
-        value => joiValidation(value.organisation, Joi.string().regex(whitelist))
-      ),
-      addressLine1: text.joi(
-        fields.addressLine1.error.required,
-        Joi.string().regex(whitelist).required()
-      ),
-      addressLine2: text.joi(
-        fields.addressLine2.error.invalid,
-        Joi.string().regex(whitelist).allow('')
-      ),
-      townCity: text.joi(
-        fields.townCity.error.required,
-        Joi.string().regex(whitelist).required()
-      ),
-      county: text.joi(
-        fields.county.error.required,
-        Joi.string().regex(whitelist).required()
-      ),
-      postCode: text.joi(
-        fields.postCode.error.required,
-        Joi.string().trim().regex(postCode).required()
-      ),
-      emailAddress: text.joi(
-        fields.emailAddress.error.invalid,
-        Joi.string().trim().email(emailOptions).allow('')
-      ),
-      phoneNumber: text.joi(
-        fields.phoneNumber.error.invalid,
-        customJoi.string().trim().validatePhone()
-      )
-    });
+    return pcl.schemaBuilder([
+      {
+        name: 'name',
+        validator: object({
+          title: text,
+          first: text,
+          last: text,
+          organisation: text
+        }).check(
+          fields.name.error.required,
+          value => Object.keys(value).length > 0
+        ).check(
+          fields.name.error.nameNoTitle,
+          value => hasNameButNoTitleValidation(value)
+        ).check(
+          fields.name.error.titleNoName,
+          value => hasTitleButNoNameValidation(value)
+        ).check(
+          errorFor('title', fields.name.title.error.invalid),
+          value => joiValidation(value.title, Joi.string().trim().regex(title))
+        ).check(
+          errorFor('first', fields.name.first.error.invalid),
+          value => joiValidation(value.first, Joi.string().trim().regex(firstName))
+        ).check(
+          errorFor('last', fields.name.last.error.invalid),
+          value => joiValidation(value.last, Joi.string().trim().regex(lastName))
+        ).check(
+          errorFor('organisation', fields.name.organisation.error.invalid),
+          value => joiValidation(value.organisation, Joi.string().regex(whitelist))
+        )
+      },
+      { name: pcl.fieldMap.postcodeLookup },
+      { name: pcl.fieldMap.postcodeAddress },
+      { name: pcl.fieldMap.line1,
+        validator: text.joi(
+          fields.addressLine1.error.required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: pcl.fieldMap.line2,
+        validator: text.joi(
+          fields.addressLine2.error.invalid,
+          Joi.string().regex(whitelist).allow('')
+        ) },
+      { name: pcl.fieldMap.town,
+        validator: text.joi(
+          fields.townCity.error.required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: pcl.fieldMap.county,
+        validator: text.joi(
+          fields.county.error.required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: pcl.fieldMap.postCode,
+        validator: text.joi(
+          fields.postCode.error.required,
+          Joi.string().trim().regex(postCode).required()
+        ) },
+      { name: 'phoneNumber',
+        validator: text.joi(
+          fields.phoneNumber.error.invalid,
+          customJoi.string().trim().validatePhone()
+        ) },
+      { name: 'emailAddress',
+        validator: text.joi(
+          fields.emailAddress.error.invalid,
+          Joi.string().trim().email(emailOptions).allow('')
+        ) }
+    ], this.req);
   }
 
   answers() {
