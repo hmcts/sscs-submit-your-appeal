@@ -70,27 +70,30 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         cookie: '__cookie__',
         expires: '__expires__'
       },
+      journey: {
+        visitedSteps: [ { benefitType: '', valid: false } ]
+      },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' }
     };
 
     it('should submit the draft to the API', () => {
-      loggerSpy.resetHistory();
-      draftAppealStoreMiddleware.setFeatureFlag(true);
       draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledOnce;
+      expect(next).to.have.been.calledOnce;
     });
   });
 
   describe('saveToDraftStore api call', () => {
     const req = {
-      journey: { values: { BenefitType: 'PIP' }, settings: { apiDraftUrl: `${apiUrl}/drafts` } },
+      journey: { values: { BenefitType: 'PIP' },
+        visitedSteps: [ { benefitType: '', valid: true } ],
+        settings: { apiDraftUrl: `${apiUrl}/drafts` } },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' }
     };
     it('Expected Successfully posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledOnce;
+      expect(loggerSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
     });
   });
