@@ -55,10 +55,10 @@ const saveToDraftStore = async(req, res, next) => {
 
 const restoreUserState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
-    Object.assign(req, { isUserSessionRestored: false });
+    Object.assign(req.session, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
     if (req.query.state) {
-      Object.assign(req, JSON.parse(Base64.decode(req.query.state)));
+      Object.assign(req.session, JSON.parse(Base64.decode(req.query.state)));
     }
 
     // Try to Restore from backend if user already have a saved data.
@@ -74,7 +74,7 @@ const restoreUserState = async(req, res, next) => {
         if (result.body) {
           result.body.isUserSessionRestored = true;
           result.body.entryPoint = 'Entry';
-          Object.assign(req, result.body);
+          Object.assign(req.session, result.body);
         }
         next();
       })
