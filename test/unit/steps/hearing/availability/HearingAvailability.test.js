@@ -90,7 +90,7 @@ describe('HearingAvailability.js', () => {
     it('should contain a null value object', () => {
       hearingAvailability.fields.scheduleHearing.value = '';
       const values = hearingAvailability.values();
-      expect(values).to.eql({ hearing: { scheduleHearing: {} } });
+      expect(values).to.eql({ hearing: { scheduleHearing: null } });
     });
   });
 
