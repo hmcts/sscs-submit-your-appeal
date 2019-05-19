@@ -50,6 +50,26 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     nock.cleanAll();
   });
 
+  describe('removeRevertInvalidSteps', () => {
+    const journey = {};
+    journey.visitedSteps = [{ name: 'step1', valid: true }, { name: 'step1', valid: false }];
+    const callBack = sinon.spy();
+
+    it('keep initial steps', () => {
+      draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, callBack);
+      // eslint-disable-next-line max-len
+      expect(journey.visitedSteps).to.eql([{ name: 'step1', valid: true }, { name: 'step1', valid: false }]);
+    });
+
+    it('use only valid steps', () => {
+      let tempValues = [];
+      draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, () => {
+        tempValues = [...journey.visitedSteps];
+      });
+      expect(tempValues).to.eql([{ name: 'step1', valid: true }]);
+    });
+  });
+
   describe('saveToDraftStore, no values trace call', () => {
     const req = {
       session: {

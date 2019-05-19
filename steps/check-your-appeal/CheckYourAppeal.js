@@ -2,7 +2,7 @@ const {
   CheckYourAnswers: CYA,
   section
 } = require('@hmcts/one-per-page/checkYourAnswers');
-
+const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
 const { lastName } = require('utils/regex');
@@ -26,9 +26,9 @@ class CheckYourAppeal extends CYA {
   }
 
   handler(req, res, next) {
-    // eslint-disable-next-line max-len
-    this.journey.visitedSteps = this.journey.visitedSteps.filter(step => step.valid || step.name === 'CheckYourAppeal');
-    super.handler(req, res, next);
+    removeRevertInvalidSteps(this.journey, () => {
+      super.handler(req, res, next);
+    });
   }
 
   static get path() {

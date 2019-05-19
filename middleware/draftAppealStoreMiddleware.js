@@ -19,16 +19,28 @@ const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
 
+const removeRevertInvalidSteps = (journey, callBack) => {
+  try {
+    const allVisitedSteps = [...journey.visitedSteps];
+    // filter valid visitedsteps.
+    journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
+    // use only valid steps.
+    if (typeof callBack === 'function') {
+      callBack();
+    }
+    // Revert visitedsteps back to initial state.
+    journey.visitedSteps = allVisitedSteps;
+  } catch (error) {
+    logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
+  }
+};
+
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
-  try {
-    // eslint-disable-next-line max-len
-    req.journey.visitedSteps = req.journey.visitedSteps.filter(step => step.valid || step.name === 'CheckYourAppeal');
+  removeRevertInvalidSteps(req.journey, () => {
     values = req.journey.values;
-  } catch (error) {
-    logger.trace('Save to draft store, journey values not ready.', logPath);
-  }
+  });
 
   if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
@@ -152,5 +164,6 @@ module.exports = {
   RestoreUserState,
   restoreUserState,
   RestoreFromDraftStore,
-  SaveToDraftStoreAddAnother
+  SaveToDraftStoreAddAnother,
+  removeRevertInvalidSteps
 };
