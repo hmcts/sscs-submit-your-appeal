@@ -18,6 +18,9 @@ const Joi = require('joi');
 const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
+const config = require('config');
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 class CheckYourAppeal extends CYA {
   constructor(...args) {
@@ -26,9 +29,13 @@ class CheckYourAppeal extends CYA {
   }
 
   handler(req, res, next) {
-    removeRevertInvalidSteps(this.journey, () => {
+    if (allowSaveAndReturn) {
+      removeRevertInvalidSteps(this.journey, () => {
+        super.handler(req, res, next);
+      });
+    } else {
       super.handler(req, res, next);
-    });
+    }
   }
 
   static get path() {

@@ -38,9 +38,12 @@ const removeRevertInvalidSteps = (journey, callBack) => {
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
-  removeRevertInvalidSteps(req.journey, () => {
-    values = req.journey.values;
-  });
+  if (allowSaveAndReturn) {
+    removeRevertInvalidSteps(req.journey, () => {
+      values = req.journey.values;
+    });
+  }
+
 
   if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
