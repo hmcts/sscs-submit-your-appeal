@@ -8,7 +8,7 @@
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
         {% endif %}  
         <div class="form-group">
-            <a id="manualLink" class="link" href="?type=manual">{{content.manualEntryLabel}}</a>
+            <a id="manualLink" class="link" href="#" onclick="document.getElementById('submitType').value = 'manual'; document.getElementsByClassName('form')[0].submit();">{{content.manualEntryLabel}}</a>
         </div>
         {% if fields.postcodeAddress and fields.postcodeAddress.value %}
             {{ caller() }}

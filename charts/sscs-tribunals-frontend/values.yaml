@@ -20,6 +20,7 @@ nodejs:
     REDIS_URL: redis://unknown-redis-master
     SERVICES_IDAM_SECRET: unknown-secret
     POSTCODE_LOOKUP_TOKEN: unknown-postcode-token
+    POSTCODE_LOOKUP_ENABLED: "false"
 
 redis:
   cluster:

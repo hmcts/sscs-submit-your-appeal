@@ -56,7 +56,6 @@ describe('HearingAvailability.js', () => {
 
   describe('answers() and values()', () => {
     const question = 'A Question';
-    const value = 'No';
 
     beforeEach(() => {
       hearingAvailability.content = {
@@ -66,8 +65,6 @@ describe('HearingAvailability.js', () => {
           }
         }
       };
-
-      hearingAvailability.fields.scheduleHearing.value = value;
     });
 
     it('should contain a hidden answer', () => {
@@ -75,9 +72,22 @@ describe('HearingAvailability.js', () => {
       expect(answers.hide).to.be.true;
     });
 
-    it('should contain a value object', () => {
+    it('should contain a false value object', () => {
+      hearingAvailability.fields.scheduleHearing.value = 'no';
       const values = hearingAvailability.values();
       expect(values).to.eql({ hearing: { scheduleHearing: false } });
+    });
+
+    it('should contain a true value object', () => {
+      hearingAvailability.fields.scheduleHearing.value = 'yes';
+      const values = hearingAvailability.values();
+      expect(values).to.eql({ hearing: { scheduleHearing: true } });
+    });
+
+    it('should contain a null value object', () => {
+      hearingAvailability.fields.scheduleHearing.value = '';
+      const values = hearingAvailability.values();
+      expect(values).to.eql({ hearing: { scheduleHearing: null } });
     });
   });
 

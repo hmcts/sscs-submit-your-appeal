@@ -47,7 +47,7 @@
       "enabled": "true"
     },
     "allowSaveAndReturn": {
-      "enabled": false
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
@@ -58,7 +58,7 @@
   "postcodeLookup": {
     "url": "https://api.ordnancesurvey.co.uk/places/v1",
     "token": "",
-    "enabled": false
+    "enabled": "false"
   },
   "saucelabs": {
     "browser": "chrome",
