@@ -3,6 +3,9 @@ const sections = require('steps/check-your-appeal/sections');
 const HttpStatus = require('http-status-codes');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
+const config = require('config');
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 describe('CheckYourAppeal.js', () => {
   let CheckYourAppeal = null;
@@ -73,7 +76,9 @@ describe('CheckYourAppeal.js', () => {
 
     it('check you appeal to call  array filter', () => {
       cya.handler(req, res, next);
-      expect(arrayFilterSpy).to.be.calledOnce;
+      if (allowSaveAndReturn) {
+        expect(arrayFilterSpy).to.be.calledOnce;
+      }
     });
   });
 
