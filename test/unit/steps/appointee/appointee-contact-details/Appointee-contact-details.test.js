@@ -7,9 +7,11 @@ const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const pcl = require('components/postcodeLookup/controller');
+const config = require('config');
 
 describe('Appointee-contact-details.js', () => {
   let appointeeContactDetails = null;
+  const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
 
   beforeEach(() => {
     appointeeContactDetails = new AppointeeContactDetails({
@@ -161,87 +163,105 @@ describe('Appointee-contact-details.js', () => {
     });
 
     describe('all field names', () => {
-      it('should contain 7 fields', () => {
-        expect(Object.keys(fields).length).to.equal(7);
-        expect(fields).to.have.all.keys(
-          'addressLine1',
-          'addressLine2',
-          'townCity',
-          'county',
-          'postCode',
-          'phoneNumber',
-          'emailAddress');
+      it('should contain dynamic fields', () => {
+        if (isPostCodeLookupEnabled) {
+          expect(Object.keys(fields).length).to.equal(3);
+          expect(fields).to.have.all.keys(
+            'phoneNumber',
+            'emailAddress',
+            'postCodeLookup');
+        } else {
+          expect(Object.keys(fields).length).to.equal(7);
+          expect(fields).to.have.all.keys(
+            'addressLine1',
+            'addressLine2',
+            'townCity',
+            'county',
+            'postCode',
+            'phoneNumber',
+            'emailAddress');
+        }
       });
     });
 
     describe('addressLine1 field', () => {
-      beforeEach(() => {
-        field = fields.addressLine1;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.addressLine1;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('addressLine2 field', () => {
-      beforeEach(() => {
-        field = fields.addressLine2;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.addressLine2;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('townCity field', () => {
-      beforeEach(() => {
-        field = fields.townCity;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.townCity;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('county field', () => {
-      beforeEach(() => {
-        field = fields.county;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.county;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('postCode field', () => {
-      beforeEach(() => {
-        field = fields.postCode;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.postCode;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('phoneNumber field', () => {
