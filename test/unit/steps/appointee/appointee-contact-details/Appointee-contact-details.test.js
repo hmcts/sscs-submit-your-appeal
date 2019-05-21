@@ -314,6 +314,23 @@ describe('Appointee-contact-details.js', () => {
       });
     });
 
+    it('should contain an empty object', () => {
+      const values = appointeeContactDetails.values();
+      expect(values).to.deep.equal({
+        appointee: {
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            phoneNumber: undefined,
+            emailAddress: ''
+          }
+        }
+      });
+    });
+
     it('removes whitespace from before and after the postcode string', () => {
       appointeeContactDetails.fields.postCode.value = ' Post code ';
       const postcode = appointeeContactDetails.values().appointee.contactDetails.postCode;

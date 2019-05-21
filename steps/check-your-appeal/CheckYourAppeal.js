@@ -2,7 +2,7 @@ const {
   CheckYourAnswers: CYA,
   section
 } = require('@hmcts/one-per-page/checkYourAnswers');
-
+const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
 const { lastName } = require('utils/regex');
@@ -18,11 +18,24 @@ const Joi = require('joi');
 const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
+const config = require('config');
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 class CheckYourAppeal extends CYA {
   constructor(...args) {
     super(...args);
     this.sendToAPI = this.sendToAPI.bind(this);
+  }
+
+  handler(req, res, next) {
+    if (allowSaveAndReturn) {
+      removeRevertInvalidSteps(this.journey, () => {
+        super.handler(req, res, next);
+      });
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   static get path() {
