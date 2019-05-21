@@ -6,6 +6,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
+const pcl = require('components/postcodeLookup/controller');
 
 describe('Appointee-contact-details.js', () => {
   let appointeeContactDetails = null;
@@ -36,6 +37,27 @@ describe('Appointee-contact-details.js', () => {
   describe('get path()', () => {
     it('returns path /appointee-contact-details', () => {
       expect(AppointeeContactDetails.path).to.equal(paths.appointee.enterAppointeeContactDetails);
+    });
+  });
+
+  describe('handler()', () => {
+    let pclSpy = '';
+
+    beforeEach(() => {
+      pclSpy = sinon.spy(pcl, 'controller');
+    });
+
+    afterEach(() => {
+      pcl.controller.restore();
+    });
+
+    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const next = sinon.spy();
+    const redirect = sinon.spy();
+    const res = { redirect };
+    it('call pcl controller once', () => {
+      appointeeContactDetails.handler(req, res, next);
+      expect(pclSpy).to.have.been.calledOnce;
     });
   });
 
