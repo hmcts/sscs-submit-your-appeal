@@ -21,7 +21,7 @@ nodejs:
     SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
     SERVICES_IDAM_SECRET: ${SERVICES_IDAM_SECRET}
     POSTCODE_LOOKUP_TOKEN: ${POSTCODE_LOOKUP_TOKEN}
-    POSTCODE_LOOKUP_ENABLED: "false"
+    POSTCODE_LOOKUP_ENABLED: "true"
 
 redis:
   cluster:

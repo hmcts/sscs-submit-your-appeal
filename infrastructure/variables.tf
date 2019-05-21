@@ -79,3 +79,13 @@ variable "appinsights_instrumentation_key" {
   default     = ""
 }
 
+variable "postcode_checker_enabled" {
+  type = "string"
+  default = ""
+}
+
+variable "postcode_lookup_enabled" {
+  type = "string"
+  default = ""
+}
+
