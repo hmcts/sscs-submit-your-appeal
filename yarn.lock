@@ -129,10 +129,10 @@
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
   integrity sha1-5xNFfO43WKQzlMKXSROIWqropBs=
 
-"@hmcts/look-and-feel@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-2.1.0.tgz#0dbf6c0d75aad2b0704cc397ba62aa026a338100"
-  integrity sha512-Ce9AJ+MdBM+VSSyXDUpfpKqZYeCr7wubpfOK0bZkL9I9T9zOsuE8xZUtEukmjlifJPLleN1tXZfp3OppDDBmLg==
+"@hmcts/look-and-feel@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@hmcts/look-and-feel/-/look-and-feel-2.2.5.tgz#cff48043d73a220b91031341e5041aaa02d7d104"
+  integrity sha512-ECXWiCTodNvqAfRmrgB2o838F53Po7CEMDSkCjQ71+QCvSZErSwVtmiNmqH0c8Yars5doiRz14URstpdT6pKSA==
   dependencies:
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
@@ -3425,6 +3425,13 @@ extend@^3.0.0, extend@~3.0.2:
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
 
+extends-classes@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/extends-classes/-/extends-classes-1.0.5.tgz#ff46dc863fd914f215eb9de5a958c9001c746361"
+  integrity sha1-/0bchj/ZFPIV653lqVjJABx0Y2E=
+  dependencies:
+    method-missing "^1.1.2"
+
 external-editor@^2.0.4:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-2.2.0.tgz#045511cfd8d133f3846673d1047c154e214ad3d5"
@@ -5667,6 +5674,11 @@ merge-source-map@^1.1.0:
   integrity sha512-Qkcp7P2ygktpMPh2mCQZaf3jhN6D3Z/qVZHSdWvQ+2Ef5HgRAPBO57A77+ENm0CPx2+1Ce/MYKi3ymqdfuqibw==
   dependencies:
     source-map "^0.6.1"
+
+method-missing@^1.1.2:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/method-missing/-/method-missing-1.2.4.tgz#1fbf19c136e78b4b2c4e1f5541915fb0d589abe7"
+  integrity sha1-H78ZwTbni0ssTh9VQZFfsNWJq+c=
 
 methods@^1.1.1, methods@^1.1.2, methods@~1.1.2:
   version "1.1.2"
