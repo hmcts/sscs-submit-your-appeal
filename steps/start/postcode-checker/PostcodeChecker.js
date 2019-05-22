@@ -1,4 +1,4 @@
-const { Question } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -13,7 +13,7 @@ const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
 const { includes } = require('lodash');
 
-class PostcodeChecker extends Question {
+class PostcodeChecker extends SaveToDraftStore {
   static get path() {
     return paths.start.postcodeCheck;
   }

@@ -347,7 +347,6 @@ describe('RepresentativeDetails.js', () => {
         }
       });
     });
-
     it('removes whitespace from before and after the postcode string', () => {
       representativeDetails.fields.postCode.value = ' Post code ';
       const postcode = representativeDetails.values().representative.contactDetails.postCode;

@@ -40,5 +40,9 @@
       "howItWorks": "How benefits work",
       "courts": "Courts, sentencing and tribunals"
     }
+  },
+  "continueButtonText": {
+    "save" : "Save and continue",
+    "continue": "Continue"
   }
 }

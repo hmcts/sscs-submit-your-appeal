@@ -8,6 +8,9 @@ const DateUtils = require('utils/DateUtils');
 const testData = require('test/e2e/data');
 const moment = require('moment');
 const paths = require('paths');
+const config = require('config');
+
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const doYouWantTextMsgReminders = doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders;
 const haveContactedDWP = haveContactedDWPContent.fields.haveContactedDWP;
@@ -55,6 +58,9 @@ Scenario('Appellant has not contacted DWP and exits the service', I => {
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);
   I.continueFromIndependance();
+  if (allowSaveAndReturnEnabled) {
+    I.selectIfYouWantToCreateAccount('no');
+  }
   I.selectHaveYouGotAMRNAndContinue(haveAMRN.no);
   I.checkOptionAndContinue(haveContactedDWP.no);
   I.see(contactDWP.title);
