@@ -24,7 +24,7 @@ const fieldMap = {
 
 let disabledFields = [];
 
-const schemaBuilder = (fields, req) => {
+const schemaBuilder = (fields, page) => {
   const newForm = Object.create(null);
   for (let i = 0; i < fields.length; i++) {
     if (!includes(disabledFields, fields[i].name)) {
@@ -34,7 +34,7 @@ const schemaBuilder = (fields, req) => {
           Joi.string().trim().required()
         ).joi(
           content.fields.postcodeAddress.error.required,
-          customFieldValidations.string().validateAddressList(req)
+          customFieldValidations.string().validateAddressList(page)
         );
       } else if (fields[i].name === fieldMap.postcodeAddress) {
         newForm[fields[i].name] = text.joi(
@@ -111,13 +111,36 @@ const restoreValues = (page, req) => {
   }
 };
 
+const handlePostCodeLookup = async page => {
+  const postCode = page.fields[fieldMap.postcodeLookup].value;
+  const options = {
+    json: true,
+    uri: `${url}/addresses/postcode?postcode=${postCode}&key=${token}`,
+    method: 'GET'
+  };
+
+  await rp(options).then(body => {
+    if (body.results && body.results.length > 0) {
+      page.addressSuggestions = body.results;
+    } else {
+      page.fields[fieldMap.postcodeLookup].value = '';
+    }
+    Promise.resolve();
+  }).catch(() => {
+    page.fields[fieldMap.postcodeLookup].value = '';
+    Promise.resolve();
+  });
+
+  page.store();
+};
+
 // eslint-disable-next-line complexity
-const setPageState = (req, page) => {
+const setPageState = async(req, page) => {
   restoreValues(page, req);
   // restore suggestions if they exits
   page.addressSuggestions = [];
-  if (req.body.submitType !== 'lookup' && req.session.addressSuggestions) {
-    page.addressSuggestions = req.session.addressSuggestions;
+  if (page.fields[fieldMap.postcodeLookup]) {
+    await handlePostCodeLookup(page);
   }
   const formType = getFormType(req);
   if (formType === 'auto') {
@@ -146,32 +169,7 @@ const setPageState = (req, page) => {
   restoreValues(page, req);
 };
 
-const handlePostCodeLookup = async(req, page) => {
-  const postCode = page.fields[fieldMap.postcodeLookup].value;
-  const options = {
-    json: true,
-    uri: `${url}/addresses/postcode?postcode=${postCode}&key=${token}`,
-    method: 'GET'
-  };
-
-  await rp(options).then(body => {
-    if (body.results && body.results.length > 0) {
-      page.addressSuggestions = body.results;
-      req.session.addressSuggestions = page.addressSuggestions;
-    } else {
-      page.fields[fieldMap.postcodeLookup].value = '';
-    }
-    Promise.resolve();
-  }).catch(() => {
-    page.fields[fieldMap.postcodeLookup].value = '';
-    Promise.resolve();
-  });
-
-  page.store();
-  page.res.redirect(`${page.path}?validate=1`);
-};
-
-const handleAddressSelection = (req, page) => {
+const handleAddressSelection = async(req, page) => {
   let selectedAddress = [];
   // eslint-disable-next-line max-len
   if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
@@ -184,7 +182,7 @@ const handleAddressSelection = (req, page) => {
 
   if (selectedAddress.length === 1) {
     const concatenated = buildConcatenatedAddress(selectedAddress[0]);
-    setPageState(req, page);
+    await setPageState(req, page);
     page.fields[fieldMap.line1].value = concatenated.line1;
     page.fields[fieldMap.line2].value = concatenated.line2;
     page.fields[fieldMap.town].value = concatenated.town;
@@ -197,14 +195,15 @@ const handleAddressSelection = (req, page) => {
 };
 
 // eslint-disable-next-line complexity
-const controller = (req, res, next, page, superCallback) => {
+const controller = async(req, res, next, page, superCallback) => {
   page.postCodeContent = content;
-  setPageState(req, page);
+  await setPageState(req, page);
 
   if (req.body.submitType === 'lookup') {
-    handlePostCodeLookup(req, page);
+    await handlePostCodeLookup(page);
+    page.res.redirect(`${page.path}?validate=1`);
   } else if (req.body.submitType === 'addressSelection') {
-    handleAddressSelection(req, page);
+    await handleAddressSelection(req, page);
   } else if (req.body.submitType === 'manual') {
     manualFileds();
     page.parse();

@@ -126,7 +126,7 @@ class RepresentativeDetails extends SaveToDraftStore {
           fields.emailAddress.error.invalid,
           Joi.string().trim().email(emailOptions).allow('')
         ) }
-    ], this.req);
+    ], this);
   }
 
   answers() {
@@ -146,6 +146,10 @@ class RepresentativeDetails extends SaveToDraftStore {
         lastName: decode(this.fields.name.last.value),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
+          // eslint-disable-next-line max-len
+          postCodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ? decode(this.fields[pcl.fieldMap.postcodeLookup].value) : '',
+          // eslint-disable-next-line max-len
+          postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ? decode(this.fields[pcl.fieldMap.postcodeAddress].value) : '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
