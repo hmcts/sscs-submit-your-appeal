@@ -160,8 +160,7 @@ describe('CheckYourAppeal.js', () => {
 
     it('should not return token', () => {
       const req = { cookies: {} };
-      const expected = {};
-      expect(cya.tokenHeader(req)).to.include(expected);
+      expect(cya.tokenHeader(req)).to.be.empty;
     });
   });
 });
