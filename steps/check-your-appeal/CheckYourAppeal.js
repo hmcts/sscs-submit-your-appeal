@@ -59,14 +59,12 @@ class CheckYourAppeal extends CYA {
   }
 
   tokenHeader(req) {
-    const header = { name: '', value: '' };
+    const header = {};
     const authTokenString = '__auth-token';
 
     if (req.cookies && req.cookies[authTokenString]) {
-      header.name = 'Authorization';
-      header.value = `Bearer ${req.cookies[authTokenString]}`;
+      header.Authorization = `Bearer ${req.cookies[authTokenString]}`;
     }
-
     return header;
   }
 
@@ -81,7 +79,7 @@ class CheckYourAppeal extends CYA {
       get(this, 'journey.values.benefitType.code')
     ], logPath);
     return request.post(this.journey.settings.apiUrl)
-      .set(headers.name, headers.value)
+      .set(headers)
       .send(this.journey.values)
       .then(result => {
         logger.trace([
