@@ -129,10 +129,12 @@ class AppointeeContactDetails extends SaveToDraftStore {
     return {
       appointee: {
         contactDetails: {
-          // eslint-disable-next-line max-len
-          postCodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ? decode(this.fields[pcl.fieldMap.postcodeLookup].value) : '',
-          // eslint-disable-next-line max-len
-          postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ? decode(this.fields[pcl.fieldMap.postcodeAddress].value) : '',
+          postCodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[pcl.fieldMap.postcodeLookup].value) :
+            '',
+          postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[pcl.fieldMap.postcodeAddress].value) :
+            '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
