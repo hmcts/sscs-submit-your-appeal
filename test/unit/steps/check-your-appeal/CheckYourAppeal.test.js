@@ -155,14 +155,12 @@ describe('CheckYourAppeal.js', () => {
   describe('tokenHeader()', () => {
     it('should return valid user token', () => {
       const req = { cookies: { '__auth-token': 'xxx' } };
-      expect(cya.tokenHeader(req).name).to.equal('Authorization');
-      expect(cya.tokenHeader(req).value).to.equal('Bearer xxx');
+      expect(cya.tokenHeader(req).Authorization).to.equal('Bearer xxx');
     });
 
-    it('should not return token.', () => {
+    it('should not return token', () => {
       const req = { cookies: {} };
-      expect(cya.tokenHeader(req).name).to.equal('');
-      expect(cya.tokenHeader(req).value).to.equal('');
+      expect(cya.tokenHeader(req)).to.be.empty;
     });
   });
 });
