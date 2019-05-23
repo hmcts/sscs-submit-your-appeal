@@ -11,5 +11,10 @@
         "invalid": "You have entered an invalid character. Check what you've written and enter it again."
       }
     }
+  },
+  "cya": {
+    "evidenceDescription": {
+      "question": "Evidence description"
+    }
   }
 }
