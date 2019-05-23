@@ -12,7 +12,7 @@ const postcodeLookupJoi = Joi.extend(joi => {
         },
         validate(params, value, state, options) {
           const page = params.page;
-          const req  = page.req;
+          const req = page.req;
           const requestType = req.body.submitType ? req.body.submitType : '';
           const method = req.method;
           if (requestType === 'lookup' || requestType === 'addressSelection' || method === 'GET' ||
