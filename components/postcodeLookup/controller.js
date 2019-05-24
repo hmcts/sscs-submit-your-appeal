@@ -154,12 +154,6 @@ const handleAddressSelection = page => {
   page.store();
 };
 
-const handleManualClick = page => {
-  manualFileds();
-  page.parse();
-  page.store();
-};
-
 const handleGetValidate = page => {
   if (page.postcodeLookupType === 'manaul' || page.addressSuggestions.length === 0) page.validate();
 };
@@ -207,7 +201,7 @@ const controller = async(page, callBack) => {
     handleAddressSelection(page);
     page.res.redirect(`${page.path}?validate=1`);
   } else if (req.body.submitType === 'manual') {
-    handleManualClick(page);
+    manualFileds();
     page.res.redirect(`${page.path}?type=manual`);
   } else if (req.method === 'GET' && req.query.validate) {
     handleGetValidate(page);
