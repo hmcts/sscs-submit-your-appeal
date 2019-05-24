@@ -82,13 +82,14 @@ const alldFields = () => {
   disabledFields = [];
 };
 
-const resetSuggestions = (req, page) => {
+const resetSuggestions = page => {
   page.addressSuggestions = [];
-  req.session.addressSuggestions = [];
+  page.req.session.addressSuggestions = [];
 };
 
 // eslint-disable-next-line complexity
-const getFormType = req => {
+const getFormType = page => {
+  const req = page.req;
   if ((req.query.type && req.query.type === 'manual') || !enabled) {
     return 'manual';
   } else if ((req.query.type && req.query.type === 'auto') && enabled) {
@@ -103,8 +104,8 @@ const getFormType = req => {
   return 'manual';
 };
 
-const restoreValues = (page, req) => {
-  if (req.method === 'POST') {
+const restoreValues = page => {
+  if (page.req.method === 'POST') {
     page.parse();
   } else {
     page.retrieve();
@@ -134,17 +135,50 @@ const handlePostCodeLookup = async page => {
   page.store();
 };
 
+const handleAddressSelection = page => {
+  let selectedAddress = [];
+  // eslint-disable-next-line max-len
+  if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
+    const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
+    if (selectedUPRN) {
+      // eslint-disable-next-line max-len
+      selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
+    }
+  }
+
+  if (selectedAddress.length === 1) {
+    const concatenated = buildConcatenatedAddress(selectedAddress[0]);
+    page.fields[fieldMap.line1].value = concatenated.line1;
+    page.fields[fieldMap.line2].value = concatenated.line2;
+    page.fields[fieldMap.town].value = concatenated.town;
+    page.fields[fieldMap.county].value = concatenated.county;
+    page.fields[fieldMap.postCode].value = concatenated.postCode;
+    page.validate();
+  }
+  page.store();
+};
+
+const handleManualClick = page => {
+  manualFileds();
+  page.parse();
+  page.store();
+};
+
+const handleGetValidatee = page => {
+  if (page.addressSuggestions.length === 0) page.validate();
+};
+
 // eslint-disable-next-line complexity
-const setPageState = async(req, page) => {
-  restoreValues(page, req);
+const setPageState = async page => {
+  restoreValues(page);
   // restore suggestions if they exits
   page.addressSuggestions = [];
   if (page.fields[fieldMap.postcodeLookup] && page.fields[fieldMap.postcodeLookup].validate()) {
     await handlePostCodeLookup(page);
   }
-  const formType = getFormType(req);
+  const formType = getFormType(page);
   if (formType === 'auto') {
-    req.session.postcodeLookupType = 'auto';
+    page.req.session.postcodeLookupType = 'auto';
     page.postcodeLookupType = 'auto';
 
     if (page.fields[fieldMap.postcodeLookup] &&
@@ -159,63 +193,41 @@ const setPageState = async(req, page) => {
       postcodeAddressFields();
     } else {
       postcodeLookupFields();
-      resetSuggestions(req, page);
+      resetSuggestions(page);
     }
   } else {
-    req.session.postcodeLookupType = 'manual';
+    page.req.session.postcodeLookupType = 'manual';
     page.postcodeLookupType = 'manual';
     manualFileds();
   }
-  restoreValues(page, req);
-};
-
-const handleAddressSelection = async(req, page) => {
-  let selectedAddress = [];
-  // eslint-disable-next-line max-len
-  if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
-    const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
-    if (selectedUPRN) {
-      // eslint-disable-next-line max-len
-      selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
-    }
-  }
-
-  if (selectedAddress.length === 1) {
-    const concatenated = buildConcatenatedAddress(selectedAddress[0]);
-    await setPageState(req, page);
-    page.fields[fieldMap.line1].value = concatenated.line1;
-    page.fields[fieldMap.line2].value = concatenated.line2;
-    page.fields[fieldMap.town].value = concatenated.town;
-    page.fields[fieldMap.county].value = concatenated.county;
-    page.fields[fieldMap.postCode].value = concatenated.postCode;
-    page.validate();
-  }
-  page.store();
-  page.res.redirect(`${page.path}?validate=1`);
+  restoreValues(page);
 };
 
 // eslint-disable-next-line complexity
-const controller = async(req, res, next, page, superCallback) => {
+const controller = async(page, callBack) => {
+  const req = page.req;
   page.postCodeContent = content;
-  await setPageState(req, page);
+  await setPageState(page);
 
   if (req.body.submitType === 'lookup') {
     await handlePostCodeLookup(page);
     page.res.redirect(`${page.path}?validate=1`);
   } else if (req.body.submitType === 'addressSelection') {
-    await handleAddressSelection(req, page);
+    handleAddressSelection(page);
+    page.res.redirect(`${page.path}?validate=1`);
   } else if (req.body.submitType === 'manual') {
-    manualFileds();
-    page.parse();
-    page.store();
-    res.redirect(`${page.path}?type=manual`);
+    handleManualClick(page);
+    page.res.redirect(`${page.path}?type=manual`);
   } else if (req.method === 'GET' && req.query.validate) {
-    if (page.addressSuggestions.length === 0) page.validate();
+    handleGetValidatee(page);
     page.res.render(page.template, page.locals);
   } else if (req.method === 'GET' && req.query.type) {
     page.res.render(page.template, page.locals);
   } else {
-    superCallback.call(page, req, res, next);
+    if (typeof callBack !== 'function') {
+      throw Error('Super Callback function is not defined');
+    }
+    callBack();
   }
 };
 

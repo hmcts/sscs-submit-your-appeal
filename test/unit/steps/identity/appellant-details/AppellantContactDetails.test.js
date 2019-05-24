@@ -59,6 +59,7 @@ describe('AppellantContactDetails.js', () => {
     const redirect = sinon.spy();
     const res = { redirect };
     it('call pcl controller once', () => {
+      appellantContactDetails.req = req;
       appellantContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });

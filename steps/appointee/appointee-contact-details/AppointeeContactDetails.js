@@ -25,7 +25,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    pcl.controller(req, res, next, this, super.handler);
+    pcl.controller(this, () => super.handler(req, res, next));
   }
 
   get CYAPhoneNumber() {
