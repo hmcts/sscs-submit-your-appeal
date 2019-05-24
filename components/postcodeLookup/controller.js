@@ -87,14 +87,15 @@ const resetSuggestions = page => {
   page.req.session.addressSuggestions = [];
 };
 
-// eslint-disable-next-line complexity
+// eslint-disable-next-line max-len
+const isManualPost = page => page.req.method === 'POST' && typeof page.req.body[fieldMap.postcodeLookup] === 'undefined';
+
 const getFormType = page => {
   const req = page.req;
-  if (req.query.type === 'manual' || !enabled) {
+  if (req.query.type === 'manual' || !enabled || isManualPost(page)) {
     page.postcodeLookupType = 'manual';
     return 'manual';
   }
-
   page.postcodeLookupType = 'auto';
   return 'auto';
 };
@@ -102,6 +103,7 @@ const getFormType = page => {
 const restoreValues = page => {
   if (page.req.method === 'POST') {
     page.parse();
+    page.store();
   } else {
     page.retrieve();
   }
@@ -159,8 +161,8 @@ const handleManualClick = page => {
   page.store();
 };
 
-const handleGetValidatee = page => {
-  if (page.addressSuggestions.length === 0) page.validate();
+const handleGetValidate = page => {
+  if (page.postcodeLookupType === 'manaul' || page.addressSuggestions.length === 0) page.validate();
 };
 
 // eslint-disable-next-line complexity
@@ -209,10 +211,12 @@ const controller = async(page, callBack) => {
     handleManualClick(page);
     page.res.redirect(`${page.path}?type=manual`);
   } else if (req.method === 'GET' && req.query.validate) {
-    handleGetValidatee(page);
+    handleGetValidate(page);
     page.res.render(page.template, page.locals);
   } else if (req.method === 'GET' && req.query.type) {
     page.res.render(page.template, page.locals);
+  } else if (isManualPost(page) && !page.validate().valid) {
+    page.res.redirect(`${page.path}?type=manual&validate=1`);
   } else {
     if (typeof callBack !== 'function') {
       throw Error('Super Callback function is not defined');
