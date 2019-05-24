@@ -90,18 +90,13 @@ const resetSuggestions = page => {
 // eslint-disable-next-line complexity
 const getFormType = page => {
   const req = page.req;
-  if ((req.query.type && req.query.type === 'manual') || !enabled) {
+  if (req.query.type === 'manual' || !enabled) {
+    page.postcodeLookupType = 'manual';
     return 'manual';
-  } else if ((req.query.type && req.query.type === 'auto') && enabled) {
-    return 'auto';
-  } else if (req.session.postcodeLookupType === 'auto' && enabled) {
-    return 'auto';
-  } else if (req.session.postcodeLookupType === 'manual') {
-    return 'manual';
-  } else if (enabled) {
-    return 'auto';
   }
-  return 'manual';
+
+  page.postcodeLookupType = 'auto';
+  return 'auto';
 };
 
 const restoreValues = page => {
@@ -178,9 +173,6 @@ const setPageState = async page => {
   }
   const formType = getFormType(page);
   if (formType === 'auto') {
-    page.req.session.postcodeLookupType = 'auto';
-    page.postcodeLookupType = 'auto';
-
     if (page.fields[fieldMap.postcodeLookup] &&
         page.fields[fieldMap.postcodeLookup].validate() &&
         page.addressSuggestions.length > 0 &&
@@ -196,8 +188,6 @@ const setPageState = async page => {
       resetSuggestions(page);
     }
   } else {
-    page.req.session.postcodeLookupType = 'manual';
-    page.postcodeLookupType = 'manual';
     manualFileds();
   }
   restoreValues(page);
