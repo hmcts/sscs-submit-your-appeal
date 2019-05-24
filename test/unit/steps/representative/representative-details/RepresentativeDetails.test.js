@@ -58,7 +58,7 @@ describe('RepresentativeDetails.js', () => {
       pcl.controller.restore();
     });
 
-    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
     const res = { redirect };
