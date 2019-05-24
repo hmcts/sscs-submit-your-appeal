@@ -53,7 +53,7 @@ describe('Appointee-contact-details.js', () => {
       pcl.controller.restore();
     });
 
-    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
     const res = { redirect };
@@ -327,6 +327,8 @@ describe('Appointee-contact-details.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postCodeLookup: '',
+            postcodeAddress: '',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
@@ -344,6 +346,8 @@ describe('Appointee-contact-details.js', () => {
             townCity: '',
             county: '',
             postCode: '',
+            postCodeLookup: '',
+            postcodeAddress: '',
             phoneNumber: undefined,
             emailAddress: ''
           }

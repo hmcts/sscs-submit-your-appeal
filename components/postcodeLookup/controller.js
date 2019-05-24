@@ -139,7 +139,7 @@ const setPageState = async(req, page) => {
   restoreValues(page, req);
   // restore suggestions if they exits
   page.addressSuggestions = [];
-  if (page.fields[fieldMap.postcodeLookup]) {
+  if (page.fields[fieldMap.postcodeLookup] && page.fields[fieldMap.postcodeLookup].validate()) {
     await handlePostCodeLookup(page);
   }
   const formType = getFormType(req);

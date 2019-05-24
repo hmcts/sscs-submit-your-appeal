@@ -341,6 +341,8 @@ describe('RepresentativeDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postCodeLookup: '',
+            postcodeAddress: '',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
