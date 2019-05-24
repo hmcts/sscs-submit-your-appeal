@@ -341,8 +341,8 @@ describe('Appointee-contact-details.js', () => {
         }
       });
 
-      appointeeContactDetails.fields.postcodeLookup.value = '';
-      appointeeContactDetails.fields.postcodeAddress.value = '';
+      appointeeContactDetails.fields.postcodeLookup = undefined;
+      appointeeContactDetails.fields.postcodeAddress = undefined;
 
       values = appointeeContactDetails.values();
       expect(values).to.eql({

@@ -352,8 +352,8 @@ describe('RepresentativeDetails.js', () => {
         }
       });
 
-      representativeDetails.fields.postcodeLookup.value = null;
-      representativeDetails.fields.postcodeAddress.value = null;
+      representativeDetails.fields.postcodeLookup = undefined;
+      representativeDetails.fields.postcodeAddress = undefined;
       values = representativeDetails.values();
       expect(values).to.eql({
         representative: {

@@ -335,8 +335,8 @@ describe('AppellantContactDetails.js', () => {
           }
         }
       });
-      appellantContactDetails.fields.postcodeLookup.value = null;
-      appellantContactDetails.fields.postcodeAddress.value = null;
+      appellantContactDetails.fields.postcodeLookup = undefined;
+      appellantContactDetails.fields.postcodeAddress = undefined;
 
       values = appellantContactDetails.values();
       expect(values).to.eql({
