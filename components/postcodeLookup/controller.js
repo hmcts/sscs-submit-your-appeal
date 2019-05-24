@@ -84,7 +84,6 @@ const alldFields = () => {
 
 const resetSuggestions = page => {
   page.addressSuggestions = [];
-  page.req.session.addressSuggestions = [];
 };
 
 // eslint-disable-next-line max-len
