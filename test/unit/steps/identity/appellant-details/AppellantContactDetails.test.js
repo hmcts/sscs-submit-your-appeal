@@ -319,7 +319,7 @@ describe('AppellantContactDetails.js', () => {
       appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       appellantContactDetails.fields.postcodeLookup.value = 'n29ed';
       appellantContactDetails.fields.postcodeAddress.value = '200000';
-      let values = appellantContactDetails.values();
+      const values = appellantContactDetails.values();
       expect(values).to.eql({
         appellant: {
           contactDetails: {
@@ -335,22 +335,25 @@ describe('AppellantContactDetails.js', () => {
           }
         }
       });
+    });
+
+    it('should empty a value object', () => {
       appellantContactDetails.fields.postcodeLookup = undefined;
       appellantContactDetails.fields.postcodeAddress = undefined;
+      const values = appellantContactDetails.values();
 
-      values = appellantContactDetails.values();
       expect(values).to.eql({
         appellant: {
           contactDetails: {
-            addressLine1: 'First line of my address',
-            addressLine2: 'Second line of my address',
-            townCity: 'Town or City',
-            county: 'County',
-            postCode: 'Postcode',
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
             postcodeLookup: '',
             postcodeAddress: '',
-            phoneNumber: '0800109756',
-            emailAddress: 'myemailaddress@sscs.com'
+            phoneNumber: undefined,
+            emailAddress: ''
           }
         }
       });

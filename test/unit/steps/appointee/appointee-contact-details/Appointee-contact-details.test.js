@@ -324,7 +324,7 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.fields.postcodeLookup.value = 'n29ed';
       appointeeContactDetails.fields.postcodeAddress.value = '200000';
 
-      let values = appointeeContactDetails.values();
+      const values = appointeeContactDetails.values();
       expect(values).to.eql({
         appointee: {
           contactDetails: {
@@ -340,29 +340,11 @@ describe('Appointee-contact-details.js', () => {
           }
         }
       });
-
-      appointeeContactDetails.fields.postcodeLookup = undefined;
-      appointeeContactDetails.fields.postcodeAddress = undefined;
-
-      values = appointeeContactDetails.values();
-      expect(values).to.eql({
-        appointee: {
-          contactDetails: {
-            addressLine1: 'First line of my address',
-            addressLine2: 'Second line of my address',
-            townCity: 'Town or City',
-            county: 'County',
-            postCode: 'Postcode',
-            postcodeLookup: '',
-            postcodeAddress: '',
-            phoneNumber: '0800109756',
-            emailAddress: 'myemailaddress@sscs.com'
-          }
-        }
-      });
     });
 
     it('should contain an empty object', () => {
+      appointeeContactDetails.fields.postcodeLookup = undefined;
+      appointeeContactDetails.fields.postcodeAddress = undefined;
       const values = appointeeContactDetails.values();
       expect(values).to.deep.equal({
         appointee: {

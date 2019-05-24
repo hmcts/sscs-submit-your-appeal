@@ -331,7 +331,7 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       representativeDetails.fields.postcodeLookup.value = 'n29ed';
       representativeDetails.fields.postcodeAddress.value = '200000';
-      let values = representativeDetails.values();
+      const values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
           title: 'Title',
@@ -351,30 +351,33 @@ describe('RepresentativeDetails.js', () => {
           }
         }
       });
+    });
 
+    it('should contain empty object', () => {
       representativeDetails.fields.postcodeLookup = undefined;
       representativeDetails.fields.postcodeAddress = undefined;
-      values = representativeDetails.values();
+      const values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
-          title: 'Title',
-          firstName: 'First name',
-          lastName: 'Last name',
-          organisation: 'Organisation',
+          title: '',
+          firstName: '',
+          lastName: '',
+          organisation: '',
           contactDetails: {
-            addressLine1: 'First line of my address',
-            addressLine2: 'Second line of my address',
-            townCity: 'Town or City',
-            county: 'County',
-            postCode: 'Postcode',
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
             postcodeLookup: '',
             postcodeAddress: '',
-            phoneNumber: '0800109756',
-            emailAddress: 'myemailaddress@sscs.com'
+            phoneNumber: '',
+            emailAddress: ''
           }
         }
       });
     });
+
     it('removes whitespace from before and after the postcode string', () => {
       representativeDetails.fields.postCode.value = ' Post code ';
       const postcode = representativeDetails.values().representative.contactDetails.postCode;
