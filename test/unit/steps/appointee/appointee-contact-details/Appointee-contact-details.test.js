@@ -323,7 +323,7 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       appointeeContactDetails.fields.postcodeLookup.value = 'n29ed';
       appointeeContactDetails.fields.postcodeAddress.value = '200000';
-    
+
       let values = appointeeContactDetails.values();
       expect(values).to.eql({
         appointee: {
@@ -360,7 +360,6 @@ describe('Appointee-contact-details.js', () => {
           }
         }
       });
-
     });
 
     it('should contain an empty object', () => {
