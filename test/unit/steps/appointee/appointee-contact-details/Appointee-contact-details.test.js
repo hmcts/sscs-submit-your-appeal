@@ -32,7 +32,9 @@ describe('Appointee-contact-details.js', () => {
       county: { value: '' },
       postCode: { value: '' },
       phoneNumber: {},
-      emailAddress: { value: '' }
+      emailAddress: { value: '' },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' }
     };
   });
 
@@ -170,7 +172,7 @@ describe('Appointee-contact-details.js', () => {
           expect(fields).to.have.all.keys(
             'phoneNumber',
             'emailAddress',
-            'postCodeLookup');
+            'postcodeLookup');
         } else {
           expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
@@ -319,7 +321,10 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.fields.postCode.value = 'Postcode';
       appointeeContactDetails.fields.phoneNumber.value = '0800109756';
       appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      const values = appointeeContactDetails.values();
+      appointeeContactDetails.fields.postcodeLookup.value = 'n29ed';
+      appointeeContactDetails.fields.postcodeAddress.value = '200000';
+    
+      let values = appointeeContactDetails.values();
       expect(values).to.eql({
         appointee: {
           contactDetails: {
@@ -328,13 +333,34 @@ describe('Appointee-contact-details.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
-            postCodeLookup: '',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
+            phoneNumber: '0800109756',
+            emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+
+      appointeeContactDetails.fields.postcodeLookup.value = '';
+      appointeeContactDetails.fields.postcodeAddress.value = '';
+
+      values = appointeeContactDetails.values();
+      expect(values).to.eql({
+        appointee: {
+          contactDetails: {
+            addressLine1: 'First line of my address',
+            addressLine2: 'Second line of my address',
+            townCity: 'Town or City',
+            county: 'County',
+            postCode: 'Postcode',
+            postcodeLookup: '',
             postcodeAddress: '',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
         }
       });
+
     });
 
     it('should contain an empty object', () => {
@@ -347,7 +373,7 @@ describe('Appointee-contact-details.js', () => {
             townCity: '',
             county: '',
             postCode: '',
-            postCodeLookup: '',
+            postcodeLookup: '',
             postcodeAddress: '',
             phoneNumber: undefined,
             emailAddress: ''

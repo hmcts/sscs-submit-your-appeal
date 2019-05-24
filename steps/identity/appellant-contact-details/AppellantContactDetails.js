@@ -152,7 +152,7 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
-          postCodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
+          postcodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
             decode(this.fields[pcl.fieldMap.postcodeLookup].value) :
             '',
           postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ?

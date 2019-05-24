@@ -160,7 +160,7 @@ describe('RepresentativeDetails.js', () => {
           'name',
           'emailAddress',
           'phoneNumber',
-          'postCodeLookup'
+          'postcodeLookup'
         );
       } else {
         expect(Object.keys(fields).length).to.equal(8);
@@ -329,7 +329,9 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.postCode.value = 'Postcode';
       representativeDetails.fields.phoneNumber.value = '0800109756';
       representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      const values = representativeDetails.values();
+      representativeDetails.fields.postcodeLookup.value = 'n29ed';
+      representativeDetails.fields.postcodeAddress.value = '200000';
+      let values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
           title: 'Title',
@@ -342,7 +344,30 @@ describe('RepresentativeDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
-            postCodeLookup: '',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
+            phoneNumber: '0800109756',
+            emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+
+      representativeDetails.fields.postcodeLookup.value = null;
+      representativeDetails.fields.postcodeAddress.value = null;
+      values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: 'Title',
+          firstName: 'First name',
+          lastName: 'Last name',
+          organisation: 'Organisation',
+          contactDetails: {
+            addressLine1: 'First line of my address',
+            addressLine2: 'Second line of my address',
+            townCity: 'Town or City',
+            county: 'County',
+            postCode: 'Postcode',
+            postcodeLookup: '',
             postcodeAddress: '',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'

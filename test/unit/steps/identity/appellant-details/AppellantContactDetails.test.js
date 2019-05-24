@@ -33,7 +33,9 @@ describe('AppellantContactDetails.js', () => {
       county: { value: '' },
       postCode: { value: '' },
       phoneNumber: {},
-      emailAddress: { value: '' }
+      emailAddress: { value: '' },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' }
     };
   });
 
@@ -166,7 +168,7 @@ describe('AppellantContactDetails.js', () => {
           expect(fields).to.have.all.keys(
             'phoneNumber',
             'emailAddress',
-            'postCodeLookup');
+            'postcodeLookup');
         } else {
           expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
@@ -315,7 +317,9 @@ describe('AppellantContactDetails.js', () => {
       appellantContactDetails.fields.postCode.value = 'Postcode';
       appellantContactDetails.fields.phoneNumber.value = '0800109756';
       appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      const values = appellantContactDetails.values();
+      appellantContactDetails.fields.postcodeLookup.value = 'n29ed';
+      appellantContactDetails.fields.postcodeAddress.value = '200000';
+      let values = appellantContactDetails.values();
       expect(values).to.eql({
         appellant: {
           contactDetails: {
@@ -324,7 +328,26 @@ describe('AppellantContactDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
-            postCodeLookup: '',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
+            phoneNumber: '0800109756',
+            emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+      appellantContactDetails.fields.postcodeLookup.value = null;
+      appellantContactDetails.fields.postcodeAddress.value = null;
+
+      values = appellantContactDetails.values();
+      expect(values).to.eql({
+        appellant: {
+          contactDetails: {
+            addressLine1: 'First line of my address',
+            addressLine2: 'Second line of my address',
+            townCity: 'Town or City',
+            county: 'County',
+            postCode: 'Postcode',
+            postcodeLookup: '',
             postcodeAddress: '',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'

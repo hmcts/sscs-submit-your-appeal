@@ -146,7 +146,7 @@ class RepresentativeDetails extends SaveToDraftStore {
         lastName: decode(this.fields.name.last.value),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
-          postCodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
+          postcodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
             decode(this.fields[pcl.fieldMap.postcodeLookup].value) :
             '',
           postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ?

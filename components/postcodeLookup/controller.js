@@ -13,7 +13,7 @@ const { text } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 
 const fieldMap = {
-  postcodeLookup: 'postCodeLookup',
+  postcodeLookup: 'postcodeLookup',
   postcodeAddress: 'postcodeAddress',
   line1: 'addressLine1',
   line2: 'addressLine2',
@@ -30,7 +30,7 @@ const schemaBuilder = (fields, page) => {
     if (!includes(disabledFields, fields[i].name)) {
       if (fields[i].name === fieldMap.postcodeLookup) {
         newForm[fields[i].name] = text.joi(
-          content.fields.postCodeLookup.error.required,
+          content.fields.postcodeLookup.error.required,
           Joi.string().trim().required()
         ).joi(
           content.fields.postcodeAddress.error.required,
