@@ -1,0 +1,32 @@
+nodejs:
+  image: 'https://hmcts.azurecr.io/hmcts/sscs-tribunals-frontend:latest'
+  applicationPort: 3000
+  memoryRequests: 256Mi
+  cpuRequests: 0.2
+  memoryLimits: 512Mi
+  cpuLimits: 1
+  environment:
+    NODE_ENV: preview
+    SESSION_SECRET:
+    HTTP_PROTOCOL: https
+    EVIDENCE_UPLOAD_ENABLED: true
+    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
+    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
+    POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
+    POSTCODE_CHECKER_ENABLED: true
+    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+    SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
+    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/users/selfRegister"
+    REDIS_URL: redis://unknown-redis-master
+    SERVICES_IDAM_SECRET: unknown-secret
+    POSTCODE_LOOKUP_TOKEN: unknown-postcode-token
+    POSTCODE_LOOKUP_ENABLED: "true"
+
+redis:
+  cluster:
+    enabled: false
+    slaveCount: 0
+  usePassword: false
+  master:
+    persistence:
+      enabled: false
