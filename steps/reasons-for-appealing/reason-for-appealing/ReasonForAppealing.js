@@ -2,7 +2,7 @@
 /* eslint-disable multiline-ternary */
 /* eslint-disable operator-linebreak */
 
-const { AddAnother } = require('@hmcts/one-per-page/steps');
+const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -13,7 +13,7 @@ const content = require('steps/reasons-for-appealing/reason-for-appealing/conten
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 
-class ReasonForAppealing extends AddAnother {
+class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   static get path() {
     return paths.reasonsForAppealing.reasonForAppealing;
   }

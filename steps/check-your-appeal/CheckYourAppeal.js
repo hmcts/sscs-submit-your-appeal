@@ -2,7 +2,7 @@ const {
   CheckYourAnswers: CYA,
   section
 } = require('@hmcts/one-per-page/checkYourAnswers');
-
+const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
 const { lastName } = require('utils/regex');
@@ -18,11 +18,24 @@ const Joi = require('joi');
 const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
+const config = require('config');
+
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 class CheckYourAppeal extends CYA {
   constructor(...args) {
     super(...args);
     this.sendToAPI = this.sendToAPI.bind(this);
+  }
+
+  handler(req, res, next) {
+    if (allowSaveAndReturn) {
+      removeRevertInvalidSteps(this.journey, () => {
+        super.handler(req, res, next);
+      });
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   static get path() {
@@ -45,7 +58,18 @@ class CheckYourAppeal extends CYA {
     return paths.policy.termsAndConditions;
   }
 
+  tokenHeader(req) {
+    const header = {};
+    const authTokenString = '__auth-token';
+
+    if (req.cookies && req.cookies[authTokenString]) {
+      header.Authorization = `Bearer ${req.cookies[authTokenString]}`;
+    }
+    return header;
+  }
+
   sendToAPI() {
+    const headers = this.tokenHeader(this.req);
     logger.trace([
       'About to send to api the application with session id ',
       get(this, 'journey.req.session.id'),
@@ -54,7 +78,9 @@ class CheckYourAppeal extends CYA {
       'the benefit code is',
       get(this, 'journey.values.benefitType.code')
     ], logPath);
-    return request.post(this.journey.settings.apiUrl).send(this.journey.values)
+    return request.post(this.journey.settings.apiUrl)
+      .set(headers)
+      .send(this.journey.values)
       .then(result => {
         logger.trace([
           'Successfully submitted application for session id',

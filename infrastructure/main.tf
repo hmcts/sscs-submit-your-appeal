@@ -65,6 +65,7 @@ module "submit-your-appeal-frontend" {
     POSTCODE_CHECKER_ENABLED      = "${var.postcode_checker_enabled}"
     POSTCODE_CHECKER_ALLOWED_RPCS = "${var.postcode_checker_allowed_rpcs}"
     ALLOW_SAVE_RETURN             = "${var.allow_save_return}"
+    POSTCODE_LOOKUP_ENABLED       = "${var.postcode_lookup_enabled}"
 
     SERVICES_IDAM_SECRET          = "${data.azurerm_key_vault_secret.idam_oauth2_client_secret.value}"
     POSTCODE_LOOKUP_TOKEN         = "${data.azurerm_key_vault_secret.postcode_lookup_token.value}"

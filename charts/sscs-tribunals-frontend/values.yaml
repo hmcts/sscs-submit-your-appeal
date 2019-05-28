@@ -16,11 +16,11 @@ nodejs:
     POSTCODE_CHECKER_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
     SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    SERVICES_IDAM_LOGIN_URL: https://idam-web-public.aat.platform.hmcts.net/login
+    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/users/selfRegister"
     REDIS_URL: redis://unknown-redis-master
     SERVICES_IDAM_SECRET: unknown-secret
     POSTCODE_LOOKUP_TOKEN: unknown-postcode-token
-    POSTCODE_LOOKUP_ENABLED: "false"
+    POSTCODE_LOOKUP_ENABLED: "true"
 
 redis:
   cluster:
