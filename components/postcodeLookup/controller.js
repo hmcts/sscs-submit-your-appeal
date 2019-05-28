@@ -91,7 +91,9 @@ const isManualPost = page => page.req.method === 'POST' && typeof page.req.body[
 
 const getFormType = page => {
   const req = page.req;
-  if (req.query.type === 'manual' || !enabled || isManualPost(page)) {
+  if (req.query.type === 'manual' || !enabled || isManualPost(page) ||
+     (page.fields.type && page.fields.type.value === 'manual')
+  ) {
     page.postcodeLookupType = 'manual';
     return 'manual';
   }
