@@ -167,7 +167,7 @@ class AppellantContactDetails extends SaveToDraftStore {
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
-          
+
         }
       }
     };
