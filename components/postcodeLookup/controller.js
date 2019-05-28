@@ -89,15 +89,15 @@ const resetSuggestions = page => {
 // eslint-disable-next-line max-len
 const isManualPost = page => page.req.method === 'POST' && typeof page.req.body[fieldMap.postcodeLookup] === 'undefined';
 // eslint-disable-next-line max-len
-const isManualParameter = page => page.req.query.type === 'manual' || (page.fields.type && page.fields.type.value === 'manual');
+const isManualParameter = page => page.req.query.type === 'manual' || (page.req.session[page.name].type && page.req.session[page.name].type === 'manual');
 
 const getFormType = page => {
   if (isManualParameter(page) || !enabled || isManualPost(page)) {
-    if (page.fields.type) page.fields.type.value = null;
+    if (page.req.session[page.name].type) page.req.session[page.name].type = null;
     page.postcodeLookupType = 'manual';
     return 'manual';
   }
-  if (page.fields.type) page.fields.type.value = null;
+  if (page.req.session[page.name].type) page.req.session[page.name].type = null;
   page.postcodeLookupType = 'auto';
   return 'auto';
 };
