@@ -110,35 +110,29 @@ class Controller {
     (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual');
   }
 
-  addTypeToSession(type = 'auto') {
+  setMode(type = 'auto') {
     const session = this.page.req.session;
+    const page = this.page;
+    page.postcodeLookupType = type;
     session[this.sessionName] = { type };
+    return type;
   }
 
   getFormType() {
-    const page = this.page;
     const req = this.page.req;
     if (!this.enabled || req.query.type === 'manual' || this.isManualPost()) {
-      page.postcodeLookupType = 'manual';
-      this.addTypeToSession('manual');
-      return 'manual';
+      return this.setMode('manual');
     }
 
     if (this.enabled && req.query.type === 'auto') {
-      this.addTypeToSession('auto');
-      page.postcodeLookupType = 'auto';
-      return 'auto';
+      return this.setMode('auto');
     }
 
     if (this.isManualSession()) {
-      page.postcodeLookupType = 'manual';
-      this.addTypeToSession('manual');
-      return 'manual';
+      return this.setMode('manual');
     }
 
-    this.addTypeToSession('auto');
-    page.postcodeLookupType = 'auto';
-    return 'auto';
+    return this.setMode('auto');
   }
 
   restoreValues() {
