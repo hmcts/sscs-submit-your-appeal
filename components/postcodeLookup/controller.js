@@ -27,6 +27,10 @@ class Controller {
   }
 
   schemaBuilder(fields) {
+    if (this.isManualSession()) {
+      this.manualFileds();
+    }
+
     const newForm = Object.create(null);
     for (let i = 0; i < fields.length; i++) {
       if (!includes(this.disabledFields, fields[i].name)) {
@@ -99,12 +103,11 @@ class Controller {
     return req.method === 'POST' && typeof req.body[this.fieldMap.postcodeLookup] === 'undefined';
   }
 
-  isManualParameter() {
+  isManualSession() {
     const req = this.page.req;
     const page = this.page;
-    return req.query.type !== 'auto' && (req.query.type === 'manual' ||
-    (req.session[page.name] && req.session[page.name].type === 'manual') ||
-    (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual'));
+    return (req.session[page.name] && req.session[page.name].type === 'manual') ||
+    (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual');
   }
 
   addTypeToSession(type = 'auto') {
@@ -114,7 +117,20 @@ class Controller {
 
   getFormType() {
     const page = this.page;
-    if (this.isManualParameter() || !this.enabled || this.isManualPost()) {
+    const req = this.page.req;
+    if (!this.enabled || req.query.type === 'manual' || this.isManualPost()) {
+      page.postcodeLookupType = 'manual';
+      this.addTypeToSession('manual');
+      return 'manual';
+    }
+
+    if (this.enabled && req.query.type === 'auto') {
+      this.addTypeToSession('auto');
+      page.postcodeLookupType = 'auto';
+      return 'auto';
+    }
+
+    if (this.isManualSession()) {
       page.postcodeLookupType = 'manual';
       this.addTypeToSession('manual');
       return 'manual';
