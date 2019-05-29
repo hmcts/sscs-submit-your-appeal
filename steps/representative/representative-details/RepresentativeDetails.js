@@ -4,8 +4,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
-const pcl = require('components/postcodeLookup/controller');
-
 const {
   postCode,
   firstName,
@@ -25,13 +23,24 @@ const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 
+const PCL = require('components/postcodeLookup/controller');
+const config = require('config');
+
+const url = config.postcodeLookup.url;
+const token = config.postcodeLookup.token;
+const enabled = config.postcodeLookup.enabled === 'true';
+
 class RepresentativeDetails extends SaveToDraftStore {
+  constructor(...args) {
+    super(...args);
+    this.pcl = new PCL(enabled, token, url, this);
+  }
   static get path() {
     return paths.representative.representativeDetails;
   }
 
   handler(req, res, next) {
-    pcl.controller(this, () => super.handler(req, res, next));
+    this.pcl.init(() => super.handler(req, res, next));
   }
 
   get CYAName() {
@@ -58,7 +67,7 @@ class RepresentativeDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
 
-    return pcl.schemaBuilder([
+    return this.pcl.schemaBuilder([
       {
         name: 'name',
         validator: object({
@@ -89,29 +98,29 @@ class RepresentativeDetails extends SaveToDraftStore {
           value => joiValidation(value.organisation, Joi.string().regex(whitelist))
         )
       },
-      { name: pcl.fieldMap.postcodeLookup },
-      { name: pcl.fieldMap.postcodeAddress },
-      { name: pcl.fieldMap.line1,
+      { name: this.pcl.fieldMap.postcodeLookup },
+      { name: this.pcl.fieldMap.postcodeAddress },
+      { name: this.pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.line2,
+      { name: this.pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error.invalid,
           Joi.string().regex(whitelist).allow('')
         ) },
-      { name: pcl.fieldMap.town,
+      { name: this.pcl.fieldMap.town,
         validator: text.joi(
           fields.townCity.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.county,
+      { name: this.pcl.fieldMap.county,
         validator: text.joi(
           fields.county.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.postCode,
+      { name: this.pcl.fieldMap.postCode,
         validator: text.joi(
           fields.postCode.error.required,
           Joi.string().trim().regex(postCode).required()
@@ -126,7 +135,7 @@ class RepresentativeDetails extends SaveToDraftStore {
           fields.emailAddress.error.invalid,
           Joi.string().trim().email(emailOptions).allow('')
         ) }
-    ], this);
+    ]);
   }
 
   answers() {
@@ -146,11 +155,11 @@ class RepresentativeDetails extends SaveToDraftStore {
         lastName: decode(this.fields.name.last.value),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
-          postcodeLookup: this.fields[pcl.fieldMap.postcodeLookup] ?
-            decode(this.fields[pcl.fieldMap.postcodeLookup].value) :
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
             '',
-          postcodeAddress: this.fields[pcl.fieldMap.postcodeAddress] ?
-            decode(this.fields[pcl.fieldMap.postcodeAddress].value) :
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
             '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),

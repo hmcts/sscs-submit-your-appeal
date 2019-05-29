@@ -1,228 +1,258 @@
 const rp = require('request-promise');
-const conf = require('config');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
-
-const url = conf.postcodeLookup.url;
-const token = conf.postcodeLookup.token;
-const enabled = conf.postcodeLookup.enabled === 'true';
 const { buildConcatenatedAddress } = require('./helper');
 const content = require('./content.en.json');
 const customFieldValidations = require('./customFieldValidations.js');
 const { text } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 
-const fieldMap = {
-  postcodeLookup: 'postcodeLookup',
-  postcodeAddress: 'postcodeAddress',
-  line1: 'addressLine1',
-  line2: 'addressLine2',
-  town: 'townCity',
-  county: 'county',
-  postCode: 'postCode'
-};
+class Controller {
+  constructor(enabled = true, token = '', apiUrl = '', page = {}) {
+    this.enabled = enabled;
+    this.page = page;
+    this.token = token;
+    this.apiUrl = apiUrl;
+    this.disabledFields = [];
+    this.fieldMap = {
+      postcodeLookup: 'postcodeLookup',
+      postcodeAddress: 'postcodeAddress',
+      line1: 'addressLine1',
+      line2: 'addressLine2',
+      town: 'townCity',
+      county: 'county',
+      postCode: 'postCode'
+    };
+    this.sessionName = `${page.name}.pcl`;
+  }
 
-let disabledFields = [];
-
-const schemaBuilder = (fields, page) => {
-  const newForm = Object.create(null);
-  for (let i = 0; i < fields.length; i++) {
-    if (!includes(disabledFields, fields[i].name)) {
-      if (fields[i].name === fieldMap.postcodeLookup) {
-        newForm[fields[i].name] = text.joi(
-          content.fields.postcodeLookup.error.required,
-          Joi.string().trim().required()
-        ).joi(
-          content.fields.postcodeAddress.error.required,
-          customFieldValidations.string().validateAddressList(page)
-        );
-      } else if (fields[i].name === fieldMap.postcodeAddress) {
-        newForm[fields[i].name] = text.joi(
-          content.fields.postcodeAddress.error.required,
-          Joi.string().required()
-        );
-      } else {
-        newForm[fields[i].name] = fields[i].validator;
+  schemaBuilder(fields) {
+    const newForm = Object.create(null);
+    for (let i = 0; i < fields.length; i++) {
+      if (!includes(this.disabledFields, fields[i].name)) {
+        if (fields[i].name === this.fieldMap.postcodeLookup) {
+          newForm[fields[i].name] = text.joi(
+            content.fields.postcodeLookup.error.required,
+            Joi.string().trim().required()
+          ).joi(
+            content.fields.postcodeAddress.error.required,
+            customFieldValidations.string().validateAddressList(this.page)
+          );
+        } else if (fields[i].name === this.fieldMap.postcodeAddress) {
+          newForm[fields[i].name] = text.joi(
+            content.fields.postcodeAddress.error.required,
+            Joi.string().required()
+          );
+        } else {
+          newForm[fields[i].name] = fields[i].validator;
+        }
       }
     }
+    return form(newForm);
   }
-  return form(newForm);
-};
 
-
-const postcodeLookupFields = () => {
-  disabledFields = [
-    fieldMap.postcodeAddress,
-    fieldMap.line1,
-    fieldMap.line2,
-    fieldMap.town,
-    fieldMap.county,
-    fieldMap.postCode
-  ];
-};
-
-const postcodeAddressFields = () => {
-  disabledFields = [
-    fieldMap.line1,
-    fieldMap.line2,
-    fieldMap.town,
-    fieldMap.county,
-    fieldMap.postCode
-  ];
-};
-
-const manualFileds = () => {
-  disabledFields = [
-    fieldMap.postcodeLookup,
-    fieldMap.postcodeAddress
-  ];
-};
-
-const alldFields = () => {
-  disabledFields = [];
-};
-
-const resetSuggestions = page => {
-  page.addressSuggestions = [];
-};
-
-// eslint-disable-next-line max-len
-const isManualPost = page => page.req.method === 'POST' && typeof page.req.body[fieldMap.postcodeLookup] === 'undefined';
-// eslint-disable-next-line max-len
-const isManualParameter = page => page.req.query.type === 'manual' || (page.req.session[page.name].type && page.req.session[page.name].type === 'manual');
-
-const getFormType = page => {
-  if (isManualParameter(page) || !enabled || isManualPost(page)) {
-    if (page.req.session[page.name].type) page.req.session[page.name].type = null;
-    page.postcodeLookupType = 'manual';
-    return 'manual';
+  postcodeLookupFields() {
+    const fieldMap = this.fieldMap;
+    this.disabledFields = [
+      fieldMap.postcodeAddress,
+      fieldMap.line1,
+      fieldMap.line2,
+      fieldMap.town,
+      fieldMap.county,
+      fieldMap.postCode
+    ];
+    return this.disabledFields;
   }
-  if (page.req.session[page.name].type) page.req.session[page.name].type = null;
-  page.postcodeLookupType = 'auto';
-  return 'auto';
-};
 
-const restoreValues = page => {
-  if (page.req.method === 'POST') {
-    page.parse();
-    page.store();
-  } else {
-    page.retrieve();
+  postcodeAddressFields() {
+    const fieldMap = this.fieldMap;
+    this.disabledFields = [
+      fieldMap.line1,
+      fieldMap.line2,
+      fieldMap.town,
+      fieldMap.county,
+      fieldMap.postCode
+    ];
+    return this.disabledFields;
   }
-};
 
-const handlePostCodeLookup = async page => {
-  const postCode = page.fields[fieldMap.postcodeLookup].value;
-  const options = {
-    json: true,
-    uri: `${url}/addresses/postcode?postcode=${postCode}&key=${token}`,
-    method: 'GET'
-  };
+  manualFileds() {
+    const fieldMap = this.fieldMap;
+    this.disabledFields = [
+      fieldMap.postcodeLookup,
+      fieldMap.postcodeAddress
+    ];
+    return this.disabledFields;
+  }
 
-  await rp(options).then(body => {
-    if (body.results && body.results.length > 0) {
-      page.addressSuggestions = body.results;
+  alldFields() {
+    this.disabledFields = [];
+    return this.disabledFields;
+  }
+
+  resetSuggestions() {
+    this.page.addressSuggestions = [];
+  }
+
+  isManualPost() {
+    const req = this.page.req;
+    return req.method === 'POST' && typeof req.body[this.fieldMap.postcodeLookup] === 'undefined';
+  }
+
+  isManualParameter() {
+    const req = this.page.req;
+    const page = this.page;
+    return req.query.type !== 'auto' && (req.query.type === 'manual' ||
+    (req.session[page.name] && req.session[page.name].type === 'manual') ||
+    (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual'));
+  }
+
+  addTypeToSession(type = 'auto') {
+    const session = this.page.req.session;
+    session[this.sessionName] = { type };
+  }
+
+  getFormType() {
+    const page = this.page;
+    if (this.isManualParameter() || !this.enabled || this.isManualPost()) {
+      page.postcodeLookupType = 'manual';
+      this.addTypeToSession('manual');
+      return 'manual';
+    }
+
+    this.addTypeToSession('auto');
+    page.postcodeLookupType = 'auto';
+    return 'auto';
+  }
+
+  restoreValues() {
+    const page = this.page;
+    const req = this.page.req;
+    if (req.method === 'POST') {
+      page.parse();
+      page.store();
     } else {
+      page.retrieve();
+    }
+  }
+
+  async handlePostCodeLookup() {
+    const fieldMap = this.fieldMap;
+    const page = this.page;
+    const postCode = page.fields[fieldMap.postcodeLookup].value;
+    const options = {
+      json: true,
+      uri: `${this.apiUrl}/addresses/postcode?postcode=${postCode}&key=${this.token}`,
+      method: 'GET'
+    };
+
+    await rp(options).then(body => {
+      if (body.results && body.results.length > 0) {
+        page.addressSuggestions = body.results;
+      } else {
+        page.fields[fieldMap.postcodeLookup].value = '';
+      }
+      Promise.resolve();
+    }).catch(() => {
       page.fields[fieldMap.postcodeLookup].value = '';
+      Promise.resolve();
+    });
+
+    page.store();
+  }
+
+  handleAddressSelection() {
+    let selectedAddress = [];
+    const page = this.page;
+    const fieldMap = this.fieldMap;
+
+    if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
+      const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
+      if (selectedUPRN) {
+        // eslint-disable-next-line max-len
+        selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
+      }
     }
-    Promise.resolve();
-  }).catch(() => {
-    page.fields[fieldMap.postcodeLookup].value = '';
-    Promise.resolve();
-  });
 
-  page.store();
-};
-
-const handleAddressSelection = page => {
-  let selectedAddress = [];
-  // eslint-disable-next-line max-len
-  if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
-    const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
-    if (selectedUPRN) {
-      // eslint-disable-next-line max-len
-      selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
+    if (selectedAddress.length === 1) {
+      const concatenated = buildConcatenatedAddress(selectedAddress[0]);
+      page.fields[fieldMap.line1].value = concatenated.line1;
+      page.fields[fieldMap.line2].value = concatenated.line2;
+      page.fields[fieldMap.town].value = concatenated.town;
+      page.fields[fieldMap.county].value = concatenated.county;
+      page.fields[fieldMap.postCode].value = concatenated.postCode;
+      page.validate();
+    }
+    page.store();
+  }
+  handleGetValidate() {
+    const page = this.page;
+    if (page.postcodeLookupType === 'manaul' || page.addressSuggestions.length === 0) {
+      this.page.validate();
     }
   }
-
-  if (selectedAddress.length === 1) {
-    const concatenated = buildConcatenatedAddress(selectedAddress[0]);
-    page.fields[fieldMap.line1].value = concatenated.line1;
-    page.fields[fieldMap.line2].value = concatenated.line2;
-    page.fields[fieldMap.town].value = concatenated.town;
-    page.fields[fieldMap.county].value = concatenated.county;
-    page.fields[fieldMap.postCode].value = concatenated.postCode;
-    page.validate();
-  }
-  page.store();
-};
-
-const handleGetValidate = page => {
-  if (page.postcodeLookupType === 'manaul' || page.addressSuggestions.length === 0) page.validate();
-};
-
-// eslint-disable-next-line complexity
-const setPageState = async page => {
-  restoreValues(page);
-  // restore suggestions if they exits
-  page.addressSuggestions = [];
-  if (page.fields[fieldMap.postcodeLookup] && page.fields[fieldMap.postcodeLookup].validate()) {
-    await handlePostCodeLookup(page);
-  }
-  const formType = getFormType(page);
-  if (formType === 'auto') {
+  // eslint-disable-next-line complexity
+  async setPageState() {
+    const page = this.page;
+    const fieldMap = this.fieldMap;
+    this.restoreValues();
+    // restore suggestions if they exits
+    page.addressSuggestions = [];
     if (page.fields[fieldMap.postcodeLookup] &&
+      page.fields[fieldMap.postcodeLookup].validate()) {
+      await this.handlePostCodeLookup();
+    }
+    const formType = this.getFormType();
+    if (formType === 'auto') {
+      if (page.fields[fieldMap.postcodeLookup] &&
         page.fields[fieldMap.postcodeLookup].validate() &&
         page.addressSuggestions.length > 0 &&
         page.fields[fieldMap.postcodeAddress] &&
         page.fields[fieldMap.postcodeAddress].validate()) {
-      alldFields();
-    } else if (page.fields[fieldMap.postcodeLookup] &&
-               page.fields[fieldMap.postcodeLookup].validate() &&
-               page.addressSuggestions.length > 0) {
-      postcodeAddressFields();
+        this.alldFields();
+      } else if (page.fields[fieldMap.postcodeLookup] &&
+        page.fields[fieldMap.postcodeLookup].validate() &&
+        page.addressSuggestions.length > 0) {
+        this.postcodeAddressFields();
+      } else {
+        this.postcodeLookupFields();
+        this.resetSuggestions();
+      }
     } else {
-      postcodeLookupFields();
-      resetSuggestions(page);
+      this.manualFileds();
     }
-  } else {
-    manualFileds();
+    this.restoreValues();
   }
-  restoreValues(page);
-};
 
-// eslint-disable-next-line complexity
-const controller = async(page, callBack) => {
-  const req = page.req;
-  page.postCodeContent = content;
-  await setPageState(page);
-
-  if (req.body.submitType === 'lookup') {
-    await handlePostCodeLookup(page);
-    page.res.redirect(`${page.path}?validate=1`);
-  } else if (req.body.submitType === 'addressSelection') {
-    handleAddressSelection(page);
-    page.res.redirect(`${page.path}?validate=1`);
-  } else if (req.body.submitType === 'manual') {
-    manualFileds();
-    page.res.redirect(`${page.path}?type=manual`);
-  } else if (req.method === 'GET' && req.query.validate) {
-    handleGetValidate(page);
-    page.res.render(page.template, page.locals);
-  } else if (req.method === 'GET' && req.query.type) {
-    page.res.render(page.template, page.locals);
-  } else if (isManualPost(page) && !page.validate().valid) {
-    page.res.redirect(`${page.path}?type=manual&validate=1`);
-  } else {
-    if (typeof callBack !== 'function') {
-      throw Error('Super Callback function is not defined');
+  // eslint-disable-next-line complexity
+  async init(callBack) {
+    const req = this.page.req;
+    const page = this.page;
+    page.postCodeContent = content;
+    await this.setPageState(page);
+    if (req.body.submitType === 'lookup') {
+      await this.handlePostCodeLookup(page);
+      page.res.redirect(`${page.path}?validate=1`);
+    } else if (req.body.submitType === 'addressSelection') {
+      this.handleAddressSelection(page);
+      page.res.redirect(`${page.path}?validate=1`);
+    } else if (req.body.submitType === 'manual') {
+      this.manualFileds();
+      page.res.redirect(`${page.path}?type=manual`);
+    } else if (req.method === 'GET' && req.query.validate) {
+      this.handleGetValidate(page);
+      page.res.render(page.template, page.locals);
+    } else if (req.method === 'GET' && req.query.type) {
+      page.res.render(page.template, page.locals);
+    } else if (this.isManualPost(page) && !page.validate().valid) {
+      page.res.redirect(`${page.path}?type=manual&validate=1`);
+    } else {
+      if (typeof callBack !== 'function') {
+        throw Error('Super Callback function is not defined');
+      }
+      callBack();
     }
-    callBack();
   }
-};
+}
 
-module.exports = {
-  controller,
-  schemaBuilder,
-  fieldMap
-};
+module.exports = Controller;

@@ -6,7 +6,6 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const pcl = require('components/postcodeLookup/controller');
 const config = require('config');
 
 describe('Appointee-contact-details.js', () => {
@@ -48,11 +47,11 @@ describe('Appointee-contact-details.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      pclSpy = sinon.spy(pcl, 'controller');
+      pclSpy = sinon.spy(appointeeContactDetails.pcl, 'init');
     });
 
     afterEach(() => {
-      pcl.controller.restore();
+      appointeeContactDetails.pcl.init.restore();
     });
 
     const req = { method: 'GET', body: {}, session: {}, query: {} };
@@ -167,6 +166,13 @@ describe('Appointee-contact-details.js', () => {
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        appointeeContactDetails.req = req;
+        appointeeContactDetails.handler(req, res, next);
+        fields = appointeeContactDetails.form.fields;
         if (isPostCodeLookupEnabled) {
           expect(Object.keys(fields).length).to.equal(3);
           expect(fields).to.have.all.keys(

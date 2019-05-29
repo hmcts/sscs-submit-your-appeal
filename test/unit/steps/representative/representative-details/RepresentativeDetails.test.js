@@ -4,7 +4,7 @@ const RepresentativeDetails = require('steps/representative/representative-detai
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
-const pcl = require('components/postcodeLookup/controller');
+
 
 const config = require('config');
 
@@ -51,11 +51,11 @@ describe('RepresentativeDetails.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      pclSpy = sinon.spy(pcl, 'controller');
+      pclSpy = sinon.spy(representativeDetails.pcl, 'init');
     });
 
     afterEach(() => {
-      pcl.controller.restore();
+      representativeDetails.pcl.init.restore();
     });
 
     const req = { method: 'GET', body: {}, session: {}, query: {} };
@@ -155,6 +155,13 @@ describe('RepresentativeDetails.js', () => {
 
     it('should contain dynamic fields', () => {
       if (isPostCodeLookupEnabled) {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        representativeDetails.req = req;
+        representativeDetails.handler(req, res, next);
+        fields = representativeDetails.form.fields;
         expect(Object.keys(fields).length).to.equal(4);
         expect(fields).to.have.all.keys(
           'name',
