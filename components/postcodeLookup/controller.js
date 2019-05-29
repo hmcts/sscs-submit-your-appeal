@@ -96,6 +96,10 @@ class Controller {
 
   resetSuggestions() {
     this.page.addressSuggestions = [];
+    if (this.page.fields[this.fieldMap.postcodeAddress]) {
+      this.page.fields[this.fieldMap.postcodeAddress].value = '';
+    }
+    this.page.store();
   }
 
   isManualPost() {
@@ -226,7 +230,6 @@ class Controller {
         this.postcodeAddressFields();
       } else {
         this.postcodeLookupFields();
-        this.resetSuggestions();
       }
     } else {
       this.manualFileds();
@@ -241,7 +244,7 @@ class Controller {
     page.postCodeContent = content;
     await this.setPageState(page);
     if (req.body.submitType === 'lookup') {
-      await this.handlePostCodeLookup(page);
+      this.resetSuggestions();
       page.res.redirect(`${page.path}?validate=1`);
     } else if (req.body.submitType === 'addressSelection') {
       this.handleAddressSelection(page);
