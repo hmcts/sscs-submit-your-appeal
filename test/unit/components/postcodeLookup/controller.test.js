@@ -15,16 +15,19 @@ describe('Components/controller.js', () => {
   let req = {};
   let res = {};
   let next = {};
-  // eslint-disable-next-line no-unused-vars
+
   let superCallback = {};
 
   beforeEach(() => {
     req = { body: {},
       query: { type: 'auto' },
       session: { addressSuggestions: [], postcodeLookupType: '' } };
-    res = {};
+    res = { redirect: sinon.spy(), render: sinon.spy() };
     next = sinon.spy();
     page = { name: 'unit',
+      path: 'unit-url',
+      template: '',
+      locals: [],
       fields: {},
       parse: sinon.spy(),
       retrieve: sinon.spy(),
@@ -78,9 +81,9 @@ describe('Components/controller.js', () => {
       expect(pcl.postcodeAddressFields().length).to.eql(5);
     });
 
-    it('manualFileds disabled field count', () => {
+    it('manualFields disabled field count', () => {
       pcl = new PCL(enabled, token, url, page);
-      expect(pcl.manualFileds().length).to.eql(2);
+      expect(pcl.manualFields().length).to.eql(2);
     });
 
     it('alldFields disabled field count', () => {
@@ -146,6 +149,22 @@ describe('Components/controller.js', () => {
       expect(page.req.session[`${page.name}.pcl`].type).to.eql('auto');
       expect(page.postcodeLookupType).to.eql('auto');
       expect(result).to.eql('auto');
+    });
+
+    it('handleGetValidate() manual', () => {
+      page.postcodeLookupType = 'manual';
+      page.addressSuggestions = [];
+      pcl = new PCL(enabled, token, url, page);
+      pcl.handleGetValidate();
+      expect(page.validate).to.have.been.calledOnce;
+    });
+
+    it('handleGetValidate() auto', () => {
+      page.postcodeLookupType = 'auto';
+      page.addressSuggestions = ['address 1'];
+      pcl = new PCL(enabled, token, url, page);
+      pcl.handleGetValidate();
+      expect(page.validate.callCount).to.eql(0);
     });
   });
 
@@ -287,12 +306,12 @@ describe('Components/controller.js', () => {
 
     it('setPageState manual', async() => {
       pcl = new PCL(false, token, url, page);
-      const manualFiledsSpy = sinon.spy(pcl, 'manualFileds');
+      const manualFieldsSpy = sinon.spy(pcl, 'manualFields');
       const restoreValuesSpy = sinon.spy(pcl, 'restoreValues');
       await pcl.setPageState();
-      expect(manualFiledsSpy).to.have.been.calledOnce;
+      expect(manualFieldsSpy).to.have.been.calledOnce;
       expect(restoreValuesSpy).to.have.been.calledTwice;
-      pcl.manualFileds.restore();
+      pcl.manualFields.restore();
       pcl.restoreValues.restore();
     });
   });
@@ -379,29 +398,105 @@ describe('Components/controller.js', () => {
     });
   });
 
-  // describe('controller()', () => {
-  //   it('controller lookup', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
+  describe('init()', () => {
+    beforeEach(() => {
+      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true },
+        postcodeAddress: { value: '200206013', validate: () => false },
+        addressLine1: { value: '' },
+        addressLine2: { value: '' },
+        townCity: { value: '' },
+        county: { value: '' },
+        postCode: { value: '' } };
+    });
 
-  //   it('controller addressSelection', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
+    afterEach(() => {
+      page.fields = {};
+    });
 
-  //   it('controller manual', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
+    it('init lookup post ', async() => {
+      page.req.body = { submitType: 'lookup' };
+      pcl = new PCL(enabled, token, url, page);
+      const resetSuggestionsSpy = sinon.spy(pcl, 'resetSuggestions');
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(resetSuggestionsSpy).to.have.been.calledOnce;
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?validate=1`);
+      pcl.resetSuggestions.restore();
+      pcl.setPageState.restore();
+    });
 
-  //   it('controller GET and Validate', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
+    it('controller addressSelection', async() => {
+      page.req.body = { submitType: 'addressSelection' };
+      pcl = new PCL(enabled, token, url, page);
+      const handleAddressSelectionSpy = sinon.spy(pcl, 'handleAddressSelection');
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(handleAddressSelectionSpy).to.have.been.calledOnce;
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?validate=1`);
+      pcl.handleAddressSelection.restore();
+      pcl.setPageState.restore();
+    });
 
-  //   it('controller GET and any Type', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
+    it('controller manual', async() => {
+      page.req.body = { submitType: 'manual' };
+      pcl = new PCL(enabled, token, url, page);
+      const manualFieldsSpy = sinon.spy(pcl, 'manualFields');
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(manualFieldsSpy).to.have.been.calledOnce;
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?type=manual`);
+      pcl.manualFields.restore();
+      pcl.setPageState.restore();
+    });
 
-  //   it('controller default', () => {
-  //     pcl.controller(req, res, next, page, superCallback);
-  //   });
-  // });
+    it('controller GET and Validate', async() => {
+      page.req.method = 'GET';
+      page.req.query = { validate: true };
+      pcl = new PCL(enabled, token, url, page);
+      const handleGetValidateSpy = sinon.spy(pcl, 'handleGetValidate');
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(handleGetValidateSpy).to.have.been.calledOnce;
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.render).to.have.been.calledWith(page.template, page.locals);
+      pcl.handleGetValidate.restore();
+      pcl.setPageState.restore();
+    });
+
+    it('controller GET and any Type', async() => {
+      page.req.method = 'GET';
+      page.req.query = { type: true };
+      pcl = new PCL(enabled, token, url, page);
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.render).to.have.been.calledWith(page.template, page.locals);
+      pcl.setPageState.restore();
+    });
+
+    it('manual and not valid', async() => {
+      page.req.method = 'POST';
+      page.req.body = { };
+      page.valid = false;
+      page.validate = () => page;
+      pcl = new PCL(enabled, token, url, page);
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?type=manual&validate=1`);
+      pcl.setPageState.restore();
+    });
+
+    it('controller default super call', async() => {
+      pcl = new PCL(enabled, token, url, page);
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      await pcl.init(superCallback);
+      expect(setPageStateSpy).to.have.been.calledOnce;
+      expect(superCallback).to.have.been.calledOnce;
+      pcl.setPageState.restore();
+    });
+  });
 });
