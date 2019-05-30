@@ -1,10 +1,9 @@
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const PCL = require('components/postcodeLookup/controller');
-const config = require('config');
 const nock = require('nock');
 
-const enabled = config.postcodeLookup.enabled === 'true';
+const enabled = true;
 const url = 'http://mockapi.com/v';
 const token = 'xxxx';
 
