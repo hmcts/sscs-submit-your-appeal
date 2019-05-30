@@ -71,6 +71,15 @@ describe('Components/controller.js', () => {
       });
     });
 
+    it('schemaBuilder', () => {
+      page.req.session[`${page.name}`] = { type: 'manual' };
+      pcl = new PCL(enabled, token, url, page);
+      const manualFieldsSpy = sinon.spy(pcl, 'manualFields');
+      pcl.schemaBuilder([]);
+      expect(manualFieldsSpy).to.have.been.calledOnce;
+      pcl.manualFields.restore();
+    });
+
     it('postcodeLookupFields disabled field count', () => {
       pcl = new PCL(enabled, token, url, page);
       expect(pcl.postcodeLookupFields().length).to.eql(6);
@@ -497,6 +506,13 @@ describe('Components/controller.js', () => {
       expect(setPageStateSpy).to.have.been.calledOnce;
       expect(superCallback).to.have.been.calledOnce;
       pcl.setPageState.restore();
+    });
+
+    it('controller default super call error', () => {
+      pcl = new PCL(enabled, token, url, page);
+      const setPageStateSpy = sinon.spy(pcl, 'setPageState');
+      expect(pcl.init('')).to.be.rejectedWith(new Error('Super Callback function is not defined'));
+      expect(setPageStateSpy).to.have.been.calledOnce;
     });
   });
 });
