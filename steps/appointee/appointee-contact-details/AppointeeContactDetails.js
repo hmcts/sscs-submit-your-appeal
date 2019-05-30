@@ -16,16 +16,26 @@ const config = require('config');
 const customJoi = require('utils/customJoiSchemas');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
-const pcl = require('components/postcodeLookup/controller');
+
 const { decode } = require('utils/stringUtils');
 
+const PCL = require('components/postcodeLookup/controller');
+
+const url = config.postcodeLookup.url;
+const token = config.postcodeLookup.token;
+const enabled = config.postcodeLookup.enabled === 'true';
+
 class AppointeeContactDetails extends SaveToDraftStore {
+  constructor(...args) {
+    super(...args);
+    this.pcl = new PCL(enabled, token, url, this);
+  }
   static get path() {
     return paths.appointee.enterAppointeeContactDetails;
   }
 
   handler(req, res, next) {
-    pcl.controller(req, res, next, this, super.handler);
+    this.pcl.init(() => super.handler(req, res, next));
   }
 
   get CYAPhoneNumber() {
@@ -39,30 +49,30 @@ class AppointeeContactDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
 
-    return pcl.schemaBuilder([
-      { name: pcl.fieldMap.postcodeLookup },
-      { name: pcl.fieldMap.postcodeAddress },
-      { name: pcl.fieldMap.line1,
+    return this.pcl.schemaBuilder([
+      { name: this.pcl.fieldMap.postcodeLookup },
+      { name: this.pcl.fieldMap.postcodeAddress },
+      { name: this.pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.line2,
+      { name: this.pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error.invalid,
           Joi.string().regex(whitelist).allow('')
         ) },
-      { name: pcl.fieldMap.town,
+      { name: this.pcl.fieldMap.town,
         validator: text.joi(
           fields.townCity.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.county,
+      { name: this.pcl.fieldMap.county,
         validator: text.joi(
           fields.county.error.required,
           Joi.string().regex(whitelist).required()
         ) },
-      { name: pcl.fieldMap.postCode,
+      { name: this.pcl.fieldMap.postCode,
         validator: text.joi(
           fields.postCode.error.required,
           Joi.string().trim().regex(postCode).required()
@@ -80,7 +90,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
           fields.emailAddress.error.invalid,
           Joi.string().trim().email(emailOptions).allow('')
         ) }
-    ], this.req);
+    ]);
   }
 
   static isEnglandOrWalesPostcode(req, resp, next) {
@@ -129,6 +139,12 @@ class AppointeeContactDetails extends SaveToDraftStore {
     return {
       appointee: {
         contactDetails: {
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
+            '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
+            '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),

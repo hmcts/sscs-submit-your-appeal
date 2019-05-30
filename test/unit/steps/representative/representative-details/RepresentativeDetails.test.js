@@ -4,7 +4,7 @@ const RepresentativeDetails = require('steps/representative/representative-detai
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
-const pcl = require('components/postcodeLookup/controller');
+
 
 const config = require('config');
 
@@ -51,18 +51,19 @@ describe('RepresentativeDetails.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      pclSpy = sinon.spy(pcl, 'controller');
+      pclSpy = sinon.spy(representativeDetails.pcl, 'init');
     });
 
     afterEach(() => {
-      pcl.controller.restore();
+      representativeDetails.pcl.init.restore();
     });
 
-    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
     const res = { redirect };
     it('call pcl controller once', () => {
+      representativeDetails.req = req;
       representativeDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });
@@ -154,12 +155,19 @@ describe('RepresentativeDetails.js', () => {
 
     it('should contain dynamic fields', () => {
       if (isPostCodeLookupEnabled) {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        representativeDetails.req = req;
+        representativeDetails.handler(req, res, next);
+        fields = representativeDetails.form.fields;
         expect(Object.keys(fields).length).to.equal(4);
         expect(fields).to.have.all.keys(
           'name',
           'emailAddress',
           'phoneNumber',
-          'postCodeLookup'
+          'postcodeLookup'
         );
       } else {
         expect(Object.keys(fields).length).to.equal(8);
@@ -328,6 +336,8 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.postCode.value = 'Postcode';
       representativeDetails.fields.phoneNumber.value = '0800109756';
       representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.postcodeLookup.value = 'n29ed';
+      representativeDetails.fields.postcodeAddress.value = '200000';
       const values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
@@ -341,12 +351,40 @@ describe('RepresentativeDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
         }
       });
     });
+
+    it('should contain empty object', () => {
+      representativeDetails.fields.postcodeLookup = undefined;
+      representativeDetails.fields.postcodeAddress = undefined;
+      const values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: '',
+          firstName: '',
+          lastName: '',
+          organisation: '',
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            postcodeLookup: '',
+            postcodeAddress: '',
+            phoneNumber: '',
+            emailAddress: ''
+          }
+        }
+      });
+    });
+
     it('removes whitespace from before and after the postcode string', () => {
       representativeDetails.fields.postCode.value = ' Post code ';
       const postcode = representativeDetails.values().representative.contactDetails.postCode;

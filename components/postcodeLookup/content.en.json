@@ -4,7 +4,7 @@
     "manualEntryLabel": "I can't enter a UK postcode",
     "dropdownCount": "address found",
     "fields": {
-        "postCodeLookup": {
+        "postcodeLookup": {
           "error": {
               "required": "We cannot find an address with that postcode",
               "invalidPostcode": "We cannot find an address with that postcode"

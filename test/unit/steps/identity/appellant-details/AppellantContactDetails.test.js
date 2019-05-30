@@ -6,7 +6,6 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const pcl = require('components/postcodeLookup/controller');
 const config = require('config');
 
 
@@ -33,7 +32,9 @@ describe('AppellantContactDetails.js', () => {
       county: { value: '' },
       postCode: { value: '' },
       phoneNumber: {},
-      emailAddress: { value: '' }
+      emailAddress: { value: '' },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' }
     };
   });
 
@@ -47,18 +48,19 @@ describe('AppellantContactDetails.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      pclSpy = sinon.spy(pcl, 'controller');
+      pclSpy = sinon.spy(appellantContactDetails.pcl, 'init');
     });
 
     afterEach(() => {
-      pcl.controller.restore();
+      appellantContactDetails.pcl.init.restore();
     });
 
-    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
     const res = { redirect };
     it('call pcl controller once', () => {
+      appellantContactDetails.req = req;
       appellantContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });
@@ -160,12 +162,19 @@ describe('AppellantContactDetails.js', () => {
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        appellantContactDetails.req = req;
+        appellantContactDetails.handler(req, res, next);
+        fields = appellantContactDetails.form.fields;
         if (isPostCodeLookupEnabled) {
           expect(Object.keys(fields).length).to.equal(3);
           expect(fields).to.have.all.keys(
             'phoneNumber',
             'emailAddress',
-            'postCodeLookup');
+            'postcodeLookup');
         } else {
           expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
@@ -314,6 +323,8 @@ describe('AppellantContactDetails.js', () => {
       appellantContactDetails.fields.postCode.value = 'Postcode';
       appellantContactDetails.fields.phoneNumber.value = '0800109756';
       appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      appellantContactDetails.fields.postcodeLookup.value = 'n29ed';
+      appellantContactDetails.fields.postcodeAddress.value = '200000';
       const values = appellantContactDetails.values();
       expect(values).to.eql({
         appellant: {
@@ -323,8 +334,32 @@ describe('AppellantContactDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+    });
+
+    it('should empty a value object', () => {
+      appellantContactDetails.fields.postcodeLookup = undefined;
+      appellantContactDetails.fields.postcodeAddress = undefined;
+      const values = appellantContactDetails.values();
+
+      expect(values).to.eql({
+        appellant: {
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            postcodeLookup: '',
+            postcodeAddress: '',
+            phoneNumber: undefined,
+            emailAddress: ''
           }
         }
       });

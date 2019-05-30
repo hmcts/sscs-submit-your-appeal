@@ -6,7 +6,6 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const pcl = require('components/postcodeLookup/controller');
 const config = require('config');
 
 describe('Appointee-contact-details.js', () => {
@@ -32,7 +31,9 @@ describe('Appointee-contact-details.js', () => {
       county: { value: '' },
       postCode: { value: '' },
       phoneNumber: {},
-      emailAddress: { value: '' }
+      emailAddress: { value: '' },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' }
     };
   });
 
@@ -46,18 +47,19 @@ describe('Appointee-contact-details.js', () => {
     let pclSpy = '';
 
     beforeEach(() => {
-      pclSpy = sinon.spy(pcl, 'controller');
+      pclSpy = sinon.spy(appointeeContactDetails.pcl, 'init');
     });
 
     afterEach(() => {
-      pcl.controller.restore();
+      appointeeContactDetails.pcl.init.restore();
     });
 
-    const req = { method: 'POST', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
     const next = sinon.spy();
     const redirect = sinon.spy();
     const res = { redirect };
     it('call pcl controller once', () => {
+      appointeeContactDetails.req = req;
       appointeeContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });
@@ -164,12 +166,19 @@ describe('Appointee-contact-details.js', () => {
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        appointeeContactDetails.req = req;
+        appointeeContactDetails.handler(req, res, next);
+        fields = appointeeContactDetails.form.fields;
         if (isPostCodeLookupEnabled) {
           expect(Object.keys(fields).length).to.equal(3);
           expect(fields).to.have.all.keys(
             'phoneNumber',
             'emailAddress',
-            'postCodeLookup');
+            'postcodeLookup');
         } else {
           expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
@@ -318,6 +327,9 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.fields.postCode.value = 'Postcode';
       appointeeContactDetails.fields.phoneNumber.value = '0800109756';
       appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      appointeeContactDetails.fields.postcodeLookup.value = 'n29ed';
+      appointeeContactDetails.fields.postcodeAddress.value = '200000';
+
       const values = appointeeContactDetails.values();
       expect(values).to.eql({
         appointee: {
@@ -327,6 +339,8 @@ describe('Appointee-contact-details.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
@@ -335,6 +349,8 @@ describe('Appointee-contact-details.js', () => {
     });
 
     it('should contain an empty object', () => {
+      appointeeContactDetails.fields.postcodeLookup = undefined;
+      appointeeContactDetails.fields.postcodeAddress = undefined;
       const values = appointeeContactDetails.values();
       expect(values).to.deep.equal({
         appointee: {
@@ -344,6 +360,8 @@ describe('Appointee-contact-details.js', () => {
             townCity: '',
             county: '',
             postCode: '',
+            postcodeLookup: '',
+            postcodeAddress: '',
             phoneNumber: undefined,
             emailAddress: ''
           }

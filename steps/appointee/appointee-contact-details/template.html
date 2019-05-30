@@ -1,6 +1,6 @@
 {% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, formSection %}
-{% from "postcodeLookup/template.html" import postCodeLookup  %}
+{% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -14,7 +14,7 @@
 
         <p>{{ content.subtitle}}</p>
 
-        {% call postCodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
+        {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
 
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
             {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}

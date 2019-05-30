@@ -1,9 +1,9 @@
-{% macro postCodeLookup(fields, options, postcodeLookupType, content) %}
+{% macro postcodeLookup(fields, options, postcodeLookupType, content) %}
     {% if( postcodeLookupType === 'manual') %}
            {{ caller() }}
     {% else %}
         <input type="hidden" id="submitType" name="submitType" value="" />
-        {{ textboxButton(fields.postCodeLookup,  content.textboxLabel, hint="", options) }}
+        {{ textboxButton(fields.postcodeLookup,  content.textboxLabel, hint="", options) }}
         {% if options.length > 0  %}
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
         {% endif %}  
