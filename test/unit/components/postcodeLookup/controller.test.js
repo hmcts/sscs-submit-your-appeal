@@ -15,6 +15,7 @@ describe('Components/controller.js', () => {
   let req = {};
   let res = {};
   let next = {};
+  // eslint-disable-next-line no-unused-vars
   let superCallback = {};
 
   beforeEach(() => {
@@ -328,13 +329,27 @@ describe('Components/controller.js', () => {
 
   describe('handleAddressSelection()', () => {
     beforeEach(() => {
-      // eslint-disable-next-line max-len
-      page.addressSuggestions = [{ DPA: { UPRN: '200206013', UDPRN: '15487017', ADDRESS: 'ROYALTY LOUNGE, 118, HIGH ROAD, LONDON, N2 9ED', ORGANISATION_NAME: 'ROYALTY LOUNGE', BUILDING_NUMBER: '118', THOROUGHFARE_NAME: 'HIGH ROAD', POST_TOWN: 'LONDON', POSTCODE: 'N2 9ED', RPC: '1', X_COORDINATE: 527279.68, Y_COORDINATE: 189550.65, STATUS: 'APPROVED', LOGICAL_STATUS_CODE: '1', CLASSIFICATION_CODE: 'CR07', CLASSIFICATION_CODE_DESCRIPTION: 'Restaurant / Cafeteria', LOCAL_CUSTODIAN_CODE: 5090, LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'BARNET', POSTAL_ADDRESS_CODE: 'D', POSTAL_ADDRESS_CODE_DESCRIPTION: 'A record which is linked to PAF', BLPU_STATE_CODE_DESCRIPTION: 'Unknown/Not applicable', TOPOGRAPHY_LAYER_TOID: 'osgb1000005170873', LAST_UPDATE_DATE: '10/02/2016', ENTRY_DATE: '23/11/2005', LANGUAGE: 'EN', MATCH: 1, MATCH_DESCRIPTION: 'EXACT' } }];
-      // eslint-disable-next-line max-len
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true }, postcodeAddress: { value: '200206013', validate: () => true }, addressLine1: { value: '' }, addressLine2: { value: '' }, townCity: { value: '' }, county: { value: '' }, postCode: { value: '' } };
+      page.addressSuggestions = [
+        { DPA: { UPRN: '200206013',
+          UDPRN: '15487017',
+          ADDRESS: 'ROYALTY LOUNGE, 118, HIGH ROAD, LONDON, N2 9ED',
+          ORGANISATION_NAME: 'ROYALTY LOUNGE',
+          BUILDING_NUMBER: '118',
+          THOROUGHFARE_NAME: 'HIGH ROAD',
+          POST_TOWN: 'LONDON',
+          POSTCODE: 'N2 9ED' } }
+      ];
+
+      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true },
+        postcodeAddress: { value: '200206013', validate: () => true },
+        addressLine1: { value: '' },
+        addressLine2: { value: '' },
+        townCity: { value: '' },
+        county: { value: '' },
+        postCode: { value: '' } };
     });
+
     afterEach(() => {
-      // eslint-disable-next-line max-len
       page.fields = {};
       page.addressSuggestions = [];
     });
