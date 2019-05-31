@@ -49,6 +49,6 @@ describe('components/customFieldValidations.js', () => {
     page.req.method = 'POST';
     const value = 'n29ed';
     expect(Joi.validate(value, customValidations.string().validateAddressList(page)).error)
-      .to.not.eql(value);
+      .to.not.eql(null);
   });
 });
