@@ -55,4 +55,4 @@ const buildConcatenatedAddress = function(address) {
   return concatenatedAddress;
 };
 
-module.exports = { buildConcatenatedAddress };
+module.exports = { buildConcatenatedAddress, cleanLine };
