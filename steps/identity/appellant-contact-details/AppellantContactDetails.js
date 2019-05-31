@@ -35,8 +35,8 @@ class AppellantContactDetails extends SaveToDraftStore {
     return paths.identity.enterAppellantContactDetails;
   }
 
-  handler(req, res, next) {
-    this.pcl.init(() => super.handler(req, res, next));
+  async handler(req, res, next) {
+    await this.pcl.init(() => super.handler(req, res, next));
   }
 
   isAppointee() {

@@ -28,7 +28,7 @@ class Controller {
 
   schemaBuilder(fields) {
     if (this.isManualSession()) {
-      this.manualFileds();
+      this.manualFields();
     }
 
     const newForm = Object.create(null);
@@ -80,7 +80,7 @@ class Controller {
     return this.disabledFields;
   }
 
-  manualFileds() {
+  manualFields() {
     const fieldMap = this.fieldMap;
     this.disabledFields = [
       fieldMap.postcodeLookup,
@@ -232,7 +232,7 @@ class Controller {
         this.postcodeLookupFields();
       }
     } else {
-      this.manualFileds();
+      this.manualFields();
     }
     this.restoreValues();
   }
@@ -250,14 +250,14 @@ class Controller {
       this.handleAddressSelection(page);
       page.res.redirect(`${page.path}?validate=1`);
     } else if (req.body.submitType === 'manual') {
-      this.manualFileds();
+      this.manualFields();
       page.res.redirect(`${page.path}?type=manual`);
     } else if (req.method === 'GET' && req.query.validate) {
       this.handleGetValidate(page);
       page.res.render(page.template, page.locals);
     } else if (req.method === 'GET' && req.query.type) {
       page.res.render(page.template, page.locals);
-    } else if (this.isManualPost(page) && !page.validate().valid) {
+    } else if (this.isManualPost() && !page.validate().valid) {
       page.res.redirect(`${page.path}?type=manual&validate=1`);
     } else {
       if (typeof callBack !== 'function') {
