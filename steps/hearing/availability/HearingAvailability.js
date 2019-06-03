@@ -27,9 +27,15 @@ class HearingAvailability extends SaveToDraftStore {
   values() {
     return {
       hearing: {
-        scheduleHearing: this.fields.scheduleHearing.value === userAnswer.YES
+        scheduleHearing: this.getScheduleHearingValue(this.fields.scheduleHearing.value)
       }
     };
+  }
+
+  getScheduleHearingValue(scheduleHearingValue) {
+    if (scheduleHearingValue === userAnswer.YES) return true;
+    if (scheduleHearingValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {

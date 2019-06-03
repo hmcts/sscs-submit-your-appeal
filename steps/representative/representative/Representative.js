@@ -1,4 +1,4 @@
-const { branch, goTo } = require('@hmcts/one-per-page');
+const { branch, goTo, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -32,14 +32,20 @@ class Representative extends SaveToDraftStore {
 
   values() {
     return {
-      hasRepresentative: this.fields.hasRepresentative.value === userAnswer.YES
+      hasRepresentative: this.getHasRepresentativeValue(this.fields.hasRepresentative.value)
     };
+  }
+
+  getHasRepresentativeValue(hasRepresentativeValue) {
+    if (hasRepresentativeValue === userAnswer.YES) return true;
+    if (hasRepresentativeValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {
     const hasARepresentative = this.fields.hasRepresentative.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative),
+      redirectTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative),
       goTo(this.journey.steps.ReasonForAppealing)
     );
   }

@@ -12,7 +12,8 @@ def component = "tribunals-frontend"
 def secrets = [
   'sscs-${env}':
     [
-      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET')
+      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET'),
+      secret('postcode-lookup-token', 'POSTCODE_LOOKUP_TOKEN')
     ]
 ]
 
@@ -29,7 +30,15 @@ String notificationsChannel = '#sscs-tech'
 
 withPipeline("nodejs", product, component) {
 
-  before('securitychecks') {sh 'yarn test:audit'}
+  before('securitychecks') {
+    try {
+      sh 'yarn audit'
+    } catch (error) {
+      onMaster {
+        slackSend(channel: '#sscs-tech', color: 'warning', message: "Yarn Audit has detected vulnerabilities in ${env.JOB_NAME}. You can check if there are patches for them in the full report, build details here: <${env.RUN_DISPLAY_URL}|Build ${env.BUILD_DISPLAY_NAME}>.")
+      }
+    }
+  }
 
   before('smoketest:preview') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs

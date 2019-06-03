@@ -1,12 +1,13 @@
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { Question, goTo, branch } = require('@hmcts/one-per-page');
+const { goTo, branch } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
-class CreateAccount extends Question {
+class CreateAccount extends SaveToDraftStore {
   static get path() {
     return paths.start.createAccount;
   }

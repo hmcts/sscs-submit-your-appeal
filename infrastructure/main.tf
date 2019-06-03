@@ -16,6 +16,11 @@ data "azurerm_key_vault_secret" "idam_oauth2_client_secret" {
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
+data "azurerm_key_vault_secret" "postcode_lookup_token" {
+  name      = "postcode-lookup-token"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
+}
+
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
@@ -60,9 +65,10 @@ module "submit-your-appeal-frontend" {
     POSTCODE_CHECKER_ENABLED      = "${var.postcode_checker_enabled}"
     POSTCODE_CHECKER_ALLOWED_RPCS = "${var.postcode_checker_allowed_rpcs}"
     ALLOW_SAVE_RETURN             = "${var.allow_save_return}"
+    POSTCODE_LOOKUP_ENABLED       = "${var.postcode_lookup_enabled}"
 
     SERVICES_IDAM_SECRET          = "${data.azurerm_key_vault_secret.idam_oauth2_client_secret.value}"
-    
+    POSTCODE_LOOKUP_TOKEN         = "${data.azurerm_key_vault_secret.postcode_lookup_token.value}"
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
     WEBSITE_LOCAL_CACHE_SIZEINMB  = 0

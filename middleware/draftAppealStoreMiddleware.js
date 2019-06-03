@@ -1,7 +1,10 @@
 const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
+const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
+const content = require('../content.en.json');
+
 
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
@@ -16,18 +19,35 @@ const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
 
-const saveToDraftStore = (req, res, next) => {
+const removeRevertInvalidSteps = (journey, callBack) => {
+  try {
+    const allVisitedSteps = [...journey.visitedSteps];
+    // filter valid visitedsteps.
+    journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
+    // use only valid steps.
+    if (typeof callBack === 'function') {
+      callBack();
+    }
+    // Revert visitedsteps back to initial state.
+    journey.visitedSteps = allVisitedSteps;
+  } catch (error) {
+    logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
+  }
+};
+
+const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
-  try {
-    values = req.journey.values;
-  } catch (error) {
-    logger.trace('Save to draft store, journey values not ready.', logPath);
+  if (allowSaveAndReturn) {
+    removeRevertInvalidSteps(req.journey, () => {
+      values = req.journey.values;
+    });
   }
+
 
   if (allowSaveAndReturn && req.idam && values) {
     // send to draft store
-    request.put(req.journey.settings.apiDraftUrl)
+    await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -50,20 +70,16 @@ const saveToDraftStore = (req, res, next) => {
   }
 };
 
-const restoreUserSession = (req, values) => {
-  Object.assign(req.session, values);
-};
-
-const restoreUserState = (req, res, next) => {
+const restoreUserState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
-    restoreUserSession(req, { isUserSessionRestored: false });
+    Object.assign(req.session, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
     if (req.query.state) {
-      restoreUserSession(req, JSON.parse(Base64.decode(req.query.state)));
+      Object.assign(req.session, JSON.parse(Base64.decode(req.query.state)));
     }
 
     // Try to Restore from backend if user already have a saved data.
-    request.get(req.journey.settings.apiDraftUrl)
+    await request.get(req.journey.settings.apiDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -75,7 +91,7 @@ const restoreUserState = (req, res, next) => {
         if (result.body) {
           result.body.isUserSessionRestored = true;
           result.body.entryPoint = 'Entry';
-          restoreUserSession(req, result.body);
+          Object.assign(req.session, result.body);
         }
         next();
       })
@@ -88,9 +104,31 @@ const restoreUserState = (req, res, next) => {
   }
 };
 
+class SaveToDraftStoreAddAnother extends AddAnother {
+  get continueText() {
+    if (this.req.idam) {
+      return content.continueButtonText.save;
+    }
+
+    return content.continueButtonText.continue;
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      this.journey.collectSteps,
+      saveToDraftStore
+    ];
+  }
+}
+
 class SaveToDraftStore extends Question {
-  next() {
-    super.next();
+  get continueText() {
+    if (this.req.idam) {
+      return content.continueButtonText.save;
+    }
+
+    return content.continueButtonText.continue;
   }
 
   get middleware() {
@@ -103,10 +141,6 @@ class SaveToDraftStore extends Question {
 }
 // step which restores from the draft store
 class RestoreUserState extends Redirect {
-  next() {
-    super.next();
-  }
-
   get middleware() {
     return [
       idam.landingPage,
@@ -118,10 +152,6 @@ class RestoreUserState extends Redirect {
   }
 }
 class RestoreFromDraftStore extends EntryPoint {
-  next() {
-    super.next();
-  }
-
   get middleware() {
     return [
       ...super.middleware,
@@ -130,7 +160,6 @@ class RestoreFromDraftStore extends EntryPoint {
   }
 }
 
-
 module.exports = {
   setFeatureFlag,
   SaveToDraftStore,
@@ -138,5 +167,6 @@ module.exports = {
   RestoreUserState,
   restoreUserState,
   RestoreFromDraftStore,
-  restoreUserSession
+  SaveToDraftStoreAddAnother,
+  removeRevertInvalidSteps
 };

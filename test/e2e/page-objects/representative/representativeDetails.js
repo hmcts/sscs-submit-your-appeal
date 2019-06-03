@@ -1,9 +1,18 @@
+const config = require('config');
+
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
+
 function enterRequiredRepresentativeDetails() {
   const I = this;
 
   I.fillField('input[name="name.title"]', 'Mr');
   I.fillField('input[name="name.first"]', 'Harry');
   I.fillField('input[name="name.last"]', 'Potter');
+
+  if (postcodeLookupEnabled) {
+    I.click({ id: 'manualLink' });
+  }
+
   I.fillField('#addressLine1', '4 Privet Drive');
   I.fillField('#addressLine2', 'Off Wizards close');
   I.fillField('#county', 'Wizard county');

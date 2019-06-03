@@ -1,4 +1,4 @@
-const { Question } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -10,8 +10,10 @@ const config = require('config');
 const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForEnglandOrWales');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
+const { includes } = require('lodash');
 
-class PostcodeChecker extends Question {
+class PostcodeChecker extends SaveToDraftStore {
   static get path() {
     return paths.start.postcodeCheck;
   }
@@ -22,6 +24,10 @@ class PostcodeChecker extends Question {
         .joi(this.content.fields.postcode.error.emptyField, Joi.string().required())
         .joi(this.content.fields.postcode.error.invalid, Joi.string().trim().regex(postCode))
     });
+  }
+
+  get isGlasgowIncluded() {
+    return includes(allowedRpcs, 'glasgow');
   }
 
   answers() {

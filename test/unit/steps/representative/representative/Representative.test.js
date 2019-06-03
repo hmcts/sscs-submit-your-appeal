@@ -97,10 +97,16 @@ describe('Representative.js', () => {
       expect(values).to.eql({ hasRepresentative: false });
     });
 
-    it('hould set hasRepresentative to true', () => {
+    it('should set hasRepresentative to true', () => {
       representative.fields.hasRepresentative.value = userAnswer.YES;
       const values = representative.values();
       expect(values).to.eql({ hasRepresentative: true });
+    });
+
+    it('should set hasRepresentative to null', () => {
+      representative.fields.hasRepresentative.value = '';
+      const values = representative.values();
+      expect(values).to.eql({ hasRepresentative: null });
     });
   });
 

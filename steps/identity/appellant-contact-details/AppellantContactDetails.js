@@ -1,6 +1,6 @@
 // const { parsePhoneNumberFromString } = require('libphonenumber-js');
 const { goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
@@ -19,10 +19,24 @@ const config = require('config');
 const { decode } = require('utils/stringUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const PCL = require('components/postcodeLookup/controller');
+
+const url = config.postcodeLookup.url;
+const token = config.postcodeLookup.token;
+const enabled = config.postcodeLookup.enabled === 'true';
 
 class AppellantContactDetails extends SaveToDraftStore {
+  constructor(...args) {
+    super(...args);
+    this.pcl = new PCL(enabled, token, url, this);
+  }
+
   static get path() {
     return paths.identity.enterAppellantContactDetails;
+  }
+
+  async handler(req, res, next) {
+    await this.pcl.init(() => super.handler(req, res, next));
   }
 
   isAppointee() {
@@ -57,39 +71,48 @@ class AppellantContactDetails extends SaveToDraftStore {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
 
-    return form({
-      addressLine1: text.joi(
-        fields.addressLine1.error[prefix].required,
-        Joi.string().regex(whitelist).required()
-      ),
-      addressLine2: text.joi(
-        fields.addressLine2.error[prefix].invalid,
-        Joi.string().regex(whitelist).allow('')
-      ),
-      townCity: text.joi(
-        fields.townCity.error[prefix].required,
-        Joi.string().regex(whitelist).required()
-      ),
-      county: text.joi(
-        fields.county.error[prefix].required,
-        Joi.string().regex(whitelist).required()
-      ),
-      postCode: text.joi(
-        fields.postCode.error[prefix].required,
-        Joi.string().trim().regex(postCode).required()
-      ).joi(
-        fields.postCode.error[prefix].invalidPostcode,
-        customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
-      ),
-      phoneNumber: text.joi(
-        fields.phoneNumber.error[prefix].invalid,
-        customJoi.string().trim().validatePhone()
-      ),
-      emailAddress: text.joi(
-        fields.emailAddress.error[prefix].invalid,
-        Joi.string().trim().email(emailOptions).allow('')
-      )
-    });
+    return this.pcl.schemaBuilder([
+      { name: this.pcl.fieldMap.postcodeLookup },
+      { name: this.pcl.fieldMap.postcodeAddress },
+      { name: this.pcl.fieldMap.line1,
+        validator: text.joi(
+          fields.addressLine1.error[prefix].required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: this.pcl.fieldMap.line2,
+        validator: text.joi(
+          fields.addressLine2.error[prefix].invalid,
+          Joi.string().regex(whitelist).allow('')
+        ) },
+      { name: this.pcl.fieldMap.town,
+        validator: text.joi(
+          fields.townCity.error[prefix].required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: this.pcl.fieldMap.county,
+        validator: text.joi(
+          fields.county.error[prefix].required,
+          Joi.string().regex(whitelist).required()
+        ) },
+      { name: this.pcl.fieldMap.postCode,
+        validator: text.joi(
+          fields.postCode.error[prefix].required,
+          Joi.string().trim().regex(postCode).required()
+        ).joi(
+          fields.postCode.error[prefix].invalidPostcode,
+          customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
+        ) },
+      { name: 'phoneNumber',
+        validator: text.joi(
+          fields.phoneNumber.error[prefix].invalid,
+          customJoi.string().trim().validatePhone()
+        ) },
+      { name: 'emailAddress',
+        validator: text.joi(
+          fields.emailAddress.error[prefix].invalid,
+          Joi.string().trim().email(emailOptions).allow('')
+        ) }
+    ]);
   }
 
   static isEnglandOrWalesPostcode(req, resp, next) {
@@ -97,7 +120,7 @@ class AppellantContactDetails extends SaveToDraftStore {
       req.session.invalidPostcode = false;
       next();
     } else if (req.method.toLowerCase() === 'post') {
-      const postcode = req.body.postCode;
+      const postcode = req.body.postCode || '';
 
       postcodeChecker(postcode, true).then(isEnglandOrWalesPostcode => {
         req.session.invalidPostcode = !isEnglandOrWalesPostcode;
@@ -138,6 +161,12 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
+            '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
+            '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
@@ -147,6 +176,7 @@ class AppellantContactDetails extends SaveToDraftStore {
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
+
         }
       }
     };

@@ -2,6 +2,7 @@ const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 
 describe('TheHearing.js', () => {
   let theHearing = null;
@@ -57,7 +58,7 @@ describe('TheHearing.js', () => {
 
   describe('answers() and values()', () => {
     const question = 'A Question';
-    const value = 'No';
+    const value = userAnswer.NO;
 
     beforeEach(() => {
       theHearing.content = {
@@ -76,12 +77,18 @@ describe('TheHearing.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.theHearing);
-      expect(answers[0].answer).to.equal(value);
+      expect(answers[0].answer).to.equal('No');
     });
 
     it('should contain a value object', () => {
       const values = theHearing.values();
       expect(values).to.eql({ hearing: { wantsToAttend: false } });
+    });
+
+    it('should contain null as the value', () => {
+      theHearing.fields.attendHearing.value = '';
+      const values = theHearing.values();
+      expect(values).to.eql({ hearing: { wantsToAttend: null } });
     });
   });
 

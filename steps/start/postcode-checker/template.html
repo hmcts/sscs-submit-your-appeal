@@ -11,7 +11,12 @@
 
 {% call formSection() %}
 
-<p>{{ content.subtitle }}</p>
+{% if isGlasgowIncluded %}
+    <p>{{ content.subtitleScotland }}</p>
+{% else %}
+    <p>{{ content.subtitle }}</p>
+{% endif %}
+
 
 {{ textbox(fields.postcode, content.fields.postcode.label, hideLabel=true) }}
 

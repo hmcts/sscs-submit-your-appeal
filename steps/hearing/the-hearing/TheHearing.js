@@ -36,9 +36,15 @@ class TheHearing extends SaveToDraftStore {
   values() {
     return {
       hearing: {
-        wantsToAttend: this.fields.attendHearing.value === userAnswer.YES
+        wantsToAttend: this.getWantsToAttendValue(this.fields.attendHearing.value)
       }
     };
+  }
+
+  getWantsToAttendValue(attendHearingValue) {
+    if (attendHearingValue === userAnswer.YES) return true;
+    if (attendHearingValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {

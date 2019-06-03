@@ -1,4 +1,7 @@
 const appellant = require('test/e2e/data').appellant;
+const config = require('config');
+
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
 function enterAppellantNameAndContinue(title, firstName, lastName) {
   const I = this;
@@ -26,6 +29,10 @@ function enterAppellantNINOAndContinue(nino) {
 }
 
 function IenterAddressDetails(I) {
+  if (postcodeLookupEnabled) {
+    I.click({ id: 'manualLink' });
+  }
+
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -35,7 +42,6 @@ function IenterAddressDetails(I) {
 
 function enterAppellantContactDetailsAndContinue() {
   const I = this;
-
   IenterAddressDetails(I);
   I.click('Continue');
 }

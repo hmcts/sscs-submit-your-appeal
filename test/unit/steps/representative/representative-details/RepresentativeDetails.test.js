@@ -3,9 +3,14 @@ const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const sinon = require('sinon');
+
+
+const config = require('config');
 
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
+  const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
 
   beforeEach(() => {
     representativeDetails = new RepresentativeDetails({
@@ -13,7 +18,8 @@ describe('RepresentativeDetails.js', () => {
         steps: {
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
         }
-      }
+      },
+      session: {}
     });
 
     representativeDetails.fields = {
@@ -23,6 +29,8 @@ describe('RepresentativeDetails.js', () => {
         last: { value: '' },
         organisation: { value: '' }
       },
+      postcodeLookup: { value: '' },
+      postcodeAddress: { value: '' },
       addressLine1: { value: '' },
       addressLine2: { value: '' },
       townCity: { value: '' },
@@ -36,6 +44,28 @@ describe('RepresentativeDetails.js', () => {
   describe('get path()', () => {
     it('returns path /representative-details', () => {
       expect(RepresentativeDetails.path).to.equal(paths.representative.representativeDetails);
+    });
+  });
+
+  describe('handler()', () => {
+    let pclSpy = '';
+
+    beforeEach(() => {
+      pclSpy = sinon.spy(representativeDetails.pcl, 'init');
+    });
+
+    afterEach(() => {
+      representativeDetails.pcl.init.restore();
+    });
+
+    const req = { method: 'GET', body: {}, session: {}, query: {} };
+    const next = sinon.spy();
+    const redirect = sinon.spy();
+    const res = { redirect };
+    it('call pcl controller once', () => {
+      representativeDetails.req = req;
+      representativeDetails.handler(req, res, next);
+      expect(pclSpy).to.have.been.calledOnce;
     });
   });
 
@@ -123,18 +153,35 @@ describe('RepresentativeDetails.js', () => {
       fields = representativeDetails.form.fields;
     });
 
-    it('should contain 8 fields', () => {
-      expect(Object.keys(fields).length).to.equal(8);
-      expect(fields).to.have.all.keys(
-        'name',
-        'addressLine1',
-        'addressLine2',
-        'townCity',
-        'county',
-        'postCode',
-        'emailAddress',
-        'phoneNumber'
-      );
+    it('should contain dynamic fields', () => {
+      if (isPostCodeLookupEnabled) {
+        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const next = sinon.spy();
+        const redirect = sinon.spy();
+        const res = { redirect };
+        representativeDetails.req = req;
+        representativeDetails.handler(req, res, next);
+        fields = representativeDetails.form.fields;
+        expect(Object.keys(fields).length).to.equal(4);
+        expect(fields).to.have.all.keys(
+          'name',
+          'emailAddress',
+          'phoneNumber',
+          'postcodeLookup'
+        );
+      } else {
+        expect(Object.keys(fields).length).to.equal(8);
+        expect(fields).to.have.all.keys(
+          'name',
+          'addressLine1',
+          'addressLine2',
+          'townCity',
+          'county',
+          'postCode',
+          'emailAddress',
+          'phoneNumber'
+        );
+      }
     });
 
     describe('name field', () => {
@@ -152,73 +199,83 @@ describe('RepresentativeDetails.js', () => {
     });
 
     describe('addressLine1 field', () => {
-      beforeEach(() => {
-        field = fields.addressLine1;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.addressLine1;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('addressLine2 field', () => {
-      beforeEach(() => {
-        field = fields.addressLine2;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.addressLine2;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('townCity field', () => {
-      beforeEach(() => {
-        field = fields.townCity;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.townCity;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('county field', () => {
-      beforeEach(() => {
-        field = fields.county;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.county;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('postCode field', () => {
-      beforeEach(() => {
-        field = fields.postCode;
-      });
+      if (!isPostCodeLookupEnabled) {
+        beforeEach(() => {
+          field = fields.postCode;
+        });
 
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
+        it('has constructor name FieldDescriptor', () => {
+          expect(field.constructor.name).to.eq('FieldDescriptor');
+        });
 
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
+        it('contains validation', () => {
+          expect(field.validations).to.not.be.empty;
+        });
+      }
     });
 
     describe('phoneNumber field', () => {
@@ -279,6 +336,8 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.postCode.value = 'Postcode';
       representativeDetails.fields.phoneNumber.value = '0800109756';
       representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.postcodeLookup.value = 'n29ed';
+      representativeDetails.fields.postcodeAddress.value = '200000';
       const values = representativeDetails.values();
       expect(values).to.eql({
         representative: {
@@ -292,8 +351,35 @@ describe('RepresentativeDetails.js', () => {
             townCity: 'Town or City',
             county: 'County',
             postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+    });
+
+    it('should contain empty object', () => {
+      representativeDetails.fields.postcodeLookup = undefined;
+      representativeDetails.fields.postcodeAddress = undefined;
+      const values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: '',
+          firstName: '',
+          lastName: '',
+          organisation: '',
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            postcodeLookup: '',
+            postcodeAddress: '',
+            phoneNumber: '',
+            emailAddress: ''
           }
         }
       });

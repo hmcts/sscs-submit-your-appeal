@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
 {% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -13,11 +14,16 @@
 
         <p>{{ content.subtitle}}</p>
 
-        {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
-        {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
-        {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}
-        {{ textbox(fields.county,               content.fields.county.title,                hint="") }}
-        {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
+        {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
+
+            {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
+            {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
+            {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}
+            {{ textbox(fields.county,               content.fields.county.title,                hint="") }}
+            {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
+
+        {% endcall %}
+        
         {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
 

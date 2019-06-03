@@ -50,6 +50,21 @@ describe('The other methods of EvidenceUpload', () => {
     });
   });
 
+  describe('answers()', () => {
+    it('should contain question, section and answer', () => {
+      instance.content = {
+        cya: {
+          evidenceDescription: {
+            question: 'evidence desc'
+          }
+        }
+      };
+      const answers = instance.answers();
+      expect(answers.question).to.equal('evidence desc');
+      expect(answers.section).to.equal('reasons-for-appealing');
+    });
+  });
+
   describe('next', () => {
     it('the next step is /the-hearing', () => {
       expect(instance.next().step).to.equal(paths.hearing.theHearing);

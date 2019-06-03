@@ -1,0 +1,99 @@
+{% macro postcodeLookup(fields, options, postcodeLookupType, content) %}
+    {% if( postcodeLookupType === 'manual') %}
+           {{ caller() }}
+    {% else %}
+        <input type="hidden" id="submitType" name="submitType" value="" />
+        {{ textboxButton(fields.postcodeLookup,  content.textboxLabel, hint="", options) }}
+        {% if options.length > 0  %}
+            {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
+        {% endif %}  
+        <div class="form-group">
+            <a id="manualLink" class="link" href="#" onclick="document.getElementById('submitType').value = 'manual'; document.getElementsByClassName('form')[0].submit();">{{content.manualEntryLabel}}</a>
+        </div>
+        {% if fields.postcodeAddress and fields.postcodeAddress.value %}
+            {{ caller() }}
+        {% endif %}
+    {% endif %}
+{% endmacro %}  
+
+
+{% macro customSelect(field, label, options, initialValueText) %}
+
+<div class="form-group  {{ errorClass(field) }}">
+
+  <label class="form-label"
+         for="{{ field.id }}">
+    {{ label }}
+  </label>
+
+  {{ errorsFor(field) }}
+
+  <select 
+          name="{{ field.id }}"
+          class="form-control"
+          onchange="document.getElementById('submitType').value = 'addressSelection'; this.form.submit();"
+          >
+    {# Default option so no option is preselected #}
+    <option disabled
+            {% if not field.value %}
+            selected
+            {% endif %}
+            value>{{options.length}} {{initialValueText}} </option>
+
+    {% for option in options -%}
+      {% set option_value = option.DPA.UPRN %}
+      {% set option_disabled = option.disabled or false %}
+
+      <option
+          {% if field.value == option_value %}
+          selected
+          {% endif %}
+          {% if option_disabled %}
+          disabled
+          {% endif %}
+          {% if option_value %}
+          value="{{ option_value }}"
+          {% endif %}>{{ option.DPA.ADDRESS }}</option>
+    {%- endfor %}
+  </select>
+
+</div>
+{% endmacro %}
+
+{% macro errorClass(field, type='group') -%}
+  {% if field.errors and field.errors|length > 0 %}
+    form-{{ type }}-error
+  {% endif %}
+{%- endmacro %}
+
+{% macro errorsFor(field) -%}
+  {% if field.errors %}
+  {% for error in field.errors -%}
+    <span class="error-message">
+      {{ error | safe}}
+    </span>
+  {%- endfor %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro textboxButton(field, label, hint=false, hideLabel=false, options) %}
+<div class="{{ "form-group" if options.length === 0}}" {{ errorClass(field) }}">
+  <label class="form-label {{ "visually-hidden" if hideLabel }}"
+         for="{{ field.id }}">
+    {{ label }}
+    {%- if hint %}
+    <span class="form-hint">
+      {{ hint }}
+    </span>
+    {%- endif %}
+  </label>
+  {{ errorsFor(field) }}
+  <input class="form-control post-code-lookup"
+         id="{{ field.id }}"
+         name="{{ field.id }}"
+         type="text"
+         {% if field.value %}value="{{ field.value }}"{% endif %}>
+  <input class="button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
+</div>
+{% endmacro %}
