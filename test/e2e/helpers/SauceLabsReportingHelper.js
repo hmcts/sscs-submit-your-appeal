@@ -14,7 +14,7 @@ const sauceKey = process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key');
 
 
 function updateSauceLabsResult(result, sessionId, jobName) {
-  const sauceUrl = `https://saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
+  const sauceUrl = ` https://eu-central-1.saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
   // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
   logger.trace(`SauceOnDemandSessionID=${sessionId} job-name=${jobName}`, logPath);

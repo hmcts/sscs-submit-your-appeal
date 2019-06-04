@@ -48,8 +48,9 @@ const setupConfig = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       smartWait: parseInt(config.get('saucelabs.smartWait')),
       cssSelectorsEnabled: 'true',
-      host: 'ondemand.saucelabs.com',
+      host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
+      region: 'eu',
       user: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
       key: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
       desiredCapabilities: {}
