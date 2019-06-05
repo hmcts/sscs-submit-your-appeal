@@ -28,17 +28,29 @@ function enterAppellantNINOAndContinue(nino) {
   I.click('Continue');
 }
 
-function IenterAddressDetails(I) {
+function IenterAddressDetailsManual(I) {
   if (postcodeLookupEnabled) {
     I.click({ id: 'manualLink' });
   }
-
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
   I.fillField({ id: 'county' }, appellant.contactDetails.county);
   I.fillField({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
+
+function IenterAddressDetails(I) {
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
+    I.click('Find address');
+    I.selectOption({ css: 'form select[name=postcodeAddress]' },
+      appellant.contactDetails.postcodeAddress);
+    I.click('Continue');
+  } else {
+    IenterAddressDetailsManual(I);
+  }
+}
+
 
 function enterAppellantContactDetailsAndContinue() {
   const I = this;

@@ -26,7 +26,8 @@
       "county": "Kent",
       "postCode": "WV11 2HE",
       "phoneNumber": "07411222222",
-      "emailAddress": "joe@bloggs.com"
+      "emailAddress": "joe@bloggs.com",
+      "postcodeAddress": "100071185892"
     }
   },
   "smsNotify": {
