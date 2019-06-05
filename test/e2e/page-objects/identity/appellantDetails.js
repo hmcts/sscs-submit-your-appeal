@@ -45,7 +45,6 @@ function IenterAddressDetails(I) {
     I.click('Find address');
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
       appellant.contactDetails.postcodeAddress);
-    I.click('Continue');
   } else {
     IenterAddressDetailsManual(I);
   }
