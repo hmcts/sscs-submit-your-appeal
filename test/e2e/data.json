@@ -20,13 +20,14 @@
     },
     "nino": "AB877533C",
     "contactDetails": {
-      "addressLine1": "4 Privet Drive",
-      "addressLine2": "Off Wizards close",
-      "townCity": "Little Whinging",
-      "county": "Kent",
+      "addressLine1": "15, PHILLIPS AVENUE",
+      "addressLine2": "",
+      "townCity": "WOLVERHAMPTON",
+      "county": "WOLVERHAMPTON",
       "postCode": "WV11 2HE",
       "phoneNumber": "07411222222",
-      "emailAddress": "joe@bloggs.com"
+      "emailAddress": "joe@bloggs.com",
+      "postcodeAddress": "100071185892"
     }
   },
   "smsNotify": {

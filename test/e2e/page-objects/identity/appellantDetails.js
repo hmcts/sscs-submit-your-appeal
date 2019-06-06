@@ -28,11 +28,10 @@ function enterAppellantNINOAndContinue(nino) {
   I.click('Continue');
 }
 
-function IenterAddressDetails(I) {
+function IenterAddressDetailsManual(I) {
   if (postcodeLookupEnabled) {
     I.click({ id: 'manualLink' });
   }
-
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -40,9 +39,36 @@ function IenterAddressDetails(I) {
   I.fillField({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
 
+function IenterAddressDetails(I) {
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
+    I.click('Find address');
+    I.selectOption({ css: 'form select[name=postcodeAddress]' },
+      appellant.contactDetails.postcodeAddress);
+  } else {
+    IenterAddressDetailsManual(I);
+  }
+}
+
+function enterAppellantContactDetailsManuallyAndContinue() {
+  const I = this;
+  IenterAddressDetailsManual(I);
+  I.click('Continue');
+}
+
 function enterAppellantContactDetailsAndContinue() {
   const I = this;
-  IenterAddressDetails(I);
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
+    I.click('Find address');
+    I.see('We cannot find an address with that postcode');
+    I.fillField({ id: 'postcodeLookup' }, 'n29ed');
+    I.click('Continue');
+    I.see('Please choose an address.');
+    IenterAddressDetails(I);
+  } else {
+    IenterAddressDetailsManual(I);
+  }
   I.click('Continue');
 }
 
@@ -68,5 +94,6 @@ module.exports = {
   enterAppellantNINOAndContinue,
   enterAppellantContactDetailsAndContinue,
   enterAppellantContactDetailsWithMobileAndContinue,
-  enterAppellantContactDetailsWithEmailAndContinue
+  enterAppellantContactDetailsWithEmailAndContinue,
+  enterAppellantContactDetailsManuallyAndContinue
 };
