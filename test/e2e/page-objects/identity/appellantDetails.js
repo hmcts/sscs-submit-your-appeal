@@ -42,7 +42,7 @@ function IenterAddressDetailsManual(I) {
 function IenterAddressDetails(I) {
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
-    I.click('Continue');
+    I.click('Find address');
     I.see('We cannot find an address with that postcode');
     I.fillField({ id: 'postcodeLookup' }, 'n29ed');
     I.click('Continue');
