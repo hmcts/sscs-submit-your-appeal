@@ -41,12 +41,6 @@ function IenterAddressDetailsManual(I) {
 
 function IenterAddressDetails(I) {
   if (postcodeLookupEnabled) {
-    I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
-    I.click('Find address');
-    I.see('We cannot find an address with that postcode');
-    I.fillField({ id: 'postcodeLookup' }, 'n29ed');
-    I.click('Continue');
-    I.see('Please choose an address.');
     I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
     I.click('Find address');
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
@@ -56,10 +50,25 @@ function IenterAddressDetails(I) {
   }
 }
 
+function enterAppellantContactDetailsManuallyAndContinue() {
+  const I = this;
+  IenterAddressDetailsManual(I);
+  I.click('Continue');
+}
 
 function enterAppellantContactDetailsAndContinue() {
   const I = this;
-  IenterAddressDetails(I);
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
+    I.click('Find address');
+    I.see('We cannot find an address with that postcode');
+    I.fillField({ id: 'postcodeLookup' }, 'n29ed');
+    I.click('Continue');
+    I.see('Please choose an address.');
+    IenterAddressDetails(I);
+  } else {
+    IenterAddressDetailsManual(I);
+  }
   I.click('Continue');
 }
 
@@ -85,5 +94,6 @@ module.exports = {
   enterAppellantNINOAndContinue,
   enterAppellantContactDetailsAndContinue,
   enterAppellantContactDetailsWithMobileAndContinue,
-  enterAppellantContactDetailsWithEmailAndContinue
+  enterAppellantContactDetailsWithEmailAndContinue,
+  enterAppellantContactDetailsManuallyAndContinue
 };

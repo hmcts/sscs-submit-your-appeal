@@ -126,7 +126,7 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
   }
 
   // Appellant name
-  I.see(`${appellant.title} ${appellant.firstName} ${appellant.lastName}`);
+  I.see(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`);
 
   // Appellant DOB
   I.see('25 January 1980');
