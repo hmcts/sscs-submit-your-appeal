@@ -19,13 +19,13 @@
 
 <p>{{ message }}</p>
 
-<a class="button" href="/start-an-appeal">Try again</a>
+<a class="govuk-button" href="/start-an-appeal">Try again</a>
 
 {% if error and (settings.env == 'development' or settings.env == 'sandbox')  %}
-<div class="form-group-error internal-server-error">
+<div class="govuk-form-group-error internal-server-error">
     <label>
-        <span class="form-label-bold">Error Message</span>
-        <span class="form-hint">HTTP 500: An internal server error has occurred</span>
+        <span class="govuk-form-label-bold">Error Message</span>
+        <span class="govuk-form-hint">HTTP 500: An internal server error has occurred</span>
         <span>{{ error }}</span>
     </label>
 </div>

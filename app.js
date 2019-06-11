@@ -123,18 +123,42 @@ app.set('views', [
   path.resolve(__dirname, 'views'),
   path.resolve(__dirname, 'components')
 ]);
+const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
+const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 
 nunjucks(app, {
   globals: {
+    isArray(value) {
+      return Array.isArray(value);
+    },
+    parseBool(value) {
+      if (truthies.includes(value)) {
+        return true;
+      }
+      if (falsies.includes(value)) {
+        return false;
+      }
+      return value;
+    },
+    isBoolean(value) {
+      return typeof value === 'boolean';
+    },
+    safeId(...strings) {
+      return strings
+        .map(str => str.toString())
+        .join('-')
+        .toLowerCase()
+        // replace foo[1] to foo-1
+        .replace(/\[(\d{1,})\]/, '-$1')
+        // replace 'foo bar' to 'foo-bar'
+        .replace(/\s/g, '-');
+    },
     phase: 'BETA',
     environment: process.env.NODE_ENV,
     banner: `${content.phaseBanner.newService}
       <a href="${urls.phaseBanner}" target="_blank">
           ${content.phaseBanner.reportProblem}
       </a>${content.phaseBanner.improve}`,
-    isArray(value) {
-      return Array.isArray(value);
-    },
     inactivityTimeout: {
       title: content.inactivityTimeout.title,
       expiringIn: content.inactivityTimeout.expiringIn,

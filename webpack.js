@@ -28,8 +28,8 @@ const webpackSettings = () => {
         [
           { from: path.resolve(__dirname, 'assets/images'), to: 'images' },
           { from: path.resolve(__dirname, 'views/components'), to: 'nunjucks/components' },
-          { from: imagesGokukFrontend, to: 'images' },
-          { from: fontsGokukFrontend, to: 'fonts' }
+          { from: imagesGokukFrontend, to: 'assets/images' },
+          { from: fontsGokukFrontend, to: 'assets/fonts' }
         ]),
       new MiniCssExtractPlugin({ filename: '[name].css' })
     ],
@@ -86,7 +86,7 @@ const configureWebpack = app => {
   app.set('webpackSettings', _webpackSettings);
   app.set('webpack', _webpack);
 
-  if (isDev) {
+  if (isDev()) {
     app.use(webpackDev(_webpack));
   } else {
     logger.trace('Configuring production settings', logPath);
