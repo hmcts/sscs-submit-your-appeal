@@ -1,0 +1,45 @@
+{% extends "template.njk" %}
+{% set htmlClasses = '' %}
+{% set bodyClasses = 'app-body-class' %}
+{% set mainClasses = 'app-main-class' %}
+{% set assetPath = '/assets' %}
+{% from "components/header/macro.njk" import govukHeader %}
+
+{% set defaultContent = {
+  title: 'GOV.UK'
+} %}
+
+{% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    serviceName: serviceName,
+    serviceUrl: serviceUrl or '/',
+    navigation: serviceLinks
+  }) }}
+{% endblock %}
+
+{% block beforeContent -%}
+    {% block breadcrumbs %}{% endblock %}
+{%- endblock %}
+
+{% block content -%}
+  {% block full_width %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% block two_thirds -%}{%- endblock %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% block one_third -%}{%- endblock %}
+    </div>
+  </div>
+  {% endblock %}
+{%- endblock %}
+
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: footerLinks or []
+    }
+  }) }}
+{% endblock %}

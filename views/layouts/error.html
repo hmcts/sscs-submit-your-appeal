@@ -1,0 +1,58 @@
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+{% from "components/i18n.njk" import languageSwitch %}
+
+{% block head -%}
+    {{ assets | safe }}
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ phaseBanner(phase, feedbackLink) }}
+{{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
+{% endblock %}
+
+{% block two_thirds -%}
+    {{ header(title, size='xl') }}
+    <p class="govuk-body">
+        {{message}}
+    </p>
+
+    {% if nextSteps %}
+    <p class="govuk-body">
+        You can either:
+        <ul class="govuk-list govuk-list--bullet">
+        {% for option in nextSteps %}
+            <li>{{ option | safe }}</li>
+        {% endfor %}
+        </ul>
+    </p>
+    {% endif %}
+
+    {% if error %}
+    {% if settings.env == 'development' %}
+    <div class="form-group-error">
+        <label>
+            <span class="govuk-label--s">Error Message</span>
+            <span class="govuk-hint">The error message will only display in development mode</span>
+            <span>{{ error }}</span>
+        </label>
+    </div>
+    {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% set footerLinks = [
+    {
+        href: "/cookie",
+        text: "Cookies"
+    },
+    {
+        href: "/terms-and-conditions",
+        text: "Terms and conditions"
+    },
+    {
+        href: "/privacy-policy",
+        text: "Privacy Policy"
+    }
+] %}

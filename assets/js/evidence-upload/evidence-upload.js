@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
-import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+import fieldTemplates from '../../../views/components/fields.njk';
+import errorSummary from '../../../views/components/errors.njk';
 import fileTypeWhiteList
   from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
 

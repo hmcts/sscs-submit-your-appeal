@@ -1,7 +1,13 @@
-@import 'govuk-elements';
+@import 'node_modules/govuk-frontend/all';
+@import 'check-your-answers';
+@import 'add-another';
+@import 'language-switch';
+@import 'text-reference';
+@import 'progress-list';
+@import 'document-list';
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import '~jquery-modal/jquery.modal.css';
-@import 'look-and-feel/check-your-answers';
+@import 'check-your-answers';
 @import 'bootstrap-datepicker1.8.0.min';
 @import 'date-picker';
 @import 'h-progress-bar';
@@ -65,25 +71,29 @@ label.form-label[for="signer"] {
 
 #addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #selection\.anythingElse\.language, #reasonForBeingLate, #reasonForNoMRN {
   &.form-control {
-    @extend .form-control-3-4;
+    @extend .govuk-\!-width-three-quarters;
   }
 }
 
 #postcode, #nino {
   &.form-control {
-    @extend .form-control-1-4;
+    @extend .govuk-\!-width-one-quarter;
   }
 }
 
 #name\.title, #pipNumber {
   &.form-control {
-    @extend .form-control-1-8;
+    width: 100% !important;
+
+    @include govuk-media-query($from: tablet) {
+      width:12.5% !important;
+    }
   }
 }
 
 #title {
   &.form-control {
-    @extend .form-control-1-4;
+    @extend .govuk-\!-width-one-quarter;
   }
 }
 
@@ -118,10 +128,10 @@ label.form-label[for="signer"] {
 
 .add-another-list {
 
-  border-top: 1px solid $border-colour;
+  border-top: 1px solid $govuk-border-colour;
 
   > * {
-    border-bottom: 1px solid $border-colour;
+    border-bottom: 1px solid $govuk-border-colour;
     padding: 15px 0;
   }
 
@@ -146,7 +156,7 @@ label.form-label[for="signer"] {
 }
 
 .add-another-add-link, [for=uploadEv]{
-  @include button($grey-3);
+  @extend .govuk-button--secondary; 
 }
 
 .policy-links {
@@ -190,7 +200,7 @@ label.form-label[for="signer"] {
       background-color: #df3034;
       background-position: 15px center;
       background-repeat: no-repeat;
-      color: $white;
+      color: govuk-colour('white');
       font-size: 19px;
       font-weight: bold;
       line-height: 60px;
@@ -209,7 +219,7 @@ label.form-label[for="signer"] {
         margin-left: 5px;
         &:focus {
           background-color: transparent;
-          border: 3px solid $yellow;
+          border: 3px solid govuk-colour('yellow');
         }
       }
     }
@@ -218,7 +228,7 @@ label.form-label[for="signer"] {
     }
     .button.abort {
       margin-left: 30px;
-      @include button($grey-3);
+      @extend .govuk-button--secondary;
     }
   }
 }
@@ -279,7 +289,7 @@ label.form-label[for="signer"] {
 
     div:after {
       content: "";
-      background: $grey-2;
+      background: govuk-colour('grey-2');
       position: absolute;
       bottom: 0;
       left: 0;
@@ -308,7 +318,7 @@ label.form-label[for="signer"] {
 
     .form-group:last-child {
       padding-bottom: 20px;
-      border-bottom: 2px solid $grey-2;
+      border-bottom: 2px solid govuk-colour('grey-2');
     }
   }
 }

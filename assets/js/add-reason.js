@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 /* eslint-disable func-names */
 import $ from 'jquery';
-import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
-import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+import fieldTemplates from './../../views/components/fields.njk';
+import errorSummary from './../../views/components/errors.njk';
 import { flatten, includes } from 'lodash';
 import content from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
 

@@ -2,7 +2,7 @@ import $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash';
 import { frontend, redis } from '../../config/default';
-import ShowHideContent from 'govuk/show-hide-content';
+// import ShowHideContent from 'govuk/show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
@@ -24,10 +24,10 @@ function isNonEhanceableSelect(select) {
   return nonEhanceableSelects.includes(select.id);
 }
 
-function initShowHideContent() {
-  const showHideContent = new ShowHideContent();
-  showHideContent.init();
-}
+// function initShowHideContent() {
+//   const showHideContent = new ShowHideContent();
+//   showHideContent.init();
+// }
 
 
 function initAutocomplete() {
@@ -110,7 +110,7 @@ function initAddReason() {
 }
 
 $(document).ready(() => {
-  initShowHideContent();
+  // initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
   initDatePicker();

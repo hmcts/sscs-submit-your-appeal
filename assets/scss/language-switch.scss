@@ -1,0 +1,38 @@
+.l-i18n-language-switch {
+  float: right;
+  @include govuk-font(16);
+
+  margin-top: $govuk-gutter-half;
+  margin-bottom: $govuk-gutter-half;
+
+  li {
+    color: map-get($govuk-colours, 'black');
+
+    a {
+      text-decoration: none;
+      border-bottom: 1px solid map-get($govuk-colours, 'black');
+
+      &:link,
+      &:visited,
+      &:hover,
+      a#{&}:focus,
+      &:active {
+        color: map-get($govuk-colours, 'black');
+      }
+    }
+
+    &:after {
+      margin-right: $govuk-gutter-half / 2;
+      margin-left: $govuk-gutter-half / 2;
+      border-left: 1px solid map-get($govuk-colours, 'black');
+      content: '';
+    }
+
+    &:last-child:after {
+      border-left: none;
+      margin-right: 0;
+      margin-left: 0;
+      content: '';
+    }
+  }
+}

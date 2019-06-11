@@ -1,8 +1,6 @@
 require('logger').startAppInsights();
 const { journey } = require('@hmcts/one-per-page');
-const lookAndFeel = require('@hmcts/look-and-feel');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -18,6 +16,10 @@ const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
+const { assigned } = require('check-types');
+const url = require('url');
+const nunjucks = require('express-nunjucks');
+const { configureWebpack } = require('./webpack');
 
 /* eslint-enable max-len */
 const idam = require('middleware/idam');
@@ -106,85 +108,50 @@ app.use('/sessions', (req, res) => {
 // because of a bug with iphone, we need to remove the mime types from accept
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
-lookAndFeel.configure(app, {
-  baseUrl: '/',
-  express: {
-    views: [
-      path.resolve(__dirname, 'steps'),
-      path.resolve(__dirname, 'views/compliance'),
-      path.resolve(__dirname, 'policy-pages'),
-      path.resolve(__dirname, 'error-pages'),
-      path.resolve(__dirname, 'components')
-    ]
-  },
-  webpack: {
-    entry: [
-      path.resolve(__dirname, 'assets/scss/main.scss'),
-      path.resolve(__dirname, 'assets/js/main.js')
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpg)$/i,
-          loaders: ['file-loader']
-        },
-        {
-          test: /\.(njk|nunjucks)$/,
-          loader: 'nunjucks-loader',
-          query: {
-            root: path.resolve(__dirname, '/dist/nunjucks')
-          }
-        }
-      ]
+if (!assigned('/')) throw Error('baseUrl not defined');
+
+app.set('assetPath', url.resolve('/', 'assets/'));
+
+configureWebpack(app);
+
+app.set('views', [
+  path.resolve(__dirname, 'steps'),
+  path.resolve(__dirname, 'policy-pages'),
+  path.resolve(__dirname, 'error-pages'),
+  path.resolve(__dirname, 'node_modules/govuk-frontend'),
+  path.resolve(__dirname, 'node_modules/govuk-frontend/components'),
+  path.resolve(__dirname, 'views'),
+  path.resolve(__dirname, 'components')
+]);
+
+nunjucks(app, {
+  globals: {
+    phase: 'BETA',
+    environment: process.env.NODE_ENV,
+    banner: `${content.phaseBanner.newService}
+      <a href="${urls.phaseBanner}" target="_blank">
+          ${content.phaseBanner.reportProblem}
+      </a>${content.phaseBanner.improve}`,
+    isArray(value) {
+      return Array.isArray(value);
     },
-    plugins: [
-      new CopyWebpackPlugin(
-        [
-          {
-            from: path.resolve(__dirname, 'assets/images'),
-            to: 'images'
-          },
-          {
-            from: path.resolve(__dirname,
-              'node_modules/@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk'),
-            to: 'nunjucks/look-and-feel/components/fields.njk'
-          },
-          {
-            from: path.resolve(__dirname, 'views/components/formElements.html'),
-            to: 'nunjucks/formElements.njk'
-          }
-        ])
-    ]
-  },
-  nunjucks: {
-    globals: {
-      phase: 'BETA',
-      environment: process.env.NODE_ENV,
-      banner: `${content.phaseBanner.newService}
-        <a href="${urls.phaseBanner}" target="_blank">
-            ${content.phaseBanner.reportProblem}
-        </a>${content.phaseBanner.improve}`,
-      isArray(value) {
-        return Array.isArray(value);
-      },
-      inactivityTimeout: {
-        title: content.inactivityTimeout.title,
-        expiringIn: content.inactivityTimeout.expiringIn,
-        text: content.inactivityTimeout.text,
-        yes: content.inactivityTimeout.yes,
-        no: content.inactivityTimeout.no
-      },
-      // because of a bug with iphone, we need to remove the mime types from accept
-      accept: filteredWhitelist,
-      timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message,
-      relatedContent: content.relatedContent,
-      paths,
-      urls
-    }
-  },
-  development: {
-    useWebpackDevMiddleware: true
+    inactivityTimeout: {
+      title: content.inactivityTimeout.title,
+      expiringIn: content.inactivityTimeout.expiringIn,
+      text: content.inactivityTimeout.text,
+      yes: content.inactivityTimeout.yes,
+      no: content.inactivityTimeout.no
+    },
+    // because of a bug with iphone, we need to remove the mime types from accept
+    accept: filteredWhitelist,
+    timeOut: config.get('redis.timeout'),
+    timeOutMessage: content.timeout.message,
+    relatedContent: content.relatedContent,
+    paths,
+    urls,
+    autoescape: true,
+    express: app,
+    noCache: true
   }
 });
 

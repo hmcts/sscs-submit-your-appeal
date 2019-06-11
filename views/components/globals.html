@@ -1,10 +1,10 @@
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+{% from "components/phase_banner.njk" import phaseBanner %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(phase) %}
         {{ banner | safe }}
     {% endcall %}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+    <a class="govuk-link-back" href="#" onclick="history.go(-1); return false;">Back</a>
 {% endblock %}
 
 {% block head -%}
@@ -31,8 +31,8 @@
 {% endblock %}
 
 {% block inside_header %}
-    <div class="header-proposition">
-        <a href="/" class="proposition-name">Appeal a benefit decision</a>
+    <div class="govuk-header-proposition">
+        <a href="/" class="govuk-proposition-name">Appeal a benefit decision</a>
     </div>
 {% endblock %}
 

@@ -1,0 +1,46 @@
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+{% from "components/errors.njk" import errorSummary %}
+{% from "components/i18n.njk" import languageSwitch %}
+
+{% block breadcrumbs %}
+{{ phaseBanner(phase, feedbackLink) }}
+<a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
+{{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
+{% endblock %}
+
+{% block two_thirds %}
+
+{{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
+
+{{ errorSummary(fields) }}
+
+<form
+  enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
+  action="{{ postUrl | default(path if path else url) }}"
+  method="post"
+  class="form"
+  {% if config.autocomplete %}
+    autocomplete="{{config.autocomplete}}"
+  {% endif %}
+>
+
+  {% block fields -%}
+  {%- endblock %}
+
+  {% if csurfCsrfToken %}
+    <input type="hidden" name="_csrf" value="{{csurfCsrfToken}}">
+  {% endif %}
+
+  {% if not continueText  %}
+     {% set continueText = 'Continue' %}
+  {% endif %}
+
+  <input class="govuk-button" type="submit" value="{{continueText}}">
+</form>
+
+{% block after_form -%}
+{%- endblock %}
+
+{% endblock %}

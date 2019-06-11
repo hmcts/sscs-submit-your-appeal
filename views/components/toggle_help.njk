@@ -1,0 +1,23 @@
+{#
+  toggleHelp
+    link          - (required) the question
+    text          - (required) the answer that is toggled
+    id            - (required) the id of the element
+    openByDefault - (default = false) show the answer at load time
+
+  Displays a togglable answer to a question
+#}
+
+{% macro toggleHelp(link, text, id, openByDefault = false) %}
+
+    <details role="group">
+        <summary role="button" aria-expanded="{{ openByDefault.toString() }}">
+            <span class="summary">{{ link }}</span></summary>
+        <div id="{{ id }}-0" aria-hidden="{{ not openByDefault.toString() }}">
+            <p class="govuk-body">
+                {{ text }}
+            </p>
+        </div>
+    </details>
+
+{% endmacro %}

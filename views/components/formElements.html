@@ -1,16 +1,16 @@
-{% from "look-and-feel/components/fields.njk" import errorsFor, errorClass %}
+{% from "components/fields.njk" import errorsFor, errorClass %}
 
 {% macro date(field, question, hint='', hideQuestion=false, labels={}) %}
 <fieldset
         id="{{ field.id }}"
-        class="form-group form-date {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
+        class="govuk-form-group govuk-form-date {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
 
     {% if not hideQuestion %}
-    <legend class="form-label-bold">{{ question | safe }}</legend>
+    <legend class="govuk-form-label-bold">{{ question | safe }}</legend>
     {% endif %}
 
     {% if hint %}
-    <span class="form-hint">{{ hint | safe }}</span>
+    <span class="govuk-form-hint">{{ hint | safe }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
@@ -18,9 +18,9 @@
     {{ errorsFor(field.month) }}
     {{ errorsFor(field.year) }}
 
-    <div class="form-group form-group-day">
+    <div class="govuk-form-group form-group-day">
         <label for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
-        <input class="form-control {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
+        <input class="govuk-form-control {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
                id="{{ field.day.id }}"
                type="number"
                pattern="[0-9]*"
@@ -30,18 +30,18 @@
                {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
     </div>
 
-    <div class="form-group form-group-month">
+    <div class="govuk-form-group form-group-month">
         <label for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
-        <input class="form-control {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
+        <input class="govuk-form-control {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
                id="{{ field.month.id }}"
                type="text"
                name="{{ field.month.id }}"
                {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
     </div>
 
-    <div class="form-group form-group-year">
+    <div class="govuk-form-group form-group-year">
         <label for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
-        <input class="form-control {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
+        <input class="govuk-form-control {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
                id="{{ field.year.id }}"
                type="number"
                pattern="[0-9]*"
@@ -56,15 +56,15 @@
 
 {% macro textarea(field, label, hint="", hideLabel=false, placeholder="", maxlength=0) %}
 
-<div class="form-group {{ errorClass(field) }}">
+<div class="govuk-form-group {{ errorClass(field) }}">
 
-    <label id="{{ field.id }}-label" class="form-label {{ 'visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+    <label id="{{ field.id }}-label" class="govuk-form-label {{ 'visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
     {% if hint %}
-    <span class="form-hint">{{ hint | safe }}</span>
+    <span class="govuk-form-hint">{{ hint | safe }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') | safe }}</textarea>
+    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="govuk-form-control" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') | safe }}</textarea>
 </div>
 {% endmacro %}
