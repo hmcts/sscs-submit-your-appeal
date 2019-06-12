@@ -3,9 +3,9 @@ const paths = require('paths');
 function goToCheckMrnPage(mrnDate) {
   const I = this;
 
-  I.fillField('.form-group-day input', mrnDate.date().toString());
-  I.fillField('.form-group-month input', (mrnDate.month() + 1).toString());
-  I.fillField('.form-group-year input', mrnDate.year().toString());
+  I.fillField('.govuk-form-group-day input', mrnDate.date().toString());
+  I.fillField('.govuk-form-group-month input', (mrnDate.month() + 1).toString());
+  I.fillField('.govuk-form-group-year input', mrnDate.year().toString());
   I.click('Continue');
   I.seeInCurrentUrl(paths.compliance.checkMRNDate);
 }

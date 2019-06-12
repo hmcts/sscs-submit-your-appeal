@@ -10,8 +10,8 @@
 
 {% block fields %}
 
-<p>{{ content.clickAllArrangements | safe }}</p>
-<p>{{ content.you }}<strong class="bold-small"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
+<p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
+<p class="govuk-body">{{ content.you }}<strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
 
     {% call selectionButtons(
         field = fields.selection,

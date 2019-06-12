@@ -1,6 +1,7 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, select %}
 {% from "components/toggle_help.njk" import toggleHelp %}
+{% from "details/macro.njk" import govukDetails %}
 
 {% block page_title %}{{ content.titleHead }}{% endblock %}
 
@@ -55,8 +56,11 @@
 
 {% block after_form -%}
 
-    <p>
-        {{ toggleHelp(content.help.link, content.help.text, 'details-content', false) }}
+    <p class="govuk-body">
+    {{ govukDetails({
+        summaryText: content.help.link,
+        text: content.help.text
+    }) }}
     </p>
 
 {{ super() }}

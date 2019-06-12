@@ -9,13 +9,13 @@
 
 {% block fields %}
 
-<p>{{ content.subtitle }}</p>
+<p class="govuk-body">{{ content.subtitle }}</p>
 
 {% call formSection() %}
 
-<p>{{ content.register.heading }}</p>
+<p class="govuk-body">{{ content.register.heading }}</p>
 
-<ul class="list list-bullet">
+<ul class="govuk-list govuk-list--bullet">
     <li>{{ content.register.fullName }}</li>
     <li>{{ content.register.organisation}}</li>
     <li>{{ content.register.emailOrPostalAddress }}</li>

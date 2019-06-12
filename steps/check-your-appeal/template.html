@@ -26,9 +26,9 @@
 
 {% block statement_of_truth_content %}
     {{ header(content.header, size='medium') }}
-    <p>{{ content.information }}</p>
-    <p>{{ content.permission }}</p>
-    <p>{{ content.agree | safe }}</p>
+    <p class="govuk-body">{{ content.information }}</p>
+    <p class="govuk-body">{{ content.permission }}</p>
+    <p class="govuk-body">{{ content.agree | safe }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}

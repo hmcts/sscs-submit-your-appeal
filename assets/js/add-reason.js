@@ -204,9 +204,9 @@ class AddReason {
                   otherErrors = true;
                   self.handleValidationError(index, resJson.validationErrors);
                 }
-              } else if ($(`#items-${index}`).children().hasClass('form-group-error')) {
-                $(`#items-${index} .form-group`)
-                  .removeClass('form-group-error')
+              } else if ($(`#items-${index}`).children().hasClass('govuk-form-group-error')) {
+                $(`#items-${index} .govuk-form-group`)
+                  .removeClass('govuk-form-group-error')
                   .children()
                   .remove('.error-message');
               }
@@ -271,7 +271,7 @@ class AddReason {
     ));
     const summary = this.buildErrorSummary(flatten(errorSummaryList));
     $('.error-summary').remove();
-    $('.column-two-thirds').prepend(summary.val);
+    $('.govuk-grid-column-two-thirds').prepend(summary.val);
   }
 
   handleValidationError(index, validationErrors) {

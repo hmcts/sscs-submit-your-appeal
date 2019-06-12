@@ -18,21 +18,21 @@
 
 
 {% block full_width %}
-    <div class="grid-row column-full">
+    <div class="govuk-grid-row">
 
         <div class="banner-blue">
-            {{ header(title, size='xlarge') }}
+            {{ header(title, size='xl') }}
         </div>
 
-        <div class="column-full">
+        <div class="govuk-grid-column-full">
             <form action="{{ path if path else url }}" method="post" class="form">
 
                 {% block fields %}
-                    <p class="lede">{{ content.reviewed }}</p>
-                    <p class="lede">{{ content.separate }}</p>
+                    <p class="govuk-body-l">{{ content.reviewed }}</p>
+                    <p class="govuk-body-l">{{ content.separate }}</p>
                 {% endblock %}
 
-                <input class="button" type="submit" value="Continue">
+                <input class="govuk-button" type="submit" value="Continue">
             </form>
 
         </div>

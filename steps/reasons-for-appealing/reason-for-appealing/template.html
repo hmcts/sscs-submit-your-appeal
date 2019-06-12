@@ -60,14 +60,14 @@
 {% endblock %}
 
 {% block listItems %}
-    <p>{{ content.dwpExplained }}</p>
-    <p>{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained }}</p>
+    <p class="govuk-body">{{ content.readYouMRN }}</p>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p>{{ content.dwpExplained }}</p>
-    <p>{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained }}</p>
+    <p class="govuk-body">{{ content.readYouMRN }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}aa
 {% endblock %}

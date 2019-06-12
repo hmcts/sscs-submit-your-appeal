@@ -9,9 +9,9 @@
 
 {% block fields %}
 
-<p>{{ content.subtitle | safe }}</p>
-<p>{{ content.explainReasons | safe }}</p>
-<p>{{ content.arrangeSupport | safe }}</p>
+<p class="govuk-body">{{ content.subtitle | safe }}</p>
+<p class="govuk-body">{{ content.explainReasons | safe }}</p>
+<p class="govuk-body">{{ content.arrangeSupport | safe }}</p>
 
 {{ selectionButtons(
     fields.attendHearing,

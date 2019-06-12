@@ -18,7 +18,7 @@
         {% endif %}
 
         {{ errorsFor(field) }}
-        <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="form-control" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') }}</textarea>
+        <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="govuk-input" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') }}</textarea>
     </div>
 
 {% endmacro %}
@@ -55,7 +55,7 @@
   Groups fields in to sections spaced with padding
 #}
 {% macro formSection() %}
-<div class="form-section">
+<div>
   {{ caller() }}
 </div>
 {% endmacro %}
@@ -200,7 +200,7 @@
 
 <div class="govuk-form-group {{ errorClass(field) }}">
 
-  <label class="govuk-form-label {{ "govuk-visually-hidden" if hideLabel }}"
+  <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
          for="{{ field.id }}">
     {{ label }}
     {%- if hint %}
@@ -214,7 +214,7 @@
 
   <select id="{{ field.id }}"
           name="{{ field.id }}"
-          class="govuk-form-control">
+          class="govuk-select">
     {# Default option so no option is preselected #}
     <option disabled
             {% if not field.value %}
@@ -369,7 +369,7 @@
 #}
 {% macro fileupload(field, label="Upload file", acceptFileTypes="") %}
 
-    <div class="form-group {{ errorClass(field) }}">
+    <div class="govuk-form-group {{ errorClass(field) }}">
 
         <label for="{{ field.id }}">{{ label }}</label>
         {{ errorsFor(field) }}

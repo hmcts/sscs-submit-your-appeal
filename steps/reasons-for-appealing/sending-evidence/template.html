@@ -9,11 +9,11 @@
 
 {% block fields %}
 
-<p>{{ content.healthcarePro }}</p>
-<p>{{ content.writeStatement }}</p>
-<p>{{ content.sendEvidence }}</p>
+<p class="govuk-body">{{ content.healthcarePro }}</p>
+<p class="govuk-body">{{ content.writeStatement }}</p>
+<p class="govuk-body">{{ content.sendEvidence }}</p>
 
-<p>
+<p class="govuk-body">
     {% if hasSignedUpForEmail %}
         {{ content.postEvidenceWithEmail }}
     {% else %}

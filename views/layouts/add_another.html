@@ -67,7 +67,7 @@
 
 {# Macro specific to this layout #}
 {% macro addAnotherItem(field, deleteUrl, editUrl, itemNumber, noItems=false) %}
-  <dt class="visually-hidden">{% if field %} {{ safeId(field.id) }} {% endif %}</dt>
+  <dt class="govuk-visually-hidden">{% if field %} {{ safeId(field.id) }} {% endif %}</dt>
   <dd {% if field %} id="add-another-list-{{ safeId(field.id) }}" {% endif %} class="add-another-list-item {{ errorClass(field) }} {% if noItems %}noItems{% endif %}">
     {{ errorsFor(field) }}
     {{ caller() }}
@@ -75,10 +75,10 @@
   {% if deleteUrl or editUrl %}
     <dd class="add-another-list-controls">
       {% if editUrl %}
-        <a href="{{ editUrl }}" class="add-another-edit-link">Edit<span class="visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+        <a href="{{ editUrl }}" class="add-another-edit-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
       {% endif %}
       {% if deleteUrl %}
-        <a href="{{ deleteUrl }}" class="add-another-delete-link">Delete<span class="visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+        <a href="{{ deleteUrl }}" class="add-another-delete-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
       {% endif %}
     </dd>
   {% endif %}

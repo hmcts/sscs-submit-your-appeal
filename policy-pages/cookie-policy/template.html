@@ -9,43 +9,43 @@
 
 {% block two_thirds %}
 
-    <h1 class="heading-large">{{ cookies.title }}</h1>
+    <h1 class="govuk-heading-l">{{ cookies.title }}</h1>
 
-    <p>{{ cookies.description }}</p>
+    <p class="govuk-body">{{ cookies.description }}</p>
 
-    <h2 class="heading-medium">{{ usedInService.title }}</h2>
-    <p>{{ usedInService.uses }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ usedInService.title }}</h2>
+    <p class="govuk-body">{{ usedInService.uses }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for use in usedInService.usesList %}
         <li>{{ use }}</li>
         {% endfor %}
     </ul>
-    <p>{{ usedInService.more }}<a href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
+    <p class="govuk-body">{{ usedInService.more }}<a href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
 
-    <h2 class="heading-medium">{{ howAreTheyUsed.title }}</h2>
-    <p>{{ howAreTheyUsed.description }}</p>
-    <p>{{ howAreTheyUsed.info }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ howAreTheyUsed.title }}</h2>
+    <p class="govuk-body">{{ howAreTheyUsed.description }}</p>
+    <p class="govuk-body">{{ howAreTheyUsed.info }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for info in howAreTheyUsed.infoList %}
         <li>{{ info }}</li>
         {% endfor %}
     </ul>
-    <p>{{ howAreTheyUsed.googleShare }}<a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
-    <p>
+    <p class="govuk-body">{{ howAreTheyUsed.googleShare }}<a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
+    <p class="govuk-body">
         {{ howAreTheyUsed.optOut.youCan }}
         <a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google }}</a>
         {{ howAreTheyUsed.optOut.access }}
     </p>
 
-    <p>{{ howAreTheyUsed.googleCookies }}</p>
+    <p class="govuk-body">{{ howAreTheyUsed.googleCookies }}</p>
     {{ cookieTable( howAreTheyUsed.cookieTable.items, howAreTheyUsed.cookieTable.columnNames ) }}
 
-    <h2 class="heading-medium">{{ introMessage.title }}</h2>
-    <p>{{ introMessage.description }}</p>
+    <h2 class="govuk-heading-m">{{ introMessage.title }}</h2>
+    <p class="govuk-body">{{ introMessage.description }}</p>
     {{ cookieTable( introMessage.cookieTable.items, introMessage.cookieTable.columnNames ) }}
 
-    <h2 class="heading-medium">{{ sessionCookie.title }}</h2>
-    <p>{{ sessionCookie.description }}</p>
+    <h2 class="govuk-heading-m">{{ sessionCookie.title }}</h2>
+    <p class="govuk-body">{{ sessionCookie.description }}</p>
     {{ cookieTable( sessionCookie.cookieTable.items, sessionCookie.cookieTable.columnNames ) }}
 
 {% endblock %}

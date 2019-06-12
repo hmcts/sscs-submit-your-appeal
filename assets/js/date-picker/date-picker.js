@@ -193,7 +193,7 @@ const datePicker = {
 
     $.each(orderDates, (index, date) => {
       elements += `
-        <dt class="visually-hidden">items-${date.index}</dt>
+        <dt class="govuk-visually-hidden">items-${date.index}</dt>
         <dd id="add-another-list-items-${date.index}" class="add-another-list-item">
           <span data-index="items-${date.index}">
             ${datePickerUtils.formatDateForDisplay(date.value)}
@@ -204,7 +204,7 @@ const datePicker = {
         </dd>`;
     });
     if (elements === '') {
-      const noItems = `<dt class="visually-hidden">No items</dt>
+      const noItems = `<dt class="govuk-visually-hidden">No items</dt>
         <dd class="add-another-list-item  noItems">No dates added yet</dd>`;
       $('.add-another-list').empty().append(noItems);
     } else {

@@ -16,9 +16,6 @@
 @import 'super-wrap';
 @import '../../components/postcodeLookup/main';
 
-.form-section {
-  margin-bottom: 30px;
-}
 
 p.contact-us::first-line {
   font-weight: bold;
@@ -29,7 +26,7 @@ label.form-label[for="signer"] {
 }
 
 #name {
-  .form-group:last-child {
+  .govuk-form-group:last-child {
     margin-bottom: 0;
   }
 }
@@ -69,20 +66,26 @@ label.form-label[for="signer"] {
   width: 100%;
 }
 
-#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #selection\.anythingElse\.language, #reasonForBeingLate, #reasonForNoMRN {
-  &.form-control {
+#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #selection\.anythingElse\.language, #reasonForBeingLate, #reasonForNoMRN  {
+  &.govuk-input {
     @extend .govuk-\!-width-three-quarters;
   }
 }
 
+#postCode, #phoneNumber, #enterMobile {
+  &.govuk-input {
+    @extend .govuk-\!-width-one-half;
+  }
+}
+
 #postcode, #nino {
-  &.form-control {
+  &.govuk-input {
     @extend .govuk-\!-width-one-quarter;
   }
 }
 
 #name\.title, #pipNumber {
-  &.form-control {
+  &.govuk-input {
     width: 100% !important;
 
     @include govuk-media-query($from: tablet) {
@@ -92,7 +95,7 @@ label.form-label[for="signer"] {
 }
 
 #title {
-  &.form-control {
+  &.govuk-input {
     @extend .govuk-\!-width-one-quarter;
   }
 }
@@ -109,7 +112,6 @@ label.form-label[for="signer"] {
 
 .banner-blue h1{
   background: #005ea5;
-  margin-top: 30px;
   margin-bottom: 30px;
   color: white;
   padding: {
@@ -259,7 +261,7 @@ label.form-label[for="signer"] {
   background-color: #eef7ff;
   padding: 20px 20px;
 
-  .heading-small {
+  .govuk-heading-s {
     margin-top: 0;
     padding-bottom: 10px;
   }
@@ -316,7 +318,7 @@ label.form-label[for="signer"] {
       width: 100%;
     }
 
-    .form-group:last-child {
+    .govuk-form-group:last-child {
       padding-bottom: 20px;
       border-bottom: 2px solid govuk-colour('grey-2');
     }

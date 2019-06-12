@@ -10,11 +10,11 @@
 
 {% block fields %}
 
-        <p>{{ content.subtitle}}</p>
+        <p class="govuk-body">{{ content.subtitle}}</p>
 
-        <fieldset id="{{ fields.name.id }}" class="form-group {{ errorClass(fields.name) }}">
+        <fieldset id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
 
-            <legend class="visually-hidden">{{ content.title | safe }}</legend>
+            <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
 
             {{ errorsFor(fields.name) }}
 

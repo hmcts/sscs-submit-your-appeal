@@ -61,21 +61,21 @@ Scenario('I have a MRN but I do not enter the day, month or the year', I => {
 });
 
 Scenario('When I click Continue when only entering the day field I see errors', I => {
-  I.fillField('.form-group-day input', '21');
+  I.fillField('.govuk-form-group-day input', '21');
   I.click('Continue');
   I.see(mrnDateFields.date.error.monthRequired);
   I.see(mrnDateFields.date.error.yearRequired);
 });
 
 Scenario('When I click Continue when only entering the month field I see errors', I => {
-  I.fillField('.form-group-month input', '12');
+  I.fillField('.govuk-form-group-month input', '12');
   I.click('Continue');
   I.see(mrnDateFields.date.error.yearRequired);
   I.see(mrnDateFields.date.error.dayRequired);
 });
 
 Scenario('When I click Continue when only entering the year field I see errors', I => {
-  I.fillField('.form-group-year input', '1999');
+  I.fillField('.govuk-form-group-year input', '1999');
   I.click('Continue');
   I.see(mrnDateFields.date.error.monthRequired);
   I.see(mrnDateFields.date.error.dayRequired);

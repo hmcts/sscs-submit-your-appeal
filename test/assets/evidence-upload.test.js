@@ -90,7 +90,7 @@ describe('evidence upload', () => {
         errors: ['oh dear!']
       }
     ]);
-    expect($('.form-group .error-message').length).to.equal(1);
+    expect($('.govuk-form-group .error-message').length).to.equal(1);
   });
   it('#hideUnnecessaryMarkup will do just that', () => {
     expect($('.add-another-add-link')).to.have.$css('display', 'none');

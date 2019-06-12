@@ -4,7 +4,7 @@
     {% call phaseBanner(phase) %}
         {{ banner | safe }}
     {% endcall %}
-    <a class="govuk-link-back" href="#" onclick="history.go(-1); return false;">Back</a>
+    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
 {% endblock %}
 
 {% block head -%}
@@ -53,7 +53,7 @@
 {% endblock %}
 
 {% block cookie_message %}
-    <p>
+    <p class="govuk-body">
         GOV.UK uses cookies to make the site simpler.
         <a href="/cookie-policy" title="Find out more about cookies">Find out more about cookies</a>
     </p>

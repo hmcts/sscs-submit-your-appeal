@@ -7,8 +7,8 @@
         {% if options.length > 0  %}
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
         {% endif %}  
-        <div class="form-group">
-            <a id="manualLink" class="link" href="#" onclick="document.getElementById('submitType').value = 'manual'; document.getElementsByClassName('form')[0].submit();">{{content.manualEntryLabel}}</a>
+        <div class="govuk-form-group">
+            <a id="manualLink" class="govuk-link govuk-body" href="#" onclick="document.getElementById('submitType').value = 'manual'; document.getElementsByClassName('form')[0].submit();">{{content.manualEntryLabel}}</a>
         </div>
         {% if fields.postcodeAddress and fields.postcodeAddress.value %}
             {{ caller() }}
@@ -19,9 +19,9 @@
 
 {% macro customSelect(field, label, options, initialValueText) %}
 
-<div class="form-group  {{ errorClass(field) }}">
+<div class="{{ errorClass(field) }}">
 
-  <label class="form-label"
+  <label class="govuk-label"
          for="{{ field.id }}">
     {{ label }}
   </label>
@@ -30,7 +30,7 @@
 
   <select 
           name="{{ field.id }}"
-          class="form-control"
+          class="govuk-select govuk-!-width-one-half"
           onchange="document.getElementById('submitType').value = 'addressSelection'; this.form.submit();"
           >
     {# Default option so no option is preselected #}
@@ -62,14 +62,14 @@
 
 {% macro errorClass(field, type='group') -%}
   {% if field.errors and field.errors|length > 0 %}
-    form-{{ type }}-error
+    govuk-form-{{ type }}-error
   {% endif %}
 {%- endmacro %}
 
 {% macro errorsFor(field) -%}
   {% if field.errors %}
   {% for error in field.errors -%}
-    <span class="error-message">
+    <span class="govuk-error-message">
       {{ error | safe}}
     </span>
   {%- endfor %}
@@ -78,22 +78,22 @@
 
 
 {% macro textboxButton(field, label, hint=false, hideLabel=false, options) %}
-<div class="{{ "form-group" if options.length === 0}}" {{ errorClass(field) }}">
-  <label class="form-label {{ "visually-hidden" if hideLabel }}"
+<div class="{{ "govuk-form-group" if options.length === 0}}" {{ errorClass(field) }}">
+  <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
          for="{{ field.id }}">
     {{ label }}
     {%- if hint %}
-    <span class="form-hint">
+    <span class="govuk-form-hint">
       {{ hint }}
     </span>
     {%- endif %}
   </label>
   {{ errorsFor(field) }}
-  <input class="form-control post-code-lookup"
+  <input class="govuk-input post-code-lookup"
          id="{{ field.id }}"
          name="{{ field.id }}"
          type="text"
          {% if field.value %}value="{{ field.value }}"{% endif %}>
-  <input class="button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
+  <input class="govuk-button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
 </div>
 {% endmacro %}

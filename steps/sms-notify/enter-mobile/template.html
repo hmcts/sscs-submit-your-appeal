@@ -11,7 +11,7 @@
 
     {% call formSection() %}
 
-        <p>{{ content.description | safe }}</p>
+        <p class="govuk-body">{{ content.description | safe }}</p>
         {{ textbox(fields.enterMobile, content.fields.enterMobile.label, hideLabel=true) }}
 
     {% endcall %}

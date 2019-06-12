@@ -17,7 +17,7 @@
     {% endset %}
 
     <div class="govuk-box-highlight">
-        <h1 class="bold-large">{{ content.title }}</h1>
+        <h1 class="govuk-!-font-size-36 govuk-!-font-weight-bold">{{ content.title }}</h1>
     </div>
 
     <section class="progress-bar">
@@ -88,13 +88,13 @@
     </section>
 
     <div class="description">
-        <h2 class="heading-small">{{ content.next.heading }}</h2>
-        <p>{{ content.next.notify }}</p>
-        <p>{{ content.next.contact }}</p>
+        <h2 class="govuk-heading-s">{{ content.next.heading }}</h2>
+        <p class="govuk-body">{{ content.next.notify }}</p>
+        <p class="govuk-body">{{ content.next.contact }}</p>
     </div>
 
-    <p>{{ content.email }}</p>
+    <p class="govuk-body">{{ content.email }}</p>
 
-    <a class="button" href="{{ surveyLink }}">{{ content.surveyLink }}</a>
+    <a class="govuk-button" href="{{ surveyLink }}">{{ content.surveyLink }}</a>
 
 {% endblock %}
