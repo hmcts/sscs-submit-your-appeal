@@ -72,7 +72,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#postCode, #phoneNumber, #enterMobile {
+#postCode, #phoneNumber, #enterMobile, #name\.first, #name\.last, #name\.organisation {
   &.govuk-input {
     @extend .govuk-\!-width-one-half;
   }
@@ -158,6 +158,7 @@ label.form-label[for="signer"] {
 }
 
 .add-another-add-link, [for=uploadEv]{
+  @extend .govuk-button;
   @extend .govuk-button--secondary; 
 }
 
