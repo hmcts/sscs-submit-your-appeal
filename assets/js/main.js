@@ -2,7 +2,7 @@ import $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash';
 import { frontend, redis } from '../../config/default';
-import ShowHideContent from 'govuk/show-hide-content';
+import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
