@@ -60,11 +60,6 @@ variable "postcode_checker_enabled" {
   default = ""
 }
 
-variable "allow_save_return" {
-  type = "string"
-  default = "false"
-}
-
 variable "postcode_checker_allowed_rpcs" {
   type = "string"
   default = "birmingham"
@@ -82,6 +77,11 @@ variable "appinsights_instrumentation_key" {
 variable "postcode_lookup_enabled" {
   type = "string"
   default = ""
+}
+
+variable "allow_save_return" {
+  type = "string"
+  default = "false"
 }
 
 variable "idam_login_url" {
