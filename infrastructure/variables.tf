@@ -84,3 +84,14 @@ variable "postcode_lookup_enabled" {
   default = ""
 }
 
+variable "idam_login_url" {
+  type = "string"
+  default = ""
+}
+
+variable "idam_api_url" {
+  type = "string"
+  default = ""
+}
+
+
