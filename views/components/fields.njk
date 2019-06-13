@@ -155,7 +155,7 @@
           <h2 class="govuk-heading-m">{{ question }}</h2>
       </legend>
       {% if hint -%}
-        <span id="{{ field.id }}-hint" class="govuk-hint">
+        <span id="{{ field.id }}-hint" class="hint-text">
           {{ hint }}
         </span>
       {%- endif %}
@@ -204,7 +204,7 @@
          for="{{ field.id }}">
     {{ label }}
     {%- if hint %}
-    <span class="govuk-form-hint">
+    <span class="hint-text">
       {{ hint }}
     </span>
     {%- endif %}

@@ -208,7 +208,7 @@ class AddReason {
                 $(`#items-${index} .govuk-form-group`)
                   .removeClass('govuk-form-group-error')
                   .children()
-                  .remove('.error-message');
+                  .remove('.govuk-error-message');
               }
             }
           })

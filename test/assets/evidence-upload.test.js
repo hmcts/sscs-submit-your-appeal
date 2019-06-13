@@ -72,7 +72,7 @@ describe('evidence upload', () => {
   });
   it('#handleInlineError will not append errors if not needed', () => {
     evidenceUpload.handleInlineError([]);
-    expect($('.error-message').length).to.equal(0);
+    expect($('.govuk-error-message').length).to.equal(0);
   });
   it('#handleInlineError will append errors if needed', () => {
     evidenceUpload.handleInlineError([
@@ -80,8 +80,8 @@ describe('evidence upload', () => {
         errors: ['Hugo!']
       }
     ]);
-    expect($('form .error-message').length).to.equal(1);
-    $('.error-message').remove();
+    expect($('form .govuk-error-message').length).to.equal(1);
+    $('.govuk-error-message').remove();
   });
   xit('#handleErrorSummary will create the error summary', () => {
     evidenceUpload.handleErrorSummary([
@@ -90,7 +90,7 @@ describe('evidence upload', () => {
         errors: ['oh dear!']
       }
     ]);
-    expect($('.govuk-form-group .error-message').length).to.equal(1);
+    expect($('.govuk-form-group .govuk-error-message').length).to.equal(1);
   });
   it('#hideUnnecessaryMarkup will do just that', () => {
     expect($('.add-another-add-link')).to.have.$css('display', 'none');

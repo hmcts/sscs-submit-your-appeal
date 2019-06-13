@@ -64,13 +64,13 @@
 
 <div class="govuk-form-group {{ errorClass(field) }}">
 
-    <label id="{{ field.id }}-label" class="govuk-form-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+    <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
     {% if hint %}
     <span class="govuk-form-hint">{{ hint | safe }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="govuk-textaread" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') | safe }}</textarea>
+    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="govuk-textarea" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') | safe }}</textarea>
 </div>
 {% endmacro %}

@@ -102,7 +102,8 @@ class EvidenceUpload {
           uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
       }
 
-      $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
+      // eslint-disable-next-line max-len
+      $('label').after(`<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`);
     }
   }
   hideUnnecessaryMarkup() {
@@ -141,7 +142,7 @@ class EvidenceUpload {
       },
       error: error => {
         if (error) {
-          $('.error-message').remove();
+          $('.govuk-error-message').remove();
           $(`#${this.elId}`).val('');
           /* eslint-disable max-len */
           const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?

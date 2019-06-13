@@ -17,12 +17,6 @@
 @import '../../components/postcodeLookup/main';
 
 
-.hidden,
-.js-enabled .js-hidden {
-  display: none;
-  visibility: hidden; }
-
-
 p.contact-us::first-line {
   font-weight: bold;
 }
@@ -338,7 +332,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#evidence-upload-form .error-message {
+#evidence-upload-form .govuk-error-message {
   margin-top: 20px;
 }
 
@@ -381,3 +375,20 @@ label.form-label[for="signer"] {
     clear: none;
   }
 }
+
+.hint-text {
+  @extend .govuk-body;
+  @extend .govuk-\!-font-size-16;
+  color: $govuk-secondary-text-colour;
+  display:block;
+}
+
+.panel {
+  @extend .govuk-details__text;
+  margin-bottom:10px;
+}
+
+.hidden,
+.js-enabled .js-hidden {
+  display: none;
+  visibility: hidden; }

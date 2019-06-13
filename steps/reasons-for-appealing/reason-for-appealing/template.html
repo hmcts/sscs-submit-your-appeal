@@ -44,7 +44,7 @@
 
         {% if fields.validated and not fields.valid %}
             {%- for error in fields.errors -%}
-                <span class="error-message">
+                <span class="govuk-error-message">
                     {{ error.message }}
                 </span>
             {%- endfor -%}
