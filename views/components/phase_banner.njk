@@ -14,7 +14,7 @@
 #}
 {% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-{% macro phaseBanner(phase='ALPHA', feedbackLink='#') %}
+{% macro phaseBanner(phase='ALPHA', feedbackLink='https://www.smartsurvey.co.uk/s/QQQ7L/') %}
 {% if phase != 'LIVE' %}
     {% set html %}This is a new service – your <a class="govuk-link" href="{{ feedbackLink }}">feedback</a> will help us to improve it.{% endset %}
     {{ govukPhaseBanner({
