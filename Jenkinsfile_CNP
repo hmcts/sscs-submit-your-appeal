@@ -40,6 +40,17 @@ withPipeline("nodejs", product, component) {
     }
   }
 
+
+    before ('sonarScan') {
+        try
+        {
+            sh 'sed -i.bak \'s#\'pwd/\'##g\' ./test/unit/coverage/html/lcov.info'
+        }
+        catch (error) {
+
+        }
+    }
+
   before('smoketest:preview') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
