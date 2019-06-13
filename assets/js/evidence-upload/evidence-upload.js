@@ -10,7 +10,7 @@ class EvidenceUpload {
     this.elContainer = elContainer;
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
-    this.listToRead = '.add-another-list';
+    this.listToRead = '.govuk-summary-list';
     this.doTheUpload = this.doTheUpload.bind(this);
     this.interceptSubmission = this.interceptSubmission.bind(this);
 
@@ -24,7 +24,7 @@ class EvidenceUpload {
     return $(selector).length && $(selector).val();
   }
   getNumberForNextItem() {
-    const nodes = $(`${this.listToRead} dd.add-another-list-item`)
+    const nodes = $(`${this.listToRead} dd.govuk-summary-list__value`)
       .toArray()
       .map(item => parseInt(item.id.split('-').pop(), 10))
       .sort();

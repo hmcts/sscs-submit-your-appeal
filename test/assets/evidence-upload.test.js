@@ -25,9 +25,11 @@ describe('evidence upload', () => {
 
   const content = `<div id="evidence-upload">
         <div class="add-another-add-link"></div>
-        <dl class="add-another-list">
-            <dd class="add-another-list-item" id="item-0"></dd>
-            <dd class="add-another-list-item" id="item-1"></dd>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dd class="govuk-summary-list__value" id="item-0"></dd>
+            <dd class="govuk-summary-list__value" id="item-1"></dd>
+          </div>            
         </dl>
         <label for="uploadEv">Label</label>
         <input type="file" id="uploadEv" name="uploadEv"/>
@@ -64,9 +66,9 @@ describe('evidence upload', () => {
     expect(num).to.equal(2);
   });
   it('#getNumberForNextItem will read the dom and find a missing number', () => {
-    $('.add-another-list').append('<dd class="add-another-list-item" id="item-2"></dd>');
-    $('.add-another-list').append('<dd class="add-another-list-item" id="item-3"></dd>');
-    $('.add-another-list').append('<dd class="add-another-list-item" id="item-5"></dd>');
+    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-2"></dd>');
+    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-3"></dd>');
+    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-5"></dd>');
     const num = evidenceUpload.getNumberForNextItem();
     expect(num).to.equal(4);
   });
@@ -109,8 +111,8 @@ describe('evidence upload', () => {
     expect(evidenceUpload.handleErrorSummary).not.to.have.been.called;
     expect(returnValue).to.be.true;
     evidenceUpload.handleErrorSummary.reset();
-    $('.add-another-list').empty();
-    $('.add-another-list').append('<dl class="noItems"></dl>');
+    $('.govuk-summary-list').empty();
+    $('.govuk-summary-list').append('<dl class="noItems"></dl>');
     returnValue = evidenceUpload.interceptSubmission(syntheticEvent);
     expect(returnValue).to.be.false;
     expect(evidenceUpload.handleErrorSummary).to.have.been.called;

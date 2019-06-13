@@ -25,8 +25,8 @@ class AddReason {
   }
 
   removeDisplayList() {
-    if ($('.add-another-list').length) {
-      $('.add-another-list').remove();
+    if ($('.govuk-summary-list').length) {
+      $('.govuk-summary-list').remove();
     }
   }
 

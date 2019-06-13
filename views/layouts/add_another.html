@@ -25,7 +25,7 @@
       {{ header(defaultContent.itemsListLabel, size='m') }}
     {% endif %}
 
-    <dl class="add-another-list">
+    <dl class="govuk-summary-list">
       {% for fieldName, item in fields.items.fields %}
         {% call addAnotherItem(item, deleteUrl(loop.index0), editUrl(loop.index0), loop.index) %}
           {% block item %}{{ item.value }}{% endblock %}
@@ -69,20 +69,21 @@
 
 {# Macro specific to this layout #}
 {% macro addAnotherItem(field, deleteUrl, editUrl, itemNumber, noItems=false) %}
-  <dt class="govuk-visually-hidden">{% if field %} {{ safeId(field.id) }} {% endif %}</dt>
-  <dd {% if field %} id="add-another-list-{{ safeId(field.id) }}" {% endif %} class="add-another-list-item {{ errorClass(field) }} {% if noItems %}noItems{% endif %}">
-    {{ errorsFor(field) }}
-    {{ caller() }}
-  </dd>
-  {% if deleteUrl or editUrl %}
-    <dd class="add-another-list-controls">
-      {% if editUrl %}
-        <a href="{{ editUrl }}" class="add-another-edit-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
-      {% endif %}
-      {% if deleteUrl %}
-        <a href="{{ deleteUrl }}" class="add-another-delete-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
-      {% endif %}
+  <div class="govuk-summary-list__row">
+    <dd {% if field %} id="add-another-list-{{ safeId(field.id) }}" {% endif %} class="govuk-summary-list__value {{ errorClass(field) }} {% if noItems %}noItems{% endif %}">
+      {{ errorsFor(field) }}
+      {{ caller() }}
     </dd>
-  {% endif %}
+    {% if deleteUrl or editUrl %}
+      <dd class="govuk-summary-list__actions">
+        {% if editUrl %}
+          <a href="{{ editUrl }}" class="add-another-edit-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+        {% endif %}
+        {% if deleteUrl %}
+          <a href="{{ deleteUrl }}" class="add-another-delete-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+        {% endif %}
+      </dd>
+    {% endif %}
+  </div> 
 {% endmacro %}
 

@@ -1,6 +1,5 @@
 @import 'node_modules/govuk-frontend/all';
 @import 'check-your-answers';
-@import 'add-another';
 @import 'language-switch';
 @import 'text-reference';
 @import 'progress-list';
@@ -130,42 +129,6 @@ label.form-label[for="signer"] {
 
 .internal-server-error {
   margin-top: 30px;
-}
-
-.add-another-list {
-
-  border-top: 1px solid $govuk-border-colour;
-
-  > * {
-    border-bottom: 1px solid $govuk-border-colour;
-    padding: 15px 0;
-  }
-
-  .add-another-list-item {
-    width: 65%;
-    display: inline-block;
-    margin:0;
-    @extend .govuk-body;
-    @include wrap;
-    &.noItems {
-      width: 100%;
-    }
-  }
-
-  .add-another-list-controls {
-    display: inline-block;
-    float: right;
-    width: 35%;
-
-    .add-another-edit-link {
-      padding-right: 40%;
-    }
-  }
-}
-
-.add-another-add-link, [for=uploadEv]{
-  @extend .govuk-button;
-  @extend .govuk-button--secondary; 
 }
 
 .policy-links {
@@ -392,3 +355,8 @@ label.form-label[for="signer"] {
 .js-enabled .js-hidden {
   display: none;
   visibility: hidden; }
+  
+.add-another-add-link, [for=uploadEv]{
+  @extend .govuk-button;
+  @extend .govuk-button--secondary; 
+}
