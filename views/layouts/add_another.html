@@ -2,6 +2,10 @@
 {% from "components/fields.njk" import formSection, errorClass, errorsFor %}
 {% from "components/header.njk" import header %}
 
+
+
+{% block fields %}
+
 {% set defaultContent = {
   addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Add another item',
   itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'item',
@@ -11,8 +15,6 @@
   editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Add another item'
 }
 %}
-
-{% block fields %}
 
 {% if isListMode %}
 

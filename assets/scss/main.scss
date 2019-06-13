@@ -16,6 +16,7 @@
 @import 'super-wrap';
 @import '../../components/postcodeLookup/main';
 
+
 .hidden,
 .js-enabled .js-hidden {
   display: none;
@@ -48,13 +49,17 @@ label.form-label[for="signer"] {
 }
 
 .after-form {
-  padding-top: 2em;
 
   &.time-out-message {
     color: #454a4c;
     font-size: 16px;
   }
+
+  p {
+    margin: 0;
+  }
 }
+
 
 .mrn-image {
   padding-bottom: 1.5em;
@@ -145,6 +150,8 @@ label.form-label[for="signer"] {
   .add-another-list-item {
     width: 65%;
     display: inline-block;
+    margin:0;
+    @extend .govuk-body;
     @include wrap;
     &.noItems {
       width: 100%;

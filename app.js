@@ -16,16 +16,16 @@ const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
-const { assigned } = require('check-types');
 const url = require('url');
-const nunjucks = require('express-nunjucks');
+const nunjucks = require('nunjucks');
+const expressNunjucks = require('express-nunjucks');
 const { configureWebpack } = require('./webpack');
 
 /* eslint-enable max-len */
 const idam = require('middleware/idam');
 
 const app = express();
-
+const isDev = () => process.env.NODE_ENV === 'development';
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const protocol = config.get('node.protocol');
@@ -108,10 +108,6 @@ app.use('/sessions', (req, res) => {
 // because of a bug with iphone, we need to remove the mime types from accept
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 
-if (!assigned('/')) throw Error('baseUrl not defined');
-
-app.set('assetPath', url.resolve('/', 'assets/'));
-
 configureWebpack(app);
 
 app.set('views', [
@@ -125,8 +121,14 @@ app.set('views', [
 ]);
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
+app.locals.asset_path = url.resolve('/', 'assets/');
 
-nunjucks(app, {
+expressNunjucks(app, {
+  watch: isDev(),
+  noCache: isDev(),
+  throwOnUndefined: true,
+  // see https://git.io/fh9yw
+  loader: nunjucks.FileSystemLoader,
   globals: {
     isArray(value) {
       return Array.isArray(value);
@@ -172,10 +174,7 @@ nunjucks(app, {
     timeOutMessage: content.timeout.message,
     relatedContent: content.relatedContent,
     paths,
-    urls,
-    autoescape: true,
-    express: app,
-    noCache: true
+    urls
   }
 });
 
