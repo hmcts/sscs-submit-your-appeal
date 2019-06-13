@@ -156,11 +156,8 @@ expressNunjucks(app, {
         .replace(/\s/g, '-');
     },
     phase: 'BETA',
+    feedbackLink: urls.phaseBanner,
     environment: process.env.NODE_ENV,
-    banner: `${content.phaseBanner.newService}
-      <a href="${urls.phaseBanner}" target="_blank">
-          ${content.phaseBanner.reportProblem}
-      </a>${content.phaseBanner.improve}`,
     inactivityTimeout: {
       title: content.inactivityTimeout.title,
       expiringIn: content.inactivityTimeout.expiringIn,
