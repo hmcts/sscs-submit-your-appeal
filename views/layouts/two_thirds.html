@@ -5,10 +5,6 @@
 {% set assetPath = '/assets' %}
 {% from "components/header/macro.njk" import govukHeader %}
 
-{% set defaultContent = {
-  title: 'GOV.UK'
-} %}
-
 {% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
 
 {% block header %}

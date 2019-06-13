@@ -1,8 +1,8 @@
 module.exports = {
 
-  question: '.cya-question',
-  answer: '.cya-answer',
-  change: '.cya-change',
+  question: '.govuk-summary-list__key',
+  answer: '.govuk-summary-list__value',
+  change: '.govuk-summary-list__actions',
 
   benefitType: '#cya-benefittype-benefit-name',
 

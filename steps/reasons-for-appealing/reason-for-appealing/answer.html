@@ -1,29 +1,28 @@
 {% for item in fields.items.value %}
-    <div class="govuk-check-your-answers cya-questions-short">
-        <dl id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="cya-whatYouDisagreeWith">
-            <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
-            <dd class="cya-answer">
+    
+        <div id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
+            <dd class="govuk-summary-list__value">
                 {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
                     {{ item.whatYouDisagreeWith|safe }}
                 {% else %}
                     {{ content.cya.reasonForAppealing.notProvided }}
                 {% endif %}
             </dd>
-            <dd class="cya-change">
+            <dd class="govuk-summary-list__actions">
                 <a href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a>
                 <span class="govuk-visually-hidden"> {{ content.cya.reasonForAppealing.reason }} {{ loop.index }}</span>
             </dd>
-        </dl>
-        <dl>
-            <dt class="cya-question">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
-            <dd class="cya-answer">
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
+            <dd class="govuk-summary-list__value">
                 {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
                     {{ item.reasonForAppealing|safe }}
                 {% else %}
                     {{ content.cya.reasonForAppealing.notProvided }}
                 {% endif %}
             </dd>
-            <dd class="cya-change"></dd>
-        </dl>
-    </div>
+            <dd class="govuk-summary-list__actions"></dd>
+        </div>
 {% endfor %}

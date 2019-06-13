@@ -1,12 +1,10 @@
 @import 'node_modules/govuk-frontend/all';
-@import 'check-your-answers';
 @import 'language-switch';
 @import 'text-reference';
 @import 'progress-list';
 @import 'document-list';
 @import '~accessible-autocomplete/src/autocomplete.css';
 @import '~jquery-modal/jquery.modal.css';
-@import 'check-your-answers';
 @import 'bootstrap-datepicker1.8.0.min';
 @import 'date-picker';
 @import 'h-progress-bar';
@@ -75,7 +73,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#postCode, #phoneNumber, #enterMobile, #name\.first, #name\.last, #name\.organisation {
+#postCode, #phoneNumber, #enterMobile, #name\.first, #name\.last, #name\.organisation, #signer {
   &.govuk-input {
     @extend .govuk-\!-width-one-half;
   }

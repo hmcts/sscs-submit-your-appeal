@@ -15,7 +15,7 @@ describe('add reason', () => {
 
   before(done => {
     const jsdom = new JSDOM(`<body><div id="dynamic-form">
-            <ul class="govuk-summary-list"></ul>form goes here</div></body>`);
+            <ul class="govuk-list"></ul>form goes here</div></body>`);
 
     const { window } = jsdom;
     const { document } = window;

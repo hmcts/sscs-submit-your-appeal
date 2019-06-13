@@ -1,14 +1,12 @@
-<div class="govuk-check-your-answers cya-questions-short">
     {% for question, answer in cyaArrangements %}
-        <dl class="cya-hearingArrangements">
-            <dt class="cya-question">{{ content.cya[question] }}</dt>
-            <dd class="cya-answer">{{ answer|safe }}</dd>
-            <dd class="cya-change">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">{{ content.cya[question] }}</dt>
+            <dd class="govuk-summary-list__value">{{ answer|safe }}</dd>
+            <dd class="govuk-summary-list__actions">
                 {% if loop.first %}
                     <a href="{{ path }}">{{ content.cya.change }}</a>
                     <span class="govuk-visually-hidden"> {{ content.cya.arrangements }}</span>
                 {% endif %}
             </dd>
-        </dl>
+        </div>
     {% endfor %}
-</div>

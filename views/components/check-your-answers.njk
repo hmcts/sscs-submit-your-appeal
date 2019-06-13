@@ -8,7 +8,7 @@
         {{ caller() }}
       {% else %}
         {% if isArray(answer) %}
-          <ul>
+          <ul class="govuk-list">
             {% for line in answer %}
               <li>{{ line }}</li>
             {% endfor %}

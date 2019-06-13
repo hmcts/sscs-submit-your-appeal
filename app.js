@@ -126,7 +126,7 @@ app.locals.asset_path = url.resolve('/', 'assets/');
 expressNunjucks(app, {
   watch: isDev(),
   noCache: isDev(),
-  throwOnUndefined: isDev(),
+  throwOnUndefined: false,
   // see https://git.io/fh9yw
   loader: nunjucks.FileSystemLoader,
   globals: {
