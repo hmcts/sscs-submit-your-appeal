@@ -1,8 +1,7 @@
 {% set config = {'autocomplete': 'off'} %}
 {% extends "components/globals.html" %}
 {% extends "layouts/add_another.html" %}
-{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
-{% from "components/formElements.html" import textarea %}
+{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor, textarea %}
 
 {% set titleHead %}
     {{ content.titleHead | safe if isListMode }}
