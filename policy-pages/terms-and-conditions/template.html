@@ -12,7 +12,7 @@
     <h1 class="govuk-heading-l">{{ title }}</h1>
     <p class="govuk-body">
         {{ termsAndConditions.termsOfUse }}
-        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+        <a class="govuk-link" href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
     </p>
 
     <h2 class="govuk-heading-m">{{ whoWeAre.title }}</h2>
@@ -26,12 +26,12 @@
     <h2 class="govuk-heading-m">{{ dataStored.title }}</h2>
     <p class="govuk-body">
         {{ dataStored.our }}
-        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+        <a class="govuk-link" href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
         {{ dataStored.privacy }}
     </p>
     <p class="govuk-body">
         {{ dataStored.our }}
-        <a href="/cookie-policy">{{ termsAndConditions.links.cookie.name }}</a>
+        <a class="govuk-link" href="/cookie-policy">{{ termsAndConditions.links.cookie.name }}</a>
         {{ dataStored.cookie }}
     </p>
 
@@ -66,7 +66,7 @@
 
     <h2 class="govuk-heading-m">{{ welsh.title }}</h2>
     <p class="govuk-body">{{ welsh.instructions }}
-        <a href={{welsh.formLink}}>{{welsh.linkLabel}}</a>.
+        <a class="govuk-link" href={{welsh.formLink}}>{{welsh.linkLabel}}</a>.
     </p>
     <p class="govuk-body">{{ welsh.inDevelopment }}</p>
 
@@ -97,6 +97,6 @@
         <li>{{ liability }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body"><a href="/contact-us">{{ termsAndConditions.links.contact.name }}</a>{{ disclaimer.furtherInfo }}</p>
+    <p class="govuk-body"><a class="govuk-link" href="/contact-us">{{ termsAndConditions.links.contact.name }}</a>{{ disclaimer.furtherInfo }}</p>
 
 {%- endblock %}

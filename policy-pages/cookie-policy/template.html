@@ -20,7 +20,7 @@
         <li>{{ use }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ usedInService.more }}<a href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
+    <p class="govuk-body">{{ usedInService.more }}<a class="govuk-link" href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
 
     <h2 class="govuk-heading-m">{{ howAreTheyUsed.title }}</h2>
     <p class="govuk-body">{{ howAreTheyUsed.description }}</p>
@@ -30,10 +30,10 @@
         <li>{{ info }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ howAreTheyUsed.googleShare }}<a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
+    <p class="govuk-body">{{ howAreTheyUsed.googleShare }}<a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
     <p class="govuk-body">
         {{ howAreTheyUsed.optOut.youCan }}
-        <a href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google }}</a>
+        <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google }}</a>
         {{ howAreTheyUsed.optOut.access }}
     </p>
 

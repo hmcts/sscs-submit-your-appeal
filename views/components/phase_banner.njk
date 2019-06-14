@@ -16,7 +16,7 @@
 
 {% macro phaseBanner(phase='ALPHA', feedbackLink='#') %}
 {% if phase != 'LIVE' %}
-    {% set html %}This is a new service – your <a class="govuk-link" target="_blank" href="{{ feedbackLink }}">feedback</a> will help us to improve it.{% endset %}
+    {% set html %}This is a new service. <a class="govuk-link" target="_blank" href="{{ feedbackLink }}">Report a problem</a> and help improve it for others.{% endset %}
     {{ govukPhaseBanner({
         tag: {
             text: phase
