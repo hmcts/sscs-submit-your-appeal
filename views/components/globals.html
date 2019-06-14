@@ -1,4 +1,5 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
+{% from "footer/macro.njk" import govukFooter %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(phase, feedbackLink) %}
@@ -46,19 +47,27 @@
     <noscript> <img alt="no javascript" src="/assets/images/noJS.png" width="1" height="1" /></noscript>
 {% endblock %}
 
-{% block cookie_message %}
-    <p class="govuk-body">
-        GOV.UK uses cookies to make the site simpler.
-        <a href="/cookie-policy" title="Find out more about cookies">Find out more about cookies</a>
-    </p>
-{% endblock %}
-
-
-{% block footer_support_links %}
-    <ul>
-    <li><a href="https://hmcts-access.service.gov.uk/contact-us">Contact us</a></li>
-    <li><a href="/terms-and-conditions">Terms and conditions</a></li>
-    <li><a href="/cookie-policy">Cookies</a></li>
-    <li><a href="/privacy-policy">Privacy policy</a></li>
-    </ul>
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/terms-and-conditions",
+          text: "Contact us"
+        },
+        {
+          href: "#2",
+          text: "Terms and conditions"
+        },
+        {
+          href: "/cookie-policy",
+          text: "Cookies"
+        },
+        {
+          href: "/privacy-policy",
+          text: "Privacy policy"
+        }
+      ]
+    }
+  }) }}
 {% endblock %}

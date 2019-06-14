@@ -8,6 +8,7 @@ import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
+import { CheckCookies } from './check-cookies';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -117,6 +118,8 @@ $(document).ready(() => {
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();
+  const checkCookies = new CheckCookies();
+  checkCookies.init();
 });
 
 $(window).on('unload', () => {
