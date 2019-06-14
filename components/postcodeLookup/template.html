@@ -19,7 +19,7 @@
 
 {% macro customSelect(field, label, options, initialValueText) %}
 
-<div class="{{ errorClass(field) }}">
+<div class="govuk-form-group {{ errorClass(field) }}">
 
   <label class="govuk-label"
          for="{{ field.id }}">
@@ -94,6 +94,6 @@
          name="{{ field.id }}"
          type="text"
          {% if field.value %}value="{{ field.value }}"{% endif %}>
-  <input class="govuk-button" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
+  <input class="govuk-button govuk-!-margin-0" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
 </div>
 {% endmacro %}
