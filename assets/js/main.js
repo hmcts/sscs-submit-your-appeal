@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash';
 import { frontend, redis } from '../../config/default';

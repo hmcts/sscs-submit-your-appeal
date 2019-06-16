@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-blacklist */
 import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
-import $ from 'jquery';
+import * as $ from 'jquery';
 import moment from 'moment/moment';
 import { differenceWith, indexOf, isEqual, last } from 'lodash';
 import datePickerUtils from './date-picker-utils';
@@ -259,4 +259,4 @@ const datePicker = {
 
 };
 
-module.exports = datePicker;
+export default datePicker;

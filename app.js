@@ -19,7 +19,6 @@ const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/f
 const url = require('url');
 const nunjucks = require('nunjucks');
 const expressNunjucks = require('express-nunjucks');
-const { configureWebpack } = require('./webpack');
 
 /* eslint-enable max-len */
 const idam = require('middleware/idam');
@@ -40,8 +39,10 @@ if (allowSaveAndReturn) {
 const PORT_RANGE = 50;
 app.set('portFrom', port);
 app.set('portTo', port + PORT_RANGE);
-
+app.set('assetPath', url.resolve('/', 'assets/'));
 app.get('/appeal');
+
+app.use('/assets', express.static(path.resolve('dist')));
 
 // Parsing cookies for the stored encrypted session key
 app.use(cookieParser());
@@ -58,6 +59,7 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ['\'self\''],
     fontSrc: ['\'self\' data:'],
+    styleSrc: ['\'self\'', '\'unsafe-inline\''],
     scriptSrc: [
       '\'self\'',
       '\'unsafe-inline\'',
@@ -80,7 +82,6 @@ const sha256s = [
   config.get('ssl.hpkp.sha256s'),
   config.get('ssl.hpkp.sha256sBackup')
 ];
-
 
 // Helmet HTTP public key pinning
 app.use(helmet.hpkp({ maxAge, sha256s }));
@@ -107,8 +108,6 @@ app.use('/sessions', (req, res) => {
 });
 // because of a bug with iphone, we need to remove the mime types from accept
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
-
-configureWebpack(app);
 
 app.set('views', [
   path.resolve(__dirname, 'steps'),
@@ -224,6 +223,8 @@ app.use(paths.monitoring, healthcheck.configure({
 }));
 
 app.use('/', policyPages);
-app.use('/', (req, res) => res.redirect('/entry'));
+app.get('/', (req, res) => {
+  res.redirect('/entry');
+});
 
 module.exports = app;

@@ -1,6 +1,6 @@
-const $ = require('jquery');
-const moment = require('moment');
-const { find } = require('lodash');
+import * as $ from 'jquery';
+import moment from 'moment';
+import { find } from 'lodash';
 
 const datePickerUtils = {
 
@@ -58,4 +58,4 @@ const datePickerUtils = {
 
 };
 
-module.exports = datePickerUtils;
+export default datePickerUtils;
