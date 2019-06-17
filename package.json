@@ -117,5 +117,9 @@
     "webpack-dev-middleware": "^3.7.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
+  },
+  "resolutions": {
+    "braces": "^2.3.2",
+    "js-yaml": "3.13.1"
   }
 }
