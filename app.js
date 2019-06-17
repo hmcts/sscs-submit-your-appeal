@@ -19,6 +19,7 @@ const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/f
 const url = require('url');
 const nunjucks = require('nunjucks');
 const expressNunjucks = require('express-nunjucks');
+const expressStaticGzip = require('express-static-gzip');
 
 /* eslint-enable max-len */
 const idam = require('middleware/idam');
@@ -42,7 +43,7 @@ app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
 app.get('/appeal');
 
-app.use('/assets', express.static(path.resolve('dist')));
+app.use('/assets', expressStaticGzip(path.resolve('dist')));
 
 // Parsing cookies for the stored encrypted session key
 app.use(cookieParser());
