@@ -60,6 +60,7 @@
     "js-base64": "^2.5.1",
     "libphonenumber-js": "^1.7.19",
     "lodash": "^4.17.4",
+    "lodash-es": "^4.17.11",
     "moment": "^2.18.1",
     "request": "^2.87.0",
     "request-promise": "^4.2.4",

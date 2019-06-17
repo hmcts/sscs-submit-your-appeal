@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-blacklist */
-import bootstrapDatepicker from './bootstrap-datepicker1.8.0.min';
+import './bootstrap-datepicker1.8.0.min';
 import * as $ from 'jquery';
 import moment from 'moment/moment';
-import { differenceWith, indexOf, isEqual, last } from 'lodash';
+import { differenceWith, indexOf, isEqual, last } from 'lodash-es';
 import datePickerUtils from './date-picker-utils';
 const eight = 8;
 

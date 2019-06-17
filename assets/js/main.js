@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
 import './polyfill/array-from';
-import { remove } from 'lodash';
+import { remove } from 'lodash-es';
 import { frontend, redis } from '../../config/default';
 import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
@@ -19,7 +19,7 @@ let evidenceUpload;
   Some selects are not to be enhanced, the following array and function are
   there to manage the exceptions, read discussion on SSCS-3960 for context
 */
-const nonEhanceableSelects = ['dwpIssuingOffice', 'title'];
+const nonEhanceableSelects = ['dwpIssuingOffice', 'title', 'postcodeAddress'];
 
 function isNonEhanceableSelect(select) {
   return nonEhanceableSelects.includes(select.id);

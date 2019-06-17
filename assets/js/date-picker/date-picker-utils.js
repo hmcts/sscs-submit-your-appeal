@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
 import moment from 'moment';
-import { find } from 'lodash';
+import { find } from 'lodash-es';
 
 const datePickerUtils = {
 

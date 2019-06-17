@@ -3,7 +3,7 @@
 import $ from 'jquery';
 import fieldTemplates from './../../views/components/fields.njk';
 import errorSummary from './../../views/components/errors.njk';
-import { flatten, includes } from 'lodash';
+import { flatten, includes } from 'lodash-es';
 import content from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
 
 class AddReason {

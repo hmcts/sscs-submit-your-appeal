@@ -2,6 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 const packageJson = require.resolve('govuk-frontend/package.json');
 const govUkFrontendRoot = path.resolve(packageJson, '..');
@@ -16,6 +17,7 @@ module.exports = {
     path.resolve(__dirname, 'assets/js/main.js')
   ],
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin(
       [
@@ -30,6 +32,11 @@ module.exports = {
     path: path.resolve('dist'),
     filename: '[name].js',
     publicPath: '/assets'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   externals: [{ window: 'window' }],
   module: {
