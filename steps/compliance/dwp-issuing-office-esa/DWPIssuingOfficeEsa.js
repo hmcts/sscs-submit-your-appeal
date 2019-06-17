@@ -30,7 +30,8 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
       'Sheffield DRT',
       'Springburn DRT',
       'Watford DRT',
-      'Wellingborough DRT'
+      'Wellingborough DRT',
+      'Worthing DRT'
     ]);
   }
 
