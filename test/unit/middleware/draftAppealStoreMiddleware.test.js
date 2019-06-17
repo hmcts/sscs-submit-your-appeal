@@ -241,6 +241,24 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       }
     });
 
+    // eslint-disable-next-line max-len
+    class saveToDraftStoreCYAClass extends draftAppealStoreMiddleware.SaveToDraftStoreCYA {
+      next() {
+        sinon.spy();
+      }
+      field() {
+        sinon.spy();
+      }
+    }
+
+    const saveToDraftStoreCYA = new saveToDraftStoreCYAClass({
+      journey: {
+        steps: {
+          BenefitType: paths.start.benefitType
+        }
+      }
+    });
+
     describe('RestoreFromDraftStore', () => {
       it('Expected Middleware count:', () => {
         expect(restoreFromDraftStore.middleware).to.have.length(3);
@@ -256,6 +274,12 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('SaveToDraftStore', () => {
       it('Expected Middleware count:', () => {
         expect(saveToDraftStore.middleware).to.have.length(10);
+      });
+    });
+
+    describe('saveToDraftStoreCYA', () => {
+      it('Expected Middleware count:', () => {
+        expect(saveToDraftStoreCYA.middleware).to.have.length(11);
       });
     });
 

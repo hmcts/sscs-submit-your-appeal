@@ -1,7 +1,7 @@
 const {
-  CheckYourAnswers: CYA,
   section
 } = require('@hmcts/one-per-page/checkYourAnswers');
+const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
 const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
@@ -22,7 +22,7 @@ const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
-class CheckYourAppeal extends CYA {
+class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
     super(...args);
     this.sendToAPI = this.sendToAPI.bind(this);
