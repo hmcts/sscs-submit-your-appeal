@@ -1,6 +1,6 @@
 {
   "node": {
-    "protocol": "http",
+    "protocol": "https",
     "port": 3000,
     "baseUrl": "BASE_URL"
   },
