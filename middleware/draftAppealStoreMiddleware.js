@@ -5,7 +5,7 @@ const config = require('config');
 const Base64 = require('js-base64').Base64;
 const content = require('../content.en.json');
 const {
-  CheckYourAnswers: CYA,
+  CheckYourAnswers: CYA
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
 
