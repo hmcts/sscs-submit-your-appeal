@@ -6,9 +6,9 @@ function enterDateCantAttendAndContinue(date, link) {
   const I = this;
 
   I.click(link);
-  I.fillField('.govuk-form-group-day input', date.date().toString());
-  I.fillField('.govuk-form-group-month input', (date.month() + 1).toString());
-  I.fillField('.govuk-form-group-year input', date.year().toString());
+  I.fillField('input[name*="day"]', date.date().toString());
+  I.fillField('input[name*="month"]', (date.month() + 1).toString());
+  I.fillField('input[name*="year"]', date.year().toString());
   I.click('Continue');
 }
 

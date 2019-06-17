@@ -41,12 +41,12 @@ if (evidenceUploadEnabled) {
     I.see(content.fields.uploadEv.error.totalFileSizeExceeded);
   });
   Scenario('I see an error if I submit the form without uploading a file', I => {
-    I.click('.button');
+    I.click('.govuk-button');
     I.seeElement('.error-summary');
     I.see(content.noItemsError);
   });
   Scenario('SSCS-3768 bug', I => {
-    I.click('.button');
+    I.click('.govuk-button');
     I.seeElement('.error-summary');
     I.see(content.noItemsError);
     I.attachFile('#uploadEv', 'evidence.txt');

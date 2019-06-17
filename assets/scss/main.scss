@@ -189,13 +189,6 @@ label.form-label[for="signer"] {
         }
       }
     }
-    .button {
-      width: inherit;
-    }
-    .button.abort {
-      margin-left: 30px;
-      @extend .govuk-button--secondary;
-    }
   }
 }
 

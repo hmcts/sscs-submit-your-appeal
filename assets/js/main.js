@@ -55,7 +55,7 @@ function initAutocomplete() {
 }
 
 function doNotSubmitTwice() {
-  $('.button').attr('disabled', true);
+  $('.govuk-button').attr('disabled', true);
 }
 
 function initDoNotSubmitTwice() {

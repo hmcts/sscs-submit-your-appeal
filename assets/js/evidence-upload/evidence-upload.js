@@ -162,11 +162,11 @@ class EvidenceUpload {
   }
   attachEventListeners() {
     $(`#${this.elId}`).on('change', this.doTheUpload);
-    $('.button').on('click', this.interceptSubmission);
+    $('.govuk-button').on('click', this.interceptSubmission);
   }
   detachEventListeners() {
     $(`#${this.elId}`).off('change', this.doTheUpload);
-    $('.button').off('click', this.interceptSubmission);
+    $('.govuk-button').off('click', this.interceptSubmission);
   }
   appendForm() {
     const markup = this.buildForm();

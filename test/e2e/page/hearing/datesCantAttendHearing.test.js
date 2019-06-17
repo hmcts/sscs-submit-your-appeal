@@ -27,9 +27,9 @@ Scenario('When I click the Add date link, I go to the page where I can enter dat
   I.see(content.noDates);
   I.click(content.links.add);
   I.see(content.fields.cantAttendDate.legend);
-  I.seeElement('.govuk-form-group-day input');
-  I.seeElement('.govuk-form-group-month input');
-  I.seeElement('.govuk-form-group-year input');
+  I.seeElement('input[name*="day"]');
+  I.seeElement('input[name*="month"]');
+  I.seeElement('input[name*="year"]');
 });
 
 Scenario('When I add a date I see the date in the list', I => {
@@ -85,7 +85,7 @@ Scenario('When I click Continue without filling in the date fields, I see errors
 
 Scenario('When I click Continue when only entering the day field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.govuk-form-group-day input', validDate.date().toString());
+  I.fillField('input[name*="day"]', validDate.date().toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.monthRequired);
   I.see(content.fields.cantAttendDate.error.yearRequired);
@@ -93,7 +93,7 @@ Scenario('When I click Continue when only entering the day field, I see errors',
 
 Scenario('When I click Continue when only entering the month field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.govuk-form-group-month input', (validDate.month() + 1).toString());
+  I.fillField('input[name*="month"]', (validDate.month() + 1).toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.dayRequired);
   I.see(content.fields.cantAttendDate.error.yearRequired);
@@ -101,7 +101,7 @@ Scenario('When I click Continue when only entering the month field, I see errors
 
 Scenario('When I click Continue when only entering the year field, I see errors', I => {
   I.click(content.links.add);
-  I.fillField('.govuk-form-group-year input', validDate.year().toString());
+  I.fillField('input[name*="year"]', validDate.year().toString());
   I.click('Continue');
   I.see(content.fields.cantAttendDate.error.dayRequired);
   I.see(content.fields.cantAttendDate.error.monthRequired);

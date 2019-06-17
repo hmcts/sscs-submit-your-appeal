@@ -23,21 +23,21 @@ Scenario('When I click Continue without filling in the fields I see errors', I =
 });
 
 Scenario('When I click Continue when only entering the day field I see errors', I => {
-  I.fillField('.govuk-form-group-day input', '21');
+  I.fillField('input[name*="day"]', '21');
   I.click('Continue');
   I.see(appellantDOB.date.error.monthRequired);
   I.see(appellantDOB.date.error.yearRequired);
 });
 
 Scenario('When I click Continue when only entering the month field I see errors', I => {
-  I.fillField('.govuk-form-group-month input', '12');
+  I.fillField('input[name*="month"]', '12');
   I.click('Continue');
   I.see(appellantDOB.date.error.yearRequired);
   I.see(appellantDOB.date.error.dayRequired);
 });
 
 Scenario('When I click Continue when only entering the year field I see errors', I => {
-  I.fillField('.govuk-form-group-year input', '1999');
+  I.fillField('input[name*="year"]', '1999');
   I.click('Continue');
   I.see(appellantDOB.date.error.monthRequired);
   I.see(appellantDOB.date.error.dayRequired);
