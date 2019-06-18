@@ -2,9 +2,10 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
+  mode: 'none',
   externals: [
     nodeExternals({
-      whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/]
+      whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/, 'lodash-es']
     })
   ],
   node: {
@@ -29,7 +30,7 @@ module.exports = {
     modules: [path.resolve(__dirname, '../node_modules')]
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         include: /test/,
@@ -37,7 +38,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: [ 'env' ] }
+            options: { presets: ['@babel/preset-env'] }
           }
         ]
       },
