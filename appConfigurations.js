@@ -9,7 +9,6 @@ const os = require('os');
 const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
 const steps = require('steps');
-const expressStaticGzip = require('express-static-gzip');
 const idam = require('middleware/idam');
 const paths = require('paths');
 const policyPages = require('policy-pages/routes');
@@ -165,8 +164,8 @@ const configureJourney = (app, content) => {
   });
 };
 
-const configureMiddleWares = app => {
-  app.use('/assets', expressStaticGzip(path.resolve('dist')));
+const configureMiddleWares = (app, express) => {
+  app.use('/assets', express.static(path.resolve('dist')));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

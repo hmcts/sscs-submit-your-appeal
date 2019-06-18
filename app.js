@@ -30,7 +30,7 @@ app.locals.asset_path = url.resolve('/', 'assets/');
 configureAppRoutes(app);
 
 // Configure App Middlewares
-configureMiddleWares(app);
+configureMiddleWares(app, express);
 
 // Configure Helmet Security Policies.
 configureHelmet(app);

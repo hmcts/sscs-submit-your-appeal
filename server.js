@@ -15,7 +15,8 @@ if (process.env.NODE_ENV === 'development') {
   const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
   app.use(wp);
 
-  wp.waitUntilValid(() => {
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
     https.createServer({
       key: fs.readFileSync('keys/server.key'), // eslint-disable-line
       cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
       const time = stats.endTime - stats.startTime;
       logger.trace(`Webpack build complete in ${time}ms. Hash ${stats.hash}`);
       logger.trace(stats);
+      app.locals.webpackHash = stats.hash;
       app.listen(config.node.port, () => {
         logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
       });

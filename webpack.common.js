@@ -26,11 +26,11 @@ module.exports = {
         { from: imagesGokukFrontend, to: 'images' },
         { from: fontsGokukFrontend, to: 'fonts' }
       ]),
-    new MiniCssExtractPlugin({ filename: '[name].css' })
+    new MiniCssExtractPlugin({ filename: '[name].[hash].css' })
   ],
   output: {
     path: path.resolve('dist'),
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     publicPath: '/assets'
   },
   optimization: {
