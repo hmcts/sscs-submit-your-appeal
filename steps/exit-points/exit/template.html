@@ -2,7 +2,8 @@
 {% from "components/header.njk" import header %}
 
 {% block head -%}
-<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+    <link href="{{ asset_path }}vendors~main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
+    <link href="{{ asset_path }}main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}

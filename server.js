@@ -4,8 +4,8 @@ const config = require('config');
 const https = require('https');
 const fs = require('graceful-fs');
 const webpack = require('webpack');
-const webpackDevConfig = require('./webpack.dev.js');
-const webpackProdConfig = require('./webpack.prod.js');
+const webpackDevConfig = require('./webpack/webpack.dev.js');
+const webpackProdConfig = require('./webpack/webpack.prod.js');
 const webpackMiddleware = require('webpack-dev-middleware');
 
 const logPath = 'server.js';
