@@ -58,6 +58,10 @@ withPipeline("nodejs", product, component) {
     }
   }
 
+  before('smoketest:prod-staging') {
+    env.ALLOW_SAVE_RETURN = "false"
+  }
+  
   before('smoketest:prod') {
     env.ALLOW_SAVE_RETURN = "false"
   }
