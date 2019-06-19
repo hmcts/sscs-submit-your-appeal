@@ -1,4 +1,5 @@
 {% macro answer(question, answer, url, id) %}
+<dl class="govuk-summary-list">
   <div class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
     <dt class="govuk-summary-list__key">
       {{ question }}
@@ -24,4 +25,5 @@
       </a>
     </dd>
   </div>
+</dl>  
 {% endmacro %}

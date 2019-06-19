@@ -1,28 +1,31 @@
 {% for item in fields.items.value %}
-    
-        <div id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
-            <dd class="govuk-summary-list__value">
-                {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
-                    {{ item.whatYouDisagreeWith|safe }}
-                {% else %}
-                    {{ content.cya.reasonForAppealing.notProvided }}
-                {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a>
-                <span class="govuk-visually-hidden"> {{ content.cya.reasonForAppealing.reason }} {{ loop.index }}</span>
-            </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
-            <dd class="govuk-summary-list__value">
-                {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
-                    {{ item.reasonForAppealing|safe }}
-                {% else %}
-                    {{ content.cya.reasonForAppealing.notProvided }}
-                {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions"></dd>
-        </div>
+        <dl class="govuk-summary-list">
+            <div id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
+                <dd class="govuk-summary-list__value">
+                    {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
+                        {{ item.whatYouDisagreeWith|safe }}
+                    {% else %}
+                        {{ content.cya.reasonForAppealing.notProvided }}
+                    {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a>
+                    <span class="govuk-visually-hidden"> {{ content.cya.reasonForAppealing.reason }} {{ loop.index }}</span>
+                </dd>
+            </div>
+        </dl>
+        <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
+                <dd class="govuk-summary-list__value">
+                    {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
+                        {{ item.reasonForAppealing|safe }}
+                    {% else %}
+                        {{ content.cya.reasonForAppealing.notProvided }}
+                    {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions"></dd>
+            </div>
+        </dl>
 {% endfor %}
