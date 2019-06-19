@@ -1,6 +1,8 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/header.njk" import header %}
 
+
+{% block pageTitle %}{{ content.title }}{% endblock %}
 {% block head -%}
     <link href="{{ asset_path }}vendors~main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
     <link href="{{ asset_path }}main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
