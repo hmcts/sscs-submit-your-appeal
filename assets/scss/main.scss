@@ -39,6 +39,11 @@ label.form-label[for="signer"] {
   max-width: 365px;
 }
 
+.autocomplete__option  {
+  @extend .govuk-body;
+  margin: 0;
+}
+
 .after-form {
 
   &.time-out-message {
