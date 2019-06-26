@@ -15,7 +15,7 @@
     <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
     {% if hint %}
-    <span class="govuk-form-hint">{{ hint | safe }}</span>
+    <span class="govuk-hint">{{ hint | safe }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
@@ -266,7 +266,7 @@
     {% endif %}
 
     {% if hint %}
-    <span class="govuk-form-hint">{{ hint | safe }}</span>
+    <span class="govuk-hint">{{ hint | safe }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
