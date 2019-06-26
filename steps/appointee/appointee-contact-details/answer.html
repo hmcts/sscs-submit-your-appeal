@@ -1,7 +1,7 @@
 <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
-        <dd class="cya-govuk-summary-list__value">
+        <dd class="govuk-summary-list__value">
             {{ fields.addressLine1.value | safe }}<br>
             {% if fields.addressLine2.value %}{{ fields.addressLine2.value | safe }}<br>{% endif %}
             {{ fields.townCity.value | safe }}<br>
@@ -17,14 +17,14 @@
 <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question }}</dt>
-        <dd class="cya-govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
+        <dd class="govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
     </div>       
 </dl>
 <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">    
         <dt class="govuk-summary-list__key">{{ content.cya.phoneNumber.question }}</dt>
-        <dd class="cya-govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
+        <dd class="govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
     </div>  
 </dl>     
