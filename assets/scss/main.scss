@@ -51,7 +51,8 @@ label.form-label[for="signer"] {
 .after-form {
 
   &.time-out-message {
-    color: #454a4c;
+    color: $govuk-secondary-text-colour;
+    @extend .govuk-body;
     font-size: 16px;
   }
 
