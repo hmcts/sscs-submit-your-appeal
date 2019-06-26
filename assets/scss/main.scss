@@ -39,9 +39,13 @@ label.form-label[for="signer"] {
   max-width: 365px;
 }
 
-.autocomplete__option  {
+.autocomplete__input, .autocomplete__option  {
   @extend .govuk-body;
   margin: 0;
+}
+
+.autocomplete__option--focused  {
+  color: govuk-colour("white");
 }
 
 .after-form {
