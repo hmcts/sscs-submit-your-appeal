@@ -161,7 +161,7 @@ label.form-label[for="signer"] {
   }
 }
 .modal {
-
+  @extend .govuk-body;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -o-border-radius: 0;
