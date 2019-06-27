@@ -80,14 +80,14 @@ class EvidenceUpload {
       };
     });
     const summary = this.buildErrorSummary(errorSummaryList);
-    $('.error-summary').remove();
+    $('.govuk-error-summary').remove();
     $('.govuk-grid-column-two-thirds').prepend(summary.val);
   }
   handleInlineError(errors) {
     const errorId = 'inline-errors-list';
     const hasErrors = Boolean(errors && errors.length);
     $(`#${errorId}`).remove();
-    $('.govuk-form-group').toggleClass('govuk-form-group-error', hasErrors);
+    $('.govuk-form-group').toggleClass('govuk-form-group--error', hasErrors);
     if (hasErrors) {
       // Trigger custom google tracking event.
       if (errors[0].value === 'MAX_FILESIZE_EXCEEDED_ERROR') {

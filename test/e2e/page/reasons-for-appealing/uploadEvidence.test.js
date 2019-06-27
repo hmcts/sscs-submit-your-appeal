@@ -15,18 +15,18 @@ if (evidenceUploadEnabled) {
 
   Scenario('I can upload correctly a file', I => {
     I.attachFile('#uploadEv', 'evidence.txt');
-    I.dontSeeElement('.error-summary');
+    I.dontSeeElement('.govuk-error-summary');
   });
 
   Scenario('I cannot upload the wrong type of file', I => {
     I.attachFile('#uploadEv', 'evidence.zip');
-    I.seeElement('.error-summary');
+    I.seeElement('.govuk-error-summary');
     I.see(content.fields.uploadEv.error.wrongFileType);
   });
 
   Scenario('I cannot upload a very large file', I => {
     I.attachFile('#uploadEv', 'largefile.txt');
-    I.seeElement('.error-summary');
+    I.seeElement('.govuk-error-summary');
     I.see(content.fields.uploadEv.error.maxFileSizeExceeded);
   });
   Scenario('I cannot upload more than the total amount of bytes', I => {
@@ -37,20 +37,20 @@ if (evidenceUploadEnabled) {
     I.attachFile('#uploadEv', 'largeimage.jpg');
     I.wait(2);
     I.attachFile('#uploadEv', 'largeimage.jpg');
-    I.seeElement('.error-summary');
+    I.seeElement('.govuk-error-summary');
     I.see(content.fields.uploadEv.error.totalFileSizeExceeded);
   });
   Scenario('I see an error if I submit the form without uploading a file', I => {
     I.click('.govuk-button');
-    I.seeElement('.error-summary');
+    I.seeElement('.govuk-error-summary');
     I.see(content.noItemsError);
   });
   Scenario('SSCS-3768 bug', I => {
     I.click('.govuk-button');
-    I.seeElement('.error-summary');
+    I.seeElement('.govuk-error-summary');
     I.see(content.noItemsError);
     I.attachFile('#uploadEv', 'evidence.txt');
-    I.dontSeeElement('.error-summary');
+    I.dontSeeElement('.govuk-error-summary');
     I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
   });
 }
