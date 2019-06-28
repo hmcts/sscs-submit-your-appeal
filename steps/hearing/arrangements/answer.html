@@ -5,7 +5,7 @@
                 <dd class="govuk-summary-list__value">{{ answer|safe }}</dd>
                 <dd class="govuk-summary-list__actions">
                     {% if loop.first %}
-                        <a href="{{ path }}">{{ content.cya.change }}</a>
+                        <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
                         <span class="govuk-visually-hidden"> {{ content.cya.arrangements }}</span>
                     {% endif %}
                 </dd>
