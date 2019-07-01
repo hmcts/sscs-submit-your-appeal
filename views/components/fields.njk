@@ -1,0 +1,379 @@
+{#
+  textbox
+    field - (required) A field object containing name, id and value
+    label - (required) The label to apply to the field
+    hint  - (default = '') Extra hint text to place under the label
+    hideLabel - (default = false) Hides the input label
+
+  Renders a simple text box input field.
+#}
+
+{% macro textarea(field, label, hint="", hideLabel=false, placeholder="", maxlength=0) %}
+
+<div class="govuk-form-group {{ errorClass(field) }}">
+
+    <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+
+    {% if hint %}
+    <span class="govuk-hint">{{ hint | safe }}</span>
+    {% endif %}
+
+    {{ errorsFor(field) }}
+    <textarea placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" class="govuk-textarea" id="{{ field.id }}" name="{{ field.id }}" rows="7"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ field.value | default('') | safe }}</textarea>
+</div>
+{% endmacro %}
+
+
+{% macro textbox(field, label, hint=false, hideLabel=false) %}
+  <div class="govuk-form-group {{ errorClass(field) }}">
+    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label }}</label>
+
+    {%- if hint %}
+      <span class="govuk-hint">
+        {{ hint }}
+      </span>
+    {%- endif %}
+
+    {{ errorsFor(field) }}
+    <input class="govuk-input"
+           id="{{ field.id }}"
+           name="{{ field.id }}"
+           type="text"
+           {% if field.value %}value="{{ field.value }}"{% endif %}>
+  </div>
+{% endmacro %}
+
+{% macro hiddenInput(field, value) %}
+<input type="hidden"
+       name="{{ field.name }}"
+       id="{{ field.id }}"
+       {% if field.value or value %}value="{{ value | default(field.value) }}"{% endif %}>
+{% endmacro %}
+
+{#
+  formSection
+
+  Groups fields in to sections spaced with padding
+#}
+{% macro formSection() %}
+<div>
+  {{ caller() }}
+</div>
+{% endmacro %}
+
+{#
+  selectionButton
+    field                - (required) A field object containing name, id and value
+    option               - (required) Options used to populate the possible answers
+
+    options.label        - (required) The label text to display for this option
+    options.description  - (default = '') Additional information displayed below the label
+    options.value        - (default = label.lowercase()) The value to be sent on post for this option
+    options.disabled     - (default = false) If the option should be initially disabled
+    options.target       - (default = '') Id of the panel to expand if selected
+    type                 - (default = 'radio') The type of the input, either radio or checkbox
+
+  Renders multiple option radio buttons
+#}
+{% macro selectionButton(field,
+                         option={},
+                         type='radio') %}
+  {% set option_value = option.value or option.label|lower %}
+  {% set option_disabled = option.disabled or false %}
+  {% set option_description = option.description or false %}
+
+  {% set typeStyle = "govuk-radios" %}
+  {% if type == 'checkbox' -%}
+    {% set typeStyle = "govuk-checkboxes" %}
+  {%- endif %}
+
+  <div class="{{ typeStyle }}__item"
+    {% if option.target -%}
+    data-target="{{ option.target }}"
+    {%- endif %}>
+    <input id="{{ field.id }}-{{ option_value }}"
+           type="{{ type }}"
+           name="{{ field.id }}"
+           {% if isArray(field.value) and option_value in field.value %}
+           checked="checked"
+           {% endif %}
+           {% if isBoolean(field.value) and field.value == parseBool(option_value) %}
+           checked="checked"
+           {% endif %}
+           {% if field.value == option_value %}
+           checked="checked"
+           {% endif %}
+           {% if option_disabled %}
+           disabled
+           {% endif %}
+           value="{{ option_value }}"
+           class="{{ typeStyle }}__input">
+    {% if option.label -%}
+      <label for="{{ field.id }}-{{ option_value }}" class="govuk-label {{ typeStyle }}__label">
+        {{ option.label }}
+        {% if option_description %}
+            <span class="choice-description">
+              {{ option.description }}
+            </span>
+        {% endif %}
+      </label>
+    {%- endif %}
+  </div>
+{% endmacro %}
+
+{#
+  selectionButtons
+    field          - (required) A field object containing name, id and value
+    label          - (required) The label to apply to the field
+    hint           - (default = '') Extra hint text to place under the label
+    hideQuestion   - (default = true) Hides the question in the legend (for when you have a heading on the page that is the same question)
+    inline         - (default = false) Renders the options inline
+    options        - (default = []) Options used to populate the possible answers
+
+    options.label  - (required) The label text to display for this option
+    options.value  - (default = label.lowercase()) The value to be sent on post for this option
+    options.target - (default = '') Id of the panel to expand if selected
+
+  Renders multiple option radio buttons
+#}
+{% macro selectionButtons(field,
+                          question,
+                          options=[],
+                          hint=false,
+                          hideQuestion=true,
+                          inline=false,
+                          type='radio',
+                          groupClass='') %}
+
+  {% set typeStyle = "govuk-radios" %}
+  {% if type == 'checkbox' -%}
+    {% set typeStyle = "govuk-checkboxes {% if inline %}govuk-checkboxes--inline{% endif %}" %}
+  {%- endif %}
+
+  <div class="govuk-form-group {{ errorClass(field) }} {{ groupClass }}">
+    <fieldset class="govuk-fieldset" id="{{ field.id }}">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl {% if hideQuestion %}govuk-visually-hidden{% endif %}">
+          <h2 class="govuk-heading-m">{{ question }}</h2>
+      </legend>
+      {% if hint -%}
+        <span id="{{ field.id }}-hint" class="hint-text">
+          {{ hint }}
+        </span>
+      {%- endif %}
+      {{ errorsFor(field) }}
+
+      {% if caller %}
+        {{ caller() }}
+      {% else %}
+
+        <div class="{{ typeStyle }} {% if inline %}govuk-radios--inline{% endif %}">
+          {% for option in options -%}
+            {{ selectionButton(field, option, type) }}
+          {%- endfor %}
+        </div>
+      {% endif %}
+    </fieldset>
+  </div>
+{% endmacro %}
+
+
+
+
+{#
+  select
+    field            - (required) A field object containing name, id and value
+    label            - (required) The label to apply to the field
+    hint             - (default = '') Extra hint text to place under the label
+    hideLabel        - (default = false) Hides the selects label (for when a this element is the only field on the page)
+    options          - (default = []) Options used to populate the possible answers
+
+    options.label    - (required) The label text to display for this option
+    options.value    - (default = label.lowercase()) The value to be sent on post for this option
+    options.disabled - (default = false) Prevent the option from being selected
+
+  Renders a select box with multiple options
+#}
+{% macro select(field,
+                label,
+                hint='',
+                hideLabel=false,
+                options=[]) %}
+
+<div class="govuk-form-group {{ errorClass(field) }}">
+
+  <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
+         for="{{ field.id }}">
+    {{ label }}
+    {%- if hint %}
+    <span class="hint-text">
+      {{ hint }}
+    </span>
+    {%- endif %}
+  </label>
+
+  {{ errorsFor(field) }}
+
+  <select id="{{ field.id }}"
+          name="{{ field.id }}"
+          class="govuk-select">
+    {# Default option so no option is preselected #}
+    <option disabled
+            {% if not field.value %}
+            selected
+            {% endif %}
+            value style="display: none"></option>
+
+    {% for option in options -%}
+      {% set option_value = option.value or option.label|lower %}
+      {% set option_disabled = option.disabled or false %}
+
+      <option
+          {% if field.value == option_value %}
+          selected
+          {% endif %}
+          {% if option_disabled %}
+          disabled
+          {% endif %}
+          {% if option_value %}
+          value="{{ option_value }}"
+          {% endif %}>{{ option.label }}</option>
+    {%- endfor %}
+
+  </select>
+
+</div>
+{% endmacro %}
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="full">
+    Full width
+  </label>
+  <input class="govuk-input govuk-!-width-full" id="full" name="full" type="text">
+</div>
+
+
+
+
+
+{% macro date(field, question, hint='', hideQuestion=false, labels={}) %}
+<div
+        id="{{ field.id }}"
+        class="govuk-date-input {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
+
+    {% if not hideQuestion %}
+    <legend class="govuk-form-label-bold">{{ question | safe }}</legend>
+    {% endif %}
+
+    {% if hint %}
+    <span class="govuk-hint">{{ hint | safe }}</span>
+    {% endif %}
+
+    {{ errorsFor(field) }}
+    {{ errorsFor(field.day) }}
+    {{ errorsFor(field.month) }}
+    {{ errorsFor(field.year) }}
+
+    <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
+                id="{{ field.day.id }}"
+                type="number"
+                pattern="[0-9]*"
+                min="1"
+                max="31"
+                name="{{ field.day.id }}"
+                {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
+        </div>       
+    </div>
+
+    <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
+                id="{{ field.month.id }}"
+                type="text"
+                name="{{ field.month.id }}"
+                {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
+        </div>               
+    </div>
+
+    <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+            <label  class="govuk-label govuk-date-input__label" for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
+                id="{{ field.year.id }}"
+                type="number"
+                pattern="[0-9]*"
+                min="1"
+                name="{{ field.year.id }}"
+                {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>
+        </div>   
+    </div>
+
+</div>
+
+{% endmacro %}
+
+{#
+  textarea
+    field - (required) A field object containing name, id and value
+    label - (required) The label to apply to the field
+    hint  - (default = '') Extra hint text to place under the label
+    hideLabel - (default = false) Hides the input label
+    placeholder - (default = '') Adds placeholder text within the field
+
+  Renders a textarea field.
+#}
+{% macro textarea(field, label, hint="", hideLabel=false, placeholder="") %}
+
+    <div class="govuk-form-group {{ errorClass(field) }}">
+        <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+
+        {% if hint %}
+            <span class="govuk-hint">{{ hint | safe }}</span>
+        {% endif %}
+
+        {{ errorsFor(field) }}
+        <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') }}</textarea>
+    </div>
+
+{% endmacro %}
+
+
+{% macro errorsFor(field) -%}
+  {% if field.errors %}
+  {% for error in field.errors -%}
+    <span class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> {{ error | safe}}
+    </span>
+  {%- endfor %}
+  {% endif %}
+{%- endmacro %}
+
+{% macro errorClass(field, type='group') -%}
+  {% if field.errors and field.errors|length > 0 %}
+    govuk-form-group--error
+  {% endif %}
+{%- endmacro %}
+
+{#
+  fileupload
+    field - (required) A field object containing name, id and value
+    label - (default = 'upload-file') The label to apply to the field
+    acceptFileTypes  - (default = '') Restrict input to a specific list of file extensions
+
+  Renders a file upload control
+#}
+{% macro fileupload(field, label="Upload file", acceptFileTypes="") %}
+
+    <div class="govuk-form-group {{ errorClass(field) }}">
+
+        <label for="{{ field.id }}">{{ label }}</label>
+        {{ errorsFor(field) }}
+        <input name="{{ field.name }}" id="{{ field.id }}" type="file" accept="{{ acceptFileTypes }}"  />
+
+    </div>
+
+{% endmacro %}

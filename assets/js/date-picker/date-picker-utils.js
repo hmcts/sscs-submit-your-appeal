@@ -1,6 +1,6 @@
-const $ = require('jquery');
-const moment = require('moment');
-const { find } = require('lodash');
+import * as $ from 'jquery';
+import moment from 'moment';
+import { find } from 'lodash-es';
 
 const datePickerUtils = {
 
@@ -42,7 +42,7 @@ const datePickerUtils = {
     };
     if (day === '1') {
       // eslint-disable-next-line max-len
-      const html = `<span>${day}</span><p class="first-of-month" aria-label="${fullMonth}">${month}</p>`;
+      const html = `<span>${day}</span><p class="govuk-body first-of-month" aria-label="${fullMonth}">${month}</p>`;
       displayMonth.content = html;
     }
     return displayMonth;
@@ -58,4 +58,4 @@ const datePickerUtils = {
 
 };
 
-module.exports = datePickerUtils;
+export default datePickerUtils;

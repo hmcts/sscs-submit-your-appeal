@@ -15,9 +15,9 @@ function enterAppellantNameAndContinue(title, firstName, lastName) {
 function enterAppellantDOBAndContinue(day, month, year) {
   const I = this;
 
-  I.fillField('.form-group-day input', day);
-  I.fillField('.form-group-month input', month);
-  I.fillField('.form-group-year input', year);
+  I.fillField('input[name*="day"]', day);
+  I.fillField('input[name*="month"]', month);
+  I.fillField('input[name*="year"]', year);
   I.click('Continue');
 }
 

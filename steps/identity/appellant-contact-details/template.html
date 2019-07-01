@@ -1,8 +1,8 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import textbox, formSection %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ title | safe }}
@@ -12,7 +12,7 @@
 
     {% call formSection() %}
 
-        <p>{{ subtitle}}</p>
+        <p class="govuk-body">{{ subtitle}}</p>
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
             {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}

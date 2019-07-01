@@ -157,7 +157,7 @@ Scenario('Enters a reason for appealing, then removes the reason and sees errors
     }
   );
   I.click('Continue');
-  I.seeElement('#error-summary-heading');
+  I.seeElement('#error-summary-title');
   I.addAReasonForAppealing(
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,

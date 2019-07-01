@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
-import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
+import fieldTemplates from '../../../views/components/fields.njk';
+import errorSummary from '../../../views/components/errors.njk';
 import fileTypeWhiteList
   from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
 
@@ -10,7 +10,7 @@ class EvidenceUpload {
     this.elContainer = elContainer;
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
-    this.listToRead = '.add-another-list';
+    this.listToRead = '.govuk-summary-list';
     this.doTheUpload = this.doTheUpload.bind(this);
     this.interceptSubmission = this.interceptSubmission.bind(this);
 
@@ -24,7 +24,7 @@ class EvidenceUpload {
     return $(selector).length && $(selector).val();
   }
   getNumberForNextItem() {
-    const nodes = $(`${this.listToRead} dd.add-another-list-item`)
+    const nodes = $(`${this.listToRead} dd.govuk-summary-list__value`)
       .toArray()
       .map(item => parseInt(item.id.split('-').pop(), 10))
       .sort();
@@ -80,14 +80,14 @@ class EvidenceUpload {
       };
     });
     const summary = this.buildErrorSummary(errorSummaryList);
-    $('.error-summary').remove();
-    $('.column-two-thirds').prepend(summary.val);
+    $('.govuk-error-summary').remove();
+    $('.govuk-grid-column-two-thirds').prepend(summary.val);
   }
   handleInlineError(errors) {
     const errorId = 'inline-errors-list';
     const hasErrors = Boolean(errors && errors.length);
     $(`#${errorId}`).remove();
-    $('.form-group').toggleClass('form-group-error', hasErrors);
+    $('.govuk-form-group').toggleClass('govuk-form-group--error', hasErrors);
     if (hasErrors) {
       // Trigger custom google tracking event.
       if (errors[0].value === 'MAX_FILESIZE_EXCEEDED_ERROR') {
@@ -102,7 +102,8 @@ class EvidenceUpload {
           uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
       }
 
-      $('label').after(`<span id="${errorId}" class="error-message">${errors[0].errors[0]}</span>`);
+      // eslint-disable-next-line max-len
+      $('label').after(`<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`);
     }
   }
   hideUnnecessaryMarkup() {
@@ -141,7 +142,7 @@ class EvidenceUpload {
       },
       error: error => {
         if (error) {
-          $('.error-message').remove();
+          $('.govuk-error-message').remove();
           $(`#${this.elId}`).val('');
           /* eslint-disable max-len */
           const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
@@ -161,11 +162,11 @@ class EvidenceUpload {
   }
   attachEventListeners() {
     $(`#${this.elId}`).on('change', this.doTheUpload);
-    $('.button').on('click', this.interceptSubmission);
+    $('.govuk-button').on('click', this.interceptSubmission);
   }
   detachEventListeners() {
     $(`#${this.elId}`).off('change', this.doTheUpload);
-    $('.button').off('click', this.interceptSubmission);
+    $('.govuk-button').off('click', this.interceptSubmission);
   }
   appendForm() {
     const markup = this.buildForm();

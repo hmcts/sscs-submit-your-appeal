@@ -4,7 +4,7 @@ async function hasErrorClass(item) {
   const I = this;
 
   const classes = await I.grabAttributeFrom(`${item} div`, 'class');
-  const hasClass = classes.includes('form-group-error');
+  const hasClass = classes.includes('govuk-form-group--error');
   assert.equal(hasClass, true);
 }
 

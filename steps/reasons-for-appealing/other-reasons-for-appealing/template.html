@@ -1,8 +1,8 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import textarea %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/fields.njk" import textarea %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
 {{ content.title | safe }}
@@ -12,8 +12,8 @@
 
 {% call formSection() %}
 
-<p>{{ content.subtitle }}</p>
-<p>{{ content.additonalInfo }}</p>
+<p class="govuk-body">{{ content.subtitle }}</p>
+<p class="govuk-body">{{ content.additonalInfo }}</p>
 
 {{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true) }}
 

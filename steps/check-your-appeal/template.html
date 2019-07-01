@@ -1,7 +1,7 @@
 {% set config = {'autocomplete': 'off'} %}
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/check_your_answers.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% extends "layouts/check_your_answers.html" %}
+{% from "components/fields.njk" import textbox, formSection %}
 
 {% block head %}
 {{ super() }}
@@ -10,7 +10,7 @@
     </noscript>
 {% endblock %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set pageContent = {
     sendApplication: content.submitButton.value
@@ -25,10 +25,10 @@
 {% endblock %}
 
 {% block statement_of_truth_content %}
-    {{ header(content.header, size='medium') }}
-    <p>{{ content.information }}</p>
-    <p>{{ content.permission }}</p>
-    <p>{{ content.agree | safe }}</p>
+    {{ header(content.header, size='m') }}
+    <p class="govuk-body">{{ content.information }}</p>
+    <p class="govuk-body">{{ content.permission }}</p>
+    <p class="govuk-body">{{ content.agree | safe }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}

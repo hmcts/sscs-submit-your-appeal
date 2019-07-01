@@ -1,8 +1,8 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
+{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -10,11 +10,11 @@
 
 {% block fields %}
 
-        <p>{{ content.subtitle}}</p>
+        <p class="govuk-body">{{ content.subtitle}}</p>
 
-        <fieldset id="{{ fields.name.id }}" class="form-group {{ errorClass(fields.name) }}">
+        <div id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
 
-            <legend class="visually-hidden">{{ content.title | safe }}</legend>
+            <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
 
             {{ errorsFor(fields.name) }}
 
@@ -23,7 +23,7 @@
             {{ textbox(fields.name.last,     content.fields.name.last.title) }}
             {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
 
-        </fieldset>
+        </div>
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
             {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
             {{ textbox(fields.addressLine2, content.fields.addressLine2.title) }}

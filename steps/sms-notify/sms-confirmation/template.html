@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/fields.njk" import formSection %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
 {{ content.title | safe }}
@@ -9,10 +9,10 @@
 
 {% block fields %}
 
-    <p>{{ content.mobileNumber }}
-        <span class="bold-small">{{ mobileNumber | default('') }}</span>
+    <p class="govuk-body">{{ content.mobileNumber }}
+        <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ mobileNumber | default('') }}</span>
     </p>
-    <p>{{ content.firstMessage }}</p>
+    <p class="govuk-body">{{ content.firstMessage }}</p>
 
 {% call formSection() %}
 

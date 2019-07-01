@@ -1,102 +1,102 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}/
+{% extends "layouts/two_thirds.html" %}
+{% from "components/phase_banner.njk" import phaseBanner %}/
 
-{% block page_title %}{{ titleHead }}{% endblock %}
+{% block pageTitle %}{{ titleHead }}{% endblock %}
 
 {% block two_thirds %}
     {% set title %}
         {{ title | safe }}
     {% endset %}
 
-    <h1 class="heading-large">{{ title }}</h1>
-    <p>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+    <p class="govuk-body">
         {{ termsAndConditions.termsOfUse }}
-        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+        <a class="govuk-link" href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
     </p>
 
-    <h2 class="heading-medium">{{ whoWeAre.title }}</h2>
-    <p>{{ whoWeAre.managedBy }}</p>
-    <p>{{ whoWeAre.changeInLaw }}</p>
+    <h2 class="govuk-heading-m">{{ whoWeAre.title }}</h2>
+    <p class="govuk-body">{{ whoWeAre.managedBy }}</p>
+    <p class="govuk-body">{{ whoWeAre.changeInLaw }}</p>
 
-    <h2 class="heading-medium">{{ informationProvided.title }}</h2>
-    <p>{{ informationProvided.support }}</p>
-    <p>{{ informationProvided.questions }}</p>
+    <h2 class="govuk-heading-m">{{ informationProvided.title }}</h2>
+    <p class="govuk-body">{{ informationProvided.support }}</p>
+    <p class="govuk-body">{{ informationProvided.questions }}</p>
 
-    <h2 class="heading-medium">{{ dataStored.title }}</h2>
-    <p>
+    <h2 class="govuk-heading-m">{{ dataStored.title }}</h2>
+    <p class="govuk-body">
         {{ dataStored.our }}
-        <a href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
+        <a class="govuk-link" href="/privacy-policy">{{ termsAndConditions.links.privacy.name }}</a>
         {{ dataStored.privacy }}
     </p>
-    <p>
+    <p class="govuk-body">
         {{ dataStored.our }}
-        <a href="/cookie-policy">{{ termsAndConditions.links.cookie.name }}</a>
+        <a class="govuk-link" href="/cookie-policy">{{ termsAndConditions.links.cookie.name }}</a>
         {{ dataStored.cookie }}
     </p>
 
-    <h2 class="heading-medium">{{ laws.title }}</h2>
-    <p>{{ laws.use }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ laws.title }}</h2>
+    <p class="govuk-body">{{ laws.use }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for act in laws.acts %}
             <li>{{ act }}</li>
         {% endfor %}
     </ul>
 
-    <h2 class="heading-medium">{{ responsibleUse.title }}</h2>
-    <p>{{ responsibleUse.aware }}</p>
-    <p>{{ responsibleUse.precautions }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ responsibleUse.title }}</h2>
+    <p class="govuk-body">{{ responsibleUse.aware }}</p>
+    <p class="govuk-body">{{ responsibleUse.precautions }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for risk in responsibleUse.risks %}
             <li>{{ risk }}</li>
         {% endfor %}
     </ul>
-    <p>{{ responsibleUse.mustNot }}</p>
+    <p class="govuk-body">{{ responsibleUse.mustNot }}</p>
 
-    <h2 class="heading-medium">{{ sensitiveInfo.title }}</h2>
-    <p>{{ sensitiveInfo.freeText }}</p>
-    <p>{{ sensitiveInfo.enter }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ sensitiveInfo.title }}</h2>
+    <p class="govuk-body">{{ sensitiveInfo.freeText }}</p>
+    <p class="govuk-body">{{ sensitiveInfo.enter }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for info in sensitiveInfo.infoList %}
         <li>{{ info }}</li>
         {% endfor %}
     </ul>
-    <p>{{ sensitiveInfo.consent }}</p>
-    <p>{{ sensitiveInfo.moreInfo }}</p>
+    <p class="govuk-body">{{ sensitiveInfo.consent }}</p>
+    <p class="govuk-body">{{ sensitiveInfo.moreInfo }}</p>
 
-    <h2 class="heading-medium">{{ welsh.title }}</h2>
-    <p>{{ welsh.instructions }}
-        <a href={{welsh.formLink}}>{{welsh.linkLabel}}</a>.
+    <h2 class="govuk-heading-m">{{ welsh.title }}</h2>
+    <p class="govuk-body">{{ welsh.instructions }}
+        <a class="govuk-link" href={{welsh.formLink}}>{{welsh.linkLabel}}</a>.
     </p>
-    <p>{{ welsh.inDevelopment }}</p>
+    <p class="govuk-body">{{ welsh.inDevelopment }}</p>
 
-    <h2 class="heading-medium">{{ disclaimer.title }}</h2>
-    <p>{{ disclaimer.upToDate }}</p>
-    <ul class="list list-bullet">
+    <h2 class="govuk-heading-m">{{ disclaimer.title }}</h2>
+    <p class="govuk-body">{{ disclaimer.upToDate }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for condition in disclaimer.conditions %}
         <li>{{ condition }}</li>
         {% endfor %}
     </ul>
-    <p>{{ disclaimer.publish }}</p>
-    <p>{{ disclaimer.loss }}</p>
-    <ul class="list list-bullet">
+    <p class="govuk-body">{{ disclaimer.publish }}</p>
+    <p class="govuk-body">{{ disclaimer.loss }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for damage in disclaimer.damages %}
         <li>{{ damage }}</li>
         {% endfor %}
     </ul>
-    <p>{{ disclaimer.applies }}</p>
-    <p>{{ disclaimer.includes }}</p>
-    <ul class="list list-bullet">
+    <p class="govuk-body">{{ disclaimer.applies }}</p>
+    <p class="govuk-body">{{ disclaimer.includes }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for loss in disclaimer.losses %}
         <li>{{ loss }}</li>
         {% endfor %}
     </ul>
-    <p>{{ disclaimer.liable }}</p>
-    <ul class="list list-bullet">
+    <p class="govuk-body">{{ disclaimer.liable }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         {% for liability in disclaimer.liabilities %}
         <li>{{ liability }}</li>
         {% endfor %}
     </ul>
-    <p><a href="/contact-us">{{ termsAndConditions.links.contact.name }}</a>{{ disclaimer.furtherInfo }}</p>
+    <p class="govuk-body"><a class="govuk-link" href="/contact-us">{{ termsAndConditions.links.contact.name }}</a>{{ disclaimer.furtherInfo }}</p>
 
 {%- endblock %}

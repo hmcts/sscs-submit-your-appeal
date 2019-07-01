@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/fields.njk" import formSection %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -9,6 +9,6 @@
 
 {% block fields %}
 
-<p>{{ content.sendInEvidence }}</p>
+<p class="govuk-body">{{ content.sendInEvidence }}</p>
 
 {% endblock %}

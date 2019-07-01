@@ -1,7 +1,7 @@
 const chai = require('chai');
 
 const expect = chai.expect;
-const datePickerUtils = require('assets/js/date-picker/date-picker-utils');
+const datePickerUtils = require('assets/js/date-picker/date-picker-utils').default;
 
 describe('date-picker-utils.js', () => {
   describe('buildDatesArray()', () => {
@@ -121,7 +121,7 @@ describe('date-picker-utils.js', () => {
     it('returns an object with html string when the day is the first of the month', () => {
       const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-01'));
       expect(displayMonth).to.eql({
-        content: '<span>1</span><p class="first-of-month" aria-label="December">Dec</p>'
+        content: '<span>1</span><p class="govuk-body first-of-month" aria-label="December">Dec</p>'
       });
     });
   });

@@ -1,8 +1,8 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/add_another.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection, fileupload %}
+{% extends "layouts/add_another.html" %}
+{% from "components/fields.njk" import formSection, fileupload %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set pageContent = {
 addAnotherLink: addAnotherLinkContent,
@@ -32,11 +32,11 @@ hideItemsListLabel: true
 
 {% block listItems %}
 
-<p>{{ content.description | safe }}</p>
+<p class="govuk-body">{{ content.description | safe }}</p>
 
 <div id="evidence-upload"></div>
 
-{{ header(content.itemsListLabel, size='small') }}
+{{ header(content.itemsListLabel, size='s') }}
 {{ super() }}
 
 {% endblock %}

@@ -1,14 +1,14 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import select, textbox, formSection %}
+{% from "components/fields.njk" import select, textbox, formSection %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
 {{ content.title | safe }}
 {% endset %}
 
 {% block fields %}
-    <p>{{ content.description | safe }}</p>
+    <p class="govuk-body">{{ content.description | safe }}</p>
 
     {% call formSection() %}
 

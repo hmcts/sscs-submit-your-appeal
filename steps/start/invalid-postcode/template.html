@@ -1,7 +1,7 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
-{% from "look-and-feel/components/header.njk" import header %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+{% from "components/header.njk" import header %}
 
 {% block head %}
     <noscript>
@@ -10,17 +10,17 @@
     {{ super() }}
 {% endblock %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title = content.title %}
 
 {% block two_thirds %}
 
-{{ header(title, size='large') }}
+{{ header(title, size='l') }}
 
-<p>{{ content.notCovered }}</p>
+<p class="govuk-body">{{ content.notCovered }}</p>
 
-<a href="{{ formUrl }}" target="_self" class="button">{{ content.formDownload }}</a>
+<a href="{{ formUrl }}" target="_self" class="govuk-button">{{ content.formDownload }}</a>
 
 {% endblock %}
 

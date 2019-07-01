@@ -1,0 +1,15 @@
+{%- macro languageSwitch(currentLang, availableLangs = []) -%}
+  {%- if availableLangs.length > 1 -%}
+  <ul class="l-i18n-language-switch">
+    {%- for lang in availableLangs -%}
+    <li {{ 'class=current-language' if lang.code == currentLang }}>
+      {%- if lang.code == currentLang -%}
+      {{ lang.name }}
+      {%- else -%}
+      <a href="?lng={{ lang.code }}">{{ lang.name }}</a>
+      {%- endif -%}
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+{%- endmacro -%}

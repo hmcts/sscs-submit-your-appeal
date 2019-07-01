@@ -1,13 +1,14 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 import './polyfill/array-from';
-import { remove } from 'lodash';
+import { remove } from 'lodash-es';
 import { frontend, redis } from '../../config/default';
-import ShowHideContent from 'govuk/show-hide-content';
+import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
+import { CheckCookies } from './check-cookies';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -18,7 +19,7 @@ let evidenceUpload;
   Some selects are not to be enhanced, the following array and function are
   there to manage the exceptions, read discussion on SSCS-3960 for context
 */
-const nonEhanceableSelects = ['dwpIssuingOffice', 'title'];
+const nonEhanceableSelects = ['dwpIssuingOffice', 'title', 'postcodeAddress'];
 
 function isNonEhanceableSelect(select) {
   return nonEhanceableSelects.includes(select.id);
@@ -54,7 +55,7 @@ function initAutocomplete() {
 }
 
 function doNotSubmitTwice() {
-  $('.button').attr('disabled', true);
+  $('.govuk-button').attr('disabled', true);
 }
 
 function initDoNotSubmitTwice() {
@@ -117,6 +118,8 @@ $(document).ready(() => {
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();
+  const checkCookies = new CheckCookies();
+  checkCookies.init();
 });
 
 $(window).on('unload', () => {

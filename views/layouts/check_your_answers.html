@@ -1,0 +1,90 @@
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/check-your-answers.njk" import answer %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+{% from "components/fields.njk" import hiddenInput %}
+{% from "components/errors.njk" import errorSummary %}
+{% from "components/i18n.njk" import languageSwitch %}
+
+{% set defaultContent = {
+  title: 'Check your answers',
+  incompleteHeader: 'Your application is incomplete',
+  incompleteMessage: 'There are still some questions to answer.',
+  continue: 'Continue your application',
+  statementOfTruth: 'By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.',
+  sendApplication: 'Send your application'
+} %}
+
+{% block pageTitle %}{{ pageContent.title | default(defaultContent.title) }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ phaseBanner(phase, feedbackLink) }}
+<a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
+{{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
+{% endblock %}
+
+{% block two_thirds %}
+
+{{ errorSummary(fields) }}
+
+{{ header(pageContent.title | default(defaultContent.title)) }}
+
+  {% for section in _sections %}
+
+    {% if section.atLeast1Completed %}
+      {% if section.title and _sections|length > 1 %}
+        {{ header(section.title, size='m') }}
+      {% endif %}
+
+      <dl class="govuk-summary-list">
+
+        {% for part in section.completedAnswers %}
+          {% if not part.hide %}
+            {% if part.html %}
+              {{ part.html | safe }}
+            {% else %}
+              {{ answer(part.question, part.answer, part.url, part.id) }}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+      </dl>
+
+    {% endif %}
+  {% endfor %}
+
+  {% if incomplete %}
+    {% block continue_application %}
+      {{ header(pageContent.incompleteHeader | default(defaultContent.incompleteHeader), size='m') }}
+      <p class="govuk-body">{{ pageContent.incompleteMessage | default(defaultContent.incompleteMessage) }}</p>
+      <a href="{{ continueUrl }}" class="govuk-button">{{ pageContent.continue | default(defaultContent.continue) }}</a>
+    {% endblock %}
+  {% endif %}
+
+  {% if complete %}
+    {% block statement_of_truth_content %}
+      {{ header('Now send your application', size='m') }}
+      <p class="govuk-body">{{ pageContent.statementOfTruth | default(defaultContent.statementOfTruth) }}</p>
+    {% endblock %}
+    <form
+      action="{{ postUrl | default(path if path else url) }}"
+      method="post"
+      class="form"
+      {% if config.autocomplete %}
+        autocomplete="{{config.autocomplete}}"
+      {% endif %}
+    >
+
+      {% block statement_of_truth_fields %}
+        {{ hiddenInput(fields.statementOfTruth, value=true) }}
+      {%- endblock %}
+
+      <input class="govuk-button" type="submit" value="{{ pageContent.sendApplication | default(defaultContent.sendApplication) }}">
+    </form>
+
+  {% endif %}
+
+  {% block after_form -%}
+  {%- endblock %}
+
+{% endblock %}

@@ -1,15 +1,14 @@
 {% set config = {'autocomplete': 'off'} %}
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/add_another.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
-{% from "components/formElements.html" import textarea %}
+{% extends "layouts/add_another.html" %}
+{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor, textarea %}
 
 {% set titleHead %}
     {{ content.titleHead | safe if isListMode }}
     {{ content.titleHeadEdit | safe if isEditMode }}
 {% endset %}
 
-{% block page_title %}{{ titleHead }}{% endblock %}
+{% block pageTitle %}{{ titleHead }}{% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -44,7 +43,7 @@
 
         {% if fields.validated and not fields.valid %}
             {%- for error in fields.errors -%}
-                <span class="error-message">
+                <span class="govuk-error-message">
                     {{ error.message }}
                 </span>
             {%- endfor -%}
@@ -60,14 +59,14 @@
 {% endblock %}
 
 {% block listItems %}
-    <p>{{ content.dwpExplained }}</p>
-    <p>{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained }}</p>
+    <p class="govuk-body">{{ content.readYouMRN }}</p>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p>{{ content.dwpExplained }}</p>
-    <p>{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained }}</p>
+    <p class="govuk-body">{{ content.readYouMRN }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}aa
 {% endblock %}
