@@ -7,7 +7,7 @@ nodejs:
     UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
     POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
     POSTCODE_CHECKER_ENABLED: true
-    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
     POSTCODE_LOOKUP_TOKEN: ${POSTCODE_LOOKUP_TOKEN}
     ALLOW_SAVE_RETURN: "true"
     SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
