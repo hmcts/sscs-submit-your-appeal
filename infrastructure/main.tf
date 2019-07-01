@@ -56,7 +56,7 @@ module "submit-your-appeal-frontend" {
     SESSION_SECRET                = "${module.redis-cache.access_key}"
     NODE_ENV                      = "${var.node_environment}"
     HTTP_PROTOCOL                 = "https"
-    WEBSITE_NODE_DEFAULT_VERSION  = "10.6.0"
+    WEBSITE_NODE_DEFAULT_VERSION  = "8.11.0"
     HPKP_SHA256                   = "${data.azurerm_key_vault_secret.hpkp-sya-sha-1.value}"
     HPKP_SHA256_BACKUP            = "${data.azurerm_key_vault_secret.hpkp-sya-sha-2.value}"
     EVIDENCE_UPLOAD_ENABLED       = "${var.evidence_upload_enabled}"
