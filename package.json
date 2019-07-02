@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.4.5",
     "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/nodejs-healthcheck": "^1.5.1",
-    "@hmcts/one-per-page": "5.2.2",
+    "@hmcts/one-per-page": "5.0.1",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
     "applicationinsights": "^1.4.0",

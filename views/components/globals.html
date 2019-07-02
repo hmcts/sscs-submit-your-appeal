@@ -28,8 +28,8 @@
         })(window,document,'script','dataLayer','GTM-T56C5T7');</script>
     {% endif %}
     <!-- End Google Tag Manager -->
-    <link href="{{ asset_path }}vendors~main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
-    <link href="{{ asset_path }}main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
+    <link href="{{ asset_path }}vendors~main.css" media="screen" rel="stylesheet" />
+    <link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
     <input id="asset-path" type="hidden" data-path="{{ asset_path }}">
 {% endblock %}
 
@@ -75,6 +75,6 @@
 {% endblock %}
 
 {% block bodyEnd %}
-    <script src="{{ asset_path }}vendors~main.{{webpackHash}}.js" type="text/javascript"></script>
-    <script src="{{ asset_path }}main.{{webpackHash}}.js" type="text/javascript"></script>
+    <script src="{{ asset_path }}vendors~main.js" type="text/javascript"></script>
+    <script src="{{ asset_path }}main.js" type="text/javascript"></script>
 {% endblock %}
