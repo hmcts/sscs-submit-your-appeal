@@ -1,0 +1,27 @@
+{#
+  phaseBanner
+    phase        - (default = 'ALPHA') One of ALPHA, BETA, LIVE
+    feedbackLink - (default = '#') Link to feedback form
+
+  Renders a phase banner. If phase is "LIVE" the banner will not be rendered.
+
+  If called the call block will replace the banner content:
+  ```
+  {% call phaseBanner('ALPHA') %}
+  This service is in Alpha.
+  {% endcall %}
+  ```
+#}
+{% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{% macro phaseBanner(phase='ALPHA', feedbackLink='#') %}
+{% if phase != 'LIVE' %}
+    {% set html %}This is a new service. <a class="govuk-link" target="_blank" href="{{ feedbackLink }}">Report a problem</a> and help improve it for others.{% endset %}
+    {{ govukPhaseBanner({
+        tag: {
+            text: phase
+        },
+        html: html
+    }) }}
+{% endif %}
+{% endmacro %}

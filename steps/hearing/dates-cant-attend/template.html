@@ -1,7 +1,6 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/add_another.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
-{% from "components/formElements.html" import date %}
+{% extends "layouts/add_another.html" %}
+{% from "components/fields.njk" import formSection, date %}
 
 {% block head %}
 {{ super() }}
@@ -10,7 +9,7 @@
 </noscript>
 {% endblock %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
 {{ content.title | safe if isListMode }}
@@ -40,21 +39,21 @@
 {% block listItems %}
 
     <div id="date-picker-content">
-        <p>{{ content.datePicker.itsImportant }}</p>
-        <p>{{ content.datePicker.select }} <span class="bold">{{ content.datePicker.cant }}</span> {{ content.datePicker.hearing }}</p>
+        <p class="govuk-body">{{ content.datePicker.itsImportant }}</p>
+        <p class="govuk-body">{{ content.datePicker.select }} <span class="govuk-!-font-weight-bold">{{ content.datePicker.cant }}</span> {{ content.datePicker.hearing }}</p>
     </div>
     <noscript>
-        <p>{{ content.nonJS.itsImportant }}</p>
-        <p>{{ content.nonJS.yourHearing }}</p>
+        <p class="govuk-body">{{ content.nonJS.itsImportant }}</p>
+        <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
     </noscript>
 
     <div id="date-picker" class="datepicker"></div>
 
-    <h2 class="heading-medium">{{ content.fields.cantAttendDate.legendList }}</h2>
+    <h2 class="govuk-heading-m">{{ content.fields.cantAttendDate.legendList }}</h2>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p>{{ content.nonJS.yourHearing }}</p>
+    <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
   {{ date(fields.item, content.fields.cantAttendDate.legend) }}
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -11,7 +11,7 @@
 
     {% call formSection() %}
 
-        <p>{{ content.subtitle }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {{ selectionButtons(
             fields.haveContactedDWP,

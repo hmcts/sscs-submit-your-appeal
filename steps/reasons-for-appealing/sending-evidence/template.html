@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection %}
+{% from "components/fields.njk" import formSection %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -9,11 +9,11 @@
 
 {% block fields %}
 
-<p>{{ content.healthcarePro }}</p>
-<p>{{ content.writeStatement }}</p>
-<p>{{ content.sendEvidence }}</p>
+<p class="govuk-body">{{ content.healthcarePro }}</p>
+<p class="govuk-body">{{ content.writeStatement }}</p>
+<p class="govuk-body">{{ content.sendEvidence }}</p>
 
-<p>
+<p class="govuk-body">
     {% if hasSignedUpForEmail %}
         {{ content.postEvidenceWithEmail }}
     {% else %}

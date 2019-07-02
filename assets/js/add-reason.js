@@ -1,9 +1,9 @@
 /* eslint-disable max-lines */
 /* eslint-disable func-names */
 import $ from 'jquery';
-import fieldTemplates from '@hmcts/look-and-feel/templates/look-and-feel/components/fields.njk';
-import errorSummary from '@hmcts/look-and-feel/templates/look-and-feel/components/errors.njk';
-import { flatten, includes } from 'lodash';
+import fieldTemplates from './../../views/components/fields.njk';
+import errorSummary from './../../views/components/errors.njk';
+import { flatten, includes } from 'lodash-es';
 import content from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
 
 class AddReason {
@@ -25,13 +25,13 @@ class AddReason {
   }
 
   removeDisplayList() {
-    if ($('.add-another-list').length) {
-      $('.add-another-list').remove();
+    if ($('.govuk-summary-list').length) {
+      $('.govuk-summary-list').remove();
     }
   }
 
   buildForm() {
-    const hasNoReasonsError = $(`.error-summary-list:contains(${content.listError})`).length;
+    const hasNoReasonsError = $(`.govuk-error-summary__list:contains(${content.listError})`).length;
     // eslint-disable-next-line arrow-body-style
     const values = this.items.map((item, index) => ({
       index,
@@ -204,11 +204,11 @@ class AddReason {
                   otherErrors = true;
                   self.handleValidationError(index, resJson.validationErrors);
                 }
-              } else if ($(`#items-${index}`).children().hasClass('form-group-error')) {
-                $(`#items-${index} .form-group`)
-                  .removeClass('form-group-error')
+              } else if ($(`#items-${index}`).children().hasClass('govuk-form-group--error')) {
+                $(`#items-${index} .govuk-form-group`)
+                  .removeClass('govuk-form-group--error')
                   .children()
-                  .remove('.error-message');
+                  .remove('.govuk-error-message');
               }
             }
           })
@@ -226,7 +226,7 @@ class AddReason {
           const validationErrors = responses.filter(response => response.validationErrors);
           const actualErrors = validationErrors.filter(error => error.validationErrors.length > 0);
           if (actualErrors.length === 0 || (firstItemValid && !otherErrors)) {
-            $('.error-summary').remove();
+            $('.govuk-error-summary').remove();
             // eslint-disable-next-line no-invalid-this
             this.submit();
           } else {
@@ -270,8 +270,8 @@ class AddReason {
       }))
     ));
     const summary = this.buildErrorSummary(flatten(errorSummaryList));
-    $('.error-summary').remove();
-    $('.column-two-thirds').prepend(summary.val);
+    $('.govuk-error-summary').remove();
+    $('.govuk-grid-column-two-thirds').prepend(summary.val);
   }
 
   handleValidationError(index, validationErrors) {

@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import textbox, formSection %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
 {{ title | safe }}
@@ -11,7 +11,7 @@
 
     {% call formSection() %}
 
-        <p>{{ subtitle }}</p>
+        <p class="govuk-body">{{ subtitle }}</p>
 
         {{ textbox(fields.nino, content.fields.nino.label, hideLabel=true) }}
 

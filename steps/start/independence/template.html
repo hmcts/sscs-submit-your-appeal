@@ -1,9 +1,9 @@
 {% extends "components/globals.html" %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/header.njk" import header %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -18,21 +18,21 @@
 
 
 {% block full_width %}
-    <div class="grid-row column-full">
+    <div class="govuk-grid-row">
 
         <div class="banner-blue">
-            {{ header(title, size='xlarge') }}
+            {{ header(title, size='xl') }}
         </div>
 
-        <div class="column-full">
+        <div class="govuk-grid-column-full">
             <form action="{{ path if path else url }}" method="post" class="form">
 
                 {% block fields %}
-                    <p class="lede">{{ content.reviewed }}</p>
-                    <p class="lede">{{ content.separate }}</p>
+                    <p class="govuk-body-l">{{ content.reviewed }}</p>
+                    <p class="govuk-body-l">{{ content.separate }}</p>
                 {% endblock %}
 
-                <input class="button" type="submit" value="Continue">
+                <input class="govuk-button" type="submit" value="Continue">
             </form>
 
         </div>

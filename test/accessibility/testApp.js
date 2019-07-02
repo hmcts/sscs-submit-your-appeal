@@ -1,83 +1,28 @@
 /* eslint-disable no-process-env */
 const { journey } = require('@hmcts/one-per-page');
-const lookAndFeel = require('@hmcts/look-and-feel');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('config');
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
 const steps = require('steps');
-const paths = require('paths');
-const policyPages = require('policy-pages/routes');
 const content = require('content.en.json');
-const urls = require('urls');
+const { configureNunjucks,
+  configureMiddleWares,
+  configureViews,
+  configureAppRoutes } = require('../../appConfigurations');
 
 const app = express();
+const url = require('url');
+
+const port = config.get('node.port');
+
+// Tests
+const PORT_RANGE = 50;
+app.set('portFrom', port);
+app.set('portTo', port + PORT_RANGE);
+app.set('assetPath', url.resolve('/', 'assets/'));
+app.set('trust proxy', 1);
+app.locals.asset_path = url.resolve('/', 'assets/');
 
 const startStep = require('steps/entry/Entry');
-
-lookAndFeel.configure(app, {
-  baseUrl: '/',
-  express: {
-    views: [
-      path.resolve(__dirname, '../../steps'),
-      path.resolve(__dirname, 'views/compliance'),
-      path.resolve(__dirname, 'policy-pages'),
-      path.resolve(__dirname, 'error-pages')
-    ]
-  },
-  webpack: {
-    entry: [
-      path.resolve(__dirname, '../../assets/scss/main.scss'),
-      path.resolve(__dirname, '../../assets/js/main.js')
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpg)$/i,
-          loaders: ['file-loader']
-        }
-      ]
-    },
-    plugins: [
-      new CopyWebpackPlugin(
-        [
-          {
-            from: path.resolve(__dirname, '../../assets/images'),
-            to: 'images'
-          }
-        ])
-    ]
-  },
-  nunjucks: {
-    globals: {
-      phase: 'BETA',
-      environment: process.env.NODE_ENV,
-      banner: `${content.phaseBanner.newService}
-        <a href="${urls.phaseBanner}" target="_blank">
-            ${content.phaseBanner.reportProblem}
-        </a>${content.phaseBanner.improve}`,
-      isArray(value) {
-        return Array.isArray(value);
-      },
-      inactivityTimeout: {
-        title: content.inactivityTimeout.title,
-        expiringIn: content.inactivityTimeout.expiringIn,
-        text: content.inactivityTimeout.text,
-        yes: content.inactivityTimeout.yes,
-        no: content.inactivityTimeout.no
-      },
-      timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message,
-      relatedContent: content.relatedContent,
-      paths,
-      urls
-    }
-  },
-  development: {
-    useWebpackDevMiddleware: true
-  }
-});
 
 const noSessionHandler = (req, res, next) => {
   if (req.url === '/check-your-appeal' || req.url === '/done') {
@@ -120,11 +65,16 @@ journey(app, {
   useCsrfToken: false
 });
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// Configure App routes.
+configureAppRoutes(app);
 
-app.use('/', policyPages);
-app.use('/', (req, res) => res.redirect('/entry'));
+// Configure App Middlewares
+configureMiddleWares(app, express);
+
+// Configure View Locations
+configureViews(app);
+
+// Configure Nunjucks Settings
+configureNunjucks(app, content);
 
 module.exports = app;

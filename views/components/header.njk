@@ -1,0 +1,27 @@
+{#
+  Header
+    heading - (required) Main heading text
+    section - (optional) Section text displayed above the heading
+    size    - (default = 'xlarge') heading size
+    fieldsValidated - (default = false) Whether the fields have been validated or not
+    fieldsValid - (default = true) Whether the fields are valid or not
+
+  When size is not xlarge or large the section will not be displayed as
+  the size and lightness of the text would not be easily read.
+  When the fields on a page are not valid, the header element will change to a
+  h2 to comply with accessibility header rules as the error summary contains an h1 element
+#}
+{% macro header(heading, section='', size='xl', fieldsValidated=false, fieldsValid=true) %}
+
+
+
+    <h1 class="govuk-heading-{{ size }}">
+
+{% if section != '' and (size == 'xl' or size == 'l') %}
+  <span class="heading-secondary">
+    {{ section }}
+  </span>
+{% endif %}
+  {{ heading }}
+</h1>
+{% endmacro %}

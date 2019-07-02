@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -9,7 +9,7 @@
 
 {% block fields %}
 
-<p>{{ content.supportCanBeArranged }}<strong class="bold-small"> {{ content.cant }} </strong>{{ content.bringYourOwn }}</p>
+<p class="govuk-body">{{ content.supportCanBeArranged }}<strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }} </strong>{{ content.bringYourOwn }}</p>
 
 {% call formSection() %}
 

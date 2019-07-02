@@ -1,25 +1,25 @@
 {% extends "components/globals.html" %}
-{% from "look-and-feel/components/header.njk" import header %}
-{% extends "look-and-feel/layouts/two_thirds.html" %}
-{% from "look-and-feel/components/phase_banner.njk" import phaseBanner %}
+{% from "components/header.njk" import header %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{ content.titleHead }}
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase) %}
+    {% call phaseBanner(phase, feedbackLink) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
 
-    {{ header(content.title, size='large') }}
+    {{ header(content.title, size='l') }}
 
-    <p>{{ content.ends }}</p>
-    <p>{{ content.detailsDeleted }}</p>
+    <p class="govuk-body">{{ content.ends }}</p>
+    <p class="govuk-body">{{ content.detailsDeleted }}</p>
 
-    <a class="button" href="/start-an-appeal">{{ content.start }}</a>
+    <a class="govuk-button" href="/start-an-appeal">{{ content.start }}</a>
 
 {%- endblock %}

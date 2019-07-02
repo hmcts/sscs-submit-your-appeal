@@ -1,27 +1,19 @@
 const { fail } = require('assert');
-const promisify = require('es6-promisify');
 const pa11y = require('pa11y');
 const supertest = require('supertest');
 const app = require('test/accessibility/testApp');
 const steps = require('steps');
 
 const agent = supertest.agent(app);
-const pa11yTest = pa11y({
-  page: {
-    headers: {
-      Cookie: ''
-    }
-  },
+const options = {
   ignore: [
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name',
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Select.Name',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.NoLegend',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68'
   ],
-  hideElements: '#logo, #footer, link[rel=mask-icon]'
-});
-
-const test = promisify(pa11yTest.run, pa11yTest);
+  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon]'
+};
 
 const excludeSteps = [
   '/sessions',
@@ -56,8 +48,8 @@ function accessibilityCheck(url) {
   describe(`Page ${url}`, () => {
     it('should have no accessibility errors', async() => {
       await ensurePageCallWillSucceed(url);
-      const messages = await test(agent.get(url).url);
-      expectNoErrors(messages);
+      const messages = await pa11y(agent.get(url).url, options);
+      expectNoErrors(messages.issues);
     });
   });
 }

@@ -15,7 +15,7 @@ describe('add reason', () => {
 
   before(done => {
     const jsdom = new JSDOM(`<body><div id="dynamic-form">
-            <ul class="add-another-list"></ul>form goes here</div></body>`);
+            <ul class="govuk-list"></ul>form goes here</div></body>`);
 
     const { window } = jsdom;
     const { document } = window;
@@ -30,7 +30,7 @@ describe('add reason', () => {
   });
 
   it('removes add-another on instantiation', () => {
-    expect($('add-another-list').length).to.equal(0);
+    expect($('govuk-summary-list').length).to.equal(0);
   });
 
   it('# buildForm adds a dom node for each item', () => {

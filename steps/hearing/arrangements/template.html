@@ -1,8 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "look-and-feel/components/fields.njk" import textbox, select, selectionButton, selectionButtons %}
-{% from "components/formElements.html" import textarea %}
+{% from "components/fields.njk" import textbox, textarea, select, selectionButton, selectionButtons %}
 
-{% block page_title %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -10,8 +9,8 @@
 
 {% block fields %}
 
-<p>{{ content.clickAllArrangements | safe }}</p>
-<p>{{ content.you }}<strong class="bold-small"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
+<p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
+<p class="govuk-body">{{ content.you }}<strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
 
     {% call selectionButtons(
         field = fields.selection,
@@ -27,7 +26,7 @@
             { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
             type = 'checkbox')
         }}
-        <div class="panel panel-border-wide js-hidden" id="languageInterpreterTextField">
+        <div class="panel js-hidden" id="languageInterpreterTextField">
             {{ select(
                 fields.selection.interpreterLanguage.language,
                 content.fields.selection.languageInterpreter.language.label,
@@ -41,7 +40,7 @@
             { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
             type = 'checkbox')
         }}
-        <div class="panel panel-border-wide js-hidden" id="signLanguageInterpreterTextField">
+        <div class="panel js-hidden" id="signLanguageInterpreterTextField">
             {{ select(
                 fields.selection.signLanguage.language,
                 content.fields.selection.signLanguage.language.label,
@@ -67,7 +66,7 @@
             { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
             type = 'checkbox')
         }}
-        <div class="panel panel-border-wide js-hidden" id="anythingElseTextArea">
+        <div class="panel js-hidden" id="anythingElseTextArea">
             {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
         </div>
 

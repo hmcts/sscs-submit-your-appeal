@@ -91,8 +91,8 @@ I see an error in the error summary`, async I => {
     I.click('Add reason');
   }
   I.click('Continue');
-  I.seeElement('.error-summary-list');
-  await I.seeNumberOfElements('.error-summary-list li', 1);
+  I.seeElement('.govuk-error-summary__list');
+  await I.seeNumberOfElements('.govuk-error-summary__list li', 1);
   I.see(content.listError);
 });
 
