@@ -1,4 +1,4 @@
-FROM node:chakracore-8.11.1
+FROM node:8.16-slim
 
 ENV NODE_PATH .
 ENV NODE_ENV development
