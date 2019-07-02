@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'development') {
     if (stats) {
       const time = stats.endTime - stats.startTime;
       logger.trace(`Webpack build complete in ${time}ms. Hash ${stats.hash}`);
-      logger.trace(stats);
       app.locals.webpackHash = stats.hash;
       app.listen(config.node.port, () => {
         logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
