@@ -1,4 +1,4 @@
-FROM node:10-slim
+FROM node:8.16-slim
 
 ENV NODE_PATH .
 ENV NODE_ENV development

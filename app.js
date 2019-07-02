@@ -2,7 +2,7 @@ require('logger').startAppInsights();
 
 const config = require('config');
 const express = require('express');
-
+const events = require('events');
 const content = require('content.en.json');
 
 const url = require('url');
@@ -25,7 +25,7 @@ app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
-
+events.EventEmitter.defaultMaxListeners = 100;
 // Configure App routes.
 configureAppRoutes(app);
 
