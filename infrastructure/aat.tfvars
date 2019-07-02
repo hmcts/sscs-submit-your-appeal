@@ -6,7 +6,7 @@ https_only_flag = "false"
 
 postcode_lookup_enabled= "true"
 postcode_checker_enabled = "true"
-postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,cardiff"
+postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
 
 allow_save_return="true"
 idam_api_url = "https://idam-api.aat.platform.hmcts.net"
