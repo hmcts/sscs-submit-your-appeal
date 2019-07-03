@@ -50,6 +50,9 @@
     },
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US"
+    },
+    "ContactUsTelephoneEnabled": {
+      "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED"
     }
   },
   "postcodeChecker": {

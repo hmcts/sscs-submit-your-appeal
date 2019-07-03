@@ -73,6 +73,7 @@ const configureNunjucks = (app, content) => {
       relatedContent: content.relatedContent,
       contactUs: content.contactUs,
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
+      contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
       paths,
       urls
     }

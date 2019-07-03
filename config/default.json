@@ -50,7 +50,8 @@
       "enabled": "true"
     },
     "allowContactUs": {
-      "enabled": "true"
+      "enabled": "true",
+      "telephoneEnabled": "true"
     }
   },
   "postcodeChecker": {

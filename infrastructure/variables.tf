@@ -89,6 +89,10 @@ variable "allow_contact_us" {
   default = "true"
 }
 
+variable "contact_us_telephone_enabled" {
+  type = "string"
+  default = "true"
+}
 variable "idam_login_url" {
   type = "string"
   default = ""
