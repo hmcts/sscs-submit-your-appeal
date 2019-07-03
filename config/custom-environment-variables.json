@@ -47,6 +47,9 @@
     },
     "allowSaveAndReturn": {
       "enabled": "ALLOW_SAVE_RETURN"
+    },
+    "allowContactUs": {
+      "enabled": "ALLOW_CONTACT_US"
     }
   },
   "postcodeChecker": {

@@ -71,6 +71,8 @@ const configureNunjucks = (app, content) => {
       timeOut: config.get('redis.timeout'),
       timeOutMessage: content.timeout.message,
       relatedContent: content.relatedContent,
+      contactUs: content.contactUs,
+      allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       paths,
       urls
     }

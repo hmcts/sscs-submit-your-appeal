@@ -84,6 +84,11 @@ variable "allow_save_return" {
   default = "false"
 }
 
+variable "allow_contact_us" {
+  type = "string"
+  default = "true"
+}
+
 variable "idam_login_url" {
   type = "string"
   default = ""
