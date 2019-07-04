@@ -31,6 +31,9 @@
     </div>
   </div>
   {% endblock %}
+  {% if allowContactUs %}
+    {% include "components/contact-us.html" %}
+  {% endif %}
 {%- endblock %}
 
 {% block footer %}

@@ -40,10 +40,4 @@
   <input class="govuk-button" type="submit" value="{{continueText}}">
 </form>
 
-{% block after_form -%}
-  {% if allowContactUs %}
-    {% include "components/contact-us.html" %}
-  {% endif %}
-{%- endblock %}
-
 {% endblock %}

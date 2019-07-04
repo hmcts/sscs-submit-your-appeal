@@ -34,7 +34,7 @@
 {% endblock %}
 
 
-{% block body_start %}
+{% block bodyStart %}
     <!-- Google Tag Manager (noscript) -->
     {% if environment === 'prod' %}
         <!-- Live analytics -->
@@ -47,6 +47,7 @@
     {% endif %}
     <!-- End Google Tag Manager (noscript) -->
     <noscript> <img alt="no javascript" src="/assets/images/noJS.png" width="1" height="1" /></noscript>
+    
 {% endblock %}
 
 {% block footer %}
