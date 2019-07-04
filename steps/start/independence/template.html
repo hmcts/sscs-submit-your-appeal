@@ -43,4 +43,9 @@
         {% include "components/inactivity-alert.html" %}
     </div>
 
+    {% if allowContactUs %}
+        {% include "components/contact-us.html" %}
+    {% endif %}
+
 {% endblock %}}
+
