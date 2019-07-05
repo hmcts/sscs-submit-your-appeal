@@ -49,9 +49,7 @@
       "enabled": "ALLOW_SAVE_RETURN"
     },
     "allowContactUs": {
-      "enabled": "ALLOW_CONTACT_US"
-    },
-    "ContactUsTelephoneEnabled": {
+      "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED"
     }
   },
