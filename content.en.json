@@ -52,6 +52,12 @@
       "desc" : "You’ll get a response by email within 2 working days.",
       "link" : "Send message (opens in a new window)"
     },
+    "webchat": {
+      "title": "Web chat",
+      "desc": "Get some help by messaging an agent online.",
+      "link": "Start web chat (opens in a new window)",
+      "availability": " (Monday to Friday, 8.30am to 5.00pm)"
+    },
     "telephone" : {
       "title": "Telephone",
       "desc": "Talk to one of our agents now over the phone.",

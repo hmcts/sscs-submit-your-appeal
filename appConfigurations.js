@@ -76,6 +76,7 @@ const configureNunjucks = (app, content) => {
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
+      webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
       paths,
       urls
     }
@@ -121,15 +122,18 @@ const configureHelmet = app => {
         '\'self\'',
         '\'unsafe-inline\'',
         'www.google-analytics.com',
-        'www.googletagmanager.com'
+        'www.googletagmanager.com',
+        'chatbuilder.netlify.com',
+        'vcc-eu4.8x8.com'
       ],
       connectSrc: ['\'self\'', 'www.gov.uk'],
       mediaSrc: ['\'self\''],
-      frameSrc: ['\'none\''],
+      frameSrc: ['\'none\'', 'vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'www.googletagmanager.com'
+        'www.googletagmanager.com',
+        'vcc-eu4.8x8.com'
       ]
     }
   }));
