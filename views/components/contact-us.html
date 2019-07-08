@@ -1,0 +1,25 @@
+<details class="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+      {{contactUs.title}}
+    </span>
+    </summary>
+        {% if contactUsTelephoneEnabled %}
+            <div class="govuk-details__text">
+            <h2 class="govuk-heading-m">{{contactUs.telephone.title}}</h2>
+            <p class="govuk-body">{{contactUs.telephone.desc}}</p>
+            <h3 class="govuk-heading-s">{{contactUs.telephone.England.desc}}</h3>
+            <p class="govuk-body">{{contactUs.telephone.England.phone}}</p>
+            <p class="govuk-body">{{contactUs.telephone.England.availability}}</p>
+            <p class="govuk-body">
+                <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{contactUs.telephone.England.charges}}</a>
+            </p>
+            <h3 class="govuk-heading-s">{{contactUs.telephone.Scotland.desc}}</h3>
+            <p class="govuk-body">{{contactUs.telephone.Scotland.phone}}</p>
+            <p class="govuk-body">{{contactUs.telephone.Scotland.availability}}</p>
+            <p class="govuk-body">
+                <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{contactUs.telephone.Scotland.charges}}</a>
+            </p>
+        </div>
+    {% endif %}
+</details>

@@ -48,6 +48,10 @@
     },
     "allowSaveAndReturn": {
       "enabled": "true"
+    },
+    "allowContactUs": {
+      "enabled": "true",
+      "telephoneEnabled": "true"
     }
   },
   "postcodeChecker": {

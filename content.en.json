@@ -44,5 +44,24 @@
   "continueButtonText": {
     "save" : "Save and continue",
     "continue": "Continue"
+  },
+  "contactUs": {
+    "title": "Contact us for help",
+    "telephone" : {
+      "title": "Telephone",
+      "desc": "Talk to one of our agents now over the phone.",
+      "England": {
+        "desc" : "Benefit appeals helpline (England and Wales)",
+        "phone": "Telephone: 0300 123 1142",
+        "availability": "Monday to Friday, 8:30am to 5pm",
+        "charges": "Find out about call charges"
+      },
+      "Scotland" : {
+        "desc": "Benefit appeals helpline (Scotland)",
+        "phone": "Telephone: 0300 790 6234",
+        "availability": "Monday to Friday, 8:30am to 5pm",
+        "charges": "Find out about call charges"
+      }
+    }
   }
 }
