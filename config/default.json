@@ -52,7 +52,8 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true"
+      "webFormEnabled": "true",
+      "webChatEnabled": "true"
     }
   },
   "postcodeChecker": {

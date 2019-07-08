@@ -93,9 +93,10 @@ variable "contact_us_telephone_enabled" {
   type = "string"
   default = "true"
 }
-variable "idam_login_url" {
+
+variable "contact_us_webchat_enabled" {
   type = "string"
-  default = ""
+  default = "true"
 }
 
 variable "idam_api_url" {
