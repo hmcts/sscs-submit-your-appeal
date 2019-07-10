@@ -103,4 +103,13 @@ variable "idam_api_url" {
   default = ""
 }
 
+variable "services_web_form" {
+  type = "string"
+  default = ""
+}
+
+variable "contact_us_web_form_enabled" {
+  type = "string"
+  default = "true"
+}
 
