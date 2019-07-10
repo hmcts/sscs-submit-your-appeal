@@ -62,6 +62,7 @@ const IdamRedirect = require('steps/idam/idam-redirect/IdamRedirect');
 const IdamLogin = require('steps/idam/IdamLogin/IdamLogin');
 const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
 const Authenticated = require('steps/idam/authenticated/Authenticated');
+const SignOut = require('steps/idam/sign-out/SignOut');
 
 const init = [
   Entry,
@@ -154,7 +155,8 @@ const confirmation = [ Confirmation ];
 const idam = [
   IdamMockLogin,
   Authenticated,
-  IdamLogin
+  IdamLogin,
+  SignOut
 ];
 
 module.exports = concat(
