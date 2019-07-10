@@ -58,7 +58,11 @@ const methods = {
     }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
-  logout: (...args) => middleware.logout(idamArgs, ...args),
+  logout: (req, res, next) => {
+    const args = setArgsFromRequest(req);
+    if (req.cookies['__auth-token']) middleware.logout(args)(req, res, next);
+    return next();
+  },
   userDetails: () => middleware.userDetails(idamArgs)
 };
 

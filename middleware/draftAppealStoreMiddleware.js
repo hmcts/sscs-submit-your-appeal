@@ -136,6 +136,9 @@ class SaveToDraftStoreCYA extends CYA {
 }
 
 class SaveToDraftStore extends Question {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get continueText() {
     if (this.req.idam) {
       return content.continueButtonText.save;
