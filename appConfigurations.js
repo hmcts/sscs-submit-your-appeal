@@ -77,6 +77,7 @@ const configureNunjucks = (app, content) => {
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
+      webChat: config.get('services.webChat'),
       paths,
       urls
     }
@@ -128,7 +129,7 @@ const configureHelmet = app => {
       ],
       connectSrc: ['\'self\'', 'www.gov.uk'],
       mediaSrc: ['\'self\''],
-      frameSrc: ['\'none\'', 'vcc-eu4.8x8.com'],
+      frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
@@ -188,6 +189,11 @@ const configureMiddleWares = (app, express) => {
     res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('X-Served-By', os.hostname());
     res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
+    next();
+  });
+  // Get Base url
+  app.use((req, res, next) => {
+    app.locals.baseUrl = `${req.protocol}://${req.headers.host}`;
     next();
   });
 

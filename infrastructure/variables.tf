@@ -112,8 +112,24 @@ variable "services_web_form" {
   default = ""
 }
 
+variable "services_webchat_uuid" {
+  type = "string"
+  default = ""
+}
+
 variable "contact_us_web_form_enabled" {
   type = "string"
   default = "true"
 }
+variable "services_webchat_tenant" {
+  type = "string"
+  default = ""
+}
+
+variable "services_webchat_channel" {
+  type = "string"
+  default = ""
+}
+
+
 

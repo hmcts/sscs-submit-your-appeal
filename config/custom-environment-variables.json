@@ -79,6 +79,11 @@
     },
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
-    }
+    },
+    "webChat": {
+      "uuid": "SERVICES_WEBCHAT_UUID",
+      "tenant": "SERVICES_WEBCHAT_TENANT",
+      "channel": "SERVICES_WEBCHAT_CHANNEL"
+    } 
   }
 }
