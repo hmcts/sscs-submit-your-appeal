@@ -138,6 +138,17 @@ describe('PostcodeChecker.js', () => {
         });
     });
 
+    it('do not blank postcodes', () => {
+      return postcodeChecker('')
+        .then(isEnglandOrWalesPostcode => {
+          expect(isEnglandOrWalesPostcode).to.equal(false);
+          expect(getStub).not.to.have.been.called;
+        }).catch(error => {
+          expect.fail(error);
+        });
+    });
+
+
     it('error getting country', () => {
       const expectedError = 'Some error';
 

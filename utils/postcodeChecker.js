@@ -17,6 +17,11 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   return new Promise((resolve, reject) => {
     const outcode = postcode.trim().replace(inwardPostcode, '').replace(/\s+/, '');
 
+    if (!outcode && !outcode.trim()) {
+      resolve(allowUnknownPostcodes);
+      return;
+    }
+
     request.get(`${postcodeCountryLookupUrl}/${outcode}`)
       .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
       .then(resp => {
