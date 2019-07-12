@@ -6,8 +6,8 @@
     </summary>
         {% if contactUsWebFormEnabled %}
             <div class="govuk-details__text">
-                <h2 class="govuk-heading-m">{{contactUs.webform.title}}</h2>
-                <p class="govuk-body">{{contactUs.webform.desc}}</p>
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{contactUs.webform.title}}</h2>
+                <p class="govuk-body govuk-!-margin-bottom-0">{{contactUs.webform.desc}}</p>
                 <p class="govuk-body">
                     <a class="govuk-link" href="{{webFormUrl}}" target="_blank">{{contactUs.webform.link}}</a>
                 </p>
@@ -15,17 +15,17 @@
         {% endif %}
         {% if contactUsTelephoneEnabled %}
             <div class="govuk-details__text">
-            <h2 class="govuk-heading-m">{{contactUs.telephone.title}}</h2>
-            <p class="govuk-body">{{contactUs.telephone.desc}}</p>
-            <h3 class="govuk-heading-s">{{contactUs.telephone.England.desc}}</h3>
-            <p class="govuk-body">{{contactUs.telephone.England.phone}}</p>
-            <p class="govuk-body">{{contactUs.telephone.England.availability}}</p>
-            <p class="govuk-body">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{contactUs.telephone.title}}</h2>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{contactUs.telephone.desc}}</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{contactUs.telephone.England.desc}}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{contactUs.telephone.England.phone}}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{contactUs.telephone.England.availability}}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
                 <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{contactUs.telephone.England.charges}}</a>
             </p>
-            <h3 class="govuk-heading-s">{{contactUs.telephone.Scotland.desc}}</h3>
-            <p class="govuk-body">{{contactUs.telephone.Scotland.phone}}</p>
-            <p class="govuk-body">{{contactUs.telephone.Scotland.availability}}</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{contactUs.telephone.Scotland.desc}}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{contactUs.telephone.Scotland.phone}}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{contactUs.telephone.Scotland.availability}}</p>
             <p class="govuk-body">
                 <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{contactUs.telephone.Scotland.charges}}</a>
             </p>
