@@ -37,7 +37,7 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "@hmcts/ctsc-web-chat": "^0.1.22",
+    "@hmcts/ctsc-web-chat": "^0.2.4",
     "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/nodejs-healthcheck": "^1.5.1",
     "@hmcts/one-per-page": "5.0.1",

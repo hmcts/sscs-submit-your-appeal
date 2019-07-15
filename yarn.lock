@@ -638,10 +638,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@hmcts/ctsc-web-chat@^0.1.22":
-  version "0.1.22"
-  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.1.22.tgz#fcbe940c5d26a15e1f4642a946f78e6e3605fa93"
-  integrity sha512-GNn2me1BNWCGXFYItRub4hLBX0cZyXjMXmKopBZNQsbeVe4lEhnN9Kq+kBu3vaM6RhI3Qwuq5kCNkk6nSXNCSg==
+"@hmcts/ctsc-web-chat@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.2.4.tgz#7a67a19c9e296dc85fa779ba36fedfdb93cac9e9"
+  integrity sha512-pzRPus7zun5VGCFuJ+Ix/n25MNfgYYzHT+CIMLVRfsdyJLeYcIkOtWfYFEhGnChFI11hbrBQf/B8TiP2kULd+A==
   dependencies:
     govuk-frontend "^2.12.0"
     node-sass "^4.6.1"
