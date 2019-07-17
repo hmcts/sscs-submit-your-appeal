@@ -51,7 +51,8 @@
     },
     "allowContactUs": {
       "enabled": "true",
-      "telephoneEnabled": "true"
+      "telephoneEnabled": "true",
+      "webFormEnabled": "true"
     }
   },
   "postcodeChecker": {
@@ -83,6 +84,9 @@
       "loginUrl": "https://localhost:3501/register",
       "clientId": "sscs",
       "useMock": "false"
-    }  
+    },
+    "webForm" : {
+      "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
+    }
   }
 }

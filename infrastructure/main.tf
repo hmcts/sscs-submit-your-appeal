@@ -71,6 +71,8 @@ module "submit-your-appeal-frontend" {
     SERVICES_IDAM_SECRET          = "${data.azurerm_key_vault_secret.idam_oauth2_client_secret.value}"
     SERVICES_IDAM_LOGIN_URL       = "${var.idam_login_url}"
     SERVICES_IDAM_API_URL         = "${var.idam_api_url}"
+    SERVICES_WEB_FORM             = "${var.services_web_form}"
+    CONTACT_US_WEB_FORM_ENABLED   = "${var.contact_us_web_form_enabled}"
 
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
