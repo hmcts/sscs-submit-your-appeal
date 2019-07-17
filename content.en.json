@@ -47,6 +47,11 @@
   },
   "contactUs": {
     "title": "Contact us for help",
+    "webform": {
+      "title" : "Send us a message",
+      "desc" : "You’ll get a response by email within 2 working days.",
+      "link" : "Send message (opens in a new window)"
+    },
     "telephone" : {
       "title": "Telephone",
       "desc": "Talk to one of our agents now over the phone.",

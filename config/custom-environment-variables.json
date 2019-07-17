@@ -50,7 +50,8 @@
     },
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US",
-      "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED"
+      "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED"
     }
   },
   "postcodeChecker": {
@@ -74,6 +75,9 @@
       "loginUrl": "SERVICES_IDAM_LOGIN_URL",
       "clientId": "SERVICES_IDAM_CLIENTID",
       "useMock": "SERVICES_IDAM_USE_MOCK"
-    }  
+    },
+    "webForm" : {
+      "url": "SERVICES_WEB_FORM"
+    }
   }
 }
