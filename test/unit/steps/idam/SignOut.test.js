@@ -9,13 +9,13 @@ describe('SignOut.js', () => {
       expect(SignOut.path).to.equal(paths.idam.signOut);
     });
     it('expects middleware', () => {
-      const logoutMock = sinon.stub(idam, 'logout');
+      const authenticateMock = sinon.stub(idam, 'authenticate');
       const signOut = new SignOut({
         journey: {
           steps: {}
         }
       });
-      expect(signOut.middleware[0]).to.equal(logoutMock);
+      expect(signOut.middleware[0]).to.equal(authenticateMock);
     });
   });
 });
