@@ -21,7 +21,8 @@ const excludeSteps = [
   '/enter-appellant-contact-details',
   '/appointee-contact-details',
   '/idam-redirect',
-  '/authenticated'
+  '/authenticated',
+  '/sign-out'
 ];
 
 function ensurePageCallWillSucceed(url) {
