@@ -1,10 +1,10 @@
-const { Page } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const idam = require('middleware/idam');
 const paths = require('paths');
 const moment = require('moment');
-const content  = require('./content.en.json');
+const content = require('./content.en.json');
 
-class SignOut extends Page {
+class SignOut extends ExitPoint {
   static get path() {
     return paths.idam.signOut;
   }
@@ -25,6 +25,7 @@ class SignOut extends Page {
   }
   get middleware() {
     return [
+      idam.authenticate,
       this.journey.collectSteps,
       ...super.middleware,
       idam.logout
