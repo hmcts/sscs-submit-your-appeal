@@ -3,7 +3,7 @@
   "title": "Your appeal has been saved",
   "body": {
     "para1": "You can access your saved appeal application from the email you have just been sent.",
-    "para2": "If you submit your appeal after [MRN date plus 35 days] you will have to explain why it’s late.",
+    "para2": "If you submit your appeal after [mrn-date] you will have to explain why it’s late.",
     "para3": "Your appeal application will be saved for 6 months.",
     "para4": "<a href='/start-an-appeal' class='govuk-link govuk-!-font-size-19'>Sign back into your appeal</a>"
   }
