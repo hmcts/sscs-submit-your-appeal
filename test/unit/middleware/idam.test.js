@@ -32,11 +32,6 @@ describe('middleware/idam', () => {
     );
   });
 
-  it('logout should call next if not session', () => {
-    idam.logout(req, res, next);
-    expect(next).to.have.been.called;
-  });
-
   it('logout should call logout middleware if there is a session', () => {
     req.cookies['__auth-token'] = 'aToken';
     const middleWareStub = sandbox.spy(idamExpressMiddleware, 'logout');

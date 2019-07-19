@@ -1,25 +1,31 @@
-const { Page } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const idam = require('middleware/idam');
 const paths = require('paths');
 const moment = require('moment');
+const content = require('./content.en.json');
 
-class SignOut extends Page {
+class SignOut extends ExitPoint {
   static get path() {
     return paths.idam.signOut;
   }
 
   getMRNDate() {
-    if (this.journey.values.mrn && this.journey.values.mrn.date) {
-      const validDayCount = 35;
-      // eslint-disable-next-line max-len
-      const expiryDate = moment(this.journey.values.mrn.date, 'DD-MM-YYYY').add(validDayCount, 'days');
-      return expiryDate.format('DD-MM-YYYY');
+    let mrnDate = '';
+    if (this.journey.visitedSteps) {
+      for (let i = 0; i < this.journey.visitedSteps.length; i++) {
+        if (this.journey.visitedSteps[i].name === 'MRNDate' && this.journey.visitedSteps[i].valid) {
+          const validDayCount = 35;
+          const expiryDate = moment(this.journey.values.mrn.date, 'DD-MM-YYYY')
+            .add(validDayCount, 'days');
+          mrnDate = expiryDate.format('DD MMMM YYYY');
+        }
+      }
     }
-
-    return '';
+    return content.body.para2.replace('[mrn-date]', mrnDate);
   }
   get middleware() {
     return [
+      idam.authenticate,
       this.journey.collectSteps,
       ...super.middleware,
       idam.logout

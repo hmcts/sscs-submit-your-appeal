@@ -60,8 +60,7 @@ const methods = {
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (req, res, next) => {
     const args = setArgsFromRequest(req);
-    if (req.cookies['__auth-token']) middleware.logout(args)(req, res, next);
-    return next();
+    middleware.logout(args)(req, res, next);
   },
   userDetails: () => middleware.userDetails(idamArgs)
 };

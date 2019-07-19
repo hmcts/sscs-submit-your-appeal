@@ -15,9 +15,8 @@
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
-    {{getMRNDate()}}
     <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
-    <p class="govuk-body" class="govuk-body">{{ content.body.para2 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ getMRNDate() }}</p>
     <p class="govuk-body" class="govuk-body">{{ content.body.para3 }}</p>
     <p class="govuk-body" class="govuk-body">{{ content.body.para4 | safe }}</p>
 {% endblock %}
