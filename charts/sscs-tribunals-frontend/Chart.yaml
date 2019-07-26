@@ -3,6 +3,6 @@ name: sscs-tribunals-frontend
 home: https://github.com/hmcts/sscs-submit-your-appeal
 apiVersion: v1
 appVersion: "1.0"
-version: 0.1.1
+version: 0.1.2
 maintainers:
   - name: HMCTS SSCS Team
