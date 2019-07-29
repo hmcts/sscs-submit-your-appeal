@@ -15,5 +15,25 @@ RUN yarn setup
 FROM base as runtime
 COPY --from=build $WORKDIR/ ./
 COPY --from=build $WORKDIR/server.js ./
-COPY config ./config
+COPY --from=build $WORKDIR/app ./app
+COPY --from=build $WORKDIR/config ./config
+COPY --from=build $WORKDIR/components ./components
+COPY --from=build $WORKDIR/middleware ./middleware
+COPY --from=build $WORKDIR/policy-pages ./policy-pages
+COPY --from=build $WORKDIR/services ./services
+COPY --from=build $WORKDIR/steps ./steps
+COPY --from=build $WORKDIR/utils ./utils
+COPY --from=build $WORKDIR/views ./views
+COPY --from=build $WORKDIR/webpack ./webpack
+COPY --from=build $WORKDIR/Gruntfile.js \
+    $WORKDIR/server.js \
+    $WORKDIR/app.js \
+    $WORKDIR/appConfigurations.js \
+    $WORKDIR/content.en.json \
+    $WORKDIR/logger.js \
+    $WORKDIR/steps.js \
+    $WORKDIR/urls.js \
+    $WORKDIR/paths.js \
+    ./
 EXPOSE 3000
+CMD ["npm", "start"]
