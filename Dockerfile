@@ -8,12 +8,12 @@ RUN yarn install --production \
 # ---- Build image ----
 FROM base as build
 RUN yarn install
-COPY --chown=hmcts:hmcts * $WORKDIR
+COPY --chown=hmcts:hmcts * ./
 RUN yarn setup
 
 # ---- Runtime image ----
 FROM base as runtime
-COPY --from=build $WORKDIR/ .
+COPY --from=build $WORKDIR/ ./
 COPY --from=build $WORKDIR/server.js ./
 COPY config ./config
 EXPOSE 3000
