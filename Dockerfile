@@ -15,7 +15,6 @@ RUN yarn setup
 FROM base as runtime
 COPY --from=build $WORKDIR/ ./
 COPY --from=build $WORKDIR/server.js ./
-COPY --from=build $WORKDIR/app ./app
 COPY --from=build $WORKDIR/config ./config
 COPY --from=build $WORKDIR/components ./components
 COPY --from=build $WORKDIR/middleware ./middleware
