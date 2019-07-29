@@ -8,13 +8,12 @@ RUN yarn install --production \
 # ---- Build image ----
 FROM base as build
 RUN yarn install
-COPY tsconfig.json gulpfile.js server.js ./
-COPY --chown=hmcts:hmcts src/main ./src/main
+COPY --chown=hmcts:hmcts * $WORKDIR
 RUN yarn setup
 
 # ---- Runtime image ----
 FROM base as runtime
-COPY --from=build $WORKDIR/src/main ./src/main
-COPY --from=build $WORKDIR/server.js $WORKDIR/tsconfig.json ./
+COPY --from=build $WORKDIR/ .
+COPY --from=build $WORKDIR/server.js ./
 COPY config ./config
 EXPOSE 3000
