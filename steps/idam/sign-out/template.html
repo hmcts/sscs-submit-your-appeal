@@ -1,0 +1,22 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/error.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}
+    {{ content.titleHead }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase, feedbackLink) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+{% block two_thirds %}
+    {{ header(content.title, size='l') }}
+    <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ getMRNDate() }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para3 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para4 | safe }}</p>
+{% endblock %}

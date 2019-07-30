@@ -58,7 +58,10 @@ const methods = {
     }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
-  logout: (...args) => middleware.logout(idamArgs, ...args),
+  logout: (req, res, next) => {
+    const args = setArgsFromRequest(req);
+    middleware.logout(args)(req, res, next);
+  },
   userDetails: () => middleware.userDetails(idamArgs)
 };
 
