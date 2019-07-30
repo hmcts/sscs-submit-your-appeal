@@ -40,6 +40,9 @@ withPipeline("nodejs", product, component) {
     }
   }
 
+  after('checkout') {sh 'yarn cache clean'}
+  after('build') {sh 'yarn build'}
+
   before('smoketest:preview') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
     try {
