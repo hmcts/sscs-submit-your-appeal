@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -24,7 +25,10 @@ module.exports = {
         { from: path.resolve('assets/images'), to: 'images' },
         { from: path.resolve('views/components'), to: 'nunjucks/components' },
         { from: imagesGokukFrontend, to: 'images' },
-        { from: fontsGokukFrontend, to: 'fonts' }
+        { from: fontsGokukFrontend, to: 'fonts' },
+        { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/css/hmcts-webchat.css'), to: '' },
+        { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat.js'), to: '' },
+        { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' }
       ]),
     new MiniCssExtractPlugin({ filename: '[name].css' })
   ],
@@ -35,7 +39,10 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks(chunk) {
+        // exclude `my-excluded-chunk`
+        return chunk.name !== 'hmcts-webchat';
+      }
     }
   },
   externals: [{ window: 'window' }],

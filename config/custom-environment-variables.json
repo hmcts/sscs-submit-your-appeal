@@ -51,7 +51,8 @@
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
-      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED"
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
+      "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
     }
   },
   "postcodeChecker": {
@@ -78,6 +79,11 @@
     },
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
-    }
+    },
+    "webChat": {
+      "uuid": "SERVICES_WEBCHAT_UUID",
+      "tenant": "SERVICES_WEBCHAT_TENANT",
+      "channel": "SERVICES_WEBCHAT_CHANNEL"
+    } 
   }
 }

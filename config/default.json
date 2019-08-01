@@ -52,7 +52,8 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true"
+      "webFormEnabled": "true",
+      "webChatEnabled": "true"
     }
   },
   "postcodeChecker": {
@@ -87,6 +88,11 @@
     },
     "webForm" : {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
-    }
+    },
+    "webChat": {
+      "uuid": "script_2564970475c5c433ab52c08.45062085",
+      "tenant": "aG1jdHNzdGFnaW5nMDE",
+      "channel": "SSCS"
+    } 
   }
 }

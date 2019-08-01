@@ -76,6 +76,8 @@ const configureNunjucks = (app, content) => {
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
+      webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
+      webChat: config.get('services.webChat'),
       paths,
       urls
     }
@@ -121,15 +123,18 @@ const configureHelmet = app => {
         '\'self\'',
         '\'unsafe-inline\'',
         'www.google-analytics.com',
-        'www.googletagmanager.com'
+        'www.googletagmanager.com',
+        'chatbuilder.netlify.com',
+        'vcc-eu4.8x8.com'
       ],
       connectSrc: ['\'self\'', 'www.gov.uk'],
       mediaSrc: ['\'self\''],
-      frameSrc: ['\'none\''],
+      frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'www.googletagmanager.com'
+        'www.googletagmanager.com',
+        'vcc-eu4.8x8.com'
       ]
     }
   }));
@@ -184,6 +189,11 @@ const configureMiddleWares = (app, express) => {
     res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('X-Served-By', os.hostname());
     res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate, no-store');
+    next();
+  });
+  // Get Base url
+  app.use((req, res, next) => {
+    app.locals.baseUrl = `${req.protocol}://${req.headers.host}`;
     next();
   });
 

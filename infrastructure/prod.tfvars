@@ -7,4 +7,7 @@ postcode_lookup_enabled = "true"
 postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
 sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
 contact_us_web_form_enabled = "false"
+contact_us_webchat_enabled = "false"
 allow_save_return="false"
+services_webchat_tenant="aG1jdHNzdGFnaW5nMDE"
+

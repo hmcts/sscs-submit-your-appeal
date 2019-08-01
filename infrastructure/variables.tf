@@ -97,6 +97,10 @@ variable "idam_login_url" {
   type = "string"
   default = ""
 }
+variable "contact_us_webchat_enabled" {
+  type = "string"
+  default = "true"
+}
 
 variable "idam_api_url" {
   type = "string"
@@ -108,8 +112,24 @@ variable "services_web_form" {
   default = ""
 }
 
+variable "services_webchat_uuid" {
+  type = "string"
+  default = ""
+}
+
 variable "contact_us_web_form_enabled" {
   type = "string"
   default = "true"
 }
+variable "services_webchat_tenant" {
+  type = "string"
+  default = ""
+}
+
+variable "services_webchat_channel" {
+  type = "string"
+  default = ""
+}
+
+
 

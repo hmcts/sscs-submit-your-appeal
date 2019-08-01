@@ -73,7 +73,12 @@ module "submit-your-appeal-frontend" {
     SERVICES_IDAM_API_URL         = "${var.idam_api_url}"
     SERVICES_WEB_FORM             = "${var.services_web_form}"
     CONTACT_US_WEB_FORM_ENABLED   = "${var.contact_us_web_form_enabled}"
-
+    SERVICES_WEBCHAT_UUID         = "${var.services_webchat_uuid}"
+    SERVICES_WEBCHAT_TENANT       = "${var.services_webchat_tenant}"
+    SERVICES_WEBCHAT_CHANNEL      = "${var.services_webchat_channel}"
+    ALLOW_CONTACT_US              = "${var.allow_contact_us}"
+    CONTACT_US_TELEPHONE_ENABLED  = "${var.contact_us_telephone_enabled}"
+    CONTACT_US_WEBCHAT_ENABLED    = "${var.contact_us_webchat_enabled}"
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
     WEBSITE_LOCAL_CACHE_SIZEINMB  = 0
