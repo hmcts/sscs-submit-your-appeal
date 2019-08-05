@@ -2,7 +2,7 @@
 {% from "footer/macro.njk" import govukFooter %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink) %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
         {{ banner | safe }}
     {% endcall %}
     {% if not hideBackButton %}

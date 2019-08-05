@@ -5,7 +5,7 @@
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink) %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
@@ -95,6 +95,6 @@
 
     <p class="govuk-body">{{ content.email }}</p>
 
-    <a class="govuk-button" href="{{ surveyLink }}">{{ content.surveyLink }}</a>
+    <a class="govuk-button" href="{{ surveyLink + urlPath }}">{{ content.surveyLink  }}</a>
 
 {% endblock %}

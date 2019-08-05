@@ -10,7 +10,7 @@
 {% endset %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink) %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
