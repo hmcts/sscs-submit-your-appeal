@@ -9,5 +9,7 @@ sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
 contact_us_web_form_enabled = "false"
 contact_us_webchat_enabled = "false"
 allow_save_return="false"
-services_webchat_tenant="aG1jdHNzdGFnaW5nMDE"
+services_webchat_tenant = "aG1jdHN4MTAx"
+services_webchat_uuid =  "script_1519925245d3ec86ead6a15.79946496"
+
 

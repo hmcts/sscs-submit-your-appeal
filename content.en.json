@@ -55,7 +55,6 @@
     "webchat": {
       "title": "Web chat",
       "desc": "Get some help by messaging an agent online.",
-      "link": "Start web chat (opens in a new window)",
       "textChatDown": "The web chat service is temporarily unavailable, please try again later.",
       "textChatWithAnAgent": "Start web chat (opens in a new window)",
       "textNoAgentsAvailable": "No agents are available, please try again later.",
