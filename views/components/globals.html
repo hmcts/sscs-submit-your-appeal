@@ -98,7 +98,7 @@
           textChatWithAnAgent: '{{contactUs.webchat.textChatWithAnAgent}}',
           textNoAgentsAvailable: '{{contactUs.webchat.textNoAgentsAvailable}}',
           textAllAgentsBusy: '{{contactUs.webchat.textAllAgentsBusy}}',
-          textChatClosed : '{{contactUs.webchat.textChatClosed}}',
+          textChatClosed : '{{contactUs.webchat.textChatClosed | replace("\n", "\\n") }}',
           textChatAlreadyOpen: '{{contactUs.webchat.textChatAlreadyOpen}}',
           textAdditional: '{{contactUs.webchat.textAdditional}}',
           stylesheetURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat.css', 
