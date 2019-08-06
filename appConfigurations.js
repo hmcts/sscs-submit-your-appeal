@@ -196,6 +196,11 @@ const configureMiddleWares = (app, express) => {
     app.locals.baseUrl = `${req.protocol}://${req.headers.host}`;
     next();
   });
+  // Get url path
+  app.use((req, res, next) => {
+    app.locals.urlPath = req.url.replace('/', '');
+    next();
+  });
 
   app.use('/sessions', (req, res) => {
     res.sendStatus(HttpStatus.NOT_FOUND);

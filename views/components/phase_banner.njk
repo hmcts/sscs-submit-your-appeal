@@ -14,9 +14,10 @@
 #}
 {% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-{% macro phaseBanner(phase='ALPHA', feedbackLink='#') %}
+{% macro phaseBanner(phase='ALPHA', feedbackLink='#', urlPath= '') %}
 {% if phase != 'LIVE' %}
-    {% set html %}This is a new service. <a class="govuk-link" target="_blank" href="{{ feedbackLink }}">Report a problem</a> and help improve it for others.{% endset %}
+
+    {% set html %}This is a new service. <a class="govuk-link" target="_blank" href="{{ feedbackLink + urlPath }}">Report a problem</a> and help improve it for others.{% endset %}
     {{ govukPhaseBanner({
         tag: {
             text: phase
