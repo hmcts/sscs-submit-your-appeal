@@ -92,7 +92,10 @@
     "webChat": {
       "uuid": "script_2564970475c5c433ab52c08.45062085",
       "tenant": "aG1jdHNzdGFnaW5nMDE",
-      "channel": "SSCS"
+      "channel": "SSCS",
+      "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
+      "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
+      "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
     } 
   }
 }

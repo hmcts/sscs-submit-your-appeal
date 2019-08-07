@@ -79,6 +79,10 @@ module "submit-your-appeal-frontend" {
     ALLOW_CONTACT_US              = "${var.allow_contact_us}"
     CONTACT_US_TELEPHONE_ENABLED  = "${var.contact_us_telephone_enabled}"
     CONTACT_US_WEBCHAT_ENABLED    = "${var.contact_us_webchat_enabled}"
+    SERVICES_BTN_NO_AGENTS        = "${var.services_btn_no_agents}"
+    SERVICES_BTN_AGENTS_BUSY      = "${var.services_btn_agents_busy}"
+    SERVICES_BTN_SERVICE_CLOSED   = "${var.services_btn_service_closed}"
+
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"
     WEBSITE_LOCAL_CACHE_SIZEINMB  = 0
