@@ -126,7 +126,17 @@ variable "services_webchat_tenant" {
   default = ""
 }
 
-variable "services_webchat_channel" {
+variable "services_btn_no_agents" {
+  type = "string"
+  default = ""
+}
+
+variable "services_btn_agents_busy" {
+  type = "string"
+  default = ""
+}
+
+variable "services_btn_service_closed" {
   type = "string"
   default = ""
 }
