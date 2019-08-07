@@ -125,6 +125,10 @@ variable "services_webchat_tenant" {
   type = "string"
   default = ""
 }
+variable "services_webchat_channel" {
+  type = "string"
+  default = ""
+}
 
 variable "services_btn_no_agents" {
   type = "string"
