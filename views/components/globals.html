@@ -94,18 +94,18 @@
           tenant: '{{webChat.tenant}}',
           channel: '{{webChat.channel}}',
           buttonContainerId: 'ctsc-web-chat',
-          textChatDown: '{{contactUs.webchat.textChatDown}}',
+          textChatDown: '{{contactUs.webchat.textChatDown  | replace("\n", "\\n") }}',
           textChatWithAnAgent: '{{contactUs.webchat.textChatWithAnAgent}}',
           textNoAgentsAvailable: '{{contactUs.webchat.textNoAgentsAvailable}}',
-          textAllAgentsBusy: '{{contactUs.webchat.textAllAgentsBusy}}',
-          textChatClosed : '{{contactUs.webchat.textChatClosed}}',
+          textAllAgentsBusy: '{{contactUs.webchat.textAllAgentsBusy | replace("\n", "\\n") }}',
+          textChatClosed : '{{contactUs.webchat.textChatClosed | replace("\n", "\\n") }}',
           textChatAlreadyOpen: '{{contactUs.webchat.textChatAlreadyOpen}}',
           textAdditional: '{{contactUs.webchat.textAdditional}}',
           stylesheetURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat.css', 
           busHandlerURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat-busHandler.js', 
-          btnNoAgents: '/{{webChat.tenant}}/button_7732814745cac6f4603c4d1.53357933/img/logo',
-          btnAgentsBusy: '/{{webChat.tenant}}/button_2042157415cc19c95669039.65793052/img/logo',
-          btnServiceClosed: '/{{webChat.tenant}}/button_20199488815cc1a89e0861d5.73103009/img/logo'
+          btnNoAgents: '/{{webChat.tenant}}/button_2806315905d232e71137898.81655511/img/logo',
+          btnAgentsBusy: '/{{webChat.tenant}}/button_6100617245d23302e383e79.04188400/img/logo',
+          btnServiceClosed: '/{{webChat.tenant}}/button_19684351645d232edee71e86.59595908/img/logo'
         }
       );
 
