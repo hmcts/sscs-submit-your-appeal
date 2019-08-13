@@ -54,7 +54,8 @@
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
       "webChatEnabled": "true"
-    }
+    },
+    "allowUC" : "false"
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",

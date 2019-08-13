@@ -10,6 +10,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
+const allowUC = config.get('features.allowESA.enabled') === 'true';
 
 class BenefitType extends SaveToDraftStore {
   static get path() {
@@ -43,6 +44,9 @@ class BenefitType extends SaveToDraftStore {
     const allowedTypes = [benefitTypes.personalIndependencePayment];
     if (allowESA) {
       allowedTypes.push(benefitTypes.employmentAndSupportAllowance);
+    }
+    if (allowUC) {
+      allowedTypes.push(benefitTypes.universalCredit);
     }
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     return branch(
