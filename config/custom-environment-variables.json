@@ -42,6 +42,9 @@
     "allowESA": {
       "enabled": "ALLOW_ESA_ENABLED"
     },
+    "allowUC": {
+      "enabled": "ALLOW_UC_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },

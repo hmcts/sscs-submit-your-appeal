@@ -54,6 +54,9 @@
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
       "webChatEnabled": "true"
+    },
+    "allowUC" : {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
