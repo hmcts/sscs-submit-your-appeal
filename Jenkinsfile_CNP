@@ -69,7 +69,6 @@ withPipeline("nodejs", product, component) {
     env.ALLOW_SAVE_RETURN = "false"
   }
 
-  setVaultName('sscs')
   loadVaultSecrets(secrets)
   enableSlackNotifications(notificationsChannel)
   enableDockerBuild()
