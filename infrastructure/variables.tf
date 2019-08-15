@@ -144,6 +144,11 @@ variable "services_btn_service_closed" {
   type = "string"
   default = ""
 }
+variable "allow_uc_enabled" {
+  type = "string"
+  default = ""
+}
+
 
 
 
