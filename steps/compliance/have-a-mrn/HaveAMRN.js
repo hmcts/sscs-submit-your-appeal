@@ -6,6 +6,9 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
+const config = require('config');
+
+const allowUC = config.get('features.allowUC.enabled') === 'true';
 
 
 class HaveAMRN extends SaveToDraftStore {
@@ -15,6 +18,10 @@ class HaveAMRN extends SaveToDraftStore {
 
   get benefitType() {
     return getBenefitCode(this.req.session.BenefitType.benefitType);
+  }
+
+  get allowUC() {
+    return allowUC;
   }
 
   get form() {
