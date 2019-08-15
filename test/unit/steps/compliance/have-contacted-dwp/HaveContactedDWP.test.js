@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const paths = require('paths');
 const answer = require('utils/answer');
+const config = require('config');
 
 describe('HaveContactedDWP.js', () => {
   let haveContactedDWP = null;
@@ -24,6 +25,12 @@ describe('HaveContactedDWP.js', () => {
   describe('get path()', () => {
     it('returns path /have-contacted-dwp', () => {
       expect(HaveContactedDWP.path).to.equal(paths.compliance.haveContactedDWP);
+    });
+  });
+
+  describe('allowUC', () => {
+    it('should return wheter allowUC feature is active', () => {
+      expect(haveContactedDWP.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
     });
   });
 
