@@ -82,6 +82,7 @@ module "submit-your-appeal-frontend" {
     SERVICES_BTN_NO_AGENTS        = "${var.services_btn_no_agents}"
     SERVICES_BTN_AGENTS_BUSY      = "${var.services_btn_agents_busy}"
     SERVICES_BTN_SERVICE_CLOSED   = "${var.services_btn_service_closed}"
+    ALLOW_UC_ENABLED              = "${var.allow_uc_enabled}"
 
     // Disable dynamic cache to prevent MS bug that makes dynamically generated assets to disappear.
     WEBSITE_LOCAL_CACHE_OPTION    = "Never"

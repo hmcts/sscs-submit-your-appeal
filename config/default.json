@@ -56,7 +56,7 @@
       "webChatEnabled": "true"
     },
     "allowUC" : {
-      "enabled": "false"
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
