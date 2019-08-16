@@ -13,7 +13,7 @@
     },
     "haveContactedUCDWP": {
       "yes": "Yes, I asked them to reconsider their decision",
-      "no": "No, I have asked them to reconsider their decision"
+      "no": "No, I have not asked them to reconsider their decision"
     }
   }
 }
