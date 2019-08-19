@@ -17,7 +17,7 @@ class MRNDate extends SaveToDraftStore {
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
 
   get form() {

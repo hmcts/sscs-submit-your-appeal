@@ -39,6 +39,13 @@ describe('MRNDate.js', () => {
     });
   });
 
+  describe('get benefitType()', () => {
+    it('returns path /mrn-date', () => {
+      mrnDate.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
+      expect(mrnDate.benefitType).to.equal('PIP');
+    });
+  });
+
   describe('get form()', () => {
     let fields = null;
     let field = null;
