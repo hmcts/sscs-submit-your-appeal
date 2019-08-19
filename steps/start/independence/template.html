@@ -28,7 +28,11 @@
             <form action="{{ path if path else url }}" method="post" class="form">
 
                 {% block fields %}
-                    <p class="govuk-body-l">{{ content.reviewed }}</p>
+                    {% if allowUC and benefitType == 'UC' %}
+                        <p class="govuk-body-l">{{ content.UCreviewed }}</p>
+                    {% else %}
+                        <p class="govuk-body-l">{{ content.reviewed }}</p>
+                    {% endif %}
                     <p class="govuk-body-l">{{ content.separate }}</p>
                 {% endblock %}
 
