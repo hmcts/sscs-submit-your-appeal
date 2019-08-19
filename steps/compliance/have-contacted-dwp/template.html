@@ -4,22 +4,28 @@
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% set title %}
-    {{ content.title | safe }}
+    {% if allowUC %}
+        {{ content.ucTitle }}
+    {% else %}
+        {{ content.title | safe }}
+    {% endif %}
 {% endset %}
 
 {% block fields %}
 
     {% call formSection() %}
 
-        <p class="govuk-body">{{ content.subtitle }}</p>
+        {% if not allowUC %}
+            <p class="govuk-body">{{ content.subtitle }}</p>
+        {% endif %}
 
         {{ selectionButtons(
             fields.haveContactedDWP,
             content.subtitle,
             hint = '',
             options = [
-                { label: content.fields.haveContactedDWP.yes, value: "yes" },
-                { label: content.fields.haveContactedDWP.no,  value: "no" }
+                { label: content.fields.haveContactedUCDWP.yes if allowUC else content.fields.haveContactedDWP.yes, value: "yes" },
+                { label: content.fields.haveContactedUCDWP.no if allowUC else content.fields.haveContactedDWP.no,  value: "no" }
             ])
         }}
 
