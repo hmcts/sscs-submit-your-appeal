@@ -5,6 +5,7 @@ const paths = require('paths');
 const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+const allowUC = config.get('features.allowUC.enabled') === 'true';
 
 class Independence extends Interstitial {
   static get path() {
@@ -17,6 +18,10 @@ class Independence extends Interstitial {
 
   get benefitType() {
     return getBenefitCode(this.req.session.BenefitType.benefitType);
+  }
+
+  get allowUC() {
+    return allowUC;
   }
 
   next() {
