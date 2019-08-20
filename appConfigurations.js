@@ -118,10 +118,21 @@ const configureHelmet = app => {
     directives: {
       defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
-      styleSrc: ['\'self\'', '\'unsafe-inline\''],
+      styleSrc: [
+        '\'self\'',
+        '\'unsafe-hashes\'',
+        '\'sha256-FW89RU1NGOU/HqKhCL5513EwBQh+TCGIBM/8TCnEIAQ=\'',
+        '\'sha256-ZdHxw9eWtnxUb3mk6tBS+gIiVUPE3pGM470keHPDFlE=\''
+      ],
       scriptSrc: [
         '\'self\'',
-        '\'unsafe-inline\'',
+        '\'sha256-d1HayY858gq9PLe+YZMfOBhVfrWngT+SuydDsXHqlBE=\'',
+        '\'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU=\'',
+        '\'sha256-ZdHxw9eWtnxUb3mk6tBS+gIiVUPE3pGM470keHPDFlE=\'',
+        '\'sha256-tHLChR+BT1QZq/Amv19Ms8hZQCQvO9f1krCpj1ulPuU=\'',
+        '\'sha256-5y+igSc87VmJXyhIQpmz2AvE/fb6GI5KVoG699+35kY=\'',
+        '\'sha256-iAlqZd1kL1IDCooo6SeNvPTwN0xllMhTwc6p9TSNOLQ=\'',
+        '\'sha256-fNrm4b+JdWh69sHtGY0Dk7EfshS4gGmKgJDl2GVU+KI=\'',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
@@ -132,6 +143,7 @@ const configureHelmet = app => {
       frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
+        'stats.g.doubleclick.net',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com'

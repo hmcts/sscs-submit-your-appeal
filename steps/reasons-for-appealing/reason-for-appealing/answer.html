@@ -4,7 +4,7 @@
                 <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
                 <dd class="govuk-summary-list__value">
                     {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
-                        {{ item.whatYouDisagreeWith|safe }}
+                        {{ item.whatYouDisagreeWith  }}
                     {% else %}
                         {{ content.cya.reasonForAppealing.notProvided }}
                     {% endif %}
@@ -20,7 +20,7 @@
                 <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
                 <dd class="govuk-summary-list__value">
                     {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
-                        {{ item.reasonForAppealing|safe }}
+                        {{ item.reasonForAppealing }}
                     {% else %}
                         {{ content.cya.reasonForAppealing.notProvided }}
                     {% endif %}
