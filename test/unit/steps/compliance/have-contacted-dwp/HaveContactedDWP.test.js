@@ -14,6 +14,11 @@ describe('HaveContactedDWP.js', () => {
           NoMRN: paths.compliance.noMRN,
           ContactDWP: paths.compliance.contactDWP
         }
+      },
+      session: {
+        BenefitType: {
+          benefitType: 'Universal Credit (UC) Universal Credit UC'
+        }
       }
     });
 
@@ -31,6 +36,12 @@ describe('HaveContactedDWP.js', () => {
   describe('allowUC', () => {
     it('should return wheter allowUC feature is active', () => {
       expect(haveContactedDWP.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
+    });
+  });
+
+  describe('get Benefit type', () => {
+    it('should return the benefit type', () => {
+      expect(haveContactedDWP.benefitType).to.equal('UC Universal Credit UC');
     });
   });
 
