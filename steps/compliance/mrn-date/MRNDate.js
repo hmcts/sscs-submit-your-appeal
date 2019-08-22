@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
@@ -65,8 +66,12 @@ class MRNDate extends SaveToDraftStore {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
     const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
+    const allowUC = config.get('features.allowUC.enabled') === 'true';
+    const isUCBenefit = allowUC && benefitType && benefitType === 'Universal Credit (UC)';
+    const UCBenefitLessThanMonth = isUCBenefit && isLessThanOrEqualToAMonth;
 
     return branch(
+      goTo(this.journey.steps.Appointee).if(UCBenefitLessThanMonth),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
       goTo(this.journey.steps.DWPIssuingOffice)

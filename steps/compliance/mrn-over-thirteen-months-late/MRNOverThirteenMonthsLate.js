@@ -9,6 +9,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
+const config = require('config');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -55,8 +56,11 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
     const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
+    const allowUC = config.get('features.allowUC.enabled') === 'true';
+    const isUCBenefit = allowUC && benefitType === 'Universal Credit (UC)';
 
     return branch(
+      goTo(this.journey.steps.Appointee).if(isUCBenefit),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
