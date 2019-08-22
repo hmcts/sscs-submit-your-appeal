@@ -61,21 +61,24 @@ describe('postcode lookup', () => {
     $ = global.jQuery = jQuery(window);
     // cannot be required earlier than here. Sawry!!
     PostCodeLookup = require('components/postcodeLookup/assets/main').default;
-    PostCodeLookup.init();
+
     done();
   });
 
   it('manualLinkClickEvent', () => {
+    PostCodeLookup.init();
     $('#manualLink').trigger('click');
     expect($('#submitType').val()).to.equal('manual');
   });
 
   it('findAddress Click', () => {
+    PostCodeLookup.init();
     $('#findAddress').trigger('click');
     expect($('#submitType').val()).to.equal('lookup');
   });
 
-  it('findAddress Click', () => {
+  it('postcode-address change', () => {
+    PostCodeLookup.init();
     $('.postcode-address').trigger('change');
     expect($('#submitType').val()).to.equal('addressSelection');
   });
