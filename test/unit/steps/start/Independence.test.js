@@ -1,12 +1,8 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
-
-let Independence = proxyquire('steps/start/independence/Independence', {
-  config: {
-    get: () => 'false'
-  }
-});
+const config = require('config');
+let Independence = require('steps/start/independence/Independence');
 
 describe('Independence.js', () => {
   let independence = null;
@@ -18,17 +14,43 @@ describe('Independence.js', () => {
   };
 
   beforeEach(() => {
-    independence = new Independence({ journey: steps });
+    independence = new Independence({
+      journey: steps,
+      session: {
+        BenefitType: {
+          benefitType: 'Personal Independence Payment (PIP)'
+        }
+      }
+    });
   });
 
-  describe('get path()', () => {
-    it('returns path /independence', () => {
-      expect(independence.path).to.equal(paths.start.independence);
-    });
+  it('returns path /independence', () => {
+    expect(independence.path).to.equal(paths.start.independence);
+  });
+
+  it('get allowUC from config', () => {
+    expect(independence.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
+  });
+
+  it('returns tribunal panel', () => {
+    expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+  });
+
+  it('returns benefit type', () => {
+    expect(independence.benefitType).to.equal('PIP');
   });
 
   describe('next()', () => {
     describe('when save and return is DISABLED', () => {
+      beforeEach(() => {
+        Independence = proxyquire('steps/start/independence/Independence', {
+          config: {
+            get: () => 'false'
+          }
+        });
+
+        independence = new Independence({ journey: steps });
+      });
       it('returns the next step path /mrn-date', () => {
         expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
       });

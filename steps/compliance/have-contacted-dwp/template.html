@@ -3,19 +3,25 @@
 
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
+{% if allowUC and benefitType == 'UC' %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no %}
+    {% set contentTitle =  content.ucTitle %}
+{% else %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no %}
+    {% set contentTitle = content.title %}
+{% endif %}
+
 {% set title %}
-    {% if allowUC %}
-        {{ content.ucTitle }}
-    {% else %}
-        {{ content.title | safe }}
-    {% endif %}
+    {{ contentTitle | safe }}
 {% endset %}
 
 {% block fields %}
 
     {% call formSection() %}
 
-        {% if not allowUC %}
+        {% if benefitType != 'UC' %}
             <p class="govuk-body">{{ content.subtitle }}</p>
         {% endif %}
 
@@ -24,8 +30,8 @@
             content.subtitle,
             hint = '',
             options = [
-                { label: content.fields.haveContactedUCDWP.yes if allowUC else content.fields.haveContactedDWP.yes, value: "yes" },
-                { label: content.fields.haveContactedUCDWP.no if allowUC else content.fields.haveContactedDWP.no,  value: "no" }
+                { label: selectionButtonYesLabel, value: "yes" },
+                { label: selectionButtonNoLabel,  value: "no" }
             ])
         }}
 
