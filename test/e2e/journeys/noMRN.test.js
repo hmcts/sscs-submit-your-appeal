@@ -43,6 +43,7 @@ Scenario('Appellant has contacted DWP', async I => {
   I.checkOptionAndContinue(haveAMRN.no);
   I.checkOptionAndContinue(haveContactedDWP.yes);
   I.enterReasonForNoMRNAndContinue(testData.mrn.reasonForNoMRN);
+  I.continueFromStillCanAppeal();
   I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
   I.enterAppellantNINOAndContinue(appellant.nino);

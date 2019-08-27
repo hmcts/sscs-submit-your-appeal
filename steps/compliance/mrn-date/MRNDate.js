@@ -8,10 +8,16 @@ const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
+const { getBenefitCode } = require('utils/stringUtils');
+
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnDate;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
 
   get form() {

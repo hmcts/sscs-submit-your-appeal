@@ -6,10 +6,15 @@ const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { getBenefitCode } = require('utils/stringUtils');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.checkMRNDate;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
 
   get form() {
