@@ -40,7 +40,7 @@ class NoMRN extends SaveToDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.Appointee);
+    return goTo(this.journey.steps.StillCanAppeal);
   }
 }
 
