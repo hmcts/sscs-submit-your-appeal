@@ -26,7 +26,7 @@ locals {
 
   vaultName = "${var.raw_product}-${var.env}"
 
-  ApiUrl      = "http://sscs-tribunals-api-${var.env}.service.${local.aseName}.internal"
+  ApiUrl      = "http://sscs-tribunals-api-pr-685.service.core-compute-preview.internal"
 
   shared_app_service_plan     = "${var.product}-${var.env}"
   non_shared_app_service_plan = "${var.product}-${var.component}-${var.env}"
