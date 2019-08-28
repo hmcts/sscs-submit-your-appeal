@@ -135,6 +135,8 @@ const configureHelmet = app => {
         '\'sha256-fNrm4b+JdWh69sHtGY0Dk7EfshS4gGmKgJDl2GVU+KI=\'',
         '\'sha256-qQjeoUfZHiakAatmDO5+RxQkcnF6ekQ0h5qcNH6lBjI=\'',
         '\'sha256-5hXcReiR08vIN5+PdGdaSYw1ylSYCD45xqKjiEJq7WA=\'',
+        '\'sha256-6hhCGRJQ0EF2n5l92HnUe8CPgyDZhxo8bdLQo/78WVs=\'',
+        '\'sha256-qffJLPr49NcnTCxu9vMdQbdW0CBK9mPZ1MHkzE4QSLM=\'',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
@@ -145,6 +147,7 @@ const configureHelmet = app => {
       frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
+        'www.google.com',
         'stats.g.doubleclick.net',
         'www.google-analytics.com',
         'www.googletagmanager.com',
