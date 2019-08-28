@@ -120,23 +120,11 @@ const configureHelmet = app => {
       fontSrc: ['\'self\' data:'],
       styleSrc: [
         '\'self\'',
-        '\'unsafe-hashes\'',
-        '\'sha256-FW89RU1NGOU/HqKhCL5513EwBQh+TCGIBM/8TCnEIAQ=\'',
-        '\'sha256-ZdHxw9eWtnxUb3mk6tBS+gIiVUPE3pGM470keHPDFlE=\''
+        '\'unsafe-inline\''
       ],
       scriptSrc: [
         '\'self\'',
-        '\'sha256-d1HayY858gq9PLe+YZMfOBhVfrWngT+SuydDsXHqlBE=\'',
-        '\'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU=\'',
-        '\'sha256-ZdHxw9eWtnxUb3mk6tBS+gIiVUPE3pGM470keHPDFlE=\'',
-        '\'sha256-tHLChR+BT1QZq/Amv19Ms8hZQCQvO9f1krCpj1ulPuU=\'',
-        '\'sha256-5y+igSc87VmJXyhIQpmz2AvE/fb6GI5KVoG699+35kY=\'',
-        '\'sha256-iAlqZd1kL1IDCooo6SeNvPTwN0xllMhTwc6p9TSNOLQ=\'',
-        '\'sha256-fNrm4b+JdWh69sHtGY0Dk7EfshS4gGmKgJDl2GVU+KI=\'',
-        '\'sha256-qQjeoUfZHiakAatmDO5+RxQkcnF6ekQ0h5qcNH6lBjI=\'',
-        '\'sha256-5hXcReiR08vIN5+PdGdaSYw1ylSYCD45xqKjiEJq7WA=\'',
-        '\'sha256-6hhCGRJQ0EF2n5l92HnUe8CPgyDZhxo8bdLQo/78WVs=\'',
-        '\'sha256-qffJLPr49NcnTCxu9vMdQbdW0CBK9mPZ1MHkzE4QSLM=\'',
+        '\'unsafe-inline\'',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
@@ -147,7 +135,6 @@ const configureHelmet = app => {
       frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
-        'www.google.com',
         'stats.g.doubleclick.net',
         'www.google-analytics.com',
         'www.googletagmanager.com',
