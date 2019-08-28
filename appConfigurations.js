@@ -133,6 +133,8 @@ const configureHelmet = app => {
         '\'sha256-5y+igSc87VmJXyhIQpmz2AvE/fb6GI5KVoG699+35kY=\'',
         '\'sha256-iAlqZd1kL1IDCooo6SeNvPTwN0xllMhTwc6p9TSNOLQ=\'',
         '\'sha256-fNrm4b+JdWh69sHtGY0Dk7EfshS4gGmKgJDl2GVU+KI=\'',
+        '\'sha256-qQjeoUfZHiakAatmDO5+RxQkcnF6ekQ0h5qcNH6lBjI=\'',
+        '\'sha256-5hXcReiR08vIN5+PdGdaSYw1ylSYCD45xqKjiEJq7WA=\'',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
