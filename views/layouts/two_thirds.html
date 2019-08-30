@@ -7,13 +7,13 @@
 
 {% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
 
+{% block headIcons %}
+  {% include "components/touch-icons.html" %}
+{% endblock %}
+
 {% block header %}
   {% include "components/cookie-banner.html" %}
-  {{ govukHeader({
-    serviceName: 'Appeal a benefit decision',
-    serviceUrl: serviceUrl or '/',
-    navigation: serviceLinks
-  }) }}
+  {% include "components/navigation.html" %}
 {% endblock %}
 
 {% block beforeContent -%}

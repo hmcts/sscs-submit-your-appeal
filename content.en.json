@@ -1,4 +1,7 @@
 {
+  "navigation": {
+    "title": "Appeal a benefit decision"
+  },
   "phaseBanner": {
     "newService": "This is a new service. ",
     "reportProblem": "Report a problem",
