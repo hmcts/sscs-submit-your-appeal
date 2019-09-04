@@ -6,7 +6,7 @@
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink) %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
         {{ banner | safe }}
     {% endcall %}
     <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
@@ -17,8 +17,13 @@
 {{ header(content.title, size="l") }}
 
 <p class="govuk-body">{{ content.requestingMandatoryReconsideration }}</p>
-<p class="govuk-body">{{ content.contactDetailsFromLettersOrEmails }}</p>
+{% if allowUC and benefitType == 'UC' %}
+    <p class="govuk-body">{{ content.linkUCJournal | safe }}</p>
+{% else %}
+    <p class="govuk-body">{{ content.contactDetailsFromLettersOrEmails }}</p>
+{% endif %}
 
-<a class="govuk-link" href="http://www.gov.uk">{{ content.govuk }}</a>
-
+<div class="govuk-!-margin-bottom-6">
+    <a class="govuk-link" href="http://www.gov.uk">{{ content.govuk }}</a>
+</div>
 {% endblock %}

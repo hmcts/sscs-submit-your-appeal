@@ -42,11 +42,20 @@
     "allowESA": {
       "enabled": "ALLOW_ESA_ENABLED"
     },
+    "allowUC": {
+      "enabled": "ALLOW_UC_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
     "allowSaveAndReturn": {
       "enabled": "ALLOW_SAVE_RETURN"
+    },
+    "allowContactUs": {
+      "enabled": "ALLOW_CONTACT_US",
+      "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
+      "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
     }
   },
   "postcodeChecker": {
@@ -70,6 +79,17 @@
       "loginUrl": "SERVICES_IDAM_LOGIN_URL",
       "clientId": "SERVICES_IDAM_CLIENTID",
       "useMock": "SERVICES_IDAM_USE_MOCK"
-    }  
+    },
+    "webForm" : {
+      "url": "SERVICES_WEB_FORM"
+    },
+    "webChat": {
+      "uuid": "SERVICES_WEBCHAT_UUID",
+      "tenant": "SERVICES_WEBCHAT_TENANT",
+      "channel": "SERVICES_WEBCHAT_CHANNEL",
+      "btnNoAgents": "SERVICES_BTN_NO_AGENTS",
+      "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
+      "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
+    } 
   }
 }

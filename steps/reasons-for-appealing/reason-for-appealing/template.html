@@ -73,5 +73,6 @@
 
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
+     {{super()}}
 {%- endblock %}
 

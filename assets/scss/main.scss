@@ -357,3 +357,23 @@ label.form-label[for="signer"] {
   @extend .govuk-button;
   @extend .govuk-button--secondary; 
 }
+
+.form-buttons-group {
+  line-height: 2.375rem;
+
+  .govuk-link {
+    @include govuk-media-query($from: tablet) {
+      @include govuk-responsive-margin(3, "left");
+    }
+  }
+}
+#ctsc-web-chat {
+  p {
+    margin-bottom:0;
+  }
+  a {
+    @extend .govuk-link;
+  }
+}
+
+

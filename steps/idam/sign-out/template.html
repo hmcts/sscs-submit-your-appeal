@@ -1,6 +1,6 @@
 {% extends "components/globals.html" %}
+{% extends "layouts/error.html" %}
 {% from "components/header.njk" import header %}
-{% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
 {% block pageTitle %}
@@ -14,12 +14,9 @@
 {% endblock %}
 
 {% block two_thirds %}
-
     {{ header(content.title, size='l') }}
-
-    <p class="govuk-body">{{ content.ends }}</p>
-    <p class="govuk-body">{{ content.detailsDeleted }}</p>
-
-    <a class="govuk-button" href="/start-an-appeal">{{ content.start }}</a>
-
-{%- endblock %}
+    <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ getMRNDate() }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para3 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para4 | safe }}</p>
+{% endblock %}

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
+    "build": "webpack --config ./webpack/webpack.prod.js",
     "dev": "cross-env NODE_ENV=development NODE_PATH=.  node server.js",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. node --inspect server.js",
     "setup": "exit 0",
@@ -36,6 +37,7 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@hmcts/ctsc-web-chat": "^0.2.4",
     "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/nodejs-healthcheck": "^1.5.1",
     "@hmcts/one-per-page": "5.0.1",
@@ -70,8 +72,8 @@
     "js-base64": "^2.5.1",
     "jsdom": "^15.1.1",
     "libphonenumber-js": "^1.7.19",
-    "lodash": "^4.17.4",
-    "lodash-es": "^4.17.11",
+    "lodash": "^4.17.14",
+    "lodash-es": "^4.17.14",
     "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.18.1",
     "node-sass": "^4.12.0",
@@ -123,6 +125,8 @@
   },
   "resolutions": {
     "braces": "^2.3.2",
-    "js-yaml": "3.13.1"
+    "js-yaml": "3.13.1",
+    "lodash": "^4.17.4",
+    "assign-deep": "1.0.1"
   }
 }

@@ -84,14 +84,71 @@ variable "allow_save_return" {
   default = "false"
 }
 
+variable "allow_contact_us" {
+  type = "string"
+  default = "true"
+}
+
+variable "contact_us_telephone_enabled" {
+  type = "string"
+  default = "true"
+}
 variable "idam_login_url" {
   type = "string"
   default = ""
+}
+variable "contact_us_webchat_enabled" {
+  type = "string"
+  default = "true"
 }
 
 variable "idam_api_url" {
   type = "string"
   default = ""
 }
+
+variable "services_web_form" {
+  type = "string"
+  default = ""
+}
+
+variable "services_webchat_uuid" {
+  type = "string"
+  default = ""
+}
+
+variable "contact_us_web_form_enabled" {
+  type = "string"
+  default = "true"
+}
+variable "services_webchat_tenant" {
+  type = "string"
+  default = ""
+}
+variable "services_webchat_channel" {
+  type = "string"
+  default = ""
+}
+
+variable "services_btn_no_agents" {
+  type = "string"
+  default = ""
+}
+
+variable "services_btn_agents_busy" {
+  type = "string"
+  default = ""
+}
+
+variable "services_btn_service_closed" {
+  type = "string"
+  default = ""
+}
+variable "allow_uc_enabled" {
+  type = "string"
+  default = ""
+}
+
+
 
 

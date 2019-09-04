@@ -12,7 +12,7 @@ const options = {
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.NoLegend',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68'
   ],
-  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon]'
+  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe'
 };
 
 const excludeSteps = [
@@ -21,7 +21,8 @@ const excludeSteps = [
   '/enter-appellant-contact-details',
   '/appointee-contact-details',
   '/idam-redirect',
-  '/authenticated'
+  '/authenticated',
+  '/sign-out'
 ];
 
 function ensurePageCallWillSucceed(url) {

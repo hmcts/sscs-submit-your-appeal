@@ -44,5 +44,40 @@
   "continueButtonText": {
     "save" : "Save and continue",
     "continue": "Continue"
+  },
+  "contactUs": {
+    "title": "Contact us for help",
+    "webform": {
+      "title" : "Send us a message",
+      "desc" : "You’ll get a response by email within 2 working days.",
+      "link" : "Send message (opens in a new window)"
+    },
+    "webchat": {
+      "title": "Web chat",
+      "desc": "Get some help by messaging an agent online.",
+      "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
+      "textChatWithAnAgent": "Start web chat (opens in a new window)",
+      "textNoAgentsAvailable": "No agents are available, please try again later.",
+      "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
+      "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+      "textChatAlreadyOpen": "A web chat window is already open.",
+      "textAdditional": "Monday to Friday, 8.30am to 5pm"
+    },
+    "telephone" : {
+      "title": "Telephone",
+      "desc": "Talk to one of our agents now over the phone.",
+      "England": {
+        "desc" : "Benefit appeals helpline (England and Wales)",
+        "phone": "Telephone: 0300 123 1142",
+        "availability": "Monday to Friday, 8:30am to 5pm",
+        "charges": "Find out about call charges"
+      },
+      "Scotland" : {
+        "desc": "Benefit appeals helpline (Scotland)",
+        "phone": "Telephone: 0300 790 6234",
+        "availability": "Monday to Friday, 8:30am to 5pm",
+        "charges": "Find out about call charges"
+      }
+    }
   }
 }

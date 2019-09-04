@@ -14,6 +14,13 @@ describe('CheckMRN.js', () => {
           MRNOverOneMonthLate: paths.compliance.mrnOverMonthLate,
           MRNOverThirteenMonthsLate: paths.compliance.mrnOverThirteenMonthsLate,
           MRNDate: paths.compliance.mrnDate
+        },
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: null
+            }
+          }
         }
       }
     });
@@ -31,6 +38,13 @@ describe('CheckMRN.js', () => {
   describe('get path()', () => {
     it('returns path /check-mrn-date', () => {
       expect(CheckMRN.path).to.equal(paths.compliance.checkMRNDate);
+    });
+  });
+
+  describe('get benefitType()', () => {
+    it('returns PIP code from benefit type', () => {
+      checkMRN.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
+      expect(checkMRN.benefitType).to.equal('PIP');
     });
   });
 

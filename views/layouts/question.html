@@ -5,7 +5,7 @@
 {% from "components/i18n.njk" import languageSwitch %}
 
 {% block breadcrumbs %}
-{{ phaseBanner(phase, feedbackLink) }}
+{{ phaseBanner(phase, feedbackLink, urlPath) }}
 <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
 {{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
 {% endblock %}
@@ -37,10 +37,12 @@
      {% set continueText = 'Continue' %}
   {% endif %}
 
-  <input class="govuk-button" type="submit" value="{{continueText}}">
+  <div class="form-buttons-group">
+    <input class="govuk-button" type="submit" value="{{continueText}}">
+    {% if isUserLoggedIn  %}
+      <a href="/sign-out" class="govuk-link govuk-!-font-size-19 govuk-line-height-38 ">Save and come back later</a>
+    {% endif %}
+  </div>
 </form>
-
-{% block after_form -%}
-{%- endblock %}
 
 {% endblock %}
