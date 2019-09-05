@@ -48,7 +48,7 @@ withPipeline("nodejs", product, component) {
     try {
       def encodedServiceName = 'SSCS'
       def aksUrlToWhitelist = env.TEST_URL + '/authenticated'
-      sh('curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/' + encodedServiceName +
+      sh('curl -X PATCH https://idam-api.demo.platform.hmcts.net/testing-support/services/' + encodedServiceName +
         ' -H \'Content-Type: application/json\'' +
         ' -H \'cache-control: no-cache\'' +
         ' -d \'[{' +
