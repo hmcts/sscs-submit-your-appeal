@@ -59,6 +59,7 @@ const configureNunjucks = (app, content) => {
       phase: 'BETA',
       feedbackLink: urls.phaseBanner,
       environment: process.env.NODE_ENV,
+      navigation: content.navigation,
       inactivityTimeout: {
         title: content.inactivityTimeout.title,
         expiringIn: content.inactivityTimeout.expiringIn,
