@@ -44,6 +44,12 @@ function initAutocomplete() {
             return null;
           }
           const options = Array.from(select.options).map(opt => opt.value);
+
+          const alphaNumeric = /^[a-z0-9]+$/i;
+
+          if (!query.match(alphaNumeric)) {
+            return null;
+          }
           const startingWithLetter = remove(options, opt =>
             opt.match(new RegExp(`^${query}.+`, 'i')));
           const containingLetter = remove(options, opt =>
