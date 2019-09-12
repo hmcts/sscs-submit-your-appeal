@@ -45,7 +45,7 @@ class CheckMRN extends SaveToDraftStore {
     const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
     const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 
-    if (!hasCheckedMRN) {
+    if (!hasCheckedMRN && this.req.session) {
       delete this.req.session.MRNDate;
       delete this.req.session.CheckMRN;
     }
