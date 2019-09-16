@@ -35,9 +35,6 @@
       {% if section.title and _sections|length > 1 %}
         {{ header(section.title, size='m') }}
       {% endif %}
-
-      <dl class="govuk-summary-list">
-
         {% for part in section.completedAnswers %}
           {% if not part.hide %}
             {% if part.html %}
@@ -47,9 +44,6 @@
             {% endif %}
           {% endif %}
         {% endfor %}
-
-      </dl>
-
     {% endif %}
   {% endfor %}
 
