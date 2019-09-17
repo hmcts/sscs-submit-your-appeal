@@ -54,6 +54,8 @@ function initAutocomplete() {
           return populateResults([...startingWithLetter, ...containingLetter]);
         }
       });
+      // Accessibility Fix
+      $('.autocomplete__wrapper').attr('aria-label', 'Benefit Type');
     }
   });
 }
