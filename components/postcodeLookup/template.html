@@ -8,7 +8,7 @@
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
         {% endif %}  
         <div class="govuk-form-group">
-            <a id="manualLink" class="govuk-link govuk-body" href="#" onclick="document.getElementById('submitType').value = 'manual'; document.getElementsByClassName('form')[0].submit();">{{content.manualEntryLabel}}</a>
+            <a id="manualLink" class="govuk-link govuk-body" href="#" >{{content.manualEntryLabel}}</a>
         </div>
         {% if fields.postcodeAddress and fields.postcodeAddress.value %}
             {{ caller() }}
@@ -31,8 +31,7 @@
   <select 
           name="{{ field.id }}"
           id="{{ field.id }}"
-          class="govuk-select govuk-!-width-one-half"
-          onchange="document.getElementById('submitType').value = 'addressSelection'; this.form.submit();"
+          class="govuk-select govuk-!-width-one-half postcode-address"
           >
     {# Default option so no option is preselected #}
     <option disabled
@@ -95,6 +94,6 @@
          name="{{ field.id }}"
          type="text"
          {% if field.value %}value="{{ field.value }}"{% endif %}>
-  <input class="govuk-button govuk-!-margin-0" type="submit" value="Find address" onclick="document.getElementById('submitType').value = 'lookup';">
+  <input id="findAddress" class="govuk-button govuk-!-margin-0" type="submit" value="Find address" >
 </div>
 {% endmacro %}

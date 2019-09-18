@@ -59,6 +59,7 @@ const configureNunjucks = (app, content) => {
       phase: 'BETA',
       feedbackLink: urls.phaseBanner,
       environment: process.env.NODE_ENV,
+      navigation: content.navigation,
       inactivityTimeout: {
         title: content.inactivityTimeout.title,
         expiringIn: content.inactivityTimeout.expiringIn,
@@ -118,7 +119,10 @@ const configureHelmet = app => {
     directives: {
       defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
-      styleSrc: ['\'self\'', '\'unsafe-inline\''],
+      styleSrc: [
+        '\'self\'',
+        '\'unsafe-inline\''
+      ],
       scriptSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
@@ -132,6 +136,7 @@ const configureHelmet = app => {
       frameSrc: ['vcc-eu4.8x8.com'],
       imgSrc: [
         '\'self\'',
+        'stats.g.doubleclick.net',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com'

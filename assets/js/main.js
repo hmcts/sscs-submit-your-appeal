@@ -9,6 +9,7 @@ import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
 import { CheckCookies } from './check-cookies';
+import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -50,6 +51,8 @@ function initAutocomplete() {
           return populateResults([...startingWithLetter, ...containingLetter]);
         }
       });
+      // Accessibility Fix
+      $('.autocomplete__wrapper').attr('aria-label', 'Benefit Type');
     }
   });
 }
@@ -110,6 +113,13 @@ function initAddReason() {
   }
 }
 
+function initBackButton() {
+  $('.govuk-back-link').click(() => {
+    history.go(-1);
+    return false;
+  });
+}
+
 $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
@@ -118,6 +128,8 @@ $(document).ready(() => {
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();
+  initBackButton();
+  PostCodeLookup.init();
   const checkCookies = new CheckCookies();
   checkCookies.init();
 });

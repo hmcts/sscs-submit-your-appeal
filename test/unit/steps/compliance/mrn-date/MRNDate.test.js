@@ -22,7 +22,8 @@ describe('MRNDate.js', () => {
         steps: {
           CheckMRN: paths.compliance.checkMRNDate,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
-          DWPIssuingOffice: paths.compliance.dwpIssuingOffice
+          DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -35,6 +36,13 @@ describe('MRNDate.js', () => {
   describe('get path()', () => {
     it('returns path /mrn-date', () => {
       expect(MRNDate.path).to.equal(paths.compliance.mrnDate);
+    });
+  });
+
+  describe('get benefitType()', () => {
+    it('returns PIP code from benefit type', () => {
+      mrnDate.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
+      expect(mrnDate.benefitType).to.equal('PIP');
     });
   });
 
@@ -130,6 +138,20 @@ describe('MRNDate.js', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.employmentAndSupportAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      });
+    });
+
+    describe('when benefit type is UC', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.universalCredit);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.universalCredit);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
     });
 

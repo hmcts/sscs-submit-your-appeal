@@ -1,4 +1,5 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
+const { getBenefitCode } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 
@@ -11,6 +12,10 @@ class ContactDWP extends ExitPoint {
 
   get allowUC() {
     return allowUC;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.req.session.BenefitType.benefitType);
   }
 }
 

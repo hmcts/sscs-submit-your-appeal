@@ -19,7 +19,8 @@ describe('MRNOverOneMonth.js', () => {
         },
         steps: {
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
-          DWPIssuingOffice: paths.compliance.dwpIssuingOffice
+          DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
+          Appointee: paths.identity.areYouAnAppointee
         }
       }
     });
@@ -106,6 +107,11 @@ describe('MRNOverOneMonth.js', () => {
     it('returns the next step path /dwp-issuing-office-esa', () => {
       setBenefitType(benefitTypes.employmentAndSupportAllowance);
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+    });
+
+    it('returns the next step path /are-you-an-appointee', () => {
+      setBenefitType(benefitTypes.universalCredit);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
   });
 });

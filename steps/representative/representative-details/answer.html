@@ -1,7 +1,7 @@
     <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">{{ content.cya.name.question }}</dt>
-            <dd class="govuk-summary-list__value">{{ CYAName|safe }}</dd>
+            <dd class="govuk-summary-list__value">{{ CYAName }}</dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
                 <span class="govuk-visually-hidden"> {{ content.cya.repDetails }}</span>
@@ -11,7 +11,7 @@
     <dl class="govuk-summary-list">
         <div id="cya-representativedetails-organisation-if-they-work-for-one" class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">{{ content.cya.organisation.question }}</dt>
-            <dd class="govuk-summary-list__value">{{ CYAOrganisation|safe }}</dd>
+            <dd class="govuk-summary-list__value">{{ CYAOrganisation }}</dd>
             <dd class="govuk-summary-list__actions"></dd>
         </div>
     </dl>
@@ -19,10 +19,10 @@
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
             <dd class="govuk-summary-list__value">
-                {{ fields.addressLine1.value|safe }}<br>
-                {% if fields.addressLine2.value %}{{ fields.addressLine2.value|safe }}<br>{% endif %}
-                {{ fields.townCity.value|safe }}<br>
-                {{ fields.county.value|safe }}<br>
+                {{ fields.addressLine1.value }}<br>
+                {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
+                {{ fields.townCity.value }}<br>
+                {{ fields.county.value }}<br>
                 {{ fields.postCode.value }}<br>
             </dd>
             <dd class="govuk-summary-list__actions"></dd>

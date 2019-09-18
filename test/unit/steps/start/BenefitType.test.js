@@ -1,6 +1,8 @@
 const BenefitType = require('steps/start/benefit-type/BenefitType');
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
+const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 const paths = require('paths');
 
 describe('BenefitType.js', () => {
@@ -89,6 +91,16 @@ describe('BenefitType.js', () => {
     it('returns /postcode-check with benefit type value is PIP', () => {
       benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
       expect(benefitType.next().step).to.eql(paths.start.postcodeCheck);
+    });
+
+    it('pushes ESA as allowed benefitType if allowESA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('employmentAndSupportAllowance'))
+        .to.eql(config.get('features.allowESA.enabled') === 'true');
+    });
+
+    it('pushes UC as allowed benefitType if allowUC is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('universalCredit'))
+        .to.eql(config.get('features.allowUC.enabled') === 'true');
     });
   });
 });

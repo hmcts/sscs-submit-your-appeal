@@ -6,10 +6,15 @@ const Joi = require('joi');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { getBenefitCode } = require('utils/stringUtils');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.checkMRNDate;
+  }
+
+  get benefitType() {
+    return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
 
   get form() {
@@ -39,6 +44,12 @@ class CheckMRN extends SaveToDraftStore {
 
     const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
     const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
+
+    if (!hasCheckedMRN && this.req.session) {
+      delete this.req.session.MRNDate;
+      delete this.req.session.CheckMRN;
+    }
+
 
     return branch(
       goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
