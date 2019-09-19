@@ -5,6 +5,7 @@ const cookiePolicyContent = require('policy-pages/cookie-policy/content.en.json'
 const termsAndConditionsContent = require('policy-pages/terms-and-conditions/content.en.json');
 const privacyPolicyContent = require('policy-pages/privacy-policy/content.en.json');
 const contactUsContent = require('policy-pages/contact-us/content.en.json');
+const accessibilityContent = require('policy-pages/accessibility/content.en.json');
 
 router.get(paths.policy.cookiePolicy, (req, res) => {
   res.render('cookie-policy/template.html', cookiePolicyContent);
@@ -16,6 +17,10 @@ router.get(paths.policy.termsAndConditions, (req, res) => {
 
 router.get(paths.policy.privacy, (req, res) => {
   res.render('privacy-policy/template.html', privacyPolicyContent);
+});
+
+router.get(paths.policy.accessibility, (req, res) => {
+  res.render('accessibility/template.html', accessibilityContent);
 });
 
 router.get(paths.policy.contactUs, (req, res) => {
