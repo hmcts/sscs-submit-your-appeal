@@ -30,6 +30,8 @@ const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
 
+const parseFullName = require('parse-full-name').parseFullName;
+
 class RepresentativeDetails extends SaveToDraftStore {
   constructor(...args) {
     super(...args);
@@ -47,9 +49,10 @@ class RepresentativeDetails extends SaveToDraftStore {
     const nameTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
+    const fullName = parseFullName(`${nameTitle} ${first} ${last}`, 'all', 1, 0, 0);
     return first === '' && last === '' ?
       userAnswer.NOT_PROVIDED :
-      `${nameTitle} ${first} ${last}`.trim();
+      `${fullName.title} ${fullName.first} ${fullName.last}`.trim();
   }
 
   get CYAOrganisation() {

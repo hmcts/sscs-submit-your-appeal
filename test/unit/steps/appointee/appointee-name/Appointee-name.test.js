@@ -81,9 +81,9 @@ describe('AppointeeName.js', () => {
   });
 
   [
-    'Mr,HARRY,POTTER',
-    'Mr,harry,potter',
-    'Mr,haRRy,pOttEr',
+    'MR,HARRY,POTTER',
+    'mr,harry,potter',
+    'mR,haRRy,pOttEr',
     'Mr,harry John,pOttEr'
   ].forEach(item => {
     describe(`answers() appellant full name # ${item}`, () => {

@@ -75,6 +75,20 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.name.last.value = '';
     });
 
+    [
+      'MR,HARRY,POTTER',
+      'mr,harry,potter',
+      'mR,haRRy,pOttEr',
+      'Mr,harry John,pOttEr'
+    ].forEach(item => {
+      it(`should normalise reps full name # ${item}`, () => {
+        representativeDetails.fields.name.title.value = item.split(',')[0];
+        representativeDetails.fields.name.first.value = item.split(',')[1];
+        representativeDetails.fields.name.last.value = item.split(',')[2];;
+        expect(representativeDetails.CYAName).to.equal('Mr Harry Potter');
+      });
+    });
+
     it('should return Not Provided if firstName or lastName has not been set', () => {
       expect(representativeDetails.CYAName).to.equal(userAnswer.NOT_PROVIDED);
     });
