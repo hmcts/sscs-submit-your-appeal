@@ -80,6 +80,45 @@ describe('AppointeeName.js', () => {
     });
   });
 
+  [
+    'Mr,HARRY,POTTER',
+    'Mr,harry,potter',
+    'Mr,haRRy,pOttEr',
+    'Mr,harry John,pOttEr'
+  ].forEach(item => {
+    describe(`answers() appellant full name # ${item}`, () => {
+      beforeEach(() => {
+        appointeeName.fields = {
+          title: {
+            value: item.split(',')[0]
+          },
+          firstName: {
+            value: item.split(',')[1]
+          },
+          lastName: {
+            value: item.split(',')[2]
+          }
+        };
+      });
+      it('should normalise appointee full name in the answers()', () => {
+        const answers = appointeeName.answers();
+        expect(answers[0].answer).to.equal('Mr Harry Potter');
+      });
+
+      it('should normalise appointee full name in the values()', () => {
+        const values = appointeeName.values();
+        expect(values).to.eql({
+          appointee: {
+            title: 'Mr',
+            firstName: 'Harry',
+            lastName: 'Potter'
+          }
+        });
+      });
+    });
+  });
+
+
   describe('answers() and values()', () => {
     const question = 'A Question';
 

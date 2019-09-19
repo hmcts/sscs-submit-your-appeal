@@ -104,7 +104,7 @@ describe('AppellantName.js', () => {
         expect(answers[0].answer).to.equal('Mr Harry Potter');
       });
 
-      it('should normalizse appellant full name in the values()', () => {
+      it('should normalise appellant full name in the values()', () => {
         const values = appellantName.values();
         expect(values).to.eql({
           appellant: {
