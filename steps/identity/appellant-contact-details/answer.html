@@ -1,6 +1,6 @@
 
-    <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
+    <div class="govuk-summary-list">
+        <dl class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
             <dd class="govuk-summary-list__value">
                 {{ fields.addressLine1.value  }}<br>
@@ -13,22 +13,22 @@
                 <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
                 <span class="govuk-visually-hidden"> {{ content.cya.yourDetails }}</span>
             </dd>
-        </div>
-    </dl>
+        </dl>
+    </div>
     {% if not isAppointeeJourney %}
-        <dl class="govuk-summary-list">
-            <div id="cya-appellantcontactdetails-email-address" class="govuk-summary-list__row">
+        <div class="govuk-summary-list">
+            <dl id="cya-appellantcontactdetails-email-address" class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question }}</dt>
                 <dd class="govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
                 <dd class="govuk-summary-list__actions"></dd>
-            </div>
-        </dl>
-        <dl class="govuk-summary-list">
-            <div id="cya-appellantcontactdetails-phone-number" class="govuk-summary-list__row">
+            </dl>
+        </div>
+        <div class="govuk-summary-list">
+            <dl id="cya-appellantcontactdetails-phone-number" class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">{{ content.cya.phoneNumber.question }}</dt>
                 <dd class="govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
                 <dd class="govuk-summary-list__actions"></dd>
-            </div>
-        </dl>
+            </dl>
+        </div>
     {% endif %}
 
