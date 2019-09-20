@@ -151,11 +151,15 @@ class RepresentativeDetails extends SaveToDraftStore {
   }
 
   values() {
+    const repTitle = this.fields.name.title.value;
+    const first = this.fields.name.first.value;
+    const last = this.fields.name.last.value;
+    const fullName = parseFullName(`${repTitle} ${first} ${last}`, 'all', 1, 0, 0);
     return {
       representative: {
-        title: decode(this.fields.name.title.value),
-        firstName: decode(this.fields.name.first.value),
-        lastName: decode(this.fields.name.last.value),
+        title: decode(fullName.title),
+        firstName: decode(fullName.first),
+        lastName: decode(fullName.last),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
           postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?

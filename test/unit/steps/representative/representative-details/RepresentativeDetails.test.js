@@ -337,40 +337,47 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
-  describe('values()', () => {
-    it('should contain a value object', () => {
-      representativeDetails.fields.name.title.value = 'Title';
-      representativeDetails.fields.name.first.value = 'First name';
-      representativeDetails.fields.name.last.value = 'Last name';
-      representativeDetails.fields.name.organisation.value = 'Organisation';
-      representativeDetails.fields.addressLine1.value = 'First line of my address';
-      representativeDetails.fields.addressLine2.value = 'Second line of my address';
-      representativeDetails.fields.townCity.value = 'Town or City';
-      representativeDetails.fields.county.value = 'County';
-      representativeDetails.fields.postCode.value = 'Postcode';
-      representativeDetails.fields.phoneNumber.value = '0800109756';
-      representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      representativeDetails.fields.postcodeLookup.value = 'n29ed';
-      representativeDetails.fields.postcodeAddress.value = '200000';
-      const values = representativeDetails.values();
-      expect(values).to.eql({
-        representative: {
-          title: 'Title',
-          firstName: 'First name',
-          lastName: 'Last name',
-          organisation: 'Organisation',
-          contactDetails: {
-            addressLine1: 'First line of my address',
-            addressLine2: 'Second line of my address',
-            townCity: 'Town or City',
-            county: 'County',
-            postCode: 'Postcode',
-            postcodeLookup: 'n29ed',
-            postcodeAddress: '200000',
-            phoneNumber: '0800109756',
-            emailAddress: 'myemailaddress@sscs.com'
+  describe.only('values()', () => {
+    [
+      'MR,HARRY,POTTER',
+      'mr,harry,potter',
+      'mR,haRRy,pOttEr',
+      'Mr,harry John,pOttEr'
+    ].forEach(item => {
+      it(`should contain a value object with full name # ${item}`, () => {
+        representativeDetails.fields.name.title.value = item.split(',')[0];
+        representativeDetails.fields.name.first.value = item.split(',')[1];
+        representativeDetails.fields.name.last.value = item.split(',')[2];
+        representativeDetails.fields.name.organisation.value = 'Organisation';
+        representativeDetails.fields.addressLine1.value = 'First line of my address';
+        representativeDetails.fields.addressLine2.value = 'Second line of my address';
+        representativeDetails.fields.townCity.value = 'Town or City';
+        representativeDetails.fields.county.value = 'County';
+        representativeDetails.fields.postCode.value = 'Postcode';
+        representativeDetails.fields.phoneNumber.value = '0800109756';
+        representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+        representativeDetails.fields.postcodeLookup.value = 'n29ed';
+        representativeDetails.fields.postcodeAddress.value = '200000';
+        const values = representativeDetails.values();
+        expect(values).to.eql({
+          representative: {
+            title: 'Mr',
+            firstName: 'Harry',
+            lastName: 'Potter',
+            organisation: 'Organisation',
+            contactDetails: {
+              addressLine1: 'First line of my address',
+              addressLine2: 'Second line of my address',
+              townCity: 'Town or City',
+              county: 'County',
+              postCode: 'Postcode',
+              postcodeLookup: 'n29ed',
+              postcodeAddress: '200000',
+              phoneNumber: '0800109756',
+              emailAddress: 'myemailaddress@sscs.com'
+            }
           }
-        }
+        });
       });
     });
 
