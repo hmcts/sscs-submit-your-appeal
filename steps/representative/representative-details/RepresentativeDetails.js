@@ -46,10 +46,10 @@ class RepresentativeDetails extends SaveToDraftStore {
   }
 
   get CYAName() {
-    const nameTitle = this.fields.name.title.value || '';
+    const repTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    const fullName = parseFullName(`${nameTitle} ${first} ${last}`, 'all', 1, 0, 0);
+    const fullName = parseFullName(`${repTitle} ${first} ${last}`.trim(), 'all', 1, 0, 0);
     return first === '' && last === '' ?
       userAnswer.NOT_PROVIDED :
       `${fullName.title} ${fullName.first} ${fullName.last}`.trim();

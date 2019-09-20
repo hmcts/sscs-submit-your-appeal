@@ -95,34 +95,34 @@ describe('RepresentativeDetails.js', () => {
 
     it('should return the firstName if only the firstName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
-      expect(representativeDetails.CYAName).to.equal('FirstName');
+      expect(representativeDetails.CYAName).to.equal('Firstname');
     });
 
     it('should return the lastName if only the lastName has been set', () => {
       representativeDetails.fields.name.last.value = 'LastName';
-      expect(representativeDetails.CYAName).to.equal('LastName');
+      expect(representativeDetails.CYAName).to.equal('Lastname');
     });
 
     it('should return the full name if both firstName and lastName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
       representativeDetails.fields.name.last.value = 'LastName';
-      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
+      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
     });
 
     it('should return the full name without whitespace before or after the name', () => {
       representativeDetails.fields.name.first.value = '    FirstName';
       representativeDetails.fields.name.last.value = 'LastName    ';
-      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
+      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
     });
 
     it('should return the first name without whitespace before or after the name', () => {
       representativeDetails.fields.name.first.value = '    FirstName    ';
-      expect(representativeDetails.CYAName).to.equal('FirstName');
+      expect(representativeDetails.CYAName).to.equal('Firstname');
     });
 
     it('should return the last name without whitespace before or after the name', () => {
-      representativeDetails.fields.name.last.value = '    LastName    ';
-      expect(representativeDetails.CYAName).to.equal('LastName');
+      representativeDetails.fields.name.last.value = '  LastName ';
+      expect(representativeDetails.CYAName).to.equal('Lastname');
     });
   });
 
@@ -337,7 +337,7 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
-  describe.only('values()', () => {
+  describe('values()', () => {
     [
       'MR,HARRY,POTTER',
       'mr,harry,potter',
