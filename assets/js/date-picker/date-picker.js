@@ -193,7 +193,7 @@ const datePicker = {
 
     $.each(orderDates, (index, date) => {
       elements += `
-      <div class="govuk-summary-list__row">
+      <dl class="govuk-summary-list__row">
         <dd id="govuk-summary-list__values-${date.index}" class="govuk-summary-list__value">
           <span data-index="items-${date.index}">
             ${datePickerUtils.formatDateForDisplay(date.value)}
@@ -202,13 +202,13 @@ const datePicker = {
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="/dates-cant-attend/item-${date.index}/delete">Remove</a>
         </dd>
-      </div>`;
+      </dl>`;
     });
     if (elements === '') {
       const noItems = `
-      <div class="govuk-summary-list__row">
+      <dl class="govuk-summary-list__row">
         <dd class="govuk-summary-list__value  noItems">No dates added yet</dd>
-      </div>`;
+      </dl>`;
       $('.govuk-summary-list').empty().append(noItems);
     } else {
       $('.govuk-summary-list').empty().append(elements);

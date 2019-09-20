@@ -1,6 +1,6 @@
 {% for item in fields.items.value %}
-        <dl class="govuk-summary-list">
-            <div id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="govuk-summary-list__row">
+        <div class="govuk-summary-list">
+            <dl id="cya-reasonforappealing-reason-for-appealing-{{ loop.index }}" class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.whatYouDisagreeWith}}</dt>
                 <dd class="govuk-summary-list__value">
                     {% if item.whatYouDisagreeWith and item.whatYouDisagreeWith !== ' ' %}
@@ -13,10 +13,10 @@
                     <a class="govuk-link" href="{{ path }}">{{ content.cya.reasonForAppealing.changeLink }}</a>
                     <span class="govuk-visually-hidden"> {{ content.cya.reasonForAppealing.reason }} {{ loop.index }}</span>
                 </dd>
-            </div>
-        </dl>
-        <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
+            </dl>
+        </div>
+        <div class="govuk-summary-list">
+            <dl class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">{{ content.cya.reasonForAppealing.questions.reasonForAppealing }}</dt>
                 <dd class="govuk-summary-list__value">
                     {% if item.reasonForAppealing and item.reasonForAppealing !== ' ' %}
@@ -26,6 +26,6 @@
                     {% endif %}
                 </dd>
                 <dd class="govuk-summary-list__actions"></dd>
-            </div>
-        </dl>
+            </dl>
+        </div>
 {% endfor %}
