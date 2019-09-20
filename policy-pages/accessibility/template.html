@@ -1,0 +1,88 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}{{ titleHead }}{% endblock %}
+
+{% set title = cookies.title %}
+
+{% block two_thirds %}
+
+    <h1 class="govuk-heading-l">{{ accessibility.title }}</h1>
+    <p class="govuk-body">{{ accessibility.description }}</p>
+    <p class="govuk-body">{{ manages.managedBy }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        {% for ability in manages.abilityList %}
+            <li>{{ ability }}</li>
+        {% endfor %}
+    </ul>
+    <p class="govuk-body">
+        {{manages.managedByExtra1}}
+    </p>
+    <p class="govuk-body">
+        {{manages.managedByExtra2 | safe}}
+    </p>
+
+    <h2 class="govuk-heading-m">{{ howAccessible.title }}</h2>
+    <p class="govuk-body">{{ howAccessible.para1 }}</p>
+    <p class="govuk-body">{{ howAccessible.para2 }}</p>
+
+    <h2 class="govuk-heading-m">{{ whatToDo.title }}</h2>
+    <p class="govuk-body">{{ whatToDo.para1 | safe }}</p>
+    <div class="govuk-details__text">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{telephone.England.desc}}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{telephone.England.phone}}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{telephone.England.availability}}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">
+            <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{telephone.England.charges}}</a>
+        </p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{telephone.Scotland.desc}}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{telephone.Scotland.phone}}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{telephone.Scotland.availability}}</p>
+        <p class="govuk-body">
+            <a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{telephone.Scotland.charges}}</a>
+        </p>
+    </div>
+    <p class="govuk-body govuk-!-margin-top-4">{{ whatToDo.para2 }}</p>
+
+    <h2 id="using-data" class="govuk-heading-m">{{ reportingProblems.title }}</h2>
+    <p class="govuk-body">{{ reportingProblems.para1 }}</p>
+
+    <h2 class="govuk-heading-m">{{ enforcement.title }}</h2>
+    <p class="govuk-body">{{ enforcement.para1 | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ contactus.title }}</h2>
+    <p class="govuk-body">{{ contactus.para1   }}</p>
+    <p class="govuk-body">{{ contactus.para2  }}</p>
+
+    <h2 class="govuk-heading-m">{{ technical.title }}</h2>
+    <p class="govuk-body">{{ technical.para1   }}</p>
+    <p class="govuk-body">{{ technical.para2 | safe }}</p>
+    <p class="govuk-body">{{ technical.para3 | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ nonAccessible.title }}</h2>
+    <p class="govuk-body">{{ nonAccessible.para1   }}</p>
+    <p class="govuk-body">{{ nonAccessible.para2 | safe }}</p>
+    <p class="govuk-body">{{ nonAccessible.para3 | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ regulations.title }}</h2>
+    <p class="govuk-body">{{ regulations.para1   }}</p>
+    <p class="govuk-body">{{ regulations.para2 | safe }}</p>
+    <ul class="govuk-list govuk-list--number">
+        {% for regulation in regulations.regulationList %}
+            <li>{{ regulation }}</li>
+        {% endfor %}
+    </ul>
+    <h2 class="govuk-heading-m">{{ contentNotInScope.title }}</h2>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{contentNotInScope.subTitle}}</h3>
+    <p class="govuk-body">{{ contentNotInScope.para1   }}</p>
+    
+    <h2 class="govuk-heading-m">{{ howWeTested.title }}</h2>
+    <p class="govuk-body">{{ howWeTested.para1   }}</p>
+    <p class="govuk-body">{{ howWeTested.para2   }}</p>
+    <p class="govuk-body">{{ howWeTested.para3   }}</p>
+    <p class="govuk-body-s">{{ howWeTested.para4   }}</p>
+
+    <h2 class="govuk-heading-m">{{ toImprove.title }}</h2>
+    <p class="govuk-body">{{ toImprove.para1   }}</p>
+{% endblock %}
