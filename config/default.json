@@ -85,7 +85,7 @@
     "idam": {
       "apiUrl": "http://localhost:4501",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "https://localhost:3501/register",
+      "loginUrl": "http://localhost:3501/users/selfRegister",
       "clientId": "sscs",
       "useMock": "false"
     },
