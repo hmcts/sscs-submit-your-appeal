@@ -3,6 +3,7 @@ const idamExpressMiddlewareMock = require('mocks/services/idam');
 const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
+const logger = require('logger');
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
@@ -59,8 +60,10 @@ const methods = {
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (req, res, next) => {
+    logger.console('*** idam.logout begin ***', 1);
     const args = setArgsFromRequest(req);
     middleware.logout(args)(req, res, next);
+    logger.console('*** idam.logout end ***', 1);
   },
   userDetails: () => middleware.userDetails(idamArgs)
 };

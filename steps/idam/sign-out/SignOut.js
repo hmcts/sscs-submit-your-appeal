@@ -3,6 +3,7 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const moment = require('moment');
 const content = require('./content.en.json');
+const logger = require('logger');
 
 class SignOut extends ExitPoint {
   static get path() {
@@ -25,12 +26,15 @@ class SignOut extends ExitPoint {
   }
 
   static clearCookies(req, res, next) {
-    req.clearCookie('__auth-token', {
+    logger.console('*** SignOut.clearCookies...', 1);
+    logger.console('*** clearCookie begin ***');
+    res.clearCookie('__auth-token', {
       path: '/',
       domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
       httpOnly: true,
       secure: true
     });
+    logger.console('*** clearCookie end ***');
     next();
   }
 
