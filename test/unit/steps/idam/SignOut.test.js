@@ -78,7 +78,7 @@ describe('SignOut.js', () => {
         }
       };
       const theDate = moment(signOut.journey.values.mrn.date, 'DD-MM-YYYY')
-        .add('35', 'days')
+        .add('30', 'days')
         .format('DD MMMM YYYY');
       expect(signOut.getMRNDate()).to.equal(content.body.para2.replace('[mrn-date]', theDate));
     });
