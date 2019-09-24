@@ -43,7 +43,6 @@ class SignOut extends ExitPoint {
       SignOut.clearCookies
     ];
   }
-
 }
 
 module.exports = SignOut;
