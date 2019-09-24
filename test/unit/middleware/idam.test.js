@@ -15,6 +15,7 @@ describe('middleware/idam', () => {
     sandbox = sinon.sandbox.create();
     next = sandbox.stub();
     req.get = sandbox.stub().withArgs('host').returns('host');
+    res.clearCookie = sandbox.stub().withArgs('__auth-token');
   });
 
   afterEach(() => {
@@ -37,5 +38,6 @@ describe('middleware/idam', () => {
     const middleWareStub = sandbox.spy(idamExpressMiddleware, 'logout');
     idam.logout(req, res, next);
     expect(middleWareStub).to.have.been.called;
+    expect(res.clearCookie).to.have.been.called;
   });
 });
