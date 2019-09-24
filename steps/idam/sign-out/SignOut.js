@@ -14,7 +14,7 @@ class SignOut extends ExitPoint {
     if (this.journey.visitedSteps) {
       for (let i = 0; i < this.journey.visitedSteps.length; i++) {
         if (this.journey.visitedSteps[i].name === 'MRNDate' && this.journey.visitedSteps[i].valid) {
-          const validDayCount = 35;
+          const validDayCount = 30;
           const expiryDate = moment(this.journey.values.mrn.date, 'DD-MM-YYYY')
             .add(validDayCount, 'days');
           mrnDate = expiryDate.format('DD MMMM YYYY');

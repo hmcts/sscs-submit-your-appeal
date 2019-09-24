@@ -380,4 +380,14 @@ label.form-label[for="signer"] {
   text-align: center;
 }
 
+.govuk-header__content { 
+  @include govuk-media-query($from: desktop) {
+    width: 60%
+  }
+}
 
+.govuk-header__link--signout {	
+  margin-top:5px;	
+  float:right;	
+  font-weight:700;	
+}
