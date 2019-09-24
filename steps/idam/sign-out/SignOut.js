@@ -23,14 +23,27 @@ class SignOut extends ExitPoint {
     }
     return content.body.para2.replace('[mrn-date]', mrnDate);
   }
+
+  static clearCookies(req, res, next) {
+    req.clearCookie('__auth-token', {
+      path: '/',
+      domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
+      httpOnly: true,
+      secure: true
+    });
+    next();
+  }
+
   get middleware() {
     return [
       idam.authenticate,
       this.journey.collectSteps,
       ...super.middleware,
-      idam.logout
+      idam.logout,
+      SignOut.clearCookies
     ];
   }
+
 }
 
 module.exports = SignOut;

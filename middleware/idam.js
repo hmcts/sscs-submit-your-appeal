@@ -60,12 +60,6 @@ const methods = {
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (req, res, next) => {
     const args = setArgsFromRequest(req);
-    res.clearCookie('__auth-token', {
-      path: '/',
-      domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
-      httpOnly: true,
-      secure: true
-    });
     middleware.logout(args)(req, res, next);
   },
   userDetails: () => middleware.userDetails(idamArgs)
