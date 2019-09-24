@@ -59,18 +59,17 @@ const methods = {
     }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
-  logout: (req, res, next) => {
+  logout: (req, res) => {
     logger.console('*** logout ***', 1);
     const args = setArgsFromRequest(req);
-    logger.console(`*** logout.args ***${args}`, 1);
-    logger.console('*** logout.middleware.logout...', 1);
-    middleware.logout(args)(req, res, next);
+    logger.console(`*** logout.args ***${JSON.stringify(args)}`, 1);
     if (req.cookies) {
-      logger.console(`*** logout.cookies: ${req.cookies}`, 1);
-      logger.console(`*** logout.clearCookie: ${req.cookies['__auth-token']}`, 1);
+      logger.console(`*** logout.cookies : ${JSON.stringify(req.cookies)}`, 1);
+      logger.console(`*** logout.clearCookie : ${req.cookies['__auth-token']}`, 1);
     }
+
+    logger.console('*** clear cookies...', 1);
     res.clearCookie('__auth-token');
-    logger.console('*** all done ***', 1);
     logger.console(`*** logout.cookies: ${req.cookies}`, 1);
   },
   userDetails: () => middleware.userDetails(idamArgs)

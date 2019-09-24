@@ -1,4 +1,3 @@
-const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const { expect, sinon } = require('test/util/chai');
 const idam = require('middleware/idam');
 
@@ -35,9 +34,7 @@ describe('middleware/idam', () => {
 
   it('logout should call logout middleware if there is a session', () => {
     req.cookies['__auth-token'] = 'aToken';
-    const middleWareStub = sandbox.spy(idamExpressMiddleware, 'logout');
     idam.logout(req, res, next);
-    expect(middleWareStub).to.have.been.called;
     expect(res.clearCookie).to.have.been.called;
   });
 });
