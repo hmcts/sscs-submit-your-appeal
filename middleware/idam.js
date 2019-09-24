@@ -20,8 +20,6 @@ const idamArgs = {
 let middleware = idamExpressMiddleware;
 const protocol = config.get('node.protocol');
 
-const cookies = require('../utilities/cookies');
-
 // eslint-disable-next-line no-warning-comments
 // TODO fix mock middleware to enable this condition
 if (isDevMode && useMockIdam) {
@@ -63,7 +61,7 @@ const methods = {
   logout: (req, res, next) => {
     const args = setArgsFromRequest(req);
     middleware.logout(args)(req, res, next);
-    cookies.remove(res, '__auth-token');
+    res.clearCookie('__auth-token');
   },
   userDetails: () => middleware.userDetails(idamArgs)
 };
