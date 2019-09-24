@@ -59,7 +59,7 @@ const methods = {
     }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
-  logout: (req, res) => {
+  logout: (req, res, next) => {
     logger.console('*** logout ***', 1);
     const args = setArgsFromRequest(req);
     logger.console(`*** logout.args ***${JSON.stringify(args)}`, 1);
@@ -70,7 +70,8 @@ const methods = {
 
     logger.console('*** clear cookies...', 1);
     res.clearCookie('__auth-token');
-    logger.console(`*** logout.cookies: ${req.cookies}`, 1);
+    logger.console(`*** logout.cookies: ${JSON.stringify(req.cookies)}`, 1);
+    next();
   },
   userDetails: () => middleware.userDetails(idamArgs)
 };
