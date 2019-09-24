@@ -19,7 +19,6 @@ const idamArgs = {
 
 let middleware = idamExpressMiddleware;
 const protocol = config.get('node.protocol');
-const logger = require('logger');
 
 // eslint-disable-next-line no-warning-comments
 // TODO fix mock middleware to enable this condition
@@ -60,23 +59,14 @@ const methods = {
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (req, res, next) => {
-    logger.console('*** logout ***', 1);
     const args = setArgsFromRequest(req);
-    logger.console(`*** logout.args ***${JSON.stringify(args)}`, 1);
-    if (req.cookies) {
-      logger.console(`*** logout.cookies : ${JSON.stringify(req.cookies)}`, 1);
-      logger.console(`*** logout.clearCookie : ${req.cookies['__auth-token']}`, 1);
-    }
-    logger.console('*** clear cookies...', 1);
     res.clearCookie('__auth-token', {
       path: '/',
       domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
       httpOnly: true,
       secure: true
     });
-    logger.console(`*** req.idam: + ${JSON.stringify(req.idam)}`, 1);
-    // delete req.idam;
-    next();
+    middleware.logout(args)(req, res, next);
   },
   userDetails: () => middleware.userDetails(idamArgs)
 };
