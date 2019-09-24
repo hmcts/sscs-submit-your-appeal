@@ -67,10 +67,15 @@ const methods = {
       logger.console(`*** logout.cookies : ${JSON.stringify(req.cookies)}`, 1);
       logger.console(`*** logout.clearCookie : ${req.cookies['__auth-token']}`, 1);
     }
-
     logger.console('*** clear cookies...', 1);
-    res.clearCookie('__auth-token');
-    logger.console(`*** logout.cookies: ${JSON.stringify(req.cookies)}`, 1);
+    res.clearCookie('__auth-token', {
+      path: '/',
+      domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
+      httpOnly: true,
+      secure: true
+    });
+    logger.console(`*** req.idam: + ${JSON.stringify(req.idam)}`, 1);
+    // delete req.idam;
     next();
   },
   userDetails: () => middleware.userDetails(idamArgs)
