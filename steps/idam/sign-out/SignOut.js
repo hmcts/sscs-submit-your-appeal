@@ -28,6 +28,7 @@ class SignOut extends ExitPoint {
   static clearCookies(req, res, next) {
     logger.console('*** SignOut.clearCookies...', 1);
     logger.console('*** clearCookie begin ***');
+    logger.console(`*** process.env.PUBLIC_HOSTNAME: ${process.env.PUBLIC_HOSTNAME}`);
     res.clearCookie('__auth-token', {
       path: '/',
       domain: '.sscs-tribunals-frontend-pr-843.service.core-compute-preview.internal',
