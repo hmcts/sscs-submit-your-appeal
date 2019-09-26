@@ -28,7 +28,7 @@ class SignOut extends ExitPoint {
       idam.protect,
       this.journey.collectSteps,
       idam.logout,
-      ...super.middleware,
+      ...super.middleware
     ];
   }
 }
