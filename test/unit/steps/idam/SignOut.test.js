@@ -23,10 +23,10 @@ describe('SignOut.js', () => {
       // mocks and spies
       const res = {
         clearCookie: (cookieName, options) => {
-         return {
-           name: cookieName,
-           ops: options
-         }
+          return {
+            name: cookieName,
+            ops: options
+          };
         }
       };
 
