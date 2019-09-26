@@ -43,9 +43,8 @@ class SignOut extends ExitPoint {
   get middleware() {
     return [
       this.journey.collectSteps,
-      idam.protect,
+      idam.authenticate,
       idam.logout,
-      SignOut.clearCookies,
       ...super.middleware
     ];
   }
