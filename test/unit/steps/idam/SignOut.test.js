@@ -60,7 +60,7 @@ describe('SignOut.js', () => {
 
     it('expects middleware', () => {
       const authenticateMock = sinon.stub(idam, 'protect');
-      expect(signOut.middleware[0]).to.equal(authenticateMock);
+      expect(signOut.middleware[1]).to.equal(authenticateMock);
     });
 
     it('expects get a MRN date with getMRNDate', () => {
