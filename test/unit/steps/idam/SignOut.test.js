@@ -19,7 +19,7 @@ describe('SignOut.js', () => {
       expect(SignOut.path).to.equal(paths.idam.signOut);
     });
     it('expects middleware', () => {
-      const authenticateMock = sinon.stub(idam, 'authenticate');
+      const authenticateMock = sinon.stub(idam, 'protect');
       expect(signOut.middleware[0]).to.equal(authenticateMock);
     });
 
