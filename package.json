@@ -80,6 +80,7 @@
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "parse-full-name": "^1.2.3",
     "postcss-loader": "^3.0.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.4",
