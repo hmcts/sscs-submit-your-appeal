@@ -24,6 +24,7 @@ class SignOut extends ExitPoint {
 
   get middleware() {
     return [
+      this.journey.collectSteps,
       ...super.middleware,
       SignOut.clearCookies
     ];
