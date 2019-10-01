@@ -292,6 +292,13 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         saveToDraftStore.req.idam = false;
         expect(saveToDraftStore.continueText).to.eql('Continue');
       });
+      it('isUserLoggedIn returns false', () => {
+        expect(saveToDraftStore.isUserLoggedIn).to.eql(false);
+      });
+      it('isUserLoggedIn returns true', () => {
+        saveToDraftStore.req.idam = true;
+        expect(saveToDraftStore.isUserLoggedIn).to.eql(true);
+      });
     });
 
     describe('SaveToDraftStoreAnother Continue Text', () => {

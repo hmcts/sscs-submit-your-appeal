@@ -226,11 +226,6 @@ const configureMiddleWares = (app, express) => {
   }));
 
   app.use('/', policyPages);
-
-  app.use((req, res, next) => {
-    app.locals.isUserLoggedIn = req.idam;
-    next();
-  });
 };
 
 const configureAppRoutes = app => {
