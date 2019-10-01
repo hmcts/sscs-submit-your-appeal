@@ -25,7 +25,7 @@ class SignOut extends ExitPoint {
 
   get middleware() {
     return [
-      idam.authenticate,
+      idam.protect,
       ...super.middleware,
       idam.logout,
       SignOut.clearCookies
