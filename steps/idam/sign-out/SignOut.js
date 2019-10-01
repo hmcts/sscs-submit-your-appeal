@@ -23,12 +23,25 @@ class SignOut extends ExitPoint {
     next();
   }
 
+  getMRNDate() {
+    let mrnDate = '';
+    if (this.journey.visitedSteps) {
+      for (let i = 0; i < this.journey.visitedSteps.length; i++) {
+        if (this.journey.visitedSteps[i].name === 'MRNDate' && this.journey.visitedSteps[i].valid) {
+          const validDayCount = 35;
+          const expiryDate = moment(this.journey.values.mrn.date, 'DD-MM-YYYY')
+            .add(validDayCount, 'days');
+          mrnDate = expiryDate.format('DD MMMM YYYY');
+        }
+      }
+    }
+    return content.body.para2.replace('[mrn-date]', mrnDate);
+  }
   get middleware() {
     return [
       this.journey.collectSteps,
       ...super.middleware,
-      idam.logout,
-      SignOut.clearCookies
+      idam.logout
     ];
   }
 }
