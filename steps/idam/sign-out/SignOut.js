@@ -1,6 +1,8 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
 const idam = require('middleware/idam');
 const paths = require('paths');
+const moment = require('moment');
+const content = require('steps/idam/sign-out/content.en.json');
 
 class SignOut extends ExitPoint {
   static get path() {

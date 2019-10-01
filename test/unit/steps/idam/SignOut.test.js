@@ -3,20 +3,21 @@ const {
   sinon
 } = require('test/util/chai');
 const SignOut = require('steps/idam/sign-out/SignOut');
-const idam = require('middleware/idam');
 const paths = require('paths');
+const moment = require('moment');
+const content = require('steps/idam/sign-out/content.en.json');
 
 
 describe('SignOut.js', () => {
-  describe('get path()', () => {
-    let signOut = null;
-    beforeEach(() => {
-      signOut = new SignOut({
-        journey: {
-          steps: {}
-        }
-      });
+  let signOut = null;
+  beforeEach(() => {
+    signOut = new SignOut({
+      journey: {
+        steps: {}
+      }
     });
+  });
+  describe('get path()', () => {
     it('returns path /exit', () => {
       expect(signOut.path).to.equal(paths.idam.signOut);
     });
@@ -59,17 +60,15 @@ describe('SignOut.js', () => {
       expect(next).to.have.been.calledOnce;
       resMock.verify();
     });
-    it('expects middleware', () => {
-      const authenticateMock = sinon.stub(idam, 'authenticate');
-      expect(signOut.middleware[0]).to.equal(authenticateMock);
-    });
 
     it('expects get a MRN date with getMRNDate', () => {
       signOut.journey = {
-        visitedSteps: [{
-          name: 'MRNDate',
-          valid: true
-        }],
+        visitedSteps: [
+          {
+            name: 'MRNDate',
+            valid: true
+          }
+        ],
         values: {
           mrn: {
             date: '19-07-2019'
