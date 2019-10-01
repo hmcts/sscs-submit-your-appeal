@@ -60,6 +60,5 @@ describe('SignOut.js', () => {
       const authenticateMock = sinon.stub(idam, 'authenticate');
       expect(signOut.middleware[0]).to.equal(authenticateMock);
     });
-
   });
 });
