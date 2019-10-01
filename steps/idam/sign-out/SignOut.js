@@ -7,10 +7,6 @@ class SignOut extends ExitPoint {
     return paths.idam.signOut;
   }
 
-  get isUserLoggedIn() {
-    return this.req.idam;
-  }
-
   static clearCookies(req, res, next) {
     res.clearCookie('__auth-token', {
       path: '/',
