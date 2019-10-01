@@ -1,5 +1,4 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
-const idam = require('middleware/idam');
 const paths = require('paths');
 
 class SignOut extends ExitPoint {
@@ -26,7 +25,6 @@ class SignOut extends ExitPoint {
   get middleware() {
     return [
       ...super.middleware,
-      idam.logout,
       SignOut.clearCookies
     ];
   }
