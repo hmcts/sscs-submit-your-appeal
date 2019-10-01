@@ -10,5 +10,10 @@
                 {{ navigation.title }}
             </a>
         </div>
+        <div class="govuk-header__link--signout">
+            {% if isUserLoggedIn  %}
+            <a href="/sign-out" class="govuk-header__link govuk-header__link">Sign out</a>
+            {% endif %}
+        </div>
     </div>
 </header>

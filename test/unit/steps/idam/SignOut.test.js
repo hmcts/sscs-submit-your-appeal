@@ -2,8 +2,6 @@ const { expect, sinon } = require('test/util/chai');
 const SignOut = require('steps/idam/sign-out/SignOut');
 const idam = require('middleware/idam');
 const paths = require('paths');
-const moment = require('moment');
-const content = require('steps/idam/sign-out/content.en.json');
 
 describe('SignOut.js', () => {
   describe('get path()', () => {
@@ -63,24 +61,5 @@ describe('SignOut.js', () => {
       expect(signOut.middleware[0]).to.equal(authenticateMock);
     });
 
-    it('expects get a MRN date with getMRNDate', () => {
-      signOut.journey = {
-        visitedSteps: [
-          {
-            name: 'MRNDate',
-            valid: true
-          }
-        ],
-        values: {
-          mrn: {
-            date: '19-07-2019'
-          }
-        }
-      };
-      const theDate = moment(signOut.journey.values.mrn.date, 'DD-MM-YYYY')
-        .add('35', 'days')
-        .format('DD MMMM YYYY');
-      expect(signOut.getMRNDate()).to.equal(content.body.para2.replace('[mrn-date]', theDate));
-    });
   });
 });
