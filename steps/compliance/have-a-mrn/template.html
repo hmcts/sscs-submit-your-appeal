@@ -10,21 +10,19 @@
 {% block fields %}
 
     {% call formSection() %}
-        
-        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle }}</p>
-        {% if allowUC and benefitType == 'UC'%}
-        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>
-        {% endif %}
+
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {{ selectionButtons(
             fields.haveAMRN,
-            content[benefitType.toLowerCase()].subtitle,
+            content.subtitle,
             hint = '',
             options = [
                 { label: content.fields.haveAMRN.yes, value: "yes" },
                 { label: content.fields.haveAMRN.no,  value: "no" }
             ])
         }}
+
     {% endcall %}
 
 {% endblock %}
