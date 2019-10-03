@@ -63,6 +63,7 @@ const IdamLogin = require('steps/idam/IdamLogin/IdamLogin');
 const IdamMockLogin = require('steps/idam/IdamLogin/IdamLogin');
 const Authenticated = require('steps/idam/authenticated/Authenticated');
 const SignOut = require('steps/idam/sign-out/SignOut');
+const SignInBack = require('steps/idam/sign-in-back/SignInBack');
 const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal');
 
 const init = [
@@ -158,7 +159,8 @@ const idam = [
   IdamMockLogin,
   Authenticated,
   IdamLogin,
-  SignOut
+  SignOut,
+  SignInBack
 ];
 
 module.exports = concat(

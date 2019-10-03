@@ -4,6 +4,6 @@
   "body": {
     "para1": "Your appeal application will be saved for 6 months.",
     "para2": "If you submit your appeal more than one calendar month after your MRN date then you will have to explain why it's late",
-    "para3": "<a href='/authenticated' class='govuk-link govuk-!-font-size-19'>Sign back into your appeal</a>"
+    "para3": "<a href='/sign-in-back' class='govuk-link govuk-!-font-size-19'>Sign back into your appeal</a>"
   }
 }
