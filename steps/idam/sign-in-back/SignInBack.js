@@ -1,6 +1,6 @@
 const {
-  goTo
-} = require('@hmcts/one-per-page');
+  redirectTo
+} = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
 const {
   EntryPoint
@@ -12,7 +12,7 @@ class SignInBack extends EntryPoint {
   }
 
   next() {
-    return goTo(this.journey.steps.IdamRedirect);
+    return redirectTo(this.journey.steps.IdamRedirect);
   }
 }
 
