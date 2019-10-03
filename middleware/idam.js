@@ -7,6 +7,7 @@ const Base64 = require('js-base64').Base64;
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
 const useMockIdam = config.get('services.idam.useMock') === 'true';
+const logger = require('logger');
 
 const idamArgs = {
   redirectUri,
@@ -31,6 +32,10 @@ const setArgsFromRequest = req => {
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
+
+  logger.console(`*** benefitType ***: ${JSON.stringify(req.session.BenefitType)}`, 1);
+  logger.console(`*** postcodeChecker ***: ${JSON.stringify(req.session.PostcodeChecker)}`, 1);
+
   args.state = () =>
     Base64.encodeURI(
       JSON.stringify({
