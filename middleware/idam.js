@@ -34,8 +34,12 @@ const setArgsFromRequest = req => {
   args.state = () =>
     Base64.encodeURI(
       JSON.stringify({
-        BenefitType: req.session.BenefitType,
-        PostcodeChecker: req.session.PostcodeChecker
+        BenefitType: req.session.BenefitType || {
+          benefitType: 'Personal Independence Payment (PIP)'
+        },
+        PostcodeChecker: req.session.PostcodeChecker || {
+          postcode: 'n29ed'
+        }
       })
     );
 
