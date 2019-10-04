@@ -8,7 +8,11 @@ postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,car
 sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
 contact_us_web_form_enabled = "false"
 contact_us_webchat_enabled = "true"
-allow_save_return="false"
+
+allow_save_return="true"
+idam_api_url = "https://idam-api.platform.hmcts.net"
+idam_login_url = "https://hmcts-access.service.gov.uk/users/selfRegister"
+
 services_webchat_tenant = "aG1jdHN4MTAx"
 services_webchat_uuid =  "script_1519925245d3ec86ead6a15.79946496"
 services_btn_no_agents =  "/aG1jdHN4MTAx/button_2806315905d232e71137898.81655511/img/logo"
