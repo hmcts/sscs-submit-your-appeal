@@ -6,7 +6,8 @@ describe('middleware/idam', () => {
   const req = {
     host: 'host',
     cookies: {},
-    get: null
+    get: null,
+    session: {}
   };
   const res = {};
   let next = null;

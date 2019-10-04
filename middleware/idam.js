@@ -31,6 +31,7 @@ const setArgsFromRequest = req => {
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
+
   args.state = () =>
     Base64.encodeURI(
       JSON.stringify({
