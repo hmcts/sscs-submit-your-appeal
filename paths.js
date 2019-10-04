@@ -106,7 +106,8 @@ module.exports = {
   idam: {
     idamLogin: '/idam-login',
     authenticated: '/authenticated',
-    signOut: '/sign-out'
+    signOut: '/sign-out',
+    signInBack: '/sign-in-back'
   },
   checkYourAppeal: '/check-your-appeal',
   confirmation: '/confirmation'
