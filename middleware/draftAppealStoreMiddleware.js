@@ -130,6 +130,9 @@ class SaveToDraftStoreAddAnother extends AddAnother {
 }
 
 class SaveToDraftStoreCYA extends CYA {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get middleware() {
     return [
       ...super.middleware,
@@ -172,6 +175,9 @@ class RestoreUserState extends Redirect {
   }
 }
 class RestoreFromDraftStore extends EntryPoint {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get middleware() {
     return [
       ...super.middleware,

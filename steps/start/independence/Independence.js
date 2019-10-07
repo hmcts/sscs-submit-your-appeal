@@ -8,6 +8,10 @@ const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') ===
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
 class Independence extends Interstitial {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
+
   static get path() {
     return paths.start.independence;
   }
