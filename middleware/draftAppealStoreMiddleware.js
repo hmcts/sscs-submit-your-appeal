@@ -108,6 +108,10 @@ const restoreUserState = async(req, res, next) => {
 };
 
 class SaveToDraftStoreAddAnother extends AddAnother {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
+
   get continueText() {
     if (this.req.idam) {
       return content.continueButtonText.save;
@@ -126,6 +130,9 @@ class SaveToDraftStoreAddAnother extends AddAnother {
 }
 
 class SaveToDraftStoreCYA extends CYA {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get middleware() {
     return [
       ...super.middleware,
@@ -136,6 +143,9 @@ class SaveToDraftStoreCYA extends CYA {
 }
 
 class SaveToDraftStore extends Question {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get continueText() {
     if (this.req.idam) {
       return content.continueButtonText.save;
@@ -165,6 +175,9 @@ class RestoreUserState extends Redirect {
   }
 }
 class RestoreFromDraftStore extends EntryPoint {
+  get isUserLoggedIn() {
+    return this.req.idam;
+  }
   get middleware() {
     return [
       ...super.middleware,
