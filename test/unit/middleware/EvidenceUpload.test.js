@@ -330,7 +330,6 @@ describe('The EvidenceUpload middleware', () => {
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(5242881);
         expect(req.body['item.totalFileCount']).to.equal(1);
-        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: the file is too big');
       });
     });
 
