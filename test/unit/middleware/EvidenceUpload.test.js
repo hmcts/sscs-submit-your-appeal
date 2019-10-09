@@ -16,6 +16,7 @@ describe('The EvidenceUpload middleware', () => {
   let EvidenceUpload;
   let stubs;
   let loggerExceptionSpy;
+  let loggerTraceSpy
   const parser = sinon.stub().yields(null, [], {
     uploadEv: {
       name: 'giacomo'
@@ -57,6 +58,7 @@ describe('The EvidenceUpload middleware', () => {
     };
 
     loggerExceptionSpy = sinon.spy(logger, 'exception');
+    loggerTraceSpy = sinon.spy(logger, 'trace');
     EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
     EvidenceUpload.makeDir = sinon.stub().callsArg(1);
   });
@@ -67,6 +69,7 @@ describe('The EvidenceUpload middleware', () => {
     poster.reset();
     renamer.reset();
     loggerExceptionSpy.restore();
+    loggerTraceSpy.restore();
   });
 
 
@@ -330,6 +333,7 @@ describe('The EvidenceUpload middleware', () => {
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(5242881);
         expect(req.body['item.totalFileCount']).to.equal(1);
+        expect(loggerTraceSpy).to.have.been.calledWith('Evidence upload error: the file is too big - file was: 5242881 bytes');
       });
     });
 
