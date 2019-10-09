@@ -263,6 +263,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       it('Expected Middleware count:', () => {
         expect(restoreFromDraftStore.middleware).to.have.length(3);
       });
+
+      it('isUserLoggedIn returns true', () => {
+        restoreFromDraftStore.req.idam = true;
+        expect(restoreFromDraftStore.isUserLoggedIn).to.eql(true);
+      });
+      
+      it('isUserLoggedIn returns true', () => {
+        restoreFromDraftStore.req.idam = false;
+        expect(restoreFromDraftStore.isUserLoggedIn).to.eql(false);
+      });
     });
 
     describe('RestoreUserState', () => {
@@ -280,6 +290,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('saveToDraftStoreCYA', () => {
       it('Expected Middleware count:', () => {
         expect(saveToDraftStoreCYA.middleware).to.have.length(11);
+
+        it('isUserLoggedIn returns false', () => {
+          expect(saveToDraftStoreCYA.isUserLoggedIn).to.eql(false);
+        });
+        it('isUserLoggedIn returns true', () => {
+          saveToDraftStoreCYA.req.idam = true;
+          expect(saveToDraftStoreCYA.isUserLoggedIn).to.eql(true);
+        });
       });
     });
 
@@ -292,6 +310,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         saveToDraftStore.req.idam = false;
         expect(saveToDraftStore.continueText).to.eql('Continue');
       });
+
+      it('isUserLoggedIn returns false', () => {
+        expect(saveToDraftStore.isUserLoggedIn).to.eql(false);
+      });
+      it('isUserLoggedIn returns true', () => {
+        saveToDraftStore.req.idam = true;
+        expect(saveToDraftStore.isUserLoggedIn).to.eql(true);
+      });
     });
 
     describe('SaveToDraftStoreAnother Continue Text', () => {
@@ -302,6 +328,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStoreAnother.req.idam = false;
         expect(saveToDraftStoreAnother.continueText).to.eql('Continue');
+      });
+
+      it('isUserLoggedIn returns false', () => {
+        expect(saveToDraftStoreAnother.isUserLoggedIn).to.eql(false);
+      });
+      it('isUserLoggedIn returns true', () => {
+        saveToDraftStoreAnother.req.idam = true;
+        expect(saveToDraftStoreAnother.isUserLoggedIn).to.eql(true);
       });
     });
   });
