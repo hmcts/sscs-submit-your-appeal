@@ -88,7 +88,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         'item.size': incoming.bytesExpected,
         'item.totalFileCount': itemsCount + 1
       };
-      logger.exception('Evidence upload error: the file is too big', logPath);
+      logger.trace(`Evidence upload error: the file is too big - file was: ${incoming.bytesExpected} bytes`, logPath);
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
       logger.trace('File is not empty and within file size limit', logPath);
