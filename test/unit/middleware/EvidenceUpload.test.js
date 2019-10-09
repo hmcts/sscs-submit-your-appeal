@@ -16,7 +16,7 @@ describe('The EvidenceUpload middleware', () => {
   let EvidenceUpload;
   let stubs;
   let loggerExceptionSpy;
-  let loggerTraceSpy
+  let loggerTraceSpy;
   const parser = sinon.stub().yields(null, [], {
     uploadEv: {
       name: 'giacomo'
