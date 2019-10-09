@@ -268,7 +268,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         restoreFromDraftStore.req.idam = true;
         expect(restoreFromDraftStore.isUserLoggedIn).to.eql(true);
       });
-      
+
       it('isUserLoggedIn returns true', () => {
         restoreFromDraftStore.req.idam = false;
         expect(restoreFromDraftStore.isUserLoggedIn).to.eql(false);
