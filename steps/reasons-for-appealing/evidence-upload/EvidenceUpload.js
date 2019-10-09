@@ -88,7 +88,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         'item.size': incoming.bytesExpected,
         'item.totalFileCount': itemsCount + 1
       };
-      logger.exception('Evidence upload error: the file is too big', logPath);
+      logger.trace(`Evidence upload error: the file is too big - file was: ${incoming.bytesExpected} bytes`, logPath);
     } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
       (maxFileSize * multiplier * multiplier)) {
       logger.trace('File is not empty and within file size limit', logPath);
@@ -150,18 +150,16 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         logger.trace(`File path: ${files['item.uploadEv'].path}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
-
+      let uploadingErrorText = uploadingError;
       if (uploadingError || !get(files, '["item.uploadEv"].name')) {
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
-          // cater for the horrible formidable.js error
-          // eslint-disable-next-line no-param-reassign
-          uploadingError = maxFileSizeExceededError;
+          uploadingErrorText = maxFileSizeExceededError;
         }
 
         req.body = {
-          'item.uploadEv': uploadingError,
+          'item.uploadEv': uploadingErrorText,
           'item.link': '',
           'item.size': 0
         };
