@@ -61,13 +61,16 @@ function initAutocomplete() {
 }
 
 function doNotSubmitTwice() {
+  const disableTime = 1000;
   $('.govuk-button').attr('disabled', true);
+  setTimeout(() => {
+    // enable click after 1 second
+    $('.govuk-buttonn').attr('disabled', false);
+  }, disableTime);
 }
 
 function initDoNotSubmitTwice() {
-  if ($('#signer').length) {
-    $('form').on('submit', doNotSubmitTwice);
-  }
+  $('form').on('submit', doNotSubmitTwice);
 }
 
 function initDatePicker() {
