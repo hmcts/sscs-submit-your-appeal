@@ -9,6 +9,9 @@ class IdamRedirect extends Redirect {
   }
 
   next() {
+    if (!this.req.session.BenefitType) {
+      return redirectTo(this.journey.steps.BenefitType);
+    }
     return redirectTo(this.journey.steps.HaveAMRN);
   }
 
