@@ -23,6 +23,14 @@ describe('IdamRedirect.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /have-you-got-an-mrn', () => {
+      entry.req = {
+        session: {
+          BenefitType: {
+            benefitType: null
+          }
+        }
+      };
+
       expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
     });
   });
