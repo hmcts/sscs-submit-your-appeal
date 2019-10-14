@@ -32,7 +32,7 @@ class CreateAccount extends SaveToDraftStore {
   }
 
   next() {
-    const createAccount = this.fields.createAccount.value === 'yes';
+    const createAccount = this.fields.createAccount.value === 'yes' && !this.req.idam;
 
     return branch(
       redirectTo(this.journey.steps.IdamRedirect).if(createAccount),
