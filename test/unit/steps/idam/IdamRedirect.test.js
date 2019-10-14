@@ -44,7 +44,7 @@ describe('IdamRedirect.js', () => {
         }
       };
 
-      expect(entry.next()).to.eql({ nextStep: paths.session.entry});
+      expect(entry.next()).to.eql({ nextStep: paths.session.entry });
     });
   });
 });
