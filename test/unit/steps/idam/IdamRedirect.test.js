@@ -9,7 +9,8 @@ describe('IdamRedirect.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          HaveAMRN: paths.compliance.haveAMRN
+          HaveAMRN: paths.compliance.haveAMRN,
+          Entry: paths.session.entry
         }
       }
     });
@@ -32,6 +33,18 @@ describe('IdamRedirect.js', () => {
       };
 
       expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
+    });
+  });
+
+  describe('next()', () => {
+    it('returns the next step path /have-you-got-an-mrn', () => {
+      entry.req = {
+        session: {
+          BenefitType: paths.BenefitType
+        }
+      };
+
+      expect(entry.next()).to.eql({ nextStep: paths.session.entry});
     });
   });
 });
