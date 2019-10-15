@@ -65,9 +65,7 @@ function doNotSubmitTwice() {
 }
 
 function initDoNotSubmitTwice() {
-  if ($('#signer').length) {
-    $('form').on('submit', doNotSubmitTwice);
-  }
+  $('form').on('submit', doNotSubmitTwice);
 }
 
 function initDatePicker() {
