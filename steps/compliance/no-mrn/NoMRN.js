@@ -2,7 +2,6 @@ const { goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -16,7 +15,7 @@ class NoMRN extends SaveToDraftStore {
     return form({
       reasonForNoMRN: text.joi(
         this.content.fields.reasonForNoMRN.error.required,
-        Joi.string().regex(whitelist).required()
+        Joi.string().required()
       )
     });
   }
