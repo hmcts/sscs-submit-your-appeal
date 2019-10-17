@@ -3,7 +3,6 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
-const { whitelist } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -26,9 +25,6 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
       ).joi(
         this.content.fields.reasonForBeingLate.error.notEnough,
         Joi.string().min(MIN_CHAR_COUNT)
-      ).joi(
-        this.content.fields.reasonForBeingLate.error.invalid,
-        Joi.string().regex(whitelist)
       )
     });
   }
