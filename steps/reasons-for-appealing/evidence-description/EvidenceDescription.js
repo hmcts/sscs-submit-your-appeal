@@ -1,7 +1,6 @@
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { text, form } = require('@hmcts/one-per-page/forms');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { whitelist } = require('utils/regex');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
@@ -16,9 +15,7 @@ class EvidenceDescription extends SaveToDraftStore {
 
   get form() {
     return form({
-      describeTheEvidence: text.joi(
-        this.content.fields.describeTheEvidence.error.invalid,
-        Joi.string().regex(whitelist))
+      describeTheEvidence: text
         .joi(
           this.content.fields.describeTheEvidence.error.noContent,
           Joi.string().required()
