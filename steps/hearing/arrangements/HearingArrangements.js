@@ -10,8 +10,7 @@ const {
   optionSelected,
   languageInList,
   signLanguageInList,
-  emptyLanguageFieldValidation,
-  validCharacters
+  emptyLanguageFieldValidation
 } = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
 const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 const sections = require('steps/check-your-appeal/sections');
@@ -97,9 +96,6 @@ class HearingArrangements extends SaveToDraftStore {
         }).check(
           errorFor('language', selectionField.anythingElse.language.error.required),
           value => emptyLanguageFieldValidation(value)
-        ).check(
-          errorFor('language', selectionField.anythingElse.language.error.invalid),
-          value => validCharacters(value)
         ),
 
         hearingLoop: object({
