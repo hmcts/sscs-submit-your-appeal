@@ -2,7 +2,6 @@ const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { whitelist } = require('utils/regex');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -22,7 +21,7 @@ class SendToNumber extends SaveToDraftStore {
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
       useSameNumber: text.joi(
         this.content.fields.useSameNumber.error.required,
-        Joi.string().regex(whitelist).required()
+        Joi.string().required()
       )
     });
   }
