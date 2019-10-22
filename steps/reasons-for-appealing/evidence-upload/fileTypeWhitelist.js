@@ -27,5 +27,6 @@ module.exports = [
   'image/png',
   'image/bmp',
   'text/plain',
-  'application/msword'
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 ];
