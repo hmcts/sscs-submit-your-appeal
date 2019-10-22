@@ -12,7 +12,7 @@ class IdamRedirect extends Redirect {
     if (!this.req.session.BenefitType) {
       return redirectTo(this.journey.steps.BenefitType);
     }
-    return redirectTo(this.journey.steps.HaveAMRN); 
+    return redirectTo(this.journey.steps.HaveAMRN);
   }
 
   get middleware() {
