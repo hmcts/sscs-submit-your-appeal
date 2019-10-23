@@ -38,7 +38,7 @@ describe('IdamRedirect.js', () => {
     it('should redirect to HaveAMRN if there is benefit type', () => {
       entry.req = {
         session: {
-          BenefitType: "Personal Independence Payment (PIP)"
+          BenefitType: 'Personal Independence Payment (PIP)'
         }
       };
 
