@@ -10,7 +10,7 @@ describe('IdamRedirect.js', () => {
       journey: {
         steps: {
           HaveAMRN: paths.compliance.haveAMRN,
-          Entry: paths.session.entry
+          BenefitType: paths.start.benefitType
         }
       }
     });
@@ -23,28 +23,28 @@ describe('IdamRedirect.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /have-you-got-an-mrn', () => {
+    it('should redirect to BenefitType if there is no benefit type', () => {
       entry.req = {
-        session: {
-          BenefitType: {
-            benefitType: null
-          }
-        }
+        session: {}
       };
 
-      expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
+      expect(entry.next()).to.eql({
+        nextStep: paths.start.benefitType
+      });
     });
   });
 
   describe('next()', () => {
-    it('returns the next step path /have-you-got-an-mrn', () => {
+    it('should redirect to HaveAMRN if there is benefit type', () => {
       entry.req = {
         session: {
-          BenefitType: paths.BenefitType
+          BenefitType: "Personal Independence Payment (PIP)"
         }
       };
 
-      expect(entry.next()).to.eql({ nextStep: paths.session.entry });
+      expect(entry.next()).to.eql({
+        nextStep: paths.compliance.haveAMRN
+      });
     });
   });
 });
