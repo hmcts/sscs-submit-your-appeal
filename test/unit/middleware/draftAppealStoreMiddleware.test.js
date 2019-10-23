@@ -162,7 +162,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('should not restore not logged in user session from state ', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
+      expect(objectAssignSpy).to.have.been.calledThrice;
     });
   });
 
