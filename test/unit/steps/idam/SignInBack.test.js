@@ -4,7 +4,7 @@ const {
 const SignInBack = require('steps/idam/sign-in-back/SignInBack');
 const paths = require('paths');
 
-describe.only('SignInBack.js', () => {
+describe('SignInBack.js', () => {
   let signInBack = null;
 
   beforeEach(() => {
@@ -22,4 +22,13 @@ describe.only('SignInBack.js', () => {
       expect(signInBack.path).to.equal(paths.idam.signInBack);
     });
   });
+
+  describe('next()', () => {
+    it('should redirect to IdamRedirect', () => {
+      expect(signInBack.next()).to.eql({
+        nextStep: paths.start.idamRedirect
+      });
+    });  
+  });
+
 });
