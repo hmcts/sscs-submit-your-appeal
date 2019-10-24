@@ -28,7 +28,6 @@ describe('SignInBack.js', () => {
       expect(signInBack.next()).to.eql({
         nextStep: paths.start.idamRedirect
       });
-    });  
+    });
   });
-
 });
