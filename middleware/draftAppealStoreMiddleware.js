@@ -99,6 +99,9 @@ const restoreUserState = async(req, res, next) => {
         next();
       })
       .catch(error => {
+        Object.assign(req.session, {
+          entryPoint: 'Entry'
+        });
         logger.exception(error, logPath);
         next();
       });
