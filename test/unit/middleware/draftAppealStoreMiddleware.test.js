@@ -109,7 +109,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('saveToDraftStore api call', () => {
     const req = {
-      journey: { values: { BenefitType: 'PIP' },
+      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B'} },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrl: `${apiUrl}/drafts` } },
       idam: 'test_user',
@@ -124,7 +124,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('saveToDraftStore api failed call', () => {
     const req = {
-      journey: { values: { BenefitType: 'PIP' },
+      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B'} },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrl: `${apiUrl}/` } },
       idam: 'test_user',

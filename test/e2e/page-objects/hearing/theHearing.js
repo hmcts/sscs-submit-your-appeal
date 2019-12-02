@@ -1,7 +1,7 @@
 function enterDoYouWantToAttendTheHearing(option) {
   const I = this;
 
-  I.waitForElement('#attendHearing');
+  I.waitForElement('#attendHearing', 3);
   I.checkOption(option);
   I.click('Continue');
 }

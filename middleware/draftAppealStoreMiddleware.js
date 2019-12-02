@@ -56,15 +56,17 @@ const saveToDraftStore = async(req, res, next) => {
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
         logger.trace([
-          'Successfully posted a draft',
+          'Successfully posted a draft for case with nino: ' +
+          ` ${(values && values.appellant) ? values.appellant.nino : ''}`,
           result.status
         ], logPath);
-
         logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
           logPath);
         next();
       })
       .catch(error => {
+        logger.trace('Exception on posting a draft for case with nino: ' +
+          `${(values && values.appellant) ? values.appellant.nino : ''}`, logPath);
         logger.exception(error, logPath);
         next();
       });
