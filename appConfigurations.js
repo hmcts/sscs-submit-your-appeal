@@ -154,7 +154,9 @@ const configureJourney = (app, content) => {
         connect_timeout: 15000
       },
       cookie: {
-        secure: config.get('node.protocol') === 'https'
+        secure: config.get('node.protocol') === 'https',
+        /* eslint-disable no-magic-numbers */
+        maxAge: 60 * 1000
       },
       secret: config.redis.secret
     },
