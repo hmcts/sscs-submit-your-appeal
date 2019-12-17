@@ -62,7 +62,7 @@
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
     "enabled": true,
-    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
+    "allowedRpcs": "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
   },
   "postcodeLookup": {
     "url": "https://api.ordnancesurvey.co.uk/places/v1",
