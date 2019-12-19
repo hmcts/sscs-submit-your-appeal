@@ -112,12 +112,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrl: `${apiUrl}/drafts` } },
-      idam: 'test_user',
+      idam: {
+        userDetails: {
+          id: '1'
+        }
+      },
       cookies: { '__auth-token': 'xxx' }
     };
     it('Expected Successfully posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledTwice;
+      expect(loggerSpy).to.have.been.calledThrice;
       expect(next).to.have.been.calledOnce;
     });
   });
@@ -127,7 +131,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrl: `${apiUrl}/` } },
-      idam: 'test_user',
+      idam: {
+        userDetails: {
+          id: '1'
+        }
+      },
       cookies: { '__auth-token': 'xxx' }
     };
     it('Expected Successfully posted a draft:', async() => {

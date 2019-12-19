@@ -49,6 +49,7 @@ const saveToDraftStore = async(req, res, next) => {
 
 
   if (allowSaveAndReturn && req.idam && values) {
+    logger.trace(`About to post draft for userId: ${req.idam.userDetails.id}`);
     // send to draft store
     await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
@@ -57,8 +58,9 @@ const saveToDraftStore = async(req, res, next) => {
       .then(result => {
         logger.trace([
           'Successfully posted a draft for case with nino: ' +
-          ` ${(values && values.appellant) ? values.appellant.nino : ''}`,
-          result.status
+          `${(values && values.appellant && values.appellant.nino) ?
+            values.appellant.nino :
+            'no NINO submited yet'}`, result.status
         ], logPath);
         logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
           logPath);
@@ -66,7 +68,9 @@ const saveToDraftStore = async(req, res, next) => {
       })
       .catch(error => {
         logger.trace('Exception on posting a draft for case with nino: ' +
-          `${(values && values.appellant) ? values.appellant.nino : ''}`, logPath);
+          `${(values && values.appellant && values.appellant.nino) ?
+            values.appellant.nino :
+            'no NINO submitted yet'}`, logPath);
         logger.exception(error, logPath);
         next();
       });
