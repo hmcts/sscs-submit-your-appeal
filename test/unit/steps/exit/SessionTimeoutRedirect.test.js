@@ -27,8 +27,8 @@ describe.only('SessionTimeoutRedirect.js', () => {
           }
         }
       };
-      
-      let sessionTimeoutRedirect = new SessionTimeoutRedirect(req);
+
+      const sessionTimeoutRedirect = new SessionTimeoutRedirect(req);
       expect(sessionTimeoutRedirect.next().step.path).to.equal(paths.idam.signOut);
     });
   });
