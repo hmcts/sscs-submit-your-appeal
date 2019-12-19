@@ -4,32 +4,48 @@ const {
 const SessionTimeoutRedirect = require('steps/exit-points/SessionTimeoutRedirect');
 const paths = require('paths');
 const steps = require('steps');
+const itParam = require('mocha-param');
 
-describe.only('SessionTimeoutRedirect.js', () => {
-  describe('path()', () => {
-    it('returns path /session-timeout-redirect', () => {
-      expect(SessionTimeoutRedirect.path).to.equal(paths.session.sessionTimeoutRedirect);
-    });
+describe.only('SessionTimeoutRedirect.js', () => {});
+
+describe('path()', () => {
+  it('returns path /session-timeout-redirect', () => {
+    expect(SessionTimeoutRedirect.path).to.equal(paths.session.sessionTimeoutRedirect);
   });
+});
 
-  describe('next()', () => {
-    it.only('redirect to /sign-out if user is logged in', () => {
-      const signOutStep = steps.filter(step => step.name === 'SignOut').pop();
-      const sessionTimeoutStep = steps.filter(step => step.name === 'SessionTimeout').pop();
-      const req = {
-        idam: {
-          userId: '1'
-        },
-        journey: {
-          steps: {
-            SignOut: signOutStep,
-            SessionTimeoutStep: sessionTimeoutStep
-          }
+function generateDifferentScenarios() {
+  const signOutStep = steps.filter(step => step.name === 'SignOut').pop();
+  const sessionTimeoutStep = steps.filter(step => step.name === 'SessionTimeout').pop();
+  const scenarioWithLoggedUser = {
+    req: {
+      idam: {
+        userId: '1'
+      },
+      journey: {
+        steps: {
+          SignOut: signOutStep
         }
-      };
+      }
+    },
+    expected: {
+      path: '/sign-out'
+    }
+  };
 
-      const sessionTimeoutRedirect = new SessionTimeoutRedirect(req);
-      expect(sessionTimeoutRedirect.next().step.path).to.equal(paths.idam.signOut);
-    });
+  const reqWithNoLoggedUser = {
+    journey: {
+      steps: {
+        SessionTimeoutStep: sessionTimeoutStep
+      }
+    }
+  };
+  return [scenarioWithLoggedUser];
+}
+
+describe.only('next()', () => {
+  itParam('redirect to ', generateDifferentScenarios(), (scenario) => {
+    const sessionTimeoutRedirect = new SessionTimeoutRedirect(scenario.req);
+    expect(sessionTimeoutRedirect.next().step.path).to.equal(scenario.expected.path);
   });
 });
