@@ -14,8 +14,9 @@ describe('path()', () => {
 
 function generateDifferentScenarios() {
   const signOutStep = steps.filter(step => step.name === 'SignOut').pop();
-  // const sessionTimeoutStep = steps.filter(step => step.name === 'SessionTimeout').pop();
+  const sessionTimeoutStep = steps.filter(step => step.name === 'SessionTimeout').pop();
   const scenarioWithLoggedUser = {
+    name: 'user is logged in',
     req: {
       idam: {
         userId: '1'
@@ -31,18 +32,24 @@ function generateDifferentScenarios() {
     }
   };
 
-  // const reqWithNoLoggedUser = {
-  //   journey: {
-  //     steps: {
-  //       SessionTimeoutStep: sessionTimeoutStep
-  //     }
-  //   }
-  // };
-  return [scenarioWithLoggedUser];
+  const scenarioWithNoLoggedUser = {
+    name: 'user is not logged in',
+    req: {
+      journey: {
+        steps: {
+          SessionTimeout: sessionTimeoutStep
+        }
+      }
+    },
+    expected: {
+      path: '/session-timeout'
+    }
+  };
+  return [scenarioWithLoggedUser, scenarioWithNoLoggedUser];
 }
 
 describe.only('next()', () => {
-  itParam('redirect to ', generateDifferentScenarios(), scenario => {
+  itParam('redirect to ${value.expected.path} when ${value.name}', generateDifferentScenarios(), (scenario) => {
     const sessionTimeoutRedirect = new SessionTimeoutRedirect(scenario.req);
     expect(sessionTimeoutRedirect.next().step.path).to.equal(scenario.expected.path);
   });
