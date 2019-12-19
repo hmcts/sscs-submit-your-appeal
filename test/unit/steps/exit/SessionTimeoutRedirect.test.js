@@ -48,7 +48,7 @@ function generateDifferentScenarios() {
   return [scenarioWithLoggedUser, scenarioWithNoLoggedUser];
 }
 
-describe.only('next()', () => {
+describe('next()', () => {
   itParam('redirect to ${value.expected.path} when ${value.name}', generateDifferentScenarios(),
     scenario => {
       const sessionTimeoutRedirect = new SessionTimeoutRedirect(scenario.req);
