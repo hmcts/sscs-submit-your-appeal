@@ -49,8 +49,9 @@ function generateDifferentScenarios() {
 }
 
 describe.only('next()', () => {
-  itParam('redirect to ${value.expected.path} when ${value.name}', generateDifferentScenarios(), (scenario) => {
-    const sessionTimeoutRedirect = new SessionTimeoutRedirect(scenario.req);
-    expect(sessionTimeoutRedirect.next().step.path).to.equal(scenario.expected.path);
-  });
+  itParam('redirect to ${value.expected.path} when ${value.name}', generateDifferentScenarios(),
+    scenario => {
+      const sessionTimeoutRedirect = new SessionTimeoutRedirect(scenario.req);
+      expect(sessionTimeoutRedirect.next().step.path).to.equal(scenario.expected.path);
+    });
 });
