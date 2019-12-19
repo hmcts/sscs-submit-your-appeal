@@ -5,4 +5,8 @@ describe('paths.js', () => {
   it('should return an object', () => {
     expect(paths).to.be.an('object');
   });
+
+  it.only('should return sessionTimeoutRedirect', () => {
+    expect(paths.session.sessionTimeoutRedirect).to.equal('/session-timeout-redirect');
+  });
 });
