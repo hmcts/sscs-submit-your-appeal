@@ -9,6 +9,7 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit-points/exit/Exit');
 const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
+const SessionTimeoutRedirect = require('steps/exit-points/SessionTimeoutRedirect');
 const Sessions = require('steps/session/Sessions');
 const Error500 = require('steps/errors/500/Error500');
 const BenefitType = require('steps/start/benefit-type/BenefitType');
@@ -71,7 +72,8 @@ const init = [
   Exit,
   Sessions,
   Error500,
-  SessionTimeout
+  SessionTimeout,
+  SessionTimeoutRedirect
 ];
 
 const startAnAppeal = [

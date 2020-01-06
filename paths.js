@@ -27,7 +27,9 @@ module.exports = {
     entry: '/entry',
     exit: '/exit',
     timeout: '/session-timeout',
-    sessions: '/sessions'
+    sessions: '/sessions',
+    sessionTimeoutRedirect: '/session-timeout-redirect'
+
   },
 
   start: {
