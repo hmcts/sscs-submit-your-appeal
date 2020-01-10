@@ -23,7 +23,7 @@ class InactivityAlert {
     this.init();
   }
   static navigateAway() {
-    window.location.href = '/session-timeout';
+    window.location.href = '/session-timeout-redirect';
   }
   setSessionTimeout() {
     this.timeoutForSession = window
