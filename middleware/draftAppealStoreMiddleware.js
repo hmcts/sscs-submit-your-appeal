@@ -49,7 +49,8 @@ const saveToDraftStore = async(req, res, next) => {
 
 
   if (allowSaveAndReturn && req.idam && values) {
-    logger.trace(`About to post draft for userId: ${req.idam.userDetails.id}`);
+    logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
+        ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
     // send to draft store
     await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
