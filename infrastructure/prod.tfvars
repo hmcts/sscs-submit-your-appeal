@@ -11,7 +11,7 @@ contact_us_webchat_enabled = "true"
 
 allow_save_return="true"
 idam_api_url = "https://idam-api.platform.hmcts.net"
-idam_login_url = "https://hmcts-access.service.gov.uk/users/selfRegister"
+idam_login_url = "https://hmcts-access.service.gov.uk/login"
 
 services_webchat_tenant = "aG1jdHN4MTAx"
 services_webchat_uuid =  "script_1519925245d3ec86ead6a15.79946496"
