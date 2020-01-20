@@ -1,7 +1,7 @@
 function enterDWPIssuingOfficeAndContinue(id) {
   const I = this;
 
-  I.fillField({ id: 'pipNumber' }, id);
+  I.fillField({ id: 'dwpIssuingOffice' }, id);
   I.click('Continue');
 }
 
