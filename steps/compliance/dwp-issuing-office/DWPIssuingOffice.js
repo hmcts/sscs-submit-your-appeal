@@ -3,6 +3,7 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
+const { getBenefitName } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -35,25 +36,22 @@ class DWPIssuingOffice extends SaveToDraftStore {
 
   get form() {
     return form({
-      dwpIssuingOffice: text.joi(
-        this.content.fields.dwpIssuingOffice.error.required,
+      pipNumber: text.joi(
+        this.content.fields.pipNumber.error.required,
         Joi.string().required())
     });
   }
 
-  get dwpIssuingOfficeString() {
-    if (this.fields.dwpIssuingOffice.value === 'AE') {
-      return 'DWP PIP AE';
-    }
-    return `DWP PIP (${this.fields.dwpIssuingOffice.value})`;
+  get benefitName() {
+    return getBenefitName(this.req.session.BenefitType.benefitType);
   }
 
   answers() {
     return [
       answer(this, {
-        question: this.content.cya.dwpIssuingOffice.question,
+        question: this.content.cya.pipNumber.question,
         section: sections.mrnDate,
-        answer: this.fields.dwpIssuingOffice.value
+        answer: this.fields.pipNumber.value
       })
     ];
   }
@@ -61,7 +59,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
   values() {
     return {
       mrn: {
-        dwpIssuingOffice: this.dwpIssuingOfficeString
+        dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`
       }
     };
   }

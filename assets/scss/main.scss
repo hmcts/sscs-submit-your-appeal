@@ -95,7 +95,7 @@ label.form-label[for="signer"] {
   }
 }
 
-#name\.title, #pipNumber {
+#name\.title {
   &.govuk-input {
     width: 100% !important;
 
@@ -352,10 +352,10 @@ label.form-label[for="signer"] {
 .js-enabled .js-hidden {
   display: none;
   visibility: hidden; }
-  
+
 .add-another-add-link, [for=uploadEv]{
   @extend .govuk-button;
-  @extend .govuk-button--secondary; 
+  @extend .govuk-button--secondary;
 }
 
 .form-buttons-group {
@@ -380,14 +380,14 @@ label.form-label[for="signer"] {
   text-align: center;
 }
 
-.govuk-header__content { 
+.govuk-header__content {
   @include govuk-media-query($from: desktop) {
     width: 60%
   }
 }
 
-.govuk-header__link--signout {	
-  margin-top:5px;	
-  float:right;	
-  font-weight:700;	
+.govuk-header__link--signout {
+  margin-top:5px;
+  float:right;
+  font-weight:700;
 }
