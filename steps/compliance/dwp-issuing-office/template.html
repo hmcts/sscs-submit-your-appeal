@@ -1,5 +1,5 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox %}
+{% from "components/fields.njk" import select, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
@@ -9,10 +9,10 @@
 
 {% block fields %}
 
-    <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-number.png" alt="{{ content.imageAlt }}">
+    <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-location.png" alt="{{ content.imageAlt }}">
 
-    <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.pipNumber.header }}</h2></p>
+    <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.dwpIssuingOffice.header }}</h2></p>
 
-    {{ textbox(fields.pipNumber, content.fields.pipNumber.label) }}
+    {{ select(fields.dwpIssuingOffice, content.fields.dwpIssuingOffice.label, '', false, options) }}
 
 {% endblock %}

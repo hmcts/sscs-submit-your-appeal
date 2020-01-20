@@ -32,12 +32,12 @@ describe('DWPIssuingOffice.js', () => {
 
     it('should contain 1 field', () => {
       expect(Object.keys(fields).length).to.equal(1);
-      expect(fields).to.have.all.keys('pipNumber');
+      expect(fields).to.have.all.keys('dwpIssuingOffice');
     });
 
-    describe('pipNumber field', () => {
+    describe('dwpIssuingOffice field', () => {
       beforeEach(() => {
-        field = fields.pipNumber;
+        field = fields.dwpIssuingOffice;
       });
 
       it('has constructor name FieldDescriptor', () => {
@@ -55,14 +55,14 @@ describe('DWPIssuingOffice.js', () => {
 
     beforeEach(() => {
       dWPIssuingOffice.fields = {
-        pipNumber: {
-          value: 5
+        dwpIssuingOffice: {
+          value: '5'
         }
       };
 
       dWPIssuingOffice.content = {
         cya: {
-          pipNumber: {
+          dwpIssuingOffice: {
             question
           }
         }
@@ -74,7 +74,7 @@ describe('DWPIssuingOffice.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
-      expect(answers[0].answer).to.equal(5);
+      expect(answers[0].answer).to.equal('5');
     });
 
     it('should contain a value object', () => {
