@@ -3,7 +3,6 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
-const { getBenefitName } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
@@ -42,9 +41,6 @@ class DWPIssuingOffice extends SaveToDraftStore {
     });
   }
 
-  get benefitName() {
-    return getBenefitName(this.req.session.BenefitType.benefitType);
-  }
   get dwpIssuingOfficeString() {
     if (this.fields.dwpIssuingOffice.value === 'AE') {
       return 'DWP PIP AE';
