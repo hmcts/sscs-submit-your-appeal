@@ -22,6 +22,12 @@ describe('DWPIssuingOffice.js', () => {
     });
   });
 
+  describe('get dwp office options()', () => {
+    it('return dwp office option', () => {
+      expect(11).to.equal(dWPIssuingOffice.options.length);
+    });
+  });
+
   describe('get form()', () => {
     let fields = null;
     let field = null;
