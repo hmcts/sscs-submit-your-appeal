@@ -83,6 +83,39 @@ describe('DWPIssuingOffice.js', () => {
     });
   });
 
+  describe('answers() and values() for PIP AE', () => {
+    const question = 'A Question';
+
+    beforeEach(() => {
+      dWPIssuingOffice.fields = {
+        dwpIssuingOffice: {
+          value: 'AE'
+        }
+      };
+
+      dWPIssuingOffice.content = {
+        cya: {
+          dwpIssuingOffice: {
+            question
+          }
+        }
+      };
+    });
+
+    it('should contain a single answer for PIP AE', () => {
+      const answers = dWPIssuingOffice.answers();
+      expect(answers.length).to.equal(1);
+      expect(answers[0].question).to.equal(question);
+      expect(answers[0].section).to.equal(sections.mrnDate);
+      expect(answers[0].answer).to.equal('AE');
+    });
+
+    it('should contain a value object for PIP AE', () => {
+      const values = dWPIssuingOffice.values();
+      expect(values).to.eql({ mrn: { dwpIssuingOffice: 'DWP PIP AE' } });
+    });
+  });
+
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
       expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
