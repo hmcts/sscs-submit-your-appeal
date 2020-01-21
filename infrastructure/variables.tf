@@ -10,7 +10,7 @@ variable "env" {}
 
 variable "subscription" {}
 
-variable "ilbIp"{}
+variable "ilbIp" {}
 
 variable "node_environment" {
   default = "sandbox"
