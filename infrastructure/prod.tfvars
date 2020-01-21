@@ -1,15 +1,7 @@
-infrastructure_env = "prod"
 node_environment = "prod"
-evidence_upload_enabled = "true"
-https_only_flag = "false"
-postcode_checker_enabled = "true"
-postcode_lookup_enabled = "true"
-postcode_checker_allowed_rpcs = "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
 sya_hostname  = "www.appeal-benefit-decision.service.gov.uk"
 contact_us_web_form_enabled = "false"
-contact_us_webchat_enabled = "true"
 
-allow_save_return="true"
 idam_api_url = "https://idam-api.platform.hmcts.net"
 idam_login_url = "https://hmcts-access.service.gov.uk/login"
 
