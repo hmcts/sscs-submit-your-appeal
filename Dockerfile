@@ -1,19 +1,7 @@
-# ---- Base image ----
-FROM hmctspublic.azurecr.io/base/node:10-alpine as base
-COPY package.json yarn.lock ./
-RUN yarn install --production \
-  && yarn cache clean
+FROM hmctspublic.azurecr.io/base/node/alpine-lts-10:10-alpine as base
 
-# ---- Build image ----
-FROM base as build
-COPY . ./
-RUN yarn install
-COPY --chown=hmcts:hmcts * ./
-RUN yarn setup
+COPY --chown=hmcts:hmcts . .
+RUN yarn install && yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
 
-# ---- Runtime image ----
-FROM base as runtime
-COPY --from=build $WORKDIR/ ./
-
+USER hmcts
 EXPOSE 3000
-CMD ["npm", "start"]
