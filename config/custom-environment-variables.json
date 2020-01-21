@@ -21,13 +21,6 @@
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
-  "ssl": {
-    "hpkp": {
-      "maxAge": "HPKP_MAXAGE",
-      "sha256s": "HPKP_SHA256",
-      "sha256sBackup": "HPKP_SHA256_BACKUP"
-    }
-  },
   "e2e": {
     "waitForTimeout": "E2E_WAIT_FOR_TIMEOUT_VALUE",
     "waitForAction": "E2E_WAIT_FOR_ACTION_VALUE",
@@ -90,6 +83,6 @@
       "btnNoAgents": "SERVICES_BTN_NO_AGENTS",
       "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
       "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
-    } 
+    }
   }
 }
