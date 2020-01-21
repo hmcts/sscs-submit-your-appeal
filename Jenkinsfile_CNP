@@ -9,11 +9,13 @@ properties(
 def product = "sscs"
 def component = "tribunals-frontend"
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 withPipeline("nodejs", product, component) {
 
   before('securitychecks') {
     try {
-      sh 'yarn audit'
+      yarnBuilder.yarn('audit')
     } catch (error) {
       onMaster {
         slackSend(channel: '#sscs-tech', color: 'warning', message: "Yarn Audit has detected vulnerabilities in ${env.JOB_NAME}. You can check if there are patches for them in the full report, build details here: <${env.RUN_DISPLAY_URL}|Build ${env.BUILD_DISPLAY_NAME}>.")
@@ -21,8 +23,9 @@ withPipeline("nodejs", product, component) {
     }
   }
 
-  after('checkout') {sh 'yarn cache clean'}
-  after('build') {sh 'yarn build'}
+  after('build') {
+    yarnBuilder.yarn('build')
+  }
 
   before('smoketest:preview') {
     // workaround to fix SIDAM whitelisting for PR AKS URLs
