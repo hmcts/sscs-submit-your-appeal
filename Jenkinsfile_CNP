@@ -9,25 +9,6 @@ properties(
 def product = "sscs"
 def component = "tribunals-frontend"
 
-def secrets = [
-  'sscs-${env}':
-    [
-      secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET'),
-      secret('postcode-lookup-token', 'POSTCODE_LOOKUP_TOKEN')
-    ]
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
-
-String notificationsChannel = '#sscs-tech'
-
 withPipeline("nodejs", product, component) {
 
   before('securitychecks') {
@@ -61,10 +42,10 @@ withPipeline("nodejs", product, component) {
     }
   }
 
-  loadVaultSecrets(secrets)
-  enableSlackNotifications(notificationsChannel)
   enableDockerBuild()
   installCharts()
+  enableAksStagingDeployment()
+  // disableLegacyDeploymentOnAAT()
 
   after("smoketest:preview") {
       stage('Application URLs') {
