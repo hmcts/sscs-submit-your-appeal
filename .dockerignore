@@ -9,6 +9,7 @@
 !middleware/**
 !mocks/**
 !policy-pages/**
+!assets/**
 !services/**
 !steps/**
 !utils/**
