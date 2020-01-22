@@ -25,13 +25,6 @@ const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
 
-// eslint-disable-next-line no-console
-console.log(url);
-// eslint-disable-next-line no-console
-console.log(token);
-// eslint-disable-next-line no-console
-console.log(enabled);
-
 class AppellantContactDetails extends SaveToDraftStore {
   constructor(...args) {
     super(...args);
