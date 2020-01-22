@@ -3,7 +3,7 @@
   "NODE_ENV": "testing",
   "useCSRFProtection": true,
   "security": {
-    "referrerPolicy": "origin",
+    "referrerPolicy": "origin"
   },
   "redis": {
     "url": "redis://localhost:6379",
