@@ -30,6 +30,13 @@ const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
 
+// eslint-disable-next-line no-console
+console.log(url);
+// eslint-disable-next-line no-console
+console.log(token);
+// eslint-disable-next-line no-console
+console.log(enabled);
+
 const parseFullName = require('parse-full-name').parseFullName;
 
 class RepresentativeDetails extends SaveToDraftStore {
