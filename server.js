@@ -1,4 +1,9 @@
 const config = require('@hmcts/properties-volume').addTo(require('config'));
+const setupSecrets = require('services/setupSecrets');
+
+// Setup secrets before loading the app
+setupSecrets();
+
 const app = require('./app.js');
 const logger = require('logger');
 const https = require('https');
