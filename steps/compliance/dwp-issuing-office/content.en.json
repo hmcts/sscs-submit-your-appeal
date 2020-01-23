@@ -5,13 +5,10 @@
   "imageAlt": "A number of the DWP issuing office",
   "fields": {
     "pipNumber": {
-      "header": "Enter the {{benefitName}} number from DWP’s address",
+      "header": "Select the {{benefitName}} number from DWP’s address",
       "label": "{{benefitName}}",
       "error": {
-        "required": "Enter the {{benefitName}} number from your MRN",
-        "notNumeric": "You have not entered a number. Enter the {{benefitName}} number from your MRN",
-        "invalid": "The number you have entered is invalid. Enter the {{benefitName}} number from your MRN",
-        "numberSameAsImage": "You have entered the number from the picture. Look at your own MRN and enter the number which is shown."
+        "required": "You must select the office which is shown in the first line of DWP's address"
       }
     }
   },

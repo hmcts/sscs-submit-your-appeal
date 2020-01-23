@@ -22,6 +22,12 @@ describe('DWPIssuingOffice.js', () => {
     });
   });
 
+  describe('get dwp office options()', () => {
+    it('return dwp office option', () => {
+      expect(11).to.equal(dWPIssuingOffice.options.length);
+    });
+  });
+
   describe('get form()', () => {
     let fields = null;
     let field = null;
@@ -56,7 +62,7 @@ describe('DWPIssuingOffice.js', () => {
     beforeEach(() => {
       dWPIssuingOffice.fields = {
         pipNumber: {
-          value: 5
+          value: '5'
         }
       };
 
@@ -74,7 +80,7 @@ describe('DWPIssuingOffice.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
-      expect(answers[0].answer).to.equal(5);
+      expect(answers[0].answer).to.equal('5');
     });
 
     it('should contain a value object', () => {

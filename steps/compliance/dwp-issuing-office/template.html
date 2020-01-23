@@ -1,5 +1,5 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox %}
+{% from "components/fields.njk" import select, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead }}{% endblock %}
 
@@ -13,6 +13,6 @@
 
     <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.pipNumber.header }}</h2></p>
 
-    {{ textbox(fields.pipNumber, content.fields.pipNumber.label) }}
+    {{ select(fields.pipNumber, content.fields.pipNumber.label, '', false, options) }}
 
 {% endblock %}

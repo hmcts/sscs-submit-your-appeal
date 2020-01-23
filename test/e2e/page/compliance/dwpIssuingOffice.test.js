@@ -22,16 +22,3 @@ Scenario('When I click continue without adding a dwp issuing office I see an err
   I.seeDWPIssuingOfficeError(paths.compliance.dwpIssuingOffice,
     content.fields.pipNumber.error.required);
 });
-
-Scenario('When I enter a non numerical character and click continue I see an error', I => {
-  I.enterDWPIssuingOfficeAndContinue('a');
-  I.seeDWPIssuingOfficeError(paths.compliance.dwpIssuingOffice,
-    content.fields.pipNumber.error.notNumeric);
-});
-
-
-Scenario('I enter a non-listed dwp issuing office, I click continue, I see an error', I => {
-  I.enterDWPIssuingOfficeAndContinue('6001');
-  I.seeDWPIssuingOfficeError(paths.compliance.dwpIssuingOffice,
-    content.fields.pipNumber.error.invalid);
-});
