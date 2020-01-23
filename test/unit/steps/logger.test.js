@@ -15,7 +15,7 @@ describe('logger.js', () => {
   beforeEach(() => {
     logger.setIkey('test-key');
     logger.startAppInsights();
-    sandBox = sinon.sandbox.create();
+    sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
     applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start');
     applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,

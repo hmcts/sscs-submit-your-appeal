@@ -1,6 +1,11 @@
+const config = require('@hmcts/properties-volume').addTo(require('config'));
+const setupSecrets = require('services/setupSecrets');
+
+// Setup secrets before loading the app
+setupSecrets();
+
 const app = require('./app.js');
 const logger = require('logger');
-const config = require('config');
 const https = require('https');
 const fs = require('graceful-fs');
 const webpack = require('webpack');

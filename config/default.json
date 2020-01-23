@@ -22,13 +22,6 @@
     "instrumentationKey": "",
     "roleName": "sya"
   },
-  "ssl": {
-    "hpkp": {
-      "maxAge": "3600",
-      "sha256s": "AbCdEf123=",
-      "sha256sBackup": "ZyXwVu456="
-    }
-  },
   "e2e": {
     "waitForTimeout": "30000",
     "waitForAction": "2000",
