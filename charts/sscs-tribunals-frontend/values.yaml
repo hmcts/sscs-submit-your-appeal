@@ -36,6 +36,7 @@ nodejs:
         - AppInsightsInstrumentationKey
 
 redis:
+  enabled: false
   cluster:
     enabled: false
     slaveCount: 0

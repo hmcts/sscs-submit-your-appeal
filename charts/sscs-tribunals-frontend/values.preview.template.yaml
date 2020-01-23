@@ -10,3 +10,6 @@ nodejs:
         - idam-sscs-oauth2-client-secret
         - postcode-lookup-token
         - AppInsightsInstrumentationKey
+
+redis:
+  enabled: true
