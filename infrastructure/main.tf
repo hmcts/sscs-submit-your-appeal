@@ -47,9 +47,8 @@ module "submit-your-appeal-frontend" {
     REDIS_URL                     = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     SESSION_SECRET                = "${module.redis-cache.access_key}"
     NODE_ENV                      = "${var.node_environment}"
-    WEBSITE_NODE_DEFAULT_VERSION  = "8.11.1"
+    WEBSITE_NODE_DEFAULT_VERSION  = "12.13.0"
     UPLOAD_EVIDENCE_URL           = "${local.ApiUrl}/evidence/upload"
-    POSTCODE_CHECKER_URL          = "${local.ApiUrl}/regionalcentre"
     POSTCODE_CHECKER_ALLOWED_RPCS = "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
     POSTCODE_LOOKUP_TOKEN         = "${data.azurerm_key_vault_secret.postcode_lookup_token.value}"
 
@@ -72,12 +71,18 @@ module "submit-your-appeal-frontend" {
   }
 }
 
+data "azurerm_subnet" "core_infra_redis_subnet" {
+  name                 = "core-infra-subnet-1-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+  resource_group_name  = "core-infra-${var.env}"
+}
+
 module "redis-cache" {
   source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product     = "${var.product}-redis"
   location    = "${var.location}"
   env         = "${var.env}"
-  subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  subnetid    = "${data.azurerm_subnet.core_infra_redis_subnet.id}"
   common_tags = "${var.common_tags}"
 }
 
