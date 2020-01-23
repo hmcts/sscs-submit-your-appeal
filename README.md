@@ -71,7 +71,7 @@ View the application:
     http://localhost:3000
 
 ## End-to-end testing
-
+ 
 Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up. At
 present these tests do not run within Docker, therefore, open a new terminal window.
 
