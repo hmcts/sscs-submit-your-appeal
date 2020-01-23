@@ -19,7 +19,8 @@
     "draftUrl": "DRAFT_API_URL"
   },
   "appInsights": {
-    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
+    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY",
+    "roleName": "APPINSIGHTS_ROLE_NAME"
   },
   "e2e": {
     "waitForTimeout": "E2E_WAIT_FOR_TIMEOUT_VALUE",
@@ -52,7 +53,6 @@
     }
   },
   "postcodeChecker": {
-    "url": "POSTCODE_CHECKER_URL",
     "enabled": "POSTCODE_CHECKER_ENABLED",
     "allowedRpcs": "POSTCODE_CHECKER_ALLOWED_RPCS"
   },
