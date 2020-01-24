@@ -48,7 +48,7 @@ withPipeline("nodejs", product, component) {
   enableDockerBuild()
   installCharts()
   enableAksStagingDeployment()
-  // disableLegacyDeploymentOnAAT()
+  disableLegacyDeploymentOnAAT()
 
   after("smoketest:preview") {
       stage('Application URLs') {
