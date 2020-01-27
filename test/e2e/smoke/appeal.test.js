@@ -25,5 +25,5 @@ Scenario('debug issue on PR', I => {
   I.waitForClickable({
     css: 'input[type=submit][value=Continue]'
   });
-  I.click('Continue')
+  I.click('Continue');
 }).tag('@debug');
