@@ -3,14 +3,14 @@ nodejs:
   ingressHost: ${SERVICE_FQDN}
   environment:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
-    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
-    POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
-    POSTCODE_CHECKER_ENABLED: true
-    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
-    POSTCODE_LOOKUP_TOKEN: ${POSTCODE_LOOKUP_TOKEN}
-    ALLOW_SAVE_RETURN: "true"
-    SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/users/selfRegister"
-    SERVICES_IDAM_SECRET: ${SERVICES_IDAM_SECRET}
-    POSTCODE_LOOKUP_ENABLED: "true"
+    APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
+
+  keyVaults:
+    sscs:
+      secrets:
+        - idam-sscs-oauth2-client-secret
+        - postcode-lookup-token
+        - AppInsightsInstrumentationKey
+
+redis:
+  enabled: true

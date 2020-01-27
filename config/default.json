@@ -22,13 +22,6 @@
     "instrumentationKey": "",
     "roleName": "sya"
   },
-  "ssl": {
-    "hpkp": {
-      "maxAge": "3600",
-      "sha256s": "AbCdEf123=",
-      "sha256sBackup": "ZyXwVu456="
-    }
-  },
   "e2e": {
     "waitForTimeout": "30000",
     "waitForAction": "2000",
@@ -85,7 +78,7 @@
     "idam": {
       "apiUrl": "http://localhost:5000",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:3501/users/selfRegister",
+      "loginUrl": "http://localhost:3501/login",
       "clientId": "sscs",
       "useMock": "false"
     },
@@ -99,6 +92,6 @@
       "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
       "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
-    } 
+    }
   }
 }

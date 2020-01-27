@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
-    "node": ">=8.9.4 <9.0"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
@@ -41,15 +41,18 @@
     "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/nodejs-healthcheck": "^1.5.1",
     "@hmcts/one-per-page": "5.0.1",
+    "@hmcts/properties-volume": "^0.0.9",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^1.6.1",
-    "applicationinsights": "^1.4.0",
+    "applicationinsights": "^1.6.0",
+    "applicationinsights-native-metrics": "^0.0.5",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^3.0.0",
+    "config": "^3.2.5",
     "cookies": "^0.7.3",
     "copy-webpack-plugin": "^5.0.3",
     "cross-env": "^5.1.3",

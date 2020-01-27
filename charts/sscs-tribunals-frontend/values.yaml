@@ -1,28 +1,41 @@
 nodejs:
-  image: 'https://hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
+  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
-  memoryRequests: 256Mi
-  cpuRequests: 0.2
-  memoryLimits: 512Mi
-  cpuLimits: 1
+  aadIdentityName: sscs
   environment:
-    NODE_ENV: preview
-    SESSION_SECRET:
-    HTTP_PROTOCOL: https
-    EVIDENCE_UPLOAD_ENABLED: true
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
-    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/evidence/upload
-    POSTCODE_CHECKER_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal/regionalcentre
-    POSTCODE_CHECKER_ENABLED: true
-    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
-    SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
-    SERVICES_IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/users/selfRegister"
-    REDIS_URL: redis://unknown-redis-master
-    SERVICES_IDAM_SECRET: unknown-secret
-    POSTCODE_LOOKUP_TOKEN: unknown-postcode-token
-    POSTCODE_LOOKUP_ENABLED: "true"
+    NODE_ENV: "production"
+    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
+    SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
+    SERVICES_IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+
+    # seems to be disabled currently and only enabled locally pointing at AAT
+    # SERVICES_WEB_FORM:
+
+    # This is currently disabled in prod, enabled all other environments
+    CONTACT_US_WEB_FORM_ENABLED: true
+
+    # these are only enabled in prod
+    # SERVICES_WEBCHAT_UUID:
+    # SERVICES_WEBCHAT_TENANT
+    # SERVICES_WEBCHAT_CHANNEL
+    # SERVICES_BTN_NO_AGENTS
+    # SERVICES_BTN_AGENTS_BUSY
+    # SERVICES_BTN_SERVICE_CLOSED
+
+    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
+
+  keyVaults:
+    sscs:
+      secrets:
+        - idam-sscs-oauth2-client-secret
+        - postcode-lookup-token
+        - sscs-redis-access-key
+        - sscs-redis-connection-string
+        - AppInsightsInstrumentationKey
 
 redis:
+  enabled: false
   cluster:
     enabled: false
     slaveCount: 0

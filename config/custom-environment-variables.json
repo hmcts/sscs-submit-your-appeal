@@ -19,14 +19,8 @@
     "draftUrl": "DRAFT_API_URL"
   },
   "appInsights": {
-    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
-  },
-  "ssl": {
-    "hpkp": {
-      "maxAge": "HPKP_MAXAGE",
-      "sha256s": "HPKP_SHA256",
-      "sha256sBackup": "HPKP_SHA256_BACKUP"
-    }
+    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY",
+    "roleName": "APPINSIGHTS_ROLE_NAME"
   },
   "e2e": {
     "waitForTimeout": "E2E_WAIT_FOR_TIMEOUT_VALUE",
@@ -59,7 +53,6 @@
     }
   },
   "postcodeChecker": {
-    "url": "POSTCODE_CHECKER_URL",
     "enabled": "POSTCODE_CHECKER_ENABLED",
     "allowedRpcs": "POSTCODE_CHECKER_ALLOWED_RPCS"
   },
@@ -90,6 +83,6 @@
       "btnNoAgents": "SERVICES_BTN_NO_AGENTS",
       "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
       "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
-    } 
+    }
   }
 }
