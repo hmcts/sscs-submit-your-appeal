@@ -23,7 +23,7 @@ nodejs:
     # SERVICES_BTN_AGENTS_BUSY
     # SERVICES_BTN_SERVICE_CLOSED
 
-    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow"
+    POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
 
   keyVaults:
     sscs:
