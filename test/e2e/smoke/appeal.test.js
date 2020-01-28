@@ -7,7 +7,7 @@ const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgRe
 
 Feature('Full Journey');
 
-Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke',
+Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page',
   I => {
     I.amOnPage(paths.session.root);
     I.enterDetailsFromStartToNINO();
@@ -15,4 +15,4 @@ Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
-  }).retry(2);
+  }).tag('@smoke');
