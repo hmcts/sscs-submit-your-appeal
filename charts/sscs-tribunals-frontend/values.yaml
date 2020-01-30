@@ -13,7 +13,7 @@ nodejs:
     # SERVICES_WEB_FORM:
 
     # This is currently disabled in prod, enabled all other environments
-    CONTACT_US_WEB_FORM_ENABLED: true
+    CONTACT_US_WEB_FORM_ENABLED: false
 
     # these are only enabled in prod
     # SERVICES_WEBCHAT_UUID:
