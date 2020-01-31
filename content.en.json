@@ -72,13 +72,18 @@
       "England": {
         "desc" : "Benefit appeals helpline (England and Wales)",
         "phone": "Telephone: 0300 123 1142",
-        "availability": "Monday to Friday, 8:30am to 5pm",
+        "availability": "Monday to Friday, 8:00am to 8:00pm",
+        "saturdayAvailability": "Saturday, 8:00am to 2:00pm",
+        "emailText": "Email:",
+        "emailAddress": "Contactsscs@justice.gov.uk",
         "charges": "Find out about call charges"
       },
       "Scotland" : {
         "desc": "Benefit appeals helpline (Scotland)",
         "phone": "Telephone: 0300 790 6234",
-        "availability": "Monday to Friday, 8:30am to 5pm",
+        "availability": "Monday to Friday, 8:30am to 5:00pm",
+        "emailText": "Email:",
+        "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
         "charges": "Find out about call charges"
       }
     }
