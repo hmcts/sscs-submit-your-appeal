@@ -10,9 +10,10 @@ Feature('Full Journey');
 Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page',
   I => {
     I.amOnPage(paths.session.root);
+    I.wait(2);
     I.enterDetailsFromStartToNINO();
     I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
     I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
     I.checkOptionAndContinue('#useSameNumber-yes');
     I.readSMSConfirmationAndContinue();
-  }).tag('@smoke');
+  }).retry(1).tag('@smoke');
