@@ -18,7 +18,7 @@ exports.config = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
-      getPageTimeout: 30000,
+      getPageTimeout: 60000,
       show: false,
       windowSize: '1000x1000',
       chrome: {

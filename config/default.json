@@ -23,7 +23,7 @@
     "roleName": "sya"
   },
   "e2e": {
-    "waitForTimeout": "30000",
+    "waitForTimeout": "60000",
     "waitForAction": "2000",
     "outputDir": "./functional-output",
     "frontendUrl": "https://localhost:3000"
