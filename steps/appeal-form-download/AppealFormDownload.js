@@ -1,16 +1,28 @@
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { Question } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('@hmcts/one-per-page');
+const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
+const preserveSession = require('middleware/preserveSession');
 
-class AppealFormDownload extends Question {
+class AppealFormDownload extends ExitPoint {
   static get path() {
     return paths.appealFormDownload;
   }
 
+  get session() {
+    return this.req.sess;
+  }
+
+  get middleware() {
+    return [
+      preserveSession,
+      ...super.middleware
+    ];
+  }
+
   get benefitType() {
-    return this.fields.benefitType.value;
+    return get(this, 'session.BenefitType.benefitType');
   }
 
   isBenefitInList(list, benefit) {
@@ -18,7 +30,7 @@ class AppealFormDownload extends Question {
   }
 
   get formDownload() {
-    const benefitType = this.fields.benefitType.value;
+    const benefitType = this.benefitType;
     const formDownload = {};
 
     const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
@@ -36,12 +48,6 @@ class AppealFormDownload extends Question {
     }
 
     return formDownload;
-  }
-
-  get form() {
-    return form({
-      benefitType: text.ref(this.journey.steps.BenefitType, 'benefitType')
-    });
   }
 }
 
