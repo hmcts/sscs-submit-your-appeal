@@ -47,7 +47,7 @@ withPipeline("nodejs", product, component) {
 
   installCharts()
   enableAksStagingDeployment()
-  disableLegacyDeploymentOnAAT()
+  disableLegacyDeployment()
 
   after("smoketest:preview") {
       stage('Application URLs') {
