@@ -51,12 +51,12 @@ class AppointeeName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    const fullName = parseFullName(`${title} ${first} ${last}`, 'all', 1, 0, 0);
+    const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return [
       answer(this, {
         question: this.content.cya.appointeeName.question,
         section: sections.appointeeDetails,
-        answer: decode(`${fullName.title} ${fullName.first} ${fullName.last}`)
+        answer: decode(`${title} ${fullName.first} ${fullName.last}`)
       })
     ];
   }
@@ -65,10 +65,10 @@ class AppointeeName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    const fullName = parseFullName(`${title} ${first} ${last}`, 'all', 1, 0, 0);
+    const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return {
       appointee: {
-        title: decode(fullName.title),
+        title: decode(title),
         firstName: decode(fullName.first),
         lastName: decode(fullName.last)
       }
