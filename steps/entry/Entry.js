@@ -8,7 +8,7 @@ class Entry extends RestoreFromDraftStore {
   }
 
   handler(req, res, next) {
-    /* eslint no-console: "error" */
+    /* eslint no-console: ["error", { allow: ["log"] }] */
     console.log(req);
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.checkYourAppeal);
