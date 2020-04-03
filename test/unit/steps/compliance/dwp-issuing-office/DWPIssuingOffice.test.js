@@ -24,7 +24,7 @@ describe('DWPIssuingOffice.js', () => {
 
   describe('get dwp office options()', () => {
     it('return dwp office option', () => {
-      expect(11).to.equal(dWPIssuingOffice.options.length);
+      expect(10).to.equal(dWPIssuingOffice.options.length);
     });
   });
 
