@@ -196,6 +196,7 @@ class AddReason {
             },
             error: errorResponse => {
               const resJson = errorResponse.responseJSON;
+              $('.govuk-button').attr('disabled', false);
               if (resJson.validationErrors.length > 0) {
                 if (index === 0) {
                   firstItemValid = false;
