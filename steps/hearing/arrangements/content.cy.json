@@ -1,0 +1,75 @@
+{
+  "titleHead": "Hearing arrangements confirm - Appeal a benefit decision - GOV.UK",
+  "title": "Support at the hearing",
+  "clickAllArrangements": "Click all the support you need at the hearing.",
+  "you": "You",
+  "cant": "can’t",
+  "bringYourOwnInterpreter": "bring your own interpreter to the hearing.",
+  "doNotNeedArrangements": "I don’t need any arrangements made for the hearing",
+  "fields": {
+    "selection": {
+      "label": "Select the support you need",
+      "error": {
+        "required": "You need to provide some information about the support you need"
+      },
+      "languageInterpreter": {
+        "requested": {
+          "label": "Language interpreter"
+        },
+        "language": {
+          "label": "Enter the language",
+          "error": {
+            "required": "You need to say which language you need a translator for.",
+            "invalid": "You need to say which language you need a translator for."
+          }
+        }
+      },
+      "signLanguage": {
+        "requested": {
+          "label": "Sign language interpreter"
+        },
+        "language": {
+          "label": "Enter the language",
+          "hint": "Enter what type of sign language you need. For example, British Sign Language.",
+          "error": {
+            "required": "You need to enter which sign language you need a translator for.",
+            "invalid": "You need to enter which sign language you need a translator for."
+          }
+        }
+      },
+      "hearingLoop": {
+        "requested": {
+          "label": "Hearing loop"
+        }
+      },
+      "accessibleHearingRoom": {
+        "requested": {
+          "label": "Accessible hearing rooms"
+        }
+      },
+      "anythingElse": {
+        "requested": {
+          "label": "Other support"
+        },
+        "language": {
+          "label": "Explain what other support you need at your appeal hearing",
+          "error": {
+            "required": "You need to provide some information about the support you need",
+            "invalid": "You have entered a special character that is not allowed. Delete it before continuing."
+          }
+        }
+      }
+    }
+  },
+  "cya": {
+    "arrangements": "Hearing arrangements",
+    "change": "Change",
+    "interpreterLanguage": "Language interpreter",
+    "signLanguage": "Sign language interpreter",
+    "hearingLoop": "Hearing loop",
+    "accessibleHearingRoom": "Accessible hearing rooms",
+    "anythingElse": "Other",
+    "required": "Required",
+    "notRequired": "Not required"
+  }
+}

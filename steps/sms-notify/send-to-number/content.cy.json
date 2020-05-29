@@ -1,0 +1,14 @@
+{
+  "titleHead": "SMS number confirm - Appeal a benefit decision - GOV.UK",
+  "title": "Shall we send them to the number you provided earlier?",
+  "fields": {
+    "useSameNumber": {
+      "label": "Select whether to use the same number provided earlier or not",
+      "yes": "Yes, send them to {{ phoneNumber }}",
+      "no": "No, send them to a different number",
+      "error": {
+        "required": "You need to tell us whether you would like us to send text messages about you appeal to the number you provided earlier."
+      }
+    }
+  }
+}

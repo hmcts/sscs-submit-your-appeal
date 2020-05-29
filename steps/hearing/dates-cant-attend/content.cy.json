@@ -1,0 +1,47 @@
+{
+  "titleHead": "Dates cannot attend hearing - Appeal a benefit decision - GOV.UK",
+  "title": "Enter the dates when you can't go to a hearing",
+  "titleEdit": "Enter a date you can't go to a hearing",
+  "datePicker": {
+    "itsImportant": "It’s important that you make yourself available for a hearing. If you don’t show up, the appeal could go ahead in your absence or be delayed by several months.",
+    "select": "Select dates you",
+    "cant": "can't",
+    "hearing": "go to a hearing."
+  },
+  "nonJS": {
+    "itsImportant": "It’s important that you make yourself available for a hearing. If you postpone or don’t show up, your appeal could go ahead in your absence or be delayed by several months.",
+    "yourHearing": "Your hearing will take some time to book so only enter dates between 4 and 22 weeks in the future. Don’t include weekends or bank holidays."
+  },
+  "links": {
+    "add": "Add date",
+    "addAnother": "Add another date"
+  },
+  "listError": "Enter at least one date",
+  "noDates": "No dates added yet",
+  "fields": {
+    "cantAttendDate": {
+      "hint": "For example, 31 3 2018",
+      "legend": "Date you can't attend",
+      "legendList": "Dates you can't attend",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "error": {
+        "allRequired": "Enter the date you can't attend",
+        "dayRequired": "Enter the day from the date you can't attend",
+        "monthRequired": "Enter the month from the date you can't attend",
+        "yearRequired": "Enter the year from the date you can't attend",
+        "invalid": "Enter a valid date",
+        "underFourWeeks": "Only enter dates at least 4 weeks in the future",
+        "overTwentyTwoWeeks": "Only enter dates up to 22 weeks in the future",
+        "weekend": "Enter a date that is not a weekend",
+        "bankHoliday": "Enter a date that is not a bank holiday"
+      }
+    }
+  },
+  "cya": {
+    "dateYouCantAttend": {
+      "question": "Dates you're not available"
+    }
+  }
+}

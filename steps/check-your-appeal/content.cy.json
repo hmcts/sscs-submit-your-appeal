@@ -1,0 +1,40 @@
+{
+  "titleHead": "Check appeal - Appeal a benefit decision - GOV.UK",
+  "benefitType": "Benefit",
+  "compliance": {
+    "checkMRN": "Check MRN Date",
+    "mrnDate": "Mandatory Reconsideration Notice (MRN)",
+    "mrnOverOneMonthLate": "Appeal over a month late",
+    "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
+    "noMRN": "Why you don't have a Mandatory Reconsideration Notice (MRN)"
+  },
+  "appellantDetails": "Claimant",
+  "appointeeDetails": "Appointee",
+  "hearing": {
+    "arrangements":  "Hearing arrangements",
+    "datesCantAttend": "Date you cant attend the hearing",
+    "theHearing": "The hearing"
+  },
+  "smsNotify": {
+    "textMsgReminders": "Text message reminders",
+    "mobile": "Mobile"
+  },
+  "representative": "Representative",
+  "reasonsForAppealing": "Reasons for appealing",
+  "header": "Sign and submit",
+  "information": "The information I have provided in this appeal is accurate, to the best of my knowledge.",
+  "permission": "I give permission to correspond with my named representative about my appeal (if you entered details of a representative).",
+  "agree": "I agree to the <a class='govuk-link' href='{{ termsAndConditionPath }}'>terms and conditions</a> of using the ‘Appeal a benefit decision’ service.",
+  "fields": {
+    "signer": {
+      "label": "Enter your name",
+      "hint": "This should be the person who is named on the appeal",
+      "error": {
+        "required": "You need to enter your name before submitting your appeal. Enter your name and click ‘submit your appeal’"
+      }
+    }
+  },
+  "submitButton": {
+    "value": "Submit your appeal"
+  }
+}

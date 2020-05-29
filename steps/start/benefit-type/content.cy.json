@@ -1,0 +1,52 @@
+{
+  "titleHead": "[CY]Which benefit appeal - Appeal a benefit decision - GOV.UK",
+  "title": "Which benefit is your appeal about?",
+  "label": "Select a benefit type",
+  "benefitTypes": {
+    "aa": "Attendance Allowance",
+    "bb": "Bereavement Benefit",
+    "ca": "Carer's Allowance",
+    "cb": "Child Benefit Lone Parent",
+    "dla": "Disability Living Allowance (DLA)",
+    "esa": "Employment and Support Allowance (ESA)",
+    "hrp": "Home Responsibilities Protection",
+    "hb": "Housing Benefit (HB)",
+    "ib": "Incapacity Benefit",
+    "is": "Income Support",
+    "iid": "Industrial Injuries Disablement Benefit",
+    "jsa": "Job Seekers Allowance (JSA)",
+    "ma": "Maternity Allowance",
+    "pip": "Personal Independence Payment (PIP)",
+    "sda": "Severe Disablement Allowance",
+    "sf": "Social Fund",
+    "uc": "Universal Credit (UC)",
+    "cc": "30 Hours Free Childcare Scheme",
+    "bs": "Bereavement Support Payment Scheme",
+    "tc": "Tax Credits",
+    "co": "Contracted Out Employment Group",
+    "cr": "Compensation Recovery Unit",
+    "hp": "Health in Pregnancy Grant",
+    "id": "Industrial Death Benefit",
+    "pc": "Pension Credits",
+    "rp": "Retirement Pension",
+    "tfc": "Tax-Free Childcare Scheme",
+    "dwa": "Disability Working Allowance"
+  },
+  "fields": {
+    "benefitType": {
+      "title": "Last name(s)",
+      "error": {
+        "required": "Enter the name of the benefit decision you want to appeal"
+      }
+    }
+  },
+  "cya": {
+    "benefitType": {
+      "question": "Benefit name"
+    }
+  },
+  "help": {
+    "link": "I can't find the benefit I am appealing",
+    "text": "Sometimes the name of the benefit can change. Check the last letter you received about it."
+  }
+}
