@@ -40,6 +40,8 @@ Start redis:
 
     redis-server
 
+Use node at least v13.7.0
+
 Install npm dependencies:
 
     yarn
@@ -50,7 +52,7 @@ Bring up SYA in a new terminal window:
 
 View the application:
 
-    http://localhost:3000
+    https://localhost:3000
 
 ## Docker
 
@@ -68,7 +70,7 @@ Bring up the container:
 
 View the application:
 
-    http://localhost:3000
+    https://localhost:3000
 
 ## End-to-end testing
 
