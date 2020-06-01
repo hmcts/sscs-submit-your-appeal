@@ -23,6 +23,7 @@
       {
         "code": 100
       }
-    ]
+    ],
+    "global-require": "off"
   }
 }

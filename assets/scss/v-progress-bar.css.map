@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "v-progress-bar.scss"
-    ],
-    "names": [],
-    "file": "v-progress-bar.css"
-}

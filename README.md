@@ -42,7 +42,7 @@ Start redis:
 
 Install npm dependencies:
 
-    yarn
+    yarn install
 
 Bring up SYA in a new terminal window:
 
