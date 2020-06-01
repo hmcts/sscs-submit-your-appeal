@@ -1,0 +1,91 @@
+{
+  "navigation": {
+    "title": "Appeal a benefit decision"
+  },
+  "phaseBanner": {
+    "newService": "This is a new service. ",
+    "reportProblem": "Report a problem",
+    "improve": " and help improve it for others."
+  },
+  "inactivityTimeout": {
+    "title": "Want more time to continue?",
+    "expiringIn": "Your session will expire in 2:00 minutes",
+    "text": "The information you have entered will be deleted to protect your personal data.",
+    "yes": "Continue with appeal",
+    "no": "End session"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page cannot be found",
+      "message": "Check that you’ve entered the correct web address",
+      "nextSteps": [
+        "Or go to the",
+        "start of Appeal a benefit decision"
+      ]
+    },
+    "serverError": {
+      "title": "Sorry, we’re experiencing technical difficulties",
+      "message": "Please try again in a few minutes."
+    }
+  },
+  "timeout": {
+    "message": "If you do not do anything for 20 minutes, then this page will time out. "
+  },
+  "relatedContent": {
+    "heading": "Related Content",
+    "benefit": {
+      "calculator": "Benefits calculators",
+      "overPayments": "Benefit overpayments",
+      "fraud": "Benefit fraud"
+    },
+    "explore": {
+      "heading": "Explore the topic",
+      "howItWorks": "How benefits work",
+      "courts": "Courts, sentencing and tribunals"
+    }
+  },
+  "continueButtonText": {
+    "save" : "Save and continue",
+    "continue": "Continue"
+  },
+  "contactUs": {
+    "title": "Contact us for help",
+    "webform": {
+      "title" : "Send us a message",
+      "desc" : "You’ll get a response by email within 2 working days.",
+      "link" : "Send message (opens in a new window)"
+    },
+    "webchat": {
+      "title": "Web chat",
+      "desc": "Get some help by messaging an agent online.",
+      "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
+      "textChatWithAnAgent": "Start web chat (opens in a new window)",
+      "textNoAgentsAvailable": "No agents are available, please try again later.",
+      "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
+      "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+      "textChatAlreadyOpen": "A web chat window is already open.",
+      "textAdditional": "Monday to Friday, 8.30am to 5pm"
+    },
+    "telephone" : {
+      "title": "Telephone",
+      "desc": "Talk to one of our agents now over the phone.",
+      "England": {
+        "desc" : "Benefit appeals helpline (England and Wales)",
+        "phone": "Telephone: 0300 123 1142",
+        "availability": "Monday to Friday, 8:00am to 8:00pm",
+        "saturdayAvailability": "Saturday, 8:00am to 2:00pm",
+        "emailText": "Email:",
+        "emailAddress": "Contactsscs@justice.gov.uk",
+        "charges": "Find out about call charges"
+      },
+      "Scotland" : {
+        "desc": "Benefit appeals helpline (Scotland)",
+        "phone": "Telephone: 0300 790 6234",
+        "availability": "Monday to Friday, 8:30am to 5:00pm",
+        "emailText": "Email:",
+        "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
+        "charges": "Find out about call charges"
+      }
+    }
+  }
+}

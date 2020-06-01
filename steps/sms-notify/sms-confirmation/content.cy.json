@@ -1,0 +1,12 @@
+{
+  "titleHead": "SMS sign up confirmation - Appeal a benefit decision - GOV.UK",
+  "title": "You’re signed up for text message reminders",
+  "mobileNumber": "Text messages will be sent to the following number: ",
+  "firstMessage": "You’ll get your first message within 3 working days, once your appeal has been lodged.",
+  "continue": "Continue",
+  "cya": {
+    "mobileNumber": {
+      "question": "Mobile Number"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "titleHead": "Appeal submitted - Appeal a benefit decision - GOV.UK",
+  "title": "Your appeal has been submitted",
+  "imageAlt": "A picture of the track your appeal progress bar",
+  "next": {
+    "heading": "What happens next",
+    "notify": "DWP will be notified that you want to appeal against their decision. You’ll be told the next steps when DWP have responded.",
+    "contact": "The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can."
+  },
+  "email": "If you've signed up for emails or SMS and have chosen to attend a hearing, then you'll get a message within 3 working days with a link so you can track your appeal online.",
+  "surveyLink": "Continue",
+  "progressBar": {
+    "appeal": {
+      "text": "Appeal",
+      "srText": "Appeal received. This step is complete."
+    },
+    "response": {
+      "text": "DWP response",
+      "srText": "DWP respond to your appeal. This has not happened yet."
+    },
+    "hearingBooked": {
+      "text": "Hearing booked",
+      "srText": "Hearing booked. This has not happened yet."
+    },
+    "hearing": {
+      "text": "Hearing",
+      "srText": "Hearing for your appeal. This has not happened yet."
+    },
+    "decision": {
+      "text": "Decision",
+      "srText": "A tribunal makes a decision on your appeal. This stage has not happened yet. "
+    }
+  }
+}
