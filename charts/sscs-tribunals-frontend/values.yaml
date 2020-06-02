@@ -33,6 +33,7 @@ nodejs:
         - sscs-redis-access-key
         - sscs-redis-connection-string
         - AppInsightsInstrumentationKey
+        - launchdarkly-key
 
 redis:
   enabled: false

@@ -19,3 +19,4 @@ uploads/
 evidence.txt
 /test/coverage
 package-lock.json
+/config/development.yaml

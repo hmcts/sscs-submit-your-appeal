@@ -33,7 +33,6 @@
     <input id="asset-path" type="hidden" data-path="{{ asset_path }}">
 {% endblock %}
 
-
 {% block bodyStart %}
     <!-- Google Tag Manager (noscript) -->
     {% if environment === 'prod' %}
@@ -47,7 +46,6 @@
     {% endif %}
     <!-- End Google Tag Manager (noscript) -->
     <noscript> <img alt="no javascript" src="/assets/images/noJS.png" width="1" height="1" /></noscript>
-    
 {% endblock %}
 
 {% block footer %}
@@ -105,8 +103,8 @@
           textChatClosed : '{{contactUs.webchat.textChatClosed | replace("\n", "\\n") }}',
           textChatAlreadyOpen: '{{contactUs.webchat.textChatAlreadyOpen}}',
           textAdditional: '{{contactUs.webchat.textAdditional}}',
-          stylesheetURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat.css', 
-          busHandlerURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat-busHandler.js', 
+          stylesheetURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat.css',
+          busHandlerURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat-busHandler.js',
           btnNoAgents: '{{webChat.btnNoAgents}}',
           btnAgentsBusy: '{{webChat.btnAgentsBusy}}',
           btnServiceClosed: '{{webChat.btnServiceClosed}}'
