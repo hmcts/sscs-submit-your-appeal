@@ -36,7 +36,7 @@ class FeatureToggle {
           return params.next();
         }
 
-        logger.trace(`Checking feature toggle: ${params.featureToggleKey}, isEnabled:`, showFeature);
+        logger.trace(`Checking feature toggle: ${params.featureToggleKey}, isEnabled: ${showFeature}`);
         return params.callbackFn({
           req: params.req,
           res: params.res,

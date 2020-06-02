@@ -3,16 +3,15 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
-const content = require('../content.en.json');
+const i18next = require('i18next');
+
 const {
   CheckYourAnswers: CYA
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
-
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const authTokenString = '__auth-token';
-
 const idam = require('middleware/idam');
 const logger = require('logger');
 
@@ -123,11 +122,14 @@ class SaveToDraftStoreAddAnother extends AddAnother {
   }
 
   get continueText() {
+    const sessionLanguage = i18next.language;
+    const content = require('../common/content.json');
+
     if (this.req.idam) {
-      return content.continueButtonText.save;
+      return content[sessionLanguage].saveAndContinue;
     }
 
-    return content.continueButtonText.continue;
+    return content[sessionLanguage].continue;
   }
 
   get middleware() {
@@ -157,11 +159,14 @@ class SaveToDraftStore extends Question {
     return this.req.idam;
   }
   get continueText() {
+    const sessionLanguage = i18next.language;
+    const content = require('../common/content.json');
+
     if (this.req.idam) {
-      return content.continueButtonText.save;
+      return content[sessionLanguage].saveAndContinue;
     }
 
-    return content.continueButtonText.continue;
+    return content[sessionLanguage].continue;
   }
 
   get middleware() {
@@ -172,6 +177,7 @@ class SaveToDraftStore extends Question {
     ];
   }
 }
+
 // step which restores from the draft store
 class RestoreUserState extends Redirect {
   get middleware() {
@@ -184,6 +190,7 @@ class RestoreUserState extends Redirect {
     ];
   }
 }
+
 class RestoreFromDraftStore extends EntryPoint {
   get isUserLoggedIn() {
     return this.req.idam;

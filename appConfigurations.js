@@ -56,23 +56,11 @@ const configureNunjucks = (app, content) => {
           // replace 'foo bar' to 'foo-bar'
           .replace(/\s/g, '-');
       },
-      phase: 'BETA',
       feedbackLink: urls.phaseBanner,
       environment: process.env.NODE_ENV,
-      navigation: content.navigation,
-      inactivityTimeout: {
-        title: content.inactivityTimeout.title,
-        expiringIn: content.inactivityTimeout.expiringIn,
-        text: content.inactivityTimeout.text,
-        yes: content.inactivityTimeout.yes,
-        no: content.inactivityTimeout.no
-      },
       // because of a bug with iphone, we need to remove the mime types from accept
       accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message,
-      relatedContent: content.relatedContent,
-      contactUs: content.contactUs,
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
@@ -80,7 +68,19 @@ const configureNunjucks = (app, content) => {
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
       webChat: config.get('services.webChat'),
       paths,
-      urls
+      urls,
+
+
+
+
+      inactivityTimeout: {
+        title: content.inactivityTimeout.title,
+        expiringIn: content.inactivityTimeout.expiringIn,
+        text: content.inactivityTimeout.text,
+        yes: content.inactivityTimeout.yes,
+        no: content.inactivityTimeout.no
+      },
+      timeOutMessage: content.timeout.message
     }
   });
 };

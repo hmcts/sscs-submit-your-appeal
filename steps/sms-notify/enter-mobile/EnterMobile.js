@@ -5,6 +5,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
 const customJoi = require('utils/customJoiSchemas');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class EnterMobile extends SaveToDraftStore {
   static get path() {
@@ -21,6 +22,13 @@ class EnterMobile extends SaveToDraftStore {
         customJoi.string().trim().validatePhone({ phoneType: 'MOBILE' })
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

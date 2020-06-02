@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+    {% call phaseBanner(content, feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}

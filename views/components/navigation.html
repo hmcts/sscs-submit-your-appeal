@@ -7,12 +7,12 @@
         </div>
         <div class="govuk-header__content">
             <a href="/" class="govuk-header__link govuk-header__link--service-name">
-                {{ navigation.title }}
+                {{ content.serviceName }}
             </a>
         </div>
         <div class="govuk-header__link--signout">
         {% if isUserLoggedIn  %}
-            <a href="/sign-out" class="govuk-header__link govuk-header__link">Sign out</a>
+            <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ content.signOut }}</a>
         {% endif %}
         </div>
     </div>

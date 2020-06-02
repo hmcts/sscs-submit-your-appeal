@@ -14,15 +14,23 @@
 #}
 {% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-{% macro phaseBanner(phase='ALPHA', feedbackLink='#', urlPath= '') %}
-{% if phase != 'LIVE' %}
+{% macro phaseBanner(content, urlPath='', welsh='false') %}
+    {{urlPath}}
 
-    {% set html %}This is a new service - your <a class="govuk-link" target="_blank" href="{{ feedbackLink + urlPath }}">feedback</a> will help us improve it. (opens in a new window){% endset %}
-    {{ govukPhaseBanner({
-        tag: {
-            text: phase
-        },
-        html: html
-    }) }}
-{% endif %}
+    {% if content.phaseBar.phase !== 'LIVE' %}
+        {% set html %}
+            {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) | safe }}
+
+            {% if welsh == true %}
+                {{ content.phaseBar.languageToggle | safe }}
+            {% endif %}
+        {% endset %}
+
+        {{ govukPhaseBanner({
+            tag: {
+                text: content.phaseBar.phase
+            },
+            html: html
+        }) }}
+    {% endif %}
 {% endmacro %}

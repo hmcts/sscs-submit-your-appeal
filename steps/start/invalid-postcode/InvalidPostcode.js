@@ -1,6 +1,7 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const urls = require('urls');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class InvalidPostcode extends ExitPoint {
   static get path() {
@@ -9,6 +10,13 @@ class InvalidPostcode extends ExitPoint {
 
   get formUrl() {
     return urls.formDownload.sscs1;
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 }
 

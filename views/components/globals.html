@@ -2,11 +2,11 @@
 {% from "footer/macro.njk" import govukFooter %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+    {% call phaseBanner(content, feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
     {% if not hideBackButton %}
-      <a class="govuk-back-link" href="#">Back</a>
+      <a class="govuk-back-link" href="#">{{ content.back }}</a>
     {% endif %}
 {% endblock %}
 
@@ -37,12 +37,10 @@
     <!-- Google Tag Manager (noscript) -->
     {% if environment === 'prod' %}
         <!-- Live analytics -->
-        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=UuZZs4BGR3tNzCze2MIbBw&gtm_preview=env-2&gtm_cookies_win=x"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=UuZZs4BGR3tNzCze2MIbBw&gtm_preview=env-2&gtm_cookies_win=x" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% else %}
         <!-- Dev analytics -->
-        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=uYQEEAOU5-Kwl3yix5HG_A&gtm_preview=env-87&gtm_cookies_win=x"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript><iframe title="Google Tag Management" src="https://www.googletagmanager.com/ns.html?id=GTM-T56C5T7&gtm_auth=uYQEEAOU5-Kwl3yix5HG_A&gtm_preview=env-87&gtm_cookies_win=x" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% endif %}
     <!-- End Google Tag Manager (noscript) -->
     <noscript> <img alt="no javascript" src="/assets/images/noJS.png" width="1" height="1" /></noscript>
@@ -54,23 +52,23 @@
       items: [
         {
           href: "https://hmcts-access.service.gov.uk/contact-us",
-          text: "Contact us"
+          text: content.footer.contactUs | safe
         },
         {
           href: "/accessibility",
-          text: "Accessibility"
+          text: content.footer.accessibility | safe
         },
         {
           href: "/cookie-policy",
-          text: "Cookies"
+          text: content.footer.cookies | safe
         },
         {
           href: "/terms-and-conditions",
-          text: "Terms and conditions"
+          text: content.footer.termsAndConditions | safe
         },
         {
           href: "/privacy-policy",
-          text: "Privacy policy"
+          text: content.footer.privacyPolicy | safe
         }
       ]
     }
@@ -90,27 +88,24 @@
         *
         * NOTE: URLs must be https and not behind a VPN for 8x8 to work with web-chat
         */
-        webchat_init(
-        {
-          uuid: '{{webChat.uuid}}',
-          tenant: '{{webChat.tenant}}',
-          channel: '{{webChat.channel}}',
+        webchat_init({
+          uuid: '{{ webChat.uuid }}',
+          tenant: '{{ webChat.tenant }}',
+          channel: '{{ webChat.channel }}',
           buttonContainerId: 'ctsc-web-chat',
-          textChatDown: '{{contactUs.webchat.textChatDown  | replace("\n", "\\n") }}',
-          textChatWithAnAgent: '{{contactUs.webchat.textChatWithAnAgent}}',
-          textNoAgentsAvailable: '{{contactUs.webchat.textNoAgentsAvailable}}',
-          textAllAgentsBusy: '{{contactUs.webchat.textAllAgentsBusy | replace("\n", "\\n") }}',
-          textChatClosed : '{{contactUs.webchat.textChatClosed | replace("\n", "\\n") }}',
-          textChatAlreadyOpen: '{{contactUs.webchat.textChatAlreadyOpen}}',
-          textAdditional: '{{contactUs.webchat.textAdditional}}',
-          stylesheetURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat.css',
-          busHandlerURL: '{{baseUrl}}{{ asset_path }}hmcts-webchat-busHandler.js',
-          btnNoAgents: '{{webChat.btnNoAgents}}',
-          btnAgentsBusy: '{{webChat.btnAgentsBusy}}',
-          btnServiceClosed: '{{webChat.btnServiceClosed}}'
-        }
-      );
-
+          textChatDown: '{{ content.contactUs.webchat.textChatDown | safe }}',
+          textChatWithAnAgent: '{{ content.contactUs.webchat.textChatWithAnAgent | safe }}',
+          textNoAgentsAvailable: '{{ content.contactUs.webchat.textNoAgentsAvailable | safe }}',
+          textAllAgentsBusy: '{{ content.contactUs.webchat.textAllAgentsBusy | safe }}',
+          textChatClosed : '{{ content.contactUs.webchat.textChatClosed | safe }}',
+          textChatAlreadyOpen: '{{ content.contactUs.webchat.textChatAlreadyOpen | safe }}',
+          textAdditional: '{{ content.contactUs.webchat.textAdditional | safe }}',
+          stylesheetURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat.css',
+          busHandlerURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat-busHandler.js',
+          btnNoAgents: '{{ webChat.btnNoAgents }}',
+          btnAgentsBusy: '{{ webChat.btnAgentsBusy }}',
+          btnServiceClosed: '{{ webChat.btnServiceClosed }}'
+        });
     // insert before the body
     </script>
 {% endblock %}

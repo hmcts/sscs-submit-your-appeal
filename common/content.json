@@ -1,0 +1,154 @@
+{
+  "en": {
+    "serviceName": "Appeal a benefit decision",
+    "signOut": "Sign Out",
+    "back": "Back",
+    "continue": "Continue",
+    "saveAndContinue": "Save and continue",
+    "errorSummaryHeading": "There was a problem",
+    "ogl": "All content is available under the <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence v3.0</a>, except where otherwise stated",
+    "phaseBar": {
+      "phase": "Beta",
+      "feedback": "This is a new service – your <a aria-label=\"Feedback: This link will open in a new tab. You&rsquo;ll need to return to this tab to continue with your application.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">feedback</a> will help us to improve it.",
+      "languageToggle": "<a href=\"?lng=cy\" class=\"govuk-link language\">Cymraeg</a>"
+    },
+    "contactUs": {
+      "title": "Contact us for help",
+      "webform": {
+        "title" : "Send us a message",
+        "desc" : "You’ll get a response by email within 2 working days.",
+        "link" : "Send message (opens in a new window)"
+      },
+      "webchat": {
+        "title": "Web chat",
+        "desc": "Get some help by messaging an agent online.",
+        "textChatDown": "Web chat is currently unavailable.\\nPlease try again later or call us on the number below if your enquiry is urgent.",
+        "textChatWithAnAgent": "Start web chat (opens in a new window)",
+        "textNoAgentsAvailable": "No agents are available, please try again later.",
+        "textAllAgentsBusy": "All our web chat agents are busy helping other people.\\nPlease try again later or contact us using one of the ways below.",
+        "textChatClosed" : "Web chat is now closed.\\n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+        "textChatAlreadyOpen": "A web chat window is already open.",
+        "textAdditional": "Monday to Friday, 8.30am to 5pm"
+      },
+      "telephone" : {
+        "title": "Telephone",
+        "desc": "Talk to one of our agents now over the phone.",
+        "England": {
+          "desc" : "Benefit appeals helpline (England and Wales)",
+          "phone": "Telephone: 0300 123 1142",
+          "availability": "Monday to Friday, 8:00am to 8:00pm",
+          "saturdayAvailability": "Saturday, 8:00am to 2:00pm",
+          "emailText": "Email:",
+          "emailAddress": "Contactsscs@justice.gov.uk",
+          "charges": "Find out about call charges"
+        },
+        "Scotland" : {
+          "desc": "Benefit appeals helpline (Scotland)",
+          "phone": "Telephone: 0300 790 6234",
+          "availability": "Monday to Friday, 8:30am to 5:00pm",
+          "emailText": "Email:",
+          "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
+          "charges": "Find out about call charges"
+        }
+      }
+    },
+    "footer": {
+      "contactUs": "Contact us",
+      "accessibility": "Accessibility statement",
+      "cookies": "Cookies",
+      "privacyPolicy": "Privacy policy",
+      "termsAndConditions": "Terms and conditions"
+    },
+
+
+    "download": "Download",
+    "cookieText": "GOV.UK uses cookies to make the site simpler. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Find out more about cookies</a>",
+    "problemWithThisPage": "Contact us for help",
+    "phoneTitle": "Telephone",
+    "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
+    "emailTitle": "Send us a message",
+    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:{{ courtEmail }}\" aria-label=\"Send us a message at at {{ courtEmail }}, this link opens a new email.\">Send us a message</a>",
+    "responseTime": "We aim to get back to you within 5 days",
+    "saveAndClose": "Save and close",
+    "months": [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ]
+  },
+  "cy": {
+    "serviceName": "[CY] Appeal a benefit decision",
+    "signOut": "Allgofnodi",
+    "back": "Yn ôl",
+    "continue": "Parhau",
+    "saveAndContinue": "Arbed a pharhau",
+    "errorSummaryHeading": "Roedd yna broblem",
+    "ogl": "Mae’r holl gynnwys ar gael o dan <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\" >Drwydded Agored y Llywodraeth f3.0</a>, oni nodir fel arall",
+    "phaseBar": {
+      "phase": "Beta",
+      "feedback": "Mae hwn yn wasanaeth newydd - bydd eich <a aria-label=\"Adborth: Bydd y ddolen hon yn agor mewn ffenestr newydd. Bydd angen ichi ddychwelyd i&rsquo;r ffenestr hon i barhau gyda&rsquo;ch cais.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">adborth</a> yn ein helpu ni i&rsquo;w wella.",
+      "languageToggle": "<a href=\"?lng=en\" class=\"govuk-link language\">English</a>"
+    },
+    "contactUs": {
+      "title": "[CY] Contact us for help",
+      "webform": {
+        "title" : "[CY] Send us a message",
+        "desc" : "[CY] You’ll get a response by email within 2 working days.",
+        "link" : "[CY] Send message (opens in a new window)"
+      },
+      "webchat": {
+        "title": "Sgwrsio dros y we",
+        "desc": "[CY] Get some help by messaging an agent online.",
+        "textChatDown": "[CY] Web chat is currently unavailable.\\nPlease try again later or call us on the number below if your enquiry is urgent.",
+        "textChatWithAnAgent": "Sgwrsio dros y we gydag asiant",
+        "textNoAgentsAvailable": "Nid oes asiant ar gael ar hyn o bryd; rhowch gynnig arall arni yn nes ymlaen.",
+        "textAllAgentsBusy": "[CY] All our web chat agents are busy helping other people.\\nPlease try again later or contact us using one of the ways below.",
+        "textChatClosed" : "[CY] Web chat is now closed.\\nCome back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+        "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
+        "textAdditional": "[CY] Monday to Friday, 8.30am to 5pm"
+      },
+      "telephone" : {
+        "title": "[CY] Telephone",
+        "desc": "[CY] Talk to one of our agents now over the phone.",
+        "England": {
+          "desc" : "[CY] Benefit appeals helpline (England and Wales)",
+          "phone": "[CY] Telephone: 0300 123 1142",
+          "availability": "[CY] Monday to Friday, 8:00am to 8:00pm",
+          "saturdayAvailability": "[CY] Saturday, 8:00am to 2:00pm",
+          "emailText": "[CY] Email:",
+          "emailAddress": "[CY] Contactsscs@justice.gov.uk",
+          "charges": "[CY] Find out about call charges"
+        },
+        "Scotland" : {
+          "desc": "[CY] Benefit appeals helpline (Scotland)",
+          "phone": "[CY] Telephone: 0300 790 6234",
+          "availability": "[CY] Monday to Friday, 8:30am to 5:00pm",
+          "emailText": "[CY] Email:",
+          "emailAddress": "[CY] SSCSA-Glasgow@justice.gov.uk",
+          "charges": "[CY] Find out about call charges"
+        }
+      }
+    },
+    "footer": {
+      "contactUs": "Cysylltu &acirc; ni",
+      "accessibility": "Datganiad Hygyrchedd",
+      "cookies": "Cwcis",
+      "privacyPolicy": "Polisi Preifatrwydd",
+      "termsAndConditions": "Telerau ac Amodau"
+    },
+
+
+    "download": "Llwytho i lawr",
+    "cookieText": "Mae GOV.UK yn defnyddio cwcis i wneud y safle’n symlach. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\" >Rhagor o wybodaeth am gwcis</a>",
+    "problemWithThisPage": "Cysylltwch â ni am gymorth",
+    "phoneTitle": "Rhif ffôn",
+    "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
+    "emailTitle": "Anfonwch neges atom:",
+    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:divorcecase@justice.gov.uk\" aria-label=\"Anfonwch neges atom i ymholiadaucymraeg@justice.gov.uk, mae’r ddolen hon yn agor neges e-bost newydd.\" >Anfonwch neges atom</a>",
+    "responseTime": "Rydym yn amcanu ymateb o fewn 5 diwrnod gwaith",
+    "saveAndClose": "Arbed a chau",
+    "months": [
+      "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
+      "Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
+    ]
+  }
+}

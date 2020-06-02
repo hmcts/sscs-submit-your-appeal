@@ -4,6 +4,7 @@ const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 const preserveSession = require('middleware/preserveSession');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class AppealFormDownload extends ExitPoint {
   static get path() {
@@ -17,6 +18,7 @@ class AppealFormDownload extends ExitPoint {
   get middleware() {
     return [
       preserveSession,
+      checkWelshToggle,
       ...super.middleware
     ];
   }

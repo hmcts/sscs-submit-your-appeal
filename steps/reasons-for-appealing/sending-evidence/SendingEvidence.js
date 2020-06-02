@@ -2,6 +2,7 @@ const { goTo } = require('@hmcts/one-per-page');
 const { form, text, ref } = require('@hmcts/one-per-page/forms');
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class SendingEvidence extends Interstitial {
   static get path() {
@@ -22,6 +23,13 @@ class SendingEvidence extends Interstitial {
     }
 
     return emailFieldValue.length > 0;
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   next() {

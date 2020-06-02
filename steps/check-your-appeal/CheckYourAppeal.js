@@ -9,6 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -43,7 +44,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   get middleware() {
-    const mw = [...super.middleware];
+    const mw = [...super.middleware, checkWelshToggle];
     if (this.journey.settings.useCsrfToken) {
       mw.push(csrfProtection);
     }

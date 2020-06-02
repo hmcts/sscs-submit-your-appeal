@@ -2,44 +2,42 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 {% from "components/errors.njk" import errorSummary %}
-{% from "components/i18n.njk" import languageSwitch %}
 
 {% block breadcrumbs %}
-{{ phaseBanner(phase, feedbackLink, urlPath) }}
-<a class="govuk-back-link" href="#">Back</a>
-{{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
+    {% call phaseBanner(content, feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
+        {{ banner | safe }}
+    {% endcall %}
+    {% if not hideBackButton %}
+        <a class="govuk-back-link" href="#">{{ content.back }}</a>
+    {% endif %}
 {% endblock %}
 
 {% block two_thirds %}
+    {{ errorSummary(fields, content.errorSummaryHeading) }}
+    {{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
 
-{{ errorSummary(fields) }}
+    <form
+      enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
+      action="{{ postUrl | default(path if path else url) }}"
+      method="post"
+      class="form"
+      {% if config.autocomplete %}
+        autocomplete="{{ config.autocomplete }}"
+      {% endif %}
+    >
+      {% block fields -%}
+      {%- endblock %}
 
-{{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
+      {% if csurfCsrfToken %}
+        <input type="hidden" name="_csrf" value="{{ csurfCsrfToken }}">
+      {% endif %}
 
-<form
-  enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
-  action="{{ postUrl | default(path if path else url) }}"
-  method="post"
-  class="form"
-  {% if config.autocomplete %}
-    autocomplete="{{config.autocomplete}}"
-  {% endif %}
->
+      {% if not continueText  %}
+         {% set continueText = content.continue %}
+      {% endif %}
 
-  {% block fields -%}
-  {%- endblock %}
-
-  {% if csurfCsrfToken %}
-    <input type="hidden" name="_csrf" value="{{csurfCsrfToken}}">
-  {% endif %}
-
-  {% if not continueText  %}
-     {% set continueText = 'Continue' %}
-  {% endif %}
-
-  <div class="form-buttons-group">
-    <input class="govuk-button" type="submit" value="{{continueText}}">
-  </div>
-</form>
-
+      <div class="form-buttons-group">
+        <input class="govuk-button" type="submit" value="{{ continueText | safe }}">
+      </div>
+    </form>
 {% endblock %}

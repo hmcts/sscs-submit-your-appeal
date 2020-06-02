@@ -5,6 +5,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class DWPIssuingOfficeEsa extends SaveToDraftStore {
   static get path() {
@@ -41,6 +42,13 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
         this.content.fields.dwpIssuingOffice.error.required,
         Joi.string().required())
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

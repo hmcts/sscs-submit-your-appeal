@@ -7,6 +7,7 @@ const regex = require('utils/regex');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { get } = require('lodash');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class SmsConfirmation extends SaveToDraftStore {
   static get path() {
@@ -41,6 +42,13 @@ class SmsConfirmation extends SaveToDraftStore {
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber')
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

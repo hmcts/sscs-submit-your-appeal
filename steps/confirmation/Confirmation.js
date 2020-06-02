@@ -3,6 +3,7 @@ const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');
 const preserveSession = require('middleware/preserveSession');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class Confirmation extends ExitPoint {
   static get path() {
@@ -24,6 +25,7 @@ class Confirmation extends ExitPoint {
   get middleware() {
     return [
       preserveSession,
+      checkWelshToggle,
       ...super.middleware
     ];
   }

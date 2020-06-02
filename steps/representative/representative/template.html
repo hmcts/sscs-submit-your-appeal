@@ -8,7 +8,6 @@
 {% endset %}
 
 {% block fields %}
-
     <p class="govuk-body">{{ content.subtitle | safe}}</p>
     <p class="govuk-body">{{ content.registerList | safe}}</p>
     <ul class="govuk-list govuk-list--bullet">
@@ -19,7 +18,6 @@
     <p class="govuk-body">{{ content.phoneUp | safe }}</p>
 
     {% call formSection() %}
-
         {{ selectionButtons(
             fields.hasRepresentative,
             content.fields.hasRepresentative.label,
@@ -29,7 +27,5 @@
                 { label: content.fields.hasRepresentative.no,  value: "no" }
             ])
         }}
-
     {% endcall %}
-
 {% endblock %}

@@ -8,18 +8,16 @@
 {% endset %}
 
 {% block fields %}
+    <p class="govuk-body">{{ content.subtitle }}</p>
 
-<p class="govuk-body">{{ content.subtitle }}</p>
+    {% call formSection() %}
 
-{% call formSection() %}
-
-<p class="govuk-body">{{ content.register.heading }}</p>
-
-<ul class="govuk-list govuk-list--bullet">
-    <li>{{ content.register.fullName }}</li>
-    <li>{{ content.register.organisation}}</li>
-    <li>{{ content.register.emailOrPostalAddress }}</li>
-</ul>
+    <p class="govuk-body">{{ content.register.heading }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.register.fullName }}</li>
+        <li>{{ content.register.organisation}}</li>
+        <li>{{ content.register.emailOrPostalAddress }}</li>
+    </ul>
 {% endcall %}
 
 {% endblock %}
