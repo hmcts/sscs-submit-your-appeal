@@ -1,20 +1,20 @@
 {
-  "titleHead": "SMS reminders - Appeal a benefit decision - GOV.UK",
-  "title": "Do you want to receive text message notifications?",
-  "subtitle": "You’ll only get them when something important happens on your appeal. You won't be charged to receive them.",
+  "titleHead": "[CY] SMS reminders - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Do you want to receive text message notifications?",
+  "subtitle": "[CY] You’ll only get them when something important happens on your appeal. You won't be charged to receive them.",
   "fields": {
     "doYouWantTextMsgReminders": {
-      "label": "Select whether you want text reminders or not",
-      "yes": "Yes",
-      "no": "No",
+      "label": "[CY] Select whether you want text reminders or not",
+      "yes": "[CY] Yes",
+      "no": "[CY] No",
       "error": {
-        "required": "You need to say whether you want text message notifications. Select either yes or no"
+        "required": "[CY] You need to say whether you want text message notifications. Select either yes or no"
       }
     }
   },
   "cya": {
     "doYouWantTextMsgReminders": {
-      "question": "Receive text message reminders"
+      "question": "[CY] Receive text message reminders"
     }
   }
 }

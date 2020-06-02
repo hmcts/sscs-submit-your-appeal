@@ -1,20 +1,20 @@
 {
-  "titleHead": "Are you an appointee - Appeal a benefit decision - GOV.UK",
-  "title": "Are you an 'appointee'?",
-  "description": "You’re an appointee if you’ve been appointed by DWP to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
+  "titleHead": "[CY] Are you an appointee - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Are you an 'appointee'?",
+  "description": "[CY] You’re an appointee if you’ve been appointed by DWP to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
   "fields": {
     "isAppointee": {
-      "label": "Select whether you're an appointee or not",
-      "yes": "I have been appointed by DWP to act on behalf of someone else",
-      "no": "I'm appealing for myself",
+      "label": "[CY] Select whether you're an appointee or not",
+      "yes": "[CY] I have been appointed by DWP to act on behalf of someone else",
+      "no": "[CY] I'm appealing for myself",
       "error": {
-        "required": "You need to answer the question before continuing"
+        "required": "[CY] You need to answer the question before continuing"
       }
     }
   },
   "cya": {
     "isAppointee": {
-      "question": "Appointee"
+      "question": "[CY] Appointee"
     }
   }
 }

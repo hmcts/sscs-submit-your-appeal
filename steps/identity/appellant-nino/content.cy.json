@@ -1,27 +1,27 @@
 {
-  "titleHead": "Enter national insurance number - Appeal a benefit decision - GOV.UK",
+  "titleHead": "[CY] Enter national insurance number - Appeal a benefit decision - GOV.UK",
   "title": {
-    "withoutAppointee": "Enter your National Insurance number",
-    "withAppointee": "Enter their National Insurance number"
+    "withoutAppointee": "[CY] Enter your National Insurance number",
+    "withAppointee": "[CY] Enter their National Insurance number"
   },
   "subtitle": {
-    "withoutAppointee": "You can find your National Insurance number on any letter about the benefit.",
-    "withAppointee": "This will be on any letter from DWP about the benefit."
+    "withoutAppointee": "[CY] You can find your National Insurance number on any letter about the benefit.",
+    "withAppointee": "[CY] This will be on any letter from DWP about the benefit."
   },
   "fields": {
     "nino": {
-      "label": "National Insurance number",
+      "label": "[CY] National Insurance number",
       "error": {
         "required": {
-          "withoutAppointee": "Enter your National Insurance number",
-          "withAppointee": "Enter their National Insurance number"
+          "withoutAppointee": "[CY] Enter your National Insurance number",
+          "withAppointee": "[CY] Enter their National Insurance number"
         }
       }
     }
   },
   "cya": {
     "nino": {
-      "question": "National Insurance number"
+      "question": "[CY] National Insurance number"
     }
   }
 }

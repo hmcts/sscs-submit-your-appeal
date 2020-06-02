@@ -1,0 +1,28 @@
+{
+  "titleHead": "[CY] MRN dated - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] When is your Mandatory Reconsideration Notice (MRN) dated?",
+  "dateLegend": "[CY] Enter the date from the top right of your MRN letter",
+  "dateHint": "[CY] For example, 31 3 2017",
+  "imageAlt": "[CY] A copy of your MRN",
+  "fields": {
+    "date": {
+      "day": "[CY] Day",
+      "month": "[CY] Month",
+      "year": "[CY] Year",
+      "error": {
+        "allRequired": "[CY] Enter the MRN date.",
+        "dayRequired": "[CY] You have not entered a day. Enter a day",
+        "monthRequired": "[CY] You have not entered a month. Enter a month",
+        "yearRequired": "[CY] You have not entered a year. Enter a year",
+        "invalid": "[CY] You’ve entered an invalid MRN date. Enter the MRN date",
+        "future": "[CY] You’ve entered a date in the future. Enter the MRN date",
+        "dateSameAsImage": "[CY] You have entered the date from the picture. Look at your own MRN and enter the date shown."
+      }
+    }
+  },
+  "cya": {
+    "mrnDate": {
+      "question": "[CY] Date of MRN"
+    }
+  }
+}

@@ -1,21 +1,21 @@
 {
-  "titleHead": "Do you want to be able to save this appeal later - Appeal a benefit decision - GOV.UK",
-  "title": "Do you want to be able to save this appeal later?",
-  "subtitle": "You need to create an account now if you want to save your appeal application later. For example, if you need to take a break or gather information.",
+  "titleHead": "[CY] Do you want to be able to save this appeal later - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Do you want to be able to save this appeal later?",
+  "subtitle": "[CY] You need to create an account now if you want to save your appeal application later. For example, if you need to take a break or gather information.",
   "fields": {
     "createAccount": {
-      "label": "Select whether you want to create an account or not",
-      "yes": "I want to be able to save this appeal later",
-      "no": "I do not want to be able to save this appeal later ",
-      "warning": "If you decide not to create an account now, and leave an appeal part-way through, you will have to start over when you decide to complete an appeal. If you think you will want to save part-way through, then select ",
+      "label": "[CY] Select whether you want to create an account or not",
+      "yes": "[CY] I want to be able to save this appeal later",
+      "no": "[CY] I do not want to be able to save this appeal later ",
+      "warning": "[CY] If you decide not to create an account now, and leave an appeal part-way through, you will have to start over when you decide to complete an appeal. If you think you will want to save part-way through, then select ",
       "error": {
-        "required": "You have to say whether you want to be able to save this appeal later. Select either yes or no."
+        "required": "[CY] You have to say whether you want to be able to save this appeal later. Select either yes or no."
       }
     }
   },
   "cya": {
     "createAccount": {
-      "question": "Create an account"
+      "question": "[CY] Create an account"
     }
   }
 }

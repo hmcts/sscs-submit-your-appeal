@@ -1,22 +1,22 @@
 {
-  "titleHead": "Your hearing - Appeal a benefit decision - GOV.UK",
-  "title": "The appeal hearing",
-  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
-  "explainReasons": "If you come to the hearing you can explain your reasons for appealing.",
-  "arrangeSupport": "Support can be arranged for you such as an interpreter, hearing loop or disabled access.",
+  "titleHead": "[CY] Your hearing - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] The appeal hearing",
+  "subtitle": "[CY] Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
+  "explainReasons": "[CY] If you come to the hearing you can explain your reasons for appealing.",
+  "arrangeSupport": "[CY] Support can be arranged for you such as an interpreter, hearing loop or disabled access.",
   "fields": {
     "attendHearing": {
-      "title": "Do you want to attend the hearing?",
-      "yes": "Yes",
-      "no": "No",
+      "title": "[CY] Do you want to attend the hearing?",
+      "yes": "[CY] Yes",
+      "no": "[CY] No",
       "error": {
-        "required": "You need to say whether you want to attend the hearing. Select either yes or no"
+        "required": "[CY] You need to say whether you want to attend the hearing. Select either yes or no"
       }
     }
   },
   "cya": {
     "attendHearing": {
-      "question": "Attending the hearing"
+      "question": "[CY] Attending the hearing"
     }
   }
 }

@@ -1,16 +1,16 @@
 {
-  "titleHead": "Anything else - Appeal a benefit decision - GOV.UK",
-  "title": "Anything else you want to tell the tribunal",
-  "subtitle": "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
-  "additonalInfo": "You don't have to write anything, if you have nothing further to add.",
+  "titleHead": "[CY] Anything else - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Anything else you want to tell the tribunal",
+  "subtitle": "[CY] You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
+  "additonalInfo": "[CY] You don't have to write anything, if you have nothing further to add.",
   "fields": {
     "otherReasonForAppealing": {
-      "label": "Other reasons for appealing"
+      "label": "[CY] Other reasons for appealing"
     }
   },
   "cya": {
     "otherReasonForAppealing": {
-      "question": "Other reasons for appealing"
+      "question": "[CY] Other reasons for appealing"
     }
   }
 }

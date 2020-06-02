@@ -1,8 +1,8 @@
 {
-  "titleHead": "Download appeal form - Appeal a benefit decision - GOV.UK",
-  "title": "You need to download a paper form",
-  "subtitle": "Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
+  "titleHead": "[CY] Download appeal form - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] You need to download a paper form",
+  "subtitle": "[CY] Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
   "button": {
-    "text": "Continue to form download"
+    "text": "[CY] Continue to form download"
     }
 }
