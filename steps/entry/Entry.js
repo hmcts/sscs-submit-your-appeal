@@ -16,7 +16,7 @@ class Entry extends RestoreFromDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.BenefitType);
+    return goTo(this.journey.steps.LanguagePreferenceWelsh);
   }
 }
 

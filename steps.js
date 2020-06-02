@@ -13,6 +13,7 @@ const SessionTimeoutRedirect = require('steps/exit-points/SessionTimeoutRedirect
 const Sessions = require('steps/session/Sessions');
 const Error500 = require('steps/errors/500/Error500');
 const BenefitType = require('steps/start/benefit-type/BenefitType');
+const LanguagePreferenceWelsh = require('steps/start/language-preference-welsh/LanguagePreferenceWelsh');
 const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
 const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
 const Independence = require('steps/start/independence/Independence');
@@ -82,7 +83,8 @@ const startAnAppeal = [
   InvalidPostcode,
   Independence,
   CreateAccount,
-  IdamRedirect
+  IdamRedirect,
+  LanguagePreferenceWelsh
 ];
 
 const compliance = [

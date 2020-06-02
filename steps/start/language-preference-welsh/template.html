@@ -1,0 +1,35 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
+{% from "components/toggle_help.njk" import toggleHelp %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+{% block fields %}
+<div id="languagePreference">
+    <p class="govuk-body">{{ content.summary | safe }}</p>
+  
+    {% call formSection() %}
+      {{ selectionButtons(fields.languagePreferenceWelsh.agree, content.question,
+          options = [
+          { label: content.fields.agree.heading, value: validValues.yes },
+          { label: content.fields.disagree.heading, value: validValues.no, target: "languagePreference-no" }
+          ],
+          hideQuestion=true,
+          inline=false,
+          type='radio'
+        )
+      }}
+      <div id="languagePreference-no" class="form-group panel js-hidden">
+        <p class="govuk-body">{{ content.answerNo | safe }}</p>
+      </div>
+    {% endcall %}
+  </div>
+  {% endblock %}

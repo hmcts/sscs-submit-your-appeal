@@ -38,11 +38,11 @@ module.exports = {
     invalidPostcode: '/invalid-postcode',
     independence: '/independence',
     createAccount: '/create-account',
-    idamRedirect: '/idam-redirect'
+    idamRedirect: '/idam-redirect',
+    languagePreferenceWelsh: '/language-preference-welsh'
   },
 
   appealFormDownload: '/appeal-form-download',
-
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
     haveContactedDWP: '/have-contacted-dwp',

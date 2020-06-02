@@ -28,7 +28,7 @@ describe('Entry.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          BenefitType: paths.start.benefitType
+          LanguagePreferenceWelsh: paths.start.languagePreferenceWelsh
         }
       }
     });
@@ -41,8 +41,8 @@ describe('Entry.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /benefit-type', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
+    it('returns the next step path /language-preference-welsh', () => {
+      expect(entry.next()).to.eql({ nextStep: paths.start.languagePreferenceWelsh });
     });
   });
 
