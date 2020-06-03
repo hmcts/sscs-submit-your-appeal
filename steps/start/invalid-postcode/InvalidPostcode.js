@@ -1,9 +1,9 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { shimSessionExitPoint } = require('middleware/shimSession');
 const paths = require('paths');
 const urls = require('urls');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class InvalidPostcode extends ExitPoint {
+class InvalidPostcode extends shimSessionExitPoint {
   static get path() {
     return paths.start.invalidPostcode;
   }

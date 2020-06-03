@@ -1,4 +1,4 @@
-const { Interstitial } = require('@hmcts/one-per-page/steps');
+const { shimSessionInterstitial } = require('middleware/shimSession');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
 const { getBenefitCode, getTribunalPanel } = require('utils/stringUtils');
 const paths = require('paths');
@@ -8,7 +8,7 @@ const checkWelshToggle = require('middleware/checkWelshToggle');
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
-class Independence extends Interstitial {
+class Independence extends shimSessionInterstitial {
   get isUserLoggedIn() {
     return this.req.idam;
   }
@@ -18,11 +18,17 @@ class Independence extends Interstitial {
   }
 
   get tribunalPanel() {
-    return getTribunalPanel(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getTribunalPanel(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 
   get allowUC() {

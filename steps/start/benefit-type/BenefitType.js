@@ -1,4 +1,4 @@
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { shimSessionSaveToDraftStore } = require('middleware/shimSession');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -13,7 +13,7 @@ const checkWelshToggle = require('middleware/checkWelshToggle');
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
-class BenefitType extends SaveToDraftStore {
+class BenefitType extends shimSessionSaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }
