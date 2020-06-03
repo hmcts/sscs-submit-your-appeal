@@ -19,4 +19,5 @@ uploads/
 evidence.txt
 /test/coverage
 package-lock.json
+*.iml
 /config/development.yaml
