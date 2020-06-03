@@ -5,6 +5,7 @@ const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddlewar
 const logger = require('logger');
 const paths = require('paths');
 const nock = require('nock');
+const i18next = require('i18next');
 
 // eslint-disable-next-line func-names
 describe('middleware/draftAppealStoreMiddleware', () => {
@@ -14,6 +15,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   let loggerExceptionSpy = '';
   let objectAssignSpy = '';
   const apiUrl = 'http://mockapi.com';
+  i18next.changeLanguage('en');
 
   nock(apiUrl)
     .defaultReplyHeaders({

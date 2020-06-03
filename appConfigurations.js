@@ -71,8 +71,6 @@ const configureNunjucks = (app, content) => {
       urls,
 
 
-
-
       inactivityTimeout: {
         title: content.inactivityTimeout.title,
         expiringIn: content.inactivityTimeout.expiringIn,
