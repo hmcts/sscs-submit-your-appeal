@@ -1,6 +1,7 @@
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('CreateAccount.js', () => {
   let createAccount = null;
@@ -60,6 +61,14 @@ describe('CreateAccount.js', () => {
     it('returns /have-you-got-an-mrn when user selects no', () => {
       createAccount.fields.createAccount.value = 'no';
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(createAccount.middleware).to.be.an('array');
+      expect(createAccount.middleware).to.have.length(11);
+      expect(createAccount.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 });

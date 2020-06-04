@@ -2,10 +2,10 @@
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription.js');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-/* eslint-disable init-declarations */
-
+const checkWelshToggle = require('middleware/checkWelshToggle');
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
+/* eslint-disable init-declarations */
 describe('The other methods of EvidenceUpload', () => {
   let instance;
   const someEvidenceDescription = 'some evidence description';
@@ -33,6 +33,14 @@ describe('The other methods of EvidenceUpload', () => {
       } else {
         expect(instance.path).to.be.null;
       }
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(instance.middleware).to.be.an('array');
+      expect(instance.middleware).to.have.length(11);
+      expect(instance.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

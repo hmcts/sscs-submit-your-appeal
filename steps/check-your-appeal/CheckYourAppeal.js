@@ -44,7 +44,10 @@ class CheckYourAppeal extends shimSessionSaveToDraftStoreCYA {
   }
 
   get middleware() {
-    const mw = [...super.middleware, checkWelshToggle];
+    const mw = [
+      checkWelshToggle,
+      ...super.middleware
+    ];
     if (this.journey.settings.useCsrfToken) {
       mw.push(csrfProtection);
     }

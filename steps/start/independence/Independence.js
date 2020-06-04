@@ -37,8 +37,8 @@ class Independence extends shimSessionInterstitial {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 

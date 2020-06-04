@@ -9,8 +9,8 @@ class CantAppeal extends shimSessionExitPoint {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 }

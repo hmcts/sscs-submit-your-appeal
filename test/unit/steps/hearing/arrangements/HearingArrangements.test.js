@@ -3,6 +3,7 @@ const HearingArrangements = require('steps/hearing/arrangements/HearingArrangeme
 const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('HearingArrangements.js', () => {
   let hearingArrangements = null;
@@ -124,6 +125,14 @@ describe('HearingArrangements.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(hearingArrangements.middleware).to.be.an('array');
+      expect(hearingArrangements.middleware).to.have.length(11);
+      expect(hearingArrangements.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

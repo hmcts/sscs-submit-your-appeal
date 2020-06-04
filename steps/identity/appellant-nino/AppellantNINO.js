@@ -41,8 +41,8 @@ class AppellantNINO extends SaveToDraftStore {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 

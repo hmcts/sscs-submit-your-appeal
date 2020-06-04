@@ -10,8 +10,8 @@ class StillCanAppeal extends shimSessionInterstitial {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 

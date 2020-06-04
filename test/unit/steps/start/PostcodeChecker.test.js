@@ -1,6 +1,7 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('PostcodeChecker.js', () => {
   let postcodeChecker = null;
@@ -56,6 +57,14 @@ describe('PostcodeChecker.js', () => {
         it('contains validation', () => {
           expect(field.validations.length > 0).to.equal(true);
         });
+      });
+    });
+
+    describe('get middleware()', () => {
+      it('returns correct middleware array', () => {
+        expect(postcodeChecker.middleware).to.be.an('array');
+        expect(postcodeChecker.middleware).to.have.length(11);
+        expect(postcodeChecker.middleware[0]).to.equal(checkWelshToggle);
       });
     });
 

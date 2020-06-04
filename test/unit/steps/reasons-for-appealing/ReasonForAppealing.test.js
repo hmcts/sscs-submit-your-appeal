@@ -4,6 +4,7 @@ const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appea
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('ReasonForAppealing.js', () => {
   let reasonForAppealing = null;
@@ -75,6 +76,14 @@ describe('ReasonForAppealing.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(reasonForAppealing.middleware).to.be.an('array');
+      expect(reasonForAppealing.middleware).to.have.length(11);
+      expect(reasonForAppealing.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

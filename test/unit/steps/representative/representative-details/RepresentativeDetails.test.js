@@ -4,9 +4,8 @@ const RepresentativeDetails = require('steps/representative/representative-detai
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
-
-
 const config = require('config');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
@@ -318,6 +317,14 @@ describe('RepresentativeDetails.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(representativeDetails.middleware).to.be.an('array');
+      expect(representativeDetails.middleware).to.have.length(11);
+      expect(representativeDetails.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

@@ -3,6 +3,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
 const moment = require('moment');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('AppointeeDOB.js', () => {
   let appointeeDOBClass = null;
@@ -48,6 +49,14 @@ describe('AppointeeDOB.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(appointeeDOBClass.middleware).to.be.an('array');
+      expect(appointeeDOBClass.middleware).to.have.length(11);
+      expect(appointeeDOBClass.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

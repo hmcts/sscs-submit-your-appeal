@@ -29,8 +29,8 @@ class BenefitType extends shimSessionSaveToDraftStore {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 

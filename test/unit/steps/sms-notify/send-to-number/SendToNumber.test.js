@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
 const userAnswer = require('utils/answer');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('SendToNumber.js', () => {
   let sendToNumber = null;
@@ -81,6 +82,14 @@ describe('SendToNumber.js', () => {
       const textField = fields.useSameNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.not.be.empty;
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(sendToNumber.middleware).to.be.an('array');
+      expect(sendToNumber.middleware).to.have.length(11);
+      expect(sendToNumber.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

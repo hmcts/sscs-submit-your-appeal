@@ -27,8 +27,8 @@ class SendingEvidence extends Interstitial {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 

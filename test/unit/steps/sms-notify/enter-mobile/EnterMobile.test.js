@@ -1,6 +1,7 @@
 const { expect } = require('test/util/chai');
 const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('EnterMobile.js', () => {
   let enterMobile = null;
@@ -46,6 +47,14 @@ describe('EnterMobile.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(enterMobile.middleware).to.be.an('array');
+      expect(enterMobile.middleware).to.have.length(11);
+      expect(enterMobile.middleware[0]).to.equal(checkWelshToggle);
     });
   });
 

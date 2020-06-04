@@ -36,8 +36,8 @@ class HaveAMRN extends SaveToDraftStore {
 
   get middleware() {
     return [
-      ...super.middleware,
-      checkWelshToggle
+      checkWelshToggle,
+      ...super.middleware
     ];
   }
 
