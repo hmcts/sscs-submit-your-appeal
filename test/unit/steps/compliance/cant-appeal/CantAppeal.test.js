@@ -18,7 +18,7 @@ describe('CantAppeal.js', () => {
 
       expect(cantAppeal.middleware).to.be.an('array');
       expect(cantAppeal.middleware).to.have.length(6);
-      expect(cantAppeal.middleware[0]).to.equal(checkWelshToggle);
+      expect(cantAppeal.middleware).to.include(checkWelshToggle);
     });
   });
 });

@@ -35,7 +35,7 @@ describe('ContactDWP.js', () => {
     it('returns correct middleware array', () => {
       expect(contactDWP.middleware).to.be.an('array');
       expect(contactDWP.middleware).to.have.length(6);
-      expect(contactDWP.middleware[0]).to.equal(checkWelshToggle);
+      expect(contactDWP.middleware).to.include(checkWelshToggle);
     });
   });
 });

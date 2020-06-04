@@ -46,8 +46,8 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 

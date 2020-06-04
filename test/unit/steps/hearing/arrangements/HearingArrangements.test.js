@@ -132,7 +132,7 @@ describe('HearingArrangements.js', () => {
     it('returns correct middleware array', () => {
       expect(hearingArrangements.middleware).to.be.an('array');
       expect(hearingArrangements.middleware).to.have.length(11);
-      expect(hearingArrangements.middleware[0]).to.equal(checkWelshToggle);
+      expect(hearingArrangements.middleware).to.include(checkWelshToggle);
     });
   });
 

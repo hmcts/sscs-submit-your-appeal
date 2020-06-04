@@ -27,7 +27,7 @@ describe('InvalidPostcode.js', () => {
     it('returns correct middleware array', () => {
       expect(invalidPostcode.middleware).to.be.an('array');
       expect(invalidPostcode.middleware).to.have.length(6);
-      expect(invalidPostcode.middleware[0]).to.equal(checkWelshToggle);
+      expect(invalidPostcode.middleware).to.include(checkWelshToggle);
     });
   });
 });

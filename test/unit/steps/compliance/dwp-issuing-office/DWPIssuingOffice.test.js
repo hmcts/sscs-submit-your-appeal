@@ -61,7 +61,7 @@ describe('DWPIssuingOffice.js', () => {
     it('returns correct middleware array', () => {
       expect(dWPIssuingOffice.middleware).to.be.an('array');
       expect(dWPIssuingOffice.middleware).to.have.length(11);
-      expect(dWPIssuingOffice.middleware[0]).to.equal(checkWelshToggle);
+      expect(dWPIssuingOffice.middleware).to.include(checkWelshToggle);
     });
   });
 

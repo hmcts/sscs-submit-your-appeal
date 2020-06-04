@@ -72,7 +72,7 @@ describe('CheckMRN.js', () => {
     it('returns correct middleware array', () => {
       expect(checkMRN.middleware).to.be.an('array');
       expect(checkMRN.middleware).to.have.length(11);
-      expect(checkMRN.middleware[0]).to.equal(checkWelshToggle);
+      expect(checkMRN.middleware).to.include(checkWelshToggle);
     });
   });
 

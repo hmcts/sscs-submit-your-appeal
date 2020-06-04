@@ -9,8 +9,8 @@ class Error500 extends Page {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 

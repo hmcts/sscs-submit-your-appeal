@@ -14,8 +14,8 @@ class InvalidPostcode extends shimSessionExitPoint {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 }

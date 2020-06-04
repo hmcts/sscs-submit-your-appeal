@@ -18,8 +18,8 @@ class AppealFormDownload extends shimSessionExitPoint {
   get middleware() {
     return [
       preserveSession,
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 

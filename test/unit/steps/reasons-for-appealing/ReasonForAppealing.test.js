@@ -83,7 +83,7 @@ describe('ReasonForAppealing.js', () => {
     it('returns correct middleware array', () => {
       expect(reasonForAppealing.middleware).to.be.an('array');
       expect(reasonForAppealing.middleware).to.have.length(11);
-      expect(reasonForAppealing.middleware[0]).to.equal(checkWelshToggle);
+      expect(reasonForAppealing.middleware).to.include(checkWelshToggle);
     });
   });
 

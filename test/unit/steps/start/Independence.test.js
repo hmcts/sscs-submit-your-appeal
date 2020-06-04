@@ -45,7 +45,7 @@ describe('Independence.js', () => {
     it('returns correct middleware array', () => {
       expect(independence.middleware).to.be.an('array');
       expect(independence.middleware).to.have.length(6);
-      expect(independence.middleware[0]).to.equal(checkWelshToggle);
+      expect(independence.middleware).to.include(checkWelshToggle);
     });
   });
 

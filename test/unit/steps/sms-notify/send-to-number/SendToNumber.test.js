@@ -89,7 +89,7 @@ describe('SendToNumber.js', () => {
     it('returns correct middleware array', () => {
       expect(sendToNumber.middleware).to.be.an('array');
       expect(sendToNumber.middleware).to.have.length(11);
-      expect(sendToNumber.middleware[0]).to.equal(checkWelshToggle);
+      expect(sendToNumber.middleware).to.include(checkWelshToggle);
     });
   });
 

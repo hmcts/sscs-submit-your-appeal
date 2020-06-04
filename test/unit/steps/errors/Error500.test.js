@@ -17,7 +17,7 @@ describe('Error500.js', () => {
 
       expect(error500.middleware).to.be.an('array');
       expect(error500.middleware).to.have.length(5);
-      expect(error500.middleware[0]).to.equal(checkWelshToggle);
+      expect(error500.middleware).to.include(checkWelshToggle);
     });
   });
 });

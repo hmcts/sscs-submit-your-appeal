@@ -60,7 +60,7 @@ describe('HearingSupport.js', () => {
     it('returns correct middleware array', () => {
       expect(hearingSupport.middleware).to.be.an('array');
       expect(hearingSupport.middleware).to.have.length(11);
-      expect(hearingSupport.middleware[0]).to.equal(checkWelshToggle);
+      expect(hearingSupport.middleware).to.include(checkWelshToggle);
     });
   });
 

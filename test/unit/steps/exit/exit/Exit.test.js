@@ -18,7 +18,7 @@ describe('Exit.js', () => {
 
       expect(exit.middleware).to.be.an('array');
       expect(exit.middleware).to.have.length(6);
-      expect(exit.middleware[0]).to.equal(checkWelshToggle);
+      expect(exit.middleware).to.include(checkWelshToggle);
     });
   });
 });

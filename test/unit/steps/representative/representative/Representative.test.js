@@ -61,7 +61,7 @@ describe('Representative.js', () => {
     it('returns correct middleware array', () => {
       expect(representative.middleware).to.be.an('array');
       expect(representative.middleware).to.have.length(11);
-      expect(representative.middleware[0]).to.equal(checkWelshToggle);
+      expect(representative.middleware).to.include(checkWelshToggle);
     });
   });
 

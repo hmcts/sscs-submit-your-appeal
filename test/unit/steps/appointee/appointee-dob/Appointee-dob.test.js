@@ -56,7 +56,7 @@ describe('AppointeeDOB.js', () => {
     it('returns correct middleware array', () => {
       expect(appointeeDOBClass.middleware).to.be.an('array');
       expect(appointeeDOBClass.middleware).to.have.length(11);
-      expect(appointeeDOBClass.middleware[0]).to.equal(checkWelshToggle);
+      expect(appointeeDOBClass.middleware).to.include(checkWelshToggle);
     });
   });
 

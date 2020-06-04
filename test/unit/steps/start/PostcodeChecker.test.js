@@ -64,7 +64,7 @@ describe('PostcodeChecker.js', () => {
       it('returns correct middleware array', () => {
         expect(postcodeChecker.middleware).to.be.an('array');
         expect(postcodeChecker.middleware).to.have.length(11);
-        expect(postcodeChecker.middleware[0]).to.equal(checkWelshToggle);
+        expect(postcodeChecker.middleware).to.include(checkWelshToggle);
       });
     });
 

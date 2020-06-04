@@ -55,7 +55,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     it('returns correct middleware array', () => {
       expect(dwpIssuingOfficeESA.middleware).to.be.an('array');
       expect(dwpIssuingOfficeESA.middleware).to.have.length(11);
-      expect(dwpIssuingOfficeESA.middleware[0]).to.equal(checkWelshToggle);
+      expect(dwpIssuingOfficeESA.middleware).to.include(checkWelshToggle);
     });
   });
 

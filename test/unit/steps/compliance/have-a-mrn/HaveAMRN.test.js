@@ -60,7 +60,7 @@ describe('HaveAMRN.js', () => {
     it('returns correct middleware array', () => {
       expect(haveAMRN.middleware).to.be.an('array');
       expect(haveAMRN.middleware).to.have.length(11);
-      expect(haveAMRN.middleware[0]).to.equal(checkWelshToggle);
+      expect(haveAMRN.middleware).to.include(checkWelshToggle);
     });
   });
 

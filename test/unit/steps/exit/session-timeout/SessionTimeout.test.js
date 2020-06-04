@@ -18,7 +18,7 @@ describe('SessionTimeout.js', () => {
 
       expect(sessionTimeout.middleware).to.be.an('array');
       expect(sessionTimeout.middleware).to.have.length(6);
-      expect(sessionTimeout.middleware[0]).to.equal(checkWelshToggle);
+      expect(sessionTimeout.middleware).to.include(checkWelshToggle);
     });
   });
 });

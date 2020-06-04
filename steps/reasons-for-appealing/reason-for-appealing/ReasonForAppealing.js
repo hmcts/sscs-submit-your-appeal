@@ -47,8 +47,8 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 

@@ -54,7 +54,7 @@ describe('HearingArrangements.js', () => {
     it('returns correct middleware array', () => {
       expect(notAttendingHearing.middleware).to.be.an('array');
       expect(notAttendingHearing.middleware).to.have.length(11);
-      expect(notAttendingHearing.middleware[0]).to.equal(checkWelshToggle);
+      expect(notAttendingHearing.middleware).to.include(checkWelshToggle);
     });
   });
 

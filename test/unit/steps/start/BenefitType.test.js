@@ -59,7 +59,7 @@ describe('BenefitType.js', () => {
     it('returns correct middleware array', () => {
       expect(benefitType.middleware).to.be.an('array');
       expect(benefitType.middleware).to.have.length(11);
-      expect(benefitType.middleware[0]).to.equal(checkWelshToggle);
+      expect(benefitType.middleware).to.include(checkWelshToggle);
     });
   });
 

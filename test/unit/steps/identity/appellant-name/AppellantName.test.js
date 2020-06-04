@@ -84,7 +84,7 @@ describe('AppellantName.js', () => {
     it('returns correct middleware array', () => {
       expect(appellantName.middleware).to.be.an('array');
       expect(appellantName.middleware).to.have.length(11);
-      expect(appellantName.middleware[0]).to.equal(checkWelshToggle);
+      expect(appellantName.middleware).to.include(checkWelshToggle);
     });
   });
 

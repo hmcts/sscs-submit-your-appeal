@@ -44,7 +44,7 @@ describe('NoRepresentativeDetails.js', () => {
     it('returns correct middleware array', () => {
       expect(noRepresentativeDetails.middleware).to.be.an('array');
       expect(noRepresentativeDetails.middleware).to.have.length(11);
-      expect(noRepresentativeDetails.middleware[0]).to.equal(checkWelshToggle);
+      expect(noRepresentativeDetails.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -67,7 +67,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     it('returns correct middleware array', () => {
       expect(mrnOverThirteenMonthsLate.middleware).to.be.an('array');
       expect(mrnOverThirteenMonthsLate.middleware).to.have.length(11);
-      expect(mrnOverThirteenMonthsLate.middleware[0]).to.equal(checkWelshToggle);
+      expect(mrnOverThirteenMonthsLate.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -87,7 +87,7 @@ describe('CheckYourAppeal.js', () => {
     it('returns correct middleware array', () => {
       expect(cya.middleware).to.be.an('array');
       expect(cya.middleware).to.have.length(12);
-      expect(cya.middleware[0]).to.equal(checkWelshToggle);
+      expect(cya.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -79,7 +79,7 @@ describe('SendingEvidence.js', () => {
     it('returns correct middleware array', () => {
       expect(sendingEvidence.middleware).to.be.an('array');
       expect(sendingEvidence.middleware).to.have.length(6);
-      expect(sendingEvidence.middleware[0]).to.equal(checkWelshToggle);
+      expect(sendingEvidence.middleware).to.include(checkWelshToggle);
     });
   });
 });

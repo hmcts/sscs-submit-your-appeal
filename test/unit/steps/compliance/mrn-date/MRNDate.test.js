@@ -79,7 +79,7 @@ describe('MRNDate.js', () => {
     it('returns correct middleware array', () => {
       expect(mrnDate.middleware).to.be.an('array');
       expect(mrnDate.middleware).to.have.length(11);
-      expect(mrnDate.middleware[0]).to.equal(checkWelshToggle);
+      expect(mrnDate.middleware).to.include(checkWelshToggle);
     });
   });
 

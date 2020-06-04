@@ -51,7 +51,7 @@ describe('answers() and values()', () => {
     it('returns correct middleware array', () => {
       expect(sameAddress.middleware).to.be.an('array');
       expect(sameAddress.middleware).to.have.length(11);
-      expect(sameAddress.middleware[0]).to.equal(checkWelshToggle);
+      expect(sameAddress.middleware).to.include(checkWelshToggle);
     });
   });
 });

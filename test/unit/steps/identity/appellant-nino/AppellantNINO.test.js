@@ -73,7 +73,7 @@ describe('AppellantNINO.js', () => {
     it('returns correct middleware array', () => {
       expect(appellantNINO.middleware).to.be.an('array');
       expect(appellantNINO.middleware).to.have.length(11);
-      expect(appellantNINO.middleware[0]).to.equal(checkWelshToggle);
+      expect(appellantNINO.middleware).to.include(checkWelshToggle);
     });
   });
 

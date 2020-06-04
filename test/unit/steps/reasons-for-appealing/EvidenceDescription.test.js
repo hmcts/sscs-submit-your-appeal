@@ -40,7 +40,7 @@ describe('The other methods of EvidenceUpload', () => {
     it('returns correct middleware array', () => {
       expect(instance.middleware).to.be.an('array');
       expect(instance.middleware).to.have.length(11);
-      expect(instance.middleware[0]).to.equal(checkWelshToggle);
+      expect(instance.middleware).to.include(checkWelshToggle);
     });
   });
 

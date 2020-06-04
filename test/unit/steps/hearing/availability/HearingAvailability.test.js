@@ -59,7 +59,7 @@ describe('HearingAvailability.js', () => {
     it('returns correct middleware array', () => {
       expect(hearingAvailability.middleware).to.be.an('array');
       expect(hearingAvailability.middleware).to.have.length(11);
-      expect(hearingAvailability.middleware[0]).to.equal(checkWelshToggle);
+      expect(hearingAvailability.middleware).to.include(checkWelshToggle);
     });
   });
 

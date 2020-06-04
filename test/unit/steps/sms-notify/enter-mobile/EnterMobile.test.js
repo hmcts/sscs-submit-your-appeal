@@ -54,7 +54,7 @@ describe('EnterMobile.js', () => {
     it('returns correct middleware array', () => {
       expect(enterMobile.middleware).to.be.an('array');
       expect(enterMobile.middleware).to.have.length(11);
-      expect(enterMobile.middleware[0]).to.equal(checkWelshToggle);
+      expect(enterMobile.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -21,8 +21,8 @@ class ContactDWP extends ExitPoint {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 }

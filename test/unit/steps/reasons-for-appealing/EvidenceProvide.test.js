@@ -61,7 +61,7 @@ describe('EvidenceProvide.js', () => {
     it('returns correct middleware array', () => {
       expect(evidenceProvide.middleware).to.be.an('array');
       expect(evidenceProvide.middleware).to.have.length(11);
-      expect(evidenceProvide.middleware[0]).to.equal(checkWelshToggle);
+      expect(evidenceProvide.middleware).to.include(checkWelshToggle);
     });
   });
 

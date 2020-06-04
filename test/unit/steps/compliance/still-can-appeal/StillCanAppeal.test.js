@@ -28,7 +28,7 @@ describe('StillCanAppeal', () => {
     it('returns correct middleware array', () => {
       expect(stillCanAppeal.middleware).to.be.an('array');
       expect(stillCanAppeal.middleware).to.have.length(6);
-      expect(stillCanAppeal.middleware[0]).to.equal(checkWelshToggle);
+      expect(stillCanAppeal.middleware).to.include(checkWelshToggle);
     });
   });
 });

@@ -65,7 +65,7 @@ describe('MRNOverOneMonth.js', () => {
     it('returns correct middleware array', () => {
       expect(mrnOverOneMonth.middleware).to.be.an('array');
       expect(mrnOverOneMonth.middleware).to.have.length(11);
-      expect(mrnOverOneMonth.middleware[0]).to.equal(checkWelshToggle);
+      expect(mrnOverOneMonth.middleware).to.include(checkWelshToggle);
     });
   });
 

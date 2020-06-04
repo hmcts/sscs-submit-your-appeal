@@ -67,7 +67,7 @@ describe('TextReminders.js', () => {
     it('returns correct middleware array', () => {
       expect(textReminders.middleware).to.be.an('array');
       expect(textReminders.middleware).to.have.length(11);
-      expect(textReminders.middleware[0]).to.equal(checkWelshToggle);
+      expect(textReminders.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -78,7 +78,7 @@ describe('HaveContactedDWP.js', () => {
     it('returns correct middleware array', () => {
       expect(haveContactedDWP.middleware).to.be.an('array');
       expect(haveContactedDWP.middleware).to.have.length(11);
-      expect(haveContactedDWP.middleware[0]).to.equal(checkWelshToggle);
+      expect(haveContactedDWP.middleware).to.include(checkWelshToggle);
     });
   });
 

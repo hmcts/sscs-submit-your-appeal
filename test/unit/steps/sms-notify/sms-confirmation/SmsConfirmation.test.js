@@ -104,7 +104,7 @@ describe('SmsConfirmation.js', () => {
     it('returns correct middleware array', () => {
       expect(smsConfirmation.middleware).to.be.an('array');
       expect(smsConfirmation.middleware).to.have.length(11);
-      expect(smsConfirmation.middleware[0]).to.equal(checkWelshToggle);
+      expect(smsConfirmation.middleware).to.include(checkWelshToggle);
     });
   });
 

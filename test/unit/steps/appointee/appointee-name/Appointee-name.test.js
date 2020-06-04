@@ -84,7 +84,7 @@ describe('AppointeeName.js', () => {
     it('returns correct middleware array', () => {
       expect(appointeeName.middleware).to.be.an('array');
       expect(appointeeName.middleware).to.have.length(11);
-      expect(appointeeName.middleware[0]).to.equal(checkWelshToggle);
+      expect(appointeeName.middleware).to.include(checkWelshToggle);
     });
   });
 

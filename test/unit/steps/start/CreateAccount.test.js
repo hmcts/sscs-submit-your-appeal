@@ -68,7 +68,7 @@ describe('CreateAccount.js', () => {
     it('returns correct middleware array', () => {
       expect(createAccount.middleware).to.be.an('array');
       expect(createAccount.middleware).to.have.length(11);
-      expect(createAccount.middleware[0]).to.equal(checkWelshToggle);
+      expect(createAccount.middleware).to.include(checkWelshToggle);
     });
   });
 });

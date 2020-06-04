@@ -28,8 +28,8 @@ class TextReminders extends SaveToDraftStore {
 
   get middleware() {
     return [
-      checkWelshToggle,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 

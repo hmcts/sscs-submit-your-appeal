@@ -65,7 +65,7 @@ describe('OtherReasonForAppealing.js', () => {
     it('returns correct middleware array', () => {
       expect(otherReasonForAppealing.middleware).to.be.an('array');
       expect(otherReasonForAppealing.middleware).to.have.length(11);
-      expect(otherReasonForAppealing.middleware[0]).to.equal(checkWelshToggle);
+      expect(otherReasonForAppealing.middleware).to.include(checkWelshToggle);
     });
   });
 

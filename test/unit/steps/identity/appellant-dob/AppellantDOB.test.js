@@ -56,7 +56,7 @@ describe('AppellantDOB.js', () => {
     it('returns correct middleware array', () => {
       expect(appellantDOBClass.middleware).to.be.an('array');
       expect(appellantDOBClass.middleware).to.have.length(11);
-      expect(appellantDOBClass.middleware[0]).to.equal(checkWelshToggle);
+      expect(appellantDOBClass.middleware).to.include(checkWelshToggle);
     });
   });
 
