@@ -16,28 +16,27 @@
     {{ errorSummary(fields, content.errorSummaryHeading) }}
     {{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
 
-    <form
-      enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
-      action="{{ postUrl | default(path if path else url) }}"
-      method="post"
-      class="form"
-      {% if config.autocomplete %}
-        autocomplete="{{ config.autocomplete }}"
-      {% endif %}
+    <form enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
+          action="{{ postUrl | default(path if path else url) }}"
+          method="post"
+          class="form"
+          {% if config.autocomplete %}
+          autocomplete="{{ config.autocomplete }}"
+          {% endif %}
     >
       {% block fields -%}
       {%- endblock %}
 
       {% if csurfCsrfToken %}
-        <input type="hidden" name="_csrf" value="{{ csurfCsrfToken }}">
+          <input type="hidden" name="_csrf" value="{{ csurfCsrfToken }}">
       {% endif %}
 
       {% if not continueText  %}
-         {% set continueText = content.continue %}
+          {% set continueText = content.continue %}
       {% endif %}
 
       <div class="form-buttons-group">
-        <input class="govuk-button" type="submit" value="{{ continueText | safe }}">
+          <input class="govuk-button" type="submit" value="{{ continueText | safe }}">
       </div>
     </form>
 {% endblock %}
