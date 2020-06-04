@@ -7,12 +7,14 @@ const content = require('content.en.json');
 
 const url = require('url');
 
-const { configureNunjucks,
+const {
+  configureNunjucks,
   configureMiddleWares,
   configureViews,
   configureHelmet,
   configureJourney,
-  configureAppRoutes } = require('./appConfigurations');
+  configureAppRoutes
+} = require('./appConfigurations');
 
 const app = express();
 

@@ -1,0 +1,9 @@
+# ---
+# Used when running the app locally.
+# Rename this file to `dev.yaml`.
+# This file is used for any development config which should not be version controlled.
+# For example, you can add a LaunchDarkly SDK here to test locally and it will not be pushed to Git.
+# ---
+
+featureToggles:
+  launchDarklyKey: 'Insert LD SDK here'

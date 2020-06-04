@@ -14,7 +14,7 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url":  "http://localhost:8080",
+    "url": "http://localhost:8080",
     "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
     "draftUrl": "https://localhost:3000/appeal"
   },
@@ -48,7 +48,7 @@
       "webFormEnabled": "true",
       "webChatEnabled": "true"
     },
-    "allowUC" : {
+    "allowUC": {
       "enabled": "true"
     }
   },
@@ -82,7 +82,7 @@
       "clientId": "sscs",
       "useMock": "false"
     },
-    "webForm" : {
+    "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
     "webChat": {
@@ -92,6 +92,15 @@
       "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
       "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
+    }
+  },
+  "featureToggles": {
+    "enabled": true,
+    "launchDarklyKey": "SDK_KEY",
+    "launchDarklyUser": {
+      "firstName": "SSCS",
+      "lastName": "Frontend",
+      "key": "440d0011-a2d4-4f2f-9e26-e26f7a7b5772"
     }
   }
 }
