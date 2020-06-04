@@ -14,7 +14,7 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url":  "http://localhost:8080",
+    "url": "http://localhost:8080",
     "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
     "draftUrl": "https://localhost:3000/appeal"
   },
@@ -48,7 +48,7 @@
       "webFormEnabled": "true",
       "webChatEnabled": "true"
     },
-    "allowUC" : {
+    "allowUC": {
       "enabled": "true"
     }
   },
@@ -82,7 +82,7 @@
       "clientId": "sscs",
       "useMock": "false"
     },
-    "webForm" : {
+    "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
     "webChat": {
@@ -103,7 +103,6 @@
       "lastName": "Frontend",
       "key": "440d0011-a2d4-4f2f-9e26-e26f7a7b5772"
     },
-    "ft_welsh": "sscs-welsh",
-    "appwideToggles": ["ft_welsh"]
+    "ft_welsh": "sscs-welsh"
   }
 }
