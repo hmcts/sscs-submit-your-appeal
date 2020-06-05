@@ -123,7 +123,7 @@ class SaveToDraftStoreAddAnother extends AddAnother {
 
   get continueText() {
     const sessionLanguage = i18next.language;
-    const content = require('../common/content.json');
+    const content = require('common/content');
 
     if (this.req.idam) {
       return content[sessionLanguage].saveAndContinue;
@@ -160,7 +160,7 @@ class SaveToDraftStore extends Question {
   }
   get continueText() {
     const sessionLanguage = i18next.language;
-    const content = require('../common/content.json');
+    const content = require('common/content');
 
     if (this.req.idam) {
       return content[sessionLanguage].saveAndContinue;
