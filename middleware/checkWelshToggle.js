@@ -1,6 +1,6 @@
 'use strict';
 
-const FeatureToggle = require('core/utils/featureToggle');
+const FeatureToggle = require('middleware/featureToggle');
 
 const checkWelshToggle = (req, res, next) => {
   if (!res.locals.featureToggle) {
