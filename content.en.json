@@ -21,6 +21,6 @@
     }
   },
   "timeout": {
-    "message": "If you do not do anything for 20 minutes, then this page will time out. "
+    "message": "If you do not do anything for 20 minutes, then this page will time out."
   }
 }

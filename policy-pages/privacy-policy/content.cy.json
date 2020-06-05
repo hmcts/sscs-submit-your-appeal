@@ -44,7 +44,7 @@
   "usingYourData": {
     "title": "Using your data",
     "account": "As part of your claim you’ll be asked to use your email address to set up an account. You will be able to use this email and password to sign into other HMCTS services.",
-    "permission": "We may ask for your permission to use your email address to send you emails using GOV.UK Notify. This system processes emails only within the European Economic Area until the point where emails are handed over to the email provider you use. ",
+    "permission": "We may ask for your permission to use your email address to send you emails using GOV.UK Notify. This system processes emails only within the European Economic Area until the point where emails are handed over to the email provider you use.",
     "cookies": {
       "we": "We ",
       "link": "use cookies ",
@@ -91,7 +91,7 @@
     "seeData": "If you want to see the personal data that we hold on you, you can:",
     "form": {
       "complete": "complete a form to ",
-      "link": "make a subject access request. ",
+      "link": "make a subject access request.",
       "controller": "Your request goes to the MoJ as data controller."
     },
     "write": "write to us: Disclosure Team, Post point 10.38, 102 Petty France, London, SW1H 9AJ",
@@ -150,8 +150,8 @@
     },
     "notifications": {
       "title": "Receiving notifications",
-      "receive": "As part of your appeal we’ll ask if you want to receive text message and email notifications to keep you updated with your appeal. ",
-      "cancel": "You can cancel text messages by following the steps mentioned in the text message, and you can cancel emails by following the steps mentioned in the emails. ",
+      "receive": "As part of your appeal we’ll ask if you want to receive text message and email notifications to keep you updated with your appeal.",
+      "cancel": "You can cancel text messages by following the steps mentioned in the text message, and you can cancel emails by following the steps mentioned in the emails.",
       "updates": {
         "rep": "If you have asked for your named representative to receive updates on your appeal, then we will share your data with them. If you want your representative to stop receiving notifications then you need to ",
         "link": "Contact us"
@@ -159,13 +159,13 @@
     },
     "storing": {
       "title": "Storing and sharing your data",
-      "shared": "Your data will be shared with the government department that made the decision you are appealing against. For example, the Department for Work and Pensions or HM Revenue and Customs. This is so that department can respond to your appeal. "
+      "shared": "Your data will be shared with the government department that made the decision you are appealing against. For example, the Department for Work and Pensions or HM Revenue and Customs. This is so that department can respond to your appeal."
     },
     "after": {
       "title": "After you submit your information ",
-      "deleted": "The information you submit will be deleted 2 years after the tribunal have issued their decision and the last update has been made to your appeal. ",
+      "deleted": "The information you submit will be deleted 2 years after the tribunal have issued their decision and the last update has been made to your appeal.",
       "noDecision": "If the tribunal doesn’t make a decision about your appeal (for example, it is withdrawn, or both parties agree) then the information you provide will be deleted 2 years after the appeal has been closed and the last update made.",
-      "complaint": "If you make a complaint against the tribunal then information about the appeal is stored for 3 years after the last update on the complaint. "
+      "complaint": "If you make a complaint against the tribunal then information about the appeal is stored for 3 years after the last update on the complaint."
     }
   }
 }

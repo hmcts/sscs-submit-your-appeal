@@ -6,7 +6,7 @@
     "reasonForNoMRN": {
       "label": "Reason for no MRN",
       "error": {
-        "required": "You have not entered anything. If you want to appeal, you need to say why you have not got an MRN letter. "
+        "required": "You have not entered anything. If you want to appeal, you need to say why you have not got an MRN letter."
       }
     }
   },

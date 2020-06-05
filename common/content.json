@@ -82,7 +82,7 @@
     "continue": "Parhau",
     "saveAndContinue": "Arbed a pharhau",
     "errorSummaryHeading": "Roedd yna broblem",
-    "ogl": "Mae’r holl gynnwys ar gael o dan <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\" >Drwydded Agored y Llywodraeth f3.0</a>, oni nodir fel arall",
+    "ogl": "Mae’r holl gynnwys ar gael o dan <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Drwydded Agored y Llywodraeth f3.0</a>, oni nodir fel arall",
     "phaseBar": {
       "phase": "Beta",
       "feedback": "Mae hwn yn wasanaeth newydd - bydd eich <a aria-label=\"Adborth: Bydd y ddolen hon yn agor mewn ffenestr newydd. Bydd angen ichi ddychwelyd i&rsquo;r ffenestr hon i barhau gyda&rsquo;ch cais.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">adborth</a> yn ein helpu ni i&rsquo;w wella.",
@@ -138,12 +138,12 @@
 
 
     "download": "Llwytho i lawr",
-    "cookieText": "Mae GOV.UK yn defnyddio cwcis i wneud y safle’n symlach. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\" >Rhagor o wybodaeth am gwcis</a>",
+    "cookieText": "Mae GOV.UK yn defnyddio cwcis i wneud y safle’n symlach. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Rhagor o wybodaeth am gwcis</a>",
     "problemWithThisPage": "Cysylltwch â ni am gymorth",
     "phoneTitle": "Rhif ffôn",
     "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
     "emailTitle": "Anfonwch neges atom:",
-    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:divorcecase@justice.gov.uk\" aria-label=\"Anfonwch neges atom i ymholiadaucymraeg@justice.gov.uk, mae’r ddolen hon yn agor neges e-bost newydd.\" >Anfonwch neges atom</a>",
+    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:divorcecase@justice.gov.uk\" aria-label=\"Anfonwch neges atom i ymholiadaucymraeg@justice.gov.uk, mae’r ddolen hon yn agor neges e-bost newydd.\">Anfonwch neges atom</a>",
     "responseTime": "Rydym yn amcanu ymateb o fewn 5 diwrnod gwaith",
     "saveAndClose": "Arbed a chau",
     "months": [
