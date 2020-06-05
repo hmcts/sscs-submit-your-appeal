@@ -5,7 +5,7 @@ const fileAcceptor = require('test/file_acceptor');
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 exports.config = {
-  tests: './**/*.test.js',
+  tests: './**/esa.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
   features: {
     evidenceUpload: {
