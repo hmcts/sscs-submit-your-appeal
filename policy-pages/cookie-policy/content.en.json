@@ -84,7 +84,7 @@
         "expires": "When you close your browser"
       }, {
         "name": "ARRAffinity",
-        "purpose": "To know which internal IP a request should be routed to. ",
+        "purpose": "To know which internal IP a request should be routed to.",
         "expires": "When you close your browser"
       }]
     }

@@ -3,7 +3,7 @@
     "title": "Appeal a benefit decision"
   },
   "phaseBanner": {
-    "newService": "This is a new service. ",
+    "newService": "This is a new service.",
     "reportProblem": "Report a problem",
     "improve": " and help improve it for others."
   },
@@ -29,7 +29,7 @@
     }
   },
   "timeout": {
-    "message": "If you do not do anything for 20 minutes, then this page will time out. "
+    "message": "If you do not do anything for 20 minutes, then this page will time out."
   },
   "relatedContent": {
     "heading": "Related Content",
