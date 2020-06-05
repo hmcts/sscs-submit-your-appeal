@@ -4,9 +4,9 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 const rewire = require('rewire');
-const FeatureToggle = require('core/utils/featureToggle');
+const FeatureToggle = require('middleware/featureToggle');
 
-const RewiredFeatureToggle = rewire('core/utils/featureToggle');
+const RewiredFeatureToggle = rewire('middleware/featureToggle');
 const timeout = 1000;
 
 describe('FeatureToggle', () => {
