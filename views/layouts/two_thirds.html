@@ -8,12 +8,12 @@
 {% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
 
 {% block headIcons %}
-  {% include "components/touch-icons.html" %}
+    {% include "components/touch-icons.html" %}
 {% endblock %}
 
 {% block header %}
-  {% include "components/cookie-banner.html" %}
-  {% include "components/navigation.html" %}
+    {% include "components/cookie-banner.html" %}
+    {% include "components/navigation.html" %}
 {% endblock %}
 
 {% block beforeContent -%}
@@ -21,25 +21,25 @@
 {%- endblock %}
 
 {% block content -%}
-  {% block full_width %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% block two_thirds -%}{%- endblock %}
-    </div>
-    <div class="govuk-grid-column-one-third">
-      {% block one_third -%}{%- endblock %}
-    </div>
-  </div>
-  {% endblock %}
-  {% if allowContactUs %}
-    {% include "components/contact-us.html" %}
-  {% endif %}
+    {% block full_width %}
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {% block two_thirds -%}{%- endblock %}
+            </div>
+            <div class="govuk-grid-column-one-third">
+                {% block one_third -%}{%- endblock %}
+            </div>
+        </div>
+    {% endblock %}
+    {% if allowContactUs %}
+        {% include "components/contact-us.html" %}
+    {% endif %}
 {%- endblock %}
 
 {% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: footerLinks or []
-    }
-  }) }}
+    {{ govukFooter({
+        meta: {
+            items: footerLinks or []
+        }
+    }) }}
 {% endblock %}
