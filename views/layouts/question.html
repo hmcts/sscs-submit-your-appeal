@@ -24,19 +24,22 @@
           autocomplete="{{ config.autocomplete }}"
           {% endif %}
     >
-      {% block fields -%}
-      {%- endblock %}
+        {% block fields -%}
+        {%- endblock %}
 
-      {% if csurfCsrfToken %}
-          <input type="hidden" name="_csrf" value="{{ csurfCsrfToken }}">
-      {% endif %}
+        {% if csurfCsrfToken %}
+            <input type="hidden" name="_csrf" value="{{ csurfCsrfToken }}">
+        {% endif %}
 
-      {% if not continueText  %}
-          {% set continueText = content.continue %}
-      {% endif %}
+        {% set continueButtonLabel = content.continue %}
+        {% if continueText == "continue" %}
+            {% set continueButtonLabel = content.continue %}
+        {% elseif continueText == "saveAndContinue" %}
+            {% set continueButtonLabel = content.saveAndContinue %}
+        {% endif %}
 
-      <div class="form-buttons-group">
-          <input class="govuk-button" type="submit" value="{{ continueText | safe }}">
-      </div>
+        <div class="form-buttons-group">
+            <input class="govuk-button" type="submit" value="{{ continueButtonLabel | safe }}">
+        </div>
     </form>
 {% endblock %}

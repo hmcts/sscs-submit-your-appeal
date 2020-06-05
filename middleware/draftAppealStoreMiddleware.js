@@ -3,7 +3,6 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
-const i18next = require('i18next');
 
 const {
   CheckYourAnswers: CYA
@@ -122,14 +121,11 @@ class SaveToDraftStoreAddAnother extends AddAnother {
   }
 
   get continueText() {
-    const sessionLanguage = i18next.language;
-    const content = require('common/content');
-
     if (this.req.idam) {
-      return content[sessionLanguage].saveAndContinue;
+      return 'saveAndContinue';
     }
 
-    return content[sessionLanguage].continue;
+    return 'continue';
   }
 
   get middleware() {
@@ -158,15 +154,13 @@ class SaveToDraftStore extends Question {
   get isUserLoggedIn() {
     return this.req.idam;
   }
-  get continueText() {
-    const sessionLanguage = i18next.language;
-    const content = require('common/content');
 
+  get continueText() {
     if (this.req.idam) {
-      return content[sessionLanguage].saveAndContinue;
+      return 'saveAndContinue';
     }
 
-    return content[sessionLanguage].continue;
+    return 'continue';
   }
 
   get middleware() {

@@ -176,7 +176,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-
   describe('restoreUserState from api', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP' }, settings: { apiDraftUrl: `${apiUrl}/drafts` } },
@@ -314,11 +313,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('SaveToDraftStore Continue Text', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStore.req.idam = true;
-        expect(saveToDraftStore.continueText).to.eql('Save and continue');
+        expect(saveToDraftStore.continueText).to.eql('saveAndContinue');
       });
       it('continueText to be Save and continue', () => {
         saveToDraftStore.req.idam = false;
-        expect(saveToDraftStore.continueText).to.eql('Continue');
+        expect(saveToDraftStore.continueText).to.eql('continue');
       });
 
       it('isUserLoggedIn returns false', () => {
@@ -333,11 +332,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('SaveToDraftStoreAnother Continue Text', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStoreAnother.req.idam = true;
-        expect(saveToDraftStoreAnother.continueText).to.eql('Save and continue');
+        expect(saveToDraftStoreAnother.continueText).to.eql('saveAndContinue');
       });
       it('continueText to be Save and continue', () => {
         saveToDraftStoreAnother.req.idam = false;
-        expect(saveToDraftStoreAnother.continueText).to.eql('Continue');
+        expect(saveToDraftStoreAnother.continueText).to.eql('continue');
       });
 
       it('isUserLoggedIn returns false', () => {
