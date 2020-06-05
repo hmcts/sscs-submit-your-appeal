@@ -1,0 +1,40 @@
+{
+  "titleHead": "[CY] Check appeal - Appeal a benefit decision - GOV.UK",
+  "benefitType": "[CY] Benefit",
+  "compliance": {
+    "checkMRN": "[CY] Check MRN Date",
+    "mrnDate": "[CY] Mandatory Reconsideration Notice (MRN)",
+    "mrnOverOneMonthLate": "[CY] Appeal over a month late",
+    "mrnOverThirteenMonthsLate": "[CY] Why your appeal over 13 months late",
+    "noMRN": "[CY] Why you don't have a Mandatory Reconsideration Notice (MRN)"
+  },
+  "appellantDetails": "[CY] Claimant",
+  "appointeeDetails": "[CY] Appointee",
+  "hearing": {
+    "arrangements":  "[CY] Hearing arrangements",
+    "datesCantAttend": "[CY] Date you cant attend the hearing",
+    "theHearing": "[CY] The hearing"
+  },
+  "smsNotify": {
+    "textMsgReminders": "[CY] Text message reminders",
+    "mobile": "[CY] Mobile"
+  },
+  "representative": "[CY] Representative",
+  "reasonsForAppealing": "[CY] Reasons for appealing",
+  "header": "[CY] Sign and submit",
+  "information": "[CY] The information I have provided in this appeal is accurate, to the best of my knowledge.",
+  "permission": "[CY] I give permission to correspond with my named representative about my appeal (if you entered details of a representative).",
+  "agree": "[CY] I agree to the <a class='govuk-link' href='{{ termsAndConditionPath }}'>terms and conditions</a> of using the ‘Appeal a benefit decision’ service.",
+  "fields": {
+    "signer": {
+      "label": "[CY] Enter your name",
+      "hint": "[CY] This should be the person who is named on the appeal",
+      "error": {
+        "required": "[CY] You need to enter your name before submitting your appeal. Enter your name and click ‘submit your appeal’"
+      }
+    }
+  },
+  "submitButton": {
+    "value": "[CY] Submit your appeal"
+  }
+}

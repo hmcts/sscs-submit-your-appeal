@@ -1,0 +1,52 @@
+{
+  "titleHead": "[CY] Which benefit appeal - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Which benefit is your appeal about?",
+  "label": "[CY] Select a benefit type",
+  "benefitTypes": {
+    "aa": "[CY] Attendance Allowance",
+    "bb": "[CY] Bereavement Benefit",
+    "ca": "[CY] Carer's Allowance",
+    "cb": "[CY] Child Benefit Lone Parent",
+    "dla": "[CY] Disability Living Allowance (DLA)",
+    "esa": "[CY] Employment and Support Allowance (ESA)",
+    "hrp": "[CY] Home Responsibilities Protection",
+    "hb": "[CY] Housing Benefit (HB)",
+    "ib": "[CY] Incapacity Benefit",
+    "is": "[CY] Income Support",
+    "iid": "[CY] Industrial Injuries Disablement Benefit",
+    "jsa": "[CY] Job Seekers Allowance (JSA)",
+    "ma": "[CY] Maternity Allowance",
+    "pip": "[CY] Personal Independence Payment (PIP)",
+    "sda": "[CY] Severe Disablement Allowance",
+    "sf": "[CY] Social Fund",
+    "uc": "[CY] Universal Credit (UC)",
+    "cc": "[CY] 30 Hours Free Childcare Scheme",
+    "bs": "[CY] Bereavement Support Payment Scheme",
+    "tc": "[CY] Tax Credits",
+    "co": "[CY] Contracted Out Employment Group",
+    "cr": "[CY] Compensation Recovery Unit",
+    "hp": "[CY] Health in Pregnancy Grant",
+    "id": "[CY] Industrial Death Benefit",
+    "pc": "[CY] Pension Credits",
+    "rp": "[CY] Retirement Pension",
+    "tfc": "[CY] Tax-Free Childcare Scheme",
+    "dwa": "[CY] Disability Working Allowance"
+  },
+  "fields": {
+    "benefitType": {
+      "title": "[CY] Last name(s)",
+      "error": {
+        "required": "[CY] Enter the name of the benefit decision you want to appeal"
+      }
+    }
+  },
+  "cya": {
+    "benefitType": {
+      "question": "[CY] Benefit name"
+    }
+  },
+  "help": {
+    "link": "[CY] I can't find the benefit I am appealing",
+    "text": "[CY] Sometimes the name of the benefit can change. Check the last letter you received about it."
+  }
+}

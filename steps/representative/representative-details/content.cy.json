@@ -1,0 +1,105 @@
+{
+  "titleHead": "[CY] Enter representative details - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Enter their details",
+  "subtitle": "[CY] If you have a professional representative, you can find their contact details on any letter you've received from them.",
+  "noDetails": "[CY] I don’t have their details to hand",
+  "fields": {
+    "name": {
+      "error": {
+        "required": "[CY] Enter your representative's name or the organisation they work for",
+        "nameNoTitle": "[CY] Enter your representative's title",
+        "titleNoName": "[CY] Enter your representative's name"
+      },
+      "title": {
+        "title": "[CY] Title",
+        "error": {
+          "invalid": "[CY] You have entered an invalid title. Check it and enter it again"
+        }
+      },
+      "first": {
+        "title": "[CY] First name",
+        "error": {
+          "required": "[CY] Enter your representative's first name",
+          "invalid": "[CY] You have entered an invalid first name. Check it and enter it again"
+        }
+      },
+      "last": {
+        "title": "[CY] Last name(s)",
+        "error": {
+          "required": "[CY] Enter your representative's surname",
+          "invalid": "[CY] You have entered an invalid surname. Check it and enter it again"
+        }
+      },
+      "organisation": {
+        "title": "[CY] Organisation (if they work for one)",
+        "error": {
+          "invalid": "[CY] You have entered an invalid name. Check it and enter it again"
+        }
+      }
+    },
+    "addressLine1": {
+      "title": "[CY] Address line 1",
+      "hint": "[CY] If they work for a national organisation, enter the address of your local branch",
+      "error": {
+        "required": "[CY] Enter the first line of your representative's address"
+      }
+    },
+    "addressLine2": {
+      "title": "[CY] Address line 2 (optional)",
+      "error": {
+        "invalid": "[CY] You have entered an invalid second line of their address. Check it and enter it again"
+      }
+    },
+    "townCity": {
+      "title": "[CY] Town/City",
+      "error": {
+        "required": "[CY] Enter the town or city from your representative's address"
+      }
+    },
+    "county": {
+      "title": "[CY] County",
+      "error": {
+        "required": "[CY] Enter the county from your representative's address"
+      }
+    },
+    "postCode": {
+      "title": "[CY] Postcode",
+      "error": {
+        "required": "[CY] Enter the postcode from your representative's address"
+      }
+    },
+    "phoneNumber": {
+      "title": "[CY] Phone number (optional)",
+      "hint": "[CY] They will receive SMS updates about your appeal if you enter a mobile phone number",
+      "error": {
+        "invalid": "[CY] You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "[CY] Email address (optional)",
+      "hint": "[CY] They will receive email updates about your appeal and a link so they can track your appeal online",
+      "error": {
+        "invalid": "[CY] You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "name":{
+      "question": "[CY] Name"
+    },
+    "organisation":{
+      "question": "[CY] Organisation"
+    },
+    "address":{
+      "question": "[CY] Address"
+    },
+    "phoneNumber": {
+      "question": "[CY] Phone number"
+    },
+    "emailAddress": {
+      "question": "[CY] Email address"
+    },
+    "change": "[CY] Change",
+    "repDetails": "[CY] Representative Contact Details"
+  }
+}

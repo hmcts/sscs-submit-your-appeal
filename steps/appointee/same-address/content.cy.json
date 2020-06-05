@@ -1,0 +1,19 @@
+{
+  "titleHead": "[CY] Is their address the same as yours - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Is their address the same as yours?",
+  "fields": {
+    "isAddressSameAsAppointee": {
+      "label": "[CY] Select whether the appellant name is the same as yours",
+      "yes": "[CY] Yes",
+      "no": "[CY] No",
+      "error": {
+        "required": "[CY] You need to answer the question before continuing"
+      }
+    }
+  },
+  "cya": {
+    "isAddressSameAsAppointee": {
+      "question": "[CY] Same address as appointee"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "titleHead": "[CY] Hearing availability - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Your availability for a hearing",
+  "subtitle": "[CY] Do you have any dates when you can’t attend a hearing? For example, because you’re going on holiday or have an important appointment which can’t be moved.",
+  "fields": {
+    "scheduleHearing": {
+      "label": "[CY] Select whether there are dates you can't attend or not",
+      "yes": "[CY] I need to tell you about dates when I can’t attend a hearing",
+      "no": "[CY] I will come to a hearing whenever you schedule it",
+      "error": {
+        "required": "[CY] Enter a date when you can't attend a hearing"
+      }
+    }
+  },
+  "cya": {
+    "scheduleHearing": {
+      "question": "[CY] Attending the hearing"
+    }
+  }
+}

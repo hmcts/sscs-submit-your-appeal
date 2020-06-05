@@ -1,0 +1,20 @@
+{
+  "titleHead": "[CY] Describe the evidence - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Describe the evidence",
+  "description": "[CY] Briefly describe the evidence you've just uploaded.",
+  "fields": {
+    "describeTheEvidence": {
+      "label":  "[CY] Describe the evidence",
+      "error": {
+        "tooShort": "[CY] Describe the evidence in a bit more detail",
+        "noContent": "[CY] Briefly describe the evidence you have uploaded",
+        "invalid": "[CY] You have entered an invalid character. Check what you've written and enter it again."
+      }
+    }
+  },
+  "cya": {
+    "evidenceDescription": {
+      "question": "[CY] Evidence description"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "titleHead": "[CY] Enter name - Appeal a benefit decision - GOV.UK",
+  "title": {
+    "withoutAppointee": "[CY] Enter your name",
+    "withAppointee": "[CY] Enter their name"
+  },
+  "subtitle": {
+    "withoutAppointee": "",
+    "withAppointee": "[CY] Enter the name of the person you are authorised to appeal for."
+  },
+  "fields": {
+    "title": {
+      "title": "[CY] Title",
+      "error": {
+        "withoutAppointee": {
+          "required": "[CY] Enter your title",
+          "invalid": "[CY] You have entered an invalid title. Enter your title."
+        },
+        "withAppointee": {
+          "required": "[CY] Enter their title",
+          "invalid": "[CY] You have entered an invalid title. Enter their title."
+        }
+      }
+    },
+    "firstName": {
+      "title": "[CY] First name",
+      "error": {
+        "withoutAppointee": {
+          "required": "[CY] Enter your first name",
+          "invalid": "[CY] You have entered an invalid first name. Enter your first name in full."
+        },
+        "withAppointee": {
+          "required": "[CY] Enter their first name",
+          "invalid": "[CY] You have entered an invalid first name. Enter their first name in full."
+        }
+      }
+    },
+    "lastName": {
+      "title": "[CY] Last name",
+      "error": {
+        "withoutAppointee": {
+          "required": "[CY] Enter your last name",
+          "invalid": "[CY] You have entered an invalid last name. Enter your last name in full."
+        },
+        "withAppointee": {
+          "required": "[CY] Enter their last name",
+          "invalid": "[CY] You have entered an invalid last name. Enter their last name in full."
+        }
+      }
+    }
+  },
+  "cya": {
+    "appellantName": {
+      "question": "[CY] Name"
+    }
+  }
+}

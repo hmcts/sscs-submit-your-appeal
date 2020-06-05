@@ -1,0 +1,33 @@
+{
+  "titleHead": "[CY] Enter name - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Enter your name",
+  "description": "[CY] As the appointee, enter your name",
+  "fields": {
+    "title": {
+      "title": "[CY] Title",
+      "error": {
+        "required": "[CY] Enter your title",
+        "invalid": "[CY] You have entered an invalid title. Enter your title."
+      }
+    },
+    "firstName": {
+      "title": "[CY] First name",
+      "error": {
+        "required": "[CY] Enter your first name",
+        "invalid": "[CY] You have entered an invalid first name. Enter your first name in full."
+      }
+    },
+    "lastName": {
+      "title": "[CY] Last name",
+      "error": {
+        "required": "[CY] Enter your last name",
+        "invalid": "[CY] You have entered an invalid last name. Enter your last name in full."
+      }
+    }
+  },
+  "cya": {
+    "appointeeName": {
+      "question": "[CY] Name"
+    }
+  }
+}

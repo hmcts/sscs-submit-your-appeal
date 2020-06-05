@@ -1,0 +1,22 @@
+{
+  "titleHead": "[CY] Hearing support - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Do you need any support at the hearing?",
+  "supportCanBeArranged": "[CY] Support can be arranged, such as an interpreter, hearing loop or disabled access. You",
+  "cant": "[CY] can't",
+  "bringYourOwn": "[CY] bring your own interpreter to the hearing.",
+  "fields": {
+    "arrangements": {
+      "label": "[CY] Select whether you need support at the hearing or not",
+      "yes": "[CY] Yes, I need support at the hearing",
+      "no": "[CY] No, I don't need support at the hearing",
+      "error": {
+        "required": "[CY] You need to tell us whether you need support at the hearing. Select either yes or no."
+      }
+    }
+  },
+  "cya": {
+    "arrangements": {
+      "question": "[CY] Do you want us to make arrangements for your hearing"
+    }
+  }
+}

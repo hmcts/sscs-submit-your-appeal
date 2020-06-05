@@ -1,0 +1,22 @@
+{
+  "titleHead": "[CY] Reason for late appeal - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Tell us why your appeal is late",
+  "appealsShouldBeMadeWithOneMonth": "[CY] Appeals should be made within one month of the Mandatory Reconsideration Notice being sent.",
+  "appealMayGoAheadForGoodReason": "[CY] Your appeal may still go ahead if there’s a reason why it's late.",
+  "noGoodReasonWhyLate": "[CY] I don’t have a good reason why my appeal is late",
+  "fields": {
+    "reasonForBeingLate": {
+      "label": "[CY] Reason for being late",
+      "error": {
+        "required": "[CY] If you want to appeal, you must say why your appeal is late",
+        "notEnough": "[CY] You have not provided enough information. Write a little more about why your appeal is late.",
+        "invalid": "[CY] You've entered a special character. Delete it before continuing"
+      }
+    }
+  },
+  "cya": {
+    "reasonForBeingLate": {
+      "question": "[CY] Why your appeal is late"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "titleHead": "[CY] Appeal submitted - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Your appeal has been submitted",
+  "imageAlt": "[CY] A picture of the track your appeal progress bar",
+  "next": {
+    "heading": "[CY] What happens next",
+    "notify": "[CY] DWP will be notified that you want to appeal against their decision. You’ll be told the next steps when DWP have responded.",
+    "contact": "[CY] The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can."
+  },
+  "email": "[CY] If you've signed up for emails or SMS and have chosen to attend a hearing, then you'll get a message within 3 working days with a link so you can track your appeal online.",
+  "surveyLink": "[CY] Continue",
+  "progressBar": {
+    "appeal": {
+      "text": "[CY] Appeal",
+      "srText": "[CY] Appeal received. This step is complete."
+    },
+    "response": {
+      "text": "[CY] DWP response",
+      "srText": "[CY] DWP respond to your appeal. This has not happened yet."
+    },
+    "hearingBooked": {
+      "text": "[CY] Hearing booked",
+      "srText": "[CY] Hearing booked. This has not happened yet."
+    },
+    "hearing": {
+      "text": "[CY] Hearing",
+      "srText": "[CY] Hearing for your appeal. This has not happened yet."
+    },
+    "decision": {
+      "text": "[CY] Decision",
+      "srText": "[CY] A tribunal makes a decision on your appeal. This stage has not happened yet."
+    }
+  }
+}

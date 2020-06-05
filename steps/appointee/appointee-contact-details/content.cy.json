@@ -1,0 +1,65 @@
+{
+  "titleHead": "[CY] Enter contact details - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Enter your contact details",
+  "subtitle": "[CY] As the appointee, enter your contact details.",
+  "fields": {
+    "addressLine1": {
+      "title": "[CY] Address line 1",
+      "error": {
+        "required": "[CY] Enter the first line of your address"
+      }
+    },
+    "addressLine2": {
+      "title": "[CY] Address line 2 (optional)",
+      "error": {
+        "invalid": "[CY] You have entered an invalid character. Check your address and enter it again"
+      }
+    },
+    "townCity": {
+      "title": "[CY] Town/City",
+      "error": {
+        "required": "[CY] Enter the town or city from your address"
+      }
+    },
+    "county": {
+      "title": "[CY] County",
+      "error": {
+        "required": "[CY] Enter the county from your address"
+      }
+    },
+    "postCode": {
+      "title": "[CY] Postcode",
+      "error": {
+        "required": "[CY] Enter the postcode from your address",
+        "invalidPostcode": "[CY] The online appeal service is not available to people from this region. This postcode should match the postcode you entered to access the service."
+      }
+    },
+    "phoneNumber": {
+      "title": "[CY] Phone number (optional)",
+      "hint": "[CY] This may be used to contact you about the appeal",
+      "error": {
+        "invalid": "[CY] You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "[CY] Email address (optional)",
+      "hint": "[CY] You’ll get updates and a link so you can track the appeal online",
+      "error": {
+        "invalid": "[CY] You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "address": {
+      "question": "[CY] Address"
+    },
+    "phoneNumber": {
+      "question": "[CY] Phone number"
+    },
+    "emailAddress": {
+      "question": "[CY] Email"
+    },
+    "change": "[CY] Change",
+    "yourDetails": "[CY] Your Contact Details"
+  }
+}

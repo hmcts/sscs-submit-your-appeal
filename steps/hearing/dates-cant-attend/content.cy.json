@@ -1,0 +1,47 @@
+{
+  "titleHead": "[CY] Dates cannot attend hearing - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Enter the dates when you can't go to a hearing",
+  "titleEdit": "[CY] Enter a date you can't go to a hearing",
+  "datePicker": {
+    "itsImportant": "[CY] It’s important that you make yourself available for a hearing. If you don’t show up, the appeal could go ahead in your absence or be delayed by several months.",
+    "select": "[CY] Select dates you",
+    "cant": "[CY] can't",
+    "hearing": "[CY] go to a hearing."
+  },
+  "nonJS": {
+    "itsImportant": "[CY] It’s important that you make yourself available for a hearing. If you postpone or don’t show up, your appeal could go ahead in your absence or be delayed by several months.",
+    "yourHearing": "[CY] Your hearing will take some time to book so only enter dates between 4 and 22 weeks in the future. Don’t include weekends or bank holidays."
+  },
+  "links": {
+    "add": "[CY] Add date",
+    "addAnother": "[CY] Add another date"
+  },
+  "listError": "[CY] Enter at least one date",
+  "noDates": "[CY] No dates added yet",
+  "fields": {
+    "cantAttendDate": {
+      "hint": "[CY] For example, 31 3 2018",
+      "legend": "[CY] Date you can't attend",
+      "legendList": "[CY] Dates you can't attend",
+      "day": "[CY] Day",
+      "month": "[CY] Month",
+      "year": "[CY] Year",
+      "error": {
+        "allRequired": "[CY] Enter the date you can't attend",
+        "dayRequired": "[CY] Enter the day from the date you can't attend",
+        "monthRequired": "[CY] Enter the month from the date you can't attend",
+        "yearRequired": "[CY] Enter the year from the date you can't attend",
+        "invalid": "[CY] Enter a valid date",
+        "underFourWeeks": "[CY] Only enter dates at least 4 weeks in the future",
+        "overTwentyTwoWeeks": "[CY] Only enter dates up to 22 weeks in the future",
+        "weekend": "[CY] Enter a date that is not a weekend",
+        "bankHoliday": "[CY] Enter a date that is not a bank holiday"
+      }
+    }
+  },
+  "cya": {
+    "dateYouCantAttend": {
+      "question": "[CY] Dates you're not available"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "titleHead": "[CY] Hearing arrangements confirm - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Support at the hearing",
+  "clickAllArrangements": "[CY] Click all the support you need at the hearing.",
+  "you": "[CY] You",
+  "cant": "[CY] can’t",
+  "bringYourOwnInterpreter": "[CY] bring your own interpreter to the hearing.",
+  "doNotNeedArrangements": "[CY] I don’t need any arrangements made for the hearing",
+  "fields": {
+    "selection": {
+      "label": "[CY] Select the support you need",
+      "error": {
+        "required": "[CY] You need to provide some information about the support you need"
+      },
+      "languageInterpreter": {
+        "requested": {
+          "label": "[CY] Language interpreter"
+        },
+        "language": {
+          "label": "[CY] Enter the language",
+          "error": {
+            "required": "[CY] You need to say which language you need a translator for.",
+            "invalid": "[CY] You need to say which language you need a translator for."
+          }
+        }
+      },
+      "signLanguage": {
+        "requested": {
+          "label": "[CY] Sign language interpreter"
+        },
+        "language": {
+          "label": "[CY] Enter the language",
+          "hint": "[CY] Enter what type of sign language you need. For example, British Sign Language.",
+          "error": {
+            "required": "[CY] You need to enter which sign language you need a translator for.",
+            "invalid": "[CY] You need to enter which sign language you need a translator for."
+          }
+        }
+      },
+      "hearingLoop": {
+        "requested": {
+          "label": "[CY] Hearing loop"
+        }
+      },
+      "accessibleHearingRoom": {
+        "requested": {
+          "label": "[CY] Accessible hearing rooms"
+        }
+      },
+      "anythingElse": {
+        "requested": {
+          "label": "[CY] Other support"
+        },
+        "language": {
+          "label": "[CY] Explain what other support you need at your appeal hearing",
+          "error": {
+            "required": "[CY] You need to provide some information about the support you need",
+            "invalid": "[CY] You have entered a special character that is not allowed. Delete it before continuing."
+          }
+        }
+      }
+    }
+  },
+  "cya": {
+    "arrangements": "[CY] Hearing arrangements",
+    "change": "[CY] Change",
+    "interpreterLanguage": "[CY] Language interpreter",
+    "signLanguage": "[CY] Sign language interpreter",
+    "hearingLoop": "[CY] Hearing loop",
+    "accessibleHearingRoom": "[CY] Accessible hearing rooms",
+    "anythingElse": "[CY] Other",
+    "required": "[CY] Required",
+    "notRequired": "[CY] Not required"
+  }
+}
