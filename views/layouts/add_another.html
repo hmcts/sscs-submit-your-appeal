@@ -28,7 +28,7 @@
     <dl class="govuk-summary-list">
       {% for fieldName, item in fields.items.fields %}
         {% call addAnotherItem(item, deleteUrl(loop.index0), editUrl(loop.index0), loop.index) %}
-          {% block item %}{{ item.value }}{% endblock %}
+          {% block item %}{{ item.value | safe }}{% endblock %}
         {% endcall %}
       {% else %}
         {% call addAnotherItem(noItems=true) %}
@@ -84,6 +84,6 @@
         {% endif %}
       </dd>
     {% endif %}
-  </div> 
+  </div>
 {% endmacro %}
 

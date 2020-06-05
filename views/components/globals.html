@@ -6,7 +6,7 @@
         {{ banner | safe }}
     {% endcall %}
     {% if not hideBackButton %}
-      <a class="govuk-back-link" href="#">{{ content.back }}</a>
+      <a class="govuk-back-link" href="#">{{ content.back | safe }}</a>
     {% endif %}
 {% endblock %}
 

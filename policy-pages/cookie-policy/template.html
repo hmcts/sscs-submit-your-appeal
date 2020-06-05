@@ -3,49 +3,46 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
 {% from "components/cookieTable.html" import cookieTable %}
 
-{% block pageTitle %}{{ titleHead }}{% endblock %}
-
-{% set title = cookies.title %}
+{% block pageTitle %}{{ titleHead | safe }}{% endblock %}
+{% set title = cookies.title | safe %}
 
 {% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ cookies.title | safe }}</h1>
 
-    <h1 class="govuk-heading-l">{{ cookies.title }}</h1>
+    <p class="govuk-body">{{ cookies.description | safe }}</p>
 
-    <p class="govuk-body">{{ cookies.description }}</p>
-
-    <h2 class="govuk-heading-m">{{ usedInService.title }}</h2>
-    <p class="govuk-body">{{ usedInService.uses }}</p>
+    <h2 class="govuk-heading-m">{{ usedInService.title | safe }}</h2>
+    <p class="govuk-body">{{ usedInService.uses | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for use in usedInService.usesList %}
-        <li>{{ use }}</li>
+            <li>{{ use | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ usedInService.more }}<a class="govuk-link" href="http://www.aboutcookies.org/">{{ usedInService.manage }}</a></p>
+    <p class="govuk-body">{{ usedInService.more | safe }} <a class="govuk-link" href="http://www.aboutcookies.org/">{{ usedInService.manage | safe }}</a></p>
 
-    <h2 class="govuk-heading-m">{{ howAreTheyUsed.title }}</h2>
-    <p class="govuk-body">{{ howAreTheyUsed.description }}</p>
-    <p class="govuk-body">{{ howAreTheyUsed.info }}</p>
+    <h2 class="govuk-heading-m">{{ howAreTheyUsed.title | safe }}</h2>
+    <p class="govuk-body">{{ howAreTheyUsed.description | safe }}</p>
+    <p class="govuk-body">{{ howAreTheyUsed.info | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for info in howAreTheyUsed.infoList %}
-        <li>{{ info }}</li>
+            <li>{{ info | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ howAreTheyUsed.googleShare }}<a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy }}</a></p>
+    <p class="govuk-body">{{ howAreTheyUsed.googleShare | safe }} <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.googlePrivacyPolicy | safe }}</a></p>
     <p class="govuk-body">
-        {{ howAreTheyUsed.optOut.youCan }}
-        <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google }}</a>
-        {{ howAreTheyUsed.optOut.access }}
+        {{ howAreTheyUsed.optOut.youCan | safe }}
+        <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ howAreTheyUsed.optOut.google | safe }}</a>
+        {{ howAreTheyUsed.optOut.access | safe }}
     </p>
 
-    <p class="govuk-body">{{ howAreTheyUsed.googleCookies }}</p>
+    <p class="govuk-body">{{ howAreTheyUsed.googleCookies | safe }}</p>
     {{ cookieTable( howAreTheyUsed.cookieTable.items, howAreTheyUsed.cookieTable.columnNames ) }}
 
-    <h2 class="govuk-heading-m">{{ introMessage.title }}</h2>
-    <p class="govuk-body">{{ introMessage.description }}</p>
+    <h2 class="govuk-heading-m">{{ introMessage.title | safe }}</h2>
+    <p class="govuk-body">{{ introMessage.description | safe }}</p>
     {{ cookieTable( introMessage.cookieTable.items, introMessage.cookieTable.columnNames ) }}
 
-    <h2 class="govuk-heading-m">{{ sessionCookie.title }}</h2>
-    <p class="govuk-body">{{ sessionCookie.description }}</p>
+    <h2 class="govuk-heading-m">{{ sessionCookie.title | safe }}</h2>
+    <p class="govuk-body">{{ sessionCookie.description | safe }}</p>
     {{ cookieTable( sessionCookie.cookieTable.items, sessionCookie.cookieTable.columnNames ) }}
-
 {% endblock %}

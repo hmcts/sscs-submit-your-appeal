@@ -3,10 +3,7 @@
 {% from "components/toggle_help.njk" import toggleHelp %}
 {% from "details/macro.njk" import govukDetails %}
 
-{% block pageTitle %}
-    {{ content.titleHead | safe }}
-{% endblock %}
-
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
 {% set title = content.title | safe %}
 {% set hideBackButton = true %}
 

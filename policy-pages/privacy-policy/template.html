@@ -2,164 +2,162 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ titleHead }}{% endblock %}
+{% block pageTitle %}{{ titleHead | safe }}{% endblock %}
 
-{% set title = cookies.title %}
+{% set title = cookies.title | safe %}
 
 {% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ privacy.title | safe }}</h1>
+    <p class="govuk-body">{{ privacy.description | safe }}</p>
 
-    <h1 class="govuk-heading-l">{{ privacy.title }}</h1>
-    <p class="govuk-body">{{ privacy.description }}</p>
-
-    <h2 class="govuk-heading-m">{{ manages.title }}</h2>
-    <p class="govuk-body">{{ manages.managedBy }}</p>
+    <h2 class="govuk-heading-m">{{ manages.title | safe }}</h2>
+    <p class="govuk-body">{{ manages.managedBy | safe }}</p>
     <p class="govuk-body">
-        {{ manages.data.controller }}
-        <a class="govuk-link" href="https://www.gov.uk/government/organisations/ministry-of-justice/about/personal-information-charter">{{ manages.data.link }}</a>
-        {{ manages.data.process }}
+        {{ manages.data.controller | safe }}
+        <a class="govuk-link" href="https://www.gov.uk/government/organisations/ministry-of-justice/about/personal-information-charter">{{ manages.data.link | safe }}</a>
+        {{ manages.data.process | safe }}
     </p>
 
-    <p class="govuk-body">{{ manages.responsible }}</p>
+    <p class="govuk-body">{{ manages.responsible | safe }}</p>
     <p class="govuk-body">
-        {{ manages.moreInfo.service }}
-        <a class="govuk-link" href="/terms-and-conditions">{{ manages.moreInfo.link }}</a>
+        {{ manages.moreInfo.service | safe }}
+        <a class="govuk-link" href="/terms-and-conditions">{{ manages.moreInfo.link | safe }}</a>
     </p>
 
-    <h2 class="govuk-heading-m">{{ whyWeCollect.title }}</h2>
-    <p class="govuk-body">{{ whyWeCollect.collect }}</p>
+    <h2 class="govuk-heading-m">{{ whyWeCollect.title | safe }}</h2>
+    <p class="govuk-body">{{ whyWeCollect.collect | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for collect in whyWeCollect.collectList %}
-            <li>{{ collect }}</li>
+            <li>{{ collect | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ whyWeCollect.staffUseData }}</p>
+    <p class="govuk-body">{{ whyWeCollect.staffUseData | safe }}</p>
 
-    <h2 class="govuk-heading-m">{{ personalData.title }}</h2>
-    <p class="govuk-body">{{ personalData.collect }}</p>
+    <h2 class="govuk-heading-m">{{ personalData.title | safe }}</h2>
+    <p class="govuk-body">{{ personalData.collect | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for collect in personalData.collectList %}
-            <li>{{ collect }}</li>
+            <li>{{ collect | safe }}</li>
         {% endfor %}
     </ul>
     <p class="govuk-body">
-        {{ personalData.more.data }}
-        <a class="govuk-link" href="#using-data">{{ personalData.more.link }}</a>
+        {{ personalData.more.data | safe }}
+        <a class="govuk-link" href="#using-data">{{ personalData.more.link | safe }}</a>
     </p>
 
-    <h2 id="using-data" class="govuk-heading-m">{{ usingYourData.title }}</h2>
-    <p class="govuk-body">{{ usingYourData.account }}</p>
-    <p class="govuk-body">{{ usingYourData.permission }}</p>
+    <h2 id="using-data" class="govuk-heading-m">{{ usingYourData.title | safe }}</h2>
+    <p class="govuk-body">{{ usingYourData.account | safe }}</p>
+    <p class="govuk-body">{{ usingYourData.permission | safe }}</p>
     <p class="govuk-body">
-        {{ usingYourData.cookies.we }}
-        <a class="govuk-link" href="/cookie-policy">{{ usingYourData.cookies.link }}</a>
-        {{ usingYourData.cookies.collect }}
+        {{ usingYourData.cookies.we | safe }}
+        <a class="govuk-link" href="/cookie-policy">{{ usingYourData.cookies.link | safe }}</a>
+        {{ usingYourData.cookies.collect | safe }}
     </p>
     <ul class="govuk-list govuk-list--bullet">
         {% for data in usingYourData.dataList %}
-        <li>{{ data }}</li>
+            <li>{{ data | safe }}</li>
         {% endfor %}
     </ul>
 
-    <h2 class="govuk-heading-m">{{ storingData.title }}</h2>
-    <p class="govuk-body">{{ storingData.dataProvided }}</p>
+    <h2 class="govuk-heading-m">{{ storingData.title | safe }}</h2>
+    <p class="govuk-body">{{ storingData.dataProvided | safe }}</p>
     <p class="govuk-body">
-        {{ storingData.findOut.more }}
-        <a class="govuk-link" href="#appeal-benefit-heading">{{ storingData.findOut.link }}</a>
+        {{ storingData.findOut.more | safe }}
+        <a class="govuk-link" href="#appeal-benefit-heading">{{ storingData.findOut.link | safe }}</a>
     </p>
 
-    <h2 class="govuk-heading-m">{{ shareDate.title }}</h2>
-    <p class="govuk-body">{{ shareDate.involved }}</p>
-    <p class="govuk-body">{{ shareDate.contact }}</p>
-    <p class="govuk-body">{{ shareDate.share }}</p>
+    <h2 class="govuk-heading-m">{{ shareDate.title | safe }}</h2>
+    <p class="govuk-body">{{ shareDate.involved | safe }}</p>
+    <p class="govuk-body">{{ shareDate.contact | safe }}</p>
+    <p class="govuk-body">{{ shareDate.share | safe }}</p>
     <p class="govuk-body">
-        {{ shareDate.google.used }}
-        <a class="govuk-link" href="/terms-and-conditions">{{ shareDate.google.link }}</a>
+        {{ shareDate.google.used | safe }}
+        <a class="govuk-link" href="/terms-and-conditions">{{ shareDate.google.link | safe }}</a>
     </p>
 
-    <h2 class="govuk-heading-m">{{ internationally.title }}</h2>
-    <p class="govuk-body">{{ internationally.outsideUK }}</p>
+    <h2 class="govuk-heading-m">{{ internationally.title | safe }}</h2>
+    <p class="govuk-body">{{ internationally.outsideUK | safe }}</p>
 
-    <h2 class="govuk-heading-m">{{ yourRights.title }}</h2>
-    <p class="govuk-body">{{ yourRights.ask }}</p>
+    <h2 class="govuk-heading-m">{{ yourRights.title | safe }}</h2>
+    <p class="govuk-body">{{ yourRights.ask | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for question in yourRights.questions %}
-        <li>{{ question }}</li>
+            <li>{{ question | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ yourRights.seeData }}</p>
+    <p class="govuk-body">{{ yourRights.seeData | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         <li>
-            {{ yourRights.form.complete }}
-            <a class="govuk-link" href="https://www.gov.uk/government/publications/request-your-personal-data-from-moj">{{ yourRights.form.link }}</a>
-            {{ yourRights.form.controller }}
+            {{ yourRights.form.complete | safe }}
+            <a class="govuk-link" href="https://www.gov.uk/government/publications/request-your-personal-data-from-moj">{{ yourRights.form.link | safe }}</a>
+            {{ yourRights.form.controller | safe }}
         </li>
-        <li>{{ yourRights.write }}</li>
+        <li>{{ yourRights.write | safe }}</li>
     </ul>
-    <p class="govuk-body">{{ yourRights.moreInfo }}</p>
+    <p class="govuk-body">{{ yourRights.moreInfo | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for info in yourRights.infoList %}
-        <li>{{ info }}</li>
+            <li>{{ info | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ yourRights.contactOfficer }}</p>
+    <p class="govuk-body">{{ yourRights.contactOfficer | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for contact in yourRights.contactList %}
-        <li>{{ contact }}</li>
+            <li>{{ contact | safe }}</li>
         {% endfor %}
     </ul>
 
-    <h2 class="govuk-heading-m">{{ complain.title }}</h2>
+    <h2 class="govuk-heading-m">{{ complain.title | safe }}</h2>
     <p class="govuk-body">
-        {{ complain.complaints.procedure }}
-        <a class="govuk-link" href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/complaints-procedure">{{ complain.complaints.link }}</a>
-        {{ complain.complaints.personalData }}
+        {{ complain.complaints.procedure | safe }}
+        <a class="govuk-link" href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/complaints-procedure">{{ complain.complaints.link | safe }}</a>
+        {{ complain.complaints.personalData | safe }}
     </p>
     <p class="govuk-body">
-        {{ complain.write }}<br>
-        {{ complain.email }}
+        {{ complain.write | safe }}<br>
+        {{ complain.email | safe }}
     </p>
     <p class="govuk-body">
-        {{ complain.commissioner.canAlso }}
-        <a class="govuk-link" href="https://ico.org.uk/global/contact-us">{{ complain.commissioner.link }}</a>
-        {{ complain.commissioner.notSatisifed }}
+        {{ complain.commissioner.canAlso | safe }}
+        <a class="govuk-link" href="https://ico.org.uk/global/contact-us">{{ complain.commissioner.link | safe }}</a>
+        {{ complain.commissioner.notSatisifed | safe }}
     </p>
 
-    <h2 id="appeal-benefit-heading" class="govuk-heading-l">{{ appealBenefit.title }}</h2>
+    <h2 id="appeal-benefit-heading" class="govuk-heading-l">{{ appealBenefit.title | safe }}</h2>
 
-    <h3 class="govuk-heading-m">{{ appealBenefit.personalData.title }}</h3>
-    <p class="govuk-body">{{ appealBenefit.personalData.weAskFor }}</p>
+    <h3 class="govuk-heading-m">{{ appealBenefit.personalData.title | safe }}</h3>
+    <p class="govuk-body">{{ appealBenefit.personalData.weAskFor | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for details in appealBenefit.personalData.yourDetails %}
-        <li>{{ details }}</li>
+            <li>{{ details | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ appealBenefit.personalData.rep }}</p>
+    <p class="govuk-body">{{ appealBenefit.personalData.rep | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for details in appealBenefit.personalData.repDetails %}
-        <li>{{ details }}</li>
+            <li>{{ details | safe }}</li>
         {% endfor %}
     </ul>
-    <p class="govuk-body">{{ appealBenefit.personalData.onBehalf }}</p>
+    <p class="govuk-body">{{ appealBenefit.personalData.onBehalf | safe }}</p>
     <ul class="govuk-list govuk-list--bullet">
         {% for details in appealBenefit.personalData.theirDetails %}
-        <li>{{ details }}</li>
+            <li>{{ details | safe }}</li>
         {% endfor %}
     </ul>
 
-    <h3 class="govuk-heading-m">{{ appealBenefit.notifications.title }}</h3>
-    <p class="govuk-body">{{ appealBenefit.notifications.receive }}</p>
-    <p class="govuk-body">{{ appealBenefit.notifications.cancel }}</p>
+    <h3 class="govuk-heading-m">{{ appealBenefit.notifications.title | safe }}</h3>
+    <p class="govuk-body">{{ appealBenefit.notifications.receive | safe }}</p>
+    <p class="govuk-body">{{ appealBenefit.notifications.cancel | safe }}</p>
     <p class="govuk-body">
-        {{ appealBenefit.notifications.updates.rep }}
-        <a class="govuk-link" href="/contact-us">{{ appealBenefit.notifications.updates.link }}</a>
+        {{ appealBenefit.notifications.updates.rep | safe }}
+        <a class="govuk-link" href="/contact-us">{{ appealBenefit.notifications.updates.link | safe }}</a>
     </p>
 
-    <h3 class="govuk-heading-m">{{ appealBenefit.storing.title }}</h3>
-    <p class="govuk-body">{{ appealBenefit.storing.shared }}</p>
+    <h3 class="govuk-heading-m">{{ appealBenefit.storing.title | safe }}</h3>
+    <p class="govuk-body">{{ appealBenefit.storing.shared | safe }}</p>
 
-    <h3 class="govuk-heading-m">{{ appealBenefit.after.title }}</h3>
-    <p class="govuk-body">{{ appealBenefit.after.deleted }}</p>
-    <p class="govuk-body">{{ appealBenefit.after.noDecision }}</p>
-    <p class="govuk-body">{{ appealBenefit.after.complaint }}</p>
-
+    <h3 class="govuk-heading-m">{{ appealBenefit.after.title | safe }}</h3>
+    <p class="govuk-body">{{ appealBenefit.after.deleted | safe }}</p>
+    <p class="govuk-body">{{ appealBenefit.after.noDecision | safe }}</p>
+    <p class="govuk-body">{{ appealBenefit.after.complaint | safe }}</p>
 {% endblock %}

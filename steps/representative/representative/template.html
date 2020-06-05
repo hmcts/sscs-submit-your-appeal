@@ -1,11 +1,9 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
 
 {% block fields %}
     <p class="govuk-body">{{ content.subtitle | safe}}</p>

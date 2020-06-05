@@ -2,27 +2,27 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ titleHead }}{% endblock %}
+{% block pageTitle %}{{ titleHead | safe }}{% endblock %}
 
 {% set title = cookies.title %}
 
 {% block two_thirds %}
 
-    <h1 class="govuk-heading-l">{{ contact.title }}</h1>
-    <p class="govuk-body">{{ contact.description }}</p>
+    <h1 class="govuk-heading-l">{{ contact.title | safe }}</h1>
+    <p class="govuk-body">{{ contact.description | safe }}</p>
 
-    <h2 class="govuk-heading-m">{{ englandAndWales.title }}</h2>
+    <h2 class="govuk-heading-m">{{ englandAndWales.title | safe }}</h2>
     <p class="govuk-body">
-        {{ englandAndWales.phone }}<br/>
-        {{ englandAndWales.days }}<br/>
-        <a  rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ englandAndWales.callCharge }}</a>
+        {{ englandAndWales.phone | safe }}<br/>
+        {{ englandAndWales.days | safe }}<br/>
+        <a  rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ englandAndWales.callCharge | safe }}</a>
     </p>
 
-    <h2 class="govuk-heading-m">{{ scotland.title }}</h2>
+    <h2 class="govuk-heading-m">{{ scotland.title | safe }}</h2>
     <p class="govuk-body">
-        {{ scotland.phone }}<br/>
-        {{ scotland.days }}<br/>
-        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ scotland.callCharge }}</a>
+        {{ scotland.phone | safe }}<br/>
+        {{ scotland.days | safe }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ scotland.callCharge | safe }}</a>
     </p>
 
 {% endblock %}

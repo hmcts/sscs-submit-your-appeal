@@ -14,7 +14,7 @@
 {% block two_thirds -%}
     {{ header(title, size='xl') }}
     <p class="govuk-body">
-        {{message}}
+        {{ message | safe }}
     </p>
 
     {% if nextSteps %}
@@ -34,7 +34,7 @@
                 <label>
                     <span class="govuk-label--s">Error Message</span>
                     <span class="govuk-hint">The error message will only display in development mode</span>
-                    <span>{{ error }}</span>
+                    <span>{{ error | safe }}</span>
                 </label>
             </div>
         {% endif %}

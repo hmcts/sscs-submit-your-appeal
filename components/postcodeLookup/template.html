@@ -6,15 +6,15 @@
         {{ textboxButton(fields.postcodeLookup,  content.textboxLabel, hint="", options) }}
         {% if options.length > 0  %}
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
-        {% endif %}  
+        {% endif %}
         <div class="govuk-form-group">
-            <a id="manualLink" class="govuk-link govuk-body" href="#" >{{content.manualEntryLabel}}</a>
+            <a id="manualLink" class="govuk-link govuk-body" href="#" >{{ content.manualEntryLabel | safe }}</a>
         </div>
         {% if fields.postcodeAddress and fields.postcodeAddress.value %}
             {{ caller() }}
         {% endif %}
     {% endif %}
-{% endmacro %}  
+{% endmacro %}
 
 
 {% macro customSelect(field, label, options, initialValueText) %}
@@ -28,7 +28,7 @@
 
   {{ errorsFor(field) }}
 
-  <select 
+  <select
           name="{{ field.id }}"
           id="{{ field.id }}"
           class="govuk-select govuk-!-width-one-half postcode-address"

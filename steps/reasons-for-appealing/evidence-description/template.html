@@ -1,20 +1,13 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, textarea %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
-
-{% set title %}
-{{ content.title | safe }}
-{% endset %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block fields %}
+    <p class="govuk-body">{{ content.description | safe }}</p>
 
-<p class="govuk-body">{{ content.description | safe }}</p>
-
-{% call formSection() %}
-
-{{ textarea(fields.describeTheEvidence, content.fields.describeTheEvidence.label, hideLabel = true, maxlength = 2000 ) }}
-
-{% endcall %}
-
+    {% call formSection() %}
+        {{ textarea(fields.describeTheEvidence, content.fields.describeTheEvidence.label, hideLabel = true, maxlength = 2000 ) }}
+    {% endcall %}
 {% endblock %}

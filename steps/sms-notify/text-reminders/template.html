@@ -1,28 +1,23 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
 
 {% block fields %}
+    {% call formSection() %}
 
-{% call formSection() %}
+    <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
-<p class="govuk-body">{{ content.subtitle  }}</p>
-
-{{ selectionButtons(
-    fields.doYouWantTextMsgReminders,
-    content.fields.doYouWantTextMsgReminders.label,
-    hideQuestion=true,
-    options = [
-        { label: content.fields.doYouWantTextMsgReminders.yes, value: "yes" },
-        { label: content.fields.doYouWantTextMsgReminders.no, value: "no" }
-    ])
-    }}
-
-{% endcall %}
-
+    {{ selectionButtons(
+        fields.doYouWantTextMsgReminders,
+        content.fields.doYouWantTextMsgReminders.label,
+        hideQuestion=true,
+        options = [
+            { label: content.fields.doYouWantTextMsgReminders.yes, value: "yes" },
+            { label: content.fields.doYouWantTextMsgReminders.no, value: "no" }
+        ])
+        }}
+    {% endcall %}
 {% endblock %}

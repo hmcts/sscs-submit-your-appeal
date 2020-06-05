@@ -2,12 +2,9 @@
 
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% set title %}
-  {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
   {% call formSection() %}
     {{ selectionButtons(fields.success, content.title,
       options = [
@@ -16,5 +13,4 @@
       ]
     ) }}
   {% endcall %}
-
 {% endblock %}

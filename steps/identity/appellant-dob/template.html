@@ -1,16 +1,11 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, date %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
-
-{% set title %}
-        {{ title | safe }}
-{% endset %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-
         {{ date(
             fields.date,
             content.titleNoAppointee,
@@ -22,7 +17,5 @@
                 year: content.fields.date.year
             }
         ) }}
-
     {% endcall %}
-
 {% endblock %}
