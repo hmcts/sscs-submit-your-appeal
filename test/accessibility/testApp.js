@@ -4,14 +4,16 @@ const config = require('config');
 const express = require('express');
 const steps = require('steps');
 const content = require('commonContent.json');
-const { configureNunjucks,
+const url = require('url');
+const startStep = require('steps/entry/Entry');
+const {
+  configureNunjucks,
   configureMiddleWares,
   configureViews,
-  configureAppRoutes } = require('../../appConfigurations');
+  configureAppRoutes
+} = require('../../appConfigurations');
 
 const app = express();
-const url = require('url');
-
 const port = config.get('node.port');
 
 // Tests
@@ -21,8 +23,6 @@ app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
-
-const startStep = require('steps/entry/Entry');
 
 const noSessionHandler = (req, res, next) => {
   if (req.url === '/check-your-appeal' || req.url === '/done') {
@@ -34,6 +34,7 @@ const noSessionHandler = (req, res, next) => {
 
   next();
 };
+
 journey(app, {
   steps,
   session: {

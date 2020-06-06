@@ -4,7 +4,6 @@ const config = require('config');
 const express = require('express');
 const events = require('events');
 const commonContent = require('commonContent.json');
-
 const url = require('url');
 
 const {
@@ -28,6 +27,7 @@ app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
 events.EventEmitter.defaultMaxListeners = 100;
+
 // Configure App routes.
 configureAppRoutes(app);
 

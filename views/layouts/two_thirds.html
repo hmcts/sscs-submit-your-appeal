@@ -17,20 +17,21 @@
 {% endblock %}
 
 {% block beforeContent -%}
-    {% block breadcrumbs %}{% endblock %}
+  {% block breadcrumbs %}{% endblock %}
 {%- endblock %}
 
 {% block content -%}
   {% block full_width %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% block two_thirds -%}{%- endblock %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% block two_thirds -%}{%- endblock %}
+      </div>
+      <div class="govuk-grid-column-one-third">
+        {% block one_third -%}{%- endblock %}
+      </div>
     </div>
-    <div class="govuk-grid-column-one-third">
-      {% block one_third -%}{%- endblock %}
-    </div>
-  </div>
   {% endblock %}
+
   {% if allowContactUs %}
     {% include "components/contact-us.html" %}
   {% endif %}
