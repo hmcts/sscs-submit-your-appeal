@@ -70,6 +70,7 @@
         "link" : "Send message (opens in a new window)"
       },
       "webchat": {
+        "loading": "Loading",
         "title": "Web chat",
         "desc": "Get some help by messaging an agent online.",
         "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
@@ -174,6 +175,7 @@
         "link" : "[CY] Send message (opens in a new window)"
       },
       "webchat": {
+        "loading": "[CY] Loading",
         "title": "[CY] Web chat",
         "desc": "[CY] Get some help by messaging an agent online.",
         "textChatDown": "[CY] Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",

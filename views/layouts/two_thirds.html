@@ -5,7 +5,7 @@
 {% set assetPath = '/assets' %}
 {% from "components/header/macro.njk" import govukHeader %}
 
-{% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
+{% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
 
 {% block headIcons %}
   {% include "components/touch-icons.html" %}

@@ -1,4 +1,4 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { shimSessionExitPoint } = require('middleware/shimSession');
 const { getBenefitCode } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
@@ -6,7 +6,7 @@ const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
-class ContactDWP extends ExitPoint {
+class ContactDWP extends shimSessionExitPoint {
   static get path() {
     return paths.compliance.contactDWP;
   }
@@ -16,7 +16,10 @@ class ContactDWP extends ExitPoint {
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 
   get middleware() {
