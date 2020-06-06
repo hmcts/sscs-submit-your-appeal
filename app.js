@@ -3,7 +3,7 @@ require('logger').startAppInsights();
 const config = require('config');
 const express = require('express');
 const events = require('events');
-const content = require('content.en.json');
+const commonContent = require('commonContent.json');
 
 const url = require('url');
 
@@ -41,9 +41,9 @@ configureHelmet(app);
 configureViews(app);
 
 // Configure Nunjucks Settings
-configureNunjucks(app, content);
+configureNunjucks(app, commonContent);
 
 // Configure One Per page settings.
-configureJourney(app, content);
+configureJourney(app, commonContent);
 
 module.exports = app;

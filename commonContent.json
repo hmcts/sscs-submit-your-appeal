@@ -12,6 +12,61 @@
       "feedback": "This is a new service – your <a aria-label=\"Feedback: This link will open in a new tab. You&rsquo;ll need to return to this tab to continue with your application.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">feedback</a> will help us to improve it.",
       "languageToggle": "<a href=\"?lng=cy\" class=\"govuk-link language\">Cymraeg</a>"
     },
+    "footer": {
+      "contactUs": "Contact us",
+      "accessibility": "Accessibility statement",
+      "cookies": "Cookies",
+      "privacyPolicy": "Privacy policy",
+      "termsAndConditions": "Terms and conditions"
+    },
+
+
+    "phaseBanner": {
+      "newService": "This is a new service.",
+      "reportProblem": "Report a problem",
+      "improve": " and help improve it for others."
+    },
+    "inactivityTimeout": {
+      "title": "Want more time to continue?",
+      "expiringIn": "Your session will expire in 2:00 minutes",
+      "text": "The information you have entered will be deleted to protect your personal data.",
+      "yes": "Continue with appeal",
+      "no": "End session"
+    },
+    "errors": {
+      "notFound": {
+        "title": "Page cannot be found",
+        "message": "Check that you’ve entered the correct web address",
+        "nextSteps": [
+          "Or go to the",
+          "start of Appeal a benefit decision"
+        ]
+      },
+      "serverError": {
+        "title": "Sorry, we’re experiencing technical difficulties",
+        "message": "Please try again in a few minutes."
+      }
+    },
+    "timeout": {
+      "message": "If you do not do anything for 20 minutes, then this page will time out."
+    },
+    "relatedContent": {
+      "heading": "Related Content",
+      "benefit": {
+        "calculator": "Benefits calculators",
+        "overPayments": "Benefit overpayments",
+        "fraud": "Benefit fraud"
+      },
+      "explore": {
+        "heading": "Explore the topic",
+        "howItWorks": "How benefits work",
+        "courts": "Courts, sentencing and tribunals"
+      }
+    },
+    "continueButtonText": {
+      "save" : "Save and continue",
+      "continue": "Continue"
+    },
     "contactUs": {
       "title": "Contact us for help",
       "webform": {
@@ -22,11 +77,11 @@
       "webchat": {
         "title": "Web chat",
         "desc": "Get some help by messaging an agent online.",
-        "textChatDown": "Web chat is currently unavailable.\\nPlease try again later or call us on the number below if your enquiry is urgent.",
+        "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
         "textChatWithAnAgent": "Start web chat (opens in a new window)",
         "textNoAgentsAvailable": "No agents are available, please try again later.",
-        "textAllAgentsBusy": "All our web chat agents are busy helping other people.\\nPlease try again later or contact us using one of the ways below.",
-        "textChatClosed" : "Web chat is now closed.\\n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+        "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
+        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
         "textAdditional": "Monday to Friday, 8.30am to 5pm"
       },
@@ -51,29 +106,7 @@
           "charges": "Find out about call charges"
         }
       }
-    },
-    "footer": {
-      "contactUs": "Contact us",
-      "accessibility": "Accessibility statement",
-      "cookies": "Cookies",
-      "privacyPolicy": "Privacy policy",
-      "termsAndConditions": "Terms and conditions"
-    },
-
-
-    "download": "Download",
-    "cookieText": "GOV.UK uses cookies to make the site simpler. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Find out more about cookies</a>",
-    "problemWithThisPage": "Contact us for help",
-    "phoneTitle": "Telephone",
-    "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
-    "emailTitle": "Send us a message",
-    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:{{ courtEmail }}\" aria-label=\"Send us a message at at {{ courtEmail }}, this link opens a new email.\">Send us a message</a>",
-    "responseTime": "We aim to get back to you within 5 days",
-    "saveAndClose": "Save and close",
-    "months": [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ]
+    }
   },
   "cy": {
     "serviceName": "[CY] Appeal a benefit decision",
@@ -88,6 +121,61 @@
       "feedback": "Mae hwn yn wasanaeth newydd - bydd eich <a aria-label=\"Adborth: Bydd y ddolen hon yn agor mewn ffenestr newydd. Bydd angen ichi ddychwelyd i&rsquo;r ffenestr hon i barhau gyda&rsquo;ch cais.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">adborth</a> yn ein helpu ni i&rsquo;w wella.",
       "languageToggle": "<a href=\"?lng=en\" class=\"govuk-link language\">English</a>"
     },
+    "footer": {
+      "contactUs": "Cysylltu &acirc; ni",
+      "accessibility": "Datganiad Hygyrchedd",
+      "cookies": "Cwcis",
+      "privacyPolicy": "Polisi Preifatrwydd",
+      "termsAndConditions": "Telerau ac Amodau"
+    },
+
+
+    "phaseBanner": {
+      "newService": "[CY] This is a new service.",
+      "reportProblem": "[CY] Report a problem",
+      "improve": "[CY]  and help improve it for others."
+    },
+    "inactivityTimeout": {
+      "title": "[CY] Want more time to continue?",
+      "expiringIn": "[CY] Your session will expire in 2:00 minutes",
+      "text": "[CY] The information you have entered will be deleted to protect your personal data.",
+      "yes": "[CY] Continue with appeal",
+      "no": "[CY] End session"
+    },
+    "errors": {
+      "notFound": {
+        "title": "[CY] Page cannot be found",
+        "message": "[CY] Check that you’ve entered the correct web address",
+        "nextSteps": [
+          "[CY] Or go to the",
+          "[CY] start of Appeal a benefit decision"
+        ]
+      },
+      "serverError": {
+        "title": "[CY] Sorry, we’re experiencing technical difficulties",
+        "message": "[CY] Please try again in a few minutes."
+      }
+    },
+    "timeout": {
+      "message": "[CY] If you do not do anything for 20 minutes, then this page will time out."
+    },
+    "relatedContent": {
+      "heading": "[CY] Related Content",
+      "benefit": {
+        "calculator": "[CY] Benefits calculators",
+        "overPayments": "[CY] Benefit overpayments",
+        "fraud": "[CY] Benefit fraud"
+      },
+      "explore": {
+        "heading": "[CY] Explore the topic",
+        "howItWorks": "[CY] How benefits work",
+        "courts": "[CY] Courts, sentencing and tribunals"
+      }
+    },
+    "continueButtonText": {
+      "save" : "[CY] Save and continue",
+      "continue": "[CY] Continue"
+    },
     "contactUs": {
       "title": "[CY] Contact us for help",
       "webform": {
@@ -96,14 +184,14 @@
         "link" : "[CY] Send message (opens in a new window)"
       },
       "webchat": {
-        "title": "Sgwrsio dros y we",
+        "title": "[CY] Web chat",
         "desc": "[CY] Get some help by messaging an agent online.",
-        "textChatDown": "[CY] Web chat is currently unavailable.\\nPlease try again later or call us on the number below if your enquiry is urgent.",
-        "textChatWithAnAgent": "Sgwrsio dros y we gydag asiant",
-        "textNoAgentsAvailable": "Nid oes asiant ar gael ar hyn o bryd; rhowch gynnig arall arni yn nes ymlaen.",
-        "textAllAgentsBusy": "[CY] All our web chat agents are busy helping other people.\\nPlease try again later or contact us using one of the ways below.",
-        "textChatClosed" : "[CY] Web chat is now closed.\\nCome back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
-        "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
+        "textChatDown": "[CY] Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
+        "textChatWithAnAgent": "[CY] Start web chat (opens in a new window)",
+        "textNoAgentsAvailable": "[CY] No agents are available, please try again later.",
+        "textAllAgentsBusy": "[CY] All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
+        "textChatClosed" : "[CY] Web chat is now closed. \n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
+        "textChatAlreadyOpen": "[CY] A web chat window is already open.",
         "textAdditional": "[CY] Monday to Friday, 8.30am to 5pm"
       },
       "telephone" : {
@@ -127,28 +215,6 @@
           "charges": "[CY] Find out about call charges"
         }
       }
-    },
-    "footer": {
-      "contactUs": "Cysylltu &acirc; ni",
-      "accessibility": "Datganiad Hygyrchedd",
-      "cookies": "Cwcis",
-      "privacyPolicy": "Polisi Preifatrwydd",
-      "termsAndConditions": "Telerau ac Amodau"
-    },
-
-
-    "download": "Llwytho i lawr",
-    "cookieText": "Mae GOV.UK yn defnyddio cwcis i wneud y safle’n symlach. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Rhagor o wybodaeth am gwcis</a>",
-    "problemWithThisPage": "Cysylltwch â ni am gymorth",
-    "phoneTitle": "Rhif ffôn",
-    "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
-    "emailTitle": "Anfonwch neges atom:",
-    "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:divorcecase@justice.gov.uk\" aria-label=\"Anfonwch neges atom i ymholiadaucymraeg@justice.gov.uk, mae’r ddolen hon yn agor neges e-bost newydd.\">Anfonwch neges atom</a>",
-    "responseTime": "Rydym yn amcanu ymateb o fewn 5 diwrnod gwaith",
-    "saveAndClose": "Arbed a chau",
-    "months": [
-      "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
-      "Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
-    ]
+    }
   }
 }

@@ -1,15 +1,11 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import select, textbox, formSection %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
-
-{% set title %}
-{{ title | safe }}
-{% endset %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-
         {% if subtitle %}
             <p class="govuk-body">{{ subtitle | safe }}</p>
         {% endif %}
@@ -17,11 +13,9 @@
         {{ select(
             fields.title,
             content.fields.title.title,
-            options = titlesList          
+            options = titlesList
         ) }}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
         {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
-
     {% endcall %}
-
 {% endblock %}

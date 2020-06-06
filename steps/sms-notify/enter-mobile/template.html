@@ -1,19 +1,12 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, formSection %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-
         <p class="govuk-body">{{ content.description | safe }}</p>
         {{ textbox(fields.enterMobile, content.fields.enterMobile.label, hideLabel=true) }}
-
     {% endcall %}
-
 {% endblock %}

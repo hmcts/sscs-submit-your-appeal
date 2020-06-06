@@ -5,6 +5,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class AppointeeDOB extends SaveToDraftStore {
   static get path() {
@@ -30,6 +31,13 @@ class AppointeeDOB extends SaveToDraftStore {
         value => DateUtils.isDateInPast(value)
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

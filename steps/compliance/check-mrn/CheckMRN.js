@@ -7,6 +7,7 @@ const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
@@ -25,6 +26,13 @@ class CheckMRN extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

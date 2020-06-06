@@ -12,6 +12,7 @@ const sections = require('steps/check-your-appeal/sections');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -42,6 +43,13 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
         value => value.reasonForAppealing &&
         isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   validateList(list) {

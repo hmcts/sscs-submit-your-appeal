@@ -8,6 +8,7 @@ const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const content = require('steps/hearing/dates-cant-attend/content.en');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const paths = require('paths');
 
@@ -59,6 +60,13 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       fields.cantAttendDate.error.bankHoliday,
       value => !this.ukBankHolidays.isDateABankHoliday(value)
     );
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   validateList(list) {

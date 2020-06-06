@@ -1,19 +1,14 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-        
-        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle }}</p>
+        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle | safe }}</p>
         {% if allowUC and benefitType == 'UC'%}
-        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>
+            <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
         {{ selectionButtons(
@@ -26,5 +21,4 @@
             ])
         }}
     {% endcall %}
-
 {% endblock %}

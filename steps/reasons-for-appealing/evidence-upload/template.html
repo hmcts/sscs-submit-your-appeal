@@ -2,7 +2,8 @@
 {% extends "layouts/add_another.html" %}
 {% from "components/fields.njk" import formSection, fileupload %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% set pageContent = {
 addAnotherLink: addAnotherLinkContent,
@@ -10,38 +11,29 @@ itemsListLabel: content.itemsListLabel,
 hideItemsListLabel: true
 } %}
 
-{% set title %}
-{{ content.title | safe }}
-{% endset %}
 {% if isEditMode %}
     {% set enc_type = 'multipart/form-data' %}
 {% endif %}
+
 {% block editItem %}
-
-{% call formSection() %}
-
-{{ fileupload(fields.item.uploadEv, '', acceptFileTypes=accept) }}
-
-{% endcall %}
-
+    {% call formSection() %}
+        {{ fileupload(fields.item.uploadEv, '', acceptFileTypes=accept) }}
+    {% endcall %}
 {% endblock %}
 
 {% block item %}
-<span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value }}</span>
+    <span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value | safe }}</span>
 {% endblock %}
 
 {% block listItems %}
+    <p class="govuk-body">{{ content.description | safe }}</p>
+    <div id="evidence-upload"></div>
 
-<p class="govuk-body">{{ content.description | safe }}</p>
-
-<div id="evidence-upload"></div>
-
-{{ header(content.itemsListLabel, size='s') }}
-{{ super() }}
-
+    {{ header(content.itemsListLabel, size='s') }}
+    {{ super() }}
 {% endblock %}
 
 {% block after_form -%}
-    {% include "components/sessionTimeoutMessage.html" %}
-     {{super()}}
+        {% include "components/sessionTimeoutMessage.html" %}
+        {{super()}}
 {%- endblock %}

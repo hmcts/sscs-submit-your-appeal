@@ -22,7 +22,7 @@ const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 
-const configureNunjucks = (app, content) => {
+const configureNunjucks = (app, commonContent) => {
 // because of a bug with iphone, we need to remove the mime types from accept
   expressNunjucks(app, {
     watch: isDev(),
@@ -59,20 +59,10 @@ const configureNunjucks = (app, content) => {
       phase: 'BETA',
       feedbackLink: urls.phaseBanner,
       environment: process.env.NODE_ENV,
-      navigation: content.navigation,
-      inactivityTimeout: {
-        title: content.inactivityTimeout.title,
-        expiringIn: content.inactivityTimeout.expiringIn,
-        text: content.inactivityTimeout.text,
-        yes: content.inactivityTimeout.yes,
-        no: content.inactivityTimeout.no
-      },
+      commonContent: commonContent,
       // because of a bug with iphone, we need to remove the mime types from accept
       accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),
-      timeOutMessage: content.timeout.message,
-      relatedContent: content.relatedContent,
-      contactUs: content.contactUs,
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
@@ -137,7 +127,7 @@ const configureHelmet = app => {
   }));
 };
 
-const configureJourney = (app, content) => {
+const configureJourney = (app, commonContent) => {
   journey(app, {
     steps,
     session: {
@@ -153,14 +143,14 @@ const configureJourney = (app, content) => {
     errorPages: {
       notFound: {
         template: 'errors/Error404.html',
-        title: content.errors.notFound.title,
-        message: content.errors.notFound.message,
-        nextSteps: content.errors.notFound.nextSteps
+        title: commonContent.en.errors.notFound.title,
+        message: commonContent.en.errors.notFound.message,
+        nextSteps: commonContent.en.errors.notFound.nextSteps
       },
       serverError: {
         template: 'errors/500/Error500.html',
-        title: content.errors.serverError.title,
-        message: content.errors.serverError.message
+        title: commonContent.en.errors.serverError.title,
+        message: commonContent.en.errors.serverError.message
       }
     },
     timeoutDelay: 2000,

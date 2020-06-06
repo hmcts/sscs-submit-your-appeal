@@ -18,6 +18,7 @@ const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
 const { decode } = require('utils/stringUtils');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class HearingArrangements extends SaveToDraftStore {
   static get path() {
@@ -112,6 +113,13 @@ class HearingArrangements extends SaveToDraftStore {
       )
 
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

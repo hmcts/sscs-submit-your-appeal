@@ -3,7 +3,7 @@ const { journey } = require('@hmcts/one-per-page');
 const config = require('config');
 const express = require('express');
 const steps = require('steps');
-const content = require('content.en.json');
+const content = require('commonContent.json');
 const { configureNunjucks,
   configureMiddleWares,
   configureViews,
