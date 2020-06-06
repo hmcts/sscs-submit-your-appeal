@@ -3,6 +3,7 @@ const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOve
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('MRNOverOneMonth.js', () => {
   let mrnOverOneMonth = null;
@@ -57,6 +58,14 @@ describe('MRNOverOneMonth.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(mrnOverOneMonth.middleware).to.be.an('array');
+      expect(mrnOverOneMonth.middleware).to.have.length(11);
+      expect(mrnOverOneMonth.middleware).to.include(checkWelshToggle);
     });
   });
 

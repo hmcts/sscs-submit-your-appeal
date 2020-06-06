@@ -3,6 +3,7 @@ const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContac
 const paths = require('paths');
 const answer = require('utils/answer');
 const config = require('config');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('HaveContactedDWP.js', () => {
   let haveContactedDWP = null;
@@ -70,6 +71,14 @@ describe('HaveContactedDWP.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(haveContactedDWP.middleware).to.be.an('array');
+      expect(haveContactedDWP.middleware).to.have.length(11);
+      expect(haveContactedDWP.middleware).to.include(checkWelshToggle);
     });
   });
 

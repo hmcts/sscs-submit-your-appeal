@@ -2,6 +2,7 @@ const HearingSupport = require('steps/hearing/support/HearingSupport');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('HearingSupport.js', () => {
   let hearingSupport = null;
@@ -52,6 +53,14 @@ describe('HearingSupport.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(hearingSupport.middleware).to.be.an('array');
+      expect(hearingSupport.middleware).to.have.length(11);
+      expect(hearingSupport.middleware).to.include(checkWelshToggle);
     });
   });
 

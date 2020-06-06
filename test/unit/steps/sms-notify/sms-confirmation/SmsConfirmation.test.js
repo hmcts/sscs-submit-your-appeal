@@ -3,6 +3,7 @@ const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmati
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('SmsConfirmation.js', () => {
   let smsConfirmation = null;
@@ -96,6 +97,14 @@ describe('SmsConfirmation.js', () => {
       const textField = fields.appointeePhoneNumber;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(smsConfirmation.middleware).to.be.an('array');
+      expect(smsConfirmation.middleware).to.have.length(11);
+      expect(smsConfirmation.middleware).to.include(checkWelshToggle);
     });
   });
 
