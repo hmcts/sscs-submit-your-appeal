@@ -5,6 +5,7 @@ const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddlewar
 const logger = require('logger');
 const paths = require('paths');
 const nock = require('nock');
+const i18next = require('i18next');
 
 // eslint-disable-next-line func-names
 describe('middleware/draftAppealStoreMiddleware', () => {
@@ -14,6 +15,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   let loggerExceptionSpy = '';
   let objectAssignSpy = '';
   const apiUrl = 'http://mockapi.com';
+  i18next.changeLanguage('en');
 
   nock(apiUrl)
     .defaultReplyHeaders({
@@ -174,7 +176,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-
   describe('restoreUserState from api', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP' }, settings: { apiDraftUrl: `${apiUrl}/drafts` } },
@@ -312,11 +313,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('SaveToDraftStore Continue Text', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStore.req.idam = true;
-        expect(saveToDraftStore.continueText).to.eql('Save and continue');
+        expect(saveToDraftStore.continueText).to.eql('saveAndContinue');
       });
       it('continueText to be Save and continue', () => {
         saveToDraftStore.req.idam = false;
-        expect(saveToDraftStore.continueText).to.eql('Continue');
+        expect(saveToDraftStore.continueText).to.eql('continue');
       });
 
       it('isUserLoggedIn returns false', () => {
@@ -331,11 +332,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     describe('SaveToDraftStoreAnother Continue Text', () => {
       it('continueText to be Save and continue', () => {
         saveToDraftStoreAnother.req.idam = true;
-        expect(saveToDraftStoreAnother.continueText).to.eql('Save and continue');
+        expect(saveToDraftStoreAnother.continueText).to.eql('saveAndContinue');
       });
       it('continueText to be Save and continue', () => {
         saveToDraftStoreAnother.req.idam = false;
-        expect(saveToDraftStoreAnother.continueText).to.eql('Continue');
+        expect(saveToDraftStoreAnother.continueText).to.eql('continue');
       });
 
       it('isUserLoggedIn returns false', () => {

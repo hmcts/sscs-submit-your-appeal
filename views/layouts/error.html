@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ phaseBanner(phase, feedbackLink, urlPath) }}
-{{ languageSwitch(i18n.currentLanguage, i18n.availableLanguages) }}
+    {{ phaseBanner(commonContent[i18n.currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) }}
 {% endblock %}
 
 {% block two_thirds -%}

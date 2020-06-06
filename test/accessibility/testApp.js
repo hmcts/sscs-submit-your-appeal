@@ -50,14 +50,14 @@ journey(app, {
   errorPages: {
     notFound: {
       template: 'errors/Error404.html',
-      title: content.errors.notFound.title,
-      message: content.errors.notFound.message,
-      nextSteps: content.errors.notFound.nextSteps
+      title: content.en.errors.notFound.title,
+      message: content.en.errors.notFound.message,
+      nextSteps: content.en.errors.notFound.nextSteps
     },
     serverError: {
       template: 'errors/500/Error500.html',
-      title: content.errors.serverError.title,
-      message: content.errors.serverError.message
+      title: content.en.errors.serverError.title,
+      message: content.en.errors.serverError.message
     }
   },
   timeoutDelay: 2000,

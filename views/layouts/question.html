@@ -5,7 +5,7 @@
 {% from "components/i18n.njk" import languageSwitch %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(phase, feedbackLink, urlPath) }}
+    {{ phaseBanner(commonContent[i18n.currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) }}
     <a class="govuk-back-link" href="#">{{ commonContent[i18n.currentLanguage].back }}</a>
 {% endblock %}
 

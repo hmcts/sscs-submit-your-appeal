@@ -59,7 +59,7 @@ const configureNunjucks = (app, commonContent) => {
       phase: 'BETA',
       feedbackLink: urls.phaseBanner,
       environment: process.env.NODE_ENV,
-      commonContent: commonContent,
+      commonContent,
       // because of a bug with iphone, we need to remove the mime types from accept
       accept: filteredWhitelist,
       timeOut: config.get('redis.timeout'),

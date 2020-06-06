@@ -3,14 +3,14 @@
         <span class="govuk-visually-hidden-focusable" id="aria-timeout-label">
             <!-- content of aria label -->
         </span>
-        <h2 class="icon-important red-inverse">{{ inactivityTimeout.title }}</h2>
+        <h2 class="icon-important red-inverse">{{ commonContent[i18n.currentLanguage].inactivityTimeout.title | safe }}</h2>
         <p class="govuk-body" id="expiring-in-message">
-            {{ inactivityTimeout.expiringIn }}
+            {{ commonContent[i18n.currentLanguage].inactivityTimeout.expiringIn | safe }}
         </p>
-        <p class="govuk-body">{{ inactivityTimeout.text }}</p>
+        <p class="govuk-body">{{ commonContent[i18n.currentLanguage].inactivityTimeout.text | safe }}</p>
         <p>
-            <button class="govuk-button extend" id="extend" href="#" rel="modal:close">{{ inactivityTimeout.yes }}</button>
-            <button class="govuk-button govuk-button--secondary abort" id="destroy" href="#">{{ inactivityTimeout.no }}</button>
+            <button class="govuk-button extend" id="extend" href="#" rel="modal:close">{{ commonContent[i18n.currentLanguage].inactivityTimeout.yes | safe }}</button>
+            <button class="govuk-button govuk-button--secondary abort" id="destroy" href="#">{{ commonContent[i18n.currentLanguage].inactivityTimeout.no | safe }}</button>
         </p>
     </div>
 </div>
