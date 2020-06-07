@@ -3,6 +3,7 @@
 !package.json
 !yarn.lock
 
+!core/**
 !components/**
 !config/**
 !keys/**
@@ -18,7 +19,9 @@
 
 !app.js
 !appConfigurations.js
+!content.json
 !content.en.json
+!content.cy.json
 !logger.js
 !paths.js
 !server.js
