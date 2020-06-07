@@ -2,11 +2,11 @@
 {% from "footer/macro.njk" import govukFooter %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(commonContent[i18n.currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
+    {% call phaseBanner(commonContent[currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
     {% if not hideBackButton %}
-        <a class="govuk-back-link" href="#">{{ commonContent[i18n.currentLanguage].back | safe }}</a>
+        <a class="govuk-back-link" href="#">{{ commonContent[currentLanguage].back | safe }}</a>
     {% endif %}
 {% endblock %}
 
@@ -52,23 +52,23 @@
             items: [
                 {
                     href: "https://hmcts-access.service.gov.uk/contact-us",
-                    text: commonContent[i18n.currentLanguage].footer.contactUs | safe
+                    text: commonContent[currentLanguage].footer.contactUs | safe
                 },
                 {
                     href: "/accessibility",
-                    text: commonContent[i18n.currentLanguage].footer.accessibility | safe
+                    text: commonContent[currentLanguage].footer.accessibility | safe
                 },
                 {
                     href: "/cookie-policy",
-                    text: commonContent[i18n.currentLanguage].footer.cookies | safe
+                    text: commonContent[currentLanguage].footer.cookies | safe
                 },
                 {
                     href: "/terms-and-conditions",
-                    text: commonContent[i18n.currentLanguage].footer.termsAndConditions | safe
+                    text: commonContent[currentLanguage].footer.termsAndConditions | safe
                 },
                 {
                     href: "/privacy-policy",
-                    text: commonContent[i18n.currentLanguage].footer.privacyPolicy | safe
+                    text: commonContent[currentLanguage].footer.privacyPolicy | safe
                 }
             ]
         }
@@ -93,13 +93,13 @@
         tenant: '{{ webChat.tenant }}',
         channel: '{{ webChat.channel }}',
         buttonContainerId: 'ctsc-web-chat',
-        textChatDown: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textChatDown | safe }}',
-        textChatWithAnAgent: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textChatWithAnAgent | safe }}',
-        textNoAgentsAvailable: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textNoAgentsAvailable | safe }}',
-        textAllAgentsBusy: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textAllAgentsBusy | safe }}',
-        textChatClosed : '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textChatClosed | safe }}',
-        textChatAlreadyOpen: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textChatAlreadyOpen | safe }}',
-        textAdditional: '{{ commonContent[i18n.currentLanguage].contactUs.webchat.textAdditional | safe }}',
+        textChatDown: '{{ commonContent[currentLanguage].contactUs.webchat.textChatDown | safe }}',
+        textChatWithAnAgent: '{{ commonContent[currentLanguage].contactUs.webchat.textChatWithAnAgent | safe }}',
+        textNoAgentsAvailable: '{{ commonContent[currentLanguage].contactUs.webchat.textNoAgentsAvailable | safe }}',
+        textAllAgentsBusy: '{{ commonContent[currentLanguage].contactUs.webchat.textAllAgentsBusy | safe }}',
+        textChatClosed : '{{ commonContent[currentLanguage].contactUs.webchat.textChatClosed | safe }}',
+        textChatAlreadyOpen: '{{ commonContent[currentLanguage].contactUs.webchat.textChatAlreadyOpen | safe }}',
+        textAdditional: '{{ commonContent[currentLanguage].contactUs.webchat.textAdditional | safe }}',
         stylesheetURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat.css',
         busHandlerURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat-busHandler.js',
         btnNoAgents: '{{ webChat.btnNoAgents }}',

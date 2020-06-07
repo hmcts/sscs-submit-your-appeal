@@ -3,6 +3,7 @@
 {% set bodyClasses = 'app-body-class' %}
 {% set mainClasses = 'app-main-class' %}
 {% set assetPath = '/assets' %}
+{% set currentLanguage = i18n.currentLanguage if i18n.currentLanguage else "en" %}
 {% from "components/header/macro.njk" import govukHeader %}
 
 {% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
