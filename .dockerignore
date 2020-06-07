@@ -18,7 +18,9 @@
 
 !app.js
 !appConfigurations.js
+!commonContent.json
 !content.en.json
+!content.cy.json
 !logger.js
 !paths.js
 !server.js
