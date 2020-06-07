@@ -3,13 +3,14 @@
 !package.json
 !yarn.lock
 
+!assets/**
 !components/**
 !config/**
+!core/**
 !keys/**
 !middleware/**
 !mocks/**
 !policy-pages/**
-!assets/**
 !services/**
 !steps/**
 !utils/**
@@ -19,8 +20,8 @@
 !app.js
 !appConfigurations.js
 !commonContent.json
-!content.en.json
 !content.cy.json
+!content.en.json
 !logger.js
 !paths.js
 !server.js

@@ -1,7 +1,7 @@
 'use strict';
 
 const logger = require('logger');
-const LaunchDarkly = require('middleware/launch-darkly');
+const LaunchDarkly = require('core/components/launch-darkly');
 const config = require('config');
 
 class FeatureToggle {
