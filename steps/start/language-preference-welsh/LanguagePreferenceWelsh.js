@@ -1,6 +1,6 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
-const { form, text, object, errorFor } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
@@ -25,26 +25,11 @@ class LanguagePreferenceWelsh extends SaveToDraftStore {
       .valid(answers)
       .required();
 
-    const validateDisagreeReason = () => true;
-    const validateCountry = () => true;
-
     const fields = {
-      agree: text.joi(this.content.errors.required, validAnswers),
-      reason: text,
-      country: text
+      agree: text.joi(this.content.errors.required, validAnswers)
     };
 
-    const languagePreferenceWelsh = object(fields)
-      .check(
-        errorFor('reason', this.content.errors.reasonRequired),
-        validateDisagreeReason
-      )
-      .check(
-        errorFor('country', this.content.errors.countryRequired),
-        validateCountry
-      );
-
-    return form({ languagePreferenceWelsh });
+    return form({ fields });
   }
 
   values() {

@@ -1,13 +1,10 @@
 {
-  "title": "Do you require your Divorce documents in English and Welsh (emails, letters, texts, certificates)?",
+  "title": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
     "cya": {
-      "agree": "Do you require your Divorce documents in English and Welsh (emails, letters, texts, certificates)?",
-      "reason": "Why don’t you agree that the court has jurisdiction?",
-      "country": "In which country is your life mainly based?"
+      "agree": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?"
     },
     "summary": "If you don’t need your document to be translated to Welsh language, please choose No.",
-    "question": "Just one of these gives the court jurisdiction.",
-    "answerNo" : "All documnets will be in English.",
+    "answerNo" : "All documents will be in English.",
 
     "fields": {
       "agree": {
@@ -16,9 +13,7 @@
       },
       "disagree": {
         "heading": "No",
-        "answer": "No",
-        "reason": "Why don’t you agree that the court has jurisdiction?",
-        "country": "In which country is your life mainly based?"
+        "answer": "No"
       }
     },
     "errors": {
