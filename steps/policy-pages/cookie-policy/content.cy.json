@@ -1,0 +1,74 @@
+{
+  "titleHead": "[CY] Cookie Policy - Appeal a benefit decision - GOV.UK",
+  "footer": {
+    "cookies": "[CY] Cookies"
+  },
+  "cookies": {
+    "title": "[CY] Cookies",
+    "description": "[CY] A cookie is a small piece of data that’s stored on your computer, tablet, or phone when you visit a website. Most websites need cookies to work properly."
+  },
+  "usedInService": {
+    "title": "[CY] How cookies are used in this service",
+    "uses": "[CY] This service uses them to:",
+    "use1": "[CY] measure how you use the service so it can be improved",
+    "use2": "[CY] remember the notifications you’ve seen so that you’re not shown them again",
+    "use3": "[CY] temporarily store the answers you give",
+    "more": "[CY] Find out more about",
+    "manage": "[CY] how to manage cookies"
+  },
+  "howAreTheyUsed": {
+    "title": "[CY] Cookies used to measure website usage",
+    "description": "[CY] We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements, for example improving site search.",
+    "info": "[CY] Google Analytics stores information about:",
+    "info1": "[CY] the pages you visit",
+    "info2": "[CY] how long you spend on each page",
+    "info3": "[CY] how you got to the service",
+    "info4": "[CY] what you click on while you’re visiting the service",
+    "googleShare": "[CY] We allow Google to use or share this data. Find out more about how they use this information in the",
+    "googlePrivacyPolicy": "[CY] Google privacy policy",
+    "optOut": {
+      "youCan": "[CY] You can ",
+      "google": "[CY] opt out of Google Analytics",
+      "access": "[CY] if you do not want Google to have access to your information."
+    },
+    "googleCookies": "[CY] Google Analytics sets the following cookies:",
+    "cookieTable": {
+      "columnName1": "[CY] Cookie name",
+      "columnName2": "[CY] What this cookie is for",
+      "columnName3": "[CY] Expires after",
+      "item1Name": "[CY] _ga",
+      "item1Purpose": "[CY] This helps us count how many people visit the service by tracking if you’ve visited before",
+      "item1Expires": "[CY] 2 years",
+      "item2Name": "[CY] _gid",
+      "item2Purpose": "[CY] Identifies you to the service",
+      "item2Expires": "[CY] 24 hours"
+    }
+  },
+  "introMessage": {
+    "title": "[CY] Cookies used to turn our introductory message off",
+    "description": "[CY] You may see a welcome message when you first visit the service. We’ll store a cookie so that your computer knows not to show this message again.",
+    "cookieTable": {
+      "columnName1": "[CY] Cookie name",
+      "columnName2": "[CY] What this cookie is for",
+      "columnName3": "[CY] Expires after",
+      "item1Name": "[CY] seen_cookie_message",
+      "item1Purpose": "[CY] Saves a message to let us know that you’ve seen our cookie message",
+      "item1Expires": "[CY] 1 month"
+    }
+  },
+  "sessionCookie": {
+    "title": "[CY] Cookies used to store the answers you’ve given during your visit (known as a ‘session’)",
+    "description": "[CY] Session cookies are stored on your computer as you browse a website, and let the website know what you’ve seen and done so far. These are temporary cookies and are automatically deleted after you leave the website.",
+    "cookieTable": {
+      "columnName1": "[CY] Cookie name",
+      "columnName2": "[CY] What this cookie is for",
+      "columnName3": "[CY] Expires after",
+      "item1Name": "[CY] session",
+      "item1Purpose": "[CY] Keeps track of your answers",
+      "item1Expires": "[CY] When you close your browser",
+      "item2Name": "[CY] ARRAffinity",
+      "item2Purpose": "[CY] To know which internal IP a request should be routed to.",
+      "item2Expires": "[CY] When you close your browser"
+    }
+  }
+}

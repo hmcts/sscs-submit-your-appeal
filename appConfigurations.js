@@ -11,7 +11,6 @@ const { journey } = require('@hmcts/one-per-page');
 const steps = require('steps');
 const idam = require('middleware/idam');
 const paths = require('paths');
-const policyPages = require('policy-pages/routes');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
@@ -206,8 +205,6 @@ const configureMiddleWares = (app, express) => {
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
     }
   }));
-
-  app.use('/', policyPages);
 };
 
 const configureAppRoutes = app => {
