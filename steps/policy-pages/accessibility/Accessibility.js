@@ -1,8 +1,8 @@
-const { Question } = require('@hmcts/one-per-page');
+const { shimSessionStaticPage } = require('middleware/shimSession');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class Accessibility extends Question {
+class Accessibility extends shimSessionStaticPage {
   static get path() {
     return paths.policy.accessibility;
   }

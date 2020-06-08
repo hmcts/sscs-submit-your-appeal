@@ -1,8 +1,8 @@
-const { Question } = require('@hmcts/one-per-page');
+const { shimSessionStaticPage } = require('middleware/shimSession');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class TermsAndConditions extends Question {
+class TermsAndConditions extends shimSessionStaticPage {
   static get path() {
     return paths.policy.termsAndConditions;
   }

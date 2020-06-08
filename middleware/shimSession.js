@@ -1,4 +1,4 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { ExitPoint, Question } = require('@hmcts/one-per-page');
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
 const { METHOD_NOT_ALLOWED } = require('http-status-codes');
@@ -21,14 +21,22 @@ class shimSessionInterstitial extends Interstitial {
     if (req.method === 'POST') {
       this.next().redirect(req, res, next);
     } else if (req.method === 'GET') {
-      const locals = this.locals;
-      res.render(this.template, locals, (error, html) => {
+      res.render(this.template, this.locals, (error, html) => {
         delete this.req.session.featureToggles;
         this.res.send(html);
       });
     } else {
       res.sendStatus(METHOD_NOT_ALLOWED);
     }
+  }
+}
+
+class shimSessionStaticPage extends Question {
+  handler(req, res) {
+    delete this.req.session.featureToggles;
+    res.render(this.template, this.locals, (error, html) => {
+      this.res.send(html);
+    });
   }
 }
 
@@ -52,5 +60,6 @@ class shimSessionSaveToDraftStoreCYA extends SaveToDraftStoreCYA {
 module.exports = {
   shimSessionExitPoint,
   shimSessionInterstitial,
+  shimSessionStaticPage,
   shimSessionSaveToDraftStoreCYA
 };
