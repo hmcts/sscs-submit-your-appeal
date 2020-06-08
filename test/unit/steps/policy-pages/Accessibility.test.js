@@ -1,23 +1,23 @@
 const { expect } = require('test/util/chai');
-const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
+const AccessibilityTest = require('steps/policy-pages/accessibility/Accessibility');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
-describe('CookiePolicy.js', () => {
+describe('Accessibility.js', () => {
   describe('get path()', () => {
-    it('returns path /cookie-policy', () => {
-      expect(CookiePolicy.path).to.equal(paths.policy.cookiePolicy);
+    it('returns path /accessibility', () => {
+      expect(AccessibilityTest.path).to.equal(paths.policy.accessibility);
     });
   });
 
   describe('get middleware()', () => {
     it('returns correct middleware array', () => {
-      const cantAppeal = new CookiePolicy({
+      const cantAppeal = new AccessibilityTest({
         journey: {}
       });
 
       expect(cantAppeal.middleware).to.be.an('array');
-      expect(cantAppeal.middleware).to.have.length(6);
+      expect(cantAppeal.middleware).to.have.length(9);
       expect(cantAppeal.middleware).to.include(checkWelshToggle);
     });
   });
