@@ -6,7 +6,7 @@
 {% block pageTitle %}{{ title | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(commonContent[currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
+    {% call phaseBanner(commonContent[currentLanguage], feedbackLink + urlPath) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
