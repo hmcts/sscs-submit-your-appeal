@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const Accessibility = require('steps/policy-pages/Accessibility');
+const Accessibility = require('steps/policy-pages/accessibility/Accessibility');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 

@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const PrivacyPolicy = require('steps/policy-pages/PrivacyPolicy');
+const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 

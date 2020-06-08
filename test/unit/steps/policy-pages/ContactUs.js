@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const ContactUs = require('steps/policy-pages/ContactUs');
+const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
