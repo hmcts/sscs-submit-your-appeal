@@ -3,6 +3,6 @@ dependencies:
     version: ~1.10.0
     repository: '@hmctspublic'
   - name: redis
-    version: 10.5.7
-    repository: '@stable'
+    version: 10.6.18
+    repository: "https://charts.bitnami.com/bitnami"
     condition: redis.enabled
