@@ -17,9 +17,9 @@
           action="{{ postUrl | default(path if path else url) }}"
           method="post"
           class="form"
-            {% if config.autocomplete %}
-                autocomplete="{{ config.autocomplete }}"
-            {% endif %}
+          {% if config.autocomplete %}
+              autocomplete="{{ config.autocomplete }}"
+          {% endif %}
     >
         {% block fields -%}
         {%- endblock %}
@@ -39,8 +39,4 @@
             <input class="govuk-button" type="submit" value="{{ continueButtonLabel | safe }}">
         </div>
     </form>
-
-    {% if session.featureToggles.ft_welsh %}
-        <!-- FEATURE TOGGLE ON -->
-    {% endif %}
 {% endblock %}

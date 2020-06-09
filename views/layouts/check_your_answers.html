@@ -59,9 +59,9 @@
     <form action="{{ postUrl | default(path if path else url) }}"
           method="post"
           class="form"
-            {% if config.autocomplete %}
-              autocomplete="{{config.autocomplete}}"
-            {% endif %}
+          {% if config.autocomplete %}
+            autocomplete="{{config.autocomplete}}"
+          {% endif %}
     >
 
       {% block statement_of_truth_fields %}
