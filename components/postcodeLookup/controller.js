@@ -114,7 +114,7 @@ class Controller {
     const req = this.page.req;
     const page = this.page;
     return (req.session[page.name] && req.session[page.name].type === 'manual') ||
-    (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual');
+      (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual');
   }
 
   setMode(type = 'auto') {

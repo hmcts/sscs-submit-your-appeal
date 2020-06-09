@@ -220,8 +220,8 @@ class AddReason {
       // Puts the promises in sequence rather than parellel
       const promiseSequence = funcs =>
         funcs.reduce((promise, func) => promise
-          .then(result => func().then(Array.prototype.concat.bind(result))),
-        Promise.resolve([]));
+            .then(result => func().then(Array.prototype.concat.bind(result))),
+          Promise.resolve([]));
 
       // Call the ajax promises, deleting the items first and then posting
       return promiseSequence([...deleteItems, ...postItems])
