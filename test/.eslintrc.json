@@ -16,7 +16,7 @@
     "no-invalid-this":"off",
     "new-cap": "off",
     "max-len": ["error", {
-        "code": 100
+        "code": 160
       }
     ],
     "line-comment-position": "off"

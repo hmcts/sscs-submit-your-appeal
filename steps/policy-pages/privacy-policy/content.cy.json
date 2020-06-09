@@ -1,0 +1,153 @@
+{
+  "titleHead": "[CY] Privacy Policy - Appeal a benefit decision - GOV.UK",
+  "privacy": {
+    "title": "[CY] Privacy policy",
+    "description": "[CY] This privacy policy explains why we collect your personal data and what we do with it. It also explains your rights and how to enforce them."
+  },
+  "manages": {
+    "title": "[CY] Who manages this service",
+    "managedBy": "[CY] This service is managed by HM Courts and Tribunals Service (HMCTS), which is an executive agency of the Ministry of Justice (MoJ).",
+    "data": {
+      "controller": "[CY] The MoJ is known as the data controller for data protection purposes. The",
+      "link": "[CY] MoJ personal information charter",
+      "process": "[CY] explains how the MoJ processes personal data."
+    },
+    "responsible": "[CY] As part of the MoJ, HMCTS is responsible for deciding how your personal data is used and for protecting the personal data you provide.",
+    "moreInfo": {
+      "service": "[CY] More information about using this service is in the",
+      "link": "[CY] terms and conditions"
+    }
+  },
+  "whyWeCollect": {
+    "title": "[CY] Why we collect your personal data",
+    "collect": "[CY] We collect your personal data to:",
+    "collect1": "[CY] process your claim or application",
+    "collect2": "[CY] meet legal requirements",
+    "collect3": "[CY] make improvements to this service",
+    "staffUseData": "[CY] Our staff use your personal data to process your claim or application. They work in the UK and your data is stored in the UK."
+  },
+  "personalData": {
+    "title": "[CY] Types of personal data we collect",
+    "collect": "[CY] The personal data we collect includes:",
+    "collect1": "[CY] your name, address and contact details",
+    "collect2": "[CY] your email and password (if you create an account)",
+    "collect3": "[CY] other personal information you provide in your claim or application",
+    "more": {
+      "data": "[CY] Some services collect more personal data. Find out more about the",
+      "link": "[CY] personal data that is collected by the service you are using"
+    }
+  },
+  "usingYourData": {
+    "title": "[CY] Using your data",
+    "account": "[CY] As part of your claim you’ll be asked to use your email address to set up an account. You will be able to use this email and password to sign into other HMCTS services.",
+    "permission": "[CY] We may ask for your permission to use your email address to send you emails using GOV.UK Notify. This system processes emails only within the European Economic Area until the point where emails are handed over to the email provider you use.",
+    "cookies": {
+      "we": "[CY] We",
+      "link": "[CY] use cookies",
+      "collect": "[CY] to collect data that tells us about how you’re using this service, including:"
+    },
+    "data1": "[CY] if you open an email from us or click on a link in an email",
+    "data2": "[CY] your computer, phone or tablet’s IP address",
+    "data3": "[CY] the region or town where you are using your computer, phone or tablet",
+    "data4": "[CY] the web browser you use"
+  },
+  "storingData": {
+    "title": "[CY] Storing your data",
+    "dataProvided": "[CY]  When you make your claim or application we store the data you have provided. This is stored in the UK. The amount of time that your data is kept for depends on the service that you are using.",
+    "findOut": {
+      "more": "[CY] Find out more about",
+      "link": "[CY] how long your personal data is stored by the service you are using"
+    }
+  },
+  "shareDate": {
+    "title": "[CY] Sharing your data",
+    "involved": "[CY] While processing your claim or application, another government department, agency or organisation might be involved and we may share your data with them.",
+    "contact": "[CY] If you contact us and ask for help with the service you are using, your personal data may be shared with the Good Things Foundation. This is a company who we have partnered with to offer face to face support.",
+    "share": "[CY] In some circumstances we may share your data for example, to prevent or detect crime, or to produce anonymised statistics.",
+    "google": {
+      "used": "[CY] We use Google Analytics to collect data about how a website is used. This anonymous data is shared with Google. Find out about this in our",
+      "link": "[CY] terms and conditions"
+    }
+  },
+  "internationally": {
+    "title": "[CY] Storing and sharing your data internationally",
+    "outsideUK": "[CY] Sometimes we need to send your personal information outside of the UK. When we do this we comply with data protection law."
+  },
+  "yourRights": {
+    "title": "[CY] Your rights",
+    "ask": "[CY] You can ask:",
+    "question1": "[CY] to see the personal data that we hold on you",
+    "question2": "[CY] to have the personal data corrected",
+    "question3": "[CY] to have the personal data removed or deleted (this will depend on the circumstances, for example if you decide not to continue your claim or application)",
+    "question4": "[CY] that access to the personal data is restricted (for example, you can ask to have your data stored for longer and not automatically deleted)",
+    "seeData": "[CY] If you want to see the personal data that we hold on you, you can:",
+    "form": {
+      "complete": "[CY] complete a form to",
+      "link": "[CY] make a subject access request",
+      "controller": "[CY] Your request goes to the MoJ as data controller."
+    },
+    "write": "[CY] write to us: Disclosure Team, Post point 10.38, 102 Petty France, London, SW1H 9AJ",
+    "moreInfo": "[CY] You can ask for more information about:",
+    "info1": "[CY] agreements we have on sharing information with other organisations",
+    "info2": "[CY] when we are allowed to pass on personal information without telling you",
+    "info3": "[CY] our instructions to staff on how to collect, use or delete your personal information",
+    "info4": "[CY] how we check that the information we hold is accurate and up-to-date",
+    "contactOfficer": "[CY]  You can contact the MoJ data protection officer, by:",
+    "contact1": "[CY] writing to us: Post point 10.38, 102 Petty France, London, SW1H 9AJ",
+    "contact2": "[CY] emailing: data.compliance@justice.gov.uk"
+  },
+  "complain": {
+    "title": "[CY] How to complain",
+    "complaints": {
+      "procedure": "[CY] See our",
+      "link": "[CY] complaints procedure",
+      "personalData": "[CY] if you want to complain about how we've handled your personal data."
+    },
+    "write": "[CY] Write to: Post point 10.38, 102 Petty France, London, SW1H 9AJ",
+    "email": "[CY] Email: data.compliance@justice.gov.uk",
+    "commissioner": {
+      "canAlso": "[CY] You can also complain to the",
+      "link": "[CY] Information Commissioner’s Office",
+      "notSatisifed": "[CY] if you’re not satisfied with our response or believe we are not processing your personal data lawfully."
+    }
+  },
+  "appealBenefit": {
+    "title": "[CY] Using the Appeal a benefit decision service",
+    "personalData": {
+      "title": "[CY] The personal data we need",
+      "weAskFor": "[CY] When you use the appeal a benefit decision service we ask for:",
+      "yourDetail1": "[CY] your name",
+      "yourDetail2": "[CY] your date of birth",
+      "yourDetail3": "[CY] your email or mobile phone number",
+      "yourDetail4": "[CY] your National Insurance Number",
+      "yourDetail5": "[CY] information from the Mandatory Reconsideration Notice",
+      "yourDetail6": "[CY] information on any support you need for a hearing, if you attend one",
+      "yourDetail7": "[CY] information on your availability for a hearing, if you attend one",
+      "rep": "[CY] If you have a representative, we will ask for:",
+      "repDetail1": "[CY] their name",
+      "repDetail2": "[CY] their contact details",
+      "onBehalf": "[CY] If you are appointee, you will need to provide information about the person who you are appealing on behalf of, including:",
+      "theirDetail1": "[CY] their name",
+      "theirDetail2": "[CY] their National Insurance number"
+    },
+    "notifications": {
+      "title": "[CY] Receiving notifications",
+      "receive": "[CY] As part of your appeal we’ll ask if you want to receive text message and email notifications to keep you updated with your appeal.",
+      "cancel": "[CY] You can cancel text messages by following the steps mentioned in the text message, and you can cancel emails by following the steps mentioned in the emails.",
+      "updates": {
+        "rep": "[CY] If you have asked for your named representative to receive updates on your appeal, then we will share your data with them. If you want your representative to stop receiving notifications then you need to",
+        "link": "[CY] Contact us"
+      }
+    },
+    "storing": {
+      "title": "[CY] Storing and sharing your data",
+      "shared": "[CY] Your data will be shared with the government department that made the decision you are appealing against. For example, the Department for Work and Pensions or HM Revenue and Customs. This is so that department can respond to your appeal."
+    },
+    "after": {
+      "title": "[CY] After you submit your information",
+      "deleted": "[CY] The information you submit will be deleted 2 years after the tribunal have issued their decision and the last update has been made to your appeal.",
+      "noDecision": "[CY] If the tribunal doesn’t make a decision about your appeal (for example, it is withdrawn, or both parties agree) then the information you provide will be deleted 2 years after the appeal has been closed and the last update made.",
+      "complaint": "[CY] If you make a complaint against the tribunal then information about the appeal is stored for 3 years after the last update on the complaint."
+    }
+  }
+}

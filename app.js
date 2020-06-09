@@ -3,8 +3,7 @@ require('logger').startAppInsights();
 const config = require('config');
 const express = require('express');
 const events = require('events');
-const content = require('content.en.json');
-
+const commonContent = require('commonContent.json');
 const url = require('url');
 
 const {
@@ -28,6 +27,7 @@ app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
 events.EventEmitter.defaultMaxListeners = 100;
+
 // Configure App routes.
 configureAppRoutes(app);
 
@@ -41,9 +41,9 @@ configureHelmet(app);
 configureViews(app);
 
 // Configure Nunjucks Settings
-configureNunjucks(app, content);
+configureNunjucks(app, commonContent);
 
 // Configure One Per page settings.
-configureJourney(app, content);
+configureJourney(app, commonContent);
 
 module.exports = app;

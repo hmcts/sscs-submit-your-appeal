@@ -3,18 +3,15 @@
 {% extends "layouts/question.html" %}
 
 {% block head %}
-
-<noscript>
-    <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
-</noscript>
-
-{{ super() }}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
+    {{ super() }}
 {% endblock %}
 
-
 {% block full_width %}
-{{ super() }}
-<div>
-    {% include "../components/inactivity-alert.html" %}
-</div>
+    {{ super() }}
+    <div>
+        {% include "../components/inactivity-alert.html" %}
+    </div>
 {% endblock %}

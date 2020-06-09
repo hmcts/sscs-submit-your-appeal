@@ -2,18 +2,18 @@
     <div class="govuk-header__container govuk-width-container">
         <div class="govuk-header__logo">
             <span class="govuk-header__logotype">
-                <img  src="/assets/images/hmcts-logo-compress.svg" alt="{{ i18n.general.logo }}" >
+                <img  src="/assets/images/hmcts-logo-compress.svg" alt="{{ i18n.general.logo | safe }}" >
             </span>
         </div>
         <div class="govuk-header__content">
             <a href="/" class="govuk-header__link govuk-header__link--service-name">
-                {{ navigation.title }}
+                {{ commonContent[htmlLang].serviceName | safe }}
             </a>
         </div>
         <div class="govuk-header__link--signout">
-        {% if isUserLoggedIn  %}
-            <a href="/sign-out" class="govuk-header__link govuk-header__link">Sign out</a>
-        {% endif %}
+            {% if isUserLoggedIn %}
+                <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ commonContent[htmlLang].signOut | safe }}</a>
+            {% endif %}
         </div>
     </div>
 </header>

@@ -3,9 +3,7 @@ const config = require('config');
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 module.exports = {
-
   health: '/health',
-
   monitoring: '/monitoring',
 
   errors: {
@@ -111,6 +109,7 @@ module.exports = {
     signOut: '/sign-out',
     signInBack: '/sign-in-back'
   },
+
   checkYourAppeal: '/check-your-appeal',
   confirmation: '/confirmation'
 };

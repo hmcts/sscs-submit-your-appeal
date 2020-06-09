@@ -1,0 +1,19 @@
+{
+  "titleHead": "[CY] Contact us - Appeal a benefit decision - GOV.UK",
+  "contact": {
+    "title": "[CY] Contact us",
+    "description": "[CY] Telephone support is available if you need help using this service. You can get legal advice from a representative, if you need it."
+  },
+  "englandAndWales": {
+    "title": "[CY] England and Wales",
+    "phone": "[CY] Phone: 0300 123 1142",
+    "days": "[CY] Monday to Friday, 8:30am to 5pm",
+    "callCharge": "[CY] Find out about call charges"
+  },
+  "scotland": {
+    "title": "[CY] Scotland",
+    "phone": "[CY] Phone: 0141 354 8400",
+    "days": "[CY] Monday to Friday, 8:30am to 5pm",
+    "callCharge": "[CY] Find out about call charges"
+  }
+}

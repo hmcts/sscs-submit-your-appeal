@@ -1,5 +1,5 @@
 const paths = require('paths');
-const termsAndConditionsContent = require('policy-pages/terms-and-conditions/content.en.json');
+const termsAndConditionsContent = require('steps/policy-pages/terms-and-conditions/content.en.json');
 
 Feature('Terms and Conditions Page @batch-10');
 

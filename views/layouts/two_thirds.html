@@ -1,11 +1,12 @@
 {% extends "template.njk" %}
+
 {% set htmlClasses = '' %}
 {% set bodyClasses = 'app-body-class' %}
 {% set mainClasses = 'app-main-class' %}
 {% set assetPath = '/assets' %}
-{% from "components/header/macro.njk" import govukHeader %}
+{% set htmlLang = i18n.currentLanguage if i18n.currentLanguage else "en" %}
 
-{% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
+{% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
 
 {% block headIcons %}
   {% include "components/touch-icons.html" %}
@@ -17,20 +18,21 @@
 {% endblock %}
 
 {% block beforeContent -%}
-    {% block breadcrumbs %}{% endblock %}
+  {% block breadcrumbs %}{% endblock %}
 {%- endblock %}
 
 {% block content -%}
   {% block full_width %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% block two_thirds -%}{%- endblock %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% block two_thirds -%}{%- endblock %}
+      </div>
+      <div class="govuk-grid-column-one-third">
+        {% block one_third -%}{%- endblock %}
+      </div>
     </div>
-    <div class="govuk-grid-column-one-third">
-      {% block one_third -%}{%- endblock %}
-    </div>
-  </div>
   {% endblock %}
+
   {% if allowContactUs %}
     {% include "components/contact-us.html" %}
   {% endif %}

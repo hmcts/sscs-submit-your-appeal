@@ -5,7 +5,6 @@ const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
-
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit-points/exit/Exit');
 const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
@@ -66,6 +65,11 @@ const Authenticated = require('steps/idam/authenticated/Authenticated');
 const SignOut = require('steps/idam/sign-out/SignOut');
 const SignInBack = require('steps/idam/sign-in-back/SignInBack');
 const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal');
+const Accessibility = require('steps/policy-pages/accessibility/Accessibility');
+const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
+const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
+const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
+const TermsAndConditions = require('steps/policy-pages/terms-and-conditions/TermsAndConditions');
 
 const init = [
   Entry,
@@ -165,6 +169,14 @@ const idam = [
   SignInBack
 ];
 
+const policyPages = [
+  Accessibility,
+  ContactUs,
+  CookiePolicy,
+  PrivacyPolicy,
+  TermsAndConditions
+];
+
 module.exports = concat(
   init,
   startAnAppeal,
@@ -177,5 +189,6 @@ module.exports = concat(
   hearing,
   checkYourAppeal,
   confirmation,
-  idam
+  idam,
+  policyPages
 );

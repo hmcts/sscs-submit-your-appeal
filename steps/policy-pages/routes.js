@@ -1,11 +1,11 @@
 /* eslint-disable new-cap */
 const router = require('express').Router();
 const paths = require('paths');
-const cookiePolicyContent = require('policy-pages/cookie-policy/content.en.json');
-const termsAndConditionsContent = require('policy-pages/terms-and-conditions/content.en.json');
-const privacyPolicyContent = require('policy-pages/privacy-policy/content.en.json');
-const contactUsContent = require('policy-pages/contact-us/content.en.json');
-const accessibilityContent = require('policy-pages/accessibility/content.en.json');
+const cookiePolicyContent = require('steps/policy-pages/cookie-policy/content.en.json');
+const termsAndConditionsContent = require('steps/policy-pages/terms-and-conditions/content.en.json');
+const privacyPolicyContent = require('steps/policy-pages/privacy-policy/content.en.json');
+const contactUsContent = require('steps/policy-pages/contact-us/content.en.json');
+const accessibilityContent = require('steps/policy-pages/accessibility/content.en.json');
 
 router.get(paths.policy.cookiePolicy, (req, res) => {
   res.render('cookie-policy/template.html', cookiePolicyContent);

@@ -1,3 +1,4 @@
+
 {
   "titleHead": "Accessibility statement for the 'Appeal a benefit decision' service",
   "accessibility": {
@@ -6,13 +7,11 @@
   },
   "manages": {
     "managedBy": "This website is run by HM Courts and Tribunals. We want as many people as possible to be able to use this website, so we have designed it to be accessible. For example, that means you should be able to:",
-    "abilityList": [
-      "change colours, contrast levels and fonts",
-      "zoom in up to 300% without the text spilling off the screen",
-      "navigate most of the website using just a keyboard",
-      "navigate most of the website using speech recognition software",
-      "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)"
-    ],
+    "ability1": "change colours, contrast levels and fonts",
+    "ability2": "zoom in up to 300% without the text spilling off the screen",
+    "ability3": "navigate most of the website using just a keyboard",
+    "ability4": "navigate most of the website using speech recognition software",
+    "ability5": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
     "managedByExtra1": "We’ve also made the website text as simple as possible to understand.",
     "managedByExtra2": "<a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>AbilityNet</a> has advice on making your device easier to use if you have a disability."
   },
@@ -67,13 +66,11 @@
   "regulations": {
     "title": "Non compliance with the accessibility regulations",
     "para1": "The following issues have been identified and we are working to fix these:",
-    "regulationList": [
-      "Analyse Links do not have discernible text",
-      "Images do not have alternate text",
-      "Frames do not have title attribute",
-      "ARIA input fields do not have an accessible name",
-      "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements "
-    ]
+    "regulation1": "Analyse Links do not have discernible text",
+    "regulation2": "Images do not have alternate text",
+    "regulation3": "Frames do not have title attribute",
+    "regulation4": "ARIA input fields do not have an accessible name",
+    "regulation5": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt; or &lt;template&gt; elements"
   },
   "contentNotInScope": {
     "title": "Content that’s not within the scope of the accessibility regulations",

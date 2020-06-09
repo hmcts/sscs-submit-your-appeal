@@ -2,70 +2,61 @@
 {% from "components/fields.njk" import formSection, errorClass, errorsFor %}
 {% from "components/header.njk" import header %}
 
-
-
 {% block fields %}
+  {% set defaultContent = {
+    addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Add another item',
+    itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'item',
+    noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'No items added yet',
+    itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Items',
+    hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
+    editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Add another item'
+  }
+  %}
 
-{% set defaultContent = {
-  addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Add another item',
-  itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'item',
-  noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'No items added yet',
-  itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Items',
-  hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
-  editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Add another item'
-}
-%}
+  {% if isListMode %}
+    {% block listItems %}
+      {% call formSection() %}
+        {% if not defaultContent.hideItemsListLabel %}
+          {{ header(defaultContent.itemsListLabel, size='m') }}
+        {% endif %}
 
-{% if isListMode %}
+        <dl class="govuk-summary-list">
+          {% for fieldName, item in fields.items.fields %}
+            {% call addAnotherItem(item, deleteUrl(loop.index0), editUrl(loop.index0), loop.index) %}
+              {% block item %}{{ item.value | safe }}{% endblock %}
+            {% endcall %}
+          {% else %}
+            {% call addAnotherItem(noItems=true) %}
+              {% block noItems %}
+                {{ defaultContent.noItemsMessage | safe }}
+              {% endblock %}
+            {% endcall %}
+          {% endfor %}
+        </dl>
+      {% endcall %}
 
-  {% block listItems %}
-  {% call formSection() %}
-
-    {% if not defaultContent.hideItemsListLabel %}
-      {{ header(defaultContent.itemsListLabel, size='m') }}
-    {% endif %}
-
-    <dl class="govuk-summary-list">
-      {% for fieldName, item in fields.items.fields %}
-        {% call addAnotherItem(item, deleteUrl(loop.index0), editUrl(loop.index0), loop.index) %}
-          {% block item %}{{ item.value }}{% endblock %}
-        {% endcall %}
-      {% else %}
-        {% call addAnotherItem(noItems=true) %}
-          {% block noItems %}
-            {{ defaultContent.noItemsMessage }}
-          {% endblock %}
-        {% endcall %}
-      {% endfor %}
-    </dl>
-  {% endcall %}
-
-  {% call formSection() %}
-    <a href="{{ addAnotherUrl }}" class="add-another-add-link" role="button">
-      {{ defaultContent.addAnotherLink }}
-    </a>
-  {% endcall %}
-
-  {% endblock %}
-
-{% endif %}
-
-{% if isEditMode %}
-  {% block editItem %}
-    <p class="govuk-body">This is a placeholder block.</p>
-    <p class="govuk-body">Replace it with form controls to edit the item, e.g.</p>
-    <pre>
-    {% raw %}
-    {% block editItem %}
-      {{ textbox(this.fields.item, 'Item label') }}
+      {% call formSection() %}
+        <a href="{{ addAnotherUrl }}" class="add-another-add-link" role="button">
+          {{ defaultContent.addAnotherLink | safe }}
+        </a>
+      {% endcall %}
     {% endblock %}
-    {% endraw %}
-    </pre>
-  {% endblock %}
-{% endif %}
+  {% endif %}
 
+  {% if isEditMode %}
+    {% block editItem %}
+      <p class="govuk-body">This is a placeholder block.</p>
+      <p class="govuk-body">Replace it with form controls to edit the item, e.g.</p>
+      <pre>
+      {% raw %}
+        {% block editItem %}
+        {{ textbox(this.fields.item, 'Item label') }}
+        {% endblock %}
+      {% endraw %}
+      </pre>
+    {% endblock %}
+  {% endif %}
 {% endblock %}
-
 
 {# Macro specific to this layout #}
 {% macro addAnotherItem(field, deleteUrl, editUrl, itemNumber, noItems=false) %}
@@ -77,13 +68,12 @@
     {% if deleteUrl or editUrl %}
       <dd class="govuk-summary-list__actions">
         {% if editUrl %}
-          <a href="{{ editUrl }}" class="govuk-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+          <a href="{{ editUrl }}" class="govuk-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
         {% if deleteUrl %}
-          <a href="{{ deleteUrl }}" class="govuk-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
+          <a href="{{ deleteUrl }}" class="govuk-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
       </dd>
     {% endif %}
-  </div> 
+  </div>
 {% endmacro %}
-
