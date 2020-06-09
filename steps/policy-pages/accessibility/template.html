@@ -1,9 +1,8 @@
 {% extends "components/globals.html" %}
-{% extends "layouts/two_thirds.html" %}
-{% from "components/phase_banner.njk" import phaseBanner %}
+{% extends "layouts/question.html" %}
 
-{% block pageTitle %}{{ titleHead | safe }}{% endblock %}
-{% set title = cookies.title | safe %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.accessibility.title | safe %}
 
 {% block two_thirds %}
     <h1 class="govuk-heading-l">{{ content.accessibility.title | safe }}</h1>
@@ -36,9 +35,9 @@
         <p class="govuk-body govuk-!-margin-bottom-2">
             <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.England.charges | safe }}</a>
         </p>
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{telephone.Scotland.desc | safe }}</h3>
-        <p class="govuk-body govuk-!-margin-bottom-0">{{telephone.Scotland.phone | safe }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">{{telephone.Scotland.availability | safe }}</p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.Scotland.desc | safe }}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.Scotland.phone | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.Scotland.availability | safe }}</p>
         <p class="govuk-body">
             <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.Scotland.charges | safe }}</a>
         </p>
