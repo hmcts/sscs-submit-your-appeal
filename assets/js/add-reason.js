@@ -4,7 +4,8 @@ import $ from 'jquery';
 import fieldTemplates from './../../views/components/fields.njk';
 import errorSummary from './../../views/components/errors.njk';
 import { flatten, includes } from 'lodash-es';
-import content from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
+import contentEn from './../../steps/reasons-for-appealing/reason-for-appealing/content.en';
+import contentCy from './../../steps/reasons-for-appealing/reason-for-appealing/content.cy';
 
 class AddReason {
   constructor() {
@@ -16,6 +17,7 @@ class AddReason {
     this.textareaField = '';
     this.errorSummary = '';
     this.items = [];
+    this.content = $('html').attr('lang') === 'en' ? contentEn : contentCy;
 
     $('.add-another-add-link').before(`<div id="${this.formId}"></div>`);
 
@@ -31,17 +33,17 @@ class AddReason {
   }
 
   buildForm() {
-    const hasNoReasonsError = $(`.govuk-error-summary__list:contains(${content.listError})`).length;
+    const hasNoReasonsError = $(`.govuk-error-summary__list:contains(${this.content.listError})`).length;
     // eslint-disable-next-line arrow-body-style
     const values = this.items.map((item, index) => ({
       index,
       whatYouDisagreeWith: {
         value: item['item.whatYouDisagreeWith'].trim(),
-        errors: index === 0 && hasNoReasonsError ? [content.listError] : []
+        errors: index === 0 && hasNoReasonsError ? [this.content.listError] : []
       },
       reasonForAppealing: {
         value: item['item.reasonForAppealing'].trim(),
-        errors: index === 0 && hasNoReasonsError ? [content.listError] : []
+        errors: index === 0 && hasNoReasonsError ? [this.content.listError] : []
       }
     }));
 
@@ -253,7 +255,7 @@ class AddReason {
 
   isMinCharacterError(validationErrors) {
     const errors = validationErrors.map(error => error.errors[0]);
-    const contentErrors = Object.values(content.fields).map(field => field.error.notEnough);
+    const contentErrors = Object.values(this.content.fields).map(field => field.error.notEnough);
     let hasError = false;
     $.each(errors, (index, error) => {
       hasError = includes(contentErrors, error);

@@ -2,7 +2,7 @@ const rp = require('request-promise');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
 const { buildConcatenatedAddress } = require('./helper');
-const content = require('./content.en.json');
+const i18next = require('i18next');
 const customFieldValidations = require('./customFieldValidations.js');
 const { text } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
@@ -27,6 +27,9 @@ class Controller {
   }
 
   schemaBuilder(fields) {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     if (this.isManualSession()) {
       this.manualFields();
     }
@@ -239,9 +242,14 @@ class Controller {
 
   // eslint-disable-next-line complexity
   async init(callBack) {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     const req = this.page.req;
     const page = this.page;
+
     page.postCodeContent = content;
+
     await this.setPageState(page);
     if (req.body.submitType === 'lookup') {
       this.resetSuggestions();

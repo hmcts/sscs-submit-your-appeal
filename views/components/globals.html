@@ -2,12 +2,12 @@
 {% from "footer/macro.njk" import govukFooter %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(commonContent[currentLanguage], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
     {% if not hideBackButton %}
 <<<<<<< HEAD
-        <a class="govuk-back-link" href="#">{{ commonContent[currentLanguage].back | safe }}</a>
+        <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
 =======
         <a class="govuk-back-link" href="#">Back</a>
 >>>>>>> WLA-557-Hide-Webchat-From-Welsh
@@ -56,23 +56,23 @@
             items: [
                 {
                     href: "https://hmcts-access.service.gov.uk/contact-us",
-                    text: commonContent[currentLanguage].footer.contactUs | safe
+                    text: commonContent[htmlLang].footer.contactUs | safe
                 },
                 {
                     href: "/accessibility",
-                    text: commonContent[currentLanguage].footer.accessibility | safe
+                    text: commonContent[htmlLang].footer.accessibility | safe
                 },
                 {
                     href: "/cookie-policy",
-                    text: commonContent[currentLanguage].footer.cookies | safe
+                    text: commonContent[htmlLang].footer.cookies | safe
                 },
                 {
                     href: "/terms-and-conditions",
-                    text: commonContent[currentLanguage].footer.termsAndConditions | safe
+                    text: commonContent[htmlLang].footer.termsAndConditions | safe
                 },
                 {
                     href: "/privacy-policy",
-                    text: commonContent[currentLanguage].footer.privacyPolicy | safe
+                    text: commonContent[htmlLang].footer.privacyPolicy | safe
                 }
             ]
         }
@@ -83,7 +83,7 @@
     <script src="{{ asset_path }}vendors~main.js" type="text/javascript"></script>
     <script src="{{ asset_path }}main.js" type="text/javascript"></script>
     <script src="{{ asset_path }}hmcts-webchat.js"></script>
-    {% if webChatEnabled and i18n.currentLanguage == "en" %}
+    {% if webChatEnabled and i18n.htmlLang == "en" %}
         <script>
             /*
               * webchat_init() has been developed by CTSC and is defined in hmcts-webchat.js
@@ -98,13 +98,13 @@
               tenant: '{{ webChat.tenant }}',
               channel: '{{ webChat.channel }}',
               buttonContainerId: 'ctsc-web-chat',
-              textChatDown: '{{ commonContent[currentLanguage].contactUs.webchat.textChatDown | safe }}',
-              textChatWithAnAgent: '{{ commonContent[currentLanguage].contactUs.webchat.textChatWithAnAgent | safe }}',
-              textNoAgentsAvailable: '{{ commonContent[currentLanguage].contactUs.webchat.textNoAgentsAvailable | safe }}',
-              textAllAgentsBusy: '{{ commonContent[currentLanguage].contactUs.webchat.textAllAgentsBusy | safe }}',
-              textChatClosed : '{{ commonContent[currentLanguage].contactUs.webchat.textChatClosed | safe }}',
-              textChatAlreadyOpen: '{{ commonContent[currentLanguage].contactUs.webchat.textChatAlreadyOpen | safe }}',
-              textAdditional: '{{ commonContent[currentLanguage].contactUs.webchat.textAdditional | safe }}',
+              textChatDown: '{{ commonContent[htmlLang].contactUs.webchat.textChatDown | safe }}',
+              textChatWithAnAgent: '{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}',
+              textNoAgentsAvailable: '{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}',
+              textAllAgentsBusy: '{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}',
+              textChatClosed : '{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}',
+              textChatAlreadyOpen: '{{ commonContent[htmlLang].contactUs.webchat.textChatAlreadyOpen | safe }}',
+              textAdditional: '{{ commonContent[htmlLang].contactUs.webchat.textAdditional | safe }}',
               stylesheetURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat.css',
               busHandlerURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat-busHandler.js',
               btnNoAgents: '{{ webChat.btnNoAgents }}',

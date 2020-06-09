@@ -1,9 +1,11 @@
+/* eslint-disable max-lines */
 /* eslint-disable consistent-return */
 /* eslint-disable operator-linebreak */
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-len */
+
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
 const { text, object } = require('@hmcts/one-per-page/forms');
@@ -21,7 +23,7 @@ const moment = require('moment');
 const request = require('request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
-const content = require('./content.en.json');
+const i18next = require('i18next');
 const sections = require('steps/check-your-appeal/sections');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
@@ -231,6 +233,9 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   get field() {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     return object({
       uploadEv: text.joi(
         content.fields.uploadEv.error.required,
@@ -277,6 +282,9 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   validateList(list) {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     return list.check(content.noItemsError, arr => arr.length > 0);
   }
 

@@ -6,7 +6,7 @@
 {% block pageTitle %}{{ title | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(commonContent[currentLanguage], feedbackLink + urlPath) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
