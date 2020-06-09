@@ -17,7 +17,7 @@ describe('TermsAndConditions.js', () => {
       });
 
       expect(cantAppeal.middleware).to.be.an('array');
-      expect(cantAppeal.middleware).to.have.length(9);
+      expect(cantAppeal.middleware).to.have.length(5);
       expect(cantAppeal.middleware).to.include(checkWelshToggle);
     });
   });

@@ -1,4 +1,4 @@
-const { ExitPoint, Question } = require('@hmcts/one-per-page');
+const { ExitPoint, Page } = require('@hmcts/one-per-page');
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
 const { METHOD_NOT_ALLOWED } = require('http-status-codes');
@@ -31,12 +31,14 @@ class shimSessionInterstitial extends Interstitial {
   }
 }
 
-class shimSessionStaticPage extends Question {
+class shimSessionStaticPage extends Page {
   handler(req, res) {
-    delete this.req.session.featureToggles;
-    res.render(this.template, this.locals, (error, html) => {
-      this.res.send(html);
-    });
+    if (req.method === 'GET') {
+      res.render(this.template, this.locals, (error, html) => {
+        delete this.req.session.featureToggles;
+        this.res.send(html);
+      });
+    }
   }
 }
 
