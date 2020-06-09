@@ -4,7 +4,7 @@
       {{contactUs.title}}
     </span>
     </summary>
-    {% if webChatEnabled %}
+    {% if webChatEnabled and i18n.currentLanguage == "en" %}
         <div class="govuk-details__text">
          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{contactUs.webchat.title}}</h2>
          <p class="govuk-body govuk-!-margin-bottom-0">{{contactUs.webchat.desc}}</p>
