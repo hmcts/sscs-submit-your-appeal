@@ -65,7 +65,6 @@ const Authenticated = require('steps/idam/authenticated/Authenticated');
 const SignOut = require('steps/idam/sign-out/SignOut');
 const SignInBack = require('steps/idam/sign-in-back/SignInBack');
 const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal');
-
 const Accessibility = require('steps/policy-pages/accessibility/Accessibility');
 const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');

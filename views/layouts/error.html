@@ -18,40 +18,48 @@
     </p>
 
     {% if nextSteps %}
-    <p class="govuk-body">
-        You can either:
+        <p class="govuk-body">
+            You can either:
         <ul class="govuk-list govuk-list--bullet">
-        {% for option in nextSteps %}
-            <li>{{ option | safe }}</li>
-        {% endfor %}
+            {% for option in nextSteps %}
+                <li>{{ option | safe }}</li>
+            {% endfor %}
         </ul>
-    </p>
+        </p>
     {% endif %}
 
     {% if error %}
-    {% if settings.env == 'development' %}
-    <div class="govuk-form-group--error">
-        <label>
-            <span class="govuk-label--s">Error Message</span>
-            <span class="govuk-hint">The error message will only display in development mode</span>
-            <span>{{ error }}</span>
-        </label>
-    </div>
-    {% endif %}
+        {% if settings.env == 'development' %}
+            <div class="govuk-form-group--error">
+                <label>
+                    <span class="govuk-label--s">Error Message</span>
+                    <span class="govuk-hint">The error message will only display in development mode</span>
+                    <span>{{ error }}</span>
+                </label>
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
 {% set footerLinks = [
     {
-        href: "/cookie",
-        text: "Cookies"
+        href: "https://hmcts-access.service.gov.uk/contact-us",
+        text: commonContent[htmlLang].footer.contactUs | safe
+    },
+    {
+        href: "/accessibility",
+        text: commonContent[htmlLang].footer.accessibility | safe
+    },
+    {
+        href: "/cookie-policy",
+        text: commonContent[htmlLang].footer.cookies | safe
     },
     {
         href: "/terms-and-conditions",
-        text: "Terms and conditions"
+        text: commonContent[htmlLang].footer.termsAndConditions | safe
     },
     {
         href: "/privacy-policy",
-        text: "Privacy Policy"
+        text: commonContent[htmlLang].footer.privacyPolicy | safe
     }
 ] %}

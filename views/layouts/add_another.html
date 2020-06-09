@@ -48,11 +48,11 @@
       <p class="govuk-body">This is a placeholder block.</p>
       <p class="govuk-body">Replace it with form controls to edit the item, e.g.</p>
       <pre>
-      {% raw %}
-      {% block editItem %}
-        {{ textbox(this.fields.item, 'Item label') }}
-      {% endblock %}
-      {% endraw %}
+        {% raw %}
+          {% block editItem %}
+            {{ textbox(this.fields.item, 'Item label') }}
+          {% endblock %}
+        {% endraw %}
       </pre>
     {% endblock %}
   {% endif %}
@@ -77,4 +77,3 @@
     {% endif %}
   </div>
 {% endmacro %}
-

@@ -31,15 +31,15 @@
       {% if section.title and _sections|length > 1 %}
         {{ header(section.title, size='m') }}
       {% endif %}
-        {% for part in section.completedAnswers %}
-          {% if not part.hide %}
-            {% if part.html %}
-              {{ part.html | safe }}
-            {% else %}
-              {{ answer(part.question, part.answer, part.url, part.id) }}
-            {% endif %}
+      {% for part in section.completedAnswers %}
+        {% if not part.hide %}
+          {% if part.html %}
+            {{ part.html | safe }}
+          {% else %}
+            {{ answer(part.question, part.answer, part.url, part.id) }}
           {% endif %}
-        {% endfor %}
+        {% endif %}
+      {% endfor %}
     {% endif %}
   {% endfor %}
 

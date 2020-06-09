@@ -11,9 +11,9 @@
             </a>
         </div>
         <div class="govuk-header__link--signout">
-        {% if isUserLoggedIn %}
-            <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ commonContent[htmlLang].signOut | safe }}</a>
-        {% endif %}
+            {% if isUserLoggedIn %}
+                <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ commonContent[htmlLang].signOut | safe }}</a>
+            {% endif %}
         </div>
     </div>
 </header>
