@@ -1,5 +1,4 @@
 const { shimSessionStaticPage } = require('middleware/shimSession');
-const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
@@ -13,10 +12,6 @@ class ContactUs extends shimSessionStaticPage {
       ...super.middleware,
       checkWelshToggle
     ];
-  }
-
-  next() {
-    return goTo(this.journey.steps.contactUs);
   }
 }
 

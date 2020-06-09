@@ -1,4 +1,4 @@
-const content = require('content.en');
+const content = require('commonContent.en');
 const paths = require('paths');
 
 Feature('Error Pages @batch-08');
