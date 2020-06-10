@@ -1,0 +1,20 @@
+{
+  "titleHead": "[CY] Bilingual documentation - Appeal a benefit decision - GOV.UK",
+  "title": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
+  "question": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
+  "summary": "[CY] If you don’t need your document to be translated to Welsh language, please choose No.",
+  "answerNo": "[CY] All documents will be in English.",
+
+  "fields": {
+    "languagePreference": {
+      "yes": "[CY] Yes",
+      "no": "[CY] No",
+      "errors": {
+        "required": "[CY] Select ‘yes’ if you need your documents to be translated to Welsh."
+      }
+    }
+  },
+  "cya": {
+    "languagePreference": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?"
+  }
+}
