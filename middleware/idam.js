@@ -30,6 +30,7 @@ const setArgsFromRequest = req => {
   // clone args so we don't modify the global idamArgs
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
+  args.language = (req.query && req.query.lng) ? req.query.lng : 'en';
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
 
   args.state = () =>
