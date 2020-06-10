@@ -33,6 +33,7 @@ After(I => {
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
   Scenario(`Appellant has a MRN that is over ${obj.label}`, I => {
     I.wait(2);
+    // I.chooseLanguagePreference(testData.languagePreference);
     I.enterBenefitTypeAndContinue(testData.benefitType.code);
     I.enterPostcodeAndContinue(testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(isAppointee.no);

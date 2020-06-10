@@ -1,0 +1,29 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
+{% from "components/toggle_help.njk" import toggleHelp %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
+{% set hideBackButton = true %}
+
+{% block fields %}
+    <div id="languagePreference">
+        <p class="govuk-body">{{ content.summary | safe }}</p>
+
+        {% call formSection() %}
+            {{ selectionButtons(
+                fields.languagePreference,
+                content.question,
+                hint = '',
+                options = [
+                    { label: content.fields.languagePreference.yes, value: "yes" },
+                    { label: content.fields.languagePreference.no,  value: "no", target: "noWelsh" }
+                ])
+            }}
+            <div class="panel js-hidden" id="noWelsh">
+                <p class="govuk-body">{{ content.answerNo | safe }}</p>
+            </div>
+        {% endcall %}
+    </div>
+{% endblock %}
