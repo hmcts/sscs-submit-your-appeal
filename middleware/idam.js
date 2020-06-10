@@ -3,6 +3,7 @@ const idamExpressMiddlewareMock = require('mocks/services/idam');
 const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
+const i18next = require('i18next');
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
@@ -27,10 +28,11 @@ if (isDevMode && useMockIdam) {
 }
 
 const setArgsFromRequest = req => {
+  const sessionLanguage = i18next.language;
   // clone args so we don't modify the global idamArgs
   const args = Object.assign({}, idamArgs);
   args.hostName = req.hostname;
-  args.language = (req.query && req.query.lng) ? req.query.lng : 'en';
+  args.language = sessionLanguage ? sessionLanguage : 'en';
   args.redirectUri = `${protocol}://${req.get('host') + config.paths.authenticated}`;
 
   args.state = () =>
