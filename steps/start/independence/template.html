@@ -31,7 +31,7 @@
                     <p class="govuk-body-l">{{ content.separate | safe }}</p>
                 {% endblock %}
 
-                <input class="govuk-button" type="submit" value="Continue">
+                <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue | safe }}">
             </form>
         </div>
     </div>
