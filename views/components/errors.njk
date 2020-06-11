@@ -7,7 +7,7 @@
         {% set errors = (errors.push({text: error.message, href: '#' + error.id}), errors) %}
     {% endfor %}
     {{ govukErrorSummary({
-      titleText: title,
+      titleText: title | safe,
       errorList: errors
     }) }}
   {%- endif -%}
