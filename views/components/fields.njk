@@ -17,7 +17,7 @@
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') }}</textarea>
+    <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') | safe }}</textarea>
   </div>
 {% endmacro %}
 
@@ -35,11 +35,11 @@
 #}
 {% macro textbox(field, label, hint=false, hideLabel=false) %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label }}</label>
+    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
     {%- if hint %}
       <span class="govuk-hint">
-        {{ hint }}
+        {{ hint | safe }}
       </span>
     {%- endif %}
 
@@ -48,7 +48,7 @@
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
-           {% if field.value %}value="{{ field.value }}"{% endif %}>
+           {% if field.value %}value="{{ field.value | safe }}"{% endif %}>
   </div>
 {% endmacro %}
 
@@ -59,7 +59,7 @@
   <input type="hidden"
          name="{{ field.name }}"
          id="{{ field.id }}"
-         {% if field.value or value %}value="{{ value | default(field.value) }}"{% endif %}>
+         {% if field.value or value %}value="{{ value | default(field.value) | safe }}"{% endif %}>
 {% endmacro %}
 
 
@@ -96,7 +96,7 @@
 {% macro selectionButton(field,
                          option={},
                          type='radio') %}
-  {% set option_value = option.value or option.label|lower %}
+  {% set option_value = option.value or option.label | lower %}
   {% set option_disabled = option.disabled or false %}
   {% set option_description = option.description or false %}
 
@@ -128,10 +128,10 @@
            class="{{ typeStyle }}__input">
     {% if option.label -%}
       <label for="{{ field.id }}-{{ option_value }}" class="govuk-label {{ typeStyle }}__label">
-        {{ option.label }}
+        {{ option.label | safe }}
         {% if option_description %}
             <span class="choice-description">
-              {{ option.description }}
+              {{ option.description | safe }}
             </span>
         {% endif %}
       </label>
@@ -174,11 +174,11 @@
   <div class="govuk-form-group {{ errorClass(field) }} {{ groupClass }}">
     <fieldset class="govuk-fieldset" id="{{ field.id }}">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl {% if hideQuestion %}govuk-visually-hidden{% endif %}">
-          <h2 class="govuk-heading-m">{{ question }}</h2>
+          <h2 class="govuk-heading-m">{{ question | safe }}</h2>
       </legend>
       {% if hint -%}
         <span id="{{ field.id }}-hint" class="hint-text">
-          {{ hint }}
+          {{ hint | safe }}
         </span>
       {%- endif %}
       {{ errorsFor(field) }}
@@ -223,10 +223,10 @@
 <div class="govuk-form-group {{ errorClass(field) }}">
   <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
          for="{{ field.id }}">
-    {{ label }}
+    {{ label | safe }}
     {%- if hint %}
     <span class="hint-text">
-      {{ hint }}
+      {{ hint | safe }}
     </span>
     {%- endif %}
   </label>
@@ -255,7 +255,7 @@
           {% endif %}
           {% if option_value %}
           value="{{ option_value }}"
-          {% endif %}>{{ option.label }}</option>
+          {% endif %}>{{ option.label | safe }}</option>
     {%- endfor %}
   </select>
 </div>
@@ -326,11 +326,11 @@
 
 {% macro errorsFor(field) -%}
   {% if field.errors %}
-  {% for error in field.errors -%}
-    <span class="govuk-error-message">
-      <span class="govuk-visually-hidden">Error:</span> {{ error | safe}}
-    </span>
-  {%- endfor %}
+    {% for error in field.errors -%}
+      <span class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> {{ error | safe }}
+      </span>
+    {%- endfor %}
   {% endif %}
 {%- endmacro %}
 
@@ -356,7 +356,7 @@
 #}
 {% macro fileupload(field, label="Upload file", acceptFileTypes="") %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label for="{{ field.id }}">{{ label }}</label>
+    <label for="{{ field.id }}">{{ label | safe }}</label>
     {{ errorsFor(field) }}
     <input name="{{ field.name }}" id="{{ field.id }}" type="file" accept="{{ acceptFileTypes }}"  />
   </div>
