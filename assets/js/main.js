@@ -45,7 +45,7 @@ function initAutocomplete() {
             return null;
           }
 
-          const options = Array.from(select.options).map(opt => opt.value);
+          const options = Array.from(select.options).map(opt => opt.label);
 
           const startingWithLetter = remove(options, opt =>
             opt.match(new RegExp(`^${query}.+`, 'i')));
