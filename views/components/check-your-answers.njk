@@ -1,29 +1,29 @@
-{% macro answer(question, answer, url, id) %}
-<div class="govuk-summary-list">
-  <dl class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
-    <dt class="govuk-summary-list__key">
-      {{ question | safe }}
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {% if caller %}
-        {{ caller() }}
-      {% else %}
-        {% if isArray(answer) %}
-          <ul class="govuk-list">
-            {% for line in answer %}
-              <li>{{ line | safe }}</li>
-            {% endfor %}
-          </ul>
+{% macro answer(question, answer, url, id, commonContent) %}
+  <div class="govuk-summary-list">
+    <dl class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
+      <dt class="govuk-summary-list__key">
+        {{ question | safe }}
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {% if caller %}
+          {{ caller() }}
         {% else %}
-          {{ answer | safe }}
-        {% endif%}
-      {% endif %}
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="{{ url }}">
-        {{ commonContent[htmlLang].change | safe }}<span class="govuk-visually-hidden"> {{ question | safe }}</span>
-      </a>
-    </dd>
-  </dl>
-</div>
+          {% if isArray(answer) %}
+            <ul class="govuk-list">
+              {% for line in answer %}
+                <li>{{ line | safe }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {{ answer | safe }}
+          {% endif%}
+        {% endif %}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="{{ url }}">
+          {{ commonContent.change | safe }} <span class="govuk-visually-hidden">{{ question | safe }}</span>
+        </a>
+      </dd>
+    </dl>
+  </div>
 {% endmacro %}
