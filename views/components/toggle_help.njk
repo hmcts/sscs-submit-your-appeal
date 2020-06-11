@@ -7,17 +7,15 @@
 
   Displays a togglable answer to a question
 #}
-
 {% macro toggleHelp(link, text, id, openByDefault = false) %}
-
     <details role="group">
         <summary role="button" aria-expanded="{{ openByDefault.toString() }}">
-            <span class="govuk-link">{{ link }}</span></summary>
+            <span class="govuk-link">{{ link | safe }}</span>
+        </summary>
         <div id="{{ id }}-0" aria-hidden="{{ not openByDefault.toString() }}">
             <p class="govuk-body">
-                {{ text }}
+                {{ text | safe }}
             </p>
         </div>
     </details>
-
 {% endmacro %}

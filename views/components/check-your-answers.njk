@@ -2,7 +2,7 @@
 <div class="govuk-summary-list">
   <dl class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
     <dt class="govuk-summary-list__key">
-      {{ question }}
+      {{ question | safe }}
     </dt>
     <dd class="govuk-summary-list__value">
       {% if caller %}
@@ -11,19 +11,19 @@
         {% if isArray(answer) %}
           <ul class="govuk-list">
             {% for line in answer %}
-              <li>{{ line }}</li>
+              <li>{{ line | safe }}</li>
             {% endfor %}
           </ul>
         {% else %}
-          {{ answer }}
+          {{ answer | safe }}
         {% endif%}
       {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="{{ url }}">
-        Change<span class="govuk-visually-hidden"> {{ question }}</span>
+        {{ commonContent[htmlLang].change | safe }}<span class="govuk-visually-hidden"> {{ question | safe }}</span>
       </a>
     </dd>
   </dl>
-</div>  
+</div>
 {% endmacro %}

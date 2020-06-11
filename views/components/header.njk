@@ -12,13 +12,13 @@
   h2 to comply with accessibility header rules as the error summary contains an h1 element
 #}
 {% macro header(heading, section='', size='xl', fieldsValidated=false, fieldsValid=true) %}
-<h1 class="govuk-heading-{{ size }}">
+  <h1 class="govuk-heading-{{ size }}">
 
-{% if section != '' and (size == 'xl' or size == 'l') %}
-  <span class="heading-secondary">
-    {{ section }}
-  </span>
-{% endif %}
-  {{ heading }}
-</h1>
+  {% if section != '' and (size == 'xl' or size == 'l') %}
+    <span class="heading-secondary">
+      {{ section | safe }}
+    </span>
+    {% endif %}
+    {{ heading | safe }}
+  </h1>
 {% endmacro %}
