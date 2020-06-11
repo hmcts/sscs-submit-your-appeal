@@ -9,6 +9,6 @@
     <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason | safe }}</p>
 
     {% call formSection() %}
-        {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true)|safe }}
+        {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true) }}
     {% endcall %}
 {% endblock %}
