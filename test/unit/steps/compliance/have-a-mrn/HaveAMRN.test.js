@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('HaveAMRN.js', () => {
   let haveAMRN = null;
@@ -52,6 +53,14 @@ describe('HaveAMRN.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(haveAMRN.middleware).to.be.an('array');
+      expect(haveAMRN.middleware).to.have.length(11);
+      expect(haveAMRN.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -3,23 +3,18 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block head %}
-{{ super() }}
+    {{ super() }}
     <noscript>
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
 {% endblock %}
 
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
-
-
 {% block full_width %}
     <div class="govuk-grid-row">
-
         <div class="banner-blue">
             {{ header(title, size='xl') }}
         </div>
@@ -29,22 +24,18 @@
 
                 {% block fields %}
                     {% if allowUC and benefitType == 'UC' %}
-                        <p class="govuk-body-l">{{ content.UCreviewed }}</p>
+                        <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
                     {% else %}
-                        <p class="govuk-body-l">{{ content.reviewed }}</p>
+                        <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                     {% endif %}
-                    <p class="govuk-body-l">{{ content.separate }}</p>
+                    <p class="govuk-body-l">{{ content.separate | safe }}</p>
                 {% endblock %}
 
                 <input class="govuk-button" type="submit" value="Continue">
             </form>
-
         </div>
-
     </div>
-
     <div>
         {% include "components/inactivity-alert.html" %}
     </div>
 {% endblock %}}
-

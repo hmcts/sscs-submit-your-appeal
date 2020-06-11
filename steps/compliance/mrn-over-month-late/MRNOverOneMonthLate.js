@@ -9,6 +9,7 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
 const config = require('config');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -27,6 +28,13 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
         Joi.string().min(MIN_CHAR_COUNT)
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {
