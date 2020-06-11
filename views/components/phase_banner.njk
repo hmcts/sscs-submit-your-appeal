@@ -24,7 +24,7 @@
 
         {{ govukPhaseBanner({
             tag: {
-                text: content.phaseBar.phase
+                text: content.phaseBar.phase | safe
             },
             html: html
         }) }}
