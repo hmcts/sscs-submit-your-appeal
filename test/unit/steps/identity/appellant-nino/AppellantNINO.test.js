@@ -2,6 +2,7 @@ const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('AppellantNINO.js', () => {
   let appellantNINO = null;
@@ -65,6 +66,14 @@ describe('AppellantNINO.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(appellantNINO.middleware).to.be.an('array');
+      expect(appellantNINO.middleware).to.have.length(11);
+      expect(appellantNINO.middleware).to.include(checkWelshToggle);
     });
   });
 

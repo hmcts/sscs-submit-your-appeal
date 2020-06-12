@@ -3,6 +3,7 @@
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('NoRepresentativeDetails.js', () => {
   let noRepresentativeDetails = null;
@@ -36,6 +37,14 @@ describe('NoRepresentativeDetails.js', () => {
 
     it('should contain 0 fields', () => {
       expect(Object.keys(fields).length).to.equal(0);
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(noRepresentativeDetails.middleware).to.be.an('array');
+      expect(noRepresentativeDetails.middleware).to.have.length(11);
+      expect(noRepresentativeDetails.middleware).to.include(checkWelshToggle);
     });
   });
 

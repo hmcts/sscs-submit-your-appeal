@@ -17,10 +17,10 @@ const customJoi = require('utils/customJoiSchemas');
 const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
 const { decode } = require('utils/stringUtils');
-
-const usePostcodeChecker = config.get('postcodeChecker.enabled');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 const PCL = require('components/postcodeLookup/controller');
 
+const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
@@ -144,7 +144,8 @@ class AppellantContactDetails extends SaveToDraftStore {
     return [
       ...super.middleware,
       AppellantContactDetails.isEnglandOrWalesPostcode,
-      AppellantContactDetails.saveSession
+      AppellantContactDetails.saveSession,
+      checkWelshToggle
     ];
   }
 
