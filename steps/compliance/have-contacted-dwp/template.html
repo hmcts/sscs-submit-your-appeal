@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% if allowUC and benefitType == 'UC' %}
     {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes %}

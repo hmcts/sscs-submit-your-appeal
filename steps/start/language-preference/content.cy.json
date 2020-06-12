@@ -1,20 +1,20 @@
 {
-  "titleHead": "[CY] Bilingual documentation - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
-  "question": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
-  "summary": "[CY] If you don’t need your document to be translated to Welsh language, please choose No.",
-  "answerNo": "[CY] All documents will be in English.",
+  "titleHead": "Dewis iaith",
+  "title": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
+  "question": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
+  "summary": "Os nad ydych eisiau i’ch dogfennau fod yn Gymraeg, dewiswch ‘nac ydw’.",
+  "answerNo": "Bydd yr holl ddogfennau yn Saesneg.",
 
   "fields": {
     "languagePreference": {
-      "yes": "[CY] Yes",
-      "no": "[CY] No",
+      "yes": "Ydw",
+      "no": "Nac ydw",
       "errors": {
-        "required": "[CY] Select ‘yes’ if you need your documents to be translated to Welsh."
+        "required": "Dewiswch ‘ydw’ os ydych eisiau i’ch dogfennau fod yn Gymraeg."
       }
     }
   },
   "cya": {
-    "languagePreference": "[CY] Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?"
+    "languagePreference": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?"
   }
 }

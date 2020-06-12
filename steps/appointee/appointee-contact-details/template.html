@@ -2,7 +2,7 @@
 {% from "components/fields.njk" import textbox, formSection %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -23,7 +23,7 @@
             {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
 
         {% endcall %}
-        
+
         {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
 
