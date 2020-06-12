@@ -5,6 +5,7 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
 const benefitTypes = require('steps/start/benefit-type/types');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('MRNDate.js', () => {
   let mrnDate = null;
@@ -71,6 +72,14 @@ describe('MRNDate.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(mrnDate.middleware).to.be.an('array');
+      expect(mrnDate.middleware).to.have.length(11);
+      expect(mrnDate.middleware).to.include(checkWelshToggle);
     });
   });
 

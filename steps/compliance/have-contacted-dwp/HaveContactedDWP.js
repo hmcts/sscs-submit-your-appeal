@@ -7,8 +7,10 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const config = require('config');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+
 class HaveContactedDWP extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveContactedDWP;
@@ -30,6 +32,13 @@ class HaveContactedDWP extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

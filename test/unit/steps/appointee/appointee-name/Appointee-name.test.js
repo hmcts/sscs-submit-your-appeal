@@ -2,10 +2,10 @@ const { expect } = require('test/util/chai');
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('AppointeeName.js', () => {
   let appointeeName = null;
-
 
   beforeEach(() => {
     appointeeName = new AppointeeName({
@@ -80,6 +80,14 @@ describe('AppointeeName.js', () => {
     });
   });
 
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(appointeeName.middleware).to.be.an('array');
+      expect(appointeeName.middleware).to.have.length(11);
+      expect(appointeeName.middleware).to.include(checkWelshToggle);
+    });
+  });
+
   [
     'Mr,HARRY,POTTER',
     'Mr,harry,potter',
@@ -117,7 +125,6 @@ describe('AppointeeName.js', () => {
       });
     });
   });
-
 
   describe('answers() and values()', () => {
     const question = 'A Question';

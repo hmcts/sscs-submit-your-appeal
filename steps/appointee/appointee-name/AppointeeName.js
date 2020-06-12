@@ -9,6 +9,7 @@ const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
 const { decode } = require('utils/stringUtils');
 const parseFullName = require('parse-full-name').parseFullName;
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class AppointeeName extends SaveToDraftStore {
   static get path() {
@@ -45,6 +46,13 @@ class AppointeeName extends SaveToDraftStore {
         Joi.string().trim().regex(lastName)
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {
