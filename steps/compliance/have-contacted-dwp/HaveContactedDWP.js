@@ -10,6 +10,7 @@ const config = require('config');
 const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+
 class HaveContactedDWP extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveContactedDWP;
