@@ -3,7 +3,8 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block head %}
     {{ super() }}
@@ -11,8 +12,6 @@
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
 {% endblock %}
-
-{% set title = content.title | safe %}
 
 {% block full_width %}
     <div class="govuk-grid-row">
