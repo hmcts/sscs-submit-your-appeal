@@ -2,7 +2,7 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}

@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, textarea, select, selectionButton, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
@@ -16,7 +16,6 @@
         inline = false,
         type = 'checkbox'
     ) %}
-
         {{ selectionButton(
             fields.selection.interpreterLanguage.requested,
             { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
@@ -30,7 +29,6 @@
                 options = languagesList
             ) }}
         </div>
-
         {{ selectionButton(
             fields.selection.signLanguage.requested,
             { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
@@ -44,19 +42,16 @@
                 options = signLanguagesList
             ) }}
         </div>
-
         {{ selectionButton(
             fields.selection.hearingLoop.requested,
             { label: content.fields.selection.hearingLoop.requested.label, value: 'true' },
             type = 'checkbox')
         }}
-
         {{ selectionButton(
             fields.selection.accessibleHearingRoom.requested,
             { label: content.fields.selection.accessibleHearingRoom.requested.label, value: 'true' },
             type = 'checkbox')
         }}
-
         {{ selectionButton(
             fields.selection.anythingElse.requested,
             { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
@@ -66,5 +61,4 @@
             {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
         </div>
     {% endcall %}
-
 {% endblock %}

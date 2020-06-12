@@ -2,14 +2,15 @@
 {% extends "layouts/add_another.html" %}
 {% from "components/fields.njk" import formSection, fileupload %}
 
-{% block pageTitle %}{{ content.titleHead | safe }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% set pageContent = {
-addAnotherLink: addAnotherLinkContent,
-itemsListLabel: content.itemsListLabel,
-hideItemsListLabel: true
-} %}
+        addAnotherLink: addAnotherLinkContent,
+        itemsListLabel: content.itemsListLabel,
+        hideItemsListLabel: true
+    }
+%}
 
 {% if isEditMode %}
     {% set enc_type = 'multipart/form-data' %}
@@ -34,6 +35,6 @@ hideItemsListLabel: true
 {% endblock %}
 
 {% block after_form -%}
-        {% include "components/sessionTimeoutMessage.html" %}
-        {{super()}}
+    {% include "components/sessionTimeoutMessage.html" %}
+    {{super()}}
 {%- endblock %}
