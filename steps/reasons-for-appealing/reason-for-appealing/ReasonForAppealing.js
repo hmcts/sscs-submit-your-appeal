@@ -47,7 +47,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       .check(
         errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
         value => value.reasonForAppealing &&
-        isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
+          isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
   }
 

@@ -7,17 +7,16 @@
 
 {% block fields %}
     {% call formSection() %}
+        <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
-
-    {{ selectionButtons(
-        fields.doYouWantTextMsgReminders,
-        content.fields.doYouWantTextMsgReminders.label,
-        hideQuestion=true,
-        options = [
-            { label: content.fields.doYouWantTextMsgReminders.yes, value: "yes" },
-            { label: content.fields.doYouWantTextMsgReminders.no, value: "no" }
-        ])
+        {{ selectionButtons(
+            fields.doYouWantTextMsgReminders,
+            content.fields.doYouWantTextMsgReminders.label,
+            hideQuestion=true,
+            options = [
+                { label: content.fields.doYouWantTextMsgReminders.yes, value: "yes" },
+                { label: content.fields.doYouWantTextMsgReminders.no, value: "no" }
+            ])
         }}
     {% endcall %}
 {% endblock %}
