@@ -6,6 +6,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class HearingSupport extends SaveToDraftStore {
   static get path() {
@@ -19,6 +20,13 @@ class HearingSupport extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

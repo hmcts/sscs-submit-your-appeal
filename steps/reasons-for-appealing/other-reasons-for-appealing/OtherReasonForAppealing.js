@@ -6,8 +6,8 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
-
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class OtherReasonForAppealing extends SaveToDraftStore {
   static get path() {
@@ -18,6 +18,13 @@ class OtherReasonForAppealing extends SaveToDraftStore {
     return form({
       otherReasonForAppealing: text
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

@@ -12,12 +12,13 @@ const {
   signLanguageInList,
   emptyLanguageFieldValidation
 } = require('steps/hearing/arrangements/hearingArrangementsValidationUtils');
-const cyaContent = require('steps/hearing/arrangements/content.en').cya;
+const i18next = require('i18next');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const languages = require('steps/hearing/arrangements/languages');
 const signLanguages = require('steps/hearing/arrangements/signLanguages');
 const { decode } = require('utils/stringUtils');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class HearingArrangements extends SaveToDraftStore {
   static get path() {
@@ -40,6 +41,8 @@ class HearingArrangements extends SaveToDraftStore {
 
   get cyaArrangements() {
     const selectionValues = this.fields.selection.value;
+    const sessionLanguage = i18next.language;
+    const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
     const setRequiredOrNotRequired = value => value ? cyaContent.required : cyaContent.notRequired;
 
@@ -112,6 +115,13 @@ class HearingArrangements extends SaveToDraftStore {
       )
 
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   answers() {

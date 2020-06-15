@@ -4,6 +4,7 @@ const HttpStatus = require('http-status-codes');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
 const config = require('config');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
@@ -79,6 +80,14 @@ describe('CheckYourAppeal.js', () => {
       if (allowSaveAndReturn) {
         expect(arrayFilterSpy).to.be.calledOnce;
       }
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(cya.middleware).to.be.an('array');
+      expect(cya.middleware).to.have.length(12);
+      expect(cya.middleware).to.include(checkWelshToggle);
     });
   });
 

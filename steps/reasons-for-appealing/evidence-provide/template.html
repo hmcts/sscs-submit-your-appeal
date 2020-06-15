@@ -2,33 +2,26 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
+    <p class="govuk-body">{{ content.descriptionPara1 | safe }}</p>
+    <p class="govuk-body">{{ content.descriptionPara2 | safe }}</p>
 
-<p class="govuk-body">{{ content.descriptionPara1 | safe }}</p>
-<p class="govuk-body">{{ content.descriptionPara2 | safe }}</p>
-
-{% call formSection() %}
-
-{{ selectionButtons(
-    fields.evidenceProvide,
-    content.fields.evidenceProvide.label,
-    hideQuestion=false,
-    options = [
-        { label: content.fields.evidenceProvide.yes, value: "yes" },
-        { label: content.fields.evidenceProvide.no, value: "no" }
-    ])
-}}
-
-{% endcall %}
-
+    {% call formSection() %}
+        {{ selectionButtons(
+            fields.evidenceProvide,
+            content.fields.evidenceProvide.label,
+            hideQuestion=false,
+            options = [
+                { label: content.fields.evidenceProvide.yes, value: "yes" },
+                { label: content.fields.evidenceProvide.no, value: "no" }
+            ])
+        }}
+    {% endcall %}
 {% endblock %}
 
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
-     {{super()}}
+    {{super()}}
 {%- endblock %}

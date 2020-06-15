@@ -7,7 +7,8 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
-const content = require('steps/hearing/dates-cant-attend/content.en');
+const i18next = require('i18next');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const paths = require('paths');
 
@@ -27,6 +28,9 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   get addAnotherLinkContent() {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
     }
@@ -61,7 +65,17 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
     );
   }
 
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
+  }
+
   validateList(list) {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
+
     return list.check(content.listError, arr => arr.length > 0);
   }
 

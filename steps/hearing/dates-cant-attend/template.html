@@ -3,17 +3,17 @@
 {% from "components/fields.njk" import formSection, date %}
 
 {% block head %}
-{{ super() }}
-<noscript>
-    <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
-</noscript>
+    {{ super() }}
+    <noscript>
+        <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
+    </noscript>
 {% endblock %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% set title %}
-{{ content.title | safe if isListMode }}
-{{ content.titleEdit | safe if isEditMode }}
+    {{ content.title | safe if isListMode }}
+    {{ content.titleEdit | safe if isEditMode }}
 {% endset %}
 
 {% set pageContent = {
@@ -26,34 +26,33 @@
 } %}
 
 {% block full_width %}
-{{ super() }}
-<div>
-    {% include "components/inactivity-alert.html" %}
-</div>
+    {{ super() }}
+    <div>
+        {% include "components/inactivity-alert.html" %}
+    </div>
 {% endblock %}
 
 {% block item %}
-<span data-index="{{ safeId(item.id) }}">{{ item.value.format('dddd D MMMM YYYY') }}</span>
+    <span data-index="{{ safeId(item.id) }}">{{ item.value.format('dddd D MMMM YYYY') }}</span>
 {% endblock %}
 
 {% block listItems %}
-
     <div id="date-picker-content">
-        <p class="govuk-body">{{ content.datePicker.itsImportant }}</p>
-        <p class="govuk-body">{{ content.datePicker.select }} <span class="govuk-!-font-weight-bold">{{ content.datePicker.cant }}</span> {{ content.datePicker.hearing }}</p>
+        <p class="govuk-body">{{ content.datePicker.itsImportant | safe }}</p>
+        <p class="govuk-body">{{ content.datePicker.select | safe }} <span class="govuk-!-font-weight-bold">{{ content.datePicker.cant | safe }}</span> {{ content.datePicker.hearing | safe }}</p>
     </div>
     <noscript>
-        <p class="govuk-body">{{ content.nonJS.itsImportant }}</p>
-        <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
+        <p class="govuk-body">{{ content.nonJS.itsImportant | safe }}</p>
+        <p class="govuk-body">{{ content.nonJS.yourHearing | safe }}</p>
     </noscript>
 
     <div id="date-picker" class="datepicker"></div>
 
-    <h2 class="govuk-heading-m">{{ content.fields.cantAttendDate.legendList }}</h2>
+    <h2 class="govuk-heading-m">{{ content.fields.cantAttendDate.legendList | safe }}</h2>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
-  {{ date(fields.item, content.fields.cantAttendDate.legend) }}
+    <p class="govuk-body">{{ content.nonJS.yourHearing | safe }}</p>
+    {{ date(fields.item, content.fields.cantAttendDate.legend) }}
 {% endblock %}

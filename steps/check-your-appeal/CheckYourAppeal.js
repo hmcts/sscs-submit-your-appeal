@@ -1,7 +1,7 @@
 const {
   section
 } = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
+const { shimSessionSaveToDraftStoreCYA } = require('middleware/shimSession');
 const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
@@ -9,6 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -22,7 +23,7 @@ const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
-class CheckYourAppeal extends SaveToDraftStoreCYA {
+class CheckYourAppeal extends shimSessionSaveToDraftStoreCYA {
   constructor(...args) {
     super(...args);
     this.sendToAPI = this.sendToAPI.bind(this);
@@ -43,7 +44,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   get middleware() {
-    const mw = [...super.middleware];
+    const mw = [
+      ...super.middleware,
+      checkWelshToggle
+    ];
     if (this.journey.settings.useCsrfToken) {
       mw.push(csrfProtection);
     }

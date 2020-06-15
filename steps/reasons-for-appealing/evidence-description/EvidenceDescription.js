@@ -5,6 +5,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const minNumberOfCharactersInDescription = 5;
 
@@ -25,6 +26,13 @@ class EvidenceDescription extends SaveToDraftStore {
           Joi.string().min(minNumberOfCharactersInDescription)
         )
     });
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkWelshToggle
+    ];
   }
 
   values() {
