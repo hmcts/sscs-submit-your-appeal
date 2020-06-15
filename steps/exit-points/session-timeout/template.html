@@ -5,20 +5,17 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
-
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
-
     {{ header(content.title, size='l') }}
 
-    <p class="govuk-body">{{ content.ends }}</p>
-    <p class="govuk-body">{{ content.detailsDeleted }}</p>
+    <p class="govuk-body">{{ content.ends | safe }}</p>
+    <p class="govuk-body">{{ content.detailsDeleted | safe }}</p>
 
-    <a class="govuk-button" href="/start-an-appeal">{{ content.start }}</a>
-
+    <a class="govuk-button" href="/start-an-appeal">{{ content.start | safe }}</a>
 {%- endblock %}

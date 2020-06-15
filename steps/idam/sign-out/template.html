@@ -6,14 +6,14 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
-    <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
-    <p class="govuk-body" class="govuk-body">{{ content.body.para2 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para1 | safe }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para2 | safe }}</p>
     <p class="govuk-body" class="govuk-body">{{ content.body.para3 | safe }}</p>
 {% endblock %}
