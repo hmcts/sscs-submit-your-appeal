@@ -6,7 +6,7 @@
 
 {% block fields %}
     <p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
-    <p class="govuk-body">{{ content.you }}<strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant | safe }}</strong> {{ content.bringYourOwnInterpreter | safe }}</p>
+    <p class="govuk-body">{{ content.you | safe }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant | safe }}</strong> {{ content.bringYourOwnInterpreter | safe }}</p>
 
     {% call selectionButtons(
         field = fields.selection,
