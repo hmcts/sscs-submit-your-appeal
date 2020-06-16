@@ -11,11 +11,11 @@
           {% if isArray(answer) %}
             <ul class="govuk-list">
               {% for line in answer %}
-                <li>{{ line | safe }}</li>
+                <li>{{ line }}</li>
               {% endfor %}
             </ul>
           {% else %}
-            {{ answer | safe }}
+            {{ answer }}
           {% endif%}
         {% endif %}
       </dd>
