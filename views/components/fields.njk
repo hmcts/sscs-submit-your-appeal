@@ -17,7 +17,7 @@
     {% endif %}
 
     {{ errorsFor(field) }}
-    <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') | safe }}</textarea>
+    <textarea class="govuk-textarea" placeholder="{{ placeholder }}" aria-labelledby="{{ field.id }}-label" id="{{ field.id }}" name="{{ field.id }}" rows="5">{{ field.value | default('') }}</textarea>
   </div>
 {% endmacro %}
 
@@ -48,7 +48,7 @@
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
-           {% if field.value %}value="{{ field.value | safe }}"{% endif %}>
+           {% if field.value %}value="{{ field.value }}"{% endif %}>
   </div>
 {% endmacro %}
 
@@ -59,7 +59,7 @@
   <input type="hidden"
          name="{{ field.name }}"
          id="{{ field.id }}"
-         {% if field.value or value %}value="{{ value | default(field.value) | safe }}"{% endif %}>
+         {% if field.value or value %}value="{{ value | default(field.value) }}"{% endif %}>
 {% endmacro %}
 
 

@@ -13,12 +13,12 @@
     {% call formSection() %}
         {{ date(
             fields.mrnDate,
-            content.dateLegend | safe,
-            hint = content.dateHint | safe,
+            content.dateLegend,
+            hint = content.dateHint,
             labels = {
-                day: content.fields.date.day | safe,
-                month: content.fields.date.month | safe,
-                year: content.fields.date.year | safe
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
             }
         ) }}
     {% endcall %}
