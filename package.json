@@ -37,14 +37,14 @@
   "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "@hmcts/ctsc-web-chat": "^0.2.4",
-    "@hmcts/div-idam-express-middleware": "^6.5.0",
+    "@hmcts/ctsc-web-chat": "^0.3.11",
+    "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "^1.5.1",
-    "@hmcts/one-per-page": "5.0.1",
+    "@hmcts/one-per-page": "^5.3.0",
     "@hmcts/properties-volume": "^0.0.9",
     "@hmcts/uk-bank-holidays": "^1.0.1",
-    "accessible-autocomplete": "^1.6.1",
-    "applicationinsights": "^1.6.0",
+    "accessible-autocomplete": "^2.0.2",
+    "applicationinsights": "^1.7.0",
     "applicationinsights-native-metrics": "^0.0.5",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
@@ -74,6 +74,7 @@
     "jquery-modal": "^0.9.1",
     "js-base64": "^2.5.1",
     "jsdom": "^15.1.1",
+    "launchdarkly-node-server-sdk": "^5.13.1",
     "libphonenumber-js": "^1.7.19",
     "lodash": "^4.17.14",
     "lodash-es": "^4.17.14",
@@ -122,6 +123,7 @@
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.0.1",
     "puppeteer": "^1.17.0",
+    "rewire": "^4.0.1",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
@@ -129,10 +131,11 @@
     "webdriverio": "^5.10.4"
   },
   "resolutions": {
+    "assign-deep": "1.0.1",
     "braces": "^2.3.2",
+    "eslint-utils": "^1.4.1",
     "js-yaml": "3.13.1",
     "lodash": "^4.17.4",
-    "assign-deep": "1.0.1",
-    "eslint-utils": "^1.4.1"
+    "minimist": "^1.2.5"
   }
 }
