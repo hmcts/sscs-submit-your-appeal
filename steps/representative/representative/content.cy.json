@@ -1,25 +1,25 @@
 {
-  "titleHead": "Representative confirm - Appeal a benefit decision - GOV.UK",
-  "title": "Do you want to register a representative?",
-  "subtitle": "Your representative can be anyone who's helping you with your appeal and you think should be kept updated. For example, a welfare rights adviser, family member or carer.",
-  "registerList": "Registering them means they can:",
-  "info": "receive information about your appeal",
-  "evidence": "submit evidence (and see any that’s submitted)",
-  "talkToUs": "talk to us on your behalf during your appeal",
-  "phoneUp": "You can register them after you’ve submitted your appeal if you don’t have their details to hand.",
+  "titleHead": "Cadarnhau cynrychiolydd - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Ydych chi eisiau cofrestru cynrychiolydd?",
+  "subtitle": "Gall eich cynrychiolydd fod yn unrhyw un sy'n eich helpu gyda'ch apêl ac y dylid ei ddiweddaru/diweddaru yn eich barn chi. Er enghraifft, cynghorydd hawliau lles, aelod o'ch teulu neu ofalwr.",
+  "registerList": "Wrth eu cofrestru, gallant:",
+  "info": "dderbyn gwybodaeth am eich apêl",
+  "evidence": "cyflwyno tystiolaeth (a gweld unrhyw wybodaeth a gyflwynwyd)",
+  "talkToUs": "siarad â ni ar eich rhan yn ystod eich apêl",
+  "phoneUp": "Gallwch eu cofrestru ar ôl i chi gyflwyno'ch apêl os nad oes gennych eu manylion wrth law.",
   "fields": {
     "hasRepresentative": {
-      "label": "Select whether you want to register a representative or not",
-      "yes": "Yes, I want to register a representative",
-      "no": "No, I don't want to register a representative",
+      "label": "Dewiswch pa un a ydych eisiau cofrestru cynrychiolydd ai peidio",
+      "yes": "Ydw, rwyf am gofrestru cynrychiolydd",
+      "no": "Nac ydw, nid wyf am gofrestru cynrychiolydd ",
       "error": {
-        "required": "You have to say whether you want to register a representative. Select either yes or no."
+        "required": "Mae'n rhaid i chi ddweud a ydych am gofrestru cynrychiolydd ai peidio. Dewiswch naill ai ydw neu nac ydw."
       }
     }
   },
   "cya": {
     "hasRepresentative": {
-      "question": "Have a representative"
+      "question": "Mae gennyf gynrychiolydd"
     }
   }
 }

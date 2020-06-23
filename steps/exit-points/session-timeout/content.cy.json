@@ -1,7 +1,7 @@
 {
-  "titleHead": "[CY] Session timed out - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Sorry, you'll have to start again",
-  "ends": "[CY] Your session automatically ends if you don't use this service for 20 minutes.",
-  "detailsDeleted": "[CY] Your details have been deleted. We do this for your security.",
-  "start": "[CY] Start again"
+  "titleHead": "Mae eich sesiwn wedi dod i ben – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Mae’n ddrwg gennym, bydd rhaid ichi ail-ddechrau",
+  "ends": "Daw eich sesiwn i ben yn awtomatig os na fyddwch yn defnyddio'r gwasanaeth hwn am 20 munud.",
+  "detailsDeleted": "Mae eich manylion wedi cael eu dileu. Rydym yn gwneud hyn er eich diogelwch chi.",
+  "start": "Cychwyn eto"
 }

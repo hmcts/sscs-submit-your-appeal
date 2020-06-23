@@ -1,28 +1,28 @@
 {
-  "titleHead": "[CY] MRN dated - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] When is your Mandatory Reconsideration Notice (MRN) dated?",
-  "dateLegend": "[CY] Enter the date from the top right of your MRN letter",
-  "dateHint": "[CY] For example, 31 3 2017",
-  "imageAlt": "[CY] A copy of your MRN",
+  "titleHead": "Dyddiad yr MRN - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Pa ddyddiad sydd ar eich Hysbysiad Gorfodi i Ailystyried (MRN)?",
+  "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr MRN",
+  "dateHint": "Er enghraifft, 31 3 2017",
+  "imageAlt": "Copi o’ch MRN",
   "fields": {
     "date": {
-      "day": "[CY] Day",
-      "month": "[CY] Month",
-      "year": "[CY] Year",
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
       "error": {
-        "allRequired": "[CY] Enter the MRN date.",
-        "dayRequired": "[CY] You have not entered a day. Enter a day",
-        "monthRequired": "[CY] You have not entered a month. Enter a month",
-        "yearRequired": "[CY] You have not entered a year. Enter a year",
-        "invalid": "[CY] You’ve entered an invalid MRN date. Enter the MRN date",
-        "future": "[CY] You’ve entered a date in the future. Enter the MRN date",
-        "dateSameAsImage": "[CY] You have entered the date from the picture. Look at your own MRN and enter the date shown."
+        "allRequired": "Nodwch ddyddiad yr MRN.",
+        "dayRequired": "Nid ydych wedi nodi diwrnod. Nodwch ddiwrnod",
+        "monthRequired": "Nid ydych wedi nodi mis. Nodwch fis",
+        "yearRequired": "Nid ydych wedi nodi blwyddyn. Nodwch flwyddyn",
+        "invalid": "Rydych wedi nodi dyddiad MRN annilys. Nodwch ddyddiad yr MRN",
+        "future": "Rydych wedi nodi dyddiad yn y dyfodol. Nodwch ddyddiad yr MRN",
+        "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich MRN a nodwch y dyddiad a ddangosir."
       }
     }
   },
   "cya": {
     "mrnDate": {
-      "question": "[CY] Date of MRN"
+      "question": "Dyddiad yr MRN"
     }
   }
 }

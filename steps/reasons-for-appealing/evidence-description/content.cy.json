@@ -1,20 +1,20 @@
 {
-  "titleHead": "[CY] Describe the evidence - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Describe the evidence",
-  "description": "[CY] Briefly describe the evidence you've just uploaded.",
+  "titleHead": "Disgrifio’r dystiolaeth - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Disgrifiwch y dystiolaeth",
+  "description": "Yn gryno, disgrifiwch y dystiolaeth yr ydych newydd ei llwytho.",
   "fields": {
     "describeTheEvidence": {
-      "label":  "[CY] Describe the evidence",
+      "label":  "Disgrifiwch y dystiolaeth",
       "error": {
-        "tooShort": "[CY] Describe the evidence in a bit more detail",
-        "noContent": "[CY] Briefly describe the evidence you have uploaded",
-        "invalid": "[CY] You have entered an invalid character. Check what you've written and enter it again."
+        "tooShort": "Disgrifiwch y dystiolaeth mewn ychydig mwy o fanylder",
+        "noContent": "Yn gryno, disgrifiwch y dystiolaeth yr ydych newydd ei llwytho",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch beth rydych wedi'i roi a theipiwch ef eto. "
       }
     }
   },
   "cya": {
     "evidenceDescription": {
-      "question": "[CY] Evidence description"
+      "question": "Disgrifiad o’r dystiolaeth"
     }
   }
 }

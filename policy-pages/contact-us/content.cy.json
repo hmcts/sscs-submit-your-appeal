@@ -1,19 +1,19 @@
 {
-  "titleHead": "Contact us - Appeal a benefit decision - GOV.UK",
+  "titleHead": "Cysylltwch â ni - Gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "contact": {
-    "title": "Contact us",
-    "description": "Telephone support is available if you need help using this service. You can get legal advice from a representative, if you need it."
+    "title": "Cysylltwch â ni",
+    "description": "Mae cymorth ar gael dros y ffôn os oes arnoch angen help i ddefnyddio'r gwasanaeth hwn. Gallwch gael cyngor cyfreithiol gan gynrychiolydd, os oes arnoch angen hynny."
   },
   "englandAndWales": {
-    "title": "England and Wales",
-    "phone": "Phone: 0300 123 1142",
-    "days": "Monday to Friday, 8:30am to 5pm",
-    "callCharge": "Find out about call charges"
+    "title": "Cymru a Lloegr - Siaradwyr Cymraeg",
+    "phone": "Rhif ffôn: 0300 303 5170",
+    "days": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
+    "callCharge": "Gwybodaeth am brisiau galwadau"
   },
   "scotland": {
-    "title": "Scotland",
-    "phone": "Phone: 0141 354 8400",
-    "days": "Monday to Friday, 8:30am to 5pm",
-    "callCharge": "Find out about call charges"
+    "title": "Yr Alban",
+    "phone": "Rhif ffôn: 0141 354 8400",
+    "days": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
+    "callCharge": "Gwybodaeth am brisiau galwadau"
   }
 }

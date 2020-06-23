@@ -1,7 +1,7 @@
-
 {
   "en": {
     "serviceName": "Appeal a benefit decision",
+    "windowTitleSuffix": "Appeal a benefit decision - GOV.UK",
     "signOut": "Sign Out",
     "back": "Back",
     "change": "Change",
@@ -105,7 +105,8 @@
     }
   },
   "cy": {
-    "serviceName": "[CY] Appeal a benefit decision",
+    "serviceName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
+    "windowTitleSuffix": "Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
     "signOut": "Allgofnodi",
     "back": "Yn ôl",
     "change": "Newid",
@@ -126,84 +127,83 @@
       "termsAndConditions": "Telerau ac Amodau"
     },
     "inactivityTimeout": {
-      "title": "[CY] Want more time to continue?",
-      "expiringIn": "[CY] Your session will expire in 2:00 minutes",
-      "text": "[CY] The information you have entered will be deleted to protect your personal data.",
-      "yes": "[CY] Continue with appeal",
-      "no": "[CY] End session"
+      "title": "Angen rhagor o amser i barhau?",
+      "expiringIn": "Bydd eich sesiwn yn dod i ben mewn 2:00 funud",
+      "text": "Bydd yr wybodaeth a roddwyd gennych yn cael ei dileu er mwyn diogelu eich data personol.",
+      "yes": "Parhau gyda’r apêl",
+      "no": "Dod â’r sesiwn i ben"
     },
     "errors": {
       "notFound": {
-        "title": "[CY] Page cannot be found",
-        "message": "[CY] Check that you’ve entered the correct web address",
+        "title": "Ni ellir dod o hyd i’r dudalen hon",
+        "message": "Sicrhewch eich bod wedi rhoi'r cyfeiriad gwe cywir",
         "nextSteps": [
-          "[CY] Or go to the",
-          "[CY] start of Appeal a benefit decision"
+          "Neu ewch i",
+          "ddechrau'r gwasanaeth Apelio yn erbyn penderfyniad ynghylch budd-dal"
         ]
       },
       "serverError": {
-        "title": "[CY] Sorry, we’re experiencing technical difficulties",
-        "message": "[CY] Please try again in a few minutes."
+        "title": "Mae'n ddrwg gennym, rydym yn cael anawsterau technegol",
+        "message": "Rhowch gynnig arall arni ymhen ychydig o funudau."
       }
     },
     "timeout": {
-      "message": "[CY] If you do not do anything for 20 minutes, then this page will time out."
+      "message": "Os na wnewch unrhyw beth am 20 munud, bydd yn rhaid ichi ailddechrau. "
     },
     "relatedContent": {
-      "heading": "[CY] Related Content",
+      "heading": "Cynnwys Cysylltiedig",
       "benefit": {
-        "calculator": "[CY] Benefits calculators",
-        "overPayments": "[CY] Benefit overpayments",
-        "fraud": "[CY] Benefit fraud"
+        "calculator": "Adnodd i gyfrifo budd-daliadau",
+        "overPayments": "Gordaliadau budd-dal",
+        "fraud": "Twyll budd-dal"
       },
       "explore": {
-        "heading": "[CY] Explore the topic",
-        "howItWorks": "[CY] How benefits work",
-        "courts": "[CY] Courts, sentencing and tribunals"
+        "heading": "Archwilio’r pwnc",
+        "howItWorks": "Sut mae budd-daliadau’n gweithio",
+        "courts": "Llysoedd, dedfrydu a thribiwnlysoedd"
       }
     },
     "continueButtonText": {
-      "save" : "[CY] Save and continue",
-      "continue": "[CY] Continue"
+      "save" : "Arbed a pharhau",
+      "continue": "Parhau"
     },
     "contactUs": {
-      "title": "[CY] Contact us for help",
+      "title": "Cysylltwch â ni i gael cymorth",
       "webform": {
-        "title" : "[CY] Send us a message",
-        "desc" : "[CY] You’ll get a response by email within 2 working days.",
-        "link" : "[CY] Send message (opens in a new window)"
+        "title" : "Anfonwch neges atom",
+        "desc" : "Fe gewch ateb ar ffurf neges e-bost o fewn 2 ddiwrnod gwaith.",
+        "link" : "Anfon neges (agor mewn ffenestr newydd)"
       },
       "webchat": {
-        "loading": "[CY] Loading",
-        "title": "[CY] Web chat",
-        "desc": "[CY] Get some help by messaging an agent online.",
-        "textChatDown": "[CY] Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
-        "textChatWithAnAgent": "[CY] Start web chat (opens in a new window)",
-        "textNoAgentsAvailable": "[CY] No agents are available, please try again later.",
-        "textAllAgentsBusy": "[CY] All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
-        "textChatClosed" : "[CY] Web chat is now closed. \n Come back Monday to Friday 8:30am to 5pm. Or contact us using one of the ways below.",
-        "textChatAlreadyOpen": "[CY] A web chat window is already open.",
-        "textAdditional": "[CY] Monday to Friday, 8.30am to 5pm"
+        "title": "Sgwrsio dros y we",
+        "desc": "Gallwch gael cymorth trwy sgwrsio ag asiant ar-lein.",
+        "textChatDown": "Nid yw’r adnodd sgwrsio dros y we ar gael ar hyn o bryd.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu ffoniwch ni ar y rhif isod os yw'ch ymholiad yn un brys.",
+        "textChatWithAnAgent": "Cychwyn sgwrs dros y we (agor mewn ffenestr newydd)",
+        "textNoAgentsAvailable": "Nid oes asiant ar gael ar hyn o bryd; rhowch gynnig arall arni yn hwyrach ymlaen.",
+        "textAllAgentsBusy": "Mae ein hasiantau sgwrsio dros y we i gyd yn brysur ar hyn o bryd yn helpu pobl eraill.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu cysylltwch â ni drwy un o'r dulliau isod.",
+        "textChatClosed" : "Mae’r gwasanaeth sgwrsio dros y we nawr ar gau. \n Gallwch ddefnyddio’r gwasanaeth hwn o ddydd Llun i ddydd Gwener, 8.30am - 5pm, neu cysylltwch â ni drwy un o'r dulliau isod.",
+        "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
+        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm"
       },
       "telephone" : {
-        "title": "[CY] Telephone",
-        "desc": "[CY] Talk to one of our agents now over the phone.",
+        "title": "Ffoniwch ni",
+        "desc": "Siaradwch ag un o’n asiantau dros y ffôn nawr.",
         "England": {
-          "desc" : "[CY] Benefit appeals helpline (England and Wales)",
-          "phone": "[CY] Telephone: 0300 123 1142",
-          "availability": "[CY] Monday to Friday, 8:00am to 8:00pm",
-          "saturdayAvailability": "[CY] Saturday, 8:00am to 2:00pm",
-          "emailText": "[CY] Email:",
-          "emailAddress": "[CY] Contactsscs@justice.gov.uk",
-          "charges": "[CY] Find out about call charges"
+          "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Cymraeg)",
+          "phone": "Rhif ffôn:  0300 303 5170",
+          "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5.00pm.",
+          "saturdayAvailability": "",
+          "emailText": "E-bost:",
+          "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
+          "charges": "Gwybodaeth am brisiau galwadau"
         },
         "Scotland" : {
-          "desc": "[CY] Benefit appeals helpline (Scotland)",
-          "phone": "[CY] Telephone: 0300 790 6234",
-          "availability": "[CY] Monday to Friday, 8:30am to 5:00pm",
-          "emailText": "[CY] Email:",
-          "emailAddress": "[CY] SSCSA-Glasgow@justice.gov.uk",
-          "charges": "[CY] Find out about call charges"
+          "desc": "Llinell gymorth apeliadau budd-daliadau (Yr Alban)",
+          "phone": "Rhif ffôn: 0300 790 6234",
+          "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5.00pm.",
+          "emailText": "E-bost:",
+          "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
+          "charges": "Gwybodaeth am brisiau galwadau"
         }
       }
     }

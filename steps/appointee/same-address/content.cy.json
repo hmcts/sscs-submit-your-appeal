@@ -1,19 +1,19 @@
 {
-  "titleHead": "[CY] Is their address the same as yours - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Is their address the same as yours?",
+  "titleHead": "A yw eu cyfeiriad yr un fath â’ch cyfeiriad chi – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "A yw eu cyfeiriad yr un fath â’ch cyfeiriad chi?",
   "fields": {
     "isAddressSameAsAppointee": {
-      "label": "[CY] Select whether the appellant name is the same as yours",
-      "yes": "[CY] Yes",
-      "no": "[CY] No",
+      "label": "Dewiswch a yw enw'r apelydd yr un fath â’ch enw chi",
+      "yes": "Ydy",
+      "no": "Nac ydy",
       "error": {
-        "required": "[CY] You need to answer the question before continuing"
+        "required": "Mae angen ichi ateb y cwestiwn cyn y gallwch barhau"
       }
     }
   },
   "cya": {
     "isAddressSameAsAppointee": {
-      "question": "[CY] Same address as appointee"
+      "question": "Yr un cyfeiriad â’r penodai"
     }
   }
 }

@@ -1,19 +1,19 @@
 {
-  "titleHead": "[CY] Enter mobile number - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Enter your mobile phone number",
-  "description": "[CY] This is the number where the text messages will be sent.",
+  "titleHead": "Rhif ffôn symudol - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Nodwch eich rhif ffôn symudol",
+  "description": "Bydd negeseuon testun yn cael eu hanfon i’r rhif hwn. ",
   "fields": {
     "enterMobile": {
-      "label": "[CY] Mobile number",
+      "label": "Rhif ffôn symudol",
       "error": {
-        "emptyField": "[CY] Enter a mobile number where you would like to receive text messages about your appeal.",
-        "invalidNumber": "[CY] You have entered an invalid number. Check your mobile number and enter it again."
+        "emptyField": "Rhowch rif ffôn symudol. Fe ddefnyddir hwn i anfon negeseuon testun am eich apêl.",
+        "invalidNumber": "Rydych wedi rhoi rhif annilys.  Gwiriwch eich rhif ffôn symudol a’i nodi eto."
       }
     }
   },
   "cya": {
     "enterMobile": {
-      "question": "[CY] Mobile number"
+      "question": "Rhif ffôn symudol"
     }
   }
 }

@@ -1,18 +1,18 @@
 {
-  "titleHead": "[CY] Reason for no MRN - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Explain why you don’t have a Mandatory Reconsideration Notice (MRN)",
-  "subtitle": "[CY] Include the date that you contacted DWP about their decision, if you can remember.",
+  "titleHead": "Rheswm dros pam nad oes gennych MRN – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Eglurwch pam nad oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)",
+  "subtitle": "Dylech gynnwys y dyddiad y gwnaethoch gysylltu â DWP ynghylch eu penderfyniad, os gallwch ei gofio.",
   "fields": {
     "reasonForNoMRN": {
-      "label": "[CY] Reason for no MRN",
+      "label": "Rheswm dros pam nad oes gennych MRN",
       "error": {
-        "required": "[CY] You have not entered anything. If you want to appeal, you need to say why you have not got an MRN letter."
+        "required": "Nid ydych wedi nodi unrhyw beth. Os ydych am apelio, mae angen i chi ddweud pam nad ydych wedi cael llythyr MRN. "
       }
     }
   },
   "cya": {
     "reasonForNoMRN": {
-      "question": "[CY] Reason for no MRN"
+      "question": "Rheswm dros pam nad oes gennych MRN"
     }
   }
 }
