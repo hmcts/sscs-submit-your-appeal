@@ -1,47 +1,47 @@
 {
-  "titleHead": "[CY] Dates cannot attend hearing",
-  "title": "[CY] Enter the dates when you can't go to a hearing",
-  "titleEdit": "[CY] Enter a date you can't go to a hearing",
+  "titleHead": "Dyddiadau nad ydych ar gael i fynychu gwrandawiad – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rhowch y dyddiadau pan na allwch fynd i wrandawiad",
+  "titleEdit": "Rhowch ddyddiad pan na allwch fynd i wrandawiad",
   "datePicker": {
-    "itsImportant": "[CY] It’s important that you make yourself available for a hearing. If you don’t show up, the appeal could go ahead in your absence or be delayed by several months.",
-    "select": "[CY] Select dates you",
-    "cant": "[CY] can't",
-    "hearing": "[CY] go to a hearing."
+    "itsImportant": "Mae’n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os nad ydych yn bresennol, gallai’r apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
+    "select": "Dewiswch y dyddiadau",
+    "cant": "na allwch",
+    "hearing": "fynd i wrandawiad."
   },
   "nonJS": {
-    "itsImportant": "[CY] It’s important that you make yourself available for a hearing. If you postpone or don’t show up, your appeal could go ahead in your absence or be delayed by several months.",
-    "yourHearing": "[CY] Your hearing will take some time to book so only enter dates between 4 and 22 weeks in the future. Don’t include weekends or bank holidays."
+    "itsImportant": "Mae’n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os byddwch yn gohirio neu’n peidio mynychu, gallai eich apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
+    "yourHearing": "Bydd eich gwrandawiad yn cymryd amser i’w drefnu felly dylech ond nodi dyddiadau rhwng 4 a 22 wythnos yn y dyfodol. Peidiwch â chynnwys penwythnosau na gwyliau banc."
   },
   "links": {
-    "add": "[CY] Add date",
-    "addAnother": "[CY] Add another date"
+    "add": "Rhowch ddyddiad",
+    "addAnother": "Rhowch ddyddiad arall"
   },
-  "listError": "[CY] Enter at least one date",
-  "noDates": "[CY] No dates added yet",
+  "listError": "Nodwch o leiaf un dyddiad",
+  "noDates": "Nid oes dyddiad wedi ei nodi ar hyn o bryd",
   "fields": {
     "cantAttendDate": {
-      "hint": "[CY] For example, 31 3 2018",
-      "legend": "[CY] Date you can't attend",
-      "legendList": "[CY] Dates you can't attend",
-      "day": "[CY] Day",
-      "month": "[CY] Month",
-      "year": "[CY] Year",
+      "hint": "Er enghraifft, 31 3 2018",
+      "legend": "Dyddiad na allwch fod yn bresennol",
+      "legendList": "Dyddiadau na allwch fod yn bresennol",
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
       "error": {
-        "allRequired": "[CY] Enter the date you can't attend",
-        "dayRequired": "[CY] Enter the day from the date you can't attend",
-        "monthRequired": "[CY] Enter the month from the date you can't attend",
-        "yearRequired": "[CY] Enter the year from the date you can't attend",
-        "invalid": "[CY] Enter a valid date",
-        "underFourWeeks": "[CY] Only enter dates at least 4 weeks in the future",
-        "overTwentyTwoWeeks": "[CY] Only enter dates up to 22 weeks in the future",
-        "weekend": "[CY] Enter a date that is not a weekend",
-        "bankHoliday": "[CY] Enter a date that is not a bank holiday"
+        "allRequired": "Rhowch y dyddiad na allwch fod yn bresennol",
+        "dayRequired": "Rhowch y diwrnod o’r dyddiad na allwch fod yn bresennol ",
+        "monthRequired": "Rhowch y mis o’r dyddiad na allwch fod yn bresennol",
+        "yearRequired": "Rhowch y flwyddyn o’r dyddiad na allwch fod yn bresennol ",
+        "invalid": "Rhowch ddyddiad dilys",
+        "underFourWeeks": "Rhowch ddyddiadau sydd o leiaf 4 wythnos yn y dyfodol",
+        "overTwentyTwoWeeks": "Rhowch ddyddiadau hyd at 22 wythnos yn y dyfodol yn unig",
+        "weekend": "Nodwch ddyddiad nad yw’n ddydd Sadwrn neu’n ddydd Sul",
+        "bankHoliday": "Nodwch ddyddiad nad yw’n wyl y banc"
       }
     }
   },
   "cya": {
     "dateYouCantAttend": {
-      "question": "[CY] Dates you're not available"
+      "question": "Dyddiadau nad ydych ar gael"
     }
   }
 }

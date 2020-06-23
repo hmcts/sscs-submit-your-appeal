@@ -1,7 +1,7 @@
 {
-  "titleHead": "[CY] Independent tribunal",
-  "title": "[CY] Your appeal will be decided by an independent tribunal",
-  "reviewed": "[CY] Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the {{benefitType}} benefit.",
-  "separate": "[CY] The tribunal are separate from DWP.",
-  "UCreviewed": "[CY] Your appeal will be reviewed by a tribunal made up of a judge and for some appeals, a doctor. They will consider everything you tell them and make a decision."
+  "titleHead": "Tribiwnlys annibynnol – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Tribiwnlys annibynnol fydd yn penderfynu ar eich apêl",
+  "reviewed": "Bydd eich apêl yn cael ei hadolygu gan banel tribiwnlys sy’n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth y byddwch yn ei ddweud wrthynt ac yn penderfynu ar eich hawl i gael budd-dal ((benefitType)).",
+  "separate": "Mae’r tribiwnlys yn annibynnol o DWP.",
+  "UCreviewed": "Caiff eich apêl ei hadolygu gan dribiwnlys sy’n cynnwys barnwr ac, ar gyfer rhai apeliadau, meddyg. Byddant yn ystyried popeth rydych chi’n ei ddweud wrthynt ac yn gwneud penderfyniad."
 }
