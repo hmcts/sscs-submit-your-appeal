@@ -35,10 +35,10 @@
       "title": "Tref/Dinas",
       "error": {
         "withoutAppointee": {
-          "required": "Nodwch y dref neu'r ddinas o'ch cyfeiriad"
+          "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
         },
         "withAppointee":{
-          "required": "Nodwch y dref neu'r ddinas o'u cyfeiriad"
+          "required": "Nodwch y dref neu’r ddinas o’u cyfeiriad"
         }
       }
     },
@@ -57,12 +57,12 @@
       "title": "Cod post",
       "error": {
         "withoutAppointee": {
-          "required": "Nodwch y cod post o'ch cyfeiriad",
-          "invalidPostcode": "Nid yw'r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai'r cod post hwn gyfateb i'r cod post a roesoch i gael mynediad i'r gwasanaeth."
+          "required": "Nodwch y cod post o’ch cyfeiriad",
+          "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
         },
         "withAppointee":{
-          "required": "Nodwch y cod post o'u cyfeiriad",
-          "invalidPostcode": "Nid yw'r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai'r cod post hwn gyfateb i'r cod post a roesoch i gael mynediad i'r gwasanaeth."
+          "required": "Nodwch y cod post o’u cyfeiriad",
+          "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
         }
       }
     },

@@ -55,7 +55,7 @@
           "label": "Esboniwch pa gymorth arall sydd ei angen arnoch yn ystod gwrandawiad eich apêl",
           "error": {
             "required": "Mae angen i chi ddarparu rhywfaint o wybodaeth am y cymorth sydd ei angen arnoch",
-            "invalid": "Rydych wedi cynnwys nod arbennig nad yw'n cael ei ganiatáu. Rhaid ichi ei ddileu cyn parhau."
+            "invalid": "Rydych wedi cynnwys nod arbennig nad yw’n cael ei ganiatáu. Rhaid ichi ei ddileu cyn parhau."
           }
         }
       }

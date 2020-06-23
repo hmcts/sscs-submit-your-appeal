@@ -53,7 +53,7 @@
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
-        "required": "Nodwch y dref neu'r ddinas o gyfeiriad eich cynrychiolydd"
+        "required": "Nodwch y dref neu’r ddinas o gyfeiriad eich cynrychiolydd"
       }
     },
     "county": {
