@@ -30,13 +30,13 @@
     "pc": "Credydau Pensiwn",
     "rp": "Pensiwn Ymddeol",
     "tfc": "Cynllun Gofal Plant Di-dreth",
-    "dwa": "Lwfans Gweithio i'r Anabl"
+    "dwa": "Lwfans Gweithio i’r Anabl"
   },
   "fields": {
     "benefitType": {
       "title": "Cyfenw(au)",
       "error": {
-        "required": "Rhowch enw'r penderfyniad budd-dal yr ydych am apelio yn ei erbyn"
+        "required": "Rhowch enw’r penderfyniad budd-dal yr ydych am apelio yn ei erbyn"
       }
     }
   },

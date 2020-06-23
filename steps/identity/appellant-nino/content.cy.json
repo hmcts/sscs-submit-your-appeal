@@ -5,7 +5,7 @@
     "withAppointee": "Nodwch eu rhif Yswiriant Gwladol"
   },
   "subtitle": {
-    "withoutAppointee": "Gallwch ddod o hyd i'ch Rhif Yswiriant Gwladol ar unrhyw lythyr am y budd-dal.",
+    "withoutAppointee": "Gallwch ddod o hyd i’ch Rhif Yswiriant Gwladol ar unrhyw lythyr am y budd-dal.",
     "withAppointee": "Bydd ar unrhyw lythyr gan DWP ynghylch y budd-dal."
   },
   "fields": {

@@ -18,7 +18,7 @@
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
-        "required": "Nodwch y dref neu'r ddinas o'ch cyfeiriad"
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
       }
     },
     "county": {
@@ -31,7 +31,7 @@
       "title": "Cod post",
       "error": {
         "required": "Nodwch y cod post o’ch cyfeiriad",
-        "invalidPostcode": "Nid yw'r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai'r cod post hwn gyfateb i'r cod post a roesoch i gael mynediad i'r gwasanaeth."
+        "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
       }
     },
     "phoneNumber": {

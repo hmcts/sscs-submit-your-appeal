@@ -3,13 +3,13 @@
   "title": "Rhowch y dyddiadau pan na allwch fynd i wrandawiad",
   "titleEdit": "Rhowch ddyddiad pan na allwch fynd i wrandawiad",
   "datePicker": {
-    "itsImportant": "Mae'n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os nad ydych yn bresennol, gallai'r apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
+    "itsImportant": "Mae’n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os nad ydych yn bresennol, gallai’r apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
     "select": "Dewiswch y dyddiadau",
     "cant": "na allwch",
     "hearing": "fynd i wrandawiad."
   },
   "nonJS": {
-    "itsImportant": "Mae'n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os byddwch yn gohirio neu'n peidio mynychu, gallai eich apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
+    "itsImportant": "Mae’n bwysig eich bod yn sicrhau eich bod ar gael ar gyfer gwrandawiad. Os byddwch yn gohirio neu’n peidio mynychu, gallai eich apêl fynd yn ei blaen yn eich absenoldeb neu gael ei gohirio am sawl mis.",
     "yourHearing": "Bydd eich gwrandawiad yn cymryd amser i’w drefnu felly dylech ond nodi dyddiadau rhwng 4 a 22 wythnos yn y dyfodol. Peidiwch â chynnwys penwythnosau na gwyliau banc."
   },
   "links": {
@@ -35,7 +35,7 @@
         "underFourWeeks": "Rhowch ddyddiadau sydd o leiaf 4 wythnos yn y dyfodol",
         "overTwentyTwoWeeks": "Rhowch ddyddiadau hyd at 22 wythnos yn y dyfodol yn unig",
         "weekend": "Nodwch ddyddiad nad yw’n ddydd Sadwrn neu’n ddydd Sul",
-        "bankHoliday": "Nodwch ddyddiad nad yw'n wyl y banc"
+        "bankHoliday": "Nodwch ddyddiad nad yw’n wyl y banc"
       }
     }
   },
