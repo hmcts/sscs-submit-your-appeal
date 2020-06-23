@@ -6,7 +6,7 @@
   "answerNo": "All documents will be in English.",
 
   "fields": {
-    "languagePreference": {
+    "languagePreferenceWelsh": {
       "yes": "Yes",
       "no": "No",
       "errors": {
@@ -15,6 +15,6 @@
     }
   },
   "cya": {
-    "languagePreference": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?"
+    "languagePreferenceWelsh": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?"
   }
 }
