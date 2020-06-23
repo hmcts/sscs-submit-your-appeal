@@ -6,7 +6,7 @@
   "answerNo": "Bydd yr holl ddogfennau yn Saesneg.",
 
   "fields": {
-    "languagePreference": {
+    "languagePreferenceWelsh": {
       "yes": "Ydw",
       "no": "Nac ydw",
       "errors": {
@@ -15,6 +15,6 @@
     }
   },
   "cya": {
-    "languagePreference": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?"
+    "languagePreferenceWelsh": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?"
   }
 }
