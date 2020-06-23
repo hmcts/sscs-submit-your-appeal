@@ -1,20 +1,20 @@
 {
-  "titleHead": "[CY] Hearing availability",
-  "title": "[CY] Your availability for a hearing",
-  "subtitle": "[CY] Do you have any dates when you can’t attend a hearing? For example, because you’re going on holiday or have an important appointment which can’t be moved.",
+  "titleHead": "Y dyddiadau yr ydych ar gael i fynychu gwrandawiad - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Pryd rydych ar gael i fynychu gwrandawiad",
+  "subtitle": "A oes unrhyw ddyddiadau pan na allwch fynychu gwrandawiad? Er enghraifft, oherwydd eich bod yn mynd ar wyliau neu os oes gennych apwyntiad pwysig na ellir ei aildrefnu.",
   "fields": {
     "scheduleHearing": {
-      "label": "[CY] Select whether there are dates you can't attend or not",
-      "yes": "[CY] I need to tell you about dates when I can’t attend a hearing",
-      "no": "[CY] I will come to a hearing whenever you schedule it",
+      "label": "Dewiswch p’un a oes yna ddyddiadau pan na allwch fynychu",
+      "yes": "Mae angen i mi ddweud wrthych am ddyddiadau pan na allaf fynychu gwrandawiad",
+      "no": "Mi alla’i fynychu gwrandawiad pryd bynnag y byddwch yn ei drefnu",
       "error": {
-        "required": "[CY] Enter a date when you can't attend a hearing"
+        "required": "Rhowch ddyddiad pan na allwch fynychu gwrandawiad"
       }
     }
   },
   "cya": {
     "scheduleHearing": {
-      "question": "[CY] Attending the hearing"
+      "question": "Mynychu’r gwrandawiad"
     }
   }
 }

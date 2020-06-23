@@ -1,7 +1,7 @@
 {
-  "titleHead": "[CY] Cannot appeal",
-  "title": "[CY] Unfortunately you can’t appeal",
-  "appealLateReason": "[CY] If your appeal is late then you need to give a reason and you’ve told us you don’t have one.",
-  "findContactDetails": "[CY] If you still think you’re entitled to benefits you can contact DWP. You can find their contact details on any letter you’ve received from them.",
-  "govuk": "[CY] Return to GOV.UK"
+  "titleHead": "Ni allwch apelio - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Yn anffodus, ni allwch apelio",
+  "appealLateReason": "Os yw eich apêl yn hwyr yna mae angen ichi roi rheswm ac rydych wedi dweud wrthym nad oes gennych un.",
+  "findContactDetails": "Os ydych dal i gredu bod gennych hawl i fudd-daliadau gallwch gysylltu â DWP. Gallwch ddod o hyd i’w manylion cyswllt ar unrhyw ohebiaeth rydych wedi’i chael ganddynt.",
+  "govuk": "Dychwelyd i GOV.UK"
 }
