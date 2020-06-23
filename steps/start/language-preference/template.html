@@ -13,12 +13,12 @@
 
         {% call formSection() %}
             {{ selectionButtons(
-                fields.languagePreference,
+                fields.languagePreferenceWelsh,
                 content.question,
                 hint = '',
                 options = [
-                    { label: content.fields.languagePreference.yes, value: "yes" },
-                    { label: content.fields.languagePreference.no,  value: "no", target: "noWelsh" }
+                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" },
+                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", target: "noWelsh" }
                 ])
             }}
             <div class="panel js-hidden" id="noWelsh">
