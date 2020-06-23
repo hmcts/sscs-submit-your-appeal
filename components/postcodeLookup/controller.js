@@ -179,8 +179,8 @@ class Controller {
     let selectedAddress = [];
     const page = this.page;
     const fieldMap = this.fieldMap;
-
-    if (page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
+    if (page.fields && page.fields[fieldMap.postcodeAddress] &&
+      page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
       const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
       if (selectedUPRN) {
         // eslint-disable-next-line max-len
