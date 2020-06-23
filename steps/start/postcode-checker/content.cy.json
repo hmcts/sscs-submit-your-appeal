@@ -1,8 +1,8 @@
 {
   "titleHead": "Cod post - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "title": "Nodwch eich cod post",
-  "subtitle": "Mae?r gwasanaeth ar-lein hwn ond ar gael yng Nghymru a Lloegr.",
-  "subtitleScotland": "Mae?r gwasanaeth ar-lein hwn ond ar gael yng Nghymru, Lloegr a?r Alban.",
+  "subtitle": "Mae’r gwasanaeth ar-lein hwn ond ar gael yng Nghymru a Lloegr.",
+  "subtitleScotland": "Mae’r gwasanaeth ar-lein hwn ond ar gael yng Nghymru, Lloegr a’r Alban.",
   "fields": {
     "postcode": {
       "label": "Cod post",
