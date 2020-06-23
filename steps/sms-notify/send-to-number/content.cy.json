@@ -1,0 +1,14 @@
+{
+  "titleHead": "Cadarnhau rhif SMS - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "A ddylwn eu hanfon i’r rhif a ddarparwyd gennych yn gynharach?",
+  "fields": {
+    "useSameNumber": {
+      "label": "Dewiswch p’un a ydych am ddefnyddio’r un rhif a ddarparwyd yn gynharach ai peidio",
+      "yes": "Ia, anfonwch nhw i {{ phoneNumber }}",
+      "no": "Na, dylid eu hanfon i rif arall",
+      "error": {
+        "required": "Mae angen ichi ddweud wrthym a hoffech i ni anfon negeseuon testun am eich apêl i’r rhif a ddarparwyd gennych yn gynharach."
+      }
+    }
+  }
+}

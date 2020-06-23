@@ -1,0 +1,20 @@
+{
+  "titleHead": "Llwytho rhagor o dystiolaeth - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Llwytho rhagor o dystiolaeth",
+  "description": "Gallwch lwytho llythyrau, dogfennau neu ffotograffau. Er enghraifft, gallech dynnu llun o lythyr gan eich meddyg yn defnyddio eich ffôn. Rhowch y llythyr ar wyneb fflat a thynnu’r llun o uwchben.",
+  "itemsListLabel": "Ffeiliau sydd wedi cael eu llwytho",
+  "noItemsMessage": "Nid ydych wedi llwytho unrhyw ffeiliau. Llwythwch o leiaf un ffeil cyn parhau. Cliciwch ‘yn ôl’ os nad ydych eisiau llwytho unrhyw beth.",
+  "noItemsError": "Nid ydych wedi llwytho unrhyw ffeiliau. Llwythwch o leiaf un ffeil cyn parhau. Cliciwch ‘yn ôl’ os nad ydych eisiau llwytho unrhyw beth.",
+  "fields": {
+    "uploadEv": {
+      "label": "Dewis ffeil",
+      "error": {
+        "maxFileSizeExceeded": "Mae’r ffeil rydych wedi ei llwytho yn rhy fawr. Llwythwch ffeil sy’n llai na 5MB.",
+        "wrongFileType": "Nid yw’r math o ffeil rydych wedi’i llwytho yn dderbyniol. Ceisiwch drosi’r ffeil i fformat ffeil cyffredin a rhowch gynnig arall arni.",
+        "required": "Nid ydych wedi llwytho ffeil. Rhowch gynnig arall arni.",
+        "technical": "Doedd dim modd llwytho eich ffeil oherwydd gwall technegol. Rhowch gynnig arall arni.",
+        "totalFileSizeExceeded": "Dim ond 5MB o dystiolaeth y gallwch ei llwytho. Argraffwch ac anfonwch y gweddill drwy’r post. Bydd y cyfeiriad yn cael ei anfon atoch ar ôl i chi gyflwyno eich apêl."
+      }
+    }
+  }
+}

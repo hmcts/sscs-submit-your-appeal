@@ -1,0 +1,92 @@
+{
+  "titleHead": "Polisi Cwcis -  Gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "footer": {
+    "cookies": "Cwcis"
+  },
+  "cookies": {
+    "title": "Cwcis",
+    "description": "Darn bach o ddata sy'n cael ei storio ar eich cyfrifiadur, eich tabled neu eich ffôn symudol pan fyddwch yn ymweld â gwefan yw cwci. Mae angen cwcis ar y rhan fwyaf o wefannau i weithio'n iawn."
+  },
+  "usedInService": {
+    "title": "Sut ydym yn defnyddio cwcis yn y gwasanaeth hwn",
+    "uses": "Mae’r gwasanaeth hwn yn eu defnyddio i:",
+    "usesList": [
+      "fesur sut ydych yn defnyddio’r gwasanaeth fel y gallwn ei wella",
+      "cofio'r hysbysiadau rydych wedi'u gweld fel na fyddwch yn eu gweld eto",
+      "storio’r atebion a roddwch dros dro"
+    ],
+    "more": "Mwy o wybodaeth am ",
+    "manage": "sut i reoli cwcis."
+  },
+  "howAreTheyUsed": {
+    "title": "Cwcis a ddefnyddir i fesur faint o bobl sy’n defnyddio ein gwefan",
+    "description": "Rydym yn defnyddio meddalwedd Google Analytics i gasglu gwybodaeth am sut rydych yn defnyddio'r gwasanaeth hwn. Rydym yn gwneud hyn i helpu i sicrhau bod y gwasanaeth yn diwallu anghenion defnyddwyr ac i'n helpu i wneud gwelliannau, er enghraifft gwella’r cyfleuster chwilio.",
+    "info": "Mae Google Analytics yn storio gwybodaeth am:",
+    "infoList": [
+      "y tudalennau yr ydych yn ymweld â hwy",
+      "faint o amser y byddwch yn ei dreulio ar bob tudalen",
+      "sut y daethoch o hyd i’r gwasanaeth",
+      "yr hyn rydych chi'n clicio arno wrth ddefnyddio'r gwasanaeth"
+    ],
+    "googleShare": "Rydym yn caniatáu i Google ddefnyddio neu rannu’r data hwn. Gallwch ddarganfod mwy am sut maent yn defnyddio’r wybodaeth hon ym ",
+    "googlePrivacyPolicy": "mholisi preifatrwydd Google.",
+    "optOut": {
+      "youCan": "Gallwch ",
+      "google": "optio allan o Google Analytics ",
+      "access": "os nad ydych eisiau i Google gael mynediad at eich gwybodaeth."
+    },
+    "googleCookies": "Mae Google Analytics yn gosod y cwcis canlynol:",
+    "cookieTable": {
+      "columnNames": [
+        "Enw’r cwci",
+        "Pwrpas y cwci",
+        "Darfod ymhen"
+      ],
+      "items": [{
+        "name": "_ga",
+        "purpose": "Mae hyn yn ein helpu i gyfrif faint o bobl sy'n ymweld â'r gwasanaeth drwy olrhain os ydych wedi ymweld o'r blaen",
+        "expires": "2 flynedd"
+      }, {
+        "name": "_gid",
+        "purpose": "Gadael i'r gwasanaeth wybod pwy ydych chi",
+        "expires": "24 awr"
+      }]
+    }
+  },
+  "introMessage": {
+    "title": "Cwcis a ddefnyddir i droi ein neges gyflwyno i ffwrdd",
+    "description": "Efallai y byddwch yn gweld neges groeso pan fyddwch yn ymweld â'r gwasanaeth am y tro cyntaf. Byddwn yn storio cwci ar eich cyfrifiadur fel ei fod yn gwybod i beidio â'i dangos eto.",
+    "cookieTable": {
+      "columnNames": [
+        "Cookie name",
+        "Pwrpas y cwci",
+        "Darfod ymhen"
+      ],
+      "items": [{
+        "name": "seen_cookie_message",
+        "purpose": "Arbed neges i roi gwybod inni eich bod wedi gweld ein neges ynglyn â chwcis",
+        "expires": "1 mis"
+      }]
+    }
+  },
+  "sessionCookie": {
+    "title": "Cwcis a ddefnyddir i storio’r atebion a roesoch yn ystod eich ymweliad (gelwir hyn yn ‘sesiwn’)",
+    "description": "Caiff cwcis sesiwn eu storio ar eich cyfrifiadur wrth ichi fynd drwy wefan, ac maent yn gadael i'r wefan wybod beth rydych wedi'i weld a'i wneud hyd yn hyn. Cwcis dros dro yw'r rhain ac fe'u dilëir yn awtomatig ychydig ar ôl ichi adael y wefan.",
+    "cookieTable": {
+      "columnNames": [
+        "Enw’r cwci",
+        "Pwrpas y cwci",
+        "Darfod ymhen"
+      ],
+      "items": [{
+        "name": "sesiwn",
+        "purpose": "Cadw cofnod o’ch atebion",
+        "expires": "Pan fyddwch chi’n cau eich porwr"
+      }, {
+        "name": "ARRAffinity",
+        "purpose": "Gwybod i ba IP y dylid cyfeirio cais ",
+        "expires": "Pan fyddwch chi’n cau eich porwr"
+      }]
+    }
+  }
+}

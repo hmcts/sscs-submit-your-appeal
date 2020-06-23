@@ -1,0 +1,19 @@
+{
+  "titleHead": "Ydych chi wedi cysylltu â DWP – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Ydych chi wedi cysylltu â DWP ac wedi gofyn iddynt ailystyried eu penderfyniad?",
+  "ucTitle": "A wnaethoch ofyn i DWP ailystyried eu penderfyniad ynglyn â’ch Credyd Cynhwysol?",
+  "subtitle": "Gallwch dal i apelio os ydych wedi cysylltu â DWP ynglyn â’u penderfyniad am eich budd-dal ond nad oes gennych lythyr MRN, er enghraifft, oherwydd eich bod wedi’i golli.",
+  "fields": {
+    "haveContactedDWP": {
+      "yes": "Do, rwyf wedi cysylltu â DWP ynglyn â’r penderfyniad",
+      "no": "Naddo, nid wyf wedi cysylltu â DWP ynglyn â’r penderfyniad",
+      "error": {
+        "required": "Mae angen i chi ddweud a wnaethoch gysylltu â DWP ynghylch eu penderfyniad neu beidio. Dewiswch naill ai do neu naddo."
+      }
+    },
+    "haveContactedUCDWP": {
+      "yes": "Do, gofynnais iddynt ailystyried eu penderfyniad",
+      "no": "Na, nid wyf wedi gofyn iddynt ailystyried eu penderfyniad"
+    }
+  }
+}

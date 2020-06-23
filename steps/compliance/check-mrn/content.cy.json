@@ -1,0 +1,21 @@
+{
+  "titleHead": "Gwiriwch ddyddiad yr MRN eto – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Gwiriwch y dyddiad y gwnaethoch roi eto",
+  "subtitle": "Efallai bod eich apêl yn hwyr. Gwiriwch eich bod wedi nodi’r dyddiad sydd yng nghornel dde uchaf eich Hysbysiad Gorfodi i Ailystyried (MRN).",
+  "question": "A wnaethoch nodi’r dyddiad sydd yng nghornel dde uchaf eich MRN?",
+  "imageAlt": "Copi o’ch MRN",
+  "fields": {
+    "checkedMRN": {
+      "yes": "Do, mi wnes i nodi’r dyddiad sydd yng nghornel dde uchaf fy MRN ",
+      "no": "Na, mi wnes i nodi dyddiad gwahanol",
+      "error": {
+        "required": "Nid ydych wedi ateb y cwestiwn. Dewiswch naill ai Do neu Na"
+      }
+    }
+  },
+  "cya": {
+    "mrnDate": {
+      "question": "Gwiriwch dudalen yr MRN"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "titleHead": "Manylion cyswllt - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": {
+    "withoutAppointee": "Nodwch eich manylion cyswllt",
+    "withAppointee": "Nodwch eich cyfeiriad"
+  },
+  "subtitle": {
+    "withoutAppointee": "Bydd y rhain yn cael eu defnyddio i anfon gwybodaeth atoch am eich apêl.",
+    "withAppointee": ""
+  },
+  "fields": {
+    "addressLine1": {
+      "title": "Llinell gyntaf eich cyfeiriad",
+      "error": {
+        "withoutAppointee": {
+          "required": "Rhowch linell gyntaf eich cyfeiriad"
+        },
+        "withAppointee":{
+          "required": "Rhowch linell gyntaf eu cyfeiriad"
+        }
+      }
+    },
+    "addressLine2": {
+      "title": "Ail linell y cyfeiriad (dewisol)",
+      "error": {
+        "withoutAppointee": {
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+        },
+        "withAppointee":{
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eu cyfeiriad a’i nodi eto"
+        }
+      }
+    },
+    "townCity": {
+      "title": "Tref/Dinas",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
+        },
+        "withAppointee":{
+          "required": "Nodwch y dref neu’r ddinas o’u cyfeiriad"
+        }
+      }
+    },
+    "county": {
+      "title": "Sir",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch y sir o’ch cyfeiriad"
+        },
+        "withAppointee":{
+          "required": "Nodwch y sir o’u cyfeiriad"
+        }
+      }
+    },
+    "postCode": {
+      "title": "Cod post",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch y cod post o’ch cyfeiriad",
+          "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
+        },
+        "withAppointee":{
+          "required": "Nodwch y cod post o’u cyfeiriad",
+          "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
+        }
+      }
+    },
+    "phoneNumber": {
+      "title": "Rhif ffôn (dewisol)",
+      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch eich apêl",
+      "error": {
+        "withoutAppointee": {
+          "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
+        },
+        "withAppointee":{
+          "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
+        }
+      }
+    },
+    "emailAddress": {
+      "title": "Cyfeiriad e-bost (dewisol)",
+      "hint": "Byddwch yn cael diweddariadau ar eich apêl a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
+      "error": {
+        "withoutAppointee": {
+          "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
+        },
+        "withAppointee":{
+          "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
+        }
+      }
+    }
+  },
+  "cya": {
+    "address": {
+      "question": "Cyfeiriad"
+    },
+    "phoneNumber": {
+      "question": "Rhif ffôn"
+    },
+    "emailAddress": {
+      "question": "Cyfeiriad e-bost"
+    },
+    "change": "Newid",
+    "yourDetails": "Eich manylion cyswllt"
+  }
+}

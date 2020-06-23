@@ -1,0 +1,28 @@
+{
+  "titleHead": "Dyddiad yr MRN - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Pa ddyddiad sydd ar eich Hysbysiad Gorfodi i Ailystyried (MRN)?",
+  "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr MRN",
+  "dateHint": "Er enghraifft, 31 3 2017",
+  "imageAlt": "Copi o’ch MRN",
+  "fields": {
+    "date": {
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
+      "error": {
+        "allRequired": "Nodwch ddyddiad yr MRN.",
+        "dayRequired": "Nid ydych wedi nodi diwrnod. Nodwch ddiwrnod",
+        "monthRequired": "Nid ydych wedi nodi mis. Nodwch fis",
+        "yearRequired": "Nid ydych wedi nodi blwyddyn. Nodwch flwyddyn",
+        "invalid": "Rydych wedi nodi dyddiad MRN annilys. Nodwch ddyddiad yr MRN",
+        "future": "Rydych wedi nodi dyddiad yn y dyfodol. Nodwch ddyddiad yr MRN",
+        "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich MRN a nodwch y dyddiad a ddangosir."
+      }
+    }
+  },
+  "cya": {
+    "mrnDate": {
+      "question": "Dyddiad yr MRN"
+    }
+  }
+}

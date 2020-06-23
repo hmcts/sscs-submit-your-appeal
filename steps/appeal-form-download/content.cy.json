@@ -1,0 +1,8 @@
+{
+  "titleHead": "Lawrlwytho ffurflen apêl - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Mae arnoch angen lawrlwytho ffurflen bapur",
+  "subtitle": "Dylech lawrlwytho a llenwi ffurflen {{ formDownload.type }} i apelio yn erbyn penderfyniad ynghylch budd-dal {{ benefitType }}.",
+  "button": {
+    "text": "Parhau i lawrlwytho’r ffurflen"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "titleHead": "Cadarnhau trefniadau’r gwrandawiad – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Cymorth yn y gwrandawiad",
+  "clickAllArrangements": "Cliciwch ar yr holl gymorth sydd ei angen arnoch yn y gwrandawiad.",
+  "you": "Ni",
+  "cant": "allwch",
+  "bringYourOwnInterpreter": "ddod â chyfieithydd eich hun i’r gwrandawiad.",
+  "doNotNeedArrangements": "Nid oes arnaf angen unrhyw drefniadau arbennig ar gyfer y gwrandawiad",
+  "fields": {
+    "selection": {
+      "label": "Dewiswch pa gymorth sydd ei angen  arnoch",
+      "error": {
+        "required": "Mae angen i chi ddarparu rhywfaint o wybodaeth am y cymorth sydd ei angen arnoch"
+      },
+      "languageInterpreter": {
+        "requested": {
+          "label": "Cyfieithydd"
+        },
+        "language": {
+          "label": "Nodwch yr iaith",
+          "error": {
+            "required": "Mae angen i chi ddweud pa iaith y mae angen cyfieithydd ar ei chyfer.",
+            "invalid": "Mae angen i chi ddweud pa iaith y mae angen cyfieithydd ar ei chyfer."
+          }
+        }
+      },
+      "signLanguage": {
+        "requested": {
+          "label": "Dehonglydd  iaith arwyddion"
+        },
+        "language": {
+          "label": "Nodwch yr iaith",
+          "hint": "Nodwch pa fath o iaith arwyddion yr ydych angen dehonglydd ar ei chyfer. Er enghraifft, Iaith Arwyddion Prydain.",
+          "error": {
+            "required": "Mae angen ichi nodi pa fath o iaith arwyddion yr ydych angen dehonglydd ar ei chyfer.",
+            "invalid": "Mae angen ichi nodi pa fath o iaith arwyddion yr ydych angen dehonglydd ar ei chyfer."
+          }
+        }
+      },
+      "hearingLoop": {
+        "requested": {
+          "label": "Dolen Glyw"
+        }
+      },
+      "accessibleHearingRoom": {
+        "requested": {
+          "label": "Ystafelloedd hygyrch ar gyfer cynnal gwrandawiadau"
+        }
+      },
+      "anythingElse": {
+        "requested": {
+          "label": "Cymorth arall"
+        },
+        "language": {
+          "label": "Esboniwch pa gymorth arall sydd ei angen arnoch yn ystod gwrandawiad eich apêl",
+          "error": {
+            "required": "Mae angen i chi ddarparu rhywfaint o wybodaeth am y cymorth sydd ei angen arnoch",
+            "invalid": "Rydych wedi cynnwys nod arbennig nad yw’n cael ei ganiatáu. Rhaid ichi ei ddileu cyn parhau."
+          }
+        }
+      }
+    }
+  },
+  "cya": {
+    "arrangements": "Trefniadau ar gyfer eich gwrandawiad",
+    "change": "Newid",
+    "interpreterLanguage": "Cyfieithydd",
+    "signLanguage": "Dehonglydd iaith arwyddion",
+    "hearingLoop": "Dolen Glyw",
+    "accessibleHearingRoom": "Ystafelloedd hygyrch ar gyfer cynnal gwrandawiadau",
+    "anythingElse": "Arall",
+    "required": "Gofynnol",
+    "notRequired": "Ddim yn ofynnol"
+  }
+}

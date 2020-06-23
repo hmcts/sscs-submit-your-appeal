@@ -1,0 +1,20 @@
+{
+  "titleHead": "Y dyddiadau yr ydych ar gael i fynychu gwrandawiad - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Pryd rydych ar gael i fynychu gwrandawiad",
+  "subtitle": "A oes unrhyw ddyddiadau pan na allwch fynychu gwrandawiad? Er enghraifft, oherwydd eich bod yn mynd ar wyliau neu os oes gennych apwyntiad pwysig na ellir ei aildrefnu.",
+  "fields": {
+    "scheduleHearing": {
+      "label": "Dewiswch p’un a oes yna ddyddiadau pan na allwch fynychu",
+      "yes": "Mae angen i mi ddweud wrthych am ddyddiadau pan na allaf fynychu gwrandawiad",
+      "no": "Mi alla’i fynychu gwrandawiad pryd bynnag y byddwch yn ei drefnu",
+      "error": {
+        "required": "Rhowch ddyddiad pan na allwch fynychu gwrandawiad"
+      }
+    }
+  },
+  "cya": {
+    "scheduleHearing": {
+      "question": "Mynychu’r gwrandawiad"
+    }
+  }
+}

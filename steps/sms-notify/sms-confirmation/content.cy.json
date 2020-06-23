@@ -1,0 +1,12 @@
+{
+  "titleHead": "Cofrestru i gael negeseuon atgoffa drwy SMS - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rydych wedi cofrestru i gael  negeseuon atgoffa trwy SMS",
+  "mobileNumber": "Anfonir negeseuon testun i’r rhif canlynol: ",
+  "firstMessage": "Byddwch yn cael eich neges gyntaf o fewn 3 diwrnod gwaith, unwaith y bydd eich apêl wedi’i chyflwyno.",
+  "continue": "Parhau",
+  "cya": {
+    "mobileNumber": {
+      "question": "Rhif ffôn symudol"
+    }
+  }
+}

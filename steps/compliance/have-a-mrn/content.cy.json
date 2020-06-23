@@ -1,0 +1,23 @@
+{
+  "titleHead": "A oes gennych chi MRN - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
+  "pip": {
+    "subtitle": "Dyma’r llythyr a gawsoch gan DWP pan ofynnoch iddynt ailystyried eu penderfyniad ynglyn â budd-dal {{benefitType}}."
+  },
+  "esa": {
+    "subtitle": "Dyma’r llythyr a gawsoch gan DWP pan ofynnoch iddynt ailystyried eu penderfyniad ynglyn â budd-dal {{benefitType}}."
+  },
+  "uc": {
+    "subtitle":"Y MRN yw’r llythyr a gafodd ei ychwanegu i’ch dyddlyfr ar-lein pan ofynnoch i DWP ailystyried eu penderfyniad Credyd Cynhwysol.",
+    "subtitle_para2": "Mae eich MRN yn eich <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">Credyd Cynhwysol cyfnodolyn ar-lein</a> (agor mewn ffenestr newydd)."
+  },
+  "fields": {
+    "haveAMRN": {
+      "yes": "Oes, mae gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
+      "no": "Nac oes, nid oes gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
+      "error": {
+        "required": "Mae’n rhaid i chi ddweud os oes gennych Hysbysiad Gorfodi i Ailystyried neu beidio. Dewiswch oes neu nac oes."
+      }
+    }
+  }
+}

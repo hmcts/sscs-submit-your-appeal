@@ -1,0 +1,20 @@
+{
+  "titleHead": "Rhif swyddfa DWP – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Mae cyfeiriad DWP yng nghornel dde uchaf eich Hysbysiad Gorfodi i Ailystyried (MRN)",
+  "noMRN": "Nid oes gennyf Hysbysiad Gorfodi i Ailystyried",
+  "imageAlt": "Rhif swyddfa cyflwyno DWP",
+  "fields": {
+    "pipNumber": {
+      "header": "Dewiswch rif {{benefitName}} o gyfeiriad DWP",
+      "label": "{{benefitName}}",
+      "error": {
+        "required": "Rhaid i chi ddewis y swyddfa a ddangosir yn llinell gyntaf cyfeiriad DWP"
+      }
+    }
+  },
+  "cya": {
+    "pipNumber": {
+      "question": "Rhif o gyfeiriad yr MRN"
+    }
+  }
+}

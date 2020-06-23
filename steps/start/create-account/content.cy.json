@@ -1,0 +1,21 @@
+{
+  "titleHead": "Arbed yr apêl hon nes ymlaen - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Ydych chi eisiau gallu arbed yr apêl hon nes ymlaen?",
+  "subtitle": "Mae angen i chi greu cyfrif nawr os ydych eisiau gallu arbed eich cais am apêl nes ymlaen. Er enghraifft, os bydd angen i chi gymryd saib neu gasglu gwybodaeth.",
+  "fields": {
+    "createAccount": {
+      "label": "Dewiswch p’un a ydych eisiau creu cyfrif neu beidio",
+      "yes": "Rwyf eisiau gallu arbed yr apêl hon nes ymlaen",
+      "no": "Nid wyf eisiau gallu arbed yr apêl hon nes ymlaen",
+      "warning": "Os ydych chi’n penderfynu peidio â chreu cyfrif nawr, ac yn gadael yr apêl hanner ffordd drwodd, bydd yn rhaid i chi ailddechrau pan fyddwch chi’n penderfynu cwblhau’r apêl. Os ydych chi’n credu y byddwch chi eisiau arbed yr apêl hanner ffordd, yna dewiswch",
+      "error": {
+        "required": "Mae’n rhaid i chi ddweud p’un a ydych eisiau gallu arbed yr apêl hon nes ymlaen. Dewiswch oes neu nac oes."
+      }
+    }
+  },
+  "cya": {
+    "createAccount": {
+      "question": "Creu cyfrif"
+    }
+  }
+}

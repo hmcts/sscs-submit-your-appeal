@@ -1,0 +1,33 @@
+{
+  "titleHead": "Enw - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rhowch eich enw",
+  "description": "Fel y penodai, rhowch eich enw chi",
+  "fields": {
+    "title": {
+      "title": "Teitl",
+      "error": {
+        "required": "Rhowch eich teitl",
+        "invalid": "Rydych wedi nodi teitl annilys. Rhowch eich teitl."
+      }
+    },
+    "firstName": {
+      "title": "Enw cyntaf",
+      "error": {
+        "required": "Rhowch eich enw cyntaf",
+        "invalid": "Rydych wedi nodi enw cyntaf annilys. Rhowch eich enw cyntaf yn llawn."
+      }
+    },
+    "lastName": {
+      "title": "Cyfenw",
+      "error": {
+        "required": "Rhowch eich cyfenw",
+        "invalid": "Rydych wedi nodi cyfenw annilys.  Rhowch eich cyfenw yn llawn."
+      }
+    }
+  },
+  "cya": {
+    "appointeeName": {
+      "question": "Enw"
+    }
+  }
+}

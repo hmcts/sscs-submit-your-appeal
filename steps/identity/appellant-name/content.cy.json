@@ -1,0 +1,57 @@
+{
+  "titleHead": "Enw - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": {
+    "withoutAppointee": "Rhowch eich enw ",
+    "withAppointee": "Rhowch eu henw"
+  },
+  "subtitle": {
+    "withoutAppointee": "",
+    "withAppointee": "Rhowch enw’r unigolyn yr ydych wedi’ch awdurdodi i apelio ar ei ran."
+  },
+  "fields": {
+    "title": {
+      "title": "Teitl",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch eich teitl",
+          "invalid": "Rydych wedi rhoi teitl annilys. Nodwch eich teitl."
+        },
+        "withAppointee": {
+          "required": "Nodwch eu teitl",
+          "invalid": "Rydych wedi rhoi teitl annilys. Nodwch eu teitl."
+        }
+      }
+    },
+    "firstName": {
+      "title": "Enw cyntaf",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch eich enw cyntaf",
+          "invalid": "Rydych wedi rhoi enw cyntaf annilys. Nodwch eich enw cyntaf yn llawn."
+        },
+        "withAppointee": {
+          "required": "Nodwch eu henw cyntaf",
+          "invalid": "Rydych wedi rhoi enw cyntaf annilys. Nodwch eu henw cyntaf yn llawn."
+        }
+      }
+    },
+    "lastName": {
+      "title": "Cyfenw",
+      "error": {
+        "withoutAppointee": {
+          "required": "Nodwch eich cyfenw",
+          "invalid": "Rydych wedi rhoi cyfenw annilys. Nodwch eich cyfenw yn llawn."
+        },
+        "withAppointee": {
+          "required": "Nodwch eu cyfenw",
+          "invalid": "Rydych wedi rhoi cyfenw annilys. Nodwch eu cyfenw yn llawn."
+        }
+      }
+    }
+  },
+  "cya": {
+    "appellantName": {
+      "question": "Enw"
+    }
+  }
+}
