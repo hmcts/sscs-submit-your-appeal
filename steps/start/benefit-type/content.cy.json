@@ -1,52 +1,52 @@
 {
-  "titleHead": "[CY] Which benefit appeal",
-  "title": "[CY] Which benefit is your appeal about?",
-  "label": "[CY] Select a benefit type",
+  "titleHead": "Apelio pa fudd-dal - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Yng nghyswllt pa fudd-dal y mae eich apêl?",
+  "label": "Dewiswch fudd-dal",
   "benefitTypes": {
-    "aa": "[CY] Attendance Allowance",
-    "bb": "[CY] Bereavement Benefit",
-    "ca": "[CY] Carer's Allowance",
-    "cb": "[CY] Child Benefit Lone Parent",
-    "dla": "[CY] Disability Living Allowance (DLA)",
-    "esa": "[CY] Employment and Support Allowance (ESA)",
-    "hrp": "[CY] Home Responsibilities Protection",
-    "hb": "[CY] Housing Benefit (HB)",
-    "ib": "[CY] Incapacity Benefit",
-    "is": "[CY] Income Support",
-    "iid": "[CY] Industrial Injuries Disablement Benefit",
-    "jsa": "[CY] Job Seekers Allowance (JSA)",
-    "ma": "[CY] Maternity Allowance",
-    "pip": "[CY] Personal Independence Payment (PIP)",
-    "sda": "[CY] Severe Disablement Allowance",
-    "sf": "[CY] Social Fund",
-    "uc": "[CY] Universal Credit (UC)",
-    "cc": "[CY] 30 Hours Free Childcare Scheme",
-    "bs": "[CY] Bereavement Support Payment Scheme",
-    "tc": "[CY] Tax Credits",
-    "co": "[CY] Contracted Out Employment Group",
-    "cr": "[CY] Compensation Recovery Unit",
-    "hp": "[CY] Health in Pregnancy Grant",
-    "id": "[CY] Industrial Death Benefit",
-    "pc": "[CY] Pension Credits",
-    "rp": "[CY] Retirement Pension",
-    "tfc": "[CY] Tax-Free Childcare Scheme",
-    "dwa": "[CY] Disability Working Allowance"
+    "aa": "Lwfans Gweini",
+    "bb": "Budd-dal Profedigaeth",
+    "ca": "Lwfans Gofalwr",
+    "cb": "Budd-dal plant - Unig Riant",
+    "dla": "Lwfans Byw i’r Anabl (DLA)",
+    "esa": "Lwfans Cyflogaeth a Chymorth (ESA)",
+    "hrp": "Diogelwch Cyfrifoldebau Cartref",
+    "hb": "Budd-dal Tai (HB)",
+    "ib": "Budd-dal Analluogrwydd",
+    "is": "Cymhorthdal Incwm",
+    "iid": "Budd-dal Anabledd Anafiadau Diwydiannol",
+    "jsa": "Lwfans Ceisio Gwaith  (JSA)",
+    "ma": "Lwfans Mamolaeth",
+    "pip": "Taliad Annibyniaeth Personol (PIP)",
+    "sda": "Lwfans Anabledd Difrifol",
+    "sf": "Cronfa Gymdeithasol",
+    "uc": "Credyd Cynhwysol (UC)",
+    "cc": "Cynllun Gofal Plant am Ddim – 30 awr",
+    "bs": "Cynllun Talu am Gymorth yng nghyswllt Profedigaeth",
+    "tc": "Credydau Treth",
+    "co": "Grwp Cyflogaeth Dan Gontract",
+    "cr": "Uned Adfer Iawndal",
+    "hp": "Grant Iechyd yn ystod Beichiogrwydd",
+    "id": "Budd-dal Marwolaeth Ddiwydiannol",
+    "pc": "Credydau Pensiwn",
+    "rp": "Pensiwn Ymddeol",
+    "tfc": "Cynllun Gofal Plant Di-dreth",
+    "dwa": "Lwfans Gweithio i’r Anabl"
   },
   "fields": {
     "benefitType": {
-      "title": "[CY] Last name(s)",
+      "title": "Cyfenw(au)",
       "error": {
-        "required": "[CY] Enter the name of the benefit decision you want to appeal"
+        "required": "Rhowch enw’r penderfyniad budd-dal yr ydych am apelio yn ei erbyn"
       }
     }
   },
   "cya": {
     "benefitType": {
-      "question": "[CY] Benefit name"
+      "question": "Enw’r budd-dal"
     }
   },
   "help": {
-    "link": "[CY] I can't find the benefit I am appealing",
-    "text": "[CY] Sometimes the name of the benefit can change. Check the last letter you received about it."
+    "link": "Ni allaf ddod o hyd i’r budd-dal yr wyf yn apelio yn ei erbyn",
+    "text": "Weithiau gall enw’r budd-dal newid. Gwiriwch y llythyr olaf a gawsoch amdano."
   }
 }

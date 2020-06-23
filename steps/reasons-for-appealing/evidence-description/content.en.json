@@ -1,14 +1,14 @@
 {
   "titleHead": "Describe the evidence",
   "title": "Describe the evidence",
-  "description": "Briefly describe the evidence you've just uploaded.",
+  "description": "Briefly describe the evidence you’ve just uploaded.",
   "fields": {
     "describeTheEvidence": {
       "label":  "Describe the evidence",
       "error": {
         "tooShort": "Describe the evidence in a bit more detail",
         "noContent": "Briefly describe the evidence you have uploaded",
-        "invalid": "You have entered an invalid character. Check what you've written and enter it again."
+        "invalid": "You have entered an invalid character. Check what you’ve written and enter it again."
       }
     }
   },
