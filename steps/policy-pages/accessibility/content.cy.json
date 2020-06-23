@@ -1,90 +1,90 @@
 {
-  "titleHead": "[CY] Accessibility statement for the 'Appeal a benefit decision' service",
+  "titleHead": "Datganiad hygyrchedd ar gyfer y gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’",
   "accessibility": {
-    "title": "[CY] Accessibility statement for the 'Appeal a benefit decision' service",
-    "description": "[CY] This service allows users to submit, track and manage a benefit appeal online."
+    "title": "Datganiad hygyrchedd ar gyfer y gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’",
+    "description": "Mae’r gwasanaeth hwn yn caniatáu i ddefnyddwyr gyflwyno, dilyn trywydd a rheoli apêl budd-dal ar-lein."
   },
   "manages": {
-    "managedBy": "[CY] This website is run by HM Courts and Tribunals. We want as many people as possible to be able to use this website, so we have designed it to be accessible. For example, that means you should be able to:",
-    "ability1": "[CY] change colours, contrast levels and fonts",
-    "ability2": "[CY] zoom in up to 300% without the text spilling off the screen",
-    "ability3": "[CY] navigate most of the website using just a keyboard",
-    "ability4": "[CY] navigate most of the website using speech recognition software",
-    "ability5": "[CY] listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
-    "managedByExtra1": "[CY] We’ve also made the website text as simple as possible to understand.",
-    "managedByExtra2": "[CY] <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>AbilityNet</a> has advice on making your device easier to use if you have a disability."
+    "managedBy": "Gwasanaeth Llysoedd a Thribiwnlysoedd EM sy’n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio’r wefan hon, felly rydym wedi ceisio ei gwneud mor hygyrch â phosibl. Er enghraifft, golyga hyn y dylech allu:",
+    "ability1": "newid y lliwiau, y lefelau cyferbyniad a’r ffontiau",
+    "ability2": "gwneud y testun hyd at 300% yn fwy heb iddo ddiflannu oddi ar y sgrin",
+    "ability3": "defnyddio’r rhan fwyaf o’r wefan gan ddefnyddio bysellfwrdd yn unig",
+    "ability4": "defnyddio’r rhan fwyaf o’r wefan gan ddefnyddio meddalwedd adnabod llais",
+    "ability5": "gwrando ar y rhan fwyaf o’r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys fersiynau diweddaraf JAWS, NVDA a VoiceOver)",
+    "managedByExtra1": "Rydym hefyd wedi sicrhau ein bod wedi defnyddio iaith syml.",
+    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a>Gallwch gael cyngor gan AbilityNet ynghylch gwneud eich dyfais yn haws i’w defnyddio os oes gennych anabledd."
   },
   "howAccessible": {
-    "title": "[CY] How accessible is this website? ",
-    "para1": "[CY] The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility.",
-    "para2": "[CY] Some PDFs, documents and email attachments may not be fully accessible. For example, the forms and guidance documents which can be downloaded. These will be tested and made accessible by September 2020."
+    "title": "Pa mor hygyrch yw’r wefan hon? ",
+    "para1": "Mae’r ‘Ganolfan Hygyrchedd Digidol’ (DAC) wedi profi’r wefan ac mae’n bodloni’r lefel ofynnol o hygyrchedd. ",
+    "para2": "Efallai na fydd rai ffeiliau PDF, dogfennau ac atodiadau e-bost yn gwbl hygyrch. Er enghraifft, y ffurflenni a’r dogfennau canllaw y gellir eu lawrlwytho. Bydd y rhain yn cael eu profi a’u gwneud yn hygyrch erbyn mis Medi 2020."
   },
   "telephone" : {
     "England": {
-      "desc": "[CY] Benefit appeals helpline (England and Wales)",
-      "phone": "[CY] Telephone: 0300 123 1142",
-      "availability": "[CY] Monday to Friday, 8:30am to 5pm",
-      "charges": "[CY] Find out about call charges"
+      "desc": "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr – Siaradwyr Cymraeg)",
+      "phone": "Rhif ffôn:  0300 303 5170",
+      "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
+      "charges": "Gwybodaeth am brisiau galwadau"
     },
     "Scotland" : {
-      "desc": "[CY] Benefit appeals helpline (Scotland)",
-      "phone": "[CY] Telephone: 0300 790 6234",
-      "availability": "[CY] Monday to Friday, 8:30am to 5pm",
-      "charges": "[CY] Find out about call charges"
+      "desc": "Llinell gymorth apeliadau budd-daliadau (Yr Alban)",
+      "phone": "Rhif ffôn: 0300 790 6234",
+      "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
+      "charges": "Gwybodaeth am brisiau galwadau"
     }
   },
   "whatToDo": {
-    "title": "[CY] What to do if you cannot access parts of this website.",
-    "para1": "[CY] If you need information on this website in a different format like accessible PDF, large print, easy read or braille then email <a href='mailto:HMCTSforms@justice.gov.uk' class='govuk-link'>HMCTSforms@justice.gov.uk </a> or phone:",
-    "para2": "[CY] We’ll consider your request and get back to you within 10 working days."
+    "title": "Beth i’w wneud os na allwch ddefnyddio rhai rhannau o’r wefan hon.",
+    "para1": "Os ydych angen gwybodaeth sydd ar y wefan hon mewn fformat arall megis ar ffurf dogfen PDF hygyrch, print bras, fformat hawdd ei ddarllen neu braille, yna e-bostiwch <a href=\"mailto:HMCTSforms@justice.gov.uk\" class=\"govuk-link\">HMCTSforms@justice.gov.uk</a> neu ffoniwch:",
+    "para2": "Byddwn yn ystyried eich cais ac yn ymateb o fewn 10 diwrnod gwaith."
   },
   "reportingProblems": {
-    "title": "[CY] Reporting accessibility problems with this website",
-    "para1": "[CY] We’re always looking to improve the accessibility of this website. If you find any problems that are not listed on this page or think we’re not meeting accessibility requirements, please phone the number above."
+    "title": "Riportio problemau hygyrchedd gyda’r wefan hon",
+    "para1": "Rydym wastad yn ceisio gwella hygyrchedd y wefan hon. Os byddwch yn cael unrhyw broblemau nad ydynt wedi’u cynnwys ar y dudalen hon, neu’n credu nad ydym yn bodloni’r gofynion o ran hygyrchedd, ffoniwch y rhif uchod."
   },
   "enforcement": {
-    "title": "[CY] Enforcement procedure",
-    "para1": "[CY] The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint,  <a target='_blank' href='https://www.equalityadvisoryservice.com/' class='govuk-link'>contact the Equality Advisory and Support Service (EASS).</a>"
+    "title": "Y Weithdrefn Orfodi",
+    "para1": "Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy’n gyfrifol am orfodi Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Rhaglenni Symudol) (Rhif 2) 2018 (y ‘rheoliadau hygyrchedd’). Os nad ydych chi’n fodlon gyda’r ffordd rydym yn ymateb i’ch cwyn, <a target=\"_blank\" href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">contact the Equality Advisory and Support Service (EASS).</a>"
   },
   "contactus": {
-    "title": "[CY] Contacting us by phone or visiting us in person",
-    "para1": "[CY] Our tribunal venues have audio induction loops. When you submit your appeal you will be able to request a British Sign Language (BSL) interpreter or foreign language interpreter."
+    "title": "Cysylltu â ni dros y ffôn neu ymweld â ni’n bersonol",
+    "para1": "Mae yna ddolenni sain yn ein hadeiladau tribiwnlys. Pan fyddwch yn cyflwyno eich apêl byddwch yn gallu gofyn am ddehonglydd Iaith Arwyddion Prydain (BSL) neu gyfieithydd iaith dramor."
   },
   "technical": {
-    "title": "[CY] Technical information about this website’s accessibility",
-    "para1": "[CY] HMCTS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
-    "para2": "[CY] The website is fully compliant with the <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'> Web Content Accessibility Guidelines version 2.0 AA standard. </a>",
-    "para3": "[CY] We are in the process of testing the full service against the new <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'> Web Content Accessibility Guidelines version 2.1 AA standard.</a> We commit to being fully compliant against this standard by 2020."
+    "title": "Gwybodaeth dechnegol am hygyrchedd y wefan hon",
+    "para1": "Mae GLlTEM wedi ymrwymo i sicrhau bod ei wefan yn hygyrch, a hynny yn unol â Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Rhaglenni Symudol) (Rhif 2) 2018.",
+    "para2": "Mae’r wefan yn cydymffurfio’n llwyr â’r <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Canllawiau Hygyrchedd Cynnwys y We, fersiwn 2.0 safon AA</a>.",
+    "para3": "Rydym yn y broses o brofi’r gwasanaeth llawn yn erbyn y <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>. We commit to being fully compliant against this standard by 2020."
   },
   "nonAccessible": {
-    "title": "[CY] Non-accessible content",
-    "para1": "[CY] The content listed below is non-accessible for the following reasons.",
-    "para2": "[CY] Some of the PDFs may not meet accessibility standards. For example, they may not be structured so they’re accessible to a screen reader. This is because the majority were created before the current accessibility legislation was introduced. We plan to test these and make them accessible by September 2020.",
-    "para3": "[CY] One exception is the new SSCS PE form, published in November 2019. This will be tested and made accessible by March 2020."
+    "title": "Cynnwys anhygyrch",
+    "para1": "Mae’r cynnwys isod yn anhygyrch am y rhesymau canlynol.",
+    "para2": "Efallai na fydd rhai o’r dogfennau PDF yn bodloni safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi’u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin. Mae hyn oherwydd bod y rhan fwyaf ohonynt wedi cael eu creu cyn i’r ddeddfwriaeth hygyrchedd gyfredol gael ei chyflwyno. Rydym yn bwriadu profi’r rhain a’u gwneud yn hygyrch erbyn mis Medi 2020.",
+    "para3": "Un eithriad yw ffurflen newydd SSCS PE, a gyhoeddwyd ym mis Tachwedd 2019. Caiff y ffurflen hon ei phrofi a’i gwneud yn hygyrch erbyn mis Mawrth 2020. "
   },
   "regulations": {
-    "title": "[CY] Non compliance with the accessibility regulations",
-    "para1": "[CY] The following issues have been identified and we are working to fix these:",
-    "regulation1": "[CY] Analyse Links do not have discernible text",
-    "regulation2": "[CY] Images do not have alternate text",
-    "regulation3": "[CY] Frames do not have title attribute",
-    "regulation4": "[CY] ARIA input fields do not have an accessible name",
-    "regulation5": "[CY] &lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt; or &lt;template&gt; elements"
+    "title": "Anghydymffurfio â’r rheoliadau hygyrchedd",
+    "para1": "Mae’r materion canlynol wedi cael eu nodi ac rydym yn gweithio’n galed i’w datrys:",
+    "regulation1": "Nid oes gan Analyse Links destun canfyddadwy",
+    "regulation2": "Nid oes gan ddelweddau destun amgen",
+    "regulation3": "Nid oes teitlau ar y fframiau",
+    "regulation4": "Nid oes gan feysydd mewnbynnu ARIA enw hygyrch",
+    "regulation5": "<dl> dim ond grwpiau <dt> a <dd>, <script> neu elfennau <template> y dylai elfennau eu cynnwys "
   },
   "contentNotInScope": {
-    "title": "[CY] Content that’s not within the scope of the accessibility regulations",
-    "subTitle": "[CY] PDFs and other documents",
-    "para1": "[CY] PDFs, documents and attachments to email notifications published before 23 September 2018 may not meet accessibility standards. For example, they may not be structured so they’re accessible to a screen reader."
+    "title": "Cynnwys sydd ddim o fewn cwmpas y rheoliadau hygyrchedd",
+    "subTitle": "Dogfennau PDF a dogfennau eraill",
+    "para1": "Mae’n bosib na fydd dogfennau PDF, dogfennau eraill ac atodiadau mewn negeseuon e-bost a gyhoeddwyd cyn 23 Medi 2018 yn cydymffurfio â’r safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi’u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin."
   },
   "howWeTested": {
-    "title": "[CY] How we tested this website",
-    "para1": "[CY] We have carried out manual accessibility testing using the Google Chrome extension 'Axe'. We also use Pa11y. Axe complies with WCAG 2 and Section 508 accessibility (which covers WCAG 2.1)",
-    "para2": "[CY] In addition to the manual accessibility testing listed above,  Submit Your Appeal and Track Your Appeal websites were tested on by the Digital Accessibility Centre (DAC) in June 2018.  We continually run automated accessibility testing as part of our development practices and resolves issues before websites and functions are released. We use Pa11y and Axe with our quality assurance processes.",
-    "para3": "[CY] The following is the Executive summary of of DAC Report from June 2018. The issues mentioned have now been resolved.",
-    "para4": "[CY] “The Digital Accessibility Centre (DAC) user/technical team carried out an accessibility audit for HMCTS Submit  and Track an Appeal on the 4th June 2018. This document incorporates the findings regarding any accessibility barriers identified during the process. Numerous access issues were reported by both our automated testing tools and manual testing team, many of which were of a low priority.  There were also various instances of page elements that did not adhere to the Government Digital Services (GDS) design manual. The majority of issues were encountered by our screen reader analysts who were able to navigate many of the pages with only minor difficulties. Some pages however, included form elements that were difficult to understand and navigate because they did not include text that was visible to screen reader software.  For example, screen reader users were unable to access the date picker independently and therefore required assistance in order to indicate when they were unable to attend a hearing. In some instances, users are instructed to download a paper form in order to continue the process. Some users of assistive technology are not able to access non-HTML documents independently. The GDS design manual states that HTML must be used first, and PDF second if the content can't be reproduced in HTML.  They also provide guidance on creating accessible PDF documents. Session time-outs are present that may prohibit disabled users from using the service. Although users are informed that they will be timed out after 20 minutes of activity,this information was not obvious. The information that users had inputted prior to the time-out was not saved and re-established upon re-authentication. Although we appreciate that session time-outs are important for security, these must not prohibit users from using the service.”"
+    "title": "Sut rydym wedi profi’r wefan hon",
+    "para1": "Rydym wedi cynnal profion hygyrchedd gan ddefnyddio ‘Axe’ sef estyniad Google Chrome. Rydym hefyd yn defnyddio Pa11y. Mae Axe yn cydymffurfio â WCAG 2 ac Adran 508 - hygyrchedd (sy’n cynnwys WCAG 2.1)",
+    "para2": "Yn ogystal â’r profion hygyrchedd a restrir uchod, profwyd y gwefannau Cyflwyno eich Apêl a Dilyn Trywydd eich Apêl gan y Ganolfan Hygyrchedd Digidol (DAC) ym mis Mehefin 2018.  Rydym yn cynnal profion hygyrchedd yn rheolaidd fel rhan o’n harferion datblygu ac yn datrys unrhyw broblemau cyn i wefannau a swyddogaethau newydd gael eu rhyddhau. Rydym yn defnyddio Pa11y ac Axe gyda’n prosesau sicrhau ansawdd.",
+    "para3": "Dyma’r Crynodeb Gweithredol o adroddiad y DAC ym mis Mehefin 2018. Mae’r materion a soniwyd amdanynt bellach wedi eu datrys. ",
+    "para4": "â€œCynhaliodd defnyddiwr/tîm technegol y Ganolfan Hygyrchedd Digidol (DAC) archwiliad hygyrchedd ar gyfer gwasanaethau Cyflwyno eich Apêl a Dilyn Trywydd eich Apêl GLlTEM ar 4 Mehefin 2018. Mae’r ddogfen hon yn cynnwys y canfyddiadau ynghylch unrhyw rwystrau o ran hygyrchedd a adnabuwyd yn ystod y broses. Cafodd nifer o faterion mynediad eu hadrodd gan ein teclynnau profi awtomataidd a’n tîm profi, ac roedd llawer o’r rhain o flaenoriaeth isel.  Roedd amryw o enghreifftiau hefyd mewn perthynas â thudalennau nad oeddent yn glynu wrth lawlyfr dylunio Gwasanaeth Digidol y Llywodraeth (GDS). Daeth y rhan fwyaf o’r materion i sylw ein dadansoddwyr darllenwyr sgrin a oedd yn gallu llywio llawer o’r tudalennau gyda dim ond mân anawsterau. Fodd bynnag, roedd rhai tudalennau yn cynnwys elfennau mewn perthynas â ffurflenni a oedd yn anodd eu deall a’u defnyddio am nad oeddent yn cynnwys testun a oedd yn weladwy i feddalwedd darllenydd sgrin. Er enghraifft, nid oedd defnyddwyr darllenydd sgrin yn gallu cael gafael ar y dewisydd dyddiad yn annibynnol ac felly roedd angen cymorth arnynt er mwyn nodi pryd nad oeddent yn gallu mynychu gwrandawiad. Mewn rhai achosion, caiff defnyddwyr eu cyfarwyddo i lawrlwytho ffurflen bapur er mwyn parhau â’r broses. Nid yw rhai defnyddwyr technoleg gynorthwyol yn gallu cael gafael ar ddogfennau nad ydynt yn ddogfennau HTML. Mae’r Llawlyfr Dylunio GDS yn datgan bod rhaid defnyddio HTML yn gyntaf, a PDF yn ail os na ellir atgynhyrchu’r cynnwys mewn HTML. Maent hefyd yn rhoi arweiniad ar wneud dogfennau PDF yn hygyrch. Mae terfynau amser ar sesiynau yn bresennol a allai wahardd defnyddwyr anabl rhag defnyddio’r gwasanaeth. Er bod defnyddwyr yn cael gwybod y byddant yn rhedeg allan o amser ar ôl 20 munud o ddiffyg gweithgarwch, nid oedd yr wybodaeth hon yn amlwg. Nid oedd yr wybodaeth yr oedd defnyddwyr wedi’i chofnodi cyn y terfyn amser wedi’i harbed a rhaid oedd ei rhoi eto wrth ail-ddilysu. Er ein bod yn gwerthfawrogi bod y sesiynau amser yn bwysig ar gyfer diogelwch, ni ddylai’r rhain wahardd defnyddwyr rhag defnyddio’r gwasanaeth.â€"
   },
   "toImprove": {
-    "title": "[CY] What we’re doing to improve accessibility",
-    "para1": "[CY] This website is continually tested using accessibility software. Any new features which are introduced are also tested.  We will be making the PDFs, documents and attachments that are essential to using our service accessible."
+    "title": "Beth rydym yn ei wneud i wella hygyrchedd",
+    "para1": "Mae’r wefan yn cael ei phrofi’n barhaus gan ddefnyddio meddalwedd hygyrchedd. Caiff unrhyw nodweddion newydd a gyflwynir eu profi hefyd.  Byddwn yn gwneud y ffeiliau PDF, y dogfennau a’r atodiadau sy’n hanfodol i allu defnyddio ein gwasanaeth yn hygyrch."
   }
 }

@@ -1,22 +1,22 @@
 {
-  "titleHead": "[CY] Hearing support",
-  "title": "[CY] Do you need any support at the hearing?",
-  "supportCanBeArranged": "[CY] Support can be arranged, such as an interpreter, hearing loop or disabled access. You",
-  "cant": "[CY] can't",
-  "bringYourOwn": "[CY] bring your own interpreter to the hearing.",
+  "titleHead": "Cymorth yn y gwrandawiad - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "A oes angen unrhyw gymorth arnoch yn y gwrandawiad?",
+  "supportCanBeArranged": "Gellir trefnu cymorth fel cyfieithydd, dolen glyw neu fynediad i’r anabl. Ni",
+  "cant": "allwch",
+  "bringYourOwn": "ddod â chyfieithydd eich hun i’r gwrandawiad.",
   "fields": {
     "arrangements": {
-      "label": "[CY] Select whether you need support at the hearing or not",
-      "yes": "[CY] Yes, I need support at the hearing",
-      "no": "[CY] No, I don't need support at the hearing",
+      "label": "Dewiswch p’un a oes angen cymorth arnoch yn y gwrandawiad ai peidio",
+      "yes": "Oes, mae angen cymorth arnaf yn y gwrandawiad",
+      "no": "Nac oes, nid oes angen cymorth arnaf yn y gwrandawiad",
       "error": {
-        "required": "[CY] You need to tell us whether you need support at the hearing. Select either yes or no."
+        "required": "Mae angen ichi ddweud wrthym a oes angen cymorth arnoch yn y gwrandawiad. Dewiswch oes neu nac oes."
       }
     }
   },
   "cya": {
     "arrangements": {
-      "question": "[CY] Do you want us to make arrangements for your hearing"
+      "question": "Ydych chi eisiau i ni wneud trefniadau ar gyfer eich gwrandawiad"
     }
   }
 }

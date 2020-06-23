@@ -1,65 +1,65 @@
 {
-  "titleHead": "[CY] Enter contact details",
-  "title": "[CY] Enter your contact details",
-  "subtitle": "[CY] As the appointee, enter your contact details.",
+  "titleHead": "Manylion cyswllt - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rhowch eich manylion cyswllt",
+  "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
   "fields": {
     "addressLine1": {
-      "title": "[CY] Address line 1",
+      "title": "Llinell gyntaf y cyfeiriad",
       "error": {
-        "required": "[CY] Enter the first line of your address"
+        "required": "Rhowch linell gyntaf eich cyfeiriad"
       }
     },
     "addressLine2": {
-      "title": "[CY] Address line 2 (optional)",
+      "title": "Ail linell y cyfeiriad (dewisol)",
       "error": {
-        "invalid": "[CY] You have entered an invalid character. Check your address and enter it again"
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "townCity": {
-      "title": "[CY] Town/City",
+      "title": "Tref/Dinas",
       "error": {
-        "required": "[CY] Enter the town or city from your address"
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
       }
     },
     "county": {
-      "title": "[CY] County",
+      "title": "Sir",
       "error": {
-        "required": "[CY] Enter the county from your address"
+        "required": "Nodwch y sir o’ch cyfeiriad"
       }
     },
     "postCode": {
-      "title": "[CY] Postcode",
+      "title": "Cod post",
       "error": {
-        "required": "[CY] Enter the postcode from your address",
-        "invalidPostcode": "[CY] The online appeal service is not available to people from this region. This postcode should match the postcode you entered to access the service."
+        "required": "Nodwch y cod post o’ch cyfeiriad",
+        "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
       }
     },
     "phoneNumber": {
-      "title": "[CY] Phone number (optional)",
-      "hint": "[CY] This may be used to contact you about the appeal",
+      "title": "Rhif ffôn (dewisol)",
+      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch yr apêl",
       "error": {
-        "invalid": "[CY] You have entered an invalid phone number. Check it and enter it again"
+        "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "emailAddress": {
-      "title": "[CY] Email address (optional)",
-      "hint": "[CY] You’ll get updates and a link so you can track the appeal online",
+      "title": "Cyfeiriad e-bost (dewisol):",
+      "hint": "Byddwch yn cael diweddariadau a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
       "error": {
-        "invalid": "[CY] You have entered an invalid email address. Check it and enter it again"
+        "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
       }
     }
   },
   "cya": {
     "address": {
-      "question": "[CY] Address"
+      "question": "Cyfeiriad"
     },
     "phoneNumber": {
-      "question": "[CY] Phone number"
+      "question": "Rhif ffôn"
     },
     "emailAddress": {
-      "question": "[CY] Email"
+      "question": "Cyfeiriad e-bost"
     },
-    "change": "[CY] Change",
-    "yourDetails": "[CY] Your Contact Details"
+    "change": "Newid",
+    "yourDetails": "Eich manylion cyswllt"
   }
 }

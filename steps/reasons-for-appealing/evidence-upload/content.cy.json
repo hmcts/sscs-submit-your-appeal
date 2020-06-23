@@ -1,20 +1,20 @@
 {
-    "titleHead": "[CY] Upload additional evidence",
-    "title": "[CY] Upload additional evidence",
-    "description": "[CY] You can upload letters, documents or photos. For example, you could take a picture of a letter from your doctor using your phone. Place it on a flat surface and take the photo from above.",
-    "itemsListLabel": "[CY] Uploaded files",
-    "noItemsMessage": "[CY] You have not uploaded any files. Upload at least one file before you continue. Click 'back' if you do not want to upload anything.",
-    "noItemsError": "[CY] You have not uploaded any files. Upload at least one file before you continue. Click 'back' if you do not want to upload anything.",
-    "fields": {
-        "uploadEv": {
-            "label": "[CY] Choose file",
-            "error": {
-                "maxFileSizeExceeded": "[CY] The file you have uploaded is too big. Please upload a file under 5MB.",
-                "wrongFileType": "[CY] The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
-                "required": "[CY] You have not uploaded a file. Please upload your file again.",
-                "technical": "[CY] Your file could not be uploaded due to a technical error. Please try again.",
-                "totalFileSizeExceeded": "[CY] You can only upload a maximum of 5mb of evidence. Please print and send the rest by post. The address will be sent to you after you have submitted your appeal."
-            }
-        }
+  "titleHead": "Llwytho rhagor o dystiolaeth - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Llwytho rhagor o dystiolaeth",
+  "description": "Gallwch lwytho llythyrau, dogfennau neu ffotograffau. Er enghraifft, gallech dynnu llun o lythyr gan eich meddyg yn defnyddio eich ffôn. Rhowch y llythyr ar wyneb fflat a thynnu’r llun o uwchben.",
+  "itemsListLabel": "Ffeiliau sydd wedi cael eu llwytho",
+  "noItemsMessage": "Nid ydych wedi llwytho unrhyw ffeiliau. Llwythwch o leiaf un ffeil cyn parhau. Cliciwch ‘yn ôl’ os nad ydych eisiau llwytho unrhyw beth.",
+  "noItemsError": "Nid ydych wedi llwytho unrhyw ffeiliau. Llwythwch o leiaf un ffeil cyn parhau. Cliciwch ‘yn ôl’ os nad ydych eisiau llwytho unrhyw beth.",
+  "fields": {
+    "uploadEv": {
+      "label": "Dewis ffeil",
+      "error": {
+        "maxFileSizeExceeded": "Mae’r ffeil rydych wedi ei llwytho yn rhy fawr. Llwythwch ffeil sy’n llai na 5MB.",
+        "wrongFileType": "Nid yw’r math o ffeil rydych wedi’i llwytho yn dderbyniol. Ceisiwch drosi’r ffeil i fformat ffeil cyffredin a rhowch gynnig arall arni.",
+        "required": "Nid ydych wedi llwytho ffeil. Rhowch gynnig arall arni.",
+        "technical": "Doedd dim modd llwytho eich ffeil oherwydd gwall technegol. Rhowch gynnig arall arni.",
+        "totalFileSizeExceeded": "Dim ond 5MB o dystiolaeth y gallwch ei llwytho. Argraffwch ac anfonwch y gweddill drwy’r post. Bydd y cyfeiriad yn cael ei anfon atoch ar ôl i chi gyflwyno eich apêl."
+      }
     }
+  }
 }
