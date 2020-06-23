@@ -1,27 +1,27 @@
 {
-  "titleHead": "[CY] Enter national insurance number",
+  "titleHead": "Rhif yswiriant gwladol - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "title": {
-    "withoutAppointee": "[CY] Enter your National Insurance number",
-    "withAppointee": "[CY] Enter their National Insurance number"
+    "withoutAppointee": "Nodwch eich rhif Yswiriant Gwladol",
+    "withAppointee": "Nodwch eu rhif Yswiriant Gwladol"
   },
   "subtitle": {
-    "withoutAppointee": "[CY] You can find your National Insurance number on any letter about the benefit.",
-    "withAppointee": "[CY] This will be on any letter from DWP about the benefit."
+    "withoutAppointee": "Gallwch ddod o hyd i’ch Rhif Yswiriant Gwladol ar unrhyw lythyr am y budd-dal.",
+    "withAppointee": "Bydd ar unrhyw lythyr gan DWP ynghylch y budd-dal."
   },
   "fields": {
     "nino": {
-      "label": "[CY] National Insurance number",
+      "label": "Rhif Yswiriant Gwladol",
       "error": {
         "required": {
-          "withoutAppointee": "[CY] Enter your National Insurance number",
-          "withAppointee": "[CY] Enter their National Insurance number"
+          "withoutAppointee": "Nodwch eich rhif Yswiriant Gwladol",
+          "withAppointee": "Nodwch eu rhif Yswiriant Gwladol"
         }
       }
     }
   },
   "cya": {
     "nino": {
-      "question": "[CY] National Insurance number"
+      "question": "Rhif Yswiriant Gwladol"
     }
   }
 }

@@ -1,109 +1,109 @@
 {
-  "titleHead": "[CY] Terms and conditions",
-  "title": "[CY] Terms and conditions",
+  "titleHead": "Telerau ac amodau - Gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Telerau ac Amodau",
   "termsAndConditions": {
-    "termsOfUse": "[CY] By using this service you’re agreeing to the following terms of use. This includes the",
+    "termsOfUse": "Trwy ddefnyddio’r gwasanaeth hwn rydych yn cytuno i’r telerau defnydd canlynol. Mae hyn yn cynnwys y ",
     "links": {
       "privacy": {
-        "name": "[CY] privacy policy"
+        "name": "polisi preifatrwydd"
       },
       "terms": {
-        "name": "[CY] terms and conditions"
+        "name": "telerau ac amodau"
       },
       "cookie": {
-        "name": "[CY] cookie policy"
+        "name": "polisi cwcis"
       },
       "contact": {
-        "name": "[CY] Contact us"
+        "name": "Cysylltwch â ni"
       }
     }
   },
   "whoWeAre": {
-    "title": "[CY] Who we are",
-    "managedBy": "[CY] This service is managed by Her Majesty’s Courts and Tribunals Service.",
-    "changeInLaw": "[CY] You should check these terms and conditions regularly. We may update them at any time without notice. If you continue to use this service after the terms and conditions have changed, you are deemed to have agreed to the changes."
+    "title": "Pwy ydym ni?",
+    "managedBy": "Mae’r gwasanaeth hwn yn cael ei reoli gan Wasanaeth Llysoedd a Thribiwnlysoedd Ei Mawrhydi.",
+    "changeInLaw": "Dylech wirio’r telerau ac amodau hyn yn rheolaidd. Efallai y byddwn yn eu diweddaru ar unrhyw adeg heb rybudd. Os byddwch yn parhau i ddefnyddio’r gwasanaeth hwn ar ôl i’r telerau ac amodau gael eu newid, ystyrir eich bod wedi cytuno i’r newidiadau."
   },
   "informationProvided": {
-    "title": "[CY] Information provided by this service",
-    "support": "[CY] This service provides information to support your claim or application. We cannot give legal advice on individual cases.",
-    "questions": "[CY] You should answer the questions in the service based on your circumstances and seek legal advice if you need it."
+    "title": "Gwybodaeth a ddarperir gan y gwasanaeth hwn",
+    "support": "Mae’r gwasanaeth hwn yn darparu gwybodaeth i gefnogi eich hawliad neu’ch cais. Ni allwn roi cyngor cyfreithiol ar achosion unigol.",
+    "questions": "Dylech ateb y cwestiynau yn y gwasanaeth gan ystyried eich amgylchiadau chi a cheisio cyngor cyfreithiol os oes arnoch angen gwneud hynny."
   },
   "dataStored": {
-    "title": "[CY] Sharing and storing data",
-    "our": "[CY] Our",
-    "privacy": "[CY] explains where your data is stored, and who it is shared with.",
-    "cookie": "[CY] explains how this service uses and stores cookies."
+    "title": "Rhannu a storio data",
+    "our": "Mae ein ",
+    "privacy": " yn egluro lle mae’ch data yn cael ei storio a gyda phwy mae’n cael ei rannu.",
+    "cookie": "yn egluro sut mae’r gwasanaeth hwn yn defnyddio ac yn storio cwcis."
   },
   "laws": {
-    "title": "[CY] Laws applying to this service",
-    "use": "[CY] Your use of this service and any dispute arising from its use will be governed by and construed in accordance with the laws of England and Wales, including but not limited to the:",
-    "act1": "[CY] Computer Misuse Act 1990",
-    "act2": "[CY] Data Protection Act 1998 (until 25 May 2018)",
-    "act3": "[CY] Data Protection Act 2018 (from 25 May 2018)",
-    "act4": "[CY] General Data Protection Regulation",
-    "act5": "[CY] Mental Capacity Act 2005"
+    "title": "Cyfreithiau sy’n berthnasol i’r gwasanaeth hwn",
+    "use": "Bydd y defnydd a wnewch o’r gwasanaeth hwn ac unrhyw anghydfod sy’n codi o’i ddefnyddio yn cael eu rheoli a’u dehongli yn unol â chyfreithiau Cymru a Lloegr, gan gynnwys, ond nid yn gyfyngedig i:",
+    "act1": "Ddeddf Camddefnyddio Cyfrifiaduron 1990",
+    "act2": "Deddf Diogelu Data 1998 (hyd at 25 Mai 2018)",
+    "act3": "Deddf Diogelu Data 2018 (o 25 Mai 2018)",
+    "act4": "Rheoliadau Cyffredinol Diogelu Data",
+    "act5": "Deddf Galluedd Meddyliol 2005"
   },
   "responsibleUse": {
-    "title": "[CY] How to use this service responsibly",
-    "aware": "[CY] There are risks in using a shared computer (for example, in a library) to access this service. It’s your responsibility to be aware of these risks and to avoid using any computer which may leave your personal information accessible to others. You’re responsible if you choose to leave a computer unprotected while using this service.",
-    "precautions": "[CY] You should take your own precautions to ensure that the way you access this service does not expose you to the risk of:",
-    "risk1": "[CY] viruses",
-    "risk2": "[CY] malicious computer code",
-    "risk3": "[CY] other forms of interference which may damage your computer system",
-    "mustNot": "[CY] You must not misuse this service by knowingly introducing viruses, trojans, worms, logic bombs or other material which is malicious or technologically harmful. You must not attempt to gain unauthorised access to this service, the system on which it is stored, or any server, computer or database connected to it. You must not attack this site using a denial-of-service attack or a distributed denial-of-service attack."
+    "title": "Sut i ddefnyddio’r gwasanaeth hwn yn gyfrifol",
+    "aware": "Mae peryglon yn gysylltiedig â defnyddio cyfrifiadur sy’n cael ei rannu (er enghraifft, mewn llyfrgell) i gael mynediad at y gwasanaeth hwn. Eich cyfrifoldeb chi yw bod yn ymwybodol o’r peryglon hyn ac osgoi defnyddio unrhyw gyfrifiadur lle mae posibilrwydd y gall eraill weld eich gwybodaeth bersonol. Chi sy’n gyfrifol os ydych chi’n dewis gadael cyfrifiadur heb ei ddiogelu tra rydych wedi mewngofnodi i’r gwasanaeth hwn.",
+    "precautions": "Mae’n rhaid i chi gymryd camau priodol eich hun i sicrhau nad yw’r ffordd rydych yn cael mynediad at y gwasanaeth hwn yn eich gadael yn agored i’r perygl o:",
+    "risk1": "firysau",
+    "risk2": "cod cyfrifiadur maleisus",
+    "risk3": "neu niwed o fath arall a allai achosi difrod i’ch system gyfrifiadurol",
+    "mustNot": "Ni ddylech gamddefnyddio’r gwasanaeth hwn drwy gyflwyno’n fwriadol firysau, ymwelwyr diwahoddiad (trojans), mwydod (worms), bomiau rhesymeg (logic bombs) neu unrhyw ddeunydd arall maleisus neu sy’n niweidiol i dechnoleg. Ni ddylech geisio cael mynediad heb awdurdod at y gwasanaeth hwn, y system lle caiff ei storio nac unrhyw weinydd, cyfrifiadur neu gronfa ddata sy’n gysylltiedig â’r gwasanaeth. Ni ddylech ymosod ar y wefan hon drwy ymosodiad gwrthod gwasanaeth neu ymosodiad gwrthod gwasanaeth a ddosbarthwyd."
   },
   "sensitiveInfo": {
-    "title": "[CY] Entering personally sensitive information",
-    "freeText": "[CY] This online service contains several free-text fields in which you may choose to enter information which is personally sensitive.",
-    "enter": "[CY] If you enter information about your:",
-    "info1": "[CY] religious beliefs",
-    "info2": "[CY] sexual orientation or sex life",
-    "info3": "[CY] racial or ethnic origins",
-    "info4": "[CY] political opinions",
-    "info5": "[CY] religious or philosophical beliefs",
-    "info6": "[CY] trade union membership",
-    "info7": "[CY] genetic data or biometric data",
-    "info8": "[CY] health data",
-    "consent": "[CY] You give us your consent to processing this information for the purpose of dealing with your application.",
-    "moreInfo": "[CY] For more information about how we collect and store your personal data, see the privacy policy "
+    "title": "Nodi gwybodaeth bersonol sensitif",
+    "freeText": "Mae’r gwasanaeth ar-lein hwn yn cynnwys nifer o feysydd testun rhydd lle’ch gwahoddir i nodi gwybodaeth bersonol sensitif.",
+    "enter": "Os byddwch yn rhoi gwybodaeth am eich:",
+    "info1": "credoau crefyddol",
+    "info2": "cyfeiriadedd rhywiol neu’ch bywyd rhywiol",
+    "info3": "tarddiad hiliol neu’ch tarddiad ethnig",
+    "info4": "barnau gwleidyddol",
+    "info5": "credoau crefyddol neu’ch credoau athronyddol",
+    "info6": "aelodaeth undeb llafur",
+    "info7": "data genetig neu ddata biometrig",
+    "info8": "data am eich iechyd",
+    "consent": "Rydych yn rhoi caniatâd inni brosesu’r wybodaeth hon er mwyn inni allu ymdrin â’ch cais.",
+    "moreInfo": "I gael rhagor o wybodaeth am sut rydym yn casglu a storio eich data personol, gweler y polisi preifatrwydd"
   },
   "welsh": {
-    "title": "[CY] Appealing in Welsh",
-    "instructions": "[CY] This is a beta service is and is not currently available in Welsh. If you want to appeal in Welsh then you should",
-    "inDevelopment": "[CY] A Welsh version of this online service is in development and will be available when it's complete",
-    "formLink": "[CY] https://www.gov.uk/government/publications/appeal-a-social-security-benefits-decision-form-sscs1",
-    "linkLabel": "[CY] download the Welsh version of the paper SSCS1 form"
+    "title": "Apelio yn Gymraeg",
+    "instructions": "Mae hwn yn wasanaeth beta ac nid yw ar gael yn Gymraeg ar hyn o bryd. Os ydych eisiau apelio yn Gymraeg yna dylech",
+    "inDevelopment": "Mae fersiwn Cymraeg o’r gwasanaeth ar-lein hwn yn cael ei ddatblygu a bydd ar gael pan fydd wedi’i gwblhau",
+    "formLink": "https://www.gov.uk/government/publications/appeal-a-social-security-benefits-decision-form-sscs1",
+    "linkLabel": "lawrlwytho fersiwn Cymraeg o’r ffurflen SSCS1"
   },
   "disclaimer": {
-    "title": "[CY] Disclaimer",
-    "upToDate": "[CY] While we make every effort to keep information up to date, we don’t provide any guarantees, conditions or warranties that it will be:",
-    "condition1": "[CY] current",
-    "condition2": "[CY] secure",
-    "condition3": "[CY] accurate",
-    "condition4": "[CY] complete",
-    "condition5": "[CY] free from bugs or viruses",
-    "publish": "[CY] We don’t publish advice. You should get professional or specialist advice before doing anything on the basis of the information in the service.",
-    "loss": "[CY] We’re not liable for any loss or damage that may come from using this service. This includes:",
-    "damage1": "[CY] any direct, indirect or consequential losses",
-    "damage2": "[CY] any loss or damage caused by civil wrongs (‘tort’, including negligence), breach of contract or otherwise",
-    "damage3": "[CY] the use of this service, GOV.UK and any websites that are linked to or from it",
-    "damage4": "[CY] the inability to use this service, GOV.UK and any websites that are linked to or from it",
-    "applies": "[CY] This applies if the loss or damage was foreseeable, arose in the normal course of things or you advised us that it might happen.",
-    "includes": "[CY] This includes (but isn’t limited to) the loss of your:",
-    "loss1": "[CY] income or revenue",
-    "loss2": "[CY] salary, benefits or other payments",
-    "loss3": "[CY] business",
-    "loss4": "[CY] profits or contracts",
-    "loss5": "[CY] opportunity",
-    "loss6": "[CY] anticipated savings",
-    "loss7": "[CY] data",
-    "loss8": "[CY] goodwill or reputation",
-    "loss9": "[CY] intangible property, including loss, corruption or damage to data or any computer system",
-    "loss10": "[CY] wasted management or office time",
-    "liable": "[CY] We may still be liable for:",
-    "liability1": "[CY] death or personal injury arising from our negligence",
-    "liability2": "[CY] fraudulent misrepresentation",
-    "liability3": "[CY] any other liability which cannot be excluded or limited under applicable law",
-    "furtherInfo": "[CY] for further information"
+    "title": "Ymwrthodiad",
+    "upToDate": "Er ein bod yn ymdrechu i gadw gwybodaeth yn gyfredol, nid ydym yn darparu unrhyw warantau, amodau na sicrwydd y bydd:",
+    "condition1": "yn gyfredol",
+    "condition2": "yn ddiogel",
+    "condition3": "yn gywir",
+    "condition4": "yn gyflawn",
+    "condition5": "yn rhydd o fygiau neu firysau",
+    "publish": "Nid ydym ni’n cyhoeddi cyngor. Dylech gael cyngor proffesiynol neu gyngor arbenigol cyn gwneud unrhyw beth yn seiliedig ar y wybodaeth yn y gwasanaeth.",
+    "loss": "Nid ydym yn atebol am unrhyw golled neu ddifrod a all ddeillio o ddefnyddio’r gwasanaeth hwn. Mae hyn yn cynnwys:",
+    "damage1": "unrhyw golledion uniongyrchol, anuniongyrchol neu ganlyniadol",
+    "damage2": "unrhyw golled neu ddifrod a achoswyd gan gamweddau sifil (‘tort’, yn cynnwys esgeulustra), torri amodau contract neu fel arall",
+    "damage3": "defnyddio’r gwasanaeth hwn, GOV.UK ac unrhyw wefannau sydd â dolenni i neu o’r wefan",
+    "damage4": "methu â defnyddio’r gwasanaeth hwn, GOV.UK ac unrhyw wefannau sydd â dolenni i neu o’r wefan",
+    "applies": "Mae hyn yn berthnasol os oedd y golled neu’r difrod yn rhagweladwy, wedi codi wrth i’r broses arferol fynd rhagddo, neu os oeddech wedi ein cynghori y gallai ddigwydd",
+    "includes": "Mae hyn yn cynnwys (ond nid yw’n gyfyngedig) i golli:",
+    "loss1": "incwm neu refeniw",
+    "loss2": "cyflog, budd-daliadau neu daliadau eraill",
+    "loss3": "busnes",
+    "loss4": "elw neu gontractau",
+    "loss5": "cyfleoedd",
+    "loss6": "cynilion a ragwelwyd",
+    "loss7": "data",
+    "loss8": "ewyllys da neu’ch enw da",
+    "loss9": "eiddo anghyffwrddadwy, yn cynnwys colled, llygredigaeth neu ddifrod i ddata neu unrhyw system gyfrifiadurol",
+    "loss10": "gwastraff o amser rheolwyr neu amser swyddfa",
+    "liable": "Efallai y byddwn yn parhau i fod yn atebol am:",
+    "liability1": "farwolaeth neu anaf personol sy’n codi o’n hesgeulustra",
+    "liability2": "camliwio twyllodrus",
+    "liability3": "unrhyw atebolrwydd arall na ellir ei eithrio neu ei gyfyngu dan y gyfraith berthnasol",
+    "furtherInfo": " i gael rhagor o wybodaeth."
   }
 }
