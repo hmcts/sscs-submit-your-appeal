@@ -13,8 +13,8 @@ class LanguagePreference extends SaveToDraftStore {
 
   get form() {
     return form({
-      languagePreference: text.joi(
-        this.content.fields.languagePreference.error.required,
+      languagePreferenceWelsh: text.joi(
+        this.content.fields.languagePreferenceWelsh.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
