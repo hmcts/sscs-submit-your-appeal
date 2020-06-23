@@ -1,91 +1,91 @@
 {
-  "titleHead": "Cookie Policy - Appeal a benefit decision - GOV.UK",
+  "titleHead": "Polisi Cwcis -  Gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "footer": {
-    "cookies": "Cookies"
+    "cookies": "Cwcis"
   },
   "cookies": {
-    "title": "Cookies",
-    "description": "A cookie is a small piece of data that’s stored on your computer, tablet, or phone when you visit a website. Most websites need cookies to work properly."
+    "title": "Cwcis",
+    "description": "Darn bach o ddata sy'n cael ei storio ar eich cyfrifiadur, eich tabled neu eich ffôn symudol pan fyddwch yn ymweld â gwefan yw cwci. Mae angen cwcis ar y rhan fwyaf o wefannau i weithio'n iawn."
   },
   "usedInService": {
-    "title": "How cookies are used in this service",
-    "uses": "This service uses them to:",
+    "title": "Sut ydym yn defnyddio cwcis yn y gwasanaeth hwn",
+    "uses": "Mae’r gwasanaeth hwn yn eu defnyddio i:",
     "usesList": [
-      "measure how you use the service so it can be improved",
-      "remember the notifications you’ve seen so that you’re not shown them again",
-      "temporarily store the answers you give"
+      "fesur sut ydych yn defnyddio’r gwasanaeth fel y gallwn ei wella",
+      "cofio'r hysbysiadau rydych wedi'u gweld fel na fyddwch yn eu gweld eto",
+      "storio’r atebion a roddwch dros dro"
     ],
-    "more": "Find out more about ",
-    "manage": "how to manage cookies."
+    "more": "Mwy o wybodaeth am ",
+    "manage": "sut i reoli cwcis."
   },
   "howAreTheyUsed": {
-    "title": "Cookies used to measure website usage",
-    "description": "We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements, for example improving site search.",
-    "info": "Google Analytics stores information about:",
+    "title": "Cwcis a ddefnyddir i fesur faint o bobl sy’n defnyddio ein gwefan",
+    "description": "Rydym yn defnyddio meddalwedd Google Analytics i gasglu gwybodaeth am sut rydych yn defnyddio'r gwasanaeth hwn. Rydym yn gwneud hyn i helpu i sicrhau bod y gwasanaeth yn diwallu anghenion defnyddwyr ac i'n helpu i wneud gwelliannau, er enghraifft gwella’r cyfleuster chwilio.",
+    "info": "Mae Google Analytics yn storio gwybodaeth am:",
     "infoList": [
-      "the pages you visit",
-      "how long you spend on each page",
-      "how you got to the service",
-      "what you click on while you’re visiting the service"
+      "y tudalennau yr ydych yn ymweld â hwy",
+      "faint o amser y byddwch yn ei dreulio ar bob tudalen",
+      "sut y daethoch o hyd i’r gwasanaeth",
+      "yr hyn rydych chi'n clicio arno wrth ddefnyddio'r gwasanaeth"
     ],
-    "googleShare": "We allow Google to use or share this data. Find out more about how they use this information in the ",
-    "googlePrivacyPolicy": "Google privacy policy.",
+    "googleShare": "Rydym yn caniatáu i Google ddefnyddio neu rannu’r data hwn. Gallwch ddarganfod mwy am sut maent yn defnyddio’r wybodaeth hon ym ",
+    "googlePrivacyPolicy": "mholisi preifatrwydd Google.",
     "optOut": {
-      "youCan": "You can ",
-      "google": "opt out of Google Analytics ",
-      "access": "if you do not want Google to have access to your information."
+      "youCan": "Gallwch ",
+      "google": "optio allan o Google Analytics ",
+      "access": "os nad ydych eisiau i Google gael mynediad at eich gwybodaeth."
     },
-    "googleCookies": "Google Analytics sets the following cookies:",
+    "googleCookies": "Mae Google Analytics yn gosod y cwcis canlynol:",
     "cookieTable": {
       "columnNames": [
-        "Cookie name",
-        "What this cookie is for",
-        "Expires after"
+        "Enw’r cwci",
+        "Pwrpas y cwci",
+        "Darfod ymhen"
       ],
       "items": [{
         "name": "_ga",
-        "purpose": "This helps us count how many people visit the service by tracking if you’ve visited before",
-        "expires": "2 years"
+        "purpose": "Mae hyn yn ein helpu i gyfrif faint o bobl sy'n ymweld â'r gwasanaeth drwy olrhain os ydych wedi ymweld o'r blaen",
+        "expires": "2 flynedd"
       }, {
         "name": "_gid",
-        "purpose": "Identifies you to the service",
-        "expires": "24 hours"
+        "purpose": "Gadael i'r gwasanaeth wybod pwy ydych chi",
+        "expires": "24 awr"
       }]
     }
   },
   "introMessage": {
-    "title": "Cookies used to turn our introductory message off",
-    "description": "You may see a welcome message when you first visit the service. We’ll store a cookie so that your computer knows not to show this message again.",
+    "title": "Cwcis a ddefnyddir i droi ein neges gyflwyno i ffwrdd",
+    "description": "Efallai y byddwch yn gweld neges groeso pan fyddwch yn ymweld â'r gwasanaeth am y tro cyntaf. Byddwn yn storio cwci ar eich cyfrifiadur fel ei fod yn gwybod i beidio â'i dangos eto.",
     "cookieTable": {
       "columnNames": [
         "Cookie name",
-        "What this cookie is for",
-        "Expires after"
+        "Pwrpas y cwci",
+        "Darfod ymhen"
       ],
       "items": [{
         "name": "seen_cookie_message",
-        "purpose": "Saves a message to let us know that you’ve seen our cookie message",
-        "expires": "1 month"
+        "purpose": "Arbed neges i roi gwybod inni eich bod wedi gweld ein neges ynglyn â chwcis",
+        "expires": "1 mis"
       }]
     }
   },
   "sessionCookie": {
-    "title": "Cookies used to store the answers you’ve given during your visit (known as a ‘session’)",
-    "description": "Session cookies are stored on your computer as you browse a website, and let the website know what you’ve seen and done so far. These are temporary cookies and are automatically deleted after you leave the website.",
+    "title": "Cwcis a ddefnyddir i storio’r atebion a roesoch yn ystod eich ymweliad (gelwir hyn yn ‘sesiwn’)",
+    "description": "Caiff cwcis sesiwn eu storio ar eich cyfrifiadur wrth ichi fynd drwy wefan, ac maent yn gadael i'r wefan wybod beth rydych wedi'i weld a'i wneud hyd yn hyn. Cwcis dros dro yw'r rhain ac fe'u dilëir yn awtomatig ychydig ar ôl ichi adael y wefan.",
     "cookieTable": {
       "columnNames": [
-        "Cookie name",
-        "What this cookie is for",
-        "Expires after"
+        "Enw’r cwci",
+        "Pwrpas y cwci",
+        "Darfod ymhen"
       ],
       "items": [{
-        "name": "session",
-        "purpose": "Keeps track of your answers",
-        "expires": "When you close your browser"
+        "name": "sesiwn",
+        "purpose": "Cadw cofnod o’ch atebion",
+        "expires": "Pan fyddwch chi’n cau eich porwr"
       }, {
         "name": "ARRAffinity",
-        "purpose": "To know which internal IP a request should be routed to.",
-        "expires": "When you close your browser"
+        "purpose": "Gwybod i ba IP y dylid cyfeirio cais ",
+        "expires": "Pan fyddwch chi’n cau eich porwr"
       }]
     }
   }

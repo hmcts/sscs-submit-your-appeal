@@ -1,22 +1,22 @@
 {
-  "titleHead": "[CY] Reason for late appeal - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Tell us why your appeal is late",
-  "yourAppealIsOverOneYearLate": "[CY] Your appeal is over one year late. That usually means you can’t appeal.",
-  "appealMayGoAheadForGoodReason": "[CY] Your appeal may still be able to go ahead but only if there’s a good reason for it being late. Your reason will be reviewed before your appeal is accepted.",
-  "noGoodReasonWhyLate": "[CY] I don’t have a good reason why my appeal is late",
+  "titleHead": "Rheswm dros apelio yn hwyr - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Dywedwch wrthym pam bod eich apêl yn hwyr",
+  "yourAppealIsOverOneYearLate": "Mae eich apêl dros flwyddyn yn hwyr. Mae hynny fel arfer yn golygu na allwch apelio.",
+  "appealMayGoAheadForGoodReason": "Efallai y gallwch barhau â’ch apêl o hyd, ond dim ond os oes gennych reswm da pam ei bod yn hwyr. Caiff eich rheswm ei adolygu cyn i'ch apêl gael ei derbyn.",
+  "noGoodReasonWhyLate": "Nid oes gen i reswm da pam bod fy apêl yn hwyr",
   "fields": {
     "reasonForBeingLate": {
-      "label": "[CY] Reason for being late",
+      "label": "Rheswm dros fod yn hwyr",
       "error": {
-        "required": "[CY] If you want to appeal, you must say why your appeal is late",
-        "notEnough": "[CY] You have not provided enough information. Write a little more about why your appeal is late.",
-        "invalid": "[CY] You've entered a special character. Delete it before continuing"
+        "required": "Os ydych eisiau apelio, rhaid ichi ddweud pam bod eich apêl yn hwyr",
+        "notEnough": "Nid ydych wedi rhoi digon o wybodaeth. Rhowch ragor o wybodaeth dros pam fod eich apêl yn hwyr.",
+        "invalid": "Rydych wedi cynnwys nod annilys. Rhaid ichi ei ddileu cyn parhau"
       }
     }
   },
   "cya": {
     "reasonForBeingLate": {
-      "question": "[CY] Why your appeal is late"
+      "question": "Pam bod eich apêl yn hwyr"
     }
   }
 }

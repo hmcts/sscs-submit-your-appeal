@@ -1,33 +1,33 @@
 {
-  "titleHead": "[CY] Enter name - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] Enter your name",
-  "description": "[CY] As the appointee, enter your name",
+  "titleHead": "Enw - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rhowch eich enw",
+  "description": "Fel y penodai, rhowch eich enw chi",
   "fields": {
     "title": {
-      "title": "[CY] Title",
+      "title": "Teitl",
       "error": {
-        "required": "[CY] Enter your title",
-        "invalid": "[CY] You have entered an invalid title. Enter your title."
+        "required": "Rhowch eich teitl",
+        "invalid": "Rydych wedi nodi teitl annilys. Rhowch eich teitl."
       }
     },
     "firstName": {
-      "title": "[CY] First name",
+      "title": "Enw cyntaf",
       "error": {
-        "required": "[CY] Enter your first name",
-        "invalid": "[CY] You have entered an invalid first name. Enter your first name in full."
+        "required": "Rhowch eich enw cyntaf",
+        "invalid": "Rydych wedi nodi enw cyntaf annilys. Rhowch eich enw cyntaf yn llawn."
       }
     },
     "lastName": {
-      "title": "[CY] Last name",
+      "title": "Cyfenw",
       "error": {
-        "required": "[CY] Enter your last name",
-        "invalid": "[CY] You have entered an invalid last name. Enter your last name in full."
+        "required": "Rhowch eich cyfenw",
+        "invalid": "Rydych wedi nodi cyfenw annilys.  Rhowch eich cyfenw yn llawn."
       }
     }
   },
   "cya": {
     "appointeeName": {
-      "question": "[CY] Name"
+      "question": "Enw"
     }
   }
 }

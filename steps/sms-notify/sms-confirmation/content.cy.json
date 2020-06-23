@@ -1,12 +1,12 @@
 {
-  "titleHead": "[CY] SMS sign up confirmation - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] You’re signed up for text message reminders",
-  "mobileNumber": "[CY] Text messages will be sent to the following number: ",
-  "firstMessage": "[CY] You’ll get your first message within 3 working days, once your appeal has been lodged.",
-  "continue": "[CY] Continue",
+  "titleHead": "Cofrestru i gael negeseuon atgoffa drwy SMS - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Rydych wedi cofrestru i gael  negeseuon atgoffa trwy SMS",
+  "mobileNumber": "Anfonir negeseuon testun i’r rhif canlynol: ",
+  "firstMessage": "Byddwch yn cael eich neges gyntaf o fewn 3 diwrnod gwaith, unwaith y bydd eich apêl wedi'i chyflwyno.",
+  "continue": "Parhau",
   "cya": {
     "mobileNumber": {
-      "question": "[CY] Mobile Number"
+      "question": "Rhif ffôn symudol"
     }
   }
 }

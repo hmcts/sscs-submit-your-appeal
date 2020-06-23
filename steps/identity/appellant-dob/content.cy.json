@@ -1,38 +1,38 @@
 {
-  "titleHead": "[CY] Enter date of birth - Appeal a benefit decision - GOV.UK",
+  "titleHead": "Dyddiad geni – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "title": {
-    "withoutAppointee": "[CY] Enter your date of birth",
-    "withAppointee": "[CY] Enter their date of birth"
+    "withoutAppointee": "Rhowch eich dyddiad geni",
+    "withAppointee": "Rhowch eu  dyddiad geni"
   },
   "fields": {
     "date": {
-      "hint": "[CY] For example, 7 5 1981",
-      "day": "[CY] Day",
-      "month": "[CY] Month",
-      "year": "[CY] Year",
+      "hint": "Er enghraifft, 7 5 1981",
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
       "error": {
         "withoutAppointee": {
-          "allRequired": "[CY] Enter your date of birth.",
-          "dayRequired": "[CY] Enter the day from your date of birth",
-          "monthRequired": "[CY] Enter the month from your date of birth",
-          "yearRequired": "[CY] Enter the year from your date of birth",
-          "invalid": "[CY] You’ve entered an invalid date of birth. Enter your date of birth.",
-          "future": "[CY] You’ve entered a date in the future. Enter your date of birth."
+          "allRequired": "Rhowch eich dyddiad geni.",
+          "dayRequired": "Rhowch ddiwrnod eich dyddiad geni",
+          "monthRequired": "Rhowch fis eich dyddiad geni",
+          "yearRequired": "Rhowch flwyddyn eich dyddiad geni",
+          "invalid": "Rydych wedi rhoi dyddiad geni annilys. Rhowch eich dyddiad geni",
+          "future": "Rydych wedi rhoi dyddiad yn y dyfodol. Rhowch eich dyddiad geni."
         },
         "withAppointee": {
-          "allRequired": "[CY] Enter their date of birth.",
-          "dayRequired": "[CY] Enter the day from their date of birth",
-          "monthRequired": "[CY] Enter the month from their date of birth",
-          "yearRequired": "[CY] Enter the year from their date of birth",
-          "invalid": "[CY] You’ve entered an invalid date of birth. Enter their date of birth.",
-          "future": "[CY] You’ve entered a date in the future. Enter their date of birth."
+          "allRequired": "Rhowch eu dyddiad geni.",
+          "dayRequired": "Rhowch y diwrnod o’u dyddiad geni",
+          "monthRequired": "Rhowch y mis o’u dyddiad geni",
+          "yearRequired": "Rhowch y flwyddyn o’u dyddiad geni",
+          "invalid": "Rydych wedi rhoi dyddiad geni annilys. Rhowch eu dyddiad geni",
+          "future": "Rydych wedi rhoi dyddiad yn y dyfodol. Rhowch eu dyddiad geni"
         }
       }
     }
   },
   "cya": {
     "dob": {
-      "question": "[CY] Date of birth"
+      "question": "Dyddiad geni"
     }
   }
 }

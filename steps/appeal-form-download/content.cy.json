@@ -1,8 +1,8 @@
 {
-  "titleHead": "[CY] Download appeal form - Appeal a benefit decision - GOV.UK",
-  "title": "[CY] You need to download a paper form",
-  "subtitle": "[CY] Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
+  "titleHead": "Lawrlwytho ffurflen apêl - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Mae arnoch angen lawrlwytho ffurflen bapur",
+  "subtitle": "Dylech lawrlwytho a llenwi ffurflen {{ formDownload.type }} i apelio yn erbyn penderfyniad ynghylch budd-dal {{ benefitType }}.",
   "button": {
-    "text": "[CY] Continue to form download"
-    }
+    "text": "Parhau i lawrlwytho’r ffurflen"
+  }
 }
