@@ -3,7 +3,7 @@
   "title": "A yw eu cyfeiriad yr un fath â’ch cyfeiriad chi?",
   "fields": {
     "isAddressSameAsAppointee": {
-      "label": "Dewiswch a yw enw'r apelydd yr un fath â’ch enw chi",
+      "label": "Dewiswch a yw enw’r apelydd yr un fath â’ch enw chi",
       "yes": "Ydy",
       "no": "Nac ydy",
       "error": {

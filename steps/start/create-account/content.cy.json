@@ -7,9 +7,9 @@
       "label": "Dewiswch p’un a ydych eisiau creu cyfrif neu beidio",
       "yes": "Rwyf eisiau gallu arbed yr apêl hon nes ymlaen",
       "no": "Nid wyf eisiau gallu arbed yr apêl hon nes ymlaen",
-      "warning": "Os ydych chi'n penderfynu peidio â chreu cyfrif nawr, ac yn gadael yr apêl hanner ffordd drwodd, bydd yn rhaid i chi ailddechrau pan fyddwch chi'n penderfynu cwblhau’r apêl. Os ydych chi'n credu y byddwch chi eisiau arbed yr apêl hanner ffordd, yna dewiswch",
+      "warning": "Os ydych chi’n penderfynu peidio â chreu cyfrif nawr, ac yn gadael yr apêl hanner ffordd drwodd, bydd yn rhaid i chi ailddechrau pan fyddwch chi’n penderfynu cwblhau’r apêl. Os ydych chi’n credu y byddwch chi eisiau arbed yr apêl hanner ffordd, yna dewiswch",
       "error": {
-        "required": "Mae'n rhaid i chi ddweud p’un a ydych eisiau gallu arbed yr apêl hon nes ymlaen. Dewiswch oes neu nac oes."
+        "required": "Mae’n rhaid i chi ddweud p’un a ydych eisiau gallu arbed yr apêl hon nes ymlaen. Dewiswch oes neu nac oes."
       }
     }
   },
