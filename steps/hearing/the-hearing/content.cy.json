@@ -1,22 +1,22 @@
 {
-  "titleHead": "[CY] Your hearing",
-  "title": "[CY] The appeal hearing",
-  "subtitle": "[CY] Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
-  "explainReasons": "[CY] If you come to the hearing you can explain your reasons for appealing.",
-  "arrangeSupport": "[CY] Support can be arranged for you such as an interpreter, hearing loop or disabled access.",
+  "titleHead": "Eich gwrandawiad - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Gwrandawiad yr apêl",
+  "subtitle": "Bydd eich apêl yn cael ei phenderfynu gan ddefnyddio'r wybodaeth rydych yn ei chyflwyno ar y ffurflen hon ac unrhyw dystiolaeth ychwanegol y byddwch yn ei hanfon. Bydd gwybodaeth a thystiolaeth a gyflwynir gan DWP hefyd yn cael eu hystyried.",
+  "explainReasons": "Os byddwch yn dod i'r gwrandawiad gallwch egluro eich rhesymau dros apelio.",
+  "arrangeSupport": "Gellir trefnu cymorth ar eich cyfer megis cyfieithydd, dolen glyw neu fynediad i'r anabl.",
   "fields": {
     "attendHearing": {
-      "title": "[CY] Do you want to attend the hearing?",
-      "yes": "[CY] Yes",
-      "no": "[CY] No",
+      "title": "A ydych eisiau mynychu’r gwrandawiad?",
+      "yes": "Oes",
+      "no": "Nac oes",
       "error": {
-        "required": "[CY] You need to say whether you want to attend the hearing. Select either yes or no"
+        "required": "Mae angen ichi ddweud a ydych eisiau mynychu’r gwrandawiad. Dewiswch oes neu nac oes"
       }
     }
   },
   "cya": {
     "attendHearing": {
-      "question": "[CY] Attending the hearing"
+      "question": "Mynychu’r gwrandawiad"
     }
   }
 }

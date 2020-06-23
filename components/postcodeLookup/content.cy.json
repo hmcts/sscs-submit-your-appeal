@@ -1,19 +1,19 @@
 {
-    "textboxLabel": "Enter a UK postcode",
-    "addressSelectionLabel": "Pick an address",
-    "manualEntryLabel": "I can't enter a UK postcode",
-    "dropdownCount": "address found",
-    "fields": {
-        "postcodeLookup": {
-          "error": {
-              "required": "We cannot find an address with that postcode",
-              "invalidPostcode": "We cannot find an address with that postcode"
-          }
-        },
-        "postcodeAddress": {
-          "error": {
-              "required": "Please choose an address."
-          }
-        }
+  "textboxLabel": "Rhowch god post yn y DU",
+  "addressSelectionLabel": "Dewiswch gyfeiriad",
+  "manualEntryLabel": "Ni allaf roi cod post yn y DU",
+  "dropdownCount": "wedi dod o hyd i’ch cyfeiriad",
+  "fields": {
+    "postcodeLookup": {
+      "error": {
+        "required": "Ni allwn ddod o hyd i gyfeiriad gyda'r cod post hwnnw",
+        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad gyda'r cod post hwnnw"
+      }
+    },
+    "postcodeAddress": {
+      "error": {
+        "required": "Dewiswch gyfeiriad."
+      }
     }
+  }
 }

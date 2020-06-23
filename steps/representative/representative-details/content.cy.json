@@ -1,105 +1,105 @@
 {
-  "titleHead": "[CY] Enter representative details",
-  "title": "[CY] Enter their details",
-  "subtitle": "[CY] If you have a professional representative, you can find their contact details on any letter you've received from them.",
-  "noDetails": "[CY] I don’t have their details to hand",
+  "titleHead": "Manylion y cynrychiolydd - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Nodwch eu manylion",
+  "subtitle": "Os oes gennych gynrychiolydd proffesiynol, gallwch ddod o hyd i’w manylion cyswllt ar unrhyw lythyr rydych wedi’i gael ganddynt.",
+  "noDetails": "Nid yw eu manylion gennyf wrth law",
   "fields": {
     "name": {
       "error": {
-        "required": "[CY] Enter your representative's name or the organisation they work for",
-        "nameNoTitle": "[CY] Enter your representative's title",
-        "titleNoName": "[CY] Enter your representative's name"
+        "required": "Rhowch enw eich cynrychiolydd neu enw’r sefydliad mhant yn gweithio iddo",
+        "nameNoTitle": "Rhowch deitl eich cynrychiolydd",
+        "titleNoName": "Rhowch enw eich cynrychiolydd"
       },
       "title": {
-        "title": "[CY] Title",
+        "title": "Teitl",
         "error": {
-          "invalid": "[CY] You have entered an invalid title. Check it and enter it again"
+          "invalid": "Rydych wedi rhoi teitl annilys. Gwiriwch ef a’i nodi eto"
         }
       },
       "first": {
-        "title": "[CY] First name",
+        "title": "Enw cyntaf",
         "error": {
-          "required": "[CY] Enter your representative's first name",
-          "invalid": "[CY] You have entered an invalid first name. Check it and enter it again"
+          "required": "Nodwch enw cyntaf eich cynrychiolydd",
+          "invalid": "Rydych wedi rhoi enw cyntaf annilys. Gwiriwch ef a’i nodi eto"
         }
       },
       "last": {
-        "title": "[CY] Last name(s)",
+        "title": "Cyfenw(au)",
         "error": {
-          "required": "[CY] Enter your representative's surname",
-          "invalid": "[CY] You have entered an invalid surname. Check it and enter it again"
+          "required": "Nodwch gyfenw eich cynrychiolydd",
+          "invalid": "Rydych wedi rhoi cyfenw annilys. Gwiriwch ef a’i nodi"
         }
       },
       "organisation": {
-        "title": "[CY] Organisation (if they work for one)",
+        "title": "Sefydliad (os ydynt yn gweithio i un)",
         "error": {
-          "invalid": "[CY] You have entered an invalid name. Check it and enter it again"
+          "invalid": "Rydych wedi rhoi enw annilys. Gwiriwch ef a’i nodi eto"
         }
       }
     },
     "addressLine1": {
-      "title": "[CY] Address line 1",
-      "hint": "[CY] If they work for a national organisation, enter the address of your local branch",
+      "title": "Llinell gyntaf y cyfeiriad",
+      "hint": "Os ydynt yn gweithio i sefydliad cenedlaethol, rhowch gyfeiriad eich cangen leol",
       "error": {
-        "required": "[CY] Enter the first line of your representative's address"
+        "required": "Rhowch linell gyntaf cyfeiriad eich cynrychiolydd"
       }
     },
     "addressLine2": {
-      "title": "[CY] Address line 2 (optional)",
+      "title": " Ail linell y cyfeiriad (dewisol)",
       "error": {
-        "invalid": "[CY] You have entered an invalid second line of their address. Check it and enter it again"
+        "invalid": "Rydych wedi rhoi ail linell cyfeiriad annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "townCity": {
-      "title": "[CY] Town/City",
+      "title": "Tref/Dinas",
       "error": {
-        "required": "[CY] Enter the town or city from your representative's address"
+        "required": "Nodwch y dref neu'r ddinas o gyfeiriad eich cynrychiolydd"
       }
     },
     "county": {
-      "title": "[CY] County",
+      "title": "Sir",
       "error": {
-        "required": "[CY] Enter the county from your representative's address"
+        "required": "Nodwch y sir o gyfeiriad eich cynrychiolydd"
       }
     },
     "postCode": {
-      "title": "[CY] Postcode",
+      "title": "Cod post",
       "error": {
-        "required": "[CY] Enter the postcode from your representative's address"
+        "required": "Nodwch y cod post o gyfeiriad eich cynrychiolydd"
       }
     },
     "phoneNumber": {
-      "title": "[CY] Phone number (optional)",
-      "hint": "[CY] They will receive SMS updates about your appeal if you enter a mobile phone number",
+      "title": "Rhif ffôn (dewisol)",
+      "hint": "Byddant yn derbyn diweddariadau SMS am eich apêl os byddwch yn darparu rhif ffôn symudol",
       "error": {
-        "invalid": "[CY] You have entered an invalid phone number. Check it and enter it again"
+        "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "emailAddress": {
-      "title": "[CY] Email address (optional)",
-      "hint": "[CY] They will receive email updates about your appeal and a link so they can track your appeal online",
+      "title": "Cyfeiriad e-bost (dewisol)",
+      "hint": "Byddant yn derbyn negeseuon e-bost am eich apêl yn ogystal â dolen fel y gallant ddilyn trywydd eich apêl ar-lein",
       "error": {
-        "invalid": "[CY] You have entered an invalid email address. Check it and enter it again"
+        "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto."
       }
     }
   },
   "cya": {
     "name":{
-      "question": "[CY] Name"
+      "question": "Enw"
     },
     "organisation":{
-      "question": "[CY] Organisation"
+      "question": "Sefydliad"
     },
     "address":{
-      "question": "[CY] Address"
+      "question": "Cyfeiriad"
     },
     "phoneNumber": {
-      "question": "[CY] Phone number"
+      "question": "Rhif ffôn"
     },
     "emailAddress": {
-      "question": "[CY] Email address"
+      "question": "Cyfeiriad e-bost"
     },
-    "change": "[CY] Change",
-    "repDetails": "[CY] Representative Contact Details"
+    "change": "Newid",
+    "repDetails": "Manylion Cyswllt eich Cynrychiolydd"
   }
 }

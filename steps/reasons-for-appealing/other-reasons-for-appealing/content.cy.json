@@ -1,16 +1,16 @@
 {
-  "titleHead": "[CY] Anything else",
-  "title": "[CY] Anything else you want to tell the tribunal",
-  "subtitle": "[CY] You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
-  "additonalInfo": "[CY] You don't have to write anything, if you have nothing further to add.",
+  "titleHead": "Unrhyw beth arall - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Unrhyw beth arall y dymunwch ei ddweud wrth y tribiwnlys",
+  "subtitle": "Gallwch ddweud wrth y tribiwnlys am unrhyw beth y credwch a allai fod yn berthnasol i'ch apêl, megis rhywbeth y teimlwch na wnaeth DWP ei ystyried yn ei asesiad.",
+  "additonalInfo": "Does dim rhaid i chi nodi unrhyw beth, os nad oes gennych unrhyw beth pellach i'w ychwanegu.",
   "fields": {
     "otherReasonForAppealing": {
-      "label": "[CY] Other reasons for appealing"
+      "label": "Rhesymau eraill dros apelio"
     }
   },
   "cya": {
     "otherReasonForAppealing": {
-      "question": "[CY] Other reasons for appealing"
+      "question": "Rhesymau eraill dros apelio"
     }
   }
 }

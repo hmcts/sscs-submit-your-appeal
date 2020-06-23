@@ -1,21 +1,21 @@
 {
-  "titleHead": "[CY] Evidence to support your appeal",
-  "title": "[CY] Evidence to support your appeal",
-  "descriptionPara1": "[CY] Evidence is any information that supports your appeal such as a letter, written statement or medical report. Useful evidence shows how your condition affects your life.",
-  "descriptionPara2": "[CY] You can upload evidence now or post it in after you have submitted your appeal. You’ll receive the address after you’ve submitted your appeal.",
+  "titleHead": "Tystiolaeth i gefnogi'ch apêl - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Tystiolaeth i gefnogi’ch apêl",
+  "descriptionPara1": "Tystiolaeth yw unrhyw wybodaeth sy'n cefnogi eich apêl megis llythyr, datganiad ysgrifenedig neu adroddiad meddygol. Mae tystiolaeth ddefnyddiol yn dangos sut mae eich cyflwr yn effeithio ar eich bywyd.",
+  "descriptionPara2": "Gallwch lwytho tystiolaeth nawr neu ei phostio i mewn ar ôl i chi gyflwyno eich apêl. Byddwch yn cael y cyfeiriad ar gyfer postio tystiolaeth ar ôl ichi gyflwyno'ch apêl.",
   "fields": {
     "evidenceProvide": {
-      "label": "[CY] Would you like to upload evidence now?",
-      "yes": "[CY] Yes",
-      "no": "[CY] No",
+      "label": "A hoffech lwytho eich tystiolaeth nawr?",
+      "yes": "Hoffwn",
+      "no": "Na hoffwn",
       "error": {
-        "required": "[CY] You need to answer the question before continuing"
+        "required": "Mae angen ichi ateb cyn y gallwch barhau"
       }
     }
   },
   "cya": {
     "evidenceProvide": {
-      "question": "[CY] Evidence provided"
+      "question": "Darparwyd tystiolaeth"
     }
   }
 }

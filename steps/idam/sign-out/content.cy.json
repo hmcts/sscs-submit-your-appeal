@@ -1,9 +1,9 @@
 {
-  "titleHead": "[CY] Saved appeal application",
-  "title": "[CY] Your appeal has been saved",
+  "titleHead": "Arbed eich cais am apêl - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Mae eich apêl wedi cael ei harbed",
   "body": {
-    "para1": "[CY] Your appeal application will be saved for 6 months.",
-    "para2": "[CY] If you submit your appeal more than one calendar month after your MRN date then you will have to explain why it's late",
-    "para3": "[CY] <a href='/sign-in-back' class='govuk-link govuk-!-font-size-19'>Sign back into your appeal</a>"
+    "para1": "Cedwir eich cais am apêl am 6 mis.",
+    "para2": "Os byddwch yn cyflwyno eich apêl fwy nag un mis calendr ar ôl dyddiad eich MRN yna bydd rhaid ichi egluro pam ei bod yn hwyr",
+    "para3": "<a href='/sign-in-back' class='govuk-link govuk-!-font-size-19'>Mewngofnodi eto i dudalen eich apêl</a>"
   }
 }

@@ -1,20 +1,20 @@
 {
-  "titleHead": "[CY] Are you an appointee",
-  "title": "[CY] Are you an 'appointee'?",
-  "description": "[CY] You’re an appointee if you’ve been appointed by DWP to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
+  "titleHead": "Ydych chi’n benodai - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Ydych chi’n 'benodai'?",
+  "description": "Rydych yn benodai os ydych wedi cael eich penodi gan DWP i weithredu ar ran rhywun nad yw'n gallu delio â'i hawliad am fudd-dal. Er enghraifft, rhiant sy'n hawlio ar ran plentyn.",
   "fields": {
     "isAppointee": {
-      "label": "[CY] Select whether you're an appointee or not",
-      "yes": "[CY] I have been appointed by DWP to act on behalf of someone else",
-      "no": "[CY] I'm appealing for myself",
+      "label": "Dewiswch p’un a ydych yn benodai ai peidio",
+      "yes": "Fe'm penodwyd gan DWP i weithredu ar ran rhywun arall",
+      "no": "Rwy’n apelio dros fy hun",
       "error": {
-        "required": "[CY] You need to answer the question before continuing"
+        "required": "Mae angen ichi ateb y cwestiwn cyn y gallwch barhau"
       }
     }
   },
   "cya": {
     "isAppointee": {
-      "question": "[CY] Appointee"
+      "question": "Penodai"
     }
   }
 }

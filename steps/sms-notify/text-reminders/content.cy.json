@@ -1,20 +1,20 @@
 {
-  "titleHead": "[CY] SMS reminders",
-  "title": "[CY] Do you want to receive text message notifications?",
-  "subtitle": "[CY] You’ll only get them when something important happens on your appeal. You won't be charged to receive them.",
+  "titleHead": "Negeseuon atgoffa drwy SMS – Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Ydych chi eisiau cael hysbysiadau ar ffurf negeseuon testun?",
+  "subtitle": "Dim ond pan fydd rhywbeth pwysig yn digwydd ynghylch eich apêl y byddwch chi'n eu cael. Ni chodir tâl arnoch am hyn.",
   "fields": {
     "doYouWantTextMsgReminders": {
-      "label": "[CY] Select whether you want text reminders or not",
-      "yes": "[CY] Yes",
-      "no": "[CY] No",
+      "label": "Dewiswch a ydych eisiau cael negeseuon atgoffa ai peidio",
+      "yes": "Oes",
+      "no": "Nac oes",
       "error": {
-        "required": "[CY] You need to say whether you want text message notifications. Select either yes or no"
+        "required": "Mae angen i chi ddweud p’un a ydych eisiau cael negeseuon atgoffa ai peidio. Dewiswch oes neu nac oes"
       }
     }
   },
   "cya": {
     "doYouWantTextMsgReminders": {
-      "question": "[CY] Receive text message reminders"
+      "question": "Cael negeseuon testun atgoffa"
     }
   }
 }
