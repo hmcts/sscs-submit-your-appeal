@@ -4,5 +4,5 @@
   "subtitle": "Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
   "button": {
     "text": "Continue to form download"
-    }
+  }
 }

@@ -1,44 +1,44 @@
 {
-  "titleHead": "[CY] Reasons for appealing",
-  "titleHeadEdit": "[CY] Enter Reasons for appealing",
-  "title": "[CY] Your reasons for appealing",
-  "titleEdit": "[CY] Enter a reason for your appeal",
-  "dwpExplained": "[CY] DWP should have explained their decision on your entitlement to {{benefitType}} in the Mandatory Reconsideration Notice (MRN) or the decision letter they sent you.",
-  "readYouMRN": "[CY] Read your MRN or the decision letter and write what you disagree with and why. Your reasons will be considered by an independent tribunal who are separate from DWP.",
-  "placeholder": "[CY] You can write as much as you want",
+  "titleHead": "Rhesymau dros apelio - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "titleHeadEdit": "Rhesymau dros apelio - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "title": "Eich rhesymau dros apelio",
+  "titleEdit": "Dywedwch pam eich bod yn apelio",
+  "dwpExplained": "Dylai fod DWP wedi egluro eu penderfyniad am eich hawl i gael {{benefitType}} yn yr Hysbysiad Gorfodi i Ailystyried (MRN) neu’r llythyr penderfyniad a anfonwyd atoch.",
+  "readYouMRN": "Darllenwch eich MRN neu’r llythyr penderfyniad a nodwch beth ydych yn anghytuno ag ef a pham. Caiff eich rhesymau eu hystyried gan dribiwnlys annibynnol sydd ar wahân i DWP.",
+  "placeholder": "Gallwch ysgrifennu faint bynnag a fynnoch",
   "links": {
-    "add": "[CY] Add another reason",
-    "addAnother": "[CY] Add another reason"
+    "add": "Ychwanegu rheswm arall",
+    "addAnother": "Ychwanegu rheswm arall"
   },
-  "listError": "[CY] Enter at least one reason for your appeal",
-  "itemLabel": "[CY] Reason for your appeal",
-  "itemsListLabel": "[CY] Reasons for your appeal",
-  "noReasons": "[CY] No reasons added yet",
+  "listError": "Rhowch o leiaf un rheswm dros apelio",
+  "itemLabel": "Rheswm dros apelio",
+  "itemsListLabel": "Rhesymau dros apelio",
+  "noReasons": "Ni ychwanegwyd rhesymau hyd yn hyn",
   "fields": {
     "whatYouDisagreeWith": {
-      "label": "[CY] What you disagree with",
+      "label": "Beth ydych yn anghytuno ag ef",
       "error": {
-        "required": "[CY] Enter what you disagree with",
-        "notEnough": "[CY] You have not said enough about what you want to appeal. Briefly explain what you disagree with."
+        "required": "Nodwch beth ydych yn anghytuno ag ef ",
+        "notEnough": "Nid ydych wedi dweud digon am yr hyn yr ydych eisiau apelio yn ei erbyn. Yn gryno, eglurwch beth ydych yn anghytuno ag ef."
       }
     },
     "reasonForAppealing": {
-      "label": "[CY] Why you disagree with it",
+      "label": "Pam eich bod yn anghytuno ag ef",
       "error": {
-        "required": "[CY] You need to give at least one reason for appealing",
-        "notEnough": "[CY] You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision."
+        "required": "Mae angen ichi roi o leiaf un rheswm dros apelio",
+        "notEnough": "Nid ydych wedi dweud digon am pam rydych eisiau apelio. Yn gryno, eglurwch pam eich bod yn anghytuno â phenderfyniad DWP."
       }
     }
   },
   "cya": {
     "reasonForAppealing": {
       "questions": {
-        "whatYouDisagreeWith": "[CY] What you disagree with",
-        "reasonForAppealing": "[CY] Why you disagree with it"
+        "whatYouDisagreeWith": "Beth ydych yn anghytuno ag ef",
+        "reasonForAppealing": "Pam ydych yn anghytuno ag ef"
       },
-      "notProvided": "[CY] Not provided",
-      "changeLink": "[CY] Change",
-      "reason": "[CY] Reason For Appealing"
+      "notProvided": "Nid oes rheswm wedi cael ei ddarparu",
+      "changeLink": "Newid",
+      "reason": "Rheswm dros apelio"
     }
   }
 }

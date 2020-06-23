@@ -1,57 +1,57 @@
 {
-  "titleHead": "[CY] Enter name",
+  "titleHead": "Enw - Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
   "title": {
-    "withoutAppointee": "[CY] Enter your name",
-    "withAppointee": "[CY] Enter their name"
+    "withoutAppointee": "Rhowch eich enw ",
+    "withAppointee": "Rhowch eu henw"
   },
   "subtitle": {
     "withoutAppointee": "",
-    "withAppointee": "[CY] Enter the name of the person you are authorised to appeal for."
+    "withAppointee": "Rhowch enw’r unigolyn yr ydych wedi’ch awdurdodi i apelio ar ei ran."
   },
   "fields": {
     "title": {
-      "title": "[CY] Title",
+      "title": "Teitl",
       "error": {
         "withoutAppointee": {
-          "required": "[CY] Enter your title",
-          "invalid": "[CY] You have entered an invalid title. Enter your title."
+          "required": "Nodwch eich teitl",
+          "invalid": "Rydych wedi rhoi teitl annilys. Nodwch eich teitl."
         },
         "withAppointee": {
-          "required": "[CY] Enter their title",
-          "invalid": "[CY] You have entered an invalid title. Enter their title."
+          "required": "Nodwch eu teitl",
+          "invalid": "Rydych wedi rhoi teitl annilys. Nodwch eu teitl."
         }
       }
     },
     "firstName": {
-      "title": "[CY] First name",
+      "title": "Enw cyntaf",
       "error": {
         "withoutAppointee": {
-          "required": "[CY] Enter your first name",
-          "invalid": "[CY] You have entered an invalid first name. Enter your first name in full."
+          "required": "Nodwch eich enw cyntaf",
+          "invalid": "Rydych wedi rhoi enw cyntaf annilys. Nodwch eich enw cyntaf yn llawn."
         },
         "withAppointee": {
-          "required": "[CY] Enter their first name",
-          "invalid": "[CY] You have entered an invalid first name. Enter their first name in full."
+          "required": "Nodwch eu henw cyntaf",
+          "invalid": "Rydych wedi rhoi enw cyntaf annilys. Nodwch eu henw cyntaf yn llawn."
         }
       }
     },
     "lastName": {
-      "title": "[CY] Last name",
+      "title": "Cyfenw",
       "error": {
         "withoutAppointee": {
-          "required": "[CY] Enter your last name",
-          "invalid": "[CY] You have entered an invalid last name. Enter your last name in full."
+          "required": "Nodwch eich cyfenw",
+          "invalid": "Rydych wedi rhoi cyfenw annilys. Nodwch eich cyfenw yn llawn."
         },
         "withAppointee": {
-          "required": "[CY] Enter their last name",
-          "invalid": "[CY] You have entered an invalid last name. Enter their last name in full."
+          "required": "Nodwch eu cyfenw",
+          "invalid": "Rydych wedi rhoi cyfenw annilys. Nodwch eu cyfenw yn llawn."
         }
       }
     }
   },
   "cya": {
     "appellantName": {
-      "question": "[CY] Name"
+      "question": "Enw"
     }
   }
 }
