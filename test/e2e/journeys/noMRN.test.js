@@ -36,7 +36,7 @@ Scenario('Appellant has contacted DWP', async I => {
 
   const hasMRN = false;
 
-  // I.chooseLanguagePreference(testData.languagePreference);
+  // I.chooseLanguagePreference(testData.languagePreferenceWelsh);
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);

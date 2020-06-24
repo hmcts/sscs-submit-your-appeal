@@ -1,6 +1,6 @@
 function chooseLanguagePreference(answer) {
   const I = this;
-  I.click({ id: `languagePreference-${answer}` });
+  I.click({ id: `languagePreferenceWelsh-${answer}` });
   I.click('Continue');
 }
 
