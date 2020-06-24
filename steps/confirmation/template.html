@@ -2,7 +2,7 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(phase, feedbackLink, urlPath) %}
@@ -57,7 +57,7 @@
                 <span class="screen-reader-text">{{ content.progressBar.hearing.srText }}</span>
             </div>
         {% endif %}
-        
+
         {% if paperCase %}
             <div class="appeal-received active">
                 <div class="ring">

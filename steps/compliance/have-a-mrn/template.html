@@ -1,7 +1,7 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead }}{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe }}
@@ -10,7 +10,7 @@
 {% block fields %}
 
     {% call formSection() %}
-        
+
         <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle }}</p>
         {% if allowUC and benefitType == 'UC'%}
         <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>

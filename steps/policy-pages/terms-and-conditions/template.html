@@ -1,0 +1,109 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/question.html" %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ content.title | safe }}</h1>
+    <p class="govuk-body">
+        {{ content.termsAndConditions.termsOfUse | safe }} <a class="govuk-link" href="/privacy-policy">{{ content.termsAndConditions.links.privacy.name | safe }}</a>.
+    </p>
+
+    <h2 class="govuk-heading-m">{{ content.whoWeAre.title | safe }}</h2>
+    <p class="govuk-body">{{ content.whoWeAre.managedBy | safe }}</p>
+    <p class="govuk-body">{{ content.whoWeAre.changeInLaw | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.informationProvided.title | safe }}</h2>
+    <p class="govuk-body">{{ content.informationProvided.support | safe }}</p>
+    <p class="govuk-body">{{ content.informationProvided.questions | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.dataStored.title | safe }}</h2>
+    <p class="govuk-body">
+        {{ content.dataStored.our | safe }} <a class="govuk-link" href="/privacy-policy">{{ content.termsAndConditions.links.privacy.name | safe }}</a> {{ content.dataStored.privacy | safe }}
+    </p>
+    <p class="govuk-body">
+        {{ content.dataStored.our | safe }} <a class="govuk-link" href="/cookie-policy">{{ content.termsAndConditions.links.cookie.name | safe }}</a> {{ content.dataStored.cookie | safe }}
+    </p>
+
+    <h2 class="govuk-heading-m">{{ content.laws.title | safe }}</h2>
+    <p class="govuk-body">{{ content.laws.use | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.laws.act1 | safe }}</li>
+        <li>{{ content.laws.act2 | safe }}</li>
+        <li>{{ content.laws.act3 | safe }}</li>
+        <li>{{ content.laws.act4 | safe }}</li>
+        <li>{{ content.laws.act5 | safe }}</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">{{ content.responsibleUse.title | safe }}</h2>
+    <p class="govuk-body">{{ content.responsibleUse.aware | safe }}</p>
+    <p class="govuk-body">{{ content.responsibleUse.precautions | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.responsibleUse.risk1 | safe }}</li>
+        <li>{{ content.responsibleUse.risk2 | safe }}</li>
+        <li>{{ content.responsibleUse.risk3 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.responsibleUse.mustNot | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.sensitiveInfo.title | safe }}</h2>
+    <p class="govuk-body">{{ content.sensitiveInfo.freeText | safe }}</p>
+    <p class="govuk-body">{{ content.sensitiveInfo.enter | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.sensitiveInfo.info1 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info2 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info3 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info4 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info5 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info6 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info7 | safe }}</li>
+        <li>{{ content.sensitiveInfo.info8 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.sensitiveInfo.consent | safe }}</p>
+    <p class="govuk-body">{{ content.sensitiveInfo.moreInfo | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.welsh.title | safe }}</h2>
+    <p class="govuk-body">{{ content.welsh.instructions | safe }}
+        <a class="govuk-link" href={{ content.welsh.formLink }}>{{ content.welsh.linkLabel | safe }}</a>.
+    </p>
+    <p class="govuk-body">{{ content.welsh.inDevelopment | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.disclaimer.title | safe }}</h2>
+    <p class="govuk-body">{{ content.disclaimer.upToDate | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.disclaimer.condition1 | safe }}</li>
+        <li>{{ content.disclaimer.condition2 | safe }}</li>
+        <li>{{ content.disclaimer.condition3 | safe }}</li>
+        <li>{{ content.disclaimer.condition4 | safe }}</li>
+        <li>{{ content.disclaimer.condition5 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.disclaimer.publish | safe }}</p>
+    <p class="govuk-body">{{ content.disclaimer.loss | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.disclaimer.damage1 | safe }}</li>
+        <li>{{ content.disclaimer.damage2 | safe }}</li>
+        <li>{{ content.disclaimer.damage3 | safe }}</li>
+        <li>{{ content.disclaimer.damage4 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.disclaimer.applies | safe }}</p>
+    <p class="govuk-body">{{ content.disclaimer.includes | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.disclaimer.loss1 | safe }}</li>
+        <li>{{ content.disclaimer.loss2 | safe }}</li>
+        <li>{{ content.disclaimer.loss3 | safe }}</li>
+        <li>{{ content.disclaimer.loss4 | safe }}</li>
+        <li>{{ content.disclaimer.loss5 | safe }}</li>
+        <li>{{ content.disclaimer.loss6 | safe }}</li>
+        <li>{{ content.disclaimer.loss7 | safe }}</li>
+        <li>{{ content.disclaimer.loss8 | safe }}</li>
+        <li>{{ content.disclaimer.loss9 | safe }}</li>
+        <li>{{ content.disclaimer.loss10 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.disclaimer.liable | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.disclaimer.liability1 | safe }}</li>
+        <li>{{ content.disclaimer.liability2 | safe }}</li>
+        <li>{{ content.disclaimer.liability3 | safe }}</li>
+    </ul>
+    <p class="govuk-body"><a class="govuk-link" href="/contact-us">{{ content.termsAndConditions.links.contact.name | safe }}</a> {{ content.disclaimer.furtherInfo | safe }}.</p>
+{%- endblock %}

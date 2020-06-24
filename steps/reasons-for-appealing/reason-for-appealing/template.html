@@ -4,11 +4,11 @@
 {% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor, textarea %}
 
 {% set titleHead %}
-    {{ content.titleHead | safe if isListMode }}
-    {{ content.titleHeadEdit | safe if isEditMode }}
+    {{ content.titleHead if isListMode }}
+    {{ content.titleHeadEdit if isEditMode }}
 {% endset %}
 
-{% block pageTitle %}{{ titleHead }}{% endblock %}
+{% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block head %}
 {{ super() }}

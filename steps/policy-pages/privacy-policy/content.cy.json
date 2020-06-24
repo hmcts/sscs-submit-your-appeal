@@ -1,0 +1,153 @@
+{
+  "titleHead": "Polisi Preifatrwydd – Gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+  "privacy": {
+    "title": "Polisi Preifatrwydd",
+    "description": "Mae’r polisi preifatrwydd hwn yn egluro pam rydym yn casglu eich data personol a beth rydym yn ei wneud ag ef. Mae hefyd yn egluro eich hawliau a sut i’w gorfodi."
+  },
+  "manages": {
+    "title": "Pwy sy’n rheoli’r gwasanaeth hwn",
+    "managedBy": "Gwasanaeth Llysoedd a Thribiwnlysoedd EM (GLlTEM) sy’n rheoli’r gwasanaeth hwn, sef un o asiantaethau gweithredol y Weinyddiaeth Gyfiawnder (MoJ).",
+    "data": {
+      "controller": "MoJ yw’r rheolydd data at ddibenion diogelu data. Mae ",
+      "link": "siarter gwybodaeth bersonol MoJ",
+      "process": "yn egluro sut mae MoJ yn prosesu data personol."
+    },
+    "responsible": "Fel rhan o’r MoJ, mae GLlTEM yn gyfrifol am benderfynu sut mae eich data personol yn cael ei ddefnyddio ac am ddiogelu’r data personol rydych yn ei ddarparu.",
+    "moreInfo": {
+      "service": "Ceir rhagor o wybodaeth am ddefnyddio’r gwasanaeth hwn yn y ",
+      "link": "telerau ac amodau"
+    }
+  },
+  "whyWeCollect": {
+    "title": "Pam rydym ni’n casglu eich data personol",
+    "collect": "Rydym ni’n casglu eich data personol i:",
+    "collect1": "brosesu eich hawliad neu’ch cais",
+    "collect2": "bodloni gofynion cyfreithiol",
+    "collect3": "gwella’r gwasanaeth hwn",
+    "staffUseData": "Mae ein staff yn defnyddio eich data personol i brosesu eich hawliad neu’ch cais. Maent yn gweithio yn y DU ac mae eich data yn cael ei storio yn y DU."
+  },
+  "personalData": {
+    "title": "Mathau o ddata personol rydym yn eu casglu ",
+    "collect": "Mae’r data personol rydym ni yn ei gasglu yn cynnwys:",
+    "collect1": "eich enw, eich cyfeiriad a’ch manylion cyswllt",
+    "collect2": "eich e-bost a’ch cyfrinair (os byddwch yn creu cyfrif)",
+    "collect3": "gwybodaeth bersonol arall rydych yn ei darparu yn eich hawliad neu’ch cais",
+    "more": {
+      "data": "Mae rhai gwasanaethau yn casglu mwy o ddata personol. Darganfyddwch fwy am y ",
+      "link": "data personol sy’n cael ei gasglu gan y gwasanaeth rydych yn ei ddefnyddio."
+    }
+  },
+  "usingYourData": {
+    "title": "Defnyddio eich data",
+    "account": "Fel rhan o’ch hawliad fe ofynnir ichi ddefnyddio’ch cyfeiriad e-bost i greu cyfrif. Byddwch yn gallu defnyddio’r cyfeiriad e-bost hwn a chyfrinair i fewngofnodi i wasanaethau eraill GLlTEM.",
+    "permission": "Efallai y byddwn yn gofyn am eich caniatâd i ddefnyddio eich cyfeiriad e-bost i anfon negeseuon e-bost atoch trwy system GOV.UK Notify. Mae’r system yn prosesu negeseuon e-bost o fewn Ardal Economaidd Ewrop yn unig tan y pwynt lle mae’r negeseuon e-bost yn cael eu trosglwyddo i’r darparwr e-bost rydych chi’n ei ddefnyddio. ",
+    "cookies": {
+      "we": "Rydym yn ",
+      "link": "defnyddio cwcis ",
+      "collect": "i gasglu data am sut rydych yn defnyddio’r gwasanaeth hwn, gan gynnwys:"
+    },
+    "data1": "os byddwch yn agor neges e-bost gennym neu’n clicio ar ddolen mewn e-bost",
+    "data2": "cyfeiriad IP eich cyfrifiadur, eich ffôn symudol neu’ch tabled",
+    "data3": "yr ardal neu’r dref lle rydych yn defnyddio’ch cyfrifiadur, eich ffôn symudol neu’ch tabled",
+    "data4": "y porwr gwe rydych yn ei ddefnyddio"
+  },
+  "storingData": {
+    "title": "Storio eich data",
+    "dataProvided": "Pan fyddwch yn gwneud hawliad neu gais, rydym yn storio’r data a ddarparwyd gennych. Mae’r data hwn yn cael ei storio yn y DU. Mae faint o amser y cedwir eich data yn dibynnu ar y gwasanaeth yr ydych yn ei ddefnyddio.",
+    "findOut": {
+      "more": "Darganfyddwch mwy am",
+      "link": "ba mor hir mae eich data personol yn cael ei storio gan y gwasanaeth rydych yn ei ddefnyddio."
+    }
+  },
+  "shareDate": {
+    "title": "Rhannu eich data",
+    "involved": "Pan fydd eich hawliad neu eich cais yn cael ei brosesu, mae’n bosib y byddwn angen cysylltu ag adran, asiantaeth neu sefydliad arall yn y llywodraeth ac efallai y byddwn yn rhannu eich data gyda nhw.",
+    "contact": "Os byddwch yn cysylltu â ni ac yn gofyn am help gyda’r gwasanaeth rydych yn ei ddefnyddio, efallai y byddwn yn rhannu eich data personol gyda’r Good Things Foundation. Rydym yn gweithio mewn partneriaeth â’r cwmni hwn i gynnig cefnogaeth wyneb yn wyneb.",
+    "share": "Mewn rhai amgylchiadau efallai y byddwn yn rhannu eich data, er enghraifft er mwyn atal neu i ddatrys trosedd, neu i gynhyrchu ystadegau cyffredinol am unigolion sy’n defnyddio’r gwasanaeth.",
+    "google": {
+      "used": "Rydym yn defnyddio Google Analytics i gasglu data am sut y defnyddir gwefan. Mae’r data cyffredinol hwn yn cael ei rannu â Google. Mae rhagor o wybodaeth am hyn yn ein ",
+      "link": "telerau ac amodau."
+    }
+  },
+  "internationally": {
+    "title": "Storio a rhannu eich data’n rhyngwladol",
+    "outsideUK": "Weithiau efallai y bydd angen inni anfon eich gwybodaeth bersonol tu allan i’r DU. Pan fyddwn yn gwneud hyn, byddwn yn cydymffurfio â chyfraith diogelu data."
+  },
+  "yourRights": {
+    "title": "Eich hawliau",
+    "ask": "Gallwch ofyn:",
+    "question1": "i gael gweld y data personol rydym yn ei gadw amdanoch",
+    "question2": "i’r data personol gael ei gywiro",
+    "question3": "i’r data personol gael ei symud neu ei ddileu (bydd hyn yn ddibynnol ar yr amgylchiadau, er enghraifft os ydych chi’n penderfynu peidio â pharhau gyda’ch hawliad neu’ch cais)",
+    "question4": "i gyfyngu ar y mynediad at y data personol (er enghraifft, gallwch ofyn i’ch data gael ei storio am gyfnod hirach a pheidio â chael ei ddileu’n awtomatig)",
+    "seeData": "Os ydych eisiau gweld y data personol rydym yn ei gadw amdanoch, gallwch:",
+    "form": {
+      "complete": "lenwi ffurflen i ",
+      "link": "wneud cais gwrthrych am  wybodaeth. ",
+      "controller": "Bydd y cais hwn yn mynd i’r rheolydd data, sef MoJ."
+    },
+    "write": "ysgrifennu atom yn: Disclosure Team, Post point 10.38, 102 Petty France, Llundain, SW1H 9AJ",
+    "moreInfo": "Gallwch ofyn am fwy o wybodaeth am:",
+    "info1": "gytundebau sydd gennym ar rannu gwybodaeth gyda sefydliadau eraill",
+    "info2": "pryd y caniateir inni drosglwyddo gwybodaeth bersonol amdanoch heb roi gwybod ichi",
+    "info3": "ein cyfarwyddiadau i staff ynghylch sut i gasglu, defnyddio neu ddileu eich gwybodaeth bersonol",
+    "info4": "sut rydym yn sicrhau bod yr wybodaeth sydd gennym yn gywir ac yn gyfredol",
+    "contactOfficer": "Gallwch gysylltu â swyddog diogelu data’r MoJ drwy:",
+    "contact1": "ysgrifennu atom yn: Post point 10.38, 102 Petty France, Llundain SW1H 9AJ",
+    "contact2": "anfon neges e-bost i: data.compliance@justice.gov.uk"
+  },
+  "complain": {
+    "title": "Sut i wneud cwyn",
+    "complaints": {
+      "procedure": "Gweler ein ",
+      "link": "trefn gwyno ",
+      "personalData": "os ydych eisiau cwyno am sut rydym wedi trin eich data personol."
+    },
+    "write": "Ysgrifennwch i: Post point 10.38, 102 Petty France, Llundain SW1H 9AJ",
+    "email": "Anfonwch neges e-bost i: data.compliance@justice.gov.uk",
+    "commissioner": {
+      "canAlso": "Gallwch hefyd gyflwyno cwyn i",
+      "link": "Swyddfa’r Comisiynydd Gwybodaeth",
+      "notSatisifed": "os ydych yn anfodlon â’n hymateb neu’n credu nad ydym yn prosesu eich data personol yn gyfreithlon."
+    }
+  },
+  "appealBenefit": {
+    "title": "Defnyddio’r gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal",
+    "personalData": {
+      "title": "Y data personol sydd ei angen arnom ",
+      "weAskFor": "Pan fyddwch yn defnyddio’r gwasanaeth apelio yn erbyn penderfyniad ynghylch budd-dal, byddwn yn gofyn am:",
+      "yourDetail1": "eich enw",
+      "yourDetail2": "eich dyddiad geni",
+      "yourDetail3": "eich cyfeiriad e-bost neu rif eich ffôn symudol",
+      "yourDetail4": "eich Rhif Yswiriant Gwladol",
+      "yourDetail5": "gwybodaeth o’r Hysbysiad Gorfodi i Ailystyried",
+      "yourDetail6": "gwybodaeth am unrhyw gymorth y byddwch ei angen yn y gwrandawiad, os byddwch yn mynychu un",
+      "yourDetail7": "gwybodaeth ynglyn â phryd yr ydych ar gael ar gyfer gwrandawiad, os byddwch yn mynychu un",
+      "rep": "Os oes gennych gynrychiolydd, byddwn yn gofyn am:",
+      "repDetail1": "eu henw",
+      "repDetail2": "eu manylion cyswllt",
+      "onBehalf": "Os ydych chi’n benodai, bydd angen ichi ddarparu gwybodaeth am yr unigolyn rydych yn apelio ar ei ran, gan gynnwys:",
+      "theirDetail1": "eu henw",
+      "theirDetail2": "eu rhif Yswiriant Gwladol"
+    },
+    "notifications": {
+      "title": "Cael hysbysiadau",
+      "receive": "Fel rhan o’ch apêl byddwn yn gofyn a ydych eisiau inni anfon hysbysiadau  atoch trwy negeseuon testun a negeseuon e-bost i roi’r wybodaeth ddiweddaraf i chi am eich apêl. ",
+      "cancel": "Gallwch ganslo negeseuon testun trwy ddilyn y camau a nodir yn y neges testun, a gallwch ganslo negeseuon e-bost trwy ddilyn y camau a nodir yn y negeseuon e-bost. ",
+      "updates": {
+        "rep": "Os ydych wedi gofyn i’ch cynrychiolydd enwebedig dderbyn diweddariadau ar eich apêl, yna byddwn yn rhannu eich data gyda nhw. Os ydych am i’ch cynrychiolydd roi’r gorau i dderbyn hysbysiadau yna bydd angen i chi ",
+        "link": "gysylltu â ni"
+      }
+    },
+    "storing": {
+      "title": "Storio a rhannu eich data",
+      "shared": "Bydd eich data yn cael ei rannu gyda’r adran o’r llywodraeth a wnaeth y penderfyniad rydych chi’n apelio yn ei erbyn. Er enghraifft, Yr Adran Gwaith a Phensiynau (DWP) neu Gyllid a Thollau Ei Mawrhydi (HMRC). Mae hyn fel bod yr adran honno yn gallu ymateb i’ch apêl. "
+    },
+    "after": {
+      "title": "Ar ôl ichi gyflwyno eich gwybodaeth ",
+      "deleted": "Bydd yr wybodaeth a gyflwynwch yn cael ei dileu 2 flynedd ar ôl i’r tribiwnlys gyhoeddi ei benderfyniad ac mae’r diweddariad diwethaf ar gyfer eich apêl wedi’i wneud. ",
+      "noDecision": "Os nad yw’r tribiwnlys yn gwneud penderfyniad am eich apêl (er enghraifft, os caiff ei dynnu’n ôl, neu os bydd y ddau barti yn cytuno) yna caiff yr wybodaeth a gyflwynir gennych ei dileu 2 flynedd ar ôl i’r apêl gael ei chau ac ar ôl i’r diweddariad diwethaf gael ei wneud.",
+      "complaint": "Os byddwch yn gwneud cwyn yn erbyn y tribiwnlys yna caiff yr wybodaeth am yr apêl ei storio am 3 blynedd ar ôl i’r diweddariad diwethaf am y gwyn gael ei wneud. "
+    }
+  }
+}

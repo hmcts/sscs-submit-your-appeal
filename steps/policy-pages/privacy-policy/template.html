@@ -1,0 +1,150 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/question.html" %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.privacy.title | safe %}
+
+{% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ content.privacy.title | safe }}</h1>
+    <p class="govuk-body">{{ content.privacy.description | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.manages.title | safe }}</h2>
+    <p class="govuk-body">{{ content.manages.managedBy | safe }}</p>
+    <p class="govuk-body">
+        {{ content.manages.data.controller | safe }} <a class="govuk-link" href="https://www.gov.uk/government/organisations/ministry-of-justice/about/personal-information-charter">{{ content.manages.data.link | safe }}</a> {{ content.manages.data.process | safe }}
+    </p>
+
+    <p class="govuk-body">{{ content.manages.responsible | safe }}</p>
+    <p class="govuk-body">
+        {{ content.manages.moreInfo.service | safe }} <a class="govuk-link" href="/terms-and-conditions">{{ content.manages.moreInfo.link | safe }}</a>.
+    </p>
+
+    <h2 class="govuk-heading-m">{{ content.whyWeCollect.title | safe }}</h2>
+    <p class="govuk-body">{{ content.whyWeCollect.collect | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.whyWeCollect.collect1 | safe }}</li>
+        <li>{{ content.whyWeCollect.collect2 | safe }}</li>
+        <li>{{ content.whyWeCollect.collect3 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.whyWeCollect.staffUseData | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.personalData.title | safe }}</h2>
+    <p class="govuk-body">{{ content.personalData.collect | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.personalData.collect1 | safe }}</li>
+        <li>{{ content.personalData.collect2 | safe }}</li>
+        <li>{{ content.personalData.collect3 | safe }}</li>
+    </ul>
+    <p class="govuk-body">
+        {{ content.personalData.more.data | safe }} <a class="govuk-link" href="#using-data">{{ content.personalData.more.link | safe }}</a>.
+    </p>
+
+    <h2 id="using-data" class="govuk-heading-m">{{ content.usingYourData.title | safe }}</h2>
+    <p class="govuk-body">{{ content.usingYourData.account | safe }}</p>
+    <p class="govuk-body">{{ content.usingYourData.permission | safe }}</p>
+    <p class="govuk-body">
+        {{ content.usingYourData.cookies.we | safe }} <a class="govuk-link" href="/cookie-policy">{{ content.usingYourData.cookies.link | safe }}</a> {{ content.usingYourData.cookies.collect | safe }}
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.usingYourData.data1 | safe }}</li>
+        <li>{{ content.usingYourData.data2 | safe }}</li>
+        <li>{{ content.usingYourData.data3 | safe }}</li>
+        <li>{{ content.usingYourData.data4 | safe }}</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">{{ content.storingData.title | safe }}</h2>
+    <p class="govuk-body">{{ content.storingData.dataProvided | safe }}</p>
+    <p class="govuk-body">
+        {{ content.storingData.findOut.more | safe }} <a class="govuk-link" href="#appeal-benefit-heading">{{ content.storingData.findOut.link | safe }}</a>.
+    </p>
+
+    <h2 class="govuk-heading-m">{{ content.shareDate.title | safe }}</h2>
+    <p class="govuk-body">{{ content.shareDate.involved | safe }}</p>
+    <p class="govuk-body">{{ content.shareDate.contact | safe }}</p>
+    <p class="govuk-body">{{ content.shareDate.share | safe }}</p>
+    <p class="govuk-body">
+        {{ content.shareDate.google.used | safe }} <a class="govuk-link" href="/terms-and-conditions">{{ content.shareDate.google.link | safe }}</a>.
+    </p>
+
+    <h2 class="govuk-heading-m">{{ content.internationally.title | safe }}</h2>
+    <p class="govuk-body">{{ content.internationally.outsideUK | safe }}</p>
+
+    <h2 class="govuk-heading-m">{{ content.yourRights.title | safe }}</h2>
+    <p class="govuk-body">{{ content.yourRights.ask | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.yourRights.question1 | safe }}</li>
+        <li>{{ content.yourRights.question2 | safe }}</li>
+        <li>{{ content.yourRights.question3 | safe }}</li>
+        <li>{{ content.yourRights.question4 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.yourRights.seeData | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>
+            {{ content.yourRights.form.complete | safe }} <a class="govuk-link" href="https://www.gov.uk/government/publications/request-your-personal-data-from-moj">{{ content.yourRights.form.link | safe }}</a>. {{ content.yourRights.form.controller | safe }}
+        </li>
+        <li>{{ content.yourRights.write | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.yourRights.moreInfo | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.yourRights.info1 | safe }}</li>
+        <li>{{ content.yourRights.info2 | safe }}</li>
+        <li>{{ content.yourRights.info3 | safe }}</li>
+        <li>{{ content.yourRights.info4 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.yourRights.contactOfficer | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.yourRights.contact1 | safe }}</li>
+        <li>{{ content.yourRights.contact2 | safe }}</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">{{ content.complain.title | safe }}</h2>
+    <p class="govuk-body">
+        {{ content.complain.complaints.procedure | safe }} <a class="govuk-link" href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/complaints-procedure">{{ content.complain.complaints.link | safe }}</a> {{ content.complain.complaints.personalData | safe }}
+    </p>
+    <p class="govuk-body">
+        {{ content.complain.write | safe }}<br>
+        {{ content.complain.email | safe }}
+    </p>
+    <p class="govuk-body">
+        {{ content.complain.commissioner.canAlso | safe }} <a class="govuk-link" href="https://ico.org.uk/global/contact-us">{{ content.complain.commissioner.link | safe }}</a> {{ content.complain.commissioner.notSatisifed | safe }}
+    </p>
+
+    <h2 id="appeal-benefit-heading" class="govuk-heading-l">{{ content.appealBenefit.title | safe }}</h2>
+
+    <h3 class="govuk-heading-m">{{ content.appealBenefit.personalData.title | safe }}</h3>
+    <p class="govuk-body">{{ content.appealBenefit.personalData.weAskFor | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.appealBenefit.personalData.yourDetail1 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail2 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail3 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail4 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail5 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail6 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.yourDetail7 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.appealBenefit.personalData.rep | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.appealBenefit.personalData.repDetail1 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.repDetail2 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.appealBenefit.personalData.onBehalf | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.appealBenefit.personalData.theirDetail1 | safe }}</li>
+        <li>{{ content.appealBenefit.personalData.theirDetail2 | safe }}</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">{{ content.appealBenefit.notifications.title | safe }}</h3>
+    <p class="govuk-body">{{ content.appealBenefit.notifications.receive | safe }}</p>
+    <p class="govuk-body">{{ content.appealBenefit.notifications.cancel | safe }}</p>
+    <p class="govuk-body">
+        {{ content.appealBenefit.notifications.updates.rep | safe }} <a class="govuk-link" href="/contact-us">{{ content.appealBenefit.notifications.updates.link | safe }}</a>.
+    </p>
+
+    <h3 class="govuk-heading-m">{{ content.appealBenefit.storing.title | safe }}</h3>
+    <p class="govuk-body">{{ content.appealBenefit.storing.shared | safe }}</p>
+
+    <h3 class="govuk-heading-m">{{ content.appealBenefit.after.title | safe }}</h3>
+    <p class="govuk-body">{{ content.appealBenefit.after.deleted | safe }}</p>
+    <p class="govuk-body">{{ content.appealBenefit.after.noDecision | safe }}</p>
+    <p class="govuk-body">{{ content.appealBenefit.after.complaint | safe }}</p>
+{% endblock %}
