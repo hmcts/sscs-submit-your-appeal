@@ -16,8 +16,6 @@ class Entry extends RestoreFromDraftStore {
   }
 
   handler(req, res, next) {
-    this.ft_welsh = req.session.featureToggles.ft_welsh;
-
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.checkYourAppeal);
     } else {
@@ -26,10 +24,6 @@ class Entry extends RestoreFromDraftStore {
   }
 
   next() {
-    if (this.ft_welsh) {
-      return goTo(this.journey.steps.LanguagePreference);
-    }
-
     return goTo(this.journey.steps.BenefitType);
   }
 }
