@@ -54,7 +54,7 @@ module.exports = {
 
   theHearing: {
     attendingTheHearing: '#cya-thehearing-attending-the-hearing',
-    datesYouCantAttend: '[id="cya-datescantattend-dates-you’re-not-available"]'
+    datesYouCantAttend: '[id="cya-datescantattend-dates-you\'re-not-available"]'
   },
 
   hearingArrangements: {
