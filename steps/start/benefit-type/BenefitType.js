@@ -48,7 +48,17 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
+  handler(req, res, next) {
+    this.ft_welsh = req.session.featureToggles.ft_welsh;
+
+    super.handler(req, res, next);
+  }
+
   next() {
+    if (this.ft_welsh) {
+      return goTo(this.journey.steps.LanguagePreference);
+    }
+
     const allowedTypes = [benefitTypes.personalIndependencePayment];
     if (allowESA) {
       allowedTypes.push(benefitTypes.employmentAndSupportAllowance);

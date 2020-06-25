@@ -8,8 +8,6 @@ Feature('Postcode lookup test for type  Manual @functional');
 
 Before(I => {
   I.createTheSession();
-  I.seeCurrentUrlEquals(paths.start.languagePreference);
-  I.chooseLanguagePreference('no');
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
