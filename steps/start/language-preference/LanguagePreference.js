@@ -2,6 +2,8 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { titleise } = require('utils/stringUtils');
+const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
@@ -26,11 +28,23 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   answers() {
-    return answer(this, { hide: true });
+    return answer(this, {
+      question: this.content.cya.languagePreferenceWelsh,
+      section: sections.benefitType,
+      answer: titleise(this.fields.languagePreferenceWelsh.value)
+    });
   }
 
   values() {
-    return {};
+    return {
+      languagePreferenceWelsh: this.getLanguagePreferenceValue(this.fields.languagePreferenceWelsh.value)
+    };
+  }
+
+  getLanguagePreferenceValue(languagePreferenceValue) {
+    if (languagePreferenceValue === userAnswer.YES) return true;
+    if (languagePreferenceValue === userAnswer.NO) return false;
+    return null;
   }
 
   next() {
