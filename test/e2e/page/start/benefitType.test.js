@@ -15,7 +15,7 @@ After(I => {
 });
 
 Scenario('When I enter PIP, I am taken to the postcode-check page', I => {
-  // I.chooseLanguagePreference('no');
+  I.chooseLanguagePreference('no');
   I.enterBenefitTypeAndContinue('pip');
   I.seeInCurrentUrl(paths.start.postcodeCheck);
 }).retry(2);
@@ -62,7 +62,7 @@ benefitTypesArr.forEach(benefitTypeKey => {
       } else {
         throw new Error('I do not know which form this is supposed to go to');
       }
-      // I.chooseLanguagePreference('no');
+      I.chooseLanguagePreference('no');
       I.enterBenefitTypeAndContinue(benefitTypesObj[benefitTypeKey]);
       I.seeInCurrentUrl(paths.appealFormDownload);
       I.see(content.title);
