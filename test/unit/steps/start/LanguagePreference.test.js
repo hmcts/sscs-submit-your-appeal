@@ -2,6 +2,8 @@ const LanguagePreference = require('steps/start/language-preference/LanguagePref
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const sections = require('steps/check-your-appeal/sections');
+const userAnswer = require('utils/answer');
 const config = require('config');
 
 describe('LanguagePreference.js', () => {
@@ -25,15 +27,55 @@ describe('LanguagePreference.js', () => {
     });
   });
 
-  describe('answers()', () => {
-    it('should be hidden', () => {
-      expect(languagePreference.answers().hide).to.be.true;
-    });
-  });
+  describe('answers() and values()', () => {
+    const question = 'A Question';
 
-  describe('values()', () => {
-    it('should be empty', () => {
-      expect(languagePreference.values()).to.be.empty;
+    beforeEach(() => {
+      languagePreference.content = {
+        cya: {
+          languagePreferenceWelsh: question
+        }
+      };
+
+      languagePreference.fields = {
+        languagePreferenceWelsh: {}
+      };
+    });
+
+    it('should set the question and section', () => {
+      const answers = languagePreference.answers();
+      expect(answers.question).to.equal(question);
+      expect(answers.section).to.equal(sections.benefitType);
+    });
+
+    it('should titleise the users selection to \'No\' for CYA', () => {
+      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
+      const answers = languagePreference.answers();
+      expect(answers.answer).to.equal('No');
+    });
+
+    it('should titleise the users selection to \'Yes\' for CYA', () => {
+      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
+      const answers = languagePreference.answers();
+      expect(answers.answer).to.equal('Yes');
+    });
+
+    it('should set hasRepresentative to false', () => {
+      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
+      const values = languagePreference.values();
+      expect(values).to.eql({ languagePreferenceWelsh: false });
+    });
+
+    it('should set hasRepresentative to true', () => {
+      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
+      const values = languagePreference.values();
+      expect(values).to.eql({ languagePreferenceWelsh: true });
+    });
+
+    it('should set hasRepresentative to null', () => {
+      languagePreference.fields.languagePreferenceWelsh.value = '';
+      const values = languagePreference.values();
+      expect(values).to.eql({ languagePreferenceWelsh: null });
     });
   });
 
