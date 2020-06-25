@@ -14,7 +14,13 @@ describe('BenefitType.js', () => {
       journey: {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
-          PostcodeChecker: paths.start.postcodeCheck
+          PostcodeChecker: paths.start.postcodeCheck,
+          LanguagePreference: paths.start.languagePreference
+        }
+      },
+      session: {
+        featureToggles: {
+          ft_welsh: false
         }
       }
     });
@@ -92,6 +98,11 @@ describe('BenefitType.js', () => {
   });
 
   describe('next()', () => {
+    it('returns /language-preference when Welsh feature toggle is on', () => {
+      benefitType.req.session.featureToggles.ft_welsh = true;
+      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
+    });
+
     it('returns /appeal-form-download when benefit type is not PIP', () => {
       benefitType.fields.benefitType.value = 'not PIP';
       expect(benefitType.next().step).to.eql(paths.appealFormDownload);

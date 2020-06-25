@@ -1,6 +1,8 @@
 const LanguagePreference = require('steps/start/language-preference/LanguagePreference');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 
 describe('LanguagePreference.js', () => {
   let languagePreference = null;
@@ -9,7 +11,8 @@ describe('LanguagePreference.js', () => {
     languagePreference = new LanguagePreference({
       journey: {
         steps: {
-          BenefitType: paths.start.benefitType
+          AppealFormDownload: paths.appealFormDownload,
+          PostcodeChecker: paths.start.postcodeCheck
         }
       }
     });
@@ -35,9 +38,32 @@ describe('LanguagePreference.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /benefit-type', () => {
-      expect(languagePreference.next())
-        .to.eql({ nextStep: paths.start.benefitType });
+    it('returns /appeal-form-download when benefit type is not PIP', () => {
+      languagePreference.req.session = {
+        BenefitType: {
+          benefitType: 'not PIP'
+        }
+      };
+      expect(languagePreference.next().step).to.eql(paths.appealFormDownload);
+    });
+
+    it('returns /postcode-check with benefit type value is PIP', () => {
+      languagePreference.req.session = {
+        BenefitType: {
+          benefitType: 'Personal Independence Payment (PIP)'
+        }
+      };
+      expect(languagePreference.next().step).to.eql(paths.start.postcodeCheck);
+    });
+
+    it('pushes ESA as allowed benefitType if allowESA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('employmentAndSupportAllowance'))
+        .to.eql(config.get('features.allowESA.enabled') === 'true');
+    });
+
+    it('pushes UC as allowed benefitType if allowUC is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('universalCredit'))
+        .to.eql(config.get('features.allowUC.enabled') === 'true');
     });
   });
 });
