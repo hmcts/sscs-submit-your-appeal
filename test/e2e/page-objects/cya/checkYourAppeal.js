@@ -21,7 +21,7 @@ const oneMonthAgo = DateUtils.oneMonthAgo();
 
 function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code) {
   const I = this;
-  // I.chooseLanguagePreference('no');
+  I.chooseLanguagePreference('no');
   I.enterBenefitTypeAndContinue(benefitTypeCode);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.continueFromIndependance();
