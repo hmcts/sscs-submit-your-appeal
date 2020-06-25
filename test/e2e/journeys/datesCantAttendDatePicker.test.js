@@ -15,6 +15,7 @@ Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend 
 Before(I => {
   I.createTheSession();
   I.seeCurrentUrlEquals(paths.start.languagePreference);
+  I.chooseLanguagePreference('no');
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
