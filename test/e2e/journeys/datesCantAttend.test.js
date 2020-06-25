@@ -14,8 +14,6 @@ Feature('PIP, one month ago, attends hearing with dates cannot attend');
 Before(I => {
   I.createTheSession();
   I.seeCurrentUrlEquals(paths.start.languagePreference);
-  I.chooseLanguagePreference('no');
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(I => {
@@ -33,7 +31,7 @@ Scenario('Provides date of when they cannot attend the hearing', async I => {
   I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario('Provides a date when they cannot attend the hearing then edits the date @functional',
+Scenario.only('Provides a date when they cannot attend the hearing then edits the date @functional',
   async I => {
     const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
