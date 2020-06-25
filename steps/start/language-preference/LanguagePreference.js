@@ -1,4 +1,4 @@
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { shimSessionSaveToDraftStore } = require('middleware/shimSession');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -6,7 +6,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 
-class LanguagePreference extends SaveToDraftStore {
+class LanguagePreference extends shimSessionSaveToDraftStore {
   static get path() {
     return paths.start.languagePreference;
   }

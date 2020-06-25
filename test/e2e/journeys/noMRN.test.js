@@ -36,7 +36,7 @@ Scenario('Appellant has contacted DWP', async I => {
 
   const hasMRN = false;
 
-  // I.chooseLanguagePreference(testData.languagePreferenceWelsh);
+  I.chooseLanguagePreference(testData.languagePreferenceWelsh);
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);
@@ -56,7 +56,7 @@ Scenario('Appellant has contacted DWP', async I => {
 }).retry(1);
 
 Scenario('Appellant has not contacted DWP and exits the service', I => {
-  // I.chooseLanguagePreference(testData.languagePreference);
+  I.chooseLanguagePreference(testData.languagePreference);
   I.enterBenefitTypeAndContinue(testData.benefitType.code);
   I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
   I.checkOptionAndContinue(isAppointee.no);
