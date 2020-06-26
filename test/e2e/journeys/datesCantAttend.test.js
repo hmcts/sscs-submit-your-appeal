@@ -31,7 +31,7 @@ Scenario('Provides date of when they cannot attend the hearing', async I => {
   I.see(randomWeekDay.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario.only('Provides a date when they cannot attend the hearing then edits the date @functional',
+Scenario('Provides a date when they cannot attend the hearing then edits the date @functional',
   async I => {
     const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
