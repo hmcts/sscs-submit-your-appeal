@@ -1,6 +1,7 @@
 const { ExitPoint, Page } = require('@hmcts/one-per-page');
 const { Interstitial } = require('@hmcts/one-per-page/steps');
-const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
+const { SaveToDraftStore, SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
+
 const { METHOD_NOT_ALLOWED } = require('http-status-codes');
 
 class shimSessionExitPoint extends ExitPoint {
@@ -42,6 +43,23 @@ class shimSessionStaticPage extends Page {
   }
 }
 
+class shimSessionSaveToDraftStore extends SaveToDraftStore {
+  renderPage() {
+    this.retrieve();
+    if (this.fields.isFilled) {
+      this.validate();
+    }
+    if (this.xhr) {
+      this.res.send(this.fields);
+    } else {
+      this.res.render(this.template, this.locals, (error, html) => {
+        delete this.req.session.featureToggles;
+        this.res.send(html);
+      });
+    }
+  }
+}
+
 class shimSessionSaveToDraftStoreCYA extends SaveToDraftStoreCYA {
   renderPage() {
     this.retrieve();
@@ -63,5 +81,6 @@ module.exports = {
   shimSessionExitPoint,
   shimSessionInterstitial,
   shimSessionStaticPage,
+  shimSessionSaveToDraftStore,
   shimSessionSaveToDraftStoreCYA
 };

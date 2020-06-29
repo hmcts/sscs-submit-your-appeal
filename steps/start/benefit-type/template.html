@@ -5,7 +5,10 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
-{% set hideBackButton = true %}
+
+{% if not session.featureToggles.ft_welsh %}
+    {% set hideBackButton = true %}
+{% endif %}
 
 {% block fields %}
     {{ select(

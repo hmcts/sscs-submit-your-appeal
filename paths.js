@@ -36,7 +36,8 @@ module.exports = {
     invalidPostcode: '/invalid-postcode',
     independence: '/independence',
     createAccount: '/create-account',
-    idamRedirect: '/idam-redirect'
+    idamRedirect: '/idam-redirect',
+    languagePreference: '/language-preference'
   },
 
   appealFormDownload: '/appeal-form-download',

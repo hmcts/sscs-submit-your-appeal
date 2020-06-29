@@ -15,11 +15,13 @@ After(I => {
 
 Scenario('I see SSCS1 content when not selecting Carer\'s Allowance or CBLP', I => {
   I.enterBenefitTypeAndContinue(benefitTypes.disabilityLivingAllowance);
+  I.chooseLanguagePreference('no');
   I.see(dynamicContent('SSCS1', 'Disability Living Allowance (DLA)'));
 });
 
 Scenario('I see SSCS5 content when I select CBLP as a benefit type', I => {
   I.enterBenefitTypeAndContinue(benefitTypes.childBenefit);
+  I.chooseLanguagePreference('no');
   I.see(dynamicContent('SSCS5', 'Child Benefit Lone Parent'));
 });
 

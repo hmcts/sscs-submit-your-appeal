@@ -1,0 +1,20 @@
+{
+  "titleHead": "Dewis iaith",
+  "title": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
+  "question": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
+  "summary": "Os nad ydych eisiau i’ch dogfennau fod yn Gymraeg, dewiswch ‘nac ydw’.",
+  "answerNo": "Bydd yr holl ddogfennau yn Saesneg.",
+
+  "fields": {
+    "languagePreferenceWelsh": {
+      "yes": "Ydw",
+      "no": "Nac ydw",
+      "errors": {
+        "required": "Dewiswch ‘ydw’ os ydych eisiau i’ch dogfennau fod yn Gymraeg."
+      }
+    }
+  },
+  "cya": {
+    "languagePreferenceWelsh": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?"
+  }
+}

@@ -9,6 +9,7 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
   Before(I => {
     I.createTheSession();
     I.seeCurrentUrlEquals(paths.start.benefitType);
+    I.seeCurrentUrlEquals(paths.start.languagePreference);
   });
 
   After(I => {
@@ -17,16 +18,19 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
   /* eslint-disable max-len */
   Scenario('Sees an appropriate message on haveAMRN', I => {
     I.enterBenefitTypeAndContinue('ESA');
+    I.chooseLanguagePreference('no');
     I.amOnPage(paths.compliance.haveAMRN);
     I.see('This is the letter DWP sent you when you asked them to reconsider their decision about the ESA benefit.');
   });
   Scenario('Sees an appropriate message on reason for appealing', I => {
     I.enterBenefitTypeAndContinue('ESA');
+    I.chooseLanguagePreference('no');
     I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
     I.see('DWP should have explained their decision on your entitlement to ESA in the Mandatory Reconsideration Notice (MRN) or the decision letter they sent you.');
   });
   Scenario('Sees an appropriate message on independence', I => {
     I.enterBenefitTypeAndContinue('ESA');
+    I.chooseLanguagePreference('no');
     I.amOnPage(paths.start.independence);
     I.see('Your appeal will be reviewed by a tribunal made up of a judge and a doctor.');
     I.see('They will consider everything you tell them and make a decision on your entitlement to the ESA benefit.');

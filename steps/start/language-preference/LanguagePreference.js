@@ -2,57 +2,52 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { splitBenefitType } = require('utils/stringUtils');
+const { titleise } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const userAnswer = require('utils/answer');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
-class BenefitType extends SaveToDraftStore {
+class LanguagePreference extends SaveToDraftStore {
   static get path() {
-    return paths.start.benefitType;
+    return paths.start.languagePreference;
   }
+
   get form() {
-    const types = Object.values(benefitTypes);
     return form({
-      benefitType: text.joi(
-        this.content.fields.benefitType.error.required,
-        Joi.string().valid(types).required()
+      languagePreferenceWelsh: text.joi(
+        this.content.fields.languagePreferenceWelsh.error.required,
+        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }
 
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
-  }
-
   answers() {
     return answer(this, {
-      question: this.content.cya.benefitType.question,
+      question: this.content.cya.languagePreferenceWelsh,
       section: sections.benefitType,
-      answer: this.fields.benefitType.value
+      answer: titleise(this.fields.languagePreferenceWelsh.value)
     });
   }
 
   values() {
     return {
-      benefitType: splitBenefitType(this.fields.benefitType.value)
+      languagePreferenceWelsh: this.getLanguagePreferenceValue(this.fields.languagePreferenceWelsh.value)
     };
   }
 
-  next() {
-    if (this.req.session.featureToggles && this.req.session.featureToggles.ft_welsh) {
-      return goTo(this.journey.steps.LanguagePreference);
-    }
+  getLanguagePreferenceValue(languagePreferenceValue) {
+    if (languagePreferenceValue === userAnswer.YES) return true;
+    if (languagePreferenceValue === userAnswer.NO) return false;
+    return null;
+  }
 
+  next() {
     const allowedTypes = [benefitTypes.personalIndependencePayment];
     if (allowESA) {
       allowedTypes.push(benefitTypes.employmentAndSupportAllowance);
@@ -60,7 +55,8 @@ class BenefitType extends SaveToDraftStore {
     if (allowUC) {
       allowedTypes.push(benefitTypes.universalCredit);
     }
-    const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
+
+    const isAllowedBenefit = () => allowedTypes.indexOf(this.req.session.BenefitType.benefitType) !== -1;
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
       redirectTo(this.journey.steps.AppealFormDownload)
@@ -68,4 +64,4 @@ class BenefitType extends SaveToDraftStore {
   }
 }
 
-module.exports = BenefitType;
+module.exports = LanguagePreference;

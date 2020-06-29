@@ -19,7 +19,8 @@
         "code": 160
       }
     ],
-    "line-comment-position": "off"
+    "line-comment-position": "off",
+    "no-warning-comments": "off"
   },
   "globals": {
     "After": true,
