@@ -1,4 +1,5 @@
 const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
@@ -71,7 +72,11 @@ const saveToDraftStore = async(req, res, next) => {
             values.appellant.nino :
             'no NINO submitted yet'}`, logPath);
         logger.exception(error, logPath);
-        next();
+        if (req && req.journey && req.journey.steps) {
+          redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+        } else {
+          next();
+        }
       });
   } else {
     next();
