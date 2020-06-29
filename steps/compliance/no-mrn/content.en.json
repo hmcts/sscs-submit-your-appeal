@@ -1,12 +1,12 @@
 {
-  "titleHead": "Reason for no MRN - Appeal a benefit decision - GOV.UK",
+  "titleHead": "Reason for no MRN",
   "title": "Explain why you don’t have a Mandatory Reconsideration Notice (MRN)",
   "subtitle": "Include the date that you contacted DWP about their decision, if you can remember.",
   "fields": {
     "reasonForNoMRN": {
       "label": "Reason for no MRN",
       "error": {
-        "required": "You have not entered anything. If you want to appeal, you need to say why you have not got an MRN letter. "
+        "required": "You have not entered anything. If you want to appeal, you need to say why you have not got an MRN letter."
       }
     }
   },

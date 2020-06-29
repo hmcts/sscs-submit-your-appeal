@@ -1,0 +1,22 @@
+{
+  "titleHead": "Cymorth yn y gwrandawiad",
+  "title": "A oes angen unrhyw gymorth arnoch yn y gwrandawiad?",
+  "supportCanBeArranged": "Gellir trefnu cymorth fel cyfieithydd, dolen glyw neu fynediad i’r anabl. Ni",
+  "cant": "allwch",
+  "bringYourOwn": "ddod â chyfieithydd eich hun i’r gwrandawiad.",
+  "fields": {
+    "arrangements": {
+      "label": "Dewiswch p’un a oes angen cymorth arnoch yn y gwrandawiad ai peidio",
+      "yes": "Oes, mae angen cymorth arnaf yn y gwrandawiad",
+      "no": "Nac oes, nid oes angen cymorth arnaf yn y gwrandawiad",
+      "error": {
+        "required": "Mae angen ichi ddweud wrthym a oes angen cymorth arnoch yn y gwrandawiad. Dewiswch oes neu nac oes."
+      }
+    }
+  },
+  "cya": {
+    "arrangements": {
+      "question": "Ydych chi eisiau i ni wneud trefniadau ar gyfer eich gwrandawiad"
+    }
+  }
+}

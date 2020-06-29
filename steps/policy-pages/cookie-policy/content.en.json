@@ -1,0 +1,74 @@
+{
+  "titleHead": "Cookie Policy",
+  "footer": {
+    "cookies": "Cookies"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "A cookie is a small piece of data that’s stored on your computer, tablet, or phone when you visit a website. Most websites need cookies to work properly."
+  },
+  "usedInService": {
+    "title": "How cookies are used in this service",
+    "uses": "This service uses them to:",
+    "use1": "measure how you use the service so it can be improved",
+    "use2": "remember the notifications you’ve seen so that you’re not shown them again",
+    "use3": "temporarily store the answers you give",
+    "more": "Find out more about",
+    "manage": "how to manage cookies"
+  },
+  "howAreTheyUsed": {
+    "title": "Cookies used to measure website usage",
+    "description": "We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements, for example improving site search.",
+    "info": "Google Analytics stores information about:",
+    "info1": "the pages you visit",
+    "info2": "how long you spend on each page",
+    "info3": "how you got to the service",
+    "info4": "what you click on while you’re visiting the service",
+    "googleShare": "We allow Google to use or share this data. Find out more about how they use this information in the",
+    "googlePrivacyPolicy": "Google privacy policy",
+    "optOut": {
+      "youCan": "You can ",
+      "google": "opt out of Google Analytics",
+      "access": "if you do not want Google to have access to your information."
+    },
+    "googleCookies": "Google Analytics sets the following cookies:",
+    "cookieTable": {
+      "columnName1": "Cookie name",
+      "columnName2": "What this cookie is for",
+      "columnName3": "Expires after",
+      "item1Name": "_ga",
+      "item1Purpose": "This helps us count how many people visit the service by tracking if you’ve visited before",
+      "item1Expires": "2 years",
+      "item2Name": "_gid",
+      "item2Purpose": "Identifies you to the service",
+      "item2Expires": "24 hours"
+    }
+  },
+  "introMessage": {
+    "title": "Cookies used to turn our introductory message off",
+    "description": "You may see a welcome message when you first visit the service. We’ll store a cookie so that your computer knows not to show this message again.",
+    "cookieTable": {
+      "columnName1": "Cookie name",
+      "columnName2": "What this cookie is for",
+      "columnName3": "Expires after",
+      "item1Name": "seen_cookie_message",
+      "item1Purpose": "Saves a message to let us know that you’ve seen our cookie message",
+      "item1Expires": "1 month"
+    }
+  },
+  "sessionCookie": {
+    "title": "Cookies used to store the answers you’ve given during your visit (known as a ‘session’)",
+    "description": "Session cookies are stored on your computer as you browse a website, and let the website know what you’ve seen and done so far. These are temporary cookies and are automatically deleted after you leave the website.",
+    "cookieTable": {
+      "columnName1": "Cookie name",
+      "columnName2": "What this cookie is for",
+      "columnName3": "Expires after",
+      "item1Name": "session",
+      "item1Purpose": "Keeps track of your answers",
+      "item1Expires": "When you close your browser",
+      "item2Name": "ARRAffinity",
+      "item2Purpose": "To know which internal IP a request should be routed to.",
+      "item2Expires": "When you close your browser"
+    }
+  }
+}

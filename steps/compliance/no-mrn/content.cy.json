@@ -1,0 +1,18 @@
+{
+  "titleHead": "Rheswm dros pam nad oes gennych MRN",
+  "title": "Eglurwch pam nad oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)",
+  "subtitle": "Dylech gynnwys y dyddiad y gwnaethoch gysylltu â DWP ynghylch eu penderfyniad, os gallwch ei gofio.",
+  "fields": {
+    "reasonForNoMRN": {
+      "label": "Rheswm dros pam nad oes gennych MRN",
+      "error": {
+        "required": "Nid ydych wedi nodi unrhyw beth. Os ydych am apelio, mae angen i chi ddweud pam nad ydych wedi cael llythyr MRN. "
+      }
+    }
+  },
+  "cya": {
+    "reasonForNoMRN": {
+      "question": "Rheswm dros pam nad oes gennych MRN"
+    }
+  }
+}

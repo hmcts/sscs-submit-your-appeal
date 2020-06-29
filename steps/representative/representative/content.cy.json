@@ -1,0 +1,25 @@
+{
+  "titleHead": "Cadarnhau cynrychiolydd",
+  "title": "Ydych chi eisiau cofrestru cynrychiolydd?",
+  "subtitle": "Gall eich cynrychiolydd fod yn unrhyw un sy’n eich helpu gyda’ch apêl ac y dylid ei ddiweddaru/diweddaru yn eich barn chi. Er enghraifft, cynghorydd hawliau lles, aelod o’ch teulu neu ofalwr.",
+  "registerList": "Wrth eu cofrestru, gallant:",
+  "info": "dderbyn gwybodaeth am eich apêl",
+  "evidence": "cyflwyno tystiolaeth (a gweld unrhyw wybodaeth a gyflwynwyd)",
+  "talkToUs": "siarad â ni ar eich rhan yn ystod eich apêl",
+  "phoneUp": "Gallwch eu cofrestru ar ôl i chi gyflwyno’ch apêl os nad oes gennych eu manylion wrth law.",
+  "fields": {
+    "hasRepresentative": {
+      "label": "Dewiswch pa un a ydych eisiau cofrestru cynrychiolydd ai peidio",
+      "yes": "Ydw, rwyf am gofrestru cynrychiolydd",
+      "no": "Nac ydw, nid wyf am gofrestru cynrychiolydd ",
+      "error": {
+        "required": "Mae’n rhaid i chi ddweud a ydych am gofrestru cynrychiolydd ai peidio. Dewiswch naill ai ydw neu nac ydw."
+      }
+    }
+  },
+  "cya": {
+    "hasRepresentative": {
+      "question": "Mae gennyf gynrychiolydd"
+    }
+  }
+}

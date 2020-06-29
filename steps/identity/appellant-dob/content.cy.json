@@ -1,0 +1,38 @@
+{
+  "titleHead": "Dyddiad geni",
+  "title": {
+    "withoutAppointee": "Rhowch eich dyddiad geni",
+    "withAppointee": "Rhowch eu  dyddiad geni"
+  },
+  "fields": {
+    "date": {
+      "hint": "Er enghraifft, 7 5 1981",
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
+      "error": {
+        "withoutAppointee": {
+          "allRequired": "Rhowch eich dyddiad geni.",
+          "dayRequired": "Rhowch ddiwrnod eich dyddiad geni",
+          "monthRequired": "Rhowch fis eich dyddiad geni",
+          "yearRequired": "Rhowch flwyddyn eich dyddiad geni",
+          "invalid": "Rydych wedi rhoi dyddiad geni annilys. Rhowch eich dyddiad geni",
+          "future": "Rydych wedi rhoi dyddiad yn y dyfodol. Rhowch eich dyddiad geni."
+        },
+        "withAppointee": {
+          "allRequired": "Rhowch eu dyddiad geni.",
+          "dayRequired": "Rhowch y diwrnod o’u dyddiad geni",
+          "monthRequired": "Rhowch y mis o’u dyddiad geni",
+          "yearRequired": "Rhowch y flwyddyn o’u dyddiad geni",
+          "invalid": "Rydych wedi rhoi dyddiad geni annilys. Rhowch eu dyddiad geni",
+          "future": "Rydych wedi rhoi dyddiad yn y dyfodol. Rhowch eu dyddiad geni"
+        }
+      }
+    }
+  },
+  "cya": {
+    "dob": {
+      "question": "Dyddiad geni"
+    }
+  }
+}

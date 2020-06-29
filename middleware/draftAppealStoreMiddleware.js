@@ -4,16 +4,14 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
-const content = require('../content.en.json');
+
 const {
   CheckYourAnswers: CYA
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
-
 let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const authTokenString = '__auth-token';
-
 const idam = require('middleware/idam');
 const logger = require('logger');
 
@@ -129,10 +127,10 @@ class SaveToDraftStoreAddAnother extends AddAnother {
 
   get continueText() {
     if (this.req.idam) {
-      return content.continueButtonText.save;
+      return 'saveAndContinue';
     }
 
-    return content.continueButtonText.continue;
+    return 'continue';
   }
 
   get middleware() {
@@ -163,10 +161,10 @@ class SaveToDraftStore extends Question {
   }
   get continueText() {
     if (this.req.idam) {
-      return content.continueButtonText.save;
+      return 'saveAndContinue';
     }
 
-    return content.continueButtonText.continue;
+    return 'continue';
   }
 
   get middleware() {

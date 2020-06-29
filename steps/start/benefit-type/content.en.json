@@ -1,11 +1,11 @@
 {
-  "titleHead": "Which benefit appeal - Appeal a benefit decision - GOV.UK",
+  "titleHead": "Which benefit appeal",
   "title": "Which benefit is your appeal about?",
   "label": "Select a benefit type",
   "benefitTypes": {
     "aa": "Attendance Allowance",
     "bb": "Bereavement Benefit",
-    "ca": "Carer's Allowance",
+    "ca": "Carer’s Allowance",
     "cb": "Child Benefit Lone Parent",
     "dla": "Disability Living Allowance (DLA)",
     "esa": "Employment and Support Allowance (ESA)",
@@ -46,7 +46,7 @@
     }
   },
   "help": {
-    "link": "I can't find the benefit I am appealing",
+    "link": "I can’t find the benefit I am appealing",
     "text": "Sometimes the name of the benefit can change. Check the last letter you received about it."
   }
 }

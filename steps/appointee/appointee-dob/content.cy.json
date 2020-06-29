@@ -1,0 +1,26 @@
+{
+  "titleHead": "Dyddiad geni",
+  "title": "Rhowch eich dyddiad geni",
+  "description": "Fel y penodai, rhowch eich dyddiad geni chi",
+  "fields": {
+    "date": {
+      "hint": "Er enghraifft, 7 5 1981",
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn",
+      "error": {
+        "allRequired": "Rhowch eich dyddiad geni.",
+        "dayRequired": "Rhowch ddiwrnod eich dyddiad geni",
+        "monthRequired": "Rhowch fis eich dyddiad geni",
+        "yearRequired": "Rhowch flwyddyn eich dyddiad geni",
+        "invalid": "Rydych wedi rhoi dyddiad geni  annilys. Rhowch eich dyddiad geni.",
+        "future": "Rydych wedi rhoi dyddiad yn y dyfodol. Rhowch eich dyddiad geni."
+      }
+    }
+  },
+  "cya": {
+    "dob": {
+      "question": "Dyddiad geni"
+    }
+  }
+}

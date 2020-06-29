@@ -94,6 +94,7 @@
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
     }
   },
+  "languages": ["en", "cy"],
   "featureToggles": {
     "enabled": true,
     "launchDarklyKey": "SDK_KEY",

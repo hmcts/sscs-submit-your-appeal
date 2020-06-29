@@ -1,0 +1,27 @@
+{
+  "titleHead": "Rhif yswiriant gwladol",
+  "title": {
+    "withoutAppointee": "Nodwch eich rhif Yswiriant Gwladol",
+    "withAppointee": "Nodwch eu rhif Yswiriant Gwladol"
+  },
+  "subtitle": {
+    "withoutAppointee": "Gallwch ddod o hyd i’ch Rhif Yswiriant Gwladol ar unrhyw lythyr am y budd-dal.",
+    "withAppointee": "Bydd ar unrhyw lythyr gan DWP ynghylch y budd-dal."
+  },
+  "fields": {
+    "nino": {
+      "label": "Rhif Yswiriant Gwladol",
+      "error": {
+        "required": {
+          "withoutAppointee": "Nodwch eich rhif Yswiriant Gwladol",
+          "withAppointee": "Nodwch eu rhif Yswiriant Gwladol"
+        }
+      }
+    }
+  },
+  "cya": {
+    "nino": {
+      "question": "Rhif Yswiriant Gwladol"
+    }
+  }
+}

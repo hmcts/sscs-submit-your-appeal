@@ -1,0 +1,19 @@
+{
+  "titleHead": "Rhif ffôn symudol",
+  "title": "Nodwch eich rhif ffôn symudol",
+  "description": "Bydd negeseuon testun yn cael eu hanfon i’r rhif hwn. ",
+  "fields": {
+    "enterMobile": {
+      "label": "Rhif ffôn symudol",
+      "error": {
+        "emptyField": "Rhowch rif ffôn symudol. Fe ddefnyddir hwn i anfon negeseuon testun am eich apêl.",
+        "invalidNumber": "Rydych wedi rhoi rhif annilys.  Gwiriwch eich rhif ffôn symudol a’i nodi eto."
+      }
+    }
+  },
+  "cya": {
+    "enterMobile": {
+      "question": "Rhif ffôn symudol"
+    }
+  }
+}

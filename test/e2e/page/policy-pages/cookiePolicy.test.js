@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('policy-pages/cookie-policy/content.en.json');
+const content = require('steps/policy-pages/cookie-policy/content.en.json');
 
 Feature('Cookie policy @batch-10');
 
