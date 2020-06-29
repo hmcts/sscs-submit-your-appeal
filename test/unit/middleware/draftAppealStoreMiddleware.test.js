@@ -126,7 +126,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-  describe('saveToDraftStore api failed call', () => {
+  describe.skip('saveToDraftStore api failed call', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         steps: {
