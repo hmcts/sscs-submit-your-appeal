@@ -13,7 +13,7 @@
     {% set contentTitle = content.title %}
 {% endif %}
 
-{% set title = content.title | safe %}
+{% set title = contentTitle | safe %}
 
 {% block fields %}
     {% call formSection() %}
