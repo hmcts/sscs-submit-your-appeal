@@ -3,7 +3,7 @@
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% set title = title | safe %}
 
 {% block fields %}
     {% call formSection() %}
