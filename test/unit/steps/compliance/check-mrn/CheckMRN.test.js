@@ -3,6 +3,7 @@ const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const answer = require('utils/answer');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('CheckMRN.js', () => {
   let checkMRN = null;
@@ -64,6 +65,14 @@ describe('CheckMRN.js', () => {
       const textField = checkMRN.form.fields.checkedMRN;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.not.be.empty;
+    });
+  });
+
+  describe('get middleware()', () => {
+    it('returns correct middleware array', () => {
+      expect(checkMRN.middleware).to.be.an('array');
+      expect(checkMRN.middleware).to.have.length(11);
+      expect(checkMRN.middleware).to.include(checkWelshToggle);
     });
   });
 

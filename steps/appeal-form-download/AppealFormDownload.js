@@ -1,11 +1,12 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { shimSessionExitPoint } = require('middleware/shimSession');
 const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 const preserveSession = require('middleware/preserveSession');
+const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class AppealFormDownload extends ExitPoint {
+class AppealFormDownload extends shimSessionExitPoint {
   static get path() {
     return paths.appealFormDownload;
   }
@@ -17,7 +18,8 @@ class AppealFormDownload extends ExitPoint {
   get middleware() {
     return [
       preserveSession,
-      ...super.middleware
+      ...super.middleware,
+      checkWelshToggle
     ];
   }
 
