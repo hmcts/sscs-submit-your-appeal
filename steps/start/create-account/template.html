@@ -2,12 +2,17 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
+
+    <p class="govuk-body">{{ content.subtitle | safe}}</p>
 
     {% call formSection() %}
+
         {{ selectionButtons(
             fields.createAccount,
             content.fields.createAccount.label,
@@ -17,7 +22,9 @@
                 { label: content.fields.createAccount.no,  value: "no" }
             ])
         }}
+
     {% endcall %}
 
-    <p class="govuk-body">{{ content.fields.createAccount.warning | safe }} {{ content.fields.createAccount.yes | safe }}.</p>
+    <p class="govuk-body">{{content.fields.createAccount.warning}}{{content.fields.createAccount.yes}}.</p>
+
 {% endblock %}
