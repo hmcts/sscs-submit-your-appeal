@@ -150,11 +150,6 @@ const configureJourney = (app, commonContent) => {
         template: 'errors/500/Error500.html',
         title: commonContent.en.errors.serverError.title,
         message: commonContent.en.errors.serverError.message
-      },
-      duplicateCase: {
-        template: 'errors/duplicate-error/DuplicateError.html',
-        title: commonContent.en.errors.duplicateCase.title,
-        message: commonContent.en.errors.duplicateCase.message
       }
     },
     timeoutDelay: 2000,

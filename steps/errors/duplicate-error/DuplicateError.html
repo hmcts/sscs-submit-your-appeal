@@ -3,9 +3,7 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}
-    {{ title }}
-{% endblock %}
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(phase, feedbackLink, urlPath) %}
@@ -15,13 +13,13 @@
 
 {% block two_thirds %}
 
-{{ header(title, size='xl') }}
+{{ header(content.title, size='xl') }}
 
-<p class="govuk-body" class="govuk-body">{{ message }}</p>
+<p class="govuk-body" class="govuk-body">{{ content.message }}</p>
 
 <a class="govuk-button" href="/start-an-appeal">Try again</a>
 
-<div class="govuk-form-group--error internal-server-error">
+<div class="govuk-form-group--error duplicate-case-error">
     <label>
         <span class="govuk-hint">If you were not expecting to see this message, please use the details below to contact us.</span>
         <span>{{ error }}</span>

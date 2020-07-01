@@ -9,7 +9,6 @@ class DuplicateError extends Page {
   handler(req, res) {
     if (req.method === 'GET') {
       res.render(this.template, this.locals, (error, html) => {
-        delete this.req.session.featureToggles;
         this.res.send(html);
       });
     }

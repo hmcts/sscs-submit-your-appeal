@@ -40,10 +40,6 @@
       "serverError": {
         "title": "Sorry, we’re experiencing technical difficulties",
         "message": "Please try again in a few minutes."
-      },
-      "duplicateCase": {
-        "title": "An appeal has already been submitted, for that decision date",
-        "message": "Please check the date of your MRN, and try again."
       }
     },
     "timeout": {
@@ -149,10 +145,6 @@
       "serverError": {
         "title": "Mae’n ddrwg gennym, rydym yn cael anawsterau technegol",
         "message": "Rhowch gynnig arall arni ymhen ychydig o funudau."
-      },
-      "duplicateCase": {
-        "title": "An appeal has already been submitted, for that decision date",
-        "message": "Please check the date of your MRN, and try again."
       }
     },
     "timeout": {
