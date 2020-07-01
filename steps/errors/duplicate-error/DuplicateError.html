@@ -1,0 +1,31 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/error.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}
+    {{ title }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+{% block two_thirds %}
+
+{{ header(title, size='xl') }}
+
+<p class="govuk-body" class="govuk-body">{{ message }}</p>
+
+<a class="govuk-button" href="/start-an-appeal">Try again</a>
+
+<div class="govuk-form-group--error internal-server-error">
+    <label>
+        <span class="govuk-hint">If you were not expecting to see this message, please use the details below to contact us.</span>
+        <span>{{ error }}</span>
+    </label>
+</div>
+
+{% endblock %}

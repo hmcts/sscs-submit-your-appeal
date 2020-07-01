@@ -59,6 +59,11 @@ journey(app, {
       template: 'errors/500/Error500.html',
       title: content.en.errors.serverError.title,
       message: content.en.errors.serverError.message
+    },
+    duplicateCaseError: {
+      template: 'errors/duplicate-error/DuplicateError.html',
+      title: content.en.errors.duplicateCase.title,
+      message: content.en.errors.duplicateCase.message
     }
   },
   timeoutDelay: 2000,
