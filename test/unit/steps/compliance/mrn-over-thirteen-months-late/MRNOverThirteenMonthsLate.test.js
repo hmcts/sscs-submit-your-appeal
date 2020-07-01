@@ -5,7 +5,6 @@ const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-mo
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('MRNOverThirteenMonthsLate.js', () => {
   let mrnOverThirteenMonthsLate = null;
@@ -60,14 +59,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(mrnOverThirteenMonthsLate.middleware).to.be.an('array');
-      expect(mrnOverThirteenMonthsLate.middleware).to.have.length(11);
-      expect(mrnOverThirteenMonthsLate.middleware).to.include(checkWelshToggle);
     });
   });
 

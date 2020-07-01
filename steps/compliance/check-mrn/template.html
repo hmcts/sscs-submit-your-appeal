@@ -2,19 +2,24 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{{% set title = content.title | safe %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
 
 {% block fields %}
+
     <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
     {% if benefitType === 'UC' %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt | safe }}">
+       <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt }}">
     {% else %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt }}">
     {% endif %}
 
     {% call formSection() %}
-        <legend id="check-mrn" class="govuk-body govuk-!-font-weight-bold">{{ content.question | safe }}</legend>
+
+        <legend id="check-mrn" class="govuk-body govuk-!-font-weight-bold">{{ content.question }}</legend>
 
         {{ selectionButtons(
             fields.checkedMRN,
@@ -25,5 +30,7 @@
                 { label: content.fields.checkedMRN.no,  value: "no" }
             ])
         }}
+
     {% endcall %}
+
 {% endblock %}
