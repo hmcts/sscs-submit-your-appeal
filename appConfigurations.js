@@ -15,18 +15,15 @@ const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
-const FeatureToggle = require('core/utils/featureToggle');
 
-const featureToggle = new FeatureToggle();
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 
 const configureNunjucks = (app, commonContent) => {
-// because of a bug with iphone, we need to remove the mime types from accept
+  // because of a bug with iphone, we need to remove the mime types from accept
   expressNunjucks(app, {
-    async: true,
     watch: isDev(),
     noCache: isDev(),
     throwOnUndefined: false,
@@ -74,7 +71,7 @@ const configureNunjucks = (app, commonContent) => {
       paths,
       urls,
       featureToggles: {
-        welsh: () => featureToggle.callCheckToggle('ft_welsh')
+        welsh: () => process.env.FT_WELSH
       }
     }
   });
