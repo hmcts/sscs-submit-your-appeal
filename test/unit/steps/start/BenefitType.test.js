@@ -4,7 +4,6 @@ const { expect } = require('test/util/chai');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('BenefitType.js', () => {
   let benefitType = null;
@@ -58,14 +57,6 @@ describe('BenefitType.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(benefitType.middleware).to.be.an('array');
-      expect(benefitType.middleware).to.have.length(11);
-      expect(benefitType.middleware).to.include(checkWelshToggle);
     });
   });
 

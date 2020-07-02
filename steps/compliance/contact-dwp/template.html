@@ -6,7 +6,7 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
         {{ banner | safe }}
     {% endcall %}
     <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>

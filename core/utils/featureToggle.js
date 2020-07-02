@@ -9,61 +9,22 @@ class FeatureToggle {
     this.launchDarkly = new LaunchDarkly().getInstance();
   }
 
-  callCheckToggle(req, res, next, launchDarkly, featureToggleKey, callbackFn, redirectPage) {
-    return this.checkToggle({
-      req,
-      res,
-      next,
-      launchDarkly,
-      featureToggleKey,
-      callbackFn,
-      redirectPage
-    });
-  }
-
-  checkToggle(params) {
-    const featureToggleKey = config.featureToggles[params.featureToggleKey];
+  callCheckToggle(ftKey) {
+    const featureToggleKey = config.featureToggles[ftKey];
     const ldUser = config.featureToggles.launchDarklyUser;
 
-    let ldDefaultValue = false;
-    if (params.launchDarkly.ftValue && params.launchDarkly.ftValue[params.featureToggleKey]) {
-      ldDefaultValue = params.launchDarkly.ftValue[params.featureToggleKey];
-    }
-
     try {
-      return this.launchDarkly.variation(featureToggleKey, ldUser, ldDefaultValue, (error, showFeature) => {
+      return this.launchDarkly.variation(featureToggleKey, ldUser, false, (error, showFeature) => {
         if (error) {
-          return params.next();
+          return false;
         }
 
-        logger.trace(`Checking feature toggle: ${params.featureToggleKey}, isEnabled: ${showFeature}`);
-        return params.callbackFn({
-          req: params.req,
-          res: params.res,
-          next: params.next,
-          redirectPage: params.redirectPage,
-          isEnabled: showFeature,
-          featureToggleKey: params.featureToggleKey
-        });
+        logger.trace(`Checking feature toggle: ${ftKey}, isEnabled: ${showFeature}`);
+        return showFeature;
       });
     } catch (error) {
-      return params.next();
+      return false;
     }
-  }
-
-  toggleFeature(params) {
-    if (!params.req.session.featureToggles) {
-      params.req.session.featureToggles = {};
-    }
-    params.req.session.featureToggles[params.featureToggleKey] = params.isEnabled;
-    return params.next();
-  }
-
-  static isEnabled(featureToggles, key) {
-    if (featureToggles && featureToggles[key]) {
-      return true;
-    }
-    return false;
   }
 }
 
