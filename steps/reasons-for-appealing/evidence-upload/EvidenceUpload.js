@@ -34,7 +34,6 @@ const totalFileSizeExceededError = 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -212,8 +211,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   get middleware() {
     return [
       ...super.middleware,
-      EvidenceUpload.handleUpload,
-      checkWelshToggle
+      EvidenceUpload.handleUpload
     ];
   }
 

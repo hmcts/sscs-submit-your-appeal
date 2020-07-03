@@ -3,7 +3,6 @@ const EvidenceProvide = require('steps/reasons-for-appealing/evidence-provide/Ev
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('EvidenceProvide.js', () => {
   let evidenceProvide = null;
@@ -54,14 +53,6 @@ describe('EvidenceProvide.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(evidenceProvide.middleware).to.be.an('array');
-      expect(evidenceProvide.middleware).to.have.length(11);
-      expect(evidenceProvide.middleware).to.include(checkWelshToggle);
     });
   });
 

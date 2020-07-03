@@ -1,7 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('SendingEvidence.js', () => {
   const retrieveValue = value => {
@@ -72,14 +71,6 @@ describe('SendingEvidence.js', () => {
         emailAddress: {}
       };
       expect(sendingEvidence.hasSignedUpForEmail).to.be.false;
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(sendingEvidence.middleware).to.be.an('array');
-      expect(sendingEvidence.middleware).to.have.length(6);
-      expect(sendingEvidence.middleware).to.include(checkWelshToggle);
     });
   });
 });

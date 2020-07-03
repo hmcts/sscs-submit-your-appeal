@@ -1,7 +1,6 @@
 const { expect } = require('test/util/chai');
 const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('HearingArrangements.js', () => {
   let notAttendingHearing = null;
@@ -47,14 +46,6 @@ describe('HearingArrangements.js', () => {
       it('has constructor name FieldDescriptor', () => {
         expect(field.constructor.name).to.eq('FieldDescriptor');
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(notAttendingHearing.middleware).to.be.an('array');
-      expect(notAttendingHearing.middleware).to.have.length(11);
-      expect(notAttendingHearing.middleware).to.include(checkWelshToggle);
     });
   });
 
