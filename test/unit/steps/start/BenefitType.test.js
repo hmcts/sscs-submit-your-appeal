@@ -16,11 +16,6 @@ describe('BenefitType.js', () => {
           PostcodeChecker: paths.start.postcodeCheck,
           LanguagePreference: paths.start.languagePreference
         }
-      },
-      session: {
-        featureToggles: {
-          ft_welsh: false
-        }
       }
     });
     benefitType.fields = { benefitType: {} };
@@ -89,11 +84,6 @@ describe('BenefitType.js', () => {
   });
 
   describe('next()', () => {
-    it('returns /language-preference when Welsh feature toggle is on', () => {
-      benefitType.req.session.featureToggles.ft_welsh = true;
-      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
-    });
-
     it('returns /appeal-form-download when benefit type is not PIP', () => {
       benefitType.fields.benefitType.value = 'not PIP';
       expect(benefitType.next().step).to.eql(paths.appealFormDownload);
@@ -112,6 +102,16 @@ describe('BenefitType.js', () => {
     it('pushes UC as allowed benefitType if allowUC is enabled', () => {
       expect(Object.keys(benefitTypes).includes('universalCredit'))
         .to.eql(config.get('features.allowUC.enabled') === 'true');
+    });
+
+    it('returns /language-preference when Welsh feature toggle is on', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = true;
+
+      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
+
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = false;
     });
   });
 });

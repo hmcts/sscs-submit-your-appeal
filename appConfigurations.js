@@ -71,7 +71,7 @@ const configureNunjucks = (app, commonContent) => {
       paths,
       urls,
       featureToggles: {
-        welsh: () => process.env.FT_WELSH
+        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled
       }
     }
   });

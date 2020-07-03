@@ -18,11 +18,6 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
-For development only config, rename the `config/development_template.yaml` file to `config/development.yaml`. Running the app with the node environment set to `dev` will ensure this file is used.
-This file is not version controlled so any config here will not be pushed to git.
-
-As an example, if you want to use LaunchDarkly locally, place the SDK Key in this file. You can keep the key there as this file is not version controlled.
-
 Install Redis: download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz
