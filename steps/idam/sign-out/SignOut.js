@@ -1,9 +1,8 @@
-const { shimSessionExitPoint } = require('middleware/shimSession');
+const { ExitPoint } = require('@hmcts/one-per-page');
 const idam = require('middleware/idam');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class SignOut extends shimSessionExitPoint {
+class SignOut extends ExitPoint {
   static get path() {
     return paths.idam.signOut;
   }
@@ -28,8 +27,7 @@ class SignOut extends shimSessionExitPoint {
     return [
       idam.logout,
       ...super.middleware,
-      SignOut.clearCookies,
-      checkWelshToggle
+      SignOut.clearCookies
     ];
   }
 }
