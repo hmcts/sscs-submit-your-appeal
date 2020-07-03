@@ -7,7 +7,6 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
@@ -32,13 +31,6 @@ class HaveAMRN extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

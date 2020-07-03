@@ -8,7 +8,6 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
@@ -25,13 +24,6 @@ class BenefitType extends SaveToDraftStore {
         Joi.string().valid(types).required()
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

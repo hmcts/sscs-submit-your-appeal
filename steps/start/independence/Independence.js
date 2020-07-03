@@ -1,14 +1,13 @@
-const { shimSessionInterstitial } = require('middleware/shimSession');
+const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
 const { getBenefitCode, getTribunalPanel } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
 
-class Independence extends shimSessionInterstitial {
+class Independence extends Interstitial {
   get isUserLoggedIn() {
     return this.req.idam;
   }
@@ -33,13 +32,6 @@ class Independence extends shimSessionInterstitial {
 
   get allowUC() {
     return allowUC;
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   next() {

@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 let Independence = require('steps/start/independence/Independence');
 
 describe('Independence.js', () => {
@@ -40,14 +39,6 @@ describe('Independence.js', () => {
 
     it('returns benefit type', () => {
       expect(independence.benefitType).to.equal('PIP');
-    });
-
-    describe('get middleware()', () => {
-      it('returns correct middleware array', () => {
-        expect(independence.middleware).to.be.an('array');
-        expect(independence.middleware).to.have.length(6);
-        expect(independence.middleware).to.include(checkWelshToggle);
-      });
     });
 
     describe('next()', () => {
