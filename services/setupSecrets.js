@@ -15,7 +15,6 @@ const setupSecrets = () => {
     setSecret('secrets.sscs.idam-sscs-oauth2-client-secret', 'services.idam.secret');
     setSecret('secrets.sscs.postcode-lookup-token', 'postcodeLookup.token');
     setSecret('secrets.sscs.AppInsightsInstrumentationKey', 'appInsights.instrumentationKey');
-    setSecret('secrets.sscs.launchdarkly-key', 'featureToggles.launchDarklyKey');
   }
 };
 

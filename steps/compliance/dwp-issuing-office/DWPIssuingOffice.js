@@ -6,7 +6,6 @@ const sections = require('steps/check-your-appeal/sections');
 const { getBenefitName } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -44,13 +43,6 @@ class DWPIssuingOffice extends SaveToDraftStore {
 
   get benefitName() {
     return getBenefitName(this.req.session.BenefitType.benefitType);
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

@@ -4,7 +4,6 @@ const { expect } = require('test/util/chai');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('BenefitType.js', () => {
   let benefitType = null;
@@ -16,11 +15,6 @@ describe('BenefitType.js', () => {
           AppealFormDownload: paths.appealFormDownload,
           PostcodeChecker: paths.start.postcodeCheck,
           LanguagePreference: paths.start.languagePreference
-        }
-      },
-      session: {
-        featureToggles: {
-          ft_welsh: false
         }
       }
     });
@@ -61,14 +55,6 @@ describe('BenefitType.js', () => {
     });
   });
 
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(benefitType.middleware).to.be.an('array');
-      expect(benefitType.middleware).to.have.length(11);
-      expect(benefitType.middleware).to.include(checkWelshToggle);
-    });
-  });
-
   describe('answers() and values()', () => {
     const question = 'A Question';
     const value = 'Personal Independence Payment (PIP)';
@@ -98,11 +84,6 @@ describe('BenefitType.js', () => {
   });
 
   describe('next()', () => {
-    it('returns /language-preference when Welsh feature toggle is on', () => {
-      benefitType.req.session.featureToggles.ft_welsh = true;
-      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
-    });
-
     it('returns /appeal-form-download when benefit type is not PIP', () => {
       benefitType.fields.benefitType.value = 'not PIP';
       expect(benefitType.next().step).to.eql(paths.appealFormDownload);
@@ -121,6 +102,16 @@ describe('BenefitType.js', () => {
     it('pushes UC as allowed benefitType if allowUC is enabled', () => {
       expect(Object.keys(benefitTypes).includes('universalCredit'))
         .to.eql(config.get('features.allowUC.enabled') === 'true');
+    });
+
+    it('returns /language-preference when Welsh feature toggle is on', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = true;
+
+      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
+
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = false;
     });
   });
 });

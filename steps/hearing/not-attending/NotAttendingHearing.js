@@ -3,7 +3,6 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class NotAttendingHearing extends SaveToDraftStore {
   static get path() {
@@ -14,13 +13,6 @@ class NotAttendingHearing extends SaveToDraftStore {
     return form({
       emailAddress: text.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

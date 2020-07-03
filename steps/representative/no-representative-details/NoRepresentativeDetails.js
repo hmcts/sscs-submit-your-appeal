@@ -3,7 +3,6 @@ const { form } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class NoRepresentativeDetails extends SaveToDraftStore {
   static get path() {
@@ -12,13 +11,6 @@ class NoRepresentativeDetails extends SaveToDraftStore {
 
   get form() {
     return form();
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

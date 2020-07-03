@@ -3,7 +3,6 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('TheHearing.js', () => {
   let theHearing = null;
@@ -54,14 +53,6 @@ describe('TheHearing.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(theHearing.middleware).to.be.an('array');
-      expect(theHearing.middleware).to.have.length(11);
-      expect(theHearing.middleware).to.include(checkWelshToggle);
     });
   });
 

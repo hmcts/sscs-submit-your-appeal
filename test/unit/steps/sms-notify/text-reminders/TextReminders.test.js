@@ -4,7 +4,6 @@ const sections = require('steps/check-your-appeal/sections');
 const answer = require('utils/answer');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('TextReminders.js', () => {
   let textReminders = null;
@@ -60,14 +59,6 @@ describe('TextReminders.js', () => {
       const textField = fields.phoneNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(textReminders.middleware).to.be.an('array');
-      expect(textReminders.middleware).to.have.length(11);
-      expect(textReminders.middleware).to.include(checkWelshToggle);
     });
   });
 

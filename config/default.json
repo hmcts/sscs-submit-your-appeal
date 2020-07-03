@@ -50,6 +50,9 @@
     },
     "allowUC": {
       "enabled": "true"
+    },
+    "welsh": {
+      "enabled": false
     }
   },
   "postcodeChecker": {
@@ -94,15 +97,5 @@
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
     }
   },
-  "languages": ["en", "cy"],
-  "featureToggles": {
-    "enabled": true,
-    "launchDarklyKey": "SDK_KEY",
-    "launchDarklyUser": {
-      "firstName": "SSCS",
-      "lastName": "Frontend",
-      "key": "440d0011-a2d4-4f2f-9e26-e26f7a7b5772"
-    },
-    "ft_welsh": "sscs-sya-welsh"
-  }
+  "languages": ["en", "cy"]
 }

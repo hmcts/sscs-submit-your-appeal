@@ -5,7 +5,6 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
@@ -58,14 +57,6 @@ describe('OtherReasonForAppealing.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(otherReasonForAppealing.middleware).to.be.an('array');
-      expect(otherReasonForAppealing.middleware).to.have.length(11);
-      expect(otherReasonForAppealing.middleware).to.include(checkWelshToggle);
     });
   });
 

@@ -6,7 +6,6 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class AppellantDOB extends SaveToDraftStore {
   static get path() {
@@ -45,13 +44,6 @@ class AppellantDOB extends SaveToDraftStore {
         value => DateUtils.isDateInPast(value)
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

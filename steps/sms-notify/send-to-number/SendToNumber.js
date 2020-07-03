@@ -5,7 +5,6 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class SendToNumber extends SaveToDraftStore {
   static get path() {
@@ -25,13 +24,6 @@ class SendToNumber extends SaveToDraftStore {
         Joi.string().required()
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {
