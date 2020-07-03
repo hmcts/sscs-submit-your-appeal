@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('NoMRN.js', () => {
   let noMRN = null;
@@ -48,14 +47,6 @@ describe('NoMRN.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(noMRN.middleware).to.be.an('array');
-      expect(noMRN.middleware).to.have.length(11);
-      expect(noMRN.middleware).to.include(checkWelshToggle);
     });
   });
 

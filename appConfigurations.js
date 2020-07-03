@@ -22,7 +22,7 @@ const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 
 const configureNunjucks = (app, commonContent) => {
-// because of a bug with iphone, we need to remove the mime types from accept
+  // because of a bug with iphone, we need to remove the mime types from accept
   expressNunjucks(app, {
     watch: isDev(),
     noCache: isDev(),
@@ -69,7 +69,10 @@ const configureNunjucks = (app, commonContent) => {
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
       webChat: config.get('services.webChat'),
       paths,
-      urls
+      urls,
+      featureToggles: {
+        welsh: () => process.env.FT_WELSH
+      }
     }
   });
 };
@@ -89,7 +92,6 @@ const configureViews = app => {
 const configureHelmet = app => {
   // Helmet referrer policy
   app.use(helmet.referrerPolicy({ policy: 'origin' }));
-
 
   // Protect against some well known web vulnerabilities
   // by setting HTTP headers appropriately.
@@ -224,9 +226,11 @@ const configureAppRoutes = app => {
   });
 };
 
-module.exports = { configureNunjucks,
+module.exports = {
+  configureNunjucks,
   configureViews,
   configureHelmet,
   configureJourney,
   configureMiddleWares,
-  configureAppRoutes };
+  configureAppRoutes
+};

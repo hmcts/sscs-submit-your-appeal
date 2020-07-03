@@ -9,7 +9,6 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const { getBenefitCode } = require('utils/stringUtils');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
@@ -44,13 +43,6 @@ class MRNDate extends SaveToDraftStore {
       )
 
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

@@ -50,6 +50,9 @@
     },
     "allowUC": {
       "enabled": "true"
+    },
+    "welsh": {
+      "enabled": "true"
     }
   },
   "postcodeChecker": {

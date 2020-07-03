@@ -1,6 +1,5 @@
 const { expect } = require('test/util/chai');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('answers() and values()', () => {
   let sameAddress = null;
@@ -45,13 +44,5 @@ describe('answers() and values()', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
     const values = sameAddress.values();
     expect(values).to.eql({ appellant: { isAddressSameAsAppointee: true } });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(sameAddress.middleware).to.be.an('array');
-      expect(sameAddress.middleware).to.have.length(11);
-      expect(sameAddress.middleware).to.include(checkWelshToggle);
-    });
   });
 });

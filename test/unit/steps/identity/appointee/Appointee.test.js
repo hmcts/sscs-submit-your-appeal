@@ -3,7 +3,6 @@ const Appointee = require('steps/identity/appointee/Appointee');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('Appointee.js', () => {
   let appointee = null;
@@ -55,14 +54,6 @@ describe('Appointee.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(appointee.middleware).to.be.an('array');
-      expect(appointee.middleware).to.have.length(11);
-      expect(appointee.middleware).to.include(checkWelshToggle);
     });
   });
 
