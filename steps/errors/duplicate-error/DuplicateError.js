@@ -1,5 +1,6 @@
 /* eslint-disable no-throw-literal  */
 const { Page } = require('@hmcts/one-per-page');
+const DateUtils = require('utils/DateUtils');
 
 class DuplicateError extends Page {
   static get path() {
@@ -12,6 +13,11 @@ class DuplicateError extends Page {
         this.res.send(html);
       });
     }
+  }
+
+  get duplicateErrorMrnDate() {
+    const d = this.req.session.MRNDate.mrnDate;
+    return DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year).format('DD MMM YYYY');
   }
 }
 

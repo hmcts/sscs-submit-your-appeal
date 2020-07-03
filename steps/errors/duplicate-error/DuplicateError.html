@@ -15,15 +15,10 @@
 
 {{ header(content.title, size='xl') }}
 
-<p class="govuk-body" class="govuk-body">{{ content.message }}</p>
+<p class="govuk-body" >{{ content.message }}</p>
 
 <a class="govuk-button" href="/start-an-appeal">Try again</a>
 
-<div class="govuk-form-group--error duplicate-case-error">
-    <label>
-        <span class="govuk-hint">If you were not expecting to see this message, please use the details below to contact us.</span>
-        <span>{{ error }}</span>
-    </label>
-</div>
+<p class="govuk-body" >{{ content.messageContactUs }}</p>
 
 {% endblock %}
