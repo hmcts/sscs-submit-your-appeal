@@ -41,7 +41,7 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-    if (this.req.session.featureToggles && this.req.session.featureToggles.ft_welsh) {
+    if (process.env.FT_WELSH || config.features.welsh.enabled) {
       return goTo(this.journey.steps.LanguagePreference);
     }
 

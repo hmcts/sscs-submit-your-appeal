@@ -21,7 +21,7 @@ Scenario('When the appeal is incomplete, I am taken to the next step that needs 
 
 Scenario('When I go to the check your appeal page, I don\'t see the Sign and submit section', I => {
   I.enterBenefitTypeAndContinue('pip');
-  I.chooseLanguagePreference('no');
+  // I.chooseLanguagePreference('no');
   I.amOnPage(paths.checkYourAppeal);
   I.dontSee('Sign and submit');
 });
