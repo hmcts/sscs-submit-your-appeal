@@ -14,7 +14,6 @@ const userAnswer = require('utils/answer');
 const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
 const customJoi = require('utils/customJoiSchemas');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
@@ -123,8 +122,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
     return [
       ...super.middleware,
       AppointeeContactDetails.isEnglandOrWalesPostcode,
-      AppointeeContactDetails.saveSession,
-      checkWelshToggle
+      AppointeeContactDetails.saveSession
     ];
   }
 

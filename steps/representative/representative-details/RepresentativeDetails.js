@@ -22,7 +22,6 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
 
@@ -139,13 +138,6 @@ class RepresentativeDetails extends SaveToDraftStore {
           Joi.string().trim().email(emailOptions).allow('')
         ) }
     ]);
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

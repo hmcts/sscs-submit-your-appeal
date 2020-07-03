@@ -5,7 +5,6 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class NoMRN extends SaveToDraftStore {
   static get path() {
@@ -19,13 +18,6 @@ class NoMRN extends SaveToDraftStore {
         Joi.string().required()
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {

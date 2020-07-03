@@ -8,7 +8,6 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
@@ -27,13 +26,6 @@ class BenefitType extends SaveToDraftStore {
     });
   }
 
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
-  }
-
   answers() {
     return answer(this, {
       question: this.content.cya.benefitType.question,
@@ -49,7 +41,7 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-    if (this.req.session.featureToggles && this.req.session.featureToggles.ft_welsh) {
+    if (process.env.FT_WELSH || config.features.welsh.enabled) {
       return goTo(this.journey.steps.LanguagePreference);
     }
 

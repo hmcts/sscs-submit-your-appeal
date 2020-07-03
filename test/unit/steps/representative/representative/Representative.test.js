@@ -3,7 +3,6 @@ const Representative = require('steps/representative/representative/Representati
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('Representative.js', () => {
   let representative = null;
@@ -54,14 +53,6 @@ describe('Representative.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(representative.middleware).to.be.an('array');
-      expect(representative.middleware).to.have.length(11);
-      expect(representative.middleware).to.include(checkWelshToggle);
     });
   });
 

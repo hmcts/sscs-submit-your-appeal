@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const paths = require('paths');
 const config = require('config');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('ContactDWP.js', () => {
   let contactDWP = null;
@@ -29,13 +28,5 @@ describe('ContactDWP.js', () => {
 
   it('get benefitType', () => {
     expect(contactDWP.benefitType).to.equal('UC Universal Credit UC');
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(contactDWP.middleware).to.be.an('array');
-      expect(contactDWP.middleware).to.have.length(6);
-      expect(contactDWP.middleware).to.include(checkWelshToggle);
-    });
   });
 });

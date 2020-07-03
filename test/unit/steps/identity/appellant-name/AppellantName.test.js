@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('AppellantName.js', () => {
   let appellantName = null;
@@ -77,14 +76,6 @@ describe('AppellantName.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(appellantName.middleware).to.be.an('array');
-      expect(appellantName.middleware).to.have.length(11);
-      expect(appellantName.middleware).to.include(checkWelshToggle);
     });
   });
 

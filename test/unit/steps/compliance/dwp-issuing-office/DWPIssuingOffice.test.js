@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 describe('DWPIssuingOffice.js', () => {
   let dWPIssuingOffice = null;
@@ -54,14 +53,6 @@ describe('DWPIssuingOffice.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
-    });
-  });
-
-  describe('get middleware()', () => {
-    it('returns correct middleware array', () => {
-      expect(dWPIssuingOffice.middleware).to.be.an('array');
-      expect(dWPIssuingOffice.middleware).to.have.length(11);
-      expect(dWPIssuingOffice.middleware).to.include(checkWelshToggle);
     });
   });
 
