@@ -8,7 +8,6 @@ const userAnswer = require('utils/answer');
 const regex = require('utils/regex');
 const paths = require('paths');
 const Joi = require('joi');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
 class TextReminders extends SaveToDraftStore {
   static get path() {
@@ -24,13 +23,6 @@ class TextReminders extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 
   answers() {
