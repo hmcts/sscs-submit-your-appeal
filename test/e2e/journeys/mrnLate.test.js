@@ -34,7 +34,7 @@ After(I => {
   Scenario(`Appellant has a MRN that is over ${obj.label}`, I => {
     I.wait(2);
     I.enterBenefitTypeAndContinue(testData.benefitType.code);
-    I.chooseLanguagePreference(testData.languagePreferenceWelsh);
+    // I.chooseLanguagePreference(testData.languagePreferenceWelsh);
     I.enterPostcodeAndContinue(testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(isAppointee.no);
     I.continueFromIndependance();

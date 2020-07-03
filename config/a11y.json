@@ -9,8 +9,5 @@
     "url": "redis://localhost:6379",
     "secret": "defaultsecret",
     "useSSL": "false"
-  },
-  "featureToggles": {
-    "enabled": false
   }
 }
