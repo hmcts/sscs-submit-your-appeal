@@ -65,6 +65,10 @@ module.exports = class Logger {
     }
   }
 
+  static event(eventName) {
+    applicationInsights.defaultClient.trackEvent({ name: eventName });
+  }
+
   static msgBuilder(messageInfo, label) {
     let msg = '';
     let msgText = '';
