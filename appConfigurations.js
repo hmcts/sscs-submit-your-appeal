@@ -93,7 +93,6 @@ const configureHelmet = app => {
   // Helmet referrer policy
   app.use(helmet.referrerPolicy({ policy: 'origin' }));
 
-
   // Protect against some well known web vulnerabilities
   // by setting HTTP headers appropriately.
   app.use(helmet());
@@ -227,9 +226,11 @@ const configureAppRoutes = app => {
   });
 };
 
-module.exports = { configureNunjucks,
+module.exports = {
+  configureNunjucks,
   configureViews,
   configureHelmet,
   configureJourney,
   configureMiddleWares,
-  configureAppRoutes };
+  configureAppRoutes
+};
