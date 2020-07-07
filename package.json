@@ -27,7 +27,7 @@
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover _mocha 'test/unit/**/*.test.js' --dir test/unit/coverage/html",
     "test:crossbrowser": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --steps --reporter mocha-multi --verbose",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha --exit test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
-    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=app.js,appConfigurations.js,app-insights.js,server.js,config/**,charts/**,infrastructure/**,node_modules/**,mocks/**,test/**,assets/**,dist/**,mochawesome-report/**,webpack/**,components/postcodeLookup/assets/**,middleware/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info -Dsonar.cpd.exclusions=steps/**",
+    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=app.js,appConfigurations.js,app-insights.js,server.js,config/**,charts/**,infrastructure/**,node_modules/**,mocks/**,test/**,assets/**,dist/**,mochawesome-report/**,webpack/**,components/postcodeLookup/assets/** -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info -Dsonar.cpd.exclusions=steps/**",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
     "mock-ccd": "node mocks/ccd/server.js"
   },
@@ -74,7 +74,6 @@
     "jquery-modal": "^0.9.1",
     "js-base64": "^2.5.1",
     "jsdom": "^15.1.1",
-    "launchdarkly-node-server-sdk": "^5.13.1",
     "libphonenumber-js": "^1.7.19",
     "lodash": "^4.17.14",
     "lodash-es": "^4.17.14",

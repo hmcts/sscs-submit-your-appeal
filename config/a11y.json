@@ -1,4 +1,3 @@
-
 {
   "NODE_ENV": "testing",
   "useCSRFProtection": true,
@@ -9,8 +8,5 @@
     "url": "redis://localhost:6379",
     "secret": "defaultsecret",
     "useSSL": "false"
-  },
-  "featureToggles": {
-    "enabled": false
   }
 }
