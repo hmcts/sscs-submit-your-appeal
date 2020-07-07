@@ -47,7 +47,7 @@ describe('Entry.js', () => {
   });
 
   describe('Wen method user data is restored', () => {
-    const req = { session: { isUserSessionRestored: true, featureToggles: { ft_welsh: false } } };
+    const req = { session: { isUserSessionRestored: true } };
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -61,7 +61,7 @@ describe('Entry.js', () => {
   });
 
   describe('Wen method user data is not restored', () => {
-    const req = { session: { isUserSessionRestored: false, featureToggles: { ft_welsh: false } } };
+    const req = { session: { isUserSessionRestored: false } };
     const redirect = sinon.spy();
     const res = {
       redirect,

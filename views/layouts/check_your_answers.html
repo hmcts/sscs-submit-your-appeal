@@ -18,7 +18,7 @@
 {% block pageTitle %}{{ pageContent.title | default(defaultContent.title) | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-  {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath, session.featureToggles.ft_welsh) }}
+  {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
   <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
 {% endblock %}
 
