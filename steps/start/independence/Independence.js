@@ -17,11 +17,17 @@ class Independence extends Interstitial {
   }
 
   get tribunalPanel() {
-    return getTribunalPanel(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getTribunalPanel(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 
   get allowUC() {
