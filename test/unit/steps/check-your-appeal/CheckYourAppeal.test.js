@@ -118,11 +118,13 @@ describe('CheckYourAppeal.js', () => {
   describe('sendToAPI()', () => {
     it('should log a message when successfully making an API call', () => {
       loggerStub.trace = sinon.stub().returns();
+      loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
 
       return cya.sendToAPI().then(() => {
         expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
+        expect(loggerStub.event).to.have.been.calledOnce;
       });
     });
 
@@ -132,7 +134,7 @@ describe('CheckYourAppeal.js', () => {
       request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
 
       return cyaWithSession.sendToAPI().then(() => {
-        expect(loggerStub.event).to.have.been.calledOnce;
+        expect(loggerStub.event).to.have.been.calledTwice;
       });
     });
 
@@ -140,8 +142,10 @@ describe('CheckYourAppeal.js', () => {
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
       loggerStub.exception = sinon.spy();
+      loggerStub.event = sinon.stub();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
+        expect(loggerStub.event).to.have.been.calledOnce;
       });
     });
   });
