@@ -65,8 +65,14 @@ module.exports = class Logger {
     }
   }
 
-  static event(eventName) {
-    applicationInsights.defaultClient.trackEvent({ name: eventName });
+  static event(eventName, postToAppInsights = true) {
+    try {
+      if (iKey !== '' && postToAppInsights) {
+        applicationInsights.defaultClient.trackEvent({ name: eventName });
+      }
+    } catch (cactchError) {
+      console.log('Event Catch Error', cactchError);
+    }
   }
 
   static msgBuilder(messageInfo, label) {
