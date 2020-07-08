@@ -1,17 +1,9 @@
-const { shimSessionStaticPage } = require('middleware/shimSession');
+const { Page } = require('@hmcts/one-per-page');
 const paths = require('paths');
-const checkWelshToggle = require('middleware/checkWelshToggle');
 
-class PrivacyPolicy extends shimSessionStaticPage {
+class PrivacyPolicy extends Page {
   static get path() {
     return paths.policy.privacy;
-  }
-
-  get middleware() {
-    return [
-      ...super.middleware,
-      checkWelshToggle
-    ];
   }
 }
 
