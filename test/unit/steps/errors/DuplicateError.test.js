@@ -4,11 +4,11 @@ const DateUtils = require('utils/DateUtils');
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 
-describe('DuplicateError.js', () => {
+describe.only('DuplicateError.js', () => {
   let req = stub();
   let duplicateErrorClass = null;
   let res = stub();
-  res.send = stub();
+  const mrnDate = DateUtils.oneDayShortOfAMonthAgo();
 
   beforeEach(() => {
     duplicateErrorClass = new DuplicateError({
@@ -35,12 +35,29 @@ describe('DuplicateError.js', () => {
     });
   });
 
-  describe('handler', () => {
+  describe('handler when method is GET', () => {
     req.method = 'GET';
-    const duplicateErrorMrnDate = sinon.stub().returns('20 June 2020');
+    const duplicateErrorMrnDate = sinon.stub().returns(mrnDate);
     it('calls res.send()', () => {
       duplicateErrorClass.handler(req, res);
-      duplicateErrorMrnDate().should.eql('20 June 2020');
+      duplicateErrorMrnDate().should.eql(mrnDate);
+      expect(duplicateErrorMrnDate).to.have.been.calledOnce;
+    });
+  });
+
+  describe('duplicateErrorMrnDate', () => {
+    const duplicateErrorMrnDate = sinon.stub().returns(mrnDate);
+    it('calls duplicateErrorMrnDate', () => {
+      expect(duplicateErrorMrnDate()).to.equal(mrnDate);
+    });
+  });
+
+  describe('handler when method is POST', () => {
+    req.method = 'POST';
+    const duplicateErrorMrnDate = sinon.stub().returns(mrnDate);
+    it('not calls res.send()', () => {
+      duplicateErrorClass.handler(req, res);
+      expect(duplicateErrorMrnDate).to.have.not.been.calledOnce;
     });
   });
 });
