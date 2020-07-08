@@ -4,7 +4,7 @@ const DateUtils = require('utils/DateUtils');
 const { expect } = require('test/util/chai');
 
 describe('DuplicateError.js', () => {
-  const req = stub()
+  const req = stub();
   let duplicateErrorClass = null;
   const res = stub();
   res.send = stub();

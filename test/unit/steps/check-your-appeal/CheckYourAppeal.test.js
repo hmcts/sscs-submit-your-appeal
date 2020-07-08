@@ -107,8 +107,8 @@ describe('CheckYourAppeal.js', () => {
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().rejects(HttpStatus.CONFLICT) }) });
       loggerStub.exception = sinon.spy();
-      request.post('', error => {
-        expect(error.status).to.equal(HttpStatus.CONFLICT);
+      return cya.sendToAPI().catch(() => {
+        expect(loggerStub.exception).to.have.been.calledOnce;
       });
     });
   });
