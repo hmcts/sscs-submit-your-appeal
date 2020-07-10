@@ -1,6 +1,6 @@
-const theHearing = require('steps/hearing/the-hearing/content.en.json');
-const evidenceUpload = require('steps/reasons-for-appealing/evidence-upload/content.en.json');
-const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
+const theHearing = require('steps/hearing/the-hearing/content.en');
+const evidenceUpload = require('steps/reasons-for-appealing/evidence-upload/content.en');
+const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en');
 const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');

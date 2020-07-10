@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/compliance/have-a-mrn/content.en.json');
+const content = require('steps/compliance/have-a-mrn/content.en');
 
 Feature('Check MRN @batch-07');
 

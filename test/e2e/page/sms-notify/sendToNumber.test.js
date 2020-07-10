@@ -1,5 +1,5 @@
 const paths = require('paths');
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 
 Feature('Send to number @batch-11');
 

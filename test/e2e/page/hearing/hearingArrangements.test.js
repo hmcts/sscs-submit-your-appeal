@@ -1,4 +1,4 @@
-const fields = require('steps/hearing/arrangements/content.en.json').fields;
+const fields = require('steps/hearing/arrangements/content.en').fields;
 const paths = require('paths');
 
 const Continue = 'Continue';

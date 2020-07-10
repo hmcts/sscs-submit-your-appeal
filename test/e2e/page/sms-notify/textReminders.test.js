@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/sms-notify/text-reminders/content.en.json');
+const content = require('steps/sms-notify/text-reminders/content.en');
 
 Feature('Text Reminders - appellant contact details @batch-11');
 

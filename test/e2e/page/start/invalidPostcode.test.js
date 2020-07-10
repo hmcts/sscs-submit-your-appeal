@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/start/invalid-postcode/content.en.json');
+const content = require('steps/start/invalid-postcode/content.en');
 
 Feature('Invalid postcode @batch-12');
 

@@ -1,5 +1,5 @@
-const independence = require('steps/start/independence/content.en.json');
-const appealFormDownload = require('steps/appeal-form-download/content.en.json');
+const independence = require('steps/start/independence/content.en');
+const appealFormDownload = require('steps/appeal-form-download/content.en');
 const appointee = require('steps/identity/appointee/content.en');
 const paths = require('paths');
 

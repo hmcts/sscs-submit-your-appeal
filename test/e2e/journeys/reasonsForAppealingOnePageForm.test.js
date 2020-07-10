@@ -57,18 +57,18 @@ languages.forEach(language => {
       reasons[1]
     );
     I.click(commonContent.continue);
-    I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
+    I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
     if (!evidenceUploadEnabled) {
-      I.readSendingEvidenceAndContinue();
+      I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
-      I.enterDescription('Some description of the evidence');
+      I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing('No');
-    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
-    I.confirmDetailsArePresent();
+    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
+    I.confirmDetailsArePresent(language);
     twoReasons.forEach(reason => {
       I.see(reason.whatYouDisagreeWith);
       I.see(reason.reasonForAppealing);
@@ -91,18 +91,18 @@ languages.forEach(language => {
       reasons[1]
     );
     I.click(commonContent.continue);
-    I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
+    I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
     if (!evidenceUploadEnabled) {
-      I.readSendingEvidenceAndContinue();
+      I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
-      I.enterDescription('Some description of the evidence');
+      I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing('No');
-    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
-    I.confirmDetailsArePresent();
+    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
+    I.confirmDetailsArePresent(language);
 
     twoReasons.forEach(reason => {
       I.see(reason.whatYouDisagreeWith);
@@ -138,18 +138,18 @@ languages.forEach(language => {
       reasons[0]
     );
     I.click(commonContent.continue);
-    I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
+    I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
     if (!evidenceUploadEnabled) {
-      I.readSendingEvidenceAndContinue();
+      I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
-      I.enterDescription('Some description of the evidence');
+      I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing('No');
-    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
-    I.confirmDetailsArePresent();
+    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
+    I.confirmDetailsArePresent(language);
     I.see(reasons[0].whatYouDisagreeWith);
     I.see(reasons[0].reasonForAppealing);
 

@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/start/postcode-checker/content.en.json');
+const content = require('steps/start/postcode-checker/content.en');
 
 Feature('Enter postcode');
 

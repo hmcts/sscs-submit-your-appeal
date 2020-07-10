@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/compliance/dwp-issuing-office/content.en.json');
+const content = require('steps/compliance/dwp-issuing-office/content.en');
 
 Feature('DWP Issuing Office @batch-07');
 

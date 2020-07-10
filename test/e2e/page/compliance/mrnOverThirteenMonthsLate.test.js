@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/compliance/mrn-over-thirteen-months-late/content.en.json');
+const content = require('steps/compliance/mrn-over-thirteen-months-late/content.en');
 
 Feature('MRN Over thirteen months late @batch-07');
 

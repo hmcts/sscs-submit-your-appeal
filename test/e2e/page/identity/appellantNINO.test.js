@@ -1,4 +1,4 @@
-const content = require('steps/identity/appellant-nino/content.en.json');
+const content = require('steps/identity/appellant-nino/content.en');
 const paths = require('paths');
 
 Feature('Appellant NINO form @batch-09');

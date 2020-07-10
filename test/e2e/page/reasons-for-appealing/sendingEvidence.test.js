@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/reasons-for-appealing/sending-evidence/content.en.json');
+const content = require('steps/reasons-for-appealing/sending-evidence/content.en');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 

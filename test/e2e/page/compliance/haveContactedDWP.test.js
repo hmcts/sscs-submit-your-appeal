@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/compliance/have-contacted-dwp/content.en.json');
+const content = require('steps/compliance/have-contacted-dwp/content.en');
 
 Feature('Have Contacted DWP @batch-07');
 

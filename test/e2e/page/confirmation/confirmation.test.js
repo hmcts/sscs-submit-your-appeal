@@ -1,5 +1,5 @@
 const paths = require('paths');
-const content = require('steps/confirmation/content.en.json');
+const content = require('steps/confirmation/content.en');
 const urls = require('urls');
 
 Feature('Confirmation @batch-08');
