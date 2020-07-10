@@ -1,12 +1,19 @@
+const invalidPostcodeContentEn = require('steps/start/invalid-postcode/content.en');
+const invalidPostcodeContentCy = require('steps/start/invalid-postcode/content.cy');
 const paths = require('paths');
-const content = require('steps/start/invalid-postcode/content.en');
+
+const languages = ['en', 'cy'];
 
 Feature('Invalid postcode @batch-12');
 
-Before(I => {
-  I.amOnPage(paths.start.invalidPostcode);
-});
+languages.forEach(language => {
+  Before(I => {
+    I.amOnPage(paths.start.invalidPostcode);
+  });
 
-Scenario('When I go to the invalid postcode page I see the page heading', I => {
-  I.see(content.title);
+  const invalidPostcodeContent = language === 'en' ? invalidPostcodeContentEn : invalidPostcodeContentCy;
+
+  Scenario(`${language.toUpperCase()} - When I go to the invalid postcode page I see the page heading`, I => {
+    I.see(invalidPostcodeContent.title);
+  });
 });
