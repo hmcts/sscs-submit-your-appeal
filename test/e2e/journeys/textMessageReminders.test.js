@@ -1,5 +1,5 @@
 const paths = require('paths');
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
 const selectors = require('steps/check-your-appeal/selectors');
 
 const appellant = selectors.appellant;

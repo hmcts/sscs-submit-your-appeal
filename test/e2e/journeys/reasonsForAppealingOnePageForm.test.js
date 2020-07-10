@@ -1,6 +1,10 @@
 const content = require('commonContent');
 const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
 const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
+const representativeContentEn = require('steps/representative/representative/content.en');
+const representativeContentCy = require('steps/representative/representative/content.en');
+const evidenceProvideContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
+const evidenceProvideContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 
@@ -10,10 +14,7 @@ const reasonForAppealingChange = `${reasonForAppealing}-1  ${selectors.change}`;
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
 const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
-
 const testData = require('test/e2e/data');
-const representative = require('steps/representative/representative/content.en');
-const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
 
 const twoReasons = [
   reasons[0],
@@ -37,12 +38,14 @@ After(I => {
 languages.forEach(language => {
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
+  const representativeContent = language === 'en' ? representativeContentEn : representativeContentCy;
+  const evidenceProvideContent = language === 'en' ? evidenceProvideContentEn : evidenceProvideContentCy;
 
   Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, I => {
     I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representative.fields.hasRepresentative.no);
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -59,7 +62,7 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue();
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
       I.enterDescription('Some description of the evidence');
     }
@@ -76,7 +79,7 @@ languages.forEach(language => {
     I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representative.fields.hasRepresentative.no);
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -93,7 +96,7 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue();
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
       I.enterDescription('Some description of the evidence');
     }
@@ -128,7 +131,7 @@ languages.forEach(language => {
     I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representative.fields.hasRepresentative.no);
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -140,7 +143,7 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue();
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
       I.uploadAPieceOfEvidence();
       I.enterDescription('Some description of the evidence');
     }

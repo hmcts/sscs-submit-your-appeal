@@ -1,5 +1,5 @@
-const stillCanAppealContentEn = require('steps/compliance/still-can-appeal/content.en.json');
-const stillCanAppealContentCy = require('steps/compliance/still-can-appeal/content.en.json');
+const stillCanAppealContentEn = require('steps/compliance/still-can-appeal/content.en');
+const stillCanAppealContentCy = require('steps/compliance/still-can-appeal/content.cy');
 
 function continueFromStillCanAppeal(language) {
   const I = this;

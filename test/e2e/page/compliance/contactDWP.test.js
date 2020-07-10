@@ -1,4 +1,4 @@
-const content = require('steps/compliance/contact-dwp/content.en.json');
+const content = require('steps/compliance/contact-dwp/content.en');
 const paths = require('paths');
 
 Feature('Contact DWP @batch-07');

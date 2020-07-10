@@ -1,4 +1,4 @@
-const content = require('steps/compliance/cant-appeal/content.en.json');
+const content = require('steps/compliance/cant-appeal/content.en');
 const paths = require('paths');
 
 Feature('Cannot appeal @batch-07');
