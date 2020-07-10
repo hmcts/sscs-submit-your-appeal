@@ -1,4 +1,3 @@
-
 {
   "NODE_ENV": "testing",
   "useCSRFProtection": true,
