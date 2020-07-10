@@ -1,10 +1,4 @@
 const content = require('commonContent');
-const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
-const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
-const representativeContentEn = require('steps/representative/representative/content.en');
-const representativeContentCy = require('steps/representative/representative/content.en');
-const evidenceProvideContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
-const evidenceProvideContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 
@@ -37,15 +31,12 @@ languages.forEach(language => {
   });
 
   const commonContent = content[language];
-  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
-  const representativeContent = language === 'en' ? representativeContentEn : representativeContentCy;
-  const evidenceProvideContent = language === 'en' ? evidenceProvideContentEn : evidenceProvideContentCy;
 
   Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -62,11 +53,11 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
       I.uploadAPieceOfEvidence();
       I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
     I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
     I.confirmDetailsArePresent(language);
     twoReasons.forEach(reason => {
@@ -76,10 +67,10 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -96,11 +87,11 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
       I.uploadAPieceOfEvidence();
       I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
     I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
     I.confirmDetailsArePresent(language);
 
@@ -128,10 +119,10 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.selectDoYouHaveARepresentativeAndContinue(commonContent, representativeContent.fields.hasRepresentative.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
     I.addAReasonForAppealingAndThenClickAddAnother(
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -143,11 +134,11 @@ languages.forEach(language => {
       I.readSendingEvidenceAndContinue(commonContent);
     }
     if (evidenceUploadEnabled) {
-      I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvideContent.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
       I.uploadAPieceOfEvidence();
       I.enterDescription(commonContent, 'Some description of the evidence');
     }
-    I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+    I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
     I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
     I.confirmDetailsArePresent(language);
     I.see(reasons[0].whatYouDisagreeWith);

@@ -1,6 +1,4 @@
 const content = require('commonContent');
-const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
-const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
 const selectors = require('steps/check-your-appeal/selectors');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
@@ -26,16 +24,15 @@ languages.forEach(language => {
   });
 
   const commonContent = content[language];
-  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
 
   Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
     );
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
     I.confirmDetailsArePresent();
     I.see(moment(randomWeekDay).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
@@ -49,10 +46,10 @@ languages.forEach(language => {
       DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(10, 'weeks'))
     );
 
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDayIn8Weeks);
     I.see(moment(randomWeekDayIn8Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 

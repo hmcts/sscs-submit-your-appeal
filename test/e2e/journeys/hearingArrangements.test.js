@@ -1,6 +1,4 @@
 const content = require('commonContent');
-const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
-const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
 const hearingArrangementsContentEn = require('steps/hearing/arrangements/content.en');
 const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
 const testData = require('test/e2e/data');
@@ -25,14 +23,13 @@ languages.forEach(language => {
   });
 
   const commonContent = content[language];
-  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
       commonContent, language,
       [ hearingArrangementsContent.fields.selection.signLanguage.requested.label ],
@@ -42,10 +39,10 @@ languages.forEach(language => {
   }).retry(1);
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
       commonContent, language,
       [
@@ -63,10 +60,10 @@ languages.forEach(language => {
   }).retry(1);
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
+    I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
       commonContent, language,
       [
