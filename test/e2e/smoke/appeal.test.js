@@ -1,19 +1,26 @@
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
+const content = require('commonContent');
+const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
+const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
 const paths = require('paths');
 const mockData = require('test/e2e/data');
 
 const appellant = mockData.appellant;
-const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
+
+const languages = ['en', 'cy'];
 
 Feature('Full Journey');
 
-Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page',
-  I => {
+languages.forEach(language => {
+  const commonContent = content[language];
+  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
+
+  Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page', I => {
     I.amOnPage(paths.session.root);
     I.wait(2);
-    I.enterDetailsFromStartToNINO();
-    I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
-    I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
-    I.checkOptionAndContinue('#useSameNumber-yes');
-    I.readSMSConfirmationAndContinue();
+    I.enterDetailsFromStartToNINO(commonContent, language);
+    I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, appellant.contactDetails.phoneNumber);
+    I.checkOptionAndContinue(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.yes);
+    I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
+    I.readSMSConfirmationAndContinue(commonContent);
   }).retry(1).tag('@smoke');
+});

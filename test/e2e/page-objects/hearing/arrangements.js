@@ -1,16 +1,16 @@
-const fieldsEn = require('steps/hearing/arrangements/content.en.json').fields;
-const fieldsCy = require('steps/hearing/arrangements/content.cy.json').fields;
+const hearingArrangementsContentEn = require('steps/hearing/arrangements/content.en');
+const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
 const hearingData = require('test/e2e/data').hearing;
 
 function checkAllArrangementsAndContinue(commonContent, language) {
   const I = this;
-  const fields = language === 'en' ? fieldsEn : fieldsCy;
+  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
-  I.click(fields.selection.languageInterpreter.requested.label);
-  I.click(fields.selection.signLanguage.requested.label);
-  I.click(fields.selection.hearingLoop.requested.label);
-  I.click(fields.selection.accessibleHearingRoom.requested.label);
-  I.click(fields.selection.anythingElse.requested.label);
+  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
+  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
+  I.click(hearingArrangementsContent.fields.selection.hearingLoop.requested.label);
+  I.click(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label);
+  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
 
   I.fillField('input[id="selection.interpreterLanguage.language"]',
     hearingData.interpreterLanguageType);

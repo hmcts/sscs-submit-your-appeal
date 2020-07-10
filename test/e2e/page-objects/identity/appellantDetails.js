@@ -1,7 +1,7 @@
 const appellant = require('test/e2e/data').appellant;
 const config = require('config');
-const postcodeLookupEn = require('components/postcodeLookup/content.en.json');
-const postcodeLookupCy = require('components/postcodeLookup/content.cy.json');
+const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
+const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
@@ -60,15 +60,15 @@ function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
 
 function enterAppellantContactDetailsAndContinue(commonContent, language) {
   const I = this;
-  const postcodeLookup = language === 'en' ? postcodeLookupEn : postcodeLookupCy;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
-    I.click(postcodeLookup.findAddress);
-    I.see(postcodeLookup.fields.postcodeLookup.error.required);
+    I.click(postcodeLookupContent.findAddress);
+    I.see(postcodeLookupContent.fields.postcodeLookup.error.required);
     I.fillField({ id: 'postcodeLookup' }, 'n29ed');
     I.click(commonContent.continue);
-    I.see(postcodeLookup.fields.postcodeAddress.error.required);
+    I.see(postcodeLookupContent.fields.postcodeAddress.error.required);
     IenterAddressDetails(I);
   } else {
     IenterAddressDetailsManual(I);
@@ -76,12 +76,12 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
   I.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber = '07466748336') {
+function enterAppellantContactDetailsWithMobileAndContinue(commonContent, mobileNumber = '07466748336') {
   const I = this;
 
   IenterAddressDetails(I);
   I.fillField('#phoneNumber', mobileNumber);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function enterAppellantContactDetailsWithEmailAndContinue() {
