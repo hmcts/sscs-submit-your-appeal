@@ -41,10 +41,10 @@ function IenterAddressDetailsManual(I) {
   I.fillField({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
 
-function IenterAddressDetails(I) {
+function IenterAddressDetails(postcodeLookupContent, I) {
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
-    I.click('Find address');
+    I.click(postcodeLookupContent.findAddress);
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
       appellant.contactDetails.postcodeAddress);
   } else {
@@ -69,27 +69,29 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
     I.fillField({ id: 'postcodeLookup' }, 'n29ed');
     I.click(commonContent.continue);
     I.see(postcodeLookupContent.fields.postcodeAddress.error.required);
-    IenterAddressDetails(I);
+    IenterAddressDetails(postcodeLookupContent, I);
   } else {
     IenterAddressDetailsManual(I);
   }
   I.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsWithMobileAndContinue(commonContent, mobileNumber = '07466748336') {
+function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
   const I = this;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  IenterAddressDetails(I);
+  IenterAddressDetails(postcodeLookupContent, I);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsWithEmailAndContinue() {
+function enterAppellantContactDetailsWithEmailAndContinue(commonContent, language) {
   const I = this;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  IenterAddressDetails(I);
+  IenterAddressDetails(postcodeLookupContent, I);
   I.fillField('#emailAddress', 'harry.potter@wizards.com');
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = {

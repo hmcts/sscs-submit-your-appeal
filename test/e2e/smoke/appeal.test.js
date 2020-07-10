@@ -15,7 +15,7 @@ languages.forEach(language => {
     I.amOnPage(`${paths.session.root}?lng=${language}`);
     I.wait(2);
     I.enterDetailsFromStartToNINO(commonContent);
-    I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, appellant.contactDetails.phoneNumber);
+    I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, appellant.contactDetails.phoneNumber);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
     I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
     I.readSMSConfirmationAndContinue(commonContent);
