@@ -14,16 +14,16 @@ const languages = ['en', 'cy'];
 
 Feature('PIP, one month ago, attends hearing with dates cannot attend');
 
-Before(I => {
-  I.createTheSession();
-  I.seeCurrentUrlEquals(paths.start.benefitType);
-});
-
-After(I => {
-  I.endTheSession();
-});
-
 languages.forEach(language => {
+  Before(I => {
+    I.createTheSession(language);
+    I.seeCurrentUrlEquals(paths.start.benefitType);
+  });
+
+  After(I => {
+    I.endTheSession();
+  });
+
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
 

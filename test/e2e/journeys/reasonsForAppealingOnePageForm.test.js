@@ -26,16 +26,16 @@ const languages = ['en', 'cy'];
 
 Feature('Appellant PIP, one month ago, attends hearing with reasons for appealing one page form');
 
-Before(I => {
-  I.createTheSession();
-  I.seeCurrentUrlEquals(paths.start.benefitType);
-});
-
-After(I => {
-  I.endTheSession();
-});
-
 languages.forEach(language => {
+  Before(I => {
+    I.createTheSession(language);
+    I.seeCurrentUrlEquals(paths.start.benefitType);
+  });
+
+  After(I => {
+    I.endTheSession();
+  });
+
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
   const representativeContent = language === 'en' ? representativeContentEn : representativeContentCy;

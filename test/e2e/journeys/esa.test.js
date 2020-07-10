@@ -14,17 +14,17 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
 
   Feature('Appellant who chooses ESA @batch-01 @esa');
 
-  Before(I => {
-    I.createTheSession();
-    I.seeCurrentUrlEquals(paths.start.benefitType);
-    I.seeCurrentUrlEquals(paths.start.languagePreference);
-  });
-
-  After(I => {
-    I.endTheSession();
-  });
-
   languages.forEach(language => {
+    Before(I => {
+      I.createTheSession(language);
+      I.seeCurrentUrlEquals(paths.start.benefitType);
+      I.seeCurrentUrlEquals(paths.start.languagePreference);
+    });
+
+    After(I => {
+      I.endTheSession();
+    });
+
     const commonContent = content[language];
     const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
     const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;

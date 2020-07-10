@@ -27,16 +27,16 @@ const languages = ['en', 'cy'];
 
 Feature('Appellant has a dated MRN @batch-03');
 
-Before(I => {
-  I.createTheSession();
-  I.seeCurrentUrlEquals(paths.start.benefitType);
-});
-
-After(I => {
-  I.endTheSession();
-});
-
 languages.forEach(language => {
+  Before(I => {
+    I.createTheSession(language);
+    I.seeCurrentUrlEquals(paths.start.benefitType);
+  });
+
+  After(I => {
+    I.endTheSession();
+  });
+
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
   const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;

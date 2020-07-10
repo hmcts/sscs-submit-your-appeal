@@ -7,16 +7,16 @@ const languages = ['en', 'cy'];
 
 Feature('Postcode lookup test for type  Manual @functional');
 
-Before(I => {
-  I.createTheSession();
-  I.seeCurrentUrlEquals(paths.start.benefitType);
-});
-
-After(I => {
-  I.endTheSession();
-});
-
 languages.forEach(language => {
+  Before(I => {
+    I.createTheSession(language);
+    I.seeCurrentUrlEquals(paths.start.benefitType);
+  });
+
+  After(I => {
+    I.endTheSession();
+  });
+
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
 
