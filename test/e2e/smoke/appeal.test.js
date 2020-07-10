@@ -14,7 +14,7 @@ languages.forEach(language => {
   const commonContent = content[language];
   const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
 
-  Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page', I => {
+  Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, I => {
     I.amOnPage(`${paths.session.root}?lng=${language}`);
     I.wait(2);
     I.enterDetailsFromStartToNINO(commonContent, language);
