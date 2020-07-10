@@ -4,37 +4,31 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% if allowUC and benefitType == 'UC' %}
-    {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes %}
-    {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes | safe %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no | safe %}
     {% set contentTitle =  content.ucTitle %}
 {% else %}
-    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes %}
-    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
     {% set contentTitle = content.title %}
 {% endif %}
 
-{% set title %}
-    {{ contentTitle | safe }}
-{% endset %}
+{% set title = contentTitle | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-
         {% if benefitType != 'UC' %}
-            <p class="govuk-body">{{ content.subtitle }}</p>
+            <p class="govuk-body">{{ content.subtitle | safe }}</p>
         {% endif %}
 
         {{ selectionButtons(
             fields.haveContactedDWP,
-            content.subtitle,
+            content.subtitle | safe,
             hint = '',
             options = [
                 { label: selectionButtonYesLabel, value: "yes" },
                 { label: selectionButtonNoLabel,  value: "no" }
             ])
         }}
-
     {% endcall %}
-
 {% endblock %}

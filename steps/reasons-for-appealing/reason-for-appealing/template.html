@@ -11,7 +11,7 @@
 {% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block head %}
-{{ super() }}
+    {{ super() }}
     <noscript>
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
@@ -32,7 +32,7 @@
 } %}
 
 {% block full_width %}
-{{ super() }}
+    {{ super() }}
     <div>
         {% include "components/inactivity-alert.html" %}
     </div>
@@ -40,17 +40,15 @@
 
 {% block noItems %}
     <div id="items" class="noItems {{ errorClass(fields.items) }}">
-
         {% if fields.validated and not fields.valid %}
             {%- for error in fields.errors -%}
                 <span class="govuk-error-message">
-                    {{ error.message }}
+                    {{ error.message | safe }}
                 </span>
             {%- endfor -%}
         {% endif %}
 
-        {{ content.noReasons }}
-
+        {{ content.noReasons | safe }}
     </div>
 {% endblock %}
 
@@ -59,20 +57,19 @@
 {% endblock %}
 
 {% block listItems %}
-    <p class="govuk-body">{{ content.dwpExplained }}</p>
-    <p class="govuk-body">{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p class="govuk-body">{{ content.dwpExplained }}</p>
-    <p class="govuk-body">{{ content.readYouMRN }}</p>
+    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
-     {{super()}}
+    {{super()}}
 {%- endblock %}
-

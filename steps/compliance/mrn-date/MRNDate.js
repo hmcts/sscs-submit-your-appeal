@@ -10,7 +10,6 @@ const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const { getBenefitCode } = require('utils/stringUtils');
 
-
 class MRNDate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnDate;

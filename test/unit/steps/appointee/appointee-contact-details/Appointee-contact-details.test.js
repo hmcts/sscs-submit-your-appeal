@@ -88,6 +88,7 @@ describe('Appointee-contact-details.js', () => {
       });
     });
   });
+
   describe('isEnglandOrWalesPostcode', () => {
     describe('postcode checker disabled', () => {
       it('does not check postcode when postcode checker disabled', () => {

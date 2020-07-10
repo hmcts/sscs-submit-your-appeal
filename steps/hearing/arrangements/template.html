@@ -2,15 +2,11 @@
 {% from "components/fields.njk" import textbox, textarea, select, selectionButton, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
-<p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
-<p class="govuk-body">{{ content.you }}<strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
+    <p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
+    <p class="govuk-body">{{ content.you | safe }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant | safe }}</strong> {{ content.bringYourOwnInterpreter | safe }}</p>
 
     {% call selectionButtons(
         field = fields.selection,
@@ -20,7 +16,6 @@
         inline = false,
         type = 'checkbox'
     ) %}
-
         {{ selectionButton(
             fields.selection.interpreterLanguage.requested,
             { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
@@ -34,7 +29,6 @@
                 options = languagesList
             ) }}
         </div>
-
         {{ selectionButton(
             fields.selection.signLanguage.requested,
             { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
@@ -48,19 +42,16 @@
                 options = signLanguagesList
             ) }}
         </div>
-
         {{ selectionButton(
             fields.selection.hearingLoop.requested,
             { label: content.fields.selection.hearingLoop.requested.label, value: 'true' },
             type = 'checkbox')
         }}
-
         {{ selectionButton(
             fields.selection.accessibleHearingRoom.requested,
             { label: content.fields.selection.accessibleHearingRoom.requested.label, value: 'true' },
             type = 'checkbox')
         }}
-
         {{ selectionButton(
             fields.selection.anythingElse.requested,
             { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
@@ -69,7 +60,5 @@
         <div class="panel js-hidden" id="anythingElseTextArea">
             {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
         </div>
-
     {% endcall %}
-
 {% endblock %}

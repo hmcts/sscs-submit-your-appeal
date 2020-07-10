@@ -2,10 +2,9 @@
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription.js');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-/* eslint-disable init-declarations */
-
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
+/* eslint-disable init-declarations */
 describe('The other methods of EvidenceUpload', () => {
   let instance;
   const someEvidenceDescription = 'some evidence description';

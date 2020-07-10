@@ -1,18 +1,13 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, date %}
 
-
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-        {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
     <p class="govuk-body">{{ content.description | safe }}</p>
 
     {% call formSection() %}
-
         {{ date(
             fields.date,
             content.titleNoAppointee,
@@ -24,7 +19,5 @@
                 year: content.fields.date.year
             }
         ) }}
-
     {% endcall %}
-
 {% endblock %}

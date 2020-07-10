@@ -15,7 +15,10 @@ class ContactDWP extends ExitPoint {
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
   }
 }
 
