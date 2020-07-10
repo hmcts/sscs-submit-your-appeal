@@ -1,11 +1,11 @@
-const doYouWantTextMsgRemindersContent = require('steps/sms-notify/text-reminders/content.en.json');
+const content = require('commonContent');
+const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
+const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
 const selectors = require('steps/check-your-appeal/selectors');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const paths = require('paths');
-const content = require('commonContent.json');
 
-const doYouWantTextMsgReminders = doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders;
 const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
@@ -25,12 +25,13 @@ After(I => {
 
 languages.forEach(language => {
   const commonContent = content[language];
+  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
 
   Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async I => {
     const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgReminders.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
     await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDay);
     I.confirmDetailsArePresent(language);
@@ -42,7 +43,7 @@ languages.forEach(language => {
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
     I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgReminders.no);
+    I.selectDoYouWantToReceiveTextMessageReminders(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
     await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
     I.see(randomWeekDayIn5Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
@@ -56,4 +57,3 @@ languages.forEach(language => {
     I.see(randomWeekDayIn6Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
   }).retry(1);
 });
-

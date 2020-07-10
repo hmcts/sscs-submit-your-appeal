@@ -1,7 +1,7 @@
 const appellant = require('test/e2e/data').appellant;
 const config = require('config');
-const postcodeLookupEn = require('component/postcodeLookup/content.en.json');
-const postcodeLookupCy = require('component/postcodeLookup/content.cy.json');
+const postcodeLookupEn = require('components/postcodeLookup/content.en.json');
+const postcodeLookupCy = require('components/postcodeLookup/content.cy.json');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
@@ -52,10 +52,10 @@ function IenterAddressDetails(I) {
   }
 }
 
-function enterAppellantContactDetailsManuallyAndContinue() {
+function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
   const I = this;
   IenterAddressDetailsManual(I);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function enterAppellantContactDetailsAndContinue(commonContent, language) {

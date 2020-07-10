@@ -6,10 +6,10 @@ function enterDoYouWantToAttendTheHearing(commonContent, option) {
   I.click(commonContent.continue);
 }
 
-function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue() {
+function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent) {
   const I = this;
 
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = {

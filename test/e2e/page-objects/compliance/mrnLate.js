@@ -1,8 +1,8 @@
-function enterReasonsForBeingLateAndContinue(reason) {
+function enterReasonsForBeingLateAndContinue(commonContent, reason) {
   const I = this;
 
   I.fillField('#reasonForBeingLate', reason);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { enterReasonsForBeingLateAndContinue };

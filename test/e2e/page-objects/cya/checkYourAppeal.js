@@ -68,12 +68,12 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, lang
   }
 }
 
-function enterDetailsFromNoRepresentativeToEnd() {
+function enterDetailsFromNoRepresentativeToEnd(commonContent, language) {
   const I = this;
 
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
-  I.enterDoYouWantToAttendTheHearing('No');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language);
+  I.enterDoYouWantToAttendTheHearing(commonContent, 'No');
+  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
 }
 
 async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language, date) {
@@ -100,12 +100,12 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
 
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue();
+  I.checkAllArrangementsAndContinue(commonContent, language);
   I.wait(2);
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.selectHearingAvailabilityAndContinue(commonContent, availability.fields.scheduleHearing.yes);
   I.wait(2);
   await I.selectDates([date]);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, language, options, fields = []) {

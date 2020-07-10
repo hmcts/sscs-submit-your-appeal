@@ -1,12 +1,16 @@
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
-const haveAMRN = require('steps/compliance/have-a-mrn/content.en.json').fields.haveAMRN;
-const checkMRN = require('steps/compliance/check-mrn/content.en').fields.checkedMRN;
-const isAppointee = require('steps/identity/appointee/content.en.json').fields.isAppointee;
+const content = require('commonContent');
+const doYouWantTextMsgRemindersContentEn = require('steps/sms-notify/text-reminders/content.en');
+const doYouWantTextMsgRemindersContentCy = require('steps/sms-notify/text-reminders/content.cy');
+const haveAMRNContentEn = require('steps/compliance/have-a-mrn/content.en');
+const haveAMRNContentCy = require('steps/compliance/have-a-mrn/content.cy');
+const checkMRNContentEn = require('steps/compliance/check-mrn/content.en');
+const checkMRNContentCy = require('steps/compliance/check-mrn/content.cy');
+const isAppointeeContentEn = require('steps/identity/appointee/content.en');
+const isAppointeeContentCy = require('steps/identity/appointee/content.cy');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const testData = require('test/e2e/data');
 
-const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
 const appellant = testData.appellant;
 
 const oneMonthAndOneDayLate = {
@@ -19,6 +23,8 @@ const thirteenMonthsAndOneDayLate = {
   label: 'thirteen months late'
 };
 
+const languages = ['en', 'cy'];
+
 Feature('Appellant has a dated MRN @batch-03');
 
 Before(I => {
@@ -30,25 +36,33 @@ After(I => {
   I.endTheSession();
 });
 
-[oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
-  Scenario(`Appellant has a MRN that is over ${obj.label}`, I => {
-    I.wait(2);
-    I.enterBenefitTypeAndContinue(testData.benefitType.code);
-    // I.chooseLanguagePreference(testData.languagePreferenceWelsh);
-    I.enterPostcodeAndContinue(testData.appellant.contactDetails.postCode);
-    I.checkOptionAndContinue(isAppointee.no);
-    I.continueFromIndependance();
-    I.checkOptionAndContinue(haveAMRN.yes);
-    I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
-    I.enterAnMRNDateAndContinue(obj.mrnDate);
-    I.checkOptionAndContinue(checkMRN.yes);
-    I.enterReasonsForBeingLateAndContinue(testData.mrn.reasonWhyMRNisLate);
-    I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
-    I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
-    I.enterAppellantNINOAndContinue(appellant.nino);
-    I.enterAppellantContactDetailsAndContinue();
-    I.checkOptionAndContinue(doYouWantTextMsgReminders.no);
-    I.enterDetailsFromNoRepresentativeToEnd();
-    I.confirmDetailsArePresent(true, obj.mrnDate);
-  }).retry(1);
+languages.forEach(language => {
+  const commonContent = content[language];
+  const doYouWantTextMsgRemindersContent = language === 'en' ? doYouWantTextMsgRemindersContentEn : doYouWantTextMsgRemindersContentCy;
+  const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
+  const checkMRNContent = language === 'en' ? checkMRNContentEn : checkMRNContentCy;
+  const isAppointeeContent = language === 'en' ? isAppointeeContentEn : isAppointeeContentCy;
+
+  [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
+    Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, I => {
+      I.wait(2);
+      I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
+      // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
+      I.enterPostcodeAndContinue(commonContent, testData.appellant.contactDetails.postCode);
+      I.checkOptionAndContinue(commonContent, isAppointeeContent.fields.isAppointee.no);
+      I.continueFromIndependance(commonContent);
+      I.checkOptionAndContinue(commonContent, haveAMRNContent.fields.haveAMRN.yes);
+      I.enterDWPIssuingOfficeAndContinue(commonContent, testData.mrn.dwpIssuingOffice);
+      I.enterAnMRNDateAndContinue(commonContent, obj.mrnDate);
+      I.checkOptionAndContinue(commonContent, checkMRNContent.fields.checkedMRN.yes);
+      I.enterReasonsForBeingLateAndContinue(commonContent, testData.mrn.reasonWhyMRNisLate);
+      I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+      I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+      I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+      I.enterAppellantContactDetailsAndContinue(commonContent, language);
+      I.checkOptionAndContinue(commonContent, doYouWantTextMsgRemindersContent.fields.doYouWantTextMsgReminders.no);
+      I.enterDetailsFromNoRepresentativeToEnd(commonContent, language);
+      I.confirmDetailsArePresent(language, true, obj.mrnDate);
+    }).retry(1);
+  });
 });
