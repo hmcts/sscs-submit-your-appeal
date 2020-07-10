@@ -1,12 +1,12 @@
 {% macro postcodeLookup(fields, options, postcodeLookupType, content) %}
-    {% if( postcodeLookupType === 'manual') %}
+    {% if (postcodeLookupType === 'manual') %}
            {{ caller() }}
     {% else %}
         <input type="hidden" id="submitType" name="submitType" value="" />
-        {{ textboxButton(fields.postcodeLookup,  content.textboxLabel, hint="", options) }}
+        {{ textboxButton(fields.postcodeLookup, content, hint="", options) }}
         {% if options.length > 0  %}
             {{ customSelect(fields.postcodeAddress, content.addressSelectionLabel, options, content.dropdownCount) }}
-        {% endif %}  
+        {% endif %}
         <div class="govuk-form-group">
             <a id="manualLink" class="govuk-link govuk-body" href="#" >{{content.manualEntryLabel}}</a>
         </div>
@@ -14,86 +14,83 @@
             {{ caller() }}
         {% endif %}
     {% endif %}
-{% endmacro %}  
-
+{% endmacro %}
 
 {% macro customSelect(field, label, options, initialValueText) %}
+    <div class="govuk-form-group {{ errorClass(field) }}">
+        <label class="govuk-label"
+             for="{{ field.id }}">
+        {{ label }}
+        </label>
 
-<div class="govuk-form-group {{ errorClass(field) }}">
+        {{ errorsFor(field) }}
 
-  <label class="govuk-label"
-         for="{{ field.id }}">
-    {{ label }}
-  </label>
+        <select
+              name="{{ field.id }}"
+              id="{{ field.id }}"
+              class="govuk-select govuk-!-width-one-half postcode-address"
+              >
+            {# Default option so no option is preselected #}
+            <option disabled
+                    {% if not field.value %}
+                        selected
+                    {% endif %}
+                    value>{{options.length}} {{initialValueText}}
+            </option>
 
-  {{ errorsFor(field) }}
+            {% for option in options -%}
+                {% set option_value = option.DPA.UPRN %}
+                {% set option_disabled = option.disabled or false %}
 
-  <select 
-          name="{{ field.id }}"
-          id="{{ field.id }}"
-          class="govuk-select govuk-!-width-one-half postcode-address"
-          >
-    {# Default option so no option is preselected #}
-    <option disabled
-            {% if not field.value %}
-            selected
-            {% endif %}
-            value>{{options.length}} {{initialValueText}} </option>
-
-    {% for option in options -%}
-      {% set option_value = option.DPA.UPRN %}
-      {% set option_disabled = option.disabled or false %}
-
-      <option
-          {% if field.value == option_value %}
-          selected
-          {% endif %}
-          {% if option_disabled %}
-          disabled
-          {% endif %}
-          {% if option_value %}
-          value="{{ option_value }}"
-          {% endif %}>{{ option.DPA.ADDRESS }}</option>
-    {%- endfor %}
-  </select>
-
-</div>
+                <option
+                    {% if field.value == option_value %}
+                        selected
+                    {% endif %}
+                    {% if option_disabled %}
+                        disabled
+                    {% endif %}
+                    {% if option_value %}
+                        value="{{ option_value }}"
+                    {% endif %}>{{ option.DPA.ADDRESS }}
+                </option>
+            {%- endfor %}
+        </select>
+    </div>
 {% endmacro %}
 
 {% macro errorClass(field, type='group') -%}
-  {% if field.errors and field.errors|length > 0 %}
-    govuk-form-{{ type }}-error
-  {% endif %}
+    {% if field.errors and field.errors|length > 0 %}
+        govuk-form-{{ type }}-error
+    {% endif %}
 {%- endmacro %}
 
 {% macro errorsFor(field) -%}
-  {% if field.errors %}
-  {% for error in field.errors -%}
-    <span class="govuk-error-message">
-      {{ error | safe}}
-    </span>
-  {%- endfor %}
-  {% endif %}
+    {% if field.errors %}
+        {% for error in field.errors -%}
+            <span class="govuk-error-message">
+                {{ error | safe}}
+            </span>
+        {%- endfor %}
+    {% endif %}
 {%- endmacro %}
 
-
-{% macro textboxButton(field, label, hint=false, hideLabel=false, options) %}
-<div class="{{ "govuk-form-group" if options.length === 0}}" {{ errorClass(field) }}">
-  <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
-         for="{{ field.id }}">
-    {{ label }}
-    {%- if hint %}
-    <span class="govuk-hint">
-      {{ hint }}
-    </span>
-    {%- endif %}
-  </label>
-  {{ errorsFor(field) }}
-  <input class="govuk-input post-code-lookup"
-         id="{{ field.id }}"
-         name="{{ field.id }}"
-         type="text"
-         {% if field.value %}value="{{ field.value }}"{% endif %}>
-  <input id="findAddress" class="govuk-button govuk-!-margin-0" type="submit" value="Find address" >
-</div>
+{% macro textboxButton(field, content, hint=false, hideLabel=false, options) %}
+    <div class="{{ "govuk-form-group" if options.length === 0}}" {{ errorClass(field) }}">
+        <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
+               for="{{ field.id }}">
+            {{ content.textboxLabel }}
+            {%- if hint %}
+                <span class="govuk-hint">
+                    {{ hint }}
+                </span>
+            {%- endif %}
+        </label>
+        {{ errorsFor(field) }}
+        <input class="govuk-input post-code-lookup"
+               id="{{ field.id }}"
+               name="{{ field.id }}"
+               type="text"
+               {% if field.value %}value="{{ field.value }}"{% endif %}>
+        <input id="findAddress" class="govuk-button govuk-!-margin-0" type="submit" value="{{ content.findAddress }}">
+    </div>
 {% endmacro %}

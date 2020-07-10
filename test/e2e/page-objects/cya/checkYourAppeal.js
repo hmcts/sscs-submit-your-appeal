@@ -1,12 +1,22 @@
 const DateUtils = require('utils/DateUtils');
-const haveAMRN = require('steps/compliance/have-a-mrn/content.en.json');
-const appointee = require('steps/identity/appointee/content.en.json');
-const representative = require('steps/representative/representative/content.en');
-const theHearing = require('steps/hearing/the-hearing/content.en');
-const support = require('steps/hearing/support/content.en');
-const availability = require('steps/hearing/availability/content.en');
-const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
-const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
+const checkYourAppealEn = require('steps/check-your-appeal/content.en.json');
+const checkYourAppealCy = require('steps/check-your-appeal/content.cy.json');
+const haveAMRNEn = require('steps/compliance/have-a-mrn/content.en.json');
+const haveAMRNCy = require('steps/compliance/have-a-mrn/content.cy.json');
+const appointeeEn = require('steps/identity/appointee/content.en.json');
+const appointeeCy = require('steps/identity/appointee/content.cy.json');
+const representativeEn = require('steps/representative/representative/content.en');
+const representativeCy = require('steps/representative/representative/content.cy');
+const theHearingEn = require('steps/hearing/the-hearing/content.en');
+const theHearingCy = require('steps/hearing/the-hearing/content.cy');
+const supportEn = require('steps/hearing/support/content.en');
+const supportCy = require('steps/hearing/support/content.cy');
+const availabilityEn = require('steps/hearing/availability/content.en');
+const availabilityCy = require('steps/hearing/availability/content.cy');
+const datesCantAttendEn = require('steps/hearing/dates-cant-attend/content.en');
+const datesCantAttendCy = require('steps/hearing/dates-cant-attend/content.cy');
+const evidenceProvideEn = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
+const evidenceProvideCy = require('steps/reasons-for-appealing/evidence-provide/content.cy.json');
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
@@ -19,37 +29,42 @@ const testData = require('test/e2e/data');
 const appellant = testData.appellant;
 const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testData.benefitType.code) {
   const I = this;
-  I.enterBenefitTypeAndContinue(benefitTypeCode);
-  // I.chooseLanguagePreference('no');
-  I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
-  I.continueFromIndependance();
+  const haveAMRN = language === 'en' ? haveAMRNEn : haveAMRNCy;
+  const appointee = language === 'en' ? appointeeEn : appointeeCy;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  // I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
-    I.selectIfYouWantToCreateAccount('no');
+    I.selectIfYouWantToCreateAccount(commonContent, 'no');
   }
-  I.selectHaveYouGotAMRNAndContinue(haveAMRN.fields.haveAMRN.yes);
-  I.enterAnMRNDateAndContinue(oneMonthAgo);
-  I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
-  I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
-  I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(appellant.nino);
+  I.selectHaveYouGotAMRNAndContinue(commonContent, haveAMRN.fields.haveAMRN.yes);
+  I.enterAnMRNDateAndContinue(commonContent, oneMonthAgo);
+  I.enterDWPIssuingOfficeAndContinue(commonContent, testData.mrn.dwpIssuingOffice);
+  I.selectAreYouAnAppointeeAndContinue(commonContent, appointee.fields.isAppointee.no);
+  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
-function enterDetailsFromNoRepresentativeToUploadingEvidence() {
+function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent, language) {
   const I = this;
+  const representative = language === 'en' ? representativeEn : representativeCy;
+  const evidenceProvide = language === 'en' ? evidenceProvideEn : evidenceProvideCy;
 
-  I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(testData.reasonsForAppealing.reasons[0]);
-  I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
+  I.selectDoYouHaveARepresentativeAndContinue(commonContent, representative.fields.hasRepresentative.no);
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testData.reasonsForAppealing.reasons[0]);
+  I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue();
+    I.readSendingEvidenceAndContinue(commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+    I.selectAreYouProvidingEvidenceAndContinue(commonContent, evidenceProvide.fields.evidenceProvide.yes);
     I.uploadAPieceOfEvidence();
-    I.enterDescription('Some description of the evidence');
+    I.enterDescription(commonContent, 'Some description of the evidence');
   }
 }
 
@@ -61,20 +76,27 @@ function enterDetailsFromNoRepresentativeToEnd() {
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
 }
 
-async function enterDetailsFromAttendingTheHearingToEnd(date) {
+async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language, date) {
   const I = this;
+  const theHearing = language === 'en' ? theHearingEn : theHearingCy;
+  const support = language === 'en' ? supportEn : supportCy;
+  const availability = language === 'en' ? availabilityEn : availabilityCy;
+  const datesCantAttend = language === 'en' ? datesCantAttendEn : datesCantAttendCy;
 
-  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
-  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue();
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.enterDoYouWantToAttendTheHearing(commonContent, theHearing.fields.attendHearing.yes);
+  I.selectDoYouNeedSupportAndContinue(commonContent, support.fields.arrangements.yes);
+  I.checkAllArrangementsAndContinue(commonContent, language);
+  I.selectHearingAvailabilityAndContinue(commonContent, availability.fields.scheduleHearing.yes);
   await I.turnOffJsAndReloadThePage();
-  I.enterDateCantAttendAndContinue(date, datesCantAttend.links.add);
-  I.click('Continue');
+  I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttend.links.add);
+  I.click(commonContent.continue);
 }
 
-async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
+async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, date) {
   const I = this;
+  const theHearing = language === 'en' ? theHearingEn : theHearingCy;
+  const support = language === 'en' ? supportEn : supportCy;
+  const availability = language === 'en' ? availabilityEn : availabilityCy;
 
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
@@ -86,8 +108,11 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
   I.click('Continue');
 }
 
-function enterDetailsFromAttendingTheHearingWithSupportToEnd(options, fields = []) {
+function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, language, options, fields = []) {
   const I = this;
+  const theHearing = language === 'en' ? theHearingEn : theHearingCy;
+  const support = language === 'en' ? supportEn : supportCy;
+  const availability = language === 'en' ? availabilityEn : availabilityCy;
 
   I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
   I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
@@ -101,8 +126,9 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(options, fields = [
   I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.no);
 }
 
-function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
+function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo) {
   const I = this;
+  const checkYourAppeal = language === 'en' ? checkYourAppealEn : checkYourAppealCy;
 
   // We are on CYA
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
@@ -130,7 +156,11 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
   I.see(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`);
 
   // Appellant DOB
-  I.see('25 January 1980');
+  if (language === 'en') {
+    I.see('25 January 1980');
+  } else {
+    I.see('25 Ionawr 1980');
+  }
 
   // Appellant NINO
   I.see(appellant.nino);
@@ -150,7 +180,7 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
   I.see(testData.reasonsForAppealing.otherReasons);
 
   // Shows when the appeal is complete
-  I.see('Sign and submit');
+  I.see(checkYourAppeal.header);
 }
 
 module.exports = {

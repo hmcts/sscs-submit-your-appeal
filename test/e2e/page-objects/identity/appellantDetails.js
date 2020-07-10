@@ -1,31 +1,33 @@
 const appellant = require('test/e2e/data').appellant;
 const config = require('config');
+const postcodeLookupEn = require('component/postcodeLookup/content.en.json');
+const postcodeLookupCy = require('component/postcodeLookup/content.cy.json');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
-function enterAppellantNameAndContinue(title, firstName, lastName) {
+function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
   const I = this;
 
   I.fillField({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
-function enterAppellantDOBAndContinue(day, month, year) {
+function enterAppellantDOBAndContinue(commonContent, day, month, year) {
   const I = this;
 
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
-function enterAppellantNINOAndContinue(nino) {
+function enterAppellantNINOAndContinue(commonContent, nino) {
   const I = this;
 
   I.fillField('#nino', nino);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function IenterAddressDetailsManual(I) {
@@ -56,20 +58,22 @@ function enterAppellantContactDetailsManuallyAndContinue() {
   I.click('Continue');
 }
 
-function enterAppellantContactDetailsAndContinue() {
+function enterAppellantContactDetailsAndContinue(commonContent, language) {
   const I = this;
+  const postcodeLookup = language === 'en' ? postcodeLookupEn : postcodeLookupCy;
+
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
-    I.click('Find address');
-    I.see('We cannot find an address with that postcode');
+    I.click(postcodeLookup.findAddress);
+    I.see(postcodeLookup.fields.postcodeLookup.error.required);
     I.fillField({ id: 'postcodeLookup' }, 'n29ed');
-    I.click('Continue');
-    I.see('Please choose an address.');
+    I.click(commonContent.continue);
+    I.see(postcodeLookup.fields.postcodeAddress.error.required);
     IenterAddressDetails(I);
   } else {
     IenterAddressDetailsManual(I);
   }
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function enterAppellantContactDetailsWithMobileAndContinue(mobileNumber = '07466748336') {

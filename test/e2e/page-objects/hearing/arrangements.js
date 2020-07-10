@@ -1,8 +1,10 @@
-const fields = require('steps/hearing/arrangements/content.en.json').fields;
+const fieldsEn = require('steps/hearing/arrangements/content.en.json').fields;
+const fieldsCy = require('steps/hearing/arrangements/content.cy.json').fields;
 const hearingData = require('test/e2e/data').hearing;
 
-function checkAllArrangementsAndContinue() {
+function checkAllArrangementsAndContinue(commonContent, language) {
   const I = this;
+  const fields = language === 'en' ? fieldsEn : fieldsCy;
 
   I.click(fields.selection.languageInterpreter.requested.label);
   I.click(fields.selection.signLanguage.requested.label);
@@ -19,7 +21,7 @@ function checkAllArrangementsAndContinue() {
   I.fillField('textarea[name="selection.anythingElse.language"]',
     hearingData.anythingElse);
 
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { checkAllArrangementsAndContinue };

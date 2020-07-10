@@ -1,8 +1,8 @@
-function enterAnythingElseAndContinue(anythingElse) {
+function enterAnythingElseAndContinue(commonContent, anythingElse) {
   const I = this;
 
   I.fillField('#otherReasonForAppealing', anythingElse);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function enterReasonForAppealAndContinue(reason, link) {
