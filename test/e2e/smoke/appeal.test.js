@@ -6,7 +6,7 @@ const mockData = require('test/e2e/data');
 
 const appellant = mockData.appellant;
 
-const languages = ['en', 'cy'];
+const languages = ['en'];
 
 Feature('Full Journey');
 
