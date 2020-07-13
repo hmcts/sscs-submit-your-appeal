@@ -12,8 +12,8 @@ Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend 
 languages.forEach(language => {
   const commonContent = content[language];
   const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
-  const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors.answer}`;
-  const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors.change}`;
+  const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors[language].answer}`;
+  const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[language].change}`;
 
   Before(I => {
     I.createTheSession(language);
