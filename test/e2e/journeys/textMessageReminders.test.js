@@ -2,19 +2,18 @@ const content = require('commonContent');
 const paths = require('paths');
 const selectors = require('steps/check-your-appeal/selectors');
 
-const appellant = selectors.appellant;
-const txtMsgRemnders = selectors.textMsgReminders;
-
-const appellantPhoneNumberAnswer = `${appellant.phoneNumber} ${selectors.answer}`;
-const textMsgRemindersMobileAnswer = `${txtMsgRemnders.mobileNumber} ${selectors.answer}`;
-const receiveTxtMsgRemindersAnswer = `${txtMsgRemnders.receiveTxtMsgReminders} ${selectors.answer}`;
-
 const languages = ['en', 'cy'];
 
 Feature('Appellant PIP, one month ago, does not attend hearing. @batch-05');
 
 languages.forEach(language => {
   const commonContent = content[language];
+  const appellant = selectors[language].appellant;
+  const txtMsgRemnders = selectors[language].textMsgReminders;
+
+  const appellantPhoneNumberAnswer = `${appellant.phoneNumber} ${selectors.answer}`;
+  const textMsgRemindersMobileAnswer = `${txtMsgRemnders.mobileNumber} ${selectors.answer}`;
+  const receiveTxtMsgRemindersAnswer = `${txtMsgRemnders.receiveTxtMsgReminders} ${selectors.answer}`;
 
   Before(I => {
     I.createTheSession(language);

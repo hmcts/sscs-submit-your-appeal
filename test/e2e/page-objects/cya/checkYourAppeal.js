@@ -115,7 +115,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo
 
   if (hasMRN) {
     // MRN address number
-    I.see(testData.mrn.dwpIssuingOffice, selectors.mrn.dwpIssuingOffice);
+    I.see(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice);
 
     // The Date of the MRN
     I.see(mrnDate.format('DD MMMM YYYY'));
@@ -126,7 +126,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo
     }
   } else {
     // Reason for no MRN
-    I.see(testData.mrn.reasonForNoMRN, selectors.mrn.noMRN);
+    I.see(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN);
   }
 
   // Appellant name

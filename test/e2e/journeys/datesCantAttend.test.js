@@ -4,16 +4,15 @@ const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const paths = require('paths');
 
-const datesYouCantAttend = selectors.theHearing.datesYouCantAttend;
-const datesYouCantAttendHearingAnswer = `${datesYouCantAttend}  ${selectors.answer}`;
-const datesYouCantAttendHearingChange = `${datesYouCantAttend}  ${selectors.change}`;
-
 const languages = ['en', 'cy'];
 
 Feature('PIP, one month ago, attends hearing with dates cannot attend');
 
 languages.forEach(language => {
   const commonContent = content[language];
+  const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
+  const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors.answer}`;
+  const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors.change}`;
 
   Before(I => {
     I.createTheSession(language);

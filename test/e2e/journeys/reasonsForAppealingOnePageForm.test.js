@@ -2,9 +2,6 @@ const content = require('commonContent');
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 
-const reasonForAppealing = selectors.reasonsForAppealing.reasons;
-const reasonForAppealingChange = `${reasonForAppealing}-1  ${selectors.change}`;
-
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
 const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
@@ -22,6 +19,9 @@ Feature('Appellant PIP, one month ago, attends hearing with reasons for appealin
 
 languages.forEach(language => {
   const commonContent = content[language];
+  const reasonForAppealing = selectors[language].reasonsForAppealing.reasons;
+  const reasonForAppealingChange = `${reasonForAppealing}-1 ${selectors.change}`;
+
 
   Before(I => {
     I.createTheSession(language);
