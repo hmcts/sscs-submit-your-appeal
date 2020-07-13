@@ -25,6 +25,7 @@ describe('CheckYourAppeal.js', () => {
       journey: {
         steps: {
           Confirmation: paths.confirmation,
+          DuplicateError: paths.errors.duplicateCaseError,
           Error500: paths.errors.internalServerError
         },
         visitedSteps: [{ benefitType: '' }],
@@ -96,6 +97,15 @@ describe('CheckYourAppeal.js', () => {
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
+      loggerStub.exception = sinon.spy();
+      return cya.sendToAPI().catch(() => {
+        expect(loggerStub.exception).to.have.been.calledOnce;
+      });
+    });
+
+    it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', () => {
+      // eslint-disable-next-line max-len
+      request.post = () => ({ set: () => ({ send: sinon.stub().rejects(HttpStatus.CONFLICT) }) });
       loggerStub.exception = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
