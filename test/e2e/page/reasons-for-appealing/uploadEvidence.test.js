@@ -1,7 +1,8 @@
 const evidenceUploadContentEn = require('steps/reasons-for-appealing/evidence-upload/content.en');
 const evidenceUploadContentCy = require('steps/reasons-for-appealing/evidence-upload/content.cy');
+const evidenceProvideContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
+const evidenceProvideContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
 const paths = require('paths');
-const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
@@ -12,11 +13,12 @@ Feature('Uploading Evidence @evidence-upload @batch-10');
 if (evidenceUploadEnabled) {
   languages.forEach(language => {
     const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
+    const evidenceProvideContent = language === 'en' ? evidenceProvideContentEn : evidenceProvideContentCy;
 
     Before(I => {
       I.createTheSession(language);
       I.amOnPage(paths.reasonsForAppealing.evidenceProvide);
-      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+      I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
     });
 
     Scenario(`${language.toUpperCase()} - I can upload correctly a file`, I => {

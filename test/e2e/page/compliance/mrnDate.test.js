@@ -1,6 +1,6 @@
 const content = require('commonContent');
 const mrnDateContentEn = require('steps/compliance/mrn-date/content.en');
-const mrnDateContentCy = require('steps/compliance/mrn-date/content.en');
+const mrnDateContentCy = require('steps/compliance/mrn-date/content.cy');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const dateOnImage = require('steps/compliance/mrn-date/mrnDateOnImage');

@@ -1,6 +1,6 @@
 const content = require('commonContent');
 const confirmationContentEn = require('steps/confirmation/content.en');
-const confirmationContentCy = require('steps/confirmation/content.en');
+const confirmationContentCy = require('steps/confirmation/content.cy');
 const paths = require('paths');
 const urls = require('urls');
 
