@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const bodyParser = require('body-parser');
 const os = require('os');
+const ioRedis = require('ioredis');
 const path = require('path');
 const { journey } = require('@hmcts/one-per-page');
 const steps = require('steps');
@@ -13,6 +14,7 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
+const logger = require('logger');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -88,6 +90,14 @@ const configureViews = app => {
     path.resolve(__dirname, 'components')
   ]);
 };
+
+const client = ioRedis.createClient(
+  config.redis.host,
+  { enableOfflineQueue: false }
+);
+client.on('error', error => {
+  logger.trace(`Health check failed on redis ${error}`, 'health_check_error');
+});
 
 const configureHelmet = app => {
   // Helmet referrer policy
@@ -199,7 +209,17 @@ const configureMiddleWares = (app, express) => {
   }));
 
   app.use(paths.health, healthcheck.configure({
-    checks: {}
+    checks: {
+      redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG')).catch(error => {
+        logger.trace(`Health check failed on redis: ${error}`);
+      })),
+      'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
+    },
+    buildInfo: {
+      name: 'Submit Your Appeal',
+      host: os.hostname(),
+      uptime: process.uptime()
+    }
   }));
 
   app.use(paths.monitoring, healthcheck.configure({
