@@ -1,9 +1,3 @@
-function selectContinue() {
-  const I = this;
-
-  I.click('Continue');
-}
-
 function enterDescription(commonContent, description) {
   const I = this;
   I.seeInCurrentUrl('evidence-description');
@@ -11,4 +5,4 @@ function enterDescription(commonContent, description) {
   I.click(commonContent.continue);
 }
 
-module.exports = { selectContinue, enterDescription };
+module.exports = { enterDescription };

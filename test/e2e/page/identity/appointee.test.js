@@ -1,27 +1,38 @@
-const independence = require('steps/start/independence/content.en');
-const appealFormDownload = require('steps/appeal-form-download/content.en');
-const appointee = require('steps/identity/appointee/content.en');
+const independenceContentEn = require('steps/start/independence/content.en');
+const independenceContentCy = require('steps/start/independence/content.cy');
+const appealFormDownloadContentEn = require('steps/appeal-form-download/content.en');
+const appealFormDownloadContentCy = require('steps/appeal-form-download/content.cy');
+const appointeeContentEn = require('steps/identity/appointee/content.en');
+const appointeeContentCy = require('steps/identity/appointee/content.cy');
 const paths = require('paths');
+
+const languages = ['en', 'cy'];
 
 Feature('Appointee form @batch-09');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.identity.areYouAnAppointee);
-});
+languages.forEach(language => {
+  Before(I => {
+    I.createTheSession();
+    I.amOnPage(paths.identity.areYouAnAppointee);
+  });
 
-After(I => {
-  I.endTheSession();
-});
+  After(I => {
+    I.endTheSession();
+  });
 
-Scenario('When I select Yes, I am taken to the download appointee form page', I => {
-  I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.yes);
-  I.seeInCurrentUrl(paths.appealFormDownload);
-  I.see(appealFormDownload.title);
-});
+  const independenceContent = language === 'en' ? independenceContentEn : independenceContentCy;
+  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
+  const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
-Scenario('When I select No, I am taken to the independence page', I => {
-  I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
-  I.seeInCurrentUrl(paths.start.independence);
-  I.see(independence.title);
+  Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, I => {
+    I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.yes);
+    I.seeInCurrentUrl(paths.appealFormDownload);
+    I.see(appealFormDownloadContent.title);
+  });
+
+  Scenario(`${language.toUpperCase()} - When I select No, I am taken to the independence page`, I => {
+    I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
+    I.seeInCurrentUrl(paths.start.independence);
+    I.see(independenceContent.title);
+  });
 });

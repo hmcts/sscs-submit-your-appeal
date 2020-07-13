@@ -26,7 +26,7 @@ languages.forEach(language => {
     I.seeInCurrentUrl(paths.identity.enterAppellantName);
   });
 
-  Scenario(`MRN is over one month late, I do not enter a reason, I see errors`, I => {
+  Scenario('MRN is over one month late, I do not enter a reason, I see errors', I => {
     I.click(commonContent.continue);
     I.seeCurrentUrlEquals(paths.compliance.mrnOverMonthLate);
     I.see(mrnOverAMonthLateContent.fields.reasonForBeingLate.error.required);

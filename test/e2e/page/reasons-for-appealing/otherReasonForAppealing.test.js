@@ -1,18 +1,26 @@
+const content = require('commonContent');
 const paths = require('paths');
+
+const languages = ['en', 'cy'];
 
 Feature('Other Reasons For Appealing');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.reasonsForAppealing.otherReasonForAppealing);
-  I.waitForElement('#otherReasonForAppealing');
-});
-After(I => {
-  I.endTheSession();
-});
+languages.forEach(language => {
+  Before(I => {
+    I.createTheSession(language);
+    I.amOnPage(paths.reasonsForAppealing.otherReasonForAppealing);
+    I.waitForElement('#otherReasonForAppealing');
+  });
 
-Scenario('When I enter special chars then I see no errors', I => {
-  I.fillField('otherReasonForAppealing', '&$%^&%!~$^&&&*');
-  I.click('Continue');
-  I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceProvide);
+  After(I => {
+    I.endTheSession();
+  });
+
+  const commonContent = content[language];
+
+  Scenario(`${language.toUpperCase()} - When I enter special chars then I see no errors`, I => {
+    I.fillField('otherReasonForAppealing', '&$%^&%!~$^&&&*');
+    I.click(commonContent.continue);
+    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceProvide);
+  });
 });

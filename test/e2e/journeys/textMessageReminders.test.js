@@ -52,7 +52,7 @@ languages.forEach(language => {
 
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
-    I.selectUseSameNumberAndContinue('#useSameNumber-yes');
+    I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
     I.readSMSConfirmationAndContinue(commonContent);
     I.enterDetailsFromNoRepresentativeToEnd(commonContent);
     I.confirmDetailsArePresent(language);
@@ -64,7 +64,7 @@ languages.forEach(language => {
     I.enterDetailsFromStartToNINO(commonContent);
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
-    I.selectUseSameNumberAndContinue('#useSameNumber-no');
+    I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
     I.enterMobileAndContinue(commonContent, '07411333333');
     I.readSMSConfirmationAndContinue(commonContent);
     I.enterDetailsFromNoRepresentativeToEnd(commonContent);

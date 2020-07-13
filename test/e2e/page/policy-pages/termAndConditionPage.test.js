@@ -1,21 +1,25 @@
+const termsAndConditionsContentEn = require('steps/policy-pages/terms-and-conditions/content.en');
+const termsAndConditionsContentCy = require('steps/policy-pages/terms-and-conditions/content.cy');
 const paths = require('paths');
-const termsAndConditionsContent = require('steps/policy-pages/terms-and-conditions/content.en');
+
+const languages = ['en', 'cy'];
 
 Feature('Terms and Conditions Page @batch-10');
 
-Before(I => {
-  I.amOnPage(paths.policy.termsAndConditions);
-});
+languages.forEach(language => {
+  Before(I => {
+    I.amOnPage(paths.policy.termsAndConditions);
+  });
 
-Scenario('I see the page title text', I => {
-  I.see(termsAndConditionsContent.title);
-});
+  const termsAndConditionsContent = language === 'en' ? termsAndConditionsContentEn : termsAndConditionsContentCy;
 
-Scenario('I see expected links and go to expected urls', I => {
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.privacy.name,
-    paths.policy.privacy);
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.cookie.name,
-    paths.policy.cookiePolicy);
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.contact.name,
-    paths.policy.contactUs);
+  Scenario(`${language.toUpperCase()} - I see the page title text`, I => {
+    I.see(termsAndConditionsContent.title);
+  });
+
+  Scenario(`${language.toUpperCase()} - I see expected links and go to expected urls`, I => {
+    I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.privacy.name, paths.policy.privacy);
+    I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.cookie.name, paths.policy.cookiePolicy);
+    I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.contact.name, paths.policy.contactUs);
+  });
 });

@@ -1,4 +1,6 @@
-const content = require('steps/hearing/dates-cant-attend/content.en');
+const content = require('commonContent');
+const datesCantAttendContentEn = require('steps/hearing/dates-cant-attend/content.en');
+const datesCantAttendContentCy = require('steps/hearing/dates-cant-attend/content.cy');
 const paths = require('paths');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
@@ -6,137 +8,144 @@ const DateUtils = require('utils/DateUtils');
 const validDate = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
 const additionalValidDate = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
 
+const languages = ['en', 'cy'];
+
 Feature('Dates can\'t attend @batch-08');
 
-Before(async I => {
-  I.createTheSession();
-  I.amOnPage(paths.hearing.datesCantAttend);
-  await I.turnOffJsAndReloadThePage();
-});
+languages.forEach(language => {
+  Before(async I => {
+    I.createTheSession(language);
+    I.amOnPage(paths.hearing.datesCantAttend);
+    await I.turnOffJsAndReloadThePage();
+  });
 
-After(I => {
-  I.endTheSession();
-});
+  After(I => {
+    I.endTheSession();
+  });
 
-Scenario('When I go to the page and there are no dates I see the Add date link', I => {
-  I.see(content.noDates);
-  I.see(content.links.add);
-});
+  const commonContent = content[language];
+  const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
-Scenario('When I click the Add date link, I go to the page where I can enter dates', I => {
-  I.see(content.noDates);
-  I.click(content.links.add);
-  I.see(content.fields.cantAttendDate.legend);
-  I.seeElement('input[name*="day"]');
-  I.seeElement('input[name*="month"]');
-  I.seeElement('input[name*="year"]');
-});
+  Scenario(`${language.toUpperCase()} - When I go to the page and there are no dates I see the Add date link`, I => {
+    I.see(datesCantAttendContent.noDates);
+    I.see(datesCantAttendContent.links.add);
+  });
 
-Scenario('When I add a date I see the date in the list', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.seeFormattedDate(validDate);
-});
+  Scenario(`${language.toUpperCase()} - When I click the Add date link, I go to the page where I can enter dates`, I => {
+    I.see(datesCantAttendContent.noDates);
+    I.click(datesCantAttendContent.links.add);
+    I.see(datesCantAttendContent.fields.cantAttendDate.legend);
+    I.seeElement('input[name*="day"]');
+    I.seeElement('input[name*="month"]');
+    I.seeElement('input[name*="year"]');
+  });
 
-Scenario('When I add a date I see the add another date link', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.see(content.links.addAnother);
-});
+  Scenario(`${language.toUpperCase()} - When I add a date I see the date in the list`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.seeFormattedDate(validDate);
+  });
 
-Scenario('When I add multiple dates, I see them in the list', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.enterDateCantAttendAndContinue(additionalValidDate, content.links.addAnother);
-  I.seeFormattedDate(validDate);
-  I.seeFormattedDate(additionalValidDate);
-});
+  Scenario(`${language.toUpperCase()} - When I add a date I see the add another date link`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.see(datesCantAttendContent.links.addAnother);
+  });
 
-Scenario('When I add a date and click the delete link, the date is removed', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.seeFormattedDate(validDate);
-  I.click('Delete');
-  I.dontSeeFormattedDate(validDate);
-});
+  Scenario(`${language.toUpperCase()} - When I add multiple dates, I see them in the list`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(additionalValidDate, datesCantAttendContent.links.addAnother);
+    I.seeFormattedDate(validDate);
+    I.seeFormattedDate(additionalValidDate);
+  });
 
-Scenario('I add a single date, I remove it, I see Add date', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.see(content.links.addAnother);
-  I.click('Delete');
-  I.dontSee(content.links.addAnother);
-  I.see(content.links.add);
-});
+  Scenario(`${language.toUpperCase()} - When I add a date and click the delete link, the date is removed`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.seeFormattedDate(validDate);
+    I.click(commonContent.delete);
+    I.dontSeeFormattedDate(validDate);
+  });
 
-Scenario('When I click Continue without add a date, I see errors', I => {
-  I.click('Continue');
-  I.see(content.noDates);
-});
+  Scenario(`${language.toUpperCase()} - I add a single date, I remove it, I see Add date`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.see(datesCantAttendContent.links.addAnother);
+    I.click(commonContent.delete);
+    I.dontSee(datesCantAttendContent.links.addAnother);
+    I.see(datesCantAttendContent.links.add);
+  });
 
-Scenario('When I add a date and the edit it, I see the new date', I => {
-  I.enterDateCantAttendAndContinue(validDate, content.links.add);
-  I.seeFormattedDate(validDate);
-  I.enterDateCantAttendAndContinue(additionalValidDate, 'Edit');
-  I.dontSeeFormattedDate(validDate);
-  I.seeFormattedDate(additionalValidDate);
-});
+  Scenario(`${language.toUpperCase()} - When I click Continue without add a date, I see errors`, I => {
+    I.click(commonContent.continue);
+    I.see(datesCantAttendContent.noDates);
+  });
 
-Scenario('When I click Continue without filling in the date fields, I see errors', I => {
-  I.click(content.links.add);
-  I.click('Continue');
-  I.see(content.fields.cantAttendDate.error.allRequired);
-});
+  Scenario(`${language.toUpperCase()} - When I add a date and the edit it, I see the new date`, I => {
+    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.seeFormattedDate(validDate);
+    I.enterDateCantAttendAndContinue(additionalValidDate, 'Edit');
+    I.dontSeeFormattedDate(validDate);
+    I.seeFormattedDate(additionalValidDate);
+  });
 
-Scenario('When I click Continue when only entering the day field, I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('input[name*="day"]', validDate.date().toString());
-  I.click('Continue');
-  I.see(content.fields.cantAttendDate.error.monthRequired);
-  I.see(content.fields.cantAttendDate.error.yearRequired);
-});
+  Scenario(`${language.toUpperCase()} - When I click Continue without filling in the date fields, I see errors`, I => {
+    I.click(datesCantAttendContent.links.add);
+    I.click(commonContent.continue);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.allRequired);
+  });
 
-Scenario('When I click Continue when only entering the month field, I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('input[name*="month"]', (validDate.month() + 1).toString());
-  I.click('Continue');
-  I.see(content.fields.cantAttendDate.error.dayRequired);
-  I.see(content.fields.cantAttendDate.error.yearRequired);
-});
+  Scenario(`${language.toUpperCase()} - When I click Continue when only entering the day field, I see errors`, I => {
+    I.click(datesCantAttendContent.links.add);
+    I.fillField('input[name*="day"]', validDate.date().toString());
+    I.click(commonContent.continue);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.monthRequired);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.yearRequired);
+  });
 
-Scenario('When I click Continue when only entering the year field, I see errors', I => {
-  I.click(content.links.add);
-  I.fillField('input[name*="year"]', validDate.year().toString());
-  I.click('Continue');
-  I.see(content.fields.cantAttendDate.error.dayRequired);
-  I.see(content.fields.cantAttendDate.error.monthRequired);
-});
+  Scenario(`${language.toUpperCase()} - When I click Continue when only entering the month field, I see errors`, I => {
+    I.click(datesCantAttendContent.links.add);
+    I.fillField('input[name*="month"]', (validDate.month() + 1).toString());
+    I.click(commonContent.continue);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.dayRequired);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.yearRequired);
+  });
 
-Scenario('When I enter a date that is under four weeks from now, I see errors', I => {
-  const dateUnderFourWeeks = moment();
-  I.enterDateCantAttendAndContinue(dateUnderFourWeeks, content.links.add);
-  I.see(content.fields.cantAttendDate.error.underFourWeeks);
-});
+  Scenario(`${language.toUpperCase()} - When I click Continue when only entering the year field, I see errors`, I => {
+    I.click(datesCantAttendContent.links.add);
+    I.fillField('input[name*="year"]', validDate.year().toString());
+    I.click(commonContent.continue);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.dayRequired);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.monthRequired);
+  });
 
-Scenario('When I enter a date that is over twenty two weeks from now, I see errors', I => {
-  const dateOverTwentyTwoWeeks = moment().add(23, 'weeks');
-  I.enterDateCantAttendAndContinue(dateOverTwentyTwoWeeks, content.links.add);
-  I.see(content.fields.cantAttendDate.error.overTwentyTwoWeeks);
-});
+  Scenario(`${language.toUpperCase()} - When I enter a date that is under four weeks from now, I see errors`, I => {
+    const dateUnderFourWeeks = moment();
+    I.enterDateCantAttendAndContinue(dateUnderFourWeeks, datesCantAttendContent.links.add);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.underFourWeeks);
+  });
 
-Scenario('I enter a date I cant attend with the long name of month', I => {
-  const month = validDate.format('MMMM');
-  I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
-  I.click('Continue');
-  I.seeCurrentUrlEquals(paths.checkYourAppeal);
-});
+  Scenario(`${language.toUpperCase()} - When I enter a date that is over twenty two weeks from now, I see errors`, I => {
+    const dateOverTwentyTwoWeeks = moment().add(23, 'weeks');
+    I.enterDateCantAttendAndContinue(dateOverTwentyTwoWeeks, datesCantAttendContent.links.add);
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.overTwentyTwoWeeks);
+  });
 
-Scenario('I enter a date I cant attend with the short name of month', I => {
-  const month = validDate.format('MMM');
-  I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
-  I.click('Continue');
-  I.seeCurrentUrlEquals(paths.checkYourAppeal);
-});
+  Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the long name of month`, I => {
+    const month = validDate.format('MMMM');
+    I.click(datesCantAttendContent.links.add);
+    I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
+    I.click(commonContent.continue);
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
+  });
 
-Scenario('I enter a date I cant attend with an invalid name of month', I => {
-  I.click(content.links.add);
-  I.enterADateAndContinue(validDate.date().toString(), 'invalidMonth', validDate.year().toString());
-  I.see(content.fields.cantAttendDate.error.invalid);
+  Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the short name of month`, I => {
+    const month = validDate.format('MMM');
+    I.click(datesCantAttendContent.links.add);
+    I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
+    I.click(commonContent.continue);
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
+  });
+
+  Scenario(`${language.toUpperCase()} - I enter a date I cant attend with an invalid name of month`, I => {
+    I.click(datesCantAttendContent.links.add);
+    I.enterADateAndContinue(validDate.date().toString(), 'invalidMonth', validDate.year().toString());
+    I.see(datesCantAttendContent.fields.cantAttendDate.error.invalid);
+  });
 });

@@ -68,10 +68,10 @@
     {% if deleteUrl or editUrl %}
       <dd class="govuk-summary-list__actions">
         {% if editUrl %}
-          <a href="{{ editUrl }}" class="govuk-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ editUrl }}" class="govuk-link">commonContent[htmlLang].edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
         {% if deleteUrl %}
-          <a href="{{ deleteUrl }}" class="govuk-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ deleteUrl }}" class="govuk-link">commonContent[htmlLang].delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
       </dd>
     {% endif %}
