@@ -55,6 +55,9 @@ module.exports = {
     }
   },
   cy: {
+    question: '.govuk-summary-list__key',
+    answer: '.govuk-summary-list__value',
+    change: '.govuk-summary-list__actions',
     mrn: {
       dwpIssuingOffice: '#cya-dwpissuingoffice-rhif-o-gyfeiriad-yr-mrn',
       noMRN: '#cya-nomrn-rheswm-dros-pam-nad-oes-gennych-mrn'
