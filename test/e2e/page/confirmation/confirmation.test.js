@@ -9,6 +9,9 @@ const languages = ['en', 'cy'];
 Feature('Confirmation @batch-08');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const confirmationContent = language === 'en' ? confirmationContentEn : confirmationContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.confirmation);
@@ -17,9 +20,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const confirmationContent = language === 'en' ? confirmationContentEn : confirmationContentCy;
 
   Scenario(`${language.toUpperCase()} - When I go to the page I see the header`, I => {
     I.see(confirmationContent.title);

@@ -11,6 +11,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant details form @batch-09');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const appellantContactDetailsContent = language === 'en' ? appellantContactDetailsContentEn : appellantContactDetailsContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantContactDetails);
@@ -19,9 +22,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const appellantContactDetailsContent = language === 'en' ? appellantContactDetailsContentEn : appellantContactDetailsContentCy;
 
   Scenario(`${language.toUpperCase()} - When completing the form, clicking Continue, I see url /appellant-text-reminders`, I => {
     I.fillField('addressLine1', appellant.contactDetails.addressLine1);

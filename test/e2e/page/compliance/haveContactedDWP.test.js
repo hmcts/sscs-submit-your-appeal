@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Have Contacted DWP @batch-07');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const haveContactedDWPContent = language === 'en' ? haveContactedDWPContentEn : haveContactedDWPContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.compliance.haveContactedDWP);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const haveContactedDWPContent = language === 'en' ? haveContactedDWPContentEn : haveContactedDWPContentCy;
 
   Scenario(`${language.toUpperCase()} - When I select yes I am taken to the No MRN page`, I => {
     I.selectHaveYouContactedDWPAndContinue(commonContent, '#haveContactedDWP-yes');

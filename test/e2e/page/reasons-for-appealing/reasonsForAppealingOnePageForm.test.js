@@ -12,6 +12,9 @@ const languages = ['en', 'cy'];
 Feature('Reason For Appealing One Page Form @batch-10');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
@@ -21,9 +24,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
   Scenario(`${language.toUpperCase()} - When I go to the page I see two input fields`, I => {
     I.seeElement(`#items-0 ${whatYouDisagreeWithField}-0`);

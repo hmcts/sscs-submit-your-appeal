@@ -14,6 +14,8 @@ const languages = ['en', 'cy'];
 Feature('Appellant PIP, one month ago, does not attend hearing. @batch-05');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -22,8 +24,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario('Appellant omits optional phone number, does not sign up for text msg reminders.', I => {
     I.enterDetailsFromStartToNINO(commonContent);

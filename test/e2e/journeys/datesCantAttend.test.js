@@ -13,6 +13,8 @@ const languages = ['en', 'cy'];
 Feature('PIP, one month ago, attends hearing with dates cannot attend');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -21,8 +23,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async I => {
     const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));

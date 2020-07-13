@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Check-your-appeal @functional');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+
   Before(I => {
     I.createTheSession(language);
   });
@@ -15,9 +18,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
 
   Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, I => {
     I.amOnPage(paths.checkYourAppeal);

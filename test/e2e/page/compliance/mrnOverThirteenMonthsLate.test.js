@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('MRN Over thirteen months late @batch-07');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const mrnOverThirteenMonthsLateContent = language === 'en' ? mrnOverThirteenMonthsLateContentEn : mrnOverThirteenMonthsLateContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.compliance.mrnOverThirteenMonthsLate);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const mrnOverThirteenMonthsLateContent = language === 'en' ? mrnOverThirteenMonthsLateContentEn : mrnOverThirteenMonthsLateContentCy;
 
   Scenario(`${language.toUpperCase()} - I enter a lateness reason, I click continue, I am taken to /enter-appellant-name`, I => {
     I.fillField('#reasonForBeingLate', 'Reason for being late');

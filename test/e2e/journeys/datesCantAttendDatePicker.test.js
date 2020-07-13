@@ -14,6 +14,8 @@ const languages = ['en', 'cy'];
 Feature('Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -22,8 +24,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(

@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('DWP Issuing Office @batch-07');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const dwpIssuingOfficeContent = language === 'en' ? dwpIssuingOfficeContentEn : dwpIssuingOfficeContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.compliance.dwpIssuingOffice);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const dwpIssuingOfficeContent = language === 'en' ? dwpIssuingOfficeContentEn : dwpIssuingOfficeContentCy;
 
   Scenario(`${language.toUpperCase()} - When I enter a valid issuing office, I am taken to the mrn date page`, I => {
     I.enterDWPIssuingOfficeAndContinue(commonContent, '1');

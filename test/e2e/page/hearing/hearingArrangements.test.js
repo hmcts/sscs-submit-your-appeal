@@ -12,6 +12,9 @@ const languages = ['en', 'cy'];
 Feature('Hearing arrangements @batch-08');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.hearing.hearingArrangements);
@@ -20,9 +23,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
   Scenario(`${language.toUpperCase()} - I do not select any checkboxes and continue to see errors`, I => {
     I.click(commonContent.continue);

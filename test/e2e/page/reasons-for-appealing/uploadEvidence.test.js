@@ -11,13 +11,13 @@ Feature('Uploading Evidence @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   languages.forEach(language => {
+    const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
+
     Before(I => {
       I.createTheSession(language);
       I.amOnPage(paths.reasonsForAppealing.evidenceProvide);
       I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
     });
-
-    const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
     Scenario(`${language.toUpperCase()} - I can upload correctly a file`, I => {
       I.attachFile('#uploadEv', 'evidence.txt');

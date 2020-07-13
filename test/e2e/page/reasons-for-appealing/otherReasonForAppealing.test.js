@@ -6,6 +6,8 @@ const languages = ['en', 'cy'];
 Feature('Other Reasons For Appealing');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.reasonsForAppealing.otherReasonForAppealing);
@@ -15,8 +17,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - When I enter special chars then I see no errors`, I => {
     I.fillField('otherReasonForAppealing', '&$%^&%!~$^&&&*');

@@ -6,6 +6,8 @@ const languages = ['en', 'cy'];
 Feature('Enter Mobile @batch-11');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.smsNotify.enterMobile);
@@ -14,8 +16,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - When I enter a valid mobile number, I am taken to the sms-confirmation page`, I => {
     I.fillField('#enterMobile', '07223344556');

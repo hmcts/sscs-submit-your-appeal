@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant NINO form @batch-09');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const appellantNinoContent = language === 'en' ? appellantNinoContentEn : appellantNinoContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantNINO);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const appellantNinoContent = language === 'en' ? appellantNinoContentEn : appellantNinoContentCy;
 
   Scenario(`${language.toUpperCase()} - I see the correct information is displayed`, I => {
     I.see(appellantNinoContent.title.withoutAppointee);

@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Representative Details @batch-10');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const representativeDetailsContent = language === 'en' ? representativeDetailsContentEn : representativeDetailsContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.representative.representativeDetails);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const representativeDetailsContent = language === 'en' ? representativeDetailsContentEn : representativeDetailsContentCy;
 
   Scenario('After completing the form I am taken to the /reasons-for-appealing page', I => {
     I.enterRequiredRepresentativeDetails();

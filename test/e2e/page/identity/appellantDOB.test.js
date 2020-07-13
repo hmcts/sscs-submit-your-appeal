@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant DOB form @batch-09');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantDOB);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
   Scenario(`${language.toUpperCase()} - When I complete the form and click Continue, I am taken to /enter-appellant-nino`, I => {
     I.enterAppellantDOBAndContinue('21', '03', '1981');

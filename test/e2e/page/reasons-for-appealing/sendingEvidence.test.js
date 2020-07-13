@@ -11,6 +11,9 @@ Feature('Sending Evidence - appellant contact details @evidence-upload @batch-10
 
 if (!evidenceUploadEnabled) {
   languages.forEach(language => {
+    const commonContent = content[language];
+    const sendingEvidenceContent = language === 'en' ? sendingEvidenceContentEn : sendingEvidenceContentCy;
+
     Before(I => {
       I.createTheSession(language);
       I.amOnPage(paths.identity.enterAppellantContactDetails);
@@ -19,9 +22,6 @@ if (!evidenceUploadEnabled) {
     After(I => {
       I.endTheSession();
     });
-
-    const commonContent = content[language];
-    const sendingEvidenceContent = language === 'en' ? sendingEvidenceContentEn : sendingEvidenceContentCy;
 
     Scenario(`${language.toUpperCase()} - When I omit my email address I see the correct content on /sending-evidence`, I => {
       I.enterAppellantContactDetailsAndContinue(commonContent, language);

@@ -17,6 +17,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant does not have a MRN @batch-04');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const contactDWPContent = language === 'en' ? contactDWPContentEn : contactDWPContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -25,9 +28,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const contactDWPContent = language === 'en' ? contactDWPContentEn : contactDWPContentCy;
 
   Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async I => {
     const randomWeekDay = DateUtils.getDateInMilliseconds(

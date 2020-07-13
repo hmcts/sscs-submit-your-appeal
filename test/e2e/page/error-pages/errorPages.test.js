@@ -6,6 +6,8 @@ const languages = ['en', 'cy'];
 Feature('Error Pages @batch-08');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
   });
@@ -13,8 +15,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - When I go to a path that /does-not-exist I see an error message`, I => {
     I.amOnPage(paths.errors.doesNotExist);

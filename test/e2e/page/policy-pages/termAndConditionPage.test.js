@@ -7,11 +7,11 @@ const languages = ['en', 'cy'];
 Feature('Terms and Conditions Page @batch-10');
 
 languages.forEach(language => {
+  const termsAndConditionsContent = language === 'en' ? termsAndConditionsContentEn : termsAndConditionsContentCy;
+
   Before(I => {
     I.amOnPage(paths.policy.termsAndConditions);
   });
-
-  const termsAndConditionsContent = language === 'en' ? termsAndConditionsContentEn : termsAndConditionsContentCy;
 
   Scenario(`${language.toUpperCase()} - I see the page title text`, I => {
     I.see(termsAndConditionsContent.title);

@@ -13,6 +13,9 @@ const languages = ['en', 'cy'];
 Feature('Dates can\'t attend @batch-08');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
+
   Before(async I => {
     I.createTheSession(language);
     I.amOnPage(paths.hearing.datesCantAttend);
@@ -22,9 +25,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
   Scenario(`${language.toUpperCase()} - When I go to the page and there are no dates I see the Add date link`, I => {
     I.see(datesCantAttendContent.noDates);

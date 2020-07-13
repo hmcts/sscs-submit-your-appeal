@@ -6,6 +6,8 @@ const languages = ['en', 'cy'];
 Feature('Representative @batch-10');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.representative.representative);
@@ -14,8 +16,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - When I select yes, I am taken to the representative details page`, I => {
     I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-yes');

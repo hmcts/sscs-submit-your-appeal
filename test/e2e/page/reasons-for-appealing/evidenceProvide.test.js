@@ -14,6 +14,10 @@ Feature('Evidence provide page @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   languages.forEach(language => {
+    const theHearingContent = language === 'en' ? theHearingContentEn : theHearingContentCy;
+    const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
+    const evidenceProvideContent = language === 'en' ? evidenceProvideContentEn : evidenceProvideContentCy;
+
     Before(I => {
       I.createTheSession(language);
       I.amOnPage(paths.reasonsForAppealing.evidenceProvide);
@@ -22,10 +26,6 @@ if (evidenceUploadEnabled) {
     After(I => {
       I.endTheSession();
     });
-
-    const theHearingContent = language === 'en' ? theHearingContentEn : theHearingContentCy;
-    const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
-    const evidenceProvideContent = language === 'en' ? evidenceProvideContentEn : evidenceProvideContentCy;
 
     Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, I => {
       I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);

@@ -37,6 +37,9 @@ const languages = ['en', 'cy'];
 Feature('Benefit Type @batch-12');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
+
   Before(I => {
     I.createTheSession(language);
   });
@@ -44,9 +47,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
 
   Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, I => {
     I.enterBenefitTypeAndContinue(commonContent, 'pip');

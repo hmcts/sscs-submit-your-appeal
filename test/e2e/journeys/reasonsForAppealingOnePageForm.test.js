@@ -21,6 +21,8 @@ const languages = ['en', 'cy'];
 Feature('Appellant PIP, one month ago, attends hearing with reasons for appealing one page form');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -29,8 +31,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, I => {
     I.enterDetailsFromStartToNINO(commonContent);

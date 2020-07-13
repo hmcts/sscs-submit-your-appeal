@@ -8,13 +8,13 @@ const languages = ['en', 'cy'];
 Feature('Enter postcode');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const postcodeCheckerContent = language === 'en' ? postcodeCheckerContentEn : postcodeCheckerContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.start.postcodeCheck);
   });
-
-  const commonContent = content[language];
-  const postcodeCheckerContent = language === 'en' ? postcodeCheckerContentEn : postcodeCheckerContentCy;
 
   Scenario(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, I => {
     I.see(postcodeCheckerContent.title);

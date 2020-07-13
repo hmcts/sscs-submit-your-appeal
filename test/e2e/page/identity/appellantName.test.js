@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant Name form @batch-09');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantName);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
   Scenario(`${language.toUpperCase()} - When I fill in the fields and click Continue, I am taken to /enter-appellant-dob`, I => {
     I.fillField('title', 'Mr');

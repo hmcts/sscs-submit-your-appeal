@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Text Reminders - appellant contact details @batch-11');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const textRemindersContent = language === 'en' ? textRemindersContentEn : textRemindersContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantContactDetails);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const textRemindersContent = language === 'en' ? textRemindersContentEn : textRemindersContentCy;
 
   Scenario('Enter mobile and click Sign up, I am taken to the send to number page', I => {
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language);

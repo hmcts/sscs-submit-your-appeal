@@ -13,6 +13,9 @@ const languages = ['en', 'cy'];
 Feature('Appellant PIP, one month ago, attends hearing with support @batch-02');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -21,9 +24,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, I => {
     I.enterDetailsFromStartToNINO(commonContent);

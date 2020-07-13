@@ -10,6 +10,10 @@ const languages = ['en', 'cy'];
 Feature('SMS Confirmation - appellant contact details @batch-11');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const smsConfirmationContent = language === 'en' ? smsConfirmationContentEn : smsConfirmationContentCy;
+  const textRemindersContent = language === 'en' ? textRemindersContentEn : textRemindersContentCy;
+
   Before(I => {
     I.createTheSession();
     I.amOnPage(paths.identity.enterAppellantContactDetails);
@@ -18,10 +22,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const smsConfirmationContent = language === 'en' ? smsConfirmationContentEn : smsConfirmationContentCy;
-  const textRemindersContent = language === 'en' ? textRemindersContentEn : textRemindersContentCy;
 
   Scenario(`${language.toUpperCase()} - When I click Continue, I am taken to the Representative page`, I => {
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language);

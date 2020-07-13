@@ -13,6 +13,10 @@ Feature('Evidence description page @evidence-upload @batch-10');
 
 if (evidenceUploadEnabled) {
   languages.forEach(language => {
+    const commonContent = content[language];
+    const theHearingContent = language === 'en' ? theHearingContentEn : theHearingContentCy;
+    const evidenceDescriptionContent = language === 'en' ? evidenceDescriptionContentEn : evidenceDescriptionContentCy;
+
     Before(I => {
       I.createTheSession(language);
       I.amOnPage(paths.reasonsForAppealing.evidenceDescription);
@@ -21,10 +25,6 @@ if (evidenceUploadEnabled) {
     After(I => {
       I.endTheSession();
     });
-
-    const commonContent = content[language];
-    const theHearingContent = language === 'en' ? theHearingContentEn : theHearingContentCy;
-    const evidenceDescriptionContent = language === 'en' ? evidenceDescriptionContentEn : evidenceDescriptionContentCy;
 
     Scenario(`${language.toUpperCase()} - When I select continue, I am taken to the hearing page`, I => {
       I.click(commonContent.continue);

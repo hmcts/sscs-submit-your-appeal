@@ -16,6 +16,9 @@ const languages = ['en', 'cy'];
 Feature('User has an MRN @batch-07');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const mrnDateContent = language === 'en' ? mrnDateContentEn : mrnDateContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.compliance.mrnDate);
@@ -24,9 +27,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const mrnDateContent = language === 'en' ? mrnDateContentEn : mrnDateContentCy;
 
   Scenario(`${language.toUpperCase()} - I have an MRN dated one day short of a month ago`, I => {
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneDayShortOfAMonthAgo());

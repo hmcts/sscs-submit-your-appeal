@@ -15,6 +15,10 @@ const languages = ['en', 'cy'];
 Feature('Appeal form download page @batch-06');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const benefitTypeContent = language === 'en' ? benefitTypeContentEn : benefitTypeContentCy;
+  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
+
   Before(I => {
     I.createTheSession(language);
   });
@@ -22,10 +26,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const benefitTypeContent = language === 'en' ? benefitTypeContentEn : benefitTypeContentCy;
-  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
 
   Scenario(`${language.toUpperCase()} - I see SSCS1 content when not selecting Carer's Allowance or CBLP`, I => {
     I.enterBenefitTypeAndContinue(commonContent, benefitTypes.disabilityLivingAllowance);

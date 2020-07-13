@@ -6,6 +6,8 @@ const languages = ['en', 'cy'];
 Feature('Postcode lookup test for type  Manual @functional');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -14,8 +16,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, I => {
     I.amOnPage(paths.session.root);

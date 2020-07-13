@@ -15,6 +15,11 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
   Feature('Appellant who chooses ESA @batch-01 @esa');
 
   languages.forEach(language => {
+    const commonContent = content[language];
+    const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
+    const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
+    const independenceContent = language === 'en' ? independenceContentEn : independenceContentCy;
+
     Before(I => {
       I.createTheSession(language);
       I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -25,12 +30,6 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
       I.endTheSession();
     });
 
-    const commonContent = content[language];
-    const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
-    const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
-    const independenceContent = language === 'en' ? independenceContentEn : independenceContentCy;
-
-    /* eslint-disable max-len */
     Scenario(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, I => {
       I.enterBenefitTypeAndContinue(commonContent, 'ESA');
       // I.chooseLanguagePreference(commonContent, 'no');
@@ -51,7 +50,6 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
       I.amOnPage(paths.start.independence);
       I.see(independenceContent.reviewed);
     });
-    /* eslint-enable max-len */
     /* eslint-enable global-require */
   });
 }

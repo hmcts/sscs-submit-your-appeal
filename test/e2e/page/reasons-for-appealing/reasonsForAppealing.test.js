@@ -9,6 +9,9 @@ const languages = ['en', 'cy'];
 Feature('Reason For Appealing @batch-10');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const reasonsForAppealingContent = language === 'en' ? reasonsForAppealingContentEn : reasonsForAppealingContentCy;
+
   Before(async I => {
     I.createTheSession(language);
     I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
@@ -18,9 +21,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const reasonsForAppealingContent = language === 'en' ? reasonsForAppealingContentEn : reasonsForAppealingContentCy;
 
   Scenario(`${language.toUpperCase()} - When I do not add enough what you disagree with it, I see errors`, I => {
     I.click(reasonsForAppealingContent.links.add);

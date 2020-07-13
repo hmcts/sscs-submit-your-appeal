@@ -20,6 +20,8 @@ const languages = ['en', 'cy'];
 Feature('Appellant has a dated MRN @batch-03');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+
   Before(I => {
     I.createTheSession(language);
     I.seeCurrentUrlEquals(paths.start.benefitType);
@@ -28,8 +30,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
 
   [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
     Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, I => {

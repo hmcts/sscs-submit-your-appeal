@@ -8,6 +8,9 @@ const languages = ['en', 'cy'];
 Feature('Check MRN @batch-07');
 
 languages.forEach(language => {
+  const commonContent = content[language];
+  const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
+
   Before(I => {
     I.createTheSession(language);
     I.amOnPage(paths.compliance.haveAMRN);
@@ -16,9 +19,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const commonContent = content[language];
-  const haveAMRNContent = language === 'en' ? haveAMRNContentEn : haveAMRNContentCy;
 
   Scenario(`${language.toUpperCase()} - When I select yes I am taken to the DWP Issuing office page`, I => {
     I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');

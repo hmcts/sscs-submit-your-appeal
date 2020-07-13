@@ -11,6 +11,10 @@ const languages = ['en', 'cy'];
 Feature('Appointee form @batch-09');
 
 languages.forEach(language => {
+  const independenceContent = language === 'en' ? independenceContentEn : independenceContentCy;
+  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
+  const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
+
   Before(I => {
     I.createTheSession();
     I.amOnPage(paths.identity.areYouAnAppointee);
@@ -19,10 +23,6 @@ languages.forEach(language => {
   After(I => {
     I.endTheSession();
   });
-
-  const independenceContent = language === 'en' ? independenceContentEn : independenceContentCy;
-  const appealFormDownloadContent = language === 'en' ? appealFormDownloadContentEn : appealFormDownloadContentCy;
-  const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
   Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, I => {
     I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.yes);
