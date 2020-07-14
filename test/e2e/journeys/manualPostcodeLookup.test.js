@@ -19,7 +19,7 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, I => {
     I.amOnPage(paths.session.root);
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToEnd(commonContent);

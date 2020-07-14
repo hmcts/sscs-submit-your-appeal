@@ -33,7 +33,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
@@ -67,7 +67,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
@@ -119,7 +119,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');

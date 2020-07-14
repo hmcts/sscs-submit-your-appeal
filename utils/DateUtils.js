@@ -32,11 +32,15 @@ class DateUtils {
       .add(1, 'day');
   }
 
-  static oneMonthAgo() {
+  static oneMonthAgo(language) {
+    moment().locale(language);
+
     return moment().subtract(1, 'month');
   }
 
-  static oneMonthAndOneDayAgo() {
+  static oneMonthAndOneDayAgo(language) {
+    moment().locale(language);
+
     return moment().subtract(1, 'month')
       .subtract(1, 'day');
   }
@@ -50,7 +54,9 @@ class DateUtils {
     return moment().subtract(13, 'month');
   }
 
-  static thirteenMonthsAndOneDayAgo() {
+  static thirteenMonthsAndOneDayAgo(language) {
+    moment().locale(language);
+
     return moment().subtract(13, 'month')
       .subtract(1, 'day');
   }

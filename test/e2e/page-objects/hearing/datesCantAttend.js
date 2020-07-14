@@ -13,16 +13,16 @@ function enterDateCantAttendAndContinue(commonContent, date, link) {
   I.click(commonContent.continue);
 }
 
-function seeFormattedDate(language, date) {
+function seeFormattedDate(date) {
   const I = this;
 
-  I.see(DateUtils.formatDate(date, 'dddd D MMMM YYYY', language));
+  I.see(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
 }
 
-function dontSeeFormattedDate(language, date) {
+function dontSeeFormattedDate(date) {
   const I = this;
   I.wait(5);
-  I.dontSee(DateUtils.formatDate(date, 'dddd D MMMM YYYY', language));
+  I.dontSee(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
 }
 
 async function hasSelectedClass(element) {
@@ -42,6 +42,8 @@ async function doesntHaveSelectedClass(element) {
 }
 
 async function selectDates(language, dates) {
+  moment().locale(language);
+
   const I = this;
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
@@ -49,19 +51,21 @@ async function selectDates(language, dates) {
     await I.clickNextIfDateNotVisible(date);
     I.click(element);
     I.wait(3);
-    I.seeFormattedDate(language, moment(date));
+    I.seeFormattedDate(moment(date));
     await I.hasSelectedClass(element);
   }
 }
 
 async function deselectDates(language, dates) {
+  moment().locale(language);
+
   const I = this;
 
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     I.click(element);
-    I.dontSeeFormattedDate(language, moment(date));
+    I.dontSeeFormattedDate(moment(date));
     await I.doesntHaveSelectedClass(element);
   }
 }

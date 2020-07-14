@@ -5,9 +5,6 @@ const paths = require('paths');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
 
-const validDate = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-const additionalValidDate = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
-
 const languages = ['en', 'cy'];
 
 Feature('Dates can\'t attend @batch-08');
@@ -15,6 +12,11 @@ Feature('Dates can\'t attend @batch-08');
 languages.forEach(language => {
   const commonContent = content[language];
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
+
+  moment().locale(language);
+
+  const validDate = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+  const additionalValidDate = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
 
   Before(async I => {
     I.createTheSession(language);
@@ -42,7 +44,7 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the date in the list`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(language, validDate);
+    I.seeFormattedDate(validDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the add another date link`, I => {
@@ -53,15 +55,15 @@ languages.forEach(language => {
   Scenario(`${language.toUpperCase()} - When I add multiple dates, I see them in the list`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, datesCantAttendContent.links.addAnother);
-    I.seeFormattedDate(language, validDate);
+    I.seeFormattedDate(validDate);
     I.seeFormattedDate(additionalValidDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date and click the delete link, the date is removed`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(language, validDate);
+    I.seeFormattedDate(validDate);
     I.click(commonContent.delete);
-    I.dontSeeFormattedDate(language, validDate);
+    I.dontSeeFormattedDate(validDate);
   });
 
   Scenario(`${language.toUpperCase()} - I add a single date, I remove it, I see Add date`, I => {
@@ -79,10 +81,10 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - When I add a date and the edit it, I see the new date`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(language, validDate);
+    I.seeFormattedDate(validDate);
     I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, commonContent.edit);
-    I.dontSeeFormattedDate(language, validDate);
-    I.seeFormattedDate(language, additionalValidDate);
+    I.dontSeeFormattedDate(validDate);
+    I.seeFormattedDate(additionalValidDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I click Continue without filling in the date fields, I see errors`, I => {
@@ -128,7 +130,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the long name of month`, I => {
-    const month = DateUtils.formatDate(validDate, 'MMMM', language);
+    const month = DateUtils.formatDate(validDate, 'MMMM');
     I.click(datesCantAttendContent.links.add);
     I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
     I.click(commonContent.continue);
@@ -136,7 +138,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the short name of month`, I => {
-    const month = DateUtils.formatDate(validDate, 'MMM', language);
+    const month = DateUtils.formatDate(validDate, 'MMM');
     I.click(datesCantAttendContent.links.add);
     I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
     I.click(commonContent.continue);

@@ -14,7 +14,7 @@ languages.forEach(language => {
   Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, I => {
     I.amOnPage(`${paths.session.root}?lng=${language}`);
     I.wait(2);
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, appellant.contactDetails.phoneNumber);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
     I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');

@@ -15,9 +15,9 @@ const paths = require('paths');
 const testData = require('test/e2e/data');
 
 const appellant = testData.appellant;
-const oneMonthAgo = DateUtils.oneMonthAgo();
+// const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(commonContent, benefitTypeCode = testData.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testData.benefitType.code) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -28,7 +28,7 @@ function enterDetailsFromStartToNINO(commonContent, benefitTypeCode = testData.b
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, oneMonthAgo);
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   I.enterDWPIssuingOfficeAndContinue(commonContent, testData.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
@@ -103,9 +103,15 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
 }
 
-function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo) {
+function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   const I = this;
   const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+  const oneMonthAgo = DateUtils.oneMonthAgo(language);
+  let mrnDateToCheck = mrnDate;
+
+  if (hasMRN && !mrnDate) {
+    mrnDateToCheck = oneMonthAgo;
+  }
 
   // We are on CYA
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
@@ -118,9 +124,9 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo
     I.see(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice);
 
     // The Date of the MRN
-    I.see(DateUtils.formatDate(mrnDate, 'DD MMMM YYYY', language));
+    I.see(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY'));
 
-    if (mrnDate.isAfter(oneMonthAgo)) {
+    if (mrnDateToCheck.isAfter(oneMonthAgo)) {
       // Reason why the MRN is late
       I.see(testData.mrn.reasonWhyMRNisLate);
     }

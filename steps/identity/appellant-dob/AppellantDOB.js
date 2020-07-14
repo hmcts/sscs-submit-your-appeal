@@ -52,7 +52,7 @@ class AppellantDOB extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.dob.question,
         section: sections.appellantDetails,
-        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
+        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY')
       })
     ];
   }

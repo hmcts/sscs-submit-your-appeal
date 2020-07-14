@@ -5,15 +5,7 @@ const testData = require('test/e2e/data');
 
 const appellant = testData.appellant;
 
-const oneMonthAndOneDayLate = {
-  mrnDate: DateUtils.oneMonthAndOneDayAgo(),
-  label: 'one month late'
-};
 
-const thirteenMonthsAndOneDayLate = {
-  mrnDate: DateUtils.thirteenMonthsAndOneDayAgo(),
-  label: 'thirteen months late'
-};
 
 const languages = ['en', 'cy'];
 
@@ -21,6 +13,15 @@ Feature('Appellant has a dated MRN @batch-03');
 
 languages.forEach(language => {
   const commonContent = content[language];
+  const oneMonthAndOneDayLate = {
+    mrnDate: DateUtils.oneMonthAndOneDayAgo(language),
+    label: 'one month late'
+  };
+
+  const thirteenMonthsAndOneDayLate = {
+    mrnDate: DateUtils.thirteenMonthsAndOneDayAgo(language),
+    label: 'thirteen months late'
+  };
 
   Before(I => {
     I.createTheSession(language);

@@ -51,7 +51,7 @@ class MRNDate extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.mrnDate.question,
         section: sections.mrnDate,
-        answer: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY', i18next.language)
+        answer: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY')
 
       })
     ];

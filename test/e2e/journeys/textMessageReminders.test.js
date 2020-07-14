@@ -25,7 +25,7 @@ languages.forEach(language => {
   });
 
   Scenario('Appellant omits optional phone number, does not sign up for text msg reminders.', I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToEnd(commonContent);
@@ -35,7 +35,7 @@ languages.forEach(language => {
   }).retry(2);
 
   Scenario('Appellant omits optional phone number, enters mobile for text msg reminders.', I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
     I.enterMobileAndContinue(commonContent, '07455678444');
@@ -47,7 +47,7 @@ languages.forEach(language => {
   }).retry(2);
 
   Scenario('Appellant adds a phone number and uses it to sign up for text msg reminders.', I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
 
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
@@ -60,7 +60,7 @@ languages.forEach(language => {
   }).retry(2);
 
   Scenario('Appellant adds a phone number, provides a separate number for text msg reminders.', I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
     I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
@@ -73,7 +73,7 @@ languages.forEach(language => {
   }).retry(2);
 
   Scenario('Appellant adds a phone number, but does not sign up for text msg reminders.', I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToEnd(commonContent);

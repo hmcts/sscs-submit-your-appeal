@@ -26,7 +26,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
@@ -39,7 +39,7 @@ languages.forEach(language => {
   }).retry(1);
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
@@ -60,7 +60,7 @@ languages.forEach(language => {
   }).retry(1);
 
   Scenario(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, I => {
-    I.enterDetailsFromStartToNINO(commonContent);
+    I.enterDetailsFromStartToNINO(commonContent, language);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);

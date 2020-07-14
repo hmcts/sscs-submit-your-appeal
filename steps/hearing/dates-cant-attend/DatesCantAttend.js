@@ -77,7 +77,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: orderedItems.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY', i18next.language)),
+        answer: orderedItems.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY')),
         url: paths.hearing.hearingAvailability
       })
     ];

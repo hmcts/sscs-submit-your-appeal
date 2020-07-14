@@ -2,21 +2,23 @@ const paths = require('paths');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
 
-const dateFiveWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
-);
-const dateSixWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(6, 'weeks'))
-);
-const dateSevenWeeksFromNow = DateUtils.getDateInMilliseconds(
-  DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(7, 'weeks'))
-);
-
 const languages = ['en', 'cy'];
 
 Feature('Dates can\'t attend date picker @batch-08');
 
 languages.forEach(language => {
+  moment().locale(language);
+
+  const dateFiveWeeksFromNow = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
+  );
+  const dateSixWeeksFromNow = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(6, 'weeks'))
+  );
+  const dateSevenWeeksFromNow = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(7, 'weeks'))
+  );
+
   Before(I => {
     I.createTheSession();
     I.amOnPage(paths.hearing.datesCantAttend);
@@ -55,7 +57,7 @@ languages.forEach(language => {
     async I => {
       await I.selectDates(language, [dateFiveWeeksFromNow]);
       I.click('Remove');
-      I.dontSeeFormattedDate(language, moment(dateFiveWeeksFromNow));
+      I.dontSeeFormattedDate(moment(dateFiveWeeksFromNow));
     });
 
   Scenario(`${language.toUpperCase()} - When I select a disabled date, I don't see it in the table`, async I => {
@@ -64,7 +66,7 @@ languages.forEach(language => {
     );
     const element = `//*[@data-date="${date}"]`;
     I.click(element);
-    I.dontSeeFormattedDate(language, moment(date));
+    I.dontSeeFormattedDate(moment(date));
     await I.doesntHaveSelectedClass(element);
   });
 });
