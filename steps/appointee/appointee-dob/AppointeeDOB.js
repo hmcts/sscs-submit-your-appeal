@@ -5,6 +5,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
+const i18next = require('i18next');
 
 class AppointeeDOB extends SaveToDraftStore {
   static get path() {
@@ -15,7 +16,7 @@ class AppointeeDOB extends SaveToDraftStore {
     const fields = this.content.fields;
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
         date.required({
           allRequired: fields.date.error.allRequired,
           dayRequired: fields.date.error.dayRequired,
@@ -37,7 +38,7 @@ class AppointeeDOB extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.dob.question,
         section: sections.appointeeDetails,
-        answer: this.fields.date.value.format('DD MMMM YYYY')
+        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
       })
     ];
   }
@@ -45,7 +46,7 @@ class AppointeeDOB extends SaveToDraftStore {
   values() {
     return {
       appointee: {
-        dob: this.fields.date.value.format('DD-MM-YYYY')
+        dob: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
       }
     };
   }

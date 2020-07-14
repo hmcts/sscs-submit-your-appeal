@@ -33,8 +33,8 @@ languages.forEach(language => {
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
-    I.confirmDetailsArePresent();
-    I.see(moment(randomWeekDay).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.confirmDetailsArePresent(language);
+    I.see(DateUtils.formatDate(moment(randomWeekDay), 'DD MMMM YYYY', language), datesYouCantAttendHearingAnswer);
   }).retry(1);
 
   Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async I => {
@@ -50,7 +50,7 @@ languages.forEach(language => {
     I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
     await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDayIn8Weeks);
-    I.see(moment(randomWeekDayIn8Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.see(DateUtils.formatDate(moment(randomWeekDayIn8Weeks), 'DD MMMM YYYY', language), datesYouCantAttendHearingAnswer);
 
     // Now edit the single date from 5 to 6 weeks.
     I.click(commonContent.change, datesYouCantAttendHearingChange);
@@ -60,6 +60,6 @@ languages.forEach(language => {
     I.wait(2);
     await I.selectDates([randomWeekDayIn10Weeks]);
     I.click(commonContent.continue);
-    I.see(moment(randomWeekDayIn10Weeks).format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+    I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY', language), datesYouCantAttendHearingAnswer);
   }).retry(1);
 });

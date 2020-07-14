@@ -118,7 +118,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate = oneMonthAgo
     I.see(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice);
 
     // The Date of the MRN
-    I.see(mrnDate.format('DD MMMM YYYY'));
+    I.see(DateUtils.formatDate(mrnDate, 'DD MMMM YYYY', language));
 
     if (mrnDate.isAfter(oneMonthAgo)) {
       // Reason why the MRN is late

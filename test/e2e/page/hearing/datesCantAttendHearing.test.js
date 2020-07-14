@@ -42,7 +42,7 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the date in the list`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(validDate);
+    I.seeFormattedDate(language, validDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the add another date link`, I => {
@@ -53,15 +53,15 @@ languages.forEach(language => {
   Scenario(`${language.toUpperCase()} - When I add multiple dates, I see them in the list`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, datesCantAttendContent.links.addAnother);
-    I.seeFormattedDate(validDate);
+    I.seeFormattedDate(language, validDate);
     I.seeFormattedDate(additionalValidDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date and click the delete link, the date is removed`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(validDate);
+    I.seeFormattedDate(language, validDate);
     I.click(commonContent.delete);
-    I.dontSeeFormattedDate(validDate);
+    I.dontSeeFormattedDate(language, validDate);
   });
 
   Scenario(`${language.toUpperCase()} - I add a single date, I remove it, I see Add date`, I => {
@@ -79,10 +79,10 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - When I add a date and the edit it, I see the new date`, I => {
     I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
-    I.seeFormattedDate(validDate);
+    I.seeFormattedDate(language, validDate);
     I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, commonContent.edit);
-    I.dontSeeFormattedDate(validDate);
-    I.seeFormattedDate(additionalValidDate);
+    I.dontSeeFormattedDate(language, validDate);
+    I.seeFormattedDate(language, additionalValidDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I click Continue without filling in the date fields, I see errors`, I => {
@@ -128,7 +128,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the long name of month`, I => {
-    const month = validDate.format('MMMM');
+    const month = DateUtils.formatDate(validDate, 'MMMM', language);
     I.click(datesCantAttendContent.links.add);
     I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
     I.click(commonContent.continue);
@@ -136,7 +136,7 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - I enter a date I cant attend with the short name of month`, I => {
-    const month = validDate.format('MMM');
+    const month = DateUtils.formatDate(validDate, 'MMM', language);
     I.click(datesCantAttendContent.links.add);
     I.enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString());
     I.click(commonContent.continue);

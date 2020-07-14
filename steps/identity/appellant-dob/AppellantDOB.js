@@ -6,6 +6,7 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
+const i18next = require('i18next');
 
 class AppellantDOB extends SaveToDraftStore {
   static get path() {
@@ -29,7 +30,7 @@ class AppellantDOB extends SaveToDraftStore {
     const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
         date.required({
           allRequired: error.allRequired,
           dayRequired: error.dayRequired,
@@ -51,7 +52,7 @@ class AppellantDOB extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.dob.question,
         section: sections.appellantDetails,
-        answer: this.fields.date.value.format('DD MMMM YYYY')
+        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
       })
     ];
   }
@@ -59,7 +60,7 @@ class AppellantDOB extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        dob: this.fields.date.value.format('DD-MM-YYYY')
+        dob: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', 'en')
       }
     };
   }

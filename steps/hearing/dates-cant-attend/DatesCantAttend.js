@@ -39,7 +39,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   get field() {
     const fields = this.content.fields;
     return convert(
-      d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
+      d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
       date.required({
         allRequired: fields.cantAttendDate.error.allRequired,
         dayRequired: fields.cantAttendDate.error.dayRequired,
@@ -77,14 +77,14 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: orderedItems.map(d => d.format('DD MMMM YYYY')),
+        answer: orderedItems.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY', i18next.language)),
         url: paths.hearing.hearingAvailability
       })
     ];
   }
 
   values() {
-    const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+    const datesCantAttend = this.fields.items.value.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY', 'en'));
     if (datesCantAttend.length === 0) {
       return {};
     }

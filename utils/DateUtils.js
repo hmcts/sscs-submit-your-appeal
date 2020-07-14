@@ -5,8 +5,6 @@ const { includes } = require('lodash');
 const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
-const months = long.concat(short);
-
 class DateUtils {
   static isLessThanOrEqualToAMonth(mDate) {
     return moment().subtract(1, 'month')
@@ -85,8 +83,10 @@ class DateUtils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  static getMonthValue(date) {
+  static getMonthValue(date, language = 'en') {
+    const months = long[language].concat(short[language]);
     let monthValue = null;
+
     if (isNaN(date.month)) {
       const month = date.month.toLowerCase();
       if (includes(months, month)) {
@@ -112,8 +112,14 @@ class DateUtils {
     });
   }
 
-  static getCurrentDate() {
+  static getCurrentDate(language) {
+    moment().locale(language);
     return moment().format('DD-MM-YYYY');
+  }
+
+  static formatDate(date, format, language) {
+    moment().locale(language);
+    return date.format(format);
   }
 }
 
