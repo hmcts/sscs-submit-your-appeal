@@ -158,6 +158,7 @@ class SaveToDraftStore extends Question {
   get isUserLoggedIn() {
     return this.req.idam;
   }
+
   get continueText() {
     if (this.req.idam) {
       return 'saveAndContinue';

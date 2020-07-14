@@ -6,7 +6,6 @@ const testData = require('test/e2e/data');
 const appellant = testData.appellant;
 
 
-
 const languages = ['en', 'cy'];
 
 Feature('Appellant has a dated MRN @batch-03');
