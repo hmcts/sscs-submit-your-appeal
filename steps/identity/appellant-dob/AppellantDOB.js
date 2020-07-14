@@ -30,7 +30,7 @@ class AppellantDOB extends SaveToDraftStore {
     const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
           allRequired: error.allRequired,
           dayRequired: error.dayRequired,

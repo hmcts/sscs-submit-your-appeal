@@ -25,7 +25,7 @@ class MRNDate extends SaveToDraftStore {
 
     return form({
       mrnDate: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
           allRequired: fields.date.error.allRequired,
           dayRequired: fields.date.error.dayRequired,
