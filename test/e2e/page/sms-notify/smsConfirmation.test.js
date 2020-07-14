@@ -15,7 +15,7 @@ languages.forEach(language => {
   const textRemindersContent = language === 'en' ? textRemindersContentEn : textRemindersContentCy;
 
   Before(I => {
-    I.createTheSession();
+    I.createTheSession(language);
     I.amOnPage(paths.identity.enterAppellantContactDetails);
   });
 

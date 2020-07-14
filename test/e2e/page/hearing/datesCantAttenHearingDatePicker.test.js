@@ -20,7 +20,7 @@ languages.forEach(language => {
   );
 
   Before(I => {
-    I.createTheSession();
+    I.createTheSession(language);
     I.amOnPage(paths.hearing.datesCantAttend);
     I.waitForElement('#date-picker table', 10);
   });

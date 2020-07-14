@@ -99,7 +99,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   fields.forEach(field => {
     I.fillField(field.id, field.content);
   });
-  I.click('Continue');
+  I.click(commonContent.continue);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
 }
 

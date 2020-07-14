@@ -1,18 +1,25 @@
-const content = require('steps/compliance/contact-dwp/content.en');
+const contactDwpContentEn = require('steps/compliance/contact-dwp/content.en');
+const contactDwpContentCy = require('steps/compliance/contact-dwp/content.cy');
 const paths = require('paths');
+
+const languages = ['en', 'cy'];
 
 Feature('Contact DWP @batch-07');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.compliance.contactDWP);
-});
+languages.forEach(language => {
+  const contactDwpContent = language === 'en' ? contactDwpContentEn : contactDwpContentCy;
 
-After(I => {
-  I.endTheSession();
-});
+  Before(I => {
+    I.createTheSession(language);
+    I.amOnPage(paths.compliance.contactDWP);
+  });
 
-Scenario('I exit the service after being told I need to contact DWP', I => {
-  I.click(content.govuk);
-  I.amOnPage('https://www.gov.uk');
+  After(I => {
+    I.endTheSession();
+  });
+
+  Scenario(`${language.toUpperCase()} - I exit the service after being told I need to contact DWP`, I => {
+    I.click(contactDwpContent.govuk);
+    I.amOnPage('https://www.gov.uk');
+  });
 });

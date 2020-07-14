@@ -1,22 +1,29 @@
-const content = require('steps/compliance/cant-appeal/content.en');
+const cantAppealContentEn = require('steps/compliance/cant-appeal/content.en');
+const cantAppealContentCy = require('steps/compliance/cant-appeal/content.cy');
 const paths = require('paths');
+
+const languages = ['en', 'cy'];
 
 Feature('Cannot appeal @batch-07');
 
-Before(I => {
-  I.createTheSession();
-  I.amOnPage(paths.compliance.cantAppeal);
-});
+languages.forEach(language => {
+  const cantAppealContent = language === 'en' ? cantAppealContentEn : cantAppealContentCy;
 
-After(I => {
-  I.endTheSession();
-});
+  Before(I => {
+    I.createTheSession(language);
+    I.amOnPage(paths.compliance.cantAppeal);
+  });
 
-Scenario('I exit the service after being told I cannot appeal', I => {
-  I.click(content.govuk);
-  I.amOnPage('https://www.gov.uk');
-});
+  After(I => {
+    I.endTheSession();
+  });
 
-Scenario('I have a csrf token', I => {
-  I.seeElementInDOM('form input[name="_csrf"]');
+  Scenario(`${language.toUpperCase()} - I exit the service after being told I cannot appeal`, I => {
+    I.click(cantAppealContent.govuk);
+    I.amOnPage('https://www.gov.uk');
+  });
+
+  Scenario(`${language.toUpperCase()} - I have a csrf token`, I => {
+    I.seeElementInDOM('form input[name="_csrf"]');
+  });
 });

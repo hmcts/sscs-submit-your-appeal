@@ -16,7 +16,7 @@ languages.forEach(language => {
   const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
   Before(I => {
-    I.createTheSession();
+    I.createTheSession(language);
     I.amOnPage(paths.identity.areYouAnAppointee);
   });
 
