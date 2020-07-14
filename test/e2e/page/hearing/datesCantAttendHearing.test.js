@@ -41,31 +41,31 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the date in the list`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.seeFormattedDate(validDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date I see the add another date link`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.see(datesCantAttendContent.links.addAnother);
   });
 
   Scenario(`${language.toUpperCase()} - When I add multiple dates, I see them in the list`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
-    I.enterDateCantAttendAndContinue(additionalValidDate, datesCantAttendContent.links.addAnother);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, datesCantAttendContent.links.addAnother);
     I.seeFormattedDate(validDate);
     I.seeFormattedDate(additionalValidDate);
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date and click the delete link, the date is removed`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.seeFormattedDate(validDate);
     I.click(commonContent.delete);
     I.dontSeeFormattedDate(validDate);
   });
 
   Scenario(`${language.toUpperCase()} - I add a single date, I remove it, I see Add date`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.see(datesCantAttendContent.links.addAnother);
     I.click(commonContent.delete);
     I.dontSee(datesCantAttendContent.links.addAnother);
@@ -78,9 +78,9 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - When I add a date and the edit it, I see the new date`, I => {
-    I.enterDateCantAttendAndContinue(validDate, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, validDate, datesCantAttendContent.links.add);
     I.seeFormattedDate(validDate);
-    I.enterDateCantAttendAndContinue(additionalValidDate, 'Edit');
+    I.enterDateCantAttendAndContinue(commonContent, additionalValidDate, commonContent.edit);
     I.dontSeeFormattedDate(validDate);
     I.seeFormattedDate(additionalValidDate);
   });
@@ -117,13 +117,13 @@ languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - When I enter a date that is under four weeks from now, I see errors`, I => {
     const dateUnderFourWeeks = moment();
-    I.enterDateCantAttendAndContinue(dateUnderFourWeeks, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, dateUnderFourWeeks, datesCantAttendContent.links.add);
     I.see(datesCantAttendContent.fields.cantAttendDate.error.underFourWeeks);
   });
 
   Scenario(`${language.toUpperCase()} - When I enter a date that is over twenty two weeks from now, I see errors`, I => {
     const dateOverTwentyTwoWeeks = moment().add(23, 'weeks');
-    I.enterDateCantAttendAndContinue(dateOverTwentyTwoWeeks, datesCantAttendContent.links.add);
+    I.enterDateCantAttendAndContinue(commonContent, dateOverTwentyTwoWeeks, datesCantAttendContent.links.add);
     I.see(datesCantAttendContent.fields.cantAttendDate.error.overTwentyTwoWeeks);
   });
 

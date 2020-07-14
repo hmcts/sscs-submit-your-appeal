@@ -48,7 +48,7 @@ languages.forEach(language => {
     I.click(commonContent.change, datesYouCantAttendHearingChange);
     I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
     I.click(commonContent.continue);
-    I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, 'Edit');
+    I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
     I.click(commonContent.continue);
     I.see(randomWeekDayIn6Weeks.format('DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
   }).retry(1);

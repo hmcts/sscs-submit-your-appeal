@@ -46,7 +46,6 @@ const saveToDraftStore = async(req, res, next) => {
     });
   }
 
-
   if (allowSaveAndReturn && req.idam && values) {
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
@@ -187,6 +186,7 @@ class RestoreUserState extends Redirect {
     ];
   }
 }
+
 class RestoreFromDraftStore extends EntryPoint {
   get isUserLoggedIn() {
     return this.req.idam;
