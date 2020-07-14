@@ -3,6 +3,8 @@
 const { long, short } = require('utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
+
+
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
 class DateUtils {
@@ -16,7 +18,12 @@ class DateUtils {
       .isSameOrBefore(mDate, 'day');
   }
 
-  static createMoment(day, month, year) {
+  static createMoment(day, month, year, language = 'en') {
+    if (language !== 'en') {
+      require(`moment/locale/${language}`);
+    }
+    moment().locale(language);
+
     return moment(`${day}-${month}-${year}`, 'D-M-YYYY', true);
   }
 
@@ -83,7 +90,7 @@ class DateUtils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  static getMonthValue(date, language = 'en') {
+  static getMonthValue(date, language) {
     const months = long[language].concat(short[language]);
     let monthValue = null;
 
@@ -117,8 +124,7 @@ class DateUtils {
     return moment().format('DD-MM-YYYY');
   }
 
-  static formatDate(date, format, language) {
-    moment().locale(language);
+  static formatDate(date, format) {
     return date.format(format);
   }
 }

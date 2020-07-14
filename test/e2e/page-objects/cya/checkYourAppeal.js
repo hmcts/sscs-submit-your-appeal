@@ -83,7 +83,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   I.wait(2);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   I.wait(2);
-  await I.selectDates([date]);
+  await I.selectDates(language, [date]);
   I.click(commonContent.continue);
 }
 

@@ -60,8 +60,8 @@ class MRNDate extends SaveToDraftStore {
   values() {
     return {
       mrn: {
-        date: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY', i18next.language),
-        dateAppealSubmitted: DateUtils.getCurrentDate(i18next.language)
+        date: this.fields.mrnDate.value.format('DD-MM-YYYY'),
+        dateAppealSubmitted: DateUtils.getCurrentDate()
       }
     };
   }

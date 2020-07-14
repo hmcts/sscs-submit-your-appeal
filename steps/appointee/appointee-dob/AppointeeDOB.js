@@ -16,7 +16,7 @@ class AppointeeDOB extends SaveToDraftStore {
     const fields = this.content.fields;
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
           allRequired: fields.date.error.allRequired,
           dayRequired: fields.date.error.dayRequired,
@@ -38,7 +38,7 @@ class AppointeeDOB extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.dob.question,
         section: sections.appointeeDetails,
-        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
+        answer: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY')
       })
     ];
   }
@@ -46,7 +46,7 @@ class AppointeeDOB extends SaveToDraftStore {
   values() {
     return {
       appointee: {
-        dob: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', i18next.language)
+        dob: this.fields.date.value.format('DD-MM-YYYY')
       }
     };
   }

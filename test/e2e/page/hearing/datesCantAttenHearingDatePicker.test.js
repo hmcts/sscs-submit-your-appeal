@@ -32,28 +32,28 @@ languages.forEach(language => {
   });
 
   Scenario(`${language.toUpperCase()} - When I select a date, it is highlighted and date is shown in the table`, async I => {
-    await I.selectDates([dateFiveWeeksFromNow]);
+    await I.selectDates(language, [dateFiveWeeksFromNow]);
   });
 
   Scenario(`${language.toUpperCase()} - When I select and deselect a date, it isn't highlighted and not shown in the table`,
     async I => {
-      await I.selectDates([dateFiveWeeksFromNow]);
-      await I.deselectDates([dateFiveWeeksFromNow]);
+      await I.selectDates(language, [dateFiveWeeksFromNow]);
+      await I.deselectDates(language, [dateFiveWeeksFromNow]);
     });
 
   Scenario(`${language.toUpperCase()} - When I select multiple dates, I see them in the table`, async I => {
-    await I.selectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow, dateSevenWeeksFromNow]);
+    await I.selectDates(language, [dateFiveWeeksFromNow, dateSixWeeksFromNow, dateSevenWeeksFromNow]);
   }).retry(2);
 
   Scenario(`${language.toUpperCase()} - When I select multiple dates and them deselect them, I don't see them in the table`,
     async I => {
-      await I.selectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow]);
-      await I.deselectDates([dateFiveWeeksFromNow, dateSixWeeksFromNow]);
+      await I.selectDates(language, [dateFiveWeeksFromNow, dateSixWeeksFromNow]);
+      await I.deselectDates(language, [dateFiveWeeksFromNow, dateSixWeeksFromNow]);
     }).retry(2);
 
   Scenario(`${language.toUpperCase()} - When I select a date and then click remove, the date is removed and deselected`,
     async I => {
-      await I.selectDates([dateFiveWeeksFromNow]);
+      await I.selectDates(language, [dateFiveWeeksFromNow]);
       I.click('Remove');
       I.dontSeeFormattedDate(language, moment(dateFiveWeeksFromNow));
     });

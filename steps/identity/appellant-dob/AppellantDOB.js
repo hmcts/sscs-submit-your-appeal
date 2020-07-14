@@ -60,7 +60,7 @@ class AppellantDOB extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        dob: DateUtils.formatDate(this.fields.date.value, 'DD MMMM YYYY', 'en')
+        dob: this.fields.date.value.format('DD-MM-YYYY')
       }
     };
   }

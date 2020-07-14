@@ -56,9 +56,9 @@ languages.forEach(language => {
     I.click(commonContent.change, datesYouCantAttendHearingChange);
     I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
     I.click(commonContent.continue);
-    await I.deselectDates([randomWeekDayIn8Weeks]);
+    await I.deselectDates(language, [randomWeekDayIn8Weeks]);
     I.wait(2);
-    await I.selectDates([randomWeekDayIn10Weeks]);
+    await I.selectDates(language, [randomWeekDayIn10Weeks]);
     I.click(commonContent.continue);
     I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY', language), datesYouCantAttendHearingAnswer);
   }).retry(1);

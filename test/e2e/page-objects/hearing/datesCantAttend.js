@@ -41,7 +41,7 @@ async function doesntHaveSelectedClass(element) {
   assert.equal(hasClass, false);
 }
 
-async function selectDates(dates, language) {
+async function selectDates(language, dates) {
   const I = this;
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
@@ -49,19 +49,19 @@ async function selectDates(dates, language) {
     await I.clickNextIfDateNotVisible(date);
     I.click(element);
     I.wait(3);
-    I.seeFormattedDate(moment(date), language);
+    I.seeFormattedDate(language, moment(date));
     await I.hasSelectedClass(element);
   }
 }
 
-async function deselectDates(dates, language) {
+async function deselectDates(language, dates) {
   const I = this;
 
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     I.click(element);
-    I.dontSeeFormattedDate(moment(date), language);
+    I.dontSeeFormattedDate(language, moment(date));
     await I.doesntHaveSelectedClass(element);
   }
 }
