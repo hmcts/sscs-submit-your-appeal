@@ -41,13 +41,7 @@ const setup = app => {
         })),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`,
         healthOptions('Health check failed on submit-your-appeal-api:')
-      ),
-      'Ordinance survey': healthcheck.raw(() => healthcheck.web(`${config.postcodeLookup.url}/health`).call()
-        .then(_ => healthcheck.status((_ === OK) ? outputs.up() : outputs.up('status: DOWN')))
-        .catch(error => {
-          logger.trace(`Health check failed on Ordinance survey: ${error}`, 'health_check_error');
-          return outputs.up(error);
-        }))
+      )
     },
     readinessChecks: {
       redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG'))
