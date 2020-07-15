@@ -128,9 +128,11 @@ const configureHelmet = app => {
         '\'self\'',
         'stats.g.doubleclick.net',
         'www.google.com',
+        'www.google.co.uk',
         'www.google-analytics.com',
         'www.googletagmanager.com',
-        'vcc-eu4.8x8.com'
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
       ]
     }
   }));
