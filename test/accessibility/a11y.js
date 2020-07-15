@@ -18,6 +18,7 @@ const options = {
 const excludeSteps = [
   '/sessions',
   '/internal-server-error',
+  '/duplicate-case-error',
   '/enter-appellant-contact-details',
   '/appointee-contact-details',
   '/idam-redirect',
