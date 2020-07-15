@@ -68,7 +68,17 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     return header;
   }
 
+  validateJourneyValues() {
+    if (typeof this.journey.values.hearing === 'undefined' ||
+      !this.journey.values.hearing) {
+      logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
+        'SessionId ${this.journey.req.session.id} and nino ${this.journey.values.appellant.nino}`));
+      logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
+    }
+  }
+
   sendToAPI() {
+    this.validateJourneyValues();
     const headers = this.tokenHeader(this.req);
     logger.trace([
       'About to send to api the application with session id ',
@@ -94,6 +104,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         ], logPath);
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
+        logger.event('SYA-SendToApi-Success');
       }).catch(error => {
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
@@ -107,6 +118,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           'the benefit code is ',
           get(this, 'journey.values.benefitType.code')
         ], logPath);
+        logger.event('SYA-SendToApi-Failed');
         return Promise.reject(error);
       });
   }
