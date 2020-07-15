@@ -112,7 +112,8 @@ const configureHelmet = app => {
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
-        'vcc-eu4.8x8.com'
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
       ],
       connectSrc: [
         '\'self\'',
