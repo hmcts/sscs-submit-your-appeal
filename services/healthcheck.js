@@ -49,6 +49,16 @@ const setup = app => {
           return outputs.up(error);
         }))
     },
+    readinessChecks: {
+      redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG'))
+        .catch(error => {
+          logger.trace(`Readiness check failed on redis: ${error}`, 'Readiness_check_error');
+          return outputs.down(error);
+        })),
+      'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health/readiness`,
+        healthOptions('Readiness check failed on submit-your-appeal-api:')
+      )
+    },
     buildInfo: {
       name: 'Submit Your Appeal',
       host: os.hostname(),

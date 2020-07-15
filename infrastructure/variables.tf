@@ -8,6 +8,10 @@ variable "location" {
 
 variable "env" {}
 
+variable "sya_hostname" {
+  default = "localhost"
+}
+
 variable "subscription" {}
 
 variable "ilbIp" {}
@@ -15,6 +19,10 @@ variable "deployment_namespace" {}
 
 variable "node_environment" {
   default = "sandbox"
+}
+
+variable "node_path" {
+  default = "."
 }
 
 variable "common_tags" {
