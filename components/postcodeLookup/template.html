@@ -1,6 +1,11 @@
+
 {% macro postcodeLookup(fields, options, postcodeLookupType, content) %}
     {% if (postcodeLookupType === 'manual') %}
+<<<<<<< HEAD
            {{ caller() }}
+=======
+        {{ caller() }}
+>>>>>>> WLA-442-Steps-Batch-6
     {% else %}
         <input type="hidden" id="submitType" name="submitType" value="" />
         {{ textboxButton(fields.postcodeLookup, content, hint="", options) }}
@@ -19,17 +24,17 @@
 {% macro customSelect(field, label, options, initialValueText) %}
     <div class="govuk-form-group {{ errorClass(field) }}">
         <label class="govuk-label"
-             for="{{ field.id }}">
-        {{ label }}
+               for="{{ field.id }}">
+            {{ label }}
         </label>
 
         {{ errorsFor(field) }}
 
         <select
-              name="{{ field.id }}"
-              id="{{ field.id }}"
-              class="govuk-select govuk-!-width-one-half postcode-address"
-              >
+                name="{{ field.id }}"
+                id="{{ field.id }}"
+                class="govuk-select govuk-!-width-one-half postcode-address"
+        >
             {# Default option so no option is preselected #}
             <option disabled
                     {% if not field.value %}
@@ -43,15 +48,15 @@
                 {% set option_disabled = option.disabled or false %}
 
                 <option
-                    {% if field.value == option_value %}
-                        selected
-                    {% endif %}
-                    {% if option_disabled %}
-                        disabled
-                    {% endif %}
-                    {% if option_value %}
-                        value="{{ option_value }}"
-                    {% endif %}>{{ option.DPA.ADDRESS }}
+                        {% if field.value == option_value %}
+                            selected
+                        {% endif %}
+                        {% if option_disabled %}
+                            disabled
+                        {% endif %}
+                        {% if option_value %}
+                    value="{{ option_value }}"
+                        {% endif %}>{{ option.DPA.ADDRESS }}
                 </option>
             {%- endfor %}
         </select>
