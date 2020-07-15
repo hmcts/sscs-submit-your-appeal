@@ -11,6 +11,7 @@ const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout
 const SessionTimeoutRedirect = require('steps/exit-points/SessionTimeoutRedirect');
 const Sessions = require('steps/session/Sessions');
 const Error500 = require('steps/errors/500/Error500');
+const DuplicateError = require('steps/errors/duplicate-error/DuplicateError');
 const BenefitType = require('steps/start/benefit-type/BenefitType');
 const LanguagePreference = require('steps/start/language-preference/LanguagePreference');
 const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
@@ -77,6 +78,7 @@ const init = [
   Exit,
   Sessions,
   Error500,
+  DuplicateError,
   SessionTimeout,
   SessionTimeoutRedirect
 ];
