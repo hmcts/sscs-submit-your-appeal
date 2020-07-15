@@ -3,7 +3,7 @@ const paths = require('paths');
 
 const languages = ['en', 'cy'];
 
-Feature('Postcode lookup test for type  Manual @functional');
+Feature('Postcode lookup test for type  Manual');
 
 languages.forEach(language => {
   const commonContent = content[language];
