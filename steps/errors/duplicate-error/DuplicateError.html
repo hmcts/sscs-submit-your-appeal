@@ -1,0 +1,24 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/error.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+        {{ banner | safe }}
+    {% endcall %}
+{% endblock %}
+
+{% block two_thirds %}
+
+{{ header(content.title, size='xl') }}
+
+<p class="govuk-body" >{{ content.message }}</p>
+
+<a class="govuk-button" href="/start-an-appeal">Try again</a>
+
+<p class="govuk-body" >{{ content.messageContactUs }}</p>
+
+{% endblock %}
