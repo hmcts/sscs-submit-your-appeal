@@ -149,7 +149,11 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .then(goTo(this.journey.steps.Confirmation))
       .onFailure((error, req, res, next) => {
         logger.exception(error, logPath);
-        redirectTo(this.journey.steps.Error500).redirect(req, res, next);
+        if (error.status === HttpStatus.CONFLICT) {
+          redirectTo(this.journey.steps.DuplicateError).redirect(req, res, next);
+        } else {
+          redirectTo(this.journey.steps.Error500).redirect(req, res, next);
+        }
       });
   }
 }
