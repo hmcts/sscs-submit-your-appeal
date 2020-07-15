@@ -10,6 +10,7 @@ const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') ===
 describe('CheckYourAppeal.js', () => {
   let CheckYourAppeal = null;
   let cya = null;
+  let cyaWithSession = null;
   let fields = null;
 
   const request = {};
@@ -31,6 +32,9 @@ describe('CheckYourAppeal.js', () => {
         visitedSteps: [{ benefitType: '' }],
         answers: [],
         values: {
+          hearing: {
+            wantsToAttend: true
+          },
           benefit: {
             type: 'PIP'
           },
@@ -39,6 +43,35 @@ describe('CheckYourAppeal.js', () => {
         },
         settings: {
           apiUrl: '/appeals'
+        }
+      }
+    });
+
+    cyaWithSession = new CheckYourAppeal({
+      journey: {
+        steps: {
+          Confirmation: paths.confirmation,
+          Error500: paths.errors.internalServerError
+        },
+        visitedSteps: [{ benefitType: '' }],
+        answers: [],
+        values: {
+          appellant: {
+            nino: 'AA998877A'
+          },
+          benefit: {
+            type: 'PIP'
+          },
+          isAppointee: false,
+          hasRepresentative: true
+        },
+        settings: {
+          apiUrl: '/appeals'
+        },
+        req: {
+          session: {
+            id: 'someId'
+          }
         }
       }
     });
@@ -86,11 +119,23 @@ describe('CheckYourAppeal.js', () => {
   describe('sendToAPI()', () => {
     it('should log a message when successfully making an API call', () => {
       loggerStub.trace = sinon.stub().returns();
+      loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
 
       return cya.sendToAPI().then(() => {
         expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
+        expect(loggerStub.event).to.have.been.calledOnce;
+      });
+    });
+
+    it('should log an event when missing data from journey values', () => {
+      loggerStub.event = sinon.stub();
+      // eslint-disable-next-line max-len
+      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
+
+      return cyaWithSession.sendToAPI().then(() => {
+        expect(loggerStub.event).to.have.been.calledTwice;
       });
     });
 
@@ -98,8 +143,10 @@ describe('CheckYourAppeal.js', () => {
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
       loggerStub.exception = sinon.spy();
+      loggerStub.event = sinon.stub();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
+        expect(loggerStub.event).to.have.been.calledOnce;
       });
     });
 
