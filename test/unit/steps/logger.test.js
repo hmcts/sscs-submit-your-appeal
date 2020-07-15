@@ -8,6 +8,7 @@ describe('logger.js', () => {
   let applicationInsightsStartSpy = null;
   let applicationInsightsExceptionSpy = null;
   let applicationInsightsTraceSpy = null;
+  let applicationInsightsEventSpy = null;
   let consoleSpy = null;
   let nativeConsoleSpy = null;
   let sandBox = null;
@@ -21,6 +22,7 @@ describe('logger.js', () => {
     applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,
       'trackException');
     applicationInsightsTraceSpy = sandBox.stub(applicationInsights.defaultClient, 'trackTrace');
+    applicationInsightsEventSpy = sandBox.stub(applicationInsights.defaultClient, 'trackEvent');
     consoleSpy = sandBox.spy(logger, 'console');
   });
 
@@ -90,6 +92,22 @@ describe('logger.js', () => {
 
     expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
     expect(consoleSpy).to.have.been.calledOnce;
+  });
+
+  it('event should be called with proper args', () => {
+    const event = 'Event Name';
+
+    logger.event(event);
+
+    expect(applicationInsightsEventSpy).to.have.been.calledOnce;
+  });
+
+  it('event should not calling appinsight', () => {
+    const eventName = 'Event Name';
+
+    logger.event(eventName, false);
+
+    expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
   });
 
 
