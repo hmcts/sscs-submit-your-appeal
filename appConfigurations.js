@@ -114,12 +114,19 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com'
       ],
-      connectSrc: ['\'self\'', 'www.gov.uk'],
+      connectSrc: [
+        '\'self\'',
+        'www.gov.uk'
+      ],
       mediaSrc: ['\'self\''],
-      frameSrc: ['vcc-eu4.8x8.com'],
+      frameSrc: [
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ],
       imgSrc: [
         '\'self\'',
         'stats.g.doubleclick.net',
+        'www.google.com',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com'
