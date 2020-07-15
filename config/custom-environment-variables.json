@@ -1,4 +1,9 @@
 {
+  "appName": "PACKAGES_NAME",
+  "project": "PACKAGES_PROJECT",
+  "environment": "NODE_ENV",
+  "version": "PACKAGES_VERSION",
+  "deployment_env": "DEPLOYMENT_ENV",
   "node": {
     "protocol": "HTTP_PROTOCOL",
     "port": "PORT",
