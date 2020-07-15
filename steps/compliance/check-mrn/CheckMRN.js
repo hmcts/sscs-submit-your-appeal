@@ -52,7 +52,6 @@ class CheckMRN extends SaveToDraftStore {
       delete this.req.session.CheckMRN;
     }
 
-
     return branch(
       goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
       goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
