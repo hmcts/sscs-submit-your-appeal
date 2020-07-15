@@ -75,7 +75,7 @@
     "js-base64": "^2.5.1",
     "jsdom": "^15.1.1",
     "libphonenumber-js": "^1.7.19",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.4",
     "lodash-es": "^4.17.14",
     "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.18.1",
