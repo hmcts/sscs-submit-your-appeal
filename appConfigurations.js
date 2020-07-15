@@ -208,20 +208,6 @@ const configureMiddleWares = (app, express) => {
     extended: true
   }));
 
-  app.use(paths.health, healthcheck.configure({
-    checks: {
-      redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG')).catch(error => {
-        logger.trace(`Health check failed on redis: ${error}`);
-      })),
-      'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
-    },
-    buildInfo: {
-      name: 'Submit Your Appeal',
-      host: os.hostname(),
-      uptime: process.uptime()
-    }
-  }));
-
   app.use(paths.monitoring, healthcheck.configure({
     checks: {
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)

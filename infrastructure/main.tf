@@ -17,6 +17,26 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   resource_group_name  = "core-infra-${var.env}"
 }
 
+module "submit-your-appeal-frontend" {
+  source                          = "git@github.com:hmcts/cnp-module-webapp?ref=master"
+  product                         = "${var.product}-${var.component}"
+  location                        = "${var.location}"
+  env                             = "${var.env}"
+  ilbIp                           = "${var.ilbIp}"
+  is_frontend                     = 1
+  subscription                    = "${var.subscription}"
+  additional_host_name            = "${var.sya_hostname}"
+  https_only                      = "false"
+  common_tags                     = "${var.common_tags}"
+
+  app_settings = {
+    // Node specific vars
+    NODE_ENV                      = "${var.node_environment}"
+    NODE_PATH                     = "${var.node_path}"
+    WEBSITE_NODE_DEFAULT_VERSION  = "12.13.0"
+  }
+}
+
 module "redis-cache" {
   source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product     = "${var.product}-redis"
