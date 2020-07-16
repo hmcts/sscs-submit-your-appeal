@@ -2,7 +2,7 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{{% set title = content.title | safe %}
+{% set title = content.title | safe %}
 
 {% block fields %}
     <p class="govuk-body">{{ content.subtitle | safe }}</p>
