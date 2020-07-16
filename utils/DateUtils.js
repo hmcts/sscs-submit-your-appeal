@@ -84,7 +84,11 @@ class DateUtils {
     return date.isSameOrBefore(dateTwentyTwoWeeksLater, 'day');
   }
 
-  static isDateOnTheWeekend(date) {
+  static isDateOnTheWeekend(date, language) {
+    if (language === 'cy') {
+      return date.weekday() === 5 || date.weekday() === 6;
+    }
+
     return date.weekday() === 0 || date.weekday() === 6;
   }
 
