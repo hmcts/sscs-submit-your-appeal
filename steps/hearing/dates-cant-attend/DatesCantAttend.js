@@ -57,7 +57,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       value => DateUtils.isLessThanOrEqualToTwentyTwoWeeks(value)
     ).check(
       fields.cantAttendDate.error.weekend,
-      value => !DateUtils.isDateOnTheWeekend(value)
+      value => !DateUtils.isDateOnTheWeekend(value, i18next.language)
     ).check(
       fields.cantAttendDate.error.bankHoliday,
       value => !this.ukBankHolidays.isDateABankHoliday(value)

@@ -22,7 +22,7 @@ class DateUtils {
     if (language !== 'en') {
       require(`moment/locale/${language}`);
     }
-    moment().locale(language);
+    moment.locale(language);
 
     return moment(`${day}-${month}-${year}`, 'D-M-YYYY', true);
   }
@@ -33,13 +33,13 @@ class DateUtils {
   }
 
   static oneMonthAgo(language) {
-    moment().locale(language);
+    moment.locale(language);
 
     return moment().subtract(1, 'month');
   }
 
   static oneMonthAndOneDayAgo(language) {
-    moment().locale(language);
+    moment.locale(language);
 
     return moment().subtract(1, 'month')
       .subtract(1, 'day');
@@ -55,7 +55,7 @@ class DateUtils {
   }
 
   static thirteenMonthsAndOneDayAgo(language) {
-    moment().locale(language);
+    moment.locale(language);
 
     return moment().subtract(13, 'month')
       .subtract(1, 'day');
@@ -84,7 +84,11 @@ class DateUtils {
     return date.isSameOrBefore(dateTwentyTwoWeeksLater, 'day');
   }
 
-  static isDateOnTheWeekend(date) {
+  static isDateOnTheWeekend(date, language) {
+    if (language === 'cy') {
+      return date.weekday() === 5 || date.weekday() === 6;
+    }
+
     return date.weekday() === 0 || date.weekday() === 6;
   }
 
@@ -97,11 +101,13 @@ class DateUtils {
   }
 
   static getMonthValue(date, language) {
+    moment.locale(language);
     const months = long[language].concat(short[language]);
     let monthValue = null;
 
     if (isNaN(date.month)) {
       const month = date.month.toLowerCase();
+
       if (includes(months, month)) {
         monthValue = moment(`${date.day} ${month} ${date.year}`, 'DD MMMM YY').month() + 1;
       } else {
@@ -126,7 +132,7 @@ class DateUtils {
   }
 
   static getCurrentDate(language) {
-    moment().locale(language);
+    moment.locale(language);
     return moment().format('DD-MM-YYYY');
   }
 
