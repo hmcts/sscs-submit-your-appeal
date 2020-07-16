@@ -68,11 +68,11 @@ function initDoNotSubmitTwice() {
   $('form').on('submit', doNotSubmitTwice);
 }
 
-function initDatePicker() {
+function initDatePicker(language) {
   if ($('#date-picker').length) {
     $('.add-another-add-link').hide();
     $('#date-picker-content').show();
-    datePicker.init();
+    datePicker.init(language);
   }
 }
 
@@ -125,7 +125,7 @@ $(document).ready(() => {
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
-  initDatePicker();
+  initDatePicker($('html').attr('lang'));
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();

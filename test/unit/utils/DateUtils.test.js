@@ -215,19 +215,34 @@ describe('isLessThanOrEqualToTwentyTwoWeeks', () => {
 describe('isDateOnTheWeekend', () => {
   let date = null;
 
-  it('should return true when date is on the weekend', () => {
+  it('should return true when date is on the weekend (English)', () => {
     date = moment('20-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.true;
   });
 
-  it('should return true when date is on the weekend', () => {
+  it('should return true when date is on the weekend (English)', () => {
     date = moment('19-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.true;
   });
 
-  it('should return false when date is not on the weekend', () => {
+  it('should return false when date is not on the weekend (English)', () => {
     date = moment('18-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.false;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.false;
+  });
+
+  it('should return true when date is on the weekend (Welsh)', () => {
+    date = moment('20-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.true;
+  });
+
+  it('should return true when date is on the weekend (Welsh)', () => {
+    date = moment('19-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.true;
+  });
+
+  it('should return false when date is not on the weekend (Welsh)', () => {
+    date = moment('18-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.false;
   });
 });
 
