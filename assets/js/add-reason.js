@@ -17,6 +17,7 @@ class AddReason {
     this.textareaField = '';
     this.errorSummary = '';
     this.items = [];
+    this.language = $('html').attr('lang');
     this.content = $('html').attr('lang') === 'en' ? contentEn : contentCy;
 
     $('.add-another-add-link').before(`<div id="${this.formId}"></div>`);
@@ -131,19 +132,24 @@ class AddReason {
   }
 
   buildWhatYouDisagreeWithField(errors, value) {
+    const whatYouDisagreeWith = this.language === 'cy' ? 'Beth rydych chi\'n anghytuno ag ef' : 'What you disagree with';
+
     return this.textboxField({
       id: `${this.textboxId}-${this.counter}`,
       errors: errors || [],
       value: value || ''
-    }, 'What you disagree with');
+    }, whatYouDisagreeWith);
   }
 
   buildReasonForAppealingField(errors, value) {
+    const whyYouDisagreeWithIt = this.language === 'cy' ? 'Pam rydych chi\'n anghytuno ag ef' : 'Why you disagree with it';
+    const youCanWriteAsMuchAsYouWant = this.language === 'cy' ? 'Gallwch chi ysgrifennu cymaint ag y dymunwch' : 'You can write as much as you want';
+
     return this.textareaField({
       id: `${this.textareaId}-${this.counter}`,
       errors: errors || [],
       value: value || ''
-    }, 'Why you disagree with it', null, false, 'You can write as much as you want');
+    }, whyYouDisagreeWithIt, null, false, youCanWriteAsMuchAsYouWant);
   }
 
   static readToken() {
