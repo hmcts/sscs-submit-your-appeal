@@ -46,17 +46,17 @@ const short = {
   ],
   cy: [
     'ion',
-    'chw',
+    'chwef',
     'maw',
     'ebr',
     'mai',
     'meh',
-    'gor',
-    'aws',
-    'med',
+    'gorff',
+    'awst',
+    'medi',
     'hyd',
-    'tac',
-    'rha'
+    'tach',
+    'rhag'
   ]
 };
 
