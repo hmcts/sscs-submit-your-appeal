@@ -1,13 +1,9 @@
-const content = require('commonContent');
-const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
-const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
+const language = 'cy';
+const commonContent = require('commonContent')[language];
+const checkYourAppealContent = require(`steps/check-your-appeal/content.${language}`);
 const paths = require('paths');
 
-Feature('Check-your-appeal @functional');
-
-const language = 'cy';
-const commonContent = content[language];
-const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+Feature(`${language.toUpperCase()} - Check-your-appeal @functional`);
 
 Before(I => {
   I.createTheSession(language);

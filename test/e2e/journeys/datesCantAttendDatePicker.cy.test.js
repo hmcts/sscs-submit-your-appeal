@@ -9,7 +9,8 @@ const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors[language].answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[language].change}`;
 
-Feature(`${language.toUpperCase()} - PIP, one month ago, attends hearing with dates cannot attend`);
+/* eslint-disable max-len */
+Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01`);
 
 Before(I => {
   I.createTheSession(language);
@@ -20,36 +21,45 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async I => {
+Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async I => {
   moment().locale(language);
 
-  const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
+  const randomWeekDay = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
+  );
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
-  await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDay);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
   I.confirmDetailsArePresent(language);
-  I.see(DateUtils.formatDate(randomWeekDay, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.see(DateUtils.formatDate(moment(randomWeekDay), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async I => {
+Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async I => {
   moment().locale(language);
 
-  const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-  const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
+  const randomWeekDayIn8Weeks = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(8, 'weeks'))
+  );
+  const randomWeekDayIn10Weeks = DateUtils.getDateInMilliseconds(
+    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(10, 'weeks'))
+  );
+
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
-  await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
-  I.see(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDayIn8Weeks);
+  I.see(DateUtils.formatDate(moment(randomWeekDayIn8Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
-  // Now edit the single date from 10 to 11 weeks.
+  // Now edit the single date from 5 to 6 weeks.
   I.click(commonContent.change, datesYouCantAttendHearingChange);
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click(commonContent.continue);
-  I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
+  await I.deselectDates(language, [randomWeekDayIn8Weeks]);
+  I.wait(2);
+  await I.selectDates(language, [randomWeekDayIn10Weeks]);
   I.click(commonContent.continue);
-  I.see(DateUtils.formatDate(randomWeekDayIn6Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);

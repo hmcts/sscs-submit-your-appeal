@@ -1,10 +1,8 @@
-const content = require('commonContent');
+const language = 'cy';
+const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature('Postcode lookup test for type  Manual @functional');
-
-const language = 'cy';
-const commonContent = content[language];
+Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
 
 Before(I => {
   I.createTheSession(language);
