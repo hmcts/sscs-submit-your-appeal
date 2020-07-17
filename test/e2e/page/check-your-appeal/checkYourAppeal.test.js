@@ -5,7 +5,7 @@ const paths = require('paths');
 
 const languages = ['en', 'cy'];
 
-Feature('Check-your-appeal @functional');
+Feature('Check-your-appeal');
 
 languages.forEach(language => {
   const commonContent = content[language];
