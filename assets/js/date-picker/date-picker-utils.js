@@ -2,8 +2,11 @@ import * as $ from 'jquery';
 import moment from 'moment';
 import { find } from 'lodash-es';
 
-const datePickerUtils = {
+const welshFullMonths = ['Ionawr', 'Chwefror', 'Mawrth', 'Ebrill', 'Mai', 'Mehefin', 'Gorffennaf', 'Awst', 'Medi', 'Hydref', 'Tachwedd', 'Rhagfyr'];
+const welshMonths = ['Ion', 'Chw', 'Maw', 'Ebr', 'Mai', 'Meh', 'Gor', 'Awst', 'Medi', 'Hyd', 'Tach', 'Rhag'];
+const welshWeekdays = ['Dydd Sul', 'Dydd Llun', 'Dydd Mawrth', 'Dydd Mercher', 'Dydd Iau', 'Dydd Gwener', 'Dydd Sadwrn'];
 
+const datePickerUtils = {
   getIndexFromDate: (dateList, date) => find(dateList, { value: new Date(date) }).index,
 
   getIndexOfDate: element => $(element).data('index').split('-').pop(),
@@ -17,7 +20,13 @@ const datePickerUtils = {
     };
   },
 
-  formatDateForDisplay: d => {
+  formatDateForDisplay: (d, language) => {
+    if (language === 'cy') {
+      moment.locale(language, {
+        months: welshFullMonths,
+        weekdays: welshWeekdays
+      });
+    }
     const date = moment(new Date(d));
     return date.format('dddd D MMMM YYYY');
   },
@@ -32,11 +41,17 @@ const datePickerUtils = {
     return 0;
   }),
 
-  displayFirstOfMonth: date => {
+  displayFirstOfMonth: (date, language) => {
     const mDate = moment(date);
     const day = mDate.format('D');
-    const month = mDate.format('MMM');
-    const fullMonth = mDate.format('MMMM');
+    let month = mDate.format('MMM');
+    let fullMonth = mDate.format('MMMM');
+
+    if (language === 'cy') {
+      month = welshMonths[mDate.format('M') - 1];
+      fullMonth = welshFullMonths[mDate.format('M') - 1];
+    }
+
     const displayMonth = {
       content: `<span>${day}</span>`
     };
@@ -55,7 +70,6 @@ const datePickerUtils = {
       $(`td[data-date="${timestamp}"]`) :
       $(`td[data-date="${timestamp + bstOffset}"]`);
   }
-
 };
 
 export default datePickerUtils;
