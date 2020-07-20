@@ -1,6 +1,7 @@
 /* eslint-disable init-declarations */
 /* eslint-disable no-shadow */
 /* eslint-disable max-len */
+/* eslint-disable max-lines */
 /* eslint-disable no-empty-function */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
@@ -9,6 +10,7 @@ const sinon = require('sinon');
 const logger = require('logger');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
+const moment = require('moment');
 
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
@@ -564,6 +566,39 @@ describe('The other methods of EvidenceUpload', () => {
 
       const index = 1;
       expect(instance.editUrl(index)).to.equal(false);
+    });
+  });
+
+  describe('values', () => {
+    it('returns the evidences', () => {
+      instance.fields.items = {
+        value: [
+          {
+            link: 'link1',
+            uploadEv: 'uploadEv1'
+          }, {
+            link: 'link2',
+            uploadEv: 'uploadEv2'
+          }
+        ]
+      };
+
+      expect(instance.values()).to.deep.equal({
+        reasonsForAppealing: {
+          evidences: [
+            {
+              fileName: 'uploadEv1',
+              url: 'link1',
+              uploadedDate: moment().format('YYYY-MM-DD')
+            },
+            {
+              fileName: 'uploadEv2',
+              url: 'link2',
+              uploadedDate: moment().format('YYYY-MM-DD')
+            }
+          ]
+        }
+      });
     });
   });
 });
