@@ -3,16 +3,11 @@
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ title | safe }}
-{% endset %}
+{% set title = title | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-
-        <p class="govuk-body">{{ subtitle}}</p>
+        <p class="govuk-body">{{ subtitle | safe }}</p>
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
             {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
@@ -25,7 +20,5 @@
             {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
             {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
         {% endif %}
-
     {% endcall %}
-
 {% endblock %}
