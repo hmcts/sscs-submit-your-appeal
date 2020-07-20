@@ -50,6 +50,9 @@
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
       "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
       "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
+    },
+    "equalityAndDiversity": {
+      "enabled": "EQUALITY_ENABLED"
     }
   },
   "postcodeChecker": {
@@ -83,6 +86,10 @@
       "btnNoAgents": "SERVICES_BTN_NO_AGENTS",
       "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
       "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
+    },
+    "equalityAndDiversity": {
+      "url": "EQUALITY_URL",
+      "tokenKey": "SERVICE_TOKEN_KEY"
     }
   }
 }

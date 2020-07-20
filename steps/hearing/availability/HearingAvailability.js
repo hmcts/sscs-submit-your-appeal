@@ -41,7 +41,7 @@ class HearingAvailability extends SaveToDraftStore {
   next() {
     const shouldScheduleHearing = () => this.fields.scheduleHearing.value === userAnswer.NO;
     return branch(
-      redirectTo(this.journey.steps.CheckYourAppeal).if(shouldScheduleHearing),
+      redirectTo(this.journey.steps.Equality).if(shouldScheduleHearing),
       redirectTo(this.journey.steps.DatesCantAttend)
     );
   }

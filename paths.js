@@ -112,6 +112,7 @@ module.exports = {
     signInBack: '/sign-in-back'
   },
 
+  equalityAndDiversity: '/equality-and-diversity',
   checkYourAppeal: '/check-your-appeal',
   confirmation: '/confirmation'
 };

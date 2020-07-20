@@ -1,4 +1,4 @@
-const { goTo } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -24,7 +24,7 @@ class NotAttendingHearing extends SaveToDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.CheckYourAppeal);
+    return redirectTo(this.journey.steps.Equality);
   }
 }
 

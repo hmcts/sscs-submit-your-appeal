@@ -23,7 +23,7 @@ describe('DatesCantAttend.js', () => {
     datesCantAttend = new DatesCantAttend({
       journey: {
         steps: {
-          CheckYourAppeal: paths.checkYourAppeal,
+          Equality: paths.equalityAndDiversity,
           DatesCantAttend: paths.hearing.datesCantAttend
         },
         settings: {}
@@ -147,7 +147,7 @@ describe('DatesCantAttend.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /check-your-appeal', () => {
-      expect(datesCantAttend.next().step).to.eq(paths.checkYourAppeal);
+      expect(datesCantAttend.next().step).to.eq(paths.equalityAndDiversity);
     });
   });
 });

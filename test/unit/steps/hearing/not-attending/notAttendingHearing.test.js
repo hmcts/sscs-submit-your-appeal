@@ -9,7 +9,7 @@ describe('HearingArrangements.js', () => {
     notAttendingHearing = new NotAttendingHearing({
       journey: {
         steps: {
-          CheckYourAppeal: paths.checkYourAppeal
+          Equality: paths.equalityAndDiversity
         }
       }
     });
@@ -70,7 +70,7 @@ describe('HearingArrangements.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /check-your-appeal', () => {
-      expect(notAttendingHearing.next()).to.eql({ nextStep: paths.checkYourAppeal });
+      expect(notAttendingHearing.next()).to.eql({ nextStep: paths.equalityAndDiversity });
     });
   });
 });
