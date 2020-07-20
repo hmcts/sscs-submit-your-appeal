@@ -70,12 +70,12 @@ Scenario(`${language.toUpperCase()} - Selects sign language interpreter, languag
         id: signLanguageTextField,
         content: testData.hearing.signLanguageType
       }, {
-      id: anythingElseTextField,
-      content: testData.hearing.anythingElse
-    }, {
-      id: languageInterpreterTextField,
-      content: testData.hearing.interpreterLanguageType
-    }
+        id: anythingElseTextField,
+        content: testData.hearing.anythingElse
+      }, {
+        id: languageInterpreterTextField,
+        content: testData.hearing.interpreterLanguageType
+      }
     ]
   );
   I.confirmDetailsArePresent(language);
