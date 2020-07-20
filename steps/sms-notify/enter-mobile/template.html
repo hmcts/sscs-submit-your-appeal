@@ -2,11 +2,18 @@
 {% from "components/fields.njk" import textbox, formSection %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
 
 {% block fields %}
+
     {% call formSection() %}
+
         <p class="govuk-body">{{ content.description | safe }}</p>
         {{ textbox(fields.enterMobile, content.fields.enterMobile.label, hideLabel=true) }}
+
     {% endcall %}
+
 {% endblock %}

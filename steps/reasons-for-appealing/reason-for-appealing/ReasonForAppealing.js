@@ -9,7 +9,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const { isGreaterThanOrEqualToFiveCharacters, getBenefitCode } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
-const i18next = require('i18next');
+const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 
@@ -23,9 +23,6 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   }
 
   get addAnotherLinkContent() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
     }
@@ -33,9 +30,6 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   }
 
   get field() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
     return object({
       whatYouDisagreeWith: text,
       reasonForAppealing: text
@@ -46,14 +40,11 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       .check(
         errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
         value => value.reasonForAppealing &&
-          isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
+        isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
   }
 
   validateList(list) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
     return list.check(content.listError, arr => arr.length > 0);
   }
 
@@ -67,9 +58,6 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
     const reasons = this.fields.items.value.map(item => {
       return {
         whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?

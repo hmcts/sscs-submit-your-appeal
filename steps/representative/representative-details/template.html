@@ -3,28 +3,35 @@
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+
+{% set title %}
+    {{ content.title | safe }}
+{% endset %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
-    <div id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
-        <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
 
-        {{ errorsFor(fields.name) }}
+        <p class="govuk-body">{{ content.subtitle}}</p>
 
-        {{ textbox(fields.name.title,    content.fields.name.title.title) }}
-        {{ textbox(fields.name.first,    content.fields.name.first.title) }}
-        {{ textbox(fields.name.last,     content.fields.name.last.title) }}
-        {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
+        <div id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
 
-    </div>
-    {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
-        {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
-        {{ textbox(fields.addressLine2, content.fields.addressLine2.title) }}
-        {{ textbox(fields.townCity,     content.fields.townCity.title) }}
-        {{ textbox(fields.county,       content.fields.county.title) }}
-        {{ textbox(fields.postCode,     content.fields.postCode.title) }}
-    {% endcall %}
-    {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
-    {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
+            <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
+
+            {{ errorsFor(fields.name) }}
+
+            {{ textbox(fields.name.title,    content.fields.name.title.title) }}
+            {{ textbox(fields.name.first,    content.fields.name.first.title) }}
+            {{ textbox(fields.name.last,     content.fields.name.last.title) }}
+            {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
+
+        </div>
+        {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
+            {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
+            {{ textbox(fields.addressLine2, content.fields.addressLine2.title) }}
+            {{ textbox(fields.townCity,     content.fields.townCity.title) }}
+            {{ textbox(fields.county,       content.fields.county.title) }}
+            {{ textbox(fields.postCode,     content.fields.postCode.title) }}
+        {% endcall %}
+        {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
+        {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
+
 {% endblock %}

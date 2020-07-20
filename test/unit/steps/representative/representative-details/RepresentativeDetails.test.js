@@ -4,6 +4,8 @@ const RepresentativeDetails = require('steps/representative/representative-detai
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
+
+
 const config = require('config');
 
 describe('RepresentativeDetails.js', () => {
