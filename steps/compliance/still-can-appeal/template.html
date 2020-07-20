@@ -4,17 +4,14 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
 
 {% block head %}
-{{ super() }}
+    {{ super() }}
     <noscript>
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
 {% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
 
 {% block full_width %}
     <div class="govuk-grid-row">
@@ -22,9 +19,9 @@
             {{ header(title, size='l') }}
             <form action="{{ path if path else url }}" method="post" class="form">
                 {% block fields %}
-                    <p class="govuk-body-l">{{ content.canAppeal }}</p>
+                    <p class="govuk-body-l">{{ content.canAppeal | safe }}</p>
                 {% endblock %}
-                <input class="govuk-button" type="submit" value="{{ content.continueButton }}">
+                <input class="govuk-button" type="submit" value="{{ content.continueButton | safe }}">
             </form>
         </div>
     </div>
@@ -32,4 +29,3 @@
         {% include "components/inactivity-alert.html" %}
     </div>
 {% endblock %}}
-

@@ -9,6 +9,7 @@ const userAnswer = require('utils/answer');
 const config = require('config');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+
 class HaveContactedDWP extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveContactedDWP;

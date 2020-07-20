@@ -6,7 +6,6 @@ const paths = require('paths');
 describe('AppointeeName.js', () => {
   let appointeeName = null;
 
-
   beforeEach(() => {
     appointeeName = new AppointeeName({
       journey: {
@@ -117,7 +116,6 @@ describe('AppointeeName.js', () => {
       });
     });
   });
-
 
   describe('answers() and values()', () => {
     const question = 'A Question';

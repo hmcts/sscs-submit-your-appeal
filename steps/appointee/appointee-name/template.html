@@ -2,16 +2,12 @@
 {% from "components/fields.njk" import select, textbox, formSection %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-{{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
     <p class="govuk-body">{{ content.description | safe }}</p>
 
     {% call formSection() %}
-
         {{ select(
             fields.title,
             content.fields.title.title,
@@ -19,7 +15,5 @@
         ) }}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
         {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
-
     {% endcall %}
-
 {% endblock %}
