@@ -2,14 +2,10 @@
 {% from "components/fields.njk" import select, textbox, formSection %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-{{ title | safe }}
-{% endset %}
+{% set title = title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-
         {% if subtitle %}
             <p class="govuk-body">{{ subtitle | safe }}</p>
         {% endif %}
@@ -21,7 +17,5 @@
         ) }}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
         {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
-
     {% endcall %}
-
 {% endblock %}

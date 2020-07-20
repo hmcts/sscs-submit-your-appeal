@@ -2,25 +2,18 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
     {% call formSection() %}
-
         {{ selectionButtons(
             fields.useSameNumber,
             content.fields.useSameNumber.label,
             hideQuestion = true,
             options = [
-            { label: content.fields.useSameNumber.yes, value: "yes" },
-            { label: content.fields.useSameNumber.no,  value: "no" }
+                { label: content.fields.useSameNumber.yes, value: "yes" },
+                { label: content.fields.useSameNumber.no,  value: "no" }
             ])
         }}
-
     {% endcall %}
-
 {% endblock %}
