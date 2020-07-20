@@ -1,7 +1,6 @@
 const { expect } = require('test/util/chai');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 
-
 describe('answers() and values()', () => {
   let sameAddress = null;
 
@@ -40,6 +39,7 @@ describe('answers() and values()', () => {
     const values = sameAddress.values();
     expect(values).to.eql({ appellant: { isAddressSameAsAppointee: false } });
   });
+
   it('should contain false as the value', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
     const values = sameAddress.values();
