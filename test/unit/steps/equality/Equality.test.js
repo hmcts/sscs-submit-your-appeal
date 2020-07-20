@@ -14,7 +14,7 @@ describe('Equality.js', () => {
   before(() => {
     nock.cleanAll();
     nock.activate();
-  })
+  });
 
   beforeEach(() => {
     req = {
@@ -76,34 +76,34 @@ describe('Equality.js', () => {
     }, 100);
   });
 
-  // it('skips PCQ if it is unhealthy', done => {
-  //   nock(pcqHost)
-  //     .get('/health')
-  //     .reply(httpStatus.OK, { status: 'DOWN' });
-  //
-  //   const step = new Equality(req, res);
-  //   step.handler(req, res);
-  //
-  //   setTimeout(() => {
-  //     expect(res.redirect.calledOnce).to.equal(false);
-  //     done();
-  //   }, 100);
-  // });
-  //
-  // it('skips PCQ if there is an error retrieving the PCQ health', done => {
-  //   const step = new Equality(req, res);
-  //   step.handler(req, res);
-  //
-  //   setTimeout(() => {
-  //     expect(res.redirect.calledOnce).to.equal(false);
-  //     done();
-  //   }, 100);
-  // });
-  //
-  // it('answers() returns an empty array', () => {
-  //   const step = new Equality(req, res);
-  //   step.handler(req, res);
-  //
-  //   expect(step.answers()).to.deep.equal([]);
-  // });
+  it('skips PCQ if it is unhealthy', done => {
+    nock(pcqHost)
+      .get('/health')
+      .reply(httpStatus.OK, { status: 'DOWN' });
+
+    const step = new Equality(req, res);
+    step.handler(req, res);
+
+    setTimeout(() => {
+      expect(res.redirect.calledOnce).to.equal(false);
+      done();
+    }, 100);
+  });
+
+  it('skips PCQ if there is an error retrieving the PCQ health', done => {
+    const step = new Equality(req, res);
+    step.handler(req, res);
+
+    setTimeout(() => {
+      expect(res.redirect.calledOnce).to.equal(false);
+      done();
+    }, 100);
+  });
+
+  it('answers() returns an empty array', () => {
+    const step = new Equality(req, res);
+    step.handler(req, res);
+
+    expect(step.answers()).to.deep.equal([]);
+  });
 });
