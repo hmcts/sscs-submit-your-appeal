@@ -72,7 +72,6 @@ describe('The EvidenceUpload middleware', () => {
     loggerTraceSpy.restore();
   });
 
-
   describe('handlePostResponse', () => {
     describe('when there isn\'t a forwarding error', () => {
       it('should call fs.unlink', () => {
@@ -360,7 +359,6 @@ describe('The EvidenceUpload middleware', () => {
   });
 });
 
-
 describe('static makeDir', () => {
   const getStubs = isDirectory => ({
     'graceful-fs': {
@@ -451,6 +449,7 @@ describe('The other methods of EvidenceUpload', () => {
         ], '392');
         expect(total).to.equal(3393);
       });
+
       it('returns the expected bytes if not passed items', () => {
         const total = EvidenceUpload.getTotalSize(null, '392');
         expect(total).to.equal(392);
@@ -468,10 +467,11 @@ describe('The other methods of EvidenceUpload', () => {
     });
   });
 
-  describe('middleware', () => {
+  describe('get middleware()', () => {
     it('returns an array', () => {
       expect(instance.middleware).to.be.an('array');
     });
+
     it('prepend its upload middleware to the parent middleware', () => {
       expect(instance.middleware.length).to.be.greaterThan(1);
     });
@@ -519,6 +519,51 @@ describe('The other methods of EvidenceUpload', () => {
         const result = EvidenceUpload.isCorrectFileType('foo/bar', 'foo.bar');
         expect(result).to.equal(false);
       });
+    });
+  });
+
+  describe('get addAnotherLinkContent()', () => {
+    it('returns false', () => {
+      expect(instance.addAnotherLinkContent).to.equal(false);
+    });
+
+    it('returns `Add file`', () => {
+      instance.fields.items = {
+        value: []
+      };
+      expect(instance.addAnotherLinkContent).to.equal('Add file');
+    });
+
+    it('returns `Add another file`', () => {
+      instance.fields.items = {
+        value: ['Some value']
+      };
+      expect(instance.addAnotherLinkContent).to.equal('Add another file');
+    });
+  });
+
+  describe('editUrl', () => {
+    it('returns /evidence-upload/item-1 when there are no items', () => {
+      const index = 1;
+      expect(instance.editUrl(index)).to.equal('/evidence-upload/item-1');
+    });
+
+    it('returns /evidence-upload/item-1 when index equals the number of items', () => {
+      instance.fields.items = {
+        value: ['Item one', 'Item two']
+      };
+
+      const index = 2;
+      expect(instance.editUrl(index)).to.equal('/evidence-upload/item-2');
+    });
+
+    it('returns false', () => {
+      instance.fields.items = {
+        value: ['Item one', 'Item two']
+      };
+
+      const index = 1;
+      expect(instance.editUrl(index)).to.equal(false);
     });
   });
 });
