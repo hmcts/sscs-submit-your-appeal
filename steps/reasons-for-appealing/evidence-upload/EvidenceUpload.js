@@ -102,6 +102,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       };
     }
   }
+
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
 
