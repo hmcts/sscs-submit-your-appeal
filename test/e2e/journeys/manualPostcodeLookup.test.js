@@ -23,5 +23,6 @@ Scenario('Appellant enters contact details Manually',
     I.enterAppellantContactDetailsManuallyAndContinue();
     I.checkOptionAndContinue(doYouWantTextMsgReminders.no);
     I.enterDetailsFromNoRepresentativeToEnd();
+    I.completeEqualityAndDiversity();
     I.confirmDetailsArePresent();
   }).retry(1);
