@@ -4,7 +4,7 @@
 {% from "components/fields.njk" import textbox, formSection %}
 
 {% block head %}
-{{ super() }}
+    {{ super() }}
     <noscript>
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
@@ -14,11 +14,11 @@
 
 {% set pageContent = {
     sendApplication: content.submitButton.value
-    }
+}
 %}
 
 {% block full_width %}
-{{ super() }}
+    {{ super() }}
     <div>
         {% include "components/inactivity-alert.html" %}
     </div>
@@ -26,26 +26,21 @@
 
 {% block statement_of_truth_content %}
     {{ header(content.header, size='m') }}
-    <p class="govuk-body">{{ content.information }}</p>
-    <p class="govuk-body">{{ content.permission }}</p>
+    <p class="govuk-body">{{ content.information | safe }}</p>
+    <p class="govuk-body">{{ content.permission | safe }}</p>
     <p class="govuk-body">{{ content.agree | safe }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}
-
     {% call formSection() %}
         {% if csurfCsrfToken %}
             <input type="hidden" name="_csrf" value="{{csurfCsrfToken}}">
         {% endif %}
         {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
     {% endcall %}
-
 {%- endblock %}
 
 {% block after_form -%}
     {% include "components/sessionTimeoutMessage.html" %}
     {{super()}}
 {%- endblock %}
-
-
-
