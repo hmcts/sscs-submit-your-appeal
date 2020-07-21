@@ -51,6 +51,9 @@
       "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
       "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
     },
+    "welsh": {
+      "enabled": "FT_WELSH"
+    },
     "equalityAndDiversity": {
       "enabled": "EQUALITY_ENABLED"
     }

@@ -52,10 +52,10 @@
       "enabled": "true"
     },
     "welsh": {
-      "enabled": false
+      "enabled": "false"
     },
     "equalityAndDiversity": {
-      "enabled": true
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
