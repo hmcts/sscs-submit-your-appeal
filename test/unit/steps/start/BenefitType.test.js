@@ -106,12 +106,12 @@ describe('BenefitType.js', () => {
 
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
-      process.env.FT_WELSH = true;
+      process.env.FT_WELSH = 'true';
 
       expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
 
       // eslint-disable-next-line no-process-env
-      process.env.FT_WELSH = false;
+      process.env.FT_WELSH = 'false';
     });
   });
 });

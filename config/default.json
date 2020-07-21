@@ -52,7 +52,7 @@
       "enabled": "true"
     },
     "welsh": {
-      "enabled": false
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
