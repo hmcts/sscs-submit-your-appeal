@@ -50,6 +50,9 @@
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
       "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
       "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
+    },
+    "welsh": {
+      "enabled": "FT_WELSH"
     }
   },
   "postcodeChecker": {
