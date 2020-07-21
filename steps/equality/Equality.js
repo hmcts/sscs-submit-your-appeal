@@ -14,6 +14,12 @@ class Equality extends SaveToDraftStore {
     return paths.equalityAndDiversity;
   }
 
+  hasIdam(req) {
+    const enabled = config.services.equalityAndDiversity.requireIdam === 'true';
+    const hasIdam = Boolean(req.idam);
+    return enabled ? hasIdam : true;
+  }
+
   isEnabled() {
     return config.features.equalityAndDiversity.enabled === 'true';
   }
@@ -21,8 +27,8 @@ class Equality extends SaveToDraftStore {
   handler(req, res, next) {
     const skipPcq = () => this.next().redirect(req, res, next);
 
-    // If enabled and not already called
-    if (this.isEnabled() && !req.session.Equality) {
+    // If user has logged in through IDAM, PCQ is enabled and not already called
+    if (this.hasIdam(req) && this.isEnabled() && !req.session.Equality) {
       // Check PCQ Health
       const uri = `${config.services.equalityAndDiversity.url}/health`;
       request.get({ uri, json: true })
@@ -49,7 +55,7 @@ class Equality extends SaveToDraftStore {
       serviceId: 'SSCS',
       actor: 'APPELLANT',
       pcqId,
-      partyId: req.idam ? req.idam.userDetails.email : 'No IDAM',
+      partyId: req.idam ? req.idam.userDetails.email : 'anonymous',
       returnUrl: req.headers.host + paths.checkYourAppeal,
       language: 'en'
     };
