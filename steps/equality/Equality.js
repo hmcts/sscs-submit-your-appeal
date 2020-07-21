@@ -15,7 +15,7 @@ class Equality extends SaveToDraftStore {
   }
 
   isEnabled() {
-    return config.features.equalityAndDiversity.enabled;
+    return config.features.equalityAndDiversity.enabled === 'true';
   }
 
   handler(req, res, next) {
