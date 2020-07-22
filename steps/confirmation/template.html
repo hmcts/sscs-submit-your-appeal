@@ -5,19 +5,16 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
         {{ banner | safe }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
-
-    {% set title %}
-        {{ content.title | safe }}
-    {% endset %}
+    {% set title = content.title | safe %}
 
     <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title">{{ content.title }}</h1>
+        <h1 class="govuk-panel__title">{{ content.title | safe }}</h1>
     </div>
 
     <section class="progress-bar">
@@ -26,8 +23,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
+                <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.appeal.srText | safe }}</span>
             </div>
 
             <div class="dwp-respond">
@@ -35,8 +32,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.response.srText | safe }}</span>
             </div>
 
             <div class="hearing-booked">
@@ -44,8 +41,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.hearingBooked.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.hearingBooked.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.hearingBooked.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.hearingBooked.srText | safe }}</span>
             </div>
 
             <div class="hearing">
@@ -53,8 +50,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.hearing.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.hearing.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.hearing.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.hearing.srText | safe }}</span>
             </div>
         {% endif %}
 
@@ -63,8 +60,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
+                <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.appeal.srText | safe }}</span>
             </div>
 
             <div class="dwp-respond paper">
@@ -72,8 +69,8 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.response.srText | safe }}</span>
             </div>
 
             <div class="hearing paper">
@@ -81,20 +78,19 @@
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.decision.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.decision.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.decision.text | safe }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.decision.srText | safe }}</span>
             </div>
         {% endif %}
     </section>
 
     <div class="description">
-        <h2 class="govuk-heading-s">{{ content.next.heading }}</h2>
-        <p class="govuk-body">{{ content.next.notify }}</p>
-        <p class="govuk-body">{{ content.next.contact }}</p>
+        <h2 class="govuk-heading-s">{{ content.next.heading | safe }}</h2>
+        <p class="govuk-body">{{ content.next.notify | safe }}</p>
+        <p class="govuk-body">{{ content.next.contact | safe }}</p>
     </div>
 
-    <p class="govuk-body">{{ content.email }}</p>
+    <p class="govuk-body">{{ content.email | safe }}</p>
 
-    <a class="govuk-button" href="{{ surveyLink + urlPath }}">{{ content.surveyLink  }}</a>
-
+    <a class="govuk-button" href="{{ surveyLink + urlPath }}">{{ content.surveyLink | safe }}</a>
 {% endblock %}
