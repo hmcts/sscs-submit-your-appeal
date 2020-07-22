@@ -15,8 +15,10 @@
     }
   },
   "cya": {
-    "languagePreferenceWelsh": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
-    "yes": "Yes",
-    "no": "No"
+    "languagePreferenceWelsh": {
+      "question": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

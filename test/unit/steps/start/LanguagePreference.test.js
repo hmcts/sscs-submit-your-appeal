@@ -33,9 +33,11 @@ describe('LanguagePreference.js', () => {
     beforeEach(() => {
       languagePreference.content = {
         cya: {
-          languagePreferenceWelsh: question,
-          yes: 'Yes',
-          no: 'No'
+          languagePreferenceWelsh: {
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 
@@ -63,14 +65,14 @@ describe('LanguagePreference.js', () => {
     });
 
     it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
-      languagePreference.content.cya.no = 'Nac ydw';
+      languagePreference.content.cya.languagePreferenceWelsh.no = 'Nac ydw';
       languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
       const answers = languagePreference.answers();
       expect(answers.answer).to.equal('Nac ydw');
     });
 
     it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
-      languagePreference.content.cya.yes = 'Ydw';
+      languagePreference.content.cya.languagePreferenceWelsh.yes = 'Ydw';
       languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
       const answers = languagePreference.answers();
       expect(answers.answer).to.equal('Ydw');

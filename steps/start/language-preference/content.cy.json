@@ -15,8 +15,10 @@
     }
   },
   "cya": {
-    "languagePreferenceWelsh": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
-    "yes": "Ydw",
-    "no": "Nac ydw"
+    "languagePreferenceWelsh": {
+      "question": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun, tystysgrifau)?",
+      "yes": "Ydw",
+      "no": "Nac ydw"
+    }
   }
 }
