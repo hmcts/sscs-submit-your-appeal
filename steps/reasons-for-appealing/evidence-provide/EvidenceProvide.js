@@ -26,7 +26,7 @@ class EvidenceProvide extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.evidenceProvide.question,
       section: sections.reasonsForAppealing,
-      answer: titleise(this.fields.evidenceProvide.value)
+      answer: titleise(this.content.fields.evidenceProvide[this.fields.evidenceProvide.value])
     });
   }
 

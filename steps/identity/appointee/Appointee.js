@@ -29,7 +29,7 @@ class Appointee extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.isAppointee.question,
       section: sections.appointeeDetails,
-      answer: titleise(this.fields.isAppointee.value)
+      answer: titleise(this.content.fields.isAppointee[this.fields.isAppointee.value])
     });
   }
 

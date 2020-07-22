@@ -28,7 +28,7 @@ class TheHearing extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.attendHearing.question,
         section: sections.theHearing,
-        answer: titleise(this.fields.attendHearing.value)
+        answer: titleise(this.content.fields.attendHearing[this.fields.attendHearing.value])
       })
     ];
   }
