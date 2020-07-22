@@ -3,6 +3,7 @@ const Appointee = require('steps/identity/appointee/Appointee');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const i18next = require('i18next');
 
 describe('Appointee.js', () => {
   let appointee = null;
@@ -82,30 +83,42 @@ describe('Appointee.js', () => {
       expect(answers.section).to.equal(sections.appointeeDetails);
     });
 
-    it('should titleise the users selection to \'No\' for CYA (English)', () => {
-      appointee.fields.isAppointee.value = userAnswer.NO;
-      const answers = appointee.answers();
-      expect(answers.answer).to.equal('No');
+    describe('English', () => {
+      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+        appointee.fields.isAppointee.value = userAnswer.NO;
+        const answers = appointee.answers();
+        expect(answers.answer).to.equal('No');
+      });
+
+      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+        appointee.fields.isAppointee.value = userAnswer.YES;
+        const answers = appointee.answers();
+        expect(answers.answer).to.equal('Yes');
+      });
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
-      appointee.fields.isAppointee.value = userAnswer.YES;
-      const answers = appointee.answers();
-      expect(answers.answer).to.equal('Yes');
-    });
+    describe('Welsh', () => {
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
 
-    it('should titleise the users selection to \'Na\' for CYA (Welsh)', () => {
-      appointee.content.cya.isAppointee.no = 'Na';
-      appointee.fields.isAppointee.value = userAnswer.NO;
-      const answers = appointee.answers();
-      expect(answers.answer).to.equal('Na');
-    });
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
 
-    it('should titleise the users selection to \'Do\' for CYA (Welsh)', () => {
-      appointee.content.cya.isAppointee.yes = 'Do';
-      appointee.fields.isAppointee.value = userAnswer.YES;
-      const answers = appointee.answers();
-      expect(answers.answer).to.equal('Do');
+      it('should titleise the users selection to \'Na\' for CYA (Welsh)', () => {
+        appointee.content.cya.isAppointee.no = 'Na';
+        appointee.fields.isAppointee.value = userAnswer.NO;
+        const answers = appointee.answers();
+        expect(answers.answer).to.equal('Na');
+      });
+
+      it('should titleise the users selection to \'Do\' for CYA (Welsh)', () => {
+        appointee.content.cya.isAppointee.yes = 'Do';
+        appointee.fields.isAppointee.value = userAnswer.YES;
+        const answers = appointee.answers();
+        expect(answers.answer).to.equal('Do');
+      });
     });
 
     it('should set isAppointee to false', () => {

@@ -4,6 +4,7 @@ const sections = require('steps/check-your-appeal/sections');
 const answer = require('utils/answer');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const i18next = require('i18next');
 
 describe('TextReminders.js', () => {
   let textReminders = null;
@@ -85,30 +86,42 @@ describe('TextReminders.js', () => {
       expect(answers[0].section).to.equal(sections.textMsgReminders);
     });
 
-    it('should titleise the users selection to \'No\' for CYA (English)', () => {
-      textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
-      const answers = textReminders.answers();
-      expect(answers[0].answer).to.equal('No');
+    describe('English', () => {
+      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+        textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
+        const answers = textReminders.answers();
+        expect(answers[0].answer).to.equal('No');
+      });
+
+      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+        textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
+        const answers = textReminders.answers();
+        expect(answers[0].answer).to.equal('Yes');
+      });
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
-      textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
-      const answers = textReminders.answers();
-      expect(answers[0].answer).to.equal('Yes');
-    });
+    describe('Welsh', () => {
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
 
-    it('should titleise the users selection to \'Nac oes\' for CYA (Welsh)', () => {
-      textReminders.content.cya.doYouWantTextMsgReminders.no = 'Nac oes';
-      textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
-      const answers = textReminders.answers();
-      expect(answers[0].answer).to.equal('Nac oes');
-    });
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
 
-    it('should titleise the users selection to \'Oes\' for CYA (Welsh)', () => {
-      textReminders.content.cya.doYouWantTextMsgReminders.yes = 'Oes';
-      textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
-      const answers = textReminders.answers();
-      expect(answers[0].answer).to.equal('Oes');
+      it('should titleise the users selection to \'Nac oes\' for CYA (Welsh)', () => {
+        textReminders.content.cya.doYouWantTextMsgReminders.no = 'Nac oes';
+        textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
+        const answers = textReminders.answers();
+        expect(answers[0].answer).to.equal('Nac oes');
+      });
+
+      it('should titleise the users selection to \'Oes\' for CYA (Welsh)', () => {
+        textReminders.content.cya.doYouWantTextMsgReminders.yes = 'Oes';
+        textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
+        const answers = textReminders.answers();
+        expect(answers[0].answer).to.equal('Oes');
+      });
     });
 
     it('should set doYouWantTextMsgReminders to false', () => {

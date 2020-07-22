@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const i18next = require('i18next');
 
 class SameAddress extends SaveToDraftStore {
   static get path() {
@@ -23,10 +24,12 @@ class SameAddress extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return answer(this, {
       question: this.content.cya.isAddressSameAsAppointee.question,
       section: sections.appellantDetails,
-      answer: titleise(this.content.cya.isAddressSameAsAppointee[this.fields.isAddressSameAsAppointee.value])
+      answer: titleise(content.cya.isAddressSameAsAppointee[this.fields.isAddressSameAsAppointee.value])
     });
   }
 

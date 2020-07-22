@@ -8,6 +8,7 @@ const userAnswer = require('utils/answer');
 const regex = require('utils/regex');
 const paths = require('paths');
 const Joi = require('joi');
+const i18next = require('i18next');
 
 class TextReminders extends SaveToDraftStore {
   static get path() {
@@ -26,11 +27,13 @@ class TextReminders extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return [
       answer(this, {
         question: this.content.cya.doYouWantTextMsgReminders.question,
         section: sections.textMsgReminders,
-        answer: titleise(this.content.cya.doYouWantTextMsgReminders[this.fields.doYouWantTextMsgReminders.value])
+        answer: titleise(content.cya.doYouWantTextMsgReminders[this.fields.doYouWantTextMsgReminders.value])
       })
     ];
   }

@@ -9,6 +9,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
+const i18next = require('i18next');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
@@ -28,10 +29,12 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return answer(this, {
       question: this.content.cya.languagePreferenceWelsh.question,
       section: sections.benefitType,
-      answer: titleise(this.content.cya.languagePreferenceWelsh[this.fields.languagePreferenceWelsh.value])
+      answer: titleise(content.cya.languagePreferenceWelsh[this.fields.languagePreferenceWelsh.value])
     });
   }
 

@@ -8,6 +8,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
+const i18next = require('i18next');
 
 class TheHearing extends SaveToDraftStore {
   static get path() {
@@ -24,11 +25,13 @@ class TheHearing extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return [
       answer(this, {
         question: this.content.cya.attendHearing.question,
         section: sections.theHearing,
-        answer: titleise(this.content.cya.attendHearing[this.fields.attendHearing.value])
+        answer: titleise(content.cya.attendHearing[this.fields.attendHearing.value])
       })
     ];
   }
