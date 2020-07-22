@@ -64,10 +64,10 @@ describe('TheHearing.js', () => {
       theHearing.content = {
         cya: {
           attendHearing: {
-            question
-          },
-          yes: 'Yes',
-          no: 'No'
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 

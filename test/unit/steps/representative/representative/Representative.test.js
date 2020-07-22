@@ -63,10 +63,10 @@ describe('Representative.js', () => {
       representative.content = {
         cya: {
           hasRepresentative: {
-            question
-          },
-          yes: 'Yes',
-          no: 'No'
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 
@@ -94,14 +94,14 @@ describe('Representative.js', () => {
     });
 
     it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
-      representative.content.cya.no = 'Nac ydw';
+      representative.content.cya.hasRepresentative.no = 'Nac ydw';
       representative.fields.hasRepresentative.value = userAnswer.NO;
       const answers = representative.answers();
       expect(answers.answer).to.equal('Nac ydw');
     });
 
     it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
-      representative.content.cya.yes = 'Ydw';
+      representative.content.cya.hasRepresentative.yes = 'Ydw';
       representative.fields.hasRepresentative.value = userAnswer.YES;
       const answers = representative.answers();
       expect(answers.answer).to.equal('Ydw');

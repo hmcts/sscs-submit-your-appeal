@@ -19,9 +19,9 @@
   },
   "cya": {
     "hasRepresentative": {
-      "question": "Have a representative"
-    },
-    "yes": "Yes",
-    "no": "No"
+      "question": "Have a representative",
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

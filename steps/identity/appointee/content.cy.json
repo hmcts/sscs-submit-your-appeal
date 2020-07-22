@@ -14,9 +14,9 @@
   },
   "cya": {
     "isAppointee": {
-      "question": "Penodai"
-    },
-    "yes": "Do",
-    "no": "Na"
+      "question": "Penodai",
+      "yes": "Do",
+      "no": "Na"
+    }
   }
 }

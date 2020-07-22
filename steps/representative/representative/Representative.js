@@ -26,7 +26,7 @@ class Representative extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.hasRepresentative.question,
       section: sections.representative,
-      answer: titleise(this.content.cya[this.fields.hasRepresentative.value])
+      answer: titleise(this.content.cya.hasRepresentative[this.fields.hasRepresentative.value])
     });
   }
 

@@ -64,10 +64,10 @@ describe('Appointee.js', () => {
       appointee.content = {
         cya: {
           isAppointee: {
-            question
-          },
-          yes: 'Yes',
-          no: 'No'
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 
@@ -95,14 +95,14 @@ describe('Appointee.js', () => {
     });
 
     it('should titleise the users selection to \'Na\' for CYA (Welsh)', () => {
-      appointee.content.cya.no = 'Na';
+      appointee.content.cya.isAppointee.no = 'Na';
       appointee.fields.isAppointee.value = userAnswer.NO;
       const answers = appointee.answers();
       expect(answers.answer).to.equal('Na');
     });
 
     it('should titleise the users selection to \'Do\' for CYA (Welsh)', () => {
-      appointee.content.cya.yes = 'Do';
+      appointee.content.cya.isAppointee.yes = 'Do';
       appointee.fields.isAppointee.value = userAnswer.YES;
       const answers = appointee.answers();
       expect(answers.answer).to.equal('Do');

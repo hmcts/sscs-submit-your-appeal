@@ -63,10 +63,10 @@ describe('EvidenceProvide.js', () => {
       evidenceProvide.content = {
         cya: {
           evidenceProvide: {
-            question
-          },
-          yes: 'Yes',
-          no: 'No'
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 
@@ -94,14 +94,14 @@ describe('EvidenceProvide.js', () => {
     });
 
     it('should titleise the users selection to \'Na hoffwn\' for CYA (Welsh)', () => {
-      evidenceProvide.content.cya.no = 'Na hoffwn';
+      evidenceProvide.content.cya.evidenceProvide.no = 'Na hoffwn';
       evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
       const answers = evidenceProvide.answers();
       expect(answers.answer).to.equal('Na hoffwn');
     });
 
     it('should titleise the users selection to \'Hoffwn\' for CYA (Welsh)', () => {
-      evidenceProvide.content.cya.yes = 'Hoffwn';
+      evidenceProvide.content.cya.evidenceProvide.yes = 'Hoffwn';
       evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
       const answers = evidenceProvide.answers();
       expect(answers.answer).to.equal('Hoffwn');

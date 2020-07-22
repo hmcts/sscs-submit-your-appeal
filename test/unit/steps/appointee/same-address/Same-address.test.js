@@ -15,10 +15,10 @@ describe('answers() and values()', () => {
     sameAddress.content = {
       cya: {
         isAddressSameAsAppointee: {
-          question
-        },
-        yes: 'Yes',
-        no: 'No'
+          question,
+          yes: 'Yes',
+          no: 'No'
+        }
       }
     };
 
@@ -40,14 +40,14 @@ describe('answers() and values()', () => {
   });
 
   it('should say \'Ydy\' when value is yes (Welsh)', () => {
-    sameAddress.content.cya.yes = 'Ydy';
+    sameAddress.content.cya.isAddressSameAsAppointee.yes = 'Ydy';
     sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
     const answers = sameAddress.answers();
     expect(answers.answer).to.equal('Ydy');
   });
 
   it('should say \'Nac ydy\' when value is no (Welsh)', () => {
-    sameAddress.content.cya.no = 'Nac ydy';
+    sameAddress.content.cya.isAddressSameAsAppointee.no = 'Nac ydy';
     sameAddress.fields.isAddressSameAsAppointee.value = 'no';
     const answers = sameAddress.answers();
     expect(answers.answer).to.equal('Nac ydy');

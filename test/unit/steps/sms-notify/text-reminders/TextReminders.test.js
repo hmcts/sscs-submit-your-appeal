@@ -69,10 +69,10 @@ describe('TextReminders.js', () => {
       textReminders.content = {
         cya: {
           doYouWantTextMsgReminders: {
-            question
-          },
-          yes: 'Yes',
-          no: 'No'
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
       textReminders.fields = { doYouWantTextMsgReminders: {} };
@@ -98,14 +98,14 @@ describe('TextReminders.js', () => {
     });
 
     it('should titleise the users selection to \'Nac oes\' for CYA (Welsh)', () => {
-      textReminders.content.cya.no = 'Nac oes';
+      textReminders.content.cya.doYouWantTextMsgReminders.no = 'Nac oes';
       textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
       const answers = textReminders.answers();
       expect(answers[0].answer).to.equal('Nac oes');
     });
 
     it('should titleise the users selection to \'Oes\' for CYA (Welsh)', () => {
-      textReminders.content.cya.yes = 'Oes';
+      textReminders.content.cya.doYouWantTextMsgReminders.yes = 'Oes';
       textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
       const answers = textReminders.answers();
       expect(answers[0].answer).to.equal('Oes');

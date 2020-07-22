@@ -16,9 +16,9 @@
   },
   "cya": {
     "attendHearing": {
-      "question": "Attending the hearing"
-    },
-    "yes": "Yes",
-    "no": "No"
+      "question": "Attending the hearing",
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

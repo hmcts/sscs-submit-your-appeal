@@ -13,9 +13,9 @@
   },
   "cya": {
     "isAddressSameAsAppointee": {
-      "question": "Yr un cyfeiriad â’r penodai"
-    },
-    "yes": "Ydy",
-    "no": "Nac ydy"
+      "question": "Yr un cyfeiriad â’r penodai",
+      "yes": "Ydy",
+      "no": "Nac ydy"
+    }
   }
 }
