@@ -17,6 +17,8 @@
   "cya": {
     "attendHearing": {
       "question": "Mynychu’r gwrandawiad"
-    }
+    },
+    "yes": "Oes",
+    "no": "Nac oes"
   }
 }

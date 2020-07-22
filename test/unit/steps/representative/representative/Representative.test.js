@@ -64,7 +64,9 @@ describe('Representative.js', () => {
         cya: {
           hasRepresentative: {
             question
-          }
+          },
+          yes: 'Yes',
+          no: 'No'
         }
       };
 
@@ -79,16 +81,30 @@ describe('Representative.js', () => {
       expect(answers.section).to.equal(sections.representative);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
+    it('should titleise the users selection to \'No\' for CYA (English)', () => {
       representative.fields.hasRepresentative.value = userAnswer.NO;
       const answers = representative.answers();
       expect(answers.answer).to.equal('No');
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
+    it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
       representative.fields.hasRepresentative.value = userAnswer.YES;
       const answers = representative.answers();
       expect(answers.answer).to.equal('Yes');
+    });
+
+    it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
+      representative.content.cya.no = 'Nac ydw';
+      representative.fields.hasRepresentative.value = userAnswer.NO;
+      const answers = representative.answers();
+      expect(answers.answer).to.equal('Nac ydw');
+    });
+
+    it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
+      representative.content.cya.yes = 'Ydw';
+      representative.fields.hasRepresentative.value = userAnswer.YES;
+      const answers = representative.answers();
+      expect(answers.answer).to.equal('Ydw');
     });
 
     it('should set hasRepresentative to false', () => {

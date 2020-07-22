@@ -31,7 +31,7 @@ class LanguagePreference extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.languagePreferenceWelsh,
       section: sections.benefitType,
-      answer: titleise(this.content.fields.languagePreferenceWelsh[this.fields.languagePreferenceWelsh.value])
+      answer: titleise(this.content.cya[this.fields.languagePreferenceWelsh.value])
     });
   }
 

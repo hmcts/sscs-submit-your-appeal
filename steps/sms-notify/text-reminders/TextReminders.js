@@ -30,7 +30,7 @@ class TextReminders extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.doYouWantTextMsgReminders.question,
         section: sections.textMsgReminders,
-        answer: titleise(this.content.fields.doYouWantTextMsgReminders[this.fields.doYouWantTextMsgReminders.value])
+        answer: titleise(this.content.cya[this.fields.doYouWantTextMsgReminders.value])
       })
     ];
   }

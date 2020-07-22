@@ -20,6 +20,8 @@
   "cya": {
     "hasRepresentative": {
       "question": "Have a representative"
-    }
+    },
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -16,6 +16,8 @@
   "cya": {
     "evidenceProvide": {
       "question": "Evidence provided"
-    }
+    },
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -16,6 +16,8 @@
   "cya": {
     "evidenceProvide": {
       "question": "Darparwyd tystiolaeth"
-    }
+    },
+    "yes": "Hoffwn",
+    "no": "Na hoffwn"
   }
 }

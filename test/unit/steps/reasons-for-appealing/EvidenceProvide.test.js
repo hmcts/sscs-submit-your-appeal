@@ -64,7 +64,9 @@ describe('EvidenceProvide.js', () => {
         cya: {
           evidenceProvide: {
             question
-          }
+          },
+          yes: 'Yes',
+          no: 'No'
         }
       };
 
@@ -79,16 +81,30 @@ describe('EvidenceProvide.js', () => {
       expect(answers.section).to.equal(sections.reasonsForAppealing);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
+    it('should titleise the users selection to \'No\' for CYA (English)', () => {
       evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
       const answers = evidenceProvide.answers();
       expect(answers.answer).to.equal('No');
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
+    it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
       evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
       const answers = evidenceProvide.answers();
       expect(answers.answer).to.equal('Yes');
+    });
+
+    it('should titleise the users selection to \'Na hoffwn\' for CYA (Welsh)', () => {
+      evidenceProvide.content.cya.no = 'Na hoffwn';
+      evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
+      const answers = evidenceProvide.answers();
+      expect(answers.answer).to.equal('Na hoffwn');
+    });
+
+    it('should titleise the users selection to \'Hoffwn\' for CYA (Welsh)', () => {
+      evidenceProvide.content.cya.yes = 'Hoffwn';
+      evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
+      const answers = evidenceProvide.answers();
+      expect(answers.answer).to.equal('Hoffwn');
     });
 
     it('should set evidenceProvide to false', () => {

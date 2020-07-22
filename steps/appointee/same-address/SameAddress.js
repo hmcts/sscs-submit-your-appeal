@@ -26,7 +26,7 @@ class SameAddress extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.isAddressSameAsAppointee.question,
       section: sections.appellantDetails,
-      answer: titleise(this.content.fields.isAddressSameAsAppointee[this.fields.isAddressSameAsAppointee.value])
+      answer: titleise(this.content.cya[this.fields.isAddressSameAsAppointee.value])
     });
   }
 

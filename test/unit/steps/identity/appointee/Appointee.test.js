@@ -65,7 +65,9 @@ describe('Appointee.js', () => {
         cya: {
           isAppointee: {
             question
-          }
+          },
+          yes: 'Yes',
+          no: 'No'
         }
       };
 
@@ -80,16 +82,30 @@ describe('Appointee.js', () => {
       expect(answers.section).to.equal(sections.appointeeDetails);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
+    it('should titleise the users selection to \'No\' for CYA (English)', () => {
       appointee.fields.isAppointee.value = userAnswer.NO;
       const answers = appointee.answers();
       expect(answers.answer).to.equal('No');
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
+    it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
       appointee.fields.isAppointee.value = userAnswer.YES;
       const answers = appointee.answers();
       expect(answers.answer).to.equal('Yes');
+    });
+
+    it('should titleise the users selection to \'Na\' for CYA (Welsh)', () => {
+      appointee.content.cya.no = 'Na';
+      appointee.fields.isAppointee.value = userAnswer.NO;
+      const answers = appointee.answers();
+      expect(answers.answer).to.equal('Na');
+    });
+
+    it('should titleise the users selection to \'Do\' for CYA (Welsh)', () => {
+      appointee.content.cya.yes = 'Do';
+      appointee.fields.isAppointee.value = userAnswer.YES;
+      const answers = appointee.answers();
+      expect(answers.answer).to.equal('Do');
     });
 
     it('should set isAppointee to false', () => {
