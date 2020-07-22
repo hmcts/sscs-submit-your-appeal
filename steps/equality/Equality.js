@@ -62,6 +62,9 @@ class Equality extends SaveToDraftStore {
 
     params.token = createToken(params);
 
+    // Encode partyId
+    params.partyId = encodeURIComponent(params.partyId);
+
     const qs = Object.keys(params)
       .map(key => `${key}=${params[key]}`)
       .join('&');
