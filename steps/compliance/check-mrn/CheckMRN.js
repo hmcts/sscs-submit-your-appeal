@@ -7,6 +7,7 @@ const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
+const i18next = require('i18next');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
@@ -39,7 +40,8 @@ class CheckMRN extends SaveToDraftStore {
     const mrnDate = DateUtils.createMoment(
       this.fields.mrnDate.day.value,
       this.fields.mrnDate.month.value,
-      this.fields.mrnDate.year.value
+      this.fields.mrnDate.year.value,
+      i18next.language
     );
 
     const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
@@ -49,7 +51,6 @@ class CheckMRN extends SaveToDraftStore {
       delete this.req.session.MRNDate;
       delete this.req.session.CheckMRN;
     }
-
 
     return branch(
       goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),

@@ -33,7 +33,8 @@
 {% endblock %}
 
 {% block item %}
-    <span data-index="{{ safeId(item.id) }}">{{ item.value.format('dddd D MMMM YYYY') }}</span>
+    <span>{{ item.value.format('dddd D MMMM YYYY') }}</span>
+    <span data-index="{{ safeId(item.id) }}" class="govuk-visually-hidden">{{ item.value.format('MM-DD-YYYY') }}</span>
 {% endblock %}
 
 {% block listItems %}
@@ -54,5 +55,13 @@
 
 {% block editItem %}
     <p class="govuk-body">{{ content.nonJS.yourHearing | safe }}</p>
-    {{ date(fields.item, content.fields.cantAttendDate.legend) }}
+    {{ date(
+        fields.item,
+        content.fields.cantAttendDate.legend,
+        labels = {
+            day: content.fields.cantAttendDate.day,
+            month: content.fields.cantAttendDate.month,
+            year: content.fields.cantAttendDate.year
+        }
+    ) }}
 {% endblock %}

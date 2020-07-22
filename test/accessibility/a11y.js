@@ -58,12 +58,16 @@ function accessibilityCheck(url) {
 }
 
 describe('Accessibility', () => {
-  steps.forEach(step => {
-    const url = step.path;
-    const excluded = excludeSteps.some(stepUrl => stepUrl === url);
+  const languages = ['en', 'cy'];
 
-    if (!excluded) {
-      accessibilityCheck(url);
-    }
+  languages.forEach(language => {
+    steps.forEach(step => {
+      const url = step.path;
+      const excluded = excludeSteps.some(stepUrl => stepUrl === url);
+
+      if (!excluded) {
+        accessibilityCheck(`${url}?lng=${language}`);
+      }
+    });
   });
 });
