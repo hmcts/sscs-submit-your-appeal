@@ -16,7 +16,6 @@ const {
 } = require('./appConfigurations');
 
 const app = express();
-
 const port = config.get('node.port');
 
 // Tests
