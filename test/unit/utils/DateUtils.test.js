@@ -6,7 +6,6 @@ const moment = require('moment');
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 const { long, short } = require('utils/months');
 
-
 describe('MRN date that is <= a calendar month', () => {
   it('should return true when the MRN date is one day short of a month', () => {
     expect(DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneDayShortOfAMonthAgo())).to.be.true;
@@ -170,7 +169,6 @@ describe('mrnDateSameAsImage', () => {
   });
 });
 
-
 describe('isGreaterThanOrEqualToFourWeeks', () => {
   let date = null;
 
@@ -217,19 +215,34 @@ describe('isLessThanOrEqualToTwentyTwoWeeks', () => {
 describe('isDateOnTheWeekend', () => {
   let date = null;
 
-  it('should return true when date is on the weekend', () => {
+  it('should return true when date is on the weekend (English)', () => {
     date = moment('20-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.true;
   });
 
-  it('should return true when date is on the weekend', () => {
+  it('should return true when date is on the weekend (English)', () => {
     date = moment('19-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.true;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.true;
   });
 
-  it('should return false when date is not on the weekend', () => {
+  it('should return false when date is not on the weekend (English)', () => {
     date = moment('18-05-2018', 'DD-MM-YYYY');
-    expect(DateUtils.isDateOnTheWeekend(date)).to.be.false;
+    expect(DateUtils.isDateOnTheWeekend(date, 'en')).to.be.false;
+  });
+
+  it('should return true when date is on the weekend (Welsh)', () => {
+    date = moment('20-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.true;
+  });
+
+  it('should return true when date is on the weekend (Welsh)', () => {
+    date = moment('19-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.true;
+  });
+
+  it('should return false when date is not on the weekend (Welsh)', () => {
+    date = moment('18-05-2018', 'DD-MM-YYYY').locale('cy');
+    expect(DateUtils.isDateOnTheWeekend(date, 'cy')).to.be.false;
   });
 });
 
@@ -258,40 +271,68 @@ describe('getMonthValue', () => {
   };
 
   describe('month when is not a numerical value', () => {
-    long.forEach((month, index) => {
+    long.en.forEach((month, index) => {
       it(`should return the numerical value for ${month}`, () => {
         date.month = month;
-        expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
+        expect(DateUtils.getMonthValue(date, 'en')).to.equal(index + 1);
       });
     });
 
-    short.forEach((month, index) => {
+    long.cy.forEach((month, index) => {
       it(`should return the numerical value for ${month}`, () => {
         date.month = month;
-        expect(DateUtils.getMonthValue(date)).to.equal(index + 1);
+        expect(DateUtils.getMonthValue(date, 'cy')).to.equal(index + 1);
+      });
+    });
+
+    short.en.forEach((month, index) => {
+      it(`should return the numerical value for ${month}`, () => {
+        date.month = month;
+        expect(DateUtils.getMonthValue(date, 'en')).to.equal(index + 1);
+      });
+    });
+
+    short.cy.forEach((month, index) => {
+      it(`should return the numerical value for ${month}`, () => {
+        date.month = month;
+        expect(DateUtils.getMonthValue(date, 'cy')).to.equal(index + 1);
       });
     });
 
     it('should return false when the string passed is not an actual month', () => {
       date.month = 'Ja';
-      expect(DateUtils.getMonthValue(date)).to.be.false;
+      expect(DateUtils.getMonthValue(date, 'en')).to.be.false;
     });
 
     it('should return false when the string passed is composed of a number and words', () => {
       date.month = '01month';
-      expect(DateUtils.getMonthValue(date)).to.be.false;
+      expect(DateUtils.getMonthValue(date, 'en')).to.be.false;
     });
   });
 
   describe('month when is a numerical value', () => {
     it('should return the month value that is passed when it is a numerical value', () => {
       date.month = '10';
-      expect(DateUtils.getMonthValue(date)).to.equal(date.month);
+      expect(DateUtils.getMonthValue(date, 'en')).to.equal(date.month);
     });
   });
 
   describe('should return current date in DD-MM-YYYY format', () => {
     const currentDate = moment().format('DD-MM-YYYY');
     expect(DateUtils.getCurrentDate()).to.equal(currentDate);
+  });
+});
+
+describe('formatDate', () => {
+  it('should return a formatted date in English', () => {
+    const date = DateUtils.createMoment('12', '8', '2018', 'en');
+
+    expect(DateUtils.formatDate(date, 'DD MMMM YYYY')).to.equal('12 August 2018');
+  });
+
+  it('should return a formatted date in Welsh', () => {
+    const date = DateUtils.createMoment('12', '8', '2018', 'cy');
+
+    expect(DateUtils.formatDate(date, 'DD MMMM YYYY')).to.equal('12 Awst 2018');
   });
 });

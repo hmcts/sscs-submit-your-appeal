@@ -33,7 +33,6 @@ nodejs:
         - sscs-redis-access-key
         - sscs-redis-connection-string
         - AppInsightsInstrumentationKey
-        - launchdarkly-key
         - pcq-token-key
 
 redis:

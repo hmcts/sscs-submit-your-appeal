@@ -12,7 +12,6 @@ nodejs:
         - idam-sscs-oauth2-client-secret
         - postcode-lookup-token
         - AppInsightsInstrumentationKey
-        - launchdarkly-key
         - pcq-token-key
 
 redis:

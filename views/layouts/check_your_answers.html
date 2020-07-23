@@ -6,14 +6,25 @@
 {% from "components/errors.njk" import errorSummary %}
 {% from "components/i18n.njk" import languageSwitch %}
 
-{% set defaultContent = {
-  title: 'Check your answers',
-  incompleteHeader: 'Your application is incomplete',
-  incompleteMessage: 'There are still some questions to answer.',
-  continue: 'Continue your application',
-  statementOfTruth: 'By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.',
-  sendApplication: 'Send your application'
-} %}
+{% if i18n.currentLanguage == "en" %}
+  {% set defaultContent = {
+    title: "Check your answers",
+    incompleteHeader: "Your application is incomplete",
+    incompleteMessage: "There are still some questions to answer.",
+    continue: "Continue your application",
+    statementOfTruth: "By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.",
+    sendApplication: "Send your application"
+  } %}
+{% else %}
+  {% set defaultContent = {
+    title: "[CY] Check your answers",
+    incompleteHeader: "[CY] Your application is incomplete",
+    incompleteMessage: "[CY] There are still some questions to answer.",
+    continue: "[CY] Continue your application",
+    statementOfTruth: "[CY] By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.",
+    sendApplication: "[CY] Send your application"
+  } %}
+{% endif %}
 
 {% block pageTitle %}{{ pageContent.title | default(defaultContent.title) | safe }}{% endblock %}
 
