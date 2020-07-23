@@ -1,7 +1,7 @@
 {
   "titleHead": "Language preference",
-  "title": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
-  "question": "Do you require your appeal documents in English and Welsh (emails, letters, texts, certificates)?",
+  "title": "Do you require your appeal documents in English and Welsh (emails, letters, texts)?",
+  "question": "Do you require your appeal documents in English and Welsh (emails, letters, texts)?",
   "summary": "If you don’t need your document to be translated to Welsh language, please choose ‘no’.",
   "answerNo": "All documents will be in English.",
 
