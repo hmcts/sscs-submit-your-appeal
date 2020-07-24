@@ -14,7 +14,9 @@
   },
   "cya": {
     "doYouWantTextMsgReminders": {
-      "question": "Cael negeseuon testun atgoffa"
+      "question": "Cael negeseuon testun atgoffa",
+      "yes": "Oes",
+      "no": "Nac oes"
     }
   }
 }

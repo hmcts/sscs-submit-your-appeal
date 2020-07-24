@@ -15,11 +15,11 @@
       "srText": "Apêl wedi cyrraedd. Mae’r cam hwn wedi ei gwblhau."
     },
     "response": {
-      "text": "Ymateb DWP ",
+      "text": "Ymateb DWP",
       "srText": "Bydd DWP yn ymateb i’ch apêl. Nid yw hyn wedi digwydd eto."
     },
     "hearingBooked": {
-      "text": "Gwrandawiad wedi ei drefnu",
+      "text": "Gwrandawiad<br>wedi ei drefnu",
       "srText": "Gwrandawiad wedi ei drefnu. Nid yw hyn wedi digwydd eto."
     },
     "hearing": {

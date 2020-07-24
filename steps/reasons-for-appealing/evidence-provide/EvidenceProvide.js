@@ -7,6 +7,7 @@ const paths = require('paths');
 const Joi = require('joi');
 const { titleise } = require('utils/stringUtils');
 const userAnswer = require('utils/answer');
+const i18next = require('i18next');
 
 class EvidenceProvide extends SaveToDraftStore {
   static get path() {
@@ -23,10 +24,12 @@ class EvidenceProvide extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return answer(this, {
       question: this.content.cya.evidenceProvide.question,
       section: sections.reasonsForAppealing,
-      answer: titleise(this.fields.evidenceProvide.value)
+      answer: titleise(content.cya.evidenceProvide[this.fields.evidenceProvide.value])
     });
   }
 

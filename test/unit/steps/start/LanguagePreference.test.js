@@ -5,6 +5,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const config = require('config');
+const i18next = require('i18next');
 
 describe('LanguagePreference.js', () => {
   let languagePreference = null;
@@ -33,7 +34,11 @@ describe('LanguagePreference.js', () => {
     beforeEach(() => {
       languagePreference.content = {
         cya: {
-          languagePreferenceWelsh: question
+          languagePreferenceWelsh: {
+            question,
+            yes: 'Yes',
+            no: 'No'
+          }
         }
       };
 
@@ -48,16 +53,42 @@ describe('LanguagePreference.js', () => {
       expect(answers.section).to.equal(sections.benefitType);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
-      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
-      const answers = languagePreference.answers();
-      expect(answers.answer).to.equal('No');
+    describe('English', () => {
+      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
+        const answers = languagePreference.answers();
+        expect(answers.answer).to.equal('No');
+      });
+
+      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
+        const answers = languagePreference.answers();
+        expect(answers.answer).to.equal('Yes');
+      });
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
-      languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
-      const answers = languagePreference.answers();
-      expect(answers.answer).to.equal('Yes');
+    describe('Welsh', () => {
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
+        languagePreference.content.cya.languagePreferenceWelsh.no = 'Nac ydw';
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
+        const answers = languagePreference.answers();
+        expect(answers.answer).to.equal('Nac ydw');
+      });
+
+      it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
+        languagePreference.content.cya.languagePreferenceWelsh.yes = 'Ydw';
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
+        const answers = languagePreference.answers();
+        expect(answers.answer).to.equal('Ydw');
+      });
     });
 
     it('should set hasRepresentative to false', () => {
