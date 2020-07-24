@@ -17,7 +17,7 @@ Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken 
   I.amOnPage(paths.checkYourAppeal);
   I.see('Check your answers');
   I.see('Your application is incomplete');
-  I.see('There are still some questions to answer');
+  I.see('There are still some questions to answer.');
   I.click('Continue your application');
   I.seeCurrentUrlEquals('/benefit-type');
 });

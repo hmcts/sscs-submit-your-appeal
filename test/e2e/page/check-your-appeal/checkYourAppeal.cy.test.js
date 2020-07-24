@@ -15,10 +15,10 @@ After(I => {
 
 Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, I => {
   I.amOnPage(paths.checkYourAppeal);
-  I.see('Check your answers');
-  I.see('Your application is incomplete');
-  I.see('There are still some questions to answer');
-  I.click('Continue your application');
+  I.see('Gwiriwch eich atebion');
+  I.see('Mae eich cais yn anghyflawn');
+  I.see('Mae yna gwestiynau nad ydych wedi’u hateb.');
+  I.click('Parhau á’ch cais');
   I.seeCurrentUrlEquals('/benefit-type');
 });
 
