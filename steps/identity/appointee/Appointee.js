@@ -8,6 +8,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const config = require('config');
+const i18next = require('i18next');
 
 const allowAppointee = config.get('features.allowAppointee.enabled') === 'true';
 
@@ -26,10 +27,12 @@ class Appointee extends SaveToDraftStore {
   }
 
   answers() {
+    const content = require(`./content.${i18next.language}`);
+
     return answer(this, {
       question: this.content.cya.isAppointee.question,
       section: sections.appointeeDetails,
-      answer: titleise(this.fields.isAppointee.value)
+      answer: titleise(content.cya.isAppointee[this.fields.isAppointee.value])
     });
   }
 

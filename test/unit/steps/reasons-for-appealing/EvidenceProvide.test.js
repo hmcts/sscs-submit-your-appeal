@@ -3,6 +3,7 @@ const EvidenceProvide = require('steps/reasons-for-appealing/evidence-provide/Ev
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const i18next = require('i18next');
 
 describe('EvidenceProvide.js', () => {
   let evidenceProvide = null;
@@ -63,7 +64,9 @@ describe('EvidenceProvide.js', () => {
       evidenceProvide.content = {
         cya: {
           evidenceProvide: {
-            question
+            question,
+            yes: 'Yes',
+            no: 'No'
           }
         }
       };
@@ -79,16 +82,42 @@ describe('EvidenceProvide.js', () => {
       expect(answers.section).to.equal(sections.reasonsForAppealing);
     });
 
-    it('should titleise the users selection to \'No\' for CYA', () => {
-      evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
-      const answers = evidenceProvide.answers();
-      expect(answers.answer).to.equal('No');
+    describe('English', () => {
+      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+        evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
+        const answers = evidenceProvide.answers();
+        expect(answers.answer).to.equal('No');
+      });
+
+      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+        evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
+        const answers = evidenceProvide.answers();
+        expect(answers.answer).to.equal('Yes');
+      });
     });
 
-    it('should titleise the users selection to \'Yes\' for CYA', () => {
-      evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
-      const answers = evidenceProvide.answers();
-      expect(answers.answer).to.equal('Yes');
+    describe('Welsh', () => {
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('should titleise the users selection to \'Na hoffwn\' for CYA (Welsh)', () => {
+        evidenceProvide.content.cya.evidenceProvide.no = 'Na hoffwn';
+        evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
+        const answers = evidenceProvide.answers();
+        expect(answers.answer).to.equal('Na hoffwn');
+      });
+
+      it('should titleise the users selection to \'Hoffwn\' for CYA (Welsh)', () => {
+        evidenceProvide.content.cya.evidenceProvide.yes = 'Hoffwn';
+        evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
+        const answers = evidenceProvide.answers();
+        expect(answers.answer).to.equal('Hoffwn');
+      });
     });
 
     it('should set evidenceProvide to false', () => {

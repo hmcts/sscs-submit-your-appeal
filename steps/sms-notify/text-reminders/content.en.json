@@ -14,7 +14,9 @@
   },
   "cya": {
     "doYouWantTextMsgReminders": {
-      "question": "Receive text message reminders"
+      "question": "Receive text message reminders",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }
