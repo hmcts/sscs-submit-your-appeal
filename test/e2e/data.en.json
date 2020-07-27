@@ -33,7 +33,7 @@
   },
   "smsNotify": {
     "wantsSMSNotifications": true,
-    "smsNumber": "07411333333",
+    "smsNumber": "07411333333"
   },
   "hasRepresentative": true,
   "representative": {
