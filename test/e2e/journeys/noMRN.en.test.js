@@ -3,7 +3,7 @@ const commonContent = require('commonContent')[language];
 const contactDWPContent = require(`steps/compliance/contact-dwp/content.${language}`);
 
 const DateUtils = require('utils/DateUtils');
-const testData = require('test/e2e/data');
+const testData = require('test/e2e/data.en');
 const moment = require('moment');
 const paths = require('paths');
 const config = require('config');

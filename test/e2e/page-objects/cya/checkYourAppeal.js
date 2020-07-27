@@ -12,12 +12,13 @@ const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enable
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
-const testData = require('test/e2e/data');
+const testDataEn = require('test/e2e/data.en');
+const testDataCy = require('test/e2e/data.cy');
 
-const appellant = testData.appellant;
+const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testData.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -29,7 +30,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
   I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
-  I.enterDWPIssuingOfficeAndContinue(commonContent, testData.mrn.dwpIssuingOffice);
+  I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
@@ -40,8 +41,8 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
 
   I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testData.reasonsForAppealing.reasons[0]);
-  I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testDataEn.reasonsForAppealing.reasons[0]);
+  I.enterAnythingElseAndContinue(commonContent, testDataEn.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     I.readSendingEvidenceAndContinue(commonContent);
   }
@@ -104,6 +105,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
 }
 
 function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
+  const testData = language === 'en' ? testDataEn : testDataCy;
   const I = this;
   const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
   const oneMonthAgo = DateUtils.oneMonthAgo(language);

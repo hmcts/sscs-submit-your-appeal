@@ -5,8 +5,8 @@ const paths = require('paths');
 
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
-const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
-const testData = require('test/e2e/data');
+const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
+const testData = require('test/e2e/data.en');
 
 const twoReasons = [
   reasons[0],

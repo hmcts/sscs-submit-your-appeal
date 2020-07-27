@@ -2,7 +2,7 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
-const testData = require('test/e2e/data');
+const testData = require('test/e2e/data.en');
 
 const appellant = testData.appellant;
 

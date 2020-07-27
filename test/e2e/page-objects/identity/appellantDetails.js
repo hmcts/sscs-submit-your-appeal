@@ -1,4 +1,4 @@
-const appellant = require('test/e2e/data').appellant;
+const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
 const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
 const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');

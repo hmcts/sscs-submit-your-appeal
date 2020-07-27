@@ -1,6 +1,6 @@
 const hearingArrangementsContentEn = require('steps/hearing/arrangements/content.en');
 const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
-const hearingData = require('test/e2e/data').hearing;
+const hearingData = require('test/e2e/data.en').hearing;
 
 function checkAllArrangementsAndContinue(commonContent, language) {
   const I = this;

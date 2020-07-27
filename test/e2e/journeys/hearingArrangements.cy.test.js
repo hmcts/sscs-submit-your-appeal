@@ -1,7 +1,7 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const hearingArrangementsContent = require(`steps/hearing/arrangements/content.${language}`);
-const testData = require('test/e2e/data');
+const testData = require('test/e2e/data.en');
 const paths = require('paths');
 
 const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';

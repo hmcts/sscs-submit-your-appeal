@@ -2,7 +2,7 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const reasonForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
 const paths = require('paths');
-const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
+const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
 
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';

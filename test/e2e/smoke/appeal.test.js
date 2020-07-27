@@ -1,6 +1,6 @@
 const content = require('commonContent');
 const paths = require('paths');
-const mockData = require('test/e2e/data');
+const mockData = require('test/e2e/data.en');
 
 const appellant = mockData.appellant;
 

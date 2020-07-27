@@ -2,7 +2,7 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const reasonsForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
 const paths = require('paths');
-const reasons = require('test/e2e/data').reasonsForAppealing.reasons;
+const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
 
 Feature(`${language.toUpperCase()} - Reason For Appealing @batch-10`);
 

@@ -4,7 +4,7 @@ const appellantContactDetailsContent = require(`steps/identity/appellant-contact
 const paths = require('paths');
 const config = require('config');
 
-const appellant = require('test/e2e/data').appellant;
+const appellant = require('test/e2e/data.en').appellant;
 
 Feature(`${language.toUpperCase()} - Appellant details form @batch-09`);
 
