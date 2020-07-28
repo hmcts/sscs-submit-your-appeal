@@ -1,0 +1,14 @@
+{
+  "10036_Server Leaks Version Information via \"Server\" HTTP Response Header Field_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/robots.txt_GET": "ignore",
+  "10036_Server Leaks Version Information via \"Server\" HTTP Response Header Field_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/_GET": "ignore",
+  "10036_Server Leaks Version Information via \"Server\" HTTP Response Header Field_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/sitemap.xml_GET": "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/robots.txt_GET": "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/_GET": "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/sitemap.xml_GET": "ignore",
+  "10038_Content Security Policy (CSP) Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/_GET": "ignore",
+  "10038_Content Security Policy (CSP) Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/sitemap.xml_GET": "ignore",
+  "10038_Content Security Policy (CSP) Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/robots.txt_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/robots.txt_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://sscs-tribunals-frontend-aat.service.core-compute-aat.internal/sitemap.xml_GET": "ignore"
+}
