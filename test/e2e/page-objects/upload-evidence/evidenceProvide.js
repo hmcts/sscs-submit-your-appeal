@@ -1,8 +1,8 @@
-function selectAreYouProvidingEvidenceAndContinue(option) {
+function selectAreYouProvidingEvidenceAndContinue(commonContent, option) {
   const I = this;
 
   I.checkOption(option);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { selectAreYouProvidingEvidenceAndContinue };

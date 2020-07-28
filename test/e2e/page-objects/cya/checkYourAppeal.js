@@ -1,12 +1,10 @@
 const DateUtils = require('utils/DateUtils');
-const haveAMRN = require('steps/compliance/have-a-mrn/content.en.json');
-const appointee = require('steps/identity/appointee/content.en.json');
-const representative = require('steps/representative/representative/content.en');
-const theHearing = require('steps/hearing/the-hearing/content.en');
-const support = require('steps/hearing/support/content.en');
-const availability = require('steps/hearing/availability/content.en');
-const datesCantAttend = require('steps/hearing/dates-cant-attend/content.en');
-const evidenceProvide = require('steps/reasons-for-appealing/evidence-provide/content.en.json');
+const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
+const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
+const supportContentEn = require('steps/hearing/support/content.en');
+const supportContentCy = require('steps/hearing/support/content.cy');
+const datesCantAttendContentEn = require('steps/hearing/dates-cant-attend/content.en');
+const datesCantAttendContentCy = require('steps/hearing/dates-cant-attend/content.cy');
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
@@ -14,95 +12,108 @@ const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enable
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
-const testData = require('test/e2e/data');
+const testDataEn = require('test/e2e/data.en');
+const testDataCy = require('test/e2e/data.cy');
 
-const appellant = testData.appellant;
-const oneMonthAgo = DateUtils.oneMonthAgo();
+const appellant = testDataEn.appellant;
+// const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(benefitTypeCode = testData.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
-  I.enterBenefitTypeAndContinue(benefitTypeCode);
-  // I.chooseLanguagePreference('no');
-  I.enterPostcodeAndContinue(appellant.contactDetails.postCode);
-  I.continueFromIndependance();
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  // I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
-    I.selectIfYouWantToCreateAccount('no');
+    I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
-  I.selectHaveYouGotAMRNAndContinue(haveAMRN.fields.haveAMRN.yes);
-  I.enterAnMRNDateAndContinue(oneMonthAgo);
-  I.enterDWPIssuingOfficeAndContinue(testData.mrn.dwpIssuingOffice);
-  I.selectAreYouAnAppointeeAndContinue(appointee.fields.isAppointee.no);
-  I.enterAppellantNameAndContinue(appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(appellant.nino);
+  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
+  I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
+  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
-function enterDetailsFromNoRepresentativeToUploadingEvidence() {
+function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
 
-  I.selectDoYouHaveARepresentativeAndContinue(representative.fields.hasRepresentative.no);
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(testData.reasonsForAppealing.reasons[0]);
-  I.enterAnythingElseAndContinue(testData.reasonsForAppealing.otherReasons);
+  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testDataEn.reasonsForAppealing.reasons[0]);
+  I.enterAnythingElseAndContinue(commonContent, testDataEn.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue();
+    I.readSendingEvidenceAndContinue(commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvide.fields.evidenceProvide.yes);
+    I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
     I.uploadAPieceOfEvidence();
-    I.enterDescription('Some description of the evidence');
+    I.enterDescription(commonContent, 'Some description of the evidence');
   }
 }
 
-function enterDetailsFromNoRepresentativeToEnd() {
+function enterDetailsFromNoRepresentativeToEnd(commonContent) {
   const I = this;
 
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence();
-  I.enterDoYouWantToAttendTheHearing('No');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue();
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
+  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
 }
 
-async function enterDetailsFromAttendingTheHearingToEnd(date) {
+async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language, date) {
   const I = this;
+  const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
-  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue();
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-yes');
+  I.checkAllArrangementsAndContinue(commonContent, language);
+  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   await I.turnOffJsAndReloadThePage();
-  I.enterDateCantAttendAndContinue(date, datesCantAttend.links.add);
-  I.click('Continue');
+  I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttendContent.links.add);
+  I.click(commonContent.continue);
 }
 
-async function enterDetailsFromAttendingTheHearingDatePickerToEnd(date) {
+async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, date) {
   const I = this;
+  const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
-  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue();
+  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
+  I.checkAllArrangementsAndContinue(commonContent, language);
   I.wait(2);
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.yes);
+  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   I.wait(2);
-  await I.selectDates([date]);
-  I.click('Continue');
+  await I.selectDates(language, [date]);
+  I.click(commonContent.continue);
 }
 
-function enterDetailsFromAttendingTheHearingWithSupportToEnd(options, fields = []) {
+function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, language, options, fields = []) {
   const I = this;
+  const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(theHearing.fields.attendHearing.yes);
-  I.selectDoYouNeedSupportAndContinue(support.fields.arrangements.yes);
+  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   options.forEach(option => {
     I.click(option);
   });
   fields.forEach(field => {
     I.fillField(field.id, field.content);
   });
-  I.click('Continue');
-  I.selectHearingAvailabilityAndContinue(availability.fields.scheduleHearing.no);
+  I.click(commonContent.continue);
+  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
 }
 
-function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
+function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
+  const testData = language === 'en' ? testDataEn : testDataCy;
   const I = this;
+  const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+  const oneMonthAgo = DateUtils.oneMonthAgo(language);
+  let mrnDateToCheck = mrnDate;
+
+  if (hasMRN && !mrnDate) {
+    mrnDateToCheck = oneMonthAgo;
+  }
 
   // We are on CYA
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
@@ -112,25 +123,29 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
 
   if (hasMRN) {
     // MRN address number
-    I.see(testData.mrn.dwpIssuingOffice, selectors.mrn.dwpIssuingOffice);
+    I.see(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice);
 
     // The Date of the MRN
-    I.see(mrnDate.format('DD MMMM YYYY'));
+    I.see(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY'));
 
-    if (mrnDate.isAfter(oneMonthAgo)) {
+    if (mrnDateToCheck.isAfter(oneMonthAgo)) {
       // Reason why the MRN is late
       I.see(testData.mrn.reasonWhyMRNisLate);
     }
   } else {
     // Reason for no MRN
-    I.see(testData.mrn.reasonForNoMRN, selectors.mrn.noMRN);
+    I.see(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN);
   }
 
   // Appellant name
   I.see(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`);
 
   // Appellant DOB
-  I.see('25 January 1980');
+  if (language === 'en') {
+    I.see('25 January 1980');
+  } else {
+    I.see('25 Ionawr 1980');
+  }
 
   // Appellant NINO
   I.see(appellant.nino);
@@ -150,7 +165,7 @@ function confirmDetailsArePresent(hasMRN = true, mrnDate = oneMonthAgo) {
   I.see(testData.reasonsForAppealing.otherReasons);
 
   // Shows when the appeal is complete
-  I.see('Sign and submit');
+  I.see(checkYourAppealContent.header);
 }
 
 module.exports = {

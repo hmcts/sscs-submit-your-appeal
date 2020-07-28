@@ -1,7 +1,7 @@
-function chooseLanguagePreference(answer) {
+function chooseLanguagePreference(commonContent, answer) {
   const I = this;
   I.click({ id: `languagePreferenceWelsh-${answer}` });
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { chooseLanguagePreference };

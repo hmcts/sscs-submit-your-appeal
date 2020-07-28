@@ -1,19 +1,20 @@
-const textRemindersContent = require('steps/sms-notify/text-reminders/content.en');
+const content = require('commonContent');
 const paths = require('paths');
-const mockData = require('test/e2e/data');
+const mockData = require('test/e2e/data.en');
 
 const appellant = mockData.appellant;
-const doYouWantTextMsgReminders = textRemindersContent.fields.doYouWantTextMsgReminders;
 
-Feature('Full Journey');
+const language = 'en';
+const commonContent = content[language];
 
-Scenario('Appellant full journey from /start-an-appeal to the /check-your-appeal page',
-  I => {
-    I.amOnPage(paths.session.root);
-    I.wait(2);
-    I.enterDetailsFromStartToNINO();
-    I.enterAppellantContactDetailsWithMobileAndContinue(appellant.contactDetails.phoneNumber);
-    I.checkOptionAndContinue(doYouWantTextMsgReminders.yes);
-    I.checkOptionAndContinue('#useSameNumber-yes');
-    I.readSMSConfirmationAndContinue();
-  }).retry(1).tag('@smoke');
+Feature(`${language.toUpperCase()} - Full Journey`);
+
+Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, I => {
+  I.amOnPage(`${paths.session.root}?lng=${language}`);
+  I.wait(2);
+  I.enterDetailsFromStartToNINO(commonContent, language);
+  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, appellant.contactDetails.phoneNumber);
+  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
+  I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
+  I.readSMSConfirmationAndContinue(commonContent);
+}).retry(1).tag('@smoke');

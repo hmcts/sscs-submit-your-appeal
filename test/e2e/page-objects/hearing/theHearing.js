@@ -1,15 +1,15 @@
-function enterDoYouWantToAttendTheHearing(option) {
+function enterDoYouWantToAttendTheHearing(commonContent, option) {
   const I = this;
 
   I.waitForElement('#attendHearing', 3);
   I.checkOption(option);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
-function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue() {
+function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent) {
   const I = this;
 
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = {

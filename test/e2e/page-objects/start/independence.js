@@ -1,12 +1,12 @@
 const paths = require('paths');
 
-function continueFromIndependance() {
+function continueFromIndependance(commonContent) {
   const I = this;
   I.seeCurrentUrlEquals(paths.start.independence);
   I.waitForClickable({
-    css: 'input[type=submit][value=Continue]'
+    css: `input[type=submit][value=${commonContent.continue}]`
   });
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { continueFromIndependance };
