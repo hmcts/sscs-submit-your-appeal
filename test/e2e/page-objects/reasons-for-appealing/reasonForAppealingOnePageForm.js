@@ -24,7 +24,7 @@ function addAReasonForAppealingAndThenClickAddAnother(whatYouDisagreeWithField,
   I.click('Add reason');
 }
 
-function addReasonForAppealingUsingTheOnePageFormAndContinue(reason) {
+function addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, reason) {
   const I = this;
 
   I.addAReasonForAppealing(
@@ -32,7 +32,7 @@ function addReasonForAppealingUsingTheOnePageFormAndContinue(reason) {
     '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = {

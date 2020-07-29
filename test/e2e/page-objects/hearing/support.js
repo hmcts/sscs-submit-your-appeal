@@ -1,9 +1,9 @@
-function selectDoYouNeedSupportAndContinue(option) {
+function selectDoYouNeedSupportAndContinue(commonContent, option) {
   const I = this;
 
   I.waitForElement('#arrangements');
   I.checkOption(option);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { selectDoYouNeedSupportAndContinue };

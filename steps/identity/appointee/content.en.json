@@ -14,7 +14,9 @@
   },
   "cya": {
     "isAppointee": {
-      "question": "Appointee"
+      "question": "Appointee",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

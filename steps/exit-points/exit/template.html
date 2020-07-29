@@ -6,11 +6,6 @@
 {% set hideBackButton = true %}
 {% block pageTitle %}{{ content.title | safe }}{% endblock %}
 
-{% block head -%}
-    <link href="{{ asset_path }}vendors~main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
-    <link href="{{ asset_path }}main.{{webpackHash}}.css" media="screen" rel="stylesheet" />
-{% endblock %}
-
 {% block content %}
     <main id="content" role="main">
         <div class="govuk-grid-row">

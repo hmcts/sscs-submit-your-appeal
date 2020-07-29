@@ -19,7 +19,9 @@
   },
   "cya": {
     "hasRepresentative": {
-      "question": "Mae gennyf gynrychiolydd"
+      "question": "Mae gennyf gynrychiolydd",
+      "yes": "Ydw",
+      "no": "Nac ydw"
     }
   }
 }

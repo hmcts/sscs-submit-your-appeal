@@ -1,7 +1,7 @@
-function readSMSConfirmationAndContinue() {
+function readSMSConfirmationAndContinue(commonContent) {
   const I = this;
 
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { readSMSConfirmationAndContinue };
