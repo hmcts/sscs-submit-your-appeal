@@ -1,24 +1,23 @@
 {
   "titleHead": "Dewis iaith",
-  "title": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun)?",
-  "question": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun)?",
-  "summary": "Os nad ydych eisiau i’ch dogfennau fod yn Gymraeg, dewiswch ‘nac ydw’.",
-  "answerNo": "Bydd yr holl ddogfennau yn Saesneg.",
+  "title": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
+  "question": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
+  "summary": "Byddwn yn anfon ebyst a dogfennau atoch wrth i ni ddelio gyda’ch apêl. Dewisiwch pa iaith yr hoffech eu cael.",
 
   "fields": {
     "languagePreferenceWelsh": {
-      "yes": "Ydw",
-      "no": "Nac ydw",
+      "yes": "Cymraeg a Saesneg",
+      "no": "Saesneg yn unig",
       "errors": {
-        "required": "Dewiswch ‘ydw’ os ydych eisiau i’ch dogfennau fod yn Gymraeg."
+        "required": "Dewiswch ‘Cymraeg a Saesneg’ os ydych eisiau i’ch dogfennau fod yn Gymraeg."
       }
     }
   },
   "cya": {
     "languagePreferenceWelsh": {
-      "question": "Ydych chi eisiau i’ch dogfennau apêl fod yn Gymraeg a Saesneg (negeseuon e-bost, llythyrau, negeseuon testun)?",
-      "yes": "Ydw",
-      "no": "Nac ydw"
+      "question": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
+      "yes": "Cymraeg a Saesneg",
+      "no": "Saesneg yn unig"
     }
   }
 }

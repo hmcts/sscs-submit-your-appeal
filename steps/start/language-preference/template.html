@@ -16,13 +16,10 @@
                 content.question,
                 hint = '',
                 options = [
-                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" },
-                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", target: "noWelsh", selected: true }
+                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", selected: true },
+                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" }
                 ])
             }}
-            <div class="panel js-hidden" id="noWelsh">
-                <p class="govuk-body">{{ content.answerNo | safe }}</p>
-            </div>
         {% endcall %}
     </div>
 {% endblock %}

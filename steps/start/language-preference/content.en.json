@@ -1,24 +1,23 @@
 {
   "titleHead": "Language preference",
-  "title": "Do you require your appeal documents in English and Welsh (emails, letters, texts)?",
-  "question": "Do you require your appeal documents in English and Welsh (emails, letters, texts)?",
-  "summary": "If you don’t need your document to be translated to Welsh language, please choose ‘no’.",
-  "answerNo": "All documents will be in English.",
+  "title": "What language do you want us to use when we contact you?",
+  "question": "What language do you want us to use when we contact you?",
+  "summary": "We’ll send you emails and documents as we progress your appeal. Choose which language you’d like these in.",
 
   "fields": {
     "languagePreferenceWelsh": {
-      "yes": "Yes",
-      "no": "No",
+      "yes": "English and Welsh",
+      "no": "English only",
       "errors": {
-        "required": "Select ‘yes’ if you need your documents to be translated to Welsh."
+        "required": "Select ‘English and Welsh’ if you need your documents to be translated to Welsh."
       }
     }
   },
   "cya": {
     "languagePreferenceWelsh": {
-      "question": "Do you require your appeal documents in English and Welsh (emails, letters, texts)?",
-      "yes": "Yes",
-      "no": "No"
+      "question": "What language do you want us to use when we contact you?",
+      "yes": "English and Welsh",
+      "no": "English only"
     }
   }
 }
