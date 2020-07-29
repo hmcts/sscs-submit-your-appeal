@@ -21,13 +21,13 @@ After(I => {
 
 Scenario(`${language.toUpperCase()} - I see SSCS1 content when not selecting Carer's Allowance or CBLP`, I => {
   I.enterBenefitTypeAndContinue(commonContent, benefitTypes.disabilityLivingAllowance);
-  // I.chooseLanguagePreference(commonContent, 'no');
+  I.chooseLanguagePreference(commonContent, 'no');
   I.see(dynamicContent(appealFormDownloadContent, 'SSCS1', benefitTypeContent.benefitTypes.dla));
 });
 
 Scenario(`${language.toUpperCase()} - I see SSCS5 content when I select CBLP as a benefit type`, I => {
   I.enterBenefitTypeAndContinue(commonContent, benefitTypes.childBenefit);
-  // I.chooseLanguagePreference(commonContent, 'no');
+  I.chooseLanguagePreference(commonContent, 'no');
   I.see(dynamicContent(appealFormDownloadContent, 'SSCS5', benefitTypeContent.benefitTypes.cb));
 });
 
