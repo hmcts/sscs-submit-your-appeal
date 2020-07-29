@@ -3,6 +3,7 @@
   "title": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
   "question": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
   "summary": "Byddwn yn anfon ebyst a dogfennau atoch wrth i ni ddelio gyda’ch apêl. Dewisiwch pa iaith yr hoffech eu cael.",
+  "answerNo": "Bydd yr holl ddogfennau yn Saesneg.",
 
   "fields": {
     "languagePreferenceWelsh": {

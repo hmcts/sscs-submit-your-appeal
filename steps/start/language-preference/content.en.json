@@ -3,6 +3,7 @@
   "title": "What language do you want us to use when we contact you?",
   "question": "What language do you want us to use when we contact you?",
   "summary": "We’ll send you emails and documents as we progress your appeal. Choose which language you’d like these in.",
+  "answerNo": "All documents will be in English.",
 
   "fields": {
     "languagePreferenceWelsh": {
