@@ -22,13 +22,11 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   const I = this;
 
   if (language === 'cy') {
-    I.click({ xpath: '/html/body/div[2]/div/p/span/a[2]' });
-    I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
-    I.chooseLanguagePreference(commonContent, 'no');
-  } else {
-    I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+    I.click('.govuk-link.language');
   }
 
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {

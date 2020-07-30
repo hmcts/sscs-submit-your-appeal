@@ -4,7 +4,7 @@ const mockData = require('test/e2e/data');
 
 const appellant = mockData.appellant;
 const signer = mockData.signAndSubmit.signer;
-const languages = ['en'];
+const languages = ['en', 'cy'];
 
 Feature('E2E SYA- Full Journey');
 
