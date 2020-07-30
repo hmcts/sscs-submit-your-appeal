@@ -54,16 +54,16 @@ describe('LanguagePreference.js', () => {
     });
 
     describe('English', () => {
-      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+      it('should return the correct answer \'English only\' for CYA (English)', () => {
         languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
         const answers = languagePreference.answers();
-        expect(answers.answer).to.equal('No');
+        expect(answers.answer).to.equal('English only');
       });
 
-      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+      it('should return the correct answer \'English and Welsh\' for CYA (English)', () => {
         languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
         const answers = languagePreference.answers();
-        expect(answers.answer).to.equal('Yes');
+        expect(answers.answer).to.equal('English and Welsh');
       });
     });
 
@@ -76,18 +76,18 @@ describe('LanguagePreference.js', () => {
         i18next.changeLanguage('en');
       });
 
-      it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
+      it('should return the correct answer \'Saesneg yn unig\' for CYA (Welsh)', () => {
         languagePreference.content.cya.languagePreferenceWelsh.no = 'Nac ydw';
         languagePreference.fields.languagePreferenceWelsh.value = userAnswer.NO;
         const answers = languagePreference.answers();
-        expect(answers.answer).to.equal('Nac ydw');
+        expect(answers.answer).to.equal('Saesneg yn unig');
       });
 
-      it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
+      it('should return the correct answer \'Cymraeg a Saesneg\' for CYA (Welsh)', () => {
         languagePreference.content.cya.languagePreferenceWelsh.yes = 'Ydw';
         languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
         const answers = languagePreference.answers();
-        expect(answers.answer).to.equal('Ydw');
+        expect(answers.answer).to.equal('Cymraeg a Saesneg');
       });
     });
 
