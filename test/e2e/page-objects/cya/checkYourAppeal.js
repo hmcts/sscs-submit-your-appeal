@@ -21,11 +21,11 @@ const appellant = testDataEn.appellant;
 function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
-  if(language==='cy') {
-    I.click({xpath:'/html/body/div[2]/div/p/span/a[2]'});
+  if (language === 'cy') {
+    I.click({ xpath: '/html/body/div[2]/div/p/span/a[2]' });
     I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
     I.chooseLanguagePreference(commonContent, 'no');
-  }else {
+  } else {
     I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   }
 
@@ -177,7 +177,6 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
 function checkYourAppealToConfirmationPage(language, signer) {
   const I = this;
   I.checkYourAppealToConfirmation(language, signer);
-
 }
 
 module.exports = {
