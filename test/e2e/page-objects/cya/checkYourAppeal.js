@@ -21,8 +21,14 @@ const appellant = testDataEn.appellant;
 function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
-  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
-  // I.chooseLanguagePreference(commonContent, 'no');
+  if(language==='cy') {
+    I.click({xpath:'/html/body/div[2]/div/p/span/a[2]'});
+    I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+    I.chooseLanguagePreference(commonContent, 'no');
+  }else {
+    I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  }
+
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
@@ -168,6 +174,12 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   I.see(checkYourAppealContent.header);
 }
 
+function checkYourAppealToConfirmationPage(language, signer) {
+  const I = this;
+  I.checkYourAppealToConfirmation(language, signer);
+
+}
+
 module.exports = {
   enterDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
@@ -175,5 +187,6 @@ module.exports = {
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
-  enterDetailsFromAttendingTheHearingWithSupportToEnd
+  enterDetailsFromAttendingTheHearingWithSupportToEnd,
+  checkYourAppealToConfirmationPage
 };

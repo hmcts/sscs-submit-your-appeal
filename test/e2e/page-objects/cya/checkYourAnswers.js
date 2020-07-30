@@ -1,0 +1,15 @@
+const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
+const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
+const paths = require('paths');
+
+function checkYourAppealToConfirmation(language, signer) {
+    const I = this;
+    const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+    I.wait(2);
+    I.seeCurrentUrlEquals(paths.checkYourAppeal);
+    I.fillField({xpath: '//*[@id="signer"]'}, signer);
+    I.click(cyaContent.submitButton.value);
+
+}
+
+module.exports = {checkYourAppealToConfirmation};
