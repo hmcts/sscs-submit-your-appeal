@@ -105,7 +105,7 @@
       "path": "/service-endpoint",
       "port": 4000,
       "tokenKey": "SERVICE_TOKEN_KEY",
-      "requireIdam": "true"
+      "requireIdam": "false"
     }
   },
   "languages": ["en", "cy"]
