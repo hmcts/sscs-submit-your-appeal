@@ -49,8 +49,8 @@ const saveToDraftStore = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam && values) {
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
-    logger.trace('VALUES: ' + values);
-    logger.trace('AUTH TOKEN STRING: ' + req.cookies[authTokenString]);
+    logger.trace(`VALUES: ${values}`);
+    logger.trace(`AUTH TOKEN STRING: ${req.cookies[authTokenString]}`);
     // send to draft store
     await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
@@ -72,7 +72,7 @@ const saveToDraftStore = async(req, res, next) => {
           `${(values && values.appellant && values.appellant.nino) ?
             values.appellant.nino :
             'no NINO submitted yet'}`, logPath);
-        logger.trace('ERROR: ' + error, logPath);
+        logger.trace(`ERROR: ${error}`, logPath);
         logger.exception(error, logPath);
         if (req && req.journey && req.journey.steps) {
           redirectTo(req.journey.steps.Error500).redirect(req, res, next);
