@@ -2,7 +2,7 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
+Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual `);
 
 Before(I => {
   I.createTheSession(language);
@@ -20,4 +20,4 @@ Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToEnd(commonContent);
   I.confirmDetailsArePresent(language);
-}).retry(2);
+}).retry(1);
