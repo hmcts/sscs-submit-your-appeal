@@ -50,7 +50,7 @@ const saveToDraftStore = async(req, res, next) => {
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
     logger.trace(`VALUES: ${values}`);
-    logger.trace(`AUTH TOKEN STRING: ${req.cookies[authTokenString]}`);
+    logger.trace(`AUTH TOKEN: ${req.cookies[authTokenString]}`);
     // send to draft store
     await request.put(req.journey.settings.apiDraftUrl)
       .send(values)
