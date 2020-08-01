@@ -2,7 +2,7 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual `);
+Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
 
 Before(I => {
   I.createTheSession(language);
