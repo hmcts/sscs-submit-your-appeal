@@ -15,12 +15,12 @@
     } %}
   {% else %}
       {% set defaultContent = {
-          addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else '[CY] Add another item',
-          itemLabel: pageContent.itemLabel if pageContent.itemLabel else '[CY] item',
-          noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else '[CY] No items added yet',
-          itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else '[CY] Items',
+          addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Ychwanegu eitem arall',
+          itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'eitem',
+          noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'Dim eitemau wedi eu hychwanegu eto',
+          itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Eitemau',
           hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
-          editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else '[CY] Add another item'
+          editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Ychwanegu eitem arall'
       } %}
   {% endif %}
 
