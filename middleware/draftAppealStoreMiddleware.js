@@ -47,6 +47,11 @@ const saveToDraftStore = async(req, res, next) => {
   }
 
   if (allowSaveAndReturn && req.idam && values) {
+    if (values.pcqId) {
+      values.PcqId = values.pcqId;
+      delete values.pcqId;
+    }
+
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
     logger.trace(`VALUES: ${JSON.stringify(values)}`);
