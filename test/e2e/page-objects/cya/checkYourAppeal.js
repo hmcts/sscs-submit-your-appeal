@@ -32,6 +32,15 @@ function enterDetailsFromStartToNINO(commonContent, language, toggleLanguage = f
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   I.chooseLanguagePreference(commonContent, 'no');
+
+  if (language === 'en' && toggleLanguage) {
+    I.click('.govuk-link.language');
+    // eslint-disable-next-line no-param-reassign
+    language = 'cy';
+    // eslint-disable-next-line no-param-reassign
+    commonContent = content[language];
+  }
+
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
