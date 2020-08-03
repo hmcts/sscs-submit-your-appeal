@@ -9,6 +9,9 @@ Feature(`${language.toUpperCase()} - E2E SYA - Full Journey`);
 Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   const commonContent = content[language];
 
+  I.createTheSession(language);
+  I.seeCurrentUrlEquals(paths.start.benefitType);
+
   I.amOnPage(`${paths.session.root}?lng=${language}`);
   I.wait(2);
   I.enterDetailsFromStartToNINO(commonContent, language);
@@ -21,4 +24,6 @@ Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+
+  I.endTheSession();
 }).retry(1);

@@ -12,6 +12,7 @@ const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enable
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
+const content = require('commonContent');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
 
@@ -23,6 +24,10 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
 
   if (language === 'cy') {
     I.click('.govuk-link.language');
+    // eslint-disable-next-line no-param-reassign
+    language = 'en';
+    // eslint-disable-next-line no-param-reassign
+    commonContent = content[language];
   }
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
