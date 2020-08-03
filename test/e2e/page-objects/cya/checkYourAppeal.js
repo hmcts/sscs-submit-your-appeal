@@ -19,10 +19,10 @@ const testDataCy = require('test/e2e/data.cy');
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, toggleLanguage = false, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
-  if (language === 'cy') {
+  if (language === 'cy' && toggleLanguage) {
     I.click('.govuk-link.language');
     // eslint-disable-next-line no-param-reassign
     language = 'en';
