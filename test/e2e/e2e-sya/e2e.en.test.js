@@ -10,7 +10,6 @@ Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 
   I.amOnPage(`${paths.session.root}?lng=${language}`);
   I.wait(2);
