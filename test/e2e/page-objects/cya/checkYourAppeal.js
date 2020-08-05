@@ -12,17 +12,35 @@ const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enable
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
+const content = require('commonContent');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
 
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsFromStartToNINO(commonContent, language, toggleLanguage = false, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
+
+  if (language === 'cy' && toggleLanguage) {
+    I.click('.govuk-link.language');
+    // eslint-disable-next-line no-param-reassign
+    language = 'en';
+    // eslint-disable-next-line no-param-reassign
+    commonContent = content[language];
+  }
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   I.chooseLanguagePreference(commonContent, 'no');
+
+  if (language === 'en' && toggleLanguage) {
+    I.click('.govuk-link.language');
+    // eslint-disable-next-line no-param-reassign
+    language = 'cy';
+    // eslint-disable-next-line no-param-reassign
+    commonContent = content[language];
+  }
+
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
@@ -168,6 +186,11 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   I.see(checkYourAppealContent.header);
 }
 
+function checkYourAppealToConfirmationPage(language, signer) {
+  const I = this;
+  I.checkYourAppealToConfirmation(language, signer);
+}
+
 module.exports = {
   enterDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
@@ -175,5 +198,6 @@ module.exports = {
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
-  enterDetailsFromAttendingTheHearingWithSupportToEnd
+  enterDetailsFromAttendingTheHearingWithSupportToEnd,
+  checkYourAppealToConfirmationPage
 };
