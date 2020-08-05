@@ -11,7 +11,7 @@ Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   I.createTheSession(language);
 
   I.wait(2);
-  I.enterDetailsFromStartToNINO(commonContent, language);
+  I.enterDetailsFromStartToNINO(commonContent, language, true);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411222222');
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
