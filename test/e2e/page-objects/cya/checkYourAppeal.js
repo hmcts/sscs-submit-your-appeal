@@ -23,7 +23,6 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   // I.chooseLanguagePreference(commonContent, 'no');
-
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
