@@ -4,7 +4,6 @@ nodejs:
   environment:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
-    FT_WELSH: "true"
 
   keyVaults:
     sscs:
