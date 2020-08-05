@@ -7,7 +7,7 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
 const Entry = require('steps/entry/Entry');
 const Exit = require('steps/exit-points/exit/Exit');
-const Equality = require('steps/equality/Equality');
+const Pcq = require('steps/pcq/Pcq');
 const SessionTimeout = require('steps/exit-points/session-timeout/SessionTimeout');
 const SessionTimeoutRedirect = require('steps/exit-points/SessionTimeoutRedirect');
 const Sessions = require('steps/session/Sessions');
@@ -162,7 +162,7 @@ const hearing = [
   TheHearing
 ];
 
-const equality = [ Equality ];
+const pcq = [ Pcq ];
 
 const checkYourAppeal = [ CheckYourAppeal ];
 
@@ -194,7 +194,7 @@ module.exports = concat(
   representative,
   reasonsForAppealing,
   hearing,
-  equality,
+  pcq,
   checkYourAppeal,
   confirmation,
   idam,

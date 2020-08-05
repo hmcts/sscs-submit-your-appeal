@@ -96,7 +96,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   next() {
-    return redirectTo(this.journey.steps.Equality);
+    return redirectTo(this.journey.steps.Pcq);
   }
 }
 

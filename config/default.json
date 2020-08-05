@@ -54,7 +54,7 @@
     "welsh": {
       "enabled": "false"
     },
-    "equalityAndDiversity": {
+    "pcq": {
       "enabled": "true"
     }
   },
@@ -99,7 +99,7 @@
       "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
     },
-    "equalityAndDiversity": {
+    "pcq": {
       "name": "Equality and Diversity Service",
       "url": "http://localhost:4000",
       "path": "/service-endpoint",

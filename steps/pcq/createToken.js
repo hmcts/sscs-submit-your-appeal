@@ -10,7 +10,7 @@ const iv = Buffer.alloc(bufferSize, 0);
 const keyLen = 32;
 
 const createToken = params => {
-  const tokenKey = CONF.services.equalityAndDiversity.tokenKey;
+  const tokenKey = CONF.services.pcq.tokenKey;
   let encrypted = '';
 
   if (tokenKey) {

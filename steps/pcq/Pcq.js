@@ -9,28 +9,28 @@ const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
 
-class Equality extends SaveToDraftStore {
+class Pcq extends SaveToDraftStore {
   static get path() {
-    return paths.equalityAndDiversity;
+    return paths.pcq;
   }
 
   hasIdam(req) {
-    const enabled = config.services.equalityAndDiversity.requireIdam === 'true';
+    const enabled = config.services.pcq.requireIdam === 'true';
     const hasIdam = Boolean(req.idam);
     return enabled ? hasIdam : true;
   }
 
   isEnabled() {
-    return config.features.equalityAndDiversity.enabled === 'true';
+    return config.features.pcq.enabled === 'true';
   }
 
   handler(req, res, next) {
     const skipPcq = () => this.next().redirect(req, res, next);
 
     // If user has logged in through IDAM, PCQ is enabled and not already called
-    if (this.hasIdam(req) && this.isEnabled() && !req.session.Equality) {
+    if (this.hasIdam(req) && this.isEnabled() && !req.session.Pcq) {
       // Check PCQ Health
-      const uri = `${config.services.equalityAndDiversity.url}/health`;
+      const uri = `${config.services.pcq.url}/health`;
       request.get({ uri, json: true })
         .then(json => {
           if (json.status && json.status === 'UP') {
@@ -69,15 +69,15 @@ class Equality extends SaveToDraftStore {
       .map(key => `${key}=${params[key]}`)
       .join('&');
 
-    const equalityForm = {
+    const pcqForm = {
       body: {
         pcqId
       }
     };
-    this.fields = this.form.parse(equalityForm);
+    this.fields = this.form.parse(pcqForm);
     this.store();
 
-    res.redirect(`${config.services.equalityAndDiversity.url}${config.services.equalityAndDiversity.path}?${qs}`);
+    res.redirect(`${config.services.pcq.url}${config.services.pcq.path}?${qs}`);
   }
 
   get form() {
@@ -98,4 +98,4 @@ class Equality extends SaveToDraftStore {
   }
 }
 
-module.exports = Equality;
+module.exports = Pcq;

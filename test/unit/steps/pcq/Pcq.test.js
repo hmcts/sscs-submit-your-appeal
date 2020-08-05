@@ -4,12 +4,12 @@ const rewire = require('rewire');
 const config = require('config');
 const httpStatus = require('http-status-codes');
 
-const Equality = rewire('steps/equality/Equality');
+const Pcq = rewire('steps/pcq/Pcq');
 
-describe('Equality.js', () => {
+describe('Pcq.js', () => {
   let req = {};
   let res = {};
-  const pcqHost = config.services.equalityAndDiversity.url;
+  const pcqHost = config.services.pcq.url;
 
   before(() => {
     nock.cleanAll();
@@ -39,11 +39,11 @@ describe('Equality.js', () => {
       .get('/health')
       .reply(httpStatus.OK, { status: 'UP' });
 
-    const revert = Equality.__set__('uuidv4', () => {
+    const revert = Pcq.__set__('uuidv4', () => {
       return 'r123';
     });
 
-    const step = new Equality(req, res);
+    const step = new Pcq(req, res);
     step.handler(req, res);
 
     setTimeout(() => {
@@ -62,11 +62,11 @@ describe('Equality.js', () => {
       .get('/health')
       .reply(httpStatus.OK, { status: 'UP' });
 
-    const revert = Equality.__set__('uuidv4', () => {
+    const revert = Pcq.__set__('uuidv4', () => {
       return 'r123';
     });
 
-    const step = new Equality(req, res);
+    const step = new Pcq(req, res);
     step.handler(req, res);
 
     setTimeout(() => {
@@ -83,7 +83,7 @@ describe('Equality.js', () => {
       .get('/health')
       .reply(httpStatus.OK, { status: 'DOWN' });
 
-    const step = new Equality(req, res);
+    const step = new Pcq(req, res);
     step.handler(req, res);
 
     setTimeout(() => {
@@ -93,7 +93,7 @@ describe('Equality.js', () => {
   });
 
   it('skips PCQ if there is an error retrieving the PCQ health', done => {
-    const step = new Equality(req, res);
+    const step = new Pcq(req, res);
     step.handler(req, res);
 
     setTimeout(() => {
@@ -107,14 +107,14 @@ describe('Equality.js', () => {
   //     .get('/health')
   //     .reply(httpStatus.OK, { status: 'UP' });
   //
-  //   const revert = Equality.__set__('goTo', () => {
+  //   const revert = Pcq.__set__('goTo', () => {
   //     // eslint-disable-next-line no-empty-function
   //     return { redirect: () => {} };
   //   });
   //
   //   delete req.idam;
   //
-  //   const step = new Equality(req, res);
+  //   const step = new Pcq(req, res);
   //   step.handler(req, res);
   //
   //   setTimeout(() => {
@@ -125,7 +125,7 @@ describe('Equality.js', () => {
   // });
 
   it('answers() returns an empty array', () => {
-    const step = new Equality(req, res);
+    const step = new Pcq(req, res);
     step.handler(req, res);
 
     expect(step.answers()).to.deep.equal([]);

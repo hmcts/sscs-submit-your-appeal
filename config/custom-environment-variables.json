@@ -54,8 +54,8 @@
     "welsh": {
       "enabled": "FT_WELSH"
     },
-    "equalityAndDiversity": {
-      "enabled": "EQUALITY_ENABLED"
+    "pcq": {
+      "enabled": "PCQ_ENABLED"
     }
   },
   "postcodeChecker": {
@@ -90,8 +90,8 @@
       "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
       "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
     },
-    "equalityAndDiversity": {
-      "url": "EQUALITY_URL",
+    "pcq": {
+      "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
     }
   }

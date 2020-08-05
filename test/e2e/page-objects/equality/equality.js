@@ -1,7 +1,7 @@
 const config = require('config');
 
-function completeEqualityAndDiversity() {
-  if (config.features.equalityAndDiversity.enabled === 'true') {
+function completePcq() {
+  if (config.features.pcq.enabled === 'true') {
     const I = this;
     I.wait(2);
     // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
@@ -9,4 +9,4 @@ function completeEqualityAndDiversity() {
   }
 }
 
-module.exports = { completeEqualityAndDiversity };
+module.exports = { completePcq };

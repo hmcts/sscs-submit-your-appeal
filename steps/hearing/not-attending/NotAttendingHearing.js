@@ -24,7 +24,7 @@ class NotAttendingHearing extends SaveToDraftStore {
   }
 
   next() {
-    return redirectTo(this.journey.steps.Equality);
+    return redirectTo(this.journey.steps.Pcq);
   }
 }
 

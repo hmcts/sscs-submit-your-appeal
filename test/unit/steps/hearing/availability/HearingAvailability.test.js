@@ -9,7 +9,7 @@ describe('HearingAvailability.js', () => {
     hearingAvailability = new HearingAvailability({
       journey: {
         steps: {
-          Equality: paths.equalityAndDiversity,
+          Pcq: paths.pcq,
           DatesCantAttend: paths.hearing.datesCantAttend
         }
       }
@@ -99,7 +99,7 @@ describe('HearingAvailability.js', () => {
 
     it('returns the next step path /check-your-appeal when scheduleHearing value is No', () => {
       hearingAvailability.fields.scheduleHearing.value = 'no';
-      expect(hearingAvailability.next().step).to.eq(paths.equalityAndDiversity);
+      expect(hearingAvailability.next().step).to.eq(paths.pcq);
     });
   });
 });
