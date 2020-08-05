@@ -1,5 +1,5 @@
 const { goTo } = require('@hmcts/one-per-page');
-const { form, text, object } = require('@hmcts/one-per-page/forms');
+const { form, text } = require('@hmcts/one-per-page/forms');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { v4: uuidv4 } = require('uuid');
 const paths = require('paths');
@@ -71,7 +71,7 @@ class Equality extends SaveToDraftStore {
 
     const equalityForm = {
       body: {
-        'equality.pcqId': pcqId
+        pcqId
       }
     };
     this.fields = this.form.parse(equalityForm);
@@ -81,13 +81,7 @@ class Equality extends SaveToDraftStore {
   }
 
   get form() {
-    const fields = {
-      pcqId: text.joi('', Joi.string())
-    };
-
-    const equality = object(fields);
-
-    return form({ equality });
+    return form({ pcqId: text.joi('', Joi.string()) });
   }
 
   answers() {
@@ -95,7 +89,7 @@ class Equality extends SaveToDraftStore {
   }
 
   values() {
-    const pcqId = this.fields.equality.pcqId.value;
+    const pcqId = this.fields.pcqId.value;
     return pcqId ? { pcqId } : {};
   }
 
