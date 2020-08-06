@@ -123,7 +123,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
     it('Expected Successfully posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      // expect(loggerSpy).to.have.been.calledThrice;
+      expect(loggerSpy).to.have.been.calledThrice;
       expect(next).to.have.been.calledOnce;
     });
   });

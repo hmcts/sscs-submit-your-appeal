@@ -88,7 +88,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       'the benefit code is',
       get(this, 'journey.values.benefitType.code')
     ], logPath);
-    logger.trace(`SUBMITTING VALUES: ${JSON.stringify(this.journey.values)}`);
     return request.post(this.journey.settings.apiUrl)
       .set(headers)
       .send(this.journey.values)
