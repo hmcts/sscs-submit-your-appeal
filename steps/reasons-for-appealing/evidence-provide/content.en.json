@@ -15,7 +15,9 @@
   },
   "cya": {
     "evidenceProvide": {
-      "question": "Evidence provided"
+      "question": "Evidence provided",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

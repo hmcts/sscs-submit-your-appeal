@@ -118,7 +118,7 @@
            {% if isBoolean(field.value) and field.value == parseBool(option_value) %}
            checked="checked"
            {% endif %}
-           {% if field.value == option_value %}
+           {% if (field.value and field.value == option_value) or (not field.value and option.selected) %}
            checked="checked"
            {% endif %}
            {% if option_disabled %}

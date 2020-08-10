@@ -1,27 +1,28 @@
 /* eslint-disable no-await-in-loop */
 const assert = require('assert');
 const moment = require('moment');
+const DateUtils = require('utils/DateUtils');
 
-function enterDateCantAttendAndContinue(date, link) {
+function enterDateCantAttendAndContinue(commonContent, date, link) {
   const I = this;
 
   I.click(link);
   I.fillField('input[name*="day"]', date.date().toString());
   I.fillField('input[name*="month"]', (date.month() + 1).toString());
   I.fillField('input[name*="year"]', date.year().toString());
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function seeFormattedDate(date) {
   const I = this;
 
-  I.see(date.format('dddd D MMMM YYYY'));
+  I.see(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
 }
 
 function dontSeeFormattedDate(date) {
   const I = this;
   I.wait(5);
-  I.dontSee(date.format('dddd D MMMM YYYY'));
+  I.dontSee(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
 }
 
 async function hasSelectedClass(element) {
@@ -40,7 +41,9 @@ async function doesntHaveSelectedClass(element) {
   assert.equal(hasClass, false);
 }
 
-async function selectDates(dates) {
+async function selectDates(language, dates) {
+  moment().locale(language);
+
   const I = this;
   I.waitForElement('#date-picker table', 10);
   for (const date of dates) {
@@ -53,7 +56,9 @@ async function selectDates(dates) {
   }
 }
 
-async function deselectDates(dates) {
+async function deselectDates(language, dates) {
+  moment().locale(language);
+
   const I = this;
 
   I.waitForElement('#date-picker table', 10);

@@ -43,7 +43,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   get middleware() {
-    const mw = [...super.middleware];
+    const mw = [ ...super.middleware ];
     if (this.journey.settings.useCsrfToken) {
       mw.push(csrfProtection);
     }

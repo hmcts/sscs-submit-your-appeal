@@ -5,7 +5,6 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
-{% set hideBackButton = true %}
 
 {% block fields %}
     <div id="languagePreference">
@@ -17,8 +16,8 @@
                 content.question,
                 hint = '',
                 options = [
-                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" },
-                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", target: "noWelsh" }
+                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", target: "noWelsh", selected: true },
+                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" }
                 ])
             }}
             <div class="panel js-hidden" id="noWelsh">

@@ -2,12 +2,13 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { splitBenefitType } = require('utils/stringUtils');
+const { splitBenefitType, getBenefitCode } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
+const i18next = require('i18next');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
@@ -27,10 +28,13 @@ class BenefitType extends SaveToDraftStore {
   }
 
   answers() {
+    const sessionLanguage = i18next.language;
+    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+
     return answer(this, {
       question: this.content.cya.benefitType.question,
       section: sections.benefitType,
-      answer: this.fields.benefitType.value
+      answer: benefitTypeContent.benefitTypes[getBenefitCode(this.fields.benefitType.value).toLowerCase()]
     });
   }
 
@@ -41,7 +45,7 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-    if (process.env.FT_WELSH || config.features.welsh.enabled) {
+    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return goTo(this.journey.steps.LanguagePreference);
     }
 

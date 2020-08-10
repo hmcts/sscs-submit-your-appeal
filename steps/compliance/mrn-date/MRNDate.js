@@ -9,7 +9,7 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const { getBenefitCode } = require('utils/stringUtils');
-
+const i18next = require('i18next');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
@@ -25,7 +25,7 @@ class MRNDate extends SaveToDraftStore {
 
     return form({
       mrnDate: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d), d.year),
+        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
           allRequired: fields.date.error.allRequired,
           dayRequired: fields.date.error.dayRequired,
@@ -51,7 +51,8 @@ class MRNDate extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.mrnDate.question,
         section: sections.mrnDate,
-        answer: this.fields.mrnDate.value.format('DD MMMM YYYY')
+        answer: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY')
+
       })
     ];
   }

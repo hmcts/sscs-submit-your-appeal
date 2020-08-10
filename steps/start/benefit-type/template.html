@@ -5,10 +5,7 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
-
-{% if not featureToggles.welsh() %}
-    {% set hideBackButton = true %}
-{% endif %}
+{% set hideBackButton = true %}
 
 {% block fields %}
     {{ select(

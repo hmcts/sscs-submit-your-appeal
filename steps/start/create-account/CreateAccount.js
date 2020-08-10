@@ -22,9 +22,7 @@ class CreateAccount extends SaveToDraftStore {
   }
 
   answers() {
-    return answer(this, {
-      hide: true
-    });
+    return answer(this, { hide: true });
   }
 
   values() {

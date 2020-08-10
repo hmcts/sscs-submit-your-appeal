@@ -3,6 +3,7 @@
   "addressSelectionLabel": "Pick an address",
   "manualEntryLabel": "I can’t enter a UK postcode",
   "dropdownCount": "address found",
+  "findAddress": "Find address",
   "fields": {
     "postcodeLookup": {
       "error": {

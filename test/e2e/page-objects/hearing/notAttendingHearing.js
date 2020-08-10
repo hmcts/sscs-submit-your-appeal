@@ -1,7 +1,7 @@
-function continueFromnotAttendingHearing() {
+function continueFromnotAttendingHearing(commonContent) {
   const I = this;
 
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 module.exports = { continueFromnotAttendingHearing };

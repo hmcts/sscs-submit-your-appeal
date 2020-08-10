@@ -37,6 +37,7 @@ class EvidenceUpload {
     return num;
   }
   setup(error, components) {
+    const chooseFile = $('html').attr('lang') === 'en' ? 'Choose file' : 'Dewis ffeil';
     // give it the time to finish painting the dom...
     window.setTimeout(() => {
       if (components && components.fileupload) {
@@ -47,7 +48,7 @@ class EvidenceUpload {
           name: `item.${this.elId}`,
           value: '',
           errors: this.errors
-        }, 'Choose file', fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
+        }, chooseFile, fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
         );
         this.appendForm();
       }

@@ -2,24 +2,17 @@
 {% from "components/fields.njk" import formSection %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
+    <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
-<p class="govuk-body">{{ content.subtitle }}</p>
-
-{% call formSection() %}
-
-<p class="govuk-body">{{ content.register.heading }}</p>
-
-<ul class="govuk-list govuk-list--bullet">
-    <li>{{ content.register.fullName }}</li>
-    <li>{{ content.register.organisation}}</li>
-    <li>{{ content.register.emailOrPostalAddress }}</li>
-</ul>
-{% endcall %}
-
+    {% call formSection() %}
+        <p class="govuk-body">{{ content.register.heading | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>{{ content.register.fullName | safe }}</li>
+            <li>{{ content.register.organisation | safe }}</li>
+            <li>{{ content.register.emailOrPostalAddress | safe }}</li>
+        </ul>
+    {% endcall %}
 {% endblock %}

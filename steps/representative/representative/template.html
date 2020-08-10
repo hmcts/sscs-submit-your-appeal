@@ -2,13 +2,9 @@
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
-{% set title %}
-    {{ content.title | safe }}
-{% endset %}
+{% set title = content.title | safe %}
 
 {% block fields %}
-
     <p class="govuk-body">{{ content.subtitle | safe}}</p>
     <p class="govuk-body">{{ content.registerList | safe}}</p>
     <ul class="govuk-list govuk-list--bullet">
@@ -19,17 +15,14 @@
     <p class="govuk-body">{{ content.phoneUp | safe }}</p>
 
     {% call formSection() %}
-
         {{ selectionButtons(
             fields.hasRepresentative,
             content.fields.hasRepresentative.label,
-            hideQuestion=true,
+            hideQuestion = true,
             options = [
                 { label: content.fields.hasRepresentative.yes, value: "yes" },
                 { label: content.fields.hasRepresentative.no,  value: "no" }
             ])
         }}
-
     {% endcall %}
-
 {% endblock %}

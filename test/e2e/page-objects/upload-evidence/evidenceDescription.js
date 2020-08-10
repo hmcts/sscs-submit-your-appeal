@@ -1,14 +1,8 @@
-function selectContinue() {
-  const I = this;
-
-  I.click('Continue');
-}
-
-function enterDescription(description) {
+function enterDescription(commonContent, description) {
   const I = this;
   I.seeInCurrentUrl('evidence-description');
   I.fillField('textarea[name="describeTheEvidence"]', description);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
-module.exports = { selectContinue, enterDescription };
+module.exports = { enterDescription };

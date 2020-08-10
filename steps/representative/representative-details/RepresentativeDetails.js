@@ -22,7 +22,6 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
-
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
 

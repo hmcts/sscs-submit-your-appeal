@@ -3,15 +3,25 @@
 {% from "components/header.njk" import header %}
 
 {% block fields %}
-  {% set defaultContent = {
-    addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Add another item',
-    itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'item',
-    noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'No items added yet',
-    itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Items',
-    hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
-    editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Add another item'
-  }
-  %}
+  {% if i18n.currentLanguage == "en" %}
+    {% set defaultContent = {
+      addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Add another item',
+      itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'item',
+      noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'No items added yet',
+      itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Items',
+      hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
+      editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Add another item'
+    } %}
+  {% else %}
+    {% set defaultContent = {
+      addAnotherLink: pageContent.addAnotherLink if pageContent.addAnotherLink else 'Ychwanegu eitem arall',
+      itemLabel: pageContent.itemLabel if pageContent.itemLabel else 'eitem',
+      noItemsMessage: pageContent.noItemsMessage if pageContent.noItemsMessage else 'Dim eitemau wedi eu hychwanegu eto',
+      itemsListLabel: pageContent.itemsListLabel if pageContent.itemsListLabel else 'Eitemau',
+      hideItemsListLabel: pageContent.hideItemsListLabel if pageContent.hideItemsListLabel else false,
+      editItemLabel: pageContent.editItemLabel if pageContent.editItemLabel else 'Ychwanegu eitem arall'
+    } %}
+  {% endif %}
 
   {% if isListMode %}
     {% block listItems %}
@@ -50,7 +60,7 @@
       <pre>
         {% raw %}
           {% block editItem %}
-            {{ textbox(this.fields.item, 'Item label') }}
+          {{ textbox(this.fields.item, 'Item label') }}
           {% endblock %}
         {% endraw %}
       </pre>
@@ -68,10 +78,10 @@
     {% if deleteUrl or editUrl %}
       <dd class="govuk-summary-list__actions">
         {% if editUrl %}
-          <a href="{{ editUrl }}" class="govuk-link">Edit<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ editUrl }}" class="govuk-link">{{ commonContent[htmlLang].edit }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
         {% if deleteUrl %}
-          <a href="{{ deleteUrl }}" class="govuk-link">Delete<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ deleteUrl }}" class="govuk-link">{{ commonContent[htmlLang].delete }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
         {% endif %}
       </dd>
     {% endif %}

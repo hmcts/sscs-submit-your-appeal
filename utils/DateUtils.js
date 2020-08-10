@@ -3,9 +3,9 @@
 const { long, short } = require('utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
-const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
-const months = long.concat(short);
+
+const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
 class DateUtils {
   static isLessThanOrEqualToAMonth(mDate) {
@@ -18,7 +18,12 @@ class DateUtils {
       .isSameOrBefore(mDate, 'day');
   }
 
-  static createMoment(day, month, year) {
+  static createMoment(day, month, year, language = 'en') {
+    if (language !== 'en') {
+      require(`moment/locale/${language}`);
+    }
+    moment.locale(language);
+
     return moment(`${day}-${month}-${year}`, 'D-M-YYYY', true);
   }
 
@@ -27,11 +32,15 @@ class DateUtils {
       .add(1, 'day');
   }
 
-  static oneMonthAgo() {
+  static oneMonthAgo(language) {
+    moment.locale(language);
+
     return moment().subtract(1, 'month');
   }
 
-  static oneMonthAndOneDayAgo() {
+  static oneMonthAndOneDayAgo(language) {
+    moment.locale(language);
+
     return moment().subtract(1, 'month')
       .subtract(1, 'day');
   }
@@ -45,7 +54,9 @@ class DateUtils {
     return moment().subtract(13, 'month');
   }
 
-  static thirteenMonthsAndOneDayAgo() {
+  static thirteenMonthsAndOneDayAgo(language) {
+    moment.locale(language);
+
     return moment().subtract(13, 'month')
       .subtract(1, 'day');
   }
@@ -73,7 +84,11 @@ class DateUtils {
     return date.isSameOrBefore(dateTwentyTwoWeeksLater, 'day');
   }
 
-  static isDateOnTheWeekend(date) {
+  static isDateOnTheWeekend(date, language) {
+    if (language === 'cy') {
+      return date.weekday() === 5 || date.weekday() === 6;
+    }
+
     return date.weekday() === 0 || date.weekday() === 6;
   }
 
@@ -85,10 +100,14 @@ class DateUtils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  static getMonthValue(date) {
+  static getMonthValue(date, language) {
+    moment.locale(language);
+    const months = long[language].concat(short[language]);
     let monthValue = null;
+
     if (isNaN(date.month)) {
       const month = date.month.toLowerCase();
+
       if (includes(months, month)) {
         monthValue = moment(`${date.day} ${month} ${date.year}`, 'DD MMMM YY').month() + 1;
       } else {
@@ -112,8 +131,13 @@ class DateUtils {
     });
   }
 
-  static getCurrentDate() {
+  static getCurrentDate(language) {
+    moment.locale(language);
     return moment().format('DD-MM-YYYY');
+  }
+
+  static formatDate(date, format) {
+    return date.format(format);
   }
 }
 

@@ -1,8 +1,8 @@
-function enterDWPIssuingOfficeAndContinue(id) {
+function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   const I = this;
 
   I.fillField({ id: 'pipNumber' }, id);
-  I.click('Continue');
+  I.click(commonContent.continue);
 }
 
 function seeDWPIssuingOfficeError(url, error) {

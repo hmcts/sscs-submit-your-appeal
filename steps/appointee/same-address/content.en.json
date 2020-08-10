@@ -13,7 +13,9 @@
   },
   "cya": {
     "isAddressSameAsAppointee": {
-      "question": "Same address as appointee"
+      "question": "Same address as appointee",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }
