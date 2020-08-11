@@ -10,6 +10,10 @@
     "useSSL": "false",
     "timeout": 1200
   },
+  "health": {
+    "timeout": 5000,
+    "deadline": 15000
+  },
   "frontend": {
     "inactivityAlert": 1080
   },
