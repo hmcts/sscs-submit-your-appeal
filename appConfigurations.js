@@ -209,10 +209,6 @@ const configureMiddleWares = (app, express) => {
     extended: true
   }));
 
-  app.use(paths.health, healthcheck.configure({
-    checks: {}
-  }));
-
   app.use(paths.monitoring, healthcheck.configure({
     checks: {
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`)
