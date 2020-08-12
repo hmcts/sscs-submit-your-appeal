@@ -4,8 +4,6 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { v4: uuidv4 } = require('uuid');
 const paths = require('paths');
 const config = require('config');
-const request = require('request-promise');
-const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
 
@@ -29,21 +27,7 @@ class Pcq extends SaveToDraftStore {
 
     // If user has logged in through IDAM, PCQ is enabled and not already called
     if (this.hasIdam(req) && this.isEnabled() && !req.session.Pcq) {
-      // Check PCQ Health
-      const uri = `${config.services.pcq.url}/health`;
-      request.get({ uri, json: true })
-        .then(json => {
-          if (json.status && json.status === 'UP') {
-            this.invokePcq(req, res);
-          } else {
-            logger.trace('PCQ service is DOWN');
-            skipPcq();
-          }
-        })
-        .catch(error => {
-          logger.trace(error.message);
-          skipPcq();
-        });
+      this.invokePcq(req, res);
     } else {
       skipPcq();
     }
