@@ -102,28 +102,6 @@ describe('Pcq.js', () => {
   //   }, 100);
   // });
 
-  it('skips PCQ if the user did not login to IDAM', done => {
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'UP' });
-
-    const revert = Pcq.__set__('goTo', () => {
-      // eslint-disable-next-line no-empty-function
-      return { redirect: () => {} };
-    });
-
-    delete req.idam;
-
-    const step = new Pcq(req, res);
-    step.handler(req, res);
-
-    setTimeout(() => {
-      expect(res.redirect.calledOnce).to.equal(false);
-      revert();
-      done();
-    }, 100);
-  });
-
   it('answers() returns an empty array', () => {
     const step = new Pcq(req, res);
     step.handler(req, res);
