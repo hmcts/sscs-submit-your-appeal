@@ -108,8 +108,7 @@
       "url": "http://localhost:4000",
       "path": "/service-endpoint",
       "port": 4000,
-      "tokenKey": "SERVICE_TOKEN_KEY",
-      "requireIdam": "true"
+      "tokenKey": "SERVICE_TOKEN_KEY"
     }
   },
   "languages": ["en", "cy"]

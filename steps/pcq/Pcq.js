@@ -14,12 +14,6 @@ class Pcq extends SaveToDraftStore {
     return paths.pcq;
   }
 
-  hasIdam(req) {
-    const enabled = config.services.pcq.requireIdam === 'true';
-    const hasIdam = Boolean(req.idam);
-    return enabled ? hasIdam : true;
-  }
-
   isEnabled() {
     return config.features.pcq.enabled === 'true';
   }
@@ -27,8 +21,8 @@ class Pcq extends SaveToDraftStore {
   handler(req, res, next) {
     const skipPcq = () => this.next().redirect(req, res, next);
 
-    // If user has logged in through IDAM, PCQ is enabled and not already called
-    if (this.hasIdam(req) && this.isEnabled() && !req.session.Pcq) {
+    // PCQ is enabled and not already called
+    if (this.isEnabled() && !req.session.Pcq) {
       // Check PCQ Health
       const uri = `${config.services.pcq.url}/health`;
       request.get({ uri, json: true })
