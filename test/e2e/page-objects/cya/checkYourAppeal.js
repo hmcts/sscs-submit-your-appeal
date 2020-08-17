@@ -169,6 +169,11 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   I.see(checkYourAppealContent.header);
 }
 
+function checkYourAppealToConfirmationPage(language, signer) {
+  const I = this;
+  I.checkYourAppealToConfirmation(language, signer);
+}
+
 module.exports = {
   enterDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
@@ -176,5 +181,6 @@ module.exports = {
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
-  enterDetailsFromAttendingTheHearingWithSupportToEnd
+  enterDetailsFromAttendingTheHearingWithSupportToEnd,
+  checkYourAppealToConfirmationPage
 };
