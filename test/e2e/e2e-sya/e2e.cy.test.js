@@ -20,6 +20,7 @@ Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.completePcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
