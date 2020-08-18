@@ -43,6 +43,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
+  I.completePcq();
   I.see(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
   // Now edit the single date from 10 to 11 weeks.
