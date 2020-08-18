@@ -24,6 +24,7 @@ nodejs:
     # SERVICES_BTN_SERVICE_CLOSED
 
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
+    UV_THREADPOOL_SIZE: 64
 
   keyVaults:
     sscs:
