@@ -26,10 +26,7 @@ module.exports = {
           { from: path.resolve('assets/images'), to: 'images' },
           { from: path.resolve('views/components'), to: 'nunjucks/components' },
           { from: imagesGokukFrontend, to: 'images' },
-          { from: fontsGokukFrontend, to: 'fonts' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/css/hmcts-webchat.css'), to: '' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat.js'), to: '' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' }
+          { from: fontsGokukFrontend, to: 'fonts' }
         ]
       }),
     new MiniCssExtractPlugin({ filename: '[name].css' })
