@@ -18,9 +18,9 @@ def component = "frontend"
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
-    before('DependencyCheckNightly') {sh 'yarn test:audit'}
+    before('DependencyCheckNightly') {sh 'yarn audit'}
     enableCrossBrowserTest()
-//     enableSecurityScan()
+    enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
