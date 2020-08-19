@@ -1,7 +1,7 @@
 /* eslint-disable no-undefined */
 
 const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
-const { goTo } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const UKBankHolidays = require('@hmcts/uk-bank-holidays');
@@ -96,7 +96,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   next() {
-    return goTo(this.journey.steps.CheckYourAppeal);
+    return redirectTo(this.journey.steps.Pcq);
   }
 }
 

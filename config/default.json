@@ -57,6 +57,9 @@
     },
     "welsh": {
       "enabled": "false"
+    },
+    "pcq": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
@@ -99,6 +102,13 @@
       "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
       "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
       "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
+    },
+    "pcq": {
+      "name": "Equality and Diversity Service",
+      "url": "http://localhost:4000",
+      "path": "/service-endpoint",
+      "port": 4000,
+      "tokenKey": "SERVICE_TOKEN_KEY"
     }
   },
   "languages": ["en", "cy"]
