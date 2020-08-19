@@ -59,7 +59,7 @@
       "enabled": "false"
     },
     "pcq": {
-      "enabled": "true"
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
