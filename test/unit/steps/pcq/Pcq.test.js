@@ -11,6 +11,9 @@ describe('Pcq.js', () => {
   let res = {};
   const pcqHost = config.services.pcq.url;
 
+  const testConfig = JSON.parse(JSON.stringify(config));
+  testConfig.features.pcq.enabled = 'true';
+
   before(() => {
     nock.cleanAll();
     nock.activate();
@@ -28,6 +31,7 @@ describe('Pcq.js', () => {
     res = {
       redirect: sinon.spy()
     };
+    Pcq.__set__('config', testConfig);
   });
 
   afterEach(() => {
