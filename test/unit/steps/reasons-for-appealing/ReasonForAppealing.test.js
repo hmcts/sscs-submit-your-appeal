@@ -4,6 +4,8 @@ const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appea
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const benefitTypes = require('steps/start/benefit-type/types');
+const contentBenefitType = require('steps/start/benefit-type/content.en');
 
 describe('ReasonForAppealing.js', () => {
   let reasonForAppealing = null;
@@ -25,6 +27,14 @@ describe('ReasonForAppealing.js', () => {
   describe('get path()', () => {
     it('returns path /reason-for-appealing', () => {
       expect(ReasonForAppealing.path).to.equal(paths.reasonsForAppealing.reasonForAppealing);
+    });
+  });
+
+  describe('get benefitType()', () => {
+    const req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
+    it('returns benefitType', () => {
+      reasonForAppealing.req = req;
+      expect(reasonForAppealing.benefitType).to.equal(contentBenefitType.benefitTypes.pip);
     });
   });
 

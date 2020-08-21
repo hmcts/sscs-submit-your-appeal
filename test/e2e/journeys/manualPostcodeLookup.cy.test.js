@@ -19,5 +19,6 @@ Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.completePcq();
   I.confirmDetailsArePresent(language);
 }).retry(1);
