@@ -16,5 +16,5 @@ while !(curl -s http://0.0.0.0:1001) > /dev/null
   echo 'Changing owner from $(id -u):$(id -g) to $(id -u):$(id -u)'
   chown -R $(id -u):$(id -u) activescan.html
   cp *.html functional-output/
-  zap-cli -p 1001 alerts -l Informational
+  zap-cli -p 1001 alerts -l High
   
