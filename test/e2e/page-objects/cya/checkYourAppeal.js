@@ -24,8 +24,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   // I.chooseLanguagePreference(commonContent, 'no');
-  console.log("Value of welsh is ############ " + welshEnabled);
-  if (welshEnabled) I.chooseLanguagePreference(commonContent, 'no');
+  if (I.seeElement("#languagePreference")) I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
