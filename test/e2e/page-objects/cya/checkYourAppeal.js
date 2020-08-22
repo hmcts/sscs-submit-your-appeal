@@ -9,7 +9,6 @@ const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
-const welshEnabled = config.get('features.welsh.enabled') === 'true';
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -24,7 +23,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   // I.chooseLanguagePreference(commonContent, 'no');
-  if (I.seeElement("#languagePreference")) I.chooseLanguagePreference(commonContent, 'no');
+  if (I.isLanguageAvailable('#languagePreference') === true) I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {

@@ -22,6 +22,16 @@ class MyHelper extends Helper {
       throw new Error(error);
     }
   }
+
+  async isLanguageAvailable(langElement) {
+    const page = this.helpers.Puppeteer.page;
+    try {
+      const hasLanguage = Boolean(await page.$(langElement));
+      return hasLanguage;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 module.exports = MyHelper;
