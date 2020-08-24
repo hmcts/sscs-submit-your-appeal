@@ -1,3 +1,5 @@
+/* eslint-disable no-process-env */
+
 const DateUtils = require('utils/DateUtils');
 const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
 const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
@@ -14,9 +16,9 @@ const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
-const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
-const actUrl = config.get('e2e.frontendUrl');
 
+const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
+const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
@@ -25,7 +27,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   // I.chooseLanguagePreference(commonContent, 'no');
-  if(actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
+  if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
