@@ -19,13 +19,24 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
+    enableCrossBrowserTest()
     enableFullFunctionalTest()
-//     enableCrossBrowserTest()
-//     enableSecurityScan()
+    enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+       //    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
+     }
 
-//    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
-}
+     after('fullFunctionalTest') {
+
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "output",
+                reportFiles : "SYA-e2e-result.html",
+                reportName : "SYA E2E functional tests result"
+        ]
+    }
 }
