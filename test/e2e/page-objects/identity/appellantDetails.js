@@ -8,7 +8,7 @@ const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
   const I = this;
 
-  I.fillField({ id: 'title' }, title);
+  I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
   I.click(commonContent.continue);
