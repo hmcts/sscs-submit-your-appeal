@@ -19,7 +19,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
-    enableFunctionalTest()
+    enableFullFunctionalTest()
     enableCrossBrowserTest()
     enableSecurityScan()
 
