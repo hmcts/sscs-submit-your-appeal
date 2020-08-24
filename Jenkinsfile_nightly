@@ -14,8 +14,25 @@ properties([
 
 def product = "sscs-tribunals"
 def component = "frontend"
+def secrets = [
+        'sscs-${env}': [
+                secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET'),
+                secret('postcode-lookup-token', 'POSTCODE_LOOKUP_TOKEN'),
+                secret('pcq-token-key', 'SERVICE_TOKEN_KEY')
+        ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [ $class: 'AzureKeyVaultSecret',
+      secretType: 'Secret',
+      name: secretName,
+      version: '',
+      envVariable: envVar
+    ]
+}
 
 withNightlyPipeline("nodejs", product, component) {
+    loadVaultSecrets(secrets)
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
