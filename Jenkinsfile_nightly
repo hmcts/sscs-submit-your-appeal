@@ -37,11 +37,23 @@ withNightlyPipeline("nodejs", product, component) {
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
     enableCrossBrowserTest()
+    enableFullFunctionalTest()
     enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        enableSlackNotifications('#sscs-tech') 
+     }
 
-//    enableSlackNotifications('#sscs')  // can be turned back on once the overnight functionality is working fully
+     after('fullFunctionalTest') {
+
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "output",
+                reportFiles : "SYA-e2e-result.html",
+                reportName : "SYA E2E functional tests result"
+        ]
     }
 }
