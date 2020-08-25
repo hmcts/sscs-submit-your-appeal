@@ -4,6 +4,7 @@ nodejs:
   environment:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
+    UV_THREADPOOL_SIZE: 4
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
 
   keyVaults:
