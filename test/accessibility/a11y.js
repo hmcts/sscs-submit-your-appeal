@@ -66,6 +66,7 @@ describe('Accessibility', () => {
       const excluded = excludeSteps.some(stepUrl => stepUrl === url);
 
       if (!excluded) {
+        console.log("URL is ############# " + url)
         accessibilityCheck(`${url}?lng=${language}`);
       }
     });
