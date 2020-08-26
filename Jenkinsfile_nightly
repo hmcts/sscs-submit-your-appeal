@@ -36,25 +36,24 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
-    before('DependencyCheckNightly') {sh 'yarn test:a11y'}
-//     enableCrossBrowserTest()
-//     enableFullFunctionalTest()
-//     enableSecurityScan()
+    enableCrossBrowserTest()
+    enableFullFunctionalTest()
+    enableSecurityScan()
 
-//     after('crossBrowserTest') {
-//         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-//         enableSlackNotifications('#sscs-tech') 
-//      }
+    after('crossBrowserTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        enableSlackNotifications('#sscs-tech') 
+     }
 
-//      after('fullFunctionalTest') {
+     after('fullFunctionalTest') {
 
-//         publishHTML target: [
-//                 allowMissing : true,
-//                 alwaysLinkToLastBuild: true,
-//                 keepAll : true,
-//                 reportDir : "output",
-//                 reportFiles : "SYA-e2e-result.html",
-//                 reportName : "SYA E2E functional tests result"
-//         ]
-//     }
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "output",
+                reportFiles : "SYA-e2e-result.html",
+                reportName : "SYA E2E functional tests result"
+        ]
+    }
 }
