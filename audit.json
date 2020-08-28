@@ -262,5 +262,12 @@
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(3)%20of%20ruxitagentjs_ICA2QSVfqru_10193200616095656.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(2)%20of%20ruxitagentjs_ICA2QSVfqru_10193200616095656.js_GET" : "ignore",
   "10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore",
-  "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore"
+  "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore",
+
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/contact-us_GET" : "ignore"
 }
