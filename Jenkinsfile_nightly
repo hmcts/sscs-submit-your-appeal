@@ -4,9 +4,7 @@ properties([
         pipelineTriggers([cron('00 20 * * *')]),
         parameters([
                 string(name: 'URL_TO_TEST', defaultValue: 'https://benefit-appeal.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
-                string(name: 'SecurityRules',
-                 defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
-                 description: 'The URL you want to run these tests against'),
+                booleanParam(name: 'USE_PROXY_SERVER', defaultValue: true, description: 'use proxy server for tests (proxyout.reform.hmcts.net:8080)'),
         ])
 ])
 
@@ -32,13 +30,16 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withNightlyPipeline("nodejs", product, component) {
+    if (params.USE_PROXY_SERVER) {
+        env.PROXY_SERVER = 'http://proxyout.reform.hmcts.net:8080'
+    }
     loadVaultSecrets(secrets)
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn audit'}
     enableCrossBrowserTest()
-    enableFullFunctionalTest()
     enableSecurityScan()
+    enableFullFunctionalTest(200)
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
