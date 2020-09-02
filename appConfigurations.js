@@ -90,28 +90,30 @@ const configureViews = app => {
 };
 
 const configureHelmet = app => {
+  // Helmet referrer policy
+  app.use(helmet.referrerPolicy({ policy: 'origin' }));
+
   // Protect against some well known web vulnerabilities
   // by setting HTTP headers appropriately.
   app.use(helmet());
-
-  // Helmet referrer policy
-  app.use(helmet.referrerPolicy({ policy: 'origin' }));
 
   // Helmet content security policy (CSP) to allow only assets from same domain.
   app.use(helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
-      scriptSrc: [
-        '\'self\'',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
-        'vcc-eu4.8x8.com'
-      ],
       styleSrc: [
         '\'self\'',
-        'tagmanager.google.com',
-        'fonts.googleapis.com/'
+        '\'unsafe-inline\''
+      ],
+      scriptSrc: [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'www.google-analytics.com',
+        'www.googletagmanager.com',
+        'chatbuilder.netlify.com',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
       ],
       connectSrc: [
         '\'self\'',
@@ -119,21 +121,19 @@ const configureHelmet = app => {
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
-        '\'self\'',
-        'www.googletagmanager.com',
-        'vcc-eu4.8x8.com'
-      ],
-      frameAncestors: [
-        '\'self\'',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com',
         'www.googletagmanager.com'
       ],
       imgSrc: [
         '\'self\'',
-        '\'self\' data:',
+        'stats.g.doubleclick.net',
+        'www.google.com',
+        'www.google.co.uk',
         'www.google-analytics.com',
         'www.googletagmanager.com',
-        'tagmanager.google.com',
-        'vcc-eu4.8x8.com'
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
       ]
     }
   }));
