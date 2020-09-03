@@ -3,6 +3,7 @@ function enterDoYouWantToAttendTheHearing(commonContent, option) {
 
   I.waitForElement('#attendHearing', 3);
   I.checkOption(option);
+  I.scrollPageToBottom();
   I.click(commonContent.continue);
 }
 

@@ -109,6 +109,16 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
 }
 
+function enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent) {
+  const I = this;
+
+  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
+  I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testDataEn.reasonsForAppealing.reasons[0]);
+  I.enterAnythingElseAndContinue(commonContent, testDataEn.reasonsForAppealing.otherReasons);
+  I.readSendingEvidenceAndContinue(commonContent);
+  I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-no');
+}
+
 function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   const testData = language === 'en' ? testDataEn : testDataCy;
   const I = this;
@@ -186,5 +196,6 @@ module.exports = {
   enterDetailsFromNoRepresentativeToEnd,
   confirmDetailsArePresent,
   enterDetailsFromAttendingTheHearingWithSupportToEnd,
-  checkYourAppealToConfirmationPage
+  checkYourAppealToConfirmationPage,
+  enterDetailsFromNoRepresentativeToNoUploadingEvidence
 };
