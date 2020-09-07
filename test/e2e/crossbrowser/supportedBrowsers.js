@@ -46,7 +46,7 @@ const supportedBrowsers = {
       platform: 'macOS 10.13',
       version: 'latest'
     }
-  },
+  }
   // safari: {
   //   safari11: {
   //     browserName: 'safari',
