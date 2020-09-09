@@ -35,7 +35,7 @@ withNightlyPipeline("nodejs", product, component) {
     loadVaultSecrets(secrets)
     env.TEST_URL = params.URL_TO_TEST
 
-    before('DependencyCheckNightly') {sh 'yarn audit'}
+    before('DependencyCheckNightly') {sh 'yarn test:audit'}
     enableCrossBrowserTest()
     enableFullFunctionalTest()
     enableSecurityScan()
