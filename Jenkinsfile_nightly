@@ -43,7 +43,7 @@ withNightlyPipeline("nodejs", product, component) {
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-        enableSlackNotifications('#sscs-tech') 
+   //     enableSlackNotifications('#sscs-tech')
      }
 
      after('fullFunctionalTest') {
