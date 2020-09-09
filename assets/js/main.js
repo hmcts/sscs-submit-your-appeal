@@ -10,6 +10,7 @@ import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
 import { CheckCookies } from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
+import { WebChat } from './web-chat';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -31,6 +32,10 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
+function initWebChat() {
+  const webChat = new WebChat();
+  webChat.init();
+}
 
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
@@ -130,6 +135,7 @@ $(document).ready(() => {
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
+  initWebChat();
   PostCodeLookup.init();
   const checkCookies = new CheckCookies();
   checkCookies.init();
