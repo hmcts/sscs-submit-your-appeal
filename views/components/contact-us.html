@@ -6,7 +6,14 @@
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-            <div id="ctsc-web-chat">{{ commonContent[htmlLang].contactUs.webchat.loading | safe }}</div>
+            {% if featureToggles.antennaWebChat() == "true" %}
+                <div id="antenna-web-chat" >
+                    <a class="web-chat-link" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
+                    {% include "components/web-chat.html" %}
+                </div>
+            {% else %}
+                <div id="ctsc-web-chat">{{ commonContent[htmlLang].contactUs.webchat.loading | safe }}</div>
+            {% endif %}
         </div>
     {% endif %}
     {% if contactUsWebFormEnabled %}
