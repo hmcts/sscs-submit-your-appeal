@@ -16,7 +16,7 @@
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --exit 'test/unit/**/*.test.js'",
     "test:assets": "cross-env NODE_PATH=. NODE_ENV=test mochapack 'test/assets/**/*.test.js' --webpack-config test/webpack.config.js --require babel-core/register",
     "test": "yarn test:unit && yarn test:assets",
-    "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:audit && yarn test:smoke",
+    "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint --fix .",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @smoke --steps --verbose",
     "test:audit": "./bin/run-yarn-audit.sh -f yarn-audit-known-issues",
