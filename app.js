@@ -50,4 +50,16 @@ configureNunjucks(app, commonContent);
 // Configure One Per page settings.
 configureJourney(app, commonContent);
 
+app.get('/session', (req, res) => {
+  res.json(req.session);
+});
+
+app.get('/sess', (req, res) => {
+  res.json(req.sess);
+});
+
+app.get('/idam', (req, res) => {
+  res.json(req.idam);
+});
+
 module.exports = app;
