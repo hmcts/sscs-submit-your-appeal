@@ -314,5 +314,6 @@
   "10021_X-Content-Type-Options Header Missing_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore",
   "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore",
   "10035_Strict-Transport-Security Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore",
-  "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore"
+  "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10193200616095656.js_GET" : "ignore"
 }
