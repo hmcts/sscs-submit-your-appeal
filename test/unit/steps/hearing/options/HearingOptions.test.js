@@ -14,8 +14,8 @@ describe('HearingOptions.js', () => {
         values: {
           appellant: {
             contactDetails: {
-              phoneNumber: "099723122",
-              emailAddress: "jey@gmail.com"
+              phoneNumber: '099723122',
+              emailAddress: 'jey@gmail.com'
             }
           }
         }
@@ -65,15 +65,15 @@ describe('HearingOptions.js', () => {
     });
   });
 
-  describe('appellant contact delails', () =>{
+  describe('appellant contact delails', () => {
     it('return appellant phone number', () => {
-      expect(hearingOptions.telephone).to.eql("099723122");
+      expect(hearingOptions.telephone).to.eql('099723122');
     });
 
     it('return appellant email', () => {
-      expect(hearingOptions.email).to.eql("jey@gmail.com");
+      expect(hearingOptions.email).to.eql('jey@gmail.com');
     });
-  })
+  });
 
   describe('value()', () => {
     it('returns the hearing type telephone value', () => {
@@ -88,9 +88,8 @@ describe('HearingOptions.js', () => {
           hearingTypeVideo: false,
           email: null,
           hearingTypeFaceToFace: false
-          }
         }
-      });
+      } });
     });
 
     it('returns the hearing type video value', () => {
@@ -99,15 +98,14 @@ describe('HearingOptions.js', () => {
 
       const values = hearingOptions.values();
       expect(values).to.eql({ hearing: {
-          options: {
-            hearingTypeTelephone: false,
-            telephone: null,
-            hearingTypeVideo: true,
-            email: 'jey@gmail.com',
-            hearingTypeFaceToFace: false
-          }
+        options: {
+          hearingTypeTelephone: false,
+          telephone: null,
+          hearingTypeVideo: true,
+          email: 'jey@gmail.com',
+          hearingTypeFaceToFace: false
         }
-      });
+      } });
     });
 
     it('returns the hearing type face to face value', () => {
@@ -115,15 +113,14 @@ describe('HearingOptions.js', () => {
 
       const values = hearingOptions.values();
       expect(values).to.eql({ hearing: {
-          options: {
-            hearingTypeTelephone: false,
-            telephone: null,
-            hearingTypeVideo: false,
-            email: null,
-            hearingTypeFaceToFace: true
-          }
+        options: {
+          hearingTypeTelephone: false,
+          telephone: null,
+          hearingTypeVideo: false,
+          email: null,
+          hearingTypeFaceToFace: true
         }
-      });
+      } });
     });
   });
 
