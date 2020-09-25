@@ -1,0 +1,45 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, textbox, selectionButton, selectionButtons %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block fields %}
+<p class="govuk-body">{{ content.subtitle | safe }}</p>
+<p class="govuk-body">{{ content.instructions | safe }}</p>
+
+
+
+{% call selectionButtons(
+field = fields.selectOptions,
+hideQuestion = true,
+hint = '',
+inline = false
+) %}
+
+{{ selectionButton(
+fields.selectOptions.option,
+{ label: content.fields.options.telephone.requested.label, value: 'telephone', target: 'telephoneTextField' })
+}}
+
+<div class="panel js-hidden" id="telephoneTextField">
+    {{ textbox(fields.selectOptions.telephone, hideLabel=true, value=telephone) }}
+</div>
+
+{{ selectionButton(
+fields.selectOptions.option,
+{ label: content.fields.options.video.requested.label, value: 'video', target: 'emailTextField' })
+}}
+<div class="panel js-hidden" id="emailTextField">
+    {{ textbox(fields.selectOptions.email, hideLabel=true, value=email) }}
+</div>
+
+{{ selectionButton(
+fields.selectOptions.option,
+{ label: content.fields.options.faceToFace.requested.label, value: 'face-to-face' })
+}}
+
+{% endcall %}
+
+
+{% endblock %}

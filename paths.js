@@ -102,7 +102,8 @@ module.exports = {
     hearingSupport: '/hearing-support',
     hearingAvailability: '/hearing-availability',
     notAttendingHearing: '/not-attending-hearing',
-    theHearing: '/the-hearing'
+    theHearing: '/the-hearing',
+    hearingOptions: '/hearing-options'
   },
 
   idam: {

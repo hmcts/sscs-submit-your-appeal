@@ -11,7 +11,7 @@ describe('TheHearing.js', () => {
     theHearing = new TheHearing({
       journey: {
         steps: {
-          HearingSupport: paths.hearing.hearingSupport,
+          HearingOptions: paths.hearing.hearingOptions,
           NotAttendingHearing: paths.hearing.notAttendingHearing
         }
       }
@@ -97,7 +97,7 @@ describe('TheHearing.js', () => {
   describe('next()', () => {
     it('returns the next step path /hearing-support when attendHearing value is Yes', () => {
       theHearing.fields.attendHearing.value = 'yes';
-      expect(theHearing.next().step).to.eq(paths.hearing.hearingSupport);
+      expect(theHearing.next().step).to.eq(paths.hearing.hearingOptions);
     });
 
     it('returns the next step path /not-attending-hearing when attendHearing value is No', () => {
