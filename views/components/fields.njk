@@ -48,7 +48,11 @@
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
-           {% if field.value or value %}value="{{ value | default(field.value) }}"{% endif %}>
+           {% if field.value %}
+           value="{{field.value}}"
+           {% elseif value %}
+           value="{{value}}"
+           {% endif %}>
   </div>
 {% endmacro %}
 
