@@ -4,6 +4,6 @@ const emptyTelephoneValidation = value => (!(value.option === validOptions.telep
 const emptyEmailValidation = value => (!(value.option === validOptions.video && !value.email));
 
 module.exports = {
-    emptyTelephoneValidation,
-    emptyEmailValidation
-}
+  emptyTelephoneValidation,
+  emptyEmailValidation
+};

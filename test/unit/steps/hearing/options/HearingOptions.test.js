@@ -83,32 +83,32 @@ describe('HearingOptions.js', () => {
 
   describe('appellant empty contact delails', () => {
     it('return empty phone number for null value', () => {
-      hearingOptions = new HearingOptions({journey: {}});
+      hearingOptions = new HearingOptions({ journey: {} });
       expect(hearingOptions.telephone).to.eql(null);
     });
 
     it('return empty email for null value', () => {
-      hearingOptions = new HearingOptions({journey: {}});
+      hearingOptions = new HearingOptions({ journey: {} });
       expect(hearingOptions.email).to.eql(null);
     });
 
     it('return empty phone number for null appellant', () => {
-      hearingOptions = new HearingOptions({journey: {values: {}}});
+      hearingOptions = new HearingOptions({ journey: { values: {} } });
       expect(hearingOptions.telephone).to.eql(null);
     });
 
     it('return empty email for null appellant', () => {
-      hearingOptions = new HearingOptions({journey: {values: {}}});
+      hearingOptions = new HearingOptions({ journey: { values: {} } });
       expect(hearingOptions.email).to.eql(null);
     });
 
     it('return empty phone number for null contact', () => {
-      hearingOptions = new HearingOptions({journey: {values: {contactDetails:{}}}});
+      hearingOptions = new HearingOptions({ journey: { values: { contactDetails: {} } } });
       expect(hearingOptions.telephone).to.eql(null);
     });
 
     it('return empty email for null contact', () => {
-      hearingOptions = new HearingOptions({journey: {values: {contactDetails:{}}}});
+      hearingOptions = new HearingOptions({ journey: { values: { contactDetails: {} } } });
       expect(hearingOptions.email).to.eql(null);
     });
   });
@@ -192,15 +192,14 @@ describe('HearingOptions.js', () => {
 
     it('returns true when telephone field has been set', () => {
       value.option = validOptions.telephone;
-      value.telephone = "0993402";
+      value.telephone = '0993402';
       expect(emptyTelephoneValidation(value)).to.equal(true);
     });
 
     it('returns true when email field has been set', () => {
       value.option = validOptions.video;
-      value.email = "email@gmail.com";
+      value.email = 'email@gmail.com';
       expect(emptyEmailValidation(value)).to.equal(true);
     });
-
   });
 });
