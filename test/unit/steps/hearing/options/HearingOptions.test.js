@@ -1,6 +1,12 @@
 const HearingOptions = require('steps/hearing/options/HearingOptions');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const {
+  emptyTelephoneValidation,
+  emptyEmailValidation
+} = require('steps/hearing/options/optionsValidation');
+const validOptions = require('steps/hearing/options/options');
+
 
 describe('HearingOptions.js', () => {
   let hearingOptions = null;
@@ -75,9 +81,42 @@ describe('HearingOptions.js', () => {
     });
   });
 
+  describe('appellant empty contact delails', () => {
+    it('return empty phone number for null value', () => {
+      hearingOptions = new HearingOptions({journey: {}});
+      expect(hearingOptions.telephone).to.eql(null);
+    });
+
+    it('return empty email for null value', () => {
+      hearingOptions = new HearingOptions({journey: {}});
+      expect(hearingOptions.email).to.eql(null);
+    });
+
+    it('return empty phone number for null appellant', () => {
+      hearingOptions = new HearingOptions({journey: {values: {}}});
+      expect(hearingOptions.telephone).to.eql(null);
+    });
+
+    it('return empty email for null appellant', () => {
+      hearingOptions = new HearingOptions({journey: {values: {}}});
+      expect(hearingOptions.email).to.eql(null);
+    });
+
+    it('return empty phone number for null contact', () => {
+      hearingOptions = new HearingOptions({journey: {values: {contactDetails:{}}}});
+      expect(hearingOptions.telephone).to.eql(null);
+    });
+
+    it('return empty email for null contact', () => {
+      hearingOptions = new HearingOptions({journey: {values: {contactDetails:{}}}});
+      expect(hearingOptions.email).to.eql(null);
+    });
+  });
+
+
   describe('value()', () => {
     it('returns the hearing type telephone value', () => {
-      hearingOptions.fields.selectOptions.option.value = 'telephone';
+      hearingOptions.fields.selectOptions.option.value = validOptions.telephone;
       hearingOptions.fields.selectOptions.telephone.value = '07325561123';
 
       const values = hearingOptions.values();
@@ -93,7 +132,7 @@ describe('HearingOptions.js', () => {
     });
 
     it('returns the hearing type video value', () => {
-      hearingOptions.fields.selectOptions.option.value = 'video';
+      hearingOptions.fields.selectOptions.option.value = validOptions.video;
       hearingOptions.fields.selectOptions.email.value = 'jey@gmail.com';
 
       const values = hearingOptions.values();
@@ -109,7 +148,7 @@ describe('HearingOptions.js', () => {
     });
 
     it('returns the hearing type face to face value', () => {
-      hearingOptions.fields.selectOptions.option.value = 'face-to-face';
+      hearingOptions.fields.selectOptions.option.value = validOptions.faceToFace;
 
       const values = hearingOptions.values();
       expect(values).to.eql({ hearing: {
@@ -136,5 +175,32 @@ describe('HearingOptions.js', () => {
       hearingOptions.fields.selectOptions.option.value = 'telephone';
       expect(hearingOptions.next().step).to.eq(paths.hearing.hearingSupport);
     });
+  });
+
+  describe('FieldValidation', () => {
+    const value = {};
+
+    it('returns false when telephone field has not been set', () => {
+      value.option = validOptions.telephone;
+      expect(emptyTelephoneValidation(value)).to.equal(false);
+    });
+
+    it('returns false when email field has not been set', () => {
+      value.option = validOptions.video;
+      expect(emptyEmailValidation(value)).to.equal(false);
+    });
+
+    it('returns true when telephone field has been set', () => {
+      value.option = validOptions.telephone;
+      value.telephone = "0993402";
+      expect(emptyTelephoneValidation(value)).to.equal(true);
+    });
+
+    it('returns true when email field has been set', () => {
+      value.option = validOptions.video;
+      value.email = "email@gmail.com";
+      expect(emptyEmailValidation(value)).to.equal(true);
+    });
+
   });
 });

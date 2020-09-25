@@ -5,10 +5,11 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const paths = require('paths');
 const validOptions = require('steps/hearing/options/options');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const Joi = require('joi');
-
-const emptyTelephoneValidation = value => (!(value.option === validOptions.telephone && !value.telephone));
-const emptyEmailValidation = value => (!(value.option === validOptions.video && !value.email));
+const Joi = require('joi')
+const {
+  emptyTelephoneValidation,
+  emptyEmailValidation
+} = require('steps/hearing/options/optionsValidation')
 
 class HearingOptions extends SaveToDraftStore {
   static get path() {
@@ -58,15 +59,15 @@ class HearingOptions extends SaveToDraftStore {
     const telephoneSelected = validOptions.telephone === this.fields.selectOptions.option.value;
     const videoSelected = validOptions.video === this.fields.selectOptions.option.value;
     const f2fSelected = validOptions.faceToFace === this.fields.selectOptions.option.value;
-    const telephone = this.fields.selectOptions.telephone ? this.fields.selectOptions.telephone.value : null;
-    const email = this.fields.selectOptions.email ? this.fields.selectOptions.email.value : null;
+    const telephone = telephoneSelected ? this.fields.selectOptions.telephone.value : null;
+    const email = videoSelected ? this.fields.selectOptions.email.value : null;
     return {
       hearing: {
         options: {
           hearingTypeTelephone: telephoneSelected,
-          telephone: telephoneSelected ? telephone : null,
+          telephone: telephone,
           hearingTypeVideo: videoSelected,
-          email: videoSelected ? email : null,
+          email: email,
           hearingTypeFaceToFace: f2fSelected
         }
       }
