@@ -1,7 +1,7 @@
 {
   "titleHead": "Accessibility statement",
   "accessibility": {
-    "title": "Accessibility statement",
+    "title": "Accessibility statement for 'Appeal a benefit decision' service",
     "description": "This service allows users to submit, track and manage a benefit appeal online."
   },
   "manages": {
@@ -15,9 +15,8 @@
     "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability."
   },
   "howAccessible": {
-    "title": "How accessible is this website?",
-    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility.",
-    "para2": "Some PDFs, documents and email attachments may not be fully accessible. For example, the forms and guidance documents which can be downloaded. These will be tested and made accessible by September 2020."
+    "title": "How accessible this website is",
+    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility."
   },
   "telephone" : {
     "England": {
@@ -34,13 +33,13 @@
     }
   },
   "whatToDo": {
-    "title": "What to do if you cannot access parts of this website.",
-    "para1": "If you need information on this website in a different format like accessible PDF, large print, easy read or braille then email <a href=\"mailto:HMCTSforms@justice.gov.uk\" class=\"govuk-link\">HMCTSforms@justice.gov.uk</a> or phone:",
+    "title": "Feedback and contact information",
+    "para1": "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille then email HMCTSforms@justice.gov.uk or phone:",
     "para2": "We’ll consider your request and get back to you within 10 working days."
   },
   "reportingProblems": {
     "title": "Reporting accessibility problems with this website",
-    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems that are not listed on this page or think we’re not meeting accessibility requirements, please phone the number above."
+    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, contact: "
   },
   "enforcement": {
     "title": "Enforcement procedure",
@@ -48,43 +47,35 @@
   },
   "contactus": {
     "title": "Contacting us by phone or visiting us in person",
-    "para1": "Our tribunal venues have audio induction loops. When you submit your appeal you will be able to request a British Sign Language (BSL) interpreter or foreign language interpreter."
+    "para1": "We provide a text relay service for people who are D/deaf, hearing impaired or have a speech impediment.",
+    "para2": "Our offices have audio induction loops, or if you contact us before your visit we can arrange a British Sign Language (BSL) interpreter.",
+    "para3": "Find out how to contact us using the contact details above."
   },
   "technical": {
     "title": "Technical information about this website’s accessibility",
-    "para1": "HMCTS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
-    "para2": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.0 AA standard</a>.",
-    "para3": "We are in the process of testing the full service against the new <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>. We commit to being fully compliant against this standard by 2020."
+    "para1": "HMCTS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018."
+  },
+  "compliance": {
+    "title": "Compliance status ",
+    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.0 AA standard</a>."
   },
   "nonAccessible": {
-    "title": "Non-accessible content",
-    "para1": "The content listed below is non-accessible for the following reasons.",
-    "para2": "Some of the PDFs may not meet accessibility standards. For example, they may not be structured so they’re accessible to a screen reader. This is because the majority were created before the current accessibility legislation was introduced. We plan to test these and make them accessible by September 2020.",
-    "para3": "One exception is the new SSCS PE form, published in November 2019. This will be tested and made accessible by March 2020."
-  },
-  "regulations": {
-    "title": "Non compliance with the accessibility regulations",
-    "para1": "The following issues have been identified and we are working to fix these:",
-    "regulation1": "Analyse Links do not have discernible text",
-    "regulation2": "Images do not have alternate text",
-    "regulation3": "Frames do not have title attribute",
-    "regulation4": "ARIA input fields do not have an accessible name",
-    "regulation5": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt; or &lt;template&gt; elements"
+    "title": "Content that’s not within the scope of the accessibility regulations",
+    "para1": "PDFs and other documents",
+    "para2": "Some of our PDFs and Word documents are essential to providing our services. For example, we have PDFs with information on how users can access our services, and forms published as Word documents.",
+    "para3": "The accessibility regulations <a class=\"govuk-link\" href=\"https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made\">do not require us to fix PDFs or other documents published before 23 September 2018</a> if they’re not essential to providing our services."
   },
   "contentNotInScope": {
     "title": "Content that’s not within the scope of the accessibility regulations",
     "subTitle": "PDFs and other documents",
     "para1": "PDFs, documents and attachments to email notifications published before 23 September 2018 may not meet accessibility standards. For example, they may not be structured so they’re accessible to a screen reader."
   },
-  "howWeTested": {
-    "title": "How we tested this website",
-    "para1": "We have carried out manual accessibility testing using the Google Chrome extension ‘Axe’. We also use Pa11y. Axe complies with WCAG 2 and Section 508 accessibility (which covers WCAG 2.1)",
-    "para2": "In addition to the manual accessibility testing listed above, Submit Your Appeal and Track Your Appeal websites were tested on by the Digital Accessibility Centre (DAC) in June 2018. We continually run automated accessibility testing as part of our development practices and resolves issues before websites and functions are released. We use Pa11y and Axe with our quality assurance processes.",
-    "para3": "The following is the Executive summary of of DAC Report from June 2018. The issues mentioned have now been resolved.",
-    "para4": "“The Digital Accessibility Centre (DAC) user/technical team carried out an accessibility audit for HMCTS Submit  and Track an Appeal on the 4th June 2018. This document incorporates the findings regarding any accessibility barriers identified during the process. Numerous access issues were reported by both our automated testing tools and manual testing team, many of which were of a low priority.  There were also various instances of page elements that did not adhere to the Government Digital Services (GDS) design manual. The majority of issues were encountered by our screen reader analysts who were able to navigate many of the pages with only minor difficulties. Some pages however, included form elements that were difficult to understand and navigate because they did not include text that was visible to screen reader software.  For example, screen reader users were unable to access the date picker independently and therefore required assistance in order to indicate when they were unable to attend a hearing. In some instances, users are instructed to download a paper form in order to continue the process. Some users of assistive technology are not able to access non-HTML documents independently. The GDS design manual states that HTML must be used first, and PDF second if the content can’t be reproduced in HTML.  They also provide guidance on creating accessible PDF documents. Session time-outs are present that may prohibit disabled users from using the service. Although users are informed that they will be timed out after 20 minutes of activity,this information was not obvious. The information that users had inputted prior to the time-out was not saved and re-established upon re-authentication. Although we appreciate that session time-outs are important for security, these must not prohibit users from using the service.”"
-  },
   "toImprove": {
     "title": "What we’re doing to improve accessibility",
-    "para1": "This website is continually tested using accessibility software. Any new features which are introduced are also tested. We will be making the PDFs, documents and attachments that are essential to using our service accessible."
+    "para1": "This website is continually tested using accessibility software internally and externally. Any new features which are introduced are also tested."
+  },
+  "preperation": {
+    "title": "Preparation of this accessibility statement",
+    "para1": "This website was last tested on 28th November 2019. The test was carried out by the Digital Accessibility Centre."
   }
 }
