@@ -70,7 +70,7 @@ Bring up the container:
 
 View the application:
 
-    http://localhost:3000
+    https://localhost:3000
 
 ## End-to-end testing
 
