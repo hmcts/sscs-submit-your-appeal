@@ -20,44 +20,27 @@ class HearingOptions extends SaveToDraftStore {
 
   get form() {
     return form({
-        selectOptions: object({
-          option: text.joi(
-            this.content.fields.options.error.required,
-            Joi.string().valid([validOptions.telephone, validOptions.video, validOptions.faceToFace]).required()
-          ),
-          telephone: text.joi(
-              this.content.fields.options.telephone.error.invalid,
-              customJoi.string().trim().validatePhone()
-          ),
-          email: text.joi(
-              this.content.fields.options.video.error.invalid,
-              Joi.string().trim().email(emailOptions).allow('')
-          )
-        }).check(
-          errorFor('telephone', this.content.fields.options.telephone.error.required),
-          value => emptyTelephoneValidation(value)
-        ).check(
-          errorFor('email', this.content.fields.options.video.error.required),
-          value => emptyEmailValidation(value)
+      selectOptions: object({
+        option: text.joi(
+          this.content.fields.options.error.required,
+          Joi.string().valid([validOptions.telephone, validOptions.video, validOptions.faceToFace]).required()
+        ),
+        telephone: text.joi(
+          this.content.fields.options.telephone.error.invalid,
+          customJoi.string().trim().validatePhone()
+        ),
+        email: text.joi(
+          this.content.fields.options.video.error.invalid,
+          Joi.string().trim().email(emailOptions).allow('')
         )
-      });
-
-    // return form({
-    //   selectOptions: object({
-    //     option: text.joi(
-    //       this.content.fields.options.error.required,
-    //       Joi.string().valid([validOptions.telephone, validOptions.video, validOptions.faceToFace]).required()
-    //     ),
-    //     telephone: text,
-    //     email: text
-    //   }).check(
-    //     errorFor('telephone', this.content.fields.options.telephone.error.required),
-    //     value => emptyTelephoneValidation(value)
-    //   ).check(
-    //     errorFor('email', this.content.fields.options.video.error.required),
-    //     value => emptyEmailValidation(value)
-    //   )
-    // });
+      }).check(
+        errorFor('telephone', this.content.fields.options.telephone.error.required),
+        value => emptyTelephoneValidation(value)
+      ).check(
+        errorFor('email', this.content.fields.options.video.error.required),
+        value => emptyEmailValidation(value)
+      )
+    });
   }
 
   get telephone() {
