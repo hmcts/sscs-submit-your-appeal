@@ -3,7 +3,10 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const {
   emptyTelephoneValidation,
-  emptyEmailValidation
+  invalidTelephoneValidation,
+  emptyEmailValidation,
+  invalidEmailValidation,
+  optionSelected
 } = require('steps/hearing/options/optionsValidation');
 
 
@@ -186,6 +189,11 @@ describe('HearingOptions.js', () => {
 
   describe('FieldValidation', () => {
     const value = {};
+    const options = {
+      telephone: {},
+      video: {},
+      faceToFace: {}
+    };
 
     it('returns false when telephone field has not been set', () => {
       value.requested = true;
@@ -207,6 +215,44 @@ describe('HearingOptions.js', () => {
       value.requested = true;
       value.email = 'email@gmail.com';
       expect(emptyEmailValidation(value)).to.equal(true);
+    });
+
+    it('returns false when invalid telephone number set', () => {
+      value.requested = true;
+      value.phoneNumber = '0993402';
+      expect(invalidTelephoneValidation(value)).to.equal(false);
+    });
+
+    it('returns false when invalid email set', () => {
+      value.requested = true
+      value.email = 'emailXXgmail.com';
+      expect(invalidEmailValidation(value)).to.equal(false);
+    });
+
+    it('returns true when valid telephone field has been set', () => {
+      value.requested = true;
+      value.phoneNumber = '07543233432';
+      expect(invalidTelephoneValidation(value)).to.equal(true);
+    });
+
+    it('returns true when valid email field has been set', () => {
+      value.requested = true;
+      value.email = 'email@gmail.com';
+      expect(invalidEmailValidation(value)).to.equal(true);
+    });
+
+    it('returns false when no option has been set', () => {
+      options.telephone.requested = false;
+      options.video.requested = false;
+      options.faceToFace.requested = false;
+      expect(optionSelected(options)).to.equal(false);
+    });
+
+    it('returns true when some option has been set', () => {
+      options.telephone.requested = true;
+      options.video.requested = false;
+      options.faceToFace.requested = true;
+      expect(optionSelected(options)).to.equal(true);
     });
   });
 });

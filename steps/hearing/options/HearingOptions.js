@@ -66,17 +66,6 @@ class HearingOptions extends SaveToDraftStore {
     return null;
   }
 
-  resetUncheckedFieldsValues() {
-    const selectOptions = this.fields.selectOptions;
-    if (!selectOptions.telephone.requested.value) {
-      console.log('Reset');
-      selectOptions.telephone.phoneNumber.value = null;
-    }
-    if (!selectOptions.video.requested.value) {
-      selectOptions.video.email.value = null;
-    }
-  }
-
   answers() {
     return answer(this, { hide: true });
   }
