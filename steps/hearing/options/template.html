@@ -14,29 +14,33 @@
 field = fields.selectOptions,
 hideQuestion = true,
 hint = '',
-inline = false
+inline = false,
+type = 'checkbox'
 ) %}
 
 {{ selectionButton(
-fields.selectOptions.option,
-{ label: content.fields.options.telephone.requested.label, value: 'telephone', target: 'telephoneTextField' })
+fields.selectOptions.telephone.requested,
+{ label: content.fields.options.telephone.requested.label, value: 'true', target: 'telephoneTextField' },
+type = 'checkbox')
 }}
 
 <div class="panel js-hidden" id="telephoneTextField">
-    {{ textbox(fields.selectOptions.telephone, hideLabel=true, value=telephone) }}
+    {{ textbox(fields.selectOptions.telephone.phoneNumber, hideLabel=true, value=phoneNumber) }}
 </div>
 
 {{ selectionButton(
-fields.selectOptions.option,
-{ label: content.fields.options.video.requested.label, value: 'video', target: 'emailTextField' })
+fields.selectOptions.video.requested,
+{ label: content.fields.options.video.requested.label, value: 'true', target: 'emailTextField' },
+type = 'checkbox')
 }}
 <div class="panel js-hidden" id="emailTextField">
-    {{ textbox(fields.selectOptions.email, hideLabel=true, value=email) }}
+    {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
 </div>
 
 {{ selectionButton(
-fields.selectOptions.option,
-{ label: content.fields.options.faceToFace.requested.label, value: 'face-to-face' })
+fields.selectOptions.faceToFace.requested,
+{ label: content.fields.options.faceToFace.requested.label, value: 'true' },
+type = 'checkbox')
 }}
 
 {% endcall %}
