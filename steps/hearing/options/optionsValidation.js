@@ -1,5 +1,5 @@
 const customJoi = require('utils/customJoiSchemas');
-const Joi = require('joi')
+const Joi = require('joi');
 const emailOptions = require('utils/emailOptions');
 
 const emptyTelephoneValidation = value => (!(value.requested && !value.phoneNumber));
@@ -16,14 +16,14 @@ const optionSelected = options => {
 };
 
 const invalidTelephoneValidation = value => {
-    const { error } = Joi.validate(value.phoneNumber, customJoi.string().trim().validatePhone());
-    return !value.requested || !error;
-}
+  const { error } = Joi.validate(value.phoneNumber, customJoi.string().trim().validatePhone());
+  return !value.requested || !error;
+};
 
 const invalidEmailValidation = value => {
-    const { error } = Joi.validate(value.email, Joi.string().trim().email(emailOptions).allow(''));
-    return !value.requested || !error;
-}
+  const { error } = Joi.validate(value.email, Joi.string().trim().email(emailOptions).allow(''));
+  return !value.requested || !error;
+};
 
 module.exports = {
   emptyTelephoneValidation,
