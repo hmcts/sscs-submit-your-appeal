@@ -224,7 +224,7 @@ describe('HearingOptions.js', () => {
     });
 
     it('returns false when invalid email set', () => {
-      value.requested = true
+      value.requested = true;
       value.email = 'emailXXgmail.com';
       expect(invalidEmailValidation(value)).to.equal(false);
     });
