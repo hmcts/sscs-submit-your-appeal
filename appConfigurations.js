@@ -236,10 +236,6 @@ const configureAppRoutes = app => {
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });
-
-  app.get('/webChat', (req, res) => {
-    res.render('components/web-chat.html');
-  });
 };
 
 module.exports = {
