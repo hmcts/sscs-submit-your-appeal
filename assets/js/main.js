@@ -32,9 +32,11 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
-function initWebChat() {
-  const webChat = new WebChat();
-  webChat.init();
+function initWebChat(language) {
+  if (language === 'en') {
+    const webChat = new WebChat();
+    webChat.init();
+  }
 }
 
 function initAutocomplete() {
@@ -127,15 +129,16 @@ function initBackButton() {
 }
 
 $(document).ready(() => {
+  let language = $('html').attr('lang');
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
-  initDatePicker($('html').attr('lang'));
+  initDatePicker(language);
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat();
+  initWebChat(language);
   PostCodeLookup.init();
   const checkCookies = new CheckCookies();
   checkCookies.init();
