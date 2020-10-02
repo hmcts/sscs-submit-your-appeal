@@ -129,7 +129,7 @@ function initBackButton() {
 }
 
 $(document).ready(() => {
-  let language = $('html').attr('lang');
+  const language = $('html').attr('lang');
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
