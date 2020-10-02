@@ -24,22 +24,4 @@ export class WebChat {
       }
     });
   }
-
-
-  initPopup() {
-    button.addEventListener('click', () => {
-      const popup = window.open('/webChat', 'Web Chat');
-
-      popup.onload = () => {
-        const width = popup.document.querySelector('web-chat').offsetWidth;
-        const height = popup.document.querySelector('web-chat').offsetHeight;
-        popup.resizeTo(width, height);
-
-        const webChatPopUp = popup.document.querySelector('web-chat');
-        webChat.addEventListener('hide', () => {
-          webChatPopUp.close();
-        });
-      };
-    });
-  }
 }
