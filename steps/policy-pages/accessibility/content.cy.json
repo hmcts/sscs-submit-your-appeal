@@ -1,90 +1,81 @@
 {
-  "titleHead": "Datganiad hygyrchedd ar gyfer y gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’",
+  "titleHead": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
   "accessibility": {
-    "title": "Datganiad hygyrchedd ar gyfer y gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’",
-    "description": "Mae’r gwasanaeth hwn yn caniatáu i ddefnyddwyr gyflwyno, dilyn trywydd a rheoli apêl budd-dal ar-lein."
+    "title": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
+    "description": "Mae'r gwasanaeth hwn yn caniatáu i ddefnyddwyr gyflwyno, olrhain a rheoli apêl ynghylch budd-daliadau ar-lein."
   },
   "manages": {
-    "managedBy": "Gwasanaeth Llysoedd a Thribiwnlysoedd EM sy’n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio’r wefan hon, felly rydym wedi ceisio ei gwneud mor hygyrch â phosibl. Er enghraifft, golyga hyn y dylech allu:",
-    "ability1": "newid y lliwiau, y lefelau cyferbyniad a’r ffontiau",
-    "ability2": "gwneud y testun hyd at 300% yn fwy heb iddo ddiflannu oddi ar y sgrin",
-    "ability3": "defnyddio’r rhan fwyaf o’r wefan gan ddefnyddio bysellfwrdd yn unig",
-    "ability4": "defnyddio’r rhan fwyaf o’r wefan gan ddefnyddio meddalwedd adnabod llais",
-    "ability5": "gwrando ar y rhan fwyaf o’r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys fersiynau diweddaraf JAWS, NVDA a VoiceOver)",
-    "managedByExtra1": "Rydym hefyd wedi sicrhau ein bod wedi defnyddio iaith syml.",
-    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a>Gallwch gael cyngor gan AbilityNet ynghylch gwneud eich dyfais yn haws i’w defnyddio os oes gennych anabledd."
+    "managedBy": "Caiff y wefan hon ei chynnal gan Wasanaeth Llysoedd a Thribiwnlysoedd EM. Rydym am i gymaint o bobl â phosibl allu defnyddio'r wefan hon, felly rydym wedi'i chynllunio i fod yn hygyrch. Er enghraifft, mae hynny'n golygu y dylech allu:",
+    "ability1": "newid lliwiau, lefelau cyferbyniad a ffontiau",
+    "ability2": "chwyddo hyd at 300% heb i'r testun ddiflannu oddi ar y sgrin",
+    "ability3": "defnyddio’r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd yn unig",
+    "ability4": "defnyddio’r rhan fwyaf o'r wefan gan ddefnyddio meddalwedd adnabod lleferydd",
+    "ability5": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
+    "managedByExtra1": "Rydym hefyd wedi gwneud testun y wefan mor syml â phosibl i'w ddeall.",
+    "managedByExtra2": " Mae gan <a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> gyngor ar wneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd."
   },
   "howAccessible": {
-    "title": "Pa mor hygyrch yw’r wefan hon? ",
-    "para1": "Mae’r ‘Ganolfan Hygyrchedd Digidol’ (DAC) wedi profi’r wefan ac mae’n bodloni’r lefel ofynnol o hygyrchedd. ",
-    "para2": "Efallai na fydd rai ffeiliau PDF, dogfennau ac atodiadau e-bost yn gwbl hygyrch. Er enghraifft, y ffurflenni a’r dogfennau canllaw y gellir eu lawrlwytho. Bydd y rhain yn cael eu profi a’u gwneud yn hygyrch erbyn mis Medi 2020."
+    "title": "Pa mor hygyrch yw'r wefan hon?",
+    "para1": "Profwyd y wefan gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd."
   },
   "telephone" : {
     "England": {
-      "desc": "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr – Siaradwyr Cymraeg)",
-      "phone": "Rhif ffôn:  0300 303 5170",
-      "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
-      "charges": "Gwybodaeth am brisiau galwadau"
+      "desc": "Llinell Gymorth ar gyfer y gwasanaeth Apelio yn erbyn penderfyniad ynghylch budd-daliadau (Cymru a Lloegr)",
+      "phone": "Ffôn: 0300 123 1142",
+      "availability": "Dydd Llun i ddydd Gwener, 8:30am i 5pm",
+      "charges": "Gwybodaeth am gostau galwadau"
     },
     "Scotland" : {
-      "desc": "Llinell gymorth apeliadau budd-daliadau (Yr Alban)",
-      "phone": "Rhif ffôn: 0300 790 6234",
-      "availability": "Dydd Llun i ddydd Gwener, 8.30am – 5pm.",
-      "charges": "Gwybodaeth am brisiau galwadau"
+      "desc": "Llinell Gymorth ar gyfer y gwasanaeth Apelio yn erbyn penderfyniad ynghylch budd-daliadau (Yr Alban)",
+      "phone": "Ffôn: 0300 790 6234",
+      "availability": "Dydd Llun i ddydd Gwener, 8:30am i 5pm",
+      "charges": "Gwybodaeth am gostau galwadau"
     }
   },
   "whatToDo": {
-    "title": "Beth i’w wneud os na allwch ddefnyddio rhai rhannau o’r wefan hon.",
-    "para1": "Os ydych angen gwybodaeth sydd ar y wefan hon mewn fformat arall megis ar ffurf dogfen PDF hygyrch, print bras, fformat hawdd ei ddarllen neu braille, yna e-bostiwch <a href=\"mailto:HMCTSforms@justice.gov.uk\" class=\"govuk-link\">HMCTSforms@justice.gov.uk</a> neu ffoniwch:",
-    "para2": "Byddwn yn ystyried eich cais ac yn ymateb o fewn 10 diwrnod gwaith."
+    "title": "Adborth a gwybodaeth gyswllt",
+    "para1": "Os oes angen gwybodaeth arnoch ar y wefan hon mewn fformat gwahanol fel PDF hygyrch, print bras, fformat hawdd ei ddarllen, recordiad sain neu braille yna e-bostiwch <a href=\"mailto:HMCTSforms@justice.gov.uk\" class=\"govuk-link\">HMCTSforms@justice.gov.uk</a> neu ffoniwch:",
+    "para2": "Byddwn yn ystyried eich cais ac yn dod yn ôl atoch o fewn 10 diwrnod gwaith."
   },
   "reportingProblems": {
-    "title": "Riportio problemau hygyrchedd gyda’r wefan hon",
-    "para1": "Rydym wastad yn ceisio gwella hygyrchedd y wefan hon. Os byddwch yn cael unrhyw broblemau nad ydynt wedi’u cynnwys ar y dudalen hon, neu’n credu nad ydym yn bodloni’r gofynion o ran hygyrchedd, ffoniwch y rhif uchod."
+    "title": "Rhoi gwybod am broblemau hygyrchedd gyda'r wefan hon",
+    "para1": "Rydym bob amser yn ceisio gwella hygyrchedd y wefan hon. Os gwelwch unrhyw broblemau nad ydynt wedi'u rhestru ar y dudalen hon neu os ydych yn meddwl nad ydym yn bodloni gofynion hygyrchedd, cysylltwch â:"
   },
   "enforcement": {
-    "title": "Y Weithdrefn Orfodi",
-    "para1": "Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy’n gyfrifol am orfodi Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Rhaglenni Symudol) (Rhif 2) 2018 (y ‘rheoliadau hygyrchedd’). Os nad ydych chi’n fodlon gyda’r ffordd rydym yn ymateb i’ch cwyn, <a target=\"_blank\" href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">contact the Equality Advisory and Support Service (EASS).</a>"
+    "title": "Y Weithdrefn Orfodaeth",
+    "para1": "Mae'r Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) yn gyfrifol am orfodi Rheoliadau Cyrff y Sector Cyhoeddus (Gwefannau a Cheisiadau Ffonau Symudol) (Rhif 2) Hygyrchedd 2018 (y 'rheoliadau hygyrchedd'). Os nad ydych yn hapus â'r ffordd rydym yn ymateb i'ch cwyn, <a target=\"_blank\" href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">cysylltwch â'r Gwasanaeth Cynghori a Chymorth Cydraddoldeb (EASS).</a>"
   },
   "contactus": {
-    "title": "Cysylltu â ni dros y ffôn neu ymweld â ni’n bersonol",
-    "para1": "Mae yna ddolenni sain yn ein hadeiladau tribiwnlys. Pan fyddwch yn cyflwyno eich apêl byddwch yn gallu gofyn am ddehonglydd Iaith Arwyddion Prydain (BSL) neu gyfieithydd iaith dramor."
+    "title": "Cysylltu â ni dros y ffôn neu ymweld â ni yn bersonol",
+    "para1": "Rydym yn darparu gwasanaeth trosglwyddo testun i bobl sy'n fyddar, sydd â nam ar eu clyw neu sydd â nam ar eu lleferydd.",
+    "para2": "Mae gan ein swyddfeydd ddolenni sain, neu os byddwch yn cysylltu â ni cyn eich ymweliad gallwn drefnu cyfieithydd Iaith Arwyddion Prydain (BSL).",
+    "para3": "Darganfyddwch sut i gysylltu â ni gan ddefnyddio'r manylion cyswllt uchod."
   },
   "technical": {
     "title": "Gwybodaeth dechnegol am hygyrchedd y wefan hon",
-    "para1": "Mae GLlTEM wedi ymrwymo i sicrhau bod ei wefan yn hygyrch, a hynny yn unol â Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Rhaglenni Symudol) (Rhif 2) 2018.",
-    "para2": "Mae’r wefan yn cydymffurfio’n llwyr â’r <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Canllawiau Hygyrchedd Cynnwys y We, fersiwn 2.0 safon AA</a>.",
-    "para3": "Rydym yn y broses o brofi’r gwasanaeth llawn yn erbyn y <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>. We commit to being fully compliant against this standard by 2020."
+    "para1": "Mae GLlTEM wedi ymrwymo i sicrhau bod ei wefan ar gael, yn unol â Rheoliadau Cyrff y Sector Cyhoeddus (Gwefannau a Cheisiadau Symudol) (Rhif 2) Hygyrchedd 2018."
+  },
+  "compliance": {
+    "title": "Statws cydymffurfio",
+    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â safon Canllawiau Hygyrchedd Cynnwys y We fersiwn 2.1 AA."
   },
   "nonAccessible": {
-    "title": "Cynnwys anhygyrch",
-    "para1": "Mae’r cynnwys isod yn anhygyrch am y rhesymau canlynol.",
-    "para2": "Efallai na fydd rhai o’r dogfennau PDF yn bodloni safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi’u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin. Mae hyn oherwydd bod y rhan fwyaf ohonynt wedi cael eu creu cyn i’r ddeddfwriaeth hygyrchedd gyfredol gael ei chyflwyno. Rydym yn bwriadu profi’r rhain a’u gwneud yn hygyrch erbyn mis Medi 2020.",
-    "para3": "Un eithriad yw ffurflen newydd SSCS PE, a gyhoeddwyd ym mis Tachwedd 2019. Caiff y ffurflen hon ei phrofi a’i gwneud yn hygyrch erbyn mis Mawrth 2020. "
-  },
-  "regulations": {
-    "title": "Anghydymffurfio â’r rheoliadau hygyrchedd",
-    "para1": "Mae’r materion canlynol wedi cael eu nodi ac rydym yn gweithio’n galed i’w datrys:",
-    "regulation1": "Nid oes gan Analyse Links destun canfyddadwy",
-    "regulation2": "Nid oes gan ddelweddau destun amgen",
-    "regulation3": "Nid oes teitlau ar y fframiau",
-    "regulation4": "Nid oes gan feysydd mewnbynnu ARIA enw hygyrch",
-    "regulation5": "<dl> dim ond grwpiau <dt> a <dd>, <script> neu elfennau <template> y dylai elfennau eu cynnwys "
+    "title": "Cynnwys nad yw o fewn cwmpas y rheoliadau hygyrchedd",
+    "para1": "PDFs a dogfennau eraill",
+    "para2": "Mae rhai o'n dogfennau PDFs a Word yn hanfodol i ddarparu ein gwasanaethau. Er enghraifft, mae gennym PDFs gyda gwybodaeth am sut y gall defnyddwyr gael mynediad at ein gwasanaethau, a ffurflenni a gyhoeddir fel dogfennau Word.",
+    "para3": "Nid yw'r rheoliadau hygyrchedd yn ei gwneud yn ofynnol i ni ymdrin â PDFs na dogfennau eraill a gyhoeddwyd cyn 23 Medi 2018 os nad ydynt yn hanfodol i ddarparu ein gwasanaethau."
   },
   "contentNotInScope": {
     "title": "Cynnwys sydd ddim o fewn cwmpas y rheoliadau hygyrchedd",
     "subTitle": "Dogfennau PDF a dogfennau eraill",
     "para1": "Mae’n bosib na fydd dogfennau PDF, dogfennau eraill ac atodiadau mewn negeseuon e-bost a gyhoeddwyd cyn 23 Medi 2018 yn cydymffurfio â’r safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi’u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin."
   },
-  "howWeTested": {
-    "title": "Sut rydym wedi profi’r wefan hon",
-    "para1": "Rydym wedi cynnal profion hygyrchedd gan ddefnyddio ‘Axe’ sef estyniad Google Chrome. Rydym hefyd yn defnyddio Pa11y. Mae Axe yn cydymffurfio â WCAG 2 ac Adran 508 - hygyrchedd (sy’n cynnwys WCAG 2.1)",
-    "para2": "Yn ogystal â’r profion hygyrchedd a restrir uchod, profwyd y gwefannau Cyflwyno eich Apêl a Dilyn Trywydd eich Apêl gan y Ganolfan Hygyrchedd Digidol (DAC) ym mis Mehefin 2018.  Rydym yn cynnal profion hygyrchedd yn rheolaidd fel rhan o’n harferion datblygu ac yn datrys unrhyw broblemau cyn i wefannau a swyddogaethau newydd gael eu rhyddhau. Rydym yn defnyddio Pa11y ac Axe gyda’n prosesau sicrhau ansawdd.",
-    "para3": "Dyma’r Crynodeb Gweithredol o adroddiad y DAC ym mis Mehefin 2018. Mae’r materion a soniwyd amdanynt bellach wedi eu datrys. ",
-    "para4": "â€œCynhaliodd defnyddiwr/tîm technegol y Ganolfan Hygyrchedd Digidol (DAC) archwiliad hygyrchedd ar gyfer gwasanaethau Cyflwyno eich Apêl a Dilyn Trywydd eich Apêl GLlTEM ar 4 Mehefin 2018. Mae’r ddogfen hon yn cynnwys y canfyddiadau ynghylch unrhyw rwystrau o ran hygyrchedd a adnabuwyd yn ystod y broses. Cafodd nifer o faterion mynediad eu hadrodd gan ein teclynnau profi awtomataidd a’n tîm profi, ac roedd llawer o’r rhain o flaenoriaeth isel.  Roedd amryw o enghreifftiau hefyd mewn perthynas â thudalennau nad oeddent yn glynu wrth lawlyfr dylunio Gwasanaeth Digidol y Llywodraeth (GDS). Daeth y rhan fwyaf o’r materion i sylw ein dadansoddwyr darllenwyr sgrin a oedd yn gallu llywio llawer o’r tudalennau gyda dim ond mân anawsterau. Fodd bynnag, roedd rhai tudalennau yn cynnwys elfennau mewn perthynas â ffurflenni a oedd yn anodd eu deall a’u defnyddio am nad oeddent yn cynnwys testun a oedd yn weladwy i feddalwedd darllenydd sgrin. Er enghraifft, nid oedd defnyddwyr darllenydd sgrin yn gallu cael gafael ar y dewisydd dyddiad yn annibynnol ac felly roedd angen cymorth arnynt er mwyn nodi pryd nad oeddent yn gallu mynychu gwrandawiad. Mewn rhai achosion, caiff defnyddwyr eu cyfarwyddo i lawrlwytho ffurflen bapur er mwyn parhau â’r broses. Nid yw rhai defnyddwyr technoleg gynorthwyol yn gallu cael gafael ar ddogfennau nad ydynt yn ddogfennau HTML. Mae’r Llawlyfr Dylunio GDS yn datgan bod rhaid defnyddio HTML yn gyntaf, a PDF yn ail os na ellir atgynhyrchu’r cynnwys mewn HTML. Maent hefyd yn rhoi arweiniad ar wneud dogfennau PDF yn hygyrch. Mae terfynau amser ar sesiynau yn bresennol a allai wahardd defnyddwyr anabl rhag defnyddio’r gwasanaeth. Er bod defnyddwyr yn cael gwybod y byddant yn rhedeg allan o amser ar ôl 20 munud o ddiffyg gweithgarwch, nid oedd yr wybodaeth hon yn amlwg. Nid oedd yr wybodaeth yr oedd defnyddwyr wedi’i chofnodi cyn y terfyn amser wedi’i harbed a rhaid oedd ei rhoi eto wrth ail-ddilysu. Er ein bod yn gwerthfawrogi bod y sesiynau amser yn bwysig ar gyfer diogelwch, ni ddylai’r rhain wahardd defnyddwyr rhag defnyddio’r gwasanaeth.â€"
-  },
   "toImprove": {
-    "title": "Beth rydym yn ei wneud i wella hygyrchedd",
-    "para1": "Mae’r wefan yn cael ei phrofi’n barhaus gan ddefnyddio meddalwedd hygyrchedd. Caiff unrhyw nodweddion newydd a gyflwynir eu profi hefyd.  Byddwn yn gwneud y ffeiliau PDF, y dogfennau a’r atodiadau sy’n hanfodol i allu defnyddio ein gwasanaeth yn hygyrch."
+    "title": "Beth rydyn ni'n ei wneud i wella hygyrchedd",
+    "para1": "Caiff y wefan hon ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd yn fewnol ac yn allanol. Mae unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi."
+  },
+  "preperation": {
+    "title": "Paratoi'r datganiad hygyrchedd hwn",
+    "para1": "Profwyd y wefan hon ddiwethaf ar 28 Tachwedd 2019. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol."
   }
 }
