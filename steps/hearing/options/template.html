@@ -1,0 +1,49 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, textbox, selectionButton, selectionButtons %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block fields %}
+<p class="govuk-body">{{ content.subtitle | safe }}</p>
+<p class="govuk-body">{{ content.instructions | safe }}</p>
+
+
+
+{% call selectionButtons(
+field = fields.selectOptions,
+hideQuestion = true,
+hint = '',
+inline = false,
+type = 'checkbox'
+) %}
+
+{{ selectionButton(
+fields.selectOptions.telephone.requested,
+{ label: content.fields.options.telephone.requested.label, value: 'true', target: 'telephoneTextField' },
+type = 'checkbox')
+}}
+
+<div class="panel js-hidden" id="telephoneTextField">
+    {{ textbox(fields.selectOptions.telephone.phoneNumber, hideLabel=true, value=phoneNumber) }}
+</div>
+
+{{ selectionButton(
+fields.selectOptions.video.requested,
+{ label: content.fields.options.video.requested.label, value: 'true', target: 'emailTextField' },
+type = 'checkbox')
+}}
+<div class="panel js-hidden" id="emailTextField">
+    {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
+</div>
+
+{{ selectionButton(
+fields.selectOptions.faceToFace.requested,
+{ label: content.fields.options.faceToFace.requested.label, value: 'true' },
+type = 'checkbox')
+}}
+
+{% endcall %}
+
+
+{% endblock %}
