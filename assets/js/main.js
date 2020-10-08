@@ -10,7 +10,6 @@ import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
 import { CheckCookies } from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
-import { WebChat } from './web-chat';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -32,12 +31,6 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
-function initWebChat(language) {
-  if (language === 'en') {
-    const webChat = new WebChat();
-    webChat.init();
-  }
-}
 
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
@@ -129,16 +122,14 @@ function initBackButton() {
 }
 
 $(document).ready(() => {
-  const language = $('html').attr('lang');
   initShowHideContent();
   initAutocomplete();
   initTM(redis.timeout, frontend.inactivityAlert);
-  initDatePicker(language);
+  initDatePicker($('html').attr('lang'));
   initEvidenceUpload();
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat(language);
   PostCodeLookup.init();
   const checkCookies = new CheckCookies();
   checkCookies.init();
