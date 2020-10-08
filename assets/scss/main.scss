@@ -12,7 +12,6 @@
 @import 'v-progress-bar';
 @import 'super-wrap';
 @import 'phase-banner';
-@import 'web-chat';
 @import '../../components/postcodeLookup/assets/main';
 
 p.contact-us::first-line {
@@ -399,10 +398,4 @@ label.form-label[for="signer"] {
 
 .nowrap {
   white-space: nowrap;
-}
-
-.web-chat-link {
-  a {
-    @extend .govuk-link;
-  }
 }
