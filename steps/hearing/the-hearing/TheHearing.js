@@ -53,7 +53,7 @@ class TheHearing extends SaveToDraftStore {
   next() {
     const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
     return branch(
-      redirectTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
+      redirectTo(this.journey.steps.HearingOptions).if(isAttendingHearing),
       redirectTo(this.journey.steps.NotAttendingHearing)
     );
   }
