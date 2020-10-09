@@ -33,7 +33,7 @@ function initShowHideContent() {
 }
 
 function initWebChat(language) {
-  if (language === 'en' &&  $('#antenna-web-chat').length) {
+  if (language === 'en' && $('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
   }
