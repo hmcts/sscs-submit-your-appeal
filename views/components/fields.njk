@@ -33,7 +33,7 @@
 
   Renders a simple text box input field.
 #}
-{% macro textbox(field, label, hint=false, hideLabel=false) %}
+{% macro textbox(field, label, hint=false, hideLabel=false, value=null) %}
   <div class="govuk-form-group {{ errorClass(field) }}">
     <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
 
@@ -48,7 +48,11 @@
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
-           {% if field.value %}value="{{ field.value }}"{% endif %}>
+           {% if field.value %}
+           value="{{field.value}}"
+           {% elseif value %}
+           value="{{value}}"
+           {% endif %}>
   </div>
 {% endmacro %}
 

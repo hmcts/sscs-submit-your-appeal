@@ -71,6 +71,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-yes');
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
@@ -84,6 +85,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.wait(2);
@@ -98,6 +100,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   options.forEach(option => {
     I.click(option);
