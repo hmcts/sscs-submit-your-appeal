@@ -62,7 +62,7 @@
       "enabled": "false"
     },
     "antennaWebChat": {
-      "enabled": "true"
+      "enabled": "false"
     }
   },
   "postcodeChecker": {

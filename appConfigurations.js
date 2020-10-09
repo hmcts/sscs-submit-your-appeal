@@ -105,7 +105,7 @@ const configureHelmet = app => {
       fontSrc: ['\'self\' data:'],
       styleSrc: [
         '\'self\'',
-        'https://avaya-web-chat-client.s3.eu-west-2.amazonaws.com',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -116,12 +116,12 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://avaya-web-chat-client.s3.eu-west-2.amazonaws.com'
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ],
       connectSrc: [
         '\'self\'',
         'www.gov.uk',
-        'wss://api-gw.avayalb.net'
+        'wss://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
@@ -138,7 +138,7 @@ const configureHelmet = app => {
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://avaya-web-chat-client.s3.eu-west-2.amazonaws.com'
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ]
     }
   }));

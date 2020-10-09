@@ -2,4 +2,4 @@ nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   environment:
-    FT_ANTENNA_WEBCHAT: true
+    FT_ANTENNA_WEBCHAT: false

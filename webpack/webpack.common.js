@@ -24,6 +24,7 @@ module.exports = {
       {
         patterns: [
           { from: path.resolve('assets/images'), to: 'images' },
+          { from: path.resolve('assets/locale'), to: 'locale' },
           { from: path.resolve('views/components'), to: 'nunjucks/components' },
           { from: imagesGokukFrontend, to: 'images' },
           { from: fontsGokukFrontend, to: 'fonts' },
