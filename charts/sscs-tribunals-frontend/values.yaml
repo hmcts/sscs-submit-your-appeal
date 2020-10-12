@@ -25,6 +25,7 @@ nodejs:
 
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
+    FT_ANTENNA_WEBCHAT: false
 
   keyVaults:
     sscs:

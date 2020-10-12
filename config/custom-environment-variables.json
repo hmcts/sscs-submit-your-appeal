@@ -56,6 +56,9 @@
     },
     "pcq": {
       "enabled": "PCQ_ENABLED"
+    },
+    "antennaWebChat": {
+      "enabled": "FT_ANTENNA_WEBCHAT"
     }
   },
   "postcodeChecker": {
