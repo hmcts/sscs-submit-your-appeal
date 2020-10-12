@@ -1,7 +1,6 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  livenessPath: /health/readiness
   environment:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
