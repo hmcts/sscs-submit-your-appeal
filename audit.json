@@ -328,13 +328,13 @@
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(2)%20of%20ruxitagentjs_ICA27QSVfqrux_10201200909073022.js_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10201200909073022.js_GET" : "ignore",
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy?lng=en_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml?lng=cy_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/contact-us?lng=en_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=en_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=en_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/contact-us_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml_GET": "ignore",
-	"10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=en_GET": "ignore"
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy?lng=en_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml?lng=cy_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/contact-us?lng=en_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=en_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=en_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/contact-us_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml_GET": "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=en_GET": "ignore"
 }
