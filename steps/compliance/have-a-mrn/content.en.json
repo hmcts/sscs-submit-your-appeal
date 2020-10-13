@@ -2,10 +2,10 @@
   "titleHead": "Have you got an MRN",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
   "pip": {
-    "subtitle": "This is the letter DWP sent you when you asked them to reconsider their decision about the {{benefitType}} benefit."
+    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit."
   },
   "esa": {
-    "subtitle": "This is the letter DWP sent you when you asked them to reconsider their decision about the {{benefitType}} benefit."
+    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit."
   },
   "uc": {
     "subtitle":"The MRN is the letter DWP added to your online journal when you asked them to reconsider their Universal Credit decision.",
