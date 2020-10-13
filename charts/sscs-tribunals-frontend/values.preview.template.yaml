@@ -6,7 +6,6 @@ nodejs:
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     FT_ANTENNA_WEBCHAT: false
-
   keyVaults:
     sscs:
       secrets:
