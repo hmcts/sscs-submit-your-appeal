@@ -18,9 +18,9 @@ export class WebChat {
         const ewt = metricsDetail.ewt;
         const ccState = metricsDetail.contactCenterState;
         const availableAgents = metricsDetail.availableAgents;
-        message.innerHTML = 'Retrieved metrics: EWT = ' +
-            ewt + ', available agents = ' + availableAgents +
-            ', Contact Center State = ' + ccState;
+        message.innerHTML = `Retrieved metrics: EWT = ${
+          ewt}, available agents = ${availableAgents
+        }, Contact Center State = ${ccState}`;
       });
     }
   }
