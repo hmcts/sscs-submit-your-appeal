@@ -2,10 +2,10 @@
   "titleHead": "A oes gennych chi MRN",
   "title": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
   "pip": {
-    "subtitle": "Dyma’r llythyr a gawsoch gan DWP pan ofynnoch iddynt ailystyried eu penderfyniad ynglyn â budd-dal {{benefitType}}."
+    "subtitle": "Dyma’r llythyr a gawsoch gan y DWP os ofynnoch iddynt ailystyried eu penderfyniad ynglŷn â budd-dal {{benefitType}}."
   },
   "esa": {
-    "subtitle": "Dyma’r llythyr a gawsoch gan DWP pan ofynnoch iddynt ailystyried eu penderfyniad ynglyn â budd-dal {{benefitType}}."
+    "subtitle": "Dyma’r llythyr a gawsoch gan y DWP os ofynnoch iddynt ailystyried eu penderfyniad ynglŷn â budd-dal {{benefitType}}."
   },
   "uc": {
     "subtitle":"Y MRN yw’r llythyr a gafodd ei ychwanegu i’ch dyddlyfr ar-lein pan ofynnoch i DWP ailystyried eu penderfyniad Credyd Cynhwysol.",
