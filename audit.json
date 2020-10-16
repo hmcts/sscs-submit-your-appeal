@@ -351,5 +351,6 @@
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore",
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy_GET" : "ignore",
-  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/main.js_GET" : "ignore"
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/main.js_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=cy_GET" : "ignore"
 }
