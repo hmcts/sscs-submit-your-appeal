@@ -336,5 +336,16 @@
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=en_GET": "ignore",
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/contact-us_GET": "ignore",
   "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml_GET": "ignore",
-  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=en_GET": "ignore"
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=en_GET": "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-152x152.png_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/_GET" : "ignore",
+  "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy_GET" : "ignore",
+  "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
+  "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy?lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/entry_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets_GET" : "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore"
 }
