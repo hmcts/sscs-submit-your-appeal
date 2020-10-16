@@ -30,6 +30,7 @@
     "waitForTimeout": "60000",
     "waitForAction": "2000",
     "outputDir": "./functional-output",
+    "smokeOutputDir": "./smoke-output",
     "frontendUrl": "https://localhost:3000"
   },
   "features": {
