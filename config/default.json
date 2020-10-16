@@ -60,6 +60,9 @@
     },
     "pcq": {
       "enabled": "false"
+    },
+    "antennaWebChat": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
