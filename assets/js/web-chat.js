@@ -15,14 +15,12 @@ export class WebChat {
 
       webChat.addEventListener('metrics', metrics => {
         const metricsDetail = metrics.detail;
-        const status = metricsDetail.ContactCentreState;
-        if (status === 'Open') {
-          const ewt = metricsDetail.ewt;
-          const agentCount = metricsDetail.agentCount;
-          message.innerHTML = `Retrieved metrics: EWT = ${ewt}, available agents = ${agentCount}`;
-        } else {
-          button.replaceWith(`Contact centre is ${status} now`);
-        }
+        const ewt = metricsDetail.ewt;
+        const ccState = metricsDetail.contactCenterState;
+        const availableAgents = metricsDetail.availableAgents;
+        message.innerHTML = `Retrieved metrics: EWT = ${
+          ewt}, available agents = ${availableAgents
+        }, Contact Center State = ${ccState}`;
       });
     }
   }

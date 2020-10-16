@@ -121,7 +121,8 @@ const configureHelmet = app => {
       connectSrc: [
         '\'self\'',
         'www.gov.uk',
-        'wss://webchat.ctsc.hmcts.net'
+        'wss://webchat.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
