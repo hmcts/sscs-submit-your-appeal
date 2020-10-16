@@ -347,5 +347,6 @@
   "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy?lng=cy_GET" : "ignore",
   "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/entry_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets_GET" : "ignore",
-  "10035_Strict-Transport-Security Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore"
+  "10035_Strict-Transport-Security Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore"
 }
