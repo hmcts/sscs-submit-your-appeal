@@ -20,7 +20,7 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario.only(`${language.toUpperCase()} - Appellant enters telephone hearing option`, I => {
+Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`, I => {
   I.amOnPage(paths.session.root);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
