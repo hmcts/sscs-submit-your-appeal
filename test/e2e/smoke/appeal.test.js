@@ -7,7 +7,7 @@ const appellant = mockData.appellant;
 const language = 'en';
 const commonContent = content[language];
 
-Feature(`${language.toUpperCase()} - Full Journey`);
+Feature(`${language.toUpperCase()} - Full Journey @smoke`);
 
 Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, I => {
   I.amOnPage(`${paths.session.root}?lng=${language}`);
@@ -17,4 +17,4 @@ Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appe
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
   I.readSMSConfirmationAndContinue(commonContent);
-}).retry(1).tag('@smoke');
+}).retry(1);
