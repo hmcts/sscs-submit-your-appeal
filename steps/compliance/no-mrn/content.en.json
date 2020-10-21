@@ -1,7 +1,7 @@
 {
   "titleHead": "Reason for no MRN",
   "title": "Explain why you don’t have a Mandatory Reconsideration Notice (MRN)",
-  "subtitle": "Include the date that you contacted DWP about their decision, if you can remember.",
+  "subtitle": "Include the date that you contacted DWP about their decision, if you can remember, or confirm that the decision letter you received from the DWP told you that you did not need one.",
   "fields": {
     "reasonForNoMRN": {
       "label": "Reason for no MRN",
