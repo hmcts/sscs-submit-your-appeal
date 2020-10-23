@@ -37,12 +37,12 @@ withNightlyPipeline("nodejs", product, component) {
 
     before('DependencyCheckNightly') {sh 'yarn test:audit'}
     enableCrossBrowserTest()
-    enableFullFunctionalTest()
-    enableSecurityScan()
+    enableFullFunctionalTest(50)
+  //  enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-        enableSlackNotifications('#sscs-tech')
+  //      enableSlackNotifications('#sscs-tech')
      }
 
      after('fullFunctionalTest') {

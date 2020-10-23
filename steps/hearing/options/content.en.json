@@ -1,0 +1,37 @@
+{
+  "titleHead": "Your hearing",
+  "title": "Select the suitable options for you to attend the hearing.",
+  "subtitle": "The type of oral hearing will be at the discretion of the tribunal.",
+  "instructions": "Please select all the suitable options for you to take part in the hearing.",
+  "fields": {
+    "options": {
+      "error": {
+        "required": "You need to provide an option for you to attend the hearing."
+      },
+      "telephone": {
+        "requested": {
+          "label": "Telephone (you'll need somewhere quiet and private to speak). Please give us your preferred telephone number if different to the number already provided."
+        },
+        "error": {
+          "required": "Enter the telephone number",
+          "invalid": "You have entered an invalid phone number. Check it and enter it again"
+        }
+      },
+      "video": {
+        "requested": {
+          "label": "Video (you'll need access to a computer or mobile device with a good internet speed and somewhere quiet and private to speak). Please give us your preferred email address if different to the email already provided."
+        },
+        "error": {
+          "required": "Enter the email address",
+          "invalid": "You have entered an invalid email address. Check it and enter it again"
+        }
+      },
+      "faceToFace": {
+        "requested": {
+          "label": "Face to face (you'll need to travel to the hearing in person)."
+        }
+      }
+    }
+  }
+}
+

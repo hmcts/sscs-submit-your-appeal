@@ -18,7 +18,7 @@ variable "node_environment" {
 }
 
 variable "common_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "appinsights_instrumentation_key" {

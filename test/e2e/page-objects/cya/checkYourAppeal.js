@@ -42,6 +42,30 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
+function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  // I.chooseLanguagePreference(commonContent, 'no');
+  if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  if (allowSaveAndReturnEnabled) {
+    I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
+  }
+  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+
+  if (benefitTypeCode === 'ESA') {
+    I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
+  }
+
+  I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
+  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+}
+
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
 
@@ -71,6 +95,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-yes');
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
@@ -84,6 +109,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.wait(2);
@@ -98,6 +124,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   options.forEach(option => {
     I.click(option);
@@ -190,6 +217,7 @@ function checkYourAppealToConfirmationPage(language, signer) {
 
 module.exports = {
   enterDetailsFromStartToNINO,
+  enterCaseDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,

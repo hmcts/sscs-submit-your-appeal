@@ -9,9 +9,9 @@ const config = require('config');
 const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
 const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
-Feature(`${language.toUpperCase()} - E2E SYA - Full Journey`);
+Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);
@@ -24,6 +24,7 @@ Scenario(`${language.toUpperCase()} - E2E SYA Journey @functional`, I => {
   I.readSMSConfirmationAndContinue(commonContent);
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   if (actUrl === aatUrl) I.completePcq();

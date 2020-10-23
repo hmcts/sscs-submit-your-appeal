@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The webchat can pe positioned anywhere
+ * on the page by manipulating the CSS properties
+ */
+web-chat {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 320px !important;
+  height: 530px !important;
+}
+
+web-chat.hidden {
+  transform: translateY(1000px);
+}

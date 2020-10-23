@@ -8,4 +8,4 @@ Scenario('The API is up, healthy and responding to requests to /health', I => {
     minTimeout: 15000,
     maxTimeout: 15000
   }).see('"status":"UP"');
-}).tag('@smoke');
+});
