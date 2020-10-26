@@ -373,5 +373,9 @@
   "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfqrux_10203201023153222.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(2)%20of%20ruxitagentjs_ICA27QSVfqrux_10203201023153222.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(3)%20of%20ruxitagentjs_ICA27QSVfqrux_10203201023153222.js_GET" : "ignore",
-  "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20of%20ruxitagentjs_ICA27QSVfqrux_10203201023153222.js_GET" : "ignore"
+  "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20of%20ruxitagentjs_ICA27QSVfqrux_10203201023153222.js_GET" : "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=cy_GET" : "ignore",
+  "10027_Information Disclosure - Suspicious Comments_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?lng=cy_GET" : "ignore"
 }
