@@ -4,6 +4,23 @@
     "description": "Personal Independence Payment",
     "code": "PIP"
   },
+  "benefitTypes": [
+    {
+      "description": "Personal Independence Payment",
+      "code": "PIP",
+      "office": "1"
+    },
+    {
+      "description": "Employment and Support Allowance",
+      "code": "ESA",
+      "office" : "Inverness DRT"
+    },
+    {
+      "description": "Universal Credit",
+      "code": "UC",
+      "office": "Universal Credit"
+    }
+  ],
   "mrn": {
     "dwpIssuingOffice": "1",
     "reasonForNoMRN": "I do not have a MRN because...",

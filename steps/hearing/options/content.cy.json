@@ -1,0 +1,37 @@
+{
+  "titleHead": "Eich gwrandawiad",
+  "title": "Dewiswch y math o wrandawiad y byddech yn ei ffafrio.",
+  "subtitle": "Y tribiwnlys fydd yn gwneud y penderfyniad terfynol ynghylch y math o wrandawiad a gynhelir.",
+  "instructions": "Dewiswch yr holl opsiynau a fyddai’n eich galluogi i gymryd rhan yn y gwrandawiad..",
+  "fields": {
+    "options": {
+      "error": {
+        "required": "Mae angen i chi ddarparu opsiwn i chi fynychu'r gwrandawiad"
+      },
+      "telephone": {
+        "requested": {
+          "label": "Ffôn (byddwch angen dod o hyd i rywle tawel a phreifat i siarad) Rhowch y rhif ffôn yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r rhif a ddarparwyd gennych yn barod."
+        },
+        "error": {
+          "required": "Nodwch rif ffôn",
+          "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
+        }
+      },
+      "video": {
+        "requested": {
+          "label": "Fideo (byddwch angen mynediad at gyfrifiadur neu ddyfais symudol sydd â chysylltiad cryf â’r rhyngrwyd a rhywle tawel a phreifat i siarad). Rhowch y cyfeiriad e-bost yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r un a ddarparwyd gennych yn barod."
+        },
+        "error": {
+          "required": "Nodwch gyfeiriad e-bost",
+          "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
+        }
+      },
+      "faceToFace": {
+        "requested": {
+          "label": " Wyneb yn wyneb (byddwch angen teithio i'r gwrandawiad)."
+        }
+      }
+    }
+  }
+}
+

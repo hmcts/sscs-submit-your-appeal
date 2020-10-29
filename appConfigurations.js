@@ -71,7 +71,8 @@ const configureNunjucks = (app, commonContent) => {
       paths,
       urls,
       featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled
+        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled
       }
     }
   });
@@ -104,6 +105,7 @@ const configureHelmet = app => {
       fontSrc: ['\'self\' data:'],
       styleSrc: [
         '\'self\'',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -113,11 +115,14 @@ const configureHelmet = app => {
         'www.googletagmanager.com',
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ],
       connectSrc: [
         '\'self\'',
-        'www.gov.uk'
+        'www.gov.uk',
+        'wss://webchat.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
@@ -133,7 +138,8 @@ const configureHelmet = app => {
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ]
     }
   }));

@@ -2,6 +2,7 @@ nodejs:
   image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
   aadIdentityName: sscs
+  livenessPath: /health/readiness
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
@@ -25,6 +26,7 @@ nodejs:
 
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
+    FT_ANTENNA_WEBCHAT: false
 
   keyVaults:
     sscs:

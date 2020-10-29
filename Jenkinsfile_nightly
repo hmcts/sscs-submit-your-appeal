@@ -37,7 +37,7 @@ withNightlyPipeline("nodejs", product, component) {
 
     before('DependencyCheckNightly') {sh 'yarn test:audit'}
     enableCrossBrowserTest()
-    enableFullFunctionalTest()
+    enableFullFunctionalTest(60)
     enableSecurityScan()
 
     after('crossBrowserTest') {

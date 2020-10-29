@@ -42,6 +42,30 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
+function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  // I.chooseLanguagePreference(commonContent, 'no');
+  if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  if (allowSaveAndReturnEnabled) {
+    I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
+  }
+  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+
+  if (benefitTypeCode === 'ESA') {
+    I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
+  }
+
+  I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
+  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+}
+
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
 
@@ -193,6 +217,7 @@ function checkYourAppealToConfirmationPage(language, signer) {
 
 module.exports = {
   enterDetailsFromStartToNINO,
+  enterCaseDetailsFromStartToNINO,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
