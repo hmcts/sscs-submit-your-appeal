@@ -9,6 +9,8 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
+const config = require('config');
+const allowUCHearingOption = config.get('features.allowUCHearingOption.enabled') === 'true';
 
 class TheHearing extends SaveToDraftStore {
   static get path() {
@@ -53,7 +55,8 @@ class TheHearing extends SaveToDraftStore {
   next() {
     const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
     return branch(
-      redirectTo(this.journey.steps.HearingOptions).if(isAttendingHearing),
+      redirectTo(this.journey.steps.HearingOptions).if(isAttendingHearing && allowUCHearingOption),
+      redirectTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
       redirectTo(this.journey.steps.NotAttendingHearing)
     );
   }
