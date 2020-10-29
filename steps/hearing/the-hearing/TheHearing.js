@@ -10,6 +10,7 @@ const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const config = require('config');
+
 const allowUCHearingOption = config.get('features.allowUCHearingOption.enabled') === 'true';
 
 class TheHearing extends SaveToDraftStore {
