@@ -109,7 +109,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
-    "codeceptjs": "^2.5.0",
+    "codeceptjs": "^3.0.1",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
     "istanbul": "^1.1.0-alpha.1",
