@@ -13,6 +13,7 @@ Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   const commonContent = content[language];
+  process.env.FT_ALLOW_UC_HEARING_OPTIONS = 'true';
 
   I.createTheSession(language);
 
