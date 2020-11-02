@@ -142,7 +142,7 @@ function enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent) {
   I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
   I.addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, testDataEn.reasonsForAppealing.reasons[0]);
   I.enterAnythingElseAndContinue(commonContent, testDataEn.reasonsForAppealing.otherReasons);
-  I.readSendingEvidenceAndContinue(commonContent);
+  // I.readSendingEvidenceAndContinue(commonContent);
   I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-no');
 }
 
