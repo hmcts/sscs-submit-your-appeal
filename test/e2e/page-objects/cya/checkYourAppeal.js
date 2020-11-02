@@ -124,6 +124,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   options.forEach(option => {
     I.click(option);
