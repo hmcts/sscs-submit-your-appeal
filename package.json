@@ -120,6 +120,7 @@
     "mochapack": "^1.1.1",
     "mochawesome": "^4.0.1",
     "nightmare": "^3.0.2",
+    "electron": "^7.2.4",
     "nightmare-upload": "^0.1.1",
     "nock": "^10.0.6",
     "node-dev": "^4.0.0",
