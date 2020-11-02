@@ -13,7 +13,6 @@ const testDataEn = require('test/e2e/data.en');
 Feature(`${language.toUpperCase()} - ESA E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @functional`, I => {
-  process.env.FT_ALLOW_UC_HEARING_OPTIONS = 'true';
   const benefitCode = testDataEn.benefitTypes[1].code;
   const office = testDataEn.benefitTypes[1].office;
   const commonContent = content[language];
@@ -26,7 +25,6 @@ Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @functional`, I => {
   I.readSMSConfirmationAndContinue(commonContent);
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   if (actUrl === aatUrl) I.completePcq();
