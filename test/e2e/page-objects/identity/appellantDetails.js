@@ -53,6 +53,7 @@ function IenterAddressDetails(postcodeLookupContent, I) {
   } else {
     IenterAddressDetailsManual(I);
   }
+  I.wait(5);
 }
 
 function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
@@ -85,6 +86,7 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
 
   IenterAddressDetails(postcodeLookupContent, I);
   I.fillField('#phoneNumber', mobileNumber);
+  I.wait(5);
   I.click(commonContent.continue);
 }
 
