@@ -93,7 +93,7 @@ const setupConfig = {
   multiple: {
     chrome: {
       browsers: getBrowserConfig('chrome')
-    },
+    }
     // firefox: {
     //   browsers: getBrowserConfig('firefox')
     // }

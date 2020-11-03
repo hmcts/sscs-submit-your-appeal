@@ -81,9 +81,10 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
 
 function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
   const I = this;
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  // const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  IenterAddressDetails(postcodeLookupContent, I);
+  // IenterAddressDetails(postcodeLookupContent, I);
+  enterAppellantContactDetailsManuallyAndContinue();
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
