@@ -58,6 +58,8 @@ function IenterAddressDetails(postcodeLookupContent, I) {
 function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
   const I = this;
   IenterAddressDetailsManual(I);
+  I.wait(20);
+  I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
 
@@ -81,11 +83,10 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
 
 function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
   const I = this;
-  // const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  // IenterAddressDetails(postcodeLookupContent, I);
-  IenterAddressDetailsManual(I);
-  I.wait(20);
+  IenterAddressDetails(postcodeLookupContent, I);
+  I.wait(5);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
