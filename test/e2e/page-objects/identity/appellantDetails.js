@@ -8,6 +8,7 @@ const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
   const I = this;
 
+  I.wait(3);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
@@ -17,6 +18,7 @@ function enterAppellantNameAndContinue(commonContent, title, firstName, lastName
 function enterAppellantDOBAndContinue(commonContent, day, month, year) {
   const I = this;
 
+  I.wait(3);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
@@ -26,6 +28,7 @@ function enterAppellantDOBAndContinue(commonContent, day, month, year) {
 function enterAppellantNINOAndContinue(commonContent, nino) {
   const I = this;
 
+  I.wait(3);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
 }
