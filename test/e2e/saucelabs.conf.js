@@ -94,9 +94,9 @@ const setupConfig = {
     chrome: {
       browsers: getBrowserConfig('chrome')
     },
-    firefox: {
-      browsers: getBrowserConfig('firefox')
-    }
+    // firefox: {
+    //   browsers: getBrowserConfig('firefox')
+    // }
   },
   name: 'Submit Your Appeal Crossbrowser Tests'
 };

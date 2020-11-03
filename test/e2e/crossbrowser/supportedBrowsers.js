@@ -24,13 +24,13 @@ const supportedBrowsers = {
       browserName: 'chrome',
       name: 'WIN_CHROME_LATEST',
       platform: 'Windows 10',
-      version: 'latest'
+      version: 'latest-1'
     },
     chrome_mac_latest: {
       browserName: 'chrome',
       name: 'MAC_CHROME_LATEST',
-      platform: 'macOS 10.14',
-      version: 'latest'
+      platform: 'macOS 10.13',
+      version: 'latest-1'
     }
   },
   firefox: {
