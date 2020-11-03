@@ -109,7 +109,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
-    "codeceptjs": "^2.6.11",
+    "codeceptjs": "^2.5.0",
     "bl": "^4.0.3",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
@@ -135,7 +135,7 @@
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
     "supertest": "^4.0.2",
-    "webdriverio": "^6.7.1"
+    "webdriverio": "^4.14.4"
   },
   "resolutions": {
     "assign-deep": "1.0.1",
