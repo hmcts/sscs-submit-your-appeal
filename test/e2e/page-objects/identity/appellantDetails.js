@@ -53,7 +53,6 @@ function IenterAddressDetails(postcodeLookupContent, I) {
   } else {
     IenterAddressDetailsManual(I);
   }
-  I.wait(5);
 }
 
 function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
@@ -85,8 +84,8 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   IenterAddressDetails(postcodeLookupContent, I);
+  I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
-  I.wait(5);
   I.click(commonContent.continue);
 }
 
