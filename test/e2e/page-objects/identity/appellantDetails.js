@@ -84,7 +84,7 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   // const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   // IenterAddressDetails(postcodeLookupContent, I);
-  enterAppellantContactDetailsManuallyAndContinue();
+  IenterAddressDetailsManual(I);
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
