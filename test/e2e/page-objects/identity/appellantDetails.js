@@ -59,7 +59,7 @@ function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
   const I = this;
   IenterAddressDetailsManual(I);
   I.wait(20);
-  I.fillField('#phoneNumber', mobileNumber);
+  I.fillField('#phoneNumber', '07466748336');
   I.click(commonContent.continue);
 }
 
