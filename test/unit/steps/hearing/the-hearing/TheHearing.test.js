@@ -12,6 +12,7 @@ describe('TheHearing.js', () => {
       journey: {
         steps: {
           HearingOptions: paths.hearing.hearingOptions,
+          HearingSupport: paths.hearing.hearingSupport,
           NotAttendingHearing: paths.hearing.notAttendingHearing
         }
       }
@@ -95,9 +96,18 @@ describe('TheHearing.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /hearing-support when attendHearing value is Yes', () => {
+    it('returns the next step path /hearing-options when attendHearing value is Yes and allowUCHearingOption is true', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_ALLOW_UC_HEARING_OPTIONS = 'true';
       theHearing.fields.attendHearing.value = 'yes';
       expect(theHearing.next().step).to.eq(paths.hearing.hearingOptions);
+    });
+
+    it('returns the next step path /hearing-support when attendHearing value is Yes and allowUCHearingOption is false', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_ALLOW_UC_HEARING_OPTIONS = 'false';
+      theHearing.fields.attendHearing.value = 'yes';
+      expect(theHearing.next().step).to.eq(paths.hearing.hearingSupport);
     });
 
     it('returns the next step path /not-attending-hearing when attendHearing value is No', () => {

@@ -72,7 +72,8 @@ const configureNunjucks = (app, commonContent) => {
       urls,
       featureToggles: {
         welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled
+        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled,
+        allowUCHearingOption: () => process.env.FT_ALLOW_UC_HEARING_OPTIONS || config.features.allowUCHearingOption.enabled
       }
     }
   });
