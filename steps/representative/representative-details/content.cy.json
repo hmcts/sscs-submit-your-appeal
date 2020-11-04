@@ -41,7 +41,8 @@
       "title": "Llinell gyntaf y cyfeiriad",
       "hint": "Os ydynt yn gweithio i sefydliad cenedlaethol, rhowch gyfeiriad eich cangen leol",
       "error": {
-        "required": "Rhowch linell gyntaf cyfeiriad eich cynrychiolydd"
+        "required": "Rhowch linell gyntaf cyfeiriad eich cynrychiolydd",
+        "invalid": "Rydych wedi rhoi ail linell cyfeiriad annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "addressLine2": {
@@ -53,13 +54,15 @@
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
-        "required": "Nodwch y dref neu’r ddinas o gyfeiriad eich cynrychiolydd"
+        "required": "Nodwch y dref neu’r ddinas o gyfeiriad eich cynrychiolydd",
+        "invalid": "Rydych wedi rhoi ail linell cyfeiriad annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "county": {
       "title": "Sir",
       "error": {
-        "required": "Nodwch y sir o gyfeiriad eich cynrychiolydd"
+        "required": "Nodwch y sir o gyfeiriad eich cynrychiolydd",
+        "invalid": "Rydych wedi rhoi ail linell cyfeiriad annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "postCode": {
