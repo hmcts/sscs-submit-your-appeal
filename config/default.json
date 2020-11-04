@@ -64,6 +64,9 @@
     },
     "antennaWebChat": {
       "enabled": "false"
+    },
+    "allowUCHearingOption": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {

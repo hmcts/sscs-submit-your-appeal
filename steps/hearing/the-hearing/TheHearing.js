@@ -1,5 +1,5 @@
 const { branch } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { goTo, redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -9,6 +9,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
+const config = require('config');
 
 class TheHearing extends SaveToDraftStore {
   static get path() {
@@ -52,8 +53,11 @@ class TheHearing extends SaveToDraftStore {
 
   next() {
     const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
+    const allowUCHearingOption = () => (process.env.FT_ALLOW_UC_HEARING_OPTIONS === 'true' || config.features.allowUCHearingOption.enabled === 'true');
+
     return branch(
-      redirectTo(this.journey.steps.HearingOptions).if(isAttendingHearing),
+      goTo(this.journey.steps.HearingOptions).if(isAttendingHearing && allowUCHearingOption()),
+      goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
       redirectTo(this.journey.steps.NotAttendingHearing)
     );
   }
