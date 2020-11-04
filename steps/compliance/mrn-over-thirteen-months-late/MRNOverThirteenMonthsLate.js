@@ -53,7 +53,7 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
 
     const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
     const allowUC = config.get('features.allowUC.enabled') === 'true';
-    const isUCBenefit = allowUC && benefitType === 'Universal Credit (UC)';
+    const isUCBenefit = allowUC && String(benefitType) === 'Universal Credit (UC)';
 
     return branch(
       goTo(this.journey.steps.Appointee).if(isUCBenefit),

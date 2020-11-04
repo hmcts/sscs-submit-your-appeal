@@ -17,7 +17,7 @@ class AppellantName extends SaveToDraftStore {
   }
 
   isAppointee() {
-    return get(this, 'journey.req.session.Appointee.isAppointee') === 'yes';
+    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
   }
 
   contentPrefix() {
