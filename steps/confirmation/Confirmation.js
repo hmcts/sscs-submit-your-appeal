@@ -14,7 +14,7 @@ class Confirmation extends ExitPoint {
   }
 
   get paperCase() {
-    return get(this, 'session.TheHearing.attendHearing') === 'no';
+    return String(get(this, 'session.TheHearing.attendHearing')) === 'no';
   }
 
   get oralCase() {
