@@ -94,7 +94,7 @@
     "info4": "how we check that the information we hold is accurate and up-to-date",
     "contactOfficer": " You can contact the MoJ data protection officer, by:",
     "contact1": "writing to us: Post point 10.38, 102 Petty France, London, SW1H 9AJ",
-    "contact2": "emailing: data.compliance@justice.gov.uk"
+    "contact2": "emailing: privacy@justice.gov.uk"
   },
   "complain": {
     "title": "How to complain",
@@ -104,7 +104,7 @@
       "personalData": "if you want to complain about how we’ve handled your personal data."
     },
     "write": "Write to: Post point 10.38, 102 Petty France, London, SW1H 9AJ",
-    "email": "Email: data.compliance@justice.gov.uk",
+    "email": "Email: privacy@justice.gov.uk",
     "commissioner": {
       "canAlso": "You can also complain to the",
       "link": "Information Commissioner’s Office",
