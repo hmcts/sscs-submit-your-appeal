@@ -29,7 +29,7 @@ const supportedBrowsers = {
     chrome_mac_latest: {
       browserName: 'chrome',
       name: 'MAC_CHROME_LATEST',
-      platform: 'macOS 10.14',
+      platform: 'macOS 10.13',
       version: 'latest'
     }
   },

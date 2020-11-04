@@ -27,6 +27,7 @@ function addAReasonForAppealingAndThenClickAddAnother(whatYouDisagreeWithField,
 function addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, reason) {
   const I = this;
 
+  I.wait(10);
   I.addAReasonForAppealing(
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
