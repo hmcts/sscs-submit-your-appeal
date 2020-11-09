@@ -205,7 +205,7 @@ describe('Appointee-contact-details.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -220,8 +220,8 @@ describe('Appointee-contact-details.js', () => {
           expect(field.constructor.name).to.eq('FieldDescriptor');
         });
 
-        it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+        it('addressLine2 contains validation', () => {
+          expect(field.validations.length).to.eq(1);
         });
       }
     });
@@ -237,7 +237,7 @@ describe('Appointee-contact-details.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -253,7 +253,7 @@ describe('Appointee-contact-details.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
