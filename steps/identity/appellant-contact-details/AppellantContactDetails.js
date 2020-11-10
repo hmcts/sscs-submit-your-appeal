@@ -4,7 +4,7 @@ const { text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
-const { postCode, whitelist } = require('utils/regex');
+const { postCode, whitelistNotFirst } = require('utils/regex');
 const logger = require('logger');
 
 const logPath = 'AppellantContactDetails.js';
@@ -76,22 +76,31 @@ class AppellantContactDetails extends SaveToDraftStore {
       { name: this.pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error[prefix].required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.addressLine1.error[prefix].invalid,
+          Joi.string().regex(whitelistNotFirst).required()
         ) },
       { name: this.pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error[prefix].invalid,
-          Joi.string().regex(whitelist).allow('')
+          Joi.string().regex(whitelistNotFirst).allow('')
         ) },
       { name: this.pcl.fieldMap.town,
         validator: text.joi(
           fields.townCity.error[prefix].required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.townCity.error[prefix].invalid,
+          Joi.string().regex(whitelistNotFirst)
         ) },
       { name: this.pcl.fieldMap.county,
         validator: text.joi(
           fields.county.error[prefix].required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.county.error[prefix].invalid,
+          Joi.string().regex(whitelistNotFirst)
         ) },
       { name: this.pcl.fieldMap.postCode,
         validator: text.joi(

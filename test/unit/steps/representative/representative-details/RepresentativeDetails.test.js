@@ -221,7 +221,7 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -237,7 +237,7 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(1);
         });
       }
     });
@@ -253,7 +253,7 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -269,7 +269,7 @@ describe('RepresentativeDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });

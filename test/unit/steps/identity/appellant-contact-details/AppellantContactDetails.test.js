@@ -200,7 +200,7 @@ describe('AppellantContactDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -216,7 +216,7 @@ describe('AppellantContactDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(1);
         });
       }
     });
@@ -232,7 +232,7 @@ describe('AppellantContactDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
@@ -248,7 +248,7 @@ describe('AppellantContactDetails.js', () => {
         });
 
         it('contains validation', () => {
-          expect(field.validations).to.not.be.empty;
+          expect(field.validations.length).to.eq(2);
         });
       }
     });
