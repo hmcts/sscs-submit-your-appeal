@@ -62,9 +62,14 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 2,
+      chunks: configureChunks(),
       browsers: ['chrome']
     }
   },
   name: 'Submit Your Appeal Tests'
 };
+
+// Reduce chunks on Preview env
+function configureChunks() {
+    return 4;
+}

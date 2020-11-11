@@ -28,7 +28,7 @@
   },
   "e2e": {
     "waitForTimeout": "60000",
-    "waitForAction": "2000",
+    "waitForAction": "20000",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "https://benefit-appeal.aat.platform.hmcts.net"
