@@ -3,7 +3,6 @@
 const Helper = codecept_helper;
 
 class MyHelper extends Helper {
-
   async turnOffJsAndReloadThePage() {
     const page = this.helpers.Puppeteer.page;
     try {
