@@ -39,7 +39,7 @@ Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend t
 }).retry(1);
 
 Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async I => {
-  moment().locale(language);
+  moment.locale(language);
 
   const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
   const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
