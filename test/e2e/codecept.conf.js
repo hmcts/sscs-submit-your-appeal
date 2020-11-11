@@ -8,7 +8,6 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
-  timeout: 20000,
   features: {
     evidenceUpload: {
       enabled: evidenceUploadEnabled
