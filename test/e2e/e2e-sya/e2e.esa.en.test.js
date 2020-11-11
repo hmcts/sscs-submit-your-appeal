@@ -12,7 +12,7 @@ const testDataEn = require('test/e2e/data.en');
 
 Feature(`${language.toUpperCase()} - ESA E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @fullFunctional`, I => {
+Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @functional`, I => {
   const benefitCode = testDataEn.benefitTypes[1].code;
   const office = testDataEn.benefitTypes[1].office;
   const commonContent = content[language];

@@ -31,7 +31,7 @@
     "waitForAction": "2000",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
-    "frontendUrl": "https://localhost:3000"
+    "frontendUrl": "https://benefit-appeal.aat.platform.hmcts.net"
   },
   "features": {
     "evidenceUpload": {
@@ -81,8 +81,8 @@
   },
   "saucelabs": {
     "browser": "chrome",
-    "username": "username",
-    "key": "privatekey",
+    "username": "gokul20",
+    "key": "09b5569a-e8ac-41a8-8aa4-228e2c0b85c7",
     "tunnelId": "reformtunnel",
     "smartWait": "30000",
     "outputDir": "./functional-output/crossbrowser/reports"
