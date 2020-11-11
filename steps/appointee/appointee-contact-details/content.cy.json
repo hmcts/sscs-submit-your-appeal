@@ -6,7 +6,8 @@
     "addressLine1": {
       "title": "Llinell gyntaf y cyfeiriad",
       "error": {
-        "required": "Rhowch linell gyntaf eich cyfeiriad"
+        "required": "Rhowch linell gyntaf eich cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "addressLine2": {
@@ -18,13 +19,15 @@
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
-        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "county": {
       "title": "Sir",
       "error": {
-        "required": "Nodwch y sir o’ch cyfeiriad"
+        "required": "Nodwch y sir o’ch cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "postCode": {

@@ -41,7 +41,8 @@
       "title": "Address line 1",
       "hint": "If they work for a national organisation, enter the address of your local branch",
       "error": {
-        "required": "Enter the first line of your representative’s address"
+        "required": "Enter the first line of your representative’s address",
+        "invalid": "You have entered an invalid first line of their address. Check it and enter it again"
       }
     },
     "addressLine2": {
@@ -53,13 +54,15 @@
     "townCity": {
       "title": "Town/City",
       "error": {
-        "required": "Enter the town or city from your representative’s address"
+        "required": "Enter the town or city from your representative’s address",
+        "invalid": "You have entered an invalid Town/City their address. Check it and enter it again"
       }
     },
     "county": {
       "title": "County",
       "error": {
-        "required": "Enter the county from your representative’s address"
+        "required": "Enter the county from your representative’s address",
+        "invalid": "You have entered an invalid County their address. Check it and enter it again"
       }
     },
     "postCode": {

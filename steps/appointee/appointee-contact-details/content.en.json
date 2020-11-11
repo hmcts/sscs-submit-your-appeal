@@ -6,25 +6,28 @@
     "addressLine1": {
       "title": "Address line 1",
       "error": {
-        "required": "Enter the first line of your address"
+        "required": "Enter the first line of your address",
+        "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
       }
     },
     "addressLine2": {
       "title": "Address line 2 (optional)",
       "error": {
-        "invalid": "You have entered an invalid character. Check your address and enter it again"
+        "invalid": "You have entered an invalid character. Check your Address line 2 and enter it again"
       }
     },
     "townCity": {
       "title": "Town/City",
       "error": {
-        "required": "Enter the town or city from your address"
+        "required": "Enter the town or city from your address",
+        "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
       }
     },
     "county": {
       "title": "County",
       "error": {
-        "required": "Enter the county from your address"
+        "required": "Enter the county from your address",
+        "invalid": "You have entered an invalid character. Check your County and enter it again"
       }
     },
     "postCode": {
