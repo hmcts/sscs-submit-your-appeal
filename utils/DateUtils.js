@@ -98,7 +98,7 @@ class DateUtils {
   }
 
   static getRandomInt(min, max) {
-    return Math.floor(crypto.randomBytes(4).readUInt32LE() * (max - min + 1)) + min;
+    return Math.floor(( crypto.randomBytes(4).readUInt32LE() / 0x100000000 ) * (max - min + 1)) + min;
   }
 
   static getMonthValue(date, language) {
