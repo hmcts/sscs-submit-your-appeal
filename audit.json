@@ -398,5 +398,7 @@
   "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(2)%20of%20ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20of%20ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore",
-  "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(3)%20of%20ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore"
+  "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(3)%20of%20ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore",
+  "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfgqrux_10203201027145855.js_GET" : "ignore"
 }

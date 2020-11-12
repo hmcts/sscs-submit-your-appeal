@@ -21,7 +21,7 @@
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/smoke.conf.js --grep @smoke --steps --verbose --reporter mocha-multi",
     "test:audit": "./bin/run-yarn-audit.sh -f yarn-audit-known-issues",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
-    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
     "test:fullfunctional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep '(?=.*@functional)(?=.*@fullFunctional)' --steps --reporter mocha-multi",
     "test:e2e-pages": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple pages -c test/e2e/ --steps --reporter mocha-multi",
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
