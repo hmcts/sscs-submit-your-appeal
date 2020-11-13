@@ -49,6 +49,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
   if (actUrl === aatUrl) I.completePcq();
+  I.wait(3);
   I.see(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
   // Now edit the single date from 10 to 11 weeks.
@@ -57,5 +58,6 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.click(commonContent.continue);
   I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
   I.click(commonContent.continue);
+  I.wait(3);
   I.see(DateUtils.formatDate(randomWeekDayIn6Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
