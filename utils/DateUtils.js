@@ -3,6 +3,7 @@
 const { long, short } = require('utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
+const crypto = require('crypto');
 
 
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
@@ -97,7 +98,7 @@ class DateUtils {
   }
 
   static getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor((crypto.randomBytes(4).readUInt32LE() / 0x100000000) * (max - min + 1)) + min;
   }
 
   static getMonthValue(date, language) {
