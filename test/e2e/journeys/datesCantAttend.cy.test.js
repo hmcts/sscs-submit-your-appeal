@@ -42,7 +42,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   moment().locale(language);
 
   const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-  const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
+  const randomWeekDayIn7Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(7, 'weeks'));
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
@@ -56,8 +56,8 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.click(commonContent.change, datesYouCantAttendHearingChange);
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click(commonContent.continue);
-  I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
+  I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn7Weeks, commonContent.edit);
   I.click(commonContent.continue);
   I.wait(3);
-  I.see(DateUtils.formatDate(randomWeekDayIn6Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.see(DateUtils.formatDate(randomWeekDayIn7Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
