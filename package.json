@@ -134,7 +134,7 @@
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
     "supertest": "^4.0.2",
-    "webdriverio": "^5.15.2"
+    "webdriverio": "^4.14.4"
   },
   "resolutions": {
     "assign-deep": "1.0.1",
@@ -142,6 +142,7 @@
     "eslint-utils": "^1.4.1",
     "js-yaml": "3.13.1",
     "lodash": "^4.17.4",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "electron": "^7.2.4"
   }
 }
