@@ -9,6 +9,7 @@ const {
   firstName,
   lastName,
   whitelist,
+  whitelistNotFirst,
   title
 } = require('utils/regex');
 const {
@@ -105,22 +106,31 @@ class RepresentativeDetails extends SaveToDraftStore {
       { name: this.pcl.fieldMap.line1,
         validator: text.joi(
           fields.addressLine1.error.required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.addressLine1.error.invalid,
+          Joi.string().regex(whitelistNotFirst)
         ) },
       { name: this.pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error.invalid,
-          Joi.string().regex(whitelist).allow('')
+          Joi.string().regex(whitelistNotFirst).allow('')
         ) },
       { name: this.pcl.fieldMap.town,
         validator: text.joi(
           fields.townCity.error.required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.townCity.error.invalid,
+          Joi.string().regex(whitelistNotFirst)
         ) },
       { name: this.pcl.fieldMap.county,
         validator: text.joi(
           fields.county.error.required,
-          Joi.string().regex(whitelist).required()
+          Joi.string().required()
+        ).joi(
+          fields.county.error.invalid,
+          Joi.string().regex(whitelistNotFirst)
         ) },
       { name: this.pcl.fieldMap.postCode,
         validator: text.joi(

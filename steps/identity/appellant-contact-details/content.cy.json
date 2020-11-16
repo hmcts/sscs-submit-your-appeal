@@ -13,10 +13,12 @@
       "title": "Llinell gyntaf eich cyfeiriad",
       "error": {
         "withoutAppointee": {
-          "required": "Rhowch linell gyntaf eich cyfeiriad"
+          "required": "Rhowch linell gyntaf eich cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         },
         "withAppointee":{
-          "required": "Rhowch linell gyntaf eu cyfeiriad"
+          "required": "Rhowch linell gyntaf eu cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
       }
     },
@@ -35,10 +37,12 @@
       "title": "Tref/Dinas",
       "error": {
         "withoutAppointee": {
-          "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad"
+          "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         },
         "withAppointee":{
-          "required": "Nodwch y dref neu’r ddinas o’u cyfeiriad"
+          "required": "Nodwch y dref neu’r ddinas o’u cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
       }
     },
@@ -46,10 +50,13 @@
       "title": "Sir",
       "error": {
         "withoutAppointee": {
-          "required": "Nodwch y sir o’ch cyfeiriad"
+          "required": "Nodwch y sir o’ch cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+
         },
         "withAppointee":{
-          "required": "Nodwch y sir o’u cyfeiriad"
+          "required": "Nodwch y sir o’u cyfeiriad",
+          "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
       }
     },

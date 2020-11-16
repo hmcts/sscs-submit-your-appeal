@@ -57,6 +57,8 @@ function IenterAddressDetails(postcodeLookupContent, I) {
 
 function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
   const I = this;
+
+  I.wait(20);
   IenterAddressDetailsManual(I);
   I.wait(20);
   I.fillField('#phoneNumber', '07466748336');

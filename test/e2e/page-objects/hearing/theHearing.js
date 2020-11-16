@@ -1,7 +1,7 @@
 function enterDoYouWantToAttendTheHearing(commonContent, option) {
   const I = this;
 
-  I.waitForElement('#attendHearing', 3);
+  I.wait(5);
   I.checkOption(option);
   I.scrollPageToBottom();
   I.click(commonContent.continue);

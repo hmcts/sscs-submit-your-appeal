@@ -39,23 +39,28 @@ Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend t
 }).retry(1);
 
 Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async I => {
-  moment().locale(language);
+  moment.locale(language);
 
-  const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
-  const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(6, 'weeks'));
+  const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(8, 'weeks'));
+  const randomWeekDayIn7Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
   if (actUrl === aatUrl) I.completePcq();
+  I.wait(3);
+  console.log(`language assigned is ${moment.locale()}`);
+  console.log(`Generated date is ############# ${randomWeekDayIn5Weeks}`);
   I.see(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
   // Now edit the single date from 10 to 11 weeks.
   I.click(commonContent.change, datesYouCantAttendHearingChange);
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click(commonContent.continue);
-  I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
+  I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn7Weeks, commonContent.edit);
   I.click(commonContent.continue);
-  I.see(DateUtils.formatDate(randomWeekDayIn6Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
+  I.wait(3);
+  I.see(DateUtils.formatDate(randomWeekDayIn7Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
+
