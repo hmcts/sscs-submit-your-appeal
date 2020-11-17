@@ -13,6 +13,7 @@ const logger = require('logger');
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
+
 require('superagent-csrf')(request);
 
 const paths = require('paths');
