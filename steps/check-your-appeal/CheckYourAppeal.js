@@ -92,7 +92,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       get(this, 'journey.values.benefitType.code')
     ], logPath);
     return request.post(this.journey.settings.apiUrl)
-      // .csrf(this.req.csrfToken && this.req.csrfToken())
       .set(headers)
       .send(this.journey.values)
       .then(result => {
