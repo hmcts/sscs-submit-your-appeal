@@ -21,7 +21,7 @@
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.title | safe }}</h2>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.desc | safe }}</p>
             <p class="govuk-body">
-                <a class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
+                <a rel="noopener noreferrer" class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
             </p>
         </div>
     {% endif %}

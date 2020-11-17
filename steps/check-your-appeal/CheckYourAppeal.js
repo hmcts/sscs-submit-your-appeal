@@ -13,8 +13,8 @@ const logger = require('logger');
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
-
 require('superagent-csrf')(request);
+
 const paths = require('paths');
 const Joi = require('joi');
 const csurf = require('csurf');
@@ -91,6 +91,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       get(this, 'journey.values.benefitType.code')
     ], logPath);
     return request.post(this.journey.settings.apiUrl)
+      // .csrf(this.req.csrfToken && this.req.csrfToken())
       .set(headers)
       .send(this.journey.values)
       .then(result => {
