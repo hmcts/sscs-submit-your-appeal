@@ -25,6 +25,7 @@ Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @fullFunctional`, I =>
   I.readSMSConfirmationAndContinue(commonContent);
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   if (actUrl === aatUrl) I.completePcq();
