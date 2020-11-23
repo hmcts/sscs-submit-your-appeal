@@ -54,10 +54,9 @@ class TheHearing extends SaveToDraftStore {
   next() {
     const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
     const allowUCHearingOption = () => (process.env.FT_ALLOW_UC_HEARING_OPTIONS === 'true' || config.features.allowUCHearingOption.enabled === 'true');
-
     return branch(
-      goTo(this.journey.steps.HearingOptions).if(isAttendingHearing && allowUCHearingOption()),
-      goTo(this.journey.steps.HearingSupport).if(isAttendingHearing),
+      goTo(this.journey.steps.HearingOptions).if(isAttendingHearing() && allowUCHearingOption()),
+      goTo(this.journey.steps.HearingSupport).if(isAttendingHearing()),
       redirectTo(this.journey.steps.NotAttendingHearing)
     );
   }
