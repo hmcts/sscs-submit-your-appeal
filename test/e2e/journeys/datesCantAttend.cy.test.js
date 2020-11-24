@@ -63,4 +63,3 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.wait(3);
   I.see(DateUtils.formatDate(randomWeekDayIn7Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
-

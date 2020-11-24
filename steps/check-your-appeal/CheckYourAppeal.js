@@ -15,6 +15,7 @@ const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 
 require('superagent-csrf')(request);
+
 const paths = require('paths');
 const Joi = require('joi');
 const csurf = require('csurf');
