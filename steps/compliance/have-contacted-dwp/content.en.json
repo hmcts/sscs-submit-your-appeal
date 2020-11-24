@@ -5,14 +5,14 @@
   "subtitle": "You can still appeal if you have contacted DWP about their benefit decision but you don’t have the MRN letter, for example, because you lost it or the DWP have said you do not need one.",
   "fields": {
     "haveContactedDWP": {
-      "yes": "Yes, I’ve contacted DWP about the decision",
+      "yes": "Yes, I’ve contacted DWP about the decision or DWP have said I don’t need a Mandatory Reconsideration Notice",
       "no": "No, I haven’t contacted DWP about the decision",
       "error": {
-        "required": "You need to say whether you contacted DWP about their decision. Selecet either yes or no."
+        "required": "You need to say whether you contacted DWP about their decision. Select either yes or no."
       }
     },
     "haveContactedUCDWP": {
-      "yes": "Yes, I asked them to reconsider their decision",
+      "yes": "Yes, I asked them to reconsider their decision or DWP have said I don’t need a Mandatory Reconsideration Notice",
       "no": "No, I have not asked them to reconsider their decision"
     }
   }
