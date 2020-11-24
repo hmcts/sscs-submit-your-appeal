@@ -11,7 +11,7 @@ const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @fullFunctional`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);

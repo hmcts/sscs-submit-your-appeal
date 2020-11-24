@@ -8,7 +8,7 @@ const config = require('config');
 const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
 const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
-Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
+Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @fullFunctional`);
 
 Before(I => {
   I.createTheSession(language);
