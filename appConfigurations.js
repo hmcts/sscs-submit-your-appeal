@@ -152,7 +152,18 @@ const configureJourney = (app, commonContent) => {
     session: {
       redis: {
         url: config.redis.url,
-        connect_timeout: 15000
+        retry_strategy: function(options) {
+          const { error, total_retry_time, attempt } = options;
+          if (error) {
+            console.log(`Redis connection failed with ${error.code}`);
+          }
+          console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
+          // reconnect after
+          const minRetryFactor = 500;
+          const retryTime = attempt * minRetryFactor;
+          const maxRetryWait = 3000;
+          return Math.min(retryTime, maxRetryWait);
+        }
       },
       cookie: {
         secure: config.get('node.protocol') === 'https'
