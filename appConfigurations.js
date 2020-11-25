@@ -146,13 +146,14 @@ const configureHelmet = app => {
   }));
 };
 
+/*eslint-disable */
 const configureJourney = (app, commonContent) => {
   journey(app, {
     steps,
     session: {
       redis: {
         url: config.redis.url,
-        retry_strategy: function(options) {
+        retry_strategy(options) {
           const { error, total_retry_time, attempt } = options;
           if (error) {
             console.log(`Redis connection failed with ${error.code}`);
@@ -190,6 +191,7 @@ const configureJourney = (app, commonContent) => {
     useCsrfToken: false
   });
 };
+/* eslint-enable */
 
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));
