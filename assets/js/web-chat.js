@@ -31,24 +31,24 @@ export class WebChat {
 
   setMessage(ewt, ccState, availableAgents) {
     if (ccState === OPEN_STATUS) {
-      if(ewt > MAX_WAIT_IN_SECONDS) {
-        link.style.display = "none";
-        busy.style.display = "block";
+      if (ewt > MAX_WAIT_IN_SECONDS) {
+        link.style.display = 'none';
+        busy.style.display = 'block';
       }
       if (availableAgents <= 0) {
-        link.style.display = "none";
-        noAgents.style.display = "block";
+        link.style.display = 'none';
+        noAgents.style.display = 'block';
       }
     } else {
-      link.style.display = "none";
-      close.style.display = "block";
+      link.style.display = 'none';
+      close.style.display = 'block';
     }
   }
 
   reset() {
-    link.style.display = "block";
-    close.style.display = "none";
-    busy.style.display = "none";
-    noAgents.style.display = "none";
+    link.style.display = 'block';
+    close.style.display = 'none';
+    busy.style.display = 'none';
+    noAgents.style.display = 'none';
   }
 }
