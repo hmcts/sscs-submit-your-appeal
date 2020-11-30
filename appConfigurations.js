@@ -122,6 +122,8 @@ const configureHelmet = app => {
       connectSrc: [
         '\'self\'',
         'www.gov.uk',
+        'www.google-analytics.com',
+        'www.googletagmanager.com',
         'wss://webchat.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net'
       ],
