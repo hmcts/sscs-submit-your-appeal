@@ -148,13 +148,25 @@ const configureHelmet = app => {
   }));
 };
 
+/*eslint-disable */
 const configureJourney = (app, commonContent) => {
   journey(app, {
     steps,
     session: {
       redis: {
         url: config.redis.url,
-        connect_timeout: 15000
+        retry_strategy(options) {
+          const { error, total_retry_time, attempt } = options;
+          if (error) {
+            console.log(`Redis connection failed with ${error.code}`);
+          }
+          console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
+          // reconnect after
+          const minRetryFactor = 500;
+          const retryTime = attempt * minRetryFactor;
+          const maxRetryWait = 3000;
+          return Math.min(retryTime, maxRetryWait);
+        }
       },
       cookie: {
         secure: config.get('node.protocol') === 'https'
@@ -181,6 +193,7 @@ const configureJourney = (app, commonContent) => {
     useCsrfToken: false
   });
 };
+/* eslint-enable */
 
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));

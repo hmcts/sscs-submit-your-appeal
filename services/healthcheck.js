@@ -9,12 +9,12 @@ const { OK } = require('http-status-codes');
 const logger = require('logger');
 
 
-const client = ioRedis.createClient(
+const ioRedisClient = ioRedis.createClient(
   config.redis.url,
   { enableOfflineQueue: false }
 );
 
-client.on('error', error => {
+ioRedisClient.on('error', error => {
   logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
 });
 
@@ -34,7 +34,7 @@ const healthOptions = message => {
 const setup = app => {
   healthcheck.addTo(app, {
     checks: {
-      redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG'))
+      redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
         .catch(error => {
           logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
           return outputs.down(error);
@@ -44,7 +44,7 @@ const setup = app => {
       )
     },
     readinessChecks: {
-      redis: healthcheck.raw(() => client.ping().then(_ => healthcheck.status(_ === 'PONG'))
+      redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
         .catch(error => {
           logger.trace(`Readiness check failed on redis: ${error}`, 'Readiness_check_error');
           return outputs.down(error);
