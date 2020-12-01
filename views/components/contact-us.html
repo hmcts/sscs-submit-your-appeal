@@ -5,13 +5,19 @@
     {% if webChatEnabled and htmlLang == "en" %}
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
             {% if featureToggles.antennaWebChat() == "true" %}
                 <div id="antenna-web-chat" >
-                    <a class="web-chat-link" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
-                    {% include "components/web-chat.html" %}
+                    <div id="antenna-web-chat-link">
+                        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+                        <a class="web-chat-link" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
+                        {% include "components/web-chat.html" %}
+                    </div>
+                    <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
+                    <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
+                    <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
                 </div>
             {% else %}
+                <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
                 <div id="ctsc-web-chat">{{ commonContent[htmlLang].contactUs.webchat.loading | safe }}</div>
             {% endif %}
         </div>
