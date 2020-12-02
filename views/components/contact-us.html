@@ -35,25 +35,34 @@
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title | safe }}</h2>
             <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc | safe }}</p>
+
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.desc | safe }}</h3>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.phone | safe }}</p>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.saturdayAvailability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}</a>
-            </p>
             <p class="govuk-body govuk-!-margin-bottom-2">
                 <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.charges | safe }}</a>
             </p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.emailText | safe }}
+                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}</a>
+            </p>
+
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.desc | safe }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.phone | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.availability | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.charges | safe }}</a>
+            </p>
+
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.desc | safe }}</h3>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.phone | safe }}</p>
             <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}</a>
-            </p>
             <p class="govuk-body">
                 <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.charges | safe }}</a>
             </p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailText | safe }}
+                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}</a>
+            </p>
+
         </div>
     {% endif %}
 </details>

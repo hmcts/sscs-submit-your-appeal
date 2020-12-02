@@ -89,10 +89,15 @@
         "England": {
           "desc" : "Benefit appeals helpline (England and Wales)",
           "phone": "Telephone: 0300 123 1142",
-          "availability": "Monday to Friday, 8:00am to 8:00pm",
-          "saturdayAvailability": "Saturday, 8:00am to 2:00pm",
+          "availability": "Monday to Friday, 8:00am to 5:00pm",
           "emailText": "Email:",
           "emailAddress": "Contactsscs@justice.gov.uk",
+          "charges": "Find out about call charges"
+        },
+        "WelshSpeakers": {
+          "desc" : "Benefit appeals helpline (for Welsh Speakers)",
+          "phone": "Telephone: 0300 303 5170",
+          "availability": "Monday to Friday, 8:00am to 5:00pm",
           "charges": "Find out about call charges"
         },
         "Scotland" : {
