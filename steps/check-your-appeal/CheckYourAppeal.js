@@ -152,15 +152,15 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   values() {
-    let saveAndReturnFlag = 'No'
-    if(this.req.idam) {
-      saveAndReturnFlag = 'Yes'
+    let saveAndReturnFlag = 'No';
+    if (this.req.idam) {
+      saveAndReturnFlag = 'Yes';
     }
     return {
       signAndSubmit: {
         signer: this.fields.signer.value
       },
-        isSaveAndReturn: saveAndReturnFlag
+      isSaveAndReturn: saveAndReturnFlag
     };
   }
 
