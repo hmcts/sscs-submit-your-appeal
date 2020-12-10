@@ -1,4 +1,4 @@
-const button = document.querySelector('.web-chat-link');
+const button = document.querySelector('#antenna-web-chat-button');
 const webChat = document.querySelector('web-chat');
 const close = document.querySelector('#antenna-web-chat-closed');
 const busy = document.querySelector('#antenna-web-chat-busy');
