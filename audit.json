@@ -424,5 +424,9 @@
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20of%20ruxitagentjs_ICA27QSVfgqrux_10205201116183137.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(3)%20of%20ruxitagentjs_ICA27QSVfgqrux_10205201116183137.js_GET" : "ignore",
   "10095_Backup File Disclosure_https://benefit-appeal.aat.platform.hmcts.net/Copy%20(2)%20of%20ruxitagentjs_ICA27QSVfgqrux_10205201116183137.js_GET" : "ignore",
-  "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfgqrux_10205201116183137.js_GET" : "ignore"
+  "10098_Cross-Domain Misconfiguration_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27QSVfgqrux_10205201116183137.js_GET" : "ignore",
+  "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
+  "10011_Cookie Without Secure Flag_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
+  "90033_Loosely Scoped Cookie_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
+  "10010_Cookie No HttpOnly Flag_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore"
 }
