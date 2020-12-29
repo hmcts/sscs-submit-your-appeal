@@ -22,8 +22,8 @@ const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function randomIntFromInterval(min, max) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min);
+function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
 function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
