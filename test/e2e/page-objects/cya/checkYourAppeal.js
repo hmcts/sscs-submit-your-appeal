@@ -22,10 +22,6 @@ const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function randomIntFromInterval(min, max) { // min and max included
-  return Math.floor((Math.random() * (max - min + 1)) + min);
-}
-
 function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
@@ -38,11 +34,11 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language));
+  language === 'en' ? I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language)) : I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(commonContent, randomIntFromInterval(1, 30), appellant.dob.month, appellant.dob.year);
+  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
@@ -58,7 +54,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language));
+  language === 'en' ? I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language)) : I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
 
   if (benefitTypeCode === 'ESA') {
     I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
