@@ -34,7 +34,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  language === 'en' ? I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language)) : I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
@@ -54,7 +54,12 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  language === 'en' ? I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language)) : I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  if (language === 'en' && office === 'Inverness DRT') {
+    I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language));
+  } else {
+    I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  }
+  // language === 'en' ? I.enterAnMRNDateAndContinue(commonContent, DateUtils.getLast30days(language)) : I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
 
   if (benefitTypeCode === 'ESA') {
     I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);

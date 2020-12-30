@@ -30,6 +30,5 @@ Scenario(`${language.toUpperCase()} - UC E2E SYA PCQ Journey @functional`, I => 
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   if (actUrl === aatUrl) I.completeAllPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-  I.appealSubmitConfirmation(language);
   I.endTheSession();
 }).retry(1);
