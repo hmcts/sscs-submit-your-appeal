@@ -46,7 +46,6 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
-  // I.chooseLanguagePreference(commonContent, 'no');
   if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
@@ -54,7 +53,11 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  if (language === 'en' && office === 'Inverness DRT') {
+    I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
+  } else {
+    I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  }
 
   if (benefitTypeCode === 'ESA') {
     I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
