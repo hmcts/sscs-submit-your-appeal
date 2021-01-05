@@ -115,5 +115,7 @@ module.exports = {
 
   pcq: '/equality-and-diversity',
   checkYourAppeal: '/check-your-appeal',
+  drafts: '/draft-appeals',
+  editDraft: '/edit-appeal',
   confirmation: '/confirmation'
 };

@@ -17,6 +17,8 @@ const logger = require('logger');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
+const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+
 const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
@@ -115,6 +117,72 @@ const restoreUserState = async(req, res, next) => {
         next();
       });
   } else {
+    console.log('Skipped Restoring User State');
+    next();
+  }
+};
+
+const restoreAllDraftsState = async(req, res, next) => {
+  if (allowSaveAndReturn && req.idam) {
+    console.log('Attempt Restoring All Drafts State');
+    Object.assign(req.session, { isUserSessionRestored: false });
+    // First try to restore from idam state parameter
+    if (req.query.state) {
+      Object.assign(req.session, JSON.parse(Base64.decode(req.query.state)));
+    }
+
+    // Try to Restore from backend if user already have a saved data.
+    await request.get(req.journey.settings.apiAllDraftUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+      .then(result => {
+        console.log('Successfully get all drafts');
+        logger.trace([
+          'Successfully get all drafts',
+          result.status
+        ], logPath);
+
+        if (result.body) {
+          console.log('Got Body');
+          if (multipleDraftsEnabled) {
+            console.log('Multiple Drafts');
+            // const currentDraft = result.body[0];
+            const shimmed = {};
+            const drafts = result.body;
+            const draftObj = {};
+
+            for (const draft of drafts) {
+              draftObj[draft.ccdCaseId] = draft;
+            }
+
+            shimmed.drafts = draftObj;
+            // console.log(shimmed);
+            shimmed.isUserSessionRestored = true;
+            shimmed.entryPoint = 'Entry';
+            console.log(shimmed);
+            Object.assign(req.session, shimmed);
+          } else {
+            console.log('Not Multiple Drafts');
+            let shimmed = {};
+            if (Array.isArray(result.body) && result.body.length > 0) {
+              shimmed = result.body[0];
+            }
+            shimmed.isUserSessionRestored = true;
+            shimmed.entryPoint = 'Entry';
+            Object.assign(req.session, shimmed);
+          }
+        }
+        next();
+      })
+      .catch(error => {
+        Object.assign(req.session, {
+          entryPoint: 'Entry'
+        });
+        logger.exception(error, logPath);
+        next();
+      });
+  } else {
+    console.log('Skipped Restoring All Drafts');
     next();
   }
 };
@@ -188,6 +256,18 @@ class RestoreUserState extends Redirect {
   }
 }
 
+// step which restores from the draft store
+class RestoreAllDraftsState extends Redirect {
+  get middleware() {
+    return [
+      idam.landingPage,
+      restoreAllDraftsState,
+      ...super.middleware
+    ];
+  }
+}
+
+
 class RestoreFromDraftStore extends EntryPoint {
   get isUserLoggedIn() {
     return this.req.idam;
@@ -206,6 +286,8 @@ module.exports = {
   saveToDraftStore,
   RestoreUserState,
   restoreUserState,
+  RestoreAllDraftsState,
+  restoreAllDraftsState,
   RestoreFromDraftStore,
   SaveToDraftStoreAddAnother,
   removeRevertInvalidSteps,

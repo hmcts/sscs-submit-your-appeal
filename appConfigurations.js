@@ -189,6 +189,7 @@ const configureJourney = (app, commonContent) => {
     timeoutDelay: 2000,
     apiUrl: `${config.api.url}/appeals`,
     apiDraftUrl: `${config.api.url}/drafts`,
+    apiAllDraftUrl: `${config.api.url}/drafts/all`,
     draftUrl: config.api.draftUrl,
     useCsrfToken: false
   });

@@ -67,6 +67,9 @@
     },
     "allowUCHearingOption": {
       "enabled": "false"
+    },
+    "multipleDraftsEnabled": {
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
@@ -93,9 +96,9 @@
   },
   "services": {
     "idam": {
-      "apiUrl": "http://localhost:5000",
+      "apiUrl": "http://localhost:5555",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:3501/login",
+      "loginUrl": "http://localhost:5555/login",
       "clientId": "sscs",
       "useMock": "false"
     },
