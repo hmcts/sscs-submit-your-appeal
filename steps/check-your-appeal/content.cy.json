@@ -36,5 +36,6 @@
   },
   "submitButton": {
     "value": "Cyflwyno eich apêl"
-  }
+  },
+  "confirmation": "Mae eich apêl wedi cael ei chyflwyno"
 }
