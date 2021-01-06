@@ -143,6 +143,7 @@
     "js-yaml": "3.13.1",
     "lodash": "^4.17.4",
     "minimist": "^1.2.5",
-    "electron": "^7.2.4"
+    "electron": "^7.2.4",
+    "axios": "^0.21.1"
   }
 }

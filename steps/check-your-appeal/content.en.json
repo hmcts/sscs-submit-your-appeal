@@ -36,5 +36,6 @@
   },
   "submitButton": {
     "value": "Submit your appeal"
-  }
+  },
+  "confirmation": "Your appeal has been submitted"
 }

@@ -23,7 +23,6 @@ function completeAllPcq() {
   I.checkPCQOptionAndContinue('#ethnic_group');
   I.checkPCQOptionAndContinue('#ethnicity-2');
   I.checkPCQOptionAndContinue('#religion-3');
-  I.checkPCQOptionAndContinue('#disability_conditions-2');
   I.checkPCQOptionAndContinue('#pregnancy-2');
   I.click('Continue');
 }

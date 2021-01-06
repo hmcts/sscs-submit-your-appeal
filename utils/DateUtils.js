@@ -39,6 +39,11 @@ class DateUtils {
     return moment().subtract(1, 'month');
   }
 
+  static getRandomDateInLast30Days(language) {
+    moment.locale(language);
+    return moment().subtract(DateUtils.getRandomInt(1, 30), 'days');
+  }
+
   static oneMonthAndOneDayAgo(language) {
     moment.locale(language);
 

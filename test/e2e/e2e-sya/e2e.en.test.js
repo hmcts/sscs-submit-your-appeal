@@ -29,6 +29,5 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
   if (actUrl === aatUrl) I.completePcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-
   I.endTheSession();
 }).retry(1);
