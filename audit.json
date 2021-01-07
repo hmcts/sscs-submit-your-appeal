@@ -428,5 +428,7 @@
   "10054_Cookie Without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
   "10011_Cookie Without Secure Flag_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
   "90033_Loosely Scoped Cookie_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
-  "10010_Cookie No HttpOnly Flag_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore"
+  "10010_Cookie No HttpOnly Flag_https://benefit-appeal.aat.platform.hmcts.net_GET" : "ignore",
+  "10017_Cross-Domain JavaScript Source File Inclusion_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=cy_GET" : "ignore",
+  "10027_Information Disclosure - Suspicious Comments_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=cy_GET" : "ignore"
 }
