@@ -117,5 +117,6 @@ module.exports = {
   checkYourAppeal: '/check-your-appeal',
   drafts: '/draft-appeals',
   editDraft: '/edit-appeal',
+  newAppeal: '/new-appeal',
   confirmation: '/confirmation'
 };

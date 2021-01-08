@@ -14,7 +14,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   let loggerSpy = '';
   let loggerExceptionSpy = '';
   let objectAssignSpy = '';
-  const apiUrl = 'http://mockapi.com';
+  const   apiUrl = 'http://mockapi.com';
   i18next.changeLanguage('en');
 
   nock(apiUrl)
@@ -22,7 +22,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       'Content-Type': 'application/json'
     })
     .put('/drafts')
-    .reply(200);
+    .reply(200, { ccdCaseId: 12 });
 
   nock(apiUrl)
     .defaultReplyHeaders({
@@ -113,7 +113,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrl: `${apiUrl}/drafts` } },
+        settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
       idam: {
         userDetails: {
           id: '1'
@@ -121,9 +121,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       },
       cookies: { '__auth-token': 'xxx' }
     };
-    it('Expected Successfully posted a draft:', async() => {
+    it('Expected Successfully create a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledThrice;
+      expect(loggerSpy).to.have.been.callCount(4);
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('Expected Successfully updated a draft:', async() => {
+      Object.assign(req, { session: { ccdCaseId: 12 } });
+      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
+      expect(loggerSpy).to.have.been.callCount(2);
       expect(next).to.have.been.calledOnce;
     });
   });

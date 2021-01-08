@@ -1,11 +1,11 @@
-const { RestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
+const { AuthAndRestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
 const config = require('config');
 
 const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
-class Authenticated extends RestoreAllDraftsState {
+class Authenticated extends AuthAndRestoreAllDraftsState {
   static get path() {
     return paths.idam.authenticated;
   }

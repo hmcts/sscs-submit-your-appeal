@@ -1,10 +1,10 @@
 const paths = require('paths');
-const { Page } = require('@hmcts/one-per-page');
+const { RestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const { goTo } = require('@hmcts/one-per-page/flow');
 
-class DraftAppeals extends Page {
+class DraftAppeals extends RestoreAllDraftsState {
   static get path() {
     return paths.drafts;
   }
@@ -20,22 +20,27 @@ class DraftAppeals extends Page {
 
   get drafts() {
     const draftCases = this.req.session.drafts;
-
-    console.log(draftCases);
-
     return draftCases;
   }
 
   appellantName(draft) {
-    return `${draft.AppellantName.firstName} ${draft.AppellantName.lastName}`;
+    if (draft.AppellantName && draft.AppellantName.firstName && draft.AppellantName.lastName) {
+      return `${draft.AppellantName.firstName} ${draft.AppellantName.lastName}`;
+    } else {
+      return 'Appellant Name Not Set';
+    }
   }
 
   benefit(draft) {
-    return draft.BenefitType.benefitType;
+    if(draft.BenefitType && draft.BenefitType.benefitType) {
+      return draft.BenefitType.benefitType;
+    } else {
+      return 'Benefit Not Set';
+    }
   }
 
   mrnDate(draft) {
-    if (draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate) {
+    if (draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate) {
       const mrnDateObj = draft.MRNDate.mrnDate;
       const mrnDate = moment(`${mrnDateObj.day}, ${mrnDateObj.month}, ${mrnDateObj.year}`, 'dd,mm,yyyy');
       return DateUtils.formatDate(mrnDate, 'DD MMMM YYYY');

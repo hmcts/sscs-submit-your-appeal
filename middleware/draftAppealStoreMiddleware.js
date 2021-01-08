@@ -1,4 +1,4 @@
-const { Question, EntryPoint, Redirect } = require('@hmcts/one-per-page');
+const { Question, EntryPoint, Redirect, Page } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
@@ -39,6 +39,75 @@ const removeRevertInvalidSteps = (journey, callBack) => {
   }
 };
 
+const updateDraftInDraftStore = async(req, res, next, values) => {
+  values.ccdCaseId = req.session.ccdCaseId;
+
+  console.log(`Updating draft case id ${req.session.ccdCaseId}`);
+  await request.post(req.journey.settings.apiDraftUrl)
+    .send(values)
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+    .then(result => {
+      logger.trace([
+        'Successfully updated a draft for case with nino: ' +
+        `${(values && values.appellant && values.appellant.nino) ?
+          values.appellant.nino :
+          'no NINO submited yet'}`, result.status
+      ], logPath);
+
+      logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logPath);
+
+      next();
+    })
+    .catch(error => {
+      logger.trace('Exception on updating a draft for case with nino: ' +
+        `${(values && values.appellant && values.appellant.nino) ?
+          values.appellant.nino :
+          'no NINO submitted yet'}`, logPath);
+      logger.exception(error, logPath);
+      if (req && req.journey && req.journey.steps) {
+        redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+      } else {
+        next();
+      }
+    });
+}
+
+const createDraftInDraftStore = async(req, res, next, values) => {
+  await request.put(req.journey.settings.apiDraftUrlCreate)
+    .send(values)
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+    .then(result => {
+      logger.trace([
+        'Successfully created a draft for case with nino: ' +
+        `${(values && values.appellant && values.appellant.nino) ?
+          values.appellant.nino :
+          'no NINO submited yet'}`, result.status
+      ], logPath);
+
+      logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logPath);
+
+      Object.assign(req.session, { ccdCaseId: result.body.id });
+
+      next();
+    })
+    .catch(error => {
+      logger.trace('Exception on creating a draft for case with nino: ' +
+        `${(values && values.appellant && values.appellant.nino) ?
+          values.appellant.nino :
+          'no NINO submitted yet'}`, logPath);
+      logger.exception(error, logPath);
+      if (req && req.journey && req.journey.steps) {
+        redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+      } else {
+        next();
+      }
+    });
+}
+
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
 
@@ -51,34 +120,12 @@ const saveToDraftStore = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam && values) {
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
-    // send to draft store
-    await request.put(req.journey.settings.apiDraftUrl)
-      .send(values)
-      .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-      .then(result => {
-        logger.trace([
-          'Successfully posted a draft for case with nino: ' +
-          `${(values && values.appellant && values.appellant.nino) ?
-            values.appellant.nino :
-            'no NINO submited yet'}`, result.status
-        ], logPath);
-        logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
-          logPath);
-        next();
-      })
-      .catch(error => {
-        logger.trace('Exception on posting a draft for case with nino: ' +
-          `${(values && values.appellant && values.appellant.nino) ?
-            values.appellant.nino :
-            'no NINO submitted yet'}`, logPath);
-        logger.exception(error, logPath);
-        if (req && req.journey && req.journey.steps) {
-          redirectTo(req.journey.steps.Error500).redirect(req, res, next);
-        } else {
-          next();
-        }
-      });
+
+    if (req.session && req.session.ccdCaseId) {
+      await updateDraftInDraftStore(req, res, next, values);
+    } else {
+      await createDraftInDraftStore(req, res, next, values);
+    }
   } else {
     next();
   }
@@ -146,7 +193,6 @@ const restoreAllDraftsState = async(req, res, next) => {
           console.log('Got Body');
           if (multipleDraftsEnabled) {
             console.log('Multiple Drafts');
-            // const currentDraft = result.body[0];
             const shimmed = {};
             const drafts = result.body;
             const draftObj = {};
@@ -156,7 +202,6 @@ const restoreAllDraftsState = async(req, res, next) => {
             }
 
             shimmed.drafts = draftObj;
-            // console.log(shimmed);
             shimmed.isUserSessionRestored = true;
             shimmed.entryPoint = 'Entry';
             console.log(shimmed);
@@ -243,6 +288,7 @@ class SaveToDraftStore extends Question {
     ];
   }
 }
+
 // step which restores from the draft store
 class RestoreUserState extends Redirect {
   get middleware() {
@@ -256,11 +302,19 @@ class RestoreUserState extends Redirect {
   }
 }
 
-// step which restores from the draft store
-class RestoreAllDraftsState extends Redirect {
+class AuthAndRestoreAllDraftsState extends Redirect {
   get middleware() {
     return [
       idam.landingPage,
+      restoreAllDraftsState,
+      ...super.middleware
+    ];
+  }
+}
+
+class RestoreAllDraftsState extends Page {
+  get middleware() {
+    return [
       restoreAllDraftsState,
       ...super.middleware
     ];
@@ -286,10 +340,13 @@ module.exports = {
   saveToDraftStore,
   RestoreUserState,
   restoreUserState,
-  RestoreAllDraftsState,
+  AuthAndRestoreAllDraftsState,
   restoreAllDraftsState,
   RestoreFromDraftStore,
   SaveToDraftStoreAddAnother,
   removeRevertInvalidSteps,
-  SaveToDraftStoreCYA
+  SaveToDraftStoreCYA,
+  RestoreAllDraftsState,
+  updateDraftInDraftStore,
+  createDraftInDraftStore
 };

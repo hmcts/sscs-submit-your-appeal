@@ -8,6 +8,7 @@ class Entry extends RestoreFromDraftStore {
   }
 
   handler(req, res, next) {
+
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.checkYourAppeal);
     } else {
