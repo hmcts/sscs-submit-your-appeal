@@ -5,7 +5,7 @@
 {% set title = content.title | safe %}
 
 {% block two_thirds %}
-    <h1>Your draft benefit appeals</h1>
+    <h1  class="govuk-heading-l">Your draft benefit appeals</h1>
 
     <p>If you wish to edit an application for appeal, please select ‘edit’ next to the appropriate application.</p>
 
@@ -21,15 +21,16 @@
 
     {% for caseId, draft in drafts %}
 
-    {{ header(appellantName(draft) | safe, size='m') }}
+        {{ header(appellantName(draft) | safe, size='m') }}
+        <hr>
         <table class="govuk-table">
             <caption class="govuk-visually-hidden">Table Caption</caption>
             <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col">Appeal Reference</th>
-                <th class="govuk-table__header" scope="col">Benefit</th>
-                <th class="govuk-table__header" scope="col">MRN Date</th>
-                <th class="govuk-table__header" scope="col">Action</th>
+                <th class="govuk-table__header" scope="col" width="20%">Appeal Reference</th>
+                <th class="govuk-table__header" scope="col" width="40%">Benefit</th>
+                <th class="govuk-table__header" scope="col" width="25%">MRN Date</th>
+                <th class="govuk-table__header" scope="col" width="15%">Action</th>
             </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -38,10 +39,11 @@
                 <td class="govuk-table__cell">{{ caseId }}</td>
                 <td class="govuk-table__cell">{{ benefit(draft) }}</td>
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
-                <td class="govuk-table__cell"><a href="/edit-appeal?caseId={{ caseId }}">Edit</a></td>
+                <td class="govuk-table__cell"><a href="/edit-appeal?caseId={{ caseId }}">Edit</a> <a href="/archive-appeal?caseId={{ caseId }}">Archive</a></td>
             </tr>
             </tbody>
         </table>
+        <br>
     {% endfor %}
 
 {%- endblock %}

@@ -118,5 +118,6 @@ module.exports = {
   drafts: '/draft-appeals',
   editDraft: '/edit-appeal',
   newAppeal: '/new-appeal',
+  archiveDraft: '/archive-appeal',
   confirmation: '/confirmation'
 };

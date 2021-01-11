@@ -5,6 +5,7 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
+/* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
 } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -17,10 +18,14 @@ const logger = require('logger');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
-const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 const setFeatureFlag = value => {
   allowSaveAndReturn = value;
+};
+
+const setMultiDraftsEnabled = value => {
+  multipleDraftsEnabled = value;
 };
 
 const removeRevertInvalidSteps = (journey, callBack) => {
@@ -39,10 +44,38 @@ const removeRevertInvalidSteps = (journey, callBack) => {
   }
 };
 
+const archiveDraft = async(req, caseId) => {
+  let values = null;
+
+  if (allowSaveAndReturn) {
+    removeRevertInvalidSteps(req.journey, () => {
+      values = req.journey.values;
+    });
+  }
+
+  values.ccdCaseId = caseId;
+  await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
+    .send(values)
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
+    .then(result => {
+      logger.trace([`Successfully archived a draft for case with caseId: ${caseId}`, result.status], logPath);
+
+      logger.trace(`DELETE api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logPath);
+
+      delete req.session.drafts[caseId];
+      req.session.save();
+    })
+    .catch(error => {
+      logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
+      logger.exception(error, logPath);
+    });
+};
+
 const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
-  console.log(`Updating draft case id ${req.session.ccdCaseId}`);
   await request.post(req.journey.settings.apiDraftUrl)
     .send(values)
     .set('Accept', 'application/json')
@@ -55,7 +88,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
           'no NINO submited yet'}`, result.status
       ], logPath);
 
-      logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+      logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
         logPath);
 
       next();
@@ -72,7 +105,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
         next();
       }
     });
-}
+};
 
 const createDraftInDraftStore = async(req, res, next, values) => {
   await request.put(req.journey.settings.apiDraftUrlCreate)
@@ -95,18 +128,20 @@ const createDraftInDraftStore = async(req, res, next, values) => {
       next();
     })
     .catch(error => {
-      logger.trace('Exception on creating a draft for case with nino: ' +
+      logger.trace('Exception on creating draft for case with nino: ' +
         `${(values && values.appellant && values.appellant.nino) ?
           values.appellant.nino :
           'no NINO submitted yet'}`, logPath);
+
       logger.exception(error, logPath);
+
       if (req && req.journey && req.journey.steps) {
         redirectTo(req.journey.steps.Error500).redirect(req, res, next);
       } else {
         next();
       }
     });
-}
+};
 
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
@@ -164,14 +199,12 @@ const restoreUserState = async(req, res, next) => {
         next();
       });
   } else {
-    console.log('Skipped Restoring User State');
     next();
   }
 };
 
 const restoreAllDraftsState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
-    console.log('Attempt Restoring All Drafts State');
     Object.assign(req.session, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
     if (req.query.state) {
@@ -183,16 +216,13 @@ const restoreAllDraftsState = async(req, res, next) => {
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
-        console.log('Successfully get all drafts');
         logger.trace([
           'Successfully get all drafts',
           result.status
         ], logPath);
 
         if (result.body) {
-          console.log('Got Body');
           if (multipleDraftsEnabled) {
-            console.log('Multiple Drafts');
             const shimmed = {};
             const drafts = result.body;
             const draftObj = {};
@@ -204,10 +234,8 @@ const restoreAllDraftsState = async(req, res, next) => {
             shimmed.drafts = draftObj;
             shimmed.isUserSessionRestored = true;
             shimmed.entryPoint = 'Entry';
-            console.log(shimmed);
             Object.assign(req.session, shimmed);
           } else {
-            console.log('Not Multiple Drafts');
             let shimmed = {};
             if (Array.isArray(result.body) && result.body.length > 0) {
               shimmed = result.body[0];
@@ -227,7 +255,6 @@ const restoreAllDraftsState = async(req, res, next) => {
         next();
       });
   } else {
-    console.log('Skipped Restoring All Drafts');
     next();
   }
 };
@@ -312,6 +339,15 @@ class AuthAndRestoreAllDraftsState extends Redirect {
   }
 }
 
+class LoadJourneyAndRedirect extends Redirect {
+  get middleware() {
+    return [
+      this.journey.collectSteps,
+      ...super.middleware
+    ];
+  }
+}
+
 class RestoreAllDraftsState extends Page {
   get middleware() {
     return [
@@ -348,5 +384,8 @@ module.exports = {
   SaveToDraftStoreCYA,
   RestoreAllDraftsState,
   updateDraftInDraftStore,
-  createDraftInDraftStore
+  createDraftInDraftStore,
+  archiveDraft,
+  LoadJourneyAndRedirect,
+  setMultiDraftsEnabled
 };

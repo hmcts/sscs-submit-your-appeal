@@ -1,14 +1,17 @@
 const paths = require('paths');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
+const config = require('config');
 
-class EditAppeal extends SaveToDraftStore {
+const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+
+class EditAppeal extends Redirect {
   static get path() {
     return paths.editDraft;
   }
 
   handler(req, res, next) {
-    if (req.method === 'GET') {
+    if (multipleDraftsEnabled && req.method === 'GET') {
       const caseId = req.query.caseId;
       if (req.query.caseId && req.session.drafts && req.session.drafts[caseId]) {
         const draft = req.session.drafts[caseId];

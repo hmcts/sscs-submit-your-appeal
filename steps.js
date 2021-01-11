@@ -61,6 +61,7 @@ const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
 const DraftAppeals = require('steps/draft-appeals/DraftAppeals');
 const EditAppeal = require('steps/edit-appeal/EditAppeal');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
+const ArchiveAppeal = require('steps/archive-appeal/ArchiveAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
@@ -177,6 +178,8 @@ const editAppeal = [ EditAppeal ];
 
 const newAppeal = [ NewAppeal ];
 
+const archiveAppeal = [ ArchiveAppeal ];
+
 const confirmation = [ Confirmation ];
 
 const idam = [
@@ -212,5 +215,6 @@ module.exports = concat(
   draftAppeals,
   editAppeal,
   newAppeal,
+  archiveAppeal,
   policyPages
 );
