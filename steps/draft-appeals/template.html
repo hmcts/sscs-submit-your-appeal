@@ -5,18 +5,20 @@
 {% set title = content.title | safe %}
 
 {% block two_thirds %}
-    <h1  class="govuk-heading-l">Your draft benefit appeals</h1>
+    <h1  class="govuk-heading-l">{{ content.title | safe}}</h1>
 
-    <p>If you wish to edit an application for appeal, please select ‘edit’ next to the appropriate application.</p>
+    <p>{{ content.description.line1 }}</p>
 
-    <p>If you no longer wish to submit any of these applications for appeal, please select ‘archive’ next to the appropriate application.</p>
+    <p>{{ content.description.line2 }}</p>
 
-    <p>If you wish to submit a new appeal, please select ‘create new application’ to provide your appeal information.</p>
+    <p>{{ content.description.line3 }}</p>
+
+    <p>{{ content.description.line4 }}</p>
 
     <br>
 
     <div class="form-buttons-group">
-        <a class="govuk-button" href="/new-appeal">Create new Application</a>
+        <a class="govuk-button" href="/new-appeal">{{ content.buttons.create | safe }}</a>
     </div>
 
     {% for caseId, draft in drafts %}
@@ -27,10 +29,10 @@
             <caption class="govuk-visually-hidden">Table Caption</caption>
             <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col" width="20%">Appeal Reference</th>
-                <th class="govuk-table__header" scope="col" width="40%">Benefit</th>
-                <th class="govuk-table__header" scope="col" width="25%">MRN Date</th>
-                <th class="govuk-table__header" scope="col" width="15%">Action</th>
+                <th class="govuk-table__header" scope="col" width="20%">{{ content.tableHeadings.appealRef | safe }}</th>
+                <th class="govuk-table__header" scope="col" width="40%">{{ content.tableHeadings.benefit | safe }}</th>
+                <th class="govuk-table__header" scope="col" width="25%">{{ content.tableHeadings.mrnDate | safe }}</th>
+                <th class="govuk-table__header" scope="col" width="15%">{{ content.tableHeadings.action | safe }}</th>
             </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -39,7 +41,9 @@
                 <td class="govuk-table__cell">{{ caseId }}</td>
                 <td class="govuk-table__cell">{{ benefit(draft) }}</td>
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
-                <td class="govuk-table__cell"><a href="/edit-appeal?caseId={{ caseId }}">Edit</a> <a href="/archive-appeal?caseId={{ caseId }}">Archive</a></td>
+                <td class="govuk-table__cell">
+                    <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit | safe }}</a>
+                    <a href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
             </tr>
             </tbody>
         </table>
