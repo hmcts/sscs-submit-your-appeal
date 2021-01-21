@@ -46,7 +46,8 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
-  if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
+  I.chooseLanguagePreference(commonContent, 'no');
+ // if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
