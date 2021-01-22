@@ -42,7 +42,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   moment.locale(language);
 
   const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(8, 'weeks'));
-  const randomWeekDayIn7Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(10, 'weeks'));
+  const randomWeekDayIn7Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(11, 'weeks'));
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
