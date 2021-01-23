@@ -1,6 +1,7 @@
 #!groovy
 
 properties([
+        pipelineTriggers([cron('00 20 * * *')]),
         parameters([
                 string(name: 'URL_TO_TEST', defaultValue: 'https://benefit-appeal.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
                 string(name: 'SecurityRules',
@@ -41,6 +42,7 @@ withNightlyPipeline("nodejs", product, component) {
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        enableSlackNotifications('#sscs-tech')
      }
 
      after('fullFunctionalTest') {
