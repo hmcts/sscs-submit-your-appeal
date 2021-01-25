@@ -46,7 +46,7 @@ const resetJourney = req => {
     delete req.session[keyToDelete];
   }
   req.session.save();
-}
+};
 
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {

@@ -13,11 +13,9 @@ class EditAppeal extends Redirect {
 
   handler(req, res, next) {
     if (multipleDraftsEnabled && req.method === 'GET') {
-
       const caseId = req.query.caseId;
 
       if (req.query.caseId && req.session.drafts && req.session.drafts[caseId]) {
-
         resetJourney(req);
         const draft = req.session.drafts[caseId];
         draft.isUserSessionRestored = true;
@@ -27,7 +25,6 @@ class EditAppeal extends Redirect {
       } else {
         res.redirect(paths.session.entry);
       }
-
     } else {
       super.handler(req, res, next);
     }

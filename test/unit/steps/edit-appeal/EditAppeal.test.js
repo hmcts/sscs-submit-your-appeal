@@ -36,7 +36,6 @@ describe('EditAppeal.js', () => {
   });
 
   describe('When handler is called', () => {
-
     const saveF = sinon.spy();
 
     const req = {
