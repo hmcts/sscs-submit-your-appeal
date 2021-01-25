@@ -3,13 +3,15 @@ const { archiveDraft, LoadJourneyAndRedirect } = require('middleware/draftAppeal
 const { goTo } = require('@hmcts/one-per-page/flow');
 const config = require('config');
 
-const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+
 
 class ArchiveAppeal extends LoadJourneyAndRedirect {
   static get path() {
     return paths.archiveDraft;
   }
 
+  // eslint-disable-next-line no-unused-vars
   async handler(req, res, next) {
     const caseId = req.query.caseId;
 
@@ -29,12 +31,16 @@ class ArchiveAppeal extends LoadJourneyAndRedirect {
         res.redirect(`${paths.archiveDraft}/?caseId=${caseId}`);
       }
     } else {
-      super.handler(req, res, next);
+      res.redirect(this.journey.steps.BenefitType);
     }
   }
 
   next() {
     return goTo(paths.start.benefitType);
+  }
+
+  setMultiDraftsEnabled(value) {
+    multipleDraftsEnabled = value;
   }
 }
 

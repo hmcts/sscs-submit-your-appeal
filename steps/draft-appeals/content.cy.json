@@ -17,5 +17,11 @@
     "benefit": "Budd-dal",
     "mrnDate": "Dyddiad MRN",
     "action": "Cam Gweithredu"
+  },
+  "benefitTypes": {
+    "Employment and Support Allowance (ESA)": "Lwfans Cyflogaeth a Chymorth (ESA)",
+    "Personal Independence Payment (PIP)": "Taliad Annibyniaeth Personol (PIP)",
+    "Universal Credit (UC)": "Credyd Cynhwysol (UC)",
+    "Benefit Not Set": ""
   }
 }

@@ -17,5 +17,11 @@
     "benefit": "Benefit",
     "mrnDate": "MRN date",
     "action": "Action"
+  },
+  "benefitTypes": {
+    "Employment and Support Allowance (ESA)": "Employment and Support Allowance (ESA)",
+    "Personal Independence Payment (PIP)": "Personal Independence Payment (PIP)",
+    "Universal Credit (UC)": "Universal Credit (UC)",
+    "'Benefit Not Set": "Benefit Not Set"
   }
 }

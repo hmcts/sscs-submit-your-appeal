@@ -4,13 +4,14 @@ const { goTo } = require('@hmcts/one-per-page/flow');
 const config = require('config');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 
-const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 class EditAppeal extends Redirect {
   static get path() {
     return paths.editDraft;
   }
 
+  // eslint-disable-next-line no-unused-vars
   handler(req, res, next) {
     if (multipleDraftsEnabled && req.method === 'GET') {
       const caseId = req.query.caseId;
@@ -26,12 +27,16 @@ class EditAppeal extends Redirect {
         res.redirect(paths.session.entry);
       }
     } else {
-      super.handler(req, res, next);
+      res.redirect(this.journey.steps.BenefitType);
     }
   }
 
   next() {
     return goTo(this.journey.steps.BenefitType);
+  }
+
+  setMultiDraftsEnabled(value) {
+    multipleDraftsEnabled = value;
   }
 }
 

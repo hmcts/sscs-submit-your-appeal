@@ -64,6 +64,19 @@ const removeRevertInvalidSteps = (journey, callBack) => {
   }
 };
 
+const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
+  logger.trace('Exception on creating/updating a draft for case with nino: ' +
+    `${(values && values.appellant && values.appellant.nino) ?
+      values.appellant.nino :
+      'no NINO submitted yet'}`, logPath);
+  logger.exception(error, logPath);
+  if (req && req.journey && req.journey.steps) {
+    redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+  } else {
+    next();
+  }
+};
+
 const archiveDraft = async(req, caseId) => {
   let values = null;
 
@@ -114,16 +127,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
       next();
     })
     .catch(error => {
-      logger.trace('Exception on updating a draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submitted yet'}`, logPath);
-      logger.exception(error, logPath);
-      if (req && req.journey && req.journey.steps) {
-        redirectTo(req.journey.steps.Error500).redirect(req, res, next);
-      } else {
-        next();
-      }
+      handleDraftCreateUpdateFail(error, req, res, next, values);
     });
 };
 
@@ -148,18 +152,7 @@ const createDraftInDraftStore = async(req, res, next, values) => {
       next();
     })
     .catch(error => {
-      logger.trace('Exception on creating draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submitted yet'}`, logPath);
-
-      logger.exception(error, logPath);
-
-      if (req && req.journey && req.journey.steps) {
-        redirectTo(req.journey.steps.Error500).redirect(req, res, next);
-      } else {
-        next();
-      }
+      handleDraftCreateUpdateFail(error, req, res, next, values);
     });
 };
 
@@ -408,5 +401,6 @@ module.exports = {
   archiveDraft,
   LoadJourneyAndRedirect,
   setMultiDraftsEnabled,
-  resetJourney
+  resetJourney,
+  handleDraftCreateUpdateFail
 };

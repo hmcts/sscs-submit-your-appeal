@@ -77,6 +77,7 @@ describe('ArchiveAppeal.js', () => {
     };
 
     it('should load chosen draft and redirect when multidrafts enabled and not current case', () => {
+      archiveAppeal.setMultiDraftsEnabled(true);
       archiveAppeal.handler(req, res);
       expect(redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
     });

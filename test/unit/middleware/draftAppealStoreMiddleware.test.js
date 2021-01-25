@@ -139,6 +139,20 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(loggerSpy).to.have.been.callCount(2);
       expect(saveF).to.have.been.calledOnce;
     });
+
+    it('Handles Archive a draft fail:', async() => {
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .delete('/drafts/case1234')
+        .reply(404, {});
+
+      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      expect(loggerSpy).to.have.been.callCount(1);
+      expect(loggerExceptionSpy).to.have.been.callCount(1);
+      expect(saveF).to.have.been.callCount(0);
+    });
   });
 
   describe('saveToDraftStore, no values next call', () => {
@@ -264,7 +278,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
 
     it('Expected Successfully get all drafts with multidraft enabled:', async() => {
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
+      draftAppealStoreMiddleware.setFeatureFlag(true);
       draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
@@ -272,7 +286,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
 
     it('Expected Successfully get all drafts with multidraft disabled:', async() => {
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
+      draftAppealStoreMiddleware.setFeatureFlag(true);
       draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
@@ -280,10 +294,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
 
     it('Expected Successfully get all drafts with multidraft and allows save and return disabled:', async() => {
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
+      draftAppealStoreMiddleware.setFeatureFlag(false);
       draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
+      expect(objectAssignSpy).to.have.been.callCount(0);
       expect(next).to.have.been.calledOnce;
     });
   });
@@ -505,6 +519,27 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       it('isUserLoggedIn returns true', () => {
         saveToDraftStoreAnother.req.idam = true;
         expect(saveToDraftStoreAnother.isUserLoggedIn).to.eql(true);
+      });
+    });
+
+    describe('resetJourney', () => {
+      it('resetJourney clears correct keys', () => {
+
+        let req = {
+          session: {
+            cookie: '1234',
+            entryPoint: 'entry',
+            isUserSessionRestored: 'yes',
+            otherKey: 'value',
+            save() {
+              saveF();
+            }
+          }
+        }
+        draftAppealStoreMiddleware.resetJourney(req);
+        expect(req.session.otherKey).to.eql(undefined);
+        expect(req.session.cookie).to.eql('1234');
+        expect(saveF).to.have.been.calledOnce;
       });
     });
   });
