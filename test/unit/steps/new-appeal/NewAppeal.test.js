@@ -35,37 +35,6 @@ describe('NewAppeal.js', () => {
     });
   });
 
-  describe('When resetJourney is called', () => {
-    const saveF = sinon.spy();
-
-    const req = {
-      session: {
-        cookie: 'cookie',
-        entryPoint: 'entry',
-        isUserSessionRestored: true,
-        drafts: {
-          101: {
-            key: 'value'
-          }
-        },
-        HaveAMRN: 'yes',
-        AppellantName: 'my name',
-        save() {
-          saveF();
-        }
-      }
-    };
-
-    it('should call redirect to check your appeal when draft in body', () => {
-      newAppeal.resetJourney(req);
-      expect(req.session.entryPoint).to.eql('entry');
-      expect(req.session.isUserSessionRestored).to.eql(true);
-      expect(req.session.HaveAMRN).to.eql(undefined);
-      expect(req.session.AppellantName).to.eql(undefined);
-      expect(saveF.called).to.eql(true);
-    });
-  });
-
   describe('When handler is called', () => {
     const req = {
       session: {

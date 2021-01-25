@@ -1,5 +1,6 @@
 const paths = require('paths');
 const { RestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
+const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
@@ -10,6 +11,7 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   handler(req, res, next) {
+    resetJourney(req);
     super.handler(req, res, next);
   }
 

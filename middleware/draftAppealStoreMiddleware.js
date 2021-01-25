@@ -28,6 +28,26 @@ const setMultiDraftsEnabled = value => {
   multipleDraftsEnabled = value;
 };
 
+const resetJourney = req => {
+  // One Per Page doesn't natively support multiple journeys or reseting just journey data
+  // within session so roll our own. Below should withstand future changes to the journey
+  // as we are only preserving the meta data, drafts and cookie. Anything else is journey data.
+
+  const keysToKeep = [
+    'cookie', 'entryPoint', 'isUserSessionRestored', 'drafts', 'active',
+    'hydrate', 'dehydrate', 'generate', 'save'
+  ];
+
+  // const allKeys = Object.keys(this.req.session);
+  const allKeys = Object.keys(req.session);
+  const keysToDelete = allKeys.filter(key => !keysToKeep.includes(key));
+
+  for (const keyToDelete of keysToDelete) {
+    delete req.session[keyToDelete];
+  }
+  req.session.save();
+}
+
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
     const allVisitedSteps = [...journey.visitedSteps];
@@ -387,5 +407,6 @@ module.exports = {
   createDraftInDraftStore,
   archiveDraft,
   LoadJourneyAndRedirect,
-  setMultiDraftsEnabled
+  setMultiDraftsEnabled,
+  resetJourney
 };

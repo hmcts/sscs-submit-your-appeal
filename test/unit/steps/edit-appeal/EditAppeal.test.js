@@ -36,6 +36,9 @@ describe('EditAppeal.js', () => {
   });
 
   describe('When handler is called', () => {
+
+    const saveF = sinon.spy();
+
     const req = {
       session: {
         isUserSessionRestored: true,
@@ -43,6 +46,9 @@ describe('EditAppeal.js', () => {
           101: {
             key: 'value'
           }
+        },
+        save() {
+          saveF();
         }
       },
       method: 'GET',
@@ -58,6 +64,7 @@ describe('EditAppeal.js', () => {
 
     it('should call redirect to check your appeal when draft in body', () => {
       editAppeal.handler(req, res);
+      expect(saveF.called).to.eql(true);
       expect(redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
     });
 

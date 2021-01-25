@@ -185,8 +185,17 @@ describe('DraftAppeals.js', () => {
   });
 
   describe('When handler is called', () => {
-    const req = { session: { isUserSessionRestored: true } };
+    const saveF = sinon.spy();
+    const req = {
+      session: {
+        isUserSessionRestored: true,
+        save() {
+          saveF();
+        }
+      }
+    };
     const redirect = sinon.spy();
+
     const res = {
       redirect,
       sendStatus: sinon.spy()
@@ -194,6 +203,7 @@ describe('DraftAppeals.js', () => {
     it('should call `super.handler()`', () => {
       draftAppeals.handler(req, res);
       expect(mockHandler.calledOnce).to.eql(true);
+      expect(saveF.calledOnce).to.eql(true);
     });
   });
 });
