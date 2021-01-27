@@ -100,7 +100,7 @@
                 textAllAgentsBusy: '{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | replace("\n", "\\n") | safe }}',
                 textChatClosed : '{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | replace("\n", "\\n") | safe }}',
                 textChatAlreadyOpen: '{{ commonContent[htmlLang].contactUs.webchat.textChatAlreadyOpen | safe }}',
-                textAdditional: '{{ commonContent[htmlLang].contactUs.webchat.textAdditional | safe }}',
+                textAdditional: '{{ commonContent[htmlLang].contactUs.webchat.textAdditional | replace("\n", "\\n") | safe }}',
                 stylesheetURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat-gds-v3.css',
                 busHandlerURL: '{{ baseUrl }}{{ asset_path }}hmcts-webchat-busHandler.js',
                 btnNoAgents: '{{ webChat.btnNoAgents }}',
