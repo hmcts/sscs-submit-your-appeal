@@ -32,8 +32,8 @@
     "evidenceUpload": {
       "enabled": "EVIDENCE_UPLOAD_ENABLED",
       "maxFileSize": "MAX_FILE_SIZE",
-      "mediaFilesNotAllowed": {
-        "enabled": "MEDIA_FILES_NOT_ALLOWED_ENABLED"
+      "mediaFilesAllowed": {
+        "enabled": "MEDIA_FILES_ALLOWED_ENABLED"
       }
     },
     "allowESA": {
