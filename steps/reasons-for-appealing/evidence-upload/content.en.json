@@ -2,6 +2,7 @@
   "titleHead": "Upload additional evidence",
   "title": "Upload additional evidence",
   "description": "You can upload letters, documents or photos. For example, you could take a picture of a letter from your doctor using your phone. Place it on a flat surface and take the photo from above.",
+  "description2": "You can only add media files after we have received your application",
   "itemsListLabel": "Uploaded files",
   "noItemsMessage": "You have not uploaded any files. Upload at least one file before you continue. Click ‘back’ if you do not want to upload anything.",
   "noItemsError": "You have not uploaded any files. Upload at least one file before you continue. Click ‘back’ if you do not want to upload anything.",

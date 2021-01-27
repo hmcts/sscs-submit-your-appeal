@@ -36,7 +36,10 @@
   "features": {
     "evidenceUpload": {
       "enabled": true,
-      "maxFileSize": 5
+      "maxFileSize": 5,
+      "mediaFilesNotAllowed": {
+        "enabled": true
+      }
     },
     "allowESA": {
       "enabled": "true"

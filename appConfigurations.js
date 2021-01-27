@@ -65,6 +65,7 @@ const configureNunjucks = (app, commonContent) => {
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
+      mediaFilesNotAllowed: config.get('features.evidenceUpload.mediaFilesNotAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
       webChat: config.get('services.webChat'),
