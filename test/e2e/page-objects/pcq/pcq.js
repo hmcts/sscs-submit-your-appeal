@@ -1,19 +1,12 @@
 
 
-function skipPcq() {
+function completePcq() {
   // if (config.features.pcq.enabled === 'true') {
   const I = this;
   I.wait(3);
   // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
   I.click('I don\'t want to answer these questions');
   // }
-}
-
-
-function skipPcqCY() {
-  const I = this;
-  I.wait(3);
-  I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
 }
 
 
@@ -34,24 +27,6 @@ function completeAllPcq() {
   I.click('Continue');
 }
 
-function completeAllPcqCY() {
-  const I = this;
-  I.wait(3);
-  I.click('Ymlaen');
-  I.checkCYPCQOptionAndContinue('#language_main');
-  I.checkCYPCQOptionAndContinue('#sex');
-  I.checkCYPCQOptionAndContinue('#gender_different');
-  I.checkCYPCQOptionAndContinue('#sexuality');
-  I.checkCYPCQOptionAndContinue('#marriage-2');
-  I.checkCYPCQOptionAndContinue('#ethnic_group');
-  I.checkCYPCQOptionAndContinue('#ethnicity-2');
-  I.checkCYPCQOptionAndContinue('#religion-3');
-  I.checkCYPCQOptionAndContinue('#pregnancy-2');
-  I.click('Symud ymlaen');
-}
 
-
-module.exports = { skipPcq,
-  completeAllPcq,
-  skipPcqCY,
-  completeAllPcqCY };
+module.exports = { completePcq,
+  completeAllPcq };

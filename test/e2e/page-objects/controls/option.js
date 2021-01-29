@@ -13,14 +13,5 @@ function checkPCQOptionAndContinue(option) {
   I.click('Continue');
 }
 
-function checkCYPCQOptionAndContinue(option) {
-  const I = this;
-
-  I.checkOption(option);
-  I.click('Parhau');
-}
-
-
 module.exports = { checkOptionAndContinue,
-  checkPCQOptionAndContinue,
-  checkCYPCQOptionAndContinue };
+  checkPCQOptionAndContinue };
