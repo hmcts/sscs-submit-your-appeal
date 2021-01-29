@@ -8,6 +8,7 @@ const request = require('request-promise');
 const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
+const i18next = require('i18next');
 
 class Pcq extends SaveToDraftStore {
   static get path() {
@@ -51,7 +52,7 @@ class Pcq extends SaveToDraftStore {
       pcqId,
       partyId: req.idam ? req.idam.userDetails.email : 'anonymous',
       returnUrl: req.headers.host + paths.checkYourAppeal,
-      language: 'en'
+      language: i18next.language
     };
 
     params.token = createToken(params);

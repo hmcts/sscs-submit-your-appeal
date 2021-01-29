@@ -8,6 +8,7 @@ nodejs:
     FT_ANTENNA_WEBCHAT: false
     FT_ALLOW_UC_HEARING_OPTIONS: true
     FT_WELSH: "true"
+    PCQ_ENABLED: "true"
   keyVaults:
     sscs:
       secrets:
