@@ -3,6 +3,10 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
+const config = require('config');
+
+const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
+const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
 
@@ -21,6 +25,6 @@ Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToEnd(commonContent);
-  I.skipPcqCY();
+  if (actUrl === aatUrl) I.completePcq();
   I.confirmDetailsArePresent(language);
 }).retry(1);

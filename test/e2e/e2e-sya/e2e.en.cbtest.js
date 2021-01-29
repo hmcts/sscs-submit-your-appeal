@@ -4,6 +4,10 @@ const language = 'en';
 
 const content = require('commonContent');
 const testData = require(`test/e2e/data.${language}`);
+const config = require('config');
+
+const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
+const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
@@ -19,7 +23,7 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.continueFromnotAttendingHearing(commonContent);
-  I.skipPcq();
+  if (actUrl === aatUrl) I.completePcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
