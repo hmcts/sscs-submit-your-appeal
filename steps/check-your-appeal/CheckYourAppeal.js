@@ -130,7 +130,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           'the benefit code is ',
           get(this, 'journey.values.benefitType.code')
         ], logPath);
-        logger.event('SYA-SendToApi-Failed');
+
+        const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';
+        logger.event(metricEvent);
         return Promise.reject(error);
       });
   }

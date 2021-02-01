@@ -143,19 +143,21 @@ describe('CheckYourAppeal.js', () => {
       // eslint-disable-next-line max-len
       request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
       loggerStub.exception = sinon.spy();
-      loggerStub.event = sinon.stub();
+      loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
-        expect(loggerStub.event).to.have.been.calledOnce;
+        expect(loggerStub.event).to.have.been.calledWith('SYA-SendToApi-Failed');
       });
     });
 
     it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
-      request.post = () => ({ set: () => ({ send: sinon.stub().rejects(HttpStatus.CONFLICT) }) });
+      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ status: HttpStatus.CONFLICT }) }) });
       loggerStub.exception = sinon.spy();
+      loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
+        expect(loggerStub.event).to.have.been.calledWith('SYA-SendToApi-Duplicate');
       });
     });
   });
