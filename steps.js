@@ -58,6 +58,10 @@ const HearingAvailability = require('steps/hearing/availability/HearingAvailabil
 const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
 const NotAttendingHearing = require('steps/hearing/not-attending/NotAttendingHearing');
 const CheckYourAppeal = require('steps/check-your-appeal/CheckYourAppeal');
+const DraftAppeals = require('steps/draft-appeals/DraftAppeals');
+const EditAppeal = require('steps/edit-appeal/EditAppeal');
+const NewAppeal = require('steps/new-appeal/NewAppeal');
+const ArchiveAppeal = require('steps/archive-appeal/ArchiveAppeal');
 const Confirmation = require('steps/confirmation/Confirmation');
 const EvidenceUpload = require('steps/reasons-for-appealing/evidence-upload/EvidenceUpload');
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription');
@@ -168,6 +172,14 @@ const pcq = [ Pcq ];
 
 const checkYourAppeal = [ CheckYourAppeal ];
 
+const draftAppeals = [ DraftAppeals ];
+
+const editAppeal = [ EditAppeal ];
+
+const newAppeal = [ NewAppeal ];
+
+const archiveAppeal = [ ArchiveAppeal ];
+
 const confirmation = [ Confirmation ];
 
 const idam = [
@@ -200,5 +212,9 @@ module.exports = concat(
   checkYourAppeal,
   confirmation,
   idam,
+  draftAppeals,
+  editAppeal,
+  newAppeal,
+  archiveAppeal,
   policyPages
 );

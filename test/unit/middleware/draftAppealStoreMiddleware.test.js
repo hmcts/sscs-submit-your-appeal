@@ -11,6 +11,7 @@ const i18next = require('i18next');
 describe('middleware/draftAppealStoreMiddleware', () => {
   const res = {};
   const next = sinon.spy();
+  const saveF = sinon.spy();
   let loggerSpy = '';
   let loggerExceptionSpy = '';
   let objectAssignSpy = '';
@@ -22,7 +23,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       'Content-Type': 'application/json'
     })
     .put('/drafts')
-    .reply(200);
+    .reply(200, { ccdCaseId: 12 });
 
   nock(apiUrl)
     .defaultReplyHeaders({
@@ -30,6 +31,27 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     })
     .get('/drafts')
     .reply(200, { benefitType: true });
+
+  nock(apiUrl)
+    .defaultReplyHeaders({
+      'Content-Type': 'application/json'
+    })
+    .delete('/drafts/case1234')
+    .reply(200, {});
+
+  nock(apiUrl)
+    .defaultReplyHeaders({
+      'Content-Type': 'application/json'
+    })
+    .get('/drafts/all')
+    .reply(200, {
+      draft1: {
+        key1: 'value1'
+      },
+      draft2: {
+        key1: 'value1'
+      }
+    });
 
   beforeEach(() => {
     loggerSpy = sinon.spy(logger, 'trace');
@@ -42,6 +64,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     loggerSpy.resetHistory();
     loggerExceptionSpy.resetHistory();
     next.resetHistory();
+    saveF.resetHistory();
     logger.trace.restore();
     logger.exception.restore();
     Object.assign.restore();
@@ -89,6 +112,49 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
+  describe('archiveDraft api call', () => {
+    const req = {
+      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
+        visitedSteps: [ { benefitType: '', valid: true } ],
+        settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
+      idam: {
+        userDetails: {
+          id: '1'
+        }
+      },
+      cookies: { '__auth-token': 'xxx' },
+      session: {
+        save() {
+          saveF();
+        },
+        drafts: {
+          case1234: {
+            key22: 'value'
+          }
+        }
+      }
+    };
+    it('Expected Successfully Archive a draft:', async() => {
+      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      expect(loggerSpy).to.have.been.callCount(2);
+      expect(saveF).to.have.been.calledOnce;
+    });
+
+    it('Handles Archive a draft fail:', async() => {
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .delete('/drafts/case1234')
+        .reply(404, {});
+
+      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      expect(loggerSpy).to.have.been.callCount(1);
+      expect(loggerExceptionSpy).to.have.been.callCount(1);
+      expect(saveF).to.have.been.callCount(0);
+    });
+  });
+
   describe('saveToDraftStore, no values next call', () => {
     const req = {
       session: {
@@ -113,7 +179,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrl: `${apiUrl}/drafts` } },
+        settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
       idam: {
         userDetails: {
           id: '1'
@@ -121,9 +187,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       },
       cookies: { '__auth-token': 'xxx' }
     };
-    it('Expected Successfully posted a draft:', async() => {
+    it('Expected Successfully create a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledThrice;
+      expect(loggerSpy).to.have.been.callCount(4);
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('Expected Successfully updated a draft:', async() => {
+      Object.assign(req, { session: { ccdCaseId: 12 } });
+      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
+      expect(loggerSpy).to.have.been.callCount(2);
       expect(next).to.have.been.calledOnce;
     });
   });
@@ -195,6 +268,40 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
+  describe('restoreAllDraftsState from api', () => {
+    const req = {
+      journey: { values: { BenefitType: 'PIP' }, settings: { apiAllDraftUrl: `${apiUrl}/drafts/all` } },
+      idam: 'test_user',
+      cookies: { '__auth-token': 'xxx' },
+      session: {},
+      query: {}
+    };
+
+    it('Expected Successfully get all drafts with multidraft enabled:', async() => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
+      expect(objectAssignSpy).to.have.been.calledTwice;
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('Expected Successfully get all drafts with multidraft disabled:', async() => {
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
+      expect(objectAssignSpy).to.have.been.calledTwice;
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('Expected Successfully get all drafts with multidraft and allows save and return disabled:', async() => {
+      draftAppealStoreMiddleware.setFeatureFlag(false);
+      draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
+      expect(objectAssignSpy).to.have.been.callCount(0);
+      expect(next).to.have.been.calledOnce;
+    });
+  });
+
   describe('Extend Class functionality tests', () => {
     class restoreFromDraftStorClass extends draftAppealStoreMiddleware.RestoreFromDraftStore {
       next() {
@@ -222,11 +329,55 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       }
     });
 
+
+    class authAndRestoreAllDraftsStateClass extends draftAppealStoreMiddleware.AuthAndRestoreAllDraftsState {
+      next() {
+        sinon.spy();
+      }
+    }
+
+    const authAndRestoreAllDraftsState = new authAndRestoreAllDraftsStateClass({
+      journey: {
+        steps: {
+          BenefitType: paths.start.benefitType
+        }
+      }
+    });
+
+    class loadJourneyAndRedirectClass extends draftAppealStoreMiddleware.LoadJourneyAndRedirect {
+      next() {
+        sinon.spy();
+      }
+    }
+
+    const loadJourneyAndRedirect = new loadJourneyAndRedirectClass({
+      journey: {
+        steps: {
+          BenefitType: paths.start.benefitType
+        }
+      }
+    });
+
+    class restoreAllDraftsStateClass extends draftAppealStoreMiddleware.RestoreAllDraftsState {
+      next() {
+        sinon.spy();
+      }
+    }
+
+    const restoreAllDraftsState = new restoreAllDraftsStateClass({
+      journey: {
+        steps: {
+          BenefitType: paths.start.benefitType
+        }
+      }
+    });
+
     class saveToDraftStoreClass extends draftAppealStoreMiddleware.SaveToDraftStore {
       next() {
         sinon.spy();
       }
     }
+
 
     const saveToDraftStore = new saveToDraftStoreClass({
       journey: {
@@ -294,6 +445,25 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       });
     });
 
+    describe('AuthAndRestoreAllDraftsState', () => {
+      it('Expected Middleware count:', () => {
+        expect(authAndRestoreAllDraftsState.middleware).to.have.length(3);
+      });
+    });
+
+    describe('LoadJourneyAndRedirect', () => {
+      it('Expected Middleware count:', () => {
+        expect(loadJourneyAndRedirect.middleware).to.have.length(2);
+      });
+    });
+
+    restoreAllDraftsState;
+    describe('RestoreAllDraftsState', () => {
+      it('Expected Middleware count:', () => {
+        expect(restoreAllDraftsState.middleware).to.have.length(5);
+      });
+    });
+
     describe('SaveToDraftStore', () => {
       it('Expected Middleware count:', () => {
         expect(saveToDraftStore.middleware).to.have.length(10);
@@ -349,6 +519,27 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       it('isUserLoggedIn returns true', () => {
         saveToDraftStoreAnother.req.idam = true;
         expect(saveToDraftStoreAnother.isUserLoggedIn).to.eql(true);
+      });
+    });
+
+    describe('resetJourney', () => {
+      it('resetJourney clears correct keys', () => {
+
+        let req = {
+          session: {
+            cookie: '1234',
+            entryPoint: 'entry',
+            isUserSessionRestored: 'yes',
+            otherKey: 'value',
+            save() {
+              saveF();
+            }
+          }
+        }
+        draftAppealStoreMiddleware.resetJourney(req);
+        expect(req.session.otherKey).to.eql(undefined);
+        expect(req.session.cookie).to.eql('1234');
+        expect(saveF).to.have.been.calledOnce;
       });
     });
   });
