@@ -6,11 +6,13 @@ const selectors = require('steps/check-your-appeal/selectors');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const paths = require('paths');
-
+const config = require('config');
 
 const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors[language].answer}`;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[language].change}`;
+const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
+const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 Feature(`${language.toUpperCase()} - PIP, one month ago, attends hearing with dates cannot attend`);
 
@@ -46,7 +48,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
-  I.skipPcqCY();
+  if (actUrl === aatUrl) I.completePcq();
   I.wait(3);
   console.log(`language assigned is ${moment.locale()}`);
   console.log(`Generated date is ############# ${randomWeekDayIn5Weeks}`);

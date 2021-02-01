@@ -4,7 +4,10 @@ const language = 'en';
 
 const content = require('commonContent');
 const testData = require(`test/e2e/data.${language}`);
+const config = require('config');
 
+const aatUrl = 'https://benefit-appeal.aat.platform.hmcts.net';
+const actUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 const testDataEn = require('test/e2e/data.en');
 
 Feature(`${language.toUpperCase()} - UC E2E SYA - Full Journey`);
@@ -25,7 +28,7 @@ Scenario(`${language.toUpperCase()} - UC E2E SYA PCQ Journey @functional`, I => 
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
-  I.completeAllPcq();
+  if (actUrl === aatUrl) I.completeAllPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   I.endTheSession();
 }).retry(1);
