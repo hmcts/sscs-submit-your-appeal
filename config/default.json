@@ -67,6 +67,9 @@
     },
     "allowUCHearingOption": {
       "enabled": "false"
+    },
+    "multipleDraftsEnabled": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {

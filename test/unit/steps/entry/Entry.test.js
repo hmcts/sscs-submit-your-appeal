@@ -46,7 +46,7 @@ describe('Entry.js', () => {
     });
   });
 
-  describe('Wen method user data is restored', () => {
+  describe('When method user data is restored', () => {
     const req = { session: { isUserSessionRestored: true } };
     const redirect = sinon.spy();
     const res = {
@@ -60,7 +60,7 @@ describe('Entry.js', () => {
     });
   });
 
-  describe('Wen method user data is not restored', () => {
+  describe('When method user data is not restored', () => {
     const req = { session: { isUserSessionRestored: false } };
     const redirect = sinon.spy();
     const res = {

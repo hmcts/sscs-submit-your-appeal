@@ -1,0 +1,27 @@
+{
+  "titleHead": "Your draft benefit appeals",
+  "title": "Your draft benefit appeals",
+  "description": {
+    "line1": "The cases in this list have yet to be submitted to HM Courts & Tribunals Service.",
+    "line2": "If you wish to edit an application for appeal, please select ‘edit’ next to the appropriate application.",
+    "line3": "If you no longer wish to submit any of these applications for appeal, please select ‘archive’ next to the appropriate application.",
+    "line4": "If you wish to submit a new appeal, please select ‘create new application’ to provide your appeal information."
+  },
+  "buttons": {
+    "create": "Create new application",
+    "edit": "Edit",
+    "archive": "Archive"
+  },
+  "tableHeadings": {
+    "appealRef": "Appeal reference",
+    "benefit": "Benefit",
+    "mrnDate": "MRN date",
+    "action": "Action"
+  },
+  "benefitTypes": {
+    "Employment and Support Allowance (ESA)": "Employment and Support Allowance (ESA)",
+    "Personal Independence Payment (PIP)": "Personal Independence Payment (PIP)",
+    "Universal Credit (UC)": "Universal Credit (UC)",
+    "'Benefit Not Set": "Benefit Not Set"
+  }
+}

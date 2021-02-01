@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire');
 
 const mockHandler = sinon.spy();
 
-class RestoreUserState {
+class AuthAndRestoreAllDraftsState {
   constructor(params) {
     Object.assign(this, params);
   }
@@ -13,11 +13,11 @@ class RestoreUserState {
     mockHandler();
   }
 }
-RestoreUserState.handler = sinon.spy();
+AuthAndRestoreAllDraftsState.handler = sinon.spy();
 
 const Entry = proxyquire('steps/idam/authenticated/Authenticated', {
   'middleware/draftAppealStoreMiddleware': {
-    RestoreUserState
+    AuthAndRestoreAllDraftsState
   }
 });
 
@@ -61,7 +61,7 @@ describe('Authenticated.js', () => {
       });
     });
 
-    describe('Wen method is not GET', () => {
+    describe('When method is not GET', () => {
       const req = { method: 'FOO' };
       const redirect = sinon.spy();
       const res = {
