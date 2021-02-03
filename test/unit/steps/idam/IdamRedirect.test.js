@@ -27,7 +27,6 @@ describe('IdamRedirect.js', () => {
       entry.req = {
         session: {}
       };
-
       expect(entry.next()).to.eql({
         nextStep: paths.start.benefitType
       });

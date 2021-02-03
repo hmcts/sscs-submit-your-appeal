@@ -83,17 +83,26 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   sendToAPI() {
     this.validateJourneyValues();
     const headers = this.tokenHeader(this.req);
+
+    const values = this.journey.values;
+
+    if (this.journey.req && this.journey.req.session) {
+      values.ccdCaseId = this.journey.req.session.ccdCaseId;
+    }
+
     logger.trace([
       'About to send to api the application with session id ',
       get(this, 'journey.req.session.id'),
       'the NINO is ',
       get(this, 'journey.values.appellant.nino'),
       'the benefit code is',
-      get(this, 'journey.values.benefitType.code')
+      get(this, 'journey.values.benefitType.code'),
+      'the draft case id is',
+      get(values, 'ccdCaseId')
     ], logPath);
     return request.post(this.journey.settings.apiUrl)
       .set(headers)
-      .send(this.journey.values)
+      .send(values)
       .then(result => {
         logger.trace([
           'Successfully submitted application for session id',
@@ -121,7 +130,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           'the benefit code is ',
           get(this, 'journey.values.benefitType.code')
         ], logPath);
-        logger.event('SYA-SendToApi-Failed');
+
+        const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';
+        logger.event(metricEvent);
         return Promise.reject(error);
       });
   }
