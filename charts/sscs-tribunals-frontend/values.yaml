@@ -15,6 +15,7 @@ nodejs:
 
     # This is currently disabled in prod, enabled all other environments
     CONTACT_US_WEB_FORM_ENABLED: false
+    MEDIA_FILES_ALLOWED_ENABLED: true
 
     # these are only enabled in prod
     # SERVICES_WEBCHAT_UUID:
