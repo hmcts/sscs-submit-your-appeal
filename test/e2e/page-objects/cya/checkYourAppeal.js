@@ -68,6 +68,20 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
+
+function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.draftAppeals();
+}
+
+
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
 
@@ -220,6 +234,7 @@ function checkYourAppealToConfirmationPage(language, signer) {
 module.exports = {
   enterDetailsFromStartToNINO,
   enterCaseDetailsFromStartToNINO,
+  enterDetailsFromStartToDraftAppeals,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,

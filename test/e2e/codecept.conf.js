@@ -20,11 +20,11 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
       getPageTimeout: 60000,
-      show: false,
+      show: true,
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
-        args: ['--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
+        args: ['--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
       }
     },
     MyHelper: {

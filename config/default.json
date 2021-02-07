@@ -31,7 +31,7 @@
     "waitForAction": "2000",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
-    "frontendUrl": "https://localhost:3000"
+    "frontendUrl": "https://benefit-appeal.aat.platform.hmcts.net"
   },
   "features": {
     "evidenceUpload": {
@@ -57,7 +57,7 @@
       "enabled": "true"
     },
     "welsh": {
-      "enabled": "false"
+      "enabled": "true"
     },
     "pcq": {
       "enabled": "false"
