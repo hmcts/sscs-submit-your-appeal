@@ -6,4 +6,12 @@ function selectAreYouProvidingEvidenceAndContinue(commonContent, option) {
   I.click(commonContent.continue);
 }
 
-module.exports = { selectAreYouProvidingEvidenceAndContinue };
+function selectAreYouProvidingEvidenceAfterSignIn(commonContent, option) {
+  const I = this;
+
+  I.checkOption(option);
+  I.scrollPageToBottom();
+  I.click(commonContent.saveAndContinue);
+}
+
+module.exports = { selectAreYouProvidingEvidenceAndContinue, selectAreYouProvidingEvidenceAfterSignIn };

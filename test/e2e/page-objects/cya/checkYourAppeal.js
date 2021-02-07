@@ -72,15 +72,67 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
 function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
+  /* Create new application */
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
   I.chooseLanguagePreference(commonContent, 'no');
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
   I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
-  I.draftAppeals();
+  I.createNewApplication();
+  I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
+  I.signOut();
+
+  /* Login to submit saved case */
+  I.createTheSession(language);
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.verifyDraftAppealsAndEditACase();
+  I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
+  I.continueFromIndependance(commonContent);
+  I.selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
+  I.selectAreYouAnAppointeeAndContinueAfterSignIn(commonContent, '#isAppointee-no');
+  I.enterAppellantNameAndContinueAfterSignIn(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinueAfterSignIn(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
 }
 
+function enterDetailsForNewApplication(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.createNewApplication();
+  I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
+  I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
+  I.enterPostcodeAndContinueAfterSignIn(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
+}
+
+function enterDetailsToArchiveACase(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.verifyDraftAppealsAndArchiveACase();
+}
 
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
   const I = this;
@@ -235,6 +287,8 @@ module.exports = {
   enterDetailsFromStartToNINO,
   enterCaseDetailsFromStartToNINO,
   enterDetailsFromStartToDraftAppeals,
+  enterDetailsForNewApplication,
+  enterDetailsToArchiveACase,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,

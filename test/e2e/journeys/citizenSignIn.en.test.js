@@ -4,6 +4,7 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const paths = require('paths');
+const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
@@ -16,14 +17,28 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional-100`,  I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @functional`, I => {
+  moment().locale(language);
+  I.enterDetailsForNewApplication(commonContent, language);
+});
+
+Scenario(`${language.toUpperCase()} - Sign in as a existing user and archive an application @functional`, I => {
+  moment().locale(language);
+  I.enterDetailsToArchiveACase(commonContent, language);
+});
+
+Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, I => {
   moment().locale(language);
 
   I.enterDetailsFromStartToDraftAppeals(commonContent, language);
-  // I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  // I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  // I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
-  // await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDay);
-  // I.confirmDetailsArePresent(language);
-  // I.see(DateUtils.formatDate(randomWeekDay, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(1);
+  I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
+  I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
+  I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
+  I.addReasonForAppealingUsingTheOnePageFormAfterSignIn(commonContent, testData.reasonsForAppealing.reasons[0]);
+  I.enterAnythingElseAfterSignIn(commonContent, testData.reasonsForAppealing.otherReasons);
+  I.selectAreYouProvidingEvidenceAfterSignIn(commonContent, '#evidenceProvide-no');
+  I.enterDoYouWantToAttendTheHearingAfterSignIn(commonContent, '#attendHearing-no');
+  I.continueFromnotAttendingHearingAfterSignIn(commonContent);
+  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+  I.appealSubmitConfirmation(language);
+});

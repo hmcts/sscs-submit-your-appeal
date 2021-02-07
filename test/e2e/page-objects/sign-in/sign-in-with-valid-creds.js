@@ -6,4 +6,11 @@ function signIn(username, password) {
   I.wait(3);
 }
 
-module.exports = { signIn };
+function navigateToSignInLink() {
+  const I = this;
+  I.click('Sign back into your appeal');
+  I.wait(5);
+}
+
+
+module.exports = { signIn, navigateToSignInLink };

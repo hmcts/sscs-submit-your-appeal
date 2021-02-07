@@ -1,24 +1,32 @@
-const { assert } = require('chai');
-const testDataEn = require('test/e2e/data.en');
-
-async function draftAppeals() {
+function verifyDraftAppealsAndEditACase() {
   const I = this;
 
   I.seeElement(".form-buttons-group [href='/new-appeal']");
   I.see('Your draft benefit appeals');
   I.see('Edit');
   I.see('Archive');
+  I.scrollTo('.govuk-table__cell:nth-child(1)');
+  I.click('Edit');
 
-  // check table header values
-  const expAppealHeaderValue = await I.grabTextFrom('.govuk-table__header:nth-child(1)');
-  const expBenefitHeaderValue = await I.grabTextFrom('.govuk-table__header:nth-child(2)');
-  const expMrnHeaderValue = await I.grabTextFrom('.govuk-table__header:nth-child(3)');
-  const expActionHeaderValue = await I.grabTextFrom('.govuk-table__header:nth-child(4)');
-
-  assert(expAppealHeaderValue, testDataEn.draftAppeal.idHeader);
-  assert(expBenefitHeaderValue, testDataEn.draftAppeal.benefitHeader);
-  assert(expMrnHeaderValue, testDataEn.draftAppeal.mrnHeader);
-  assert(expActionHeaderValue, testDataEn.draftAppeal.actionsHeader);
+  I.see('Check your answers');
+  I.see('Your application is incomplete');
+  I.see('There are still some questions to answer.');
+  I.click('Continue your application');
 }
 
-module.exports = { draftAppeals };
+function verifyDraftAppealsAndArchiveACase() {
+  const I = this;
+
+  I.seeElement(".form-buttons-group [href='/new-appeal']");
+  I.see('Your draft benefit appeals');
+  I.see('Edit');
+  I.see('Archive');
+  I.scrollTo('.govuk-table__cell:nth-child(1)');
+  I.click('Archive');
+  I.wait(5);
+  I.dontSee('Edit');
+  I.dontSee('Archive');
+}
+
+
+module.exports = { verifyDraftAppealsAndEditACase, verifyDraftAppealsAndArchiveACase };
