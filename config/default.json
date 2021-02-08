@@ -72,7 +72,7 @@
       "enabled": "false"
     },
     "multipleDraftsEnabled": {
-      "enabled": "false"
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
