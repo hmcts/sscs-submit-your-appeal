@@ -31,7 +31,7 @@
     "waitForAction": "2000",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
-    "frontendUrl": "https://benefit-appeal.aat.platform.hmcts.net"
+    "frontendUrl": "https://localhost:3000"
   },
   "features": {
     "evidenceUpload": {

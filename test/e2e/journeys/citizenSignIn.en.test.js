@@ -17,15 +17,15 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @functional`, I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, I => {
   moment().locale(language);
   I.enterDetailsForNewApplication(commonContent, language);
-});
+}).retry(1);
 
-Scenario(`${language.toUpperCase()} - Sign in as a existing user and archive an application @functional`, I => {
+Scenario(`${language.toUpperCase()} - Sign in as a existing user and archive an application @fullFunctional`, I => {
   moment().locale(language);
   I.enterDetailsToArchiveACase(commonContent, language);
-});
+}).retry(1);
 
 Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, I => {
   moment().locale(language);
@@ -41,4 +41,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   I.appealSubmitConfirmation(language);
-});
+}).retry(1);
