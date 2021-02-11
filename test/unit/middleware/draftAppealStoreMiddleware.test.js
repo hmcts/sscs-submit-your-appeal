@@ -524,8 +524,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     describe('resetJourney', () => {
       it('resetJourney clears correct keys', () => {
-
-        let req = {
+        const req = {
           session: {
             cookie: '1234',
             entryPoint: 'entry',
@@ -535,7 +534,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
               saveF();
             }
           }
-        }
+        };
         draftAppealStoreMiddleware.resetJourney(req);
         expect(req.session.otherKey).to.eql(undefined);
         expect(req.session.cookie).to.eql('1234');

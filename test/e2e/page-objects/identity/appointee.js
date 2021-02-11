@@ -12,4 +12,4 @@ function selectAreYouAnAppointeeAndContinueAfterSignIn(commonContent, option) {
   I.click(commonContent.saveAndContinue);
 }
 
-module.exports = { selectAreYouAnAppointeeAndContinue,selectAreYouAnAppointeeAndContinueAfterSignIn };
+module.exports = { selectAreYouAnAppointeeAndContinue, selectAreYouAnAppointeeAndContinueAfterSignIn };
