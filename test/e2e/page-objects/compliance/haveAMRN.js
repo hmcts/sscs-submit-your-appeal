@@ -12,4 +12,4 @@ function selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, option) {
   I.click(commonContent.saveAndContinue);
 }
 
-module.exports = { selectHaveYouGotAMRNAndContinue,selectHaveYouGotAMRNAndContinueAfterSignIn  };
+module.exports = { selectHaveYouGotAMRNAndContinue, selectHaveYouGotAMRNAndContinueAfterSignIn };
