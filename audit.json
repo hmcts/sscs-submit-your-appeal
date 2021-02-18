@@ -445,5 +445,10 @@
   "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/contact-us_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-152x152.png_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/entry_GET" : "ignore",
-  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/favicon.ico_GET" : "ignore"
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/favicon.ico_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/hmcts-logo-compress.svg_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/main.css_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.css_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.js_GET" : "ignore"
 }
