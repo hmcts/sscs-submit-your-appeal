@@ -6,6 +6,15 @@ function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   I.click(commonContent.continue);
 }
 
+function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
+  const I = this;
+
+  I.scrollPageToBottom();
+  I.selectOption({ id: 'pipNumber' }, id);
+  I.click(commonContent.saveAndContinue);
+}
+
+
 function enterDWPIssuingOffice(commonContent, id, benefitTypeCode) {
   const I = this;
 
@@ -25,6 +34,7 @@ function seeDWPIssuingOfficeError(url, error) {
 
 module.exports = {
   enterDWPIssuingOfficeAndContinue,
+  enterDWPIssuingOfficeAndContinueAfterSignIn,
   enterDWPIssuingOffice,
   seeDWPIssuingOfficeError
 };

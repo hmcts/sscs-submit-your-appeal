@@ -21,6 +21,17 @@
       "office": "Universal Credit"
     }
   ],
+  "signIn": {
+    "username": "sscs-aat-test@mailinator.com",
+    "password": "Testing123"
+  },
+  "draftAppeal": {
+    "idHeader": "Appeal reference",
+    "benefitHeader": "Benefit",
+    "mrnHeader": "MRN date",
+    "actionsHeader": "Action",
+    "appellantName": "Appellant Name Not Set"
+  },
   "mrn": {
     "dwpIssuingOffice": "1",
     "reasonForNoMRN": "I do not have a MRN because...",

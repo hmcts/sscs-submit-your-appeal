@@ -5,4 +5,11 @@ function continueFromnotAttendingHearing(commonContent) {
   I.click(commonContent.continue);
 }
 
-module.exports = { continueFromnotAttendingHearing };
+function continueFromnotAttendingHearingAfterSignIn(commonContent) {
+  const I = this;
+
+  I.wait(3);
+  I.click(commonContent.saveAndContinue);
+}
+
+module.exports = { continueFromnotAttendingHearing, continueFromnotAttendingHearingAfterSignIn };
