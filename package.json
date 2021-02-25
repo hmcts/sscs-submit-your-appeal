@@ -144,7 +144,6 @@
     "lodash": "^4.17.4",
     "minimist": "^1.2.5",
     "electron": "^9.4.0",
-    "axios": "^0.21.1",
-    "node-notifier": "^8.0.1"
+    "axios": "^0.21.1"
   }
 }
