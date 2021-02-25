@@ -5,6 +5,8 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
+const httpRetries = 3;
+
 /* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
@@ -88,6 +90,7 @@ const archiveDraft = async(req, caseId) => {
 
   values.ccdCaseId = caseId;
   await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -110,6 +113,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
   await request.post(req.journey.settings.apiDraftUrl)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -133,6 +137,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 
 const createDraftInDraftStore = async(req, res, next, values) => {
   await request.put(req.journey.settings.apiDraftUrlCreate)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -189,6 +194,7 @@ const restoreUserState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiDraftUrl)
+      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -226,6 +232,7 @@ const restoreAllDraftsState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiAllDraftUrl)
+      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {

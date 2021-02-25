@@ -25,6 +25,8 @@ const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
+const httpRetries = 3;
+
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
     super(...args);
@@ -101,6 +103,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       get(values, 'ccdCaseId')
     ], logPath);
     return request.post(this.journey.settings.apiUrl)
+      .retry(httpRetries)
       .set(headers)
       .send(values)
       .then(result => {
