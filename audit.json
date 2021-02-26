@@ -457,5 +457,6 @@
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-180x180.png_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon.png_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/start-an-appeal_GET" : "ignore",
-  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore"
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/assets/images/noJS.png_GET" : "ignore"
 }
