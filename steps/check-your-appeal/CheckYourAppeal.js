@@ -102,6 +102,8 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       'the draft case id is',
       get(values, 'ccdCaseId')
     ], logPath);
+
+
     return request.post(this.journey.settings.apiUrl)
       .retry(httpRetries)
       .set(headers)

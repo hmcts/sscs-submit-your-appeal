@@ -71,7 +71,8 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
     `${(values && values.appellant && values.appellant.nino) ?
       values.appellant.nino :
       'no NINO submitted yet'}`, logPath);
-  logger.exception(error, logPath);
+
+  logger.exception(JSON.stringify(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
   } else {
@@ -105,7 +106,7 @@ const archiveDraft = async(req, caseId) => {
     })
     .catch(error => {
       logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
-      logger.exception(error, logPath);
+      logger.exception(JSON.stringify(error), logPath);
     });
 };
 
@@ -214,7 +215,7 @@ const restoreUserState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(error, logPath);
+        logger.exception(JSON.stringify(error), logPath);
         next();
       });
   } else {
@@ -271,7 +272,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(error, logPath);
+        logger.exception(JSON.stringify(error), logPath);
         next();
       });
   } else {
