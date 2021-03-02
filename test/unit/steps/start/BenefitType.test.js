@@ -104,6 +104,11 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowUC.enabled') === 'true');
     });
 
+    it('pushes DLA as allowed benefitType if allowDLA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('disabilityLivingAllowance'))
+        .to.eql(config.get('features.allowDLA.enabled') === 'true');
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
