@@ -53,11 +53,11 @@ describe('AppellantName.js', () => {
 
       it('validates all valid titles', () => {
         const schema = appellantName.titleSchema();
-        titlesList.map(testTitle => {
+
+        for (const testTitle of titlesList) {
           const result = schema.validate(decode(testTitle.value));
           expect(result.error).to.eq(null);
-          true;
-        });
+        }
       });
 
       it('rejects non valid titles', () => {
