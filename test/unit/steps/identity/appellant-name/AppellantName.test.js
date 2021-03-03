@@ -2,6 +2,8 @@ const { expect } = require('test/util/chai');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const titlesList = require('utils/titlesList');
+const { decode } = require('utils/stringUtils');
 
 describe('AppellantName.js', () => {
   let appellantName = null;
@@ -47,6 +49,21 @@ describe('AppellantName.js', () => {
 
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
+      });
+
+      it('validates all valid titles', () => {
+        const schema = appellantName.titleSchema();
+        titlesList.map(testTitle => {
+          const result = schema.validate(decode(testTitle.value));
+          expect(result.error).to.eq(null);
+          true;
+        });
+      });
+
+      it('rejects non valid titles', () => {
+        const schema = appellantName.titleSchema();
+        const result = schema.validate(decode('Rt Hon'));
+        expect(result.error).not.to.eq(null);
       });
     });
 
