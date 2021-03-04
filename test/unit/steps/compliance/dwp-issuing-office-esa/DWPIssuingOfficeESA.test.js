@@ -88,4 +88,10 @@ describe('DWPIssuingOfficeESA.js', () => {
       expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
+
+  describe('options', () => {
+    it('has options for DLA', () => {
+      expect(dwpIssuingOfficeESA.options().length()).to.eql(3);
+    });
+  });
 });

@@ -76,11 +76,14 @@ class MRNDate extends SaveToDraftStore {
     const allowUC = config.get('features.allowUC.enabled') === 'true';
     const isUCBenefit = allowUC && benefitType && String(benefitType) === 'Universal Credit (UC)';
     const UCBenefitLessThanMonth = isUCBenefit && isLessThanOrEqualToAMonth;
+    const allowDLA = config.get('features.allowDLA.enabled') === 'true';
+    const isDLABenefit = allowDLA && benefitType && benefitType === benefitTypes.disabilityLivingAllowance;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(UCBenefitLessThanMonth),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
+      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDLABenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }
