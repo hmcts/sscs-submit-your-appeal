@@ -32,6 +32,7 @@ describe('PostcodeChecker.js', () => {
   function setResponse(response) {
     merge(requireStub, {
       get: getStub,
+      retry: () => requireStub,
       ok: () => requireStub,
       then: handleResponse => {
         handleResponse(response);
@@ -155,6 +156,7 @@ describe('PostcodeChecker.js', () => {
       merge(requireStub, {
         get: () => requireStub,
         set: () => requireStub,
+        retry: () => requireStub,
         then: () => requireStub,
         catch: handleError => {
           handleError(expectedError);
