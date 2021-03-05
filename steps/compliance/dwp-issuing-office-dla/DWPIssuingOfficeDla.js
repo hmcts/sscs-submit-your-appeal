@@ -6,9 +6,9 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 
-class DWPIssuingOfficeEsa extends SaveToDraftStore {
+class DWPIssuingOfficeDla extends SaveToDraftStore {
   static get path() {
-    return paths.compliance.dwpIssuingOfficeESA;
+    return paths.compliance.dwpIssuingOfficeDLA;
   }
 
   static selectify(ar) {
@@ -18,20 +18,10 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
   }
 
   get options() {
-    return DWPIssuingOfficeEsa.selectify([
-      'Balham DRT',
-      'Birkenhead LM DRT',
-      'Chesterfield DRT',
-      'Coatbridge Benefit Centre',
-      'Inverness DRT',
-      'Lowestoft DRT',
-      'Milton Keynes DRT',
-      'Norwich DRT',
-      'Sheffield DRT',
-      'Springburn DRT',
-      'Watford DRT',
-      'Wellingborough DRT',
-      'Worthing DRT'
+    return DWPIssuingOfficeDla.selectify([
+      'Disability Benefit Centre 4',
+      'The Pension Service 11',
+      'Recovery from Estates'
     ]);
   }
 
@@ -66,4 +56,4 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
   }
 }
 
-module.exports = DWPIssuingOfficeEsa;
+module.exports = DWPIssuingOfficeDla;
