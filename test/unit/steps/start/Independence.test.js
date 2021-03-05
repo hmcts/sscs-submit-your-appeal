@@ -41,6 +41,27 @@ describe('Independence.js', () => {
       expect(independence.benefitType).to.equal('PIP');
     });
 
+    describe('Disability Living Allowance (DLA)', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Disability Living Allowance (DLA)'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge and a doctor');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('DLA');
+      });
+    });
+
     describe('next()', () => {
       describe('when save and return is DISABLED', () => {
         beforeEach(() => {

@@ -6,6 +6,7 @@ const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+const allowDLA = config.get('features.allowDLA.enabled') === 'true';
 
 class Independence extends Interstitial {
   get isUserLoggedIn() {
@@ -28,6 +29,10 @@ class Independence extends Interstitial {
       return getBenefitCode(this.req.session.BenefitType.benefitType);
     }
     return '';
+  }
+
+  get allowDLA() {
+    return allowDLA;
   }
 
   get allowUC() {

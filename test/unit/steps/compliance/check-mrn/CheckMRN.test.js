@@ -46,6 +46,11 @@ describe('CheckMRN.js', () => {
       checkMRN.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
       expect(checkMRN.benefitType).to.equal('PIP');
     });
+
+    it('returns DLA code from benefit type', () => {
+      checkMRN.journey.req.session.BenefitType.benefitType = 'Disability Living Allowance (DLA)';
+      expect(checkMRN.benefitType).to.equal('DLA');
+    });
   });
 
   describe('get form()', () => {
