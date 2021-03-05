@@ -32,12 +32,7 @@
                     {% else %}
                         <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                     {% endif %}
-
-                    {% if allowDLA and benefitType == 'DLA' %}
-                        <p class="govuk-body-l">{{ content.DLAseparate | safe }}</p>
-                    {% else %}
-                        <p class="govuk-body-l">{{ content.separate | safe }}</p>
-                    {% endif %}
+                    <p class="govuk-body-l">{{ content.separate | safe }}</p>
                 {% endblock %}
 
                 <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue | safe }}">
