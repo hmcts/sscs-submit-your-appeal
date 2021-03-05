@@ -140,6 +140,26 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(saveF).to.have.been.calledOnce;
     });
 
+    it('Expected Successfully Archive a draft after first request failed:', async() => {
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .delete('/drafts/case1234')
+        .reply(500, {});
+
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .delete('/drafts/case1234')
+        .reply(200, {});
+
+      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      expect(loggerSpy).to.have.been.callCount(2);
+      expect(saveF).to.have.been.calledOnce;
+    });
+
     it('Handles Archive a draft fail:', async() => {
       nock(apiUrl)
         .defaultReplyHeaders({
