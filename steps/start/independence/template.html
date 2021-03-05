@@ -27,6 +27,8 @@
                 {% block fields %}
                     {% if allowUC and benefitType == 'UC' %}
                         <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
+                    {% elseif allowDLA and benefitType == 'DLA' %}
+                        <p class="govuk-body-l">{{ content.DLAreviewed | safe }}</p>
                     {% else %}
                         <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                     {% endif %}
