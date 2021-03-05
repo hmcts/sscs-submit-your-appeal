@@ -1,10 +1,12 @@
 const { goTo } = require('@hmcts/one-per-page');
+const { get } = require('lodash');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 class DWPIssuingOfficeEsa extends SaveToDraftStore {
   static get path() {
@@ -18,6 +20,17 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
   }
 
   get options() {
+    const useDLA = [benefitTypes.disabilityLivingAllowance];
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    const isDla = useDLA.indexOf(benefitType) !== -1;
+
+    if (isDla) {
+      return DWPIssuingOfficeEsa.selectify([
+        'Disability Benefit Centre 4',
+        'The Pension Service 11',
+        'Recovery from Estates'
+      ]);
+    }
     return DWPIssuingOfficeEsa.selectify([
       'Balham DRT',
       'Birkenhead LM DRT',

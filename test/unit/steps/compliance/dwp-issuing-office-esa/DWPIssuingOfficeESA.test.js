@@ -101,5 +101,13 @@ describe('DWPIssuingOfficeESA.js', () => {
     it('has options for ESA', () => {
       expect(dwpIssuingOfficeESA.options.length).to.eql(13);
     });
+
+    it('has options for DLA', () => {
+      dwpIssuingOfficeESA.journey.req.session.BenefitType.benefitType = benefitTypes.disabilityLivingAllowance;
+      expect(dwpIssuingOfficeESA.options.length).to.eql(3);
+      expect(dwpIssuingOfficeESA.options[0].label).to.eql('Disability Benefit Centre 4');
+      expect(dwpIssuingOfficeESA.options[1].label).to.eql('The Pension Service 11');
+      expect(dwpIssuingOfficeESA.options[2].label).to.eql('Recovery from Estates');
+    });
   });
 });
