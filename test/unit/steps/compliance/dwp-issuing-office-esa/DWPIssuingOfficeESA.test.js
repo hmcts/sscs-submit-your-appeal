@@ -2,7 +2,6 @@ const { expect } = require('test/util/chai');
 const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('DWPIssuingOfficeESA.js', () => {
   let dwpIssuingOfficeESA = null;
@@ -12,13 +11,6 @@ describe('DWPIssuingOfficeESA.js', () => {
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
-        },
-        req: {
-          session: {
-            BenefitType: {
-              benefitType: benefitTypes.employmentAndSupportAllowance
-            }
-          }
         }
       }
     });
@@ -94,20 +86,6 @@ describe('DWPIssuingOfficeESA.js', () => {
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
       expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
-    });
-  });
-
-  describe('options', () => {
-    it('has options for ESA', () => {
-      expect(dwpIssuingOfficeESA.options.length).to.eql(13);
-    });
-
-    it('has options for DLA', () => {
-      dwpIssuingOfficeESA.journey.req.session.BenefitType.benefitType = benefitTypes.disabilityLivingAllowance;
-      expect(dwpIssuingOfficeESA.options.length).to.eql(3);
-      expect(dwpIssuingOfficeESA.options[0].label).to.eql('Disability Benefit Centre 4');
-      expect(dwpIssuingOfficeESA.options[1].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeESA.options[2].label).to.eql('Recovery from Estates');
     });
   });
 });
