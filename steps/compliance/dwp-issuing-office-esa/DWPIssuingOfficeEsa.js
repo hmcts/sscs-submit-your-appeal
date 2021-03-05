@@ -26,9 +26,9 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
 
     if (isDla) {
       return DWPIssuingOfficeEsa.selectify([
-        'Birmingham DRT',
-        'Tyneview Park DRT',
-        'Bradford DRT'
+        'Disability Benefit Centre 4',
+        'The Pension Service 11',
+        'Recovery from Estates'
       ]);
     }
     return DWPIssuingOfficeEsa.selectify([
