@@ -12,6 +12,7 @@ const i18next = require('i18next');
 
 const allowESA = config.get('features.allowESA.enabled') === 'true';
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+const allowDLA = config.get('features.allowDLA.enabled') === 'true';
 
 class BenefitType extends SaveToDraftStore {
   static get path() {
@@ -55,6 +56,9 @@ class BenefitType extends SaveToDraftStore {
     }
     if (allowUC) {
       allowedTypes.push(benefitTypes.universalCredit);
+    }
+    if (allowDLA) {
+      allowedTypes.push(benefitTypes.disabilityLivingAllowance);
     }
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     return branch(

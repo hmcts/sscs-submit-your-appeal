@@ -59,6 +59,9 @@
     "allowUC": {
       "enabled": "true"
     },
+    "allowDLA": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },

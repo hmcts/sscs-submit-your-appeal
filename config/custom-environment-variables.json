@@ -42,6 +42,9 @@
     "allowUC": {
       "enabled": "ALLOW_UC_ENABLED"
     },
+    "allowDLA": {
+      "enabled": "ALLOW_DLA_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },

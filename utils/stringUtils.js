@@ -45,6 +45,7 @@ const getTribunalPanel = ben => {
   const key = splitBenefitType(ben).code;
   return {
     PIP: 'judge, doctor and disability expert',
+    DLA: 'judge and a doctor',
     ESA: 'judge and a doctor'
   }[key];
 };

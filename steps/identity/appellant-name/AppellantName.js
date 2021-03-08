@@ -23,6 +23,7 @@ class AppellantName extends SaveToDraftStore {
   contentPrefix() {
     return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
   }
+
   get title() {
     return this.content.title[this.contentPrefix()];
   }
@@ -35,10 +36,18 @@ class AppellantName extends SaveToDraftStore {
     return titlesList;
   }
 
+  decodedTitlesList() {
+    return titlesList.map(title => decode(title.value));
+  }
+
+  titleSchema() {
+    const decodedTitles = this.decodedTitlesList();
+    return Joi.string().valid(decodedTitles);
+  }
+
   get form() {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
-    const validTitles = titlesList.map(title => title.value);
 
     return form({
       title: text.joi(
@@ -46,7 +55,7 @@ class AppellantName extends SaveToDraftStore {
         Joi.string().required()
       ).joi(
         fields.title.error[prefix].invalid,
-        Joi.string().valid(validTitles)
+        this.titleSchema()
       ),
       firstName: text.joi(
         fields.firstName.error[prefix].required,
