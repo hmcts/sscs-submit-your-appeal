@@ -36,6 +36,11 @@ describe('ReasonForAppealing.js', () => {
       reasonForAppealing.req = req;
       expect(reasonForAppealing.benefitType).to.equal(contentBenefitType.benefitTypes.pip);
     });
+
+    it('returns benefitCode', () => {
+      reasonForAppealing.req = req;
+      expect(reasonForAppealing.benefitCode).to.equal('PIP');
+    });
   });
 
   describe('get addAnotherLinkContent()', () => {

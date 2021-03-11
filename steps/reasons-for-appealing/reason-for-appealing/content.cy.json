@@ -4,7 +4,9 @@
   "title": "Eich rhesymau dros apelio",
   "titleEdit": "Dywedwch pam eich bod yn apelio",
   "dwpExplained": "Dylai fod DWP wedi egluro eu penderfyniad am eich hawl i gael {{benefitType}} yn yr Hysbysiad Gorfodi i Ailystyried (MRN) neu’r llythyr penderfyniad a anfonwyd atoch.",
+  "dwpExplainedDLA": "Dylai DWP fod wedi egluro eu penderfyniad ynghylch eich hawl i gael {{benefitType}} yn yr Hysbysiad Gorfodi i Ailystyried (MRN) neu'r llythyr penderfyniad a anfonwyd atoch.",
   "readYouMRN": "Darllenwch eich MRN neu’r llythyr penderfyniad a nodwch beth ydych yn anghytuno ag ef a pham. Caiff eich rhesymau eu hystyried gan dribiwnlys annibynnol sydd ar wahân i DWP.",
+  "readYouMRNDLA": "Darllenwch eich MRN neu’r llythyr penderfyniad ac ysgrifennwch beth ydych yn anghytuno ag o a pham.  Bydd eich rhesymau yn cael eu hystyried gan dribiwnlys annibynnol sydd ar wahân i DWP.",
   "placeholder": "Gallwch ysgrifennu faint bynnag a fynnoch",
   "links": {
     "add": "Ychwanegu rheswm arall",
