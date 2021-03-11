@@ -1,14 +1,14 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
+const DWPIssuingOfficeDLA = require('steps/compliance/dwp-issuing-office-dla/DWPIssuingOfficeDla');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-describe('DWPIssuingOfficeESA.js', () => {
-  let dwpIssuingOfficeESA = null;
+describe('DWPIssuingOfficeDLA.js', () => {
+  let dwpIssuingOfficeDLA = null;
 
   beforeEach(() => {
-    dwpIssuingOfficeESA = new DWPIssuingOfficeESA({
+    dwpIssuingOfficeDLA = new DWPIssuingOfficeDLA({
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
@@ -16,7 +16,7 @@ describe('DWPIssuingOfficeESA.js', () => {
         req: {
           session: {
             BenefitType: {
-              benefitType: benefitTypes.employmentAndSupportAllowance
+              benefitType: benefitTypes.disabilityLivingAllowance
             }
           }
         }
@@ -26,7 +26,7 @@ describe('DWPIssuingOfficeESA.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office', () => {
-      expect(dwpIssuingOfficeESA.path).to.equal(paths.compliance.dwpIssuingOfficeESA);
+      expect(dwpIssuingOfficeDLA.path).to.equal(paths.compliance.dwpIssuingOfficeDLA);
     });
   });
 
@@ -35,7 +35,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     let field = null;
 
     before(() => {
-      fields = dwpIssuingOfficeESA.form.fields;
+      fields = dwpIssuingOfficeDLA.form.fields;
     });
 
     it('should contain 1 field', () => {
@@ -62,13 +62,13 @@ describe('DWPIssuingOfficeESA.js', () => {
     const question = 'A Question';
 
     beforeEach(() => {
-      dwpIssuingOfficeESA.fields = {
+      dwpIssuingOfficeDLA.fields = {
         dwpIssuingOffice: {
           value: 'Office name'
         }
       };
 
-      dwpIssuingOfficeESA.content = {
+      dwpIssuingOfficeDLA.content = {
         cya: {
           dwpIssuingOffice: {
             question
@@ -78,7 +78,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     });
 
     it('should contain a single answer', () => {
-      const answers = dwpIssuingOfficeESA.answers();
+      const answers = dwpIssuingOfficeDLA.answers();
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
@@ -86,20 +86,23 @@ describe('DWPIssuingOfficeESA.js', () => {
     });
 
     it('should contain a value object', () => {
-      const values = dwpIssuingOfficeESA.values();
+      const values = dwpIssuingOfficeDLA.values();
       expect(values).to.eql({ mrn: { dwpIssuingOffice: 'Office name' } });
     });
   });
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dwpIssuingOfficeDLA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 
   describe('options', () => {
-    it('has options for ESA', () => {
-      expect(dwpIssuingOfficeESA.options.length).to.eql(13);
+    it('has options for DLA', () => {
+      expect(dwpIssuingOfficeDLA.options.length).to.eql(3);
+      expect(dwpIssuingOfficeDLA.options[0].label).to.eql('Disability Benefit Centre 4');
+      expect(dwpIssuingOfficeDLA.options[1].label).to.eql('The Pension Service 11');
+      expect(dwpIssuingOfficeDLA.options[2].label).to.eql('Recovery from Estates');
     });
   });
 });
