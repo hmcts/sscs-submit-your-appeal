@@ -25,6 +25,13 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
   }
 
+  get benefitCode() {
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
+  }
+
   get addAnotherLinkContent() {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);

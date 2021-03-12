@@ -462,7 +462,10 @@
   "10015_Incomplete or No Cache-control Header Set_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore",
   "10015_Incomplete or No Cache-control Header Set_https://benefit-appeal.aat.platform.hmcts.net/assets/main.css_GET" : "ignore",
   "10015_Incomplete or No Cache-control Header Set_https://benefit-appeal.aat.platform.hmcts.net/assets/images/hmcts-logo-compress.svg_GET" : "ignore",
-  "10015_Incomplete or No Cache-control Header Set_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.css_GET" : "ignore"
+  "10015_Incomplete or No Cache-control Header Set_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.css_GET" : "ignore",
+  "10011_Cookie Without Secure Flag_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore",
+  "10010_Cookie No HttpOnly Flag_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore",
+  "90033_Loosely Scoped Cookie_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_GET" : "ignore"
 }
 
 

@@ -57,14 +57,24 @@
 {% endblock %}
 
 {% block listItems %}
-    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% if benefitCode == 'DLA' %}
+        <p class="govuk-body">{{ content.dwpExplainedDLA | safe }}</p>
+        <p class="govuk-body">{{ content.readYouMRNDLA | safe }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+        <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% endif %}
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% if benefitCode == 'DLA' %}
+        <p class="govuk-body">{{ content.dwpExplainedDLA | safe }}</p>
+        <p class="govuk-body">{{ content.readYouMRNDLA | safe }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+        <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% endif %}
     {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
