@@ -9,6 +9,7 @@ pdf
 txt
 doc
 docx
+rtf
 */
 module.exports = [
   '.jpg',
@@ -21,6 +22,7 @@ module.exports = [
   '.txt',
   '.doc',
   '.docx',
+  '.rtf',
   'image/jpeg',
   'application/pdf',
   'image/tiff',
@@ -28,5 +30,7 @@ module.exports = [
   'image/bmp',
   'text/plain',
   'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/rtf',
+  'application/rtf'
 ];
