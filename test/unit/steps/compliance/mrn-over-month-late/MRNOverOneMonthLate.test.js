@@ -109,8 +109,13 @@ describe('MRNOverOneMonth.js', () => {
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
     });
 
-    it('returns the next step path /are-you-an-appointee', () => {
+    it('returns the next step path /are-you-an-appointee for UC', () => {
       setBenefitType(benefitTypes.universalCredit);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Carers Allowance', () => {
+      setBenefitType(benefitTypes.carersAllowance);
       expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
   });

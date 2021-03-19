@@ -7,12 +7,8 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const benefitTypes = require('steps/start/benefit-type/types');
-const config = require('config');
 const i18next = require('i18next');
-
-const allowESA = config.get('features.allowESA.enabled') === 'true';
-const allowUC = config.get('features.allowUC.enabled') === 'true';
-const allowDLA = config.get('features.allowDLA.enabled') === 'true';
+const { isFeatureFlagEnabled } = require('utils/stringUtils');
 
 class LanguagePreference extends SaveToDraftStore {
   static get path() {
@@ -51,15 +47,18 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   next() {
-    const allowedTypes = [benefitTypes.personalIndependencePayment];
-    if (allowESA) {
-      allowedTypes.push(benefitTypes.employmentAndSupportAllowance);
-    }
-    if (allowUC) {
-      allowedTypes.push(benefitTypes.universalCredit);
-    }
-    if (allowDLA) {
+    const allowedTypes = [
+      benefitTypes.personalIndependencePayment,
+      benefitTypes.employmentAndSupportAllowance,
+      benefitTypes.universalCredit
+    ];
+
+    if (isFeatureFlagEnabled('allowDLA')) {
       allowedTypes.push(benefitTypes.disabilityLivingAllowance);
+    }
+
+    if (isFeatureFlagEnabled('allowCA')) {
+      allowedTypes.push(benefitTypes.carersAllowance);
     }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.req.session.BenefitType.benefitType) !== -1;

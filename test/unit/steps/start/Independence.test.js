@@ -29,8 +29,8 @@ describe('Independence.js', () => {
       expect(independence.path).to.equal(paths.start.independence);
     });
 
-    it('get allowUC from config', () => {
-      expect(independence.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
+    it('get is benefit enabled from config', () => {
+      expect(independence.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
     });
 
     it('returns tribunal panel', () => {

@@ -2,26 +2,18 @@ const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { getBenefitCode } = require('utils/stringUtils');
+const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const config = require('config');
-
-const allowUC = config.get('features.allowUC.enabled') === 'true';
-const allowDLA = config.get('features.allowDLA.enabled') === 'true';
 
 class HaveContactedDWP extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveContactedDWP;
   }
 
-  get allowUC() {
-    return allowUC;
-  }
-
-  get allowDLA() {
-    return allowDLA;
+  isBenefitEnabled(featureFlag) {
+    return isFeatureFlagEnabled(featureFlag);
   }
 
   get benefitType() {
