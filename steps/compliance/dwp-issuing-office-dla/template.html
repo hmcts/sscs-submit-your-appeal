@@ -1,0 +1,11 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import select, selectionButtons %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block fields %}
+    <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-location.png" alt="{{ content.imageAlt | safe }}">
+    <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.dwpIssuingOffice.header | safe }}</h2></p>
+    {{ select(fields.dwpIssuingOffice, content.fields.dwpIssuingOffice.label, '', false, options) }}
+{% endblock %}

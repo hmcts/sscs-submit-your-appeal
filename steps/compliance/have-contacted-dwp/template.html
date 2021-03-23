@@ -7,6 +7,10 @@
     {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no | safe %}
     {% set contentTitle =  content.ucTitle %}
+{% elif allowDLA and benefitType == 'DLA' %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
+    {% set contentTitle = content.dlaTitle %}
 {% else %}
     {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}

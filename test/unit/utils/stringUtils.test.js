@@ -152,6 +152,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.employmentAndSupportAllowance);
       expect(bcode).to.equal('ESA');
     });
+    it('returns the right code for dla', () => {
+      const bcode = getBenefitCode(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('DLA');
+    });
   });
   describe('getBenefitName', () => {
     it('returns the right name for pip', () => {
@@ -162,6 +166,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitName(benefitTypes.employmentAndSupportAllowance);
       expect(bcode).to.equal('Employment and Support Allowance');
     });
+    it('returns the right name for dla', () => {
+      const bcode = getBenefitName(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('Disability Living Allowance');
+    });
   });
   describe('getTribunalPanel', () => {
     it('returns the right tribunal panel for pip', () => {
@@ -169,6 +177,10 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge, doctor and disability expert');
     });
     it('returns the right name for esa', () => {
+      const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('judge and a doctor');
+    });
+    it('returns the right name for dla', () => {
       const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
       expect(bcode).to.equal('judge and a doctor');
     });

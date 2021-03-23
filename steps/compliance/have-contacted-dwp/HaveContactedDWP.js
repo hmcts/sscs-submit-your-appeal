@@ -9,6 +9,7 @@ const userAnswer = require('utils/answer');
 const config = require('config');
 
 const allowUC = config.get('features.allowUC.enabled') === 'true';
+const allowDLA = config.get('features.allowDLA.enabled') === 'true';
 
 class HaveContactedDWP extends SaveToDraftStore {
   static get path() {
@@ -17,6 +18,10 @@ class HaveContactedDWP extends SaveToDraftStore {
 
   get allowUC() {
     return allowUC;
+  }
+
+  get allowDLA() {
+    return allowDLA;
   }
 
   get benefitType() {
