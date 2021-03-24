@@ -58,7 +58,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
 
-  if (benefitTypeCode === 'ESA') {
+  if (benefitTypeCode === 'ESA' || benefitTypeCode === 'DLA') {
     I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
   }
 
