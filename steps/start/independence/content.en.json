@@ -3,6 +3,7 @@
   "title": "Your appeal will be decided by an independent tribunal",
   "reviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the {{benefitType}} benefit.",
   "separate": "The tribunal are separate from DWP.",
-  "UCreviewed": "Your appeal will be reviewed by a tribunal made up of a judge and for some appeals, a doctor. They will consider everything you tell them and make a decision.",
-  "DLAreviewed": "Your appeal will be reviewed by a tribunal made up of a judge and a doctor. They will consider everything you tell them and make a decision on your entitlement to the DLA benefit."
+  "UCreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision.",
+  "DLAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the DLA benefit.",
+  "CAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the Carer's Allowance."
 }

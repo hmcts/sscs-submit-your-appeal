@@ -33,9 +33,9 @@ describe('HaveContactedDWP.js', () => {
     });
   });
 
-  describe('allowUC', () => {
-    it('should return wheter allowUC feature is active', () => {
-      expect(haveContactedDWP.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
+  describe('isBenefitEnabled', () => {
+    it('should return wheter benefit is active', () => {
+      expect(haveContactedDWP.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
     });
   });
 
@@ -82,6 +82,12 @@ describe('HaveContactedDWP.js', () => {
   describe('values()', () => {
     it('should be empty', () => {
       expect(haveContactedDWP.values()).to.be.empty;
+    });
+  });
+
+  describe('isBenefitEnabled()', () => {
+    it('should return boolean', () => {
+      expect(haveContactedDWP.isBenefitEnabled('allowUC')).to.eql(true);
     });
   });
 

@@ -68,7 +68,7 @@ describe('splitBenefitType()', () => {
 
   it('should split Carer\'s Allowance\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.carersAllowance);
-    expect(obj).to.include({ code: '', description: benefitTypes.carersAllowance });
+    expect(obj).to.include({ code: 'carersAllowance', description: benefitTypes.carersAllowance });
   });
 
   it('should split \'Child Benefit Lone Parent\' into an array', () => {
