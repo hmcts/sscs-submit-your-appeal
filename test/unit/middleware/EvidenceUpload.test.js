@@ -92,6 +92,22 @@ describe('The EvidenceUpload middleware', () => {
     });
   });
 
+  describe('handlePostResponse', () => {
+    describe('when there isn\'t a forwarding error but HTTP status is 500 error', () => {
+      it('should call fs.unlink', () => {
+        const req = {};
+        const size = 42;
+        const pathToFile = '__path__';
+        const next = sinon.mock();
+        const body = '{"status": 500,"error": "Internal Server Error","message": "","path": "/evidence/upload"}';
+        const handlePostResponse = EvidenceUpload.handlePostResponse(req, size, pathToFile, next);
+
+        handlePostResponse(undefined, undefined, body);
+        expect(unlinker).to.have.been.called;
+      });
+    });
+  });
+
   describe('handleMakeDir', () => {
     beforeEach(() => {
       sinon.spy(EvidenceUpload, 'handleIcomingParse');
