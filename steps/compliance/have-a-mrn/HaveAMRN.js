@@ -5,11 +5,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { getBenefitCode } = require('utils/stringUtils');
-const config = require('config');
-
-const allowUC = config.get('features.allowUC.enabled') === 'true';
-
+const { getBenefitCode, getBenefitName } = require('utils/stringUtils');
 
 class HaveAMRN extends SaveToDraftStore {
   static get path() {
@@ -20,8 +16,8 @@ class HaveAMRN extends SaveToDraftStore {
     return getBenefitCode(this.req.session.BenefitType.benefitType);
   }
 
-  get allowUC() {
-    return allowUC;
+  get benefitName() {
+    return getBenefitName(this.req.session.BenefitType.benefitType);
   }
 
   get form() {

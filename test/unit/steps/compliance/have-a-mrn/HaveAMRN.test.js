@@ -13,6 +13,11 @@ describe('HaveAMRN.js', () => {
           MRNDate: paths.compliance.mrnDate,
           HaveContactedDWP: paths.compliance.haveContactedDWP
         }
+      },
+      session: {
+        BenefitType: {
+          benefitType: 'Universal Credit (UC)'
+        }
       }
     });
 
@@ -64,6 +69,18 @@ describe('HaveAMRN.js', () => {
   describe('values()', () => {
     it('should be empty', () => {
       expect(haveAMRN.values()).to.be.empty;
+    });
+  });
+
+  describe('benefitType()', () => {
+    it('should return benefit code', () => {
+      expect(haveAMRN.benefitType).to.eql('UC');
+    });
+  });
+
+  describe('benefitName()', () => {
+    it('should return benefit name', () => {
+      expect(haveAMRN.benefitName).to.eql('Universal Credit');
     });
   });
 

@@ -3,14 +3,18 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
-{% if allowUC and benefitType == 'UC' %}
+{% if benefitType == 'UC' %}
     {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no | safe %}
     {% set contentTitle =  content.ucTitle %}
-{% elif allowDLA and benefitType == 'DLA' %}
+{% elif isBenefitEnabled('allowDLA') and benefitType == 'DLA' %}
     {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
     {% set contentTitle = content.dlaTitle %}
+{% elif isBenefitEnabled('allowCA') and benefitType == 'carersAllowance' %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
+    {% set contentTitle = content.caTitle %}
 {% else %}
     {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}

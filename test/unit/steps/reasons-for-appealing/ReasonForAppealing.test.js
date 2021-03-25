@@ -6,6 +6,7 @@ const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const benefitTypes = require('steps/start/benefit-type/types');
 const contentBenefitType = require('steps/start/benefit-type/content.en');
+const config = require('config');
 
 describe('ReasonForAppealing.js', () => {
   let reasonForAppealing = null;
@@ -27,6 +28,12 @@ describe('ReasonForAppealing.js', () => {
   describe('get path()', () => {
     it('returns path /reason-for-appealing', () => {
       expect(ReasonForAppealing.path).to.equal(paths.reasonsForAppealing.reasonForAppealing);
+    });
+  });
+
+  describe('isBenefitEnabled()', () => {
+    it('returns if benefit is enabled', () => {
+      expect(reasonForAppealing.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
     });
   });
 
