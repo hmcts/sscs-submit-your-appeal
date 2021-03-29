@@ -7,9 +7,9 @@ const testData = require(`test/e2e/data.${language}`);
 
 const testDataEn = require('test/e2e/data.en');
 
-Feature(`${language.toUpperCase()} - UC E2E SYA - Full Journey`);
+Feature(`${language.toUpperCase()} - CA E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - UC E2E SYA Journey @functional`, I => {
+Scenario(`${language.toUpperCase()} - CA E2E SYA Journey @functional`, I => {
   const benefitCode = testDataEn.benefitTypes[3].code;
   const commonContent = content[language];
   I.createTheSession(language);
