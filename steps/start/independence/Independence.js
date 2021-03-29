@@ -1,12 +1,10 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getTribunalPanel } = require('utils/stringUtils');
+const { getBenefitCode, getTribunalPanel, isFeatureFlagEnabled } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
-const allowUC = config.get('features.allowUC.enabled') === 'true';
-const allowDLA = config.get('features.allowDLA.enabled') === 'true';
 
 class Independence extends Interstitial {
   get isUserLoggedIn() {
@@ -31,12 +29,8 @@ class Independence extends Interstitial {
     return '';
   }
 
-  get allowDLA() {
-    return allowDLA;
-  }
-
-  get allowUC() {
-    return allowUC;
+  isBenefitEnabled(featureFlag) {
+    return isFeatureFlagEnabled(featureFlag);
   }
 
   next() {

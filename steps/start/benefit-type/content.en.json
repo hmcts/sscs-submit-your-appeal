@@ -5,7 +5,7 @@
   "benefitTypes": {
     "aa": "Attendance Allowance",
     "bb": "Bereavement Benefit",
-    "ca": "Carer’s Allowance",
+    "carersallowance": "Carer’s Allowance",
     "cb": "Child Benefit Lone Parent",
     "dla": "Disability Living Allowance (DLA)",
     "esa": "Employment and Support Allowance (ESA)",

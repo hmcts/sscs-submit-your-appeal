@@ -16,7 +16,7 @@
     {{ header(content.title, size="l") }}
 
     <p class="govuk-body">{{ content.requestingMandatoryReconsideration | safe }}</p>
-    {% if allowUC and benefitType == 'UC' %}
+    {% if benefitType == 'UC' %}
         <p class="govuk-body">{{ content.linkUCJournal | safe }}</p>
     {% else %}
         <p class="govuk-body">{{ content.contactDetailsFromLettersOrEmails | safe }}</p>

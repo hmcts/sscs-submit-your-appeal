@@ -25,10 +25,12 @@
             <form action="{{ path if path else url }}" method="post" class="form">
 
                 {% block fields %}
-                    {% if allowUC and benefitType == 'UC' %}
+                    {% if benefitType == 'UC' %}
                         <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
-                    {% elseif allowDLA and benefitType == 'DLA' %}
+                    {% elseif isBenefitEnabled('allowDLA') and benefitType == 'DLA' %}
                         <p class="govuk-body-l">{{ content.DLAreviewed | safe }}</p>
+                    {% elseif isBenefitEnabled('allowCA') and benefitType == 'carersAllowance' %}
+                        <p class="govuk-body-l">{{ content.CAreviewed | safe }}</p>
                     {% else %}
                         <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                     {% endif %}

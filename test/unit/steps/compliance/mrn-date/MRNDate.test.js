@@ -5,6 +5,7 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { overrideFeatFlag } = require('utils/stringUtils');
 
 describe('MRNDate.js', () => {
   let mrnDate = null;
@@ -152,6 +153,22 @@ describe('MRNDate.js', () => {
       it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.universalCredit);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when benefit type is Carers Allowance', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.carersAllowance);
+        overrideFeatFlag({ key: 'allowCA', value: true });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.carersAllowance);
+        overrideFeatFlag({ key: 'allowCA', value: true });
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
     });

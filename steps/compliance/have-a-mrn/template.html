@@ -8,7 +8,7 @@
     {% call formSection() %}
         <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle | safe }}</p>
 
-        {% if allowUC and benefitType == 'UC'%}
+        {% if benefitType == 'UC'%}
             <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 

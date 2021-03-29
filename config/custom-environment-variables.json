@@ -45,6 +45,9 @@
     "allowDLA": {
       "enabled": "ALLOW_DLA_ENABLED"
     },
+    "allowCA": {
+      "enabled": "ALLOW_CA_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
