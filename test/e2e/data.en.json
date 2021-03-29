@@ -19,6 +19,11 @@
       "description": "Universal Credit",
       "code": "UC",
       "office": "Universal Credit"
+    },
+    {
+      "description": "Disability Living Allowance",
+      "code": "DLA",
+      "office": "Recovery from Estates"
     }
   ],
   "signIn": {
