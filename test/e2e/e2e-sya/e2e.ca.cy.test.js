@@ -5,16 +5,14 @@ const language = 'cy';
 const content = require('commonContent');
 const testData = require(`test/e2e/data.${language}`);
 
-const testDataEn = require('test/e2e/data.en');
-
 Feature(`${language.toUpperCase()} - CA E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - CA E2E SYA Journey @functional`, I => {
-  const benefitCode = testDataEn.benefitTypes[3].code;
+Scenario(`${language.toUpperCase()} - CA E2E SYA Journey @fullfunctional`, I => {
+  const searchName = testData.benefitTypes[0].searchName;
   const commonContent = content[language];
   I.createTheSession(language);
   I.wait(2);
-  I.enterDetailsFromStartToNINO(commonContent, language, benefitCode);
+  I.enterDetailsFromStartToNINOWithSearchName(commonContent, language, searchName);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411222222');
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');

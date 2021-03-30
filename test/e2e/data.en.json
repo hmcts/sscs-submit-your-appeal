@@ -22,7 +22,7 @@
     },
     {
       "description": "Carer's Allowance",
-      "code": "carersallowance"
+      "searchName": "Carer's Allowance"
     }
   ],
   "signIn": {
