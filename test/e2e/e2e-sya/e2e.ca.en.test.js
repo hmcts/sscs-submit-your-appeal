@@ -10,7 +10,7 @@ const testDataEn = require('test/e2e/data.en');
 Feature(`${language.toUpperCase()} - CA E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - CA E2E SYA PCQ Journey @fullfunctional`, I => {
-  const searchName = testDataEn.benefitTypes[3].searchName;
+  const searchName = testDataEn.benefitTypes[4].searchName;
   const commonContent = content[language];
   I.createTheSession(language);
   I.wait(2);
