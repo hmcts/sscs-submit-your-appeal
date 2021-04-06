@@ -5,7 +5,7 @@ properties(
 )
 
 @Library("Infrastructure")
- 
+   
 def product = "sscs"
 def component = "tribunals-frontend"
 
