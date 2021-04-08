@@ -62,6 +62,27 @@ describe('Independence.js', () => {
       });
     });
 
+    describe('Carer\'s Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Carer\'s Allowance'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('carersAllowance');
+      });
+    });
+
     describe('next()', () => {
       describe('when save and return is DISABLED', () => {
         beforeEach(() => {
