@@ -54,7 +54,7 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel', () => {
-        expect(independence.tribunalPanel).to.equal('judge and a doctor');
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
       });
 
       it('returns benefit type', () => {
