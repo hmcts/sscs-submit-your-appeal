@@ -39,7 +39,7 @@ describe('Components/controller.js', () => {
       .defaultReplyHeaders({
         'Content-Type': 'application/json'
       })
-      .get(`/addresses/postcode?postcode=n29ed&key=${token}`)
+      .get(`/postcode?&key=${token}&postcode=n29ed&lr=EN`)
       .reply(200, { results: [ 'address:1', 'address:2'] });
   });
 
