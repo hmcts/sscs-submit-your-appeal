@@ -68,7 +68,7 @@ const getTribunalPanel = ben => {
     PIP: 'judge, doctor and disability expert',
     DLA: 'judge, doctor and disability expert',
     ESA: 'judge and a doctor',
-    carersAllowance: 'judge and a doctor',
+    carersAllowance: 'judge, doctor and disability expert',
     UC: 'judge and for some appeals, a doctor'
   }[key];
 };
