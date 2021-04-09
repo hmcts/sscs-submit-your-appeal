@@ -54,11 +54,32 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel', () => {
-        expect(independence.tribunalPanel).to.equal('judge and a doctor');
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
       });
 
       it('returns benefit type', () => {
         expect(independence.benefitType).to.equal('DLA');
+      });
+    });
+
+    describe('Carer\'s Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Carer\'s Allowance'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('carersAllowance');
       });
     });
 
