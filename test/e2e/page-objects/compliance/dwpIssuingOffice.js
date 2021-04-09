@@ -19,7 +19,7 @@ function enterDWPIssuingOffice(commonContent, id, benefitTypeCode) {
   const I = this;
 
   I.scrollPageToBottom();
-  if (benefitTypeCode === 'ESA') {
+  if (benefitTypeCode === 'ESA' || benefitTypeCode === 'DLA') {
     I.selectOption({ id: 'dwpIssuingOffice' }, id);
   }
   I.click(commonContent.continue);

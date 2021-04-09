@@ -61,9 +61,9 @@
     },
     "allowDLA": {
       "enabled": "true"
-    },  
+    },
     "allowCA": {
-      "enabled": "false"
+      "enabled": "true"
     },
     "welsh": {
       "enabled": "false"
