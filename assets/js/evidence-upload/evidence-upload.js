@@ -151,7 +151,7 @@ class EvidenceUpload {
             [
               {
                 field: 'uploadEv',
-                errors: ['Your file could not be uploaded due to a technical error. Please try again.']
+                errors: ['Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.']
               }
             ];
           /* eslint-enable max-len */
