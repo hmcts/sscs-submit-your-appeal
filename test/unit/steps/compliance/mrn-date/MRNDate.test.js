@@ -24,6 +24,7 @@ describe('MRNDate.js', () => {
           CheckMRN: paths.compliance.checkMRNDate,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOfficeDla: paths.compliance.dwpIssuingOfficeDLA,
+          DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           Appointee: paths.identity.areYouAnAppointee
         }
@@ -191,6 +192,20 @@ describe('MRNDate.js', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.disabilityLivingAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeDLA);
+      });
+    });
+
+    describe('when benefit type is Attendance Allowance', () => {
+      it('returns the next step path /dwp-issuing-office-attendance-allowance if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.attendanceAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+      });
+
+      it('returns the next step path /dwp-issuing-office-attendance-allowance if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.attendanceAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
       });
     });
   });

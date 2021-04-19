@@ -3,7 +3,7 @@
   "title": "Which benefit is your appeal about?",
   "label": "Select a benefit type",
   "benefitTypes": {
-    "aa": "Attendance Allowance",
+    "attendanceallowance": "Attendance Allowance",
     "bb": "Bereavement Benefit",
     "carersallowance": "Carer’s Allowance",
     "cb": "Child Benefit Lone Parent",

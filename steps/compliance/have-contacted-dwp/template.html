@@ -15,6 +15,10 @@
     {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
     {% set contentTitle = content.caTitle %}
+{% elif isBenefitEnabled('allowAA') and benefitType == 'attendanceAllowance' %}
+    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
+    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
+    {% set contentTitle = content.aaTitle %}
 {% else %}
     {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
     {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}

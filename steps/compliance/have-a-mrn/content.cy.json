@@ -17,6 +17,9 @@
   "carersallowance": {
     "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch y Lwfans Gofalwr."
   },
+  "attendanceallowance": {
+    "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch eich hawl i gael Lwfans Gweini."
+  },
   "fields": {
     "haveAMRN": {
       "yes": "Oes, mae gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
