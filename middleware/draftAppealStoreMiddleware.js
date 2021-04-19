@@ -247,9 +247,11 @@ const restoreAllDraftsState = async(req, res, next) => {
             const shimmed = {};
             const drafts = result.body;
             const draftObj = {};
-
-            for (const draft of drafts) {
-              draftObj[draft.ccdCaseId] = draft;
+            if (Array.isArray(drafts) && drafts.length > 0) {
+              // eslint-disable-next-line max-depth
+              for (const draft of drafts) {
+                draftObj[draft.ccdCaseId] = draft;
+              }
             }
 
             shimmed.drafts = draftObj;
