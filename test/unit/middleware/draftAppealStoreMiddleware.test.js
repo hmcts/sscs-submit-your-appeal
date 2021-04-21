@@ -320,6 +320,21 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(objectAssignSpy).to.have.been.callCount(0);
       expect(next).to.have.been.calledOnce;
     });
+
+    it('Handles 204 no content for all drafts:', async() => {
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .get('/drafts/all')
+        .reply(204, {});
+
+      draftAppealStoreMiddleware.setFeatureFlag(true);
+      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
+      expect(objectAssignSpy).to.have.been.calledTwice;
+      expect(next).to.have.been.calledOnce;
+    });
   });
 
   describe('Extend Class functionality tests', () => {
