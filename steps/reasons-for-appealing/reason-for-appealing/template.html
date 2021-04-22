@@ -57,31 +57,13 @@
 {% endblock %}
 
 {% block listItems %}
-    {% if benefitCode == 'DLA' %}
-        <p class="govuk-body">{{ content.dwpExplainedDLA | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRNDLA | safe }}</p>
-    {% elif isBenefitEnabled('allowCA') and benefitCode == 'carersAllowance' %}
-        <p class="govuk-body">{{ content.dwpExplainedCarersAllowance | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRNCarersAllowance | safe }}</p>
-    {% else %}
-        <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
-    {% endif %}
+    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    {% if benefitCode == 'DLA' %}
-        <p class="govuk-body">{{ content.dwpExplainedDLA | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRNDLA | safe }}</p>
-    {% elif isBenefitEnabled('allowCA') and benefitCode == 'carersAllowance' %}
-        <p class="govuk-body">{{ content.dwpExplainedCarersAllowance | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRNCarersAllowance | safe }}</p>
-    {% else %}
-        <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-        <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
-    {% endif %}
-    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
+    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 

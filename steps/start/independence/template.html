@@ -27,10 +27,10 @@
                 {% block fields %}
                     {% if benefitType == 'UC' %}
                         <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
-                    {% elseif isBenefitEnabled('allowDLA') and benefitType == 'DLA' %}
-                        <p class="govuk-body-l">{{ content.DLAreviewed | safe }}</p>
-                    {% elseif isBenefitEnabled('allowCA') and benefitType == 'carersAllowance' %}
+                    {% elseif benefitType == 'carersAllowance' %}
                         <p class="govuk-body-l">{{ content.CAreviewed | safe }}</p>
+                    {% elseif benefitType == 'attendanceAllowance' %}
+                        <p class="govuk-body-l">{{ content.AAreviewed | safe }}</p>
                     {% else %}
                         <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                     {% endif %}

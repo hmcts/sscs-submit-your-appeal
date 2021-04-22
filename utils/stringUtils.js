@@ -49,7 +49,7 @@ const splitBenefitType = benefitType => {
     code = benefitType.substring(index, benefitType.length)
       .replace('(', '')
       .replace(')', '');
-  } else if (benefitType === benefitTypes.carersAllowance) {
+  } else {
     const keys = Object.keys(benefitTypes);
     const res = keys.find(key => benefitTypes[key] === benefitType);
     code = res;
@@ -69,6 +69,7 @@ const getTribunalPanel = ben => {
     DLA: 'judge, doctor and disability expert',
     ESA: 'judge and a doctor',
     carersAllowance: 'judge, doctor and disability expert',
+    attendanceAllowance: 'judge, doctor and disability expert',
     UC: 'judge and for some appeals, a doctor'
   }[key];
 };
