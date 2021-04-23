@@ -58,12 +58,12 @@ describe('stringUtils.js', () => {
 describe('splitBenefitType()', () => {
   it('should split \'Attendance Allowance\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.attendanceAllowance);
-    expect(obj).to.include({ code: '', description: benefitTypes.attendanceAllowance });
+    expect(obj).to.include({ code: 'attendanceAllowance', description: benefitTypes.attendanceAllowance });
   });
 
   it('should split \'Bereavement Benefit\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.bereavementBenefit);
-    expect(obj).to.include({ code: '', description: benefitTypes.bereavementBenefit });
+    expect(obj).to.include({ code: 'bereavementBenefit', description: benefitTypes.bereavementBenefit });
   });
 
   it('should split Carer\'s Allowance\' into an array', () => {
@@ -71,9 +71,14 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'carersAllowance', description: benefitTypes.carersAllowance });
   });
 
+  it('should split Attendance Allowance\' into an array', () => {
+    const obj = splitBenefitType(benefitTypes.attendanceAllowance);
+    expect(obj).to.include({ code: 'attendanceAllowance', description: benefitTypes.attendanceAllowance });
+  });
+
   it('should split \'Child Benefit Lone Parent\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.childBenefit);
-    expect(obj).to.include({ code: '', description: benefitTypes.childBenefit });
+    expect(obj).to.include({ code: 'childBenefit', description: benefitTypes.childBenefit });
   });
 
   it('should split Disability Living Allowance (DLA) into an array', () => {
@@ -88,7 +93,7 @@ describe('splitBenefitType()', () => {
 
   it('should split \'Home Responsibilities Protection\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.homeResponsibilitiesProtection);
-    expect(obj).to.include({ code: '', description: benefitTypes.homeResponsibilitiesProtection });
+    expect(obj).to.include({ code: 'homeResponsibilitiesProtection', description: benefitTypes.homeResponsibilitiesProtection });
   });
 
   it('should split \'Housing Benefit (HB)\' into an array', () => {
@@ -98,17 +103,17 @@ describe('splitBenefitType()', () => {
 
   it('should split \'Incapacity Benefit\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.incapacityBenefit);
-    expect(obj).to.include({ code: '', description: benefitTypes.incapacityBenefit });
+    expect(obj).to.include({ code: 'incapacityBenefit', description: benefitTypes.incapacityBenefit });
   });
 
   it('should split \'Income Support\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.incomeSupport);
-    expect(obj).to.include({ code: '', description: benefitTypes.incomeSupport });
+    expect(obj).to.include({ code: 'incomeSupport', description: benefitTypes.incomeSupport });
   });
 
   it('should split \'Industrial Injuries Disablement Benefit\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.industrialInjuriesDisablement);
-    expect(obj).to.include({ code: '', description: benefitTypes.industrialInjuriesDisablement });
+    expect(obj).to.include({ code: 'industrialInjuriesDisablement', description: benefitTypes.industrialInjuriesDisablement });
   });
 
   it('should split Job Seekers Allowance (JSA) into an array', () => {
@@ -118,7 +123,7 @@ describe('splitBenefitType()', () => {
 
   it('should split \'Maternity Allowance\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.maternityAllowance);
-    expect(obj).to.include({ code: '', description: benefitTypes.maternityAllowance });
+    expect(obj).to.include({ code: 'maternityAllowance', description: benefitTypes.maternityAllowance });
   });
 
   it('should split Personal Independence Payment (PIP) into an array', () => {
@@ -128,12 +133,12 @@ describe('splitBenefitType()', () => {
 
   it('should split \'Severe Disablement Allowance\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.severeDisablementAllowance);
-    expect(obj).to.include({ code: '', description: benefitTypes.severeDisablementAllowance });
+    expect(obj).to.include({ code: 'severeDisablementAllowance', description: benefitTypes.severeDisablementAllowance });
   });
 
   it('should split \'Social Fund\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.socialFund);
-    expect(obj).to.include({ code: '', description: benefitTypes.socialFund });
+    expect(obj).to.include({ code: 'socialFund', description: benefitTypes.socialFund });
   });
 
   it('should split Universal Credit (UC) into an array', () => {

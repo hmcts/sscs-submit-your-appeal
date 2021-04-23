@@ -17,6 +17,9 @@
   "carersallowance": {
     "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitName}}."
   },
+  "attendanceallowance": {
+    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitName}} benefit."
+  },
   "fields": {
     "haveAMRN": {
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",

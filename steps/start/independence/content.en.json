@@ -4,6 +4,6 @@
   "reviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the {{benefitType}} benefit.",
   "separate": "The tribunal are separate from DWP.",
   "UCreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision.",
-  "DLAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the DLA benefit.",
-  "CAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the Carer's Allowance."
+  "CAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the Carer's Allowance.",
+  "AAreviewed": "Your appeal will be reviewed by a tribunal made up of a {{tribunalPanel}}. They will consider everything you tell them and make a decision on your entitlement to the {{benefitName}} benefit."
 }

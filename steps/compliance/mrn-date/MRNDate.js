@@ -83,11 +83,15 @@ class MRNDate extends SaveToDraftStore {
     const allowDLA = isFeatureFlagEnabled('allowDLA');
     const isDLABenefit = allowDLA && benefitType && benefitType === benefitTypes.disabilityLivingAllowance;
 
+    const allowAA = isFeatureFlagEnabled('allowAA');
+    const isAABenefit = allowAA && benefitType && benefitType === benefitTypes.attendanceAllowance;
+
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
       goTo(this.journey.steps.DWPIssuingOfficeDla).if(isDLABenefit),
+      goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAABenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }
