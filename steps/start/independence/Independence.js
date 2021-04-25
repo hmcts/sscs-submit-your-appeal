@@ -1,6 +1,6 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getTribunalPanel, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { getBenefitCode, getBenefitName, getTribunalPanel, isFeatureFlagEnabled } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 
@@ -25,6 +25,13 @@ class Independence extends Interstitial {
   get benefitType() {
     if (this.req.session.BenefitType) {
       return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
+  }
+
+  get benefitName() {
+    if (this.req.session.BenefitType) {
+      return getBenefitName(this.req.session.BenefitType.benefitType);
     }
     return '';
   }

@@ -22,6 +22,7 @@ const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
 const DWPIssuingOfficeDla = require('steps/compliance/dwp-issuing-office-dla/DWPIssuingOfficeDla');
+const DWPIssuingOfficeAttendanceAllowance = require('steps/compliance/dwp-issuing-office-attendance-allowance/DWPIssuingOfficeAttendanceAllowance');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
@@ -110,6 +111,7 @@ const compliance = [
   MRNDate,
   DWPIssuingOfficeEsa,
   DWPIssuingOfficeDla,
+  DWPIssuingOfficeAttendanceAllowance,
   NoMRN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,

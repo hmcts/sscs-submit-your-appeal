@@ -61,6 +61,10 @@ class LanguagePreference extends SaveToDraftStore {
       allowedTypes.push(benefitTypes.carersAllowance);
     }
 
+    if (isFeatureFlagEnabled('allowAA')) {
+      allowedTypes.push(benefitTypes.attendanceAllowance);
+    }
+
     const isAllowedBenefit = () => allowedTypes.indexOf(this.req.session.BenefitType.benefitType) !== -1;
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),

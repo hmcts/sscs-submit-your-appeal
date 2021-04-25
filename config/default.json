@@ -65,6 +65,9 @@
     "allowCA": {
       "enabled": "true"
     },
+    "allowAA": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },
