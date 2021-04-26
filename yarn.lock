@@ -10312,11 +10312,6 @@ superagent-csrf@^1.0.0:
   resolved "https://registry.yarnpkg.com/superagent-csrf/-/superagent-csrf-1.0.0.tgz#f3e3afc3d177d04faca965925408436d9814129c"
   integrity sha1-8+Ovw9F30E+sqWWSVAhDbZgUEpw=
 
-superagent-retry-delay@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/superagent-retry-delay/-/superagent-retry-delay-2.6.2.tgz#b9c599861ef0d702f940219910ce6a868b9ffbbe"
-  integrity sha512-WpY1XkPNGArpzrm9MfHkL3WLCOb/Dfca53X3aM+8bAC6PDI12ghkzMk+R0QfX5uTatXQfMApGsq115QrrEhrAA==
-
 superagent@5:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.3.1.tgz#d62f3234d76b8138c1320e90fa83dc1850ccabf1"
