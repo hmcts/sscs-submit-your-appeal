@@ -20,9 +20,9 @@ class HaveAMRN extends SaveToDraftStore {
     return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
   }
 
-   get benefitCode() {
-      return getBenefitCode(this.req.session.BenefitType.benefitType);
-    }
+  get benefitCode() {
+    return getBenefitCode(this.req.session.BenefitType.benefitType);
+  }
 
   get benefitName() {
     return getBenefitName(this.req.session.BenefitType.benefitType);
