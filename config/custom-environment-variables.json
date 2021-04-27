@@ -72,9 +72,6 @@
     "antennaWebChat": {
       "enabled": "FT_ANTENNA_WEBCHAT"
     },
-    "allowUCHearingOption": {
-      "enabled": "FT_ALLOW_UC_HEARING_OPTIONS"
-    },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
     }
