@@ -6,6 +6,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode, getBenefitName } = require('utils/stringUtils');
+const i18next = require('i18next');
 
 class HaveAMRN extends SaveToDraftStore {
   static get path() {
@@ -13,8 +14,15 @@ class HaveAMRN extends SaveToDraftStore {
   }
 
   get benefitType() {
-    return getBenefitCode(this.req.session.BenefitType.benefitType);
+    const sessionLanguage = i18next.language;
+    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+
+    return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
   }
+
+   get benefitCode() {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
 
   get benefitName() {
     return getBenefitName(this.req.session.BenefitType.benefitType);
