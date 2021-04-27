@@ -121,7 +121,7 @@ describe('CheckYourAppeal.js', () => {
       loggerStub.trace = sinon.stub().returns();
       loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
-      request.post = () => ({ retry: () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) }) });
+      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
 
       return cya.sendToAPI().then(() => {
         expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
@@ -132,7 +132,7 @@ describe('CheckYourAppeal.js', () => {
     it('should log an event when missing data from journey values', () => {
       loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
-      request.post = () => ({ retry: () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) }) });
+      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
 
       return cyaWithSession.sendToAPI().then(() => {
         expect(loggerStub.event).to.have.been.calledTwice;
@@ -141,7 +141,7 @@ describe('CheckYourAppeal.js', () => {
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
-      request.post = () => ({ retry: () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) }) });
+      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
       loggerStub.exception = sinon.spy();
       loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
@@ -152,7 +152,7 @@ describe('CheckYourAppeal.js', () => {
 
     it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
-      request.post = () => ({ retry: () => ({ set: () => ({ send: sinon.stub().rejects({ status: HttpStatus.CONFLICT }) }) }) });
+      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ status: HttpStatus.CONFLICT }) }) });
       loggerStub.exception = sinon.spy();
       loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
