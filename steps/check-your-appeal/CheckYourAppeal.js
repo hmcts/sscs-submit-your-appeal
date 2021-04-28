@@ -13,6 +13,7 @@ const logger = require('logger');
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
+require('superagent-retry-delay')(request);
 
 require('superagent-csrf')(request);
 
@@ -24,6 +25,9 @@ const csrfProtection = csurf({ cookie: false });
 const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+
+const httpRetries = 3;
+const retryDelay = 10000
 
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
@@ -100,7 +104,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       'the draft case id is',
       get(values, 'ccdCaseId')
     ], logPath);
+
+
     return request.post(this.journey.settings.apiUrl)
+      .retry(httpRetries, retryDelay)
       .set(headers)
       .send(values)
       .then(result => {
