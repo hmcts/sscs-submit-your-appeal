@@ -18,13 +18,20 @@ exports.config = {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: 'load',
+      waitForNavigation: ['domcontentloaded'],
       getPageTimeout: 60000,
       show: false,
-      windowSize: '1000x1000',
+      windowSize: '1440x1400',
       chrome: {
         ignoreHTTPSErrors: true,
-        args: ['--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
+        args: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--allow-running-insecure-content',
+          '--ignore-certificate-errors',
+          '--window-size=1440,1400'
+        ]
       }
     },
     MyHelper: {
