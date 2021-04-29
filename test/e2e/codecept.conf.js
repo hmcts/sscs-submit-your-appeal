@@ -68,7 +68,9 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 10,
+      chunks: files => {
+        return files.map(file => [file]);
+      },
       browsers: ['chrome']
     }
   },
