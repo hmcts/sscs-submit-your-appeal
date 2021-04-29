@@ -1,24 +1,9 @@
 {
   "titleHead": "Have you got an MRN",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
-  "pip": {
-    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit."
-  },
-  "esa": {
-    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit."
-  },
-  "dla": {
-    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit."
-  },
+  "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit.",
   "uc": {
-    "subtitle":"The MRN is the letter DWP added to your online journal when you asked them to reconsider their Universal Credit decision.",
     "subtitle_para2": "Find your MRN in your <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">Universal Credit online journal</a> (opens in a new window)."
-  },
-  "carersallowance": {
-    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitName}}."
-  },
-  "attendanceallowance": {
-    "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitName}} benefit."
   },
   "fields": {
     "haveAMRN": {
