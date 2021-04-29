@@ -77,9 +77,6 @@
     "antennaWebChat": {
       "enabled": "false"
     },
-    "allowUCHearingOption": {
-      "enabled": "false"
-    },
     "multipleDraftsEnabled": {
       "enabled": "false"
     }
