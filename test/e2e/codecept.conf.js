@@ -74,5 +74,9 @@ exports.config = {
       browsers: ['chrome']
     }
   },
+  rerun: {
+    minSuccess: 1,
+    maxReruns: 4
+  },
   name: 'Submit Your Appeal Tests'
 };
