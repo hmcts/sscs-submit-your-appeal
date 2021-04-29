@@ -1,7 +1,6 @@
 const HearingOptions = require('steps/hearing/options/HearingOptions');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const config = require('config');
 const {
   emptyTelephoneValidation,
   invalidTelephoneValidation,
@@ -13,8 +12,6 @@ const {
 
 describe('HearingOptions.js', () => {
   let hearingOptions = null;
-  const testConfig = JSON.parse(JSON.stringify(config));
-  testConfig.features.allowUCHearingOption.enabled = 'true';
 
   beforeEach(() => {
     hearingOptions = new HearingOptions({
