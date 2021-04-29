@@ -18,7 +18,7 @@ exports.config = {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: ['domcontentloaded'],
+      waitForNavigation: 'load',
       getPageTimeout: 60000,
       show: false,
       windowSize: '1440x1400',
@@ -61,13 +61,7 @@ exports.config = {
         options: {
           reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
           reportName: 'index',
-          reportPageTitle: 'Report page',
-          reportFilename: 'report',
-          inlineAssets: true,
-          json: false,
-          html: true,
-          overwrite: true,
-          inline: true
+          inlineAssets: true
         }
       }
     }
