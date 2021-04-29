@@ -61,7 +61,13 @@ exports.config = {
         options: {
           reportDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
           reportName: 'index',
-          inlineAssets: true
+          reportPageTitle: 'Report page',
+          reportFilename: 'report',
+          inlineAssets: true,
+          json: false,
+          html: true,
+          overwrite: true,
+          inline: true
         }
       }
     }
