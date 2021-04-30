@@ -69,14 +69,35 @@ exports.config = {
   multiple: {
     parallel: {
       chunks: files => {
-        let i = 0;
-        let j = files.length;
-        const chunk = Math.ceil(files.length / 7);
-        const chunkedArray = new Array(Math.ceil(files.length / chunk));
-        for (i = 0, j = files.length; i < j; i += chunk) {
-          chunkedArray.push(files.slice(i, i + chunk));
+        function shuffle(array) {
+          // randomise array
+          let currentIndex = array.length;
+          let randomIndex = 0;
+          let temporaryValue = array[0];
+          while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+          return array;
         }
-        return chunkedArray;
+        function chunkArray(array) {
+          let i = 0;
+          let j = array.length;
+          const chunk = 5;
+          const chunkedArray = new Array(Math.ceil(array.length / chunk));
+          for (i = 0, j = array.length; i < j; i += chunk) {
+            chunkedArray.push(array.slice(i, i + chunk));
+          }
+          return chunkedArray;
+        }
+
+        const shuffledArray = shuffle(files);
+        shuffledArray.forEach(arr => console.log(arr));
+        return chunkArray(shuffledArray);
       },
       browsers: ['chrome']
     }
