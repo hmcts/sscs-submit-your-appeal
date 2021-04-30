@@ -41,6 +41,14 @@ describe('Independence.js', () => {
       expect(independence.benefitType).to.equal('PIP');
     });
 
+    it('returns if there is not an acronym', () => {
+      expect(independence.hasNoAcronym).to.equal(false);
+    });
+
+    it('returns if it contains benefit in benefit name', () => {
+      expect(independence.containsBenefit).to.equal(false);
+    });
+
     describe('Disability Living Allowance (DLA)', () => {
       beforeEach(() => {
         independence = new Independence({
@@ -80,6 +88,35 @@ describe('Independence.js', () => {
 
       it('returns benefit type', () => {
         expect(independence.benefitType).to.equal('carersAllowance');
+      });
+
+      it('returns if there is not an acronym', () => {
+        expect(independence.hasNoAcronym).to.equal(true);
+      });
+
+      it('returns if it contains benefit in benefit name', () => {
+        expect(independence.containsBenefit).to.equal(false);
+      });
+    });
+
+    describe('Industrial Injuries Disablement Benefit', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Industrial Injuries Disablement Benefit'
+            }
+          }
+        });
+      });
+
+      it('returns if there is not an acronym', () => {
+        expect(independence.hasNoAcronym).to.equal(true);
+      });
+
+      it('returns if it contains benefit in benefit name', () => {
+        expect(independence.containsBenefit).to.equal(true);
       });
     });
 
