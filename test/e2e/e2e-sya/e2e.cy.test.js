@@ -7,7 +7,7 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-xScenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);

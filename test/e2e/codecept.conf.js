@@ -69,7 +69,14 @@ exports.config = {
   multiple: {
     parallel: {
       chunks: files => {
-        return files.map(file => [file]);
+        let i = 0;
+        let j = files.length;
+        const chunk = 5;
+        const chunkedArray = new Array(chunk);
+        for (i = 0, j = files.length; i < j; i += chunk) {
+          chunkedArray.push(files.slice(i, i + chunk));
+        }
+        return chunkedArray;
       },
       browsers: ['chrome']
     }
