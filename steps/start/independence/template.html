@@ -27,9 +27,9 @@
                 {% block fields %}
                     {% if benefitType == 'UC' %}
                         <p class="govuk-body-l">{{ content.reviewed_UC | safe }}</p>
-                    {% elseif hasNoAcronym && !containsBenefit %}
+                    {% elseif hasNoAcronym and not containsBenefit %}
                         <p class="govuk-body-l">{{ content.reviewed_non_acronym | safe }}</p>
-                    {% elseif hasNoAcronym && containsBenefit %}
+                    {% elseif containsBenefit %}
                         <p class="govuk-body-l">{{ content.reviewed_contains_benefit | safe }}</p>
                     {% else %}
                         <p class="govuk-body-l">{{ content.reviewed_acronym | safe }}</p>
