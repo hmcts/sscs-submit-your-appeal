@@ -47,14 +47,14 @@ class Independence extends Interstitial {
     if (this.req.session.BenefitType) {
       return !getHasAcronym(this.req.session.BenefitType.benefitType);
     }
-    return '';
+    return false;
   }
 
   get containsBenefit() {
     if (this.req.session.BenefitType) {
       return getBenefitName(this.req.session.BenefitType.benefitType).includes('Benefit');
     }
-    return '';
+    return false;
   }
 
   isBenefitEnabled(featureFlag) {

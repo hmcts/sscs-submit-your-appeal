@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const config = require('config');
+const i18next = require('i18next');
 let Independence = require('steps/start/independence/Independence');
 
 describe('Independence.js', () => {
@@ -96,6 +97,35 @@ describe('Independence.js', () => {
 
       it('returns if it contains benefit in benefit name', () => {
         expect(independence.containsBenefit).to.equal(false);
+      });
+    });
+
+    describe('Carer\'s Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Carer\'s Allowance'
+            }
+          }
+        });
+      });
+
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('returns tribunal panel in Welsh', () => {
+        expect(independence.tribunalPanel).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+      });
+
+      it('returns benefit name in Welsh', () => {
+        expect(independence.benefitName).to.equal('Lwfans Gofalwr');
       });
     });
 
