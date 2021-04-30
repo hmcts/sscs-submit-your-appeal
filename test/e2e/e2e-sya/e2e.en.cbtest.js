@@ -23,4 +23,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(3);
+}).retry(2);
