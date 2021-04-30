@@ -71,8 +71,8 @@ exports.config = {
       chunks: files => {
         let i = 0;
         let j = files.length;
-        const chunk = 5;
-        const chunkedArray = new Array(chunk);
+        const chunk = 2;
+        const chunkedArray = new Array(Math.ceil(files.length / chunk));
         for (i = 0, j = files.length; i < j; i += chunk) {
           chunkedArray.push(files.slice(i, i + chunk));
         }
