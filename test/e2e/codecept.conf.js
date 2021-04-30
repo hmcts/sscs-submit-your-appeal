@@ -84,20 +84,19 @@ exports.config = {
           }
           return array;
         }
-        function chunkArray(array) {
+        function splitFiles(list, size) {
+          const sets = [];
+          const chunks = list.length / size;
           let i = 0;
-          let j = array.length;
-          const chunk = 5;
-          const chunkedArray = new Array(Math.ceil(array.length / chunk));
-          for (i = 0, j = array.length; i < j; i += chunk) {
-            chunkedArray.push(array.slice(i, i + chunk));
+          while (i < chunks) {
+            sets[i] = list.splice(0, size);
+            i = i + 1;
           }
-          return chunkedArray;
+          return sets;
         }
-
         const shuffledArray = shuffle(files);
         shuffledArray.forEach(arr => console.log(arr));
-        return chunkArray(shuffledArray);
+        return splitFiles(shuffledArray, Math.ceil(shuffledArray.length / 10));
       },
       browsers: ['chrome']
     }
