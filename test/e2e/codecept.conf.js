@@ -95,8 +95,7 @@ exports.config = {
           return sets;
         }
         const shuffledArray = shuffle(files);
-        shuffledArray.forEach(arr => console.log(arr));
-        return splitFiles(shuffledArray, Math.ceil(shuffledArray.length / 10));
+        return splitFiles(shuffledArray, Math.ceil(shuffledArray.length / 8));
       },
       browsers: ['chrome']
     }
