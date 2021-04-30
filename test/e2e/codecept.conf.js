@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
+const fs = require('fs');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
@@ -69,33 +70,13 @@ exports.config = {
   multiple: {
     parallel: {
       chunks: files => {
-        function shuffle(array) {
-          // randomise array
-          let currentIndex = array.length;
-          let randomIndex = 0;
-          let temporaryValue = array[0];
-          while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-          }
-          return array;
+        function hasKeyword(file) {
+          // eslint-disable-next-line id-blacklist,no-sync
+          const cont = fs.readFileSync(file, 'utf-8');
+          return cont.indexOf('@functional') > -1 || cont.indexOf('fullFunctional') > -1;
         }
-        function splitFiles(list, size) {
-          const sets = [];
-          const chunks = list.length / size;
-          let i = 0;
-          while (i < chunks) {
-            sets[i] = list.splice(0, size);
-            i = i + 1;
-          }
-          return sets;
-        }
-        const shuffledArray = shuffle(files);
-        return splitFiles(shuffledArray, Math.ceil(shuffledArray.length / 6));
+        const newFiles = files.filter(file => hasKeyword(file));
+        return newFiles.map(file => [file]);
       },
       browsers: ['chrome']
     }
