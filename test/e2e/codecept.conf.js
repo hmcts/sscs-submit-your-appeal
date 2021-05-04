@@ -22,7 +22,7 @@ exports.config = {
       waitForNavigation: 'load',
       getPageTimeout: 60000,
       show: false,
-      windowSize: '1440x1400',
+      windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
@@ -30,8 +30,7 @@ exports.config = {
           '--disable-gpu',
           '--no-sandbox',
           '--allow-running-insecure-content',
-          '--ignore-certificate-errors',
-          '--window-size=1440,1400'
+          '--ignore-certificate-errors'
         ]
       }
     },
