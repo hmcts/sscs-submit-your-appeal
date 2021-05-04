@@ -86,7 +86,7 @@ class MRNDate extends SaveToDraftStore {
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
+      goTo(this.journey.steps.DWPIssuingOffice).if(isDWPOfficeESA),
       goTo(this.journey.steps.DWPIssuingOfficeDla).if(isDLABenefit),
       goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAABenefit),
       goTo(this.journey.steps.DWPIssuingOffice)

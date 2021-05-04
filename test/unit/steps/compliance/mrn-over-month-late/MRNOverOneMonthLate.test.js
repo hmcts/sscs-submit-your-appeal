@@ -18,7 +18,6 @@ describe('MRNOverOneMonth.js', () => {
           }
         },
         steps: {
-          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           Appointee: paths.identity.areYouAnAppointee
@@ -105,9 +104,9 @@ describe('MRNOverOneMonth.js', () => {
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /dwp-issuing-office-esa', () => {
+    it('returns the next step path /dwp-issuing-office', () => {
       setBenefitType(benefitTypes.employmentAndSupportAllowance);
-      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
     it('returns the next step path /are-you-an-appointee for UC', () => {

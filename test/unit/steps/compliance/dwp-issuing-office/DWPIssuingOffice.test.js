@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('DWPIssuingOffice.js', () => {
   let dWPIssuingOffice = null;
@@ -9,6 +10,13 @@ describe('DWPIssuingOffice.js', () => {
   beforeEach(() => {
     dWPIssuingOffice = new DWPIssuingOffice({
       journey: {
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes.personalIndependencePayment
+            }
+          }
+        },
         steps: {
           Appointee: paths.identity.areYouAnAppointee
         }

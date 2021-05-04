@@ -20,7 +20,6 @@ const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
 const Independence = require('steps/start/independence/Independence');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
-const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
 const DWPIssuingOfficeDla = require('steps/compliance/dwp-issuing-office-dla/DWPIssuingOfficeDla');
 const DWPIssuingOfficeAttendanceAllowance = require('steps/compliance/dwp-issuing-office-attendance-allowance/DWPIssuingOfficeAttendanceAllowance');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
@@ -109,7 +108,6 @@ const compliance = [
   CheckMRN,
   ContactDWP,
   MRNDate,
-  DWPIssuingOfficeEsa,
   DWPIssuingOfficeDla,
   DWPIssuingOfficeAttendanceAllowance,
   NoMRN,

@@ -22,7 +22,6 @@ describe('MRNDate.js', () => {
         },
         steps: {
           CheckMRN: paths.compliance.checkMRNDate,
-          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOfficeDla: paths.compliance.dwpIssuingOfficeDLA,
           DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
@@ -131,16 +130,16 @@ describe('MRNDate.js', () => {
     });
 
     describe('when benefit type is ESA', () => {
-      it('returns the next step path /dwp-issuing-office-esa if date less than a month', () => {
+      it('returns the next step path /dwp-issuing-office if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.employmentAndSupportAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
 
-      it('returns the next step path /dwp-issuing-office-esa if date is equal to a month', () => {
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.employmentAndSupportAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
 
