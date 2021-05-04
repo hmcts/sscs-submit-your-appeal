@@ -70,23 +70,14 @@ exports.config = {
   multiple: {
     parallel: {
       chunks: files => {
-        function hasKeyword(file) {
+        function hasFunctionalOrFullFunctionalAnnotation(file) {
           // eslint-disable-next-line id-blacklist,no-sync
           const cont = fs.readFileSync(file, 'utf-8');
-          return cont.indexOf('@functional') > -1 || cont.indexOf('fullFunctional') > -1;
+          return cont.indexOf('@functional') > -1 || cont.indexOf('@fullFunctional') > -1;
         }
-        const newFiles = files.filter(file => hasKeyword(file));
-        function splitFiles(list, size) {
-          const sets = [];
-          const chunks = list.length / size;
-          let i = 0;
-          while (i < chunks) {
-            sets[i] = list.splice(0, size);
-            i = i + 1;
-          }
-          return sets;
-        }
-        return splitFiles(newFiles, Math.ceil(newFiles.length / 5));
+        const filesWithKeyword = files.filter(file => hasFunctionalOrFullFunctionalAnnotation(file));
+
+        return filesWithKeyword.map(file => [file]);
       },
       browsers: ['chrome']
     }
