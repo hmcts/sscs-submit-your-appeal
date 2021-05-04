@@ -1,6 +1,6 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh } = require('utils/stringUtils');
+const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh, getHasAcronym } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
@@ -31,10 +31,8 @@ class Independence extends Interstitial {
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
     if (this.req.session.BenefitType) {
-      const benefitShortCode = getBenefitCode(this.req.session.BenefitType.benefitType)
-
-      if (benefitShortCode === 'UC' || benefitShortCode === 'PIP' || benefitShortCode === 'ESA' || benefitShortCode === 'DLA') {
-        return benefitShortCode;
+      if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
+        return getBenefitCode(this.req.session.BenefitType.benefitType);
       }
       return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
     }
