@@ -28,4 +28,4 @@ Scenario(`${language.toUpperCase()} - UC E2E SYA Journey @functional`, I => {
   I.completeAllPcqCY();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   I.endTheSession();
-}).retry(5);
+}).retry(1);
