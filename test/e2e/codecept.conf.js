@@ -86,7 +86,7 @@ exports.config = {
           }
           return sets;
         }
-        return splitFiles(newFiles, Math.ceil(newFiles.length / 4));
+        return splitFiles(newFiles, Math.ceil(newFiles.length / 5));
       },
       browsers: ['chrome']
     }
