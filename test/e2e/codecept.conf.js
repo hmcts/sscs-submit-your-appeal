@@ -76,7 +76,17 @@ exports.config = {
           return cont.indexOf('@functional') > -1 || cont.indexOf('fullFunctional') > -1;
         }
         const newFiles = files.filter(file => hasKeyword(file));
-        return newFiles.map(file => [file]);
+        function splitFiles(list, size) {
+          const sets = [];
+          const chunks = list.length / size;
+          let i = 0;
+          while (i < chunks) {
+            sets[i] = list.splice(0, size);
+            i = i + 1;
+          }
+          return sets;
+        }
+        return splitFiles(newFiles, Math.ceil(newFiles.length / 3));
       },
       browsers: ['chrome']
     }
