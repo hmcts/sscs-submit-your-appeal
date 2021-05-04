@@ -36,20 +36,19 @@ class DWPIssuingOffice extends SaveToDraftStore {
         'Wellingborough DRT',
         'Worthing DRT'
       ]);
-    } else {
-      return DWPIssuingOffice.selectify([
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'AE'
-      ]);
     }
+    return DWPIssuingOffice.selectify([
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      'AE'
+    ]);
   }
 
   get form() {
@@ -84,15 +83,14 @@ class DWPIssuingOffice extends SaveToDraftStore {
           answer: this.fields.dwpIssuingOffice.value
         })
       ];
-    } else {
-      return [
-        answer(this, {
-          question: this.content.cya.pipNumber.question,
-          section: sections.mrnDate,
-          answer: this.fields.pipNumber.value
-        })
-      ];
     }
+    return [
+      answer(this, {
+        question: this.content.cya.pipNumber.question,
+        section: sections.mrnDate,
+        answer: this.fields.pipNumber.value
+      })
+    ];
   }
 
   values() {
@@ -102,13 +100,12 @@ class DWPIssuingOffice extends SaveToDraftStore {
           dwpIssuingOffice: this.fields.dwpIssuingOffice.value
         }
       };
-    } else {
-      return {
-        mrn: {
-          dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`
-        }
-      };
     }
+    return {
+      mrn: {
+        dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`
+      }
+    };
   }
 
   next() {
