@@ -1,6 +1,6 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getBenefitName, getHasAcronym, getTribunalPanelWelsh, getTribunalPanel, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
@@ -27,38 +27,22 @@ class Independence extends Interstitial {
   }
 
   get benefitType() {
-    if (this.req.session.BenefitType) {
-      return getBenefitCode(this.req.session.BenefitType.benefitType);
-    }
-    return '';
-  }
+    const sessionLanguage = i18next.language;
+    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
-  get benefitName() {
     if (this.req.session.BenefitType) {
-      const sessionLanguage = i18next.language;
-      const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+      const benefitShortCode = getBenefitCode(this.req.session.BenefitType.benefitType)
 
+      if (benefitShortCode === 'UC' || benefitShortCode === 'PIP' || benefitShortCode === 'ESA' || benefitShortCode === 'DLA') {
+        return benefitShortCode;
+      }
       return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
     }
     return '';
   }
 
-  get hasNoAcronym() {
-    if (this.req.session.BenefitType) {
-      return !getHasAcronym(this.req.session.BenefitType.benefitType);
-    }
-    return false;
-  }
-
-  get containsBenefit() {
-    if (this.req.session.BenefitType) {
-      return getBenefitName(this.req.session.BenefitType.benefitType).includes('Benefit');
-    }
-    return false;
-  }
-
-  isBenefitEnabled(featureFlag) {
-    return isFeatureFlagEnabled(featureFlag);
+  get benefitCode() {
+    return getBenefitCode(this.req.session.BenefitType.benefitType);
   }
 
   next() {

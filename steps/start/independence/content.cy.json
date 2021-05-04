@@ -1,9 +1,7 @@
 {
   "titleHead": "Tribiwnlys annibynnol",
   "title": "Tribiwnlys annibynnol fydd yn penderfynu ar eich apêl",
-  "reviewed_acronym": "Bydd eich apêl yn cael ei hadolygu gan banel tribiwnlys sy’n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth y byddwch yn ei ddweud wrthynt ac yn penderfynu ar eich hawl i gael budd-dal {{benefitType}}.",
+  "reviewed": "Bydd eich apêl yn cael ei hadolygu gan banel tribiwnlys sy’n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth y byddwch yn ei ddweud wrthynt ac yn penderfynu ar eich hawl i gael budd-dal {{benefitType}}.",
   "separate": "Mae'r tribiwnlys ar wahân i'r Adran Gwaith a Phensiynau.",
-  "reviewed_UC": "Caiff eich apêl ei hadolygu gan dribiwnlys sy’n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth rydych chi’n ei ddweud wrthynt ac yn gwneud penderfyniad.",
-  "reviewed_non_acronym": "Bydd eich apêl yn cael ei hadolygu gan dribiwnlys sy'n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth a ddywedwch wrthynt ac yn gwneud penderfyniad ar eich hawl i gael budd-dal {{benefitName}}.",
-  "reviewed_contains_benefit": "Bydd eich apêl yn cael ei hadolygu gan dribiwnlys sy'n cynnwys {{tribunalPanel}}. Byddant yn ystyried popeth a ddywedwch wrthynt ac yn gwneud penderfyniad ar eich hawl i gael y {{benefitName}}."
+  "UCreviewed": "Caiff eich apêl ei hadolygu gan dribiwnlys sy’n cynnwys barnwr ac, ar gyfer rhai apeliadau, meddyg. Byddant yn ystyried popeth rydych chi’n ei ddweud wrthynt ac yn gwneud penderfyniad."
 }

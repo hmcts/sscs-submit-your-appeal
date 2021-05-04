@@ -72,7 +72,7 @@ const getTribunalPanel = ben => {
     PIP: 'judge, doctor and disability expert',
     DLA: 'judge, doctor and disability expert',
     ESA: 'judge and a doctor',
-    carersAllowance: 'judge, doctor and disability expert',
+    carersAllowance: 'judge',
     attendanceAllowance: 'judge, doctor and disability expert',
     UC: 'judge and for some appeals, a doctor'
   }[key];
@@ -84,7 +84,7 @@ const getTribunalPanelWelsh = ben => {
     PIP: 'barnwr, meddyg ac arbenigwr anabledd',
     DLA: 'barnwr, meddyg ac arbenigwr anabledd',
     ESA: 'barnwr a meddyg',
-    carersAllowance: 'barnwr, meddyg ac arbenigwr anabledd',
+    carersAllowance: 'barnwr',
     attendanceAllowance: 'barnwr, meddyg ac arbenigwr anabledd',
     UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg'
   }[key];

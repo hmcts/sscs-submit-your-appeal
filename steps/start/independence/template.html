@@ -25,16 +25,12 @@
             <form action="{{ path if path else url }}" method="post" class="form">
 
                 {% block fields %}
-                    {% if benefitType == 'UC' %}
-                        <p class="govuk-body-l">{{ content.reviewed_UC | safe }}</p>
-                    {% elseif hasNoAcronym and not containsBenefit %}
-                        <p class="govuk-body-l">{{ content.reviewed_non_acronym | safe }}</p>
-                    {% elseif containsBenefit %}
-                        <p class="govuk-body-l">{{ content.reviewed_contains_benefit | safe }}</p>
-                    {% else %}
-                        <p class="govuk-body-l">{{ content.reviewed_acronym | safe }}</p>
-                    {% endif %}
-                    <p class="govuk-body-l">{{ content.separate | safe }}</p>
+                {% if benefitType == 'UC' %}
+                    <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
+                {% else %}
+                    <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
+                {% endif %}
+                <p class="govuk-body-l">{{ content.separate | safe }}</p>
                 {% endblock %}
 
                 <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue | safe }}">

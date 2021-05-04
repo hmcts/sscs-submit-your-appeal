@@ -16,8 +16,15 @@ class HaveAMRN extends SaveToDraftStore {
   get benefitType() {
     const sessionLanguage = i18next.language;
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+    const benefitShortCode = getBenefitCode(this.req.session.BenefitType.benefitType)
 
-    return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+    if (this.req.session.BenefitType) {
+      if (benefitShortCode === 'UC' || benefitShortCode === 'PIP' || benefitShortCode === 'ESA' || benefitShortCode === 'DLA') {
+        return benefitShortCode;
+      }
+      return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+    }
+    return '';
   }
 
   get benefitCode() {
