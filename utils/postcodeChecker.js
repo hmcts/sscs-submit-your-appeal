@@ -1,6 +1,7 @@
 const config = require('config');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
+require('superagent-retry-delay')(request);
 const { inwardPostcode } = require('utils/regex');
 const logger = require('logger');
 
@@ -10,6 +11,7 @@ const allowedRegionCentres = config.get('postcodeChecker.allowedRpcs')
   .map(rpc => rpc.trim().toLocaleLowerCase());
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
+const retryDelay = 10000;
 
 const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
@@ -25,7 +27,7 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
     }
 
     request.get(`${postcodeCountryLookupUrl}/${outcode}`)
-      .retry(httpRetries)
+      .retry(httpRetries, retryDelay)
       .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
       .then(resp => {
         if (resp.status !== HttpStatus.OK) {

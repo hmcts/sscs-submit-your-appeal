@@ -2,10 +2,12 @@ const { Question, EntryPoint, Redirect, Page } = require('@hmcts/one-per-page');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
+require('superagent-retry-delay')(request);
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
 const httpRetries = 3;
+const retryDelay = 10000;
 
 /* eslint-disable max-lines */
 const {
@@ -91,7 +93,7 @@ const archiveDraft = async(req, caseId) => {
 
   values.ccdCaseId = caseId;
   await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
-    .retry(httpRetries)
+    .retry(httpRetries, retryDelay)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -114,7 +116,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
   await request.post(req.journey.settings.apiDraftUrl)
-    .retry(httpRetries)
+    .retry(httpRetries, retryDelay)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -138,7 +140,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 
 const createDraftInDraftStore = async(req, res, next, values) => {
   await request.put(req.journey.settings.apiDraftUrlCreate)
-    .retry(httpRetries)
+    .retry(httpRetries, retryDelay)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -195,7 +197,7 @@ const restoreUserState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiDraftUrl)
-      .retry(httpRetries)
+      .retry(httpRetries, retryDelay)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -233,7 +235,7 @@ const restoreAllDraftsState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiAllDraftUrl)
-      .retry(httpRetries)
+      .retry(httpRetries, retryDelay)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
