@@ -1,6 +1,7 @@
 const config = require('config');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
+
 require('superagent-retry-delay')(request);
 const { inwardPostcode } = require('utils/regex');
 const logger = require('logger');
