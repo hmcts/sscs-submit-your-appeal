@@ -174,9 +174,18 @@ describe('HearingOptions.js', () => {
   });
 
   describe('answers()', () => {
-    it('should contain hide index which is set to true', () => {
-      const answers = hearingOptions.answers();
-      expect(answers.hide).to.equal(true);
+    let answers = null;
+
+    before(() => {
+      answers = hearingOptions.answers()[0];
+    });
+
+    it('should return expected section', () => {
+      expect(answers.section).to.equal('hearing-options');
+    });
+
+    it('should return expected template', () => {
+      expect(answers.template).to.equal('answer.html');
     });
   });
 

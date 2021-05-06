@@ -8,6 +8,6 @@ module.exports = {
   representative: 'representative',
   reasonsForAppealing: 'reasons-for-appealing',
   theHearing: 'the-hearing',
-  hearingArrangements: 'hearing-arrangements',
-  hearingOptions: 'hearing-options'
+  hearingOptions: 'hearing-options',
+  hearingArrangements: 'hearing-arrangements'
 };
