@@ -2,6 +2,9 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const sections = require('steps/check-your-appeal/sections');
+const i18next = require('i18next');
+const { setCYAValue } = require('steps/hearing/options/cyaHearingOptionsUtils');
 const paths = require('paths');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {
@@ -67,7 +70,12 @@ class HearingOptions extends SaveToDraftStore {
   }
 
   answers() {
-    return answer(this, { hide: true });
+    return [
+      answer(this, {
+        section: sections.hearingOptions,
+        template: 'answer.html'
+      })
+    ];
   }
 
   values() {
@@ -88,6 +96,29 @@ class HearingOptions extends SaveToDraftStore {
         }
       }
     };
+  }
+
+
+  get cyaOptions() {
+    const selectOptions = this.fields.selectOptions.value;
+    const sessionLanguage = i18next.language;
+    const cyaContent = require(`./content.${sessionLanguage}`).cya;
+
+    const setRequestedOrNotRequested = value => value ? cyaContent.requested : cyaContent.notRequested;
+
+    const arrangementsAnswer = {
+      hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
+      hearingTypeVideo: setRequestedOrNotRequested(selectOptions.video.requested),
+      hearingTypeFaceToFace: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
+    };
+
+    arrangementsAnswer.hearingTypeTelephone = setCYAValue(
+      arrangementsAnswer.hearingTypeTelephone, selectOptions.telephone.phoneNumber);
+
+    arrangementsAnswer.hearingTypeVideo = setCYAValue(
+      arrangementsAnswer.hearingTypeVideo, selectOptions.video.email);
+
+    return arrangementsAnswer;
   }
 
   next() {
