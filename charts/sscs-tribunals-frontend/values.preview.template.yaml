@@ -9,8 +9,8 @@ nodejs:
     FT_WELSH: true
     PCQ_ENABLED: true
     MULTIPLE_DRAFTS_ENABLED: true
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-pr-1769.service.core-compute-preview.internal
-    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-pr-1769.service.core-compute-preview.internal/evidence/upload
+    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-pr-2018.service.core-compute-preview.internal
+    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-pr-2018.service.core-compute-preview.internal/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.aat.platform.hmcts.net/login
     SERVICES_IDAM_API_URL: https://idam-api.aat.platform.hmcts.net
   keyVaults:
