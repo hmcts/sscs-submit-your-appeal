@@ -153,6 +153,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       section(sections.representative, { title: this.content.representative }),
       section(sections.reasonsForAppealing, { title: this.content.reasonsForAppealing }),
       section(sections.theHearing, { title: this.content.hearing.theHearing }),
+      section(sections.hearingOptions, { title: this.content.hearing.options }),
       section(sections.hearingArrangements, { title: this.content.hearing.arrangements })
     ];
   }
