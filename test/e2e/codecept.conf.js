@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
+const fs = require('fs');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
@@ -61,7 +62,16 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 10,
+      chunks: files => {
+        function hasE2eAnnotation(file) {
+          // eslint-disable-next-line id-blacklist,no-sync
+          const cont = fs.readFileSync(file, 'utf-8');
+          return cont.indexOf('@e2e') > -1;
+        }
+        const filesWithKeyword = files.filter(file => hasE2eAnnotation(file));
+
+        return filesWithKeyword.map(file => [file]);
+      },
       browsers: ['chrome']
     }
   },
