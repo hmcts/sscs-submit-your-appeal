@@ -13,21 +13,35 @@
     {
       "description": "Employment and Support Allowance",
       "code": "ESA",
-      "office" : "Inverness DRT"
+      "office" : "Inverness DRT",
+      "hasDwpIssuingOffice": true
     },
     {
       "description": "Universal Credit",
       "code": "UC",
-      "office": "Universal Credit"
+      "office": "Universal Credit",
+      "hasDwpIssuingOffice": false
     },
     {
       "description": "Disability Living Allowance (DLA)",
       "code": "DLA",
-      "office": "Recovery from Estates"
+      "office": "Recovery from Estates",
+      "hasDwpIssuingOffice": true
     },
     {
       "description": "Carer's Allowance",
-      "searchName": "Carer's Allowance"
+      "searchName": "Carer's Allowance",
+      "code": "Carer's Allowance",
+      "codeWelsh": "Lwfans Gofalwr",
+      "office": "",
+      "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Attendance Allowance",
+      "code": "Attendance Allowance",
+      "codeWelsh": "Lwfans Gweini",
+      "office": "The Pension Service 11",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {
