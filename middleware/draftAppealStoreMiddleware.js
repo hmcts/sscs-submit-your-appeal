@@ -8,7 +8,7 @@ const config = require('config');
 const Base64 = require('js-base64').Base64;
 
 const httpRetries = 3;
-const retryDelay = 10000;
+const retryDelay = 1000;
 
 /* eslint-disable max-lines */
 const {

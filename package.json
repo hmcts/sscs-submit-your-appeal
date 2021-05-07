@@ -69,6 +69,7 @@
     "formidable": "^1.2.1",
     "git-rev-sync": "^1.12.0",
     "govuk-frontend": "^2.13.0",
+    "spin": "^0.0.1",
     "graceful-fs": "^4.1.15",
     "helmet": "^3.18.0",
     "html-entities": "^1.2.1",

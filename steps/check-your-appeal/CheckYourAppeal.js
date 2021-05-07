@@ -9,6 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
+const { Spinner } = require('spin');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -28,6 +29,28 @@ const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') ===
 
 const httpRetries = 3;
 const retryDelay = 10000;
+
+const spinnerOptions = {
+  lines: 13, // The number of lines to draw
+  length: 38, // The length of each line
+  width: 17, // The line thickness
+  radius: 45, // The radius of the inner circle
+  scale: 1, // Scales overall size of the spinner
+  corners: 1, // Corner roundness (0..1)
+  color: '#ffffff', // CSS color or array of colors
+  fadeColor: 'transparent', // CSS color or array of colors
+  speed: 1, // Rounds per second
+  rotate: 0, // The rotation offset
+  animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  zIndex: 2e9, // The z-index (defaults to 2000000000)
+  className: 'spinner', // The CSS class to assign to the spinner
+  top: '50%', // Top position relative to parent
+  left: '50%', // Left position relative to parent
+  shadow: '0 0 1px transparent', // Box-shadow for the lines
+  position: 'absolute' // Element positioning
+};
+
 
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
@@ -105,6 +128,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       get(values, 'ccdCaseId')
     ], logPath);
 
+    const spinner = new Spinner(spinnerOptions).spin(this);
 
     return request.post(this.journey.settings.apiUrl)
       .retry(httpRetries, retryDelay)
@@ -124,6 +148,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
         logger.event('SYA-SendToApi-Success');
+        spinner.stop();
       }).catch(error => {
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
@@ -140,6 +165,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
 
         const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';
         logger.event(metricEvent);
+        spinner.stop();
         return Promise.reject(error);
       });
   }

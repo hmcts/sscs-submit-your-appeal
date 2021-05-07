@@ -12,7 +12,7 @@ const allowedRegionCentres = config.get('postcodeChecker.allowedRpcs')
   .map(rpc => rpc.trim().toLocaleLowerCase());
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
-const retryDelay = 10000;
+const retryDelay = 1000;
 
 const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
