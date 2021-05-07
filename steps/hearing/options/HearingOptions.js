@@ -104,7 +104,7 @@ class HearingOptions extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequestedOrNotRequested = value => value ? cyaContent.requested : cyaContent.notRequested;
+    const setRequestedOrNotRequested = value => (value ? cyaContent.requested : cyaContent.notRequested);
 
     const arrangementsAnswer = {
       hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
