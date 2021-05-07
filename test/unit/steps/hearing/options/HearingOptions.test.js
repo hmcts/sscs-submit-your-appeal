@@ -270,12 +270,12 @@ describe('HearingOptions.js', () => {
       hearingOptions = new HearingOptions({});
       hearingOptions.fields = {
         selectOptions: {
-            value: {
-              telephone: {requested: {value: true}, phoneNumber: '0987654321'},
-              video: {requested: {value: true}, email: 'name@email'}, faceToFace: {requested: {value: true}}
-            }
+          value: {
+            telephone: { requested: { value: true }, phoneNumber: '0987654321' },
+            video: { requested: { value: true }, email: 'name@email' }, faceToFace: { requested: { value: true } }
           }
-        };
+        }
+      };
 
       expect(hearingOptions.cyaOptions).to.eql({
         hearingTypeTelephone: '0987654321',
