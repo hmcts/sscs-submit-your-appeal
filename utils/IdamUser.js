@@ -12,7 +12,7 @@ const timeout = 40000;
 const createUser = () => {
   console.log('Creating Idam test user');
   const password = testDataEn.signIn.password;
-  const randomNumber = parseInt(Math.random() * 10000000 + '', 10);
+  const randomNumber = parseInt(Math.floor(Math.random() * 1000));
   const email = `test${randomNumber}@hmcts.net`;
   const options = {
     url: `${sidamApiUrl}/testing-support/accounts`,
