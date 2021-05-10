@@ -69,7 +69,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
 }
 
 
-function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
   /* Create new application */
@@ -78,7 +78,7 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTyp
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.signIn(newUserEmail, testDataEn.signIn.password);
   I.createNewApplication();
   I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
   I.signOut();
@@ -90,7 +90,7 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTyp
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.signIn(newUserEmail, testDataEn.signIn.password);
   I.verifyDraftAppealsAndEditACase();
   I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
   I.continueFromIndependance(commonContent);
@@ -103,7 +103,7 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, benefitTyp
   I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
 }
 
-function enterDetailsForNewApplication(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsForNewApplication(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -111,7 +111,7 @@ function enterDetailsForNewApplication(commonContent, language, benefitTypeCode 
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.signIn(userEmail, testDataEn.signIn.password);
   I.createNewApplication();
   I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
   I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
@@ -122,7 +122,7 @@ function enterDetailsForNewApplication(commonContent, language, benefitTypeCode 
   I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
 }
 
-function enterDetailsToArchiveACase(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsToArchiveACase(commonContent, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -130,7 +130,7 @@ function enterDetailsToArchiveACase(commonContent, language, benefitTypeCode = t
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(testDataEn.signIn.username, testDataEn.signIn.password);
+  I.signIn(userEmail, testDataEn.signIn.password);
   I.verifyDraftAppealsAndArchiveACase();
 }
 

@@ -74,15 +74,15 @@ describe('HaveAMRN.js', () => {
 
   describe('benefitType()', () => {
     it('should return benefit type', () => {
-      expect(haveAMRN.benefitType).to.eql('Universal Credit (UC)');
+      expect(haveAMRN.benefitType).to.eql('UC');
     });
   });
 
-   describe('benefitCode()', () => {
-      it('should return benefit code', () => {
-        expect(haveAMRN.benefitCode).to.eql('UC');
-      });
+  describe('benefitCode()', () => {
+    it('should return benefit code', () => {
+      expect(haveAMRN.benefitCode).to.eql('UC');
     });
+  });
 
   describe('benefitName()', () => {
     it('should return benefit name', () => {
