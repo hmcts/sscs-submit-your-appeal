@@ -4,6 +4,7 @@ const rp = require('request-promise');
 const config = require('config');
 
 const testDataEn = require('test/e2e/data.en');
+
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = 40000;
 
