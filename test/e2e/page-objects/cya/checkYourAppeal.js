@@ -77,7 +77,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
 
-  if (benefitTypeCode === 'ESA' || benefitTypeCode === 'DLA') {
+  if (benefitTypeCode === 'ESA' || benefitTypeCode === 'DLA' || benefitTypeCode === 'Attendance Allowance' || benefitTypeCode === 'Lwfans Gweini') {
     I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
   }
 

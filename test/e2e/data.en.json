@@ -28,6 +28,12 @@
     {
       "description": "Carer's Allowance",
       "searchName": "Carer's Allowance"
+    },
+    {
+      "description": "Attendance Allowance",
+      "code": "Attendance Allowance",
+      "codeWelsh": "Lwfans Gweini",
+      "office": "The Pension Service 11"
     }
   ],
   "signIn": {
