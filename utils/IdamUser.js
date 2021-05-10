@@ -3,13 +3,15 @@ const logger = require('logger');
 const rp = require('request-promise');
 const config = require('config');
 
+const testDataEn = require('test/e2e/data.en');
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = 40000;
 
+
 const createUser = () => {
   console.log('Creating Idam test user');
-  const password = 'Testing123';
-  const randomNumber = parseInt(`${Math.random() * 10000000}`, 10);
+  const password = testDataEn.signIn.password;
+  const randomNumber = parseInt(Math.random() * 10000000 + '', 10);
   const email = `test${randomNumber}@hmcts.net`;
   const options = {
     url: `${sidamApiUrl}/testing-support/accounts`,
