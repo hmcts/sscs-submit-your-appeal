@@ -28,4 +28,4 @@ Scenario(`${language.toUpperCase()} - Attendance Allowance E2E SYA Journey @func
   I.completeAllPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   I.endTheSession();
-}).retry(1);
+}).retry(2);
