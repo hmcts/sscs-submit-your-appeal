@@ -137,7 +137,6 @@
     "webdriverio": "^4.14.4"
   },
   "resolutions": {
-    "postcss": ">=8.2.10",
     "redis": "^3.1.1",
     "assign-deep": "1.0.1",
     "braces": "^2.3.2",
