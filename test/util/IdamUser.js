@@ -5,6 +5,7 @@ const config = require('config');
 
 const testDataEn = require('test/e2e/data.en');
 const crypto = require('crypto');
+
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = config.get('services.idam-aat.apiCallTimeout');
 

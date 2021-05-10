@@ -1,7 +1,7 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
-const testUser = require('utils/IdamUser');
+const testUser = require('../util/IdamUser');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
