@@ -111,6 +111,10 @@
       "clientId": "sscs",
       "useMock": "false"
     },
+    "idam-aat": {
+      "apiUrl": "https://idam-api.aat.platform.hmcts.net",
+      "apiCallTimeout" : 40000
+    },
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
