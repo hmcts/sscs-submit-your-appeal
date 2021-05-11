@@ -14,4 +14,4 @@ Feature(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey @functional @e2e`, I => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
-}).retry(10);
+}).retry(20);
