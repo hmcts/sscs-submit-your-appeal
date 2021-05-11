@@ -58,7 +58,8 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
 
-  if (hasDwpIssuingOffice) {
+  I.log(`hasDwpIssuingOffice = ${hasDwpIssuingOffice}`);
+  if (hasDwpIssuingOffice || benefitTypeCode === 'Lwfans Gweini') {
     I.enterDWPIssuingOffice(commonContent, office);
   } else {
     I.wait(2);
