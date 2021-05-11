@@ -5,12 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
-const packageJson = require.resolve('govuk-frontend/package.json');
-const govUkFrontendRoot = path.resolve(packageJson, '..');
-const assets = path.resolve(govUkFrontendRoot, 'assets');
-const imagesGokukFrontend = path.resolve(assets, 'images');
-const fontsGokukFrontend = path.resolve(assets, 'fonts');
-
 module.exports = {
   target: 'web',
   entry: [
@@ -26,8 +20,8 @@ module.exports = {
           { from: path.resolve('assets/images'), to: 'images' },
           { from: path.resolve('assets/locale'), to: 'locale' },
           { from: path.resolve('views/components'), to: 'nunjucks/components' },
-          { from: imagesGokukFrontend, to: 'images' },
-          { from: fontsGokukFrontend, to: 'fonts' },
+          { from: path.resolve('node_modules/govuk-frontend/assets/images'), to: 'images' },
+          { from: path.resolve('node_modules/govuk-frontend/assets/fonts'), to: 'fonts' },
           { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/css/hmcts-webchat-gds-v3.css'), to: '' },
           { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat.js'), to: '' },
           { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' }
