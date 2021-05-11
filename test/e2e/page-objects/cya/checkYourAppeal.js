@@ -58,7 +58,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
 
-  if (hasDwpIssuingOffice) {
+  if (hasDwpIssuingOffice === true) {
     I.enterDWPIssuingOffice(commonContent, office);
   }
 
