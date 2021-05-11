@@ -1,21 +1,9 @@
 {
   "titleHead": "A oes gennych chi MRN",
   "title": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
-  "pip": {
-    "subtitle": "Dyma’r llythyr a gawsoch gan y DWP os ofynnoch iddynt ailystyried eu penderfyniad ynglŷn â budd-dal {{benefitType}}."
-  },
-  "esa": {
-    "subtitle": "Dyma’r llythyr a gawsoch gan y DWP os ofynnoch iddynt ailystyried eu penderfyniad ynglŷn â budd-dal {{benefitType}}."
-  },
-  "dla": {
-    "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch eich hawl i gael {{benefitType}}."
-  },
+  "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch eich hawl i gael {{benefitType}}.",
   "uc": {
-    "subtitle":"Y MRN yw’r llythyr a gafodd ei ychwanegu i’ch dyddlyfr ar-lein pan ofynnoch i DWP ailystyried eu penderfyniad Credyd Cynhwysol.",
     "subtitle_para2": "Mae eich MRN yn eich <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">dyddlyfr ar-lein Credyd Cynhwysol</a> (agor mewn ffenestr newydd)."
-  },
-  "carersallowance": {
-    "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch y Lwfans Gofalwr."
   },
   "fields": {
     "haveAMRN": {

@@ -60,6 +60,9 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowCA')) {
       allowedTypes.push(benefitTypes.carersAllowance);
     }
+    if (isFeatureFlagEnabled('allowAA')) {
+      allowedTypes.push(benefitTypes.attendanceAllowance);
+    }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     return branch(
