@@ -58,8 +58,10 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
 
-  if (hasDwpIssuingOffice === true) {
+  if (hasDwpIssuingOffice) {
     I.enterDWPIssuingOffice(commonContent, office);
+  } else {
+    I.wait(2);
   }
 
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
