@@ -57,13 +57,9 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
   } else {
     I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   }
-
-  if (hasDwpIssuingOffice || benefitTypeCode === 'Lwfans Gweini') {
+  if (hasDwpIssuingOffice) {
     I.enterDWPIssuingOffice(commonContent, office);
-  } else {
-    I.wait(2);
   }
-
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
