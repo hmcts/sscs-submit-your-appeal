@@ -3,7 +3,8 @@ function signIn(username, password) {
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
-  I.wait(3);
+  I.waitForElement(".form-buttons-group [href='/new-appeal']", 3);
+  I.see('Your draft benefit appeals');
 }
 
 function navigateToSignInLink() {

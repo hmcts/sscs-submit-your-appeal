@@ -2,6 +2,7 @@
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
 const fs = require('fs');
+const testUser = require('../util/IdamUser');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
@@ -44,9 +45,13 @@ exports.config = {
   },
   bootstrapAll: done => {
     fileAcceptor.bootstrap(done);
+    process.env.USEREMAIL_1 = testUser.createUser();
+    process.env.USEREMAIL_2 = testUser.createUser();
   },
   teardownAll: done => {
     fileAcceptor.teardown(done);
+    testUser.deleteUser(process.env.USEREMAIL_1);
+    testUser.deleteUser(process.env.USEREMAIL_2);
   },
   mocha: {
     reporterOptions: {
