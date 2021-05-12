@@ -68,6 +68,9 @@
     "allowAA": {
       "enabled": "true"
     },
+    "allowBB": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },
