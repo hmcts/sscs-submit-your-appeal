@@ -30,4 +30,4 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(5);
+}).retry(10);
