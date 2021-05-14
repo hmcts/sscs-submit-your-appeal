@@ -97,10 +97,10 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(newUserEmail, testDataEn.signIn.password);
-  I.createNewApplication();
+  I.signIn(newUserEmail, testDataEn.signIn.password, language);
+  I.createNewApplication(language);
   I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
-  I.signOut();
+  I.signOut(language);
 
   /* Login to submit saved case */
   I.createTheSession(language);
@@ -109,8 +109,8 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(newUserEmail, testDataEn.signIn.password);
-  I.verifyDraftAppealsAndEditACase();
+  I.signIn(newUserEmail, testDataEn.signIn.password, language);
+  I.verifyDraftAppealsAndEditACase(language);
   I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
   I.continueFromIndependance(commonContent);
   I.selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, '#haveAMRN-yes');
@@ -130,8 +130,8 @@ function enterDetailsForNewApplication(commonContent, language, userEmail, benef
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(userEmail, testDataEn.signIn.password);
-  I.createNewApplication();
+  I.signIn(userEmail, testDataEn.signIn.password, language);
+  I.createNewApplication(language);
   I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
   I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
   I.enterPostcodeAndContinueAfterSignIn(commonContent, appellant.contactDetails.postCode);
@@ -141,7 +141,7 @@ function enterDetailsForNewApplication(commonContent, language, userEmail, benef
   I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
 }
 
-function enterDetailsToArchiveACase(commonContent, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsToArchiveACase(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -149,8 +149,8 @@ function enterDetailsToArchiveACase(commonContent, userEmail, benefitTypeCode = 
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  I.signIn(userEmail, testDataEn.signIn.password);
-  I.verifyDraftAppealsAndArchiveACase();
+  I.signIn(userEmail, testDataEn.signIn.password, language);
+  I.verifyDraftAppealsAndArchiveACase(language);
 }
 
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
