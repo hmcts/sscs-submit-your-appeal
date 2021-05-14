@@ -45,7 +45,7 @@ class Independence extends Interstitial {
 
   get benefitEndText() {
     if (i18next.language === 'cy') {
-      getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
+      return getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
     }
     return getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
