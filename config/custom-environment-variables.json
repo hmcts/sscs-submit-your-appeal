@@ -51,6 +51,9 @@
     "allowAA": {
       "enabled": "ALLOW_AA_ENABLED"
     },
+    "allowBB": {
+      "enabled": "ALLOW_BB_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },

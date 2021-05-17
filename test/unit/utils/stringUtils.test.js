@@ -6,7 +6,9 @@ const {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getBenefitName,
-  getTribunalPanel
+  getTribunalPanel,
+  getBenefitEndText,
+  getBenefitEndTextWelsh
 } = require('utils/stringUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
@@ -186,8 +188,36 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge and a doctor');
     });
     it('returns the right name for dla', () => {
-      const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
-      expect(bcode).to.equal('judge and a doctor');
+      const bcode = getTribunalPanel(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('judge, doctor and disability expert');
+    });
+    it('returns the right name for carers allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.carersAllowance);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for bereavement benefit', () => {
+      const bcode = getTribunalPanel(benefitTypes.bereavementBenefit);
+      expect(bcode).to.equal('judge');
+    });
+  });
+  describe('getBenefitEndText', () => {
+    it('returns the word benefit for types with no benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.personalIndependencePayment);
+      expect(benefitText).to.equal(' benefit');
+    });
+    it('returns empty for types with benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.bereavementBenefit);
+      expect(benefitText).to.equal('');
+    });
+  });
+  describe('getBenefitEndTextWelsh', () => {
+    it('returns the word budd-dal for types with no benefit in the name', () => {
+      const benefitText = getBenefitEndTextWelsh(benefitTypes.personalIndependencePayment);
+      expect(benefitText).to.equal('budd-dal ');
+    });
+    it('returns empty for types with benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.bereavementBenefit);
+      expect(benefitText).to.equal('');
     });
   });
 });

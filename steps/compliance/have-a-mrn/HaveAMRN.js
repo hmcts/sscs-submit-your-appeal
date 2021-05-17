@@ -5,7 +5,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { getBenefitCode, getBenefitName, getHasAcronym } = require('utils/stringUtils');
+const { getBenefitCode, getBenefitName, getHasAcronym, getBenefitEndText } = require('utils/stringUtils');
 const i18next = require('i18next');
 
 class HaveAMRN extends SaveToDraftStore {
@@ -34,6 +34,10 @@ class HaveAMRN extends SaveToDraftStore {
 
   get benefitName() {
     return getBenefitName(this.req.session.BenefitType.benefitType);
+  }
+
+  get benefitEndText() {
+    return getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
   get form() {

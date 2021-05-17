@@ -1,7 +1,7 @@
 {
   "titleHead": "Have you got an MRN",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
-  "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}} benefit.",
+  "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}}{{benefitEndText}}.",
   "uc": {
     "subtitle_para2": "Find your MRN in your <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">Universal Credit online journal</a> (opens in a new window)."
   },
