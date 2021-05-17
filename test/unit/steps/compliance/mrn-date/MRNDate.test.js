@@ -208,5 +208,21 @@ describe('MRNDate.js', () => {
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
       });
     });
+
+    describe('when benefit type is Bereavement Benefit', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.bereavementBenefit);
+        overrideFeatFlag({ key: 'allowBB', value: true });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.bereavementBenefit);
+        overrideFeatFlag({ key: 'allowBB', value: true });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
   });
 });

@@ -126,5 +126,10 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       setBenefitType(benefitTypes.attendanceAllowance);
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
     });
+
+    it('returns the next step path /are-you-an-appointee for Bereavement Benefit', () => {
+      setBenefitType(benefitTypes.bereavementBenefit);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
   });
 });
