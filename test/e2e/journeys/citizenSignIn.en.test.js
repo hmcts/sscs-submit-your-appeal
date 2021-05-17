@@ -21,12 +21,12 @@ After(I => {
 Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async I => {
   await moment().locale(language);
   await I.enterDetailsForNewApplication(commonContent, language, process.env.USEREMAIL_1);
-});
+}).retry(5);
 
 Scenario(`${language.toUpperCase()} - Sign in as a existing user and archive an application @fullFunctional`, I => {
   moment().locale(language);
   I.enterDetailsToArchiveACase(commonContent, process.env.USEREMAIL_1);
-}).retry(1);
+}).retry(5);
 
 Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async I => {
   await moment().locale(language);
@@ -41,4 +41,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   await I.appealSubmitConfirmation(language);
-}).retry(1);
+}).retry(20);

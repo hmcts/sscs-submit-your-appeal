@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
 const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
+const fs = require('fs');
 const testUser = require('../util/IdamUser');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
@@ -25,7 +26,13 @@ exports.config = {
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
-        args: ['--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
+        args: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--allow-running-insecure-content',
+          '--ignore-certificate-errors'
+        ]
       }
     },
     MyHelper: {
@@ -66,7 +73,16 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 4,
+      chunks: files => {
+        function hasFunctionalOrFullFunctionalAnnotation(file) {
+          // eslint-disable-next-line id-blacklist,no-sync
+          const cont = fs.readFileSync(file, 'utf-8');
+          return cont.indexOf('@functional') > -1 || cont.indexOf('@fullFunctional') > -1;
+        }
+        const filesWithKeyword = files.filter(file => hasFunctionalOrFullFunctionalAnnotation(file));
+
+        return filesWithKeyword.map(file => [file]);
+      },
       browsers: ['chrome']
     }
   },
