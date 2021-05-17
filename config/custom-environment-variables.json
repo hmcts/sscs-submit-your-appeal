@@ -51,6 +51,9 @@
     "allowAA": {
       "enabled": "ALLOW_AA_ENABLED"
     },
+    "allowBB": {
+      "enabled": "ALLOW_BB_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
@@ -71,9 +74,6 @@
     },
     "antennaWebChat": {
       "enabled": "FT_ANTENNA_WEBCHAT"
-    },
-    "allowUCHearingOption": {
-      "enabled": "FT_ALLOW_UC_HEARING_OPTIONS"
     },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"

@@ -55,10 +55,12 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
 
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
 
+    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
+
     const isAttendanceAllowanceBenefit = String(benefitType) === benefitTypes.attendanceAllowance;
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit),
+      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
       goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAttendanceAllowanceBenefit),
       goTo(this.journey.steps.DWPIssuingOffice)

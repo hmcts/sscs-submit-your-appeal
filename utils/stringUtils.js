@@ -58,9 +58,29 @@ const splitBenefitType = benefitType => {
   return { description, code };
 };
 
+const hasAcronym = benefitType => (benefitType.includes('(') && benefitType.includes(')'));
+
+const doesBenefitContainTheWordBenefit = benefitType => (benefitType.includes('Benefit'));
+
 const getBenefitCode = ben => splitBenefitType(ben).code;
 
 const getBenefitName = ben => splitBenefitType(ben).description;
+
+const getHasAcronym = ben => hasAcronym(ben);
+
+const getBenefitEndText = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return ' benefit';
+  }
+  return '';
+};
+
+const getBenefitEndTextWelsh = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return 'budd-dal ';
+  }
+  return '';
+};
 
 const getTribunalPanel = ben => {
   const key = splitBenefitType(ben).code;
@@ -68,9 +88,23 @@ const getTribunalPanel = ben => {
     PIP: 'judge, doctor and disability expert',
     DLA: 'judge, doctor and disability expert',
     ESA: 'judge and a doctor',
-    carersAllowance: 'judge, doctor and disability expert',
+    carersAllowance: 'judge',
     attendanceAllowance: 'judge, doctor and disability expert',
+    bereavementBenefit: 'judge',
     UC: 'judge and for some appeals, a doctor'
+  }[key];
+};
+
+const getTribunalPanelWelsh = ben => {
+  const key = splitBenefitType(ben).code;
+  return {
+    PIP: 'barnwr, meddyg ac arbenigwr anabledd',
+    DLA: 'barnwr, meddyg ac arbenigwr anabledd',
+    ESA: 'barnwr a meddyg',
+    carersAllowance: 'barnwr',
+    attendanceAllowance: 'barnwr, meddyg ac arbenigwr anabledd',
+    bereavementBenefit: 'barnwr',
+    UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg'
   }[key];
 };
 
@@ -87,7 +121,11 @@ module.exports = {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getTribunalPanel,
+  getTribunalPanelWelsh,
   getBenefitName,
   decode,
+  getHasAcronym,
+  getBenefitEndText,
+  getBenefitEndTextWelsh,
   overrideFeatFlag
 };

@@ -7,7 +7,7 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @e2e`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);
@@ -23,4 +23,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(2);
+}).retry(10);

@@ -65,6 +65,10 @@ class LanguagePreference extends SaveToDraftStore {
       allowedTypes.push(benefitTypes.attendanceAllowance);
     }
 
+    if (isFeatureFlagEnabled('allowBB')) {
+      allowedTypes.push(benefitTypes.bereavementBenefit);
+    }
+
     const isAllowedBenefit = () => allowedTypes.indexOf(this.req.session.BenefitType.benefitType) !== -1;
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
