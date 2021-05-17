@@ -1,36 +1,29 @@
-/* eslint-disable no-process-env */
-
-const language = 'en';
+/* eslint init-declarations: ["error", "never"]*/
+const language = 'cy';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
+const testUser = require('../../util/IdamUser');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
+let userEmail;
 
 Before(I => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
+  userEmail = testUser.createUser();
 });
 
 After(I => {
   I.endTheSession();
+  testUser.deleteUser(userEmail);
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @fullFunctional`, async I => {
   await moment().locale(language);
-  await I.enterDetailsForNewApplication(commonContent, language, process.env.USEREMAIL_1);
-}).retry(5);
-
-Scenario(`${language.toUpperCase()} - Sign in as a existing user and archive an application @fullFunctional`, I => {
-  moment().locale(language);
-  I.enterDetailsToArchiveACase(commonContent, language, process.env.USEREMAIL_1);
-}).retry(1);
-
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async I => {
-  await moment().locale(language);
-  await I.enterDetailsFromStartToDraftAppeals(commonContent, language, process.env.USEREMAIL_2);
+  await I.enterDetailsFromStartToDraftAppeals(commonContent, language, userEmail);
   await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
@@ -41,4 +34,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   await I.appealSubmitConfirmation(language);
-}).retry(20);
+}).retry(5);
