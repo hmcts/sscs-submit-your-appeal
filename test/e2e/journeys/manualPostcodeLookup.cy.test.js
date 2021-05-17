@@ -23,4 +23,4 @@ Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`
   I.enterDetailsFromNoRepresentativeToEnd(commonContent);
   I.skipPcqCY();
   I.confirmDetailsArePresent(language);
-}).retry(15);
+}).retry(20);
