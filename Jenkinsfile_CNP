@@ -40,9 +40,11 @@ withPipeline("nodejs", product, component) {
   enableAksStagingDeployment()
   disableLegacyDeployment()
 
-  after('akschartsinstall'){
+  onMaster {
+    after('akschartsinstall') {
       // Vars needed for AKS testing
       env.CHUNKS = 4
+    }
   }
 
   after("smoketest:preview") {
