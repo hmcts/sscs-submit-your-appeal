@@ -40,9 +40,9 @@ withPipeline("nodejs", product, component) {
   enableAksStagingDeployment()
   disableLegacyDeployment()
 
-  onMaster {
-    after('akschartsinstall') {
-      // Vars needed for AKS testing
+  after('akschartsinstall'){
+    onMaster {
+      // Vars needed for AKS testing in path to live
       env.CHUNKS = 4
     }
   }
