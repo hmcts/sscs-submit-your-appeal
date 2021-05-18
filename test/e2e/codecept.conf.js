@@ -6,6 +6,18 @@ const testUser = require('../util/IdamUser');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
+const defaultChunks = files => {
+  function hasFunctionalOrFullFunctionalAnnotation(file) {
+    // eslint-disable-next-line id-blacklist,no-sync
+    const cont = fs.readFileSync(file, 'utf-8');
+    return cont.indexOf('@functional') > -1 || cont.indexOf('@fullFunctional') > -1;
+  }
+  const filesWithKeyword = files.filter(file => hasFunctionalOrFullFunctionalAnnotation(file));
+
+  return filesWithKeyword.map(file => [file]);
+};
+
+const chunks = process.env.CHUNKS || defaultChunks;
 
 exports.config = {
   tests: './**/*.test.js',
@@ -73,16 +85,7 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: files => {
-        function hasFunctionalOrFullFunctionalAnnotation(file) {
-          // eslint-disable-next-line id-blacklist,no-sync
-          const cont = fs.readFileSync(file, 'utf-8');
-          return cont.indexOf('@functional') > -1 || cont.indexOf('@fullFunctional') > -1;
-        }
-        const filesWithKeyword = files.filter(file => hasFunctionalOrFullFunctionalAnnotation(file));
-
-        return filesWithKeyword.map(file => [file]);
-      },
+      chunks: chunks,
       browsers: ['chrome']
     }
   },
