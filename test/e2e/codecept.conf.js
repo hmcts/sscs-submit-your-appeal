@@ -17,8 +17,6 @@ const defaultChunks = files => {
   return filesWithKeyword.map(file => [file]);
 };
 
-const chunks = process.env.CHUNKS || defaultChunks;
-
 exports.config = {
   tests: './**/*.test.js',
   output: process.env.E2E_OUTPUT_DIR || config.get('e2e.outputDir'),
@@ -85,7 +83,7 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: chunks,
+      chunks: process.env.CHUNKS || defaultChunks,
       browsers: ['chrome']
     }
   },
