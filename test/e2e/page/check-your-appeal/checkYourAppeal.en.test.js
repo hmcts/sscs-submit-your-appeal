@@ -20,11 +20,11 @@ Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken 
   I.see('There are still some questions to answer.');
   I.click('Continue your application');
   I.seeCurrentUrlEquals('/benefit-type');
-}).retry(5);
+}).retry(20);
 
 Scenario(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, I => {
   I.enterBenefitTypeAndContinue(commonContent, 'pip');
   // I.chooseLanguagePreference(commonContent, 'no');
   I.amOnPage(paths.checkYourAppeal);
   I.dontSee(checkYourAppealContent.header);
-}).retry(5);
+}).retry(20);
