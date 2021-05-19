@@ -68,10 +68,7 @@ class MRNDate extends SaveToDraftStore {
   next() {
     const mrnDate = this.fields.mrnDate.value;
     const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
 
     const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)';
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
@@ -79,16 +76,9 @@ class MRNDate extends SaveToDraftStore {
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit) && isLessThanOrEqualToAMonth;
 
-    const isDLABenefit = benefitType === benefitTypes.disabilityLivingAllowance;
-
-    const isAABenefit = benefitType === benefitTypes.attendanceAllowance;
-
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
-      goTo(this.journey.steps.DWPIssuingOfficeDla).if(isDLABenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAABenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }
