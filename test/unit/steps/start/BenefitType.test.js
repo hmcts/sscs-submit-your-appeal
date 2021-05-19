@@ -116,12 +116,12 @@ describe('BenefitType.js', () => {
 
     it('pushes IIDB as allowed benefitType if allowIIDB is enabled', () => {
       expect(Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
-          .to.eql(config.get('features.allowIIDB.enabled') === 'true');
+        .to.eql(config.get('features.allowIIDB.enabled') === 'true');
     });
 
     it('does not push IIDB as allowed benefitType when allowIIDB is not enabled', () => {
       expect(!Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
-          .to.eql(config.get('features.allowIIDB.enabled') === 'false');
+        .to.eql(config.get('features.allowIIDB.enabled') === 'false');
     });
 
     it('returns /language-preference when Welsh feature toggle is on', () => {
