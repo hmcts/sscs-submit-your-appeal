@@ -75,7 +75,7 @@
       "enabled": "false"
     },
     "pcq": {
-      "enabled": "false"
+      "enabled": "true"
     },
     "antennaWebChat": {
       "enabled": "false"
