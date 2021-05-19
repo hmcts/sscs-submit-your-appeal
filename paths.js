@@ -49,6 +49,7 @@ module.exports = {
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeDLA: '/dwp-issuing-office-dla',
     dwpIssuingOfficeAttendanceAllowance: '/dwp-issuing-office-attendance-allowance',
+    dwpIssuingOfficeIIDB: '/dwp-issuing-office-iidb',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
     contactDWP: '/contact-dwp',

@@ -71,6 +71,9 @@
     "allowBB": {
       "enabled": "true"
     },
+    "allowIIDB": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },
