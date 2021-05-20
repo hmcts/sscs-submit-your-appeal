@@ -179,13 +179,13 @@ describe('MRNDate.js', () => {
     });
 
     describe('when benefit type is DLA', () => {
-      it('returns the next step path /dwp-issuing-office-dla if date less than a month', () => {
+      it('returns the next step path /dwp-issuing-office if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.disabilityLivingAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
 
-      it('returns the next step path /dwp-issuing-office-dla if date is equal to a month', () => {
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.disabilityLivingAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
@@ -193,13 +193,13 @@ describe('MRNDate.js', () => {
     });
 
     describe('when benefit type is Attendance Allowance', () => {
-      it('returns the next step path /dwp-issuing-office-attendance-allowance if date less than a month', () => {
+      it('returns the next step path /dwp-issuing-office if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.attendanceAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
 
-      it('returns the next step path /dwp-issuing-office-attendance-allowance if date is equal to a month', () => {
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.attendanceAllowance);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
