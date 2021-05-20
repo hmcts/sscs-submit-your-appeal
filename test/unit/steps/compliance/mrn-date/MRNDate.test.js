@@ -22,8 +22,6 @@ describe('MRNDate.js', () => {
         },
         steps: {
           CheckMRN: paths.compliance.checkMRNDate,
-          DWPIssuingOfficeDla: paths.compliance.dwpIssuingOfficeDLA,
-          DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           Appointee: paths.identity.areYouAnAppointee
         }
@@ -184,13 +182,13 @@ describe('MRNDate.js', () => {
       it('returns the next step path /dwp-issuing-office-dla if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.disabilityLivingAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeDLA);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
 
       it('returns the next step path /dwp-issuing-office-dla if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.disabilityLivingAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeDLA);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
 
@@ -198,13 +196,13 @@ describe('MRNDate.js', () => {
       it('returns the next step path /dwp-issuing-office-attendance-allowance if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.attendanceAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
 
       it('returns the next step path /dwp-issuing-office-attendance-allowance if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.attendanceAllowance);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
 
