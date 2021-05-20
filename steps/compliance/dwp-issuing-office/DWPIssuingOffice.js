@@ -7,6 +7,7 @@ const { getBenefitName, getBenefitCode } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
+const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance'];
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -36,6 +37,17 @@ class DWPIssuingOffice extends SaveToDraftStore {
         'Wellingborough DRT',
         'Worthing DRT'
       ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'DLA') {
+      return DWPIssuingOffice.selectify([
+        'Disability Benefit Centre 4',
+        'The Pension Service 11',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'attendanceAllowance') {
+      return DWPIssuingOffice.selectify([
+        'The Pension Service 11',
+        'Recovery from Estates'
+      ]);
     }
     return DWPIssuingOffice.selectify([
       '1',
@@ -52,7 +64,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   get form() {
-    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
       return form({
         dwpIssuingOffice: text.joi(
           this.content.fields.dwpIssuingOffice.error.required,
@@ -75,7 +87,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   answers() {
-    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
       return [
         answer(this, {
           question: this.content.cya.dwpIssuingOffice.question,
@@ -94,7 +106,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   values() {
-    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
       return {
         mrn: {
           dwpIssuingOffice: this.fields.dwpIssuingOffice.value

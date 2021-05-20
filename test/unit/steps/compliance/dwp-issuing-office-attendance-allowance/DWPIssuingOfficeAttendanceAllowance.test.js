@@ -1,14 +1,14 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeAttendanceAllowance = require('steps/compliance/dwp-issuing-office-attendance-allowance/DWPIssuingOfficeAttendanceAllowance');
+const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
-  let dwpIssuingOfficeAttendanceAllowance = null;
+describe('DWPIssuingOffice.js', () => {
+  let dwpIssuingOffice = null;
 
   beforeEach(() => {
-    dwpIssuingOfficeAttendanceAllowance = new DWPIssuingOfficeAttendanceAllowance({
+    dwpIssuingOffice = new DWPIssuingOffice({
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
@@ -26,7 +26,7 @@ describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office', () => {
-      expect(dwpIssuingOfficeAttendanceAllowance.path).to.equal(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+      expect(dwpIssuingOffice.path).to.equal(paths.compliance.dwpIssuingOffice);
     });
   });
 
@@ -35,7 +35,7 @@ describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
     let field = null;
 
     before(() => {
-      fields = dwpIssuingOfficeAttendanceAllowance.form.fields;
+      fields = dwpIssuingOffice.form.fields;
     });
 
     it('should contain 1 field', () => {
@@ -62,13 +62,13 @@ describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
     const question = 'A Question';
 
     beforeEach(() => {
-      dwpIssuingOfficeAttendanceAllowance.fields = {
+      dwpIssuingOffice.fields = {
         dwpIssuingOffice: {
           value: 'Office name'
         }
       };
 
-      dwpIssuingOfficeAttendanceAllowance.content = {
+      dwpIssuingOffice.content = {
         cya: {
           dwpIssuingOffice: {
             question
@@ -78,7 +78,7 @@ describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
     });
 
     it('should contain a single answer', () => {
-      const answers = dwpIssuingOfficeAttendanceAllowance.answers();
+      const answers = dwpIssuingOffice.answers();
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
@@ -86,22 +86,22 @@ describe('DWPIssuingOfficeAttendanceAllowance.js', () => {
     });
 
     it('should contain a value object', () => {
-      const values = dwpIssuingOfficeAttendanceAllowance.values();
+      const values = dwpIssuingOffice.values();
       expect(values).to.eql({ mrn: { dwpIssuingOffice: 'Office name' } });
     });
   });
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dwpIssuingOfficeAttendanceAllowance.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dwpIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 
   describe('options', () => {
     it('has options for Attendance Allowance', () => {
-      expect(dwpIssuingOfficeAttendanceAllowance.options.length).to.eql(2);
-      expect(dwpIssuingOfficeAttendanceAllowance.options[0].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeAttendanceAllowance.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOffice.options.length).to.eql(2);
+      expect(dwpIssuingOffice.options[0].label).to.eql('The Pension Service 11');
+      expect(dwpIssuingOffice.options[1].label).to.eql('Recovery from Estates');
     });
   });
 });
