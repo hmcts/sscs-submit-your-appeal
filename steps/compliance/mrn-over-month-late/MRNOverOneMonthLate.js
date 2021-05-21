@@ -56,13 +56,8 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
 
     const allowBereavementBenefitAllowance = isFeatureFlagEnabled('allowBB');
     const isBereavementBenefit = allowBereavementBenefitAllowance && benefitType && String(benefitType) === benefitTypes.bereavementBenefit;
-
-    const allowAttendanceAllowance = isFeatureFlagEnabled('allowAA');
-    const isAttendanceAllowanceBenefit = allowAttendanceAllowance && String(benefitType) === benefitTypes.attendanceAllowance;
-
     return branch(
       goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAttendanceAllowanceBenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }
