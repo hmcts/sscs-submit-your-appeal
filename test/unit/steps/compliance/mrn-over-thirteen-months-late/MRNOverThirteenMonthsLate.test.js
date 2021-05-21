@@ -21,7 +21,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
         },
         steps: {
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
-          DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           Appointee: paths.identity.areYouAnAppointee
         }
       }
@@ -121,9 +120,14 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
 
-    it('returns the next step path /dwp-issuing-office-attendance-allowance for Attendance Allowance', () => {
+    it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA)', () => {
+      setBenefitType(benefitTypes.disabilityLivingAllowance);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Attendance Allowance', () => {
       setBenefitType(benefitTypes.attendanceAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
     it('returns the next step path /are-you-an-appointee for Bereavement Benefit', () => {
