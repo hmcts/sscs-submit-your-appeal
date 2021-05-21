@@ -43,6 +43,13 @@
       "codeWelsh": "Lwfans Gweini",
       "office": "The Pension Service 11",
       "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Bereavement Benefit",
+      "code": "Bereavement Benefit",
+      "codeWelsh": "Budd-dal Profedigaeth",
+      "office": "",
+      "hasDwpIssuingOffice": false
     }
   ],
   "signIn": {
