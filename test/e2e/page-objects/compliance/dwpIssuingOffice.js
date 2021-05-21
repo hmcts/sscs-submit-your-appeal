@@ -1,6 +1,7 @@
 function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   const I = this;
 
+  I.wait(3);
   I.scrollPageToBottom();
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.continue);
