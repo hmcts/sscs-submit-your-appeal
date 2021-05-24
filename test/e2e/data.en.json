@@ -50,6 +50,13 @@
       "codeWelsh": "Budd-dal Profedigaeth",
       "office": "",
       "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Industrial Injuries Disablement Benefit",
+      "code": "Industrial Injuries Disablement Benefit",
+      "codeWelsh": "Budd-dal Anabledd Anafiadau Diwydiannol",
+      "office": "IIDB Barrow",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {
