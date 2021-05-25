@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeIIDB = require('steps/compliance/dwp-issuing-office-iidb/DWPIssuingOfficeIidb');
+const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
@@ -8,7 +8,7 @@ describe('DWPIssuingOfficeIIDB.js', () => {
   let dwpIssuingOfficeIIDB = null;
 
   beforeEach(() => {
-    dwpIssuingOfficeIIDB = new DWPIssuingOfficeIIDB({
+    dwpIssuingOfficeIIDB = new DWPIssuingOffice({
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
@@ -26,7 +26,7 @@ describe('DWPIssuingOfficeIIDB.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office', () => {
-      expect(dwpIssuingOfficeIIDB.path).to.equal(paths.compliance.dwpIssuingOfficeIIDB);
+      expect(dwpIssuingOfficeIIDB.path).to.equal(paths.compliance.dwpIssuingOffice);
     });
   });
 
