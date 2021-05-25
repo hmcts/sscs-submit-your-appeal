@@ -149,4 +149,14 @@ describe('LanguagePreference.js', () => {
         .to.eql(config.get('features.allowDLA.enabled') === 'false');
     });
   });
+
+  it('pushes JSA as allowed benefitType if allowJSA is enabled', () => {
+    expect(Object.keys(benefitTypes).includes('jobseekersAllowance'))
+      .to.eql(config.get('features.allowJSA.enabled') === 'true');
+  });
+
+  it('does not push JSA as allowed benefitType when allowJSA is not enabled', () => {
+    expect(!Object.keys(benefitTypes).includes('jobseekersAllowance'))
+      .to.eql(config.get('features.allowJSA.enabled') === 'false');
+  });
 });

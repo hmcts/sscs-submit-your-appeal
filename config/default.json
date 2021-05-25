@@ -71,6 +71,9 @@
     "allowBB": {
       "enabled": "true"
     },
+    "allowJSA": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },

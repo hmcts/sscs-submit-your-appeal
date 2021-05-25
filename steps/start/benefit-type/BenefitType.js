@@ -66,6 +66,9 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowBB')) {
       allowedTypes.push(benefitTypes.bereavementBenefit);
     }
+    if (isFeatureFlagEnabled('allowJSA')) {
+      allowedTypes.push(benefitTypes.jobseekersAllowance);
+    }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     return branch(

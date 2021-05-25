@@ -54,6 +54,9 @@
     "allowBB": {
       "enabled": "ALLOW_BB_ENABLED"
     },
+    "allowJSA": {
+      "enabled": "ALLOW_JSA_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
