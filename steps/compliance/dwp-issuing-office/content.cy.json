@@ -10,11 +10,21 @@
       "error": {
         "required": "Rhaid i chi ddewis y swyddfa a ddangosir yn llinell gyntaf cyfeiriad DWP"
       }
+    },
+    "dwpIssuingOffice": {
+      "header": "Dewiswch y swyddfa a ddangosir yn llinell gyntaf cyfeiriad DWP",
+      "label": "",
+      "error": {
+        "required": "Rhaid i chi ddewis y swyddfa a ddangosir yn llinell gyntaf cyfeiriad DWP"
+      }
     }
   },
   "cya": {
     "pipNumber": {
       "question": "Rhif o gyfeiriad yr MRN"
+    },
+    "dwpIssuingOffice": {
+      "question": "Swyddfa DWP"
     }
   }
 }

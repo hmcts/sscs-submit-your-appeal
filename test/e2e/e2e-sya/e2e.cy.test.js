@@ -18,7 +18,7 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrow
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');

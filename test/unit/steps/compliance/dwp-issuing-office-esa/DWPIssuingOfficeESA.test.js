@@ -1,14 +1,14 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeESA = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
+const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-describe('DWPIssuingOfficeESA.js', () => {
-  let dwpIssuingOfficeESA = null;
+describe('DWPIssuingOffice.js', () => {
+  let dwpIssuingOffice = null;
 
   beforeEach(() => {
-    dwpIssuingOfficeESA = new DWPIssuingOfficeESA({
+    dwpIssuingOffice = new DWPIssuingOffice({
       journey: {
         steps: {
           Appointee: paths.identity.areYouAnAppointee
@@ -26,7 +26,7 @@ describe('DWPIssuingOfficeESA.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office', () => {
-      expect(dwpIssuingOfficeESA.path).to.equal(paths.compliance.dwpIssuingOfficeESA);
+      expect(dwpIssuingOffice.path).to.equal(paths.compliance.dwpIssuingOffice);
     });
   });
 
@@ -35,7 +35,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     let field = null;
 
     before(() => {
-      fields = dwpIssuingOfficeESA.form.fields;
+      fields = dwpIssuingOffice.form.fields;
     });
 
     it('should contain 1 field', () => {
@@ -62,13 +62,13 @@ describe('DWPIssuingOfficeESA.js', () => {
     const question = 'A Question';
 
     beforeEach(() => {
-      dwpIssuingOfficeESA.fields = {
+      dwpIssuingOffice.fields = {
         dwpIssuingOffice: {
           value: 'Office name'
         }
       };
 
-      dwpIssuingOfficeESA.content = {
+      dwpIssuingOffice.content = {
         cya: {
           dwpIssuingOffice: {
             question
@@ -78,7 +78,7 @@ describe('DWPIssuingOfficeESA.js', () => {
     });
 
     it('should contain a single answer', () => {
-      const answers = dwpIssuingOfficeESA.answers();
+      const answers = dwpIssuingOffice.answers();
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.mrnDate);
@@ -86,20 +86,20 @@ describe('DWPIssuingOfficeESA.js', () => {
     });
 
     it('should contain a value object', () => {
-      const values = dwpIssuingOfficeESA.values();
+      const values = dwpIssuingOffice.values();
       expect(values).to.eql({ mrn: { dwpIssuingOffice: 'Office name' } });
     });
   });
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dwpIssuingOfficeESA.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dwpIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
 
   describe('options', () => {
     it('has options for ESA', () => {
-      expect(dwpIssuingOfficeESA.options.length).to.eql(13);
+      expect(dwpIssuingOffice.options.length).to.eql(13);
     });
   });
 });
