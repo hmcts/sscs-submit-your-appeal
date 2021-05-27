@@ -54,6 +54,9 @@
     "allowBB": {
       "enabled": "ALLOW_BB_ENABLED"
     },
+    "allowIIDB": {
+      "enabled": "ALLOW_IIDB_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },

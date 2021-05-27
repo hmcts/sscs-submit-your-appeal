@@ -7,7 +7,7 @@ const { getBenefitName, getBenefitCode } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
-const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance'];
+const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement'];
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -47,6 +47,11 @@ class DWPIssuingOffice extends SaveToDraftStore {
       return DWPIssuingOffice.selectify([
         'The Pension Service 11',
         'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialInjuriesDisablement') {
+      return DWPIssuingOffice.selectify([
+        'Barrow IIDB Centre',
+        'Barnsley Benefit Centre'
       ]);
     }
     return DWPIssuingOffice.selectify([

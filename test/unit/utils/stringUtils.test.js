@@ -7,6 +7,7 @@ const {
   getBenefitCode,
   getBenefitName,
   getTribunalPanel,
+  getTribunalPanelWelsh,
   getBenefitEndText,
   getBenefitEndTextWelsh
 } = require('utils/stringUtils');
@@ -163,6 +164,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.disabilityLivingAllowance);
       expect(bcode).to.equal('DLA');
     });
+    it('returns the right code for iidb', () => {
+      const bcode = getBenefitCode(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('industrialInjuriesDisablement');
+    });
   });
   describe('getBenefitName', () => {
     it('returns the right name for pip', () => {
@@ -176,6 +181,10 @@ describe('the dynamic content utils', () => {
     it('returns the right name for dla', () => {
       const bcode = getBenefitName(benefitTypes.disabilityLivingAllowance);
       expect(bcode).to.equal('Disability Living Allowance');
+    });
+    it('returns the right name for iidb', () => {
+      const bcode = getBenefitName(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('Industrial Injuries Disablement Benefit');
     });
   });
   describe('getTribunalPanel', () => {
@@ -191,13 +200,59 @@ describe('the dynamic content utils', () => {
       const bcode = getTribunalPanel(benefitTypes.disabilityLivingAllowance);
       expect(bcode).to.equal('judge, doctor and disability expert');
     });
+    it('returns the right name for uc', () => {
+      const bcode = getTribunalPanel(benefitTypes.universalCredit);
+      expect(bcode).to.equal('judge and for some appeals, a doctor');
+    });
     it('returns the right name for carers allowance', () => {
       const bcode = getTribunalPanel(benefitTypes.carersAllowance);
       expect(bcode).to.equal('judge');
     });
+    it('returns the right name for attendance allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.attendanceAllowance);
+      expect(bcode).to.equal('judge, doctor and disability expert');
+    });
     it('returns the right name for bereavement benefit', () => {
       const bcode = getTribunalPanel(benefitTypes.bereavementBenefit);
       expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for iidb', () => {
+      const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('judge and up to 2 consultants doctors');
+    });
+  });
+  describe('getTribunalPanel welsh', () => {
+    it('returns the right tribunal panel for pip', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.personalIndependencePayment);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for esa', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('barnwr a meddyg');
+    });
+    it('returns the right name for dla', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for uc', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.universalCredit);
+      expect(bcode).to.equal('barnwr ac, ar gyfer rhai apeliadau, meddyg');
+    });
+    it('returns the right name for carers allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.carersAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for attendance allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.attendanceAllowance);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for bereavement benefit', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.bereavementBenefit);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for iidb', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('barnwr a hyd at 2 feddyg ymgynghorol');
     });
   });
   describe('getBenefitEndText', () => {
