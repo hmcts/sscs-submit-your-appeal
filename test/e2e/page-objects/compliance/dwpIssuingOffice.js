@@ -3,6 +3,7 @@ function enterDWPIssuingOfficeAndContinue(commonContent, id) {
 
   I.wait(3);
   I.scrollPageToBottom();
+  I.wait(2);
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.continue);
 }
