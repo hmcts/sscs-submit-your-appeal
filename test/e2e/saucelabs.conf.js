@@ -45,7 +45,7 @@ const pauseFor = seconds => {
 };
 
 const setupConfig = {
-  tests: './crossbrowser/*.cbtest.js',
+  tests: './e2e-sya/*.test.js',
   output: config.get('saucelabs.outputDir'),
   features: {
     evidenceUpload: {
