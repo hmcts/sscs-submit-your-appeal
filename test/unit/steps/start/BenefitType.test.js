@@ -114,6 +114,16 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowDLA.enabled') === 'false');
     });
 
+    it('pushes IIDB as allowed benefitType if allowIIDB is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
+        .to.eql(config.get('features.allowIIDB.enabled') === 'true');
+    });
+
+    it('does not push IIDB as allowed benefitType when allowIIDB is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
+        .to.eql(config.get('features.allowIIDB.enabled') === 'false');
+    });
+
     it('pushes JSA as allowed benefitType if allowJSA is enabled', () => {
       expect(Object.keys(benefitTypes).includes('jobseekersAllowance'))
         .to.eql(config.get('features.allowJSA.enabled') === 'true');

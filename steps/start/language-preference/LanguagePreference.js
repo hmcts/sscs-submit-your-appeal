@@ -69,6 +69,10 @@ class LanguagePreference extends SaveToDraftStore {
       allowedTypes.push(benefitTypes.bereavementBenefit);
     }
 
+    if (isFeatureFlagEnabled('allowIIDB')) {
+      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
+    }
+
     if (isFeatureFlagEnabled('allowJSA')) {
       allowedTypes.push(benefitTypes.jobseekersAllowance);
     }

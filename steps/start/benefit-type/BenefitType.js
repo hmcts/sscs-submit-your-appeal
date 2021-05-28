@@ -66,6 +66,9 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowBB')) {
       allowedTypes.push(benefitTypes.bereavementBenefit);
     }
+    if (isFeatureFlagEnabled('allowIIDB')) {
+      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
+    }
     if (isFeatureFlagEnabled('allowJSA')) {
       allowedTypes.push(benefitTypes.jobseekersAllowance);
     }

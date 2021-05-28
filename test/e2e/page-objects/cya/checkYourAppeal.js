@@ -17,6 +17,8 @@ const paths = require('paths');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
 
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
+
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
@@ -120,14 +122,11 @@ function enterDetailsForNewApplication(commonContent, language, userEmail, benef
   I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
 }
 
-function enterDetailsToArchiveACase(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
+function enterDetailsToArchiveACase(commonContent, language, userEmail) {
   const I = this;
 
-  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(commonContent, 'no');
-  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.amOnPage(`${baseUrl}/sign-out`);
+  I.navigateToSignInLink();
   I.signIn(userEmail, testDataEn.signIn.password, language);
   I.verifyDraftAppealsAndArchiveACase(language);
 }
