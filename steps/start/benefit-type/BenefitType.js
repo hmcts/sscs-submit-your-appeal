@@ -44,9 +44,6 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
-      return goTo(this.journey.steps.LanguagePreference);
-    }
 
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
@@ -74,6 +71,12 @@ class BenefitType extends SaveToDraftStore {
     }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
+    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
+      return branch(
+        goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
+        redirectTo(this.journey.steps.AppealFormDownload)
+      );
+    }
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
       redirectTo(this.journey.steps.AppealFormDownload)

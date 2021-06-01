@@ -137,8 +137,20 @@ describe('BenefitType.js', () => {
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
+      
+      benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
+      expect(benefitType.next().step).to.eql(paths.start.languagePreference);
 
-      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = 'false';
+    });
+
+    it('returns /appeal-form-download when benefit type is not PIP when Welsh feature toggle is on', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = 'true';
+
+      benefitType.fields.benefitType.value = 'not PIP';
+      expect(benefitType.next().step).to.eql(paths.appealFormDownload);
 
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'false';
