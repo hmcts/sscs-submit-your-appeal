@@ -13,7 +13,6 @@
 #}
 {% macro header(heading, section='', size='xl', fieldsValidated=false, fieldsValid=true) %}
   <h1 class="govuk-heading-{{ size }}">
-
   {% if section != '' and (size == 'xl' or size == 'l') %}
     <span class="heading-secondary">
       {{ section | safe }}

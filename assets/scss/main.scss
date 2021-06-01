@@ -1,4 +1,4 @@
-@import '~govuk-frontend/all';
+@import '~govuk-frontend/govuk/all';
 @import 'language-switch';
 @import 'cookie-banner';
 @import 'text-reference';
@@ -263,7 +263,7 @@ label.form-label[for="signer"] {
 
     div:after {
       content: "";
-      background: govuk-colour('grey-2');
+      background: govuk-colour('light-grey');
       position: absolute;
       bottom: 0;
       left: 0;
@@ -292,7 +292,7 @@ label.form-label[for="signer"] {
 
     .govuk-form-group:last-child {
       padding-bottom: 20px;
-      border-bottom: 2px solid govuk-colour('grey-2');
+      border-bottom: 2px solid govuk-colour('light-grey');
     }
   }
 }

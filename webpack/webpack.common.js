@@ -7,7 +7,7 @@ const webpack = require('webpack');
 
 const packageJson = require.resolve('govuk-frontend/package.json');
 const govUkFrontendRoot = path.resolve(packageJson, '..');
-const assets = path.resolve(govUkFrontendRoot, 'assets');
+const assets = path.resolve(govUkFrontendRoot, 'govuk/assets');
 const imagesGokukFrontend = path.resolve(assets, 'images');
 const fontsGokukFrontend = path.resolve(assets, 'fonts');
 

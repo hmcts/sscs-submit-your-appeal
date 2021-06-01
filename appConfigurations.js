@@ -84,8 +84,9 @@ const configureViews = app => {
     path.resolve(__dirname, 'steps'),
     path.resolve(__dirname, 'policy-pages'),
     path.resolve(__dirname, 'error-pages'),
-    path.resolve(__dirname, 'node_modules/govuk-frontend'),
-    path.resolve(__dirname, 'node_modules/govuk-frontend/components'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/components/'),
+    path.resolve(__dirname, 'node_modules/cmc-cookies-manager/shared-component/'),
     path.resolve(__dirname, 'views'),
     path.resolve(__dirname, 'components')
   ]);
