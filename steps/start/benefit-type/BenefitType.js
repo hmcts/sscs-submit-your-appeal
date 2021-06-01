@@ -44,7 +44,6 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
