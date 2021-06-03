@@ -57,6 +57,9 @@
     "allowIIDB": {
       "enabled": "ALLOW_IIDB_ENABLED"
     },
+    "allowJSA": {
+      "enabled": "ALLOW_JSA_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
