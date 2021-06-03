@@ -7,6 +7,7 @@ const steps = require('steps');
 const agent = supertest.agent(app);
 const options = {
   includeWarnings: true,
+  level: 'error',
   ignore: [
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name',
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Select.Name',
