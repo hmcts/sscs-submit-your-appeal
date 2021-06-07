@@ -7,7 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { decode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { decode } = require('utils/stringUtils');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -51,13 +51,12 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
 
     const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
 
-    const allowCarersAllowance = isFeatureFlagEnabled('allowCA');
-    const isCarersAllowanceBenefit = allowCarersAllowance && String(benefitType) === benefitTypes.carersAllowance;
+    const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
+    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
+    const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
 
-    const allowBereavementBenefitAllowance = isFeatureFlagEnabled('allowBB');
-    const isBereavementBenefit = allowBereavementBenefitAllowance && benefitType && String(benefitType) === benefitTypes.bereavementBenefit;
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit),
+      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }

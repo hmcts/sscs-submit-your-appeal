@@ -134,6 +134,16 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowJSA.enabled') === 'false');
     });
 
+    it('pushes Maternity Allowance as allowed benefitType if allowMA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('maternityAllowance'))
+        .to.eql(config.get('features.allowMA.enabled') === 'true');
+    });
+
+    it('does not push JSA as allowed benefitType when allowMA is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('maternityAllowance'))
+        .to.eql(config.get('features.allowMA.enabled') === 'false');
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
