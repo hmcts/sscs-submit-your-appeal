@@ -113,14 +113,4 @@ describe('LanguagePreference.js', () => {
       expect(languagePreference.next().step).to.eql(paths.start.postcodeCheck);
     });
   });
-
-  it('pushes Maternity Allowance as allowed benefitType if allowMA is enabled', () => {
-    expect(Object.keys(benefitTypes).includes('maternityAllowance'))
-      .to.eql(config.get('features.allowMA.enabled') === 'true');
-  });
-
-  it('does not push Maternity Allowance as allowed benefitType when allowMA is not enabled', () => {
-    expect(!Object.keys(benefitTypes).includes('maternityAllowance'))
-      .to.eql(config.get('features.allowMA.enabled') === 'false');
-  });
 });

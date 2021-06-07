@@ -139,7 +139,7 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowMA.enabled') === 'true');
     });
 
-    it('does not push JSA as allowed benefitType when allowMA is not enabled', () => {
+    it('does not push Maternity Allowance as allowed benefitType when allowMA is not enabled', () => {
       expect(!Object.keys(benefitTypes).includes('maternityAllowance'))
         .to.eql(config.get('features.allowMA.enabled') === 'false');
     });
