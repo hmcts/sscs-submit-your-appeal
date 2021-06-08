@@ -235,5 +235,19 @@ describe('MRNDate.js', () => {
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
+
+    describe('when benefit type is JSA', () => {
+      it('returns the next step path /dwp-issuing-office-jsa if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.jobseekersAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+
+      it('returns the next step path /dwp-issuing-office-jsa if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.jobseekersAllowance);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+    });
   });
 });
