@@ -6,13 +6,12 @@ const steps = require('steps');
 
 const agent = supertest.agent(app);
 const options = {
-  includeWarnings: true,
-  level: 'error',
   ignore: [
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name',
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Select.Name',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.NoLegend',
-    'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68'
+    'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68',
+    'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent'
   ],
   hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe'
 };
