@@ -11,7 +11,11 @@ const options = {
     'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Select.Name',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.NoLegend',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68',
-    'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent'
+    'WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2',
+    'WCAG2AA.Principle1.Guideline1_3.1_3_1.H43.HeadersRequired',
+    'WCAG2AA.Principle1.Guideline1_3.1_3_1.H42.2',
+    'WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2'
+
   ],
   hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe'
 };
@@ -65,7 +69,6 @@ describe('Accessibility', () => {
     steps.forEach(step => {
       const url = step.path;
       const excluded = excludeSteps.some(stepUrl => stepUrl === url);
-
       if (!excluded) {
         accessibilityCheck(`${url}?lng=${language}`);
       }
