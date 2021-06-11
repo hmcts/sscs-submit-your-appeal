@@ -6,7 +6,6 @@ const steps = require('steps');
 const content = require('commonContent.json');
 const url = require('url');
 const startStep = require('steps/entry/Entry');
-
 const {
   configureNunjucks,
   configureMiddleWares,
@@ -27,18 +26,16 @@ app.locals.asset_path = url.resolve('/', 'assets/');
 
 const listOfUrls = [
   '/done',
-  '/independence?lng=en',
-  '/check-your-appel',
+  '/check-your-appeal',
   '/benefit-type?lng=en',
   '/postcode-check?lng=en',
   '/benefit-type',
-  '/representative-details?lng=en',
+  '/cookie-policy?lng=cy',
   '/check-your-appeal?lng=cy',
-  '/check-your-appeal',
+  '/check-your-appeal?lng=en',
   '/equality-and-diversity?lng=en',
   '/enter-appointee-dob?lng=en',
   '/appointee-same-address?lng=en',
-  '/check-your-appeal?lng=en',
   '/no-mrn?lng=cy',
   '/are-you-an-appointee?lng=en',
   '/enter-appointee-name?lng=en',
@@ -46,7 +43,6 @@ const listOfUrls = [
   '/send-to-number?lng=en',
   '/appointee-same-address?lng=en',
   '/enter-mobile?lng=en',
-  '/representative-details?lng=en',
   '/representative?lng=en',
   '/no-representative-details?lng=en',
   '/sms-confirmation?lng=en',
@@ -61,20 +57,16 @@ const listOfUrls = [
   '/evidence-upload?lng=en',
   '/evidence-description?lng=en',
   '/not-attending-hearing?lng=en',
-  '/hearing-options?lng=en',
   '/new-appeal?lng=en',
-  '/archive-appeal?lng=en',
-  '/equality-and-diversity?lng=en',
   '/benefit-type?lng=cy',
   '/postcode-check?lng=cy',
   '/independence?lng=cy',
-  '/create-account?lng=cy',
   '/language-preference?lng=cy',
   '/have-you-got-an-mrn?lng=cy',
   '/have-contacted-dwp?lng=cy',
   '/dwp-issuing-office?lng=cy',
+  '/accessibility?lng=en',
   '/check-mrn-date?lng=cy',
-  '/mrn-date?lng=cy',
   '/mrn-over-month-late?lng=cy',
   '/mrn-over-thirteen-months-late?lng=cy',
   '/enter-appellant-dob?lng=cy',
@@ -84,18 +76,22 @@ const listOfUrls = [
   '/enter-appointee-name?lng=cy',
   '/enter-appointee-dob?lng=cy',
   '/appointee-same-address?lng=cy',
+  '/have-contacted-dwp?lng=en',
   '/appellant-text-reminders?lng=cy',
   '/send-to-number?lng=cy',
   '/enter-mobile?lng=cy',
   '/sms-confirmation?lng=cy',
   '/representative-details?lng=cy',
+  '/representative-details?lng=en',
   '/representative?lng=cy',
   '/reason-for-appealing?lng=cy',
+  '/reason-for-appealing',
+  '/reason-for-appealing',
   '/no-representative-details?lng=cy',
   '/new-appeal?lng=cy',
-  '/check-your-appeal?lng=cy',
   '/equality-and-diversity?lng=cy',
   '/hearing-options?lng=cy',
+  '/hearing-options?lng=en',
   '/the-hearing?lng=cy',
   '/not-attending-hearing?lng=cy',
   '/dates-cant-attend?lng=cy',
@@ -107,35 +103,72 @@ const listOfUrls = [
   '/evidence-provide?lng=cy',
   '/other-reason-for-appealing?lng=cy',
   '/create-account?lng=en',
+  '/create-account?lng=cy',
   '/language-preference?lng=en',
-  '/have-you-got-an-mrn?lng=en',
   '/check-mrn-date?lng=en',
   '/dwp-issuing-office?lng=en',
-  '/have-contacted-dwp?lng=en',
   '/equality-and-diversity?lng=cy',
-  '/archive-appeal?lng=en',
   '/new-appeal?lng=en',
-  '/equality-and-diversity?lng=en',
   '/enter-appellant-nino?lng=en',
   '/enter-appellant-name?lng=en',
   '/enter-appellant-dob?lng=en',
   '/mrn-over-thirteen-months-late?lng=en',
   '/mrn-over-month-late?lng=en',
   '/no-mrn?lng=en',
-  '/mrn-date?lng=en'
+  '/mrn-date?lng=en',
+  '/mrn-date?lng=cy',
+  '/accessibility?lng=cy',
+  '/have-you-got-an-mrn?lng=en'
+];
+
+const benefitTypeUrls = [
+  '/independence?lng=en',
+  '/independence?lng=cy',
+  '/representative-details?lng=en',
+  '/representative-details?lng=cy',
+  '/no-representative-details?lng=en',
+  '/no-representative-details?lng=cy',
+  '/have-you-got-an-mrn?lng=en',
+  '/have-you-got-an-mrn?lng=cy',
+  '/have-contacted-dwp?lng=en',
+  '/have-contacted-dwp?lng=cy',
+  '/dwp-issuing-office?lng=en',
+  '/dwp-issuing-office?lng=cy',
+  '/check-mrn-date?lng=en',
+  '/check-mrn-date?lng=cy',
+  '/mrn-date?lng=en',
+  '/mrn-date?lng=cy',
+  '/reason-for-appealing?lng=en',
+  '/reason-for-appealing?lng=cy',
+  '/check-mrn-date?lng=en',
+  '/check-mrn-date?lng=cy',
+  '/hearing-options?lng=en',
+  '/hearing-options?lng=cy'
+
 ];
 
 const noSessionHandler = (req, res, next) => {
   const isUrl = listOfUrls.some(stepUrl => stepUrl === req.url);
   if (isUrl) {
     if (req.session) {
-      req.session.BenefitType = {};
-      req.session.BenefitType.benefitType = '(attendanceAllowance)';
       req.session.entryPoint = {};
       req.session.entryPoint = startStep;
-      req.session.activeProperty = {};
     }
   }
+
+  const isBenefitUrl = benefitTypeUrls.some(stepUrl => stepUrl === req.url);
+  if (isBenefitUrl) {
+    if (req.session) {
+      req.session.BenefitType = {};
+      req.session.BenefitType.benefitType = 'Bereavement Benefit';
+      req.session.active = () => console.log('');
+      req.session.hydrate = () => console.log('');
+      req.session.dehydrate = () => console.log('');
+      req.session.generate = () => console.log('');
+    }
+  }
+
+
   next();
 };
 
@@ -157,8 +190,7 @@ journey(app, {
       template: 'errors/Error404.html',
       title: content.en.errors.notFound.title,
       message: content.en.errors.notFound.message,
-      nextSteps: content.en.errors.notFound.nextSteps,
-      benefitType: ''
+      nextSteps: content.en.errors.notFound.nextSteps
     },
     serverError: {
       template: 'errors/500/Error500.html',
@@ -166,7 +198,7 @@ journey(app, {
       message: content.en.errors.serverError.message
     }
   },
-  timeoutDelay: 2000,
+  timeoutDelay: 5000,
   apiUrl: `${config.api.url}/appeals`,
   useCsrfToken: false
 });
