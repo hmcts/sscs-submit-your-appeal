@@ -1,7 +1,12 @@
-export class CheckCookies {
+import * as config from 'config';
+
+class CheckCookies {
   init() {
-    this.cookieBannerElement = document.getElementById('app-cookie-banner');
-    this.isCookiePrivacyMessageDisplayed();
+    const isCookieBanner = config.get('features.cookieBanner.enabled') === 'true';
+    if (!isCookieBanner) {
+      this.cookieBannerElement = document.getElementById('app-cookie-banner');
+      this.isCookiePrivacyMessageDisplayed();
+    }
   }
 
   isCookiePrivacyMessageDisplayed() {
@@ -28,3 +33,5 @@ export class CheckCookies {
     }
   }
 }
+
+export default CheckCookies;

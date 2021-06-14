@@ -88,6 +88,9 @@
     },
     "multipleDraftsEnabled": {
       "enabled": "false"
+    },
+    "cookieBanner": {
+      "enabled": "true"
     }
   },
   "postcodeChecker": {
