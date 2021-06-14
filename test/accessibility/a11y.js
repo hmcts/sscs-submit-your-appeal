@@ -27,7 +27,8 @@ const excludeSteps = [
   '/idam-redirect',
   '/authenticated',
   '/sign-out',
-  '/sign-in-back'
+  '/sign-in-back',
+  '/archive-appeal'
 ];
 
 function ensurePageCallWillSucceed(url) {
