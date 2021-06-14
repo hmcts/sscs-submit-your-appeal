@@ -68,6 +68,9 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowJSA')) {
       allowedTypes.push(benefitTypes.jobseekersAllowance);
     }
+    if (isFeatureFlagEnabled('allowMA')) {
+      allowedTypes.push(benefitTypes.maternityAllowance);
+    }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
