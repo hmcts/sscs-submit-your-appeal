@@ -481,7 +481,8 @@
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/accessibility?lng=en_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml?lng=cy_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/privacy-policy?lng=en_GET" : "ignore",
-  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore"
+  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/accessibility_GET" : "ignore",
+  "90022_Application Error Disclosure_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore"
 }
 
 
