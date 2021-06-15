@@ -1,8 +1,7 @@
-import * as config from 'config';
 
 class CheckCookies {
   init() {
-    const isCookieBanner = config.get('features.cookieBanner.enabled') === 'true';
+    const isCookieBanner = true;
     if (!isCookieBanner) {
       this.cookieBannerElement = document.getElementById('app-cookie-banner');
       this.isCookiePrivacyMessageDisplayed();
