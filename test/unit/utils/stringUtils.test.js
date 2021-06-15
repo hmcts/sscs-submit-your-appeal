@@ -172,6 +172,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.jobseekersAllowance);
       expect(bcode).to.equal('JSA');
     });
+    it('returns the right code for maternity allowance', () => {
+      const bcode = getBenefitCode(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('maternityAllowance');
+    });
   });
   describe('getBenefitName', () => {
     it('returns the right name for pip', () => {
@@ -193,6 +197,10 @@ describe('the dynamic content utils', () => {
     it('returns the right name for jsa', () => {
       const bcode = getBenefitName(benefitTypes.jobseekersAllowance);
       expect(bcode).to.equal('Job Seekers Allowance');
+    });
+    it('returns the right name for maternityAllowance', () => {
+      const bcode = getBenefitName(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('Maternity Allowance');
     });
   });
   describe('getTribunalPanel', () => {
@@ -228,6 +236,10 @@ describe('the dynamic content utils', () => {
       const bcode = getTribunalPanel(benefitTypes.jobseekersAllowance);
       expect(bcode).to.equal('judge');
     });
+    it('returns the right name for Maternity Allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('judge');
+    });
     it('returns the right name for iidb', () => {
       const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
       expect(bcode).to.equal('judge and up to 2 consultants doctors');
@@ -260,6 +272,14 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for bereavement benefit', () => {
       const bcode = getTribunalPanelWelsh(benefitTypes.bereavementBenefit);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for JSA', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for maternity allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.maternityAllowance);
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for iidb', () => {
