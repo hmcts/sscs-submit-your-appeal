@@ -23,5 +23,5 @@ redis:
 idam-pr:
   enabled: true
   redirect_uris:
-    SSCS COR:
+    SSCS:
       - https://${SERVICE_FQDN}/authenticated # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
