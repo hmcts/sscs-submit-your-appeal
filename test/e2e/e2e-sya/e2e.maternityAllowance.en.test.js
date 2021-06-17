@@ -9,7 +9,7 @@ const benefitCode = testDataEn.benefitTypes[8].code;
 const office = testDataEn.benefitTypes[8].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[8].hasDwpIssuingOffice;
 
-Feature(`${language.toUpperCase()} - Industrial Injuries Disablement Benefit E2E SYA - Full Journey`);
+Feature(`${language.toUpperCase()} - Maternity Allowance E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullfunctional @e2e`, I => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, signer, language, hasDwpIssuingOffice);
