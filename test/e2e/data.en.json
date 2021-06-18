@@ -57,6 +57,13 @@
       "codeWelsh": "Budd-dal Anabledd Anafiadau Diwydiannol",
       "office": "IIDB Barrow",
       "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Maternity Allowance",
+      "code": "Maternity Allowance",
+      "codeWelsh": "Lwfans Mamolaeth",
+      "office": "",
+      "hasDwpIssuingOffice": false
     }
   ],
   "signIn": {
