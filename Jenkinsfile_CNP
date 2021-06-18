@@ -19,24 +19,6 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('build')
   }
 
-  before('smoketest:preview') {
-    // workaround to fix SIDAM whitelisting for PR AKS URLs
-    try {
-      def encodedServiceName = 'SSCS'
-      def aksUrlToWhitelist = env.TEST_URL + '/authenticated'
-      sh('curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/' + encodedServiceName +
-        ' -H \'Content-Type: application/json\'' +
-        ' -H \'cache-control: no-cache\'' +
-        ' -d \'[{' +
-          '"operation":"add",' +
-          '"field":"redirect_uri",' +
-          '"value":"' + aksUrlToWhitelist + '"' +
-        '}]\'')
-    } catch (err) {
-      notifyBuildEvent channel: notificationsChannel, color: 'warning', message: 'Failed to update SIDAM PR whitelisting'
-    }
-  }
-
   enableAksStagingDeployment()
   disableLegacyDeployment()
 
