@@ -123,6 +123,7 @@
     "pcq": {
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
-    }
+    },
+    "dummy": "value"
   }
 }
