@@ -173,7 +173,6 @@ describe('HearingOptions.js', () => {
     });
   });
 
-  
 
   describe('next()', () => {
     it('returns the next step path /hearing-support', () => {
@@ -248,6 +247,26 @@ describe('HearingOptions.js', () => {
       options.video.requested = false;
       options.faceToFace.requested = true;
       expect(optionSelected(options)).to.equal(true);
+    });
+  });
+
+  describe('get cyaOptions()', () => {
+    it('should return an object', () => {
+      hearingOptions = new HearingOptions({});
+      hearingOptions.fields = {
+        selectOptions: {
+          value: {
+            telephone: { requested: { value: true }, phoneNumber: '0987654321' },
+            video: { requested: { value: true }, email: 'name@email' }, faceToFace: { requested: { value: true } }
+          }
+        }
+      };
+
+      expect(hearingOptions.cyaOptions).to.eql({
+        hearingTypeTelephone: '0987654321',
+        hearingTypeVideo: 'name@email',
+        hearingTypeFaceToFace: 'Requested'
+      });
     });
   });
 });
