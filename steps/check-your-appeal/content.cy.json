@@ -13,7 +13,8 @@
   "hearing": {
     "arrangements":  "Trefniadau’r gwrandawiad",
     "datesCantAttend": "Dyddiadau na allwch ddod i’r gwrandawiad",
-    "theHearing": "Y gwrandawiad"
+    "theHearing": "Y gwrandawiad",
+    "options": "Hearing options"
   },
   "smsNotify": {
     "textMsgReminders": "Negeseuon testun atgoffa",
