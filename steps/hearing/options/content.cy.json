@@ -32,6 +32,16 @@
         }
       }
     }
+  },
+  "cya": {
+    "options": "Hearing options",
+    "change": "Change",
+    "requested": "Requested",
+    "notRequested": "Not Requested",
+    "required": "Required",
+    "notRequired": "Not required",
+    "hearingTypeTelephone": "Telephone hearing",
+    "hearingTypeVideo": "Video hearing",
+    "hearingTypeFaceToFace": "Face to face hearing"
   }
 }
-
