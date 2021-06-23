@@ -13,7 +13,7 @@
         "maxFileSizeExceeded": "Mae’r ffeil rydych wedi ei llwytho yn rhy fawr. Llwythwch ffeil sy’n llai na 5MB.",
         "wrongFileType": "Nid yw’r math o ffeil rydych wedi’i llwytho yn dderbyniol. Ceisiwch drosi’r ffeil i fformat ffeil cyffredin a rhowch gynnig arall arni.",
         "required": "Nid ydych wedi llwytho ffeil. Rhowch gynnig arall arni.",
-        "technical": "Doedd dim modd llwytho eich ffeil oherwydd gwall technegol. Rhowch gynnig arall arni.",
+        "technical": "Nid yw’r cyfleuster uwchlwytho ar gael ar hyn o bryd. Bydd gwybodaeth am sut y gallwch gyflwyno tystiolaeth yn y llythyr cyntaf y byddwn yn ei anfon atoch.",
         "totalFileSizeExceeded": "Dim ond 5MB o dystiolaeth y gallwch ei llwytho. Argraffwch ac anfonwch y gweddill drwy’r post. Bydd y cyfeiriad yn cael ei anfon atoch ar ôl i chi gyflwyno eich apêl."
       }
     }
