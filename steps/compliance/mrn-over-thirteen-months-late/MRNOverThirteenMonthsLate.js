@@ -47,20 +47,17 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
   }
 
   next() {
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
     const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
 
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
 
-    const isAttendanceAllowanceBenefit = String(benefitType) === benefitTypes.attendanceAllowance;
+    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
+    const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
-      goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAttendanceAllowanceBenefit),
+      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }

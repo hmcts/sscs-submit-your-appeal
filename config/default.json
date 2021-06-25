@@ -68,6 +68,18 @@
     "allowAA": {
       "enabled": "true"
     },
+    "allowBB": {
+      "enabled": "true"
+    },
+    "allowIIDB": {
+      "enabled": "true"
+    },
+    "allowMA": {
+      "enabled": "true"
+    },
+    "allowJSA": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },
@@ -110,6 +122,10 @@
       "loginUrl": "http://localhost:3501/login",
       "clientId": "sscs",
       "useMock": "false"
+    },
+    "idam-aat": {
+      "apiUrl": "https://idam-api.aat.platform.hmcts.net",
+      "apiCallTimeout" : 40000
     },
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"

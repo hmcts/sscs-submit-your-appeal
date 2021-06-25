@@ -16,7 +16,7 @@ class Pcq extends SaveToDraftStore {
   }
 
   isEnabled() {
-    return config.features.pcq.enabled === 'true';
+    return process.env.PCQ_ENABLED === 'true' || config.features.pcq.enabled === 'true';
   }
 
   handler(req, res, next) {

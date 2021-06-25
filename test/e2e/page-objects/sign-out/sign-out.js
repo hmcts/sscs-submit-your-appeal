@@ -1,6 +1,10 @@
-function signOut() {
+function signOut(language) {
   const I = this;
-  I.click('Sign Out');
+  if (language === 'en') {
+    I.click('Sign Out');
+  } else {
+    I.click('Allgofnodi');
+  }
   I.wait(3);
 }
 

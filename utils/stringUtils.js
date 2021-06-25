@@ -58,9 +58,29 @@ const splitBenefitType = benefitType => {
   return { description, code };
 };
 
+const hasAcronym = benefitType => (benefitType.includes('(') && benefitType.includes(')'));
+
+const doesBenefitContainTheWordBenefit = benefitType => (benefitType.includes('Benefit'));
+
 const getBenefitCode = ben => splitBenefitType(ben).code;
 
 const getBenefitName = ben => splitBenefitType(ben).description;
+
+const getHasAcronym = ben => hasAcronym(ben);
+
+const getBenefitEndText = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return ' benefit';
+  }
+  return '';
+};
+
+const getBenefitEndTextWelsh = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return 'budd-dal ';
+  }
+  return '';
+};
 
 const getTribunalPanel = ben => {
   const key = splitBenefitType(ben).code;
@@ -68,9 +88,29 @@ const getTribunalPanel = ben => {
     PIP: 'judge, doctor and disability expert',
     DLA: 'judge, doctor and disability expert',
     ESA: 'judge and a doctor',
-    carersAllowance: 'judge, doctor and disability expert',
+    JSA: 'judge',
+    carersAllowance: 'judge',
     attendanceAllowance: 'judge, doctor and disability expert',
-    UC: 'judge and for some appeals, a doctor'
+    bereavementBenefit: 'judge',
+    maternityAllowance: 'judge',
+    UC: 'judge and for some appeals, a doctor',
+    industrialInjuriesDisablement: 'judge and up to 2 consultants doctors'
+  }[key];
+};
+
+const getTribunalPanelWelsh = ben => {
+  const key = splitBenefitType(ben).code;
+  return {
+    PIP: 'barnwr, meddyg ac arbenigwr anabledd',
+    DLA: 'barnwr, meddyg ac arbenigwr anabledd',
+    ESA: 'barnwr a meddyg',
+    JSA: 'barnwr',
+    carersAllowance: 'barnwr',
+    attendanceAllowance: 'barnwr, meddyg ac arbenigwr anabledd',
+    bereavementBenefit: 'barnwr',
+    maternityAllowance: 'barnwr',
+    UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg',
+    industrialInjuriesDisablement: 'barnwr a hyd at 2 feddyg ymgynghorol'
   }[key];
 };
 
@@ -87,7 +127,11 @@ module.exports = {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getTribunalPanel,
+  getTribunalPanelWelsh,
   getBenefitName,
   decode,
+  getHasAcronym,
+  getBenefitEndText,
+  getBenefitEndTextWelsh,
   overrideFeatFlag
 };

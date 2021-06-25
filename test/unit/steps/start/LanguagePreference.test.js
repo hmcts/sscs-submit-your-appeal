@@ -1,10 +1,8 @@
 const LanguagePreference = require('steps/start/language-preference/LanguagePreference');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const benefitTypes = require('steps/start/benefit-type/types');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
-const config = require('config');
 const i18next = require('i18next');
 
 describe('LanguagePreference.js', () => {
@@ -111,42 +109,8 @@ describe('LanguagePreference.js', () => {
   });
 
   describe('next()', () => {
-    it('returns /appeal-form-download when benefit type is not PIP', () => {
-      languagePreference.req.session = {
-        BenefitType: {
-          benefitType: 'not PIP'
-        }
-      };
-      expect(languagePreference.next().step).to.eql(paths.appealFormDownload);
-    });
-
-    it('returns /postcode-check with benefit type value is PIP', () => {
-      languagePreference.req.session = {
-        BenefitType: {
-          benefitType: 'Personal Independence Payment (PIP)'
-        }
-      };
+    it('returns /postcode-check for next', () => {
       expect(languagePreference.next().step).to.eql(paths.start.postcodeCheck);
-    });
-
-    it('pushes ESA as allowed benefitType if allowESA is enabled', () => {
-      expect(Object.keys(benefitTypes).includes('employmentAndSupportAllowance'))
-        .to.eql(config.get('features.allowESA.enabled') === 'true');
-    });
-
-    it('pushes UC as allowed benefitType if allowUC is enabled', () => {
-      expect(Object.keys(benefitTypes).includes('universalCredit'))
-        .to.eql(config.get('features.allowUC.enabled') === 'true');
-    });
-
-    it('pushes DLA as allowed benefitType if allowDLA is enabled', () => {
-      expect(Object.keys(benefitTypes).includes('disabilityLivingAllowance'))
-        .to.eql(config.get('features.allowDLA.enabled') === 'true');
-    });
-
-    it('does not push DLA as allowed benefitType when allowDLA is not enabled', () => {
-      expect(!Object.keys(benefitTypes).includes('disabilityLivingAllowance'))
-        .to.eql(config.get('features.allowDLA.enabled') === 'false');
     });
   });
 });

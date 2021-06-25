@@ -1,14 +1,12 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
+const { goTo } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const benefitTypes = require('steps/start/benefit-type/types');
 const i18next = require('i18next');
-const { isFeatureFlagEnabled } = require('utils/stringUtils');
 
 class LanguagePreference extends SaveToDraftStore {
   static get path() {
@@ -47,29 +45,7 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   next() {
-    const allowedTypes = [
-      benefitTypes.personalIndependencePayment,
-      benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit
-    ];
-
-    if (isFeatureFlagEnabled('allowDLA')) {
-      allowedTypes.push(benefitTypes.disabilityLivingAllowance);
-    }
-
-    if (isFeatureFlagEnabled('allowCA')) {
-      allowedTypes.push(benefitTypes.carersAllowance);
-    }
-
-    if (isFeatureFlagEnabled('allowAA')) {
-      allowedTypes.push(benefitTypes.attendanceAllowance);
-    }
-
-    const isAllowedBenefit = () => allowedTypes.indexOf(this.req.session.BenefitType.benefitType) !== -1;
-    return branch(
-      goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
-      redirectTo(this.journey.steps.AppealFormDownload)
-    );
+    return goTo(this.journey.steps.PostcodeChecker);
   }
 }
 

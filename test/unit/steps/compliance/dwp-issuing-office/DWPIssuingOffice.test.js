@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('DWPIssuingOffice.js', () => {
   let dWPIssuingOffice = null;
@@ -9,6 +10,13 @@ describe('DWPIssuingOffice.js', () => {
   beforeEach(() => {
     dWPIssuingOffice = new DWPIssuingOffice({
       journey: {
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes.personalIndependencePayment
+            }
+          }
+        },
         steps: {
           Appointee: paths.identity.areYouAnAppointee
         }
@@ -92,6 +100,17 @@ describe('DWPIssuingOffice.js', () => {
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
       expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+    });
+  });
+
+  describe('options for JSA', () => {
+    it('has options for JSA', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
+      expect(dWPIssuingOffice.options.length).to.eql(4);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Worthing DRT');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Birkenhead DRT');
+      expect(dWPIssuingOffice.options[2].label).to.eql('Inverness DRT');
+      expect(dWPIssuingOffice.options[3].label).to.eql('Recovery from Estates');
     });
   });
 });
