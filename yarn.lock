@@ -1740,6 +1740,11 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
+ansi@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ansi/-/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
+  integrity sha1-DELU+xcWDVqa8eSEus4cZpIsGyE=
+
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -6776,6 +6781,13 @@ loader-utils@^2.0.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^2.1.2"
+
+loading-spinner@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/loading-spinner/-/loading-spinner-1.2.1.tgz#7179799685744d582258185c24cf137f2a66677d"
+  integrity sha512-e3VZ2BhTrymiGceEsO6xB21x6twX39zMSVeYWFQAGbeCVQmd2HRUVRYYlx1RqTu0/7hiJa+ZcDRiNUruBzh7xA==
+  dependencies:
+    ansi "^0.3.1"
 
 locate-path@^3.0.0:
   version "3.0.0"

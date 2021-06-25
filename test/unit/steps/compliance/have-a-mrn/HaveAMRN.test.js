@@ -78,11 +78,11 @@ describe('HaveAMRN.js', () => {
     });
   });
 
-   describe('benefitCode()', () => {
-      it('should return benefit code', () => {
-        expect(haveAMRN.benefitCode).to.eql('UC');
-      });
+  describe('benefitCode()', () => {
+    it('should return benefit code', () => {
+      expect(haveAMRN.benefitCode).to.eql('UC');
     });
+  });
 
   describe('benefitName()', () => {
     it('should return benefit name', () => {
