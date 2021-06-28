@@ -20,7 +20,7 @@ require('superagent-retry-delay')(request);
 const paths = require('paths');
 const Joi = require('joi');
 const csurf = require('csurf');
-const Spinner = require('spin.js');
+
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
@@ -86,6 +86,17 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     }
   }
 
+
+  showSpinner() {
+    const loadingDiv = document.getElementById('loading');
+    loadingDiv.style.visibility = 'visible';
+  }
+
+  hideSpinner() {
+    const loadingDiv = document.getElementById('loading');
+    loadingDiv.style.visibility = 'hidden';
+  }
+
   sendToAPI() {
     this.validateJourneyValues();
     const headers = this.tokenHeader(this.req);
@@ -108,34 +119,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     ], logPath);
 
     // Start the loading spinner
-    // eslint-disable-next-line no-magic-numbers
-    const opts = {
-      lines: 13,
-      length: 28,
-      width: 14,
-      radius: 42,
-      scale: 1,
-      corners: 1,
-      color: '#000',
-      opacity: 0.25,
-      rotate: 0,
-      direction: 1,
-      speed: 1,
-      trail: 60,
-      fps: 20,
-      zIndex: 2e9,
-      className: 'spidddnner',
-      top: '50%',
-      left: '50%',
-      shadow: false,
-      hwaccel: false,
-      position: 'absolute'
-    };
-
-    const target = document.getElementById('spinner');
-    const spinner = new Spinner(opts);
-    spinner.spin(target);
-
+    this.showSpinner();
 
     return request.post(this.journey.settings.apiUrl)
       .retry(httpRetries, retryDelay)
@@ -153,13 +137,13 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           result.status
         ], logPath);
         // Stop the loading spinner
-        spinner.stop();
+        this.hideSpinner();
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
         logger.event('SYA-SendToApi-Success');
       }).catch(error => {
         // Stop the loading spinner
-        spinner.stop();
+        this.hideSpinner();
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
