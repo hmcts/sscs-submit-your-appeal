@@ -242,7 +242,7 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for iidb', () => {
       const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
-      expect(bcode).to.equal('judge and up to 2 consultants doctors');
+      expect(bcode).to.equal('judge and 1 or 2 doctors');
     });
   });
   describe('getTribunalPanel welsh', () => {
@@ -284,7 +284,7 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for iidb', () => {
       const bcode = getTribunalPanelWelsh(benefitTypes.industrialInjuriesDisablement);
-      expect(bcode).to.equal('barnwr a hyd at 2 feddyg ymgynghorol');
+      expect(bcode).to.equal('barnwr ac 1 neu 2 feddyg');
     });
   });
   describe('getBenefitEndText', () => {
