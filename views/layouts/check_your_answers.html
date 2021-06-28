@@ -31,6 +31,7 @@
 {% block breadcrumbs %}
   {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
   <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
+  <div id="spinner"></div>
 {% endblock %}
 
 {% block two_thirds %}

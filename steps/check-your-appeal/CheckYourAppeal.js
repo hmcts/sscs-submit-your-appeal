@@ -20,7 +20,7 @@ require('superagent-retry-delay')(request);
 const paths = require('paths');
 const Joi = require('joi');
 const csurf = require('csurf');
-const loadingSpinner = require('loading-spinner');
+const Spinner = require('spin.js');
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
@@ -109,14 +109,33 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
 
     // Start the loading spinner
     // eslint-disable-next-line no-magic-numbers
-    loadingSpinner.start(100,
-      {
-        clearChar: true, // Clear the spinner when stop() is called
-        clearLine: false, // Clear the entire line when stop() is called
-        doNotBlock: false, // Does not prevent the process from exiting
-        hideCursor: false // Hide the cursor until stop() is called
-      }
-    );
+    const opts = {
+      lines: 13,
+      length: 28,
+      width: 14,
+      radius: 42,
+      scale: 1,
+      corners: 1,
+      color: '#000',
+      opacity: 0.25,
+      rotate: 0,
+      direction: 1,
+      speed: 1,
+      trail: 60,
+      fps: 20,
+      zIndex: 2e9,
+      className: 'spidddnner',
+      top: '50%',
+      left: '50%',
+      shadow: false,
+      hwaccel: false,
+      position: 'absolute'
+    };
+
+    const target = document.getElementById('spinner');
+    const spinner = new Spinner(opts);
+    spinner.spin(target);
+
 
     return request.post(this.journey.settings.apiUrl)
       .retry(httpRetries, retryDelay)
@@ -134,13 +153,13 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           result.status
         ], logPath);
         // Stop the loading spinner
-        loadingSpinner.stop();
+        spinner.stop();
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
         logger.event('SYA-SendToApi-Success');
       }).catch(error => {
         // Stop the loading spinner
-        loadingSpinner.stop();
+        spinner.stop();
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
