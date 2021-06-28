@@ -20,9 +20,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
           }
         },
         steps: {
-          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
-          DWPIssuingOfficeAttendanceAllowance: paths.compliance.dwpIssuingOfficeAttendanceAllowance,
           Appointee: paths.identity.areYouAnAppointee
         }
       }
@@ -107,9 +105,9 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /dwp-issuing-office-esa', () => {
+    it('returns the next step path /dwp-issuing-office', () => {
       setBenefitType(benefitTypes.employmentAndSupportAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
     it('returns the next step path /are-you-an-appointee', () => {
@@ -122,9 +120,19 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
 
-    it('returns the next step path /dwp-issuing-office-attendance-allowance for Attendance Allowance', () => {
+    it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA)', () => {
+      setBenefitType(benefitTypes.disabilityLivingAllowance);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Attendance Allowance', () => {
       setBenefitType(benefitTypes.attendanceAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeAttendanceAllowance);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Bereavement Benefit', () => {
+      setBenefitType(benefitTypes.bereavementBenefit);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
   });
 });

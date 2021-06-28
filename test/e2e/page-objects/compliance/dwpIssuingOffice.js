@@ -1,7 +1,9 @@
 function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   const I = this;
 
+  I.wait(3);
   I.scrollPageToBottom();
+  I.wait(2);
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.continue);
 }
@@ -15,13 +17,11 @@ function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
 }
 
 
-function enterDWPIssuingOffice(commonContent, id, benefitTypeCode) {
+function enterDWPIssuingOffice(commonContent, id) {
   const I = this;
 
   I.scrollPageToBottom();
-  if (benefitTypeCode === 'ESA' || benefitTypeCode === 'DLA') {
-    I.selectOption({ id: 'dwpIssuingOffice' }, id);
-  }
+  I.selectOption({ id: 'dwpIssuingOffice' }, id);
   I.click(commonContent.continue);
 }
 

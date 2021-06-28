@@ -1,9 +1,14 @@
-function signIn(username, password) {
+function signIn(username, password, language) {
   const I = this;
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
-  I.wait(3);
+  I.waitForElement(".form-buttons-group [href='/new-appeal']", 3);
+  if (language === 'en') {
+    I.see('Your draft benefit appeals');
+  } else {
+    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+  }
 }
 
 function navigateToSignInLink() {

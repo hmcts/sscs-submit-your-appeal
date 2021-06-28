@@ -114,11 +114,53 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowDLA.enabled') === 'false');
     });
 
+    it('pushes IIDB as allowed benefitType if allowIIDB is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
+        .to.eql(config.get('features.allowIIDB.enabled') === 'true');
+    });
+
+    it('does not push IIDB as allowed benefitType when allowIIDB is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('industrialInjuriesDisablement'))
+        .to.eql(config.get('features.allowIIDB.enabled') === 'false');
+    });
+
+    it('pushes JSA as allowed benefitType if allowJSA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('jobseekersAllowance'))
+        .to.eql(config.get('features.allowJSA.enabled') === 'true');
+    });
+
+    it('does not push JSA as allowed benefitType when allowJSA is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('jobseekersAllowance'))
+        .to.eql(config.get('features.allowJSA.enabled') === 'false');
+    });
+
+    it('pushes Maternity Allowance as allowed benefitType if allowMA is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('maternityAllowance'))
+        .to.eql(config.get('features.allowMA.enabled') === 'true');
+    });
+
+    it('does not push Maternity Allowance as allowed benefitType when allowMA is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('maternityAllowance'))
+        .to.eql(config.get('features.allowMA.enabled') === 'false');
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
 
-      expect(benefitType.next()).to.eql({ nextStep: paths.start.languagePreference });
+      benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
+      expect(benefitType.next().step).to.eql(paths.start.languagePreference);
+
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = 'false';
+    });
+
+    it('returns /appeal-form-download when benefit type is not PIP when Welsh feature toggle is on', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.FT_WELSH = 'true';
+
+      benefitType.fields.benefitType.value = 'not PIP';
+      expect(benefitType.next().step).to.eql(paths.appealFormDownload);
 
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'false';

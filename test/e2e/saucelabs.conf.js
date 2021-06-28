@@ -7,26 +7,37 @@ const logger = require('logger');
 
 const logPath = 'saucelabs.conf.js';
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId');
 
-const getBrowserConfig = browserGroup => {
+const defaultSauceOptions = {
+  username: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
+  accessKey: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
+  tunnelIdentifier: process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId'),
+  acceptSslCerts: true,
+  tags: ['SSCS']
+};
+
+function merge(intoObject, fromObject) {
+  return Object.assign({}, intoObject, fromObject);
+}
+
+function getBrowserConfig(browserGroup) {
   const browserConfig = [];
   for (const candidateBrowser in supportedBrowsers[browserGroup]) {
     if (candidateBrowser) {
-      const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
-      desiredCapability.tunnelIdentifier = tunnelName;
-      desiredCapability.tags = ['sscs'];
+      const candidateCapabilities = supportedBrowsers[browserGroup][candidateBrowser];
+      candidateCapabilities['sauce:options'] = merge(
+        defaultSauceOptions, candidateCapabilities['sauce:options']
+      );
       browserConfig.push({
-        browser: desiredCapability.browserName,
-        desiredCapabilities: desiredCapability
+        browser: candidateCapabilities.browserName,
+        capabilities: candidateCapabilities
       });
     } else {
-      logger.exception('supportedBrowsers.js is empty or incorrectly defined', logPath);
+      console.error('ERROR: supportedBrowsers.js is empty or incorrectly defined');
     }
   }
   return browserConfig;
-};
-
+}
 const pauseFor = seconds => {
   setTimeout(() => {
     return true;
@@ -42,7 +53,7 @@ const setupConfig = {
     }
   },
   helpers: {
-    WebDriverIO: {
+    WebDriver: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       browser: process.env.SAUCE_BROWSER || config.get('saucelabs.browser'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
@@ -51,9 +62,7 @@ const setupConfig = {
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
       region: 'eu',
-      user: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
-      key: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
-      desiredCapabilities: {}
+      capabilities: {}
     },
     MyHelper: {
       require: './helpers/helper.js',
@@ -96,6 +105,9 @@ const setupConfig = {
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
+    },
+    safari: {
+      browsers: getBrowserConfig('safari')
     }
   },
   name: 'Submit Your Appeal Crossbrowser Tests'

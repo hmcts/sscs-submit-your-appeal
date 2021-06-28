@@ -7,7 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { getBenefitCode } = require('utils/stringUtils');
 const i18next = require('i18next');
 
 class MRNDate extends SaveToDraftStore {
@@ -68,30 +68,18 @@ class MRNDate extends SaveToDraftStore {
   next() {
     const mrnDate = this.fields.mrnDate.value;
     const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
-
     const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)';
+    const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
+    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
+    const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
 
-    const allowCarersAllowance = isFeatureFlagEnabled('allowCA');
-    const isCarersAllowanceBenefit = allowCarersAllowance && benefitType && String(benefitType) === benefitTypes.carersAllowance;
-
-    const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit) && isLessThanOrEqualToAMonth;
-
-    const allowDLA = isFeatureFlagEnabled('allowDLA');
-    const isDLABenefit = allowDLA && benefitType && benefitType === benefitTypes.disabilityLivingAllowance;
-
-    const allowAA = isFeatureFlagEnabled('allowAA');
-    const isAABenefit = allowAA && benefitType && benefitType === benefitTypes.attendanceAllowance;
+    const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance) && isLessThanOrEqualToAMonth;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
-      goTo(this.journey.steps.DWPIssuingOfficeDla).if(isDLABenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeAttendanceAllowance).if(isAABenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }

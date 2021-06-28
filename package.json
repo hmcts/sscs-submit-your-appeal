@@ -21,8 +21,8 @@
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/smoke.conf.js --grep @smoke --steps --verbose --reporter mocha-multi",
     "test:audit": "./bin/run-yarn-audit.sh -f yarn-audit-known-issues",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
-    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
-    "test:fullfunctional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple --all -c test/e2e/ --grep 'functional|fullFunctional' --steps --reporter mocha-multi",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
+    "test:fullfunctional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep 'functional|fullFunctional' --steps --reporter mocha-multi",
     "test:e2e-pages": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple pages -c test/e2e/ --steps --reporter mocha-multi",
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
     "test:functional:batches": "for i in `seq -w 1 12`; do BATCH=$i yarn test:functional:batch; [ $? -ne 0 ] && exit $?; done; exit 0;",
@@ -114,7 +114,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
-    "codeceptjs": "^2.5.0",
+    "codeceptjs": "^2.6.11",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
     "istanbul": "^0.4.5",
@@ -132,13 +132,13 @@
     "portscanner": "^2.1.1",
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.0.1",
-    "puppeteer": "^1.17.0",
+    "puppeteer": "^5.4.1",
     "rewire": "^4.0.1",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.0.0",
     "sonar-scanner": "^3.0.3",
     "supertest": "^4.0.2",
-    "webdriverio": "^4.14.4"
+    "webdriverio": "^6.7.3"
   },
   "resolutions": {
     "assign-deep": "1.0.1",
@@ -151,6 +151,13 @@
     "axios": "^0.21.1",
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
-    "url-parse": "^1.5.0"
+    "url-parse": "^1.5.0",
+    "browserslist": "4.16.5",
+    "ws": "7.4.6",
+    "glob-parent": "^5.1.2",
+    "trim-newlines": "3.0.1",
+    "css-what": "5.0.1",
+    "normalize-url": "4.5.1",
+    "postcss": "7.0.36"
   }
 }

@@ -6,7 +6,10 @@ const {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getBenefitName,
-  getTribunalPanel
+  getTribunalPanel,
+  getTribunalPanelWelsh,
+  getBenefitEndText,
+  getBenefitEndTextWelsh
 } = require('utils/stringUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
@@ -161,6 +164,18 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.disabilityLivingAllowance);
       expect(bcode).to.equal('DLA');
     });
+    it('returns the right code for iidb', () => {
+      const bcode = getBenefitCode(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('industrialInjuriesDisablement');
+    });
+    it('returns the right code for jsa', () => {
+      const bcode = getBenefitCode(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('JSA');
+    });
+    it('returns the right code for maternity allowance', () => {
+      const bcode = getBenefitCode(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('maternityAllowance');
+    });
   });
   describe('getBenefitName', () => {
     it('returns the right name for pip', () => {
@@ -175,6 +190,18 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitName(benefitTypes.disabilityLivingAllowance);
       expect(bcode).to.equal('Disability Living Allowance');
     });
+    it('returns the right name for iidb', () => {
+      const bcode = getBenefitName(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('Industrial Injuries Disablement Benefit');
+    });
+    it('returns the right name for jsa', () => {
+      const bcode = getBenefitName(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('Job Seekers Allowance');
+    });
+    it('returns the right name for maternityAllowance', () => {
+      const bcode = getBenefitName(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('Maternity Allowance');
+    });
   });
   describe('getTribunalPanel', () => {
     it('returns the right tribunal panel for pip', () => {
@@ -186,8 +213,98 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge and a doctor');
     });
     it('returns the right name for dla', () => {
-      const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
-      expect(bcode).to.equal('judge and a doctor');
+      const bcode = getTribunalPanel(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('judge, doctor and disability expert');
+    });
+    it('returns the right name for uc', () => {
+      const bcode = getTribunalPanel(benefitTypes.universalCredit);
+      expect(bcode).to.equal('judge and for some appeals, a doctor');
+    });
+    it('returns the right name for carers allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.carersAllowance);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for attendance allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.attendanceAllowance);
+      expect(bcode).to.equal('judge, doctor and disability expert');
+    });
+    it('returns the right name for bereavement benefit', () => {
+      const bcode = getTribunalPanel(benefitTypes.bereavementBenefit);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for JSA', () => {
+      const bcode = getTribunalPanel(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for Maternity Allowance', () => {
+      const bcode = getTribunalPanel(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for iidb', () => {
+      const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('judge and 1 or 2 doctors');
+    });
+  });
+  describe('getTribunalPanel welsh', () => {
+    it('returns the right tribunal panel for pip', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.personalIndependencePayment);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for esa', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.employmentAndSupportAllowance);
+      expect(bcode).to.equal('barnwr a meddyg');
+    });
+    it('returns the right name for dla', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.disabilityLivingAllowance);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for uc', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.universalCredit);
+      expect(bcode).to.equal('barnwr ac, ar gyfer rhai apeliadau, meddyg');
+    });
+    it('returns the right name for carers allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.carersAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for attendance allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.attendanceAllowance);
+      expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+    });
+    it('returns the right name for bereavement benefit', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.bereavementBenefit);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for JSA', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for maternity allowance', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.maternityAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for iidb', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.industrialInjuriesDisablement);
+      expect(bcode).to.equal('barnwr ac 1 neu 2 feddyg');
+    });
+  });
+  describe('getBenefitEndText', () => {
+    it('returns the word benefit for types with no benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.personalIndependencePayment);
+      expect(benefitText).to.equal(' benefit');
+    });
+    it('returns empty for types with benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.bereavementBenefit);
+      expect(benefitText).to.equal('');
+    });
+  });
+  describe('getBenefitEndTextWelsh', () => {
+    it('returns the word budd-dal for types with no benefit in the name', () => {
+      const benefitText = getBenefitEndTextWelsh(benefitTypes.personalIndependencePayment);
+      expect(benefitText).to.equal('budd-dal ');
+    });
+    it('returns empty for types with benefit in the name', () => {
+      const benefitText = getBenefitEndText(benefitTypes.bereavementBenefit);
+      expect(benefitText).to.equal('');
     });
   });
 });

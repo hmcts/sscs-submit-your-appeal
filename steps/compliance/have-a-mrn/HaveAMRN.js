@@ -5,7 +5,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { getBenefitCode, getBenefitName } = require('utils/stringUtils');
+const { getBenefitCode, getBenefitName, getHasAcronym, getBenefitEndText } = require('utils/stringUtils');
 const i18next = require('i18next');
 
 class HaveAMRN extends SaveToDraftStore {
@@ -17,7 +17,15 @@ class HaveAMRN extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
-    return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+    const benefitShortCode = getBenefitCode(this.req.session.BenefitType.benefitType);
+
+    if (this.req.session.BenefitType) {
+      if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
+        return benefitShortCode;
+      }
+      return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+    }
+    return '';
   }
 
   get benefitCode() {
@@ -26,6 +34,10 @@ class HaveAMRN extends SaveToDraftStore {
 
   get benefitName() {
     return getBenefitName(this.req.session.BenefitType.benefitType);
+  }
+
+  get benefitEndText() {
+    return getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
   get form() {

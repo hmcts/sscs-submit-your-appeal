@@ -44,10 +44,6 @@ class BenefitType extends SaveToDraftStore {
   }
 
   next() {
-    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
-      return goTo(this.journey.steps.LanguagePreference);
-    }
-
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
@@ -63,8 +59,26 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowAA')) {
       allowedTypes.push(benefitTypes.attendanceAllowance);
     }
+    if (isFeatureFlagEnabled('allowBB')) {
+      allowedTypes.push(benefitTypes.bereavementBenefit);
+    }
+    if (isFeatureFlagEnabled('allowIIDB')) {
+      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
+    }
+    if (isFeatureFlagEnabled('allowJSA')) {
+      allowedTypes.push(benefitTypes.jobseekersAllowance);
+    }
+    if (isFeatureFlagEnabled('allowMA')) {
+      allowedTypes.push(benefitTypes.maternityAllowance);
+    }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
+    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
+      return branch(
+        goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
+        redirectTo(this.journey.steps.AppealFormDownload)
+      );
+    }
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
       redirectTo(this.journey.steps.AppealFormDownload)
