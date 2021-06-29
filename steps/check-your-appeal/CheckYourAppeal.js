@@ -21,7 +21,6 @@ const paths = require('paths');
 const Joi = require('joi');
 const csurf = require('csurf');
 
-
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
 
@@ -87,16 +86,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
 
-  showSpinner() {
-    const loadingDiv = document.getElementById('loading');
-    loadingDiv.style.visibility = 'visible';
-  }
-
-  hideSpinner() {
-    const loadingDiv = document.getElementById('loading');
-    loadingDiv.style.visibility = 'hidden';
-  }
-
   sendToAPI() {
     this.validateJourneyValues();
     const headers = this.tokenHeader(this.req);
@@ -119,7 +108,26 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     ], logPath);
 
     // Start the loading spinner
-    this.showSpinner();
+    const opts = {
+      lines: 13, // The number of lines to draw
+      length: 7, // The length of each line
+      width: 4, // The line thickness
+      radius: 10, // The radius of the inner circle
+      rotate: 0, // The rotation offset
+      color: '#000', // #rgb or #rrggbb
+      speed: 1, // Rounds per second
+      trail: 60, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: 'auto', // Top position relative to parent in px
+      left: 'auto' // Left position relative to parent in px
+    };
+    const target = document.getElementById('spinner');
+    // eslint-disable-next-line no-undef
+    const spinner = new Spinner(opts).spin(target);
+
 
     return request.post(this.journey.settings.apiUrl)
       .retry(httpRetries, retryDelay)
@@ -137,13 +145,13 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           result.status
         ], logPath);
         // Stop the loading spinner
-        this.hideSpinner();
+        spinner.stop();
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
         logger.event('SYA-SendToApi-Success');
       }).catch(error => {
         // Stop the loading spinner
-        this.hideSpinner();
+        spinner.stop();
         const errMsg =
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 

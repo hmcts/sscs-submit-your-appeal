@@ -30,11 +30,13 @@
 
 {% block breadcrumbs %}
   {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
+  <link href="https://cdn.jsdelivr.net/npm/spin.js@latest/spin.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/spin.js@latest/spin.min.js"></script>
   <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
+  <div id="example" class="demo"></div>
 {% endblock %}
 
 {% block two_thirds %}
-<div id="loading" class="loading">
   {{ errorSummary(fields) }}
   {{ header(pageContent.title | default(defaultContent.title)) }}
 
@@ -67,8 +69,7 @@
     {% block statement_of_truth_content %}
       {{ header('Now send your application', size='m') }}
       <p class="govuk-body">{{ pageContent.statementOfTruth | default(defaultContent.statementOfTruth) | safe }}</p>
-</div>
-{% endblock %}
+    {% endblock %}
     <form action="{{ postUrl | default(path if path else url) }}"
           method="post"
           class="form"
