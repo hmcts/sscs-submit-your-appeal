@@ -1,6 +1,7 @@
 /* eslint-disable no-throw-literal  */
 const { Page } = require('@hmcts/one-per-page');
 const DateUtils = require('utils/DateUtils');
+const i18next = require('i18next');
 
 class DuplicateError extends Page {
   static get path() {
@@ -17,7 +18,7 @@ class DuplicateError extends Page {
 
   get duplicateErrorMrnDate() {
     const d = this.req.session.MRNDate.mrnDate;
-    return DateUtils.createMoment(d.day, d.month, d.year).format('DD MMM YYYY');
+    return DateUtils.createMoment(d.day, d.month, d.year, i18next.language).format('DD MMM YYYY');
   }
 }
 
