@@ -32,6 +32,16 @@
         }
       }
     }
+  },
+  "cya": {
+    "options": "Dewisiadau o ran pa fath o wrandawiad yr hoffech ei gael",
+    "change": "Newid",
+    "requested": "Gwnaethpwyd cais",
+    "notRequested": "Ni wnaethpwyd cais",
+    "required": "Gofynnol",
+    "notRequired": "Nid yw’n ofynnol",
+    "hearingTypeTelephone": "Gwrandawiad dros y ffôn",
+    "hearingTypeVideo": "Gwrandawiad drwy fideo",
+    "hearingTypeFaceToFace": "Gwrandawiad wyneb yn wyneb"
   }
 }
-
