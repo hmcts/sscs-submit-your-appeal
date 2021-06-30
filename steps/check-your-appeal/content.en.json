@@ -13,7 +13,8 @@
   "hearing": {
     "arrangements":  "Hearing arrangements",
     "datesCantAttend": "Date you cant attend the hearing",
-    "theHearing": "The hearing"
+    "theHearing": "The hearing",
+    "options": "Hearing options"
   },
   "smsNotify": {
     "textMsgReminders": "Text message reminders",
