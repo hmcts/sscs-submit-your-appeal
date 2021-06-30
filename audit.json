@@ -518,7 +518,9 @@
   "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml?lng=cy_GET" : "ignore",
   "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
   "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=cy_GET" : "ignore",
-  "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=en_GET" : "ignore"
+  "10055_CSP: X-WebKit-CSP_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=en_GET" : "ignore",
+  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/contact-us?lng=en_GET" : "ignore"
+
 }
 
 
