@@ -3,7 +3,7 @@ const config = require('../../config/default.json');
 class CheckCookies {
   init() {
     const isCookieBanner = config.features.cookieBanner.enabled;
-    if (!isCookieBanner) {
+    if (isCookieBanner === 'false') {
       this.cookieBannerElement = document.getElementById('app-cookie-banner');
       this.isCookiePrivacyMessageDisplayed();
     }
