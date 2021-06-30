@@ -1,0 +1,7 @@
+.post-code-lookup {
+    @extend .govuk-\!-width-one-quarter;
+    @extend .govuk-\!-margin-bottom-4;
+    @include govuk-media-query($from: tablet) {
+        margin-bottom:0 !important;
+    }
+}
