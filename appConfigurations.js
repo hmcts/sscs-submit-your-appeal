@@ -82,11 +82,11 @@ const configureNunjucks = (app, commonContent) => {
 const configureViews = app => {
   app.set('views', [
     path.resolve(__dirname, 'steps'),
+    path.resolve(__dirname, 'app/main/'),
     path.resolve(__dirname, 'policy-pages'),
     path.resolve(__dirname, 'error-pages'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/components/'),
-    path.resolve(__dirname, 'node_modules/cmc-cookies-manager/shared-component/'),
     path.resolve(__dirname, 'views'),
     path.resolve(__dirname, 'components')
   ]);
@@ -115,6 +115,10 @@ const configureHelmet = app => {
         '\'unsafe-inline\'',
         'www.google-analytics.com',
         'www.googletagmanager.com',
+        'www.code.jquery.com',
+        'http://maxcdn.bootstrapcdn.com',
+        'www.maxcdn.bootstrapcdn.com',
+        'code.jquery.com',
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
@@ -125,6 +129,10 @@ const configureHelmet = app => {
         'www.gov.uk',
         'www.google-analytics.com',
         'www.googletagmanager.com',
+        'www.code.jquery.com',
+        'http://maxcdn.bootstrapcdn.com',
+        'www.maxcdn.bootstrapcdn.com',
+        'code.jquery.com',
         'wss://webchat.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net'
       ],
@@ -139,6 +147,10 @@ const configureHelmet = app => {
         'stats.g.doubleclick.net',
         'www.google.com',
         'www.google.co.uk',
+        'www.code.jquery.com',
+        'http://maxcdn.bootstrapcdn.com',
+        'www.maxcdn.bootstrapcdn.com',
+        'code.jquery.com',
         'www.google-analytics.com',
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com',
