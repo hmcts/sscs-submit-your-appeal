@@ -33,5 +33,4 @@ class CheckCookies {
     }
   }
 }
-
 export default CheckCookies;
