@@ -80,6 +80,9 @@
     "allowJSA": {
       "enabled": "true"
     },
+    "allowSF" : {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },

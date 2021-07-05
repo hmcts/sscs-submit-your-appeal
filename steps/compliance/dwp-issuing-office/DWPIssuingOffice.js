@@ -7,7 +7,7 @@ const { getBenefitName, getBenefitCode } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
-const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA'];
+const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA', 'socialFund'];
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -59,6 +59,12 @@ class DWPIssuingOffice extends SaveToDraftStore {
       return DWPIssuingOffice.selectify([
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'socialFund') {
+      return DWPIssuingOffice.selectify([
+        'St Helens Sure Start Maternity Grant',
+        'Funeral Payment Dispute Resolution Team',
+        'Pensions Dispute Resolution Team'
       ]);
     }
     return DWPIssuingOffice.selectify([

@@ -63,6 +63,9 @@
     "allowJSA": {
       "enabled": "ALLOW_JSA_ENABLED"
     },
+    "allowSF": {
+      "enabled": "ALLOW_SF_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
