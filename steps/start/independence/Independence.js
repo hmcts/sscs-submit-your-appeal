@@ -30,8 +30,6 @@ class Independence extends Interstitial {
     const sessionLanguage = i18next.language;
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
-    console.log(benefitTypeContent);
-
     if (this.req.session.BenefitType) {
       if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
         return getBenefitCode(this.req.session.BenefitType.benefitType);
