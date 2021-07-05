@@ -36,9 +36,7 @@ class Independence extends Interstitial {
       if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
         return getBenefitCode(this.req.session.BenefitType.benefitType);
       }
-      const benefit = benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
-      console.log(benefit);
-      return benefit;
+      return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
     }
     return '';
   }
