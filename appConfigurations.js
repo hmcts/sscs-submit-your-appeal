@@ -82,7 +82,7 @@ const configureNunjucks = (app, commonContent) => {
 const configureViews = app => {
   app.set('views', [
     path.resolve(__dirname, 'steps'),
-    path.resolve(__dirname, 'app/main/'),
+    path.resolve(__dirname, 'cookie-banner/'),
     path.resolve(__dirname, 'policy-pages'),
     path.resolve(__dirname, 'error-pages'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),

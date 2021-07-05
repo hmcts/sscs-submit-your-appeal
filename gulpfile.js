@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 
-const appDirectory = './app/main/common/components/imported';
-const assetsDirectory = './app/main/public';
+const appDirectory = './cookie-banner/common/components/imported';
+const assetsDirectory = './cookie-banner/public';
 const stylesheetsDirectory = `${assetsDirectory}/stylesheets`;
 
 function copyCookieBanner(done) {
