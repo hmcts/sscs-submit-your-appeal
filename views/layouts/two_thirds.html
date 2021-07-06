@@ -14,9 +14,12 @@
 {% endblock %}
 
 {% block header %}
-<div>
-  {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
-</div>
+
+{% if featureToggles.cookieBanner() == "true" %}
+  <div>
+    {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
+  </div>
+{% endif %}
 
   {% include "components/cookie-banner.html" %}
   {% include "components/navigation.html" %}

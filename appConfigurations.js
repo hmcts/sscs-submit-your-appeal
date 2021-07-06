@@ -73,7 +73,8 @@ const configureNunjucks = (app, commonContent) => {
       urls,
       featureToggles: {
         welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled
+        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled
       }
     }
   });
