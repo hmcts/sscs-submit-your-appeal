@@ -93,7 +93,7 @@
       "enabled": "false"
     },
     "cookieBanner": {
-      "enabled": "true"
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
