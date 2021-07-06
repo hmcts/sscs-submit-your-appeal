@@ -20,4 +20,3 @@ evidence.txt
 /test/coverage
 package-lock.json
 *.iml
-./yarn-audit-issues
