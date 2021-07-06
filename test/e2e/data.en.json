@@ -64,6 +64,12 @@
       "codeWelsh": "Lwfans Mamolaeth",
       "office": "",
       "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Job Seekers Allowance (JSA)",
+      "code": "JSA",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {
