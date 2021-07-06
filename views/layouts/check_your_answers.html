@@ -30,6 +30,7 @@
 
 {% block breadcrumbs %}
   {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
+  <link href="https://cdn.jsdelivr.net/npm/spin.js@latest/spin.css" rel="stylesheet">
   <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
   <div id="example" class="demo"></div>
 {% endblock %}
