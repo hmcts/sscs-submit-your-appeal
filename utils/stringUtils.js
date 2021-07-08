@@ -94,6 +94,7 @@ const getTribunalPanel = ben => {
     bereavementBenefit: 'judge',
     maternityAllowance: 'judge',
     socialFund: 'judge',
+    incomeSupport: 'judge',
     UC: 'judge and for some appeals, a doctor',
     industrialInjuriesDisablement: 'judge and 1 or 2 doctors'
   }[key];
@@ -111,6 +112,7 @@ const getTribunalPanelWelsh = ben => {
     bereavementBenefit: 'barnwr',
     maternityAllowance: 'barnwr',
     socialFund: 'barnwr',
+    incomeSupport: 'barnwr',
     UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg',
     industrialInjuriesDisablement: 'barnwr ac 1 neu 2 feddyg'
   }[key];

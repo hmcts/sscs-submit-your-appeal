@@ -77,6 +77,13 @@
       "codeWelsh": "Cronfa Gymdeithasol",
       "office": "St Helens Sure Start Maternity Grant",
       "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Income Support",
+      "code": "Income Support",
+      "codeWelsh": "Cymhorthdal Incwm",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {
