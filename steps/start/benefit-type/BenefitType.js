@@ -43,6 +43,7 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
+  // eslint-disable-next-line complexity
   next() {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
@@ -67,6 +68,9 @@ class BenefitType extends SaveToDraftStore {
     }
     if (isFeatureFlagEnabled('allowJSA')) {
       allowedTypes.push(benefitTypes.jobseekersAllowance);
+    }
+    if (isFeatureFlagEnabled('allowSF')) {
+      allowedTypes.push(benefitTypes.socialFund);
     }
     if (isFeatureFlagEnabled('allowMA')) {
       allowedTypes.push(benefitTypes.maternityAllowance);
