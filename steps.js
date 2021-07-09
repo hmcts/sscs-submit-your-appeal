@@ -75,6 +75,7 @@ const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal
 const Accessibility = require('steps/policy-pages/accessibility/Accessibility');
 const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
+const Cookies = require('steps/policy-pages/cookie-policy/Cookies');
 const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
 const TermsAndConditions = require('steps/policy-pages/terms-and-conditions/TermsAndConditions');
 
@@ -192,6 +193,7 @@ const policyPages = [
   Accessibility,
   ContactUs,
   CookiePolicy,
+  Cookies,
   PrivacyPolicy,
   TermsAndConditions
 ];
