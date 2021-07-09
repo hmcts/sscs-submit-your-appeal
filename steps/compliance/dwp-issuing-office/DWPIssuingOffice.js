@@ -71,7 +71,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
         'Worthing DRT',
         'Birkenhead DRT',
         'Inverness DRT',
-        'Bradford DRT'
+        'Recovery from Estates'
       ]);
     }
     return DWPIssuingOffice.selectify([

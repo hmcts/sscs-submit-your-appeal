@@ -131,7 +131,7 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.options[0].label).to.eql('Worthing DRT');
       expect(dWPIssuingOffice.options[1].label).to.eql('Birkenhead DRT');
       expect(dWPIssuingOffice.options[2].label).to.eql('Inverness DRT');
-      expect(dWPIssuingOffice.options[3].label).to.eql('Bradford DRT');
+      expect(dWPIssuingOffice.options[3].label).to.eql('Recovery from Estates');
     });
   });
 });
