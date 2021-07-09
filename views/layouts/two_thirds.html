@@ -19,10 +19,11 @@
   <div>
     {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
   </div>
+{% else %}
+  {% include "components/cookie-banner.html" %}
 {% endif %}
 
-  {% include "components/cookie-banner.html" %}
-  {% include "components/navigation.html" %}
+{% include "components/navigation.html" %}
 {% endblock %}
 
 {% block beforeContent -%}
