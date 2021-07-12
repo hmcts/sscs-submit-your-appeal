@@ -6,7 +6,6 @@ const events = require('events');
 const commonContent = require('commonContent.json');
 const url = require('url');
 const healthcheck = require('services/healthcheck');
-const cookieParser = require('cookie-parser');
 
 const {
   configureNunjucks,
@@ -29,10 +28,6 @@ app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
 events.EventEmitter.defaultMaxListeners = 100;
-app.use(cookieParser());
-
-app.set('session', { secure: true, sameSite: 'none' });
-app.set('connect.sid', { secure: true, sameSite: 'none' });
 
 // Configure App health.
 healthcheck.setup(app);
