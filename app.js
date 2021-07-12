@@ -31,14 +31,8 @@ app.locals.asset_path = url.resolve('/', 'assets/');
 events.EventEmitter.defaultMaxListeners = 100;
 app.use(cookieParser());
 
-app.use((req, res, next) => {
-  const session = req.cookies.session;
-  const connect = req.cookies['connect.sid'];
-
-  res.cookie('session', session, { secure: true, sameSite: 'none' });
-  res.cookie('connect.sid', connect, { secure: true, sameSite: 'none' });
-  next();
-});
+app.set('session', { secure: true, sameSite: 'none' });
+app.set('connect.sid', { secure: true, sameSite: 'none' });
 
 // Configure App health.
 healthcheck.setup(app);
