@@ -80,6 +80,9 @@
     "allowJSA": {
       "enabled": "true"
     },
+    "allowSF" : {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },
@@ -90,6 +93,9 @@
       "enabled": "false"
     },
     "multipleDraftsEnabled": {
+      "enabled": "false"
+    },
+    "cookieBanner": {
       "enabled": "false"
     }
   },

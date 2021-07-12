@@ -172,6 +172,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.jobseekersAllowance);
       expect(bcode).to.equal('JSA');
     });
+    it('returns the right code for social fund', () => {
+      const bcode = getBenefitCode(benefitTypes.socialFund);
+      expect(bcode).to.equal('socialFund');
+    });
     it('returns the right code for maternity allowance', () => {
       const bcode = getBenefitCode(benefitTypes.maternityAllowance);
       expect(bcode).to.equal('maternityAllowance');
@@ -197,6 +201,10 @@ describe('the dynamic content utils', () => {
     it('returns the right name for jsa', () => {
       const bcode = getBenefitName(benefitTypes.jobseekersAllowance);
       expect(bcode).to.equal('Job Seekers Allowance');
+    });
+    it('returns the right name for social fund', () => {
+      const bcode = getBenefitName(benefitTypes.socialFund);
+      expect(bcode).to.equal('Social Fund');
     });
     it('returns the right name for maternityAllowance', () => {
       const bcode = getBenefitName(benefitTypes.maternityAllowance);
@@ -234,6 +242,10 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for JSA', () => {
       const bcode = getTribunalPanel(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('judge');
+    });
+    it('returns the right name for Social Fund', () => {
+      const bcode = getTribunalPanel(benefitTypes.socialFund);
       expect(bcode).to.equal('judge');
     });
     it('returns the right name for Maternity Allowance', () => {
@@ -276,6 +288,10 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for JSA', () => {
       const bcode = getTribunalPanelWelsh(benefitTypes.jobseekersAllowance);
+      expect(bcode).to.equal('barnwr');
+    });
+    it('returns the right name for Social Fund', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.socialFund);
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for maternity allowance', () => {

@@ -64,6 +64,19 @@
       "codeWelsh": "Lwfans Mamolaeth",
       "office": "",
       "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Job Seekers Allowance (JSA)",
+      "code": "JSA",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Social Fund",
+      "code": "Social Fund",
+      "codeWelsh": "Cronfa Gymdeithasol",
+      "office": "St Helens Sure Start Maternity Grant",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {

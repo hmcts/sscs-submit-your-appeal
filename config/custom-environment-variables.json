@@ -63,6 +63,9 @@
     "allowJSA": {
       "enabled": "ALLOW_JSA_ENABLED"
     },
+    "allowSF": {
+      "enabled": "ALLOW_SF_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
@@ -86,6 +89,9 @@
     },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
+    },
+    "cookieBanner": {
+      "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     }
   },
   "postcodeChecker": {
