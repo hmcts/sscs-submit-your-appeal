@@ -35,8 +35,8 @@ app.use((req, res, next) => {
   const session = req.cookies.session;
   const connect = req.cookies['connect.sid'];
 
-  res.cookie('session', session, { secure: true, sameSite: 'strict' });
-  res.cookie('connect.sid', connect, { secure: true, sameSite: 'strict' });
+  res.cookie('session', session, { secure: true, sameSite: 'none' });
+  res.cookie('connect.sid', connect, { secure: true, sameSite: 'none' });
   next();
 });
 
