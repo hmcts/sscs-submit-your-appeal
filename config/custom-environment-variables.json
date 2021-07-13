@@ -66,6 +66,9 @@
     "allowSF": {
       "enabled": "ALLOW_SF_ENABLED"
     },
+    "allowIS": {
+      "enabled": "ALLOW_IS_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
