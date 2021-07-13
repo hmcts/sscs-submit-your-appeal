@@ -1,0 +1,13 @@
+{
+    "bannerTitle": "Cookies on submit your appeal",
+    "acceptCookie": "Accept additional cookies",
+    "rejectCookie": "Reject additional cookies",
+    "viewPolicy": "View cookies",
+    "policy": {
+        "title": "How cookies are used in this service",
+        "selectCookieOptions": "Allow cookies that measure website use?"
+    },
+    "hideAfterAccept": "You’ve accepted additional cookies",
+    "hideAfterReject": "You’ve rejected additional cookies",
+    "hideMessage": "Hide this message"
+}
