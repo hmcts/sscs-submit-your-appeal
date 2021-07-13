@@ -180,6 +180,10 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitCode(benefitTypes.maternityAllowance);
       expect(bcode).to.equal('maternityAllowance');
     });
+    it('returns the right code for incomeSupport', () => {
+      const bcode = getBenefitCode(benefitTypes.incomeSupport);
+      expect(bcode).to.equal('incomeSupport');
+    });
   });
   describe('getBenefitName', () => {
     it('returns the right name for pip', () => {
@@ -256,6 +260,10 @@ describe('the dynamic content utils', () => {
       const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
       expect(bcode).to.equal('judge and 1 or 2 doctors');
     });
+    it('returns the right name for incomeSupport', () => {
+      const bcode = getTribunalPanel(benefitTypes.incomeSupport);
+      expect(bcode).to.equal('judge');
+    });
   });
   describe('getTribunalPanel welsh', () => {
     it('returns the right tribunal panel for pip', () => {
@@ -301,6 +309,10 @@ describe('the dynamic content utils', () => {
     it('returns the right name for iidb', () => {
       const bcode = getTribunalPanelWelsh(benefitTypes.industrialInjuriesDisablement);
       expect(bcode).to.equal('barnwr ac 1 neu 2 feddyg');
+    });
+    it('returns the right name for incomeSupport', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.incomeSupport);
+      expect(bcode).to.equal('barnwr');
     });
   });
   describe('getBenefitEndText', () => {
