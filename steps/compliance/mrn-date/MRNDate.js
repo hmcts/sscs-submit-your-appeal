@@ -74,8 +74,10 @@ class MRNDate extends SaveToDraftStore {
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
+    const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
-    const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance) && isLessThanOrEqualToAMonth;
+    const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
+      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),

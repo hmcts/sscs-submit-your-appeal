@@ -7,7 +7,10 @@ const { getBenefitName, getBenefitCode } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 
-const benefitTypes = ['ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA', 'socialFund', 'incomeSupport'];
+const benefitTypes = [
+  'ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA', 'socialFund', 'incomeSupport',
+  'industrialDeathBenefit', 'pensionCredits', 'retirementPension'
+];
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -20,6 +23,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
     });
   }
 
+  // eslint-disable-next-line complexity
   get options() {
     if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
       return DWPIssuingOffice.selectify([
@@ -59,6 +63,21 @@ class DWPIssuingOffice extends SaveToDraftStore {
       return DWPIssuingOffice.selectify([
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialDeathBenefit') {
+      return DWPIssuingOffice.selectify([
+        'Barrow IIDB Centre',
+        'Barnsley Benefit Centre'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits') {
+      return DWPIssuingOffice.selectify([
+        'Pensions Dispute Resolution Team',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
+      return DWPIssuingOffice.selectify([
+        'Pensions Dispute Resolution Team',
+        'Recovery from Estates'
       ]);
     } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'socialFund') {
       return DWPIssuingOffice.selectify([
