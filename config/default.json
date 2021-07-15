@@ -86,6 +86,9 @@
     "allowIS": {
       "enabled": "true"
     },
+    "allowRFE": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },

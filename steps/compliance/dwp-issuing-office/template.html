@@ -9,7 +9,7 @@
       <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-number.png" alt="{{ content.imageAlt | safe }}">
       <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.pipNumber.header | safe }}</h2></p>
       {{ select(fields.pipNumber, content.fields.pipNumber.label, '', false, options) }}
-    {% elif (benefitCode == 'ESA') or (benefitCode == 'DLA') or (benefitCode == 'attendanceAllowance') or (benefitCode == 'industrialInjuriesDisablement') or (benefitCode == 'JSA') or (benefitCode == 'socialFund') or (benefitCode == 'incomeSupport') %}
+    {% elif (benefitCode == 'ESA') or (benefitCode == 'DLA') or (benefitCode == 'attendanceAllowance') or (benefitCode == 'industrialInjuriesDisablement') or (benefitCode == 'JSA') or (benefitCode == 'socialFund') or (benefitCode == 'incomeSupport') or (benefitCode == 'UC') %}
       <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-location.png" alt="{{ content.imageAlt | safe }}">
       <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.dwpIssuingOffice.header | safe }}</h2></p>
       {{ select(fields.dwpIssuingOffice, content.fields.dwpIssuingOffice.label, '', false, options) }}

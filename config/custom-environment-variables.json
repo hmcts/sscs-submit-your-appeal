@@ -72,6 +72,9 @@
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
+    "allowRFE": {
+      "enabled": "ALLOW_RFE_ENABLED"
+    },
     "allowSaveAndReturn": {
       "enabled": "ALLOW_SAVE_RETURN"
     },

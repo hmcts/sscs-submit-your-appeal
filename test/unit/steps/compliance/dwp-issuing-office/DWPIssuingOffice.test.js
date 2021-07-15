@@ -124,6 +124,15 @@ describe('DWPIssuingOffice.js', () => {
     });
   });
 
+  describe('options for UC', () => {
+    it('has options for UC', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
+      expect(dWPIssuingOffice.options.length).to.eql(2);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Universal Credit');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
+    });
+  });
+
   describe('options for Income Support', () => {
     it('has options for Income Support', () => {
       dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
