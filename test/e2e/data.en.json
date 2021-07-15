@@ -20,7 +20,7 @@
       "description": "Universal Credit",
       "code": "UC",
       "office": "Universal Credit",
-      "hasDwpIssuingOffice": false
+      "hasDwpIssuingOffice": true
     },
     {
       "description": "Disability Living Allowance (DLA)",
