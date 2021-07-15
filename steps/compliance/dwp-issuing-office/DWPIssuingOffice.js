@@ -69,12 +69,8 @@ class DWPIssuingOffice extends SaveToDraftStore {
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits') {
-      return DWPIssuingOffice.selectify([
-        'Pensions Dispute Resolution Team',
-        'Recovery from Estates'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits'
+    || getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
       return DWPIssuingOffice.selectify([
         'Pensions Dispute Resolution Team',
         'Recovery from Estates'
