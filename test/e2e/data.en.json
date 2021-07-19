@@ -70,6 +70,20 @@
       "code": "JSA",
       "office": "Worthing DRT",
       "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Social Fund",
+      "code": "Social Fund",
+      "codeWelsh": "Cronfa Gymdeithasol",
+      "office": "St Helens Sure Start Maternity Grant",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Income Support",
+      "code": "Income Support",
+      "codeWelsh": "Cymhorthdal Incwm",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
     }
   ],
   "signIn": {
