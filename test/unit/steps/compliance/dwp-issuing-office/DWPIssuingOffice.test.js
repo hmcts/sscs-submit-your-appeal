@@ -3,6 +3,7 @@ const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuing
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { overrideFeatFlag } = require('utils/stringUtils');
 
 describe('DWPIssuingOffice.js', () => {
   let dWPIssuingOffice = null;
@@ -31,7 +32,15 @@ describe('DWPIssuingOffice.js', () => {
   });
 
   describe('get dwp office options()', () => {
-    it('return dwp office option', () => {
+    it('return dwp office option when allowRFE flag is true', () => {
+      overrideFeatFlag({ key: 'allowRFE', value: true });
+      expect(11).to.equal(dWPIssuingOffice.options.length);
+    });
+  });
+
+  describe('get dwp office options()', () => {
+    it('return dwp office option when allowRFE flag is false', () => {
+      overrideFeatFlag({ key: 'allowRFE', value: false });
       expect(10).to.equal(dWPIssuingOffice.options.length);
     });
   });
