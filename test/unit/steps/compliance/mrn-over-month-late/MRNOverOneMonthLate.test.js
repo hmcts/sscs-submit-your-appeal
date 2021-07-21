@@ -132,5 +132,30 @@ describe('MRNOverOneMonth.js', () => {
       setBenefitType(benefitTypes.bereavementBenefit);
       expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
+
+    it('returns the next step path /dwp-issuing-office for Social Fund', () => {
+      setBenefitType(benefitTypes.socialFund);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Bereavement Support Payment Scheme', () => {
+      setBenefitType(benefitTypes.bereavementSupportPaymentScheme);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Industrial Death Benefit', () => {
+      setBenefitType(benefitTypes.industrialDeathBenefit);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Pension Credits', () => {
+      setBenefitType(benefitTypes.pensionCredits);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Retirement Pension', () => {
+      setBenefitType(benefitTypes.retirementPension);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
   });
 });

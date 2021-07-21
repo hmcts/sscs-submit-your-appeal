@@ -22,9 +22,9 @@ const sscs1 = [
   'severeDisablementAllowance',
   'socialFund',
   'universalCredit',
-  'bereavementSupport',
+  'bereavementSupportPaymentScheme',
   'healthPregnancy',
-  'industrialDeath',
+  'industrialDeathBenefit',
   'pensionCredits',
   'retirementPension',
   'disabilityWorkAllowance'
