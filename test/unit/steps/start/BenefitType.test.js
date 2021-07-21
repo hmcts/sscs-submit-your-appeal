@@ -154,6 +154,16 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowSF.enabled') === 'false');
     });
 
+    it('pushes Income Support as allowed benefitType if allowIS is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('incomeSupport'))
+        .to.eql(config.get('features.allowIS.enabled') === 'true');
+    });
+
+    it('does not push Social Fund as allowed benefitType when allowIS is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('incomeSupport'))
+        .to.eql(config.get('features.allowIS.enabled') === 'false');
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
