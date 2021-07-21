@@ -112,6 +112,7 @@
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
     "codeceptjs": "^2.6.11",
+    "cookie-parser": "^1.4.5",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
     "istanbul": "^0.4.5",

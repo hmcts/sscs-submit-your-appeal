@@ -12,6 +12,7 @@ const steps = require('steps');
 const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
+const cookieParser = require('cookie-parser');
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -198,6 +199,10 @@ const configureJourney = (app, commonContent) => {
 
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));
+
+  // Parsing cookies for the stored encrypted session key
+  app.use(cookieParser());
+
   // Get user details from idam, sets req.idam.userDetails
   app.use(idam.userDetails());
 
