@@ -208,6 +208,11 @@ const configureMiddleWares = (app, express) => {
 
   // Disallow search index indexing
   app.use((req, res, next) => {
+    const session = req.cookies.session;
+    const connect = req.cookies['connect.sid'];
+
+    res.cookie('session', session, { secure: true, sameSite: 'Strict' });
+    res.cookie('connect.sid', connect, { secure: true, sameSite: 'Strict' });
     // Setting headers stops pages being indexed even if indexed pages link to them
     res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('X-Served-By', os.hostname());
