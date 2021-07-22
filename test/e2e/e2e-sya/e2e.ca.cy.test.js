@@ -13,6 +13,6 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[4].hasDwpIssuingOffice;
 
 Feature(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey @fullFunctional @e2e @now`, I => {
+Scenario(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, I => {
   e2eBenefit.e2eBenefit(I, benefitSearchName, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
 }).retry(5);
