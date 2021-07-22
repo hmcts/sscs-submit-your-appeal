@@ -68,6 +68,7 @@
     {
       "description": "Job Seekers Allowance (JSA)",
       "code": "JSA",
+      "codeWelsh": "Lwfans Ceisio Gwaith (JSA)",
       "office": "Worthing DRT",
       "hasDwpIssuingOffice": true
     },
