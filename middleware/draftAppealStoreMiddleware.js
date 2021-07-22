@@ -88,6 +88,8 @@ const archiveDraft = async(req, caseId) => {
     });
   }
 
+  logger.trace(`archiveDraft - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
+
   values.ccdCaseId = caseId;
   await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
     .retry(httpRetries)
@@ -112,6 +114,7 @@ const archiveDraft = async(req, caseId) => {
 const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
+  logger.trace(`updateDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
   await request.post(req.journey.settings.apiDraftUrl)
     .retry(httpRetries)
     .send(values)
@@ -136,6 +139,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 };
 
 const createDraftInDraftStore = async(req, res, next, values) => {
+  logger.trace(`createDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
   await request.put(req.journey.settings.apiDraftUrlCreate)
     .retry(httpRetries)
     .send(values)
@@ -162,22 +166,22 @@ const createDraftInDraftStore = async(req, res, next, values) => {
 };
 
 const saveToDraftStore = async(req, res, next) => {
-  let values = null;
-
   if (allowSaveAndReturn) {
+    let values = null;
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
     });
-  }
 
-  if (allowSaveAndReturn && req.idam && values) {
-    logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
-        ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
+    if (req.idam && values) {
+      logger.trace(`saveToDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
+      logger.trace(`About to post draft for CCD Id ${(values && values.ccdCaseId) ? values.ccdCaseId : null}` +
+          ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
 
-    if (req.session && req.session.ccdCaseId) {
-      await updateDraftInDraftStore(req, res, next, values);
-    } else {
-      await createDraftInDraftStore(req, res, next, values);
+      if (req.session && req.session.ccdCaseId) {
+        await updateDraftInDraftStore(req, res, next, values);
+      } else {
+        await createDraftInDraftStore(req, res, next, values);
+      }
     }
   } else {
     next();
@@ -208,6 +212,7 @@ const restoreUserState = async(req, res, next) => {
           result.body.entryPoint = 'Entry';
           Object.assign(req.session, result.body);
         }
+        logger.trace(`restoreUserState - Benefit Type in session ${(req.session.benefitType) ? req.session.benefitType.code : 'null'}`);
         next();
       })
       .catch(error => {
@@ -267,6 +272,7 @@ const restoreAllDraftsState = async(req, res, next) => {
             Object.assign(req.session, shimmed);
           }
         }
+        logger.trace(`restoreAllDraftsState - Benefit Type in session ${(req.session.benefitType) ? req.session.benefitType.code : 'null'}`);
         next();
       })
       .catch(error => {
