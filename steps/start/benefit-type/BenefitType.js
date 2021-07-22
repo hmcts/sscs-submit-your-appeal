@@ -78,6 +78,18 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowIS')) {
       allowedTypes.push(benefitTypes.incomeSupport);
     }
+    if (isFeatureFlagEnabled('allowBSPS')) {
+      allowedTypes.push(benefitTypes.bereavementSupportPaymentScheme);
+    }
+    if (isFeatureFlagEnabled('allowIDB')) {
+      allowedTypes.push(benefitTypes.industrialDeathBenefit);
+    }
+    if (isFeatureFlagEnabled('allowPC')) {
+      allowedTypes.push(benefitTypes.pensionCredits);
+    }
+    if (isFeatureFlagEnabled('allowRP')) {
+      allowedTypes.push(benefitTypes.retirementPension);
+    }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
