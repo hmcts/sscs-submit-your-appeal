@@ -124,7 +124,7 @@ const configureHelmet = app => {
         'www.gov.uk',
         'www.google-analytics.com',
         'www.googletagmanager.com',
-        'wss://webchat.ctsc.hmcts.net',
+        'wss://webchat.training.ctsc.hmcts.net',
         'https://webchat.training.ctsc.hmcts.net'
       ],
       mediaSrc: ['\'self\''],
