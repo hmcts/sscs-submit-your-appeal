@@ -54,11 +54,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  // if (language === 'en' && office === 'Inverness DRT') {
   I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
-  // } else {
-  //   I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
-  // }
   if (hasDwpIssuingOffice) {
     I.enterDWPIssuingOffice(commonContent, office);
   }

@@ -56,21 +56,25 @@
       "code": "Industrial Injuries Disablement Benefit",
       "codeWelsh": "Budd-dal Anabledd Anafiadau Diwydiannol",
       "office": "IIDB Barrow",
-      "hasDwpIssuingOffice": true
+      "hasDwpIssuingOffice": true,
+      "codeSearch": "Injuries",
+      "codeSearchWelsh": "Anafiadau"
     },
     {
       "description": "Maternity Allowance",
       "code": "Maternity Allowance",
       "codeWelsh": "Lwfans Mamolaeth",
       "office": "",
-      "hasDwpIssuingOffice": false
+      "hasDwpIssuingOffice": false,
+      "codeSearchWelsh": "Mamolaeth"
     },
     {
       "description": "Job Seekers Allowance (JSA)",
       "code": "JSA",
       "codeWelsh": "Lwfans Ceisio Gwaith (JSA)",
       "office": "Worthing DRT",
-      "hasDwpIssuingOffice": true
+      "hasDwpIssuingOffice": true,
+      "codeSearchWelsh": "Ceisio"
     },
     {
       "description": "Social Fund",
