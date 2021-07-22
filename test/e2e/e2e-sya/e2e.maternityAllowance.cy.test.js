@@ -10,6 +10,6 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[8].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[8].office;
 
 Feature(`${language.toUpperCase()} - Maternity Allowance E2E SYA - Full Journey`);
-Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, I => {
+Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e @now`, I => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, signer, language, hasDwpIssuingOffice);
 }).retry(5);
