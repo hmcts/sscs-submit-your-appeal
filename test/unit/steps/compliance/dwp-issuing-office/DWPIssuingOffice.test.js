@@ -113,4 +113,25 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.options[3].label).to.eql('Recovery from Estates');
     });
   });
+
+  describe('options for Social Fund', () => {
+    it('has options for Social', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.socialFund;
+      expect(dWPIssuingOffice.options.length).to.eql(3);
+      expect(dWPIssuingOffice.options[0].label).to.eql('St Helens Sure Start Maternity Grant');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Funeral Payment Dispute Resolution Team');
+      expect(dWPIssuingOffice.options[2].label).to.eql('Pensions Dispute Resolution Team');
+    });
+  });
+
+  describe('options for Income Support', () => {
+    it('has options for Income Support', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
+      expect(dWPIssuingOffice.options.length).to.eql(4);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Worthing DRT');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Birkenhead DRT');
+      expect(dWPIssuingOffice.options[2].label).to.eql('Inverness DRT');
+      expect(dWPIssuingOffice.options[3].label).to.eql('Recovery from Estates');
+    });
+  });
 });
