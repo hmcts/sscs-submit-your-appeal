@@ -311,5 +311,63 @@ describe('MRNDate.js', () => {
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
+
+    describe('when benefit type is Bereavement Support Payment Scheme', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.bereavementSupportPaymentScheme);
+        overrideFeatFlag({ key: 'allowBSPS', value: true });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.bereavementSupportPaymentScheme);
+        overrideFeatFlag({ key: 'allowBSPS', value: true });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when benefit type is Industrial Death Benefit', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.industrialDeathBenefit);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.industrialDeathBenefit);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+    });
+
+    describe('when benefit type is Pension Credits', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.pensionCredits);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.pensionCredits);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+    });
+
+    describe('when benefit type is Retirement Pension', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.retirementPension);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.retirementPension);
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+    });
   });
 });

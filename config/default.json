@@ -86,7 +86,16 @@
     "allowIS": {
       "enabled": "true"
     },
-    "allowRFE": {
+    "allowBSPS": {
+      "enabled": "true"
+    },
+    "allowIDB": {
+      "enabled": "true"
+    },
+    "allowPC": {
+      "enabled": "true"
+    },
+    "allowRP": {
       "enabled": "true"
     },
     "welsh": {

@@ -152,4 +152,31 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.options[3].label).to.eql('Recovery from Estates');
     });
   });
+
+  describe('options for Industrial Death Benefit', () => {
+    it('has options for Industrial Death Benefit', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.industrialDeathBenefit;
+      expect(dWPIssuingOffice.options.length).to.eql(2);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Barrow IIDB Centre');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Barnsley Benefit Centre');
+    });
+  });
+
+  describe('options for Pension Credits', () => {
+    it('has options for Pension Credits', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredits;
+      expect(dWPIssuingOffice.options.length).to.eql(2);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
+    });
+  });
+
+  describe('options for Retirement Pension', () => {
+    it('has options for Retirement Pension', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
+      expect(dWPIssuingOffice.options.length).to.eql(2);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
+    });
+  });
 });
