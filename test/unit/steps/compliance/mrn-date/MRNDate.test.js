@@ -141,17 +141,35 @@ describe('MRNDate.js', () => {
       });
     });
 
-    describe('when benefit type is UC', () => {
+    describe('when benefit type is UC and allowSFE is false', () => {
       it('returns the next step path /are-you-an-appointee if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.universalCredit);
+        overrideFeatFlag({ key: 'allowRFE', value: false });
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
 
       it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.universalCredit);
+        overrideFeatFlag({ key: 'allowRFE', value: false });
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when benefit type is UC and allowSFE is true', () => {
+      it('returns the next step path /dwp-issuing-office if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.universalCredit);
+        overrideFeatFlag({ key: 'allowRFE', value: true });
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      });
+
+      it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.universalCredit);
+        overrideFeatFlag({ key: 'allowRFE', value: true });
+        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
       });
     });
 

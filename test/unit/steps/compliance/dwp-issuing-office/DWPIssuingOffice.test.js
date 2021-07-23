@@ -3,6 +3,7 @@ const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuing
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { overrideFeatFlag } = require('utils/stringUtils');
 
 describe('DWPIssuingOffice.js', () => {
   let dWPIssuingOffice = null;
@@ -31,7 +32,15 @@ describe('DWPIssuingOffice.js', () => {
   });
 
   describe('get dwp office options()', () => {
-    it('return dwp office option', () => {
+    it('return dwp office option when allowRFE flag is true', () => {
+      overrideFeatFlag({ key: 'allowRFE', value: true });
+      expect(11).to.equal(dWPIssuingOffice.options.length);
+    });
+  });
+
+  describe('get dwp office options()', () => {
+    it('return dwp office option when allowRFE flag is false', () => {
+      overrideFeatFlag({ key: 'allowRFE', value: false });
       expect(10).to.equal(dWPIssuingOffice.options.length);
     });
   });
@@ -121,6 +130,15 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.options[0].label).to.eql('St Helens Sure Start Maternity Grant');
       expect(dWPIssuingOffice.options[1].label).to.eql('Funeral Payment Dispute Resolution Team');
       expect(dWPIssuingOffice.options[2].label).to.eql('Pensions Dispute Resolution Team');
+    });
+  });
+
+  describe('options for UC', () => {
+    it('has options for UC', () => {
+      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
+      expect(dWPIssuingOffice.options.length).to.eql(2);
+      expect(dWPIssuingOffice.options[0].label).to.eql('Universal Credit');
+      expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
     });
   });
 
