@@ -7,7 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { getBenefitCode } = require('utils/stringUtils');
+const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const i18next = require('i18next');
 
 class MRNDate extends SaveToDraftStore {
@@ -70,7 +70,7 @@ class MRNDate extends SaveToDraftStore {
     const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
-    const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)';
+    const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)' && !isFeatureFlagEnabled('allowRFE');
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
