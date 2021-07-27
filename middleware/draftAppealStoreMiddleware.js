@@ -40,7 +40,6 @@ const resetJourney = req => {
     'hydrate', 'dehydrate', 'generate', 'save'
   ];
 
-  // const allKeys = Object.keys(this.req.session);
   const allKeys = Object.keys(req.session);
   const keysToDelete = allKeys.filter(key => !keysToKeep.includes(key));
 
