@@ -5,6 +5,13 @@ function checkOptionAndContinue(commonContent, option) {
   I.click(commonContent.continue);
 }
 
+function checkOptionAndContinueAfterSignIn(commonContent, option) {
+  const I = this;
+
+  I.checkOption(option);
+  I.click(commonContent.saveAndContinue);
+}
+
 
 function checkPCQOptionAndContinue(option) {
   const I = this;
@@ -22,5 +29,6 @@ function checkCYPCQOptionAndContinue(option) {
 
 
 module.exports = { checkOptionAndContinue,
+  checkOptionAndContinueAfterSignIn,
   checkPCQOptionAndContinue,
   checkCYPCQOptionAndContinue };

@@ -2,6 +2,7 @@
   "titleHead": "Upload additional evidence",
   "title": "Upload additional evidence",
   "description": "You can upload letters, documents or photos. For example, you could take a picture of a letter from your doctor using your phone. Place it on a flat surface and take the photo from above.",
+  "description2": "You can only add MP3 & MP4 files after we have received your application",
   "itemsListLabel": "Uploaded files",
   "noItemsMessage": "You have not uploaded any files. Upload at least one file before you continue. Click ‘back’ if you do not want to upload anything.",
   "noItemsError": "You have not uploaded any files. Upload at least one file before you continue. Click ‘back’ if you do not want to upload anything.",
@@ -12,7 +13,7 @@
         "maxFileSizeExceeded": "The file you have uploaded is too big. Please upload a file under 5MB.",
         "wrongFileType": "The type of file you have uploaded is not accepted. Please convert it to a common file format and try again.",
         "required": "You have not uploaded a file. Please upload your file again.",
-        "technical": "Your file could not be uploaded due to a technical error. Please try again.",
+        "technical": "Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.",
         "totalFileSizeExceeded": "You can only upload a maximum of 5mb of evidence. Please print and send the rest by post. The address will be sent to you after you have submitted your appeal."
       }
     }

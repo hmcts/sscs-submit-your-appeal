@@ -1,7 +1,6 @@
 const HearingOptions = require('steps/hearing/options/HearingOptions');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const config = require('config');
 const {
   emptyTelephoneValidation,
   invalidTelephoneValidation,
@@ -13,8 +12,6 @@ const {
 
 describe('HearingOptions.js', () => {
   let hearingOptions = null;
-  const testConfig = JSON.parse(JSON.stringify(config));
-  testConfig.features.allowUCHearingOption.enabled = 'true';
 
   beforeEach(() => {
     hearingOptions = new HearingOptions({
@@ -176,12 +173,6 @@ describe('HearingOptions.js', () => {
     });
   });
 
-  describe('answers()', () => {
-    it('should contain hide index which is set to true', () => {
-      const answers = hearingOptions.answers();
-      expect(answers.hide).to.equal(true);
-    });
-  });
 
   describe('next()', () => {
     it('returns the next step path /hearing-support', () => {
@@ -256,6 +247,26 @@ describe('HearingOptions.js', () => {
       options.video.requested = false;
       options.faceToFace.requested = true;
       expect(optionSelected(options)).to.equal(true);
+    });
+  });
+
+  describe('get cyaOptions()', () => {
+    it('should return an object', () => {
+      hearingOptions = new HearingOptions({});
+      hearingOptions.fields = {
+        selectOptions: {
+          value: {
+            telephone: { requested: { value: true }, phoneNumber: '0987654321' },
+            video: { requested: { value: true }, email: 'name@email' }, faceToFace: { requested: { value: true } }
+          }
+        }
+      };
+
+      expect(hearingOptions.cyaOptions).to.eql({
+        hearingTypeTelephone: '0987654321',
+        hearingTypeVideo: 'name@email',
+        hearingTypeFaceToFace: 'Requested'
+      });
     });
   });
 });

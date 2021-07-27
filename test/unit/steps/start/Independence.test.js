@@ -1,7 +1,7 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
-const config = require('config');
+const i18next = require('i18next');
 let Independence = require('steps/start/independence/Independence');
 
 describe('Independence.js', () => {
@@ -29,16 +29,158 @@ describe('Independence.js', () => {
       expect(independence.path).to.equal(paths.start.independence);
     });
 
-    it('get allowUC from config', () => {
-      expect(independence.allowUC).to.equal(config.get('features.allowUC.enabled') === 'true');
-    });
-
     it('returns tribunal panel', () => {
       expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
     });
 
     it('returns benefit type', () => {
       expect(independence.benefitType).to.equal('PIP');
+    });
+
+    describe('Disability Living Allowance (DLA)', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Disability Living Allowance (DLA)'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('DLA');
+      });
+    });
+
+    describe('Disability Living Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Disability Living Allowance (DLA)'
+            }
+          }
+        });
+      });
+
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('returns tribunal panel in Welsh', () => {
+        expect(independence.tribunalPanel).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+      });
+    });
+
+    describe('Attendance Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Attendance Allowance'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('Attendance Allowance');
+      });
+    });
+
+    describe('Attendance Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Attendance Allowance'
+            }
+          }
+        });
+      });
+
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('returns tribunal panel in Welsh', () => {
+        expect(independence.tribunalPanel).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+      });
+
+      it('returns benefit name in Welsh', () => {
+        expect(independence.benefitType).to.equal('Lwfans Gweini');
+      });
+    });
+
+    describe('Carer\'s Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Carer\'s Allowance'
+            }
+          }
+        });
+      });
+
+      it('returns tribunal panel', () => {
+        expect(independence.tribunalPanel).to.equal('judge');
+      });
+
+      it('returns benefit type', () => {
+        expect(independence.benefitType).to.equal('Carer’s Allowance');
+      });
+    });
+
+    describe('Carer\'s Allowance', () => {
+      beforeEach(() => {
+        independence = new Independence({
+          journey: steps,
+          session: {
+            BenefitType: {
+              benefitType: 'Carer\'s Allowance'
+            }
+          }
+        });
+      });
+
+      beforeEach(() => {
+        i18next.changeLanguage('cy');
+      });
+
+      afterEach(() => {
+        i18next.changeLanguage('en');
+      });
+
+      it('returns tribunal panel in Welsh', () => {
+        expect(independence.tribunalPanel).to.equal('barnwr');
+      });
+
+      it('returns benefit name in Welsh', () => {
+        expect(independence.benefitType).to.equal('Lwfans Gofalwr');
+      });
     });
 
     describe('next()', () => {

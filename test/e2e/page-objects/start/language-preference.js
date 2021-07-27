@@ -4,4 +4,10 @@ function chooseLanguagePreference(commonContent, answer) {
   I.click(commonContent.continue);
 }
 
-module.exports = { chooseLanguagePreference };
+function chooseLanguagePreferenceAfterSignIn(commonContent, answer) {
+  const I = this;
+  I.click({ id: `languagePreferenceWelsh-${answer}` });
+  I.click(commonContent.saveAndContinue);
+}
+
+module.exports = { chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn };

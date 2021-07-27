@@ -15,6 +15,16 @@ function enterAppellantNameAndContinue(commonContent, title, firstName, lastName
   I.click(commonContent.continue);
 }
 
+function enterAppellantNameAndContinueAfterSignIn(commonContent, title, firstName, lastName) {
+  const I = this;
+
+  I.wait(3);
+  I.selectOption({ id: 'title' }, title);
+  I.fillField({ id: 'firstName' }, firstName);
+  I.fillField({ id: 'lastName' }, lastName);
+  I.click(commonContent.saveAndContinue);
+}
+
 function enterAppellantDOBAndContinue(commonContent, day, month, year) {
   const I = this;
 
@@ -25,12 +35,30 @@ function enterAppellantDOBAndContinue(commonContent, day, month, year) {
   I.click(commonContent.continue);
 }
 
+function enterAppellantDOBAndContinueAfterSignIn(commonContent, day, month, year) {
+  const I = this;
+
+  I.wait(3);
+  I.fillField('input[name*="day"]', day);
+  I.fillField('input[name*="month"]', month);
+  I.fillField('input[name*="year"]', year);
+  I.click(commonContent.saveAndContinue);
+}
+
 function enterAppellantNINOAndContinue(commonContent, nino) {
   const I = this;
 
   I.wait(3);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
+}
+
+function enterAppellantNINOAndContinueAfterSignIn(commonContent, nino) {
+  const I = this;
+
+  I.wait(3);
+  I.fillField('#nino', nino);
+  I.click(commonContent.saveAndContinue);
 }
 
 function IenterAddressDetailsManual(I) {
@@ -93,6 +121,17 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   I.click(commonContent.continue);
 }
 
+function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, mobileNumber = '07466748336') {
+  const I = this;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+
+  IenterAddressDetails(postcodeLookupContent, I);
+  I.wait(5);
+  I.fillField('#phoneNumber', mobileNumber);
+  I.click(commonContent.saveAndContinue);
+}
+
+
 function enterAppellantContactDetailsWithEmailAndContinue(commonContent, language) {
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
@@ -104,10 +143,14 @@ function enterAppellantContactDetailsWithEmailAndContinue(commonContent, languag
 
 module.exports = {
   enterAppellantNameAndContinue,
+  enterAppellantNameAndContinueAfterSignIn,
   enterAppellantDOBAndContinue,
+  enterAppellantDOBAndContinueAfterSignIn,
   enterAppellantNINOAndContinue,
+  enterAppellantNINOAndContinueAfterSignIn,
   enterAppellantContactDetailsAndContinue,
   enterAppellantContactDetailsWithMobileAndContinue,
+  enterAppellantContactDetailsWithMobileAndContinueAfterSignIn,
   enterAppellantContactDetailsWithEmailAndContinue,
   enterAppellantContactDetailsManuallyAndContinue
 };

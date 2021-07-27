@@ -6,15 +6,15 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
-        {% if allowUC and benefitType == 'UC'%}
-            <p class="govuk-body">{{ content[benefitType.toLowerCase()].subtitle_para2 | safe }}</p>
+        {% if benefitCode == 'UC'%}
+            <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
         {{ selectionButtons(
             fields.haveAMRN,
-            content[benefitType.toLowerCase()].subtitle,
+            content.subtitle,
             hint = '',
             options = [
                 { label: content.fields.haveAMRN.yes, value: "yes" },

@@ -18,7 +18,6 @@ describe('MRNOverOneMonth.js', () => {
           }
         },
         steps: {
-          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeESA,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           Appointee: paths.identity.areYouAnAppointee
         }
@@ -104,14 +103,59 @@ describe('MRNOverOneMonth.js', () => {
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /dwp-issuing-office-esa', () => {
+    it('returns the next step path /dwp-issuing-office', () => {
       setBenefitType(benefitTypes.employmentAndSupportAllowance);
-      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeESA);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
 
-    it('returns the next step path /are-you-an-appointee', () => {
+    it('returns the next step path /are-you-an-appointee for UC', () => {
       setBenefitType(benefitTypes.universalCredit);
       expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Carers Allowance', () => {
+      setBenefitType(benefitTypes.carersAllowance);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA) if MRN date is over a month', () => {
+      setBenefitType(benefitTypes.disabilityLivingAllowance);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Attendance Allowance if MRN date is over a month', () => {
+      setBenefitType(benefitTypes.attendanceAllowance);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Bereavement Benefit', () => {
+      setBenefitType(benefitTypes.bereavementBenefit);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Social Fund', () => {
+      setBenefitType(benefitTypes.socialFund);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Bereavement Support Payment Scheme', () => {
+      setBenefitType(benefitTypes.bereavementSupportPaymentScheme);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Industrial Death Benefit', () => {
+      setBenefitType(benefitTypes.industrialDeathBenefit);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Pension Credits', () => {
+      setBenefitType(benefitTypes.pensionCredits);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+    });
+
+    it('returns the next step path /dwp-issuing-office for Retirement Pension', () => {
+      setBenefitType(benefitTypes.retirementPension);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOffice);
     });
   });
 });

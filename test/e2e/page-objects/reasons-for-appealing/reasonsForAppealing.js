@@ -5,6 +5,13 @@ function enterAnythingElseAndContinue(commonContent, anythingElse) {
   I.click(commonContent.continue);
 }
 
+function enterAnythingElseAfterSignIn(commonContent, anythingElse) {
+  const I = this;
+
+  I.fillField('#otherReasonForAppealing', anythingElse);
+  I.click(commonContent.saveAndContinue);
+}
+
 function enterReasonForAppealAndContinue(commonContent, reason, link) {
   const I = this;
 
@@ -23,6 +30,7 @@ function addReasonsForAppealingAndContinue(commonContent, reason, link) {
 
 module.exports = {
   enterAnythingElseAndContinue,
+  enterAnythingElseAfterSignIn,
   enterReasonForAppealAndContinue,
   addReasonsForAppealingAndContinue
 };

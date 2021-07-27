@@ -1,18 +1,27 @@
 function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   const I = this;
 
+  I.wait(3);
   I.scrollPageToBottom();
+  I.wait(2);
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.continue);
 }
 
-function enterDWPIssuingOffice(commonContent, id, benefitTypeCode) {
+function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
   const I = this;
 
   I.scrollPageToBottom();
-  if (benefitTypeCode === 'ESA') {
-    I.selectOption({ id: 'dwpIssuingOffice' }, id);
-  }
+  I.selectOption({ id: 'pipNumber' }, id);
+  I.click(commonContent.saveAndContinue);
+}
+
+
+function enterDWPIssuingOffice(commonContent, id) {
+  const I = this;
+
+  I.scrollPageToBottom();
+  I.selectOption({ id: 'dwpIssuingOffice' }, id);
   I.click(commonContent.continue);
 }
 
@@ -25,6 +34,7 @@ function seeDWPIssuingOfficeError(url, error) {
 
 module.exports = {
   enterDWPIssuingOfficeAndContinue,
+  enterDWPIssuingOfficeAndContinueAfterSignIn,
   enterDWPIssuingOffice,
   seeDWPIssuingOfficeError
 };

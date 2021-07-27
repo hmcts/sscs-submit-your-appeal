@@ -11,7 +11,7 @@ const { isGreaterThanOrEqualToFiveCharacters, getBenefitCode } = require('utils/
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const paths = require('paths');
-const { decode } = require('utils/stringUtils');
+const { decode, isFeatureFlagEnabled } = require('utils/stringUtils');
 
 class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -23,6 +23,17 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
     return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+  }
+
+  get benefitCode() {
+    if (this.req.session.BenefitType) {
+      return getBenefitCode(this.req.session.BenefitType.benefitType);
+    }
+    return '';
+  }
+
+  isBenefitEnabled(featureFlag) {
+    return isFeatureFlagEnabled(featureFlag);
   }
 
   get addAnotherLinkContent() {

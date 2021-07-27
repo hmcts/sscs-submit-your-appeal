@@ -17,6 +17,8 @@ const paths = require('paths');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
 
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
+
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
@@ -40,7 +42,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
 }
 
-function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office) {
+function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
   const I = this;
 
   I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
@@ -52,20 +54,77 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  if (language === 'en' && office === 'Inverness DRT') {
-    I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
-  } else {
-    I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
+  if (hasDwpIssuingOffice) {
+    I.enterDWPIssuingOffice(commonContent, office);
   }
-
-  if (benefitTypeCode === 'ESA') {
-    I.enterDWPIssuingOffice(commonContent, office, benefitTypeCode);
-  }
-
   I.selectAreYouAnAppointeeAndContinue(commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+}
+
+
+function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  /* Create new application */
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(newUserEmail, testDataEn.signIn.password, language);
+  I.createNewApplication(language);
+  I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
+  I.signOut(language);
+
+  /* Login to submit saved case */
+  I.createTheSession(language);
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(newUserEmail, testDataEn.signIn.password, language);
+  I.verifyDraftAppealsAndEditACase(language);
+  I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
+  I.continueFromIndependance(commonContent);
+  I.selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
+  I.selectAreYouAnAppointeeAndContinueAfterSignIn(commonContent, '#isAppointee-no');
+  I.enterAppellantNameAndContinueAfterSignIn(commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinueAfterSignIn(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
+}
+
+function enterDetailsForNewApplication(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  I.signIn(userEmail, testDataEn.signIn.password, language);
+  I.createNewApplication(language);
+  I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
+  I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
+  I.enterPostcodeAndContinueAfterSignIn(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, '#haveAMRN-yes');
+  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
+  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
+}
+
+function enterDetailsToArchiveACase(commonContent, language, userEmail) {
+  const I = this;
+
+  I.amOnPage(`${baseUrl}/sign-out`);
+  I.navigateToSignInLink();
+  I.signIn(userEmail, testDataEn.signIn.password, language);
+  I.verifyDraftAppealsAndArchiveACase(language);
 }
 
 function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
@@ -220,6 +279,9 @@ function checkYourAppealToConfirmationPage(language, signer) {
 module.exports = {
   enterDetailsFromStartToNINO,
   enterCaseDetailsFromStartToNINO,
+  enterDetailsFromStartToDraftAppeals,
+  enterDetailsForNewApplication,
+  enterDetailsToArchiveACase,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,

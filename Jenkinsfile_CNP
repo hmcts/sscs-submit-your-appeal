@@ -13,40 +13,21 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withPipeline("nodejs", product, component) {
 
-  before('securitychecks') {
-    try {
-      yarnBuilder.yarn('audit')
-    } catch (error) {
-      onMaster {
-        slackSend(channel: '#sscs-tech', color: 'warning', message: "Yarn Audit has detected vulnerabilities in ${env.JOB_NAME}. You can check if there are patches for them in the full report, build details here: <${env.RUN_DISPLAY_URL}|Build ${env.BUILD_DISPLAY_NAME}>.")
-      }
-    }
-  }
+  before('securitychecks') { yarnBuilder.yarn('test:audit') }
 
   after('build') {
     yarnBuilder.yarn('build')
   }
 
-  before('smoketest:preview') {
-    // workaround to fix SIDAM whitelisting for PR AKS URLs
-    try {
-      def encodedServiceName = 'SSCS'
-      def aksUrlToWhitelist = env.TEST_URL + '/authenticated'
-      sh('curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/' + encodedServiceName +
-        ' -H \'Content-Type: application/json\'' +
-        ' -H \'cache-control: no-cache\'' +
-        ' -d \'[{' +
-          '"operation":"add",' +
-          '"field":"redirect_uri",' +
-          '"value":"' + aksUrlToWhitelist + '"' +
-        '}]\'')
-    } catch (err) {
-      notifyBuildEvent channel: notificationsChannel, color: 'warning', message: 'Failed to update SIDAM PR whitelisting'
-    }
-  }
-
   enableAksStagingDeployment()
   disableLegacyDeployment()
+
+  after('akschartsinstall'){
+    onMaster {
+      // Vars needed for AKS testing in path to live
+      env.CHUNKS = 4
+    }
+  }
 
   after("smoketest:preview") {
       stage('Application URLs') {

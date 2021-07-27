@@ -4,6 +4,12 @@
     "description": "Taliad Annibyniaeth Personol",
     "code": "PIP"
   },
+  "benefitTypes": [
+    {
+      "description": "Lwfans Gofalwr",
+      "searchName": "Gofalwr"
+    }
+  ],
   "mrn": {
     "dwpIssuingOffice": "1",
     "reasonForNoMRN": "I do not have a MRN because...",
