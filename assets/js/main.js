@@ -8,7 +8,7 @@ import accessibleAutocomplete from 'accessible-autocomplete';
 import datePicker from './date-picker/date-picker';
 import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
-import { CheckCookies } from './check-cookies';
+import CheckCookies from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 import { WebChat } from './web-chat';
 

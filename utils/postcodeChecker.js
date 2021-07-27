@@ -2,12 +2,14 @@ const config = require('config');
 const HttpStatus = require('http-status-codes');
 const request = require('superagent');
 const { inwardPostcode } = require('utils/regex');
+const logger = require('logger');
 
 const postcodeCountryLookupUrl = config.get('api.url') + config.get('postcodeChecker.endpoint');
 const allowedRegionCentres = config.get('postcodeChecker.allowedRpcs')
   .split(',')
   .map(rpc => rpc.trim().toLocaleLowerCase());
 const northernIrelandPostcodeStart = 'bt';
+const httpRetries = 3;
 
 const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
   if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
@@ -23,6 +25,7 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
     }
 
     request.get(`${postcodeCountryLookupUrl}/${outcode}`)
+      .retry(httpRetries)
       .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
       .then(resp => {
         if (resp.status !== HttpStatus.OK) {
@@ -34,6 +37,7 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
         resolve(allowedRegionCentres.includes(regionalCentre));
       })
       .catch(error => {
+        logger.exception(JSON.stringify(error));
         reject(error);
       });
   });

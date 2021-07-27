@@ -31,7 +31,10 @@
   "features": {
     "evidenceUpload": {
       "enabled": "EVIDENCE_UPLOAD_ENABLED",
-      "maxFileSize": "MAX_FILE_SIZE"
+      "maxFileSize": "MAX_FILE_SIZE",
+      "mediaFilesAllowed": {
+        "enabled": "MEDIA_FILES_ALLOWED_ENABLED"
+      }
     },
     "allowESA": {
       "enabled": "ALLOW_ESA_ENABLED"
@@ -39,8 +42,50 @@
     "allowUC": {
       "enabled": "ALLOW_UC_ENABLED"
     },
+    "allowDLA": {
+      "enabled": "ALLOW_DLA_ENABLED"
+    },
+    "allowCA": {
+      "enabled": "ALLOW_CA_ENABLED"
+    },
+    "allowAA": {
+      "enabled": "ALLOW_AA_ENABLED"
+    },
+    "allowBB": {
+      "enabled": "ALLOW_BB_ENABLED"
+    },
+    "allowIIDB": {
+      "enabled": "ALLOW_IIDB_ENABLED"
+    },
+    "allowMA": {
+      "enabled": "ALLOW_MA_ENABLED"
+    },
+    "allowJSA": {
+      "enabled": "ALLOW_JSA_ENABLED"
+    },
+    "allowSF": {
+      "enabled": "ALLOW_SF_ENABLED"
+    },
+    "allowIS": {
+      "enabled": "ALLOW_IS_ENABLED"
+    },
+    "allowBSPS": {
+      "enabled": "ALLOW_BSPS_ENABLED"
+    },
+    "allowIDB": {
+      "enabled": "ALLOW_IDB_ENABLED"
+    },
+    "allowPC": {
+      "enabled": "ALLOW_PC_ENABLED"
+    },
+    "allowRP": {
+      "enabled": "ALLOW_RP_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
+    },
+    "allowRFE": {
+      "enabled": "ALLOW_RFE_ENABLED"
     },
     "allowSaveAndReturn": {
       "enabled": "ALLOW_SAVE_RETURN"
@@ -60,11 +105,11 @@
     "antennaWebChat": {
       "enabled": "FT_ANTENNA_WEBCHAT"
     },
-    "allowUCHearingOption": {
-      "enabled": "FT_ALLOW_UC_HEARING_OPTIONS"
-    },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
+    },
+    "cookieBanner": {
+      "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     }
   },
   "postcodeChecker": {

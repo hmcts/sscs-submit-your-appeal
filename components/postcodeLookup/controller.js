@@ -159,7 +159,7 @@ class Controller {
     const postCode = page.fields[fieldMap.postcodeLookup].value;
     const options = {
       json: true,
-      uri: `${this.apiUrl}/addresses/postcode?postcode=${postCode}&key=${this.token}`,
+      uri: `${this.apiUrl}/postcode?&key=${this.token}&postcode=${postCode}&lr=EN`,
       method: 'GET'
     };
 

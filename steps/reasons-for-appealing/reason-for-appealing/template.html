@@ -63,9 +63,7 @@
 {% endblock %}
 
 {% block editItem %}
-    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
-    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}dd
+    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 

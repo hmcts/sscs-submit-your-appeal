@@ -13,14 +13,123 @@
     {
       "description": "Employment and Support Allowance",
       "code": "ESA",
-      "office" : "Inverness DRT"
+      "office" : "Inverness DRT",
+      "hasDwpIssuingOffice": true
     },
     {
       "description": "Universal Credit",
       "code": "UC",
-      "office": "Universal Credit"
+      "office": "Universal Credit",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Disability Living Allowance (DLA)",
+      "code": "DLA",
+      "office": "Recovery from Estates",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Carer's Allowance",
+      "searchName": "Carer's Allowance",
+      "code": "Carer's Allowance",
+      "codeWelsh": "Lwfans Gofalwr",
+      "searchNameWelsh": "Gofalwr",
+      "office": "",
+      "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Attendance Allowance",
+      "code": "Attendance Allowance",
+      "codeWelsh": "Lwfans Gweini",
+      "office": "The Pension Service 11",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Bereavement Benefit",
+      "code": "Bereavement Benefit",
+      "codeWelsh": "Budd-dal Profedigaeth",
+      "office": "",
+      "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Industrial Injuries Disablement Benefit",
+      "code": "Industrial Injuries Disablement Benefit",
+      "codeWelsh": "Budd-dal Anabledd Anafiadau Diwydiannol",
+      "office": "Barrow IIDB Centre",
+      "hasDwpIssuingOffice": true,
+      "codeSearch": "Injuries",
+      "codeSearchWelsh": "Anafiadau"
+    },
+    {
+      "description": "Maternity Allowance",
+      "code": "Maternity Allowance",
+      "codeWelsh": "Lwfans Mamolaeth",
+      "office": "",
+      "hasDwpIssuingOffice": false,
+      "codeSearchWelsh": "Mamolaeth"
+    },
+    {
+      "description": "Job Seekers Allowance (JSA)",
+      "code": "JSA",
+      "codeWelsh": "Lwfans Ceisio Gwaith (JSA)",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true,
+      "codeSearchWelsh": "Ceisio"
+    },
+    {
+      "description": "Social Fund",
+      "code": "Social Fund",
+      "codeWelsh": "Cronfa Gymdeithasol",
+      "office": "St Helens Sure Start Maternity Grant",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Income Support",
+      "code": "Income Support",
+      "codeWelsh": "Cymhorthdal Incwm",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Bereavement Support Payment Scheme ",
+      "code": "Bereavement Support Payment Scheme ",
+      "codeWelsh": "Cynllun Talu am Gymorth yng nghyswllt Profedigaeth",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Industrial Death Benefit",
+      "code": "Industrial Death Benefit",
+      "codeWelsh": "Budd-dal Marwolaeth Ddiwydiannol",
+      "office": "Barrow IIDB Centre",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Pension Credits",
+      "code": "Pension Credits",
+      "codeWelsh": "Credydau Pensiwn",
+      "office": "Pensions Dispute Resolution Team",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Retirement Pension",
+      "code": "Retirement Pension",
+      "codeWelsh": "Pensiwn Ymddeol",
+      "office": "Pensions Dispute Resolution Team",
+      "hasDwpIssuingOffice": true
     }
   ],
+  "signIn": {
+    "username": "sscs-aat-test@mailinator.com",
+    "password": "Testing123"
+  },
+  "draftAppeal": {
+    "idHeader": "Appeal reference",
+    "benefitHeader": "Benefit",
+    "mrnHeader": "MRN date",
+    "actionsHeader": "Action",
+    "appellantName": "Appellant Name Not Set"
+  },
   "mrn": {
     "dwpIssuingOffice": "1",
     "reasonForNoMRN": "I do not have a MRN because...",

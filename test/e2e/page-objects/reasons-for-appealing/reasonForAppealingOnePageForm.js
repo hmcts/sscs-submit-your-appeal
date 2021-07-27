@@ -36,9 +36,22 @@ function addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, reas
   I.click(commonContent.continue);
 }
 
+function addReasonForAppealingUsingTheOnePageFormAfterSignIn(commonContent, reason) {
+  const I = this;
+
+  I.wait(10);
+  I.addAReasonForAppealing(
+    '#items-0 #item\\.whatYouDisagreeWith-0',
+    '#items-0 #item\\.reasonForAppealing-0',
+    reason
+  );
+  I.click(commonContent.saveAndContinue);
+}
+
 module.exports = {
   hasErrorClass,
   addAReasonForAppealing,
   addAReasonForAppealingAndThenClickAddAnother,
-  addReasonForAppealingUsingTheOnePageFormAndContinue
+  addReasonForAppealingUsingTheOnePageFormAndContinue,
+  addReasonForAppealingUsingTheOnePageFormAfterSignIn
 };

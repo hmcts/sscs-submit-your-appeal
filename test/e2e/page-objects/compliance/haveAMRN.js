@@ -5,4 +5,11 @@ function selectHaveYouGotAMRNAndContinue(commonContent, option) {
   I.click(commonContent.continue);
 }
 
-module.exports = { selectHaveYouGotAMRNAndContinue };
+function selectHaveYouGotAMRNAndContinueAfterSignIn(commonContent, option) {
+  const I = this;
+
+  I.checkOption(option);
+  I.click(commonContent.saveAndContinue);
+}
+
+module.exports = { selectHaveYouGotAMRNAndContinue, selectHaveYouGotAMRNAndContinueAfterSignIn };

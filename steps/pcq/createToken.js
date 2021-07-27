@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const CONF = require('config');
 const logger = require('logger');
 
-const algorithm = 'aes-256-cbc';
+const algorithm = 'aes-256-gcm';
 const bufferSize = 16;
 const iv = Buffer.alloc(bufferSize, 0);
 const keyLen = 32;

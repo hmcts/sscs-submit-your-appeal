@@ -6,6 +6,7 @@ const paths = require('paths');
 const content = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const benefitTypes = require('steps/start/benefit-type/types');
 const contentBenefitType = require('steps/start/benefit-type/content.en');
+const config = require('config');
 
 describe('ReasonForAppealing.js', () => {
   let reasonForAppealing = null;
@@ -30,11 +31,22 @@ describe('ReasonForAppealing.js', () => {
     });
   });
 
+  describe('isBenefitEnabled()', () => {
+    it('returns if benefit is enabled', () => {
+      expect(reasonForAppealing.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
+    });
+  });
+
   describe('get benefitType()', () => {
     const req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
     it('returns benefitType', () => {
       reasonForAppealing.req = req;
       expect(reasonForAppealing.benefitType).to.equal(contentBenefitType.benefitTypes.pip);
+    });
+
+    it('returns benefitCode', () => {
+      reasonForAppealing.req = req;
+      expect(reasonForAppealing.benefitCode).to.equal('PIP');
     });
   });
 

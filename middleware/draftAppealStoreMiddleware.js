@@ -5,6 +5,8 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
+const httpRetries = 3;
+
 /* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
@@ -69,7 +71,8 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
     `${(values && values.appellant && values.appellant.nino) ?
       values.appellant.nino :
       'no NINO submitted yet'}`, logPath);
-  logger.exception(error, logPath);
+
+  logger.exception(JSON.stringify(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
   } else {
@@ -88,6 +91,7 @@ const archiveDraft = async(req, caseId) => {
 
   values.ccdCaseId = caseId;
   await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -102,7 +106,7 @@ const archiveDraft = async(req, caseId) => {
     })
     .catch(error => {
       logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
-      logger.exception(error, logPath);
+      logger.exception(JSON.stringify(error), logPath);
     });
 };
 
@@ -110,6 +114,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
   await request.post(req.journey.settings.apiDraftUrl)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -133,6 +138,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 
 const createDraftInDraftStore = async(req, res, next, values) => {
   await request.put(req.journey.settings.apiDraftUrlCreate)
+    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -189,6 +195,7 @@ const restoreUserState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiDraftUrl)
+      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -208,7 +215,7 @@ const restoreUserState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(error, logPath);
+        logger.exception(JSON.stringify(error), logPath);
         next();
       });
   } else {
@@ -226,6 +233,7 @@ const restoreAllDraftsState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiAllDraftUrl)
+      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -239,9 +247,11 @@ const restoreAllDraftsState = async(req, res, next) => {
             const shimmed = {};
             const drafts = result.body;
             const draftObj = {};
-
-            for (const draft of drafts) {
-              draftObj[draft.ccdCaseId] = draft;
+            if (Array.isArray(drafts) && drafts.length > 0) {
+              // eslint-disable-next-line max-depth
+              for (const draft of drafts) {
+                draftObj[draft.ccdCaseId] = draft;
+              }
             }
 
             shimmed.drafts = draftObj;
@@ -264,7 +274,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(error, logPath);
+        logger.exception(JSON.stringify(error), logPath);
         next();
       });
   } else {

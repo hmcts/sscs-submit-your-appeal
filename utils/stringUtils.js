@@ -1,9 +1,26 @@
 /* eslint-disable no-magic-numbers, max-len, no-undefined */
 const Entities = require('html-entities').XmlEntities;
+const benefitTypes = require('steps/start/benefit-type/types');
 
 const MIN_CHAR_COUNT = 5;
 const isNotEmptyString = value => value !== undefined && value.length > 0;
 const isGreaterThanOrEqualToFiveCharacters = value => value.replace(/\s\s+/g, ' ').length >= MIN_CHAR_COUNT;
+const config = require('config');
+
+const featureFlagOverrides = {};
+
+const overrideFeatFlag = override => {
+  featureFlagOverrides[override.key] = override.value;
+};
+
+const isFeatureFlagEnabled = featureFlag => {
+  const featureFlagName = `features.${featureFlag}.enabled`;
+
+  if (Object.keys(featureFlagOverrides).find(key => key === featureFlag)) {
+    return featureFlagOverrides[featureFlag];
+  }
+  return config.get(featureFlagName) === 'true';
+};
 
 const titleise = string => {
   if (typeof string === 'undefined' || string === null) {
@@ -32,20 +49,80 @@ const splitBenefitType = benefitType => {
     code = benefitType.substring(index, benefitType.length)
       .replace('(', '')
       .replace(')', '');
+  } else {
+    const keys = Object.keys(benefitTypes);
+    const res = keys.find(key => benefitTypes[key] === benefitType);
+    code = res;
   }
 
   return { description, code };
 };
 
+const hasAcronym = benefitType => (benefitType.includes('(') && benefitType.includes(')'));
+
+const doesBenefitContainTheWordBenefit = benefitType => (benefitType.includes('Benefit'));
+
 const getBenefitCode = ben => splitBenefitType(ben).code;
 
 const getBenefitName = ben => splitBenefitType(ben).description;
+
+const getHasAcronym = ben => hasAcronym(ben);
+
+const getBenefitEndText = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return ' benefit';
+  }
+  return '';
+};
+
+const getBenefitEndTextWelsh = ben => {
+  if (!doesBenefitContainTheWordBenefit(ben)) {
+    return 'budd-dal ';
+  }
+  return '';
+};
 
 const getTribunalPanel = ben => {
   const key = splitBenefitType(ben).code;
   return {
     PIP: 'judge, doctor and disability expert',
-    ESA: 'judge and a doctor'
+    DLA: 'judge, doctor and disability expert',
+    ESA: 'judge and a doctor',
+    JSA: 'judge',
+    carersAllowance: 'judge',
+    attendanceAllowance: 'judge, doctor and disability expert',
+    bereavementBenefit: 'judge',
+    maternityAllowance: 'judge',
+    bereavementSupportPaymentScheme: 'judge',
+    pensionCredits: 'judge',
+    retirementPension: 'judge',
+    socialFund: 'judge',
+    incomeSupport: 'judge',
+    UC: 'judge and for some appeals, a doctor',
+    industrialInjuriesDisablement: 'judge and 1 or 2 doctors',
+    industrialDeathBenefit: 'judge and 1 or 2 doctors'
+  }[key];
+};
+
+const getTribunalPanelWelsh = ben => {
+  const key = splitBenefitType(ben).code;
+  return {
+    PIP: 'barnwr, meddyg ac arbenigwr anabledd',
+    DLA: 'barnwr, meddyg ac arbenigwr anabledd',
+    ESA: 'barnwr a meddyg',
+    JSA: 'barnwr',
+    carersAllowance: 'barnwr',
+    attendanceAllowance: 'barnwr, meddyg ac arbenigwr anabledd',
+    bereavementBenefit: 'barnwr',
+    maternityAllowance: 'barnwr',
+    bereavementSupportPaymentScheme: 'barnwr',
+    pensionCredits: 'barnwr',
+    retirementPension: 'barnwr',
+    socialFund: 'barnwr',
+    incomeSupport: 'barnwr',
+    UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg',
+    industrialInjuriesDisablement: 'barnwr ac 1 neu 2 feddyg',
+    industrialDeathBenefit: 'barnwr ac 1 neu 2 feddyg'
   }[key];
 };
 
@@ -55,12 +132,18 @@ const decode = field => {
 };
 
 module.exports = {
+  isFeatureFlagEnabled,
   titleise,
   splitBenefitType,
   isNotEmptyString,
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode,
   getTribunalPanel,
+  getTribunalPanelWelsh,
   getBenefitName,
-  decode
+  decode,
+  getHasAcronym,
+  getBenefitEndText,
+  getBenefitEndTextWelsh,
+  overrideFeatFlag
 };

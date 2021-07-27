@@ -3,23 +3,15 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
-{% if allowUC and benefitType == 'UC' %}
-    {% set selectionButtonYesLabel = content.fields.haveContactedUCDWP.yes | safe %}
-    {% set selectionButtonNoLabel = content.fields.haveContactedUCDWP.no | safe %}
-    {% set contentTitle =  content.ucTitle %}
-{% else %}
-    {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
-    {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
-    {% set contentTitle = content.title %}
-{% endif %}
+{% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
+{% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
+{% set contentTitle = content.title %}
 
 {% set title = contentTitle | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        {% if benefitType != 'UC' %}
-            <p class="govuk-body">{{ content.subtitle | safe }}</p>
-        {% endif %}
+        <p class="govuk-body">{{ content.subtitle | safe }}</p>
 
         {{ selectionButtons(
             fields.haveContactedDWP,

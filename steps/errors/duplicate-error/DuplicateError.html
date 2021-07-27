@@ -5,20 +5,14 @@
 
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
-{% block breadcrumbs %}
-    {% call phaseBanner(phase, feedbackLink, urlPath) %}
-        {{ banner | safe }}
-    {% endcall %}
-{% endblock %}
+{% block content %}
 
-{% block two_thirds %}
+{{ header(content.title | safe, size='xl') }}
 
-{{ header(content.title, size='xl') }}
+<p class="govuk-body" >{{ content.message | safe }}</p>
 
-<p class="govuk-body" >{{ content.message }}</p>
+<a class="govuk-button" href="/start-an-appeal">{{ content.tryAgain | safe}}</a>
 
-<a class="govuk-button" href="/start-an-appeal">Try again</a>
-
-<p class="govuk-body" >{{ content.messageContactUs }}</p>
+<p class="govuk-body" >{{ content.messageContactUs | safe }}</p>
 
 {% endblock %}

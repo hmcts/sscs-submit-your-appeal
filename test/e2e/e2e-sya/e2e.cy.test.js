@@ -7,7 +7,7 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser @e2e`, I => {
   const commonContent = content[language];
 
   I.createTheSession(language);
@@ -18,7 +18,7 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
@@ -27,4 +27,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional`, I => {
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(1);
+}).retry(20);
