@@ -48,7 +48,7 @@
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
                 <td class="govuk-table__cell">
                     <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit | safe }}</a>
-                    <a href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
+                    <a href="javascript:if (confirm('{{ content.buttons.warnMessage }}')) {window.location.assign('/archive-appeal?caseId={{ caseId }}')}">{{ content.buttons.archive }}</a></td>
             </tr>
             </tbody>
         </table>
