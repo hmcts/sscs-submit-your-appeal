@@ -80,7 +80,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   }
 };
 
-const archiveDraft = async(req, caseId) => {
+const archiveDraftById = async(req, res, next, caseId) => {
   let values = null;
 
   if (allowSaveAndReturn) {
@@ -408,7 +408,7 @@ module.exports = {
   RestoreAllDraftsState,
   updateDraftInDraftStore,
   createDraftInDraftStore,
-  archiveDraft,
+  archiveDraftById,
   LoadJourneyAndRedirect,
   setMultiDraftsEnabled,
   resetJourney,

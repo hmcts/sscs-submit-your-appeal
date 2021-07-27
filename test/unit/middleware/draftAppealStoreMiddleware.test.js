@@ -112,7 +112,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-  describe('archiveDraft api call', () => {
+  describe('archiveDraftById api call', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
@@ -135,7 +135,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       }
     };
     it('Expected Successfully Archive a draft:', async() => {
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.archiveDraftById(req, res, next, 'case1234');
       expect(loggerSpy).to.have.been.callCount(2);
       expect(saveF).to.have.been.calledOnce;
     });
@@ -155,7 +155,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .delete('/drafts/case1234')
         .reply(200, {});
 
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.archiveDraftById(req, res, next, 'case1234');
       expect(loggerSpy).to.have.been.callCount(2);
       expect(saveF).to.have.been.calledOnce;
     });
@@ -168,7 +168,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .delete('/drafts/case1234')
         .reply(404, {});
 
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.archiveDraftById(req, res, next, 'case1234');
       expect(loggerSpy).to.have.been.callCount(1);
       expect(loggerExceptionSpy).to.have.been.callCount(1);
       expect(saveF).to.have.been.callCount(0);
