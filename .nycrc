@@ -1,12 +1,15 @@
 {
   "include": [
     "steps/**/**.js",
-    "components/**/controller.js"
+    "components/**/controller.js",
+    "middleware/**.js"
   ],
   "exclude": [
     "webpack/**.js",
     "mocks/**/**.js",
-    "steps/errors/**/**.js"
+    "steps/errors/**/**.js",
+    "steps/compliance/dwp-issuing-office/PipNumberOnImage.js",
+    "steps/compliance/dwp-issuing-office/ids.js"
   ],
   "reporter": [
     "lcov",
