@@ -54,16 +54,19 @@ describe('ArchiveAppeal.js', () => {
     });
   });
 
-  describe('When handler is called', () => {
+  describe.only('When handler is called', () => {
     const req = {
       session: {
         isUserSessionRestored: true,
         drafts: {
           1234: {
             haveAMrn: true
+          },
+          4567: {
+            haveAMrn: true
           }
         },
-        ccdCaseId: '4567'
+        ccdCaseId: 4567
       },
       method: 'GET',
       query: {
@@ -80,6 +83,19 @@ describe('ArchiveAppeal.js', () => {
       archiveAppeal.setMultiDraftsEnabled(true);
       archiveAppeal.handler(req, res);
       expect(redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
+    });
+
+    it('should archived draft by case id and redirect when multidrafts enabled', () => {
+      archiveAppeal.setMultiDraftsEnabled(true);
+      req.query.caseId = 1234;
+      archiveAppeal.handler(req, res);
+      expect(redirect.calledWith(paths.drafts)).to.eql(false);
+    });
+
+    it('should redirect to benefit page when multidrafts enabled is false', () => {
+      archiveAppeal.setMultiDraftsEnabled(false);
+      archiveAppeal.handler(req, res);
+      expect(redirect.calledWith(archiveAppeal.journey.steps.BenefitType)).to.eql(true);
     });
   });
 });
