@@ -1,0 +1,23 @@
+{
+  "include": [
+    "steps/**/**.js",
+    "components/**/controller.js"
+  ],
+  "exclude": [
+    "webpack/**.js",
+    "mocks/**/**.js",
+    "steps/errors/**/**.js"
+  ],
+  "reporter": [
+    "lcov",
+    "text",
+    "html"
+  ],
+  "extension": [
+    ".js"
+  ],
+  "report-dir": "./test/unit/coverage/html",
+  "temp-directory": "./test/unit/coverage/.nyc_output",
+  "temp-dir": "./test/unit/coverage/.nyc_output",
+  "all": true
+}
