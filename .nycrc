@@ -9,7 +9,11 @@
     "mocks/**/**.js",
     "steps/errors/**/**.js",
     "steps/compliance/dwp-issuing-office/PipNumberOnImage.js",
-    "steps/compliance/dwp-issuing-office/ids.js"
+    "steps/compliance/dwp-issuing-office/ids.js",
+    "steps/idam/IdamLogin/IdamLogin.js",
+    "middleware/idam.js",
+    "middleware/preserveSession.js",
+    "steps/archive-appeal/ArchiveAppeal.js"
   ],
   "reporter": [
     "lcov",
