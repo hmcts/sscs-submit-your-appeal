@@ -1,19 +1,25 @@
 {
-  "include": [
-    "steps/**/**.js",
-    "components/**/controller.js",
-    "middleware/**.js"
-  ],
   "exclude": [
-    "webpack/**.js",
-    "mocks/**/**.js",
-    "steps/errors/**/**.js",
-    "steps/compliance/dwp-issuing-office/PipNumberOnImage.js",
-    "steps/compliance/dwp-issuing-office/ids.js",
-    "steps/idam/IdamLogin/IdamLogin.js",
-    "middleware/idam.js",
-    "middleware/preserveSession.js",
-    "steps/archive-appeal/ArchiveAppeal.js"
+    "app.js",
+    "appConfigurations.js",
+    "app-insights.js",
+    "server.js",
+    "config/**",
+    "charts/**",
+    "**/healthcheck.js",
+    "steps/errors/duplicate-error/**",
+    "steps/pcq/createToken.js",
+    "infrastructure/**",
+    "node_modules/**",
+    "mocks/**",
+    "test/**",
+    "assets/**",
+    "dist/**",
+    "mochawesome-report/**",
+    "webpack/**",
+    "components/postcodeLookup/assets/**",
+    "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
+    "steps/check-your-appeal/CheckYourAppeal.js"
   ],
   "reporter": [
     "lcov",
