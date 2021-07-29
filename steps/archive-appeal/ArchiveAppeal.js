@@ -1,5 +1,5 @@
 const paths = require('paths');
-const { archiveDraftById, LoadJourneyAndRedirect } = require('middleware/draftAppealStoreMiddleware');
+const { archiveDraft, LoadJourneyAndRedirect } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const config = require('config');
 
@@ -21,7 +21,7 @@ class ArchiveAppeal extends LoadJourneyAndRedirect {
       req.session.drafts &&
       req.session.drafts[caseId]) {
       if (req.session.ccdCaseId === caseId) {
-        await archiveDraftById(req, res, next, caseId);
+        await archiveDraft(req, caseId);
         res.redirect(paths.drafts);
       } else {
         const draft = req.session.drafts[caseId];
