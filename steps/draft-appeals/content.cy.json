@@ -13,6 +13,14 @@
     "archive": "Cadw",
     "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo."
   },
+  "dialog": {
+    "title": "",
+    "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo.",
+    "buttons": {
+      "archive": "Ydw",
+      "save": "Nac Ydw"
+    }
+  },
   "tableHeadings": {
     "appealRef": "Cyfeirnod yr apêl",
     "benefit": "Budd-dal",
