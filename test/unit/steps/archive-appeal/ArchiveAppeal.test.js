@@ -54,7 +54,7 @@ describe('ArchiveAppeal.js', () => {
     });
   });
 
-  describe.only('When handler is called', () => {
+  describe('When handler is called', () => {
     const req = {
       session: {
         isUserSessionRestored: true,

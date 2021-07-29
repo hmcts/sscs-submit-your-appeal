@@ -19,7 +19,8 @@
     "webpack/**",
     "components/postcodeLookup/assets/**",
     "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
-    "steps/check-your-appeal/CheckYourAppeal.js"
+    "steps/check-your-appeal/CheckYourAppeal.js",
+    "logger.js"
   ],
   "reporter": [
     "lcov",
@@ -29,6 +30,8 @@
   "extension": [
     ".js"
   ],
+  "check-coverage": true,
+  "excludeNodeModules": false,
   "report-dir": "./test/unit/coverage/html",
   "temp-directory": "./test/unit/coverage/.nyc_output",
   "temp-dir": "./test/unit/coverage/.nyc_output",
