@@ -1,0 +1,12 @@
+<div id="archive-dialog" class="modal">
+    <div class="modal-dialog-box" role="dialog" aria-labelledby="aria-timeout-label">
+        <span class="govuk-visually-hidden-focusable" id="aria-timeout-label">
+        </span>
+        <h2 class="icon-important red-inverse">{{ content.dialog.title | safe }}</h2>
+        <p class="govuk-body">{{ content.dialog.warnMessage | safe }}</p>
+        <p>
+            <button class="govuk-button extend" id="extend" href="#" rel="modal:close">{{ content.dialog.buttons.save | safe }}</button>
+            <button class="govuk-button govuk-button--secondary abort" id="archive" href="#">{{ content.dialog.buttons.archive | safe }}</button>
+        </p>
+    </div>
+</div>
