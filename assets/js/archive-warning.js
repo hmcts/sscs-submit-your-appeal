@@ -40,7 +40,9 @@ class ArchiveWarning {
       link.addEventListener('click', this.stopArchive.bind(this));
     });
 
-    this.archiveButton.addEventListener('click', this.navigateAway.bind(this));
+    if (this.archiveButton) {
+      this.archiveButton.addEventListener('click', this.navigateAway.bind(this));
+    }
   }
   detachHandlers() {
     document.querySelectorAll('#archive-link').forEach(link => {
