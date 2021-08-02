@@ -20,7 +20,7 @@
       "description": "Universal Credit",
       "code": "UC",
       "office": "Universal Credit",
-      "hasDwpIssuingOffice": false
+      "hasDwpIssuingOffice": true
     },
     {
       "description": "Disability Living Allowance (DLA)",
@@ -55,21 +55,26 @@
       "description": "Industrial Injuries Disablement Benefit",
       "code": "Industrial Injuries Disablement Benefit",
       "codeWelsh": "Budd-dal Anabledd Anafiadau Diwydiannol",
-      "office": "IIDB Barrow",
-      "hasDwpIssuingOffice": true
+      "office": "Barrow IIDB Centre",
+      "hasDwpIssuingOffice": true,
+      "codeSearch": "Injuries",
+      "codeSearchWelsh": "Anafiadau"
     },
     {
       "description": "Maternity Allowance",
       "code": "Maternity Allowance",
       "codeWelsh": "Lwfans Mamolaeth",
       "office": "",
-      "hasDwpIssuingOffice": false
+      "hasDwpIssuingOffice": false,
+      "codeSearchWelsh": "Mamolaeth"
     },
     {
       "description": "Job Seekers Allowance (JSA)",
       "code": "JSA",
+      "codeWelsh": "Lwfans Ceisio Gwaith (JSA)",
       "office": "Worthing DRT",
-      "hasDwpIssuingOffice": true
+      "hasDwpIssuingOffice": true,
+      "codeSearchWelsh": "Ceisio"
     },
     {
       "description": "Social Fund",
@@ -83,6 +88,34 @@
       "code": "Income Support",
       "codeWelsh": "Cymhorthdal Incwm",
       "office": "Worthing DRT",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Bereavement Support Payment Scheme ",
+      "code": "Bereavement Support Payment Scheme ",
+      "codeWelsh": "Cynllun Talu am Gymorth yng nghyswllt Profedigaeth",
+      "office": "Worthing DRT",
+      "hasDwpIssuingOffice": false
+    },
+    {
+      "description": "Industrial Death Benefit",
+      "code": "Industrial Death Benefit",
+      "codeWelsh": "Budd-dal Marwolaeth Ddiwydiannol",
+      "office": "Barrow IIDB Centre",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Pension Credits",
+      "code": "Pension Credits",
+      "codeWelsh": "Credydau Pensiwn",
+      "office": "Pensions Dispute Resolution Team",
+      "hasDwpIssuingOffice": true
+    },
+    {
+      "description": "Retirement Pension",
+      "code": "Retirement Pension",
+      "codeWelsh": "Pensiwn Ymddeol",
+      "office": "Pensions Dispute Resolution Team",
       "hasDwpIssuingOffice": true
     }
   ],

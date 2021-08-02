@@ -69,8 +69,23 @@
     "allowIS": {
       "enabled": "ALLOW_IS_ENABLED"
     },
+    "allowBSPS": {
+      "enabled": "ALLOW_BSPS_ENABLED"
+    },
+    "allowIDB": {
+      "enabled": "ALLOW_IDB_ENABLED"
+    },
+    "allowPC": {
+      "enabled": "ALLOW_PC_ENABLED"
+    },
+    "allowRP": {
+      "enabled": "ALLOW_RP_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
+    },
+    "allowRFE": {
+      "enabled": "ALLOW_RFE_ENABLED"
     },
     "allowSaveAndReturn": {
       "enabled": "ALLOW_SAVE_RETURN"
