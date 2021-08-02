@@ -15,7 +15,7 @@ const options = {
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H43.HeadersRequired',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H42.2'
   ],
-  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe'
+  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe, #app-cookie-banner'
 };
 
 const excludeSteps = [

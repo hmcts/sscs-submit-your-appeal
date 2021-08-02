@@ -65,7 +65,15 @@
     <script src="{{ asset_path }}vendors~main.js" type="text/javascript"></script>
     <script src="{{ asset_path }}main.js" type="text/javascript"></script>
     <script src="{{ asset_path }}hmcts-webchat.js"></script>
-    {% if webChatEnabled and htmlLang == "en" %}
+
+{% if featureToggles.cookieBanner() == "true" %}
+    <script src="https://code.jquery.com/jquery-1.10.2.js" integrity="sha384-r0tJvB87edk25TJle8mfwmdYBwaGtkX3r4CYHXS+2yZ7VPdI8xd2rHl6KTQ6oij4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js" integrity="sha384-j8NDh7xgS5yD79FJaC4LVz+bUq+K2scg+IHBDYytSaAZEz+JXQocy0ByM2KqttBH" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" integrity="sha384-VI5+XuguQ/l3kUhh4knz7Hxptx47wpQbVRDnp8v7Vvuhzwn1PEYb/uvtH6KLxv6d" crossorigin="anonymous"></script>
+    <script src="{{ asset_path }}cookies-manager.js" type="text/javascript"></script>
+{% endif %}
+
+{% if webChatEnabled and htmlLang == "en" %}
         <script>
             /*
              * webchat_init() has been developed by CTSC and is defined in hmcts-webchat.js

@@ -16,6 +16,9 @@ withPipeline("nodejs", product, component) {
   before('securitychecks') { yarnBuilder.yarn('test:audit') }
 
   after('build') {
+    stage('Generate cookie banner') {
+      sh "./node_modules/gulp/bin/gulp.js default"
+    }
     yarnBuilder.yarn('build')
   }
 

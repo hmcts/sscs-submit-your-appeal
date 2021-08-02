@@ -39,6 +39,13 @@ function initWebChat(language) {
   }
 }
 
+function initCookieBanner() {
+  if ($('#app-cookie-banner').length) {
+    const checkCookies = new CheckCookies();
+    checkCookies.init();
+  }
+}
+
 function initAutocomplete() {
   const selects = document.querySelectorAll('select');
   $.each(selects, (index, select) => {
@@ -140,8 +147,7 @@ $(document).ready(() => {
   initBackButton();
   initWebChat(language);
   PostCodeLookup.init();
-  const checkCookies = new CheckCookies();
-  checkCookies.init();
+  initCookieBanner();
 });
 
 $(window).on('unload', () => {

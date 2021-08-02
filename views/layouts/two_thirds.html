@@ -4,6 +4,7 @@
 {% set bodyClasses = 'app-body-class' %}
 {% set mainClasses = 'app-main-class' %}
 {% set assetPath = '/assets' %}
+{% set serviceName = 'submit your appeal' %}
 {% set htmlLang = i18n.currentLanguage if i18n.currentLanguage else "en" %}
 
 {% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
@@ -13,8 +14,16 @@
 {% endblock %}
 
 {% block header %}
+
+{% if featureToggles.cookieBanner() == "true" %}
+  <div>
+    {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
+  </div>
+{% else %}
   {% include "components/cookie-banner.html" %}
-  {% include "components/navigation.html" %}
+{% endif %}
+
+{% include "components/navigation.html" %}
 {% endblock %}
 
 {% block beforeContent -%}
@@ -32,6 +41,7 @@
       </div>
     </div>
   {% endblock %}
+
 
   {% if allowContactUs %}
     {% include "components/contact-us.html" %}

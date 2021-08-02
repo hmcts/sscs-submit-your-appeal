@@ -20,3 +20,4 @@ evidence.txt
 /test/coverage
 package-lock.json
 *.iml
+cookie-banner/

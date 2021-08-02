@@ -23,7 +23,7 @@
             @extend .govuk-\!-font-weight-bold;
             &.dow {
               padding-right: 0;
-              background-color: govuk-colour('grey-4');
+              background-color: govuk-colour('mid-grey');
             }
             &.disabled {
               visibility: visible;
@@ -32,12 +32,12 @@
           }
 
           .prev, .next {
-            background-color: govuk-colour('grey-2');
+            background-color: govuk-colour('light-grey');
             border-radius: 0;
           }
 
           .datepicker-switch {
-            background-color: govuk-colour('grey-2');
+            background-color: govuk-colour('light-grey');
             border-radius: 0;
           }
 
@@ -47,17 +47,17 @@
       tbody {
         tr {
           &:first-child {
-            border-top: 2px solid govuk-colour('grey-1');
+            border-top: 2px solid govuk-colour('dark-grey');
           }
           &:last-child {
-            border-bottom: 2px solid govuk-colour('grey-1');
+            border-bottom: 2px solid govuk-colour('dark-grey');
           }
           td {
             color: black;
             border-radius: 0;
             &:not(.disabled) {
-              border-left: 1px solid govuk-colour('grey-3');
-              border-top: 1px solid govuk-colour('grey-3');
+              border-left: 1px solid govuk-colour('dark-grey');
+              border-top: 1px solid govuk-colour('dark-grey');
             }
             font-weight: 600;
             height: 57px;
@@ -86,7 +86,7 @@
             }
 
             &:last-child {
-              border-right: 1px solid govuk-colour('grey-3');
+              border-right: 1px solid govuk-colour('dark-grey');
             }
 
             &.day {
@@ -103,7 +103,7 @@
             .first-of-month {
               margin: 28px 0 0 0;
               line-height: 1.6;
-              background-color: govuk-colour('grey-1');
+              background-color: govuk-colour('dark-grey');
               color: white;
               text-align: center;
             }
