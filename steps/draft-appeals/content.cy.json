@@ -10,8 +10,7 @@
   "buttons": {
     "create": "Creu cais newydd",
     "edit": "Golygu",
-    "archive": "Cadw",
-    "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo."
+    "archive": "Cadw"
   },
   "dialog": {
     "title": "",
