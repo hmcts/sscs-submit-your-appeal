@@ -182,10 +182,9 @@ const saveToDraftStore = async(req, res, next) => {
       } else {
         await createDraftInDraftStore(req, res, next, values);
       }
-    } else {
-      next();
     }
   }
+  next();
 };
 
 const restoreUserState = async(req, res, next) => {
