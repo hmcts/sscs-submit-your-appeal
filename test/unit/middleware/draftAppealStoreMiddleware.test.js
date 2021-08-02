@@ -136,7 +136,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
     it('Expected Successfully Archive a draft:', async() => {
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(2);
+      expect(loggerSpy).to.have.been.callCount(3);
       expect(saveF).to.have.been.calledOnce;
     });
 
@@ -156,7 +156,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(200, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(2);
+      expect(loggerSpy).to.have.been.callCount(3);
       expect(saveF).to.have.been.calledOnce;
     });
 
@@ -169,7 +169,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(404, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(1);
+      expect(loggerSpy).to.have.been.callCount(2);
       expect(loggerExceptionSpy).to.have.been.callCount(1);
       expect(saveF).to.have.been.callCount(0);
     });
@@ -209,14 +209,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
     it('Expected Successfully create a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(4);
+      expect(loggerSpy).to.have.been.callCount(6);
       expect(next).to.have.been.calledOnce;
     });
 
     it('Expected Successfully updated a draft:', async() => {
       Object.assign(req, { session: { ccdCaseId: 12 } });
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(2);
+      expect(loggerSpy).to.have.been.callCount(4);
       expect(next).to.have.been.calledOnce;
     });
   });
