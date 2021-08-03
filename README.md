@@ -46,7 +46,7 @@ Install npm dependencies:
 
     yarn install
     
-Generate cookie:
+Generate cookie banner content:
 
     ./node_modules/gulp/bin/gulp.js default
 
