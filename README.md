@@ -45,6 +45,10 @@ Start redis:
 Install npm dependencies:
 
     yarn install
+    
+Generate cookie banner content:
+
+    ./node_modules/gulp/bin/gulp.js default
 
 Bring up SYA in a new terminal window:
 
