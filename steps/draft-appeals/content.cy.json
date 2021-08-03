@@ -13,7 +13,7 @@
     "archive": "Cadw"
   },
   "dialog": {
-    "title": "",
+    "title": "Cadw?",
     "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo.",
     "buttons": {
       "archive": "Ydw",

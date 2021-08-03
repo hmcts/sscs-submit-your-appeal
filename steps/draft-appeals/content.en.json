@@ -13,7 +13,7 @@
     "archive": "Archive"
   },
   "dialog": {
-    "title": "",
+    "title": "Archive?",
     "warnMessage": "Are you sure you want to archive your appeal application? You will not be able to retrieve your application once it is archived.",
     "buttons": {
       "archive": "Yes",
