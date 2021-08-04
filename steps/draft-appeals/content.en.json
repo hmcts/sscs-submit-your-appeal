@@ -22,7 +22,19 @@
     "Employment and Support Allowance (ESA)": "Employment and Support Allowance (ESA)",
     "Personal Independence Payment (PIP)": "Personal Independence Payment (PIP)",
     "Universal Credit (UC)": "Universal Credit (UC)",
-    "Carer's Allowance": "Carers Allowance",
+    "Attendance Allowance (attendanceAllowance)": "Attendance Allowance",
+    "Bereavement Benefit (bereavementBenefit)": "Bereavement Benefit",
+    "Bereavement Support Payment Scheme (bereavementSupportPaymentScheme)": "Bereavement Support Payment Scheme",
+    "Carer's Allowance (carersAllowance)": "Carers Allowance",
+    "Disability Living Allowance (DLA)": "Disability Living Allowance (DLA)",
+    "Income Support (incomeSupport)": "Income Support",
+    "Industrial Injuries Disablement Benefit (industrialInjuriesDisablement)": "Industrial Injuries Disablement Benefit",
+    "Industrial Death Benefit (industrialDeathBenefit)": "Industrial Death Benefit",
+    "Job Seekers Allowance (JSA)": "Job Seekers Allowance (JSA)",
+    "Maternity Allowance (maternityAllowance)": "Maternity Allowance",
+    "Social Fund (socialFund)": "Social Fund",
+    "Pension Credits (pensionCredits)": "Pension Credits",
+    "Retirement Pension (retirementPension)": "Retirement Pension",
     "'Benefit Not Set": "Benefit Not Set"
   }
 }

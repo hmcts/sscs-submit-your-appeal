@@ -22,8 +22,19 @@
     "Employment and Support Allowance (ESA)": "Lwfans Cyflogaeth a Chymorth (ESA)",
     "Personal Independence Payment (PIP)": "Taliad Annibyniaeth Personol (PIP)",
     "Universal Credit (UC)": "Credyd Cynhwysol (UC)",
-    "Carer's Allowance": "Lwfans Gofalwr",
     "Attendance Allowance": "Lwfans Gweini",
+    "Bereavement Benefit (bereavementBenefit)": "Budd-dal Profedigaeth",
+    "Bereavement Support Payment Scheme (bereavementSupportPaymentScheme)": "Cynllun Taliad Cymorth Profedigaeth",
+    "Carer's Allowance": "Lwfans Gofalwr",
+    "Disability Living Allowance (DLA)": "Lwfans Byw i’r Anabl (DLA)",
+    "Income Support (incomeSupport)": "Cymhorthdal Incwm",
+    "Industrial Injuries Disablement Benefit (industrialInjuriesDisablement)": "Budd-dal Anabledd Anafiadau Diwydiannol",
+    "Industrial Death Benefit (industrialDeathBenefit)": "Budd-dal Marwolaeth Ddiwydiannol",
+    "Job Seekers Allowance (JSA)": "Lwfans Ceisio Gwaith (JSA)",
+    "Maternity Allowance (maternityAllowance)": "Lwfans Mamolaeth",
+    "Social Fund (socialFund)": "SCronfa Gymdeithasol",
+    "Pension Credits (pensionCredits)": "Credydau Pensiwn",
+    "Retirement Pension (retirementPension)": "Pensiwn Ymddeol",
     "Benefit Not Set": ""
   }
 }
