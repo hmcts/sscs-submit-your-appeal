@@ -37,7 +37,7 @@ withNightlyPipeline("nodejs", product, component) {
 
     before('DependencyCheckNightly') {sh 'yarn test:audit'}
     enableCrossBrowserTest(60)
-    enableFortifyScan('sscs-${env}')
+    enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
     enableSecurityScan()
 
