@@ -36,6 +36,9 @@ function verifyDraftAppealsAndArchiveACase() {
   I.see('Archive');
   I.scrollTo('.govuk-table__cell:nth-child(1)');
   I.click('Archive');
+  I.wait(2);
+  I.see('Are you sure you want to archive your appeal application?');
+  I.click('Yes');
   I.wait(5);
   I.dontSee('Edit');
   I.dontSee('Archive');
