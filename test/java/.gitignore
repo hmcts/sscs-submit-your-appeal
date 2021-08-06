@@ -1,0 +1,28 @@
+### IntelliJ IDEA ###
+.idea
+/out
+*.iws
+*.iml
+*.ipr
+
+.DS_store
+
+# Package Files #
+.classpath
+.project
+.settings/
+target/
+
+# IntelliJ IDEA files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Gradle
+.gradle/
+out/
+bin/
+build/
+/BEFTA Report for Smoke Tests/
+/BEFTA Report for Functional Tests/
