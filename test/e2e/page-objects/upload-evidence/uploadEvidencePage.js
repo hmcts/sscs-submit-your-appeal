@@ -4,6 +4,7 @@ function uploadAPieceOfEvidence() {
   I.attachFile('#uploadEv', 'evidence.txt');
   I.wait(3);
   I.click('.govuk-button');
+  I.wait(3);
 }
 
 module.exports = {

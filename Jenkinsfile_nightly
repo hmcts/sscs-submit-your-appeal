@@ -36,10 +36,10 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
     before('DependencyCheckNightly') {sh 'yarn test:audit'}
-    enableCrossBrowserTest(60)
-    enableFortifyScan('sscs-aat')
+//     enableCrossBrowserTest(60)
+//     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-    enableSecurityScan()
+//     enableSecurityScan()
 
     after('fortify-scan') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
