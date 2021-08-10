@@ -13,4 +13,4 @@ Feature(`${language.toUpperCase()} - Income Support E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, I => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, signer, language, hasDwpIssuingOffice);
-}).retry(20);
+}).retry(15);

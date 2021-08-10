@@ -14,4 +14,4 @@ Feature(`${language.toUpperCase()} - Industrial Injuries Disablement Benefit E2E
 
 Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, I => {
   e2eBenefit.e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOffice);
-}).retry(20);
+}).retry(15);
