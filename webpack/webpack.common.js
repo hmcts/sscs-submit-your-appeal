@@ -30,7 +30,8 @@ module.exports = {
           { from: fontsGokukFrontend, to: 'fonts' },
           { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/css/hmcts-webchat-gds-v3.css'), to: '' },
           { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat.js'), to: '' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' }
+          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' },
+          { from: path.resolve('cookie-banner/public/js/cookies-manager.js'), to: '' }
         ]
       }),
     new MiniCssExtractPlugin({ filename: '[name].css' })

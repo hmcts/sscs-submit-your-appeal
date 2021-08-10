@@ -144,6 +144,66 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowMA.enabled') === 'false');
     });
 
+    it('pushes Social Fund as allowed benefitType if allowSF is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('socialFund'))
+        .to.eql(config.get('features.allowSF.enabled') === 'true');
+    });
+
+    it('does not push Social Fund as allowed benefitType when allowSF is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('socialFund'))
+        .to.eql(config.get('features.allowSF.enabled') === 'false');
+    });
+
+    it('pushes Income Support as allowed benefitType if allowIS is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('incomeSupport'))
+        .to.eql(config.get('features.allowIS.enabled') === 'true');
+    });
+
+    it('does not push Income Support as allowed benefitType when allowIS is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('incomeSupport'))
+        .to.eql(config.get('features.allowIS.enabled') === 'false');
+    });
+
+    it('pushes Bereavement Support Payment Scheme as allowed benefitType if allowBSPS is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('bereavementSupportPaymentScheme'))
+        .to.eql(config.get('features.allowBSPS.enabled') === 'true');
+    });
+
+    it('does not push Bereavement Support Payment Scheme as allowed benefitType when allowBSPS is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('bereavementSupportPaymentScheme'))
+        .to.eql(config.get('features.allowBSPS.enabled') === 'false');
+    });
+
+    it('pushes Industrial Death Benefit as allowed benefitType if allowIDB is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('industrialDeathBenefit'))
+        .to.eql(config.get('features.allowIDB.enabled') === 'true');
+    });
+
+    it('does not push Industrial Death Benefit as allowed benefitType when allowIDB is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('industrialDeathBenefit'))
+        .to.eql(config.get('features.allowIDB.enabled') === 'false');
+    });
+
+    it('pushes Pension Credits as allowed benefitType if allowPC is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('pensionCredits'))
+        .to.eql(config.get('features.allowPC.enabled') === 'true');
+    });
+
+    it('does not push Pension Credits as allowed benefitType when allowPC is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('pensionCredits'))
+        .to.eql(config.get('features.allowPC.enabled') === 'false');
+    });
+
+    it('pushes Retirement Pension as allowed benefitType if allowRP is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('retirementPension'))
+        .to.eql(config.get('features.allowRP.enabled') === 'true');
+    });
+
+    it('does not push Retirement Pension as allowed benefitType when allowRP is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('retirementPension'))
+        .to.eql(config.get('features.allowRP.enabled') === 'false');
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';

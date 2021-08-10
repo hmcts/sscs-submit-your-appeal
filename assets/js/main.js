@@ -40,7 +40,7 @@ function initWebChat(language) {
 }
 
 function initCookieBanner() {
-  if ( $('#app-cookie-banner').length) {
+  if ($('#app-cookie-banner').length) {
     const checkCookies = new CheckCookies();
     checkCookies.init();
   }

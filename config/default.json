@@ -80,6 +80,27 @@
     "allowJSA": {
       "enabled": "true"
     },
+    "allowSF" : {
+      "enabled": "true"
+    },
+    "allowIS": {
+      "enabled": "true"
+    },
+    "allowRFE": {
+      "enabled": "true"
+    },
+    "allowBSPS": {
+      "enabled": "true"
+    },
+    "allowIDB": {
+      "enabled": "true"
+    },
+    "allowPC": {
+      "enabled": "true"
+    },
+    "allowRP": {
+      "enabled": "true"
+    },
     "welsh": {
       "enabled": "false"
     },

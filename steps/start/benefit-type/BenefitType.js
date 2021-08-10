@@ -43,6 +43,7 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
+  // eslint-disable-next-line complexity
   next() {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
@@ -68,8 +69,26 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowJSA')) {
       allowedTypes.push(benefitTypes.jobseekersAllowance);
     }
+    if (isFeatureFlagEnabled('allowSF')) {
+      allowedTypes.push(benefitTypes.socialFund);
+    }
     if (isFeatureFlagEnabled('allowMA')) {
       allowedTypes.push(benefitTypes.maternityAllowance);
+    }
+    if (isFeatureFlagEnabled('allowIS')) {
+      allowedTypes.push(benefitTypes.incomeSupport);
+    }
+    if (isFeatureFlagEnabled('allowBSPS')) {
+      allowedTypes.push(benefitTypes.bereavementSupportPaymentScheme);
+    }
+    if (isFeatureFlagEnabled('allowIDB')) {
+      allowedTypes.push(benefitTypes.industrialDeathBenefit);
+    }
+    if (isFeatureFlagEnabled('allowPC')) {
+      allowedTypes.push(benefitTypes.pensionCredits);
+    }
+    if (isFeatureFlagEnabled('allowRP')) {
+      allowedTypes.push(benefitTypes.retirementPension);
     }
 
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;

@@ -22,7 +22,7 @@ Scenario('English - PIP E2E SYA Journey', I => {
   I.checkYourAppealToConfirmationPage('en', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(1);
+}).retry(15);
 
 
 Scenario('Welsh - PIP E2E SYA Journey', I => {
@@ -41,4 +41,4 @@ Scenario('Welsh - PIP E2E SYA Journey', I => {
   I.checkYourAppealToConfirmationPage('cy', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(1);
+}).retry(15);

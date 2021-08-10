@@ -1,0 +1,41 @@
+{
+  "exclude": [
+    "app.js",
+    "appConfigurations.js",
+    "app-insights.js",
+    "server.js",
+    "gulpfile.js",
+    "config/**",
+    "charts/**",
+    "**/healthcheck.js",
+    "steps/errors/duplicate-error/**",
+    "steps/pcq/createToken.js",
+    "infrastructure/**",
+    "node_modules/**",
+    "mocks/**",
+    "test/**",
+    "assets/**",
+    "dist/**",
+    "cookie-banner/**",
+    "mochawesome-report/**",
+    "webpack/**",
+    "components/postcodeLookup/assets/**",
+    "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
+    "steps/check-your-appeal/CheckYourAppeal.js",
+    "logger.js"
+  ],
+  "reporter": [
+    "lcov",
+    "text",
+    "html"
+  ],
+  "extension": [
+    ".js"
+  ],
+  "check-coverage": true,
+  "excludeNodeModules": false,
+  "report-dir": "./test/unit/coverage/html",
+  "temp-directory": "./test/unit/coverage/.nyc_output",
+  "temp-dir": "./test/unit/coverage/.nyc_output",
+  "all": true
+}
