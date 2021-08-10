@@ -20,9 +20,6 @@ withPipeline("nodejs", product, component) {
       sh "./node_modules/gulp/bin/gulp.js default"
     }
     yarnBuilder.yarn('build')
-      stage('Generate cookie banner') {
-          sh "./node_modules/gulp/bin/gulp.js default"
-      }
   }
 
   enableAksStagingDeployment()
