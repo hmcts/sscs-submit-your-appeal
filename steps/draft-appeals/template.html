@@ -4,6 +4,14 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
+{% block full_width %}
+    {{ super() }}
+    <div>
+        {% include "components/archive-warning.html" %}
+    </div>
+{% endblock %}
+
+
 {% block two_thirds %}
     <h1  class="govuk-heading-l">{{ content.title | safe}}</h1>
 
@@ -48,7 +56,7 @@
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
                 <td class="govuk-table__cell">
                     <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit | safe }}</a>
-                    <a href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
+                    <a id="archive-link" href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
             </tr>
             </tbody>
         </table>
