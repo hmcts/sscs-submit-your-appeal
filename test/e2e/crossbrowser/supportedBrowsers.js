@@ -58,7 +58,7 @@ const supportedBrowsers = {
         name: 'MAC_FIREFOX_LATEST_SSCS'
       }
     }
-  },
+  }
   // safari: {
   //   safari_mac_latest: {
   //     browserName: 'safari',
