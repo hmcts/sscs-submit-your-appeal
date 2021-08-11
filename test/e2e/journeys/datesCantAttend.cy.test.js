@@ -44,7 +44,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
   I.skipPcqCY();
   I.wait(3);
