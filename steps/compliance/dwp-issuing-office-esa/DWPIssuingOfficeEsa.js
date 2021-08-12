@@ -5,6 +5,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 
 class DWPIssuingOfficeEsa extends SaveToDraftStore {
   static get path() {
@@ -17,21 +18,98 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
     });
   }
 
+  // eslint-disable-next-line complexity
   get options() {
+    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+      if (isFeatureFlagEnabled('allowRFE')) {
+        return DWPIssuingOfficeEsa.selectify([
+          'Balham DRT',
+          'Birkenhead LM DRT',
+          'Chesterfield DRT',
+          'Coatbridge Benefit Centre',
+          'Inverness DRT',
+          'Lowestoft DRT',
+          'Milton Keynes DRT',
+          'Norwich DRT',
+          'Sheffield DRT',
+          'Springburn DRT',
+          'Watford DRT',
+          'Wellingborough DRT',
+          'Worthing DRT',
+          'Recovery from Estates'
+        ]);
+      }
+      return DWPIssuingOfficeEsa.selectify([
+        'Balham DRT',
+        'Birkenhead LM DRT',
+        'Chesterfield DRT',
+        'Coatbridge Benefit Centre',
+        'Inverness DRT',
+        'Lowestoft DRT',
+        'Milton Keynes DRT',
+        'Norwich DRT',
+        'Sheffield DRT',
+        'Springburn DRT',
+        'Watford DRT',
+        'Wellingborough DRT',
+        'Worthing DRT'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'DLA') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Disability Benefit Centre 4',
+        'The Pension Service 11',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'attendanceAllowance') {
+      return DWPIssuingOfficeEsa.selectify([
+        'The Pension Service 11',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'JSA') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Worthing DRT',
+        'Birkenhead DRT',
+        'Inverness DRT',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialInjuriesDisablement') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Barrow IIDB Centre',
+        'Barnsley Benefit Centre'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialDeathBenefit') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Barrow IIDB Centre',
+        'Barnsley Benefit Centre'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits' ||
+    getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Pensions Dispute Resolution Team',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'socialFund') {
+      return DWPIssuingOfficeEsa.selectify([
+        'St Helens Sure Start Maternity Grant',
+        'Funeral Payment Dispute Resolution Team',
+        'Pensions Dispute Resolution Team'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'incomeSupport') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Worthing DRT',
+        'Birkenhead DRT',
+        'Inverness DRT',
+        'Recovery from Estates'
+      ]);
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'UC') {
+      return DWPIssuingOfficeEsa.selectify([
+        'Universal Credit',
+        'Recovery from Estates'
+      ]);
+    }
     return DWPIssuingOfficeEsa.selectify([
-      'Balham DRT',
-      'Birkenhead LM DRT',
-      'Chesterfield DRT',
-      'Coatbridge Benefit Centre',
-      'Inverness DRT',
-      'Lowestoft DRT',
-      'Milton Keynes DRT',
-      'Norwich DRT',
-      'Sheffield DRT',
-      'Springburn DRT',
-      'Watford DRT',
-      'Wellingborough DRT',
-      'Worthing DRT'
+      'Universal Credit',
+      'Recovery from Estates'
     ]);
   }
 
