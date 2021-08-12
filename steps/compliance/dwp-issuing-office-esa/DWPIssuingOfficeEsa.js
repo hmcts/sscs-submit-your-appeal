@@ -9,7 +9,7 @@ const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 
 class DWPIssuingOfficeEsa extends SaveToDraftStore {
   static get path() {
-    return paths.compliance.dwpIssuingOfficeESA;
+    return paths.compliance.dwpIssuingOfficeEsa;
   }
 
   static selectify(ar) {

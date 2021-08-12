@@ -48,7 +48,7 @@ module.exports = {
     haveAMRN: '/have-you-got-an-mrn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
-    dwpIssuingOfficeESA: '/dwp-issuing-office-esa',
+    dwpIssuingOfficeEsa: '/dwp-issuing-office-esa',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
     contactDWP: '/contact-dwp',
