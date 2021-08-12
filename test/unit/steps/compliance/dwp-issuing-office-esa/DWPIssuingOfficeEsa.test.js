@@ -113,70 +113,70 @@ describe('DWPIssuingOfficeEsa.js', () => {
   });
 
   describe('options for JSA', () => {
-      it('has options for JSA', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
-        expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-        expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
-      });
+    it('has options for JSA', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
     });
+  });
 
-    describe('options for Social Fund', () => {
-      it('has options for Social', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.socialFund;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('St Helens Sure Start Maternity Grant');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Funeral Payment Dispute Resolution Team');
-        expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Pensions Dispute Resolution Team');
-      });
+  describe('options for Social Fund', () => {
+    it('has options for Social', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.socialFund;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('St Helens Sure Start Maternity Grant');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Funeral Payment Dispute Resolution Team');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Pensions Dispute Resolution Team');
     });
+  });
 
-    describe('options for UC', () => {
-      it('has options for UC', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
-      });
+  describe('options for UC', () => {
+    it('has options for UC', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
     });
+  });
 
-    describe('options for Income Support', () => {
-      it('has options for Income Support', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
-        expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-        expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
-      });
+  describe('options for Income Support', () => {
+    it('has options for Income Support', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
     });
+  });
 
-    describe('options for Industrial Death Benefit', () => {
-      it('has options for Industrial Death Benefit', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.industrialDeathBenefit;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Barrow IIDB Centre');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Barnsley Benefit Centre');
-      });
+  describe('options for Industrial Death Benefit', () => {
+    it('has options for Industrial Death Benefit', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.industrialDeathBenefit;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Barrow IIDB Centre');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Barnsley Benefit Centre');
     });
+  });
 
-    describe('options for Pension Credits', () => {
-      it('has options for Pension Credits', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredits;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
-      });
+  describe('options for Pension Credits', () => {
+    it('has options for Pension Credits', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredits;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
     });
+  });
 
-    describe('options for Retirement Pension', () => {
-      it('has options for Retirement Pension', () => {
-        dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
-        expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
-        expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-        expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
-      });
+  describe('options for Retirement Pension', () => {
+    it('has options for Retirement Pension', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
     });
+  });
 });
