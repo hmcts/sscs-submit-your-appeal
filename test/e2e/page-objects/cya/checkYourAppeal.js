@@ -146,7 +146,7 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
 function enterDetailsFromNoRepresentativeToEnd(commonContent) {
   const I = this;
 
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
 }
