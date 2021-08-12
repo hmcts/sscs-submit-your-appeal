@@ -560,7 +560,11 @@
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore",
   "10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
-  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore"
+  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore",
+  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore",
+  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore"
+
 
 }
 
