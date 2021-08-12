@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-esa/DWPIssuingOfficeEsa');
+const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
@@ -25,7 +25,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
   });
 
   describe('get path()', () => {
-    it('returns path /dwp-issuing-office-esa', () => {
+    it('returns path /dwp-issuing-office-other', () => {
       expect(dwpIssuingOfficeEsa.path).to.equal(paths.compliance.dwpIssuingOfficeEsa);
     });
   });
