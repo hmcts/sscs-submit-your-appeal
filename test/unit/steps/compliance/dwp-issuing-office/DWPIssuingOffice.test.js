@@ -170,13 +170,4 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
     });
   });
-
-  describe('options for Retirement Pension', () => {
-    it('has options for Retirement Pension', () => {
-      dWPIssuingOffice.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
-      expect(dWPIssuingOffice.options.length).to.eql(2);
-      expect(dWPIssuingOffice.options[0].label).to.eql('Pensions Dispute Resolution Team');
-      expect(dWPIssuingOffice.options[1].label).to.eql('Recovery from Estates');
-    });
-  });
 });

@@ -360,13 +360,13 @@ describe('MRNDate.js', () => {
       it('returns the next step path /are-you-an-appointee if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
         setBenefitType(benefitTypes.retirementPension);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
 
       it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.retirementPension);
-        expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
     });
   });
