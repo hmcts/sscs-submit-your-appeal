@@ -119,9 +119,9 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'industrialInjuriesDisablement', description: benefitTypes.industrialInjuriesDisablement });
   });
 
-  it('should split Job Seekers Allowance (JSA) into an array', () => {
+  it('should split Jobseeker’s Allowance (JSA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.jobseekersAllowance);
-    expect(obj).to.include({ code: 'JSA', description: 'Job Seekers Allowance' });
+    expect(obj).to.include({ code: 'JSA', description: 'Jobseeker’s Allowance' });
   });
 
   it('should split \'Maternity Allowance\' into an array', () => {
@@ -204,7 +204,7 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for jsa', () => {
       const bcode = getBenefitName(benefitTypes.jobseekersAllowance);
-      expect(bcode).to.equal('Job Seekers Allowance');
+      expect(bcode).to.equal('Jobseeker’s Allowance');
     });
     it('returns the right name for social fund', () => {
       const bcode = getBenefitName(benefitTypes.socialFund);

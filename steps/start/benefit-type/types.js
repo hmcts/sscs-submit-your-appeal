@@ -10,7 +10,7 @@ const types = {
   incapacityBenefit: 'Incapacity Benefit',
   incomeSupport: 'Income Support',
   industrialInjuriesDisablement: 'Industrial Injuries Disablement Benefit',
-  jobseekersAllowance: 'Job Seekers Allowance (JSA)',
+  jobseekersAllowance: 'Jobseeker’s Allowance (JSA)',
   maternityAllowance: 'Maternity Allowance',
   personalIndependencePayment: 'Personal Independence Payment (PIP)',
   severeDisablementAllowance: 'Severe Disablement Allowance',
