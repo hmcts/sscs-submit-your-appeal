@@ -166,25 +166,24 @@ const createDraftInDraftStore = async(req, res, next, values) => {
 };
 
 const saveToDraftStore = async(req, res, next) => {
+  let values = null;
+
   if (allowSaveAndReturn) {
-    let values = null;
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
-    });
-
-    if (req.idam && values) {
       logger.trace(`saveToDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
-      logger.trace(`About to post draft for CCD Id ${(values && values.ccdCaseId) ? values.ccdCaseId : null}` +
-          ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
+    });
+  }
+
+  if (allowSaveAndReturn && req.idam && values) {
+    logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
+        ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
 
       if (req.session && req.session.ccdCaseId) {
         await updateDraftInDraftStore(req, res, next, values);
       } else {
         await createDraftInDraftStore(req, res, next, values);
       }
-    } else {
-      next();
-    }
   } else {
     next();
   }
