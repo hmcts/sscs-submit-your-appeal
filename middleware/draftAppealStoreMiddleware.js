@@ -179,11 +179,11 @@ const saveToDraftStore = async(req, res, next) => {
     logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
         ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
 
-      if (req.session && req.session.ccdCaseId) {
-        await updateDraftInDraftStore(req, res, next, values);
-      } else {
-        await createDraftInDraftStore(req, res, next, values);
-      }
+    if (req.session && req.session.ccdCaseId) {
+      await updateDraftInDraftStore(req, res, next, values);
+    } else {
+      await createDraftInDraftStore(req, res, next, values);
+    }
   } else {
     next();
   }
