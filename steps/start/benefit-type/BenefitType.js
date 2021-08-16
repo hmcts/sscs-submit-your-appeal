@@ -85,7 +85,7 @@ class BenefitType extends SaveToDraftStore {
       allowedTypes.push(benefitTypes.industrialDeathBenefit);
     }
     if (isFeatureFlagEnabled('allowPC')) {
-      allowedTypes.push(benefitTypes.pensionCredits);
+      allowedTypes.push(benefitTypes.pensionCredit);
     }
     if (isFeatureFlagEnabled('allowRP')) {
       allowedTypes.push(benefitTypes.retirementPension);

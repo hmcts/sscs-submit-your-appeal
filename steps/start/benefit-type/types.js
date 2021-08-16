@@ -23,7 +23,7 @@ const types = {
   compensationRecovery: 'Compensation Recovery Unit',
   healthPregnancy: 'Health in Pregnancy Grant',
   industrialDeathBenefit: 'Industrial Death Benefit',
-  pensionCredits: 'Pension Credits',
+  pensionCredit: 'Pension Credit',
   retirementPension: 'Retirement Pension',
   taxFreeChildcare: 'Tax-Free Childcare Scheme',
   disabilityWorkAllowance: 'Disability Working Allowance'

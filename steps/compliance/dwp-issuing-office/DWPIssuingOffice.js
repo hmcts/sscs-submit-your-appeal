@@ -9,7 +9,7 @@ const paths = require('paths');
 
 const benefitTypes = [
   'ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA', 'socialFund', 'incomeSupport', 'UC',
-  'industrialDeathBenefit', 'pensionCredits', 'retirementPension'
+  'industrialDeathBenefit', 'pensionCredit', 'retirementPension'
 ];
 
 class DWPIssuingOffice extends SaveToDraftStore {
@@ -87,7 +87,7 @@ class DWPIssuingOffice extends SaveToDraftStore {
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits' ||
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredit' ||
     getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
       return DWPIssuingOffice.selectify([
         'Pensions Dispute Resolution Team',

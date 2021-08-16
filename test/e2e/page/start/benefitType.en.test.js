@@ -25,7 +25,7 @@ const sscs1 = [
   'bereavementSupportPaymentScheme',
   'healthPregnancy',
   'industrialDeathBenefit',
-  'pensionCredits',
+  'pensionCredit',
   'retirementPension',
   'disabilityWorkAllowance'
 ];
