@@ -34,8 +34,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   handler(req, res, next) {
-    logger.trace(`Benefit Type ${(req.journey && req.journey.values && req.journey.values.benefitType) ? req.journey.values.benefitType.code : 'null'}`);
-
     if (allowSaveAndReturn) {
       removeRevertInvalidSteps(this.journey, () => {
         super.handler(req, res, next);
