@@ -49,6 +49,7 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
   next() {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
+    const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
     const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
 
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
@@ -59,6 +60,7 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
     return branch(
       goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
         isBereavementSupportPaymentScheme),
+      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }

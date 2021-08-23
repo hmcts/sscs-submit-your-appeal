@@ -21,6 +21,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
         },
         steps: {
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
+          DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeEsa,
           Appointee: paths.identity.areYouAnAppointee
         }
       }
@@ -107,7 +108,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     it('returns the next step path /dwp-issuing-office', () => {
       setBenefitType(benefitTypes.employmentAndSupportAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /are-you-an-appointee', () => {
@@ -122,12 +123,12 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA)', () => {
       setBenefitType(benefitTypes.disabilityLivingAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /dwp-issuing-office for Attendance Allowance', () => {
       setBenefitType(benefitTypes.attendanceAllowance);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /are-you-an-appointee for Bereavement Benefit', () => {
@@ -137,7 +138,7 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     it('returns the next step path /dwp-issuing-office for Social Fund', () => {
       setBenefitType(benefitTypes.socialFund);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /are-you-an-appointee for Bereavement Support Payment Scheme', () => {
@@ -147,17 +148,17 @@ describe('MRNOverThirteenMonthsLate.js', () => {
 
     it('returns the next step path /dwp-issuing-office for Industrial Death Benefit', () => {
       setBenefitType(benefitTypes.industrialDeathBenefit);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /dwp-issuing-office for Pension Credit', () => {
       setBenefitType(benefitTypes.pensionCredit);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
     it('returns the next step path /dwp-issuing-office for Retirement Pension', () => {
       setBenefitType(benefitTypes.retirementPension);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOffice);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
   });
 });
