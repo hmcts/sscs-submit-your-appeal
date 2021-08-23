@@ -162,9 +162,9 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
   });
 
-  describe('options for Pension Credits', () => {
-    it('has options for Pension Credits', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredits;
+  describe('options for Pension Credit', () => {
+    it('has options for Pension Credit', () => {
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');

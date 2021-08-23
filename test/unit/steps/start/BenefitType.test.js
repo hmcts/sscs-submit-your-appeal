@@ -184,13 +184,13 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowIDB.enabled') === 'false');
     });
 
-    it('pushes Pension Credits as allowed benefitType if allowPC is enabled', () => {
-      expect(Object.keys(benefitTypes).includes('pensionCredits'))
+    it('pushes Pension Credit as allowed benefitType if allowPC is enabled', () => {
+      expect(Object.keys(benefitTypes).includes('pensionCredit'))
         .to.eql(config.get('features.allowPC.enabled') === 'true');
     });
 
-    it('does not push Pension Credits as allowed benefitType when allowPC is not enabled', () => {
-      expect(!Object.keys(benefitTypes).includes('pensionCredits'))
+    it('does not push Pension Credit as allowed benefitType when allowPC is not enabled', () => {
+      expect(!Object.keys(benefitTypes).includes('pensionCredit'))
         .to.eql(config.get('features.allowPC.enabled') === 'false');
     });
 

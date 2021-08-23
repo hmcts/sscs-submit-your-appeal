@@ -149,8 +149,8 @@ describe('MRNOverOneMonth.js', () => {
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
-    it('returns the next step path /dwp-issuing-office for Pension Credits', () => {
-      setBenefitType(benefitTypes.pensionCredits);
+    it('returns the next step path /dwp-issuing-office for Pension Credit', () => {
+      setBenefitType(benefitTypes.pensionCredit);
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 

@@ -82,7 +82,7 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits' ||
+    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredit' ||
     getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
       return DWPIssuingOfficeEsa.selectify([
         'Pensions Dispute Resolution Team',

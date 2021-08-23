@@ -111,5 +111,4 @@ describe('DWPIssuingOffice.js', () => {
       expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
     });
   });
-
 });

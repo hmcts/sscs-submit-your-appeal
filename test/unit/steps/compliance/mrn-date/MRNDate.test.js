@@ -345,16 +345,16 @@ describe('MRNDate.js', () => {
       });
     });
 
-    describe('when benefit type is Pension Credits', () => {
+    describe('when benefit type is Pension Credit', () => {
       it('returns the next step path /are-you-an-appointee if date less than a month', () => {
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-        setBenefitType(benefitTypes.pensionCredits);
+        setBenefitType(benefitTypes.pensionCredit);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
       });
 
       it('returns the next step path /dwp-issuing-office if date is equal to a month', () => {
         setMRNDate(DateUtils.oneMonthAgo());
-        setBenefitType(benefitTypes.pensionCredits);
+        setBenefitType(benefitTypes.pensionCredit);
         expect(mrnDate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
       });
     });
