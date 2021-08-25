@@ -54,11 +54,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
   }
   I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
-  if (language === 'en' && office === 'Inverness DRT') {
-    I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
-  } else {
-    I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
-  }
+  I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
   if (hasDwpIssuingOffice) {
     I.enterDWPIssuingOffice(commonContent, office);
   }
@@ -150,7 +146,7 @@ function enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent) {
 function enterDetailsFromNoRepresentativeToEnd(commonContent) {
   const I = this;
 
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
 }

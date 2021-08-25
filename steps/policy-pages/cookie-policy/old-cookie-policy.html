@@ -1,0 +1,103 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/question.html" %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.cookies.title | safe %}
+{% set serviceName = "Submit your appeal" %}
+
+{% block two_thirds %}
+<h1 class="govuk-heading-l">{{ content.cookies.title | safe }}</h1>
+<p class="govuk-body">{{ content.cookies.description | safe }}</p>
+
+<h2 class="govuk-heading-m">{{ content.usedInService.title | safe }}</h2>
+<p class="govuk-body">{{ content.usedInService.uses | safe }}</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>{{ content.usedInService.use1 | safe }}</li>
+    <li>{{ content.usedInService.use2 | safe }}</li>
+    <li>{{ content.usedInService.use3 | safe }}</li>
+</ul>
+<p class="govuk-body">{{ content.usedInService.more | safe }} <a class="govuk-link" href="http://www.aboutcookies.org/">{{ content.usedInService.manage | safe }}</a>.</p>
+
+<h2 class="govuk-heading-m">{{ content.howAreTheyUsed.title | safe }}</h2>
+<p class="govuk-body">{{ content.howAreTheyUsed.description | safe }}</p>
+<p class="govuk-body">{{ content.howAreTheyUsed.info | safe }}</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>{{ content.howAreTheyUsed.info1 | safe }}</li>
+    <li>{{ content.howAreTheyUsed.info2 | safe }}</li>
+    <li>{{ content.howAreTheyUsed.info3 | safe }}</li>
+    <li>{{ content.howAreTheyUsed.info4 | safe }}</li>
+</ul>
+<p class="govuk-body">{{ content.howAreTheyUsed.googleShare | safe }} <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ content.howAreTheyUsed.googlePrivacyPolicy | safe }}</a>.</p>
+<p class="govuk-body">
+    {{ content.howAreTheyUsed.optOut.youCan | safe }} <a class="govuk-link" href="https://policies.google.com/privacy/partners?hl=en-GB&gl=uk">{{ content.howAreTheyUsed.optOut.google | safe }}</a> {{ content.howAreTheyUsed.optOut.access | safe }}
+</p>
+
+<p class="govuk-body">{{ content.howAreTheyUsed.googleCookies | safe }}</p>
+<table class="govuk-table">
+    <caption class="govuk-visually-hidden">{{ content.howAreTheyUsed.googleCookies | safe }}</caption>
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col">{{ content.howAreTheyUsed.cookieTable.columnName1 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.howAreTheyUsed.cookieTable.columnName2 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.howAreTheyUsed.cookieTable.columnName3 | safe }}</th>
+    </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item1Name | safe }}</td>
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item1Purpose | safe }}</td>
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item1Expires | safe }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item2Name | safe }}</td>
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item2Purpose | safe }}</td>
+        <td class="govuk-table__cell">{{ content.howAreTheyUsed.cookieTable.item2Expires | safe }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-m">{{ content.introMessage.title | safe }}</h2>
+<p class="govuk-body">{{ content.introMessage.description | safe }}</p>
+<table class="govuk-table">
+    <caption class="govuk-visually-hidden">{{ content.introMessage.title | safe }}</caption>
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col">{{ content.introMessage.cookieTable.columnName1 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.introMessage.cookieTable.columnName2 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.introMessage.cookieTable.columnName3 | safe }}</th>
+    </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ content.introMessage.cookieTable.item1Name | safe }}</td>
+        <td class="govuk-table__cell">{{ content.introMessage.cookieTable.item1Purpose | safe }}</td>
+        <td class="govuk-table__cell">{{ content.introMessage.cookieTable.item1Expires | safe }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 class="govuk-heading-m">{{ content.sessionCookie.title | safe }}</h2>
+<p class="govuk-body">{{ content.sessionCookie.description | safe }}</p>
+<table class="govuk-table">
+    <caption class="govuk-visually-hidden">{{ content.sessionCookie.title | safe }}</caption>
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col">{{ content.sessionCookie.cookieTable.columnName1 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.sessionCookie.cookieTable.columnName2 | safe }}</th>
+        <th class="govuk-table__header" scope="col">{{ content.sessionCookie.cookieTable.columnName3 | safe }}</th>
+    </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item1Name | safe }}</td>
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item1Purpose | safe }}</td>
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item1Expires | safe }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item2Name | safe }}</td>
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item2Purpose | safe }}</td>
+        <td class="govuk-table__cell">{{ content.sessionCookie.cookieTable.item2Expires | safe }}</td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}

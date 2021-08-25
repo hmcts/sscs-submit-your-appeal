@@ -1,4 +1,4 @@
-{% from "./../../node_modules/govuk-frontend/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "./../../node_modules/govuk-frontend/govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% macro errorSummary(fields, title='There was a problem') -%}
   {%- if fields.validated and not fields.valid -%}

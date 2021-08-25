@@ -12,6 +12,14 @@
     "edit": "Golygu",
     "archive": "Cadw"
   },
+  "dialog": {
+    "title": "Cadw?",
+    "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo.",
+    "buttons": {
+      "archive": "Ydw",
+      "save": "Nac Ydw"
+    }
+  },
   "tableHeadings": {
     "appealRef": "Cyfeirnod yr apêl",
     "benefit": "Budd-dal",
@@ -22,8 +30,19 @@
     "Employment and Support Allowance (ESA)": "Lwfans Cyflogaeth a Chymorth (ESA)",
     "Personal Independence Payment (PIP)": "Taliad Annibyniaeth Personol (PIP)",
     "Universal Credit (UC)": "Credyd Cynhwysol (UC)",
-    "Carer's Allowance": "Lwfans Gofalwr",
     "Attendance Allowance": "Lwfans Gweini",
+    "Carer's Allowance" : "Lwfans Gofalwr",
+    "Bereavement Benefit": "Budd-dal Profedigaeth",
+    "Bereavement Support Payment Scheme": "Cynllun Taliad Cymorth Profedigaeth",
+    "Disability Living Allowance": "Lwfans Byw i’r Anabl (DLA)",
+    "Income Support": "Cymhorthdal Incwm",
+    "Industrial Injuries Disablement Benefit": "Budd-dal Anabledd Anafiadau Diwydiannol",
+    "Industrial Death Benefit": "Budd-dal Marwolaeth Ddiwydiannol",
+    "Jobseeker’s Allowance (JSA)": "Lwfans Ceisio Gwaith (JSA)",
+    "Maternity Allowance": "Lwfans Mamolaeth",
+    "Social Fund": "SCronfa Gymdeithasol",
+    "Pension Credit": "Credydau Pensiwn",
+    "Retirement Pension": "Pensiwn Ymddeol",
     "Benefit Not Set": ""
   }
 }

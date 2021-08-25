@@ -24,4 +24,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new app
   await moment().locale(language);
   await I.enterDetailsForNewApplication(commonContent, language, userEmail);
   await I.enterDetailsToArchiveACase(commonContent, language, userEmail);
-}).retry(5);
+}).retry(15);

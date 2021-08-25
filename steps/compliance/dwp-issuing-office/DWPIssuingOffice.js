@@ -3,14 +3,9 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
-const { getBenefitName, getBenefitCode } = require('utils/stringUtils');
+const { getBenefitName, getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
-
-const benefitTypes = [
-  'ESA', 'DLA', 'attendanceAllowance', 'industrialInjuriesDisablement', 'JSA', 'socialFund', 'incomeSupport',
-  'industrialDeathBenefit', 'pensionCredits', 'retirementPension'
-];
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
@@ -23,69 +18,19 @@ class DWPIssuingOffice extends SaveToDraftStore {
     });
   }
 
-  // eslint-disable-next-line complexity
   get options() {
-    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+    if (isFeatureFlagEnabled('allowRFE')) {
       return DWPIssuingOffice.selectify([
-        'Balham DRT',
-        'Birkenhead LM DRT',
-        'Chesterfield DRT',
-        'Coatbridge Benefit Centre',
-        'Inverness DRT',
-        'Lowestoft DRT',
-        'Milton Keynes DRT',
-        'Norwich DRT',
-        'Sheffield DRT',
-        'Springburn DRT',
-        'Watford DRT',
-        'Wellingborough DRT',
-        'Worthing DRT'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'DLA') {
-      return DWPIssuingOffice.selectify([
-        'Disability Benefit Centre 4',
-        'The Pension Service 11',
-        'Recovery from Estates'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'attendanceAllowance') {
-      return DWPIssuingOffice.selectify([
-        'The Pension Service 11',
-        'Recovery from Estates'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'JSA') {
-      return DWPIssuingOffice.selectify([
-        'Worthing DRT',
-        'Birkenhead DRT',
-        'Inverness DRT',
-        'Recovery from Estates'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialInjuriesDisablement') {
-      return DWPIssuingOffice.selectify([
-        'Barrow IIDB Centre',
-        'Barnsley Benefit Centre'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialDeathBenefit') {
-      return DWPIssuingOffice.selectify([
-        'Barrow IIDB Centre',
-        'Barnsley Benefit Centre'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredits'
-    || getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
-      return DWPIssuingOffice.selectify([
-        'Pensions Dispute Resolution Team',
-        'Recovery from Estates'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'socialFund') {
-      return DWPIssuingOffice.selectify([
-        'St Helens Sure Start Maternity Grant',
-        'Funeral Payment Dispute Resolution Team',
-        'Pensions Dispute Resolution Team'
-      ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'incomeSupport') {
-      return DWPIssuingOffice.selectify([
-        'Worthing DRT',
-        'Birkenhead DRT',
-        'Inverness DRT',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'AE',
         'Recovery from Estates'
       ]);
     }
@@ -104,13 +49,6 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   get form() {
-    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
-      return form({
-        dwpIssuingOffice: text.joi(
-          this.content.fields.dwpIssuingOffice.error.required,
-          Joi.string().required())
-      });
-    }
     return form({
       pipNumber: text.joi(
         this.content.fields.pipNumber.error.required,
@@ -127,15 +65,6 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   answers() {
-    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
-      return [
-        answer(this, {
-          question: this.content.cya.dwpIssuingOffice.question,
-          section: sections.mrnDate,
-          answer: this.fields.dwpIssuingOffice.value
-        })
-      ];
-    }
     return [
       answer(this, {
         question: this.content.cya.pipNumber.question,
@@ -146,13 +75,6 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   values() {
-    if (benefitTypes.includes(getBenefitCode(this.journey.req.session.BenefitType.benefitType))) {
-      return {
-        mrn: {
-          dwpIssuingOffice: this.fields.dwpIssuingOffice.value
-        }
-      };
-    }
     return {
       mrn: {
         dwpIssuingOffice: `DWP PIP (${this.fields.pipNumber.value})`

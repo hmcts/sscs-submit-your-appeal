@@ -58,18 +58,18 @@ const supportedBrowsers = {
         name: 'MAC_FIREFOX_LATEST_SSCS'
       }
     }
-  },
-  safari: {
-    safari_mac_latest: {
-      browserName: 'safari',
-      platformName: 'macOS 11.00',
-      browserVersion: 'latest',
-      'sauce:options': {
-        name: 'MAC_SAFARI_LATEST_SSCS',
-        seleniumVersion: '3.141.59'
-      }
-    }
   }
+  // safari: {
+  //   safari_mac_latest: {
+  //     browserName: 'safari',
+  //     platformName: 'macOS 11.00',
+  //     browserVersion: 'latest',
+  //     'sauce:options': {
+  //       name: 'MAC_SAFARI_LATEST_SSCS',
+  //       seleniumVersion: '3.141.59'
+  //     }
+  //   }
+  // }
 };
 
 module.exports = supportedBrowsers;

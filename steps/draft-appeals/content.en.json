@@ -12,6 +12,14 @@
     "edit": "Edit",
     "archive": "Archive"
   },
+  "dialog": {
+    "title": "Archive?",
+    "warnMessage": "Are you sure you want to archive your appeal application? You will not be able to retrieve your application once it is archived.",
+    "buttons": {
+      "archive": "Yes",
+      "save": "No"
+    }
+  },
   "tableHeadings": {
     "appealRef": "Appeal reference",
     "benefit": "Benefit",
@@ -22,7 +30,19 @@
     "Employment and Support Allowance (ESA)": "Employment and Support Allowance (ESA)",
     "Personal Independence Payment (PIP)": "Personal Independence Payment (PIP)",
     "Universal Credit (UC)": "Universal Credit (UC)",
+    "Attendance Allowance": "Attendance Allowance",
+    "Bereavement Benefit": "Bereavement Benefit",
+    "Bereavement Support Payment Scheme": "Bereavement Support Payment Scheme",
     "Carer's Allowance": "Carers Allowance",
+    "Disability Living Allowance (DLA)": "Disability Living Allowance (DLA)",
+    "Income Support": "Income Support",
+    "Industrial Injuries Disablement Benefit": "Industrial Injuries Disablement Benefit",
+    "Industrial Death Benefit": "Industrial Death Benefit",
+    "Jobseeker’s Allowance (JSA)": "Jobseeker’s Allowance (JSA)",
+    "Maternity Allowance": "Maternity Allowance",
+    "Social Fund": "Social Fund",
+    "Pension Credit": "Pension Credit",
+    "Retirement Pension": "Retirement Pension",
     "'Benefit Not Set": "Benefit Not Set"
   }
 }

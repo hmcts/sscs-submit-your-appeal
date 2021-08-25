@@ -119,9 +119,9 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'industrialInjuriesDisablement', description: benefitTypes.industrialInjuriesDisablement });
   });
 
-  it('should split Job Seekers Allowance (JSA) into an array', () => {
+  it('should split Jobseeker’s Allowance (JSA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.jobseekersAllowance);
-    expect(obj).to.include({ code: 'JSA', description: 'Job Seekers Allowance' });
+    expect(obj).to.include({ code: 'JSA', description: 'Jobseeker’s Allowance' });
   });
 
   it('should split \'Maternity Allowance\' into an array', () => {
@@ -204,7 +204,7 @@ describe('the dynamic content utils', () => {
     });
     it('returns the right name for jsa', () => {
       const bcode = getBenefitName(benefitTypes.jobseekersAllowance);
-      expect(bcode).to.equal('Job Seekers Allowance');
+      expect(bcode).to.equal('Jobseeker’s Allowance');
     });
     it('returns the right name for social fund', () => {
       const bcode = getBenefitName(benefitTypes.socialFund);
@@ -222,9 +222,9 @@ describe('the dynamic content utils', () => {
       const bcode = getBenefitName(benefitTypes.industrialDeathBenefit);
       expect(bcode).to.equal('Industrial Death Benefit');
     });
-    it('returns the right name for pensionCredits', () => {
-      const bcode = getBenefitName(benefitTypes.pensionCredits);
-      expect(bcode).to.equal('Pension Credits');
+    it('returns the right name for pensionCredit', () => {
+      const bcode = getBenefitName(benefitTypes.pensionCredit);
+      expect(bcode).to.equal('Pension Credit');
     });
     it('returns the right name for retirementPension', () => {
       const bcode = getBenefitName(benefitTypes.retirementPension);
@@ -288,8 +288,8 @@ describe('the dynamic content utils', () => {
       const bcode = getTribunalPanel(benefitTypes.industrialDeathBenefit);
       expect(bcode).to.equal('judge and 1 or 2 doctors');
     });
-    it('returns the right name for pensionCredits', () => {
-      const bcode = getTribunalPanel(benefitTypes.pensionCredits);
+    it('returns the right name for pensionCredit', () => {
+      const bcode = getTribunalPanel(benefitTypes.pensionCredit);
       expect(bcode).to.equal('judge');
     });
     it('returns the right name for retirementPension', () => {
@@ -354,8 +354,8 @@ describe('the dynamic content utils', () => {
       const bcode = getTribunalPanelWelsh(benefitTypes.industrialDeathBenefit);
       expect(bcode).to.equal('barnwr ac 1 neu 2 feddyg');
     });
-    it('returns the right name for pensionCredits', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.pensionCredits);
+    it('returns the right name for pensionCredit', () => {
+      const bcode = getTribunalPanelWelsh(benefitTypes.pensionCredit);
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for retirementPension', () => {

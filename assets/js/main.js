@@ -11,9 +11,11 @@ import EvidenceUpload from './evidence-upload/evidence-upload';
 import CheckCookies from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 import { WebChat } from './web-chat';
+import ArchiveWarning from './archive-warning';
 
 /* eslint-disable init-declarations */
 let timeoutM;
+let archiveM;
 let evidenceUpload;
 /* eslint-enable init-declarations */
 
@@ -36,6 +38,13 @@ function initWebChat(language) {
   if (language === 'en' && $('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
+  }
+}
+
+function initCookieBanner() {
+  if ($('#app-cookie-banner').length) {
+    const checkCookies = new CheckCookies();
+    checkCookies.init();
   }
 }
 
@@ -95,9 +104,19 @@ function initTM(sessionSeconds, showAfterSeconds) {
   }
 }
 
+function initArchiveWarning() {
+  archiveM = new ArchiveWarning();
+}
+
 function destroyTM() {
   if (timeoutM) {
     timeoutM.destroy();
+  }
+}
+
+function destroyAM() {
+  if (archiveM) {
+    archiveM.destroy();
   }
 }
 
@@ -139,13 +158,14 @@ $(document).ready(() => {
   initDoNotSubmitTwice();
   initBackButton();
   initWebChat(language);
+  initArchiveWarning();
   PostCodeLookup.init();
-  const checkCookies = new CheckCookies();
-  checkCookies.init();
+  initCookieBanner();
 });
 
 $(window).on('unload', () => {
   destroyTM();
+  destroyAM();
   destroyEvidenceUpload();
   if ($('#date-picker').length) {
     $('.prev, .next').off('click');

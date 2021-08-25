@@ -43,7 +43,7 @@ const splitBenefitType = benefitType => {
   let code = '';
   let description = benefitType;
 
-  if (benefitType.includes('(') && benefitType.includes(')')) {
+  if (benefitType && benefitType.includes('(') && benefitType.includes(')')) {
     const index = benefitType.indexOf('(');
     description = benefitType.substring(0, index).trim();
     code = benefitType.substring(index, benefitType.length)
@@ -94,7 +94,7 @@ const getTribunalPanel = ben => {
     bereavementBenefit: 'judge',
     maternityAllowance: 'judge',
     bereavementSupportPaymentScheme: 'judge',
-    pensionCredits: 'judge',
+    pensionCredit: 'judge',
     retirementPension: 'judge',
     socialFund: 'judge',
     incomeSupport: 'judge',
@@ -116,7 +116,7 @@ const getTribunalPanelWelsh = ben => {
     bereavementBenefit: 'barnwr',
     maternityAllowance: 'barnwr',
     bereavementSupportPaymentScheme: 'barnwr',
-    pensionCredits: 'barnwr',
+    pensionCredit: 'barnwr',
     retirementPension: 'barnwr',
     socialFund: 'barnwr',
     incomeSupport: 'barnwr',

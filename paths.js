@@ -14,6 +14,7 @@ module.exports = {
 
   policy: {
     cookiePolicy: '/cookie-policy',
+    cookies: '/cookies',
     termsAndConditions: '/terms-and-conditions',
     privacy: '/privacy-policy',
     contactUs: '/contact-us',
@@ -47,6 +48,7 @@ module.exports = {
     haveAMRN: '/have-you-got-an-mrn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
+    dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
     contactDWP: '/contact-dwp',

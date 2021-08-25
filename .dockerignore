@@ -16,6 +16,7 @@
 !utils/**
 !views/**
 !webpack/**
+!cookie-banner/**
 
 !app.js
 !appConfigurations.js

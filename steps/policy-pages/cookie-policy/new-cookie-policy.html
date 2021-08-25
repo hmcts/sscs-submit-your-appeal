@@ -1,0 +1,190 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/question.html" %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.cookies.title | safe %}
+{% set serviceName = "Submit your appeal" %}
+
+{% block two_thirds %}
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="group help-page cookie-settings govuk-grid-column-two-thirds">
+        <div class="grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+            {% include "./cookie-success-banner.njk" %}
+            <h1 class="govuk-heading-xl">Cookies</h1>
+            <p class="govuk-body-m">Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly.</p>
+            <p class="govuk-body-m">This service uses cookies to:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>store your cookie preferences</li>
+                <li>measure how you use the service so it can be improved</li>
+            </ul>
+            <h2 class="govuk-heading-l">How cookies are used in this service</h2>
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">To measure website use</legend>
+                    <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
+                        <p class="govuk-body-m">
+                            We use Google Analytics software to collect information about how you use this service.
+                            We do this to help make sure the service is meeting the needs of its users and to help
+                            us make improvements. We do not allow Google to use or share the data about how you use this site.
+                        </p>
+                        <table class="govuk-table">
+                            <caption class="govuk-table__caption">Cookie details</caption>
+                            <thead class="govuk-table__head">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Purpose</th>
+                                <th scope="col">Expires</th>
+                            </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                            <tr>
+                                <td>_ga</td>
+                                <td>
+                                    This helps us count how many people visit the service by tracking if you’ve visited before
+                                </td>
+                                <td class="text-area">1 year</td>
+                            </tr>
+                            <tr>
+                                <td>_gid</td>
+                                <td>
+                                    Identifies you to the service
+                                </td>
+                                <td class="text-area">1 year</td>
+                            </tr>
+                            <tr>
+                                <td>_gat</td>
+                                <td>
+                                    Manages the rate at which page view requests are made
+                                </td>
+                                <td class="text-area">1 year</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website use?</legend>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input type="radio" name="analytics" id="radio-analytics-on" value="true" class="govuk-radios__input">
+                            <label for="radio-analytics-on" class="govuk-label govuk-radios__label" id="radio-analytics-on-label">
+                                <span>Use cookies that measure my website use</span>
+                            </label>
+                            </input>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input type="radio" name="analytics" id="radio-analytics-off" value="false" class="govuk-radios__input" checked="checked">
+                            <label for="radio-analytics-off" class="govuk-label govuk-radios__label" id="radio-analytics-off-label">
+                                <span>Do not use cookies that measure my website use</span>
+                            </label>
+                            </input>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">To measure application performance</legend>
+                    <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
+                        <p class="govuk-body-m">
+                            We use Dynatrace Software Intelligence Platform to provide an Application Performance Monitoring Service
+                            to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order
+                            to resolve issues within our services as well as collect data on how our services can be improved.
+                            HMCTS store information about:
+                        </p>
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>Site performance</li>
+                            <li>Website usage</li>
+                            <li>User behaviour</li>
+                        </ul>
+                        <p class="govuk-body-m">
+                            Information is presented within the Application Performance Monitoring service for the purposes detailed above.
+                            We do not use or share the information for any other purpose. We do not allow Dynatrace to use or
+                            share the information for any other purposes.
+                        </p>
+                        <table class="govuk-table">
+                            <caption class="govuk-table__caption">Cookie details</caption>
+                            <thead class="govuk-table__head">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Purpose</th>
+                                <th scope="col">Expires</th>
+                            </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                            <tr>
+                                <td>dtCookie</td>
+                                <td>
+                                    Tracks a visit across multiple requests
+                                </td>
+                                <td class="text-area">When session ends</td>
+                            </tr>
+                            <tr>
+                                <td>dtLatC</td>
+                                <td>
+                                    Measures server latency for performance monitoring
+                                </td>
+                                <td class="text-area">When session ends</td>
+                            </tr>
+                            <tr>
+                                <td>dtPC</td>
+                                <td>
+                                    Required to identify proper endpoints for beacon transmission; includes session ID for correlation
+                                </td>
+                                <td class="text-area">When session ends</td>
+                            </tr>
+                            <tr>
+                                <td>dtSa</td>
+                                <td>
+                                    Intermediate store for page-spanning actions
+                                </td>
+                                <td class="text-area">When session ends</td>
+                            </tr>
+                            <tr>
+                                <td>rxVisitor</td>
+                                <td>
+                                    Visitor ID to correlate sessions
+                                </td>
+                                <td class="text-area">1 year</td>
+                            </tr>
+                            <tr>
+                                <td>rxvt</td>
+                                <td>
+                                    Session timeout
+                                </td>
+                                <td class="text-area">When session ends</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website application performance monitoring?</legend>
+                    <div class="govuk-radios govuk-radios--inline u-margin-top-30">
+                        <div class="govuk-radios__item">
+                            <input type="radio" name="apm" id="radio-apm-on" value="true" class="govuk-radios__input">
+                            <label for="radio-apm-on" class="govuk-label govuk-radios__label" id="radio-apm-on-label">
+                                <span>Use cookies that measure website application performance monitoring</span>
+                            </label>
+                            </input>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input type="radio" name="apm" id="radio-apm-off" value="false" class="govuk-radios__input" checked="checked">
+                            <label for="radio-apm-off" class="govuk-label govuk-radios__label" id="radio-apm-off-label">
+                                <span>Do not use cookies that measure website application performance monitoring</span>
+                            </label>
+                            </input>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <h3 class="govuk-heading-m">Essential cookies</h3>
+            <p class="govuk-body">These essential cookies do things like making the service more secure. They always need to be on.</p>
+            <p class="govuk-body">
+                <a target="_blank" rel="noreferrer noopener" href="https://hmcts-access.service.gov.uk/cookies">
+                    Find out more about essential cookies (opens in new tab)
+                </a>
+            </p>
+            <p id="save-cookie-preferences" class="govuk-body govuk-button-group"><a class="govuk-button" href="#">Save</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% endblock %}

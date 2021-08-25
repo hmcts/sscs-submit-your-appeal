@@ -4,3 +4,4 @@ test/unit/coverage/
 assets/js/date-picker/bootstrap-datepicker1.9.0.min.js
 assets/js/polyfill
 dist/
+cookie-banner/

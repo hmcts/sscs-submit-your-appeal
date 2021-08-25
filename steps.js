@@ -20,6 +20,7 @@ const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
 const Independence = require('steps/start/independence/Independence');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
+const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
@@ -75,6 +76,7 @@ const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal
 const Accessibility = require('steps/policy-pages/accessibility/Accessibility');
 const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
+const Cookies = require('steps/policy-pages/cookie-policy/Cookies');
 const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
 const TermsAndConditions = require('steps/policy-pages/terms-and-conditions/TermsAndConditions');
 
@@ -106,6 +108,7 @@ const compliance = [
   CheckMRN,
   ContactDWP,
   MRNDate,
+  DWPIssuingOfficeEsa,
   NoMRN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,
@@ -192,6 +195,7 @@ const policyPages = [
   Accessibility,
   ContactUs,
   CookiePolicy,
+  Cookies,
   PrivacyPolicy,
   TermsAndConditions
 ];
