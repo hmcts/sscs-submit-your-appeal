@@ -923,11 +923,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@hmcts/ctsc-web-chat@^0.3.11":
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.3.12.tgz#67de21992e8b27278e9d15927fe16be95d87725d"
-  integrity sha512-X25Qu27oYPppNGc+Yv4nw9USMZmUOUa/30xF8b2wPFGz2bdHjkoRwAhJgM3G//NxfwOwZWt66HdwURP1cEhD9A==
-
 "@hmcts/div-idam-express-middleware@^6.6.2":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.6.2.tgz#0f1f03567463fc849b8a1c1877351d79242370e9"

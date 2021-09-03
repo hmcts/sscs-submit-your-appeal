@@ -102,9 +102,6 @@
     "pcq": {
       "enabled": "PCQ_ENABLED"
     },
-    "antennaWebChat": {
-      "enabled": "FT_ANTENNA_WEBCHAT"
-    },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
     },
@@ -135,14 +132,6 @@
     },
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
-    },
-    "webChat": {
-      "uuid": "SERVICES_WEBCHAT_UUID",
-      "tenant": "SERVICES_WEBCHAT_TENANT",
-      "channel": "SERVICES_WEBCHAT_CHANNEL",
-      "btnNoAgents": "SERVICES_BTN_NO_AGENTS",
-      "btnAgentsBusy": "SERVICES_BTN_AGENTS_BUSY",
-      "btnServiceClosed": "SERVICES_BTN_SERVICE_CLOSED"
     },
     "pcq": {
       "url": "PCQ_URL",
