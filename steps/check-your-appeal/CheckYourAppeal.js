@@ -25,7 +25,7 @@ const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
-const httpRetries = 3;
+const httpRetries = 0;
 
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
