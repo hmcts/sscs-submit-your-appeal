@@ -68,8 +68,6 @@ describe('Entry.js', () => {
       sendStatus: sinon.spy()
     };
     it('should not call `super.handler()`', () => {
-      // eslint-disable-next-line no-process-env
-      process.env.MULTIPLE_DRAFTS_ENABLED = 'true';
       entry.handler(req, res);
       expect(redirect.called).to.eql(true);
       expect(mockHandler.calledOnce).to.eql(false);

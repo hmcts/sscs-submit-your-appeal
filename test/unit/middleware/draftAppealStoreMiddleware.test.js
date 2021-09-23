@@ -297,25 +297,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       query: {}
     };
 
-    it('Expected Successfully get all drafts with multidraft enabled:', async() => {
+    it('Expected Successfully get all drafts:', async() => {
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
     });
 
-    it('Expected Successfully get all drafts with multidraft disabled:', async() => {
-      draftAppealStoreMiddleware.setFeatureFlag(true);
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
-      expect(next).to.have.been.calledOnce;
-    });
 
-    it('Expected Successfully get all drafts with multidraft and allows save and return disabled:', async() => {
+    it('Expected Successfully get all drafts and allows save and return disabled:', async() => {
       draftAppealStoreMiddleware.setFeatureFlag(false);
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(false);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.callCount(0);
       expect(next).to.have.been.calledOnce;
@@ -330,7 +321,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(204, {});
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      draftAppealStoreMiddleware.setMultiDraftsEnabled(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
