@@ -14,6 +14,9 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
 
   static selectify(ar) {
     return ar.map(el => {
+      if (el === 'Recovery from Estates') {
+        return { label: 'Recovery from Estates (Deceased)', value: el };
+      }
       return { label: el, value: el };
     });
   }
