@@ -40,6 +40,7 @@ withNightlyPipeline("nodejs", product, component) {
     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
     enableSecurityScan()
+    enableMutationTest()
 
     after('fortify-scan') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
