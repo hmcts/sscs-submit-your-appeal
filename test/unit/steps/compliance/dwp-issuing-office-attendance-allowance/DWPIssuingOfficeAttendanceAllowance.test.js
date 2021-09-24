@@ -101,7 +101,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     it('has options for Attendance Allowance', () => {
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
     });
   });
 });
