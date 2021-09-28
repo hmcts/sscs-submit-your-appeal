@@ -105,9 +105,6 @@
     "antennaWebChat": {
       "enabled": "FT_ANTENNA_WEBCHAT"
     },
-    "multipleDraftsEnabled": {
-      "enabled": "MULTIPLE_DRAFTS_ENABLED"
-    },
     "cookieBanner": {
       "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     }

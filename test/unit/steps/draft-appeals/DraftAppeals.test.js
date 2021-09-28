@@ -202,7 +202,6 @@ describe('DraftAppeals.js', () => {
       sendStatus: sinon.spy()
     };
     it('should call `super.handler()`', () => {
-      draftAppeals.setMultiDraftsEnabled(true);
       draftAppeals.handler(req, res);
       expect(mockHandler.calledOnce).to.eql(true);
       expect(saveF.calledOnce).to.eql(true);

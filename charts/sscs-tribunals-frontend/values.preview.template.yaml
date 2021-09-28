@@ -8,7 +8,6 @@ nodejs:
     FT_ANTENNA_WEBCHAT: false
     FT_WELSH: true
     PCQ_ENABLED: true
-    MULTIPLE_DRAFTS_ENABLED: true
   keyVaults:
     sscs:
       secrets:

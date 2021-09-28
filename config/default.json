@@ -110,9 +110,6 @@
     "antennaWebChat": {
       "enabled": "false"
     },
-    "multipleDraftsEnabled": {
-      "enabled": "false"
-    },
     "cookieBanner": {
       "enabled": "false"
     }
