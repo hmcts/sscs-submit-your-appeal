@@ -44,6 +44,19 @@ const resetJourney = req => {
   req.session.save();
 };
 
+const parseErrorResponse = error => {
+  const parsedErrorObj = error;
+  const dataToRemove = '_data';
+  const headerToRemove = '_header';
+  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._data) {
+    delete parsedErrorObj.response.request[dataToRemove];
+  }
+  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._header) {
+    delete parsedErrorObj.response.request[headerToRemove];
+  }
+  return JSON.stringify(parsedErrorObj);
+};
+
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
     const allVisitedSteps = [...journey.visitedSteps];
@@ -65,8 +78,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
     `${(values && values.appellant && values.appellant.nino) ?
       values.appellant.nino :
       'no NINO submitted yet'}`, logPath);
-
-  logger.exception(JSON.stringify(error), logPath);
+  logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
   } else {
@@ -102,7 +114,7 @@ const archiveDraft = async(req, caseId) => {
     })
     .catch(error => {
       logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
-      logger.exception(JSON.stringify(error), logPath);
+      logger.exception(parseErrorResponse(error), logPath);
     });
 };
 
@@ -215,7 +227,7 @@ const restoreUserState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(JSON.stringify(error), logPath);
+        logger.exception(parseErrorResponse(error), logPath);
         next();
       });
   } else {
@@ -264,7 +276,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(JSON.stringify(error), logPath);
+        logger.exception(parseErrorResponse(error), logPath);
         next();
       });
   } else {

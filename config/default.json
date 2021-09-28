@@ -128,7 +128,6 @@
     "browser": "chrome",
     "username": "username",
     "key": "privatekey",
-    "tunnelId": "reformtunnel",
     "smartWait": "30000",
     "outputDir": "./functional-output/crossbrowser/reports"
   },
