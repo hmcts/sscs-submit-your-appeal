@@ -20,6 +20,14 @@ const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') ===
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
+let webChatBaseUrl = process.env.WEBCHAT_URL;
+if (!webChatBaseUrl) {
+  webChatBaseUrl = 'webchat.ctsc.hmcts.net';
+}
+let webChatClientBaseUrl = process.env.WEBCHAT_CLIENT_URL;
+if (!webChatClientBaseUrl) {
+  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net';
+}
 
 const configureNunjucks = (app, commonContent) => {
   // because of a bug with iphone, we need to remove the mime types from accept
@@ -68,6 +76,8 @@ const configureNunjucks = (app, commonContent) => {
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
+      webChatClientUrl: webChatClientBaseUrl,
+      webChatUrl: webChatBaseUrl,
       paths,
       urls,
       featureToggles: {
@@ -106,7 +116,7 @@ const configureHelmet = app => {
       fontSrc: ['\'self\' data:'],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
+        `https://${webChatClientBaseUrl}/chat-client/1/`,
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -121,7 +131,7 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        `https://${webChatClientBaseUrl}/chat-client/1/`
       ],
       connectSrc: [
         '\'self\'',
@@ -132,8 +142,8 @@ const configureHelmet = app => {
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
         'code.jquery.com',
-        'wss://webchat.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net'
+        `wss://${webChatBaseUrl}`,
+        `https://${webChatBaseUrl}`
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
@@ -154,7 +164,7 @@ const configureHelmet = app => {
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        `https://${webChatClientBaseUrl}/chat-client/1/`
       ]
     }
   }));
