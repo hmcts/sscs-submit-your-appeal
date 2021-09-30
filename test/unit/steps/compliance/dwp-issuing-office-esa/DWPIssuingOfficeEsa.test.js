@@ -119,7 +119,8 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
       expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Deceased)');
+      expect(dwpIssuingOfficeEsa.options[3].value).to.eql('Recovery from Estates');
     });
   });
 
@@ -138,7 +139,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
     });
   });
 
@@ -149,7 +150,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
       expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Deceased)');
     });
   });
 
@@ -167,7 +168,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
     });
   });
 
@@ -176,7 +177,8 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
+      expect(dwpIssuingOfficeEsa.options[1].value).to.eql('Recovery from Estates');
     });
   });
 });

@@ -4,9 +4,6 @@ const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const config = require('config');
-
-let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 class DraftAppeals extends RestoreAllDraftsState {
   static get path() {
@@ -14,7 +11,7 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   handler(req, res, next) {
-    if (multipleDraftsEnabled && req.method === 'GET') {
+    if (req.method === 'GET') {
       resetJourney(req);
       super.handler(req, res, next);
     } else {
@@ -52,10 +49,6 @@ class DraftAppeals extends RestoreAllDraftsState {
       return DateUtils.formatDate(mrnDate, 'DD MMM YYYY');
     }
     return 'No Mrn';
-  }
-
-  setMultiDraftsEnabled(value) {
-    multipleDraftsEnabled = value;
   }
 }
 

@@ -102,7 +102,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Disability Benefit Centre 4');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates (Deceased)');
     });
   });
 });

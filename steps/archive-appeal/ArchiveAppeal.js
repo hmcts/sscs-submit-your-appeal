@@ -1,10 +1,6 @@
 const paths = require('paths');
 const { archiveDraft, LoadJourneyAndRedirect } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
-const config = require('config');
-
-let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
-
 
 class ArchiveAppeal extends LoadJourneyAndRedirect {
   static get path() {
@@ -15,8 +11,7 @@ class ArchiveAppeal extends LoadJourneyAndRedirect {
   async handler(req, res, next) {
     const caseId = req.query.caseId;
 
-    if (multipleDraftsEnabled &&
-      req.method === 'GET' &&
+    if (req.method === 'GET' &&
       caseId &&
       req.session.drafts &&
       req.session.drafts[caseId]) {
@@ -37,10 +32,6 @@ class ArchiveAppeal extends LoadJourneyAndRedirect {
 
   next() {
     return goTo(paths.start.benefitType);
-  }
-
-  setMultiDraftsEnabled(value) {
-    multipleDraftsEnabled = value;
   }
 }
 

@@ -6,4 +6,3 @@ nodejs:
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     FT_WELSH: true
     PCQ_ENABLED: true
-    MULTIPLE_DRAFTS_ENABLED: true

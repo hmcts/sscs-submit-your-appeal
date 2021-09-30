@@ -25,7 +25,7 @@
     {
       "description": "Disability Living Allowance (DLA)",
       "code": "DLA",
-      "office": "Recovery from Estates",
+      "office": "Recovery from Estates (Deceased)",
       "hasDwpIssuingOffice": true
     },
     {

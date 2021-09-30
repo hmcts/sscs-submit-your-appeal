@@ -8,7 +8,6 @@ nodejs:
     CONTACT_US_WEBCHAT_ENABLED: false
     FT_WELSH: true
     PCQ_ENABLED: true
-    MULTIPLE_DRAFTS_ENABLED: true
   keyVaults:
     sscs:
       secrets:
