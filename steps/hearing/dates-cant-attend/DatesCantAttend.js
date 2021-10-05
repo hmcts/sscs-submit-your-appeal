@@ -72,19 +72,19 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   answers() {
-    const orderedItems = DateUtils.sortDates(this.fields.items.value);
     return [
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: orderedItems.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY')),
+        answer: this.fields.items.value.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY')),
         url: paths.hearing.hearingAvailability
       })
     ];
   }
 
   values() {
-    const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+    const orderedItems = DateUtils.sortDates(this.fields.items.value);
+    const datesCantAttend = orderedItems.map(d => d.format('DD-MM-YYYY'));
     if (datesCantAttend.length === 0) {
       return {};
     }
