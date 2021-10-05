@@ -1,4 +1,5 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
+const { saveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const idam = require('middleware/idam');
 const paths = require('paths');
 
@@ -25,6 +26,8 @@ class SignOut extends ExitPoint {
 
   get middleware() {
     return [
+      this.journey.collectSteps,
+      saveToDraftStore,
       idam.logout,
       ...super.middleware,
       SignOut.clearCookies
