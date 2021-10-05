@@ -1,10 +1,8 @@
 const paths = require('paths');
 const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
-const config = require('config');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 
-let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 class EditAppeal extends Redirect {
   static get path() {
@@ -13,7 +11,7 @@ class EditAppeal extends Redirect {
 
   // eslint-disable-next-line no-unused-vars
   handler(req, res, next) {
-    if (multipleDraftsEnabled && req.method === 'GET') {
+    if (req.method === 'GET') {
       const caseId = req.query.caseId;
 
       if (req.query.caseId && req.session.drafts && req.session.drafts[caseId]) {
@@ -33,10 +31,6 @@ class EditAppeal extends Redirect {
 
   next() {
     return goTo(this.journey.steps.BenefitType);
-  }
-
-  setMultiDraftsEnabled(value) {
-    multipleDraftsEnabled = value;
   }
 }
 

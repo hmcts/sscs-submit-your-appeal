@@ -62,7 +62,6 @@ describe('EditAppeal.js', () => {
     };
 
     it('should call redirect to check your appeal when draft in body', () => {
-      editAppeal.setMultiDraftsEnabled(true);
       editAppeal.handler(req, res);
       expect(saveF.called).to.eql(true);
       expect(redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
@@ -70,14 +69,12 @@ describe('EditAppeal.js', () => {
 
     it('should call redirect to benefit type when draft not in body', () => {
       delete req.session.drafts;
-      editAppeal.setMultiDraftsEnabled(true);
       editAppeal.handler(req, res);
       expect(redirect.calledWith(paths.session.entry)).to.eql(true);
     });
 
-    it('should call redirect to benefit type when not handlable', () => {
+    it('should call redirect to benefit type when not handleable', () => {
       req.method = 'PUT';
-      editAppeal.setMultiDraftsEnabled(true);
       editAppeal.handler(req, res);
       expect(redirect.called).to.eql(true);
     });

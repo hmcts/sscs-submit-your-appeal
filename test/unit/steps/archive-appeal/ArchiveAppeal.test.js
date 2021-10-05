@@ -79,23 +79,15 @@ describe('ArchiveAppeal.js', () => {
       sendStatus: sinon.spy()
     };
 
-    it('should load chosen draft and redirect when multidrafts enabled and not current case', () => {
-      archiveAppeal.setMultiDraftsEnabled(true);
+    it('should load chosen draft and redirect when not current case', () => {
       archiveAppeal.handler(req, res);
       expect(redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
     });
 
-    it('should archived draft by case id and redirect when multidrafts enabled', () => {
-      archiveAppeal.setMultiDraftsEnabled(true);
+    it('should archived draft by case id and redirect', () => {
       req.query.caseId = 1234;
       archiveAppeal.handler(req, res);
       expect(redirect.calledWith(paths.drafts)).to.eql(false);
-    });
-
-    it('should redirect to benefit page when multidrafts enabled is false', () => {
-      archiveAppeal.setMultiDraftsEnabled(false);
-      archiveAppeal.handler(req, res);
-      expect(redirect.calledWith(archiveAppeal.journey.steps.BenefitType)).to.eql(true);
     });
   });
 });
