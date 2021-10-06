@@ -69,7 +69,6 @@ const removeRevertInvalidSteps = (journey, callBack) => {
       }
       // Revert visitedsteps back to initial state.
       journey.visitedSteps = allVisitedSteps;
-
     }
   } catch (error) {
     logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
