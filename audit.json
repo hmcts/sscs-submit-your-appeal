@@ -566,7 +566,8 @@
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore",
   "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore",
-  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore"
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore",
+  "40018_SQL Injection_https://benefit-appeal.aat.platform.hmcts.net/sitemap.xml?lng=cy+AND+1%3D1+--+_GET" : "ignore"
 
 
 }
