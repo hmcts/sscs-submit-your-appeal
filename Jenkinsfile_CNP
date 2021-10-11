@@ -13,6 +13,7 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withPipeline("nodejs", product, component) {
 
+  before('securitychecks') { yarnBuilder.yarn('test:audit') }
 
   after('build') {
     stage('Generate cookie banner') {
