@@ -17,17 +17,9 @@ nodejs:
     CONTACT_US_WEB_FORM_ENABLED: false
     MEDIA_FILES_ALLOWED_ENABLED: true
 
-    # these are only enabled in prod
-    # SERVICES_WEBCHAT_UUID:
-    # SERVICES_WEBCHAT_TENANT
-    # SERVICES_WEBCHAT_CHANNEL
-    # SERVICES_BTN_NO_AGENTS
-    # SERVICES_BTN_AGENTS_BUSY
-    # SERVICES_BTN_SERVICE_CLOSED
-
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
-    FT_ANTENNA_WEBCHAT: false
+    CONTACT_US_WEBCHAT_ENABLED: false
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
 

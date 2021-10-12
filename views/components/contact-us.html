@@ -5,21 +5,16 @@
     {% if webChatEnabled and htmlLang == "en" %}
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
-            {% if featureToggles.antennaWebChat() == "true" %}
-                <div id="antenna-web-chat" >
-                    <div id="antenna-web-chat-link">
-                        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                        <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
-                    </div>
-                    {% include "components/web-chat.html" %}
-                    <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
-                    <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
-                    <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
+            <div id="antenna-web-chat" >
+                <div id="antenna-web-chat-link">
+                    <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+                    <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
                 </div>
-            {% else %}
-                <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                <div id="ctsc-web-chat">{{ commonContent[htmlLang].contactUs.webchat.loading | safe }}</div>
-            {% endif %}
+                {% include "components/web-chat.html" %}
+                <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
+                <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
+                <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
+            </div>
         </div>
     {% endif %}
     {% if contactUsWebFormEnabled %}
