@@ -11,9 +11,9 @@ def component = "tribunals-frontend"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-withPipeline("nodejs", product, component) {
+def branchesToSync = ['demo', 'ithc', 'perftest']
 
-  before('securitychecks') { yarnBuilder.yarn('test:audit') }
+withPipeline("nodejs", product, component) {
 
   after('build') {
     stage('Generate cookie banner') {
@@ -24,6 +24,7 @@ withPipeline("nodejs", product, component) {
 
   enableAksStagingDeployment()
   disableLegacyDeployment()
+  syncBranchesWithMaster(branchesToSync)
 
   after('akschartsinstall'){
     onMaster {

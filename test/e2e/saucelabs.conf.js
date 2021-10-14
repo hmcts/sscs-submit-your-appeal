@@ -11,7 +11,6 @@ const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const defaultSauceOptions = {
   username: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
   accessKey: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
-  tunnelIdentifier: process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId'),
   acceptSslCerts: true,
   tags: ['SSCS']
 };

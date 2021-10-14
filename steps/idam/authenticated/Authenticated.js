@@ -1,9 +1,6 @@
 const { AuthAndRestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
-const config = require('config');
-
-const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 class Authenticated extends AuthAndRestoreAllDraftsState {
   static get path() {
@@ -16,11 +13,7 @@ class Authenticated extends AuthAndRestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      if (multipleDraftsEnabled) {
-        res.redirect(paths.drafts);
-      } else {
-        res.redirect(paths.checkYourAppeal);
-      }
+      res.redirect(paths.drafts);
     } else {
       super.handler(req, res, next);
     }

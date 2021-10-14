@@ -54,7 +54,7 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "true"
+      "webChatEnabled": "false"
     },
     "allowUC": {
       "enabled": "true"
@@ -107,9 +107,6 @@
     "pcq": {
       "enabled": "false"
     },
-    "antennaWebChat": {
-      "enabled": "false"
-    },
     "multipleDraftsEnabled": {
       "enabled": "false"
     },
@@ -131,7 +128,6 @@
     "browser": "chrome",
     "username": "username",
     "key": "privatekey",
-    "tunnelId": "reformtunnel",
     "smartWait": "30000",
     "outputDir": "./functional-output/crossbrowser/reports"
   },
@@ -153,14 +149,6 @@
     },
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
-    },
-    "webChat": {
-      "uuid": "script_2564970475c5c433ab52c08.45062085",
-      "tenant": "aG1jdHNzdGFnaW5nMDE",
-      "channel": "SSCS",
-      "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
-      "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
-      "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
     },
     "pcq": {
       "name": "Equality and Diversity Service",

@@ -68,12 +68,10 @@ const configureNunjucks = (app, commonContent) => {
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
-      webChat: config.get('services.webChat'),
       paths,
       urls,
       featureToggles: {
         welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled,
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled
       }
     }
