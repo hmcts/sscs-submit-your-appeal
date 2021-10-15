@@ -59,17 +59,16 @@ const parseErrorResponse = error => {
 
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
-    if (journey.values) {
-      const allVisitedSteps = [...journey.visitedSteps];
-      // filter valid visitedsteps.
-      journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-      // use only valid steps.
-      if (typeof callBack === 'function') {
-        callBack();
-      }
-      // Revert visitedsteps back to initial state.
-      journey.visitedSteps = allVisitedSteps;
+    const allVisitedSteps = [...journey.visitedSteps];
+    // filter valid visitedsteps.
+    journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
+    // use only valid steps.
+    if (typeof callBack === 'function') {
+      callBack();
     }
+    // Revert visitedsteps back to initial state.
+    journey.visitedSteps = allVisitedSteps;
+
   } catch (error) {
     logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
   }
