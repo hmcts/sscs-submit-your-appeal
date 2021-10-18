@@ -17,6 +17,7 @@ const types = {
   socialFund: 'Social Fund',
   universalCredit: 'Universal Credit (UC)',
   childCare: '30 Hours Free Childcare Scheme',
+  childSupport: 'Child Support',
   bereavementSupportPaymentScheme: 'Bereavement Support Payment Scheme',
   taxCredits: 'Tax Credits',
   contractedOut: 'Contracted Out Employment Group',

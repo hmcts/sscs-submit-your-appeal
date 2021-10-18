@@ -36,6 +36,9 @@
         "enabled": "MEDIA_FILES_ALLOWED_ENABLED"
       }
     },
+    "allowChildSupport": {
+      "enabled": "ALLOW_CHILD_SUPPORT_ENABLED"
+    },
     "allowESA": {
       "enabled": "ALLOW_ESA_ENABLED"
     },

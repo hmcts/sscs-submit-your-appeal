@@ -24,6 +24,15 @@ class BenefitType extends SaveToDraftStore {
     });
   }
 
+  allowChildSupport() {
+    return isFeatureFlagEnabled('allowChildSupport');
+  }
+
+  pushArray(options, value) {
+    options.push(value);
+    return options;
+  }
+
   answers() {
     const sessionLanguage = i18next.language;
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
