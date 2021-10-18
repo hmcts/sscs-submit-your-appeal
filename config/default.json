@@ -41,9 +41,6 @@
         "enabled": false
       }
     },
-    "allowChildSupport": {
-      "enabled": "true"
-    },
     "allowESA": {
       "enabled": "true"
     },

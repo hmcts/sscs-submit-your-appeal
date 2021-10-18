@@ -40,15 +40,6 @@ describe('BenefitType.js', () => {
       expect(fields).to.have.all.keys('benefitType');
     });
 
-    describe('pushArray', () => {
-      it('adds item to an array', () => {
-        const newArray = [1, 2];
-        const returnedArray = benefitType.pushArray(newArray, 3);
-        expect(returnedArray.length).to.equal(3);
-        expect(returnedArray).to.deep.equal([1, 2, 3]);
-      });
-    });
-
     describe('benefitType filed', () => {
       beforeEach(() => {
         field = fields.benefitType;
@@ -213,14 +204,8 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowRP.enabled') === 'false');
     });
 
-    it('pushes Child support as allowed benefitType if allowChildSupport is enabled', () => {
-      expect(Object.keys(benefitTypes).includes('childSupport'))
-        .to.eql(config.get('features.allowChildSupport.enabled') === 'true');
-    });
-
-    it('does not push Child support as allowed benefitType when allowChildSupport is not enabled', () => {
-      expect(!Object.keys(benefitTypes).includes('childSupport'))
-        .to.eql(config.get('features.allowChildSupport.enabled') === 'false');
+    it('pushes Child support as allowed benefitType', () => {
+      expect(Object.keys(benefitTypes).includes('childSupport'));
     });
 
     it('returns /language-preference when Welsh feature toggle is on', () => {

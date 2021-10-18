@@ -34,13 +34,11 @@
     { label: content.benefitTypes.socialfund,  value: 'Social Fund' },
     { label: content.benefitTypes.tfc, value: 'Tax-Free Childcare Scheme' },
     { label: content.benefitTypes.tc,  value: 'Tax Credits' },
-    { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' }
+    { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' },
+    { label: content.benefitTypes.childSupport,  value: 'Child Support' }
 ] %}
 
 {% block fields %}
-    {% if allowChildSupport() %}
-        {% set options = pushArray(options, { label: content.benefitTypes.childSupport,  value: 'Child Support' }) %}
-    {% endif %}
         {{ select(
         fields.benefitType,
         content.label,
