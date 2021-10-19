@@ -62,13 +62,14 @@ const removeRevertInvalidSteps = (journey, callBack) => {
     const allVisitedSteps = [...journey.visitedSteps];
     // filter valid visitedsteps.
     journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-    // use only valid steps.
-    if (typeof callBack === 'function') {
-      callBack();
+    if (journey.values) {
+      // use only valid steps.
+      if (typeof callBack === 'function') {
+        callBack();
+      }
     }
     // Revert visitedsteps back to initial state.
     journey.visitedSteps = allVisitedSteps;
-
   } catch (error) {
     logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
   }
