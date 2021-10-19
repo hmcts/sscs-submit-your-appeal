@@ -1,11 +1,12 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { goTo } = require('@hmcts/one-per-page/flow');
 const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 const preserveSession = require('middleware/preserveSession');
 
-class AppealFormDownload extends ExitPoint {
+class AppealFormDownload extends SaveToDraftStore {
   static get path() {
     return paths.appealFormDownload;
   }
@@ -52,6 +53,10 @@ class AppealFormDownload extends ExitPoint {
     }
 
     return formDownload;
+  }
+
+  next() {
+    return goTo(this.journey.steps.Exit);
   }
 }
 
