@@ -24,7 +24,8 @@
       "question": "Number from MRN address"
     },
     "dwpIssuingOffice": {
-      "question": "DWP office"
+      "question": "DWP office",
+      "rfe": "Recovery from Estates (Deceased)"
     }
   }
 }

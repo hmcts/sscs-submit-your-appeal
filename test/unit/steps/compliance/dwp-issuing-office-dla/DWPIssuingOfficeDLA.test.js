@@ -3,11 +3,13 @@ const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/D
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const i18next = require('i18next');
 
 describe('DWPIssuingOfficeEsa.js', () => {
   let dwpIssuingOfficeEsa = null;
 
   beforeEach(() => {
+    i18next.changeLanguage('en');
     dwpIssuingOfficeEsa = new DWPIssuingOfficeEsa({
       journey: {
         steps: {
@@ -22,6 +24,10 @@ describe('DWPIssuingOfficeEsa.js', () => {
         }
       }
     });
+  });
+
+  afterEach(() => {
+    i18next.changeLanguage('en');
   });
 
   describe('get path()', () => {
@@ -103,6 +109,13 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Disability Benefit Centre 4');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('The Pension Service 11');
       expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates (Deceased)');
+    });
+    it('has options for DLA Welsh', () => {
+      i18next.changeLanguage('cy');
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Disability Benefit Centre 4');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('The Pension Service 11');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates (Ymadawedig)');
     });
   });
 });
