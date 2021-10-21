@@ -23,6 +23,10 @@ nodejs:
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
 
+    #Added for new Webchat with Agent
+    WEBCHAT_URL: "webchat.ctsc.hmcts.net"
+    WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
+
   keyVaults:
     sscs:
       secrets:
