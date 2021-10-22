@@ -288,13 +288,12 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
           hashToken: file.hashToken,
           uploadedDate: moment().format('YYYY-MM-DD')
         };
-      } else {
-        return {
-          url: file.link,
-          fileName: file.uploadEv,
-          uploadedDate: moment().format('YYYY-MM-DD')
-        };
       }
+      return {
+        url: file.link,
+        fileName: file.uploadEv,
+        uploadedDate: moment().format('YYYY-MM-DD')
+      };
     });
     return {
       reasonsForAppealing: {
