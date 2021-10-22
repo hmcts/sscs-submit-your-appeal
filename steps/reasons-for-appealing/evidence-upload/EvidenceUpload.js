@@ -193,16 +193,28 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         logger.trace('No forwarding error, about to save data', logPath);
         const b = JSON.parse(body);
         if (b && b.documents) {
-          req.body = {
-            'item.uploadEv': b.documents[0].originalDocumentName,
-            'item.link': b.documents[0]._links.self.href,
-            'item.size': size
-          };
+          if (b.documents[0].hashToken) {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': b.documents[0].hashToken,
+              'item.size': size
+            };
+          } else {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': '',
+              'item.size': size
+            };
+          }
+
         } else {
           console.log('Evidence upload document conversion error');
           req.body = {
             'item.uploadEv': technicalProblemError,
             'item.link': '',
+            'item.hashToken': '',
             'item.size': 0
           };
         }
@@ -263,6 +275,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       ),
       link: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),
+      hashToken: text.joi('', Joi.string().optional()),
       totalFileCount: text.joi(0, Joi.number().optional())
     });
   }
@@ -276,11 +289,21 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   values() {
     const evidences = this.fields.items.value.map(file => {
-      return {
-        url: file.link,
-        fileName: file.uploadEv,
-        uploadedDate: moment().format('YYYY-MM-DD')
-      };
+      if (file.hashToken) {
+        return {
+          url: file.link,
+          fileName: file.uploadEv,
+          hashToken: file.hashToken,
+          uploadedDate: moment().format('YYYY-MM-DD')
+        };
+      } else {
+        return {
+          url: file.link,
+          fileName: file.uploadEv,
+          uploadedDate: moment().format('YYYY-MM-DD')
+        };
+      }
+
     });
     return {
       reasonsForAppealing: {
