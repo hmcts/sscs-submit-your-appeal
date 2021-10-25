@@ -192,13 +192,12 @@ const configureJourney = (app, commonContent) => {
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
           const maxRetryWait = 3000;
-          console.log('Environment---------------------------------------------', process.env.NODE_ENV);
           return Math.min(retryTime, maxRetryWait);
         }
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: 'strict'
+        sameSite: process.env.NODE_ENV === 'preview' ? 'lax' : 'strict'
       },
       secret: config.redis.secret
     },
