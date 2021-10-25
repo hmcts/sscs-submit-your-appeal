@@ -591,9 +591,11 @@ describe('The other methods of EvidenceUpload', () => {
         value: [
           {
             link: 'link1',
+            hashToken: 'token',
             uploadEv: 'uploadEv1'
           }, {
             link: 'link2',
+            hashToken: 'token',
             uploadEv: 'uploadEv2'
           }
         ]
@@ -604,11 +606,13 @@ describe('The other methods of EvidenceUpload', () => {
           evidences: [
             {
               fileName: 'uploadEv1',
+              hashToken: 'token',
               url: 'link1',
               uploadedDate: moment().format('YYYY-MM-DD')
             },
             {
               fileName: 'uploadEv2',
+              hashToken: 'token',
               url: 'link2',
               uploadedDate: moment().format('YYYY-MM-DD')
             }
