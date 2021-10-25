@@ -193,24 +193,28 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         logger.trace('No forwarding error, about to save data', logPath);
         const b = JSON.parse(body);
         if (b && b.documents) {
-          req.body = {
-            'item.uploadEv': b.documents[0].originalDocumentName,
-            'item.link': b.documents[0]._links.self.href,
-            'item.size': size
-          };
-        } else {
-          console.log('Evidence upload document conversion error');
-          req.body = {
-            'item.uploadEv': technicalProblemError,
-            'item.link': '',
-            'item.size': 0
-          };
+          if (b.documents[0].hashToken) {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': b.documents[0].hashToken,
+              'item.size': size
+            };
+          } else {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': '',
+              'item.size': size
+            };
+          }
         }
         return fs.unlink(pathToFile, next);
       }
       req.body = {
         'item.uploadEv': technicalProblemError,
         'item.link': '',
+        'item.hashToken': '',
         'item.size': 0
       };
       logger.exception(forwardingError, logPath);
@@ -262,6 +266,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         Joi.string().disallow(totalFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional()),
+      hashToken: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),
       totalFileCount: text.joi(0, Joi.number().optional())
     });
@@ -276,6 +281,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   values() {
     const evidences = this.fields.items.value.map(file => {
+      if (file.hashToken) {
+        return {
+          url: file.link,
+          fileName: file.uploadEv,
+          hashToken: file.hashToken,
+          uploadedDate: moment().format('YYYY-MM-DD')
+        };
+      }
       return {
         url: file.link,
         fileName: file.uploadEv,

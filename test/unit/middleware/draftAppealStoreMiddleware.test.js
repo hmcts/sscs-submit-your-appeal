@@ -88,6 +88,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('use only valid steps', () => {
       let tempValues = [];
+      journey.values = [{ name: 'step2', valid: true }];
       draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, () => {
         tempValues = [...journey.visitedSteps];
       });
