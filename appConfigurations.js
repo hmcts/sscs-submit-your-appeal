@@ -192,6 +192,7 @@ const configureJourney = (app, commonContent) => {
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
           const maxRetryWait = 3000;
+          console.log('Environment---------------------------------------------', process.env.NODE_ENV);
           return Math.min(retryTime, maxRetryWait);
         }
       },
