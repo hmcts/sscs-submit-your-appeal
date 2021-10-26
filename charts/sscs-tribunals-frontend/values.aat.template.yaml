@@ -2,6 +2,7 @@ nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   environment:
+    NODE_ENV: "aat"
     CONTACT_US_WEBCHAT_ENABLED: false
     #Added for new Webchat with Agent
     WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"
