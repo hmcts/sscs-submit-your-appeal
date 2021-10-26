@@ -196,8 +196,7 @@ const configureJourney = (app, commonContent) => {
         }
       },
       cookie: {
-        secure: config.get('node.protocol') === 'https',
-        sameSite: process.env.NODE_ENV === 'preview' || process.env.NODE_ENV === 'aat' ? 'lax' : 'strict'
+        secure: config.get('node.protocol') === 'https'
       },
       secret: config.redis.secret
     },
