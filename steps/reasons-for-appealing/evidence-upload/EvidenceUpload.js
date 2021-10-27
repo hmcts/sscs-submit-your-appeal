@@ -208,21 +208,13 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
               'item.size': size
             };
           }
-
-        } else {
-          console.log('Evidence upload document conversion error');
-          req.body = {
-            'item.uploadEv': technicalProblemError,
-            'item.link': '',
-            'item.hashToken': '',
-            'item.size': 0
-          };
         }
         return fs.unlink(pathToFile, next);
       }
       req.body = {
         'item.uploadEv': technicalProblemError,
         'item.link': '',
+        'item.hashToken': '',
         'item.size': 0
       };
       logger.exception(forwardingError, logPath);
@@ -274,6 +266,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         Joi.string().disallow(totalFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional()),
+      hashToken: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),
       hashToken: text.joi('', Joi.string().optional()),
       totalFileCount: text.joi(0, Joi.number().optional())
@@ -296,14 +289,12 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
           hashToken: file.hashToken,
           uploadedDate: moment().format('YYYY-MM-DD')
         };
-      } else {
-        return {
-          url: file.link,
-          fileName: file.uploadEv,
-          uploadedDate: moment().format('YYYY-MM-DD')
-        };
       }
-
+      return {
+        url: file.link,
+        fileName: file.uploadEv,
+        uploadedDate: moment().format('YYYY-MM-DD')
+      };
     });
     return {
       reasonsForAppealing: {
