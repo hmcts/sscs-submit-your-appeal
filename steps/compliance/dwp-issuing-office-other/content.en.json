@@ -14,7 +14,8 @@
   },
   "cya": {
     "dwpIssuingOffice": {
-      "question": "DWP office"
+      "question": "DWP office",
+      "rfe": "Recovery from Estates (Deceased)"
     }
   }
 }

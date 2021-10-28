@@ -2,10 +2,14 @@ nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   environment:
+    NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     CONTACT_US_WEBCHAT_ENABLED: false
+    #Added for new Webchat with Agent
+    WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"
+    WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
     FT_WELSH: true
     PCQ_ENABLED: true
   keyVaults:

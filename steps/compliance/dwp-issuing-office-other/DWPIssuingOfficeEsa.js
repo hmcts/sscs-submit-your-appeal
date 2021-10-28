@@ -6,6 +6,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const i18next = require('i18next');
 
 class DWPIssuingOfficeEsa extends SaveToDraftStore {
   static get path() {
@@ -13,9 +14,11 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
   }
 
   static selectify(ar) {
+    const sessionLanguage = i18next.language;
+    const content = require(`./content.${sessionLanguage}`);
     return ar.map(el => {
       if (el === 'Recovery from Estates') {
-        return { label: 'Recovery from Estates (Deceased)', value: el };
+        return { label: content.cya.dwpIssuingOffice.rfe, value: el };
       }
       return { label: el, value: el };
     });
