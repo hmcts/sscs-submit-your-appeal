@@ -176,7 +176,6 @@ const createDraftInDraftStore = async(req, res, next, values) => {
 
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
-
   if (allowSaveAndReturn) {
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
