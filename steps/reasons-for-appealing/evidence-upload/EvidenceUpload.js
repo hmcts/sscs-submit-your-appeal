@@ -268,7 +268,6 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       link: text.joi('', Joi.string().optional()),
       hashToken: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),
-      hashToken: text.joi('', Joi.string().optional()),
       totalFileCount: text.joi(0, Joi.number().optional())
     });
   }
