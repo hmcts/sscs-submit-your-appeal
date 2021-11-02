@@ -31,7 +31,8 @@
     "pensioncredit": "Credydau Pensiwn",
     "retirementpension": "Pensiwn Ymddeol",
     "tfc": "Cynllun Gofal Plant Di-dreth",
-    "dwa": "Lwfans Gweithio i’r Anabl"
+    "dwa": "Lwfans Gweithio i’r Anabl",
+    "vaccineDamage": "Niwed Trwy Frechiad"
   },
   "fields": {
     "benefitType": {

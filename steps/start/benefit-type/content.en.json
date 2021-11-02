@@ -31,7 +31,8 @@
     "pensioncredit": "Pension Credit",
     "retirementpension": "Retirement Pension",
     "tfc": "Tax-Free Childcare Scheme",
-    "dwa": "Disability Working Allowance"
+    "dwa": "Disability Working Allowance",
+    "vaccineDamage": "Vaccine Damage"
   },
   "fields": {
     "benefitType": {

@@ -27,7 +27,8 @@ const types = {
   pensionCredit: 'Pension Credit',
   retirementPension: 'Retirement Pension',
   taxFreeChildcare: 'Tax-Free Childcare Scheme',
-  disabilityWorkAllowance: 'Disability Working Allowance'
+  disabilityWorkAllowance: 'Disability Working Allowance',
+  vaccineDamage: 'Vaccine Damage'
 };
 
 module.exports = types;

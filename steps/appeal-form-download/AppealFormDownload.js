@@ -34,11 +34,15 @@ class AppealFormDownload extends SaveToDraftStore {
     const benefitType = this.benefitType;
     const formDownload = {};
 
+    const sscs7 = ['vaccineDamage'];
     const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
     const sscs3 = ['compensationRecovery'];
     const sscs2 = ['childSupport'];
 
-    if (this.isBenefitInList(sscs5, benefitType)) {
+    if (this.isBenefitInList(sscs7, benefitType)) {
+      formDownload.link = urls.formDownload.sscs7;
+      formDownload.type = 'SSCS7';
+    } else if (this.isBenefitInList(sscs5, benefitType)) {
       formDownload.link = urls.formDownload.sscs5;
       formDownload.type = 'SSCS5';
     } else if (this.isBenefitInList(sscs3, benefitType)) {
