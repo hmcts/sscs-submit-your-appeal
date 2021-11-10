@@ -3,8 +3,10 @@ module.exports = {
   surveyLink: 'https://www.smartsurvey.co.uk/s/SSCS_ExitSurvey/?pageurl=',
   formDownload: {
     sscs1: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs1-eng.pdf',
+    sscs2: 'https://www.gov.uk/government/publications/appeal-a-child-maintenance-group-decision-by-the-dwp-form-sscs2',
     sscs3: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs3-eng.pdf',
-    sscs5: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs5-eng.pdf'
+    sscs5: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs5-eng.pdf',
+    sscs7: 'https://www.gov.uk/government/publications/appeal-against-a-decision-about-a-vaccine-damages-claim-sscs7'
   },
   relatedContent: {
     benefit: {

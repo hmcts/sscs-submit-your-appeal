@@ -17,6 +17,7 @@ const types = {
   socialFund: 'Social Fund',
   universalCredit: 'Universal Credit (UC)',
   childCare: '30 Hours Free Childcare Scheme',
+  childSupport: 'Child Support',
   bereavementSupportPaymentScheme: 'Bereavement Support Payment Scheme',
   taxCredits: 'Tax Credits',
   contractedOut: 'Contracted Out Employment Group',
@@ -26,7 +27,8 @@ const types = {
   pensionCredit: 'Pension Credit',
   retirementPension: 'Retirement Pension',
   taxFreeChildcare: 'Tax-Free Childcare Scheme',
-  disabilityWorkAllowance: 'Disability Working Allowance'
+  disabilityWorkAllowance: 'Disability Working Allowance',
+  vaccineDamage: 'Vaccine Damage'
 };
 
 module.exports = types;

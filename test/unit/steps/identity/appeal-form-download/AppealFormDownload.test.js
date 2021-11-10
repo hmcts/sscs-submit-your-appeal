@@ -62,6 +62,12 @@ describe('AppealFormDownload.js', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.compensationRecovery;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS3');
     });
+
+    it('returns SSCS2 form type when Benefit type is Child support', () => {
+      appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.childSupport;
+      expect(appealFormDownload.formDownload.type).to.equal('SSCS2');
+      expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs2);
+    });
   });
 
   describe('get session()', () => {

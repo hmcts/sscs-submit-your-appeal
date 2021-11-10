@@ -88,10 +88,20 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('use only valid steps', () => {
       let tempValues = [];
+      journey.values = [{ name: 'step2', valid: true }];
       draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, () => {
         tempValues = [...journey.visitedSteps];
       });
       expect(tempValues).to.eql([{ name: 'step1', valid: true }]);
+    });
+
+    it('if values is null then do not revert invalid steps', () => {
+      let tempValues = [];
+      journey.values = null;
+      draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, () => {
+        tempValues = [...journey.visitedSteps];
+      });
+      expect(tempValues).to.eql([]);
     });
   });
 

@@ -59,15 +59,17 @@ const parseErrorResponse = error => {
 
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
-    const allVisitedSteps = [...journey.visitedSteps];
-    // filter valid visitedsteps.
-    journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-    // use only valid steps.
-    if (typeof callBack === 'function') {
-      callBack();
+    if (journey.values) {
+      const allVisitedSteps = [...journey.visitedSteps];
+      // filter valid visitedsteps.
+      journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
+      // use only valid steps.
+      if (typeof callBack === 'function') {
+        callBack();
+      }
+      // Revert visitedsteps back to initial state.
+      journey.visitedSteps = allVisitedSteps;
     }
-    // Revert visitedsteps back to initial state.
-    journey.visitedSteps = allVisitedSteps;
   } catch (error) {
     logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
   }
@@ -174,7 +176,6 @@ const createDraftInDraftStore = async(req, res, next, values) => {
 
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
-
   if (allowSaveAndReturn) {
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
