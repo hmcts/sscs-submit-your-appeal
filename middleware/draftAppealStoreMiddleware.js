@@ -5,7 +5,7 @@ const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
 
-const httpRetries = 3;
+const httpRetries = 0;
 
 /* eslint-disable max-lines */
 const {
