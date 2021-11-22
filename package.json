@@ -161,6 +161,7 @@
     "tar": "^6.1.9",
     "trim-newlines": "4.0.2",
     "set-value": "^4.1.0",
-    "ansi-regex": "^5.0.1"
+    "ansi-regex": "^5.0.1",
+    "json-schema": "0.4.0"
   }
 }
