@@ -11,70 +11,68 @@
     <div class="group help-page cookie-settings govuk-grid-column-two-thirds">
         <div class="grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
             {% include "./cookie-success-banner.njk" %}
-            <h1 class="govuk-heading-xl">Cookies</h1>
-            <p class="govuk-body-m">Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly.</p>
-            <p class="govuk-body-m">This service uses cookies to:</p>
+            <h1 class="govuk-heading-xl">{{ content.new.cookies.title | safe }}</h1>
+            <p class="govuk-body-m">{{ content.new.cookies.description | safe }}</p>
+            <p class="govuk-body-m">{{ content.new.usedInService.uses | safe }}</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>store your cookie preferences</li>
-                <li>measure how you use the service so it can be improved</li>
+                <li>{{ content.new.usedInService.use1 | safe }}</li>
+                <li>{{ content.new.usedInService.use2 | safe }}</li>
             </ul>
-            <h2 class="govuk-heading-l">How cookies are used in this service</h2>
+            <h2 class="govuk-heading-l">{{ content.new.howAreTheyUsed.title | safe }}</h2>
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">To measure website use</legend>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.googleCookies.title | safe }}</legend>
                     <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
                         <p class="govuk-body-m">
-                            We use Google Analytics software to collect information about how you use this service.
-                            We do this to help make sure the service is meeting the needs of its users and to help
-                            us make improvements. We do not allow Google to use or share the data about how you use this site.
+                            {{ content.new.howAreTheyUsed.googleCookies.description | safe }}
                         </p>
                         <table class="govuk-table">
-                            <caption class="govuk-table__caption">Cookie details</caption>
+                            <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.title | safe }}</caption>
                             <thead class="govuk-table__head">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Purpose</th>
-                                <th scope="col">Expires</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName1 | safe }}</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName2 | safe }}</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName3 | safe }}</th>
                             </tr>
                             </thead>
                             <tbody class="govuk-table__body">
                             <tr>
-                                <td>_ga</td>
+                                <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Name | safe }}</td>
                                 <td>
-                                    This helps us count how many people visit the service by tracking if you’ve visited before
+                                    {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Purpose | safe }}
                                 </td>
-                                <td class="text-area">1 year</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>_gid</td>
+                                <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Name | safe }}</td>
                                 <td>
-                                    Identifies you to the service
+                                    {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Purpose | safe }}
                                 </td>
-                                <td class="text-area">1 year</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>_gat</td>
+                                <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Name | safe }}</td>
                                 <td>
-                                    Manages the rate at which page view requests are made
+                                    {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Purpose | safe }}
                                 </td>
-                                <td class="text-area">1 year</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Expires | safe }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website use?</legend>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.googleCookies.optOut.title | safe }}</legend>
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
                             <input type="radio" name="analytics" id="radio-analytics-on" value="true" class="govuk-radios__input">
                             <label for="radio-analytics-on" class="govuk-label govuk-radios__label" id="radio-analytics-on-label">
-                                <span>Use cookies that measure my website use</span>
+                                <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut1 | safe }}</span>
                             </label>
                             </input>
                         </div>
                         <div class="govuk-radios__item">
                             <input type="radio" name="analytics" id="radio-analytics-off" value="false" class="govuk-radios__input" checked="checked">
                             <label for="radio-analytics-off" class="govuk-label govuk-radios__label" id="radio-analytics-off-label">
-                                <span>Do not use cookies that measure my website use</span>
+                                <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut2 | safe }}</span>
                             </label>
                             </input>
                         </div>
@@ -83,103 +81,98 @@
             </div>
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">To measure application performance</legend>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.performance.title | safe }}</legend>
                     <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
                         <p class="govuk-body-m">
-                            We use Dynatrace Software Intelligence Platform to provide an Application Performance Monitoring Service
-                            to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order
-                            to resolve issues within our services as well as collect data on how our services can be improved.
-                            HMCTS store information about:
+                            {{ content.new.howAreTheyUsed.performance.description | safe }}
                         </p>
                         <ul class="govuk-list govuk-list--bullet">
-                            <li>Site performance</li>
-                            <li>Website usage</li>
-                            <li>User behaviour</li>
+                            <li>{{ content.new.howAreTheyUsed.performance.infolist1 | safe }}</li>
+                            <li>{{ content.new.howAreTheyUsed.performance.infolist2 | safe }}</li>
+                            <li>{{ content.new.howAreTheyUsed.performance.infolist3 | safe }}</li>
                         </ul>
                         <p class="govuk-body-m">
-                            Information is presented within the Application Performance Monitoring service for the purposes detailed above.
-                            We do not use or share the information for any other purpose. We do not allow Dynatrace to use or
-                            share the information for any other purposes.
+                            {{ content.new.howAreTheyUsed.performance.info2 | safe }}
                         </p>
                         <table class="govuk-table">
-                            <caption class="govuk-table__caption">Cookie details</caption>
+                            <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.performance.cookieTable.title | safe }}</caption>
                             <thead class="govuk-table__head">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Purpose</th>
-                                <th scope="col">Expires</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName1 | safe }}</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName2 | safe }}</th>
+                                <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName3 | safe }}</th>
                             </tr>
                             </thead>
                             <tbody class="govuk-table__body">
                             <tr>
-                                <td>dtCookie</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item1Name | safe }}</td>
                                 <td>
-                                    Tracks a visit across multiple requests
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item1Purpose | safe }}
                                 </td>
-                                <td class="text-area">When session ends</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item1Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>dtLatC</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item2Name | safe }}</td>
                                 <td>
-                                    Measures server latency for performance monitoring
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item2Purpose | safe }}
                                 </td>
-                                <td class="text-area">When session ends</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item2Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>dtPC</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item3Name | safe }}</td>
                                 <td>
-                                    Required to identify proper endpoints for beacon transmission; includes session ID for correlation
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item3Purpose | safe }}
                                 </td>
-                                <td class="text-area">When session ends</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item3Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>dtSa</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item4Name | safe }}</td>
                                 <td>
-                                    Intermediate store for page-spanning actions
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item4Purpose | safe }}
                                 </td>
-                                <td class="text-area">When session ends</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item4Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>rxVisitor</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item5Name | safe }}</td>
                                 <td>
-                                    Visitor ID to correlate sessions
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item5Purpose | safe }}
                                 </td>
-                                <td class="text-area">1 year</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item5Expires | safe }}</td>
                             </tr>
                             <tr>
-                                <td>rxvt</td>
+                                <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item6Name | safe }}</td>
                                 <td>
-                                    Session timeout
+                                    {{ content.new.howAreTheyUsed.performance.cookieTable.item6Purpose | safe }}
                                 </td>
-                                <td class="text-area">When session ends</td>
+                                <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item6Expires | safe }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website application performance monitoring?</legend>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.performance.optOut.title | safe }}</legend>
                     <div class="govuk-radios govuk-radios--inline u-margin-top-30">
                         <div class="govuk-radios__item">
                             <input type="radio" name="apm" id="radio-apm-on" value="true" class="govuk-radios__input">
                             <label for="radio-apm-on" class="govuk-label govuk-radios__label" id="radio-apm-on-label">
-                                <span>Use cookies that measure website application performance monitoring</span>
+                                <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut1 | safe }}</span>
                             </label>
                             </input>
                         </div>
                         <div class="govuk-radios__item">
                             <input type="radio" name="apm" id="radio-apm-off" value="false" class="govuk-radios__input" checked="checked">
                             <label for="radio-apm-off" class="govuk-label govuk-radios__label" id="radio-apm-off-label">
-                                <span>Do not use cookies that measure website application performance monitoring</span>
+                                <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut2 | safe }}</span>
                             </label>
                             </input>
                         </div>
                     </div>
                 </fieldset>
             </div>
-            <h3 class="govuk-heading-m">Essential cookies</h3>
-            <p class="govuk-body">These essential cookies do things like making the service more secure. They always need to be on.</p>
+            <h3 class="govuk-heading-m">{{ content.new.howAreTheyUsed.essentialCookies.title | safe }}</h3>
+            <p class="govuk-body">{{ content.new.howAreTheyUsed.essentialCookies.description | safe }}</p>
             <p class="govuk-body">
                 <a target="_blank" rel="noreferrer noopener" href="https://hmcts-access.service.gov.uk/cookies">
-                    Find out more about essential cookies (opens in new tab)
+                    {{ content.new.howAreTheyUsed.essentialCookies.link | safe }}
                 </a>
             </p>
             <p id="save-cookie-preferences" class="govuk-body govuk-button-group"><a class="govuk-button" href="#">Save</a></p>
