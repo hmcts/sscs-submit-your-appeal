@@ -148,6 +148,9 @@
         "title": "Cwcis hanfodol",
         "description": "Mae’r cwcis hanfodol hyn yn gwneud pethau fel sicrhau bod y gwasanaeth yn ddiogel. Mae angen iddynt fod yn weithredol bob amser",
         "link": "Rhagor o wybodaeth am gwcis hanfodol (agor mewn tab newydd)"
+      },
+      "button": {
+        "save": "Cadw"
       }
     }
   }

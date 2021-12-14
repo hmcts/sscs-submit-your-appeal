@@ -148,6 +148,9 @@
         "title": "Essential cookies",
         "description": "These essential cookies do things like making the service more secure. They always need to be on.",
         "link": "Find out more about essential cookies (opens in new tab)"
+      },
+      "button": {
+        "save": "Save"
       }
     }
   }
