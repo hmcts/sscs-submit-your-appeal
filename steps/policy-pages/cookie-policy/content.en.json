@@ -74,7 +74,8 @@
   "new": {
     "cookies": {
       "title": "Cookies",
-      "description": "Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly."
+      "description": "Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly.",
+      "save": "Save"
     },
     "usedInService": {
       "uses": "This service uses cookies to:",
@@ -148,9 +149,6 @@
         "title": "Essential cookies",
         "description": "These essential cookies do things like making the service more secure. They always need to be on.",
         "link": "Find out more about essential cookies (opens in new tab)"
-      },
-      "button": {
-        "save": "Save"
       }
     }
   }
