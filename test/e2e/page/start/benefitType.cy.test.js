@@ -30,7 +30,7 @@ const sscs1 = [
   'disabilityWorkAllowance'
 ];
 const sscs3 = ['compensationRecovery'];
-const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
+const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFreeChildcare', 'guardiansAllowance', 'guaranteedMinimumPension','nationalInsuranceCredits'];
 
 Feature(`${language.toUpperCase()} - Benefit Type @batch-12`);
 
