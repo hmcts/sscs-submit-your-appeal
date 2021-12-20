@@ -23,7 +23,7 @@ After(I => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async I => {
+Scenario(`${language.toUpperCase()} - Appellant has contacted DWP @fullFunctional`, async I => {
   const randomWeekDay = DateUtils.getDateInMilliseconds(
     DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks'))
   );
@@ -49,7 +49,7 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async I => {
   I.confirmDetailsArePresent(language, hasMRN);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, I => {
+Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service @fullFunctional`, I => {
   I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
   // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
