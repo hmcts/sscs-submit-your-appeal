@@ -35,7 +35,14 @@ class AppealFormDownload extends SaveToDraftStore {
     const formDownload = {};
 
     const sscs7 = ['vaccineDamage'];
-    const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFreeChildcare', 'guardiansAllowance', 'guaranteedMinimumPension', 'nationalInsuranceCredits'];
+    const sscs5 = ['childBenefit', 
+                   'childCare', 
+                   'taxCredit', 
+                   'contractedOut', 
+                   'taxFreeChildcare', 
+                   'guardiansAllowance', 
+                   'guaranteedMinimumPension', 
+                   'nationalInsuranceCredits'];
     const sscs3 = ['compensationRecovery'];
     const sscs2 = ['childSupport'];
 
