@@ -49,6 +49,8 @@ exports.config = {
     MyHelper: {
       require: './helpers/helper.js',
       url: config.get('e2e.frontendUrl')
+    },
+    REST: {
     }
   },
   include: {
