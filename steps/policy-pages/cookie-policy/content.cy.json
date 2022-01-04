@@ -74,7 +74,8 @@
   "new": {
     "cookies": {
       "title": "Cwcis",
-      "description": "Ffeiliau sy'n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan fyddwch yn ymweld â gwefan yw cwcis. Mae angen cwcis ar y rhan fwyaf o wefannau i weithio'n iawn."
+      "description": "Ffeiliau sy'n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan fyddwch yn ymweld â gwefan yw cwcis. Mae angen cwcis ar y rhan fwyaf o wefannau i weithio'n iawn.",
+      "save": "Cadw"
     },
     "usedInService": {
       "uses": "Mae’r gwasanaeth hwn yn defnyddio cwcis i:",
