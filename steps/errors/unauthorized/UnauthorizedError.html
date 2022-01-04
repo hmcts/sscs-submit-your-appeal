@@ -1,0 +1,17 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/error.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+
+{% block content %}
+
+{{ header(content.message | safe, size='xl') }}
+
+<a class="govuk-button" href="/create-account">{{ content.createNewAccount | safe}}</a>
+
+<p class="govuk-body" >{{ content.messageContactUs | safe }}</p>
+<a href="/contact-us">{{ content.contactUs | safe}}</a>
+
+{% endblock %}

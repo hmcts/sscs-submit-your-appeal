@@ -9,7 +9,8 @@ module.exports = {
   errors: {
     doesNotExist: '/does-not-exist',
     internalServerError: '/internal-server-error',
-    duplicateCaseError: '/duplicate-case-error'
+    duplicateCaseError: '/duplicate-case-error',
+    unauthorizedCaseError: '/unauthorized-case-error'
   },
 
   policy: {
