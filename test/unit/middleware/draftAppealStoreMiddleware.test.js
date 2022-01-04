@@ -219,14 +219,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
     it('Expected Successfully create a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(6);
+      expect(loggerSpy).to.have.been.callCount(7);
       expect(next).to.have.been.calledOnce;
     });
 
     it('Expected Successfully updated a draft:', async() => {
       Object.assign(req, { session: { ccdCaseId: 12 } });
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(4);
+      expect(loggerSpy).to.have.been.callCount(5);
       expect(next).to.have.been.calledOnce;
     });
   });
