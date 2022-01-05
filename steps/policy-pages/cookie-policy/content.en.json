@@ -74,7 +74,8 @@
   "new": {
     "cookies": {
       "title": "Cookies",
-      "description": "Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly."
+      "description": "Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly.",
+      "save": "Save"
     },
     "usedInService": {
       "uses": "This service uses cookies to:",
