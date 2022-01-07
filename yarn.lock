@@ -960,10 +960,10 @@
     on-finished "^2.3.0"
     winston "^2.4.5"
 
-"@hmcts/one-per-page@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-5.3.0.tgz#56711e0d0a1b67a329651b93878db5f2b77f9987"
-  integrity sha512-EVRu6D11MsOsU4aPBM9wD2Tl399gdyRIip69RRWfc1VhpAQBoZ2FpEs9IytR5wbUiOQT4Zz9rs3FL7XZNYO2Vg==
+"@hmcts/one-per-page@5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@hmcts/one-per-page/-/one-per-page-5.4.0.tgz#2969a29fa58defd7de10f8808846cb90de4915ac"
+  integrity sha512-Piyv2NxvoXL9mNZu19VrErxXsX75I7goVEzEuZlfXn6emaMvQSob9mgdK2qX29xfe6m7DO8t+ROofYqJbpSAlQ==
   dependencies:
     "@log4js-node/log4js-api" "^1.0.0"
     body-parser "^1.18.2"
