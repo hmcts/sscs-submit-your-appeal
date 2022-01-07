@@ -48,6 +48,6 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.continueFromnotAttendingHearingAfterSignIn(commonContent);
     I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
     I.appealSubmitConfirmation(language);
-    const ccdCaseData = await I.getCaseData(commonContent, ccdCaseID);
+    const ccdCaseData = await I.getCaseData(I, ccdCaseID);
     assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
   }).retry(1);
