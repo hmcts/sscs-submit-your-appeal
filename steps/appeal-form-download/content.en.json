@@ -1,7 +1,7 @@
 {
   "titleHead": "Download appeal form",
   "title": "You need to download a paper form",
-  "subtitle": "Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} benefit decision.",
+  "subtitle": "Download and fill out a {{ formDownload.type }} form to appeal a {{ benefitType }} decision.",
   "button": {
     "text": "Continue to form download"
   }
