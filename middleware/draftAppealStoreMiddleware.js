@@ -152,6 +152,18 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
     });
 };
 
+function unAuthRedirectHandler(error, req, res, next){
+  if (error.status === HttpStatus.UNAUTHORIZED) {
+    redirectTo(req.journey.steps.UnauthorizedError).redirect(req, res, next);
+  } else {
+    Object.assign(req.session, {
+      entryPoint: 'Entry'
+    });
+    logger.exception(parseErrorResponse(error), logPath);
+    next();
+  }
+}
+
 const createDraftInDraftStore = async(req, res, next, values) => {
   logger.trace(`createDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
   await request.put(req.journey.settings.apiDraftUrlCreate)
@@ -210,7 +222,6 @@ const restoreUserState = async(req, res, next) => {
     if (req.query.state) {
       Object.assign(req.session, JSON.parse(Base64.decode(req.query.state)));
     }
-
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiDraftUrl)
       .retry(httpRetries)
@@ -234,14 +245,7 @@ const restoreUserState = async(req, res, next) => {
         next();
       })
       .catch(error => {
-        if (error.status === HttpStatus.UNAUTHORIZED) {
-          logger.trace(`Restore draft error for status: ${error.status}`);
-        }
-        Object.assign(req.session, {
-          entryPoint: 'Entry'
-        });
-        logger.exception(parseErrorResponse(error), logPath);
-        next();
+        unAuthRedirectHandler(error, req, res, next);
       });
   } else {
     next();
@@ -286,14 +290,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         next();
       })
       .catch(error => {
-        if (error.status === HttpStatus.UNAUTHORIZED) {
-          logger.trace(`Restore all drafts error status: ${error.status}`);
-        }
-        Object.assign(req.session, {
-          entryPoint: 'Entry'
-        });
-        logger.exception(parseErrorResponse(error), logPath);
-        next();
+        unAuthRedirectHandler(error, req, res, next);
       });
   } else {
     next();
