@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.10.2",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
-    "@hmcts/one-per-page": "5.3.0",
+    "@hmcts/one-per-page": "5.4.0",
     "@hmcts/properties-volume": "0.0.13",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^2.0.2",
