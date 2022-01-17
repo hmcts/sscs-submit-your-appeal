@@ -5,47 +5,49 @@ const { stub } = require('sinon');
 const sinon = require('sinon');
 
 describe('UnauthorizedError.js', () => {
-  let req = stub();
-  let res = stub();
-  let UnauthorizedErrorClass = null;
+  let req = {}
+  let res = {}
+  let unauthorizedErrorClass = null;
 
   beforeEach(() => {
-    UnauthorizedErrorClass = new UnauthorizedError({
+    req = {}
+    res = {
+      render: stub()
+    }
+
+    unauthorizedErrorClass = new UnauthorizedError({
       journey: {
         steps: {
           UnauthorizedError: paths.errors.UnauthorizedErrorClass
+        },
+        res: {
+          send: stub()
         }
       }
-    });
-  });
-
-  afterEach(() => {
-    req = {};
-    res = {};
-  });
+    })
+  })
 
   describe('get path()', () => {
     it('returns path /unauthorized-case-error', () => {
       expect(UnauthorizedError.path).to.equal('/unauthorized-case-error');
-    });
+    })
+  })
 
-    describe('handler when method is GET', () => {
+  describe('handler when method is GET', () => {
+    it('calls res.render', () => {
       req.method = 'GET';
-      const unauthorizedSession = sinon.stub().returns(UnauthorizedError);
-      it('calls res.send()', () => {
-        UnauthorizedErrorClass.handler(req, res);
-        unauthorizedSession().should.eql(UnauthorizedError);
-        expect(unauthorizedSession).to.have.been.calledOnce;
-      });
+      unauthorizedErrorClass.handler(req, res);
+      expect(res.render).to.have.been.calledOnce;
     });
+  })
 
     describe('handler when method is POST', () => {
-      req.method = 'POST';
-      const unauthorizedSession = sinon.stub().returns(UnauthorizedError);
       it('not calls res.send()', () => {
-        UnauthorizedErrorClass.handler(req, res);
-        expect(unauthorizedSession).to.have.not.been.calledOnce;
-      });
-    });
-  });
-});
+        req.method = 'POST';
+        unauthorizedErrorClass.handler(req, res);
+        expect(res.render).to.have.not.been.called;
+      })
+    })
+
+
+  })
