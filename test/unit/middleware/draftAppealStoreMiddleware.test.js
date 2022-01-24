@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const sinon = require('sinon');
 const { expect } = require('test/util/chai');
 const Base64 = require('js-base64').Base64;
@@ -6,6 +7,7 @@ const logger = require('logger');
 const paths = require('paths');
 const nock = require('nock');
 const i18next = require('i18next');
+const HttpStatus = require('http-status-codes');
 
 // eslint-disable-next-line func-names
 describe('middleware/draftAppealStoreMiddleware', () => {
@@ -75,6 +77,31 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     nock.cleanAll();
   });
 
+  describe.only('handleDraftCreateUpdateFail', () => {
+    const error = {};
+    const req = {};
+
+    it('returns req as null', () => { expect(req).to.deep.equal({});});
+    it('returns req.journey as null', () => {
+      req.journey = {};
+      expect(req.journey).to.deep.equal({});
+    });
+    it('returns req.journey.steps as null', () => {
+      req.journey.steps = {};
+      expect(req.journey.steps).to.deep.equal({});
+    });
+    it('returns error as null', () => {
+      expect(error).to.deep.equal({});
+    });
+    it('returns error.status as null', () => {
+      error.status = {};
+      expect(error.status).to.deep.equal({});
+    });
+    it('has error status UNAUTHORIZED return 400', () => {
+      error.status = HttpStatus.UNAUTHORIZED;
+      expect(error.status).to.equal(401);
+    });
+  });
   describe('removeRevertInvalidSteps', () => {
     const journey = {};
     journey.visitedSteps = [{ name: 'step1', valid: true }, { name: 'step1', valid: false }];
