@@ -2,7 +2,7 @@
   "titleHead": "Accessibility statement",
   "accessibility": {
     "title": "Accessibility statement for 'Appeal a benefit decision' service",
-    "description": "This service allows users to submit, track and manage a benefit appeal online."
+    "description": "This accessibility statement applies to the website available at <a class=\"govuk-link\" target=\"_blank\" href=\"https://www.appeal-benefit-decision.service.gov.uk/\">https://www.appeal-benefit-decision.service.gov.uk/</a> that allows users to submit, track and manage a benefit appeal online."
   },
   "manages": {
     "managedBy": "This website is run by HM Courts and Tribunals. We want as many people as possible to be able to use this website, so we have designed it to be accessible. For example, that means you should be able to:",
@@ -16,7 +16,7 @@
   },
   "howAccessible": {
     "title": "How accessible this website is",
-    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility."
+    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines V2.1, using a combination of technical auditing and feedback from users with accessibility needs. Except where stated below, all issues and recommendations from DAC have been implemented."
   },
   "telephone" : {
     "England": {
@@ -39,7 +39,7 @@
   },
   "reportingProblems": {
     "title": "Reporting accessibility problems with this website",
-    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, contact: "
+    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\"> HMCTSforms@justice.gov.uk </a> or contact:"
   },
   "enforcement": {
     "title": "Enforcement procedure",
@@ -57,13 +57,14 @@
   },
   "compliance": {
     "title": "Compliance status ",
-    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.0 AA standard</a>."
+    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>."
   },
   "nonAccessible": {
     "title": "Content that’s not within the scope of the accessibility regulations",
     "para1": "PDFs and other documents",
     "para2": "Some of our PDFs and Word documents are essential to providing our services. For example, we have PDFs with information on how users can access our services, and forms published as Word documents.",
-    "para3": "The accessibility regulations <a class=\"govuk-link\" href=\"https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made\">do not require us to fix PDFs or other documents published before 23 September 2018</a> if they’re not essential to providing our services."
+    "para3": "The accessibility regulations <a class=\"govuk-link\" href=\"https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made\">do not require us to fix PDFs or other documents published before 23 September 2018</a> if they’re not essential to providing our services.",
+    "para4": "Any new PDFs or Word documents we publish will meet accessibility standards"
   },
   "contentNotInScope": {
     "title": "Content that’s not within the scope of the accessibility regulations",
@@ -76,6 +77,7 @@
   },
   "preperation": {
     "title": "Preparation of this accessibility statement",
-    "para1": "This website was last tested on 28th November 2019. The test was carried out by the Digital Accessibility Centre."
+    "para1": "This statement was prepared on [date of release] it was last review [date when it was last reviewed]",
+    "para2": "This website was last tested on 28th November 2019. The test was carried out by the Digital Accessibility Centre (DAC) Issues raised by the DAC were resolved in March 2021."
   }
 }
