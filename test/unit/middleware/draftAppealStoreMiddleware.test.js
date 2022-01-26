@@ -77,31 +77,122 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     nock.cleanAll();
   });
 
-  describe.only('handleDraftCreateUpdateFail', () => {
-    const error = {};
-    const req = {};
+  describe('handleDraftCreateUpdateFail', () => {
+    let error, req, res, values, next, redirectTo, redirectMock;
 
-    it('returns req as null', () => { expect(req).to.deep.equal({});});
-    it('returns req.journey as null', () => {
-      req.journey = {};
-      expect(req.journey).to.deep.equal({});
+    beforeEach(() => {
+      error = {};
+      req;
+      res = {};
+      values;
+      next = sinon.stub();
+      redirectTo = sinon.stub();
+      redirectMock = {
+        redirect: sinon.stub()
+      }
     });
-    it('returns req.journey.steps as null', () => {
-      req.journey.steps = {};
-      expect(req.journey.steps).to.deep.equal({});
+    it('should call next if req is undefined', () => { 
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, next,values, redirectTo)
+      expect(next).to.be.calledOnce;
     });
-    it('returns error as null', () => {
-      expect(error).to.deep.equal({});
+    it('should call next if req.journey is undefined', () => {
+      req = {};
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, next,values, redirectTo);
+      expect(next).to.be.calledOnce;
     });
-    it('returns error.status as null', () => {
-      error.status = {};
-      expect(error.status).to.deep.equal({});
+    it('should call next if req.journey.steps is undefined', () => {
+      req = {
+        journey: {}
+      };
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, next,values, redirectTo);
+      expect(next).to.be.calledOnce;
     });
-    it('has error status UNAUTHORIZED return 400', () => {
-      error.status = HttpStatus.UNAUTHORIZED;
-      expect(error.status).to.equal(401);
+
+    it('should redirect to unauthorized error if the error status is unauthorized and if req is valid', () => {
+      req = {
+        journey: {
+          steps: {
+            UnauthorizedError: paths.errors.unauthorizedCaseError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.UNAUTHORIZED
+      }
+      redirectTo.withArgs(req.journey.steps.UnauthorizedError).returns(redirectMock);
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, next,values, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.UnauthorizedError);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, next);
     });
+
+    it('should redirect to error500 if the error status is not unauthorized and if req is valid', () => {
+      req = {
+        journey: {
+          steps: {
+            Error500: paths.errors.internalServerError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.INTERNAL_SERVER_ERROR
+      }
+      redirectTo.withArgs(req.journey.steps.Error500).returns(redirectMock);
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, next,values, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.Error500);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, next);
+
+    });
+
   });
+
+  describe('unAuthRedirectHandler', () => {
+    let error, req, res, next, redirectTo, redirectMock;
+
+    beforeEach(() => {
+      error = {};
+      req;
+      res = {};
+      next = sinon.stub();
+      redirectTo = sinon.stub();
+      redirectMock = {
+        redirect: sinon.stub()
+      }
+    });
+    it('should redirect to unauthorized error if the error status is unauthorized', () => {
+      req = {
+        journey: {
+          steps: {
+            UnauthorizedError: paths.errors.unauthorizedCaseError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.UNAUTHORIZED
+      }
+      redirectTo.withArgs(req.journey.steps.UnauthorizedError).returns(redirectMock);
+      draftAppealStoreMiddleware.unAuthRedirectHandler(error, req, res, next, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.UnauthorizedError);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, next);
+    })
+
+    it('should redirect to unauthorized error if the error status is not unauthorized', () => {
+      req = {
+        session: {}
+      };
+      error = {
+        status: HttpStatus.INTERNAL_SERVER_ERROR
+      }
+      draftAppealStoreMiddleware.unAuthRedirectHandler(error, req, res, next, redirectTo);
+      expect(next).to.be.calledOnce;
+    })
+  })
+
   describe('removeRevertInvalidSteps', () => {
     const journey = {};
     journey.visitedSteps = [{ name: 'step1', valid: true }, { name: 'step1', valid: false }];

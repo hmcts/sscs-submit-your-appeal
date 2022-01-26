@@ -76,7 +76,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
   }
 };
 
-const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
+const handleDraftCreateUpdateFail = (error, req, res, next, values, redirectTo) => {
   logger.trace('Exception on creating/updating a draft for case with nino: ' +
     `${(values && values.appellant && values.appellant.nino) ?
       values.appellant.nino :
@@ -152,7 +152,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
     });
 };
 
-function unAuthRedirectHandler(error, req, res, next){
+const unAuthRedirectHandler = (error, req, res, next, redirectTo) => {
   if (error.status === HttpStatus.UNAUTHORIZED) {
     redirectTo(req.journey.steps.UnauthorizedError).redirect(req, res, next);
   } else {
@@ -292,7 +292,7 @@ const restoreAllDraftsState = async(req, res, next) => {
       .catch(error => {
         unAuthRedirectHandler(error, req, res, next);
       });
-  } else {
+    } else {
     next();
   }
 };
@@ -426,5 +426,6 @@ module.exports = {
   archiveDraft,
   LoadJourneyAndRedirect,
   resetJourney,
-  handleDraftCreateUpdateFail
+  handleDraftCreateUpdateFail,
+  unAuthRedirectHandler
 };
