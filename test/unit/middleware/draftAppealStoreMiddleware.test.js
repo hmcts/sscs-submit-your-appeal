@@ -5,6 +5,7 @@ const Base64 = require('js-base64').Base64;
 const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddleware');
 const logger = require('logger');
 const paths = require('paths');
+const proxyquire = require('proxyquire');
 const nock = require('nock');
 const i18next = require('i18next');
 const HttpStatus = require('http-status-codes');
@@ -453,6 +454,32 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(objectAssignSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
     });
+    it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', async() => {
+      //const request = require('superagent');
+      let request = {}
+      const loggerStub = {};
+        draftAppealStoreMiddlewareProxy = proxyquire('middleware/draftAppealStoreMiddleware', {
+          superagent: request,
+          logger: loggerStub
+        });
+      const error = { status: HttpStatus.INTERNAL_SERVER_ERROR };
+
+      request.get = () => ({
+         retry: () => ({ 
+           set: () => ({
+             set: () => ({
+              then: sinon.stub().rejects({
+                error: error 
+              }) 
+             }) 
+           })
+         }) 
+      });
+
+      loggerStub.exception = sinon.spy();
+      await draftAppealStoreMiddlewareProxy.restoreAllDraftsState(req, res, next);
+      expect(loggerStub.exception).to.have.been.calledOnce;
+      });
   });
 
   describe('Extend Class functionality tests', () => {
