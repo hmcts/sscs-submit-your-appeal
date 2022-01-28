@@ -38,7 +38,7 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.enterAppellantNameAndContinueAfterSignIn(commonContent, appellant.title, appellant.firstName, appellant.lastName);
     I.enterAppellantDOBAndContinueAfterSignIn(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
     I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
-    I.enterAppellantContactDetailsAndContinueAfterSignIn(commonContent, language);
+    I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language);
     I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
     I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
     I.addReasonForAppealingUsingTheOnePageFormAfterSignIn(commonContent, testData.reasonsForAppealing.reasons[0]);
@@ -50,4 +50,4 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.appealSubmitConfirmation(language);
     const ccdCaseData = await I.getCaseData(I, ccdCaseID);
     assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-  }).retry(1);
+  }).retry(20);
