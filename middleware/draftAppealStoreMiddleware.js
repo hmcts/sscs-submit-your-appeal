@@ -162,7 +162,7 @@ const unAuthRedirectHandler = (error, req, res, next, redirectTo) => {
     logger.exception(parseErrorResponse(error), logPath);
     next();
   }
-}
+};
 
 const createDraftInDraftStore = async(req, res, next, values) => {
   logger.trace(`createDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
@@ -292,7 +292,7 @@ const restoreAllDraftsState = async(req, res, next) => {
       .catch(error => {
         unAuthRedirectHandler(error, req, res, next);
       });
-    } else {
+  } else {
     next();
   }
 };
