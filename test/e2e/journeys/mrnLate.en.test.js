@@ -27,7 +27,7 @@ After(I => {
 });
 
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
-  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label} @fullFunctional`, I => {
+  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, I => {
     I.wait(2);
     I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
     // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
