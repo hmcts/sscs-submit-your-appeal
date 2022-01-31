@@ -49,7 +49,7 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async I => {
   I.confirmDetailsArePresent(language, hasMRN);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service @fullFunctional`, I => {
+Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, I => {
   I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
   // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
