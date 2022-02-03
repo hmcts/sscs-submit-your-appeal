@@ -6,7 +6,6 @@ const types = {
   disabilityLivingAllowance: 'Disability Living Allowance (DLA)',
   employmentAndSupportAllowance: 'Employment and Support Allowance (ESA)',
   homeResponsibilitiesProtection: 'Home Responsibilities Protection',
-  housingBenefit: 'Housing Benefit (HB)',
   incapacityBenefit: 'Incapacity Benefit',
   incomeSupport: 'Income Support',
   industrialInjuriesDisablement: 'Industrial Injuries Disablement Benefit',
