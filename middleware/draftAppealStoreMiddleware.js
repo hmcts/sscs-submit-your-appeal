@@ -162,7 +162,7 @@ const createDraftInDraftStore = async(req, res, next, values) => {
           'no NINO submited yet'}`, result.status
       ], logPath);
 
-      logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+      logger.trace(`PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,
         logPath);
 
       Object.assign(req.session, { ccdCaseId: result.body.id });
@@ -174,6 +174,7 @@ const createDraftInDraftStore = async(req, res, next, values) => {
     });
 };
 
+// eslint-disable-next-line
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
   if (allowSaveAndReturn) {
@@ -184,12 +185,12 @@ const saveToDraftStore = async(req, res, next) => {
   }
 
   if (allowSaveAndReturn && req.idam && values) {
-    logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
-        ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
-
+    logger.trace(`Create/Post draft for CCD Id ${(values && values.id) ? values.id : null} , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
     if (req.session && req.session.ccdCaseId) {
+      logger.trace(`About to update draft for Session CaseId: ${req.session.ccdCaseId}`);
       await updateDraftInDraftStore(req, res, next, values);
     } else {
+      logger.trace('About to create new draft');
       await createDraftInDraftStore(req, res, next, values);
     }
   } else {
@@ -215,6 +216,9 @@ const restoreUserState = async(req, res, next) => {
           'Successfully get a draft',
           result.status
         ], logPath);
+
+        logger.trace(`GET api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+          logPath);
 
         if (result.body) {
           result.body.isUserSessionRestored = true;
