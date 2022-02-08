@@ -12,7 +12,6 @@ const sscs1 = [
   'disabilityLivingAllowance',
   'employmentAndSupportAllowance',
   'homeResponsibilitiesProtection',
-  'housingBenefit',
   'incapacityBenefit',
   'incomeSupport',
   'industrialInjuriesDisablement',
