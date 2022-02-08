@@ -76,7 +76,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
   }
 };
 
-const handleDraftCreateUpdateFail = (error, req, res, next, values, redirectTo) => {
+const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   logger.trace('Exception on creating/updating a draft for case with nino: ' +
     `${(values && values.appellant && values.appellant.nino) ?
       values.appellant.nino :
@@ -152,7 +152,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
     });
 };
 
-const unAuthRedirectHandler = (error, req, res, next, redirectTo) => {
+const unAuthRedirectHandler = (error, req, res, next) => {
   if (error.status === HttpStatus.UNAUTHORIZED) {
     redirectTo(req.journey.steps.UnauthorizedError).redirect(req, res, next);
   } else {
