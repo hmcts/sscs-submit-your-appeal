@@ -10,6 +10,7 @@
     "ecmaVersion": 2017
   },
   "rules": {
+	"linebreak-style": ["warn", "unix"],
     "object-curly-newline": ["error", {
       "consistent": true
     }],
