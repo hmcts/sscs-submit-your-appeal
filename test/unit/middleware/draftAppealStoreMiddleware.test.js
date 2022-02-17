@@ -1,11 +1,14 @@
+/* eslint-disable max-lines */
 const sinon = require('sinon');
 const { expect } = require('test/util/chai');
 const Base64 = require('js-base64').Base64;
 const draftAppealStoreMiddleware = require('middleware/draftAppealStoreMiddleware');
 const logger = require('logger');
 const paths = require('paths');
+const proxyquire = require('proxyquire');
 const nock = require('nock');
 const i18next = require('i18next');
+const HttpStatus = require('http-status-codes');
 
 // eslint-disable-next-line func-names
 describe('middleware/draftAppealStoreMiddleware', () => {
@@ -75,6 +78,130 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     nock.cleanAll();
   });
 
+  describe('handleDraftCreateUpdateFail', () => {
+    let error = {};
+    let req = {};
+    const values = {};
+    /* eslint no-shadow: [2, { "hoist": "never" }]*/
+    /* eslint-env es6*/
+    let nextHDCUF = {};
+    let redirectTo = {};
+    let redirectMock = {};
+
+    beforeEach(() => {
+      error = {};
+      req;
+      res;
+      values;
+      nextHDCUF = sinon.stub();
+      redirectTo = sinon.stub();
+      redirectMock = {
+        redirect: sinon.stub()
+      };
+    });
+    it('should call next if req is undefined', () => {
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, nextHDCUF, values, redirectTo);
+      expect(nextHDCUF).to.be.calledOnce;
+    });
+    it('should call next if req.journey is undefined', () => {
+      req = {};
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, nextHDCUF, values, redirectTo);
+      expect(nextHDCUF).to.be.calledOnce;
+    });
+    it('should call next if req.journey.steps is undefined', () => {
+      req = {
+        journey: {}
+      };
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, nextHDCUF, values, redirectTo);
+      expect(nextHDCUF).to.be.calledOnce;
+    });
+
+    it('should redirect to unauthorized error if the error status is unauthorized and if req is valid', () => {
+      req = {
+        journey: {
+          steps: {
+            UnauthorizedError: paths.errors.unauthorizedCaseError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.UNAUTHORIZED
+      };
+      redirectTo.withArgs(req.journey.steps.UnauthorizedError).returns(redirectMock);
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, nextHDCUF, values, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.UnauthorizedError);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, nextHDCUF);
+    });
+
+    it('should redirect to error500 if the error status is not unauthorized and if req is valid', () => {
+      req = {
+        journey: {
+          steps: {
+            Error500: paths.errors.internalServerError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.INTERNAL_SERVER_ERROR
+      };
+      redirectTo.withArgs(req.journey.steps.Error500).returns(redirectMock);
+      draftAppealStoreMiddleware.handleDraftCreateUpdateFail(error, req, res, nextHDCUF, values, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.Error500);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, nextHDCUF);
+    });
+  });
+
+  describe('unAuthRedirectHandler', () => {
+    let error = {};
+    let req = {};
+    let nextURH = {};
+    let redirectTo = {};
+    let redirectMock = {};
+
+
+    beforeEach(() => {
+      error = {};
+      req;
+      nextURH = sinon.stub();
+      redirectTo = sinon.stub();
+      redirectMock = {
+        redirect: sinon.stub()
+      };
+    });
+    it('should redirect to unauthorized error if the error status is unauthorized', () => {
+      req = {
+        journey: {
+          steps: {
+            UnauthorizedError: paths.errors.unauthorizedCaseError
+          }
+        }
+      };
+      error = {
+        status: HttpStatus.UNAUTHORIZED
+      };
+      redirectTo.withArgs(req.journey.steps.UnauthorizedError).returns(redirectMock);
+      draftAppealStoreMiddleware.unAuthRedirectHandler(error, req, res, nextURH, redirectTo);
+      expect(redirectTo).to.be.calledOnce;
+      expect(redirectTo).to.be.calledWith(req.journey.steps.UnauthorizedError);
+      expect(redirectMock.redirect).to.be.calledOnce;
+      expect(redirectMock.redirect).to.be.calledWith(req, res, nextURH);
+    });
+
+    it('should redirect to unauthorized error if the error status is not unauthorized', () => {
+      req = {
+        session: {}
+      };
+      error = {
+        status: HttpStatus.INTERNAL_SERVER_ERROR
+      };
+      draftAppealStoreMiddleware.unAuthRedirectHandler(error, req, res, nextURH, redirectTo);
+      expect(nextURH).to.be.calledOnce;
+    });
+  });
   describe('removeRevertInvalidSteps', () => {
     const journey = {};
     journey.visitedSteps = [{ name: 'step1', valid: true }, { name: 'step1', valid: false }];
@@ -334,6 +461,32 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
       expect(objectAssignSpy).to.have.been.calledTwice;
       expect(next).to.have.been.calledOnce;
+    });
+    it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', async() => {
+      // const request = require('superagent');
+      const request = {};
+      const loggerStub = {};
+      const draftAppealStoreMiddlewareProxy = proxyquire('middleware/draftAppealStoreMiddleware', {
+        superagent: request,
+        logger: loggerStub
+      });
+      const error = { status: HttpStatus.INTERNAL_SERVER_ERROR };
+
+      request.get = () => ({
+        retry: () => ({
+          set: () => ({
+            set: () => ({
+              then: sinon.stub().rejects({
+                error
+              })
+            })
+          })
+        })
+      });
+
+      loggerStub.exception = sinon.spy();
+      await draftAppealStoreMiddlewareProxy.restoreAllDraftsState(req, res, next);
+      expect(loggerStub.exception).to.have.been.calledOnce;
     });
   });
 

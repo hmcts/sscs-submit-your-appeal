@@ -4,6 +4,7 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
+const HttpStatus = require('http-status-codes');
 
 const httpRetries = 3;
 
@@ -82,7 +83,11 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
       'no NINO submitted yet'}`, logPath);
   logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
-    redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+    if (error.status === HttpStatus.UNAUTHORIZED) {
+      redirectTo(req.journey.steps.UnauthorizedError).redirect(req, res, next);
+    } else {
+      redirectTo(req.journey.steps.Error500).redirect(req, res, next);
+    }
   } else {
     next();
   }
@@ -145,6 +150,18 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
     .catch(error => {
       handleDraftCreateUpdateFail(error, req, res, next, values);
     });
+};
+
+const unAuthRedirectHandler = (error, req, res, next) => {
+  if (error.status === HttpStatus.UNAUTHORIZED) {
+    redirectTo(req.journey.steps.UnauthorizedError).redirect(req, res, next);
+  } else {
+    Object.assign(req.session, {
+      entryPoint: 'Entry'
+    });
+    logger.exception(parseErrorResponse(error), logPath);
+    next();
+  }
 };
 
 const createDraftInDraftStore = async(req, res, next, values) => {
@@ -229,11 +246,7 @@ const restoreUserState = async(req, res, next) => {
         next();
       })
       .catch(error => {
-        Object.assign(req.session, {
-          entryPoint: 'Entry'
-        });
-        logger.exception(parseErrorResponse(error), logPath);
-        next();
+        unAuthRedirectHandler(error, req, res, next);
       });
   } else {
     next();
@@ -278,11 +291,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         next();
       })
       .catch(error => {
-        Object.assign(req.session, {
-          entryPoint: 'Entry'
-        });
-        logger.exception(parseErrorResponse(error), logPath);
-        next();
+        unAuthRedirectHandler(error, req, res, next);
       });
   } else {
     next();
@@ -418,5 +427,6 @@ module.exports = {
   archiveDraft,
   LoadJourneyAndRedirect,
   resetJourney,
-  handleDraftCreateUpdateFail
+  handleDraftCreateUpdateFail,
+  unAuthRedirectHandler
 };
