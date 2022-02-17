@@ -111,6 +111,24 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
   I.click(commonContent.continue);
 }
 
+function enterAppellantContactDetailsAndContinueAfterSignIn(commonContent, language) {
+  const I = this;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
+    I.click(postcodeLookupContent.findAddress);
+    I.see(postcodeLookupContent.fields.postcodeLookup.error.required);
+    I.fillField({ id: 'postcodeLookup' }, 'n29ed');
+    I.click(commonContent.continue);
+    I.see(postcodeLookupContent.fields.postcodeAddress.error.required);
+    IenterAddressDetails(postcodeLookupContent, I);
+  } else {
+    IenterAddressDetailsManual(I);
+  }
+  I.click(commonContent.saveAndContinue);
+}
+
 function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
@@ -149,6 +167,7 @@ module.exports = {
   enterAppellantNINOAndContinue,
   enterAppellantNINOAndContinueAfterSignIn,
   enterAppellantContactDetailsAndContinue,
+  enterAppellantContactDetailsAndContinueAfterSignIn,
   enterAppellantContactDetailsWithMobileAndContinue,
   enterAppellantContactDetailsWithMobileAndContinueAfterSignIn,
   enterAppellantContactDetailsWithEmailAndContinue,
