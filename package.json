@@ -152,7 +152,7 @@
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "electron": "^9.4.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
     "url-parse": "^1.5.0",
@@ -162,6 +162,8 @@
     "trim-newlines": "4.0.2",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "json-schema": "0.4.0"
+    "json-schema": "0.4.0",
+    "shelljs": "^0.8.5",
+    "nanoid": "^3.1.31"
   }
 }

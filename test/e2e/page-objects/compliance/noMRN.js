@@ -5,4 +5,11 @@ function enterReasonForNoMRNAndContinue(commonContent, reason) {
   I.click(commonContent.continue);
 }
 
-module.exports = { enterReasonForNoMRNAndContinue };
+function enterReasonForNoMRNAndContinueAfterSignIn(commonContent, reason) {
+  const I = this;
+
+  I.fillField('#reasonForNoMRN', reason);
+  I.click(commonContent.saveAndContinue);
+}
+
+module.exports = { enterReasonForNoMRNAndContinue, enterReasonForNoMRNAndContinueAfterSignIn };
