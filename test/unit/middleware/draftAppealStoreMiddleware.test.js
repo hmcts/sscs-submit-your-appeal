@@ -293,8 +293,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(200, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(3);
-      expect(saveF).to.have.been.calledOnce;
+      expect(loggerSpy).to.have.been.callCount(2);
     });
 
     it('Handles Archive a draft fail:', async() => {
@@ -306,9 +305,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(404, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(2);
-      expect(loggerExceptionSpy).to.have.been.callCount(1);
-      expect(saveF).to.have.been.callCount(0);
+      expect(loggerSpy).to.have.been.callCount(3);
+      expect(loggerExceptionSpy).to.have.been.callCount(0);
+      expect(saveF).to.have.been.callCount(1);
     });
   });
 
