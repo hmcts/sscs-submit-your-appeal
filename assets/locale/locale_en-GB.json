@@ -48,11 +48,17 @@
     "agentIsTyping": "Advisor is typing...",
     "conversationEnded": "The chat session has ended but you can start a new one if you need more help",
     "startNewSession": "Start new session",
+    "offerSurvey": "Send me a feedback survey",
     "endChat": "End chat",
     "prompt": {
       "message": "If you leave the chat you will lose your place in the queue. Are you sure?",
       "yes": "Yes",
       "no": "No"
-    }
+    },
+    "survey": {
+      "propose": "would you like to take part in an Email survey at the end of your Webchat?",
+        "yes": "Yes",
+        "no": "No"
+      }
   }
 }
