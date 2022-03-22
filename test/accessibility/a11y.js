@@ -28,7 +28,8 @@ const excludeSteps = [
   '/authenticated',
   '/sign-out',
   '/sign-in-back',
-  '/archive-appeal'
+  '/archive-appeal',
+  '/contact-dwp'
 ];
 
 function ensurePageCallWillSucceed(url) {
