@@ -26,7 +26,7 @@ if (!webChatBaseUrl) {
 }
 let webChatClientBaseUrl = process.env.WEBCHAT_CLIENT_URL;
 if (!webChatClientBaseUrl) {
-  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net';
+  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net/chat-client/2';
 }
 
 const configureNunjucks = (app, commonContent) => {
