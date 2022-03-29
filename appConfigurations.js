@@ -116,8 +116,8 @@ const configureHelmet = app => {
       fontSrc: ['\'self\' data:'],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/2/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -132,8 +132,8 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/2/'
       ],
       connectSrc: [
         '\'self\'',
@@ -168,8 +168,8 @@ const configureHelmet = app => {
         'www.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/2/'
       ]
     }
   }));
