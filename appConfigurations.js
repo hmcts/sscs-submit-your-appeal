@@ -26,7 +26,7 @@ if (!webChatBaseUrl) {
 }
 let webChatClientBaseUrl = process.env.WEBCHAT_CLIENT_URL;
 if (!webChatClientBaseUrl) {
-  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net/chat-client/2';
+  webChatClientBaseUrl = 'webchat-client.pp.ctsc.hmcts.net';
 }
 
 const configureNunjucks = (app, commonContent) => {
@@ -117,7 +117,7 @@ const configureHelmet = app => {
       styleSrc: [
         '\'self\'',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/2/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -133,7 +133,7 @@ const configureHelmet = app => {
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/2/'
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ],
       connectSrc: [
         '\'self\'',
@@ -169,7 +169,7 @@ const configureHelmet = app => {
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/2/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/2/'
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ]
     }
   }));
