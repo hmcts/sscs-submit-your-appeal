@@ -54,8 +54,8 @@
       "message": "If you leave the chat you will lose your place in the queue. Are you sure?",
       "yes": "Yes",
       "no": "No"
-    },
-  }
+    }
+  },
   "survey": {
      "propose": "would you like to take part in an Email survey at the end of your Webchat?",
        "yes": "Yes",
