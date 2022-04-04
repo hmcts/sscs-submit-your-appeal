@@ -57,7 +57,7 @@
     }
   },
   "survey": {
-     "propose": "would you like to take part in an Email survey at the end of your Webchat?",
+     "propose": "Would you like to take part in an email survey at the end of your Webchat?",
        "yes": "Yes",
        "no": "No"
       }
