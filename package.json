@@ -39,7 +39,6 @@
     "lint"
   ],
   "dependencies": {
-    "5": "^0.0.1",
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
