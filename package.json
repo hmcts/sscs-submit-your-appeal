@@ -48,7 +48,7 @@
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "accessible-autocomplete": "^2.0.2",
     "applicationinsights": "^1.7.0",
-    "applicationinsights-native-metrics": "^0.0.5",
+    "applicationinsights-native-metrics": "^0.0.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
