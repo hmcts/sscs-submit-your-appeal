@@ -150,7 +150,7 @@
     "eslint-utils": "^1.4.1",
     "js-yaml": "3.13.1",
     "lodash": "^4.17.21",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "electron": "^9.4.0",
     "axios": "^0.21.4",
     "elliptic": "^6.5.4",
