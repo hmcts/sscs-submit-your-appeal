@@ -90,7 +90,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.7.0",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
