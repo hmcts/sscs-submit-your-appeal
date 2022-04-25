@@ -2,21 +2,21 @@
   "titleHead": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
   "accessibility": {
     "title": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
-    "description": "Mae'r gwasanaeth hwn yn caniatáu i ddefnyddwyr gyflwyno, olrhain a rheoli apêl ynghylch budd-daliadau ar-lein."
+    "description": "Mae'r datganiad hygyrchedd hwn yn berthnasol i'r wefan <a class='govuk-link' target='_blank' href='https://www.appeal-benefit-decision.service.gov.uk/'>https://www.appeal-benefit-decision.service.gov.uk/</a> sy'n caniatáu i ddefnyddwyr gyflwyno, olrhain a rheoli apêl yn erbyn penderfyniad ynghylch budd-daliadau ar-lein."
   },
   "manages": {
-    "managedBy": "Caiff y wefan hon ei chynnal gan Wasanaeth Llysoedd a Thribiwnlysoedd EM. Rydym am i gymaint o bobl â phosibl allu defnyddio'r wefan hon, felly rydym wedi'i chynllunio i fod yn hygyrch. Er enghraifft, mae hynny'n golygu y dylech allu:",
+    "managedBy": "Gwasanaeth Llysoedd a Thribiwnlysoedd EM sy'n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio'r wefan hon, felly rydym wedi ei dylunio i fod yn hygyrch. Er enghraifft, golyga hyn y dylech allu:",
     "ability1": "newid lliwiau, lefelau cyferbyniad a ffontiau",
-    "ability2": "chwyddo hyd at 300% heb i'r testun ddiflannu oddi ar y sgrin",
-    "ability3": "defnyddio’r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd yn unig",
-    "ability4": "defnyddio’r rhan fwyaf o'r wefan gan ddefnyddio meddalwedd adnabod lleferydd",
+    "ability2": "gwneud y testun hyd at 300% yn fwy heb iddo ddiflannu oddi ar y sgrin",
+    "ability3": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd yn unig",
+    "ability4": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio meddalwedd adnabod llais",
     "ability5": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
     "managedByExtra1": "Rydym hefyd wedi gwneud testun y wefan mor syml â phosibl i'w ddeall.",
-    "managedByExtra2": " Mae gan <a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> gyngor ar wneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd."
+    "managedByExtra2": " Mae gan <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>AbilityNet</a> gyngor ar wneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd."
   },
   "howAccessible": {
-    "title": "Pa mor hygyrch yw'r wefan hon?",
-    "para1": "Profwyd y wefan gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd."
+    "title": "Pa mor hygyrch yw'r wefan hon",
+    "para1": "Mae'r wefan wedi'i phrofi gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe F2.1, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Ac eithrio lle y nodir isod, mae'r holl faterion ac argymhellion gan y DAC wedi'u rhoi ar waith."
   },
   "telephone" : {
     "England": {
@@ -34,22 +34,22 @@
   },
   "whatToDo": {
     "title": "Adborth a gwybodaeth gyswllt",
-    "para1": "Os oes angen gwybodaeth arnoch ar y wefan hon mewn fformat gwahanol fel PDF hygyrch, print bras, fformat hawdd ei ddarllen, recordiad sain neu braille yna e-bostiwch <a href=\"mailto:HMCTSforms@justice.gov.uk\" class=\"govuk-link\">HMCTSforms@justice.gov.uk</a> neu ffoniwch:",
+    "para1": "Os ydych angen gwybodaeth sydd ar y wefan hon mewn fformat arall megis ar ffurf PDF hygyrch, print bras, fformat hawdd ei ddarllen, recordiad sain neu braille, gallwch anfon e-bost i <a href='mailto:HMCTSforms@justice.gov.uk' class='govuk-link'>HMCTSforms@justice.gov.uk</a> neu ffonio:",
     "para2": "Byddwn yn ystyried eich cais ac yn dod yn ôl atoch o fewn 10 diwrnod gwaith."
   },
   "reportingProblems": {
-    "title": "Rhoi gwybod am broblemau hygyrchedd gyda'r wefan hon",
-    "para1": "Rydym bob amser yn ceisio gwella hygyrchedd y wefan hon. Os gwelwch unrhyw broblemau nad ydynt wedi'u rhestru ar y dudalen hon neu os ydych yn meddwl nad ydym yn bodloni gofynion hygyrchedd, cysylltwch â:"
+    "title": "Riportio problemau hygyrchedd gyda'r wefan hon",
+    "para1": "Rydym wastad yn ceisio gwella hygyrchedd y wefan hon. Os byddwch yn canfod unrhyw broblemau nad ydynt wedi'u cynnwys ar y dudalen hon, neu'n credu nad ydym yn bodloni'r gofynion o ran hygyrchedd, anfonwch e-bost i: <a class='govuk-link' href='mailto:HMCTSforms@justice.gov.uk'> HMCTSforms@justice.gov.uk </a> neu cysylltwch â:"
   },
   "enforcement": {
     "title": "Y Weithdrefn Orfodaeth",
-    "para1": "Mae'r Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) yn gyfrifol am orfodi Rheoliadau Cyrff y Sector Cyhoeddus (Gwefannau a Cheisiadau Ffonau Symudol) (Rhif 2) Hygyrchedd 2018 (y 'rheoliadau hygyrchedd'). Os nad ydych yn hapus â'r ffordd rydym yn ymateb i'ch cwyn, <a target=\"_blank\" href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">cysylltwch â'r Gwasanaeth Cynghori a Chymorth Cydraddoldeb (EASS).</a>"
+    "para1": "Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy'n gyfrifol am orfodi Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Rhaglenni Symudol) (Rhif 2) 2018 (y 'rheoliadau hygyrchedd'). Os nad ydych chi'n fodlon gyda'r ffordd rydym yn ymateb i'ch cwyn, cysylltwch â'r, <a target='_blank' href='https://www.equalityadvisoryservice.com/' class='govuk-link'> Gwasanaeth Cynghori a Chymorth Cydraddoldeb (EASS).</a>"
   },
   "contactus": {
     "title": "Cysylltu â ni dros y ffôn neu ymweld â ni yn bersonol",
-    "para1": "Rydym yn darparu gwasanaeth trosglwyddo testun i bobl sy'n fyddar, sydd â nam ar eu clyw neu sydd â nam ar eu lleferydd.",
-    "para2": "Mae gan ein swyddfeydd ddolenni sain, neu os byddwch yn cysylltu â ni cyn eich ymweliad gallwn drefnu cyfieithydd Iaith Arwyddion Prydain (BSL).",
-    "para3": "Darganfyddwch sut i gysylltu â ni gan ddefnyddio'r manylion cyswllt uchod."
+    "para1": "Rydym yn darparu gwasanaeth cyfnewid negeseuon testun ar gyfer pobl byddar, pobl sydd â nam ar eu clyw a phobl sydd â nam ar eu lleferydd.",
+    "para2": "Mae yna ddolenni sain yn ein swyddfeydd, neu os byddwch yn cysylltu â ni cyn eich ymweliad, gallwn drefnu cyfieithydd Iaith Arwyddion Prydain (BSL) ar eich cyfer.",
+    "para3": "Gwybodaeth am sut i gysylltu â ni gan ddefnyddio'r manylion cyswllt uchod."
   },
   "technical": {
     "title": "Gwybodaeth dechnegol am hygyrchedd y wefan hon",
@@ -57,25 +57,27 @@
   },
   "compliance": {
     "title": "Statws cydymffurfio",
-    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â safon Canllawiau Hygyrchedd Cynnwys y We fersiwn 2.1 AA."
+    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â'r <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'>Canllawiau Hygyrchedd Cynnwys Gwe fersiwn 2.1 safon AA.</a>"
   },
   "nonAccessible": {
     "title": "Cynnwys nad yw o fewn cwmpas y rheoliadau hygyrchedd",
-    "para1": "PDFs a dogfennau eraill",
+    "para1": "Dogfennau PDF a dogfennau eraill",
     "para2": "Mae rhai o'n dogfennau PDFs a Word yn hanfodol i ddarparu ein gwasanaethau. Er enghraifft, mae gennym PDFs gyda gwybodaeth am sut y gall defnyddwyr gael mynediad at ein gwasanaethau, a ffurflenni a gyhoeddir fel dogfennau Word.",
-    "para3": "Nid yw'r rheoliadau hygyrchedd yn ei gwneud yn ofynnol i ni ymdrin â PDFs na dogfennau eraill a gyhoeddwyd cyn 23 Medi 2018 os nad ydynt yn hanfodol i ddarparu ein gwasanaethau."
+    "para3": "Nid yw'r rheoliadau hygyrchedd <a class='govuk-link' href='https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made'>yn ei gwneud yn ofynnol i ni ddiweddaru PDFs neu ddogfennau eraill a gyhoeddwyd cyn 23 Medi 2018</a> os nad ydynt yn hanfodol i ddarparu ein gwasanaethau.",
+    "para4": "Bydd unrhyw ddogfennau PDF neu Word newydd y byddwn yn eu cyhoeddi yn bodloni'r safonau hygyrchedd."
   },
   "contentNotInScope": {
     "title": "Cynnwys sydd ddim o fewn cwmpas y rheoliadau hygyrchedd",
     "subTitle": "Dogfennau PDF a dogfennau eraill",
-    "para1": "Mae’n bosib na fydd dogfennau PDF, dogfennau eraill ac atodiadau mewn negeseuon e-bost a gyhoeddwyd cyn 23 Medi 2018 yn cydymffurfio â’r safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi’u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin."
+    "para1": "Mae'n bosib na fydd dogfennau PDF, dogfennau eraill ac atodiadau mewn negeseuon e-bost a gyhoeddwyd cyn 23 Medi 2018 yn cydymffurfio â'r safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi'u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin."
   },
   "toImprove": {
     "title": "Beth rydyn ni'n ei wneud i wella hygyrchedd",
-    "para1": "Caiff y wefan hon ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd yn fewnol ac yn allanol. Mae unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi."
+    "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi."
   },
   "preperation": {
     "title": "Paratoi'r datganiad hygyrchedd hwn",
-    "para1": "Profwyd y wefan hon ddiwethaf ar 28 Tachwedd 2019. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol."
+    "para1": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i adolygwyd ddiwethaf ar 21 Mawrth 2022",
+    "para2": "Profwyd y wefan hon ddiwethaf ar 28 Tachwedd 2019. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol (DAC). Cafodd y materion a godwyd gan y DAC eu datrys ym mis Mawrth 2021."
   }
 }
