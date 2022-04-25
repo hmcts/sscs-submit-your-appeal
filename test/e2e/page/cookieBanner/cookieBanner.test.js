@@ -68,6 +68,8 @@ Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie po
   I.click('Save');
 
   I.amOnPage(paths.start.benefitType);
+  I.refreshPage();
+  I.wait(3);
   I.dontSeeCookie('_ga');
   I.dontSeeCookie('_gid');
 });
