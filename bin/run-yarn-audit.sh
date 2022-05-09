@@ -6,7 +6,7 @@
 # Note: There's an upstream PR for adding this functionality: https://github.com/yarnpkg/yarn/pull/8223
 
 set +e
-yarn audit --groups dependencies
+yarn audit --groups dependencies --level high
 result=$?
 
 yarn audit --groups dependencies --json > yarn-audit-issues-result
