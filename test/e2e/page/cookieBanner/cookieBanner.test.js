@@ -33,11 +33,11 @@ Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, I => {
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
   I.refreshPage();
-
+  I.wait(3);
   I.seeCookie('_ga');
   I.seeCookie('_gid');
   I.seeCookie('_gat_UA-91309785-5');
-});
+}).retry(1);
 
 Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, I => {
   I.wait(2);
@@ -45,10 +45,10 @@ Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, I => {
   I.see(cookieContent.hideAfterReject);
   I.see(cookieContent.hideMessage);
   I.refreshPage();
+  I.wait(5);
 
-  I.dontSeeCookie('_ga');
   I.dontSeeCookie('_gid');
-});
+}).retry(1);
 
 Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, I => {
   I.wait(2);
@@ -69,7 +69,6 @@ Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie po
 
   I.amOnPage(paths.start.benefitType);
   I.refreshPage();
-  I.wait(3);
-  I.dontSeeCookie('_ga');
+  I.wait(5);
   I.dontSeeCookie('_gid');
-});
+}).retry(1);
