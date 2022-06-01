@@ -6,7 +6,7 @@
     "isAppointee": {
       "label": "Select whether you’re an appointee or not",
       "yes": "I have been appointed by DWP to act on behalf of someone else",
-      "no": "I’m appealing for myself",
+      "no": "I’m appealing for myself - Choose this option if you are making an appeal for yourself or you are helping someone submit their appeal online.",
       "error": {
         "required": "You need to answer the question before continuing"
       }
