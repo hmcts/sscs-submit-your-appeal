@@ -90,7 +90,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.7.0",
-    "moment": "2.29.2",
+    "moment": "^2.18.1",
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
@@ -118,6 +118,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
+    "codeceptjs": "^2.6.11",
     "cookie-parser": "^1.4.5",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
@@ -144,7 +145,6 @@
     "webdriverio": "^6.7.3"
   },
   "resolutions": {
-    "async": "^2.6.4",
     "assign-deep": "1.0.1",
     "braces": "^2.3.2",
     "eslint-utils": "^1.4.1",
@@ -156,16 +156,13 @@
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
     "url-parse": "^1.5.8",
-    "browserslist": "4.16.6",
+    "browserslist": "4.16.5",
     "glob-parent": "^5.1.2",
     "tar": "^6.1.9",
-    "trim-newlines": "^4.0.2",
+    "trim-newlines": "4.0.2",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "json-schema": "^0.4.0",
-    "shelljs": "^0.8.5",
-    "moment": "2.29.2",
-    "nanoid": "^3.1.31",
-    "connect-redis": "6.1.3"
+    "json-schema": "0.4.0",
+    "shelljs": "^0.8.5"
   }
 }
