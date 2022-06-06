@@ -118,7 +118,6 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "chokidar": "^3.0.1",
-    "codeceptjs": "^2.6.11",
     "cookie-parser": "^1.4.5",
     "eslint": "^7.2.0",
     "eslint-plugin-mocha": "^5.0.0",
@@ -145,6 +144,7 @@
     "webdriverio": "^6.7.3"
   },
   "resolutions": {
+    "async": "^2.6.4",
     "assign-deep": "1.0.1",
     "braces": "^2.3.2",
     "eslint-utils": "^1.4.1",
@@ -164,6 +164,8 @@
     "ansi-regex": "^5.0.1",
     "json-schema": "^0.4.0",
     "shelljs": "^0.8.5",
-    "nanoid": "^3.1.31"
+    "moment": "2.29.2",
+    "nanoid": "^3.1.31",
+    "redis": "^3.1.1"
   }
 }
