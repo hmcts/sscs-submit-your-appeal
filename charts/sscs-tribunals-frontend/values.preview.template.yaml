@@ -1,6 +1,8 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  autoscaling:
+    enabled: false
   environment:
     NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
@@ -22,6 +24,9 @@ nodejs:
 
 redis:
   enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
 
 idam-pr:
   enabled: true
