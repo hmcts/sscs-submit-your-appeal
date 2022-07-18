@@ -570,8 +570,13 @@
   "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en_GET" : "ignore",
   "10015_Re-examine Cache-control Directives_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-152x152.png_GET" : "ignore",
-  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore"
-
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/robots.txt_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/cookies-manager.js_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/hmcts-logo-compress.svg_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/noJS.png_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-167x167.png_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/main.css_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.js_GET" : "ignore"
 }
 
 
