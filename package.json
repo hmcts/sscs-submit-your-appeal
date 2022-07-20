@@ -157,7 +157,7 @@
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
     "url-parse": "^1.5.8",
-    "browserslist": "4.16.5",
+    "browserslist": "4.16.6",
     "glob-parent": "^5.1.2",
     "tar": "^6.1.9",
     "trim-newlines": "4.0.2",
