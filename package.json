@@ -90,7 +90,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.7.0",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
@@ -145,7 +145,7 @@
     "webdriverio": "^6.7.3"
   },
   "resolutions": {
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "assign-deep": "1.0.1",
     "braces": "^2.3.2",
     "eslint-utils": "^1.4.1",
@@ -165,6 +165,7 @@
     "ansi-regex": "^5.0.1",
     "json-schema": "0.4.0",
     "shelljs": "^0.8.5",
-    "nanoid": "^3.1.31"
+    "nanoid": "^3.1.31",
+    "terser": "^4.8.1"
   }
 }
