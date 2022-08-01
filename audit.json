@@ -576,7 +576,8 @@
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/noJS.png_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-167x167.png_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/main.css_GET" : "ignore",
-  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.js_GET" : "ignore"
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/assets/vendors~main.js_GET" : "ignore",
+  "90020_Remote OS Command Injection_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=en%27%26timeout+%2FT+15%26%27_GET" : "ignore"
 }
 
 
