@@ -8,10 +8,10 @@ maintainers:
   - name: HMCTS SSCS Team
 dependencies:
   - name: nodejs
-    version: 2.4.5
+    version: 2.4.6
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
   - name: redis
-    version: 16.11.3
+    version: 17.0.11
     repository: "https://charts.bitnami.com/bitnami"
     condition: redis.enabled
   - name: idam-pr
