@@ -31,7 +31,6 @@
     "test:crossbrowser": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --grep @crossbrowser --steps --reporter mocha-multi --verbose",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha --exit test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportDir=functional-output,reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
-    "sonar-scan": "sonar-scanner -Dsonar.projectName='SSCS :: Submit Your Appeal frontend' -Dsonar.projectKey='SSCSSYAF' -Dsonar.sources=. -Dsonar.exclusions=app.js,appConfigurations.js,app-insights.js,server.js,gulpfile.js,config/**,charts/**,**/healthcheck.js,steps/errors/duplicate-error/**,steps/pcq/createToken.js,infrastructure/**,node_modules/**,mocks/**,test/**,assets/**,dist/**,cookie-banner/**,mochawesome-report/**,webpack/**,components/postcodeLookup/assets/**,steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js,steps/check-your-appeal/CheckYourAppeal.js,views/components/web-chat.html -Dsonar.javascript.lcov.reportPaths=test/unit/coverage/html/lcov.info -Dsonar.cpd.exclusions=steps/**",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
     "mock-ccd": "node mocks/ccd/server.js"
   },
@@ -85,7 +84,7 @@
     "jquery-modal": "^0.9.1",
     "js-base64": "^2.5.1",
     "js-yaml": "^3.6.1",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "libphonenumber-js": "^1.7.19",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
@@ -166,6 +165,7 @@
     "json-schema": "0.4.0",
     "shelljs": "^0.8.5",
     "nanoid": "^3.1.31",
-    "terser": "^4.8.1"
+    "terser": "^4.8.1",
+    "scss-tokenizer": "0.4.3"
   }
 }
