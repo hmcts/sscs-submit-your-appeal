@@ -151,7 +151,7 @@
     "js-yaml": "3.13.1",
     "lodash": "^4.17.21",
     "minimist": "^1.2.6",
-    "electron": "^9.4.0",
+    "electron": "^18.3.7",
     "axios": "^0.21.4",
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
@@ -167,6 +167,12 @@
     "nanoid": "^3.1.31",
     "terser": "^4.8.1",
     "scss-tokenizer": "0.4.3",
-    "json5": "^2.2.2"
+    "json5": "^2.2.2",
+    "qs": "^6.5.3",
+    "flat": "^5.0.1",
+    "loader-utils": "^1.4.1",
+    "async": "^3.2.2",
+    "minimatch": "^3.0.5",
+    "redis": "^3.1.1"
   }
 }
