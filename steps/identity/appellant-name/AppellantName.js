@@ -9,7 +9,6 @@ const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('../../../utils/titlesList');
 const { decode } = require('utils/stringUtils');
-const parseFullName = require('parse-full-name').parseFullName;
 
 class AppellantName extends SaveToDraftStore {
   static get path() {
@@ -78,12 +77,12 @@ class AppellantName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
+    // const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return [
       answer(this, {
         question: this.content.cya.appellantName.question,
         section: sections.appellantDetails,
-        answer: decode(`${title} ${fullName.first} ${fullName.last}`)
+        answer: decode(`${title} ${first} ${last}`)
       })
     ];
   }
@@ -92,12 +91,12 @@ class AppellantName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
+    // const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return {
       appellant: {
         title: decode(title),
-        firstName: decode(fullName.first),
-        lastName: decode(fullName.last)
+        firstName: decode(first),
+        lastName: decode(last)
       }
     };
   }
