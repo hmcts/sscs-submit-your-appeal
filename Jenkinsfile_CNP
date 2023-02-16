@@ -15,7 +15,7 @@ def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
 
-  after('build') {
+  afterSuccess('build') {
     stage('Generate cookie banner') {
       sh "./node_modules/gulp/bin/gulp.js default"
     }
@@ -26,14 +26,14 @@ withPipeline("nodejs", product, component) {
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
 
-  after('akschartsinstall'){
+  afterSuccess('akschartsinstall'){
     onMaster {
       // Vars needed for AKS testing in path to live
       env.CHUNKS = 4
     }
   }
 
-  after("smoketest:preview") {
+  afterAlways("smoketest:preview") {
       stage('Application URLs') {
           def AppDevUrl = env.TEST_URL.replace("https", "http")
           AppDevUrl = AppDevUrl.replace("-staging.", ".")
