@@ -21,7 +21,7 @@ module.exports = {
   ],
   plugins: [
     new webpack.IgnorePlugin({
-        RegExp: /^\.\/locale$/,
+        resourceRegExp: /^\.\/locale$/,
         contextRegExp: /moment$/,
     }),
     new CleanWebpackPlugin(),
