@@ -21,8 +21,8 @@ module.exports = {
   ],
   plugins: [
     new webpack.IgnorePlugin({
-        RegExp: /^\.\/locale$/,
-        contextRegExp: /moment$/,
+      RegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin(
@@ -62,10 +62,10 @@ module.exports = {
         test: /\.(njk|nunjucks)$/,
         loader: 'nunjucks-loader',
         options: {
-            htmlmin: true,
-            htmlminOptions: {
-                removeComments: true
-            }
+          htmlmin: true,
+          htmlminOptions: {
+            removeComments: true
+          }
         }
       },
       {
