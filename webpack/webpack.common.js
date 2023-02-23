@@ -60,7 +60,13 @@ module.exports = {
       },
       {
         test: /\.(njk|nunjucks)$/,
-        loader: 'nunjucks-loader'
+        loader: 'nunjucks-loader',
+        options: {
+          htmlmin: true,
+          htmlminOptions: {
+            removeComments: true
+          }
+        }
       },
       {
         test: /\.js$/,
