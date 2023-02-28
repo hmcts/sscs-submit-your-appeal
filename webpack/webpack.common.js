@@ -54,7 +54,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/i,
-        loaders: ['file-loader']
+        loader: 'file-loader'
       },
       {
         test: /\.(njk|nunjucks)$/,
