@@ -18,7 +18,10 @@ module.exports = {
     path.resolve('assets/js/main.js')
   ],
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+}),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin(
       {
