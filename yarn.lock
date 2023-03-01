@@ -7739,10 +7739,10 @@ nunjucks-async-loader@1.1.5:
     co "4.6.0"
     es6-promisify "6.1.0"
 
-nunjucks-loader@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/nunjucks-loader/-/nunjucks-loader-3.0.0.tgz#54ea42a3a383e43da764954456f2053041fa4db6"
-  integrity sha512-ew4gf8FuBi9DbMyksKStFzN8CWRtHuHFITS4KOTO0PJmEo7753HXJP51R6cGyfAuAEG0t+Qbh6di8vFYbnnJYw==
+nunjucks-loader@^2.4.9:
+  version "2.4.9"
+  resolved "https://registry.yarnpkg.com/nunjucks-loader/-/nunjucks-loader-2.4.9.tgz#76484b99112d8c0eea714bae8f5f7e8880422660"
+  integrity sha512-caJrRGE0H7ePL5fSwPuRVKOJ1cSqfn8tj7BBHEqHUgdbFss3vTkUm2EcUFAeEJS8MS8Y+epV5SuhhFe5YyAkQA==
   dependencies:
     loader-utils "^0.2.12"
     slash "~1.0.0"
