@@ -69,7 +69,7 @@ class AppointeeName extends SaveToDraftStore {
       appointee: {
         title: decode(title),
         firstName: decode(first),
-        lastName: decode(last)
+        lastName: decode(last) 
       }
     };
   }
