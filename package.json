@@ -104,7 +104,7 @@
     "terser-webpack-plugin": "^5.3.6",
     "trim-newlines": "^4.0.0",
     "uuid": "^8.2.0",
-    "webpack": "^4.40.0",
+    "webpack": "5.76.3",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.3",
     "webpack-merge": "^4.2.2",
