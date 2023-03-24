@@ -1293,6 +1293,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@danieldietrich/copy@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@danieldietrich/copy@npm:0.4.2"
+  checksum: 32b40c4e30371f59b0e7df5d947311c353f9f73ca8f7081ab82aaf8fce2c7406de4ab5ec78ad0ddd292936686994654dae7ee22704ab50514c60cfb58fe0fe75
+  languageName: node
+  linkType: hard
+
 "@electron/get@npm:^1.0.1":
   version: 1.14.1
   resolution: "@electron/get@npm:1.14.1"
@@ -6058,7 +6065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es5-ext@npm:^0.10.35, es5-ext@npm:^0.10.46, es5-ext@npm:^0.10.50":
+"es5-ext@npm:^0.10.35, es5-ext@npm:^0.10.46, es5-ext@npm:^0.10.50, es5-ext@npm:^0.10.62":
   version: 0.10.62
   resolution: "es5-ext@npm:0.10.62"
   dependencies:
@@ -12859,6 +12866,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postinstall@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "postinstall@npm:0.8.0"
+  dependencies:
+    "@danieldietrich/copy": ^0.4.2
+    glob: ^8.0.3
+    minimist: ^1.2.6
+    resolve-from: ^5.0.0
+    resolve-pkg: ^2.0.0
+  bin:
+    postinstall: bin/postinstall.js
+  checksum: 204795c157ad0a46e52ef1effc6818c53c8f2afd881f2d83eba562a0a402d5470a237274fd2b8082654974062d4ac267c9b42bac64ae79374e81e6731958bbd5
+  languageName: node
+  linkType: hard
+
 "pre-commit@npm:^1.2.2":
   version: 1.2.2
   resolution: "pre-commit@npm:1.2.2"
@@ -13872,6 +13894,15 @@ __metadata:
   dependencies:
     value-or-function: ^3.0.0
   checksum: 437813d9418b49e52c367b980b6b48b3ea1ea39105aac97c39f104724abb6cda224ed92ebf12499cf00993589d38c8195eb2be730d0ba8b45df9bdf7cec65b33
+  languageName: node
+  linkType: hard
+
+"resolve-pkg@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "resolve-pkg@npm:2.0.0"
+  dependencies:
+    resolve-from: ^5.0.0
+  checksum: 4a14cc38effed20ff362c8f377719af9a45ebe27ee07d79d4802b4568858cd96033f4edc3a2add7fd27e361d24101a042047297a9ef9476696ba16b72e0a05fc
   languageName: node
   linkType: hard
 
@@ -15431,6 +15462,7 @@ __metadata:
     cross-env: ^5.1.3
     css-loader: ^3.0.0
     csurf: ^1.10.0
+    es5-ext: ^0.10.62
     eslint: ^7.2.0
     eslint-plugin-mocha: ^5.0.0
     express: ^4.17.1
@@ -15481,6 +15513,7 @@ __metadata:
     parse-full-name: ^1.2.3
     portscanner: ^2.1.1
     postcss-loader: ^3.0.0
+    postinstall: ^0.8.0
     pre-commit: ^1.2.2
     proxyquire: ^2.0.1
     puppeteer: ^5.4.1
