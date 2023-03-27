@@ -40,6 +40,7 @@
   "dependencies": {
     "@babel/core": "7.21.3",
     "@babel/preset-env": "^7.10.2",
+    "@electron/get": "^2.0.2",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/properties-volume": "0.0.13",
@@ -146,7 +147,6 @@
     "eslint-utils": "^1.4.1",
     "lodash": "^4.17.21",
     "minimist": "^1.2.6",
-    "electron": "^9.4.0",
     "axios": "^0.21.4",
     "elliptic": "^6.5.4",
     "hosted-git-info": "^3.0.8",
