@@ -46,7 +46,7 @@
     "@hmcts/properties-volume": "0.0.13",
     "@hmcts/uk-bank-holidays": "^1.0.1",
     "@npmcli/fs": "^3.1.0",
-    "accessible-autocomplete": "^2.0.2",
+    "accessible-autocomplete": "2.0.4",
     "applicationinsights": "^1.7.0",
     "applicationinsights-native-metrics": "^0.0.9",
     "babel-core": "^4.7.16",
