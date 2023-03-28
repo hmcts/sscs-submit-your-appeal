@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
