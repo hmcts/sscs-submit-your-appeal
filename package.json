@@ -168,7 +168,7 @@
     "nanoid": "^3.1.31",
     "terser": "^4.8.1",
     "scss-tokenizer": "0.4.3",
-    "loader-utils": "^1.4.2",
+    "loader-utils": "3.2.1",
     "flat": "^5.0.1",
     "minimatch": "^3.0.5",
     "lodash.template": "^4.5.0",
