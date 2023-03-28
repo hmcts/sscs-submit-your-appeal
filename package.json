@@ -50,7 +50,7 @@
     "applicationinsights": "^1.7.0",
     "applicationinsights-native-metrics": "^0.0.9",
     "babel-core": "^4.7.16",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "9.1.2",
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^3.0.0",
