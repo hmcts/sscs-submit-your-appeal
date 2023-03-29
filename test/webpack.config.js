@@ -2,6 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
+  entry: './src/entry.js',
   mode: 'none',
   externals: [
     nodeExternals({
@@ -29,7 +30,17 @@ module.exports = {
   resolveLoader: {
     modules: [path.resolve(__dirname, '../node_modules')]
   },
+  output: {
+    path: __dirname,
+    filename: 'bundle.js'
+  },
   module: {
+    loaders: [
+      {
+        test: /\.(njk|nunjucks)$/,
+        loader: 'nunjucks-loader'
+      }
+    ],
     rules: [
       {
         test: /\.js$/,
@@ -43,8 +54,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.(njk|nunjucks)$/,
-        loader: 'nunjucks-loader',
         query: {
           root: path.resolve(__dirname, '/dist/nunjucks')
         }
