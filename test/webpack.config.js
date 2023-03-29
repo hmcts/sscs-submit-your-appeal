@@ -9,6 +9,11 @@ module.exports = {
     })
   ],
   node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
+    module: 'empty'
   },
   target: 'web',
   context: '/',
@@ -39,7 +44,10 @@ module.exports = {
       },
       {
         test: /\.(njk|nunjucks)$/,
-        loader: 'nunjucks-loader'
+        loader: 'nunjucks-loader',
+        query: {
+          root: path.resolve(__dirname, '/dist/nunjucks')
+        }
       }
     ]
   },

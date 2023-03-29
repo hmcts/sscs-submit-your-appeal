@@ -11,8 +11,6 @@ const assets = path.resolve(govUkFrontendRoot, 'govuk/assets');
 const imagesGokukFrontend = path.resolve(assets, 'images');
 const fontsGokukFrontend = path.resolve(assets, 'fonts');
 
-process.traceDeprecation = true;
-
 module.exports = {
   target: 'web',
   entry: [
@@ -60,13 +58,7 @@ module.exports = {
       },
       {
         test: /\.(njk|nunjucks)$/,
-        loader: 'nunjucks-loader',
-        options: {
-          htmlmin: true,
-          htmlminOptions: {
-            removeComments: true
-          }
-        }
+        loader: 'nunjucks-loader'
       },
       {
         test: /\.js$/,
@@ -81,6 +73,12 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development'
+            }
+          },
           'css-loader',
           'sass-loader'
         ]
