@@ -164,7 +164,7 @@
     "ansi-regex": "^5.0.1",
     "json-schema": "0.4.0",
     "shelljs": "^0.8.5",
-    "nanoid": "4.0.2",
+    "nanoid": "^3.1.31",
     "terser": "5.16.8",
     "scss-tokenizer": "0.4.3",
     "loader-utils": "3.2.1",
