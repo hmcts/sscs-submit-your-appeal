@@ -43,7 +43,8 @@ module.exports = {
     ],
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(woff|woff2|eot|ttf|otf|png|js)$/i,
+        type: 'asset/resource',
         include: /test/,
         exclude: /node_modules/,
         use: [
