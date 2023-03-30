@@ -10,6 +10,7 @@ const govUkFrontendRoot = path.resolve(packageJson, '..');
 const assets = path.resolve(govUkFrontendRoot, 'govuk/assets');
 const imagesGokukFrontend = path.resolve(assets, 'images');
 const fontsGokukFrontend = path.resolve(assets, 'fonts');
+const prod = process.argv.indexOf('-p') !== -1;
 
 module.exports = {
   target: 'web',
@@ -75,9 +76,9 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              postcssOptions: {
-                hmr: process.env.NODE_ENV === 'development'
+            process: {
+              env: {
+                NODE_ENV: prod ? '"production"' : '"development"'
               }
             }
           },
