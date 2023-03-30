@@ -10,7 +10,6 @@ const govUkFrontendRoot = path.resolve(packageJson, '..');
 const assets = path.resolve(govUkFrontendRoot, 'govuk/assets');
 const imagesGokukFrontend = path.resolve(assets, 'images');
 const fontsGokukFrontend = path.resolve(assets, 'fonts');
-const prod = process.argv.indexOf('-p') !== -1;
 
 module.exports = {
   target: 'web',
@@ -19,6 +18,9 @@ module.exports = {
     path.resolve('assets/js/main.js')
   ],
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
@@ -75,12 +77,7 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            process: {
-              env: {
-                NODE_ENV: prod ? '"production"' : '"development"'
-              }
-            }
+            loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
           'sass-loader'
