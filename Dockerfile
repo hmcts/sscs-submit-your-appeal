@@ -1,4 +1,4 @@
-FROM hmctspublic.azurecr.io/base/node:18-alpine as base
+FROM hmctspublic.azurecr.io/base/node:pr-18-alpine as base
 
 COPY --chown=hmcts:hmcts . .
 RUN yarn install && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
