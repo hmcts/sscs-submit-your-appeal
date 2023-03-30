@@ -35,16 +35,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      {
-        test: /\.(njk|nunjucks)$/,
-        loader: 'nunjucks-loader'
-      }
-    ],
     rules: [
       {
-        test: /\.(woff|woff2|eot|ttf|otf|png|js)$/i,
-        type: 'asset/resource',
+        test: /\.js$/,
         include: /test/,
         exclude: /node_modules/,
         use: [
@@ -55,15 +48,19 @@ module.exports = {
         ]
       },
       {
+        test: /\.(njk|nunjucks)$/,
+        loader: 'nunjucks-loader',
         query: {
           root: path.resolve(__dirname, '/dist/nunjucks')
         }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource'
       }
     ]
   },
-
   optimization: {
     minimize: true
   }
-
 };
