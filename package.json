@@ -96,7 +96,7 @@
     "parse-full-name": "1.2.6",
     "postcss": "^8.4.21",
     "postcss-loader": "7.1.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^13.2.2",
     "serve-static": "1.15.0",
     "superagent": "^8.0.9",
     "superagent-csrf": "^1.0.0",
