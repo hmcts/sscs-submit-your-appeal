@@ -120,7 +120,7 @@
     "chokidar": "^3.5.3",
     "codeceptjs": "^3.4.1",
     "cookie-parser": "1.4.6",
-    "css-loader": "^6.7.3",
+    "css-loader": "^3.0.0",
     "css-minimizer-webpack-plugin": "5.0.0",
     "eslint": "8.36.0",
     "eslint-plugin-mocha": "10.1.0",
