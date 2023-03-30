@@ -53,10 +53,6 @@ module.exports = {
         query: {
           root: path.resolve(__dirname, '/dist/nunjucks')
         }
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource'
       }
     ]
   },
