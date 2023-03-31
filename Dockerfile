@@ -1,7 +1,4 @@
 FROM hmctspublic.azurecr.io/base/node:18-alpine as base
-
-COPY package.json yarn.lock ./
-
 FROM base as build
 
 USER root
