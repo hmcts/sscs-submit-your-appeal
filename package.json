@@ -178,6 +178,6 @@
     "exports-loader": "4.0.0",
     "nightmare": "3.0.2",
     "json5": "2.2.3",
-    "loader-utils": "3.2.1"
+    "loader-utils": "1.4.1"
   }
 }
