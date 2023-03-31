@@ -134,7 +134,7 @@
     "nightmare": "^2.8.0",
     "nock": "^13.3.0",
     "node-dev": "^8.0.0",
-    "nunjucks-loadder": "npm:loader-utils@1.4.2",
+    "nunjucks-loader": "npm:loader-utils@1.4.2",
     "nyc": "^15.1.0",
     "pa11y": "^6.2.3",
     "portscanner": "^2.2.0",
