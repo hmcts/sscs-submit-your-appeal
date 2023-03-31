@@ -2,7 +2,7 @@ FROM hmctspublic.azurecr.io/base/node:18-alpine as base
 FROM base as build
 
 USER root
-RUN apk add python2 make g++
+RUN apk add python3 make g++
 USER hmcts
 
 COPY --chown=hmcts:hmcts . .
