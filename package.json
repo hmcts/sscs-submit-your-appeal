@@ -52,7 +52,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "9.1.2",
     "body-parser": "1.20.2",
-    "chalk": "5.2.0",
+    "chalk": "2.4.2",
     "clean-webpack-plugin": "4.0.0",
     "cmc-cookies-manager": "github:hmcts/cmc-cookies-manager#3.0.2",
     "compression-webpack-plugin": "10.0.0",
