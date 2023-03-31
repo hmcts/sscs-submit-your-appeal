@@ -1,8 +1,5 @@
 *
 
-!package.json
-!yarn.lock
-
 !assets/**
 !components/**
 !config/**
