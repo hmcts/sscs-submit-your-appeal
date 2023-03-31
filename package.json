@@ -176,6 +176,7 @@
     "got": "12.6.0",
     "nunjucks": "3.2.3",
     "exports-loader": "4.0.0",
-    "nightmare": "3.0.2"
+    "nightmare": "3.0.2",
+    "json5": "2.2.3"
   }
 }
