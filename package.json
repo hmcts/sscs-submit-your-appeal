@@ -13,7 +13,7 @@
     "debug": "NODE_ENV=development cross-env NODE_PATH=. node --inspect server.js",
     "setup": "exit 0",
     "mock": "yarn mock-uploader & yarn debug",
-    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --exit 'test/unit/**/*.test.js'",
+    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/unit/**/*.test.js'",
     "test:assets": "cross-env NODE_PATH=. NODE_ENV=test mochapack 'test/assets/**/*.test.js' --webpack-config test/webpack.config.js --require babel-core/register",
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
