@@ -29,5 +29,3 @@ function copyCookieBanner(done) {
 }
 
 exports.default = copyCookieBanner;
-
-gulp.task('default', [ 'serve' ]);
