@@ -38,7 +38,6 @@
     "lint"
   ],
   "dependencies": {
-    "@babel/preset-env": "7.20.2",
     "@electron/get": "^2.0.2",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "1.8.0",
@@ -63,6 +62,7 @@
     "cross-env": "7.0.3",
     "css-loader": "^3.0.0",
     "csurf": "^1.11.0",
+    "del": "^7.0.0",
     "express": "4.18.2",
     "express-nunjucks": "^2.2.5",
     "express-static-gzip": "2.1.7",
@@ -78,7 +78,13 @@
     "govuk-frontend": "^3.14.0",
     "graceful-fs": "^4.2.11",
     "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
     "helmet": "6.0.1",
     "html-entities": "2.3.3",
     "http-status-codes": "2.2.0",
@@ -123,6 +129,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/register": "^7.21.0",
     "@hmcts/eslint-config": "^1.4.0",
     "chai": "4.3.7",
     "chai-as-promised": "^7.1.1",
