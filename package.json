@@ -93,6 +93,7 @@
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
+    "nunjucks-loader": "npm:loader-utils:1.4.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "parse-full-name": "^1.2.3",
     "postcss-loader": "^3.0.0",
@@ -166,7 +167,6 @@
     "shelljs": "^0.8.5",
     "nanoid": "^3.1.31",
     "terser": "^4.8.1",
-    "scss-tokenizer": "0.4.3",
-    "loader-utils": "1.4.1"
+    "scss-tokenizer": "0.4.3"
   }
 }
