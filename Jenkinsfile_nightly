@@ -54,8 +54,7 @@ withNightlyPipeline("nodejs", product, component) {
         enableSlackNotifications('#sscs-tech')
      }
 
-    afterSuccess('fullFunctionalTest') {
-
+     afterSuccess('fullFunctionalTest') {
         publishHTML target: [
                 allowMissing : true,
                 alwaysLinkToLastBuild: true,
