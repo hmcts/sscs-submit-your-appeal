@@ -27,7 +27,7 @@ app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
-events.EventEmitter.defaultMaxListeners = 100;
+events.EventEmitter.defaultMaxListeners = 0;
 
 // Configure App health.
 healthcheck.setup(app);
