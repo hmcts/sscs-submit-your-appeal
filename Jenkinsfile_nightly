@@ -55,6 +55,7 @@ withNightlyPipeline("nodejs", product, component) {
      }
 
      afterSuccess('fullFunctionalTest') {
+     
         publishHTML target: [
                 allowMissing : true,
                 alwaysLinkToLastBuild: true,
