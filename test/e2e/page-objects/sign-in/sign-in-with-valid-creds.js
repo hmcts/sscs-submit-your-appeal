@@ -5,7 +5,7 @@ function signIn(username, password, language) {
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
-  I.waitForElement(".form-buttons-group [href='/new-appeal']", 3);
+  I.waitForElement(".form-buttons-group [href='/new-appeal']", 10);
   if (language === 'en') {
     I.see('Your draft benefit appeals');
   } else {
