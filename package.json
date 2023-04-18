@@ -90,7 +90,7 @@
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.29.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nunjucks": "^3.2.0",
     "nunjucks-loader": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
@@ -159,13 +159,19 @@
     "browserslist": "4.17.5",
     "glob-parent": "^5.1.2",
     "tar": "^6.1.9",
-    "trim-newlines": "4.0.2",
+    "trim-newlines": "^4.0.2",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "json-schema": "0.4.0",
+    "json-schema": "^0.4.0",
     "shelljs": "^0.8.5",
     "nanoid": "^3.1.31",
     "terser": "^4.8.1",
-    "scss-tokenizer": "0.4.3"
+    "scss-tokenizer": "^0.4.3",
+    "cookiejar": "^2.1.4",
+    "qs": "^6.5.3",
+    "json5": "^1.0.2",
+    "loader-utils": "^1.4.1",
+    "decode-uri-component": "^0.2.1",
+    "minimatch": "^3.0.5"
   }
 }
