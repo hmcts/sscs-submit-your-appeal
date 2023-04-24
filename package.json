@@ -86,6 +86,7 @@
     "js-yaml": "^3.6.1",
     "jsdom": "^16.5.0",
     "libphonenumber-js": "^1.7.19",
+    "loader-utils": "^3.2.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.7.0",
@@ -159,13 +160,18 @@
     "browserslist": "4.17.5",
     "glob-parent": "^5.1.2",
     "tar": "^6.1.9",
-    "trim-newlines": "4.0.2",
+    "trim-newlines": "^4.0.2",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "json-schema": "0.4.0",
+    "json-schema": "^0.4.0",
     "shelljs": "^0.8.5",
     "nanoid": "^3.1.31",
     "terser": "^4.8.1",
-    "scss-tokenizer": "0.4.3"
+    "scss-tokenizer": "^0.4.3",
+    "cookiejar": "^2.1.4",
+    "qs": "^6.5.3",
+    "json5": "^1.0.2",
+    "decode-uri-component": "^0.2.1",
+    "minimatch": "^3.0.5"
   }
 }
