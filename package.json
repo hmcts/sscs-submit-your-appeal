@@ -92,7 +92,7 @@
     "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.29.4",
     "node-sass": "^4.14.1",
-    "nunjucks": "^3.2.0",
+    "nunjucks": "^3.2.4",
     "nunjucks-loader": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "parse-full-name": "^1.2.3",
