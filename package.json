@@ -182,7 +182,6 @@
     "validator": "^13.7.0",
     "ajv": "^6.12.3",
     "async": "^3.2.2",
-    "loader-utils": "^1.4.1",
     "minimatch": "^3.0.5"
 
   }
