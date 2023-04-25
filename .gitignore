@@ -21,3 +21,12 @@ evidence.txt
 package-lock.json
 *.iml
 cookie-banner/
+
+# Yarn 3 files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
