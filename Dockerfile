@@ -6,6 +6,6 @@ RUN yarn install && yarn build && rm -r node_modules/ && yarn install --producti
 COPY .yarn ./.yarn
 COPY .yarnrc.yml ./
 
-USER root
+USER hmcts
 RUN corepack enable
 EXPOSE 3000
