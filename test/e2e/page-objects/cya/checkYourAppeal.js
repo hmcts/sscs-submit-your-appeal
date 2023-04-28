@@ -107,7 +107,7 @@ async function enterDetailsFromStartToDraft(commonContent, language, newUserEmai
   I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
   I.continueFromIndependance(commonContent);
   I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
-  await I.signInVerifylanguage(newUserEmail, testDataEn.signIn.password, language);
+  I.signInVerifylanguage(newUserEmail, testDataEn.signIn.password, language);
   I.createNewApplication(language);
   I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
   I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
