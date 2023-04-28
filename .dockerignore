@@ -29,5 +29,10 @@
 !steps.js
 !urls.js
 
-.yarn/cache
-.yarn/install-state.gz
+# Yarn 3 files
+!.yarnrc.yml
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
