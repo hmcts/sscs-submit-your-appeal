@@ -177,7 +177,7 @@ journey(app, {
   session: {
     redis: {
       url: config.redis.url,
-      connect_timeout: 15000
+      connect_timeout: 30000
     },
     cookie: {
       secure: config.redis.useSSL === 'true'
