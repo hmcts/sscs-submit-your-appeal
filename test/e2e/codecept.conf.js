@@ -28,7 +28,7 @@ exports.config = {
   },
   helpers: {
     Puppeteer: {
-      url: process.env.TEST_URL || `${urls.formDownload.benefitAppeal}`,
+      url: `${urls.formDownload.benefitAppeal}`,
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
@@ -49,7 +49,7 @@ exports.config = {
     },
     MyHelper: {
       require: './helpers/helper.js',
-      url: process.env.TEST_URL || `${urls.formDownload.benefitAppeal}`
+      url: `${urls.formDownload.benefitAppeal}`
     },
     REST: {
     }
