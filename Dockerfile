@@ -4,7 +4,7 @@ USER root
 RUN corepack enable
 
 COPY --chown=hmcts:hmcts . .
-RUN yarn install --ignore-scripts && yarn build && yarn cache clean --all
-
 USER hmcts
+RUN yarn install  && yarn build && yarn cache clean
+
 EXPOSE 3000
