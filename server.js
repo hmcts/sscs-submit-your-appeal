@@ -29,7 +29,23 @@ if (process.env.NODE_ENV === 'development') {
       logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
     });
   });
-} else {
+} else if (process.env.NODE_ENV === 'production') {
+  const compiler = webpack(webpackDevConfig);
+  const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
+  app.use(wp);
+
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
+    https.createServer({
+      key: fs.readFileSync('keys/server.key'), // eslint-disable-line
+      cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
+    }, app).listen(config.node.port, () => {
+      logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+    });
+  });
+}
+
+else {
   app.listen(config.node.port, () => {
     logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
   });
