@@ -1,5 +1,5 @@
 nodejs:
-  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:pr-1383'
+  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness

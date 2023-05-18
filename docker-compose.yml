@@ -11,7 +11,7 @@ services:
     ports:
       - "9229:9229"
       - "3000:3000"
-    image: hmctspublic.azurecr.io/sscs/tribunals-frontend:pr-1383
+    image: hmctspublic.azurecr.io/sscs/tribunals-frontend:latest
     environment:
       REDIS_URL: 'redis://redis:6379'
     links:
