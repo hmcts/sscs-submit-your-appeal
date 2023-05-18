@@ -22,7 +22,6 @@ RUN yarn build
 COPY config ./config
 EXPOSE 3000
 
-CMD ["yarn","start"]
 
 
 
