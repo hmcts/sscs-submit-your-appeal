@@ -38,7 +38,7 @@ nodejs:
         - pcq-token-key
 
 redis:
-  enabled: true
+  enabled: false
   cluster:
     enabled: false
     slaveCount: 0

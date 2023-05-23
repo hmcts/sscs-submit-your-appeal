@@ -16,11 +16,12 @@ FROM base as build
 COPY --chown=hmcts:hmcts . ./
 RUN yarn install
 COPY gulpfile.js server.js ./
-RUN yarn build
+RUN yarn start
 
 # ---- Runtime image ----
 COPY config ./config
 EXPOSE 3000
+
 
 
 
