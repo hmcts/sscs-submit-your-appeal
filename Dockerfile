@@ -16,7 +16,7 @@ FROM base as build
 COPY --chown=hmcts:hmcts . ./
 RUN yarn install
 COPY gulpfile.js server.js ./
-RUN yarn start
+RUN yarn build
 
 # ---- Runtime image ----
 COPY config ./config
