@@ -32,5 +32,6 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   app.listen(config.node.port, () => {
     logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+    logger.trace(`Redis server connection: ${config.redis.url}`, logPath);
   });
 }
