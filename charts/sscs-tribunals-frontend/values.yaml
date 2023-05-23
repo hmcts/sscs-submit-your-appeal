@@ -1,10 +1,10 @@
 nodejs:
-  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:pr-1383-cef8bdd-20230523112714'
+  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
   environment:
-    NODE_ENV: "development"
+    NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
