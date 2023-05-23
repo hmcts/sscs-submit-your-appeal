@@ -188,6 +188,7 @@ const configureJourney = (app, commonContent) => {
             console.log(`Redis connection failed with ${error.code}`);
           }
           console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
+          console.log(`Redis url: ${this.url}`);
           // reconnect after
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
