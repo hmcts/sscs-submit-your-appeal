@@ -16,7 +16,7 @@ services:
       REDIS_URL: 'redis://redis:6379'
     links:
       - redis
-    command: sh -c "yarn build && yarn start"
+    command: sh -c "yarn start"
 
   redis:
     image: redis
