@@ -11,6 +11,7 @@ const https = require('https');
 const fs = require('graceful-fs');
 const webpack = require('webpack');
 const webpackDevConfig = require('./webpack/webpack.dev.js');
+const webpackProdConfig = require('./webpack/webpack.prod.js');
 const webpackMiddleware = require('webpack-dev-middleware');
 
 const logPath = 'server.js';
@@ -30,8 +31,17 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 } else {
-  app.listen(config.node.port, () => {
-    logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
-    logger.trace(`Redis server connection: ${config.redis.url}`, logPath);
+  const compiler = webpack(webpackProdConfig);
+  const wp = webpackMiddleware(compiler, { publicPath: webpackProdConfig.output.publicPath });
+  app.use(wp);
+
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
+    https.createServer({
+      key: fs.readFileSync('keys/server.key'), // eslint-disable-line
+      cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
+    }, app).listen(config.node.port, () => {
+      logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+    });
   });
 }
