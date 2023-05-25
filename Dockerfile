@@ -9,16 +9,18 @@ COPY --chown=hmcts:hmcts .yarn ./.yarn
 COPY --chown=hmcts:hmcts config ./config
 COPY --chown=hmcts:hmcts package.json yarn.lock .yarnrc.yml ./
 
-RUN yarn workspaces focus --all && yarn cache clean
+RUN yarn workspaces focus --all --production && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
-RUN yarn install
+RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --immutable
 COPY gulpfile.js server.js ./
 RUN yarn build
 
 # ---- Runtime image ----
+FROM base as runtime
+COPY --from=build $WORKDIR/server.js ./
 COPY config ./config
 EXPOSE 3000
 

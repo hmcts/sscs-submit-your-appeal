@@ -30,14 +30,6 @@
 !urls.js
 !gulpfile.js
 
-## Yarn 3 files
-#!.yarnrc.yml
-#!.yarn/versions
-#!.yarn/patches
-#!.yarn/plugins
-#!.yarn/releases
-#!.yarn/sdks
-# Yarn 3 files
 !.yarn/**
 !.yarnrc.yml
 .yarn/cache

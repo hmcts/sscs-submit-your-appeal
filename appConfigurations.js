@@ -192,7 +192,7 @@ const configureJourney = (app, commonContent) => {
           // reconnect after
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
-          const maxRetryWait = 3000;
+          const maxRetryWait = 36000;
           return Math.min(retryTime, maxRetryWait);
         }
       },
