@@ -20,7 +20,6 @@ RUN yarn build
 
 # ---- Runtime image ----
 FROM base as runtime
-COPY --from=build $WORKDIR/server.js ./
 COPY config ./config
 EXPOSE 3000
 
