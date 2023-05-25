@@ -20,8 +20,7 @@ RUN yarn build
 
 # ---- Runtime image ----
 FROM base as runtime
-COPY server.js ./
-COPY config ./config
+COPY --chown=hmcts:hmcts . ./
 COPY services ./services
 EXPOSE 3000
 
