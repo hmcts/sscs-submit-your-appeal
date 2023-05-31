@@ -4,7 +4,7 @@ const setupSecrets = require('services/setupSecrets');
 // Setup secrets before loading the app
 setupSecrets();
 
-const app = require('./app.js');
+const app = require('app.js');
 const logger = require('logger');
 const https = require('https');
 
@@ -30,7 +30,13 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 } else {
-  app.listen(config.node.port, () => {
-    logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
-  });
+  https
+    .createServer({
+      key: fs.readFileSync('keys/server.key'), // eslint-disable-line
+      cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
+    }, app)
+    .listen(config.node.port, '0.0.0.0',
+      () => {
+        logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
+      });
 }
