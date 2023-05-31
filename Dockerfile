@@ -24,7 +24,6 @@ COPY --chown=hmcts:hmcts . ./
 COPY services ./services
 EXPOSE 3000
 
-RUN yarn dev
 
 
 
