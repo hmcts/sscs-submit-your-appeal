@@ -23,11 +23,3 @@ FROM base as runtime
 COPY --chown=hmcts:hmcts . ./
 COPY services ./services
 EXPOSE 3000
-
-
-
-
-
-
-
-
