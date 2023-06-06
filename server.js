@@ -36,3 +36,4 @@ if (process.env.NODE_ENV === 'development') {
         logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
       });
 }
+app.timeout = 240000;
