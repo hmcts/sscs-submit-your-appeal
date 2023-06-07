@@ -14,6 +14,6 @@ RUN yarn workspaces focus --all --production && yarn cache clean
 # ---- Build image ----
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
-RUN yarn build && yarn start
+RUN yarn build
 
 EXPOSE 3000
