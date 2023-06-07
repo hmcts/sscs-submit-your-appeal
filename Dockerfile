@@ -14,12 +14,6 @@ RUN yarn workspaces focus --all --production && yarn cache clean
 # ---- Build image ----
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
-RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --immutable
-COPY gulpfile.js server.js ./
-RUN yarn build
+RUN yarn build && yarn start
 
-# ---- Runtime image ----
-FROM base as runtime
-COPY --chown=hmcts:hmcts . ./
-COPY services ./services
 EXPOSE 3000
