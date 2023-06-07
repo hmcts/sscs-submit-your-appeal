@@ -16,4 +16,6 @@ FROM base as build
 COPY --chown=hmcts:hmcts . ./
 RUN yarn build
 
+RUN apk --update add redis curl
+
 EXPOSE 3000
