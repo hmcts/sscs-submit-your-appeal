@@ -1,6 +1,5 @@
 # ---- Base image ----
 FROM hmctspublic.azurecr.io/base/node:14-alpine as base
-
 USER root
 RUN corepack enable
 USER hmcts
@@ -16,6 +15,8 @@ FROM base as build
 COPY --chown=hmcts:hmcts . ./
 RUN yarn build
 
+USER root
 RUN apk --update add redis curl
+USER hmcts
 
 EXPOSE 3000
