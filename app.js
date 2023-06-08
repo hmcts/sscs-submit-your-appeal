@@ -5,7 +5,7 @@ const express = require('express');
 const events = require('events');
 const commonContent = require('commonContent.json');
 const url = require('url');
-const healthcheck = require('services/healthcheck');
+// const healthcheck = require('services/healthcheck');
 
 const {
   configureNunjucks,
@@ -27,10 +27,11 @@ app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
 app.set('trust proxy', 1);
 app.locals.asset_path = url.resolve('/', 'assets/');
+app.timeout = 50000000;
 events.EventEmitter.defaultMaxListeners = 500000;
 
 // Configure App health.
-healthcheck.setup(app);
+// healthcheck.setup(app);
 
 // Configure App routes.
 configureAppRoutes(app);
