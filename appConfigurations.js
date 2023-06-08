@@ -275,9 +275,9 @@ const configureAppRoutes = app => {
     res.send('User-agent: *\nDisallow: /');
   });
 
-  /*   app.get('/', (req, res) => {
+  app.get('/', (req, res) => {
     res.redirect('/entry');
-  }); */
+  });
 
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
