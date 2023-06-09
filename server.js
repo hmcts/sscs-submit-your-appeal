@@ -15,11 +15,6 @@ const webpackMiddleware = require('webpack-dev-middleware');
 
 const logPath = 'server.js';
 
-logger.log({
-  level: 'silly',
-  message: 'What time is the testing at?'
-});
-
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
   const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
