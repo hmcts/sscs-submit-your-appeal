@@ -19,4 +19,8 @@ USER root
 RUN apk --update add redis curl
 USER hmcts
 
+ENV DEBUG=express:*
+
 EXPOSE 3000
+
+CMD ["yarn", "start-debug"]

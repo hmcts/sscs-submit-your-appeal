@@ -10,6 +10,7 @@
     "start": "cross-env NODE_PATH=. node server.js",
     "build": "webpack --config ./webpack/webpack.prod.js",
     "dev": "cross-env NODE_ENV=development NODE_PATH=. node server.js",
+    "start-debug":"node --inspect=0.0.0.0 server.js ",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. node --inspect server.js",
     "setup": "exit 0",
     "mock": "yarn mock-uploader & yarn debug",
