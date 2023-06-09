@@ -6,6 +6,7 @@ const events = require('events');
 const commonContent = require('commonContent.json');
 const url = require('url');
 const healthcheck = require('services/healthcheck');
+const { Logger } = require('@hmcts/nodejs-logging');
 
 const {
   configureNunjucks,
@@ -29,6 +30,13 @@ app.set('trust proxy', true);
 app.locals.asset_path = url.resolve('/', 'assets/');
 events.EventEmitter.defaultMaxListeners = 500000;
 
+
+const logger = Logger.getLogger('app.js'); // app.js is just an example, can be anything that's meaningful to you
+
+logger.log({
+  level: 'silly',
+  message: 'What time is the testing at?'
+});
 // Configure App health.
 healthcheck.setup(app);
 
@@ -49,5 +57,6 @@ configureNunjucks(app, commonContent);
 
 // Configure One Per page settings.
 configureJourney(app, commonContent);
+
 
 module.exports = app;
