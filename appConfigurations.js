@@ -187,9 +187,16 @@ const configureJourney = (app, commonContent) => {
           if (error) {
             console.log(`Redis connection failed with ${error.code}`);
           }
-          console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
-          console.log(`Redis url: ${this.url}`);
-          // reconnect after
+          if (options.error && options.error.code === "ECONNREFUSED"){
+            return new Error("redis server refused connection");
+          }
+          if(total_retry_time > 1000 * 60 * 60){
+            console.log("Retry time exhausted")
+            return new Error("Retry time exhausted");
+          }
+          if (options.attempt > 10 ) {
+            return undefined;
+          }
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
           const maxRetryWait = 36000;
@@ -224,7 +231,6 @@ const configureJourney = (app, commonContent) => {
   });
 };
 /* eslint-enable */
-
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));
 
@@ -279,7 +285,6 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
-
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });

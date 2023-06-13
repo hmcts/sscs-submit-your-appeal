@@ -14,8 +14,24 @@ const ioRedisClient = ioRedis.createClient(
   { enableOfflineQueue: false }
 );
 
+ioRedisClient.on('connect', connect => {
+  logger.trace(`Redis is connected : ${connect}`, 'health_check_error');
+});
+
+ioRedisClient.on('ready', ready => {
+  logger.trace(`Redis is ready: ${ready}`, 'health_check_error');
+});
+
+ioRedisClient.on('reconnecting', reconnecting => {
+  logger.trace(`Redis is reconnecting: ${reconnecting}`, 'health_check_error');
+});
+
 ioRedisClient.on('error', error => {
   logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
+});
+
+ioRedisClient.on('end', end => {
+  logger.trace(`Redis connection is ended : ${end}`, 'health_check_error');
 });
 
 const healthOptions = message => {

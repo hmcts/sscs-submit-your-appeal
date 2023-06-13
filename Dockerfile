@@ -19,8 +19,5 @@ USER root
 RUN apk --update add redis curl
 USER hmcts
 
-ENV DEBUG=express:*
-RUN yarn start-debug
-
 EXPOSE 3000
 
