@@ -1,6 +1,6 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
-const ioRedis = require('ioredis');
+const ioRedis = require('redis');
 const config = require('config');
 
 const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
