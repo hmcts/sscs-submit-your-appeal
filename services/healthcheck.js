@@ -18,7 +18,6 @@ const ioRedisClient = ioRedis.createClient(
   }
   // { enableOfflineQueue: false }
 );
-ioRedisClient.connect();
 
 ioRedisClient.on('connect', () => {
   logger.trace('Redis is connected : ', 'health_check_error');
