@@ -191,12 +191,12 @@ const configureJourney = (app, commonContent) => {
             return new Error("redis server refused connection");
           }
           if(total_retry_time > 1000 * 60 * 60){
-            console.log("Retry time exhausted")
             return new Error("Retry time exhausted");
           }
           if (options.attempt > 10 ) {
             return undefined;
           }
+          console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
           const maxRetryWait = 36000;

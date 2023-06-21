@@ -1,6 +1,6 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
-const ioRedis = require('redis');
+const ioRedis = require('ioredis');
 const config = require('config');
 
 const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
@@ -10,17 +10,12 @@ const logger = require('logger');
 
 
 const ioRedisClient = ioRedis.createClient(
-  {
-    url: config.redis.url,
-    socket: {
-      tls: true
-    }
-  }
-  // { enableOfflineQueue: false }
+  config.redis.url,
+  { enableOfflineQueue: false }
 );
 
 ioRedisClient.on('connect', () => {
-  logger.trace('Redis is connected : ', 'health_check_error');
+  logger.trace('Redis is connected :', 'health_check_error');
 });
 
 ioRedisClient.on('ready', () => {
