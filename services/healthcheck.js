@@ -10,12 +10,18 @@ const logger = require('logger');
 
 
 const ioRedisClient = ioRedis.createClient(
-  config.redis.url,
-  { enableOfflineQueue: false }
+  {
+    url: config.redis.url,
+    socket: {
+      tls: true
+    }
+  }
+  // { enableOfflineQueue: false }
 );
+ioRedisClient.connect();
 
 ioRedisClient.on('connect', () => {
-  logger.trace(`Redis is connected : ${ioRedisClient.connected}`, 'health_check_error');
+  logger.trace('Redis is connected : ', 'health_check_error');
 });
 
 ioRedisClient.on('ready', () => {
