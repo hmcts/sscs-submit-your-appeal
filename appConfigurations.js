@@ -174,7 +174,6 @@ const configureHelmet = app => {
     }
   }));
 };
-
 /*eslint-disable */
 const configureJourney = (app, commonContent) => {
   journey(app, {
@@ -197,6 +196,7 @@ const configureJourney = (app, commonContent) => {
             return undefined;
           }
           console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
+          console.log("connection string: " + config.redis.url);
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
           const maxRetryWait = 36000;
