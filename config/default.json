@@ -158,5 +158,6 @@
       "tokenKey": "SERVICE_TOKEN_KEY"
     }
   },
-  "languages": ["en", "cy"]
+  "languages": ["en", "cy"],
+  "NODE_ENV": "testing"
 }
