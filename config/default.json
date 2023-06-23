@@ -5,7 +5,7 @@
     "baseUrl": "BASE_URL"
   },
   "redis": {
-    "url": "redis://ignore:CQ97SQdhDiAnDlmEi18dyTM3mRTCXF6XLAzCaO6jdiM%3D@sscs-redis-demo.redis.cache.windows.net:6380?tls=true",
+    "url": "redis://127.0.0.1:6379",
     "secret": "defaultsecret",
     "useSSL": "false",
     "timeout": 1200
