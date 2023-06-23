@@ -13,7 +13,8 @@ const logger = require('logger');
 const conn = config.redis.url;
 
 // eslint-disable-next-line no-magic-numbers
-const password = conn.substring(conn.indexOf('re:') + 3, conn.indexOf('@'));
+var password = conn.substring(conn.indexOf('re:') + 3, conn.indexOf('@'));
+password = password.replace("%3D", "=");
 const host = conn.substring(conn.indexOf('@') + 1, conn.indexOf(':6'));
 // Connection configuration
 const cacheConnection = redis.createClient({
