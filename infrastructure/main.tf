@@ -24,8 +24,7 @@ module "redis-cache" {
   common_tags   = var.common_tags
   env           = var.env
   redis_version = "6"
-  public_network_access_enabled = false
-  private_endpoint_enabled = true
+  subnetid      = data.azurerm_subnet.core_infra_redis_subnet.id
 }
 
 resource "azurerm_key_vault_secret" "redis_access_key" {
