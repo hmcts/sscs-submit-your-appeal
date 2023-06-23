@@ -1,6 +1,8 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
 // const ioRedis = require('ioredis');
+const redis = require('redis');
+
 const config = require('config');
 
 const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
@@ -8,6 +10,27 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
+const conn = config.redis.url;
+
+// eslint-disable-next-line no-magic-numbers
+const password = conn.substring(conn.indexOf('re:') + 3, conn.indexOf('@'));
+const host = conn.substring(conn.indexOf('@') + 1, conn.indexOf(':6'));
+// Connection configuration
+const cacheConnection = redis.createClient({
+  // rediss for TLS
+  url: `rediss://${host}:6380`,
+  password
+});
+
+// Connect to Redis
+// eslint-disable-next-line no-unused-expressions
+(async() => {
+  await cacheConnection.connect();
+});
+
+// PING command
+console.log('\nCache command: PING');
+console.log(`Cache response : ${cacheConnection.ping()}`);
 
 // const ioRedisClient = ioRedis.createClient(
 //   config.redis.url,
@@ -25,7 +48,7 @@ const logger = require('logger');
 // ioRedisClient.on('reconnecting', () => {
 //   logger.trace('Redis is reconnecting: ', 'health_check_error');
 // });
-
+//
 // ioRedisClient.on('error', error => {
 //   logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
 // });

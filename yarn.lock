@@ -15152,6 +15152,7 @@ __metadata:
     pre-commit: ^1.2.2
     proxyquire: ^2.0.1
     puppeteer: ^5.4.1
+    redis: ^4.6.7
     request: ^2.87.0
     request-promise: ^4.2.4
     rewire: ^4.0.1

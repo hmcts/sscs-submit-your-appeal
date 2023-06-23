@@ -97,6 +97,7 @@
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "parse-full-name": "^1.2.3",
     "postcss-loader": "^3.0.0",
+    "redis": "^4.6.7",
     "request": "^2.87.0",
     "request-promise": "^4.2.4",
     "sass-loader": "^7.1.0",
