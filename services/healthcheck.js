@@ -42,6 +42,7 @@ const setup = app => {
       )
     },
     readinessChecks: {
+      redis: healthcheck.raw(() => (rClient.ping() ? healthcheck.up() : healthcheck.down())),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health/readiness`,
         healthOptions('Readiness check failed on submit-your-appeal-api:')
       )
