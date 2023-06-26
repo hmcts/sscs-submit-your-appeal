@@ -35,6 +35,6 @@ resource "azurerm_key_vault_secret" "redis_access_key" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "${var.product}-redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?ssl=true"
+  value        = "rediss://:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}/0?ssl=true"
   key_vault_id = data.azurerm_key_vault.sscs_key_vault.id
 }
