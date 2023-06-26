@@ -2,7 +2,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
 // const ioRedis = require('ioredis');
 // if using node-redis package
-let redis  = require('redis');
+const redis = require('redis');
 
 const config = require('config');
 
@@ -12,10 +12,10 @@ const { OK } = require('http-status-codes');
 const logger = require('logger');
 
 let redisUrl = config.redis.url.replace('ignore', '');
-redisUrl = redisUrl.substring(0, redisUrl.indexOf('?'));
+redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('//', '//default:');
 
-console.log('Attempting to connect to redis with url: ' + redisUrl);
-console.log('Attempting to connect to redis with decoded url: ' + redisUrl);
+console.log(`Attempting to connect to redis with url: ${redisUrl}`);
+console.log(`Attempting to connect to redis with decoded url: ${redisUrl}`);
 
 const rClient = redis.createClient({
   url: redisUrl,
@@ -24,11 +24,11 @@ const rClient = redis.createClient({
   }
 });
 
-rClient.on("error", function(error) {
+rClient.on('error', error => {
   console.error(error);
 });
-rClient.set("key", "value", redis.print);
-rClient.get("key", redis.print);
+rClient.set('key', 'value', redis.print);
+rClient.get('key', redis.print);
 
 // (async() => {
 //
