@@ -2,7 +2,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
 // const ioRedis = require('ioredis');
 // if using node-redis package
-const { createClient } = require('redis');
+let redis  = require('redis');
 
 const config = require('config');
 
@@ -11,41 +11,56 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
-const redis = createClient({
+const rClient = redis.createClient({
   url: config.redis.url,
   socket: {
-    tls: true,
-    servername: 'sscs-redis-demo'
+    tls: true
   }
 });
 
+rClient.on("error", function(error) {
+  console.error(error);
+});
+rClient.set("key", "value", redis.print);
+rClient.get("key", redis.print);
 
-(async() => {
-  await redis.connect(); // if using node-redis client.
+// (async() => {
+//
+//   rClient.set('key', 'value');
+//
+//   console.log('The key value: ' + rClient.get('key'));
+//
+//   // const pingCommandResult = await rClient.ping();
+//   // console.log('Ping command result: ', pingCommandResult);
+// })();
 
-  const pingCommandResult = await redis.ping();
-  console.log('Ping command result: ', pingCommandResult);
-
-  const getCountResult = await redis.get('count');
-  console.log('Get count result: ', getCountResult);
-
-  const incrCountResult = await redis.incr('count');
-  console.log('Increase count result: ', incrCountResult);
-
-  const newGetCountResult = await redis.get('count');
-  console.log('New get count result: ', newGetCountResult);
-
-  await redis.set(
-    'object',
-    JSON.stringify({
-      name: 'Redis',
-      lastname: 'Client'
-    })
-  );
-
-  const getStringResult = await redis.get('object');
-  console.log('Get string result: ', JSON.parse(getStringResult));
-})();
+// (async() => {
+//    await rClient.connect(); // if using node-redis client.
+// })();
+//
+//   const pingCommandResult = await redis.ping();
+//   console.log('Ping command result: ', pingCommandResult);
+//
+//   const getCountResult = await redis.get('count');
+//   console.log('Get count result: ', getCountResult);
+//
+//   const incrCountResult = await redis.incr('count');
+//   console.log('Increase count result: ', incrCountResult);
+//
+//   const newGetCountResult = await redis.get('count');
+//   console.log('New get count result: ', newGetCountResult);
+//
+//   await redis.set(
+//     'object',
+//     JSON.stringify({
+//       name: 'Redis',
+//       lastname: 'Client'
+//     })
+//   );
+//
+//   const getStringResult = await redis.get('object');
+//   console.log('Get string result: ', JSON.parse(getStringResult));
+// })();
 
 // const ioRedisClient = ioRedis.createClient(
 //   config.redis.url,
