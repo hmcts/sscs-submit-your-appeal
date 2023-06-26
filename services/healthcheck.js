@@ -12,7 +12,7 @@ const { OK } = require('http-status-codes');
 const logger = require('logger');
 
 let redisUrl = config.redis.url.replace('ignore', '');
-redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('//', '//default:');
+redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('redis', 'rediss');
 
 console.log(`Attempting to connect to redis with url: ${redisUrl}`);
 console.log(`Attempting to connect to redis with decoded url: ${redisUrl}`);
