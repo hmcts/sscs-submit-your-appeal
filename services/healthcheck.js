@@ -11,11 +11,8 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
-const redisUrl = config.redis.url;
-
-
 const rClient = redis.createClient({
-  url: redisUrl,
+  url: config.redis.url,
   socket: {
     tls: true
   }
@@ -24,8 +21,6 @@ const rClient = redis.createClient({
 rClient.on('error', error => {
   console.error(error);
 });
-rClient.set('key', 'value', redis.print);
-rClient.get('key', redis.print);
 
 const healthOptions = message => {
   return {
