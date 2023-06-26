@@ -11,11 +11,8 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
-let redisUrl = config.redis.url;
-//redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('redis', 'rediss');
+const redisUrl = config.redis.url;
 
-console.log(`Attempting to connect to redis with url: ${redisUrl}`);
-console.log(`Attempting to connect to redis with decoded url: ${redisUrl}`);
 
 const rClient = redis.createClient({
   url: redisUrl,

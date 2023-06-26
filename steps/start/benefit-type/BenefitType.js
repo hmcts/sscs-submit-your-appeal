@@ -9,14 +9,12 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const i18next = require('i18next');
-const logger = require('logger')
 
 class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }
   get form() {
-    logger.trace('benefit type reached')
     const types = Object.values(benefitTypes);
     return form({
       benefitType: text.joi(
