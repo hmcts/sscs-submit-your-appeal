@@ -11,8 +11,8 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
-let redisUrl = config.redis.url.replace('ignore', '');
-redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('redis', 'rediss');
+let redisUrl = config.redis.url;
+//redisUrl = redisUrl.substring(0, redisUrl.indexOf('?')).replace('redis', 'rediss');
 
 console.log(`Attempting to connect to redis with url: ${redisUrl}`);
 console.log(`Attempting to connect to redis with decoded url: ${redisUrl}`);
@@ -109,21 +109,21 @@ const healthOptions = message => {
 const setup = app => {
   healthcheck.addTo(app, {
     checks: {
-      // redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
-      //   .catch(error => {
-      //     logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
-      //     return outputs.down(error);
-      //   })),
+      redis: healthcheck.raw(() => rClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
+        .catch(error => {
+          logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
+          return outputs.down(error);
+        })),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`,
         healthOptions('Health check failed on submit-your-appeal-api:')
       )
     },
     readinessChecks: {
-      // redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
-      //   .catch(error => {
-      //     logger.trace(`Readiness check failed on redis: ${error}`, 'Readiness_check_error');
-      //     return outputs.down(error);
-      //   })),
+      redis: healthcheck.raw(() => rClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
+        .catch(error => {
+          logger.trace(`Readiness check failed on redis: ${error}`, 'Readiness_check_error');
+          return outputs.down(error);
+        })),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health/readiness`,
         healthOptions('Readiness check failed on submit-your-appeal-api:')
       )
