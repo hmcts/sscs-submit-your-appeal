@@ -1,6 +1,5 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
-// const ioRedis = require('ioredis');
 // if using node-redis package
 const redis = require('redis');
 
