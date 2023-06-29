@@ -23,7 +23,6 @@ module "redis-cache" {
   location                      = var.location
   common_tags                   = var.common_tags
   env                           = var.env
-  name                          = "${var.product}-redis-v6"
   redis_version                 = "6"
   business_area                 = "cft"
   public_network_access_enabled = false
