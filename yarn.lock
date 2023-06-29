@@ -1306,6 +1306,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hmcts/cookie-manager@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@hmcts/cookie-manager@npm:1.0.0"
+  checksum: 7b9aacd5510f296fad664cbce2ad3bde1dfbe6276f79e05ecd7f3a437fd6b5415b95a202354a4ad2d2bb41ad4ddda436202e757eca8d106ddf1d28d801169657
+  languageName: node
+  linkType: hard
+
 "@hmcts/div-idam-express-middleware@npm:^6.6.2":
   version: 6.6.2
   resolution: "@hmcts/div-idam-express-middleware@npm:6.6.2"
@@ -15019,6 +15026,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.10.2
     "@babel/preset-env": ^7.10.2
+    "@hmcts/cookie-manager": ^1.0.0
     "@hmcts/div-idam-express-middleware": ^6.6.2
     "@hmcts/eslint-config": ^1.4.0
     "@hmcts/nodejs-healthcheck": ^1.7.0

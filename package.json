@@ -40,6 +40,7 @@
   "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
+    "@hmcts/cookie-manager": "^1.0.0",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/one-per-page": "5.4.0",
