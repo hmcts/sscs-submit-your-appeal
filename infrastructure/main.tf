@@ -23,7 +23,7 @@ module "redis-cache" {
   location      = var.location
   common_tags   = var.common_tags
   env           = var.env
-  name          = "${var.product}-v6"
+  name          = "${var.product}-redis-v6"
   redis_version = "6"
   subnetid      = data.azurerm_subnet.core_infra_redis_subnet.id
 }
