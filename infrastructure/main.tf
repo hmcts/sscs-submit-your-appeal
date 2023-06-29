@@ -18,12 +18,14 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
 }
 
 module "redis-cache" {
-  source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
-  product     = "${var.product}-redis"
-  location    = var.location
-  env         = var.env
-  subnetid    = data.azurerm_subnet.core_infra_redis_subnet.id
-  common_tags = var.common_tags
+  source        = "git@github.com:hmcts/cnp-module-redis?ref=master"
+  product       = var.product
+  location      = var.location
+  common_tags   = var.common_tags
+  env           = var.env
+  name          = "${var.product}-v6"
+  redis_version = "6"
+  subnetid      = data.azurerm_subnet.core_infra_redis_subnet.id
 }
 
 resource "azurerm_key_vault_secret" "redis_access_key" {
@@ -34,6 +36,6 @@ resource "azurerm_key_vault_secret" "redis_access_key" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "${var.product}-redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
+  value        = "rediss://:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}"
   key_vault_id = data.azurerm_key_vault.sscs_key_vault.id
 }

@@ -1,10 +1,23 @@
+# ---- Base image ----
 FROM hmctspublic.azurecr.io/base/node:14-alpine as base
-
 USER root
 RUN corepack enable
-
-COPY --chown=hmcts:hmcts . .
 USER hmcts
-RUN yarn install  && yarn build && yarn cache clean
+
+COPY --chown=hmcts:hmcts .yarn ./.yarn
+COPY --chown=hmcts:hmcts config ./config
+COPY --chown=hmcts:hmcts package.json yarn.lock .yarnrc.yml ./
+
+RUN yarn workspaces focus --all --production && yarn cache clean
+
+# ---- Build image ----
+FROM base as build
+COPY --chown=hmcts:hmcts . ./
+RUN yarn build
+
+USER root
+RUN apk --update add redis curl
+USER hmcts
 
 EXPOSE 3000
+

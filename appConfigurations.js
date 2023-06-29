@@ -174,7 +174,6 @@ const configureHelmet = app => {
     }
   }));
 };
-
 /*eslint-disable */
 const configureJourney = (app, commonContent) => {
   journey(app, {
@@ -187,11 +186,19 @@ const configureJourney = (app, commonContent) => {
           if (error) {
             console.log(`Redis connection failed with ${error.code}`);
           }
+          if (options.error && options.error.code === "ECONNREFUSED"){
+            return new Error("redis server refused connection");
+          }
+          if(total_retry_time > 1000 * 60 * 60){
+            return new Error("Retry time exhausted");
+          }
+          if (options.attempt > 10 ) {
+            return undefined;
+          }
           console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
-          // reconnect after
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
-          const maxRetryWait = 3000;
+          const maxRetryWait = 36000;
           return Math.min(retryTime, maxRetryWait);
         }
       },
@@ -223,7 +230,6 @@ const configureJourney = (app, commonContent) => {
   });
 };
 /* eslint-enable */
-
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));
 
@@ -278,7 +284,6 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
-
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });
