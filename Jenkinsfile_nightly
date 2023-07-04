@@ -12,7 +12,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure")
+@Library("Infrastructure@old-provider")
 
 def product = "sscs-tribunals"
 def component = "frontend"
