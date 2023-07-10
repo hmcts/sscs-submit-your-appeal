@@ -27,7 +27,7 @@ cookieManager.on('UserPreferencesSaved', preferences => {
 
 const config = {
   userPreferences: {
-    cookieName: 'cookies_policy'
+    cookieName: 'sscs-tribunals-frontend-cookie-preferences'
   },
   cookieManifest: [
     {
