@@ -1,13 +1,13 @@
 import cookieManager from '@hmcts/cookie-manager';
 
 cookieManager.on('UserPreferencesLoaded', preferences => {
-  console.debug('Received UserPreferencesLoaded, pushing cookie preferences: ' + preferences);
+  console.debug('Received UserPreferencesLoaded, pushing cookie preferences: ' + JSON.stringify(preferences));
   const dataLayer = window.dataLayer || [];
   dataLayer.push({ event: 'Cookie Preferences', cookiePreferences: preferences });
 });
 
 cookieManager.on('UserPreferencesSaved', preferences => {
-  console.debug('Received UserPreferencesSaved, Pushing cookie preferences: ' + preferences);
+  console.debug('Received UserPreferencesSaved, Pushing cookie preferences: ' + JSON.stringify(preferences));
   const dataLayer = window.dataLayer || [];
   const dtrum = window.dtrum;
 
