@@ -5,7 +5,7 @@ cookieManager.on('UserPreferencesLoaded', preferences => {
   preferences['apm'] = preferences['apm'] === true ? 'on' : preferences['apm'];
   console.debug('Received UserPreferencesLoaded, pushing cookie preferences: ' + JSON.stringify(preferences));
   const dataLayer = window.dataLayer || [];
-  dataLayer.push({ event: 'Cookie Preferences', cookiePreferences: preferences });
+  // dataLayer.push({ event: 'Cookie Preferences', cookiePreferences: preferences });
 });
 
 cookieManager.on('UserPreferencesSaved', preferences => {
