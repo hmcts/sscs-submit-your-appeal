@@ -21,12 +21,12 @@ function setCookiePreference() {
     var getApmSelectedValue = document.querySelector('input[name="apm"]:checked');
     setCookie('cookies_preferences_set', true, 365)
     setCookie('cookies_policy', '{"essential":true,"analytics":' + getAnalyticsSelectedValue.value
-                                + ',"apm:"' + getApmSelectedValue.value
+                                + ',"apm":' + getApmSelectedValue.value
                                 + '}', 365)
-    var analyticsValue = getAnalyticsSelectedValue.value ? "on" : "off";
-    var apmValue = getApmSelectedValue ? "on" : "off";
+    var analyticsValue = getAnalyticsSelectedValue.value ? 'on' : 'off';
+    var apmValue = getApmSelectedValue.value ? 'on' : 'off';
     setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":' + analyticsValue
-        + ',"apm:"' + apmValue
+        + ',"apm":' + apmValue
         + '}', 365)
     document.getElementById("cookie-preference-success").classList.remove("govuk-visually-hidden");
     if (document.getElementById('accept-all-cookies-successs')) {
