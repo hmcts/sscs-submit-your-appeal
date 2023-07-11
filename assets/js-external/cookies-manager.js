@@ -23,8 +23,10 @@ function setCookiePreference() {
     setCookie('cookies_policy', '{"essential":true,"analytics":' + getAnalyticsSelectedValue.value
                                 + ',"apm:"' + getApmSelectedValue.value
                                 + '}', 365)
-    setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":' + getAnalyticsSelectedValue.value ? "on" : "off"
-        + ',"apm:"' + getApmSelectedValue.value ? "on" : "off"
+    var analyticsValue = getAnalyticsSelectedValue.value ? "on" : "off";
+    var apmValue = getApmSelectedValue ? "on" : "off";
+    setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":' + analyticsValue
+        + ',"apm:"' + apmValue
         + '}', 365)
     document.getElementById("cookie-preference-success").classList.remove("govuk-visually-hidden");
     if (document.getElementById('accept-all-cookies-successs')) {
@@ -94,7 +96,7 @@ function checkCookie() {
         cookies_policy = '{"essential":true,"analytics":false,"apm":false}';
         if (cookies_policy != "" && cookies_policy != null) {
             setCookie("cookies_policy", cookies_policy, 365);
-            setCookie("sscs-tribunals-frontend-cookie-preferences", {"essential": "on", "analytics":"off","apm":"off"})
+            setCookie("sscs-tribunals-frontend-cookie-preferences", '{"essential": "on", "analytics":"off","apm":"off"}')
         }
     }
     if (cookies_preferences_set == "") {
