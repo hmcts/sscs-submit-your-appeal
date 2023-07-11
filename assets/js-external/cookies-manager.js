@@ -23,8 +23,8 @@ function setCookiePreference() {
     setCookie('cookies_policy', '{"essential":true,"analytics":' + getAnalyticsSelectedValue.value
                                 + ',"apm":' + getApmSelectedValue.value
                                 + '}', 365)
-    var analyticsValue = getAnalyticsSelectedValue.value ? 'on' : 'off';
-    var apmValue = getApmSelectedValue.value ? 'on' : 'off';
+    var analyticsValue = (getAnalyticsSelectedValue.value === 'true' ? 'on' : 'off');
+    var apmValue = (getApmSelectedValue.value === 'true' ? 'on' : 'off');
     setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":' + analyticsValue
         + ',"apm":' + apmValue
         + '}', 365)
