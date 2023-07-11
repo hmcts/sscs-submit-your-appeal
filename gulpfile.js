@@ -8,6 +8,9 @@ function copyCookieBanner(done) {
   gulp.src(['./node_modules/cmc-cookies-manager/shared-component/components/cookie-manager/**/*.js'])
     .pipe(gulp.dest(`${assetsDirectory}/js/`));
 
+  gulp.src(['./assets/js-external/*.js'])
+    .pipe(gulp.dest(`${assetsDirectory}/js/`));
+
   gulp.src(['./node_modules/cmc-cookies-manager/shared-component/components/cookie-manager/**/*.njk'])
     .pipe(gulp.dest(`${appDirectory}/cookie-manager/`));
 

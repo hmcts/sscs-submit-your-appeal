@@ -3,5 +3,6 @@ test/e2e/page-objects/steps.js
 test/unit/coverage/
 assets/js/date-picker/bootstrap-datepicker1.9.0.min.js
 assets/js/polyfill
+assets/js-external
 dist/
 cookie-banner/
