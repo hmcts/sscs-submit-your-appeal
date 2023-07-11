@@ -25,9 +25,9 @@ function setCookiePreference() {
                                 + '}', 365)
     var analyticsValue = (getAnalyticsSelectedValue.value === 'true' ? 'on' : 'off');
     var apmValue = (getApmSelectedValue.value === 'true' ? 'on' : 'off');
-    setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":' + analyticsValue
-        + ',"apm":' + apmValue
-        + '}', 365)
+    setCookie('sscs-tribunals-frontend-cookie-preferences', '{"essential":"on","analytics":"' + analyticsValue
+        + '","apm":"' + apmValue
+        + '"}', 365)
     document.getElementById("cookie-preference-success").classList.remove("govuk-visually-hidden");
     if (document.getElementById('accept-all-cookies-successs')) {
       document.getElementById('accept-all-cookies-success').classList.add('govuk-visually-hidden');
