@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
   wp.waitUntilValid(stats => {
     app.locals.webpackHash = stats.hash;
     https.createServer({
-      key: fs.readFileSync('keys/server.key'), // eslint-disable-line
+      key: config.serverKeysConfiguration.serverKey, // eslint-disable-line
       cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
     }, app).listen(config.node.port, () => {
       logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);

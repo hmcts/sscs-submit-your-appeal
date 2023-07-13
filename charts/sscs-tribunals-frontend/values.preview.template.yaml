@@ -21,6 +21,7 @@ nodejs:
         - postcode-lookup-token
         - AppInsightsInstrumentationKey
         - pcq-token-key
+        - server-key
 
 redis:
   enabled: true

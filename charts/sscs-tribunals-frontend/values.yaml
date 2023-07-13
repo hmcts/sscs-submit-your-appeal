@@ -36,6 +36,8 @@ nodejs:
         - sscs-redis-connection-string
         - AppInsightsInstrumentationKey
         - pcq-token-key
+        - server-key
+
 
 redis:
   enabled: false

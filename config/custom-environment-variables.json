@@ -137,5 +137,8 @@
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
     }
+  },
+  "serverKeysConfiguration": {
+    "serverKey": "SERVER_KEY"
   }
 }
