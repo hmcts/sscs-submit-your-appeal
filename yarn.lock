@@ -4173,15 +4173,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cmc-cookies-manager@github:hmcts/cmc-cookies-manager#3.0.2":
-  version: 1.0.6
-  resolution: "cmc-cookies-manager@https://github.com/hmcts/cmc-cookies-manager.git#commit=b41d9321c8c0b12ed36a550a0859b75c7c75467b"
-  dependencies:
-    govuk-frontend: ^3.11.0
-  checksum: aff8b2cf57f19e328b4b28dd00856d244895b1e0be8e235910df7d26f179f4fc719dcbba3b9b71e71fea14376eafa54ca471853f3de37df9b49af673fe6a6bae
-  languageName: node
-  linkType: hard
-
 "co@npm:4.6.0":
   version: 4.6.0
   resolution: "co@npm:4.6.0"
@@ -15045,7 +15036,6 @@ __metadata:
     chalk: ^2.4.2
     chokidar: ^3.0.1
     clean-webpack-plugin: ^3.0.0
-    cmc-cookies-manager: "github:hmcts/cmc-cookies-manager#3.0.2"
     codeceptjs: ^2.6.11
     compression-webpack-plugin: ^5.0.0
     config: ^3.2.5

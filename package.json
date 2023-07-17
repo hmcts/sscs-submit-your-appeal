@@ -54,7 +54,6 @@
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^3.0.0",
-    "cmc-cookies-manager": "github:hmcts/cmc-cookies-manager#3.0.2",
     "compression-webpack-plugin": "^5.0.0",
     "config": "^3.2.5",
     "cookies": "^0.7.3",
