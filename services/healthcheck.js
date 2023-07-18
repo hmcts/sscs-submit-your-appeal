@@ -1,6 +1,8 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
-const ioRedis = require('ioredis');
+// if using node-redis package
+const redis = require('redis');
+
 const config = require('config');
 
 const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
@@ -8,14 +10,15 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
+const rClient = redis.createClient({
+  url: config.redis.url,
+  socket: {
+    tls: true
+  }
+});
 
-const ioRedisClient = ioRedis.createClient(
-  config.redis.url,
-  { enableOfflineQueue: false }
-);
-
-ioRedisClient.on('error', error => {
-  logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
+rClient.on('error', error => {
+  console.error(error);
 });
 
 const healthOptions = message => {
@@ -34,21 +37,12 @@ const healthOptions = message => {
 const setup = app => {
   healthcheck.addTo(app, {
     checks: {
-      redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
-        .catch(error => {
-          logger.trace(`Health check failed on redis: ${error}`, 'health_check_error');
-          return outputs.down(error);
-        })),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`,
         healthOptions('Health check failed on submit-your-appeal-api:')
       )
     },
     readinessChecks: {
-      redis: healthcheck.raw(() => ioRedisClient.ping().then(_ => healthcheck.status(_ === 'PONG'))
-        .catch(error => {
-          logger.trace(`Readiness check failed on redis: ${error}`, 'Readiness_check_error');
-          return outputs.down(error);
-        })),
+      redis: healthcheck.raw(() => (rClient.ping() ? healthcheck.up() : healthcheck.down())),
       'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health/readiness`,
         healthOptions('Readiness check failed on submit-your-appeal-api:')
       )

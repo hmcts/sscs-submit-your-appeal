@@ -33,7 +33,7 @@ withPipeline("nodejs", product, component) {
     }
   }
 
-  afterAlways("smoketest:preview") {
+  afterSuccess("smoketest:preview") {
       stage('Application URLs') {
           def AppDevUrl = env.TEST_URL.replace("https", "http")
           AppDevUrl = AppDevUrl.replace("-staging.", ".")
