@@ -17,6 +17,7 @@ const setupSecrets = () => {
     setSecret('secrets.sscs.AppInsightsInstrumentationKey', 'appInsights.instrumentationKey');
     setSecret('secrets.sscs.pcq-token-key', 'services.pcq.tokenKey');
     setSecret('secrets.sscs.server-key', 'serverKeysConfiguration.serverKey');
+    setSecret('secrets.sscs.server-certificate', 'serverKeysConfiguration.serverCertificate');
   }
 };
 

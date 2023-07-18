@@ -139,6 +139,7 @@
     }
   },
   "serverKeysConfiguration": {
-    "serverKey": "SERVER_KEY"
+    "serverKey": "SERVER_KEY",
+    "serverCertificate" : "SERVER_CERTIFICATE"
   }
 }

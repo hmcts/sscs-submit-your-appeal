@@ -16,6 +16,7 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const logPath = 'server.js';
 
 if (process.env.NODE_ENV === 'development') {
+  logger.trace('This is the development env');
   const compiler = webpack(webpackDevConfig);
   const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
   app.use(wp);

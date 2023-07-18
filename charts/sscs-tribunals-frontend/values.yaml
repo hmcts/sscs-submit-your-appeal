@@ -37,6 +37,7 @@ nodejs:
         - AppInsightsInstrumentationKey
         - pcq-token-key
         - server-key
+        - server-certificate
 
 
 redis:
