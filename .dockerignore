@@ -17,6 +17,7 @@
 !views/**
 !webpack/**
 !cookie-banner/**
+!loadServerConfig.sh
 
 !app.js
 !appConfigurations.js
