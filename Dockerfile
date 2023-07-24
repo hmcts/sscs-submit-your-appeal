@@ -12,11 +12,10 @@ COPY --chown=hmcts:hmcts package.json yarn.lock .yarnrc.yml ./
 
 USER root
 RUN mkdir ./scripts
-COPY loadServerConfig.sh ./scripts
-
-WORKDIR ./scripts
+COPY loadServerConfig.sh ./
 RUN chmod +x loadServerConfig.sh
-RUN ./loadServerConfig.sh
+CMD ["./loadServerConfig.sh"]
+
 
 RUN yarn workspaces focus --all --production && yarn cache clean
 
@@ -30,12 +29,17 @@ USER root
 RUN apk --update add redis curl
 USER hmcts
 
-USER root
-RUN mkdir ./scripts
-COPY loadServerConfig.sh ./scripts
-WORKDIR ./scripts
-RUN chmod +x loadServerConfig.sh
-RUN ./loadServerConfig.sh
+RUN if [ ! -f "/scripts/loadServerConfig.sh" ];  \
+        then \
+            echo "Folder or script not found, creating them..."; \
+            USER root; \
+            mkdir ./scripts; \
+            copy loadServerConfig.sh ./scripts ;\
+            RUN chmod +x loadServerConfig.sh; \
+            ./loadServerConfig.sh; \
+    else \
+      echo "Folder and file already exist..."; \
+    fi
 
 
 EXPOSE 3000
