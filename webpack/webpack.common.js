@@ -27,8 +27,7 @@ module.exports = {
           { from: path.resolve('assets/locale'), to: 'locale' },
           { from: path.resolve('views/components'), to: 'nunjucks/components' },
           { from: imagesGokukFrontend, to: 'images' },
-          { from: fontsGokukFrontend, to: 'fonts' },
-          { from: path.resolve('cookie-banner/public/js/cookies-manager.js'), to: '' }
+          { from: fontsGokukFrontend, to: 'fonts' }
         ]
       }),
     new MiniCssExtractPlugin({ filename: '[name].css' })

@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash-es';
+import './cookie';
 import { frontend, redis } from '../../config/default';
 import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
