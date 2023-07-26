@@ -1306,6 +1306,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hmcts/cookie-manager@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@hmcts/cookie-manager@npm:1.0.0"
+  checksum: 7b9aacd5510f296fad664cbce2ad3bde1dfbe6276f79e05ecd7f3a437fd6b5415b95a202354a4ad2d2bb41ad4ddda436202e757eca8d106ddf1d28d801169657
+  languageName: node
+  linkType: hard
+
 "@hmcts/div-idam-express-middleware@npm:^6.6.2":
   version: 6.6.2
   resolution: "@hmcts/div-idam-express-middleware@npm:6.6.2"
@@ -4163,15 +4170,6 @@ __metadata:
     emitter-listener: ^1.0.1
     semver: ^5.4.1
   checksum: 3a8a4e30b03a81ec275eb9c079c49d4497013e7fa36259e86c9b6aff7990e85eebbc97552ed8a035c19403f0b825000df9bada5c1c0ac7cf1b2506c3a903df60
-  languageName: node
-  linkType: hard
-
-"cmc-cookies-manager@github:hmcts/cmc-cookies-manager#3.0.2":
-  version: 1.0.6
-  resolution: "cmc-cookies-manager@https://github.com/hmcts/cmc-cookies-manager.git#commit=b41d9321c8c0b12ed36a550a0859b75c7c75467b"
-  dependencies:
-    govuk-frontend: ^3.11.0
-  checksum: aff8b2cf57f19e328b4b28dd00856d244895b1e0be8e235910df7d26f179f4fc719dcbba3b9b71e71fea14376eafa54ca471853f3de37df9b49af673fe6a6bae
   languageName: node
   linkType: hard
 
@@ -15019,6 +15017,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.10.2
     "@babel/preset-env": ^7.10.2
+    "@hmcts/cookie-manager": ^1.0.0
     "@hmcts/div-idam-express-middleware": ^6.6.2
     "@hmcts/eslint-config": ^1.4.0
     "@hmcts/nodejs-healthcheck": ^1.7.0
@@ -15037,7 +15036,6 @@ __metadata:
     chalk: ^2.4.2
     chokidar: ^3.0.1
     clean-webpack-plugin: ^3.0.0
-    cmc-cookies-manager: "github:hmcts/cmc-cookies-manager#3.0.2"
     codeceptjs: ^2.6.11
     compression-webpack-plugin: ^5.0.0
     config: ^3.2.5
@@ -16464,9 +16462,9 @@ __metadata:
   linkType: hard
 
 "word-wrap@npm:^1.2.3, word-wrap@npm:~1.2.3":
-  version: 1.2.3
-  resolution: "word-wrap@npm:1.2.3"
-  checksum: 30b48f91fcf12106ed3186ae4fa86a6a1842416df425be7b60485de14bec665a54a68e4b5156647dec3a70f25e84d270ca8bc8cd23182ed095f5c7206a938c1f
+  version: 1.2.5
+  resolution: "word-wrap@npm:1.2.5"
+  checksum: f93ba3586fc181f94afdaff3a6fef27920b4b6d9eaefed0f428f8e07adea2a7f54a5f2830ce59406c8416f033f86902b91eb824072354645eea687dff3691ccb
   languageName: node
   linkType: hard
 
