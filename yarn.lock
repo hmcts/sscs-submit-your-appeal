@@ -3834,6 +3834,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"caniuse-lite@npm:^1.0.30001518":
+  version: 1.0.30001518
+  resolution: "caniuse-lite@npm:1.0.30001518"
+  checksum: 1b63272f6e3d628ac52e2547e0b75fc477004d4b19b63e34b2c045de7f2e48909f9ea513978fc5a46c4ab5ac6c9daf9cc5e6a78466e90684fb824c3f2105e8f5
+  languageName: node
+  linkType: hard
+
 "caseless@npm:~0.12.0":
   version: 0.12.0
   resolution: "caseless@npm:0.12.0"
@@ -15167,6 +15174,7 @@ __metadata:
     babel-core: ^6.26.3
     babel-loader: ^8.1.0
     body-parser: ^1.19.0
+    caniuse-lite: ^1.0.30001518
     chai: ^4.1.2
     chai-as-promised: ^7.1.1
     chai-jq: ^0.0.9
