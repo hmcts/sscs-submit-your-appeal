@@ -5,6 +5,7 @@ const applicationInsights = require('applicationinsights');
 const config = require('config');
 const chalk = require('chalk');
 
+
 let iKey = config.get('appInsights.instrumentationKey');
 
 module.exports = class Logger {

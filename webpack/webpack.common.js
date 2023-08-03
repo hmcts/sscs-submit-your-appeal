@@ -18,7 +18,7 @@ module.exports = {
     path.resolve('assets/js/main.js')
   ],
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin(
       {
@@ -50,7 +50,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/i,
-        loaders: ['file-loader']
+        loader: 'file-loader'
       },
       {
         test: /\.(njk|nunjucks)$/,
@@ -72,7 +72,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development'
+              publicPath: 'development'
             }
           },
           'css-loader',

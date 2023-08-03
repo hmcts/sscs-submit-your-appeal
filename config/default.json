@@ -1,7 +1,7 @@
 {
   "node": {
     "protocol": "https",
-    "port": 3000,
+    "port": 9000,
     "baseUrl": "BASE_URL"
   },
   "redis": {
