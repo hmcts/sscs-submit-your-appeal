@@ -36,7 +36,7 @@ USER root
 RUN apk --update add redis curl
 USER hmcts
 
-USER ROOT
+
 
 
 USER root

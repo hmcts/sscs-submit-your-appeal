@@ -18,6 +18,7 @@
 !webpack/**
 !cookie-banner/**
 !loadServerConfig.sh
+!azureCLILoginScript.py
 
 !app.js
 !appConfigurations.js
