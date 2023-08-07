@@ -14,9 +14,10 @@ if len(sys.argv) != 1:
 
 # Namespace as first argument
 if len(sys.argv) == 1:
-    print('0 arguments')
+
     try:
         logged_in = subprocess.check_output('az ad signed-in-user show', shell=True)
+        print('You are already Logged in ........')
 
     except subprocess.CalledProcessError:
         print('Login into azure account')
