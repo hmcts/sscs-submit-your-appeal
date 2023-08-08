@@ -612,7 +612,8 @@
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=en_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
-  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore"
+  "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
+  "10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy_GET" : "ignore"
 }
 
 
