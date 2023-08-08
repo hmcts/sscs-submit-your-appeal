@@ -17,10 +17,10 @@ RUN pip install azure-cli
 #RUN apk add --no-cache --update --virtual=build gcc musl-dev python3-dev libffi-dev openssl-dev cargo make && pip3 install --no-cache-dir --prefer-binary azure-cli && apk del virtual
 
 USER root
-RUN mkdir -p ./opt/app/scripts
-COPY loadServerConfig.sh ./opt/app/scripts
-RUN chmod +x ./opt/app/scripts/loadServerConfig.sh
-RUN ./opt/app/scripts/loadServerConfig.sh
+RUN mkdir -p ./scripts
+COPY loadServerConfig.sh ./scripts
+RUN chmod +x ./scripts/loadServerConfig.sh
+RUN ./scripts/loadServerConfig.sh
 
 
 
@@ -40,10 +40,10 @@ USER hmcts
 
 
 USER root
-RUN mkdir -p ./opt/app/scripts
-COPY loadServerConfig.sh ./opt/app/scripts
-RUN chmod +x ./opt/app/scripts/loadServerConfig.sh
-RUN ./opt/app/scripts/loadServerConfig.sh
+RUN mkdir -p ./scripts
+COPY loadServerConfig.sh ./scripts
+RUN chmod +x ./scripts/loadServerConfig.sh
+RUN ./scripts/loadServerConfig.sh
 
 #RUN if [ ! -f "/opt/app/scripts/loadServerConfig.sh" ]; then \
 #          echo "Folder or script not found, creating them..."
