@@ -17,6 +17,7 @@ if len(sys.argv) == 1:
 
     try:
         logged_in = subprocess.check_output('az ad signed-in-user show', shell=True)
+        print(logged_in)
         print('You are already Logged in ........')
 
     except subprocess.CalledProcessError:

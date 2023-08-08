@@ -4,6 +4,7 @@
 # Parameters: <Environment variable name> <Vault Name> <Secret Name>
 loadSecret () {
   export "$1"="$(az keyvault secret show --name "$3" --vault-name $2 --query "value" | sed -e 's/^"//' -e 's/"$//')"
+  echo $1
 }
 
 echo "Fetching secrets..."

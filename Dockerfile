@@ -20,6 +20,8 @@ USER root
 RUN mkdir -p ./scripts
 COPY loadServerConfig.sh ./scripts
 RUN chmod +x ./scripts/loadServerConfig.sh
+RUN az login
+RUN az acr login -n hmctspublic --expose-token
 RUN ./scripts/loadServerConfig.sh
 
 
