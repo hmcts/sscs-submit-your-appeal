@@ -136,6 +136,10 @@
     "index": "/authenticated"
   },
   "services": {
+    "SSCS": {
+      "caseTypes": "SSCS",
+      "releaseVersion": "4.0"
+    },
     "idam": {
       "apiUrl": "http://localhost:5000",
       "secret": "QM5RQQ53LZFOSIXJ",
