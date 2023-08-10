@@ -613,7 +613,13 @@
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
   "10054_Cookie without SameSite Attribute_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
-  "10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy_GET" : "ignore"
+  "10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=en_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10096_Timestamp Disclosure - Unix_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
+  "10021_X-Content-Type-Options Header Missing_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27NQVfgqrux_10271230629152232.js_GET" : "ignore",
+  "10027_Information Disclosure - Suspicious Comments_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27NQVfgqrux_10271230629152232.js_GET" : "ignore"
 }
 
 
