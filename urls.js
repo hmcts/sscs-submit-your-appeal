@@ -5,8 +5,9 @@ module.exports = {
     benefitAppeal: 'https://benefit-appeal.aat.platform.hmcts.net',
     sscs1: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs1-eng.pdf',
     sscs2: 'https://www.gov.uk/government/publications/appeal-a-child-maintenance-group-decision-by-the-dwp-form-sscs2',
-    sscs3: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs3-eng.pdf',
-    sscs5: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs5-eng.pdf',
+    sscs3: 'https://www.gov.uk/government/publications/form-sscs3-notice-of-appeal-against-a-decision-of-the-department'
+    +'-for-work-and-pensions-compensation-recovery-unit',
+    sscs5: 'https://www.gov.uk/government/publications/appeal-a-tax-credit-child-benefit-or-guardians-allowance-decision-form-sscs5',
     sscs7: 'https://www.gov.uk/government/publications/appeal-against-a-decision-about-a-vaccine-damages-claim-sscs7'
   },
   relatedContent: {
