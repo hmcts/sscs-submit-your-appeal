@@ -3,7 +3,7 @@ module.exports = {
   surveyLink: 'https://www.smartsurvey.co.uk/s/SSCS_ExitSurvey/?pageurl=',
   formDownload: {
     benefitAppeal: 'https://benefit-appeal.aat.platform.hmcts.net',
-    sscs1: 'http://formfinder.hmctsformfinder.justice.gov.uk/sscs1-eng.pdf',
+    sscs1: 'https://www.gov.uk/government/publications/appeal-a-social-security-benefits-decision-form-sscs1',
     sscs2: 'https://www.gov.uk/government/publications/appeal-a-child-maintenance-group-decision-by-the-dwp-form-sscs2',
     sscs3: 'https://www.gov.uk/government/publications/form-sscs3-notice-of-appeal-against-a-decision-of-the-department'
     +'-for-work-and-pensions-compensation-recovery-unit',
