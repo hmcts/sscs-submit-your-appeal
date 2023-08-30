@@ -1,4 +1,4 @@
-const expressNunjucks = require('express-nunjucks');
+const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
 const config = require('config');
