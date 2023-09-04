@@ -1998,7 +1998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mapbox/node-pre-gyp@npm:^1.0.8":
+"@mapbox/node-pre-gyp@npm:^1.0.11":
   version: 1.0.11
   resolution: "@mapbox/node-pre-gyp@npm:1.0.11"
   dependencies:
@@ -2999,14 +2999,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"applicationinsights-native-metrics@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "applicationinsights-native-metrics@npm:0.0.7"
+"applicationinsights-native-metrics@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "applicationinsights-native-metrics@npm:0.0.10"
   dependencies:
-    "@mapbox/node-pre-gyp": ^1.0.8
-    nan: ^2.14.0
+    "@mapbox/node-pre-gyp": ^1.0.11
+    nan: ^2.17.0
     node-gyp: latest
-  checksum: f0a1966556e79bf84fbf572ed59d0eeb0fc4559ef502e4863667a64ba616da9cbf9d5d0898eb73d4310a9cefc8b82f34894fb7485f9683d7ecb913a7a4234e31
+  checksum: 4ee3adcb05295fa13ef0343b68f71198e1cb088de11eeaaa449aa13466d88770a85f27e50273760b784bcfd406de8d953c10e719ffb97cbf18c1e98691f4dc78
   languageName: node
   linkType: hard
 
@@ -11145,7 +11145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.14.0":
+"nan@npm:^2.17.0":
   version: 2.17.0
   resolution: "nan@npm:2.17.0"
   dependencies:
@@ -15319,7 +15319,7 @@ __metadata:
     "@hmcts/uk-bank-holidays": ^1.0.2
     accessible-autocomplete: ^2.0.4
     applicationinsights: ^2.7.3
-    applicationinsights-native-metrics: ^0.0.7
+    applicationinsights-native-metrics: ^0.0.10
     babel-core: ^6.26.3
     babel-loader: ^8.3.0
     body-parser: ^1.20.2
