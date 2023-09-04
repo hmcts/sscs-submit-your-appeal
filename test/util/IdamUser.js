@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 const logger = require('logger');
-const rp = require('request-promise');
+const rp = require('@cypress/request-promise');
 const config = require('config');
 
 const testDataEn = require('test/e2e/data.en');
