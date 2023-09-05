@@ -20,6 +20,7 @@ evidence.txt
 /test/coverage
 package-lock.json
 *.iml
+/secrets
 
 # Yarn 3 files
 .pnp.*
