@@ -38,6 +38,8 @@
     "lint"
   ],
   "dependencies": {
+    "@azure/identity": "^3.3.0",
+    "@azure/keyvault-secrets": "^4.7.0",
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@hmcts/cookie-manager": "^1.0.0",
