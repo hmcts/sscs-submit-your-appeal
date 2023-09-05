@@ -137,11 +137,5 @@
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
     }
-  },
-  "secrets": {
-    "sscs-aat":{
-      "server-key": "default",
-      "server-certificate": "default"
-    }
   }
 }
