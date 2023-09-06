@@ -7,18 +7,10 @@ async function mount(vaultName, secret) {
     const vaultUrl = `https://${vaultName}.vault.azure.net/`;
     const client = new SecretClient(vaultUrl, credential);
     const secretValue = await client.getSecret(secret);
-    let secretPrefix = '';
-    let secretSuffix = '';
+    const prefix = secretValue.value.match(/-----BEGIN (PRIVATE KEY|CERTIFICATE)-----/gm)[0];
+    const suffix = secretValue.value.match(/-----END (PRIVATE KEY|CERTIFICATE)-----/gm)[0];
 
-    if (secret === 'server-key') {
-      secretPrefix = '-----BEGIN PRIVATE KEY-----';
-      secretSuffix = '-----END PRIVATE KEY-----';
-    } else if (secret === 'server-certificate') {
-      secretPrefix = '-----BEGIN CERTIFICATE-----';
-      secretSuffix = '-----END CERTIFICATE-----';
-    }
-
-    return secretValue.value.replace(secretPrefix, `${secretPrefix}\n`).replace(secretSuffix, `\n${secretSuffix}`);
+    return secretValue.value.replace(prefix, `${prefix}\n`).replace(suffix, `\n${suffix}`);
   } catch (error) {
     if (error.name === 'CredentialUnavailableError') {
       throw new Error("Azure CLI credential is not available. Please log in using 'az login'.");
@@ -31,7 +23,7 @@ async function mount(vaultName, secret) {
 async function run() {
   const serverKey = await mount('sscs-aat', 'server-key');
   const serverCertificate = await mount('sscs-aat', 'server-certificate');
-  return {serverKey, serverCertificate}
+  return { serverKey, serverCertificate };
 }
 
 module.exports = run;
