@@ -1,28 +1,15 @@
-const path = require('path');
 const { AzureCliCredential } = require('@azure/identity');
 const { SecretClient } = require('@azure/keyvault-secrets');
-const fs = require('fs').promises;
 
-async function mount(vaultName, nameSpace, outputDir, secret) {
+async function mount(vaultName, secret) {
   try {
     const credential = new AzureCliCredential();
     const vaultUrl = `https://${vaultName}.vault.azure.net/`;
     const client = new SecretClient(vaultUrl, credential);
-
-    fs.mkdir(path.join(outputDir, nameSpace), { recursive: true }, error => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Directory created');
-      }
-    });
-
     const secretValue = await client.getSecret(secret);
-    const filePath = outputDir ? path.join(outputDir, nameSpace, secret) : secret;
-
-    let secretOutput = secretValue.value;
     let secretPrefix = '';
     let secretSuffix = '';
+
     if (secret === 'server-key') {
       secretPrefix = '-----BEGIN PRIVATE KEY-----';
       secretSuffix = '-----END PRIVATE KEY-----';
@@ -31,10 +18,7 @@ async function mount(vaultName, nameSpace, outputDir, secret) {
       secretSuffix = '-----END CERTIFICATE-----';
     }
 
-    secretOutput = secretOutput.replace(secretPrefix, `${secretPrefix}\n`).replace(secretSuffix, `\n${secretSuffix}`);
-
-    await fs.writeFile(filePath, secretOutput);
-    console.log(`Secret '${secret}' stored in '${filePath}'`);
+    return secretValue.value.replace(secretPrefix, `${secretPrefix}\n`).replace(secretSuffix, `\n${secretSuffix}`);
   } catch (error) {
     if (error.name === 'CredentialUnavailableError') {
       throw new Error("Azure CLI credential is not available. Please log in using 'az login'.");
@@ -45,8 +29,9 @@ async function mount(vaultName, nameSpace, outputDir, secret) {
 }
 
 async function run() {
-  await mount('sscs-aat', 'sscs-aat', './secrets', 'server-key');
-  await mount('sscs-aat', 'sscs-aat', './secrets', 'server-certificate');
+  const serverKey = await mount('sscs-aat', 'server-key');
+  const serverCertificate = await mount('sscs-aat', 'server-certificate');
+  return {serverKey, serverCertificate}
 }
 
 module.exports = run;
