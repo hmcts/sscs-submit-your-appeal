@@ -510,7 +510,7 @@ describe('Components/controller.js', () => {
     it('controller default super call error', () => {
       pcl = new PCL(enabled, token, url, page);
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
-      expect(pcl.init('')).to.be.rejectedWith(new Error('Super Callback function is not defined'));
+      pcl.init('').catch(reason => expect(reason.message).to.eq('Super Callback function is not defined'));
       expect(setPageStateSpy).to.have.been.calledOnce;
     });
   });

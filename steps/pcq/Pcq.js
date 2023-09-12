@@ -20,8 +20,6 @@ class Pcq extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    const skipPcq = () => this.next().redirect(req, res, next);
-
     // PCQ is enabled and not already called
     if (this.isEnabled() && !req.session.Pcq) {
       // Check PCQ Health
@@ -32,16 +30,20 @@ class Pcq extends SaveToDraftStore {
             this.invokePcq(req, res);
           } else {
             logger.trace('PCQ service is DOWN');
-            skipPcq();
+            this.skipPcq(req, res, next);
           }
         })
         .catch(error => {
           logger.trace(error.message);
-          skipPcq();
+          this.skipPcq(req, res, next);
         });
     } else {
-      skipPcq();
+      this.skipPcq(req, res, next);
     }
+  }
+
+  skipPcq(req, res, next) {
+    this.next().redirect(req, res, next);
   }
 
   invokePcq(req, res) {
