@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config ./webpack/webpack.prod.js",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --config ./webpack/webpack.prod.js",
     "dev": "cross-env NODE_ENV=development NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node --inspect server.js",
     "setup": "exit 0",
@@ -48,7 +48,6 @@
     "@hmcts/uk-bank-holidays": "^1.0.2",
     "accessible-autocomplete": "^2.0.4",
     "applicationinsights": "^2.7.3",
-    "applicationinsights-native-metrics": "^0.0.10",
     "body-parser": "^1.20.2",
     "chalk": "^4.1.2",
     "config": "^3.3.9",
