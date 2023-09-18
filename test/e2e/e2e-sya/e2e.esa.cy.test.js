@@ -11,6 +11,6 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[1].hasDwpIssuingOffice;
 
 Feature(`${language.toUpperCase()} - ESA E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @fullFunctional @e2e`, I => {
+Scenario(`${language.toUpperCase()} - ESA E2E SYA Journey @fullFunctional @e2e`, ({ I }) => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
 }).retry(15);

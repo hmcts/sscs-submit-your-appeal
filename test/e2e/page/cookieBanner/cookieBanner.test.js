@@ -5,16 +5,16 @@ const cookieContent = require('./cookie-content');
 
 Feature(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.amOnPage(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, I => {
+Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }) => {
   I.wait(2);
   I.see(cookieContent.bannerTitle);
   I.seeElement('.govuk-cookie-banner');
@@ -27,7 +27,7 @@ Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, I => {
   I.see(cookieContent.policy.selectCookieOptions);
 });
 
-Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, I => {
+Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) => {
   I.wait(2);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
@@ -39,7 +39,7 @@ Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, I => {
   I.seeCookie('_gat_UA-91309785-5');
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, I => {
+Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, ({ I }) => {
   I.wait(2);
   I.click(cookieContent.rejectCookie);
   I.see(cookieContent.hideAfterReject);
@@ -50,7 +50,7 @@ Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, I => {
   I.dontSeeCookie('_gid');
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, I => {
+Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ I }) => {
   I.wait(2);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);

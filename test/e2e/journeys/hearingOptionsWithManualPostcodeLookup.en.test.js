@@ -7,16 +7,16 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`, I => {
+Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`, ({ I }) => {
   I.amOnPage(paths.session.root);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);

@@ -6,7 +6,7 @@ const testData = require('test/e2e/data.en');
 
 Feature('Crossbrowser - PIP E2E SYA - Full Journey');
 
-Scenario('English - PIP E2E SYA Journey', I => {
+Scenario('English - PIP E2E SYA Journey', ({ I }) => {
   const commonContent = content.en;
 
   I.createTheSession('en');
@@ -25,7 +25,7 @@ Scenario('English - PIP E2E SYA Journey', I => {
 }).retry(15);
 
 
-Scenario('Welsh - PIP E2E SYA Journey', I => {
+Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
   const commonContent = content.cy;
 
   I.createTheSession('cy');

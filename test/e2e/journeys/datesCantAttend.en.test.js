@@ -14,16 +14,16 @@ const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[langu
 
 Feature(`${language.toUpperCase()} - PIP, one month ago, attends hearing with dates cannot attend`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async I => {
+Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async({ I }) => {
   moment().locale(language);
 
   const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
@@ -36,7 +36,7 @@ Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend t
   I.see(DateUtils.formatDate(randomWeekDay, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async I => {
+Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async({ I }) => {
   moment().locale(language);
 
   const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));

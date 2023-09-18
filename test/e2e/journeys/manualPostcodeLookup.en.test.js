@@ -6,16 +6,16 @@ const paths = require('paths');
 
 Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, I => {
+Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, ({ I }) => {
   I.amOnPage(paths.session.root);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);

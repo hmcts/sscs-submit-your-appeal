@@ -9,16 +9,16 @@ const testData = require(`test/e2e/data.${language}`);
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async({ I }) => {
   await moment().locale(language);
   await I.enterDetailsFromStartToDraftAppeals(commonContent, language, process.env.USEREMAIL_1);
   await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');

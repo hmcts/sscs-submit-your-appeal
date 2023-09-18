@@ -17,17 +17,17 @@ const thirteenMonthsAndOneDayLate = {
 
 Feature(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
-  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, I => {
+  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
     I.wait(2);
     I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
     // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);

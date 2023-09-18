@@ -11,19 +11,19 @@ let userEmail = '';
 
 Feature(`${language.toUpperCase()} - Verifying data when drafts are submitted to CCD`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
   testUser.deleteUser(userEmail);
 });
 
 Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD  @fullFunctional`,
-  async I => {
+  async({ I }) => {
     await moment().locale(language);
     await I.enterDetailsFromStartToDraft(commonContent, language, userEmail);
     I.navigateToDrafts(language);
