@@ -47,7 +47,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
   I.skipPcqCY();
-  I.wait(3);
+  I.wait(1);
   console.log(`language assigned is ${moment.locale()}`);
   console.log(`Generated date is ############# ${randomWeekDayIn5Weeks}`);
   I.see(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
@@ -58,6 +58,6 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.click(commonContent.continue);
   I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn7Weeks, commonContent.edit);
   I.click(commonContent.continue);
-  I.wait(3);
+  I.wait(1);
   I.see(DateUtils.formatDate(randomWeekDayIn7Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(20);
+}).retry(10);

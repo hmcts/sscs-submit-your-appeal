@@ -12,7 +12,7 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrow
 
   I.createTheSession(language);
 
-  I.wait(4);
+  I.wait(2);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411222222');
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
@@ -27,4 +27,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrow
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(20);
+}).retry(10);

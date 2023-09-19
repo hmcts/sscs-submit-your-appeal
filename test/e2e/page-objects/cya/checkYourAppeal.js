@@ -189,9 +189,9 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
-  I.wait(2);
+  I.wait(1);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
-  I.wait(2);
+  I.wait(1);
   await I.selectDates(language, [date]);
   I.click(commonContent.continue);
 }

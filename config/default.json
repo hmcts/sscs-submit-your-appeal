@@ -27,8 +27,8 @@
     "roleName": "sya"
   },
   "e2e": {
-    "waitForTimeout": "60000",
-    "waitForAction": "2000",
+    "waitForTimeout": "30000",
+    "waitForAction": "1000",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "https://localhost:3000"

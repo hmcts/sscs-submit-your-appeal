@@ -14,4 +14,4 @@ Feature(`${language.toUpperCase()} - UC E2E SYA - Full Journey`);
 
 Scenario(`${language.toUpperCase()} - ${benefitCode} UC E2E SYA Journey @functional @e2e`, ({ I }) => {
   e2eBenefit.e2eBenefit(I, benefitCode, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
-}).retry(20);
+}).retry(10);

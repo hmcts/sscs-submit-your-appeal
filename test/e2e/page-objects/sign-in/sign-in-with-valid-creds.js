@@ -22,7 +22,7 @@ async function signInVerifylanguage(username, password, language) {
   const altLang = await I.grabTextFrom('.language');
   if ((altLang === 'English' && language === 'en') || (altLang === 'Cymraeg' && language === 'cy')) {
     I.amOnPage(`${paths.drafts}?lng=${language}`);
-    I.wait(5);
+    I.wait(2);
   }
 
   if (language === 'en') {
@@ -35,7 +35,7 @@ async function signInVerifylanguage(username, password, language) {
 function navigateToSignInLink() {
   const I = this;
   I.click('Sign back into your appeal');
-  I.wait(5);
+  I.wait(2);
 }
 
 

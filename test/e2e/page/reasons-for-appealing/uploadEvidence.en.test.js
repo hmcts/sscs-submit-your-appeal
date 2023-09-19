@@ -33,11 +33,11 @@ if (evidenceUploadEnabled) {
 
   Scenario(`${language.toUpperCase()} - I cannot upload more than the total amount of bytes`, ({ I }) => {
     I.attachFile('#uploadEv', 'largeimage.jpg');
-    I.wait(2);
+    I.wait(1);
     I.attachFile('#uploadEv', 'largeimage.jpg');
-    I.wait(2);
+    I.wait(1);
     I.attachFile('#uploadEv', 'largeimage.jpg');
-    I.wait(2);
+    I.wait(1);
     I.attachFile('#uploadEv', 'largeimage.jpg');
     I.seeElement('.govuk-error-summary');
     I.see(evidenceUploadContent.fields.uploadEv.error.totalFileSizeExceeded);

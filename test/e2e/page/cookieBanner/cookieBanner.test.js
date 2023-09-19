@@ -15,7 +15,7 @@ After(({ I }) => {
 });
 
 Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }) => {
-  I.wait(2);
+  I.wait(1);
   I.see(cookieContent.bannerTitle);
   I.seeElement('.govuk-cookie-banner');
 
@@ -28,30 +28,30 @@ Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }
 });
 
 Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) => {
-  I.wait(2);
+  I.wait(1);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
   I.refreshPage();
-  I.wait(3);
+  I.wait(1);
   I.seeCookie('_ga');
   I.seeCookie('_gid');
   I.seeCookie('_gat_UA-91309785-5');
 }).retry(1);
 
 Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, ({ I }) => {
-  I.wait(2);
+  I.wait(1);
   I.click(cookieContent.rejectCookie);
   I.see(cookieContent.hideAfterReject);
   I.see(cookieContent.hideMessage);
   I.refreshPage();
-  I.wait(5);
+  I.wait(2);
 
   I.dontSeeCookie('_gid');
 }).retry(1);
 
 Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ I }) => {
-  I.wait(2);
+  I.wait(1);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
@@ -63,12 +63,12 @@ Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie po
 
   I.amOnPage(paths.policy.cookies);
   I.seeElement('input#radio-analytics-on:checked');
-  I.wait(2);
+  I.wait(1);
   I.click('input#radio-analytics-off');
   I.click('Save');
 
   I.amOnPage(paths.start.benefitType);
   I.refreshPage();
-  I.wait(5);
+  I.wait(2);
   I.dontSeeCookie('_gid');
 }).retry(1);

@@ -58,7 +58,7 @@ Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click(commonContent.continue);
   await I.deselectDates(language, [randomWeekDayIn8Weeks]);
-  I.wait(2);
+  I.wait(1);
   await I.selectDates(language, [randomWeekDayIn10Weeks]);
   I.click(commonContent.continue);
   I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
