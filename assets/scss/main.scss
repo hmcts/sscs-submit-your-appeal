@@ -358,11 +358,6 @@ label.form-label[for="signer"] {
   display: none;
   visibility: hidden; }
 
-.add-another-add-link, [for=uploadEv]{
-  @extend .govuk-button;
-  @extend .govuk-button--secondary;
-}
-
 .form-buttons-group {
   line-height: 2.375rem;
 
