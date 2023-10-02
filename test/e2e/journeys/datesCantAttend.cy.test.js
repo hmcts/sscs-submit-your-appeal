@@ -47,7 +47,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
   I.forceClick(commonContent.continue);
-  I.skipPcqCY();
+  // I.skipPcqCY();
   I.wait(1);
   console.log(`language assigned is ${moment.locale()}`);
   console.log(`Generated date is ############# ${randomWeekDayIn5Weeks}`);
