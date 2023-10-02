@@ -13,6 +13,16 @@ class MyHelper extends Helper {
     }
   }
 
+  async turnOnJsAndReloadThePage() {
+    const page = this.helpers.Puppeteer.page;
+    try {
+      await page.setJavaScriptEnabled(true);
+      await page.reload();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async clickNextIfDateNotVisible(dateElement) {
     const page = this.helpers.Puppeteer.page;
     try {

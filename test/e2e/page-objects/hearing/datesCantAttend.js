@@ -6,11 +6,11 @@ const DateUtils = require('utils/DateUtils');
 function enterDateCantAttendAndContinue(commonContent, date, link) {
   const I = this;
 
-  I.click(link);
+  I.forceClick(link);
   I.fillField('input[name*="day"]', date.date().toString());
   I.fillField('input[name*="month"]', (date.month() + 1).toString());
   I.fillField('input[name*="year"]', date.year().toString());
-  I.click(commonContent.continue);
+  I.forceClick(commonContent.continue);
 }
 
 function seeFormattedDate(date) {

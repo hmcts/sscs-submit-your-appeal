@@ -178,6 +178,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   await I.turnOffJsAndReloadThePage();
   I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttendContent.links.add);
+  await I.turnOnJsAndReloadThePage();
   I.click(commonContent.continue);
 }
 
