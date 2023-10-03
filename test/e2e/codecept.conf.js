@@ -33,16 +33,22 @@ exports.config = {
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
       getPageTimeout: 10000,
-      show: false,
+      show: true,
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
           '--disable-gpu',
-          '--disable-dev-shm-usage',
           '--no-sandbox',
           '--allow-running-insecure-content',
-          '--ignore-certificate-errors'
+          '--ignore-certificate-errors',
+          '--disable-dev-shm-usage',
+          '--disable-setuid-sandbox',
+          '--no-first-run',
+          '--no-zygote',
+          '--deterministic-fetch',
+          '--disable-features=IsolateOrigins',
+          '--disable-site-isolation-trials'
         ]
       }
     },

@@ -36,7 +36,7 @@ Scenario(`${language.toUpperCase()} - Provides date of when they cannot attend t
   I.see(DateUtils.formatDate(randomWeekDay, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @localTest @functional`, async({ I }) => {
+Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @functional`, async({ I }) => {
   moment().locale(language);
 
   const randomWeekDayIn5Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(8, 'weeks'));
@@ -46,6 +46,7 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   await I.enterDetailsFromAttendingTheHearingToEnd(commonContent, language, randomWeekDayIn5Weeks);
+  I.wait(5);
   I.skipPcqCY();
   I.wait(1);
   console.log(`language assigned is ${moment.locale()}`);
