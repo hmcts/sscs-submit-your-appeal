@@ -39,16 +39,10 @@ exports.config = {
         ignoreHTTPSErrors: true,
         args: [
           '--disable-gpu',
+          '--disable-dev-shm-usage',
           '--no-sandbox',
           '--allow-running-insecure-content',
-          '--ignore-certificate-errors',
-          '--disable-dev-shm-usage',
-          '--disable-setuid-sandbox',
-          '--no-first-run',
-          '--no-zygote',
-          '--deterministic-fetch',
-          '--disable-features=IsolateOrigins',
-          '--disable-site-isolation-trials'
+          '--ignore-certificate-errors'
         ]
       }
     },
