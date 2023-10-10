@@ -27,6 +27,10 @@ module "redis-cache" {
   business_area                 = "cft"
   public_network_access_enabled = false
   private_endpoint_enabled      = true
+  sku_name                      = var.sku_name
+  family                        = var.family
+  capacity                      = var.capacity
+
 }
 
 resource "azurerm_key_vault_secret" "redis_access_key" {
