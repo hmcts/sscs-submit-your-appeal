@@ -143,18 +143,18 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return fs.unlink(files['item.uploadEv'].path, next);
       }
 
-      if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
-        !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
+      if (files && files['item.uploadEv'] && files['item.uploadEv'][0].filepath &&
+        !fileTypeWhitelist.find(el => el === files['item.uploadEv'][0].mimetype)) {
         req.body = {
           'item.uploadEv': wrongFileTypeError,
           'item.link': '',
           'item.size': 0
         };
-        logger.trace(`File path: ${files['item.uploadEv'].path}`);
+        logger.trace(`File path: ${files['item.uploadEv'][0].filepath}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
       let uploadingErrorText = uploadingError;
-      if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+      if (uploadingError || !files['item.uploadEv'][0].originalFilename) {
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
@@ -169,10 +169,10 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return next();
       }
 
-      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-      const size = files['item.uploadEv'].size;
+      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
+      const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
-      return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
+      return fs.rename(files['item.uploadEv'][0].filepath, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
     };
   }
 
