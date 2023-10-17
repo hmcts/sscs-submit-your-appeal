@@ -36,18 +36,15 @@
 {% macro textbox(field, label, hint=false, hideLabel=false, value=null) %}
   <div class="govuk-form-group {{ errorClass(field) }}">
     <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
-
     {%- if hint %}
-      <span class="govuk-hint">
-        {{ hint | safe }}
-      </span>
+      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint | safe }}</div>
     {%- endif %}
-
     {{ errorsFor(field) }}
     <input class="govuk-input"
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
+           aria-describedby="{{ field.id }}-hint"
            {% if field.value %}
            value="{{field.value}}"
            {% elseif value %}
@@ -269,60 +266,62 @@
 
 
 {% macro date(field, question, hint='', hideQuestion=false, labels={}) %}
-  <div id="{{ field.id }}"
-       class="govuk-date-input {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
-
-    {% if not hideQuestion %}
-    <legend class="govuk-form-label-bold">{{ question | safe }}</legend>
-    {% endif %}
-
+<div class="govuk-form-group">
+  {% if not hideQuestion %}
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">{{ question | safe }}</h1>
+    </legend>
     {% if hint %}
-    <span class="govuk-hint">{{ hint | safe }}</span>
+      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint | safe }}</div>
     {% endif %}
+  {% endif %}
+  <div id="{{ field.id }}"
+         class="govuk-date-input {{ errorClass(field) }}{{ errorClass(field.day) }}{{ errorClass(field.month) }}{{ errorClass(field.year) }}">
 
-    {{ errorsFor(field) }}
-    {{ errorsFor(field.day) }}
-    {{ errorsFor(field.month) }}
-    {{ errorsFor(field.year) }}
+      {{ errorsFor(field) }}
+      {{ errorsFor(field.day) }}
+      {{ errorsFor(field.month) }}
+      {{ errorsFor(field.year) }}
 
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
-               id="{{ field.day.id }}"
-               type="number"
-               pattern="[0-9]*"
-               min="1"
-               max="31"
-               name="{{ field.day.id }}"
-               {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
+                 id="{{ field.day.id }}"
+                 type="text" inputmode="numeric"
+                 pattern="[0-9]*"
+                 min="1"
+                 max="31"
+                 name="{{ field.day.id }}"
+                 {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
+        </div>
+      </div>
+
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
+                 id="{{ field.month.id }}"
+                 type="text" inputmode="numeric"
+                 name="{{ field.month.id }}"
+                 {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
+        </div>
+      </div>
+
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label  class="govuk-label govuk-date-input__label" for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
+                 id="{{ field.year.id }}"
+                 type="text" inputmode="numeric"
+                 pattern="[0-9]*"
+                 min="1"
+                 name="{{ field.year.id }}"
+                 {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>
+        </div>
       </div>
     </div>
-
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
-               id="{{ field.month.id }}"
-               type="text"
-               name="{{ field.month.id }}"
-               {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
-      </div>
-    </div>
-
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label  class="govuk-label govuk-date-input__label" for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
-               id="{{ field.year.id }}"
-               type="number"
-               pattern="[0-9]*"
-               min="1"
-               name="{{ field.year.id }}"
-               {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>
-      </div>
-    </div>
-  </div>
+</div>
 {% endmacro %}
 
 
