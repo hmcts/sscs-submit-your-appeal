@@ -141,9 +141,9 @@
       "releaseVersion": "4.0"
     },
     "idam": {
-      "apiUrl": "http://localhost:5000",
+      "apiUrl": "http://localhost:5062",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:3501/login",
+      "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
       "useMock": "false"
     },
