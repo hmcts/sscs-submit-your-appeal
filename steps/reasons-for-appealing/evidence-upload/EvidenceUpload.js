@@ -140,7 +140,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
         logger.trace(`req body :  ${req.body['item.uploadEv']}`);
-        return fs.unlink(files['item.uploadEv'].path, next);
+        return fs.unlink(files['item.uploadEv'][0].filepath, next);
       }
 
       if (files && files['item.uploadEv'] && files['item.uploadEv'][0].filepath &&
