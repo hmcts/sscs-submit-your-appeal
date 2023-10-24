@@ -126,6 +126,7 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
+    "@babel/traverse": "^7.23.2",
     "@hmcts/nodejs-logging": "^4.0.4",
     "debug": "^3.2.7",
     "json-schema": "^0.4.0",
