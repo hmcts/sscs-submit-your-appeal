@@ -75,7 +75,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     if (typeof this.journey.values.hearing === 'undefined' ||
       !this.journey.values.hearing) {
       logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
-        'SessionId ${this.journey.req.session.id} and nino ${this.obfuscatedNino(this.journey.values.appellant.nino)}`));
+        'SessionId ${this.journey.req.session.id} and nino ${this.maskedNino(this.journey.values.appellant.nino)}`));
       logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
     }
   }
@@ -90,9 +90,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
     }
 
+    const maskedNino = this.maskedNino(get(this, 'journey.values.appellant.nino'));
     logger.trace([
       'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
-      'the NINO is ', this.obfuscatedNino(this.journey.values.appellant.nino),
+      'the NINO is ', maskedNino,
       'the benefit code is', get(this, 'journey.values.benefitType.code'),
       'the draft case id is', get(values, 'ccdCaseId')
     ], logPath);
@@ -104,7 +105,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .then(result => {
         logger.trace([
           'Successfully submitted application for session id', get(this, 'journey.req.session.id'),
-          'and nino', this.obfuscatedNino(this.journey.values.appellant.nino),
+          'and nino', maskedNino,
           'the benefit code is', get(this, 'journey.values.benefitType.code'),
           'the status is ', result.status
         ], logPath);
@@ -118,7 +119,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         logger.exception([
           'Error on submission:', get(this, 'journey.req.session.id'),
           errMsg,
-          'the NINO is', this.obfuscatedNino(this.journey.values.appellant.nino),
+          'the NINO is', maskedNino,
           'the benefit code is ', get(this, 'journey.values.benefitType.code')
         ], logPath);
 
@@ -128,9 +129,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       });
   }
 
-  obfuscatedNino(nino) {
+  maskedNino(nino) {
     const VISIBLE_NINO_CHARS = 4;
-    return nino.substring(0, VISIBLE_NINO_CHARS).concat('XXXX');
+    return nino ? nino.substring(0, VISIBLE_NINO_CHARS).concat('XXXX') : '';
   }
 
   sections() {
