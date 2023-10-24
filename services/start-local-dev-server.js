@@ -1,5 +1,12 @@
 const { AzureCliCredential } = require('@azure/identity');
 const { SecretClient } = require('@azure/keyvault-secrets');
+const app = require('../app');
+const config = require('@hmcts/properties-volume').addTo(require('config'));
+const https = require('https');
+const logger = require('../logger');
+const webpack = require('webpack');
+const webpackDevConfig = require('../webpack/webpack.dev');
+const webpackMiddleware = require('webpack-dev-middleware');
 
 async function mount(vaultName, secret) {
   try {
@@ -20,10 +27,26 @@ async function mount(vaultName, secret) {
   }
 }
 
-async function run() {
+async function fetchSecrets() {
   const serverKey = await mount('sscs-aat', 'server-key');
   const serverCertificate = await mount('sscs-aat', 'server-certificate');
   return { serverKey, serverCertificate };
 }
 
-module.exports = run;
+const startLocalDevServer = async() => {
+  const compiler = webpack(webpackDevConfig);
+  const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
+  app.use(wp);
+  const { serverKey, serverCertificate } = await fetchSecrets();
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
+    https.createServer({
+      key: serverKey,
+      cert: serverCertificate
+    }, app).listen(config.node.port, () => {
+      logger.trace(`SYA server listening on port: ${config.node.port}`);
+    });
+  });
+};
+
+module.exports = startLocalDevServer;
