@@ -3,7 +3,7 @@
 function skipPcq() {
   // if (config.features.pcq.enabled === 'true') {
   const I = this;
-  I.wait(3);
+  I.wait(1);
   // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
   I.click('I don\'t want to answer these questions');
   // }
@@ -12,14 +12,14 @@ function skipPcq() {
 
 function skipPcqCY() {
   const I = this;
-  I.wait(3);
+  I.wait(1);
   I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
 }
 
 
 function completeAllPcq() {
   const I = this;
-  I.wait(3);
+  I.wait(1);
   I.see('Continue to the question');
   I.click('Continue to the question');
   I.checkPCQOptionAndContinue('#language_main');
@@ -36,7 +36,7 @@ function completeAllPcq() {
 
 function completeAllPcqCY() {
   const I = this;
-  I.wait(3);
+  I.wait(1);
   I.click('Ymlaen');
   I.checkCYPCQOptionAndContinue('#language_main');
   I.checkCYPCQOptionAndContinue('#sex');

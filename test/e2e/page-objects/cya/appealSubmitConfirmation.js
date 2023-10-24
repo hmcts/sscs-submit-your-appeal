@@ -5,7 +5,7 @@ const paths = require('paths');
 function appealSubmitConfirmation(language) {
   const I = this;
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
-  I.wait(10);
+  I.wait(5);
   I.seeCurrentUrlEquals(paths.confirmation);
   I.see(cyaContent.confirmation);
 }

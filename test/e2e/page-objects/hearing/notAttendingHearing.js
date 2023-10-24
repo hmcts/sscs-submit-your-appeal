@@ -1,14 +1,14 @@
 function continueFromnotAttendingHearing(commonContent) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.click(commonContent.continue);
 }
 
 function continueFromnotAttendingHearingAfterSignIn(commonContent) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.click(commonContent.saveAndContinue);
 }
 

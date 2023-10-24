@@ -19,16 +19,16 @@ const reasonForAppealingChange = `${reasonForAppealing}-1 ${selectors.change}`;
 
 Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with reasons for appealing one page form`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, I => {
+Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, ({ I }) => {
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
@@ -56,13 +56,13 @@ Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them i
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
   I.confirmDetailsArePresent(language);
-  twoReasons.forEach(reason => {
+  twoReasons.forEach(({ reason }) => {
     I.see(reason.whatYouDisagreeWith);
     I.see(reason.reasonForAppealing);
   });
 });
 
-Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, I => {
+Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, ({ I }) => {
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
@@ -91,7 +91,7 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits 
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
   I.confirmDetailsArePresent(language);
 
-  twoReasons.forEach(reason => {
+  twoReasons.forEach(({ reason }) => {
     I.see(reason.whatYouDisagreeWith);
     I.see(reason.reasonForAppealing);
   });
@@ -114,7 +114,7 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits 
   I.see(reasons[2].reasonForAppealing);
 });
 
-Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, I => {
+Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, ({ I }) => {
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');

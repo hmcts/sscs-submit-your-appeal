@@ -7,7 +7,6 @@ class MyHelper extends Helper {
     const page = this.helpers.Puppeteer.page;
     try {
       await page.setJavaScriptEnabled(false);
-      await page.reload();
     } catch (error) {
       throw new Error(error);
     }

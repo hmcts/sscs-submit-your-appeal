@@ -6,16 +6,16 @@ const answer = require('utils/answer');
 
 Feature(`${language.toUpperCase()} - Check MRN @batch-07`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.amOnPage(paths.compliance.mrnDate);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - I select YES to MRN date is >1 month and <=13 months, I see /mrn-over-month-late`, I => {
+Scenario(`${language.toUpperCase()} - I select YES to MRN date is >1 month and <=13 months, I see /mrn-over-month-late`, ({ I }) => {
   moment().locale(language);
 
   const mrnDate = moment().subtract(2, 'months');
@@ -23,7 +23,7 @@ Scenario(`${language.toUpperCase()} - I select YES to MRN date is >1 month and <
   I.goToCorrectPageAfterCheckMRN(commonContent, answer.YES, paths.compliance.mrnOverMonthLate);
 });
 
-Scenario(`${language.toUpperCase()} - I select YES to MRN date is >13 months, I asee url /mrn-over-thirteen-months-late`, I => {
+Scenario(`${language.toUpperCase()} - I select YES to MRN date is >13 months, I asee url /mrn-over-thirteen-months-late`, ({ I }) => {
   moment().locale(language);
 
   const mrnDate = moment().subtract(14, 'months');
@@ -31,7 +31,7 @@ Scenario(`${language.toUpperCase()} - I select YES to MRN date is >13 months, I 
   I.goToCorrectPageAfterCheckMRN(commonContent, answer.YES, paths.compliance.mrnOverThirteenMonthsLate);
 });
 
-Scenario(`${language.toUpperCase()} - I select NO, I am taken to /mrn-date`, I => {
+Scenario(`${language.toUpperCase()} - I select NO, I am taken to /mrn-date`, ({ I }) => {
   moment().locale(language);
 
   const mrnDate = moment().subtract(2, 'months');
