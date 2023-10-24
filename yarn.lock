@@ -177,6 +177,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azure/identity@npm:^3.3.0":
+  version: 3.3.2
+  resolution: "@azure/identity@npm:3.3.2"
+  dependencies:
+    "@azure/abort-controller": ^1.0.0
+    "@azure/core-auth": ^1.5.0
+    "@azure/core-client": ^1.4.0
+    "@azure/core-rest-pipeline": ^1.1.0
+    "@azure/core-tracing": ^1.0.0
+    "@azure/core-util": ^1.0.0
+    "@azure/logger": ^1.0.0
+    "@azure/msal-browser": ^2.37.1
+    "@azure/msal-common": ^13.1.0
+    "@azure/msal-node": ^1.17.3
+    events: ^3.0.0
+    jws: ^4.0.0
+    open: ^8.0.0
+    stoppable: ^1.1.0
+    tslib: ^2.2.0
+    uuid: ^8.3.0
+  checksum: 53a650dc6f73fb35137fd4e35f6db8b04bb77b3b8598f4fa5cc145e79ba1c28258bea535fb0af7f09d7fec4b44bbda0a1a3a2b593c6d8e576e23022617c8611e
+  languageName: node
+  linkType: hard
+
 "@azure/keyvault-secrets@npm:^4.7.0":
   version: 4.7.0
   resolution: "@azure/keyvault-secrets@npm:4.7.0"
@@ -15203,6 +15227,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sya@workspace:."
   dependencies:
+    "@azure/identity": ^3.3.0
+    "@azure/keyvault-secrets": ^4.7.0
     "@babel/core": ^7.22.11
     "@babel/preset-env": ^7.22.10
     "@cypress/request": ^3.0.0
