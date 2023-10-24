@@ -75,7 +75,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     if (typeof this.journey.values.hearing === 'undefined' ||
       !this.journey.values.hearing) {
       logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
-        'SessionId ${this.journey.req.session.id} and nino ${this.journey.values.appellant.nino}`));
+        'SessionId ${this.journey.req.session.id} and nino ${this.obfuscatedNino(this.journey.values.appellant.nino)}`));
       logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
     }
   }
@@ -91,14 +91,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     }
 
     logger.trace([
-      'About to send to api the application with session id ',
-      get(this, 'journey.req.session.id'),
-      'the NINO is ',
-      get(this, 'journey.values.appellant.nino'),
-      'the benefit code is',
-      get(this, 'journey.values.benefitType.code'),
-      'the draft case id is',
-      get(values, 'ccdCaseId')
+      'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
+      'the NINO is ', this.obfuscatedNino(this.journey.values.appellant.nino),
+      'the benefit code is', get(this, 'journey.values.benefitType.code'),
+      'the draft case id is', get(values, 'ccdCaseId')
     ], logPath);
 
 
@@ -107,14 +103,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .send(values)
       .then(result => {
         logger.trace([
-          'Successfully submitted application for session id',
-          get(this, 'journey.req.session.id'),
-          'and nino',
-          get(this, 'journey.values.appellant.nino'),
-          'the benefit code is',
-          get(this, 'journey.values.benefitType.code'),
-          'the status is ',
-          result.status
+          'Successfully submitted application for session id', get(this, 'journey.req.session.id'),
+          'and nino', this.obfuscatedNino(this.journey.values.appellant.nino),
+          'the benefit code is', get(this, 'journey.values.benefitType.code'),
+          'the status is ', result.status
         ], logPath);
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
@@ -124,19 +116,21 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
         logger.exception([
-          'Error on submission:',
-          get(this, 'journey.req.session.id'),
+          'Error on submission:', get(this, 'journey.req.session.id'),
           errMsg,
-          'the NINO is',
-          get(this, 'journey.values.appellant.nino'),
-          'the benefit code is ',
-          get(this, 'journey.values.benefitType.code')
+          'the NINO is', this.obfuscatedNino(this.journey.values.appellant.nino),
+          'the benefit code is ', get(this, 'journey.values.benefitType.code')
         ], logPath);
 
         const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';
         logger.event(metricEvent);
         return Promise.reject(error);
       });
+  }
+
+  obfuscatedNino(nino) {
+    const VISIBLE_NINO_CHARS = 4;
+    return nino.substring(0, VISIBLE_NINO_CHARS).concat('XXXX');
   }
 
   sections() {
