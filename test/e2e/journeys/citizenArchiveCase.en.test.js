@@ -9,19 +9,19 @@ Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
 let userEmail;
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
   testUser.deleteUser(userEmail);
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async({ I }) => {
   await moment().locale(language);
   await I.enterDetailsForNewApplication(commonContent, language, userEmail);
   await I.enterDetailsToArchiveACase(commonContent, language, userEmail);
-}).retry(15);
+}).retry(8);

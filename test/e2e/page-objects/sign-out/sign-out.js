@@ -5,13 +5,13 @@ function signOut(language) {
   } else {
     I.click('Allgofnodi');
   }
-  I.wait(3);
+  I.wait(1);
 }
 
 function navigateToSignOut() {
   const I = this;
   I.amOnPage('/sign-out');
-  I.wait(5);
+  I.wait(2);
 }
 
 module.exports = { signOut, navigateToSignOut };

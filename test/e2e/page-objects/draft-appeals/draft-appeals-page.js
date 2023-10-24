@@ -38,10 +38,10 @@ function verifyDraftAppealsAndArchiveACase() {
   I.see('Archive');
   I.scrollTo('.govuk-table__cell:nth-child(1)');
   I.click('Archive');
-  I.wait(2);
+  I.wait(1);
   I.see('Are you sure you want to archive your appeal application?');
   I.click('Yes');
-  I.wait(5);
+  I.wait(2);
   I.dontSee('Edit');
   I.dontSee('Archive');
 }
@@ -66,7 +66,7 @@ async function editDraftAppeal(language) {
   const ccdCaseID = Array.isArray(ccdCaseIDs) ? ccdCaseIDs[0] : ccdCaseIDs;
 
   I.click(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`);
-  I.wait(5);
+  I.wait(2);
   const url = await I.grabCurrentUrl();
   if (url.includes(paths.drafts)) {
     I.click(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`);
@@ -90,7 +90,7 @@ function navigateToDrafts(language) {
   } else {
     I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
   }
-  I.wait(3);
+  I.wait(1);
 }
 
 module.exports = { verifyDraftAppealsAndEditACase, verifyDraftAppealsAndArchiveACase, editDraftAppeal, navigateToDrafts };

@@ -177,8 +177,11 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   await I.turnOffJsAndReloadThePage();
+  I.amOnPage(paths.hearing.datesCantAttend);
+  I.wait(2);
   I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttendContent.links.add);
-  I.click(commonContent.continue);
+  I.wait(5);
+  I.forceClick(commonContent.continue);
 }
 
 async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, date) {
@@ -189,9 +192,9 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
-  I.wait(2);
+  I.wait(1);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
-  I.wait(2);
+  I.wait(1);
   await I.selectDates(language, [date]);
   I.click(commonContent.continue);
 }

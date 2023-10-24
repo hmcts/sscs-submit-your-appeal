@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "local>hmcts/.github:renovate-config",
+    "github>hmcts/sscs-common//.github/sscs-renovate.json"
+  ]
+}

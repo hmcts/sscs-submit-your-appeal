@@ -6,12 +6,12 @@ const testData = require('test/e2e/data.en');
 
 Feature('Crossbrowser - PIP E2E SYA - Full Journey');
 
-Scenario('English - PIP E2E SYA Journey', I => {
+Scenario('English - PIP E2E SYA Journey', ({ I }) => {
   const commonContent = content.en;
 
   I.createTheSession('en');
 
-  I.wait(2);
+  I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, 'en');
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
@@ -22,15 +22,15 @@ Scenario('English - PIP E2E SYA Journey', I => {
   I.checkYourAppealToConfirmationPage('en', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(15);
+}).retry(8);
 
 
-Scenario('Welsh - PIP E2E SYA Journey', I => {
+Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
   const commonContent = content.cy;
 
   I.createTheSession('cy');
 
-  I.wait(2);
+  I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, 'cy');
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
@@ -41,4 +41,4 @@ Scenario('Welsh - PIP E2E SYA Journey', I => {
   I.checkYourAppealToConfirmationPage('cy', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(15);
+}).retry(8);

@@ -5,7 +5,7 @@ const paths = require('paths');
 function checkYourAppealToConfirmation(language, signer) {
   const I = this;
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
-  I.wait(2);
+  I.wait(1);
   I.seeCurrentUrlEquals(paths.checkYourAppeal);
   I.fillField({ xpath: '//*[@id="signer"]' }, signer);
   I.click(cyaContent.submitButton.value);

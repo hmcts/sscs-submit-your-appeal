@@ -11,6 +11,7 @@ const config = require('config');
 describe('Appointee-contact-details.js', () => {
   let appointeeContactDetails = null;
   const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
+  const res = { send: sinon.spy() };
 
   beforeEach(() => {
     appointeeContactDetails = new AppointeeContactDetails({
@@ -20,7 +21,7 @@ describe('Appointee-contact-details.js', () => {
         }
       },
       session: {}
-    });
+    }, res);
 
     appointeeContactDetails.fields = {
       firstName: { value: '' },
@@ -54,10 +55,8 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.pcl.init.restore();
     });
 
-    const req = { method: 'GET', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
     const next = sinon.spy();
-    const redirect = sinon.spy();
-    const res = { redirect };
     it('call pcl controller once', () => {
       appointeeContactDetails.req = req;
       appointeeContactDetails.handler(req, res, next);
@@ -167,10 +166,8 @@ describe('Appointee-contact-details.js', () => {
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
-        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
         const next = sinon.spy();
-        const redirect = sinon.spy();
-        const res = { redirect };
         appointeeContactDetails.req = req;
         appointeeContactDetails.handler(req, res, next);
         fields = appointeeContactDetails.form.fields;

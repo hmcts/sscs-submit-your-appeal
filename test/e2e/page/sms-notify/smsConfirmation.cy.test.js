@@ -6,16 +6,16 @@ const paths = require('paths');
 
 Feature(`${language.toUpperCase()} - SMS Confirmation - appellant contact details @batch-11`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.amOnPage(paths.identity.enterAppellantContactDetails);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - When I click Continue, I am taken to the Representative page`, I => {
+Scenario(`${language.toUpperCase()} - When I click Continue, I am taken to the Representative page`, ({ I }) => {
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language);
   I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
   I.click(commonContent.continue);
@@ -25,7 +25,7 @@ Scenario(`${language.toUpperCase()} - When I click Continue, I am taken to the R
   I.seeInCurrentUrl(paths.representative.representative);
 });
 
-Scenario(`${language.toUpperCase()} - Enter a mobile and click use same number, I see the number in SMS confirmation`, I => {
+Scenario(`${language.toUpperCase()} - Enter a mobile and click use same number, I see the number in SMS confirmation`, ({ I }) => {
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07466748336');
   I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
   I.click(commonContent.continue);
@@ -34,7 +34,7 @@ Scenario(`${language.toUpperCase()} - Enter a mobile and click use same number, 
   I.see(`${smsConfirmationContent.mobileNumber}07466748336`);
 });
 
-Scenario(`${language.toUpperCase()} - Enter a mobile, click use different number, I see enter mobile number`, I => {
+Scenario(`${language.toUpperCase()} - Enter a mobile, click use different number, I see enter mobile number`, ({ I }) => {
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07466748336');
   I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
   I.click(commonContent.continue);
@@ -46,7 +46,7 @@ Scenario(`${language.toUpperCase()} - Enter a mobile, click use different number
   I.see(`${smsConfirmationContent.mobileNumber}+447123456789`);
 });
 
-Scenario(`${language.toUpperCase()} - Do not enter a mobile, I see the mobile number I provided for enter mobile`, I => {
+Scenario(`${language.toUpperCase()} - Do not enter a mobile, I see the mobile number I provided for enter mobile`, ({ I }) => {
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
   I.click(commonContent.continue);

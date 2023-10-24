@@ -3,7 +3,7 @@ function enterPostcodeAndContinue(commonContent, postcode) {
 
   I.retry({ retries: 3, minTimeout: 2000 }).fillField({ id: 'postcode' }, postcode);
   I.click(commonContent.continue);
-  I.wait(2);
+  I.wait(1);
 }
 
 function enterPostcodeAndContinueAfterSignIn(commonContent, postcode) {
@@ -11,7 +11,7 @@ function enterPostcodeAndContinueAfterSignIn(commonContent, postcode) {
 
   I.retry({ retries: 3, minTimeout: 2000 }).fillField({ id: 'postcode' }, postcode);
   I.click(commonContent.saveAndContinue);
-  I.wait(2);
+  I.wait(1);
 }
 
 module.exports = { enterPostcodeAndContinue, enterPostcodeAndContinueAfterSignIn };

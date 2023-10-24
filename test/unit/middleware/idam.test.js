@@ -13,7 +13,7 @@ describe('middleware/idam', () => {
   let next = null;
   let sandbox = null;
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     next = sandbox.stub();
     req.get = sandbox.stub().withArgs('host').returns('host');
   });
