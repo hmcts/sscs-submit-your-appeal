@@ -9,6 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
+const { maskNino } = require('utils/stringUtils');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -75,7 +76,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     if (typeof this.journey.values.hearing === 'undefined' ||
       !this.journey.values.hearing) {
       logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
-        'SessionId ${this.journey.req.session.id} and nino ${this.maskedNino(this.journey.values.appellant.nino)}`));
+        'SessionId ${this.journey.req.session.id} and nino ${maskNino(this.journey.values.appellant.nino)}`));
       logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
     }
   }
@@ -90,7 +91,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
     }
 
-    const maskedNino = this.maskedNino(get(this, 'journey.values.appellant.nino'));
+    const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));
     logger.trace([
       'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
       'the NINO is ', maskedNino,
@@ -127,11 +128,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         logger.event(metricEvent);
         return Promise.reject(error);
       });
-  }
-
-  maskedNino(nino) {
-    const VISIBLE_NINO_CHARS = 4;
-    return nino ? nino.substring(0, VISIBLE_NINO_CHARS).concat('XXXX') : '';
   }
 
   sections() {
