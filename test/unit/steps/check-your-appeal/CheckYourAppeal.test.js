@@ -32,9 +32,6 @@ describe('CheckYourAppeal.js', () => {
         visitedSteps: [{ benefitType: '' }],
         answers: [],
         values: {
-          appellant: {
-            nino: 'AA998877A'
-          },
           hearing: {
             wantsToAttend: true
           },
