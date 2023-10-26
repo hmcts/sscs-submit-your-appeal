@@ -1,15 +1,21 @@
 const paths = require('paths');
 
-function skipPcq() {
+async function skipPcq() {
   const I = this;
-  I.wait(2);
-  I.click('I don\'t want to answer these questions');
+  I.wait(5);
+  const url = await I.getPageUrl();
+  console.log('page url: ', url);
+  if (url.contains(paths.pcq)) {
+    I.click('I don\'t want to answer these questions');
+  } else {
+    console.log('PCQ is down');
+  }
 }
 
 
 async function skipPcqCY() {
   const I = this;
-  I.wait(2);
+  I.wait(5);
   const url = await I.getPageUrl();
   console.log('page url: ', url);
   if (url.contains(paths.pcq)) {
