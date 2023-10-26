@@ -1,12 +1,15 @@
+const paths = require('paths');
 
-
-function skipPcq() {
-  // if (config.features.pcq.enabled === 'true') {
+async function skipPcq() {
   const I = this;
-  I.wait(1);
-  // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
-  I.click('I don\'t want to answer these questions');
-  // }
+  const url = await I.getPageUrl();
+  console.log('page url: ', url);
+  if (url.contains(paths.pcq)) {
+    I.wait(1);
+    I.click('I don\'t want to answer these questions');
+  } else {
+    console.log('PCQ is down');
+  }
 }
 
 
