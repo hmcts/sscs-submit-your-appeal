@@ -1,15 +1,9 @@
 const paths = require('paths');
 
-async function skipPcq() {
+function skipPcq() {
   const I = this;
   I.wait(2);
-  const url = await I.getPageUrl();
-  console.log('page url: ', url);
-  if (url.contains(paths.pcq)) {
-    I.click('I don\'t want to answer these questions');
-  } else {
-    console.log('PCQ is down');
-  }
+  I.click('I don\'t want to answer these questions');
 }
 
 
