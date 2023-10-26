@@ -5,7 +5,7 @@ const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 
-Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
+Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @pcqTest @functional`);
 
 Before(({ I }) => {
   I.createTheSession(language);
