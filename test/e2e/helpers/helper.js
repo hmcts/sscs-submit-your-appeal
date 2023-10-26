@@ -12,6 +12,11 @@ class MyHelper extends Helper {
     }
   }
 
+  getPageUrl() {
+    const page = this.helpers.Puppeteer.page;
+    return page.url();
+  }
+
   async clickNextIfDateNotVisible(dateElement) {
     const page = this.helpers.Puppeteer.page;
     try {
