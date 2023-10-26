@@ -13,10 +13,16 @@ async function skipPcq() {
 }
 
 
-function skipPcqCY() {
+async function skipPcqCY() {
   const I = this;
-  I.wait(1);
-  I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
+  const url = await I.getPageUrl();
+  console.log('page url: ', url);
+  if (url.contains(paths.pcq)) {
+    I.wait(1);
+    I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
+  } else {
+    console.log('PCQ is down');
+  }
 }
 
 
