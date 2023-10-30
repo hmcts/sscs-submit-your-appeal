@@ -1,28 +1,17 @@
-const paths = require('paths');
-
 async function skipPcq() {
   const I = this;
   I.wait(5);
   const url = await I.getPageUrl();
   console.log('page url: ', url);
-  if (url.contains(paths.pcq)) {
-    I.click('I don\'t want to answer these questions');
-  } else {
-    console.log('PCQ is down');
-  }
+  I.click('I don\'t want to answer these questions');
 }
-
 
 async function skipPcqCY() {
   const I = this;
   I.wait(5);
   const url = await I.getPageUrl();
   console.log('page url: ', url);
-  if (url.contains(paths.pcq)) {
-    I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
-  } else {
-    console.log('PCQ is down');
-  }
+  I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
 }
 
 
