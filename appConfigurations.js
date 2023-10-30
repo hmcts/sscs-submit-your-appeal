@@ -15,6 +15,7 @@ const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint max-lines: off */
+/* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
