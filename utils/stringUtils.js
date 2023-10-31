@@ -9,10 +9,7 @@ const config = require('config');
 
 const featureFlagOverrides = {};
 
-const maskNino = nino => {
-  const VISIBLE_NINO_CHARS = 4;
-  return nino ? nino.substring(0, VISIBLE_NINO_CHARS).concat('XXXXX') : 'not submitted yet';
-};
+const maskNino = nino => (nino ? `XXXX${nino.slice(4)}` : 'not submitted yet');
 
 const overrideFeatFlag = override => {
   featureFlagOverrides[override.key] = override.value;
