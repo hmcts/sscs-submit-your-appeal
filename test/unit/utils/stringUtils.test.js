@@ -16,7 +16,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('stringUtils.js', () => {
   describe('mask nino', () => {
-    it.only('should mask nino', () => {
+    it('should mask nino', () => {
       expect(maskNino('AA112233B')).to.equal('XXXX2233B');
     });
   });
