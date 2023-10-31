@@ -181,7 +181,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       cookies: { '__auth-token': 'xxx' },
       session: {}
     };
-    it('Expected Successfully create a draft:', async() => {
+    it.only('Expected Successfully create a draft:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
@@ -192,7 +192,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
 
       expect(loggerSpy).to.have.been.calledWith('About to create new draft');
-      expect(loggerSpy).to.have.been.calledWith(['Successfully created a draft for case with nino: AB22XXXXX', 200], 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(['Successfully created a draft for case with nino: XXXX3344B', 200], 'draftAppealStoreMiddleware.js');
       expect(req.session).to.eql({ ccdCaseId: 12 });
     });
 
@@ -221,9 +221,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       cookies: { '__auth-token': 'xxx' }
     };
     res.redirect = sinon.spy();
-    it('Expected error on posted a draft:', async() => {
+    it.only('Expected error on posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledWith('Exception on creating/updating a draft for case with nino: AB22XXXXX', 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith('Exception on creating/updating a draft for case with nino: XXXX3344B', 'draftAppealStoreMiddleware.js');
     });
   });
 
