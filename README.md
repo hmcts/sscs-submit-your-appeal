@@ -60,7 +60,7 @@ View the application:
 
 ## Docker
 
-If you would like to view the application without having to setup Redis you can via Docker.
+If you would like to view the application without having to setup Redis you can do so via Docker.
 
 We use the [Dockerfile] and [docker-compose.yml] to create a container to bring up the app which includes Redis.
 
@@ -76,9 +76,14 @@ View the application:
 
     https://localhost:3000
 
+If you prefer to run the application natively but still use docker dor Redis you can do so by running:
+    docker-compose up redis
+
+You would then start the application by running yarn dev as above
+
 ## End-to-end testing
 
-Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up. At
+Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up (including docker dependencies run through CFTLib). At
 present these tests do not run within Docker, therefore, open a new terminal window.
 
 Functional tests:
