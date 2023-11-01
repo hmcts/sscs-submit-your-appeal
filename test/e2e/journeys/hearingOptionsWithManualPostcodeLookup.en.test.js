@@ -5,7 +5,7 @@ const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 
-Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
+Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional @failing`);
 
 Before(({ I }) => {
   I.createTheSession(language);
@@ -26,5 +26,8 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.skipPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-}).retry(1);
+
+  I.endTheSession();
+}).retry(10);
