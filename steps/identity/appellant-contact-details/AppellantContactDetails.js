@@ -1,4 +1,3 @@
-// const { parsePhoneNumberFromString } = require('libphonenumber-js');
 const { goTo } = require('@hmcts/one-per-page');
 const { text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');

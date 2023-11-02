@@ -20,7 +20,7 @@ const formidable = require('formidable');
 const pt = require('path');
 const fs = require('graceful-fs');
 const moment = require('moment');
-const request = require('request');
+const request = require('@cypress/request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
@@ -140,21 +140,21 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
         logger.trace(`req body :  ${req.body['item.uploadEv']}`);
-        return fs.unlink(files['item.uploadEv'].path, next);
+        return fs.unlink(files['item.uploadEv'][0].filepath, next);
       }
 
-      if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
-        !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
+      if (files && files['item.uploadEv'] && files['item.uploadEv'][0].filepath &&
+        !fileTypeWhitelist.find(el => el === files['item.uploadEv'][0].mimetype)) {
         req.body = {
           'item.uploadEv': wrongFileTypeError,
           'item.link': '',
           'item.size': 0
         };
-        logger.trace(`File path: ${files['item.uploadEv'].path}`);
+        logger.trace(`File path: ${files['item.uploadEv'][0].filepath}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
       let uploadingErrorText = uploadingError;
-      if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+      if (uploadingError || !files['item.uploadEv'][0].originalFilename) {
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
@@ -169,10 +169,10 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return next();
       }
 
-      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-      const size = files['item.uploadEv'].size;
+      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
+      const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
-      return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
+      return fs.rename(files['item.uploadEv'][0].filepath, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
     };
   }
 

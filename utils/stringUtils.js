@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers, max-len, no-undefined */
-const Entities = require('html-entities').XmlEntities;
+const { decode } = require('html-entities');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 const MIN_CHAR_COUNT = 5;
@@ -126,10 +126,7 @@ const getTribunalPanelWelsh = ben => {
   }[key];
 };
 
-const decode = field => {
-  const entities = new Entities();
-  return entities.decode(field);
-};
+const decodeText = field => decode(field);
 
 module.exports = {
   isFeatureFlagEnabled,
@@ -141,7 +138,7 @@ module.exports = {
   getTribunalPanel,
   getTribunalPanelWelsh,
   getBenefitName,
-  decode,
+  decode: decodeText,
   getHasAcronym,
   getBenefitEndText,
   getBenefitEndTextWelsh,

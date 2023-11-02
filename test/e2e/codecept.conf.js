@@ -32,13 +32,12 @@ exports.config = {
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
-      getPageTimeout: 60000,
+      getPageTimeout: 10000,
       show: false,
       windowSize: '1000x1000',
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--headless',
           '--disable-gpu',
           '--disable-dev-shm-usage',
           '--no-sandbox',

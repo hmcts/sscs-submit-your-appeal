@@ -69,14 +69,17 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === 'development'
-            }
+            loader: 'css-loader',
+            options: { url: false }
           },
-          'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: { quietDeps: true }
+            }
+          }
         ]
       }
     ]

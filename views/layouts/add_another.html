@@ -46,9 +46,8 @@
       {% endcall %}
 
       {% call formSection() %}
-        <a href="{{ addAnotherUrl }}" class="add-another-add-link" role="button">
-          {{ defaultContent.addAnotherLink | safe }}
-        </a>
+        <a href="{{ addAnotherUrl }}" class="add-another-add-link govuk-button govuk-button--secondary"
+           role="button">{{ defaultContent.addAnotherLink | safe }}</a>
       {% endcall %}
     {% endblock %}
   {% endif %}
