@@ -14,6 +14,12 @@ function e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOff
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+//  I.seeCurrentUrlEquals('/hearing-availability');
+  if (language === 'en') {
+      I.completeAllPcq();
+    } else {
+      I.completeAllPcqCY();
+    }
   I.checkYourAppealToConfirmationPage(language, signer);
   I.endTheSession();
 }
