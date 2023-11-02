@@ -114,7 +114,7 @@ const configureHelmet = app => {
     directives: {
       defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
-      formAction: [`'self' ${config.get('services.idam.loginUrl')}`],
+      formAction: [`'self' ${config.get('services.idam.loginUrl')} ${config.get('services.pcq.url')}`],
       styleSrc: [
         '\'self\'',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
