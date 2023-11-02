@@ -238,7 +238,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   }
 
   // We are on CYA
-  I.seeCurrentUrlEquals(paths.checkYourAppeal);
+  I.seeCurrentUrlEquals('/check-your-appeal');
 
   // Type of benefit
   I.see(testData.benefitType.description);
