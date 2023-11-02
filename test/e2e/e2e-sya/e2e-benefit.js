@@ -1,5 +1,4 @@
 const content = require('commonContent');
-const cookieContent = require('./cookie-content');
 
 function e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOffice) {
   const commonContent = content[language];
@@ -15,7 +14,6 @@ function e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOff
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
-  I.click(cookieContent.acceptCookie);
   if (language === 'en') {
     I.completeAllPcq();
   } else {
