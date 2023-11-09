@@ -50,4 +50,4 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.appealSubmitConfirmation(language);
     const ccdCaseData = await I.getCaseData(I, ccdCaseID);
     assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-  }).retry(10);
+  }).retry(5);
