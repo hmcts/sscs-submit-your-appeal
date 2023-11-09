@@ -188,7 +188,9 @@ describe('RepresentativeDetails.js', () => {
           'county',
           'postCode',
           'emailAddress',
-          'phoneNumber'
+          'phoneNumber',
+          'postcodeAddress',
+          'postcodeLookup'
         );
       }
     });
