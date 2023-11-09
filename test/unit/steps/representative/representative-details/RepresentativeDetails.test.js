@@ -179,7 +179,7 @@ describe('RepresentativeDetails.js', () => {
           'postcodeLookup'
         );
       } else {
-        expect(Object.keys(fields).length).to.equal(8);
+        expect(Object.keys(fields).length).to.equal(10);
         expect(fields).to.have.all.keys(
           'name',
           'addressLine1',
