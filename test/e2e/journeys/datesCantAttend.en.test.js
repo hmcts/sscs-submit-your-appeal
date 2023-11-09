@@ -57,4 +57,4 @@ Scenario(`${language.toUpperCase()} - Provides a date when they cannot attend th
   I.enterDateCantAttendAndContinue(commonContent, randomWeekDayIn6Weeks, commonContent.edit);
   I.forceClick(commonContent.continue);
   I.see(DateUtils.formatDate(randomWeekDayIn6Weeks, 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(10);
+}).retry(5);
