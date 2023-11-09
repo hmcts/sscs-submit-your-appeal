@@ -15,6 +15,8 @@ def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
 
+  env.PCQ_ENABLED = false
+
   afterSuccess('build') {
     yarnBuilder.yarn('build')
   }
