@@ -62,9 +62,7 @@ function enterAppellantNINOAndContinueAfterSignIn(commonContent, nino) {
 }
 
 function IenterAddressDetailsManual(I) {
-  if (postcodeLookupEnabled) {
-    I.click({ id: 'manualLink' });
-  }
+  I.click({ id: 'manualLink' });
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
