@@ -7,9 +7,7 @@ function enterRequiredRepresentativeDetailsManual(I) {
   I.fillField('input[name="name.first"]', 'Harry');
   I.fillField('input[name="name.last"]', 'Potter');
 
-  if (postcodeLookupEnabled) {
-    I.click({ id: 'manualLink' });
-  }
+  I.click({ id: 'manualLink' });
 
   I.fillField('#addressLine1', '4 Privet Drive');
   I.fillField('#addressLine2', 'Off Wizards close');
