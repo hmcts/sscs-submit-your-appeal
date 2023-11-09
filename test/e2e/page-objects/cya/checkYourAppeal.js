@@ -8,7 +8,6 @@ const supportContentCy = require('steps/hearing/support/content.cy');
 const datesCantAttendContentEn = require('steps/hearing/dates-cant-attend/content.en');
 const datesCantAttendContentCy = require('steps/hearing/dates-cant-attend/content.cy');
 const config = require('config');
-const content = require('commonContent');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -293,10 +292,6 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
 
 function checkYourAppealToConfirmationPage(language, signer) {
   const I = this;
-  const url = I.getPageUrl();
-  if (url !== paths.checkYourAppeal) {
-    I.click(content[language].continue);
-  }
   I.wait(10);
   I.checkYourAppealToConfirmation(language, signer);
 }
