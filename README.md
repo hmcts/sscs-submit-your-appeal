@@ -76,7 +76,7 @@ View the application:
 
     https://localhost:3000
 
-If you prefer to run the application natively but still use docker dor Redis you can do so by running:
+If you prefer to run the application natively but still use docker for Redis you can do so by running:
     docker-compose up redis
 
 You would then start the application by running yarn dev as above
@@ -104,7 +104,7 @@ Functional test batches:
 To improve reliability running the functional tests locally you can run them in batches using the following command
 
 ```bash
-yarn test:functional:all-batches
+yarn test:functional:batches
 ```
 
 If you wish to increase the speed of the tests, you can decrease the wait time between each action, the default is set
