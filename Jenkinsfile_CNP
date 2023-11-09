@@ -31,6 +31,7 @@ def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
 
+  env.POSTCODE_LOOKUP_ENABLED = false
   loadVaultSecrets(secrets)
 
   afterSuccess('build') {
