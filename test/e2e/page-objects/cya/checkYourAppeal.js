@@ -292,6 +292,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
 
 function checkYourAppealToConfirmationPage(language, signer) {
   const I = this;
+  I.wait(10);
   I.checkYourAppealToConfirmation(language, signer);
 }
 
