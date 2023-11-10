@@ -14,7 +14,7 @@ nodejs:
     WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
     ALLOW_COOKIE_BANNER_ENABLED: true
     FT_WELSH: true
-    PCQ_ENABLED: false
+    PCQ_ENABLED: true
   keyVaults:
     sscs:
       secrets:
