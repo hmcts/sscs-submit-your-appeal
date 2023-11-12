@@ -12,7 +12,7 @@ const logPath = 'server.js';
 
 
 if (process.env.NODE_ENV === 'development') {
-  startLocalDevServer(config.node.port)
+  startLocalDevServer(app, config.node.port)
     .then(() => logger.trace('SYA local development server started'));
 } else {
   app

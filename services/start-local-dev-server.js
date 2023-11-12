@@ -3,7 +3,6 @@ const { SecretClient } = require('@azure/keyvault-secrets');
 const webpack = require('webpack');
 const webpackDevConfig = require('../webpack/webpack.dev');
 const webpackMiddleware = require('webpack-dev-middleware');
-const app = require('../app');
 const https = require('https');
 const logger = require('../logger');
 
@@ -28,7 +27,7 @@ async function fetchSecret(secret) {
   }
 }
 
-const startLocalDevServer = async port => {
+const startLocalDevServer = async(app, port) => {
   const compiler = webpack(webpackDevConfig);
   const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
   app.use(wp);
