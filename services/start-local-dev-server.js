@@ -1,10 +1,10 @@
 const { AzureCliCredential } = require('@azure/identity');
 const { SecretClient } = require('@azure/keyvault-secrets');
 
-async function mount(vaultName, secret) {
+async function fetchSecret(secret) {
   try {
     const credential = new AzureCliCredential();
-    const vaultUrl = `https://${vaultName}.vault.azure.net/`;
+    const vaultUrl = 'https://sscs-aat.vault.azure.net/';
     const client = new SecretClient(vaultUrl, credential);
     const secretValue = await client.getSecret(secret);
     const prefix = secretValue.value.match(/-----BEGIN (PRIVATE KEY|CERTIFICATE)-----/gm)[0];
@@ -21,8 +21,8 @@ async function mount(vaultName, secret) {
 }
 
 async function run() {
-  const serverKey = await mount('sscs-aat', 'server-key');
-  const serverCertificate = await mount('sscs-aat', 'server-certificate');
+  const serverKey = await fetchSecret('server-key');
+  const serverCertificate = await fetchSecret('server-certificate');
   return { serverKey, serverCertificate };
 }
 

@@ -15,21 +15,25 @@ const mountSecrets = require('./services/start-local-dev-server');
 
 const logPath = 'server.js';
 
-if (process.env.NODE_ENV === 'development') {
+const startLocalDevServer = async port => {
   const compiler = webpack(webpackDevConfig);
   const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
   app.use(wp);
-  mountSecrets().then(res => {
-    wp.waitUntilValid(stats => {
-      app.locals.webpackHash = stats.hash;
-      https.createServer({
-        key: res.serverKey,
-        cert: res.serverCertificate
-      }, app).listen(config.node.port, () => {
-        logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
-      });
+  const { serverKey, serverCertificate } = await mountSecrets();
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
+    https.createServer({
+      key: serverKey,
+      cert: serverCertificate
+    }, app).listen(port, () => {
+      logger.trace(`SYA server listening on port: ${port}`, logPath);
     });
   });
+};
+
+if (process.env.NODE_ENV === 'development') {
+  startLocalDevServer(config.node.port)
+    .then(() => logger.trace('SYA local development server started'));
 } else {
   app
     .listen(config.node.port,
