@@ -1,5 +1,13 @@
 const { AzureCliCredential } = require('@azure/identity');
 const { SecretClient } = require('@azure/keyvault-secrets');
+const webpack = require('webpack');
+const webpackDevConfig = require('../webpack/webpack.dev');
+const webpackMiddleware = require('webpack-dev-middleware');
+const app = require('../app');
+const https = require('https');
+const logger = require('../logger');
+
+const logPath = 'start-local-dev-server.js';
 
 async function fetchSecret(secret) {
   try {
@@ -20,10 +28,21 @@ async function fetchSecret(secret) {
   }
 }
 
-async function run() {
+const startLocalDevServer = async port => {
+  const compiler = webpack(webpackDevConfig);
+  const wp = webpackMiddleware(compiler, { publicPath: webpackDevConfig.output.publicPath });
+  app.use(wp);
   const serverKey = await fetchSecret('server-key');
   const serverCertificate = await fetchSecret('server-certificate');
-  return { serverKey, serverCertificate };
-}
+  wp.waitUntilValid(stats => {
+    app.locals.webpackHash = stats.hash;
+    https.createServer({
+      key: serverKey,
+      cert: serverCertificate
+    }, app).listen(port, () => {
+      logger.trace(`SYA server listening on port: ${port}`, logPath);
+    });
+  });
+};
 
-module.exports = run;
+module.exports = startLocalDevServer;
