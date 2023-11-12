@@ -1,5 +1,6 @@
 const { expect } = require('test/util/chai');
 const {
+  maskNino,
   titleise,
   splitBenefitType,
   isNotEmptyString,
@@ -14,6 +15,12 @@ const {
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('stringUtils.js', () => {
+  describe('mask nino', () => {
+    it('should mask nino', () => {
+      expect(maskNino('AA112233B')).to.equal('XXXX2233B');
+    });
+  });
+
   describe('titleise', () => {
     it('should titleise a string from hello to Hello', () => {
       expect(titleise('hello')).to.equal('Hello');
