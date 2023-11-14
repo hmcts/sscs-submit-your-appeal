@@ -709,7 +709,20 @@
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=en_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_POST" : "ignore",
-  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore"
+  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "20012_Anti-CSRF Tokens Check_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27NQVfgqrux_10277231024135831.js_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10063_Permissions Policy Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "10063_Permissions Policy Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions?lng=cy_GET" : "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27NQVfgqrux_10277231024135831.js_GET" : "ignore",
+  "10021_X-Content-Type-Options Header Missing_https://benefit-appeal.aat.platform.hmcts.net/ruxitagentjs_ICA27NQVfgqrux_10277231024135831.js_GET" : "ignore",
+  "10049_Non-Storable Content_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore",
+  "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookies_GET" : "ignore",
+  "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore"
 
 }
 
