@@ -724,7 +724,12 @@
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
   "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
   "40025_Proxy Disclosure_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
-  "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore"
+  "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
+  "20012_Anti-CSRF Tokens Check_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10063_Permissions Policy Header Not Set_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=on_GET" : "ignore",
+  "10049_Non-Storable Content_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore"
 
 }
 
