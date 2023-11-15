@@ -179,7 +179,7 @@ describe('RepresentativeDetails.js', () => {
           'postcodeLookup'
         );
       } else {
-        expect(Object.keys(fields).length).to.equal(8);
+        expect(Object.keys(fields).length).to.equal(10);
         expect(fields).to.have.all.keys(
           'name',
           'addressLine1',
@@ -188,7 +188,9 @@ describe('RepresentativeDetails.js', () => {
           'county',
           'postCode',
           'emailAddress',
-          'phoneNumber'
+          'phoneNumber',
+          'postcodeAddress',
+          'postcodeLookup'
         );
       }
     });

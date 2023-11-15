@@ -1,9 +1,9 @@
 function signOut(language) {
   const I = this;
   if (language === 'en') {
-    I.click('Sign Out');
+    I.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
   } else {
-    I.click('Allgofnodi');
+    I.retry({ retries: 3, minTimeout: 5000 }).click('Allgofnodi');
   }
   I.wait(1);
 }
