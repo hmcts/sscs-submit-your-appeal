@@ -7,7 +7,6 @@ Feature(`${language.toUpperCase()} - Check-your-appeal @functional`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.wait(2);
 });
 
 After(({ I }) => {

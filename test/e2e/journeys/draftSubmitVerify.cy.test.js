@@ -1,7 +1,6 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
-const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 const assert = require('assert');
@@ -13,8 +12,6 @@ Feature(`${language.toUpperCase()} - Verifying data when drafts are submitted to
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.wait(2);
-  I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 
