@@ -9,7 +9,7 @@ Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @fu
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
+  I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {

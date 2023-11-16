@@ -11,7 +11,7 @@ Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
+  I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {

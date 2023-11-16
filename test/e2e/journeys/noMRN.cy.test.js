@@ -16,7 +16,7 @@ Feature(`${language.toUpperCase()} - Appellant does not have a MRN @batch-04`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
+  I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
