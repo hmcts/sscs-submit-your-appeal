@@ -9,6 +9,8 @@ const config = require('config');
 
 const featureFlagOverrides = {};
 
+const maskNino = nino => (nino ? `XXXX${nino.slice(4)}` : 'not submitted yet');
+
 const overrideFeatFlag = override => {
   featureFlagOverrides[override.key] = override.value;
 };
@@ -129,6 +131,7 @@ const getTribunalPanelWelsh = ben => {
 const decodeText = field => decode(field);
 
 module.exports = {
+  maskNino,
   isFeatureFlagEnabled,
   titleise,
   splitBenefitType,
