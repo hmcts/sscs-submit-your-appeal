@@ -9,6 +9,7 @@ const config = require('config');
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
   const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
+  const res = { send: sinon.spy() };
 
   beforeEach(() => {
     representativeDetails = new RepresentativeDetails({
@@ -18,7 +19,7 @@ describe('RepresentativeDetails.js', () => {
         }
       },
       session: {}
-    });
+    }, res);
 
     representativeDetails.fields = {
       name: {
@@ -56,10 +57,8 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.pcl.init.restore();
     });
 
-    const req = { method: 'GET', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
     const next = sinon.spy();
-    const redirect = sinon.spy();
-    const res = { redirect };
     it('call pcl controller once', () => {
       representativeDetails.req = req;
       representativeDetails.handler(req, res, next);
@@ -167,10 +166,8 @@ describe('RepresentativeDetails.js', () => {
 
     it('should contain dynamic fields', () => {
       if (isPostCodeLookupEnabled) {
-        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
         const next = sinon.spy();
-        const redirect = sinon.spy();
-        const res = { redirect };
         representativeDetails.req = req;
         representativeDetails.handler(req, res, next);
         fields = representativeDetails.form.fields;
@@ -182,7 +179,7 @@ describe('RepresentativeDetails.js', () => {
           'postcodeLookup'
         );
       } else {
-        expect(Object.keys(fields).length).to.equal(8);
+        expect(Object.keys(fields).length).to.equal(10);
         expect(fields).to.have.all.keys(
           'name',
           'addressLine1',
@@ -191,7 +188,9 @@ describe('RepresentativeDetails.js', () => {
           'county',
           'postCode',
           'emailAddress',
-          'phoneNumber'
+          'phoneNumber',
+          'postcodeAddress',
+          'postcodeLookup'
         );
       }
     });

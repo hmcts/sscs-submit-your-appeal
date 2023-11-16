@@ -46,7 +46,7 @@ describe('The EvidenceUpload middleware', () => {
           this.on = () => {};
         }
       },
-      request: {
+      '@cypress/request': {
         post: poster
       },
       'graceful-fs': {
@@ -155,9 +155,11 @@ describe('The EvidenceUpload middleware', () => {
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            path: ''
-          }
+          'item.uploadEv': [
+            {
+              filepath: ''
+            }
+          ]
         };
 
         handleIcomingParse(undefined, undefined, files);
@@ -175,9 +177,11 @@ describe('The EvidenceUpload middleware', () => {
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            path: ''
-          }
+          'item.uploadEv': [
+            {
+              filepath: ''
+            }
+          ]
         };
 
         handleIcomingParse(undefined, undefined, files);
@@ -195,9 +199,11 @@ describe('The EvidenceUpload middleware', () => {
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            path: '__path__'
-          }
+          'item.uploadEv': [
+            {
+              filepath: '__path__'
+            }
+          ]
         };
 
         handleIcomingParse(undefined, undefined, files);
@@ -209,18 +215,22 @@ describe('The EvidenceUpload middleware', () => {
       it('should call fs.unlink', () => {
         const req = {
           body: {
-            'item.uploadEv': {
-              path: '__path__'
-            }
+            'item.uploadEv': [
+              {
+                filepath: '__path__'
+              }
+            ]
           }
         };
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            path: '__path__',
-            type: 'foobar'
-          }
+          'item.uploadEv': [
+            {
+              filepath: '__path__',
+              mimetype: 'foobar'
+            }
+          ]
         };
 
         handleIcomingParse(undefined, undefined, files);
@@ -232,17 +242,21 @@ describe('The EvidenceUpload middleware', () => {
       it('should call next', () => {
         const req = {
           body: {
-            'item.uploadEv': {
-              path: '__path__'
-            }
+            'item.uploadEv': [
+              {
+                filepath: '__path__'
+              }
+            ]
           }
         };
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            name: 'foo.bar'
-          }
+          'item.uploadEv': [
+            {
+              originalFilename: 'foo.bar'
+            }
+          ]
         };
         const uploadingError = { message: 'maxFileSize exceeded' };
 
@@ -255,15 +269,17 @@ describe('The EvidenceUpload middleware', () => {
       it('should call next', () => {
         const req = {
           body: {
-            'item.uploadEv': {
-              path: '__path__'
-            }
+            'item.uploadEv': [
+              {
+                filepath: '__path__'
+              }
+            ]
           }
         };
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {}
+          'item.uploadEv': [{}]
         };
 
         handleIcomingParse(undefined, undefined, files);
@@ -275,19 +291,23 @@ describe('The EvidenceUpload middleware', () => {
       it('should call fs.rename', () => {
         const req = {
           body: {
-            'item.uploadEv': {
-              path: '__path__'
-            }
+            'item.uploadEv': [
+              {
+                filepath: '__path__'
+              }
+            ]
           }
         };
         const next = sinon.stub();
         const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
         const files = {
-          'item.uploadEv': {
-            path: '__path__',
-            type: 'image/jpeg',
-            name: 'foo.jpg'
-          }
+          'item.uploadEv': [
+            {
+              filepath: '__path__',
+              mimetype: 'image/jpeg',
+              originalFilename: 'foo.jpg'
+            }
+          ]
         };
 
         handleIcomingParse(undefined, undefined, files);

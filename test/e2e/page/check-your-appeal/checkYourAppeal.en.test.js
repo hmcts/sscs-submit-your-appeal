@@ -5,26 +5,26 @@ const paths = require('paths');
 
 Feature(`${language.toUpperCase()} - Check-your-appeal @functional`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, I => {
+Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, ({ I }) => {
   I.amOnPage(paths.checkYourAppeal);
   I.see('Check your answers');
   I.see('Your application is incomplete');
   I.see('There are still some questions to answer.');
   I.click('Continue your application');
   I.seeCurrentUrlEquals('/benefit-type');
-}).retry(20);
+}).retry(10);
 
-Scenario(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, I => {
+Scenario(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, ({ I }) => {
   I.enterBenefitTypeAndContinue(commonContent, 'pip');
   // I.chooseLanguagePreference(commonContent, 'no');
   I.amOnPage(paths.checkYourAppeal);
   I.dontSee(checkYourAppealContent.header);
-}).retry(20);
+}).retry(10);

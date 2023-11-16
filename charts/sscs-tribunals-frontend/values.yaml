@@ -22,6 +22,7 @@ nodejs:
     CONTACT_US_WEBCHAT_ENABLED: false
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
+    ALLOW_CONFIG_MUTATIONS: true
 
     #Added for new Webchat with Agent
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"

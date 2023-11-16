@@ -5,6 +5,7 @@ function signIn(username, password, language) {
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
+  I.wait(5);
   I.waitForElement(".form-buttons-group [href='/new-appeal']", 20);
   if (language === 'en') {
     I.see('Your draft benefit appeals');
@@ -22,7 +23,7 @@ async function signInVerifylanguage(username, password, language) {
   const altLang = await I.grabTextFrom('.language');
   if ((altLang === 'English' && language === 'en') || (altLang === 'Cymraeg' && language === 'cy')) {
     I.amOnPage(`${paths.drafts}?lng=${language}`);
-    I.wait(5);
+    I.wait(2);
   }
 
   if (language === 'en') {
@@ -35,7 +36,7 @@ async function signInVerifylanguage(username, password, language) {
 function navigateToSignInLink() {
   const I = this;
   I.click('Sign back into your appeal');
-  I.wait(5);
+  I.wait(2);
 }
 
 

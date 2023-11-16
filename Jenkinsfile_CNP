@@ -16,9 +16,6 @@ def branchesToSync = ['demo', 'ithc', 'perftest']
 withPipeline("nodejs", product, component) {
 
   afterSuccess('build') {
-    stage('Generate cookie banner') {
-      sh "./node_modules/gulp/bin/gulp.js default"
-    }
     yarnBuilder.yarn('build')
   }
 

@@ -33,15 +33,15 @@ const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFr
 
 Feature(`${language.toUpperCase()} - Benefit Type @batch-12`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, I => {
+Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, ({ I }) => {
   I.enterBenefitTypeAndContinue(commonContent, 'pip');
   // I.chooseLanguagePreference(commonContent, 'no');
   I.seeInCurrentUrl(paths.start.postcodeCheck);
@@ -51,7 +51,7 @@ Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postco
 /* eslint-disable no-negated-condition */
 benefitTypesArr.forEach(benefitTypeKey => {
   if (benefitTypeKey !== 'personalIndependencePayment') {
-    Scenario(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, I => {
+    Scenario(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, ({ I }) => {
       let benefitForm;
       if (sscs1.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS1';

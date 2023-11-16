@@ -1,4 +1,4 @@
-const rp = require('request-promise');
+const rp = require('@cypress/request-promise');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
 const { buildConcatenatedAddress } = require('./helper');

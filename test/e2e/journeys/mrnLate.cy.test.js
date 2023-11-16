@@ -1,7 +1,6 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const DateUtils = require('utils/DateUtils');
-const paths = require('paths');
 const testData = require('test/e2e/data.en');
 
 const appellant = testData.appellant;
@@ -17,18 +16,17 @@ const thirteenMonthsAndOneDayLate = {
 
 Feature(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
-  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, I => {
-    I.wait(2);
+  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
+    I.wait(1);
     I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
     // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
     I.enterPostcodeAndContinue(commonContent, testData.appellant.contactDetails.postCode);

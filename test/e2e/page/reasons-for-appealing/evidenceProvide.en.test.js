@@ -9,22 +9,22 @@ const evidenceUploadEnabled = require('config').get('features.evidenceUpload.ena
 Feature(`${language.toUpperCase()} - Evidence provide page @evidence-upload @batch-10`);
 
 if (evidenceUploadEnabled) {
-  Before(I => {
+  Before(({ I }) => {
     I.createTheSession(language);
     I.amOnPage(paths.reasonsForAppealing.evidenceProvide);
   });
 
-  After(I => {
+  After(({ I }) => {
     I.endTheSession();
   });
 
-  Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, I => {
+  Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, ({ I }) => {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
     I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
     I.see(evidenceUploadContent.title);
   });
 
-  Scenario(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, I => {
+  Scenario(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, ({ I }) => {
     I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.no);
     I.seeInCurrentUrl(paths.hearing.theHearing);
     I.see(theHearingContent.title);

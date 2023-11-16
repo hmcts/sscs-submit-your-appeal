@@ -14,50 +14,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   const saveF = sinon.spy();
   let loggerSpy = '';
   let loggerExceptionSpy = '';
-  let objectAssignSpy = '';
   const apiUrl = 'http://mockapi.com';
   i18next.changeLanguage('en');
-
-  nock(apiUrl)
-    .defaultReplyHeaders({
-      'Content-Type': 'application/json'
-    })
-    .put('/drafts')
-    .reply(200, { ccdCaseId: 12 });
-
-  nock(apiUrl)
-    .defaultReplyHeaders({
-      'Content-Type': 'application/json'
-    })
-    .get('/drafts')
-    .reply(200, { benefitType: true });
-
-  nock(apiUrl)
-    .defaultReplyHeaders({
-      'Content-Type': 'application/json'
-    })
-    .delete('/drafts/case1234')
-    .reply(200, {});
-
-  nock(apiUrl)
-    .defaultReplyHeaders({
-      'Content-Type': 'application/json'
-    })
-    .get('/drafts/all')
-    .reply(200, {
-      draft1: {
-        key1: 'value1'
-      },
-      draft2: {
-        key1: 'value1'
-      }
-    });
 
   beforeEach(() => {
     loggerSpy = sinon.spy(logger, 'trace');
     loggerExceptionSpy = sinon.spy(logger, 'exception');
-    objectAssignSpy = sinon.spy(Object, 'assign');
     draftAppealStoreMiddleware.setFeatureFlag(true);
+    if (!nock.isActive()) {
+      nock.activate();
+    }
   });
 
   afterEach(() => {
@@ -67,10 +33,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     saveF.resetHistory();
     logger.trace.restore();
     logger.exception.restore();
-    Object.assign.restore();
-  });
-
-  after(() => {
     nock.restore();
     nock.cleanAll();
   });
@@ -123,7 +85,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   });
 
   describe('archiveDraft api call', () => {
-    const req = {
+    let req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
@@ -145,31 +107,34 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       }
     };
     it('Expected Successfully Archive a draft:', async() => {
+      req = JSON.parse(JSON.stringify(req));
+      nock(apiUrl)
+        .defaultReplyHeaders({ 'Content-Type': 'application/json' })
+        .delete('/drafts/case1234').reply(200, {});
+
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(3);
-      expect(saveF).to.have.been.calledOnce;
+
+      expect(loggerSpy).to.have.been.calledWith('DELETE api:http://mockapi.com/drafts status:200', 'draftAppealStoreMiddleware.js');
+      expect(req.session.drafts).to.be.empty;
     });
 
     it('Expected Successfully Archive a draft after first request failed:', async() => {
+      req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
-        .defaultReplyHeaders({
-          'Content-Type': 'application/json'
-        })
-        .delete('/drafts/case1234')
-        .reply(500, {});
+        .defaultReplyHeaders({ 'Content-Type': 'application/json' })
+        .delete('/drafts/case1234').reply(500, {});
 
       nock(apiUrl)
-        .defaultReplyHeaders({
-          'Content-Type': 'application/json'
-        })
-        .delete('/drafts/case1234')
-        .reply(200, {});
+        .defaultReplyHeaders({ 'Content-Type': 'application/json' })
+        .delete('/drafts/case1234').reply(200, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(2);
+
+      expect(loggerSpy).to.have.been.calledWith('Exception on archiving a draft for case with caseId: case1234', 'draftAppealStoreMiddleware.js');
     });
 
     it('Handles Archive a draft fail:', async() => {
+      req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
           'Content-Type': 'application/json'
@@ -178,9 +143,8 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(404, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
-      expect(loggerSpy).to.have.been.callCount(3);
-      expect(loggerExceptionSpy).to.have.been.callCount(0);
-      expect(saveF).to.have.been.callCount(1);
+
+      expect(loggerSpy).to.have.been.calledWith('Exception on archiving a draft for case with caseId: case1234', 'draftAppealStoreMiddleware.js');
     });
   });
 
@@ -205,7 +169,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
   });
 
   describe('saveToDraftStore api call', () => {
-    const req = {
+    let req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         visitedSteps: [ { benefitType: '', valid: true } ],
         settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
@@ -214,15 +178,26 @@ describe('middleware/draftAppealStoreMiddleware', () => {
           id: '1'
         }
       },
-      cookies: { '__auth-token': 'xxx' }
+      cookies: { '__auth-token': 'xxx' },
+      session: {}
     };
     it('Expected Successfully create a draft:', async() => {
+      req = JSON.parse(JSON.stringify(req));
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .put('/drafts').reply(200, { id: 12 });
+
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(7);
-      expect(next).to.have.been.calledOnce;
+
+      expect(loggerSpy).to.have.been.calledWith('About to create new draft');
+      expect(loggerSpy).to.have.been.calledWith(['Successfully created a draft for case with nino: XXXX3344B', 200], 'draftAppealStoreMiddleware.js');
+      expect(req.session).to.eql({ ccdCaseId: 12 });
     });
 
     it('Expected Successfully updated a draft:', async() => {
+      req = JSON.parse(JSON.stringify(req));
       Object.assign(req, { session: { ccdCaseId: 12 } });
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
       expect(loggerSpy).to.have.been.callCount(5);
@@ -230,14 +205,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-  describe.skip('saveToDraftStore api failed call', () => {
+  describe('saveToDraftStore api failed call', () => {
     const req = {
       journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         steps: {
           Error500: paths.errors.internalServerError
         },
         visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrl: `${apiUrl}/` } },
+        settings: { apiDraftUrlCreate: `${apiUrl}/random-url` } },
       idam: {
         userDetails: {
           id: '1'
@@ -245,10 +220,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       },
       cookies: { '__auth-token': 'xxx' }
     };
+    res.redirect = sinon.spy();
     it('Expected error on posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerExceptionSpy).to.have.been.calledOnce;
-      expect(next).to.have.been.callCount(0);
+      expect(loggerSpy).to.have.been.calledWith('Exception on creating/updating a draft for case with nino: XXXX3344B', 'draftAppealStoreMiddleware.js');
     });
   });
 
@@ -260,9 +235,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {}
     };
 
-    it('should not restore not logged in user session from state ', async() => {
+    it('should not restore not logged in user session from state', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
-      expect(next).to.have.been.calledOnce;
+      expect(req.session.drafts).to.be.undefined;
     });
   });
 
@@ -277,12 +252,12 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('should not restore not logged in user session from state ', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledThrice;
+      expect(req.session.drafts).to.be.undefined;
     });
   });
 
   describe('restoreUserState from api', () => {
-    const req = {
+    let req = {
       journey: { values: { BenefitType: 'PIP' }, settings: { apiDraftUrl: `${apiUrl}/drafts` } },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' },
@@ -291,9 +266,17 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
 
     it('Expected Successfully get a draft:', async() => {
+      req = JSON.parse(JSON.stringify(req));
+      nock(apiUrl)
+        .defaultReplyHeaders({
+          'Content-Type': 'application/json'
+        })
+        .get('/drafts').reply(200, { benefitType: true });
+
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
-      expect(next).to.have.been.calledOnce;
+
+      expect(loggerSpy).to.have.been.calledWith(['Successfully get a draft', 200], 'draftAppealStoreMiddleware.js');
+      expect(req.session).to.eql({ isUserSessionRestored: true, benefitType: true, entryPoint: 'Entry' });
     });
   });
 
@@ -307,21 +290,38 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     };
 
     it('Expected Successfully get all drafts:', async() => {
+      const request = JSON.parse(JSON.stringify(req));
+      const draf1 = { ccdCaseId: 'draft1', key1: 'value1' };
+      const draf2 = { ccdCaseId: 'draft2', key2: 'value2' };
+      nock(apiUrl)
+        .defaultReplyHeaders({ 'Content-Type': 'application/json' })
+        .get('/drafts/all').reply(200, [draf1, draf2]);
+
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
-      expect(next).to.have.been.calledOnce;
+      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+
+      expect(request.session.drafts.draft1).to.eql(draf1);
+      expect(request.session.drafts.draft2).to.eql(draf2);
     });
 
 
-    it('Expected Successfully get all drafts and allows save and return disabled:', async() => {
+    it('Expected no drafts saved when save and return disabled:', async() => {
+      const request = { session: {} };
+      nock(apiUrl)
+        .defaultReplyHeaders({ 'Content-Type': 'application/json' })
+        .get('/drafts/all').reply(200, [
+          { ccdCaseId: 'draft1', key1: 'value1' },
+          { ccdCaseId: 'draft2', key1: 'value1' }
+        ]);
+
       draftAppealStoreMiddleware.setFeatureFlag(false);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
-      expect(objectAssignSpy).to.have.been.callCount(0);
-      expect(next).to.have.been.calledOnce;
+      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+
+      expect(request.session.drafts).to.be.undefined;
     });
 
     it('Handles 204 no content for all drafts:', async() => {
+      const request = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
           'Content-Type': 'application/json'
@@ -330,9 +330,9 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(204, {});
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(req, res, next);
-      expect(objectAssignSpy).to.have.been.calledTwice;
-      expect(next).to.have.been.calledOnce;
+      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+
+      expect(request.session.drafts).to.be.empty;
     });
   });
 

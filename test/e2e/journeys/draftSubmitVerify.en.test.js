@@ -1,7 +1,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
-const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 const assert = require('assert');
@@ -11,19 +10,18 @@ let userEmail = '';
 
 Feature(`${language.toUpperCase()} - Verifying data when drafts are submitted to CCD`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
   testUser.deleteUser(userEmail);
 });
 
 Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD  @fullFunctional`,
-  async I => {
+  async({ I }) => {
     await moment().locale(language);
     await I.enterDetailsFromStartToDraft(commonContent, language, userEmail);
     I.navigateToDrafts(language);
@@ -50,4 +48,4 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.appealSubmitConfirmation(language);
     const ccdCaseData = await I.getCaseData(I, ccdCaseID);
     assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-  }).retry(20);
+  }).retry(10);

@@ -27,8 +27,8 @@
     "roleName": "sya"
   },
   "e2e": {
-    "waitForTimeout": "60000",
-    "waitForAction": "2000",
+    "waitForTimeout": "10000",
+    "waitForAction": "500",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "https://localhost:3000"
@@ -136,10 +136,14 @@
     "index": "/authenticated"
   },
   "services": {
+    "SSCS": {
+      "caseTypes": "SSCS",
+      "releaseVersion": "4.0"
+    },
     "idam": {
-      "apiUrl": "http://localhost:5000",
+      "apiUrl": "http://localhost:5062",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:3501/login",
+      "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
       "useMock": "false"
     },

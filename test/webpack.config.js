@@ -5,7 +5,7 @@ module.exports = {
   mode: 'none',
   externals: [
     nodeExternals({
-      whitelist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/, 'lodash-es']
+      allowlist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/, 'lodash-es']
     })
   ],
   node: {

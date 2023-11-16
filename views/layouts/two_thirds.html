@@ -17,7 +17,7 @@
 
 {% if featureToggles.cookieBanner() == "true" %}
   <div>
-    {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
+    {% include "../../cookie-banner/cookie-banner.njk" %}
   </div>
 {% else %}
   {% include "components/cookie-banner.html" %}

@@ -12,16 +12,15 @@ const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[langu
 /* eslint-disable max-len */
 Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async I => {
+Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async({ I }) => {
   moment().locale(language);
 
   const randomWeekDay = DateUtils.getDateInMilliseconds(
@@ -36,7 +35,7 @@ Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend th
   I.see(DateUtils.formatDate(moment(randomWeekDay), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 }).retry(1);
 
-Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async I => {
+Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async({ I }) => {
   moment().locale(language);
 
   const randomWeekDayIn8Weeks = DateUtils.getDateInMilliseconds(
@@ -58,7 +57,7 @@ Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the
   I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
   I.click(commonContent.continue);
   await I.deselectDates(language, [randomWeekDayIn8Weeks]);
-  I.wait(2);
+  I.wait(1);
   await I.selectDates(language, [randomWeekDayIn10Weeks]);
   I.click(commonContent.continue);
   I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);

@@ -12,16 +12,20 @@ const config = require('config');
 describe('AppellantContactDetails.js', () => {
   let appellantContactDetails = null;
   const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
+  const res = { send: sinon.spy() };
 
   beforeEach(() => {
-    appellantContactDetails = new AppellantContactDetails({
-      journey: {
-        steps: {
-          TextReminders: paths.smsNotify.appellantTextReminders
-        }
+    appellantContactDetails = new AppellantContactDetails(
+      {
+        journey: {
+          steps: {
+            TextReminders: paths.smsNotify.appellantTextReminders
+          }
+        },
+        session: {}
       },
-      session: {}
-    });
+      res
+    );
 
     appellantContactDetails.fields = {
       firstName: { value: '' },
@@ -46,6 +50,8 @@ describe('AppellantContactDetails.js', () => {
 
   describe('handler()', () => {
     let pclSpy = '';
+    const req = { method: 'GET', body: {}, session: {}, query: {}, headers: {}, xhr: true };
+    const next = sinon.spy();
 
     beforeEach(() => {
       pclSpy = sinon.spy(appellantContactDetails.pcl, 'init');
@@ -55,13 +61,9 @@ describe('AppellantContactDetails.js', () => {
       appellantContactDetails.pcl.init.restore();
     });
 
-    const req = { method: 'GET', body: {}, session: {}, query: {} };
-    const next = sinon.spy();
-    const redirect = sinon.spy();
-    const res = { redirect };
-    it('call pcl controller once', () => {
+    it('call pcl controller once', async() => {
       appellantContactDetails.req = req;
-      appellantContactDetails.handler(req, res, next);
+      await appellantContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
     });
   });
@@ -157,15 +159,14 @@ describe('AppellantContactDetails.js', () => {
     let field = null;
 
     before(() => {
+      appellantContactDetails = new AppellantContactDetails({ session: {} }, res);
       fields = appellantContactDetails.form.fields;
     });
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
-        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
         const next = sinon.spy();
-        const redirect = sinon.spy();
-        const res = { redirect };
         appellantContactDetails.req = req;
         appellantContactDetails.handler(req, res, next);
         fields = appellantContactDetails.form.fields;

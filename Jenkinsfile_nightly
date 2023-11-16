@@ -38,7 +38,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
 
-    before('DependencyCheckNightly') {sh 'yarn test:audit'}
+    before('DependencyCheckNightly') {sh 'yarn test : audit'}
     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)

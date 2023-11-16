@@ -16,7 +16,9 @@ describe('Pcq.js', () => {
 
   before(() => {
     nock.cleanAll();
-    nock.activate();
+    if (!nock.isActive()) {
+      nock.activate();
+    }
   });
 
   beforeEach(() => {
