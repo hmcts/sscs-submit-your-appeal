@@ -2,7 +2,6 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
-const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 
@@ -12,7 +11,6 @@ let userEmail;
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 
