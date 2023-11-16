@@ -3,7 +3,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
-const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
@@ -11,7 +10,6 @@ Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {

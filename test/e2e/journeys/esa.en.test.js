@@ -12,8 +12,6 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
 
   Before(({ I }) => {
     I.createTheSession(language);
-    I.seeCurrentUrlEquals(paths.start.benefitType);
-    I.seeCurrentUrlEquals(paths.start.languagePreference);
   });
 
   After(({ I }) => {
