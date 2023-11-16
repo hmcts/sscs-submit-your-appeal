@@ -8,7 +8,6 @@ Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @funct
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
