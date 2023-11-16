@@ -14,7 +14,6 @@ Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends heari
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {

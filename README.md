@@ -1,8 +1,8 @@
 # SSCS - Submit your  appeal
 
 ## Background
-Someone who receives a decision about their entitlement to benefits has the right to appeal against that decision,
-if they disagree with it. The first step is asking the Department for Work and Pensions to look at the decision again.
+Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision.
+The first step is asking the Department for Work and Pensions to look at the decision again.
 This is known as requesting ‘Mandatory Reconsideration’. If they still disagree, they can appeal to the Social Security
 and Child Support tribunal.
 
@@ -18,6 +18,7 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
+Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
 Install Redis: download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz

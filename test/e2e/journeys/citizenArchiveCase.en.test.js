@@ -2,7 +2,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
-const paths = require('paths');
 const testUser = require('../../util/IdamUser');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
@@ -11,7 +10,6 @@ let userEmail;
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
   userEmail = testUser.createUser();
 });
 

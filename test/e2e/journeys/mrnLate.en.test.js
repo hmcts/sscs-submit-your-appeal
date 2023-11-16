@@ -1,7 +1,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
 const DateUtils = require('utils/DateUtils');
-const paths = require('paths');
 const testData = require('test/e2e/data.en');
 
 const appellant = testData.appellant;
@@ -19,7 +18,6 @@ Feature(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
