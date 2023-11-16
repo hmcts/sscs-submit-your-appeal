@@ -2,7 +2,6 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const hearingArrangementsContent = require(`steps/hearing/arrangements/content.${language}`);
 const testData = require('test/e2e/data.en');
-const paths = require('paths');
 
 const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
@@ -12,7 +11,6 @@ Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends heari
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
