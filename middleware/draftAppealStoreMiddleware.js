@@ -4,6 +4,9 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
+const { get } = require('lodash');
+const { maskNino } = require('utils/stringUtils');
+
 
 /* eslint-disable max-lines */
 const {
@@ -75,9 +78,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
 
 const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   logger.trace('Exception on creating/updating a draft for case with nino: ' +
-    `${(values && values.appellant && values.appellant.nino) ?
-      values.appellant.nino :
-      'no NINO submitted yet'}`, logPath);
+    `${maskNino(get(values, 'appellant.nino'))}`, logPath);
   logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
@@ -128,9 +129,7 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
     .then(result => {
       logger.trace([
         'Successfully updated a draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submited yet'}`, result.status
+        `${maskNino(get(values, 'appellant.nino'))}`, result.status
       ], logPath);
 
       logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
@@ -152,9 +151,7 @@ const createDraftInDraftStore = async(req, res, next, values) => {
     .then(result => {
       logger.trace([
         'Successfully created a draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submited yet'}`, result.status
+        `${maskNino(get(values, 'appellant.nino'))}`, result.status
       ], logPath);
 
       logger.trace(`PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,

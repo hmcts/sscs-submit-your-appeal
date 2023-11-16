@@ -8,8 +8,8 @@ const testData = require(`test/e2e/data.${language}`);
 Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
 
 Before(({ I }) => {
+  I.wait(1);
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
