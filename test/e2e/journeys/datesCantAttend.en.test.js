@@ -16,6 +16,7 @@ Feature(`${language.toUpperCase()} - PIP, one month ago, attends hearing with da
 
 Before(({ I }) => {
   I.createTheSession(language);
+  I.wait(2);
   I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
 });
 

@@ -19,6 +19,7 @@ Feature(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`);
 
 Before(({ I }) => {
   I.createTheSession(language);
+  I.wait(2);
   I.retry({ retries: 3, minTimeout: 2000 }).seeCurrentUrlEquals(paths.start.benefitType);
 });
 
