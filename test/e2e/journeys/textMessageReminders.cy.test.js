@@ -1,6 +1,5 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const paths = require('paths');
 const selectors = require('steps/check-your-appeal/selectors');
 
 const appellant = selectors[language].appellant;
@@ -14,7 +13,6 @@ Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, does not atte
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {

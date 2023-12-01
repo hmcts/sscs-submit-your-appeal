@@ -3,7 +3,6 @@ const config = require('config');
 const fileAcceptor = require('test/file_acceptor');
 const fs = require('fs');
 const testUser = require('../util/IdamUser');
-const urls = require('../../urls');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 
@@ -28,7 +27,7 @@ exports.config = {
   },
   helpers: {
     Puppeteer: {
-      url: `${urls.formDownload.benefitAppeal}`,
+      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
       waitForNavigation: 'load',
@@ -48,7 +47,7 @@ exports.config = {
     },
     MyHelper: {
       require: './helpers/helper.js',
-      url: `${urls.formDownload.benefitAppeal}`
+      url: process.env.TEST_URL || config.get('e2e.frontendUrl')
     },
     REST: {
     }

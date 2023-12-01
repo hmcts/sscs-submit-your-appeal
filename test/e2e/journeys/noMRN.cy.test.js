@@ -5,7 +5,6 @@ const contactDWPContent = require(`steps/compliance/contact-dwp/content.${langua
 const DateUtils = require('utils/DateUtils');
 const testData = require('test/e2e/data.en');
 const moment = require('moment');
-const paths = require('paths');
 const config = require('config');
 
 const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -16,7 +15,6 @@ Feature(`${language.toUpperCase()} - Appellant does not have a MRN @batch-04`);
 
 Before(({ I }) => {
   I.createTheSession(language);
-  I.seeCurrentUrlEquals(paths.start.benefitType);
 });
 
 After(({ I }) => {
