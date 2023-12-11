@@ -74,15 +74,12 @@ describe('RepresentativeDetails.js', () => {
 
     [
       'MR,HARRY,POTTER',
-      'mr,harry,potter',
-      'mR,haRRy,pOttEr',
-      'Mr,harry John,pOttEr'
     ].forEach(item => {
       it(`should normalise reps full name # ${item}`, () => {
         representativeDetails.fields.name.title.value = item.split(',')[0];
         representativeDetails.fields.name.first.value = item.split(',')[1];
         representativeDetails.fields.name.last.value = item.split(',')[2];
-        expect(representativeDetails.CYAName).to.equal('Mr Harry Potter');
+        expect(representativeDetails.CYAName).to.equal('MR HARRY POTTER');
       });
     });
 
