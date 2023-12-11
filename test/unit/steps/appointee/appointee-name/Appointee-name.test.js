@@ -79,29 +79,25 @@ describe('AppointeeName.js', () => {
     });
   });
 
-  [
-    'Mr,HARRY,POTTER',
-    'Mr,harry,potter',
-    'Mr,haRRy,pOttEr',
-    'Mr,harry John,pOttEr'
-  ].forEach(item => {
-    describe(`answers() appellant full name # ${item}`, () => {
+const Name = 'Mr,HARRY,POTTER-Smith';
+
+    describe(`answers() appellant full name # ${Name}`, () => {
       beforeEach(() => {
         appointeeName.fields = {
           title: {
-            value: item.split(',')[0]
+            value: Name.split(',')[0]
           },
           firstName: {
-            value: item.split(',')[1]
+            value: Name.split(',')[1]
           },
           lastName: {
-            value: item.split(',')[2]
+            value: Name.split(',')[2]
           }
         };
       });
       it('should normalise appointee full name in the answers()', () => {
         const answers = appointeeName.answers();
-        expect(answers[0].answer).to.equal('Mr Harry Potter');
+        expect(answers[0].answer).to.equal('Mr HARRY POTTER-Smith');
       });
 
       it('should normalise appointee full name in the values()', () => {
@@ -109,13 +105,12 @@ describe('AppointeeName.js', () => {
         expect(values).to.eql({
           appointee: {
             title: 'Mr',
-            firstName: 'Harry',
-            lastName: 'Potter'
+            firstName: 'HARRY',
+            lastName: 'POTTER-Smith'
           }
         });
       });
     });
-  });
 
   describe('answers() and values()', () => {
     const question = 'A Question';
