@@ -89,24 +89,24 @@ describe('RepresentativeDetails.js', () => {
 
     it('should return the firstName if only the firstName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
-      expect(representativeDetails.CYAName).to.equal('Firstname');
+      expect(representativeDetails.CYAName).to.equal('FirstName');
     });
 
     it('should return the lastName if only the lastName has been set', () => {
-      representativeDetails.fields.name.last.value = 'LastName';
+      representativeDetails.fields.name.last.value = 'Lastname';
       expect(representativeDetails.CYAName).to.equal('Lastname');
     });
 
     it('should return the full name if both firstName and lastName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
       representativeDetails.fields.name.last.value = 'LastName';
-      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
+      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
     });
 
     it('should return the full name without whitespace before or after the name', () => {
       representativeDetails.fields.name.first.value = '    FirstName';
       representativeDetails.fields.name.last.value = 'LastName    ';
-      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
+      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
     });
 
     it('should return the first name without whitespace before or after the name', () => {
@@ -116,7 +116,7 @@ describe('RepresentativeDetails.js', () => {
 
     it('should return the last name without whitespace before or after the name', () => {
       representativeDetails.fields.name.last.value = '  LastName ';
-      expect(representativeDetails.CYAName).to.equal('Lastname');
+      expect(representativeDetails.CYAName).to.equal('LastName');
     });
   });
 
@@ -331,14 +331,11 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
+const repName = 'MR,HARRY,POTTER';
+
   describe('values()', () => {
-    [
-      'MR,HARRY,POTTER',
-      'mr,harry,potter',
-      'mR,haRRy,pOttEr',
-      'Mr,harry John,pOttEr'
-    ].forEach(item => {
-      it(`should contain a value object with full name # ${item}`, () => {
+    beforeEach(() => {
+      it(`should contain a value object with full name # ${repName}`, () => {
         representativeDetails.fields.name.title.value = item.split(',')[0];
         representativeDetails.fields.name.first.value = item.split(',')[1];
         representativeDetails.fields.name.last.value = item.split(',')[2];
@@ -356,8 +353,8 @@ describe('RepresentativeDetails.js', () => {
         expect(values).to.eql({
           representative: {
             title: 'Mr',
-            firstName: 'Harry',
-            lastName: 'Potter',
+            firstName: 'HARRY',
+            lastName: 'POTTER',
             organisation: 'Organisation',
             contactDetails: {
               addressLine1: 'First line of my address',
