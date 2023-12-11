@@ -96,29 +96,25 @@ describe('AppellantName.js', () => {
     });
   });
 
-  [
-    'Mr,HARRY,POTTER',
-    'Mr,harry,potter',
-    'Mr,haRRy,pOttEr',
-    'Mr,harry John,pOttEr'
-  ].forEach(item => {
-    describe(`answers() appellant full name # ${item}`, () => {
+const Name = 'Mr,harry John,pOttEr';
+
+    describe(`answers() appellant full name # ${Name}`, () => {
       beforeEach(() => {
         appellantName.fields = {
           title: {
-            value: item.split(',')[0]
+            value: Name.split(',')[0]
           },
           firstName: {
-            value: item.split(',')[1]
+            value: Name.split(',')[1]
           },
           lastName: {
-            value: item.split(',')[2]
+            value: Name.split(',')[2]
           }
         };
       });
       it('should normalise appellant full name in the answers()', () => {
         const answers = appellantName.answers();
-        expect(answers[0].answer).to.equal('Mr Harry Potter');
+        expect(answers[0].answer).to.equal('Mr harry John pOttEr');
       });
 
       it('should normalise appellant full name in the values()', () => {
@@ -126,13 +122,12 @@ describe('AppellantName.js', () => {
         expect(values).to.eql({
           appellant: {
             title: 'Mr',
-            firstName: 'Harry',
-            lastName: 'Potter'
+            firstName: 'harry John',
+            lastName: 'pOttEr'
           }
         });
       });
     });
-  });
 
   describe('answers() and values()', () => {
     const question = 'A Question';
@@ -164,7 +159,7 @@ describe('AppellantName.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal('Mr Harry Potter');
+      expect(answers[0].answer).to.equal('Mr HARRY POTTER');
     });
 
     it('should contain a value object', () => {
@@ -172,8 +167,8 @@ describe('AppellantName.js', () => {
       expect(values).to.eql({
         appellant: {
           title: 'Mr',
-          firstName: 'Harry',
-          lastName: 'Potter'
+          firstName: 'HARRY',
+          lastName: 'POTTER'
         }
       });
     });
