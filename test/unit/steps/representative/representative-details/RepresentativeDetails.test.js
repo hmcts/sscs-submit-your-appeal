@@ -75,7 +75,7 @@ const Name = 'MR,HARRY,POTTER';
     });
 
      beforeEach(() => {
-      it(`should normalise reps full name # ${item}`, () => {
+      it(`should normalise reps full name # ${Name}`, () => {
         representativeDetails.fields.name.title.value = Name.split(',')[0];
         representativeDetails.fields.name.first.value = Name.split(',')[1];
         representativeDetails.fields.name.last.value = Name.split(',')[2];
