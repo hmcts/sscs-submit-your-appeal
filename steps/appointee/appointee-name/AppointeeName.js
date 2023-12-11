@@ -50,7 +50,6 @@ class AppointeeName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    // const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return [
       answer(this, {
         question: this.content.cya.appointeeName.question,
@@ -64,7 +63,6 @@ class AppointeeName extends SaveToDraftStore {
     const title = this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
-    // const fullName = parseFullName(`${first} ${last}`, 'all', 1, 0, 0);
     return {
       appointee: {
         title: decode(title),
