@@ -66,19 +66,19 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
+const Name = 'MR,HARRY,POTTER';
+
   describe('get getCYAName()', () => {
     beforeEach(() => {
       representativeDetails.fields.name.first.value = '';
       representativeDetails.fields.name.last.value = '';
     });
 
-    [
-      'MR,HARRY,POTTER',
-    ].forEach(item => {
+     beforeEach(() => {
       it(`should normalise reps full name # ${item}`, () => {
-        representativeDetails.fields.name.title.value = item.split(',')[0];
-        representativeDetails.fields.name.first.value = item.split(',')[1];
-        representativeDetails.fields.name.last.value = item.split(',')[2];
+        representativeDetails.fields.name.title.value = Name.split(',')[0];
+        representativeDetails.fields.name.first.value = Name.split(',')[1];
+        representativeDetails.fields.name.last.value = Name.split(',')[2];
         expect(representativeDetails.CYAName).to.equal('MR HARRY POTTER');
       });
     });
@@ -110,7 +110,7 @@ describe('RepresentativeDetails.js', () => {
     });
 
     it('should return the first name without whitespace before or after the name', () => {
-      representativeDetails.fields.name.first.value = '    FirstName    ';
+      representativeDetails.fields.name.first.value = '    Firstname    ';
       expect(representativeDetails.CYAName).to.equal('Firstname');
     });
 
@@ -336,9 +336,9 @@ const repName = 'MR,HARRY,POTTER';
   describe('values()', () => {
     beforeEach(() => {
       it(`should contain a value object with full name # ${repName}`, () => {
-        representativeDetails.fields.name.title.value = item.split(',')[0];
-        representativeDetails.fields.name.first.value = item.split(',')[1];
-        representativeDetails.fields.name.last.value = item.split(',')[2];
+        representativeDetails.fields.name.title.value = repName.split(',')[0];
+        representativeDetails.fields.name.first.value = repName.split(',')[1];
+        representativeDetails.fields.name.last.value = repName.split(',')[2];
         representativeDetails.fields.name.organisation.value = 'Organisation';
         representativeDetails.fields.addressLine1.value = 'First line of my address';
         representativeDetails.fields.addressLine2.value = 'Second line of my address';
