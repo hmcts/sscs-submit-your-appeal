@@ -66,7 +66,7 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
-const Name = 'MR,HARRY,POTTER';
+const Name = 'MR,HARRY-Kane,O`Brian';
 
   describe('get getCYAName()', () => {
     beforeEach(() => {
@@ -79,7 +79,7 @@ const Name = 'MR,HARRY,POTTER';
         representativeDetails.fields.name.title.value = Name.split(',')[0];
         representativeDetails.fields.name.first.value = Name.split(',')[1];
         representativeDetails.fields.name.last.value = Name.split(',')[2];
-        expect(representativeDetails.CYAName).to.equal('MR HARRY POTTER');
+        expect(representativeDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
       });
     });
 
