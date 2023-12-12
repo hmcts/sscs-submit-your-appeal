@@ -112,6 +112,39 @@ const Name = 'Mr,HARRY,POTTER-Smith';
       });
     });
 
+const Name2 = 'Mr,Harry,POTTER';
+
+    describe(`answers() appellant full name # ${Name2}`, () => {
+      beforeEach(() => {
+        appointeeName.fields = {
+          title: {
+            value: Name2.split(',')[0]
+          },
+          firstName: {
+            value: Name2.split(',')[1]
+          },
+          lastName: {
+            value: Name2.split(',')[2]
+          }
+        };
+      });
+      it('should normalise appointee full name in the answers()', () => {
+        const answers = appointeeName.answers();
+        expect(answers[0].answer).to.equal('Mr Harry POTTER');
+      });
+
+      it('should normalise appointee full name in the values()', () => {
+        const values = appointeeName.values();
+        expect(values).to.eql({
+          appointee: {
+            title: 'Mr',
+            firstName: 'Harry',
+            lastName: 'POTTER'
+          }
+        });
+      });
+    });
+
   describe('answers() and values()', () => {
     const question = 'A Question';
 
@@ -121,10 +154,10 @@ const Name = 'Mr,HARRY,POTTER-Smith';
           value: 'Mr'
         },
         firstName: {
-          value: 'Harry'
+          value: 'John-Smith'
         },
         lastName: {
-          value: 'Potter'
+          value: 'O`Connor'
         }
       };
 
@@ -142,7 +175,7 @@ const Name = 'Mr,HARRY,POTTER-Smith';
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appointeeDetails);
-      expect(answers[0].answer).to.equal('Mr Harry Potter');
+      expect(answers[0].answer).to.equal('Mr John-Smith O`Connor');
     });
 
     it('should contain a value object', () => {
@@ -150,8 +183,8 @@ const Name = 'Mr,HARRY,POTTER-Smith';
       expect(values).to.eql({
         appointee: {
           title: 'Mr',
-          firstName: 'Harry',
-          lastName: 'Potter'
+          firstName: 'John-Smith',
+          lastName: 'O`Connor'
         }
       });
     });

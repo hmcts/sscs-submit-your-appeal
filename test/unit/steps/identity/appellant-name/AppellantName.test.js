@@ -129,6 +129,39 @@ const Name = 'Mr,harry John,pOttEr';
       });
     });
 
+const Name2 = 'Miss,Sarah,O`Brian';
+
+    describe(`answers() appellant full name # ${Name2}`, () => {
+      beforeEach(() => {
+        appellantName.fields = {
+          title: {
+            value: Name2.split(',')[0]
+          },
+          firstName: {
+            value: Name2.split(',')[1]
+          },
+          lastName: {
+            value: Name2.split(',')[2]
+          }
+        };
+      });
+      it('should normalise appellant full name in the answers()', () => {
+        const answers = appellantName.answers();
+        expect(answers[0].answer).to.equal('Miss Sarah O`Brian');
+      });
+
+      it('should normalise appellant full name in the values()', () => {
+        const values = appellantName.values();
+        expect(values).to.eql({
+          appellant: {
+            title: 'Miss',
+            firstName: 'Sarah',
+            lastName: 'O`Brian'
+          }
+        });
+      });
+    });
+
   describe('answers() and values()', () => {
     const question = 'A Question';
 
@@ -138,7 +171,7 @@ const Name = 'Mr,harry John,pOttEr';
           value: 'Mr'
         },
         firstName: {
-          value: 'HARRY'
+          value: 'Harry-SMITH'
         },
         lastName: {
           value: 'POTTER'
@@ -159,7 +192,7 @@ const Name = 'Mr,harry John,pOttEr';
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal('Mr HARRY POTTER');
+      expect(answers[0].answer).to.equal('Mr Harry-SMITH POTTER');
     });
 
     it('should contain a value object', () => {
@@ -167,7 +200,7 @@ const Name = 'Mr,harry John,pOttEr';
       expect(values).to.eql({
         appellant: {
           title: 'Mr',
-          firstName: 'HARRY',
+          firstName: 'Harry-SMITH',
           lastName: 'POTTER'
         }
       });
