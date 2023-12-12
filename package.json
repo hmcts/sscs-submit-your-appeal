@@ -123,6 +123,7 @@
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0",
     "supertest": "^6.3.3",
+    "webdriverio": "^6.12.1",
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
