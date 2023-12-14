@@ -66,19 +66,19 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
-const Name = 'MR,HARRY-Kane,O`Brian';
 
   describe('get getCYAName()', () => {
+  const NAME = 'MR,HARRY-Kane,O`Brian';
     beforeEach(() => {
       representativeDetails.fields.name.first.value = '';
       representativeDetails.fields.name.last.value = '';
     });
 
      beforeEach(() => {
-      it(`should normalise reps full name # ${Name}`, () => {
-        representativeDetails.fields.name.title.value = Name.split(',')[0];
-        representativeDetails.fields.name.first.value = Name.split(',')[1];
-        representativeDetails.fields.name.last.value = Name.split(',')[2];
+      it(`should normalise reps full name with hyphen and apostrophe`, () => {
+        representativeDetails.fields.name.title.value = NAME.split(',')[0];
+        representativeDetails.fields.name.first.value = NAME.split(',')[1];
+        representativeDetails.fields.name.last.value = NAME.split(',')[2];
         expect(representativeDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
       });
     });
@@ -331,11 +331,11 @@ const Name = 'MR,HARRY-Kane,O`Brian';
     });
   });
 
-const repName = 'MR,HARRY,POTTER';
 
   describe('values()', () => {
+  const repName = 'MR,HARRY,POTTER';
     beforeEach(() => {
-      it(`should contain a value object with full name # ${repName}`, () => {
+      it(`should contain a value object with full name in caps`, () => {
         representativeDetails.fields.name.title.value = repName.split(',')[0];
         representativeDetails.fields.name.first.value = repName.split(',')[1];
         representativeDetails.fields.name.last.value = repName.split(',')[2];

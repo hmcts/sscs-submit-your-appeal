@@ -96,19 +96,19 @@ describe('AppellantName.js', () => {
     });
   });
 
-const Name = 'Mr,harry John,pOttEr';
 
-    describe(`answers() appellant full name # ${Name}`, () => {
+    describe(`answers() appellant full name with random case`, () => {
+    const NAME = 'Mr,harry John,pOttEr';
       beforeEach(() => {
         appellantName.fields = {
           title: {
-            value: Name.split(',')[0]
+            value: NAME.split(',')[0]
           },
           firstName: {
-            value: Name.split(',')[1]
+            value: NAME.split(',')[1]
           },
           lastName: {
-            value: Name.split(',')[2]
+            value: NAME.split(',')[2]
           }
         };
       });
@@ -129,19 +129,19 @@ const Name = 'Mr,harry John,pOttEr';
       });
     });
 
-const Name2 = 'Miss,Sarah,O`Brian';
 
-    describe(`answers() appellant full name # ${Name2}`, () => {
+    describe(`answers() appellant full name with apostrophe`, () => {
+    const NAME = 'Miss,Sarah,O`Brian';
       beforeEach(() => {
         appellantName.fields = {
           title: {
-            value: Name2.split(',')[0]
+            value: NAME.split(',')[0]
           },
           firstName: {
-            value: Name2.split(',')[1]
+            value: NAME.split(',')[1]
           },
           lastName: {
-            value: Name2.split(',')[2]
+            value: NAME.split(',')[2]
           }
         };
       });

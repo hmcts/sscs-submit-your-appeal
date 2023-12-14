@@ -79,19 +79,19 @@ describe('AppointeeName.js', () => {
     });
   });
 
-const Name = 'Mr,HARRY,POTTER-Smith';
 
-    describe(`answers() appellant full name # ${Name}`, () => {
+    describe(`answers() appellant full name with hyphen`, () => {
+    const NAME = 'Mr,HARRY,POTTER-Smith';
       beforeEach(() => {
         appointeeName.fields = {
           title: {
-            value: Name.split(',')[0]
+            value: NAME.split(',')[0]
           },
           firstName: {
-            value: Name.split(',')[1]
+            value: NAME.split(',')[1]
           },
           lastName: {
-            value: Name.split(',')[2]
+            value: NAME.split(',')[2]
           }
         };
       });
@@ -112,19 +112,19 @@ const Name = 'Mr,HARRY,POTTER-Smith';
       });
     });
 
-const Name2 = 'Mr,Harry,POTTER';
 
-    describe(`answers() appellant full name # ${Name2}`, () => {
+    describe(`answers() appellant full name with random case`, () => {
+    const NAME = 'Mr,Harry,POTTER';
       beforeEach(() => {
         appointeeName.fields = {
           title: {
-            value: Name2.split(',')[0]
+            value: NAME.split(',')[0]
           },
           firstName: {
-            value: Name2.split(',')[1]
+            value: NAME.split(',')[1]
           },
           lastName: {
-            value: Name2.split(',')[2]
+            value: NAME.split(',')[2]
           }
         };
       });
