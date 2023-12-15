@@ -349,7 +349,7 @@ describe('RepresentativeDetails.js', () => {
         const values = representativeDetails.values();
         expect(values).to.eql({
           representative: {
-            title: 'Mr',
+            title: 'MR',
             firstName: 'HARRY',
             lastName: 'POTTER',
             organisation: 'Organisation',
