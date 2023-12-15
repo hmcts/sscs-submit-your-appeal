@@ -332,7 +332,6 @@ describe('RepresentativeDetails.js', () => {
 
   describe('values()', () => {
   const repName = 'MR,HARRY,POTTER';
-    beforeEach(() => {
       it(`should contain a value object with full name in caps`, () => {
         representativeDetails.fields.name.title.value = repName.split(',')[0];
         representativeDetails.fields.name.first.value = repName.split(',')[1];
@@ -350,7 +349,7 @@ describe('RepresentativeDetails.js', () => {
         const values = representativeDetails.values();
         expect(values).to.eql({
           representative: {
-            title: 'Mr',
+            title: 'MR',
             firstName: 'HARRY',
             lastName: 'POTTER',
             organisation: 'Organisation',
@@ -368,7 +367,6 @@ describe('RepresentativeDetails.js', () => {
           }
         });
       });
-    });
 
     it('should contain empty object', () => {
       representativeDetails.fields.postcodeLookup = undefined;
