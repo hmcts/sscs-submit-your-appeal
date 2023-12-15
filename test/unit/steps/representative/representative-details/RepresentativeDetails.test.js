@@ -331,7 +331,7 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('values()', () => {
-  const repName = 'MR,HARRY,POTTER';
+      const repName = 'MR,HARRY,POTTER';
       it(`should contain a value object with full name in caps`, () => {
         representativeDetails.fields.name.title.value = repName.split(',')[0];
         representativeDetails.fields.name.first.value = repName.split(',')[1];

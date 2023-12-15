@@ -80,7 +80,7 @@ describe('AppointeeName.js', () => {
   });
 
     describe(`answers() appellant full name with hyphen`, () => {
-    const NAME = 'Mr,HARRY,POTTER-Smith';
+      const NAME = 'Mr,HARRY,POTTER-Smith';
       beforeEach(() => {
         appointeeName.fields = {
           title: {
@@ -113,7 +113,7 @@ describe('AppointeeName.js', () => {
 
 
     describe(`answers() appellant full name with random case`, () => {
-    const NAME = 'Mr,Harry,POTTER';
+      const NAME = 'Mr,Harry,POTTER';
       beforeEach(() => {
         appointeeName.fields = {
           title: {

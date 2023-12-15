@@ -97,7 +97,7 @@ describe('AppellantName.js', () => {
   });
 
     describe(`answers() appellant full name with random case`, () => {
-    const NAME = 'Mr,harry John,pOttEr';
+      const NAME = 'Mr,harry John,pOttEr';
       beforeEach(() => {
         appellantName.fields = {
           title: {
@@ -130,7 +130,7 @@ describe('AppellantName.js', () => {
 
 
     describe(`answers() appellant full name with apostrophe`, () => {
-    const NAME = 'Miss,Sarah,O`Brian';
+      const NAME = 'Miss,Sarah,O`Brian';
       beforeEach(() => {
         appellantName.fields = {
           title: {
