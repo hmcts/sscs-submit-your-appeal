@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -14,7 +13,6 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
-/* eslint max-lines: off */
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -206,8 +204,7 @@ const configureJourney = (app, commonContent) => {
         }
       },
       cookie: {
-        secure: config.get('node.protocol') === 'https',
-        sameSite: 'Strict'
+        secure: config.get('node.protocol') === 'https'
       },
       secret: config.redis.secret
     },
