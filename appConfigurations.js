@@ -154,7 +154,7 @@ const configureHelmet = app => {
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'www.googletagmanager.com'
+        '*.googletagmanager.com'
       ],
       imgSrc: [
         '\'self\'',
