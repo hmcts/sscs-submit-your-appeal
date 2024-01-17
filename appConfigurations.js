@@ -158,7 +158,7 @@ const configureHelmet = app => {
       ],
       imgSrc: [
         '\'self\'',
-        'stats.g.doubleclick.net',
+        '*.g.doubleclick.net',
         'www.google.com',
         'www.google.co.uk',
         'www.code.jquery.com',
