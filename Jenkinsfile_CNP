@@ -19,6 +19,7 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('build')
   }
 
+  enableSecurityScan()
   enableAksStagingDeployment()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
