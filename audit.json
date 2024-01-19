@@ -786,7 +786,19 @@
   "10029_Cookie Poisoning_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
   "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=c%3A%2F_GET" : "ignore",
   "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F&apm=on_GET" : "ignore",
-  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=c%3A%5C_GET" : "ignore"
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=c%3A%5C_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/contact-us?lng=en+AND+1%3D1+--+_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on+AND+1%3D1+--+&lng=en_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on+AND+1%3D1+--+&apm=on&lng=en_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/sitemap.xml?lng=cy+AND+1%3D1_GET" : "ignore",
+  "20012_Anti-CSRF Tokens Check_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "20012_Anti-CSRF Tokens Check_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore"
 }
 
 
