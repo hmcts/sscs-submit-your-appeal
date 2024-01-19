@@ -19,7 +19,6 @@
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint --fix .",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/smoke.conf.js --grep @smoke --steps --verbose --reporter mocha-multi",
-    "test:audit": "./bin/run-yarn-audit.sh -f yarn-audit-known-issues",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
     "test:mutation": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
     "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
