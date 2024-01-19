@@ -779,7 +779,11 @@
   "10049_Non-Storable Content_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/privacy-policy_GET" : "ignore",
   "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/privacy-policy_GET" : "ignore",
   "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
-  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore"
+  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=%2F_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/contact-us?lng=cy%27+AND+%271%27%3D%271%27+--+_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on%27+AND+%271%27%3D%271%27+--+&lng=en_GET" : "ignore",
+  "10029_Cookie Poisoning_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore"
 }
 
 
