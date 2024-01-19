@@ -714,7 +714,27 @@
   "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout_GET" : "ignore",
   "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore",
   "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type_POST" : "ignore",
-  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore"
+  "10031_User Controllable HTML Element Attribute (Potential XSS)_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/accessibility?lng=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on%22+AND+%221%22%3D%221%22+--+&apm=on_GET" : "ignore",
+  "40018_SQL Injection_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/sitemap.xml?lng=cy%27+AND+%271%27%3D%271%27+--+_GET" : "ignore",
+  "40025_Proxy Disclosure_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/appeal-form-download?lng=en_GET" : "ignore",
+  "40025_Proxy Disclosure_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "40025_Proxy Disclosure_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=en_GET" : "ignore",
+  "10063_Permissions Policy Header Not Set_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "10063_Permissions Policy Header Not Set_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout_GET" : "ignore",
+  "10029_Cookie Poisoning_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/appeal-form-download?lng=en_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=en_GET" : "ignore",
+  "10109_Modern Web Application_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "10109_Modern Web Application_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout_GET" : "ignore",
+  "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/sitemap.xml_GET" : "ignore",
+  "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/appeal-form-download?lng=en_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/appeal-form-download?lng=en_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/session-timeout?lng=en_GET" : "ignore"
 }
 
 
