@@ -767,7 +767,10 @@
   "10049_Non-Storable Content_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
   "10049_Non-Storable Content_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies_GET" : "ignore",
   "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
-  "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=en_GET" : "ignore"
+  "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=on&lng=en_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=c%3A%2F&apm=on&lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?lng=%2F_GET" : "ignore",
+  "10112_Session Management Response Identified_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/contact-us?lng=cy_GET" : "ignore"
 }
 
 
