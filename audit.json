@@ -798,7 +798,12 @@
   "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
   "90027_Cookie Slack Detector_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
   "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
-  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore"
+  "10104_User Agent Fuzzer_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookie-policy?analytics=on&apm=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F&lng=en_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=c%3A%5C&apm=on&lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?analytics=on&apm=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F&lng=cy_GET" : "ignore",
+  "6_Path Traversal_https://sscs-tribunals-frontend-pr-1431.preview.platform.hmcts.net/cookies?lng=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F_GET" : "ignore"
 }
 
 
