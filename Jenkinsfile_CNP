@@ -28,7 +28,9 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('build')
   }
 
-  enableSecurityScan()
+    enableSecurityScan(
+      scanType: "frontend"
+    )
   enableCrossBrowserTest(60)
   enableAksStagingDeployment()
   disableLegacyDeployment()
