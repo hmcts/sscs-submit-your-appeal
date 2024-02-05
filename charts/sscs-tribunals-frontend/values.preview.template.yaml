@@ -15,6 +15,7 @@ nodejs:
     ALLOW_COOKIE_BANNER_ENABLED: true
     FT_WELSH: true
     PCQ_ENABLED: true
+    SAME_SITE_COOKIE_FLAG_ENABLED: "true"
   keyVaults:
     sscs:
       secrets:
