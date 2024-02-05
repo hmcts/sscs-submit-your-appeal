@@ -205,7 +205,7 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: config.features.sameSiteSessionCookieFlag ? 'strict' : false},
+        sameSite: config.features.sameSiteCookieFlag ? 'strict' : false},
       secret: config.redis.secret
     },
     errorPages: {
