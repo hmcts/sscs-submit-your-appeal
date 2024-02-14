@@ -6,6 +6,8 @@ const noAgents = document.querySelector('#antenna-web-chat-no-agents');
 const link = document.querySelector('#antenna-web-chat-link');
 const MAX_WAIT_IN_SECONDS = 300;
 const OPEN_STATUS = 'Open';
+const CLOSING_HOUR = 17;
+const OPENING_HOUR = 8;
 
 export class WebChat {
   init() {
@@ -30,18 +32,17 @@ export class WebChat {
   }
 
   setMessage(ewt, ccState, availableAgents) {
-    if (ccState === OPEN_STATUS) {
-      if (ewt > MAX_WAIT_IN_SECONDS) {
-        link.style.display = 'none';
-        busy.style.display = 'block';
-      }
-      if (availableAgents <= 0) {
-        link.style.display = 'none';
-        noAgents.style.display = 'block';
-      }
-    } else {
+    const currentHour = new Date().getHours();
+
+    if (ccState !== OPEN_STATUS || currentHour < OPENING_HOUR || currentHour >= CLOSING_HOUR) {
       link.style.display = 'none';
       close.style.display = 'block';
+    } else if (availableAgents <= 0) {
+      link.style.display = 'none';
+      noAgents.style.display = 'block';
+    } else if (ewt > MAX_WAIT_IN_SECONDS) {
+      link.style.display = 'none';
+      busy.style.display = 'block';
     }
   }
 
