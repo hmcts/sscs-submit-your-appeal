@@ -79,7 +79,7 @@
         "textChatWithAnAgent": "Start web chat (opens in a new window)",
         "textNoAgentsAvailable": "No agents are available, please try again later.",
         "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
-        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 5pm or Saturday, 8am to 2pm. Or contact us using one of the ways below.",
+        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 5pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
         "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm"
       },
