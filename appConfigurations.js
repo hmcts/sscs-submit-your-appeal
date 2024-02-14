@@ -205,7 +205,7 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: config.features.sameSiteCookieFlag ? 'strict' : false},
+        sameSite: config.features.sameSiteCookieFlag ? 'lax' : false}, // lax required for the oauth2 redirect
       secret: config.redis.secret
     },
     errorPages: {
