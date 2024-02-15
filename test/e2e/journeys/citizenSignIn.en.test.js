@@ -17,7 +17,7 @@ After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async({ I }) => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional @oneFunctional`, async({ I }) => {
   await moment().locale(language);
     I.wait(1);
       I.click(cookieContent.rejectCookie);
@@ -36,4 +36,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   await I.appealSubmitConfirmation(language);
-}).retry(25);
+}).retry(10);
