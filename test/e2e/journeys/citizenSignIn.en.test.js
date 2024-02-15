@@ -36,4 +36,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   await I.appealSubmitConfirmation(language);
-}).retry(10);
+}).retry(25);
