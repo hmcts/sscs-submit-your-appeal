@@ -19,13 +19,13 @@ After(({ I }) => {
 
 Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async({ I }) => {
   await moment().locale(language);
+    I.wait(1);
+      I.click(cookieContent.rejectCookie);
+      I.see(cookieContent.hideAfterReject);
+      I.see(cookieContent.hideMessage);
+      I.refreshPage();
+      I.wait(2);
   await I.enterDetailsFromStartToDraftAppeals(commonContent, language, process.env.USEREMAIL_1);
-  I.wait(1);
-    I.click(cookieContent.rejectCookie);
-    I.see(cookieContent.hideAfterReject);
-    I.see(cookieContent.hideMessage);
-    I.refreshPage();
-    I.wait(2);
   await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
