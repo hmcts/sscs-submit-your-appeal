@@ -54,7 +54,7 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "false"
+      "webChatEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
