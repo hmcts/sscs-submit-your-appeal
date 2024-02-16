@@ -12,7 +12,7 @@ nodejs:
     # seems to be disabled currently and only enabled locally pointing at AAT
     # SERVICES_WEB_FORM:
     # This is currently disabled in prod, enabled all other environments
-    CONTACT_US_WEB_FORM_ENABLED: true
+    CONTACT_US_WEB_FORM_ENABLED: false
     MEDIA_FILES_ALLOWED_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
