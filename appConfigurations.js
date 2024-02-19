@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -14,7 +13,6 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
-/* eslint max-lines: off */
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -126,8 +124,8 @@ const configureHelmet = app => {
       scriptSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
@@ -141,8 +139,8 @@ const configureHelmet = app => {
       connectSrc: [
         '\'self\'',
         'www.gov.uk',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
@@ -156,19 +154,19 @@ const configureHelmet = app => {
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'www.googletagmanager.com'
+        '*.googletagmanager.com'
       ],
       imgSrc: [
         '\'self\'',
-        'stats.g.doubleclick.net',
+        '*.g.doubleclick.net',
         'www.google.com',
         'www.google.co.uk',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
         'code.jquery.com',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
@@ -207,8 +205,7 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: 'Strict'
-      },
+        sameSite: config.features.sameSiteCookieFlag ? 'lax' : false},
       secret: config.redis.secret
     },
     errorPages: {
