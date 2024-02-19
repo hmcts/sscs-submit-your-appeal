@@ -113,7 +113,8 @@
     "cookieBanner": {
       "enabled": "false"
     },
-    "SAME_SITE_COOKIE_FLAG_ENABLED": "false"
+    "SAME_SITE_COOKIE_FLAG_ENABLED": "false",
+    "JQUERY_VERSION_FLAG": "false"
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",

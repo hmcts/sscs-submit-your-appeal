@@ -108,7 +108,8 @@
     "cookieBanner": {
       "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     },
-    "sameSiteCookieFlag": "SAME_SITE_COOKIE_FLAG_ENABLED"
+    "sameSiteCookieFlag": "SAME_SITE_COOKIE_FLAG_ENABLED",
+    "jQueryVersionToggle": "JQUERY_VERSION_FLAG"
   },
   "postcodeChecker": {
     "enabled": "POSTCODE_CHECKER_ENABLED",
