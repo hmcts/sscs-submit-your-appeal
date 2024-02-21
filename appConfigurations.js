@@ -83,8 +83,7 @@ const configureNunjucks = (app, commonContent) => {
       featureToggles: {
         welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled
-      }
+        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled}
     }
   });
 };
