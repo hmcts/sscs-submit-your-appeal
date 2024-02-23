@@ -6,7 +6,7 @@ const noAgents = document.querySelector('#antenna-web-chat-no-agents');
 const link = document.querySelector('#antenna-web-chat-link');
 const MAX_WAIT_IN_SECONDS = 300;
 const OPEN_STATUS = 'Open';
-const CLOSING_HOUR = 17;
+const CLOSING_HOUR = 11;
 const OPENING_HOUR = 8;
 
 export class WebChat {
