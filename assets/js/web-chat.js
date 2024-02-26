@@ -33,16 +33,22 @@ export class WebChat {
 
   setMessage(ewt, ccState, availableAgents) {
     const currentHour = new Date().getHours();
+    console.log("*******************************************", CLOSING_HOUR, currentHour);
 
-    if (ccState !== OPEN_STATUS || currentHour < OPENING_HOUR || currentHour >= CLOSING_HOUR) {
-      link.style.display = 'none';
-      close.style.display = 'block';
-    } else if (availableAgents <= 0) {
-      link.style.display = 'none';
-      noAgents.style.display = 'block';
-    } else if (ewt > MAX_WAIT_IN_SECONDS) {
-      link.style.display = 'none';
-      busy.style.display = 'block';
+    if (ccState === OPEN_STATUS && currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR) {
+        console.log("wtf", ccState, currentHour >= OPENING_HOUR, currentHour < CLOSING_HOUR);
+        if (ewt > MAX_WAIT_IN_SECONDS) {
+            link.style.display = 'none';
+            busy.style.display = 'block';
+        }
+        if (availableAgents <= 0) {
+            link.style.display = 'none';
+            noAgents.style.display = 'block';
+        }
+    } else {
+        console.log("why?");
+        link.style.display = 'none';
+        close.style.display = 'block';
     }
   }
 
