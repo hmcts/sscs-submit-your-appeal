@@ -114,9 +114,9 @@
       "enabled": "false"
     },
     "jQueryVersionToggle": {
-      "enabled": "false"
+      "enabled": "true"
     },
-    "SAME_SITE_COOKIE_FLAG_ENABLED": "true"
+    "SAME_SITE_COOKIE_FLAG_ENABLED": "false"
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
