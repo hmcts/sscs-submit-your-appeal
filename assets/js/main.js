@@ -35,8 +35,8 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
-function initWebChat(language) {
-  if (language === 'en' && $('#antenna-web-chat').length) {
+function initWebChat() {
+  if ($('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
   }
@@ -158,7 +158,7 @@ $(document).ready(() => {
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat(language);
+  initWebChat();
   initArchiveWarning();
   PostCodeLookup.init();
   initCookieBanner();

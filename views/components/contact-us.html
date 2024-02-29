@@ -1,13 +1,14 @@
-<details class="govuk-details">
+<details class="govuk-details" open>
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
     </summary>
-    {% if webChatEnabled and htmlLang == "en" %}
+    {% if webChatEnabled %}
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
             <div id="antenna-web-chat" >
                 <div id="antenna-web-chat-link">
                     <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+<!--                    href for webchat is below-->
                     <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
                 </div>
                 {% include "components/web-chat.html" %}
