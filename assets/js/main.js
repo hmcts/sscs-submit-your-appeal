@@ -37,7 +37,7 @@ function initShowHideContent() {
 
 function initWebChat(language) {
   if ($('#antenna-web-chat').length) {
-    const webChat = new WebChat(language);
+    const webChat = new WebChat();
     webChat.init(language);
   }
 }
