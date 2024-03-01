@@ -8,7 +8,7 @@ const MAX_WAIT_IN_SECONDS = 300;
 const OPEN_STATUS = 'Open';
 
 export class WebChat {
-  init(language) {
+  init() {
     if (button !== null && webChat !== null) {
       button.addEventListener('click', () => {
         webChat.classList.remove('hidden');
