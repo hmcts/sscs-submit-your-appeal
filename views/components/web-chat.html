@@ -3,9 +3,10 @@
 <script src="https://{{ webChatClientUrl }}/chat-client/1/app-es5.js" nomodule defer></script>
 
 <web-chat class="hidden"
-          chat-title="HMCTS Web Chat"
+          chat-title="{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
           chat-icon-url="https://{{ webChatClientUrl }}/chat-client/1/assets/icon.png"
-          url={{ webChatUrl }}
+          locale-url="{{ commonContent[htmlLang].contactUs.webchat.localeUrl }}"
+          url="{{ webChatUrl }}"
           secure-connections="true"
           api-version="1.0"
           metrics-polling-interval="5"
@@ -14,13 +15,8 @@
           work-flow-type=""
           lease-time="24"
           priority="5"
-          language="English"
+          language="{{ commonContent[htmlLang].contactUs.webchat.language }}"
           service="SSCS"
           User="Chat"
           page-name="Appeal a benefit decision">
-
-    if (language === 'cy'){
-        chat-title="HMCTS lalala Web Chat"
-    }
-
 </web-chat>

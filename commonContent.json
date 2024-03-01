@@ -81,7 +81,10 @@
         "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
         "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 6pm or Saturday, 8am to 2pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
-        "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm"
+        "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm",
+        "localeUrl": "/assets/locale/en-gb/",
+        "language": "English",
+        "chatTitle": "HMCTS Web Chat"
       },
       "telephone" : {
         "title": "Telephone",
@@ -192,7 +195,10 @@
         "textAllAgentsBusy": "Mae ein hasiantau sgwrsio dros y we i gyd yn brysur ar hyn o bryd yn helpu pobl eraill.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu cysylltwch â ni drwy un o’r dulliau isod.",
         "textChatClosed" : "Mae’r gwasanaeth sgwrsio dros y we nawr ar gau. \n Gallwch ddefnyddio’r gwasanaeth hwn o ddydd Llun i ddydd Gwener, 8.30am - 5pm, neu cysylltwch â ni drwy un o’r dulliau isod.",
         "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
-        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm"
+        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm",
+        "localeUrl": "/assets/locale/cy-gb/",
+        "language": "English",
+        "chatTitle": "Welsh HMCTS Web Chat"
       },
       "telephone" : {
         "title": "Ffoniwch ni",

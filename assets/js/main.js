@@ -35,10 +35,10 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
-function initWebChat() {
+function initWebChat(language) {
   if ($('#antenna-web-chat').length) {
-    const webChat = new WebChat();
-    webChat.init();
+    const webChat = new WebChat(language);
+    webChat.init(language);
   }
 }
 
@@ -158,7 +158,7 @@ $(document).ready(() => {
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat();
+  initWebChat(language);
   initArchiveWarning();
   PostCodeLookup.init();
   initCookieBanner();
