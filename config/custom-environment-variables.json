@@ -140,8 +140,6 @@
     "pcq": {
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
-    },
-    "webChatUrl":"WEBCHAT_URL",
-    "webChatClientUrl": "WEBCHAT_CLIENT_URL"
+    }
   }
 }
