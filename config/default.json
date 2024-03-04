@@ -102,7 +102,7 @@
       "enabled": "true"
     },
     "welsh": {
-      "enabled": "false"
+      "enabled": "true"
     },
     "pcq": {
       "enabled": "false"
@@ -158,6 +158,8 @@
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
+    "WEBCHAT_URL": "webchat.pp.ctsc.hmcts.net",
+    "WEBCHAT_CLIENT_URL": "webchat-client.pp.ctsc.hmcts.net",
     "pcq": {
       "name": "Equality and Diversity Service",
       "url": "http://localhost:4000",
