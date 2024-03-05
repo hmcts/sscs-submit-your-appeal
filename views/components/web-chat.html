@@ -3,7 +3,6 @@
 <script src="https://{{ webChatClientUrl }}/chat-client/1/app-es5.js" nomodule defer></script>
 
 <web-chat class="hidden"
-          chat-title="HMCTS Web Chat"
           chat-icon-url="https://{{ webChatClientUrl }}/chat-client/1/assets/icon.png"
           url={{ webChatUrl }}
           secure-connections="true"
@@ -14,8 +13,15 @@
           work-flow-type=""
           lease-time="24"
           priority="5"
-          language="English"
           service="SSCS"
           User="Chat"
           page-name="Appeal a benefit decision">
+    {% if welshWebchatEnabled)  %}
+            chat-title = "{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
+            locale-url="{{ commonContent[htmlLang].contactUs.webchat.localeUrl }}"
+            language="{{ commonContent[htmlLang].contactUs.webchat.language }}"
+    {% else %}
+         chat-title="HMCTS Web Chat"
+         language="English"
+    {% endif %}
 </web-chat>

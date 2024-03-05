@@ -36,9 +36,18 @@ function initShowHideContent() {
 }
 
 function initWebChat(language) {
-  if (language === 'en' && $('#antenna-web-chat').length) {
-    const webChat = new WebChat();
-    webChat.init();
+  if (featureToggles.welshWebchat() === "true")
+  {
+    if ($('#antenna-web-chat').length) {
+      const webChat = new WebChat();
+      webChat.init();
+    }
+   }
+  else {
+    if (language === 'en' && $('#antenna-web-chat').length) {
+      const webChat = new WebChat();
+      webChat.init();
+    }
   }
 }
 

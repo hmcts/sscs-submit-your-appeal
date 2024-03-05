@@ -1,8 +1,8 @@
-<details class="govuk-details">
+<details class="govuk-details" open>
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
     </summary>
-    {% if webChatEnabled and htmlLang == "en" %}
+    {% if ((webChatEnabled and htmlLang == "en") or (webchatEnabled and welshWebchatEnabled))  %}
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
             <div id="antenna-web-chat" >

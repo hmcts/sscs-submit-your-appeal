@@ -111,7 +111,10 @@
     "jQueryVersionToggle": {
       "enabled": "JQUERY_VERSION_FLAG"
     },
-    "sameSiteCookieFlag": "SAME_SITE_COOKIE_FLAG_ENABLED"
+    "sameSiteCookieFlag": "SAME_SITE_COOKIE_FLAG_ENABLED",
+    "welshWebchat": {
+      "enabled": "WELSH_WEBCHAT_ENABLED"
+    }
   },
   "postcodeChecker": {
     "enabled": "POSTCODE_CHECKER_ENABLED",

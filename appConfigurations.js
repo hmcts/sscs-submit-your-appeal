@@ -76,6 +76,7 @@ const configureNunjucks = (app, commonContent) => {
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
+      welshWebchatEnabled: config.get('features.welshWebchat.enabled') === 'true',
       webChatClientUrl: webChatClientBaseUrl,
       webChatUrl: webChatBaseUrl,
       paths,
@@ -83,7 +84,8 @@ const configureNunjucks = (app, commonContent) => {
       featureToggles: {
         welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled}
+        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled,
+        welshWebchat: () => process.env.WELSH_WEBCHAT_ENABLED || config.features.welshWebchat.enabled}
     }
   });
 };
