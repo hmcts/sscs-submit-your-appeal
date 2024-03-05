@@ -117,8 +117,8 @@ const configureHelmet = app => {
       formAction: [`'self' ${config.get('services.idam.loginUrl')} ${config.get('services.pcq.url')}`],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
@@ -133,8 +133,8 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ],
       connectSrc: [
         '\'self\'',
@@ -169,8 +169,8 @@ const configureHelmet = app => {
         '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ]
     }
   }));
