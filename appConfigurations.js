@@ -86,8 +86,7 @@ const configureNunjucks = (app, commonContent) => {
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
         jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled,
         welshWebchat: () => process.env.WELSH_WEBCHAT_ENABLED || config.features.welshWebchat.enabled}
-    }
-  });
+    }});
 };
 
 const configureViews = app => {
@@ -298,5 +297,4 @@ module.exports = {
   configureHelmet,
   configureJourney,
   configureMiddleWares,
-  configureAppRoutes
-};
+  configureAppRoutes};
