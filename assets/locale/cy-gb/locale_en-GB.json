@@ -54,5 +54,10 @@
       "yes": "Ydw",
       "no": "Nac ydw"
     }
+  },
+  "survey": {
+    "propose": "Would you like to take part in an email survey at the end of your Webchat?",
+    "yes": "Yes",
+    "no": "No"
   }
 }
