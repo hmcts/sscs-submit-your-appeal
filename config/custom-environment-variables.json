@@ -137,6 +137,10 @@
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
     },
+    "webchat": {
+      "url": "WEBCHAT_URL",
+      "clientUrl": "WEBCHAT_CLIENT_URL"
+    },
     "pcq": {
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
