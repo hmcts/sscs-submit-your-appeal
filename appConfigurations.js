@@ -20,14 +20,8 @@ const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') ===
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
-let webChatBaseUrl = process.env.WEBCHAT_URL;
-if (!webChatBaseUrl) {
-  webChatBaseUrl = 'webchat.ctsc.hmcts.net';
-}
-let webChatClientBaseUrl = process.env.WEBCHAT_CLIENT_URL;
-if (!webChatClientBaseUrl) {
-  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net';
-}
+const webChatBaseUrl = config.get('services.webchat.url');
+const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
 
 const configureNunjucks = (app, commonContent) => {
   // because of a bug with iphone, we need to remove the mime types from accept

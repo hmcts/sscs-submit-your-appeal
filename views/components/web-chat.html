@@ -1,7 +1,7 @@
 <link  href="https://{{ webChatClientUrl }}/chat-client/1/styles.css" rel="stylesheet"/>
 <!--change back from pp to webChatClientUrl before merging-->
-<script src="https://webchat-client.pp.ctsc.hmcts.net/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es2015.js" type="module"></script>
-<script src="https://{{ webChatClientUrl }}/chat-client/1/app-es5.js" nomodule defer></script>
+<script src="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es2015.js" type="module"></script>
+<script src="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es5.js" nomodule defer></script>
 
 <web-chat class="hidden"
           chat-title="{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
