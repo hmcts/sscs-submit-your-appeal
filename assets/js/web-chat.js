@@ -1,4 +1,3 @@
-//const config = require('config');
 const button = document.querySelector('#antenna-web-chat-button');
 const webChat = document.querySelector('web-chat');
 const close = document.querySelector('#antenna-web-chat-closed');
@@ -34,8 +33,6 @@ export class WebChat {
   }
 
   setMessage(ewt, ccState, availableAgents) {
-    const currentHour = new Date().getHours();
-
     if (ccState === OPEN_STATUS && this.isWebchatOpen()) {
         if (ewt > MAX_WAIT_IN_SECONDS) {
             link.style.display = 'none';
