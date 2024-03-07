@@ -82,9 +82,10 @@
         "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 6pm or Saturday, 8am to 2pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
         "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm",
-        "localeUrl": "/assets/locale/",
+        "localeUrl": "/assets/locale/en-gb",
         "language": "English",
         "chatTitle": "HMCTS Web Chat",
+        "pageName": "Appeal a benefit decision",
         "jsFile": "1"
       },
       "telephone" : {
@@ -197,9 +198,10 @@
         "textChatClosed" : "Mae’r gwasanaeth sgwrsio dros y we nawr ar gau. \n Gallwch ddefnyddio’r gwasanaeth hwn o ddydd Llun i ddydd Gwener, 8.30am - 5pm, neu cysylltwch â ni drwy un o’r dulliau isod.",
         "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
         "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm",
-        "localeUrl": "/assets/locale/",
+        "localeUrl": "/assets/locale/cy-gb",
         "language": "Welsh",
         "chatTitle": "Sgwrsio dros y we GLlTEF",
+        "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
         "jsFile": "welsh"
       },
       "telephone" : {
