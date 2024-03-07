@@ -22,7 +22,6 @@ nodejs:
     #Added for new Webchat with Agent
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
-    WEBCHAT_OPENING_TIME_8_5: false
 
   keyVaults:
     sscs:
