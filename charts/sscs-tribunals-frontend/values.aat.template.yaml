@@ -10,3 +10,4 @@ nodejs:
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     FT_WELSH: true
     PCQ_ENABLED: true
+    WEBCHAT_OPENING_TIME_8_5: true
