@@ -1,11 +1,10 @@
 <link  href="https://{{ webChatClientUrl }}/chat-client/1/styles.css" rel="stylesheet"/>
-<!--change back from pp to webChatClientUrl before merging-->
 <script src="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es2015.js" type="module"></script>
 <script src="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es5.js" nomodule defer></script>
 
 <web-chat class="hidden"
           chat-title="{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
-          chat-icon-url="https://{{ webChatClientUrl }}/chat-client/1/assets/icon.png"
+          chat-icon-url="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/assets/icon.png"
           locale-url="{{ commonContent[htmlLang].contactUs.webchat.localeUrl }}"
           url="{{ webChatUrl }}"
           secure-connections="true"
