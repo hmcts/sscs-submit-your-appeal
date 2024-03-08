@@ -4,7 +4,6 @@ const close = document.querySelector('#antenna-web-chat-closed');
 const busy = document.querySelector('#antenna-web-chat-busy');
 const noAgents = document.querySelector('#antenna-web-chat-no-agents');
 const link = document.querySelector('#antenna-web-chat-link');
-const currentHour = new Date().getHours();
 const MAX_WAIT_IN_SECONDS = 300;
 const OPEN_STATUS = 'Open';
 const CLOSING_HOUR = 17;
@@ -33,6 +32,7 @@ export class WebChat {
   }
 
   setMessage(ewt, ccState, availableAgents) {
+    const currentHour = new Date().getHours();
     if (ccState === OPEN_STATUS && currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR) {
       if (ewt > MAX_WAIT_IN_SECONDS) {
         link.style.display = 'none';
