@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+/* eslint init-declarations: ["error", "never"]*/
 
 const language = 'en';
 const commonContent = require('commonContent')[language];
