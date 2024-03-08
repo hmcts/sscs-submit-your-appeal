@@ -80,10 +80,8 @@ const configureNunjucks = (app, commonContent) => {
       webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled}
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled }
     }
   });
 };

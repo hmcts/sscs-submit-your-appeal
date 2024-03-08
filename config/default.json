@@ -112,9 +112,6 @@
     },
     "cookieBanner": {
       "enabled": "false"
-    },
-    "jQueryVersionToggle": {
-      "enabled": "false"
     }
   },
   "postcodeChecker": {
