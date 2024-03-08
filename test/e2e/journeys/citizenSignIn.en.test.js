@@ -1,5 +1,4 @@
 /* eslint-disable no-process-env */
-/* eslint init-declarations: ["error", "never"]*/
 
 const language = 'en';
 const commonContent = require('commonContent')[language];
@@ -9,6 +8,7 @@ const testUser = require('../../util/IdamUser');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
+let userEmail;
 
 Before(({ I }) => {
   I.createTheSession(language);
