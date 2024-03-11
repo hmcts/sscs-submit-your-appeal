@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -13,6 +14,7 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
+/* eslint max-lines: off */
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -80,8 +82,10 @@ const configureNunjucks = (app, commonContent) => {
       webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled }
+      featureToggles: {
+        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled
+      }
     }
   });
 };
@@ -203,7 +207,7 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: 'lax'
+        sameSite: 'lax' // required for the oauth2 redirect
       },
       secret: config.redis.secret
     },
