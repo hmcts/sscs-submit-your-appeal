@@ -80,10 +80,8 @@ const configureNunjucks = (app, commonContent) => {
       webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        jQueryVersionToggle: () => process.env.JQUERY_VERSION_FLAG || config.features.jQueryVersionToggle.enabled}
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled }
     }
   });
 };
@@ -205,7 +203,8 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: config.features.sameSiteCookieFlag ? 'lax' : false},
+        sameSite: 'lax'
+      },
       secret: config.redis.secret
     },
     errorPages: {
