@@ -33,9 +33,9 @@
 {% block content -%}
   <script>
     {% if featureToggles.webchatOpen8to5() == "true" %}
-      document.webchatOpening = true;
+      document.webchatOpeningFlag = true;
     {% else %}
-      document.webchatOpening = false;
+      document.webchatOpeningFlag = false;
     {% endif %}
   </script>
   {% block full_width %}
