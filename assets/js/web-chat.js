@@ -35,10 +35,10 @@ export class WebChat {
         link.style.display = 'none';
         busy.style.display = 'block';
       }
-//      if (availableAgents <= 0) {
-//        link.style.display = 'none';
-//        noAgents.style.display = 'block';
-//      }
+      if (availableAgents <= 0) {
+        link.style.display = 'none';
+        noAgents.style.display = 'block';
+      }
     } else {
       link.style.display = 'none';
       close.style.display = 'block';
