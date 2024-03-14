@@ -5,7 +5,7 @@
 <web-chat class="hidden"
           chat-title="{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
           chat-icon-url="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/assets/icon.png"
-          locale-url="{{ commonContent[htmlLang].contactUs.webchat.localeUrl }}"
+          locale-url="/assets/locale/{{ [htmlLang] }}-gb"
           url="{{ webChatUrl }}"
           secure-connections="true"
           api-version="1.0"
