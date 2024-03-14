@@ -53,7 +53,8 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true"
+      "webFormEnabled": "true",
+      "welshWebchatEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -111,9 +112,6 @@
     },
     "cookieBanner": {
       "enabled": "false"
-    },
-    "welshWebchat": {
-      "enabled": "true"
     },
     "jQueryVersionToggle": {
       "enabled": "false"

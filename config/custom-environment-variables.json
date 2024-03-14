@@ -93,7 +93,8 @@
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
-      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED"
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
+      "welshWebchatEnabled": "WELSH_WEBCHAT_ENABLED"
     },
     "welsh": {
       "enabled": "FT_WELSH"
@@ -106,9 +107,6 @@
     },
     "cookieBanner": {
       "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
-    },
-    "welshWebchat": {
-      "enabled": "WELSH_WEBCHAT_ENABLED"
     },
     "jQueryVersionToggle": {
       "enabled": "JQUERY_VERSION_FLAG"
