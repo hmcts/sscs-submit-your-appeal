@@ -53,8 +53,7 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true",
-      "webChatEnabled": "true"
+      "webFormEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"

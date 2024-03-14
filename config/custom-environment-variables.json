@@ -93,8 +93,7 @@
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
-      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
-      "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED"
     },
     "welsh": {
       "enabled": "FT_WELSH"

@@ -36,10 +36,8 @@ function initShowHideContent() {
 }
 
 function initWebChat() {
-  if ($('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
-  }
 }
 
 function initCookieBanner() {
