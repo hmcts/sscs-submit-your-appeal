@@ -112,6 +112,9 @@
     "cookieBanner": {
       "enabled": "false"
     },
+    "welshWebchat": {
+      "enabled": "true"
+    },
     "jQueryVersionToggle": {
       "enabled": "false"
     },

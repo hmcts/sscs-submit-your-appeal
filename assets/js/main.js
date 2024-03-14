@@ -35,11 +35,18 @@ function initShowHideContent() {
   showHideContent.init();
 }
 
-function initWebChat() {
-    const webChat = new WebChat();
-    webChat.init();
+function initWebChat(language) {
+    if (document.welshWebchatFlag) {
+        const webChat = new WebChat();
+        webChat.init();
+    }
+    else {
+        if (language === 'en' && $('#antenna-web-chat').length) {
+            const webChat = new WebChat();
+            webChat.init();
+        }
+    }
 }
-
 function initCookieBanner() {
   if ($('#app-cookie-banner').length) {
     const checkCookies = new CheckCookies();
@@ -156,7 +163,7 @@ $(document).ready(() => {
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat();
+  initWebChat(language);
   initArchiveWarning();
   PostCodeLookup.init();
   initCookieBanner();

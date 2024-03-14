@@ -107,6 +107,9 @@
     "cookieBanner": {
       "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     },
+    "welshWebchat": {
+      "enabled": "WELSH_WEBCHAT_ENABLED"
+    },
     "jQueryVersionToggle": {
       "enabled": "JQUERY_VERSION_FLAG"
     },
