@@ -108,13 +108,9 @@
     "cookieBanner": {
       "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
     },
-    "jQueryVersionToggle": {
-      "enabled": "JQUERY_VERSION_FLAG"
-    },
     "webchatOpen8to5" : {
       "enabled": "WEBCHAT_OPENING_TIME_8_5"
-    },
-    "sameSiteCookieFlag": "SAME_SITE_COOKIE_FLAG_ENABLED"
+    }
   },
   "postcodeChecker": {
     "enabled": "POSTCODE_CHECKER_ENABLED",
