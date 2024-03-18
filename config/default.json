@@ -54,7 +54,6 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "true"
       "welshWebchatEnabled": "true"
     },
     "allowUC": {
