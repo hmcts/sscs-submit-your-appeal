@@ -32,11 +32,18 @@
 
 {% block content -%}
   <script>
+    
     {% if featureToggles.webchatOpen8to5() == "true" %}
       document.webchatOpeningFlag = true;
     {% else %}
       document.webchatOpeningFlag = false;
+     
+    {% if welshWebchatEnabled %}
+      document.welshWebchatFlag = true;
+    {% else %}
+      document.welshWebchatFlag = false;
     {% endif %}
+    
   </script>
   {% block full_width %}
     <div class="govuk-grid-row">

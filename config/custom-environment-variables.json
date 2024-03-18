@@ -94,7 +94,7 @@
       "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
       "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
-      "webChatEnabled": "CONTACT_US_WEBCHAT_ENABLED"
+      "welshWebchatEnabled": "WELSH_WEBCHAT_ENABLED"
     },
     "welsh": {
       "enabled": "FT_WELSH"
@@ -135,6 +135,10 @@
     },
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
+    },
+    "webchat": {
+      "url": "WEBCHAT_URL",
+      "clientUrl": "WEBCHAT_CLIENT_URL"
     },
     "pcq": {
       "url": "PCQ_URL",

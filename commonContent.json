@@ -81,7 +81,11 @@
         "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
         "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 5pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
-        "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm"
+        "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm",
+        "language": "English",
+        "chatTitle": "HMCTS Web Chat",
+        "pageName": "Appeal a benefit decision",
+        "jsFile": "1"
       },
       "telephone" : {
         "title": "Telephone",
@@ -185,14 +189,18 @@
       },
       "webchat": {
         "title": "Sgwrsio dros y we",
-        "desc": "Gallwch gael cymorth trwy sgwrsio ag asiant ar-lein.",
+        "desc": "Cael help drwy siarad ag asiant ar-lein.",
         "textChatDown": "Nid yw’r adnodd sgwrsio dros y we ar gael ar hyn o bryd.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu ffoniwch ni ar y rhif isod os yw’ch ymholiad yn un brys.",
-        "textChatWithAnAgent": "Cychwyn sgwrs dros y we (agor mewn ffenestr newydd)",
+        "textChatWithAnAgent": "Dechrau sgwrsio dros y We (agor mewn ffenestr newydd)",
         "textNoAgentsAvailable": "Nid oes asiant ar gael ar hyn o bryd; rhowch gynnig arall arni yn hwyrach ymlaen.",
         "textAllAgentsBusy": "Mae ein hasiantau sgwrsio dros y we i gyd yn brysur ar hyn o bryd yn helpu pobl eraill.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu cysylltwch â ni drwy un o’r dulliau isod.",
         "textChatClosed" : "Mae’r gwasanaeth sgwrsio dros y we nawr ar gau. \n Gallwch ddefnyddio’r gwasanaeth hwn o ddydd Llun i ddydd Gwener, 8.30am - 5pm, neu cysylltwch â ni drwy un o’r dulliau isod.",
         "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
-        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm"
+        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm",
+        "language": "Welsh",
+        "chatTitle": "Sgwrsio dros y we GLlTEF",
+        "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
+        "jsFile": "welsh"
       },
       "telephone" : {
         "title": "Ffoniwch ni",
