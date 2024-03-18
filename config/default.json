@@ -54,7 +54,7 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "false"
+      "welshWebchatEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -153,6 +153,10 @@
     },
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
+    },
+    "webchat": {
+      "url": "webchat.pp.ctsc.hmcts.net",
+      "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
     },
     "pcq": {
       "name": "Equality and Diversity Service",
