@@ -112,6 +112,9 @@
     },
     "cookieBanner": {
       "enabled": "false"
+    },
+    "webchatOpen8to5": {
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
