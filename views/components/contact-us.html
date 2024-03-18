@@ -1,8 +1,12 @@
+{% if welshWebchatEnabled  %}
+<details class="govuk-details" open>
+{% else %}
 <details class="govuk-details">
+{% endif %}
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
     </summary>
-    {% if webChatEnabled and htmlLang == "en" %}
+    {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
         <div class="govuk-details__text">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
             <div id="antenna-web-chat" >
