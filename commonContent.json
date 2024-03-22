@@ -102,6 +102,8 @@
           "desc" : "Benefit appeals helpline (for Welsh Speakers)",
           "phone": "Telephone: 0300 303 5170",
           "availability": "Monday to Friday, 8:30am to 5pm",
+          "emailText": "Email:",
+          "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Find out about call charges"
         },
         "Scotland" : {
