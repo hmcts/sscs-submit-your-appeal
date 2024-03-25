@@ -15,7 +15,7 @@
           work-flow-type=""
           lease-time="24"
           priority="5"
-          {% if process.env.NODE_ENV === 'production' %}
+          {% if environment === 'production' %}
           language = {{ commonContent[htmlLang].contactUs.webchat.language }}
           {% else %}
           language = "English"
