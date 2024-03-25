@@ -1,4 +1,4 @@
-# SSCS - Submit Your Appeal
+# SSCS - Submit Your Appeal...
 
 ## Background:
 Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision.
