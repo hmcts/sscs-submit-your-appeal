@@ -3,11 +3,7 @@
 <script src="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/app-es5.js" nomodule defer></script>
 
 <web-chat class="hidden"
-          {% if process.env.NODE_ENV === 'preview' %}
-          chat-title="test"
-          {% else %}
           chat-title="{{ commonContent[htmlLang].contactUs.webchat.chatTitle }}"
-          {% endif %}
           chat-icon-url="https://{{ webChatClientUrl }}/chat-client/{{ commonContent[htmlLang].contactUs.webchat.jsFile }}/assets/icon.png"
           locale-url="/assets/locale/{{ [htmlLang] }}-gb"
           url="{{ webChatUrl }}"
