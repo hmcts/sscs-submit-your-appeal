@@ -1,0 +1,63 @@
+{
+  "iconAltText": "Eicon sgwrsio dros y we",
+  "hideChat": "Cuddio",
+  "noAvailableAgents": "Nid oes Cynghorwyr ar gael ar hyn o bryd",
+  "contactCenterClosed": "Mae'r Ganolfan Gyswllt ar gau",
+  "connectionLost": "Cysylltiad wedi'i golli",
+  "connected": "Wedi cysylltu",
+  "failedToSendRequest": "Aeth rhywbeth o'i le wrth anfon y cais",
+  "form": {
+    "title": "Cyn i mi eich trosglwyddo i gynghorydd, gofynnir i chi lenwi'r ffurflen isod ",
+    "nameField": {
+      "title": "Enw",
+      "placeholder": "Eich enw..."
+    },
+    "emailField": {
+      "title": "E-bost",
+      "placeholder": "Eich e-bost...",
+      "validationError": "Rhowch gyfeiriad e-bost dilys"
+    },
+    "caseIdField": {
+      "title": "Rhif adnabod yr achos",
+      "placeholder": "Eich rhif achos..."
+    },
+    "serviceField": {
+      "title": "Gwasanaeth",
+      "placeholder": "Dewiswch wasanaeth..."
+    },
+    "reasonForContactField": {
+      "title": "Rheswm dros gysylltu",
+      "placeholder": "Yn gryno, dywedwch wrthym sut y gallwn eich helpu..."
+    },
+    "transcriptField": {
+      "title": "Anfonwch y trawsgrifiad ataf ar e-bost"
+    },
+    "startChat": "Dechrau sgwrs"
+  },
+  "chat": {
+    "waitingForParticipant": "Aros am y cyfranogwr...",
+    "ewtUpdateStatus": "Bydd Cynghorydd gyda chi mewn oddeutu {{time}}!",
+    "ewtUpdateTimestamp": "Diweddarwyd diwethaf: {{update}}!",
+    "ewtAgentAvailableSoon": "Bydd Cynghorydd gyda chi mewn llai na munud",
+    "ewtLongWait": "Bydd Cynghorydd gyda chi mewn {{hours}} awr, {{minutes}} munud a {{seconds}} eiliad",
+    "ewtShortWait": "Bydd Cynghorydd gyda chi mewn {{minutes}} munud a {{seconds}} eiliad",
+    "legalAdviceNotice": "Sylwer, ni all y Cynghorydd Sgwrsio Dros y We roi cyngor cyfreithiol i chi.",
+    "chatEndedNotice": "Mae'r cwsmer wedi dod a'r sgwrs hon i ben.",
+    "messageFieldPlaceholder": "Eich neges...",
+    "sendMessage": "Anfon y neges,",
+    "agentIsTyping": "Mae'rAsiantYnTeipio....",
+    "conversationEnded": "Mae'r sesiwn sgwrsio wedi dod i ben ond gallwch ddechrau sgwrs newydd os ydych angen rhagor o gymorth",
+    "startNewSession": "Dechrau sesiwn newydd",
+    "endChat": "Dod a'r sgwrs i ben,",
+    "prompt": {
+      "message": "Os byddwch yn gadael y sgwrs yna byddwch yn colli eich lle yn y ciw. Ydych chi'n siwr?",
+      "yes": "Ydw",
+      "no": "Nac ydw"
+    }
+  },
+  "survey": {
+    "propose": "Would you like to take part in an email survey at the end of your Webchat?",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

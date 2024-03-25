@@ -7,7 +7,6 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
-
 Before(({ I }) => {
   I.createTheSession(language);
 });
