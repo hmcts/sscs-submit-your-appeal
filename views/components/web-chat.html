@@ -15,7 +15,11 @@
           work-flow-type=""
           lease-time="24"
           priority="5"
-          language="{{ commonContent[htmlLang].contactUs.webchat.language }}"
+          {% if environment === 'production' %}
+          language = {{ commonContent[htmlLang].contactUs.webchat.language }}
+          {% else %}
+          language = "English"
+          {% endif %}
           service="SSCS"
           User="Chat"
           page-name="{{ commonContent[htmlLang].contactUs.webchat.pageName }}">
