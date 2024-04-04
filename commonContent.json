@@ -102,6 +102,8 @@
           "desc" : "Benefit appeals helpline (for Welsh Speakers)",
           "phone": "Telephone: 0300 303 5170",
           "availability": "Monday to Friday, 8:30am to 5pm",
+          "emailText": "Email:",
+          "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Find out about call charges"
         },
         "Scotland" : {
@@ -206,13 +208,20 @@
         "title": "Ffoniwch ni",
         "desc": "Siaradwch ag un o’n asiantau dros y ffôn nawr.",
         "England": {
+          "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Saesneg)",
+          "phone": "Rhif ffôn: 0300 123 1142",
+          "availability": "Dydd Llun i ddydd Gwener, 8am i 5pm",
+          "emailText": "E-bost:",
+          "emailAddress": "Contactsscs@justice.gov.uk",
+          "charges": "Gwybodaeth am gost galwadau"
+        },
+        "WelshSpeakers": {
           "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Cymraeg)",
           "phone": "Rhif ffôn:  0300 303 5170",
           "availability": "Dydd Llun i ddydd Iau 9am i 5pm, dydd Gwener 9am i 4.30pm.",
-          "saturdayAvailability": "",
           "emailText": "E-bost:",
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
-          "charges": "Gwybodaeth am brisiau galwadau"
+          "charges": "Gwybodaeth am gost galwadau"
         },
         "Scotland" : {
           "desc": "Llinell gymorth apeliadau budd-daliadau (Yr Alban)",
@@ -220,7 +229,7 @@
           "availability": "Dydd Llun i ddydd Gwener, 8.30am i 5pm.",
           "emailText": "E-bost:",
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
-          "charges": "Gwybodaeth am brisiau galwadau"
+          "charges": "Gwybodaeth am gost galwadau"
         }
       }
     }
