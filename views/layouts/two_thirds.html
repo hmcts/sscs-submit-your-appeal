@@ -33,12 +33,6 @@
 {% block content -%}
   <script>
     
-    {% if featureToggles.webchatOpen8to5() == "true" %}
-      document.webchatOpeningFlag = true;
-    {% else %}
-      document.webchatOpeningFlag = false;
-    {% endif %}
-    
     {% if welshWebchatEnabled %}
       document.welshWebchatFlag = true;
     {% else %}
