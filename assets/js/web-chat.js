@@ -34,26 +34,25 @@ export class WebChat {
 
   setMessage(ewt, ccState, availableAgents) {
     if (ccState === OPEN_STATUS && this.isWebchatOpen()) {
-        if (ewt > MAX_WAIT_IN_SECONDS) {
-            link.style.display = 'none';
-            busy.style.display = 'block';
-        }
-        if (availableAgents <= 0) {
-            link.style.display = 'none';
-            noAgents.style.display = 'block';
-        }
-    } else {
+      if (ewt > MAX_WAIT_IN_SECONDS) {
         link.style.display = 'none';
-        close.style.display = 'block';
+        busy.style.display = 'block';
+      }
+      if (availableAgents <= 0) {
+        link.style.display = 'none';
+        noAgents.style.display = 'block';
+      }
+    } else {
+      link.style.display = 'none';
+      close.style.display = 'block';
     }
   }
 
   isWebchatOpen() {
     if (document.webchatOpeningFlag) {
-        return (currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR)
-    } else {
-        return true
+      return (currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR);
     }
+    return true;
   }
 
   reset() {

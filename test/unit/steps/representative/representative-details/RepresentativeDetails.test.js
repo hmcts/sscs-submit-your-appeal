@@ -67,14 +67,14 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('get getCYAName()', () => {
-  const NAME = 'MR,HARRY-Kane,O`Brian';
+    const NAME = 'MR,HARRY-Kane,O`Brian';
     beforeEach(() => {
       representativeDetails.fields.name.first.value = '';
       representativeDetails.fields.name.last.value = '';
     });
 
-     beforeEach(() => {
-      it(`should normalise reps full name with hyphen and apostrophe`, () => {
+    beforeEach(() => {
+      it('should normalise reps full name with hyphen and apostrophe', () => {
         representativeDetails.fields.name.title.value = NAME.split(',')[0];
         representativeDetails.fields.name.first.value = NAME.split(',')[1];
         representativeDetails.fields.name.last.value = NAME.split(',')[2];
@@ -331,42 +331,42 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('values()', () => {
-      const repName = 'MR,HARRY,POTTER';
-      it(`should contain a value object with full name in caps`, () => {
-        representativeDetails.fields.name.title.value = repName.split(',')[0];
-        representativeDetails.fields.name.first.value = repName.split(',')[1];
-        representativeDetails.fields.name.last.value = repName.split(',')[2];
-        representativeDetails.fields.name.organisation.value = 'Organisation';
-        representativeDetails.fields.addressLine1.value = 'First line of my address';
-        representativeDetails.fields.addressLine2.value = 'Second line of my address';
-        representativeDetails.fields.townCity.value = 'Town or City';
-        representativeDetails.fields.county.value = 'County';
-        representativeDetails.fields.postCode.value = 'Postcode';
-        representativeDetails.fields.phoneNumber.value = '0800109756';
-        representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-        representativeDetails.fields.postcodeLookup.value = 'n29ed';
-        representativeDetails.fields.postcodeAddress.value = '200000';
-        const values = representativeDetails.values();
-        expect(values).to.eql({
-          representative: {
-            title: 'MR',
-            firstName: 'HARRY',
-            lastName: 'POTTER',
-            organisation: 'Organisation',
-            contactDetails: {
-              addressLine1: 'First line of my address',
-              addressLine2: 'Second line of my address',
-              townCity: 'Town or City',
-              county: 'County',
-              postCode: 'Postcode',
-              postcodeLookup: 'n29ed',
-              postcodeAddress: '200000',
-              phoneNumber: '0800109756',
-              emailAddress: 'myemailaddress@sscs.com'
-            }
+    const repName = 'MR,HARRY,POTTER';
+    it('should contain a value object with full name in caps', () => {
+      representativeDetails.fields.name.title.value = repName.split(',')[0];
+      representativeDetails.fields.name.first.value = repName.split(',')[1];
+      representativeDetails.fields.name.last.value = repName.split(',')[2];
+      representativeDetails.fields.name.organisation.value = 'Organisation';
+      representativeDetails.fields.addressLine1.value = 'First line of my address';
+      representativeDetails.fields.addressLine2.value = 'Second line of my address';
+      representativeDetails.fields.townCity.value = 'Town or City';
+      representativeDetails.fields.county.value = 'County';
+      representativeDetails.fields.postCode.value = 'Postcode';
+      representativeDetails.fields.phoneNumber.value = '0800109756';
+      representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.postcodeLookup.value = 'n29ed';
+      representativeDetails.fields.postcodeAddress.value = '200000';
+      const values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: 'MR',
+          firstName: 'HARRY',
+          lastName: 'POTTER',
+          organisation: 'Organisation',
+          contactDetails: {
+            addressLine1: 'First line of my address',
+            addressLine2: 'Second line of my address',
+            townCity: 'Town or City',
+            county: 'County',
+            postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
+            phoneNumber: '0800109756',
+            emailAddress: 'myemailaddress@sscs.com'
           }
-        });
+        }
       });
+    });
 
     it('should contain empty object', () => {
       representativeDetails.fields.postcodeLookup = undefined;
