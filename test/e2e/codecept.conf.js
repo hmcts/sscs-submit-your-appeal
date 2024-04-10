@@ -26,7 +26,7 @@ exports.config = {
     }
   },
   helpers: {
-    /*Puppeteer: {
+    /* Puppeteer: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),
@@ -55,14 +55,14 @@ exports.config = {
       waitForAction: 500,
       video: true,
       trace: true,
-      contextOptions : {
-        recordVideo:{
-          dir:'failed-videos',
-        },
+      contextOptions: {
+        recordVideo: {
+          dir: 'failed-videos'
+        }
       },
       waitForNavigation: 'networkidle',
       bypassCSP: true,
-      ignoreHTTPSErrors: true,
+      ignoreHTTPSErrors: true
     },
     MyHelper: {
       require: './helpers/helper.js',
