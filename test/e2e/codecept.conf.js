@@ -26,25 +26,6 @@ exports.config = {
     }
   },
   helpers: {
-    /* Puppeteer: {
-      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
-      waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
-      waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: 'load',
-      getPageTimeout: 10000,
-      show: false,
-      windowSize: '1000x1000',
-      chrome: {
-        ignoreHTTPSErrors: true,
-        args: [
-          '--disable-gpu',
-          '--disable-dev-shm-usage',
-          '--no-sandbox',
-          '--allow-running-insecure-content',
-          '--ignore-certificate-errors'
-        ]
-      }
-    },*/
     Playwright: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       browser: 'chromium',
