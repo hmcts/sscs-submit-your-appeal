@@ -7,6 +7,9 @@ const logger = require('logger');
 
 const logPath = 'saucelabs.conf.js';
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
+const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
+const browser = process.env.BROWSER_GROUP || 'chromium';
 
 const defaultSauceOptions = {
   username: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
@@ -52,11 +55,22 @@ const setupConfig = {
     }
   },
   helpers: {
-    WebDriver: {
+    /*WebDriver: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       browser: process.env.SAUCE_BROWSER || config.get('saucelabs.browser'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       smartWait: parseInt(config.get('saucelabs.smartWait')),
+      cssSelectorsEnabled: 'true',
+      host: 'ondemand.eu-central-1.saucelabs.com',
+      port: 80,
+      region: 'eu',
+      capabilities: {}
+    },*/
+    Playwright: {
+      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
+      browser,
+      smartWait,
+      waitForTimeout,
       cssSelectorsEnabled: 'true',
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
