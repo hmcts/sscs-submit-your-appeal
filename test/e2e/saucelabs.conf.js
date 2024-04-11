@@ -55,7 +55,7 @@ const setupConfig = {
     }
   },
   helpers: {
-    /*WebDriver: {
+    /* WebDriver: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       browser: process.env.SAUCE_BROWSER || config.get('saucelabs.browser'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
@@ -118,8 +118,8 @@ const setupConfig = {
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
-    },
-    /*safari: {
+    }
+    /* safari: {
       browsers: getBrowserConfig('safari')
     }*/
   },
