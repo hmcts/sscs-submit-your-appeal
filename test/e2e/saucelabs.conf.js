@@ -81,7 +81,9 @@ const setupConfig = {
       require: './helpers/helper.js',
       url: config.get('e2e.frontendUrl')
     },
-    SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' }
+    Mochawesome: {
+      uniqueScreenshotNames: 'true'
+    }
   },
   include: {
     I: './page-objects/steps.js'
