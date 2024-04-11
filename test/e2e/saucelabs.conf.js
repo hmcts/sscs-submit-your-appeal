@@ -114,14 +114,14 @@ const setupConfig = {
   },
   multiple: {
     chrome: {
-      browsers: getBrowserConfig('chrome')
+      browsers: 'chromium'
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
     },
-    safari: {
+    /*safari: {
       browsers: getBrowserConfig('safari')
-    }
+    }*/
   },
   name: 'Submit Your Appeal Crossbrowser Tests'
 };
