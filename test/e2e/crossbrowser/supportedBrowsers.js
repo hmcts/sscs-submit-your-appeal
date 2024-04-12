@@ -8,7 +8,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'PRL: Edge_Win10',
+        name: 'SSCS: Edge_Win10',
         screenResolution: '1400x1050'
       }
     }
@@ -19,7 +19,7 @@ const supportedBrowsers = {
       platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'PRL: Webkit_MAC',
+        name: 'SSCS: Webkit_MAC',
         screenResolution: '1400x1050'
       }
     }
@@ -30,7 +30,7 @@ const supportedBrowsers = {
       platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'PRL: MAC_SAFARI',
+        name: 'SSCS: MAC_SAFARI',
         seleniumVersion: '3.141.59',
         screenResolution: '1376x1032'
       }
@@ -42,7 +42,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'PRL: WIN_CHROME_LATEST',
+        name: 'SSCS: WIN_CHROME_LATEST',
         screenResolution: '1600x1200'
       }
     }
@@ -53,7 +53,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'PRL: WIN_FIREFOX_LATEST',
+        name: 'SSCS: WIN_FIREFOX_LATEST',
         screenResolution: '1600x1200'
       }
     },
@@ -62,7 +62,7 @@ const supportedBrowsers = {
       platformName: LATEST_MAC,
       browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'PRL: MAC_FIREFOX_LATEST',
+        name: 'SSCS: MAC_FIREFOX_LATEST',
         screenResolution: '1600x1200'
       }
     }
