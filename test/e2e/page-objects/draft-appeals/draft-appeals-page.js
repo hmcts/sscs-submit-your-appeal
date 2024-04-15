@@ -42,6 +42,8 @@ function verifyDraftAppealsAndArchiveACase() {
   I.see('Are you sure you want to archive your appeal application?');
   I.click('Yes');
   I.wait(2);
+  I.refreshPage();
+  I.wait(2);
   I.dontSee('Edit');
   I.dontSee('Archive');
 }

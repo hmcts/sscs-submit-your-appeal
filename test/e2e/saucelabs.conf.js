@@ -61,11 +61,15 @@ const setupConfig = {
             browser,
             smartWait,
             waitForTimeout,
+            waitForAction: 500,
             cssSelectorsEnabled: 'true',
             host: 'ondemand.eu-central-1.saucelabs.com',
             port: 80,
             region: 'eu',
-            capabilities: {}
+            capabilities: {},
+            waitForNavigation: 'networkidle',
+            bypassCSP: true,
+            ignoreHTTPSErrors: true
         },
         MyHelper: {
             require: './helpers/helper.js',
