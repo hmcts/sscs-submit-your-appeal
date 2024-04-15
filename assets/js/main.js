@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash-es';
+import './cookie';
 import { frontend, redis } from '../../config/default';
 import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
@@ -35,12 +36,14 @@ function initShowHideContent() {
 }
 
 function initWebChat(language) {
-  if (language === 'en' && $('#antenna-web-chat').length) {
+  if (document.welshWebchatFlag) {
+    const webChat = new WebChat();
+    webChat.init();
+  } else if (language === 'en' && $('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
   }
 }
-
 function initCookieBanner() {
   if ($('#app-cookie-banner').length) {
     const checkCookies = new CheckCookies();

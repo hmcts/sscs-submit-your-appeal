@@ -11,28 +11,26 @@ def component = "tribunals-frontend"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
+def branchesToSync = ['demo', 'ithc', 'perftest']
+
 withPipeline("nodejs", product, component) {
 
-  before('securitychecks') { yarnBuilder.yarn('test:audit') }
-
-  after('build') {
-    stage('Generate cookie banner') {
-      sh "./node_modules/gulp/bin/gulp.js default"
-    }
+  afterSuccess('build') {
     yarnBuilder.yarn('build')
   }
 
   enableAksStagingDeployment()
   disableLegacyDeployment()
+  syncBranchesWithMaster(branchesToSync)
 
-  after('akschartsinstall'){
+  afterSuccess('akschartsinstall'){
     onMaster {
       // Vars needed for AKS testing in path to live
       env.CHUNKS = 4
     }
   }
 
-  after("smoketest:preview") {
+  afterSuccess("smoketest:preview") {
       stage('Application URLs') {
           def AppDevUrl = env.TEST_URL.replace("https", "http")
           AppDevUrl = AppDevUrl.replace("-staging.", ".")

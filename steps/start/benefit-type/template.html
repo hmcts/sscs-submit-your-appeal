@@ -6,43 +6,49 @@
 {% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 {% set hideBackButton = true %}
+{% set options = [
+    { label: content.benefitTypes.cc,  value: '30 Hours Free Childcare' },
+    { label: content.benefitTypes.attendanceallowance,  value: 'Attendance Allowance' },
+    { label: content.benefitTypes.bereavementbenefit,  value: 'Bereavement Benefit' },
+    { label: content.benefitTypes.bereavementsupportpaymentscheme,  value: 'Bereavement Support Payment Scheme' },
+    { label: content.benefitTypes.carersallowance,  value: "Carer's Allowance" },
+    { label: content.benefitTypes.cb,  value: 'Child Benefit' },
+    { label: content.benefitTypes.cr,  value: 'Compensation Recovery Unit' },
+    { label: content.benefitTypes.co,  value: 'Contracted Out Employment Group' },
+    { label: content.benefitTypes.dla, value: 'Disability Living Allowance (DLA)' },
+    { label: content.benefitTypes.dwa, value: 'Disability Working Allowance' },
+    { label: content.benefitTypes.esa, value: 'Employment and Support Allowance (ESA)' },
+    { label: content.benefitTypes.hp,  value: 'Health in Pregnancy Grant' },
+    { label: content.benefitTypes.hrp, value: 'Home Responsibilities Protection' },
+    { label: content.benefitTypes.ib,  value: 'Incapacity Benefit' },
+    { label: content.benefitTypes.incomesupport,  value: 'Income Support' },
+    { label: content.benefitTypes.industrialdeathbenefit,  value: 'Industrial Death Benefit' },
+    { label: content.benefitTypes.industrialinjuriesdisablement, value: 'Industrial Injuries Disablement Benefit' },
+    { label: content.benefitTypes.jsa, value: 'Jobseeker’s Allowance (JSA)' },
+    { label: content.benefitTypes.maternityallowance,  value: 'Maternity Allowance' },
+    { label: content.benefitTypes.pensioncredit,  value: 'Pension Credit' },
+    { label: content.benefitTypes.pip, value: 'Personal Independence Payment (PIP)' },
+    { label: content.benefitTypes.retirementpension,  value: 'Retirement Pension' },
+    { label: content.benefitTypes.sda, value: 'Severe Disablement Allowance' },
+    { label: content.benefitTypes.socialfund,  value: 'Social Fund' },
+    { label: content.benefitTypes.tfc, value: 'Tax-Free Childcare' },
+    { label: content.benefitTypes.tc,  value: 'Tax Credit' },
+    { label: content.benefitTypes.ga, value: 'Guardian’s Allowance'},
+    { label: content.benefitTypes.nic, value: 'National Insurance Credits'},
+    { label: content.benefitTypes.gmp, value: 'Guaranteed Minimum Pension' },
+    { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' },
+    { label: content.benefitTypes.childSupport,  value: 'Child Support' },
+    { label: content.benefitTypes.vaccineDamage,  value: 'Vaccine Damage' }
+] %}
 
 {% block fields %}
-    {{ select(
+        {{ select(
         fields.benefitType,
         content.label,
         hideLabel = true,
-        options = [
-            { label: content.benefitTypes.cc,  value: '30 Hours Free Childcare Scheme' },
-            { label: content.benefitTypes.attendanceallowance,  value: 'Attendance Allowance' },
-            { label: content.benefitTypes.bereavementbenefit,  value: 'Bereavement Benefit' },
-            { label: content.benefitTypes.bereavementsupportpaymentscheme,  value: 'Bereavement Support Payment Scheme' },
-            { label: content.benefitTypes.carersallowance,  value: "Carer's Allowance" },
-            { label: content.benefitTypes.cb,  value: 'Child Benefit Lone Parent' },
-            { label: content.benefitTypes.cr,  value: 'Compensation Recovery Unit' },
-            { label: content.benefitTypes.co,  value: 'Contracted Out Employment Group' },
-            { label: content.benefitTypes.dla, value: 'Disability Living Allowance (DLA)' },
-            { label: content.benefitTypes.dwa, value: 'Disability Working Allowance' },
-            { label: content.benefitTypes.esa, value: 'Employment and Support Allowance (ESA)' },
-            { label: content.benefitTypes.hp,  value: 'Health in Pregnancy Grant' },
-            { label: content.benefitTypes.hrp, value: 'Home Responsibilities Protection' },
-            { label: content.benefitTypes.hb,  value: 'Housing Benefit (HB)' },
-            { label: content.benefitTypes.ib,  value: 'Incapacity Benefit' },
-            { label: content.benefitTypes.incomesupport,  value: 'Income Support' },
-            { label: content.benefitTypes.industrialdeathbenefit,  value: 'Industrial Death Benefit' },
-            { label: content.benefitTypes.industrialinjuriesdisablement, value: 'Industrial Injuries Disablement Benefit' },
-            { label: content.benefitTypes.jsa, value: 'Jobseeker’s Allowance (JSA)' },
-            { label: content.benefitTypes.maternityallowance,  value: 'Maternity Allowance' },
-            { label: content.benefitTypes.pensioncredit,  value: 'Pension Credit' },
-            { label: content.benefitTypes.pip, value: 'Personal Independence Payment (PIP)' },
-            { label: content.benefitTypes.retirementpension,  value: 'Retirement Pension' },
-            { label: content.benefitTypes.sda, value: 'Severe Disablement Allowance' },
-            { label: content.benefitTypes.socialfund,  value: 'Social Fund' },
-            { label: content.benefitTypes.tfc, value: 'Tax-Free Childcare Scheme' },
-            { label: content.benefitTypes.tc,  value: 'Tax Credits' },
-            { label: content.benefitTypes.uc,  value: 'Universal Credit (UC)' }
-        ])
-    }}
+        options = options)
+        }}
+
     <p class="govuk-body">
         {{ govukDetails({
             summaryText: content.help.link,

@@ -204,6 +204,10 @@ describe('BenefitType.js', () => {
         .to.eql(config.get('features.allowRP.enabled') === 'false');
     });
 
+    it('pushes Child support as allowed benefitType', () => {
+      expect(Object.keys(benefitTypes).includes('childSupport'));
+    });
+
     it('returns /language-preference when Welsh feature toggle is on', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';

@@ -1,7 +1,7 @@
 function enterDoYouWantToAttendTheHearing(commonContent, option) {
   const I = this;
 
-  I.wait(5);
+  I.wait(2);
   I.checkOption(option);
   I.scrollPageToBottom();
   I.click(commonContent.continue);
@@ -10,7 +10,7 @@ function enterDoYouWantToAttendTheHearing(commonContent, option) {
 function enterDoYouWantToAttendTheHearingAfterSignIn(commonContent, option) {
   const I = this;
 
-  I.wait(5);
+  I.wait(2);
   I.checkOption(option);
   I.scrollPageToBottom();
   I.click(commonContent.saveAndContinue);

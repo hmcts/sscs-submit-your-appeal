@@ -358,7 +358,7 @@ label.form-label[for="signer"] {
   display: none;
   visibility: hidden; }
 
-.add-another-add-link, [for=uploadEv]{
+[for=uploadEv]{
   @extend .govuk-button;
   @extend .govuk-button--secondary;
 }

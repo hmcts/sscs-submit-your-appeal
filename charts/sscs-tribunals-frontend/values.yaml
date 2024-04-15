@@ -9,27 +9,19 @@ nodejs:
     UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     SERVICES_IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
-
     # seems to be disabled currently and only enabled locally pointing at AAT
     # SERVICES_WEB_FORM:
-
     # This is currently disabled in prod, enabled all other environments
     CONTACT_US_WEB_FORM_ENABLED: false
     MEDIA_FILES_ALLOWED_ENABLED: true
-
-    # these are only enabled in prod
-    # SERVICES_WEBCHAT_UUID:
-    # SERVICES_WEBCHAT_TENANT
-    # SERVICES_WEBCHAT_CHANNEL
-    # SERVICES_BTN_NO_AGENTS
-    # SERVICES_BTN_AGENTS_BUSY
-    # SERVICES_BTN_SERVICE_CLOSED
-
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
-    FT_ANTENNA_WEBCHAT: false
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
+    #Added for new Webchat with Agent
+    WELSH_WEBCHAT_ENABLED: false
+    WEBCHAT_URL: "webchat.ctsc.hmcts.net"
+    WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
 
   keyVaults:
     sscs:

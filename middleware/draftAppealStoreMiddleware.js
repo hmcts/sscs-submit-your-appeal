@@ -4,8 +4,9 @@ const { AddAnother } = require('@hmcts/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
+const { get } = require('lodash');
+const { maskNino } = require('utils/stringUtils');
 
-const httpRetries = 3;
 
 /* eslint-disable max-lines */
 const {
@@ -20,14 +21,9 @@ const logger = require('logger');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
-let multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
 
 const setFeatureFlag = value => {
   allowSaveAndReturn = value;
-};
-
-const setMultiDraftsEnabled = value => {
-  multipleDraftsEnabled = value;
 };
 
 const resetJourney = req => {
@@ -49,17 +45,32 @@ const resetJourney = req => {
   req.session.save();
 };
 
+const parseErrorResponse = error => {
+  const parsedErrorObj = error;
+  const dataToRemove = '_data';
+  const headerToRemove = '_header';
+  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._data) {
+    delete parsedErrorObj.response.request[dataToRemove];
+  }
+  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._header) {
+    delete parsedErrorObj.response.request[headerToRemove];
+  }
+  return JSON.stringify(parsedErrorObj);
+};
+
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
-    const allVisitedSteps = [...journey.visitedSteps];
-    // filter valid visitedsteps.
-    journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-    // use only valid steps.
-    if (typeof callBack === 'function') {
-      callBack();
+    if (journey.values) {
+      const allVisitedSteps = [...journey.visitedSteps];
+      // filter valid visitedsteps.
+      journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
+      // use only valid steps.
+      if (typeof callBack === 'function') {
+        callBack();
+      }
+      // Revert visitedsteps back to initial state.
+      journey.visitedSteps = allVisitedSteps;
     }
-    // Revert visitedsteps back to initial state.
-    journey.visitedSteps = allVisitedSteps;
   } catch (error) {
     logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
   }
@@ -67,11 +78,8 @@ const removeRevertInvalidSteps = (journey, callBack) => {
 
 const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   logger.trace('Exception on creating/updating a draft for case with nino: ' +
-    `${(values && values.appellant && values.appellant.nino) ?
-      values.appellant.nino :
-      'no NINO submitted yet'}`, logPath);
-
-  logger.exception(JSON.stringify(error), logPath);
+    `${maskNino(get(values, 'appellant.nino'))}`, logPath);
+  logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
   } else {
@@ -92,7 +100,6 @@ const archiveDraft = async(req, caseId) => {
 
   values.ccdCaseId = caseId;
   await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
-    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
@@ -107,7 +114,7 @@ const archiveDraft = async(req, caseId) => {
     })
     .catch(error => {
       logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
-      logger.exception(JSON.stringify(error), logPath);
+      logger.exception(parseErrorResponse(error), logPath);
     });
 };
 
@@ -116,16 +123,13 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 
   logger.trace(`updateDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
   await request.post(req.journey.settings.apiDraftUrl)
-    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
     .then(result => {
       logger.trace([
         'Successfully updated a draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submited yet'}`, result.status
+        `${maskNino(get(values, 'appellant.nino'))}`, result.status
       ], logPath);
 
       logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
@@ -141,19 +145,16 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 const createDraftInDraftStore = async(req, res, next, values) => {
   logger.trace(`createDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
   await request.put(req.journey.settings.apiDraftUrlCreate)
-    .retry(httpRetries)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
     .then(result => {
       logger.trace([
         'Successfully created a draft for case with nino: ' +
-        `${(values && values.appellant && values.appellant.nino) ?
-          values.appellant.nino :
-          'no NINO submited yet'}`, result.status
+        `${maskNino(get(values, 'appellant.nino'))}`, result.status
       ], logPath);
 
-      logger.trace(`PUT api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+      logger.trace(`PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,
         logPath);
 
       Object.assign(req.session, { ccdCaseId: result.body.id });
@@ -165,9 +166,9 @@ const createDraftInDraftStore = async(req, res, next, values) => {
     });
 };
 
+// eslint-disable-next-line
 const saveToDraftStore = async(req, res, next) => {
   let values = null;
-
   if (allowSaveAndReturn) {
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
@@ -176,12 +177,12 @@ const saveToDraftStore = async(req, res, next) => {
   }
 
   if (allowSaveAndReturn && req.idam && values) {
-    logger.trace(`About to post draft for CCD Id ${(values && values.id) ? values.id : null}` +
-        ` , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
-
+    logger.trace(`Create/Post draft for CCD Id ${(values && values.id) ? values.id : null} , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
     if (req.session && req.session.ccdCaseId) {
+      logger.trace(`About to update draft for Session CaseId: ${req.session.ccdCaseId}`);
       await updateDraftInDraftStore(req, res, next, values);
     } else {
+      logger.trace('About to create new draft');
       await createDraftInDraftStore(req, res, next, values);
     }
   } else {
@@ -199,7 +200,6 @@ const restoreUserState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiDraftUrl)
-      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -207,6 +207,9 @@ const restoreUserState = async(req, res, next) => {
           'Successfully get a draft',
           result.status
         ], logPath);
+
+        logger.trace(`GET api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+          logPath);
 
         if (result.body) {
           result.body.isUserSessionRestored = true;
@@ -220,7 +223,7 @@ const restoreUserState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(JSON.stringify(error), logPath);
+        logger.exception(parseErrorResponse(error), logPath);
         next();
       });
   } else {
@@ -238,7 +241,6 @@ const restoreAllDraftsState = async(req, res, next) => {
 
     // Try to Restore from backend if user already have a saved data.
     await request.get(req.journey.settings.apiAllDraftUrl)
-      .retry(httpRetries)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
@@ -248,30 +250,19 @@ const restoreAllDraftsState = async(req, res, next) => {
         ], logPath);
 
         if (result.body) {
-          if (multipleDraftsEnabled) {
-            const shimmed = {};
-            const drafts = result.body;
-            const draftObj = {};
-            if (Array.isArray(drafts) && drafts.length > 0) {
-              // eslint-disable-next-line max-depth
-              for (const draft of drafts) {
-                draftObj[draft.ccdCaseId] = draft;
-              }
+          const shimmed = {};
+          const drafts = result.body;
+          const draftObj = {};
+          if (Array.isArray(drafts) && drafts.length > 0) {
+            // eslint-disable-next-line max-depth
+            for (const draft of drafts) {
+              draftObj[draft.ccdCaseId] = draft;
             }
-
-            shimmed.drafts = draftObj;
-            shimmed.isUserSessionRestored = true;
-            shimmed.entryPoint = 'Entry';
-            Object.assign(req.session, shimmed);
-          } else {
-            let shimmed = {};
-            if (Array.isArray(result.body) && result.body.length > 0) {
-              shimmed = result.body[0];
-            }
-            shimmed.isUserSessionRestored = true;
-            shimmed.entryPoint = 'Entry';
-            Object.assign(req.session, shimmed);
           }
+          shimmed.drafts = draftObj;
+          shimmed.isUserSessionRestored = true;
+          shimmed.entryPoint = 'Entry';
+          Object.assign(req.session, shimmed);
         }
         logger.trace(`restoreAllDraftsState - Benefit Type in session ${(req.session.benefitType) ? req.session.benefitType.code : 'null'}`);
         next();
@@ -280,7 +271,7 @@ const restoreAllDraftsState = async(req, res, next) => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
-        logger.exception(JSON.stringify(error), logPath);
+        logger.exception(parseErrorResponse(error), logPath);
         next();
       });
   } else {
@@ -416,7 +407,6 @@ module.exports = {
   createDraftInDraftStore,
   archiveDraft,
   LoadJourneyAndRedirect,
-  setMultiDraftsEnabled,
   resetJourney,
   handleDraftCreateUpdateFail
 };

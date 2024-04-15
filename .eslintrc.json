@@ -11,6 +11,7 @@
     "ecmaVersion": 2017
   },
   "rules": {
+	"linebreak-style": ["warn", "unix"],
     "no-process-env": "off",
     "multiline-ternary": ["error", "always-multiline"],
     "operator-linebreak": ["error", "after"],

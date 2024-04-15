@@ -1,4 +1,5 @@
-const expressNunjucks = require('express-nunjucks');
+/* eslint-disable max-lines */
+const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
 const config = require('config');
@@ -13,6 +14,7 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
+/* eslint max-lines: off */
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -20,6 +22,8 @@ const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') ===
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
+const webChatBaseUrl = config.get('services.webchat.url');
+const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
 
 const configureNunjucks = (app, commonContent) => {
   // because of a bug with iphone, we need to remove the mime types from accept
@@ -65,17 +69,16 @@ const configureNunjucks = (app, commonContent) => {
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
+      welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
-      webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
-      webChat: config.get('services.webChat'),
+      webChatClientUrl: webChatClientBaseUrl,
+      webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        antennaWebChat: () => process.env.FT_ANTENNA_WEBCHAT || config.features.antennaWebChat.enabled,
-        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled
-      }
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
+        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
     }
   });
 };
@@ -106,16 +109,18 @@ const configureHelmet = app => {
     directives: {
       defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
+      formAction: [`'self' ${config.get('services.idam.loginUrl')} ${config.get('services.pcq.url')}`],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/',
         '\'unsafe-inline\''
       ],
       scriptSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
@@ -123,45 +128,48 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ],
       connectSrc: [
         '\'self\'',
         'www.gov.uk',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
         'code.jquery.com',
+        'wss://webchat.pp.ctsc.hmcts.net',
         'wss://webchat.ctsc.hmcts.net',
+        'https://webchat.pp.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'www.googletagmanager.com'
+        '*.googletagmanager.com'
       ],
       imgSrc: [
         '\'self\'',
-        'stats.g.doubleclick.net',
+        '*.g.doubleclick.net',
         'www.google.com',
         'www.google.co.uk',
         'www.code.jquery.com',
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
         'code.jquery.com',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        '*.google-analytics.com',
+        '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ]
     }
   }));
 };
-
 /*eslint-disable */
 const configureJourney = (app, commonContent) => {
   journey(app, {
@@ -174,16 +182,25 @@ const configureJourney = (app, commonContent) => {
           if (error) {
             console.log(`Redis connection failed with ${error.code}`);
           }
+          if (options.error && options.error.code === "ECONNREFUSED"){
+            return new Error("redis server refused connection");
+          }
+          if(total_retry_time > 1000 * 60 * 60){
+            return new Error("Retry time exhausted");
+          }
+          if (options.attempt > 10 ) {
+            return undefined;
+          }
           console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
-          // reconnect after
           const minRetryFactor = 500;
           const retryTime = attempt * minRetryFactor;
-          const maxRetryWait = 3000;
+          const maxRetryWait = 36000;
           return Math.min(retryTime, maxRetryWait);
         }
       },
       cookie: {
-        secure: config.get('node.protocol') === 'https'
+        secure: config.get('node.protocol') === 'https',
+        sameSite: 'lax' // required for the oauth2 redirect
       },
       secret: config.redis.secret
     },
@@ -210,7 +227,6 @@ const configureJourney = (app, commonContent) => {
   });
 };
 /* eslint-enable */
-
 const configureMiddleWares = (app, express) => {
   app.use('/assets', express.static(path.resolve('dist')));
 
@@ -265,7 +281,6 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
-
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });

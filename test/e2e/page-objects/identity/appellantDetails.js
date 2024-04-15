@@ -8,7 +8,7 @@ const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
@@ -18,7 +18,7 @@ function enterAppellantNameAndContinue(commonContent, title, firstName, lastName
 function enterAppellantNameAndContinueAfterSignIn(commonContent, title, firstName, lastName) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
@@ -28,7 +28,7 @@ function enterAppellantNameAndContinueAfterSignIn(commonContent, title, firstNam
 function enterAppellantDOBAndContinue(commonContent, day, month, year) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
@@ -38,7 +38,7 @@ function enterAppellantDOBAndContinue(commonContent, day, month, year) {
 function enterAppellantDOBAndContinueAfterSignIn(commonContent, day, month, year) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
@@ -48,7 +48,7 @@ function enterAppellantDOBAndContinueAfterSignIn(commonContent, day, month, year
 function enterAppellantNINOAndContinue(commonContent, nino) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
 }
@@ -56,7 +56,7 @@ function enterAppellantNINOAndContinue(commonContent, nino) {
 function enterAppellantNINOAndContinueAfterSignIn(commonContent, nino) {
   const I = this;
 
-  I.wait(3);
+  I.wait(1);
   I.fillField('#nino', nino);
   I.click(commonContent.saveAndContinue);
 }
@@ -111,12 +111,30 @@ function enterAppellantContactDetailsAndContinue(commonContent, language) {
   I.click(commonContent.continue);
 }
 
+function enterAppellantContactDetailsAndContinueAfterSignIn(commonContent, language) {
+  const I = this;
+  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+
+  if (postcodeLookupEnabled) {
+    I.fillField({ id: 'postcodeLookup' }, 'xxxxx');
+    I.click(postcodeLookupContent.findAddress);
+    I.see(postcodeLookupContent.fields.postcodeLookup.error.required);
+    I.fillField({ id: 'postcodeLookup' }, 'n29ed');
+    I.click(commonContent.continue);
+    I.see(postcodeLookupContent.fields.postcodeAddress.error.required);
+    IenterAddressDetails(postcodeLookupContent, I);
+  } else {
+    IenterAddressDetailsManual(I);
+  }
+  I.click(commonContent.saveAndContinue);
+}
+
 function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   IenterAddressDetails(postcodeLookupContent, I);
-  I.wait(5);
+  I.wait(2);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
@@ -126,7 +144,7 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   IenterAddressDetails(postcodeLookupContent, I);
-  I.wait(5);
+  I.wait(2);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.saveAndContinue);
 }
@@ -149,6 +167,7 @@ module.exports = {
   enterAppellantNINOAndContinue,
   enterAppellantNINOAndContinueAfterSignIn,
   enterAppellantContactDetailsAndContinue,
+  enterAppellantContactDetailsAndContinueAfterSignIn,
   enterAppellantContactDetailsWithMobileAndContinue,
   enterAppellantContactDetailsWithMobileAndContinueAfterSignIn,
   enterAppellantContactDetailsWithEmailAndContinue,

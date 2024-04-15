@@ -1,14 +1,14 @@
-# SSCS - Submit your  appeal
+# SSCS - Submit Your Appeal
 
-## Background
-Someone who receives a decision about their entitlement to benefits has the right to appeal against that decision,
-if they disagree with it. The first step is asking the Department for Work and Pensions to look at the decision again.
+## Background:
+Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision.
+The first step is asking the Department for Work and Pensions to look at the decision again.
 This is known as requesting ‘Mandatory Reconsideration’. If they still disagree, they can appeal to the Social Security
 and Child Support tribunal.
 
 Should an appellant wish to appeal online this node.js web application allows them to do so. The application takes the
 appellant on a journey, presenting a single question per page (GDS guidelines), at the end of their journey we present
-an appeal summary page, allowing the user to edit their answers or sign and submit.
+an appeal summary page, allowing the user to edit their answers or sign and submit. 
 
 ## Dependencies
  - [Docker](https://www.docker.com/)
@@ -18,6 +18,7 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
+Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
 Install Redis: download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz
@@ -60,7 +61,7 @@ View the application:
 
 ## Docker
 
-If you would like to view the application without having to setup Redis you can via Docker.
+If you would like to view the application without having to setup Redis you can do so via Docker.
 
 We use the [Dockerfile] and [docker-compose.yml] to create a container to bring up the app which includes Redis.
 
@@ -76,9 +77,14 @@ View the application:
 
     https://localhost:3000
 
+If you prefer to run the application natively but still use docker for Redis you can do so by running:
+    docker-compose up redis
+
+You would then start the application by running yarn dev as above
+
 ## End-to-end testing
 
-Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up. At
+Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up (including docker dependencies run through CFTLib). At
 present these tests do not run within Docker, therefore, open a new terminal window.
 
 Functional tests:
@@ -99,7 +105,7 @@ Functional test batches:
 To improve reliability running the functional tests locally you can run them in batches using the following command
 
 ```bash
-yarn test:functional:all-batches
+yarn test:functional:batches
 ```
 
 If you wish to increase the speed of the tests, you can decrease the wait time between each action, the default is set

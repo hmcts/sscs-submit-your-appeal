@@ -4,16 +4,16 @@ const paths = require('paths');
 
 Feature(`${language.toUpperCase()} - Contact DWP @batch-07`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
   I.amOnPage(paths.compliance.contactDWP);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - I exit the service after being told I need to contact DWP`, I => {
+Scenario(`${language.toUpperCase()} - I exit the service after being told I need to contact DWP`, ({ I }) => {
   I.click(contactDwpContent.govuk);
   I.amOnPage('https://www.gov.uk');
 });

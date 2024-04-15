@@ -25,9 +25,9 @@ const PORT_RANGE = 50;
 app.set('portFrom', port);
 app.set('portTo', port + PORT_RANGE);
 app.set('assetPath', url.resolve('/', 'assets/'));
-app.set('trust proxy', 1);
+app.set('trust proxy', true);
 app.locals.asset_path = url.resolve('/', 'assets/');
-events.EventEmitter.defaultMaxListeners = 100;
+events.EventEmitter.defaultMaxListeners = 500000;
 
 // Configure App health.
 healthcheck.setup(app);
@@ -49,5 +49,6 @@ configureNunjucks(app, commonContent);
 
 // Configure One Per page settings.
 configureJourney(app, commonContent);
+
 
 module.exports = app;

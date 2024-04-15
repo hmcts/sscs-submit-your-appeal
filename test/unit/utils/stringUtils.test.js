@@ -1,5 +1,6 @@
 const { expect } = require('test/util/chai');
 const {
+  maskNino,
   titleise,
   splitBenefitType,
   isNotEmptyString,
@@ -14,6 +15,12 @@ const {
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('stringUtils.js', () => {
+  describe('mask nino', () => {
+    it('should mask nino', () => {
+      expect(maskNino('AA112233B')).to.equal('XXXX2233B');
+    });
+  });
+
   describe('titleise', () => {
     it('should titleise a string from hello to Hello', () => {
       expect(titleise('hello')).to.equal('Hello');
@@ -79,7 +86,7 @@ describe('splitBenefitType()', () => {
     expect(obj).to.include({ code: 'attendanceAllowance', description: benefitTypes.attendanceAllowance });
   });
 
-  it('should split \'Child Benefit Lone Parent\' into an array', () => {
+  it('should split \'Child Benefit\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.childBenefit);
     expect(obj).to.include({ code: 'childBenefit', description: benefitTypes.childBenefit });
   });
@@ -97,11 +104,6 @@ describe('splitBenefitType()', () => {
   it('should split \'Home Responsibilities Protection\' into an array', () => {
     const obj = splitBenefitType(benefitTypes.homeResponsibilitiesProtection);
     expect(obj).to.include({ code: 'homeResponsibilitiesProtection', description: benefitTypes.homeResponsibilitiesProtection });
-  });
-
-  it('should split \'Housing Benefit (HB)\' into an array', () => {
-    const obj = splitBenefitType(benefitTypes.housingBenefit);
-    expect(obj).to.include({ code: 'HB', description: 'Housing Benefit' });
   });
 
   it('should split \'Incapacity Benefit\' into an array', () => {

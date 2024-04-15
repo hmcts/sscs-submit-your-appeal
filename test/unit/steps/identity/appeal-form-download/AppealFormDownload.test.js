@@ -33,22 +33,22 @@ describe('AppealFormDownload.js', () => {
   });
 
   describe('get getFormLink()', () => {
-    it('returns SSCS5 form link when Benefit type is Child Benefit Lone Parent', () => {
+    it('returns SSCS5 form link when Benefit type is Child Benefit', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.childBenefit;
       expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs5);
     });
 
-    it('returns SSCS5 form type when Benefit type is Child Benefit Lone Parent', () => {
+    it('returns SSCS5 form type when Benefit type is Child Benefit', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.childBenefit;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS5');
     });
 
-    it('returns SSCS1 form link when Benefit type is not Child Benefit Lone Parent', () => {
+    it('returns SSCS1 form link when Benefit type is not Child Benefit', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.socialFund;
       expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs1);
     });
 
-    it('returns SSCS1 form type when Benefit type is not Child Benefit Lone Parent', () => {
+    it('returns SSCS1 form type when Benefit type is not Child Benefit', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.socialFund;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS1');
     });
@@ -61,6 +61,12 @@ describe('AppealFormDownload.js', () => {
     it('returns SSCS3 form type when Benefit type is Compensation Recovery', () => {
       appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.compensationRecovery;
       expect(appealFormDownload.formDownload.type).to.equal('SSCS3');
+    });
+
+    it('returns SSCS2 form type when Benefit type is Child support', () => {
+      appealFormDownload.req.sess.BenefitType.benefitType = benefitTypes.childSupport;
+      expect(appealFormDownload.formDownload.type).to.equal('SSCS2');
+      expect(appealFormDownload.formDownload.link).to.equal(urls.formDownload.sscs2);
     });
   });
 

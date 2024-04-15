@@ -7,12 +7,12 @@ const testData = require(`test/e2e/data.${language}`);
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser @e2e`, I => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser @e2e`, ({ I }) => {
   const commonContent = content[language];
 
   I.createTheSession(language);
 
-  I.wait(2);
+  I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411222222');
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
@@ -26,4 +26,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrow
   I.skipPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   I.endTheSession();
-}).retry(20);
+}).retry(10);

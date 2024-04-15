@@ -158,7 +158,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value.trim(),
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,

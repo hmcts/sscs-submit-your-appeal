@@ -27,8 +27,8 @@
     "roleName": "sya"
   },
   "e2e": {
-    "waitForTimeout": "60000",
-    "waitForAction": "2000",
+    "waitForTimeout": "10000",
+    "waitForAction": "500",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "https://localhost:3000"
@@ -54,7 +54,7 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "true"
+      "welshWebchatEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -107,13 +107,13 @@
     "pcq": {
       "enabled": "false"
     },
-    "antennaWebChat": {
-      "enabled": "false"
-    },
     "multipleDraftsEnabled": {
       "enabled": "false"
     },
     "cookieBanner": {
+      "enabled": "false"
+    },
+    "webchatOpen8to5": {
       "enabled": "false"
     }
   },
@@ -131,7 +131,6 @@
     "browser": "chrome",
     "username": "username",
     "key": "privatekey",
-    "tunnelId": "reformtunnel",
     "smartWait": "30000",
     "outputDir": "./functional-output/crossbrowser/reports"
   },
@@ -140,10 +139,14 @@
     "index": "/authenticated"
   },
   "services": {
+    "SSCS": {
+      "caseTypes": "SSCS",
+      "releaseVersion": "4.0"
+    },
     "idam": {
-      "apiUrl": "http://localhost:5000",
+      "apiUrl": "http://localhost:5062",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:3501/login",
+      "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
       "useMock": "false"
     },
@@ -154,13 +157,9 @@
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
-    "webChat": {
-      "uuid": "script_2564970475c5c433ab52c08.45062085",
-      "tenant": "aG1jdHNzdGFnaW5nMDE",
-      "channel": "SSCS",
-      "btnNoAgents": "/aG1jdHNzdGFnaW5nMDE/button_7732814745cac6f4603c4d1.53357933/img/logo",
-      "btnAgentsBusy": "/aG1jdHNzdGFnaW5nMDE/button_2042157415cc19c95669039.65793052/img/logo",
-      "btnServiceClosed": "/aG1jdHNzdGFnaW5nMDE/button_20199488815cc1a89e0861d5.73103009/img/logo"
+    "webchat": {
+      "url": "webchat.pp.ctsc.hmcts.net",
+      "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
     },
     "pcq": {
       "name": "Equality and Diversity Service",

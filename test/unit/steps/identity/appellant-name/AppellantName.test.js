@@ -96,40 +96,67 @@ describe('AppellantName.js', () => {
     });
   });
 
-  [
-    'Mr,HARRY,POTTER',
-    'Mr,harry,potter',
-    'Mr,haRRy,pOttEr',
-    'Mr,harry John,pOttEr'
-  ].forEach(item => {
-    describe(`answers() appellant full name # ${item}`, () => {
-      beforeEach(() => {
-        appellantName.fields = {
-          title: {
-            value: item.split(',')[0]
-          },
-          firstName: {
-            value: item.split(',')[1]
-          },
-          lastName: {
-            value: item.split(',')[2]
-          }
-        };
-      });
-      it('should normalise appellant full name in the answers()', () => {
-        const answers = appellantName.answers();
-        expect(answers[0].answer).to.equal('Mr Harry Potter');
-      });
+  describe('answers() appellant full name with random case', () => {
+    const NAME = 'Mr,harry John,pOttEr';
+    beforeEach(() => {
+      appellantName.fields = {
+        title: {
+          value: NAME.split(',')[0]
+        },
+        firstName: {
+          value: NAME.split(',')[1]
+        },
+        lastName: {
+          value: NAME.split(',')[2]
+        }
+      };
+    });
+    it('should normalise appellant full name in the answers()', () => {
+      const answers = appellantName.answers();
+      expect(answers[0].answer).to.equal('Mr harry John pOttEr');
+    });
 
-      it('should normalise appellant full name in the values()', () => {
-        const values = appellantName.values();
-        expect(values).to.eql({
-          appellant: {
-            title: 'Mr',
-            firstName: 'Harry',
-            lastName: 'Potter'
-          }
-        });
+    it('should normalise appellant full name in the values()', () => {
+      const values = appellantName.values();
+      expect(values).to.eql({
+        appellant: {
+          title: 'Mr',
+          firstName: 'harry John',
+          lastName: 'pOttEr'
+        }
+      });
+    });
+  });
+
+
+  describe('answers() appellant full name with apostrophe', () => {
+    const NAME = 'Miss,Sarah,O`Brian';
+    beforeEach(() => {
+      appellantName.fields = {
+        title: {
+          value: NAME.split(',')[0]
+        },
+        firstName: {
+          value: NAME.split(',')[1]
+        },
+        lastName: {
+          value: NAME.split(',')[2]
+        }
+      };
+    });
+    it('should normalise appellant full name in the answers()', () => {
+      const answers = appellantName.answers();
+      expect(answers[0].answer).to.equal('Miss Sarah O`Brian');
+    });
+
+    it('should normalise appellant full name in the values()', () => {
+      const values = appellantName.values();
+      expect(values).to.eql({
+        appellant: {
+          title: 'Miss',
+          firstName: 'Sarah',
+          lastName: 'O`Brian'
+        }
       });
     });
   });
@@ -143,7 +170,7 @@ describe('AppellantName.js', () => {
           value: 'Mr'
         },
         firstName: {
-          value: 'HARRY'
+          value: 'Harry-SMITH'
         },
         lastName: {
           value: 'POTTER'
@@ -164,7 +191,7 @@ describe('AppellantName.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal('Mr Harry Potter');
+      expect(answers[0].answer).to.equal('Mr Harry-SMITH POTTER');
     });
 
     it('should contain a value object', () => {
@@ -172,8 +199,8 @@ describe('AppellantName.js', () => {
       expect(values).to.eql({
         appellant: {
           title: 'Mr',
-          firstName: 'Harry',
-          lastName: 'Potter'
+          firstName: 'Harry-SMITH',
+          lastName: 'POTTER'
         }
       });
     });

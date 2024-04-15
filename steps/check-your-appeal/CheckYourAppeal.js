@@ -9,6 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
+const { maskNino } = require('utils/stringUtils');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -24,8 +25,6 @@ const csrfProtection = csurf({ cookie: false });
 const config = require('config');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
-
-const httpRetries = 3;
 
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
@@ -77,7 +76,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     if (typeof this.journey.values.hearing === 'undefined' ||
       !this.journey.values.hearing) {
       logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
-        'SessionId ${this.journey.req.session.id} and nino ${this.journey.values.appellant.nino}`));
+        'SessionId ${this.journey.req.session.id} and nino ${maskNino(this.journey.values.appellant.nino)}`));
       logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
     }
   }
@@ -92,32 +91,24 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
     }
 
+    const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));
     logger.trace([
-      'About to send to api the application with session id ',
-      get(this, 'journey.req.session.id'),
-      'the NINO is ',
-      get(this, 'journey.values.appellant.nino'),
-      'the benefit code is',
-      get(this, 'journey.values.benefitType.code'),
-      'the draft case id is',
-      get(values, 'ccdCaseId')
+      'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
+      'the NINO is ', maskedNino,
+      'the benefit code is', get(this, 'journey.values.benefitType.code'),
+      'the draft case id is', get(values, 'ccdCaseId')
     ], logPath);
 
 
     return request.post(this.journey.settings.apiUrl)
-      .retry(httpRetries)
       .set(headers)
       .send(values)
       .then(result => {
         logger.trace([
-          'Successfully submitted application for session id',
-          get(this, 'journey.req.session.id'),
-          'and nino',
-          get(this, 'journey.values.appellant.nino'),
-          'the benefit code is',
-          get(this, 'journey.values.benefitType.code'),
-          'the status is ',
-          result.status
+          'Successfully submitted application for session id', get(this, 'journey.req.session.id'),
+          'and nino', maskedNino,
+          'the benefit code is', get(this, 'journey.values.benefitType.code'),
+          'the status is ', result.status
         ], logPath);
         logger.trace(
           `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
@@ -127,13 +118,10 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
           `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
         logger.exception([
-          'Error on submission:',
-          get(this, 'journey.req.session.id'),
+          'Error on submission:', get(this, 'journey.req.session.id'),
           errMsg,
-          'the NINO is',
-          get(this, 'journey.values.appellant.nino'),
-          'the benefit code is ',
-          get(this, 'journey.values.benefitType.code')
+          'the NINO is', maskedNino,
+          'the benefit code is ', get(this, 'journey.values.benefitType.code')
         ], logPath);
 
         const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';

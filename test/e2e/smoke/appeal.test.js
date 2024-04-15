@@ -1,5 +1,5 @@
 const content = require('commonContent');
-const paths = require('paths');
+const urls = require('urls');
 const mockData = require('test/e2e/data.en');
 
 const appellant = mockData.appellant;
@@ -9,9 +9,9 @@ const commonContent = content[language];
 
 Feature(`${language.toUpperCase()} - Full Journey @smoke`);
 
-Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, I => {
-  I.amOnPage(`${paths.session.root}?lng=${language}`);
-  I.wait(2);
+Scenario(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, ({ I }) => {
+  I.amOnPage(`${urls.formDownload.benefitAppeal}/?lng=${language}`);
+  I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, appellant.contactDetails.phoneNumber);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');

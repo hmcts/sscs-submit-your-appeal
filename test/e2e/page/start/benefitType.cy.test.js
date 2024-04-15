@@ -12,7 +12,6 @@ const sscs1 = [
   'disabilityLivingAllowance',
   'employmentAndSupportAllowance',
   'homeResponsibilitiesProtection',
-  'housingBenefit',
   'incapacityBenefit',
   'incomeSupport',
   'industrialInjuriesDisablement',
@@ -30,19 +29,19 @@ const sscs1 = [
   'disabilityWorkAllowance'
 ];
 const sscs3 = ['compensationRecovery'];
-const sscs5 = ['childBenefit', 'childCare', 'taxCredits', 'contractedOut', 'taxFreeChildcare'];
+const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFreeChildcare', 'guardiansAllowance', 'guaranteedMinimumPension', 'nationalInsuranceCredits'];
 
 Feature(`${language.toUpperCase()} - Benefit Type @batch-12`);
 
-Before(I => {
+Before(({ I }) => {
   I.createTheSession(language);
 });
 
-After(I => {
+After(({ I }) => {
   I.endTheSession();
 });
 
-Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, I => {
+Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, ({ I }) => {
   I.enterBenefitTypeAndContinue(commonContent, 'pip');
   // I.chooseLanguagePreference(commonContent, 'no');
   I.seeInCurrentUrl(paths.start.postcodeCheck);
@@ -52,7 +51,7 @@ Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postco
 /* eslint-disable no-negated-condition */
 benefitTypesArr.forEach(benefitTypeKey => {
   if (benefitTypeKey !== 'personalIndependencePayment') {
-    Scenario(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, I => {
+    Scenario(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, ({ I }) => {
       let benefitForm;
       if (sscs1.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS1';

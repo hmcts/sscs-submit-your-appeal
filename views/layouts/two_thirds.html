@@ -17,7 +17,7 @@
 
 {% if featureToggles.cookieBanner() == "true" %}
   <div>
-    {% include "../../cookie-banner/common/components/imported/cookie-manager/cookie-banner.njk" %}
+    {% include "../../cookie-banner/cookie-banner.njk" %}
   </div>
 {% else %}
   {% include "components/cookie-banner.html" %}
@@ -31,6 +31,21 @@
 {%- endblock %}
 
 {% block content -%}
+  <script>
+    
+    {% if featureToggles.webchatOpen8to5() == "true" %}
+      document.webchatOpeningFlag = true;
+    {% else %}
+      document.webchatOpeningFlag = false;
+    {% endif %}
+    
+    {% if welshWebchatEnabled %}
+      document.welshWebchatFlag = true;
+    {% else %}
+      document.welshWebchatFlag = false;
+    {% endif %}
+    
+  </script>
   {% block full_width %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">

@@ -30,7 +30,6 @@ const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
 
-const parseFullName = require('parse-full-name').parseFullName;
 
 class RepresentativeDetails extends SaveToDraftStore {
   constructor(...args) {
@@ -49,10 +48,9 @@ class RepresentativeDetails extends SaveToDraftStore {
     const repTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    const fullName = parseFullName(`${repTitle} ${first} ${last}`.trim(), 'all', 1, 0, 0);
     return first === '' && last === '' ?
       userAnswer.NOT_PROVIDED :
-      `${fullName.title} ${fullName.first} ${fullName.last}`.trim();
+      `${repTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -163,12 +161,11 @@ class RepresentativeDetails extends SaveToDraftStore {
     const repTitle = this.fields.name.title.value;
     const first = this.fields.name.first.value;
     const last = this.fields.name.last.value;
-    const fullName = parseFullName(`${repTitle} ${first} ${last}`, 'all', 1, 0, 0);
     return {
       representative: {
-        title: decode(fullName.title),
-        firstName: decode(fullName.first),
-        lastName: decode(fullName.last),
+        title: decode(repTitle),
+        firstName: decode(first),
+        lastName: decode(last),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
           postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
@@ -181,7 +178,7 @@ class RepresentativeDetails extends SaveToDraftStore {
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value.trim(),
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,

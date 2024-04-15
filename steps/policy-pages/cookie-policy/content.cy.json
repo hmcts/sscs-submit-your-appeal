@@ -70,5 +70,86 @@
       "item2Purpose": "Gwybod i ba IP y dylid cyfeirio cais ",
       "item2Expires": "Pan fyddwch chi’n cau eich porwr"
     }
+  },
+  "new": {
+    "cookies": {
+      "title": "Cwcis",
+      "description": "Ffeiliau sy'n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan fyddwch yn ymweld â gwefan yw cwcis. Mae angen cwcis ar y rhan fwyaf o wefannau i weithio'n iawn.",
+      "save": "Cadw"
+    },
+    "usedInService": {
+      "uses": "Mae’r gwasanaeth hwn yn defnyddio cwcis i:",
+      "use1": "storio eich dewisiadau cwcis",
+      "use2": "fesur sut ydych yn defnyddio’r gwasanaeth fel y gallwn ei wella"
+    },
+    "howAreTheyUsed": {
+      "title": "Sut ydym yn defnyddio cwcis yn y gwasanaeth hwn",
+      "googleCookies": {
+        "title": "Mesur y defnydd o wefan",
+        "description": "Rydym yn defnyddio meddalwedd Google Analytics i gasglu gwybodaeth am sut rydych yn defnyddio'r gwasanaeth hwn. Rydym yn gwneud hyn i helpu sicrhau bod y wefan yn cwrdd ag anghenion ei defnyddwyr ac i’n helpu ni i wneud gwelliannau. Nid ydym yn caniatáu i Google ddefnyddio na rhannu'r data am sut rydych yn defnyddio'r wefan hon.",
+        "optOut": {
+          "title": "Caniatáu cwcis sy’n mesur fy nefnydd o'r wefan?",
+          "optOut1": "Defnyddio cwcis sy’n mesur fy nefnydd o'r wefan",
+          "optOut2": "Peidio â defnyddio cwcis sy'n mesur fy nefnydd o'r wefan"
+        },
+        "cookieTable": {
+          "title": "Manylion y cwci",
+          "columnName1": "Enw",
+          "columnName2": "Diben",
+          "columnName3": "Y dyddiad y daw i ben",
+          "item1Name": "_ga",
+          "item1Purpose": "Mae’n ein helpu i gyfrif faint o bobl sy'n ymweld â'r gwasanaeth drwy olrhain os ydych wedi ymweld o'r blaen",
+          "item1Expires": "1 blwyddyn",
+          "item2Name": "_gid",
+          "item2Purpose": "Gadael i'r gwasanaeth wybod pwy ydych chi",
+          "item2Expires": "1 blwyddyn",
+          "item3Name": "_gat",
+          "item3Purpose": "Rheoli faint o bobl sy’n ymweld â’r dudalen",
+          "item3Expires": "1 blwyddyn"
+        }
+      },
+      "performance": {
+        "title": "Mesur perfformiad y rhaglen",
+        "description": "Rydym yn defnyddio Platfform Deallusrwydd Meddalwedd Dynatrace i ddarparu Gwasanaeth Monitro Perfformiad Gwasanaeth i gasglu gwybodaeth am sut yr ydych yn defnyddio gwasanaethau GLlTEM. Rydym yn gwneud hyn i fonitro gwasanaethau GLlTEM er mwyn datrys problemau yn ein gwasanaethau a chasglu data ar sut y gallwn eu gwella. Mae GLlTEM yn storio gwybodaeth am:",
+        "infolist1": "Perfformiad y wefan",
+        "infolist2": "Y defnydd a wneir o'r wefan",
+        "infolist3": "Ymddygiad defnyddwyr",
+        "info2": "Cyflwynir yr wybodaeth angenrheidiol yn y Gwasanaeth Monitro Perfformiad Gwasanaeth at y dibenion a nodwyd uchod. Nid ydym yn defnyddio neu’n rhannu'r wybodaeth ar gyfer unrhyw bwrpas arall. Nid ydym yn caniatáu i Dynatrace ddefnyddio neu rannu'r wybodaeth ar gyfer unrhyw bwrpas arall.",
+        "optOut": {
+          "title": "Caniatáu cwcis sy'n mesur y broses o fonitro perfformiad gwefannau?",
+          "optOut1": "Defnyddio cwcis sy’n mesur y broses o fonitro perfformiad gwefannau",
+          "optOut2": "Peidio â defnyddio cwcis sy’n mesur y broses o fonitro perfformiad gwefannau"
+        },
+        "cookieTable": {
+          "title": "Manylion y cwci",
+          "columnName1": "Enw",
+          "columnName2": "Diben",
+          "columnName3": "Y dyddiad y daw i ben",
+          "item1Name": "dtCookie",
+          "item1Purpose": "Olrhain ymweliad ar draws ceisiadau amryfal",
+          "item1Expires": "Pan fydd y sesiwn yn dod i ben",
+          "item2Name": "dtLatC",
+          "item2Purpose": "Mesur natur gudd y gweinydd er mwyn monitro perfformiad y gwasanaeth",
+          "item2Expires": "Pan fydd y sesiwn yn dod i ben",
+          "item3Name": "dtPC",
+          "item3Purpose": "Er mwyn canfod pwyntiau terfyn priodol ar gyfer trosglwyddo tywysydd: mae’n cynnwys rhif adnabod y sesiwn at ddibenion cydberthyniad",
+          "item3Expires": "Pan fydd y sesiwn yn dod i ben",
+          "item4Name": "dtSa",
+          "item4Purpose": "Storfa gyfryngol ar gyfer gweithrediadau rhychwantu tudalennau",
+          "item4Expires": "Pan fydd y sesiwn yn dod i ben",
+          "item5Name": "rxVisitor",
+          "item5Purpose": "Rhif adnabod ymwelydd er mwyn cydberthnasu sesiynau",
+          "item5Expires": "1 blwyddyn",
+          "item6Name": "rxvt",
+          "item6Purpose": "Terfyn amser y sesiwn",
+          "item6Expires": "Pan fydd y sesiwn yn dod i ben"
+        }
+      },
+      "essentialCookies": {
+        "title": "Cwcis hanfodol",
+        "description": "Mae’r cwcis hanfodol hyn yn gwneud pethau fel sicrhau bod y gwasanaeth yn ddiogel. Mae angen iddynt fod yn weithredol bob amser",
+        "link": "Rhagor o wybodaeth am gwcis hanfodol (agor mewn tab newydd)"
+      }
+    }
   }
 }

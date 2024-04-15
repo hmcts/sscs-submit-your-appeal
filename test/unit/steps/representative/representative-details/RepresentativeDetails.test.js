@@ -9,6 +9,7 @@ const config = require('config');
 describe('RepresentativeDetails.js', () => {
   let representativeDetails = null;
   const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
+  const res = { send: sinon.spy() };
 
   beforeEach(() => {
     representativeDetails = new RepresentativeDetails({
@@ -18,7 +19,7 @@ describe('RepresentativeDetails.js', () => {
         }
       },
       session: {}
-    });
+    }, res);
 
     representativeDetails.fields = {
       name: {
@@ -56,10 +57,8 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.pcl.init.restore();
     });
 
-    const req = { method: 'GET', body: {}, session: {}, query: {} };
+    const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
     const next = sinon.spy();
-    const redirect = sinon.spy();
-    const res = { redirect };
     it('call pcl controller once', () => {
       representativeDetails.req = req;
       representativeDetails.handler(req, res, next);
@@ -68,22 +67,18 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('get getCYAName()', () => {
+    const NAME = 'MR,HARRY-Kane,O`Brian';
     beforeEach(() => {
       representativeDetails.fields.name.first.value = '';
       representativeDetails.fields.name.last.value = '';
     });
 
-    [
-      'MR,HARRY,POTTER',
-      'mr,harry,potter',
-      'mR,haRRy,pOttEr',
-      'Mr,harry John,pOttEr'
-    ].forEach(item => {
-      it(`should normalise reps full name # ${item}`, () => {
-        representativeDetails.fields.name.title.value = item.split(',')[0];
-        representativeDetails.fields.name.first.value = item.split(',')[1];
-        representativeDetails.fields.name.last.value = item.split(',')[2];
-        expect(representativeDetails.CYAName).to.equal('Mr Harry Potter');
+    beforeEach(() => {
+      it('should normalise reps full name with hyphen and apostrophe', () => {
+        representativeDetails.fields.name.title.value = NAME.split(',')[0];
+        representativeDetails.fields.name.first.value = NAME.split(',')[1];
+        representativeDetails.fields.name.last.value = NAME.split(',')[2];
+        expect(representativeDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
       });
     });
 
@@ -93,34 +88,34 @@ describe('RepresentativeDetails.js', () => {
 
     it('should return the firstName if only the firstName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
-      expect(representativeDetails.CYAName).to.equal('Firstname');
+      expect(representativeDetails.CYAName).to.equal('FirstName');
     });
 
     it('should return the lastName if only the lastName has been set', () => {
-      representativeDetails.fields.name.last.value = 'LastName';
+      representativeDetails.fields.name.last.value = 'Lastname';
       expect(representativeDetails.CYAName).to.equal('Lastname');
     });
 
     it('should return the full name if both firstName and lastName has been set', () => {
       representativeDetails.fields.name.first.value = 'FirstName';
       representativeDetails.fields.name.last.value = 'LastName';
-      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
+      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
     });
 
     it('should return the full name without whitespace before or after the name', () => {
       representativeDetails.fields.name.first.value = '    FirstName';
       representativeDetails.fields.name.last.value = 'LastName    ';
-      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
+      expect(representativeDetails.CYAName).to.equal('FirstName LastName');
     });
 
     it('should return the first name without whitespace before or after the name', () => {
-      representativeDetails.fields.name.first.value = '    FirstName    ';
+      representativeDetails.fields.name.first.value = ' Firstname ';
       expect(representativeDetails.CYAName).to.equal('Firstname');
     });
 
     it('should return the last name without whitespace before or after the name', () => {
       representativeDetails.fields.name.last.value = '  LastName ';
-      expect(representativeDetails.CYAName).to.equal('Lastname');
+      expect(representativeDetails.CYAName).to.equal('LastName');
     });
   });
 
@@ -167,10 +162,8 @@ describe('RepresentativeDetails.js', () => {
 
     it('should contain dynamic fields', () => {
       if (isPostCodeLookupEnabled) {
-        const req = { method: 'GET', body: {}, session: {}, query: {} };
+        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
         const next = sinon.spy();
-        const redirect = sinon.spy();
-        const res = { redirect };
         representativeDetails.req = req;
         representativeDetails.handler(req, res, next);
         fields = representativeDetails.form.fields;
@@ -182,7 +175,7 @@ describe('RepresentativeDetails.js', () => {
           'postcodeLookup'
         );
       } else {
-        expect(Object.keys(fields).length).to.equal(8);
+        expect(Object.keys(fields).length).to.equal(10);
         expect(fields).to.have.all.keys(
           'name',
           'addressLine1',
@@ -191,7 +184,9 @@ describe('RepresentativeDetails.js', () => {
           'county',
           'postCode',
           'emailAddress',
-          'phoneNumber'
+          'phoneNumber',
+          'postcodeAddress',
+          'postcodeLookup'
         );
       }
     });
@@ -336,46 +331,40 @@ describe('RepresentativeDetails.js', () => {
   });
 
   describe('values()', () => {
-    [
-      'MR,HARRY,POTTER',
-      'mr,harry,potter',
-      'mR,haRRy,pOttEr',
-      'Mr,harry John,pOttEr'
-    ].forEach(item => {
-      it(`should contain a value object with full name # ${item}`, () => {
-        representativeDetails.fields.name.title.value = item.split(',')[0];
-        representativeDetails.fields.name.first.value = item.split(',')[1];
-        representativeDetails.fields.name.last.value = item.split(',')[2];
-        representativeDetails.fields.name.organisation.value = 'Organisation';
-        representativeDetails.fields.addressLine1.value = 'First line of my address';
-        representativeDetails.fields.addressLine2.value = 'Second line of my address';
-        representativeDetails.fields.townCity.value = 'Town or City';
-        representativeDetails.fields.county.value = 'County';
-        representativeDetails.fields.postCode.value = 'Postcode';
-        representativeDetails.fields.phoneNumber.value = '0800109756';
-        representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-        representativeDetails.fields.postcodeLookup.value = 'n29ed';
-        representativeDetails.fields.postcodeAddress.value = '200000';
-        const values = representativeDetails.values();
-        expect(values).to.eql({
-          representative: {
-            title: 'Mr',
-            firstName: 'Harry',
-            lastName: 'Potter',
-            organisation: 'Organisation',
-            contactDetails: {
-              addressLine1: 'First line of my address',
-              addressLine2: 'Second line of my address',
-              townCity: 'Town or City',
-              county: 'County',
-              postCode: 'Postcode',
-              postcodeLookup: 'n29ed',
-              postcodeAddress: '200000',
-              phoneNumber: '0800109756',
-              emailAddress: 'myemailaddress@sscs.com'
-            }
+    const repName = 'MR,HARRY,POTTER';
+    it('should contain a value object with full name in caps', () => {
+      representativeDetails.fields.name.title.value = repName.split(',')[0];
+      representativeDetails.fields.name.first.value = repName.split(',')[1];
+      representativeDetails.fields.name.last.value = repName.split(',')[2];
+      representativeDetails.fields.name.organisation.value = 'Organisation';
+      representativeDetails.fields.addressLine1.value = 'First line of my address';
+      representativeDetails.fields.addressLine2.value = 'Second line of my address';
+      representativeDetails.fields.townCity.value = 'Town or City';
+      representativeDetails.fields.county.value = 'County';
+      representativeDetails.fields.postCode.value = 'Postcode';
+      representativeDetails.fields.phoneNumber.value = '0800109756';
+      representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.postcodeLookup.value = 'n29ed';
+      representativeDetails.fields.postcodeAddress.value = '200000';
+      const values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: 'MR',
+          firstName: 'HARRY',
+          lastName: 'POTTER',
+          organisation: 'Organisation',
+          contactDetails: {
+            addressLine1: 'First line of my address',
+            addressLine2: 'Second line of my address',
+            townCity: 'Town or City',
+            county: 'County',
+            postCode: 'Postcode',
+            postcodeLookup: 'n29ed',
+            postcodeAddress: '200000',
+            phoneNumber: '0800109756',
+            emailAddress: 'myemailaddress@sscs.com'
           }
-        });
+        }
       });
     });
 

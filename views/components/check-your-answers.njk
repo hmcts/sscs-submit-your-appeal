@@ -1,6 +1,6 @@
 {% macro answer(question, answer, url, id, commonContent) %}
-  <div class="govuk-summary-list">
-    <dl class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row" id="cya-{{ safeId(id, question) }}">
       <dt class="govuk-summary-list__key">
         {{ question | safe }}
       </dt>
@@ -24,6 +24,6 @@
           {{ commonContent.change | safe }} <span class="govuk-visually-hidden">{{ question | safe }}</span>
         </a>
       </dd>
-    </dl>
-  </div>
+    </div>
+  </dl>
 {% endmacro %}

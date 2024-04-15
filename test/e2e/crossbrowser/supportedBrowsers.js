@@ -1,75 +1,72 @@
+const LATEST_MAC = 'macOS 11.00';
+const LATEST_WINDOWS = 'Windows 10';
+
 const supportedBrowsers = {
   microsoft: {
-  //   // ie11_win10: {
-  //   //   browserName: 'internet explorer',
-  //   //   name: 'IE11_Win10',
-  //   //   platform: 'Windows 10',
-  //   //   ignoreZoomSetting: true,
-  //   //   nativeEvents: false,
-  //   //   ignoreProtectedModeSettings: true,
-  //   //   version: '11'
-  //   // },
-
-
-    edge_win10: {
-      browserName: 'MicrosoftEdge',
-      platformName: 'Windows 10',
-      ignoreZoomSetting: true,
-      nativeEvents: false,
-      ignoreProtectedModeSettings: true,
-      browserVersion: 'latest',
+    edge_win_latest: {
+      browserName: 'Microsoft Edge',
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'Edge_Win10_LATEST_SSCS'
+        name: 'SSCS: Edge_Win10',
+        screenResolution: '1400x1050'
       }
     }
   },
-  chrome: {
-    chrome_win_latest: {
-      browserName: 'chrome',
-      platformName: 'Windows 10',
+  webkit: {
+    webkit_latest: {
+      browserName: 'webkit',
+      platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'WIN_CHROME_LATEST_SSCS'
+        name: 'SSCS: Webkit_MAC',
+        screenResolution: '1400x1050'
       }
-    },
-    chrome_mac_latest: {
-      browserName: 'chrome',
-      platformName: 'macOS 10.15',
+    }
+  },
+  safari: {
+    safari_mac_latest: {
+      browserName: 'safari',
+      platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'MAC_CHROME_LATEST_SSCS'
+        name: 'SSCS: MAC_SAFARI',
+        seleniumVersion: '3.141.59',
+        screenResolution: '1376x1032'
+      }
+    }
+  },
+  chromium: {
+    chrome_win_latest: {
+      browserName: 'chromium',
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest-1',
+      'sauce:options': {
+        name: 'SSCS: WIN_CHROME_LATEST',
+        screenResolution: '1600x1200'
       }
     }
   },
   firefox: {
     firefox_win_latest: {
       browserName: 'firefox',
-      platformName: 'Windows 10',
-      browserVersion: 'latest',
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'WIN_FIREFOX_LATEST_SSCS'
+        name: 'SSCS: WIN_FIREFOX_LATEST',
+        screenResolution: '1600x1200'
       }
     },
     firefox_mac_latest: {
       browserName: 'firefox',
-      platformName: 'macOS 10.15',
-      browserVersion: 'latest',
+      platformName: LATEST_MAC,
+      browserVersion: 'latest-1',
       'sauce:options': {
-        name: 'MAC_FIREFOX_LATEST_SSCS'
+        name: 'SSCS: MAC_FIREFOX_LATEST',
+        screenResolution: '1600x1200'
       }
     }
   }
-  // safari: {
-  //   safari_mac_latest: {
-  //     browserName: 'safari',
-  //     platformName: 'macOS 11.00',
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'MAC_SAFARI_LATEST_SSCS',
-  //       seleniumVersion: '3.141.59'
-  //     }
-  //   }
-  // }
 };
 
 module.exports = supportedBrowsers;

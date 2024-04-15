@@ -70,5 +70,86 @@
       "item2Purpose": "To know which internal IP a request should be routed to.",
       "item2Expires": "When you close your browser"
     }
+  },
+  "new": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Cookies are files saved on your phone, tablet or computer when you visit a website. Most websites need cookies to work properly.",
+      "save": "Save"
+    },
+    "usedInService": {
+      "uses": "This service uses cookies to:",
+      "use1": "store your cookie preferences",
+      "use2": "measure how you use the service so it can be improved"
+    },
+    "howAreTheyUsed": {
+      "title": "How cookies are used in this service",
+      "googleCookies": {
+        "title": "To measure website use",
+        "description": "We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements. We do not allow Google to use or share the data about how you use this site.",
+        "optOut": {
+          "title": "Allow cookies that measure website use?",
+          "optOut1": "Use cookies that measure my website use",
+          "optOut2": "Do not use cookies that measure my website use"
+        },
+        "cookieTable": {
+          "title": "Cookie details",
+          "columnName1": "Name",
+          "columnName2": "Purpose",
+          "columnName3": "Expires",
+          "item1Name": "_ga",
+          "item1Purpose": "This helps us count how many people visit the service by tracking if you’ve visited before",
+          "item1Expires": "1 year",
+          "item2Name": "_gid",
+          "item2Purpose": "Identifies you to the service",
+          "item2Expires": "1 year",
+          "item3Name": "_gat",
+          "item3Purpose": "Manages the rate at which page view requests are made",
+          "item3Expires": "1 year"
+        }
+      },
+      "performance": {
+        "title": "To measure application performance",
+        "description": "We use Dynatrace Software Intelligence Platform to provide an Application Performance Monitoring Service to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order to resolve issues within our services as well as collect data on how our services can be improved. HMCTS store information about:",
+        "infolist1": "Site performance",
+        "infolist2": "Website usage",
+        "infolist3": "User behaviour",
+        "info2": "Information is presented within the Application Performance Monitoring service for the purposes detailed above. We do not use or share the information for any other purpose. We do not allow Dynatrace to use or share the information for any other purposes.",
+        "optOut": {
+          "title": "Allow cookies that measure website application performance monitoring?",
+          "optOut1": "Use cookies that measure website application performance monitoring",
+          "optOut2": "Do not use cookies that measure website application performance monitoring"
+        },
+        "cookieTable": {
+          "title": "Cookie details",
+          "columnName1": "Name",
+          "columnName2": "Purpose",
+          "columnName3": "Expires",
+          "item1Name": "dtCookie",
+          "item1Purpose": "Tracks a visit across multiple requests",
+          "item1Expires": "When session ends",
+          "item2Name": "dtLatC",
+          "item2Purpose": "Measures server latency for performance monitoring",
+          "item2Expires": "When session ends",
+          "item3Name": "dtPC",
+          "item3Purpose": "Required to identify proper endpoints for beacon transmission; includes session ID for correlation",
+          "item3Expires": "When session ends",
+          "item4Name": "dtSa",
+          "item4Purpose": "Intermediate store for page-spanning actions",
+          "item4Expires": "When session ends",
+          "item5Name": "rxVisitor",
+          "item5Purpose": "Visitor ID to correlate sessions",
+          "item5Expires": "1 year",
+          "item6Name": "rxvt",
+          "item6Purpose": "Session timeout",
+          "item6Expires": "When session ends"
+        }
+      },
+      "essentialCookies": {
+        "title": "Essential cookies",
+        "description": "These essential cookies do things like making the service more secure. They always need to be on.",
+        "link": "Find out more about essential cookies (opens in new tab)"
+      }
+    }
   }
 }

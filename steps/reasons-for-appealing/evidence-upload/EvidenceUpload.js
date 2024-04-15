@@ -20,7 +20,7 @@ const formidable = require('formidable');
 const pt = require('path');
 const fs = require('graceful-fs');
 const moment = require('moment');
-const request = require('request');
+const request = require('@cypress/request');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
@@ -140,21 +140,21 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
           req.body['item.uploadEv'] === fileMissingError ||
           req.body['item.uploadEv'] === totalFileSizeExceededError)) {
         logger.trace(`req body :  ${req.body['item.uploadEv']}`);
-        return fs.unlink(files['item.uploadEv'].path, next);
+        return fs.unlink(files['item.uploadEv'][0].filepath, next);
       }
 
-      if (files && files['item.uploadEv'] && files['item.uploadEv'].path &&
-        !fileTypeWhitelist.find(el => el === files['item.uploadEv'].type)) {
+      if (files && files['item.uploadEv'] && files['item.uploadEv'][0].filepath &&
+        !fileTypeWhitelist.find(el => el === files['item.uploadEv'][0].mimetype)) {
         req.body = {
           'item.uploadEv': wrongFileTypeError,
           'item.link': '',
           'item.size': 0
         };
-        logger.trace(`File path: ${files['item.uploadEv'].path}`);
+        logger.trace(`File path: ${files['item.uploadEv'][0].filepath}`);
         return fs.unlink(files['item.uploadEv'].path, next);
       }
       let uploadingErrorText = uploadingError;
-      if (uploadingError || !get(files, '["item.uploadEv"].name')) {
+      if (uploadingError || !files['item.uploadEv'][0].originalFilename) {
         if (uploadingError &&
           uploadingError.message &&
           uploadingError.message.match(/maxFileSize exceeded/)) {
@@ -169,10 +169,10 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return next();
       }
 
-      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'].name}`;
-      const size = files['item.uploadEv'].size;
+      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
+      const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
-      return fs.rename(files['item.uploadEv'].path, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
+      return fs.rename(files['item.uploadEv'][0].filepath, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
     };
   }
 
@@ -193,24 +193,28 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         logger.trace('No forwarding error, about to save data', logPath);
         const b = JSON.parse(body);
         if (b && b.documents) {
-          req.body = {
-            'item.uploadEv': b.documents[0].originalDocumentName,
-            'item.link': b.documents[0]._links.self.href,
-            'item.size': size
-          };
-        } else {
-          console.log('Evidence upload document conversion error');
-          req.body = {
-            'item.uploadEv': technicalProblemError,
-            'item.link': '',
-            'item.size': 0
-          };
+          if (b.documents[0].hashToken) {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': b.documents[0].hashToken,
+              'item.size': size
+            };
+          } else {
+            req.body = {
+              'item.uploadEv': b.documents[0].originalDocumentName,
+              'item.link': b.documents[0]._links.self.href,
+              'item.hashToken': '',
+              'item.size': size
+            };
+          }
         }
         return fs.unlink(pathToFile, next);
       }
       req.body = {
         'item.uploadEv': technicalProblemError,
         'item.link': '',
+        'item.hashToken': '',
         'item.size': 0
       };
       logger.exception(forwardingError, logPath);
@@ -262,6 +266,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         Joi.string().disallow(totalFileSizeExceededError)
       ),
       link: text.joi('', Joi.string().optional()),
+      hashToken: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),
       totalFileCount: text.joi(0, Joi.number().optional())
     });
@@ -276,6 +281,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   values() {
     const evidences = this.fields.items.value.map(file => {
+      if (file.hashToken) {
+        return {
+          url: file.link,
+          fileName: file.uploadEv,
+          hashToken: file.hashToken,
+          uploadedDate: moment().format('YYYY-MM-DD')
+        };
+      }
       return {
         url: file.link,
         fileName: file.uploadEv,

@@ -4,11 +4,13 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { overrideFeatFlag } = require('utils/stringUtils');
+const i18next = require('i18next');
 
 describe('DWPIssuingOfficeEsa.js', () => {
   let dwpIssuingOfficeEsa = null;
 
   beforeEach(() => {
+    i18next.changeLanguage('en');
     dwpIssuingOfficeEsa = new DWPIssuingOfficeEsa({
       journey: {
         steps: {
@@ -23,6 +25,10 @@ describe('DWPIssuingOfficeEsa.js', () => {
         }
       }
     });
+  });
+
+  afterEach(() => {
+    i18next.changeLanguage('en');
   });
 
   describe('get path()', () => {
@@ -119,7 +125,18 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
       expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Deceased)');
+      expect(dwpIssuingOfficeEsa.options[3].value).to.eql('Recovery from Estates');
+    });
+    it('has options for JSA Welsh', () => {
+      i18next.changeLanguage('cy');
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Ymadawedig)');
+      expect(dwpIssuingOfficeEsa.options[3].value).to.eql('Recovery from Estates');
     });
   });
 
@@ -138,7 +155,14 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
+    });
+    it('has options for UC Welsh', () => {
+      i18next.changeLanguage('cy');
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Ymadawedig)');
     });
   });
 
@@ -149,7 +173,16 @@ describe('DWPIssuingOfficeEsa.js', () => {
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
       expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
-      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Deceased)');
+    });
+    it('has options for Income Support Welsh', () => {
+      i18next.changeLanguage('cy');
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Inverness DRT');
+      expect(dwpIssuingOfficeEsa.options[3].label).to.eql('Recovery from Estates (Ymadawedig)');
     });
   });
 
@@ -167,7 +200,14 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
+    });
+    it('has options for Pension Credit Welsh', () => {
+      i18next.changeLanguage('cy');
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Ymadawedig)');
     });
   });
 
@@ -176,7 +216,16 @@ describe('DWPIssuingOfficeEsa.js', () => {
       dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Deceased)');
+      expect(dwpIssuingOfficeEsa.options[1].value).to.eql('Recovery from Estates');
+    });
+    it('has options for Retirement Pension Welsh', () => {
+      i18next.changeLanguage('cy');
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
+      expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Pensions Dispute Resolution Team');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Recovery from Estates (Ymadawedig)');
+      expect(dwpIssuingOfficeEsa.options[1].value).to.eql('Recovery from Estates');
     });
   });
 });

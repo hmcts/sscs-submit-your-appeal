@@ -7,11 +7,13 @@ const logger = require('logger');
 
 const logPath = 'saucelabs.conf.js';
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
+const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
+const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
+const browser = process.env.BROWSER_GROUP || 'chromium';
 
 const defaultSauceOptions = {
   username: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
   accessKey: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
-  tunnelIdentifier: process.env.SAUCE_TUNNEL_IDENTIFIER || config.get('saucelabs.tunnelId'),
   acceptSslCerts: true,
   tags: ['SSCS']
 };
@@ -38,6 +40,7 @@ function getBrowserConfig(browserGroup) {
   }
   return browserConfig;
 }
+
 const pauseFor = seconds => {
   setTimeout(() => {
     return true;
@@ -53,22 +56,28 @@ const setupConfig = {
     }
   },
   helpers: {
-    WebDriver: {
+    Playwright: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
-      browser: process.env.SAUCE_BROWSER || config.get('saucelabs.browser'),
-      waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
-      smartWait: parseInt(config.get('saucelabs.smartWait')),
+      browser,
+      smartWait,
+      waitForTimeout,
+      waitForAction: 500,
       cssSelectorsEnabled: 'true',
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
       region: 'eu',
-      capabilities: {}
+      capabilities: {},
+      waitForNavigation: 'networkidle',
+      bypassCSP: true,
+      ignoreHTTPSErrors: true
     },
     MyHelper: {
       require: './helpers/helper.js',
       url: config.get('e2e.frontendUrl')
     },
-    SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' }
+    Mochawesome: {
+      uniqueScreenshotNames: 'true'
+    }
   },
   include: {
     I: './page-objects/steps.js'
@@ -101,13 +110,13 @@ const setupConfig = {
   },
   multiple: {
     chrome: {
-      browsers: getBrowserConfig('chrome')
+      browsers: getBrowserConfig('chromium')
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
     },
-    safari: {
-      browsers: getBrowserConfig('safari')
+    webkit: {
+      browsers: getBrowserConfig('webkit')
     }
   },
   name: 'Submit Your Appeal Crossbrowser Tests'

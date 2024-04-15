@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers, max-len, no-undefined */
-const Entities = require('html-entities').XmlEntities;
+const { decode } = require('html-entities');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 const MIN_CHAR_COUNT = 5;
@@ -8,6 +8,8 @@ const isGreaterThanOrEqualToFiveCharacters = value => value.replace(/\s\s+/g, ' 
 const config = require('config');
 
 const featureFlagOverrides = {};
+
+const maskNino = nino => (nino ? `XXXX${nino.slice(4)}` : 'not submitted yet');
 
 const overrideFeatFlag = override => {
   featureFlagOverrides[override.key] = override.value;
@@ -126,12 +128,10 @@ const getTribunalPanelWelsh = ben => {
   }[key];
 };
 
-const decode = field => {
-  const entities = new Entities();
-  return entities.decode(field);
-};
+const decodeText = field => decode(field);
 
 module.exports = {
+  maskNino,
   isFeatureFlagEnabled,
   titleise,
   splitBenefitType,
@@ -141,7 +141,7 @@ module.exports = {
   getTribunalPanel,
   getTribunalPanelWelsh,
   getBenefitName,
-  decode,
+  decode: decodeText,
   getHasAcronym,
   getBenefitEndText,
   getBenefitEndTextWelsh,

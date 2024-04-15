@@ -1,9 +1,7 @@
 const { goTo } = require('@hmcts/one-per-page');
 const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
-const config = require('config');
-
-const multipleDraftsEnabled = config.get('features.multipleDraftsEnabled.enabled') === 'true';
+const logger = require('logger');
 
 class Entry extends RestoreFromDraftStore {
   static get path() {
@@ -11,12 +9,9 @@ class Entry extends RestoreFromDraftStore {
   }
 
   handler(req, res, next) {
+    logger.trace('Reached the entry endpoint');
     if (req.session.isUserSessionRestored) {
-      if (multipleDraftsEnabled) {
-        res.redirect(paths.drafts);
-      } else {
-        res.redirect(paths.checkYourAppeal);
-      }
+      res.redirect(paths.drafts);
     } else {
       super.handler(req, res, next);
     }

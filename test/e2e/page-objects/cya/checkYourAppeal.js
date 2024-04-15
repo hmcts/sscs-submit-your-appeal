@@ -99,6 +99,22 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
 }
 
+async function enterDetailsFromStartToDraft(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
+  const I = this;
+
+  I.enterBenefitTypeAndContinue(commonContent, benefitTypeCode);
+  I.chooseLanguagePreference(commonContent, 'no');
+  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+  I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-yes');
+  await I.signInVerifylanguage(newUserEmail, testDataEn.signIn.password, language);
+  I.createNewApplication(language);
+  I.enterBenefitTypeAfterSignIn(commonContent, benefitTypeCode);
+  I.chooseLanguagePreferenceAfterSignIn(commonContent, 'no');
+  I.enterPostcodeAndContinueAfterSignIn(commonContent, appellant.contactDetails.postCode);
+  I.continueFromIndependance(commonContent);
+}
+
 function enterDetailsForNewApplication(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   const I = this;
 
@@ -161,8 +177,11 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
   await I.turnOffJsAndReloadThePage();
+  I.amOnPage(paths.hearing.datesCantAttend);
+  I.wait(2);
   I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttendContent.links.add);
-  I.click(commonContent.continue);
+  I.wait(5);
+  I.forceClick(commonContent.continue);
 }
 
 async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, date) {
@@ -173,9 +192,9 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
-  I.wait(2);
+  I.wait(1);
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
-  I.wait(2);
+  I.wait(1);
   await I.selectDates(language, [date]);
   I.click(commonContent.continue);
 }
@@ -276,10 +295,27 @@ function checkYourAppealToConfirmationPage(language, signer) {
   I.checkYourAppealToConfirmation(language, signer);
 }
 
+function continueIncompleteAppeal(language) {
+  const I = this;
+  I.seeCurrentUrlEquals(paths.checkYourAppeal);
+  if (language === 'en') {
+    I.see('Check your answers');
+    I.see('Your application is incomplete');
+    I.see('There are still some questions to answer.');
+    I.click('Continue your application');
+  } else {
+    I.see('Gwiriwch eich atebion');
+    I.see('Mae eich cais yn anghyflawn');
+    I.see('Mae yna gwestiynau nad ydych wedi’u hateb.');
+    I.click('Parhau á’ch cais');
+  }
+}
+
 module.exports = {
   enterDetailsFromStartToNINO,
   enterCaseDetailsFromStartToNINO,
   enterDetailsFromStartToDraftAppeals,
+  enterDetailsFromStartToDraft,
   enterDetailsForNewApplication,
   enterDetailsToArchiveACase,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
@@ -289,5 +325,6 @@ module.exports = {
   confirmDetailsArePresent,
   enterDetailsFromAttendingTheHearingWithSupportToEnd,
   checkYourAppealToConfirmationPage,
-  enterDetailsFromNoRepresentativeToNoUploadingEvidence
+  enterDetailsFromNoRepresentativeToNoUploadingEvidence,
+  continueIncompleteAppeal
 };

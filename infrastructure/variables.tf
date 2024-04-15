@@ -1,4 +1,6 @@
-variable "product" {}
+variable "product" {
+    default = "SSCS"
+}
 
 variable "component" {}
 
@@ -9,9 +11,6 @@ variable "location" {
 variable "env" {}
 
 variable "subscription" {}
-
-variable "ilbIp" {}
-variable "deployment_namespace" {}
 
 variable "node_environment" {
   default = "sandbox"

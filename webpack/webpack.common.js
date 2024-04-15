@@ -27,11 +27,7 @@ module.exports = {
           { from: path.resolve('assets/locale'), to: 'locale' },
           { from: path.resolve('views/components'), to: 'nunjucks/components' },
           { from: imagesGokukFrontend, to: 'images' },
-          { from: fontsGokukFrontend, to: 'fonts' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/css/hmcts-webchat-gds-v3.css'), to: '' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat.js'), to: '' },
-          { from: path.resolve('node_modules/@hmcts/ctsc-web-chat/assets/javascript/hmcts-webchat-busHandler.js'), to: '' },
-          { from: path.resolve('cookie-banner/public/js/cookies-manager.js'), to: '' }
+          { from: fontsGokukFrontend, to: 'fonts' }
         ]
       }),
     new MiniCssExtractPlugin({ filename: '[name].css' })
@@ -73,14 +69,17 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === 'development'
-            }
+            loader: 'css-loader',
+            options: { url: false }
           },
-          'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: { quietDeps: true }
+            }
+          }
         ]
       }
     ]

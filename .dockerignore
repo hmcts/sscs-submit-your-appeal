@@ -28,3 +28,10 @@
 !server.js
 !steps.js
 !urls.js
+!gulpfile.js
+
+!.yarn/**
+!.yarnrc.yml
+.yarn/cache
+.yarn/install-state.gz
+
