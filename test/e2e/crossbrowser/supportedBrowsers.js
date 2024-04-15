@@ -68,5 +68,4 @@ const supportedBrowsers = {
     }
   }
 };
-
 module.exports = supportedBrowsers;
