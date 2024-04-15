@@ -18,7 +18,7 @@
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint --fix .",
-    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/smoke.conf.js --grep @smoke --steps --verbose --reporter mocha-multi",
+    "test:smoke": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/smoke.conf.js --grep @smoke --steps --verbose --reporter mocha-multi",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
     "test:mutation": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
     "test:functional": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple parallel --all -c test/e2e/ --grep @functional --steps --reporter mocha-multi",
@@ -27,7 +27,7 @@
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
     "test:functional:batches": "for i in `seq -w 1 12`; do BATCH=$i yarn test:functional:batch; [ $? -ne 0 ] && exit $?; done; exit 0;",
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
-    "test:crossbrowser": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --grep @crossbrowser --steps --reporter mocha-multi --verbose",
+    "test:crossbrowser": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --grep @crossbrowser --steps --reporter mocha-multi --verbose",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha --exit test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportDir=functional-output,reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
@@ -115,6 +115,7 @@
     "nock": "^13.3.3",
     "nyc": "^15.1.0",
     "pa11y": "^6.2.3",
+    "playwright": "^1.41.1",
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.1.3",
     "puppeteer": "^22.4.1",
@@ -135,7 +136,8 @@
     "redis": "^3.1.1",
     "semver": "^7.5.4",
     "tough-cookie": "^4.1.3",
-    "browserify-sign": "^4.2.1"
+    "browserify-sign": "^4.2.1",
+    "express": "^4.19.2"
   },
   "packageManager": "yarn@3.5.1"
 }

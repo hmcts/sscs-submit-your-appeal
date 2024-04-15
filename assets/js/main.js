@@ -36,16 +36,13 @@ function initShowHideContent() {
 }
 
 function initWebChat(language) {
-    if (document.welshWebchatFlag) {
-        const webChat = new WebChat();
-        webChat.init();
-    }
-    else {
-        if (language === 'en' && $('#antenna-web-chat').length) {
-            const webChat = new WebChat();
-            webChat.init();
-        }
-    }
+  if (document.welshWebchatFlag) {
+    const webChat = new WebChat();
+    webChat.init();
+  } else if (language === 'en' && $('#antenna-web-chat').length) {
+    const webChat = new WebChat();
+    webChat.init();
+  }
 }
 function initCookieBanner() {
   if ($('#app-cookie-banner').length) {

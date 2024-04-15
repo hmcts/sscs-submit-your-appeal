@@ -26,24 +26,24 @@ exports.config = {
     }
   },
   helpers: {
-    Puppeteer: {
+    Playwright: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
-      waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
-      waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: 'load',
-      getPageTimeout: 10000,
-      show: false,
-      windowSize: '1000x1000',
-      chrome: {
-        ignoreHTTPSErrors: true,
-        args: [
-          '--disable-gpu',
-          '--disable-dev-shm-usage',
-          '--no-sandbox',
-          '--allow-running-insecure-content',
-          '--ignore-certificate-errors'
-        ]
-      }
+      browser: 'chromium',
+      show: process.env.SHOW_BROWSER_WINDOW === 'true' || false,
+      waitForTimeout: parseInt(process.env.WAIT_FOR_TIMEOUT_MS || 90000),
+      windowSize: '1280x960',
+      timeout: 30000,
+      waitForAction: 500,
+      video: true,
+      trace: true,
+      contextOptions: {
+        recordVideo: {
+          dir: 'failed-videos'
+        }
+      },
+      waitForNavigation: 'networkidle',
+      bypassCSP: true,
+      ignoreHTTPSErrors: true
     },
     MyHelper: {
       require: './helpers/helper.js',
@@ -84,7 +84,7 @@ exports.config = {
   multiple: {
     parallel: {
       chunks: process.env.CHUNKS || defaultChunks,
-      browsers: ['chrome']
+      browsers: ['chromium']
     }
   },
   name: 'Submit Your Appeal Tests'

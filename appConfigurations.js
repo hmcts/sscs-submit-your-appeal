@@ -76,10 +76,9 @@ const configureNunjucks = (app, commonContent) => {
       webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled}
+        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
     }
   });
 };
