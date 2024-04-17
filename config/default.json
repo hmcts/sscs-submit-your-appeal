@@ -31,7 +31,8 @@
     "waitForAction": "500",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
-    "frontendUrl": "https://localhost:3000"
+    "frontendUrl": "https://localhost:3000",
+    "retry": 2
   },
   "features": {
     "evidenceUpload": {

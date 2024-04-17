@@ -3,6 +3,9 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
+const config = require('config');
+
+const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
 
@@ -19,7 +22,7 @@ Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.skipPcqCY();
   I.confirmDetailsArePresent(language);
-}).retry(10);
+}).retry(testConfig.retry);

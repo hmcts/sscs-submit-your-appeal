@@ -9,8 +9,8 @@ function e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOff
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
   I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
-  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
+  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');

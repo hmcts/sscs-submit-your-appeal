@@ -23,7 +23,7 @@ Scenario(`${language.toUpperCase()} - Appellant omits optional phone number, doe
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.confirmDetailsArePresent(language);
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);
@@ -35,7 +35,7 @@ Scenario(`${language.toUpperCase()} - Appellant omits optional phone number, ent
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
   I.enterMobileAndContinue(commonContent, '07455678444');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.confirmDetailsArePresent(language);
   I.see('Not provided', appellantPhoneNumberAnswer);
   I.see('07455678444', textMsgRemindersMobileAnswer);
@@ -48,7 +48,7 @@ Scenario(`${language.toUpperCase()} - Appellant adds a phone number and uses it 
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
   I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.confirmDetailsArePresent(language);
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411738663', textMsgRemindersMobileAnswer);
@@ -61,7 +61,7 @@ Scenario(`${language.toUpperCase()} - Appellant adds a phone number, provides a 
   I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
   I.enterMobileAndContinue(commonContent, '07411333333');
   I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.confirmDetailsArePresent(language);
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('07411333333', textMsgRemindersMobileAnswer);
@@ -71,7 +71,7 @@ Scenario(`${language.toUpperCase()} - Appellant adds a phone number, but does no
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
   I.confirmDetailsArePresent(language);
   I.see('07411738663', appellantPhoneNumberAnswer);
   I.see('No', receiveTxtMsgRemindersAnswer);

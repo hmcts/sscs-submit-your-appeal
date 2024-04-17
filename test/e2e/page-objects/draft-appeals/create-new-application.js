@@ -3,10 +3,10 @@ function createNewApplication(language) {
 
   I.seeElement(".form-buttons-group [href='/new-appeal']");
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
+    I.waitForText('Your draft benefit appeals');
     I.click('Create new application');
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
     I.click('Creu cais newydd');
   }
 }

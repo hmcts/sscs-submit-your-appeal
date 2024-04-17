@@ -53,12 +53,12 @@ async function editDraftAppeal(language) {
 
   I.seeElement(`.form-buttons-group [href='${paths.newAppeal}']`);
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
+    I.waitForText('Your draft benefit appeals');
     I.see('Edit');
     I.see('Archive');
     I.scrollTo('.govuk-table__cell:nth-child(1)');
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
     I.see('Golygu');
     I.see('Cadw');
     I.scrollTo('.govuk-table__cell:nth-child(1)');

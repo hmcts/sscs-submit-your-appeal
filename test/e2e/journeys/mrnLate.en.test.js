@@ -27,9 +27,9 @@ After(({ I }) => {
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
   Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
     I.wait(1);
-    I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
+    I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
     // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
-    I.enterPostcodeAndContinue(commonContent, testData.appellant.contactDetails.postCode);
+    I.enterPostcodeAndContinue(language, commonContent, testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(commonContent, '#isAppointee-no');
     I.continueFromIndependance(commonContent);
     I.checkOptionAndContinue(commonContent, '#haveAMRN-yes');
@@ -42,7 +42,7 @@ After(({ I }) => {
     I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-    I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+    I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
     I.confirmDetailsArePresent(language, true, obj.mrnDate);
   }).retry(1);
 });

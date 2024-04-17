@@ -3,6 +3,9 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const testUser = require('../../util/IdamUser');
+const config = require('config');
+
+const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
@@ -22,4 +25,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new app
   await moment().locale(language);
   await I.enterDetailsForNewApplication(commonContent, language, userEmail);
   await I.enterDetailsToArchiveACase(commonContent, language, userEmail);
-}).retry(8);
+}).retry(testConfig.retry);

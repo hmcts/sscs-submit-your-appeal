@@ -42,7 +42,7 @@ After(({ I }) => {
 });
 
 Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(commonContent, 'pip');
+  I.enterBenefitTypeAndContinue(language, commonContent, 'pip');
   // I.chooseLanguagePreference(commonContent, 'no');
   I.seeInCurrentUrl(paths.start.postcodeCheck);
 }).retry(2);
@@ -62,7 +62,7 @@ benefitTypesArr.forEach(benefitTypeKey => {
       } else {
         throw new Error('I do not know which form this is supposed to go to');
       }
-      I.enterBenefitTypeAndContinue(commonContent, benefitTypesObj[benefitTypeKey]);
+      I.enterBenefitTypeAndContinue(language, commonContent, benefitTypesObj[benefitTypeKey]);
       // I.chooseLanguagePreference(commonContent, 'no');
       I.seeInCurrentUrl(paths.appealFormDownload);
       I.see(appealFormDownloadContent.title);

@@ -4,6 +4,9 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
+const config = require('config');
+
+const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
 
@@ -21,8 +24,8 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
-  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-yes');
+  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
+  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
   I.selectTelephoneHearingOptionsAndContinue(commonContent);
   I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
   I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
@@ -30,4 +33,4 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(10);
+}).retry(testConfig.retry);

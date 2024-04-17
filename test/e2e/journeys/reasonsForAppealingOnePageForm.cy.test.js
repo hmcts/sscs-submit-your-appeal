@@ -38,21 +38,22 @@ Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them i
     reasons[0]
   );
   I.addAReasonForAppealing(
+    language,
     `#items-1 ${whatYouDisagreeWithField}-1`,
     `#items-1 ${reasonForAppealingField}-1`,
     reasons[1]
   );
   I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
+  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     I.readSendingEvidenceAndContinue(commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
+    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
     I.uploadAPieceOfEvidence();
     I.enterDescription(commonContent, 'Some description of the evidence');
   }
-  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
+  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
   I.confirmDetailsArePresent(language);
   twoReasons.forEach(({ reason }) => {
@@ -72,21 +73,22 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits 
     reasons[0]
   );
   I.addAReasonForAppealing(
+    language,
     `#items-1 ${whatYouDisagreeWithField}-1`,
     `#items-1 ${reasonForAppealingField}-1`,
     reasons[1]
   );
   I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
+  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     I.readSendingEvidenceAndContinue(commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
+    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
     I.uploadAPieceOfEvidence();
     I.enterDescription(commonContent, 'Some description of the evidence');
   }
-  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
+  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
   I.confirmDetailsArePresent(language);
 
@@ -101,6 +103,7 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits 
   I.waitForElement('#items-0');
 
   I.addAReasonForAppealing(
+    language,
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,
     reasons[2]
@@ -124,16 +127,16 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then remove
     reasons[0]
   );
   I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(commonContent, testData.reasonsForAppealing.otherReasons);
+  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     I.readSendingEvidenceAndContinue(commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(commonContent, '#evidenceProvide-yes');
+    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
     I.uploadAPieceOfEvidence();
     I.enterDescription(commonContent, 'Some description of the evidence');
   }
-  I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
+  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
   I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
   I.confirmDetailsArePresent(language);
   I.see(reasons[0].whatYouDisagreeWith);
@@ -145,6 +148,7 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then remove
   I.waitForElement('#items-0');
 
   I.addAReasonForAppealing(
+    language,
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,
     {
@@ -155,6 +159,7 @@ Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then remove
   I.click(commonContent.continue);
   I.seeElement('#error-summary-title');
   I.addAReasonForAppealing(
+    language,
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,
     reasons[2]
