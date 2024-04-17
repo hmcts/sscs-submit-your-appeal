@@ -26,9 +26,9 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-no');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
   I.skipPcq();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 

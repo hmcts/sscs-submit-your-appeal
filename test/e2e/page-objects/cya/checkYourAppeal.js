@@ -37,9 +37,9 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
   I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
 }
 
 function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
@@ -59,9 +59,9 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
     I.enterDWPIssuingOffice(commonContent, office);
   }
   I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
 }
 
 
@@ -94,9 +94,9 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
   I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinueAfterSignIn(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinueAfterSignIn(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
+  I.enterAppellantNameAndContinueAfterSignIn(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinueAfterSignIn( language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, appellant.nino);
 }
 
 async function enterDetailsFromStartToDraft(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
@@ -172,10 +172,10 @@ async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language,
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-yes');
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-yes');
   I.checkAllArrangementsAndContinue(commonContent, language);
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-yes');
   await I.turnOffJsAndReloadThePage();
   I.amOnPage(paths.hearing.datesCantAttend);
   I.wait(2);
@@ -189,11 +189,11 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent,
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, supportContent.fields.arrangements.yes);
   I.checkAllArrangementsAndContinue(commonContent, language);
   I.wait(1);
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-yes');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-yes');
   I.wait(1);
   await I.selectDates(language, [date]);
   I.click(commonContent.continue);
@@ -204,8 +204,8 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(supportContent.fields.arrangements.yes);
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, supportContent.fields.arrangements.yes);
   options.forEach(option => {
     I.click(option);
   });
@@ -213,7 +213,7 @@ function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, lang
     I.fillField(field.id, field.content);
   });
   I.click(commonContent.continue);
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
 }
 
 function enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent) {

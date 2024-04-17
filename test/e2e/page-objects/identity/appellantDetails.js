@@ -2,61 +2,82 @@ const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
 const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
 const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');
+const appellantNameContentEn = require('steps/identity/appellant-name/content.en');
+const appellantNameContentCy = require('steps/identity/appellant-name/content.cy');
+const appellantDOBContentEn = require('steps/identity/appellant-dob/content.en');
+const appellantDOBContentCy = require('steps/identity/appellant-dob/content.cy');
+const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en');
+const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
+
+
+
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
-function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
+function enterAppellantNameAndContinue(language, commonContent, title, firstName, lastName) {
   const I = this;
+  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  I.waitForElement('#firstName', 3);
+  I.waitForText(appellantNameContent.title.withoutAppointee);
+  // I.waitForElement('#firstName', 3);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
   I.click(commonContent.continue);
 }
 
-function enterAppellantNameAndContinueAfterSignIn(commonContent, title, firstName, lastName) {
+function enterAppellantNameAndContinueAfterSignIn(language, commonContent, title, firstName, lastName) {
   const I = this;
+  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  I.waitForElement('#firstName', 3);
+  I.waitForText(appellantNameContent.title.withoutAppointee);
+  // I.waitForElement('#firstName', 3);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
   I.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantDOBAndContinue(commonContent, day, month, year) {
+function enterAppellantDOBAndContinue(language, commonContent, day, month, year) {
   const I = this;
+  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  I.waitForElement('input[name*="day"]', 3);
+  I.waitForText(appellantDOBContent.title.withoutAppointee);
+  // I.waitForElement('input[name*="day"]', 3);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
   I.click(commonContent.continue);
 }
 
-function enterAppellantDOBAndContinueAfterSignIn(commonContent, day, month, year) {
+function enterAppellantDOBAndContinueAfterSignIn(language, commonContent, day, month, year) {
   const I = this;
+  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  I.waitForElement('input[name*="day"]', 3);
+  I.waitForText(appellantDOBContent.title.withoutAppointee);
+  // I.waitForElement('input[name*="day"]', 3);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
   I.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantNINOAndContinue(commonContent, nino) {
+function enterAppellantNINOAndContinue(language, commonContent, nino) {
   const I = this;
+  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  I.waitForElement('#nino', 3);
+  I.waitForText(appellantNINOContent.title.withoutAppointee);
+  // I.waitForElement('#nino', 3);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
 }
 
-function enterAppellantNINOAndContinueAfterSignIn(commonContent, nino) {
+function enterAppellantNINOAndContinueAfterSignIn(language, commonContent, nino) {
   const I = this;
+  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  I.waitForElement('#nino', 3);
+  I.waitForText(appellantNINOContent.title.withoutAppointee);
+  // I.waitForElement('#nino', 3);
   I.fillField('#nino', nino);
   I.click(commonContent.saveAndContinue);
 }
@@ -133,8 +154,9 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
+  I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  I.waitForElement('#phoneNumber', 3);
+  // I.waitForElement('#phoneNumber', 3);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
@@ -143,8 +165,9 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
+  I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  I.waitForElement('#phoneNumber', 3);
+  // I.waitForElement('#phoneNumber', 3);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.saveAndContinue);
 }

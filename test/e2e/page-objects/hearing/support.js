@@ -1,7 +1,12 @@
-function selectDoYouNeedSupportAndContinue(commonContent, option) {
-  const I = this;
+const hearingSupportContentEn = require('steps/hearing/support/content.en');
+const hearingSupportContentCy = require('steps/hearing/support/content.cy');
 
-  I.waitForElement('#arrangements');
+function selectDoYouNeedSupportAndContinue(language, commonContent, option) {
+  const I = this;
+  const hearingSupportContent = language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
+
+  I.waitForText(hearingSupportContent.title);
+  // I.waitForElement('#arrangements');
   I.checkOption(option);
   I.click(commonContent.continue);
 }

@@ -23,9 +23,9 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrow
   I.readSMSConfirmationAndContinue(commonContent);
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-no');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
   I.skipPcqCY();
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 

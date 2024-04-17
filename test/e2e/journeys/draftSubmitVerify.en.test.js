@@ -36,9 +36,9 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.enterReasonForNoMRNAndContinueAfterSignIn(language, commonContent, testData.mrn.reasonForNoMRN);
     I.continueFromStillCanAppeal(language);
     I.selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, '#isAppointee-no');
-    I.enterAppellantNameAndContinueAfterSignIn(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-    I.enterAppellantDOBAndContinueAfterSignIn(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-    I.enterAppellantNINOAndContinueAfterSignIn(commonContent, appellant.nino);
+    I.enterAppellantNameAndContinueAfterSignIn(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+    I.enterAppellantDOBAndContinueAfterSignIn(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+    I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, appellant.nino);
     I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language);
     I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
     I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');

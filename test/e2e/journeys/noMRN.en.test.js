@@ -37,9 +37,9 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async({ I })
   I.checkOptionAndContinue(commonContent, '#haveContactedDWP-yes');
   I.enterReasonForNoMRNAndContinue(language, commonContent, testData.mrn.reasonForNoMRN);
   I.continueFromStillCanAppeal(language);
-  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);

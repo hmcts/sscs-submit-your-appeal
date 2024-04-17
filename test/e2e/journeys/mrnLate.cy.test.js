@@ -37,9 +37,9 @@ After(({ I }) => {
     I.enterAnMRNDateAndContinue(commonContent, obj.mrnDate);
     I.checkOptionAndContinue(commonContent, '#checkedMRN-yes');
     I.enterReasonsForBeingLateAndContinue(commonContent, testData.mrn.reasonWhyMRNisLate);
-    I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-    I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-    I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+    I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+    I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+    I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
     I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);

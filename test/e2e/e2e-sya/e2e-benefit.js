@@ -11,9 +11,9 @@ function e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOff
   I.readSMSConfirmationAndContinue(commonContent);
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
   I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(commonContent);
-  I.selectDoYouNeedSupportAndContinue(commonContent, '#arrangements-no');
-  I.selectHearingAvailabilityAndContinue(commonContent, '#scheduleHearing-no');
+  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
+  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-no');
+  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
   if (language === 'en') {
     I.completeAllPcq();
   } else {
