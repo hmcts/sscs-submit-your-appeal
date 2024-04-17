@@ -1,7 +1,7 @@
 function checkOptionAndContinue(commonContent, option) {
   const I = this;
 
-  I.waitForElement(option, 3);
+  I.wait(5);
   I.checkOption(option);
   I.click(commonContent.continue);
 }
@@ -9,7 +9,7 @@ function checkOptionAndContinue(commonContent, option) {
 function checkOptionAndContinueAfterSignIn(commonContent, option) {
   const I = this;
 
-  I.waitForElement(option, 3);
+  I.wait(5);
   I.checkOption(option);
   I.click(commonContent.saveAndContinue);
 }
@@ -18,7 +18,7 @@ function checkOptionAndContinueAfterSignIn(commonContent, option) {
 function checkPCQOptionAndContinue(option) {
   const I = this;
 
-  I.waitForElement(option, 3);
+  I.wait(5);
   I.checkOption(option);
   I.click('Continue');
 }
@@ -26,7 +26,7 @@ function checkPCQOptionAndContinue(option) {
 function checkCYPCQOptionAndContinue(option) {
   const I = this;
 
-  I.waitForElement(option, 3);
+  I.wait(5);
   I.checkOption(option);
   I.click('Parhau');
 }

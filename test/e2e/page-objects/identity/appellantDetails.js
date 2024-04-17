@@ -10,8 +10,6 @@ const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en
 const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
 
 
-
-
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
 function enterAppellantNameAndContinue(language, commonContent, title, firstName, lastName) {

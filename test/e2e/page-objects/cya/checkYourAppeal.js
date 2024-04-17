@@ -95,7 +95,7 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
   I.selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinueAfterSignIn(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinueAfterSignIn( language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantDOBAndContinueAfterSignIn(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, appellant.nino);
 }
 
