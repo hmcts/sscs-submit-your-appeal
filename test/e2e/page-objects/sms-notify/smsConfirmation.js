@@ -1,6 +1,6 @@
 function readSMSConfirmationAndContinue(commonContent) {
   const I = this;
-  I.wait(1);
+  I.wait(5);
   I.click(commonContent.continue);
 }
 
