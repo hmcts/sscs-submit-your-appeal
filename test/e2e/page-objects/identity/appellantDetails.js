@@ -96,7 +96,7 @@ function IenterAddressDetails(postcodeLookupContent, I) {
     I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
     I.click(postcodeLookupContent.findAddress);
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
-      appellant.contactDetails.postcodeAddress);
+      appellant.contactDetails.addressLine1);
   } else {
     IenterAddressDetailsManual(I);
   }
@@ -155,6 +155,7 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
   // I.waitForElement('#phoneNumber', 3);
+  I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.continue);
 }
@@ -166,6 +167,7 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
   I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
   // I.waitForElement('#phoneNumber', 3);
+  I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.click(commonContent.saveAndContinue);
 }

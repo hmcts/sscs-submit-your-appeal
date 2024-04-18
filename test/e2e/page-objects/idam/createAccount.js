@@ -7,7 +7,7 @@ function selectIfYouWantToCreateAccount(language, commonContent, option) {
 
   I.waitForText(createAccountContent.title);
   I.checkOption(option);
-  I.scrollPageToBottom();
+  // I.scrollPageToBottom();
   I.click(commonContent.continue);
 }
 
