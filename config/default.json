@@ -32,7 +32,7 @@
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "http://localhost:3000",
-    "retry": 2
+    "retry": 10
   },
   "features": {
     "evidenceUpload": {

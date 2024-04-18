@@ -6,7 +6,7 @@ function enterAnMRNDateAndContinue(commonContent, date) {
   I.fillField('input[name*="day"]', date.date().toString());
   I.fillField('input[name*="month"]', (date.month() + 1).toString());
   I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3)
+  I.waitForClickable(commonContent.continue, 3);
   I.click(commonContent.continue);
 }
 
@@ -18,7 +18,7 @@ function enterAnMRNDateAndContinueAfterSignIn(commonContent, date) {
   I.fillField('input[name*="day"]', date.date().toString());
   I.fillField('input[name*="month"]', (date.month() + 1).toString());
   I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3)
+  I.waitForClickable(commonContent.continue, 3);
   I.click(commonContent.saveAndContinue);
 }
 
