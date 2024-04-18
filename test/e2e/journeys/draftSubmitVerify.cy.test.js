@@ -4,9 +4,9 @@ const moment = require('moment');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 const assert = require('assert');
-const config = require('config');
+// const config = require('config');
 
-const testConfig = config.get('e2e.retry');
+// const testConfig = config.get('e2e.retry');
 
 const appellant = testData.appellant;
 let userEmail = '';
@@ -51,4 +51,4 @@ Scenario(`${language.toUpperCase()} - Sign in and submit draft appeal and verify
     I.appealSubmitConfirmation(language);
     const ccdCaseData = await I.getCaseData(I, ccdCaseID);
     assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-  }).retry(testConfig.retry);
+  }).retry(10);

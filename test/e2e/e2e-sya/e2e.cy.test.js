@@ -4,9 +4,9 @@ const language = 'cy';
 
 const content = require('commonContent');
 const testData = require(`test/e2e/data.${language}`);
-const config = require('config');
+// const config = require('config');
 
-const testConfig = config.get('e2e.retry');
+// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
@@ -30,4 +30,4 @@ Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @e2e`, ({ 
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(testConfig.retry);
+}).retry(10);

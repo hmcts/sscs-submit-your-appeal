@@ -21,7 +21,7 @@ After(({ I }) => {
   testUser.deleteUser(userEmail);
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional @fullFunctional-today`, async({ I }) => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async({ I }) => {
   await moment().locale(language);
   await I.enterDetailsForNewApplication(commonContent, language, userEmail);
   await I.enterDetailsToArchiveACase(commonContent, language, userEmail);

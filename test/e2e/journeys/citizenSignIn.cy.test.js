@@ -4,9 +4,9 @@ const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
-const config = require('config');
+// const config = require('config');
 
-const testConfig = config.get('e2e.retry');
+// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 
@@ -36,4 +36,4 @@ Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft app
   await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
   await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
   await I.appealSubmitConfirmation(language);
-}).retry(testConfig.retry);
+}).retry(10);
