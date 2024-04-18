@@ -2,7 +2,7 @@
 
 
 const content = require('commonContent');
-const testData = require('test/e2e/data.en');
+// const testData = require('test/e2e/data.en');
 
 Feature('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser');
 
