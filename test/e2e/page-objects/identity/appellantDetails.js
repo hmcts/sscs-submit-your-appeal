@@ -160,6 +160,7 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.scrollPageToBottom();
+  I.waitForClickable(commonContent.continue, 5);
   I.click(commonContent.continue);
 }
 
@@ -173,6 +174,7 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.scrollPageToBottom();
+  I.waitForClickable(commonContent.saveAndContinue, 5);
   I.click(commonContent.saveAndContinue);
 }
 

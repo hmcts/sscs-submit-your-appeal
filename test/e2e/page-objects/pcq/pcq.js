@@ -13,6 +13,7 @@ function skipPcq() {
 function skipPcqCY() {
   const I = this;
   I.wait(5);
+  I.waitForText('Dydw i ddim eisiau ateb y cwestiynau hyn');
   I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
 }
 
@@ -37,7 +38,8 @@ function completeAllPcq() {
 function completeAllPcqCY() {
   const I = this;
   I.wait(5);
-  I.click('Ymlaen');
+  I.waitForText('Ymlaen i’r cwestiynau');
+  I.click('Ymlaen i’r cwestiynau');
   I.checkCYPCQOptionAndContinue('#language_main');
   I.checkCYPCQOptionAndContinue('#sex');
   I.checkCYPCQOptionAndContinue('#gender_different');
