@@ -14,14 +14,6 @@ Scenario('English - PIP E2E SYA Journey', ({ I }) => {
 
   I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
-  // I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  // I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  // I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  // I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  // I.continueFromnotAttendingHearing(commonContent);
-  // I.skipPcq();
-  // I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-
   I.endTheSession();
 }).retry(8);
 
@@ -34,13 +26,5 @@ Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
 
   I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
-  // I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  // I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  // I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  // I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  // I.continueFromnotAttendingHearing(commonContent);
-  // I.skipPcqCY();
-  // I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-
   I.endTheSession();
 }).retry(8);
