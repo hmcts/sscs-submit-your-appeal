@@ -10,7 +10,7 @@ const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @crossbrowser @e2e`, ({ I }) => {
+Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @e2e`, ({ I }) => {
   const commonContent = content[language];
 
   I.createTheSession(language);

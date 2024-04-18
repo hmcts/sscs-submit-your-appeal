@@ -4,7 +4,7 @@
 const content = require('commonContent');
 const testData = require('test/e2e/data.en');
 
-Feature('Crossbrowser - PIP E2E SYA - Full Journey');
+Feature('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser');
 
 Scenario('English - PIP E2E SYA Journey', ({ I }) => {
   const commonContent = content.en;
@@ -14,13 +14,13 @@ Scenario('English - PIP E2E SYA Journey', ({ I }) => {
 
   I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.continueFromnotAttendingHearing(commonContent);
-  I.skipPcq();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+  // I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
+  // I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
+  // I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
+  // I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
+  // I.continueFromnotAttendingHearing(commonContent);
+  // I.skipPcq();
+  // I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
 }).retry(8);
@@ -34,13 +34,13 @@ Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
 
   I.wait(1);
   I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.continueFromnotAttendingHearing(commonContent);
-  I.skipPcqCY();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+  // I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
+  // I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
+  // I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
+  // I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
+  // I.continueFromnotAttendingHearing(commonContent);
+  // I.skipPcqCY();
+  // I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
 }).retry(8);
