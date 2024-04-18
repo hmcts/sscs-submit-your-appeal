@@ -84,6 +84,7 @@ function IenterAddressDetailsManual(I) {
   if (postcodeLookupEnabled) {
     I.click({ id: 'manualLink' });
   }
+  I.wait(5);
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -95,6 +96,7 @@ function IenterAddressDetails(postcodeLookupContent, I) {
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
     I.click(postcodeLookupContent.findAddress);
+    I.wait(5);
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
       appellant.contactDetails.addressLine1);
   } else {

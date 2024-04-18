@@ -17,6 +17,7 @@ function signIn(username, password, language) {
 
 async function signInVerifylanguage(username, password, language) {
   const I = this;
+  I.wait(5);
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
