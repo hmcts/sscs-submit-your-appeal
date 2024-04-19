@@ -4,9 +4,9 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
-const config = require('config');
+// const config = require('config');
 
-const testConfig = config.get('e2e.retry');
+// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
 
@@ -33,4 +33,4 @@ Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`
   I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(testConfig.retry);
+}).retry(10);
