@@ -28,7 +28,6 @@ After(({ I }) => {
   Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
     I.wait(1);
     I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
-    // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
     I.enterPostcodeAndContinue(language, commonContent, testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(commonContent, '#isAppointee-no');
     I.continueFromIndependance(commonContent);

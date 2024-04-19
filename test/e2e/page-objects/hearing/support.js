@@ -6,7 +6,6 @@ function selectDoYouNeedSupportAndContinue(language, commonContent, option) {
   const hearingSupportContent = language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
 
   I.waitForText(hearingSupportContent.title);
-  // I.waitForElement('#arrangements');
   I.checkOption(option);
   I.click(commonContent.continue);
 }

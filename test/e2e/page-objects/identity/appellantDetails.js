@@ -17,7 +17,6 @@ function enterAppellantNameAndContinue(language, commonContent, title, firstName
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
   I.waitForText(appellantNameContent.title.withoutAppointee);
-  // I.waitForElement('#firstName', 3);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
@@ -29,7 +28,6 @@ function enterAppellantNameAndContinueAfterSignIn(language, commonContent, title
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
   I.waitForText(appellantNameContent.title.withoutAppointee);
-  // I.waitForElement('#firstName', 3);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
@@ -41,7 +39,6 @@ function enterAppellantDOBAndContinue(language, commonContent, day, month, year)
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
   I.waitForText(appellantDOBContent.title.withoutAppointee);
-  // I.waitForElement('input[name*="day"]', 3);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
@@ -53,7 +50,6 @@ function enterAppellantDOBAndContinueAfterSignIn(language, commonContent, day, m
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
   I.waitForText(appellantDOBContent.title.withoutAppointee);
-  // I.waitForElement('input[name*="day"]', 3);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
@@ -65,7 +61,6 @@ function enterAppellantNINOAndContinue(language, commonContent, nino) {
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
   I.waitForText(appellantNINOContent.title.withoutAppointee);
-  // I.waitForElement('#nino', 3);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
 }
@@ -75,7 +70,6 @@ function enterAppellantNINOAndContinueAfterSignIn(language, commonContent, nino)
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
   I.waitForText(appellantNINOContent.title.withoutAppointee);
-  // I.waitForElement('#nino', 3);
   I.fillField('#nino', nino);
   I.click(commonContent.saveAndContinue);
 }
@@ -156,7 +150,6 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
 
   I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  // I.waitForElement('#phoneNumber', 3);
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.scrollPageToBottom();
@@ -170,7 +163,6 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
 
   I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  // I.waitForElement('#phoneNumber', 3);
   I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
   I.scrollPageToBottom();

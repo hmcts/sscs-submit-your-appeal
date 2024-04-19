@@ -29,7 +29,6 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async({ I })
   const hasMRN = false;
 
   I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
-  // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
   I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
   I.checkOptionAndContinue(commonContent, '#isAppointee-no');
   I.continueFromIndependance(commonContent);
@@ -49,7 +48,6 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async({ I })
 
 Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, ({ I }) => {
   I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
-  // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
   I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
   I.checkOptionAndContinue(commonContent, '#isAppointee-no');
   I.continueFromIndependance(commonContent);
