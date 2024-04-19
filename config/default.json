@@ -159,6 +159,7 @@
     },
     "webchat": {
       "url": "webchat.pp.ctsc.hmcts.net",
+      "scotlandUrl": "https://vcc-eu4.8x8.com",
       "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
     },
     "pcq": {
