@@ -1,5 +1,6 @@
 const content = require('commonContent');
 const urls = require('urls');
+
 const language = 'en';
 const commonContent = content[language];
 
