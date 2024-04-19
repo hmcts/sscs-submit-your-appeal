@@ -4,9 +4,6 @@ const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
-// const config = require('config');
-
-// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
 

@@ -4,9 +4,6 @@ const language = 'en';
 
 const content = require('commonContent');
 const testData = require(`test/e2e/data.${language}`);
-// const config = require('config');
-
-// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
 

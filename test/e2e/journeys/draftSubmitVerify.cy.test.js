@@ -4,9 +4,6 @@ const moment = require('moment');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 const assert = require('assert');
-// const config = require('config');
-
-// const testConfig = config.get('e2e.retry');
 
 const appellant = testData.appellant;
 let userEmail = '';

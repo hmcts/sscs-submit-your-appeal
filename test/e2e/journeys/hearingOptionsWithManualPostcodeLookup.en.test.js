@@ -4,9 +4,6 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
-// const config = require('config');
-
-// const testConfig = config.get('e2e.retry');
 
 Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
 
