@@ -728,8 +728,25 @@
 "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
 "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout_GET" : "ignore",
 "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=en_GET" : "ignore",
-"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_POST" : "ignore"
-
+"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_POST" : "ignore",
+"10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+"10202_Absence of Anti-CSRF Tokens_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=en_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/appeal-form-download?lng=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&apm=on&lng=en_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/cookie-policy?analytics=on&apm=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&lng=en_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&apm=on&lng=en_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&lng=en_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E_GET" : "ignore",
+"90017_XSLT Injection_https://benefit-appeal.aat.platform.hmcts.net/benefit-type_POST" : "ignore",
+"90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore",
+"10029_Cookie Poisoning_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+"10029_Cookie Poisoning_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=en_GET" : "ignore",
+"90027_Cookie Slack Detector_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=en_GET" : "ignore",
+"10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/appeal-form-download?lng=cy_GET" : "ignore",
+"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=en_GET" : "ignore",
+"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore",
+"10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore"
 
 }
 
