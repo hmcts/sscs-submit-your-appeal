@@ -746,7 +746,9 @@
 "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/appeal-form-download?lng=cy_GET" : "ignore",
 "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=en_GET" : "ignore",
 "10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/session-timeout?lng=cy_GET" : "ignore",
-"10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore"
+"10031_User Controllable HTML Element Attribute (Potential XSS)_https://benefit-appeal.aat.platform.hmcts.net/benefit-type?lng=cy_GET" : "ignore",
+"10049_Non-Storable Content_https://benefit-appeal.aat.platform.hmcts.net/terms-and-conditions_GET" : "ignore",
+"10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/contact-us?lng=cy_GET" : "ignore"
 
 }
 
