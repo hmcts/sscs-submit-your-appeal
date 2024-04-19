@@ -706,7 +706,10 @@
 "10029_Cookie Poisoning_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=cy_GET" : "ignore",
 "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/hmcts-apple-touch-icon-167x167.png_GET" : "ignore",
 "10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
-"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore"
+"10104_User Agent Fuzzer_https://benefit-appeal.aat.platform.hmcts.net/cookies?analytics=on&apm=on&lng=en_GET" : "ignore",
+"10112_Session Management Response Identified_https://benefit-appeal.aat.platform.hmcts.net/cookies?lng=cy_GET" : "ignore",
+"10049_Storable but Non-Cacheable Content_https://benefit-appeal.aat.platform.hmcts.net/assets/images/touch-icons/favicon.ico_GET" : "ignore"
+
 
 }
 
