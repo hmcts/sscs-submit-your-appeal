@@ -138,6 +138,7 @@
     },
     "webchat": {
       "url": "WEBCHAT_URL",
+      "scotlandUrl": "WEBCHAT_URL_SCOTLAND",
       "clientUrl": "WEBCHAT_CLIENT_URL"
     },
     "pcq": {

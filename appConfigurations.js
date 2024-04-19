@@ -23,6 +23,7 @@ const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 const webChatBaseUrl = config.get('services.webchat.url');
+const webChatUrlScotland = config.get('services.webchat.scotlandUrl');
 const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
 
 const configureNunjucks = (app, commonContent) => {
@@ -74,6 +75,7 @@ const configureNunjucks = (app, commonContent) => {
       webFormUrl: config.get('services.webForm.url'),
       webChatClientUrl: webChatClientBaseUrl,
       webChatUrl: webChatBaseUrl,
+      webchatUrlScotland: webChatUrlScotland,
       paths,
       urls,
       featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
