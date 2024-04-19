@@ -13,9 +13,9 @@ const options = {
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.F68',
     'WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2',
     'WCAG2AA.Principle1.Guideline1_3.1_3_1.H43.HeadersRequired',
-    'WCAG2AA.Principle1.Guideline1_3.1_3_1.H42.2'
+    'WCAG2AA.Principle1.Guideline1_3.1_3_1.H42.2',
   ],
-  hideElements: '.govuk-header, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe, #app-cookie-banner'
+  hideElements: '.govuk-header, #antenna-web-chat-scotland, .govuk-footer, link[rel=mask-icon], #ctsc-web-chat, iframe, #app-cookie-banner'
 };
 
 const excludeSteps = [
