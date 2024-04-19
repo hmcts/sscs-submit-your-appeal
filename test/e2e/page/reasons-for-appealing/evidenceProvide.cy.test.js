@@ -19,13 +19,13 @@ if (evidenceUploadEnabled) {
   });
 
   Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, ({ I }) => {
-    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.yes);
+    I.selectAreYouProvidingEvidenceAndContinue(language, evidenceProvideContent.fields.evidenceProvide.yes);
     I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
     I.see(evidenceUploadContent.title);
   });
 
   Scenario(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, ({ I }) => {
-    I.selectAreYouProvidingEvidenceAndContinue(evidenceProvideContent.fields.evidenceProvide.no);
+    I.selectAreYouProvidingEvidenceAndContinue(language, evidenceProvideContent.fields.evidenceProvide.no);
     I.seeInCurrentUrl(paths.hearing.theHearing);
     I.see(theHearingContent.title);
   });

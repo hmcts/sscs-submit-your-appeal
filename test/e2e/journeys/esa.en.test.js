@@ -19,21 +19,21 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
   });
 
   Scenario(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, ({ I }) => {
-    I.enterBenefitTypeAndContinue(commonContent, 'ESA');
+    I.enterBenefitTypeAndContinue(language, commonContent, 'ESA');
     // I.chooseLanguagePreference(commonContent, 'no');
     I.amOnPage(paths.compliance.haveAMRN);
     I.see(haveAMRNContent.esa.subtitle);
   });
 
   Scenario(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, ({ I }) => {
-    I.enterBenefitTypeAndContinue(commonContent, 'ESA');
+    I.enterBenefitTypeAndContinue(language, commonContent, 'ESA');
     // I.chooseLanguagePreference(commonContent, 'no');
     I.amOnPage(paths.reasonsForAppealing.reasonForAppealing);
     I.see(reasonForAppealingContent.dwpExplained);
   });
 
   Scenario(`${language.toUpperCase()} - Sees an appropriate message on independence`, ({ I }) => {
-    I.enterBenefitTypeAndContinue(commonContent, 'ESA');
+    I.enterBenefitTypeAndContinue(language, commonContent, 'ESA');
     // I.chooseLanguagePreference(commonContent, 'no');
     I.amOnPage(paths.start.independence);
     I.see(independenceContent.reviewed);
