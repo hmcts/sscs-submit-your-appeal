@@ -12,7 +12,7 @@ const OPENING_HOUR = 8;
 
 export class WebChat {
   init() {
-    if (button !== null && webChat !== null ) {
+    if (button !== null && webChat !== null) {
       button.addEventListener('click', () => {
         webChat.classList.remove('hidden');
       });
