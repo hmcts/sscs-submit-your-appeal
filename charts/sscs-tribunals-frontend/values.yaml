@@ -21,7 +21,6 @@ nodejs:
     #Added for new Webchat with Agent
     WELSH_WEBCHAT_ENABLED: false
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
-    WEBCHAT_URL_SCOTLAND: "https://vcc-eu4.8x8.com"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
 
   keyVaults:

@@ -1,3 +1,4 @@
+{% from "components/web-chat-scotland.njk" import webChatModal %}
 {% if welshWebchatEnabled  %}
 <details class="govuk-details" open>
 {% else %}
@@ -14,7 +15,6 @@
                     <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
                     <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
                 </div>
-                {% set url = webChatUrl %}
                 {% include "components/web-chat.html" %}
                 <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
                 <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
@@ -28,8 +28,7 @@
                 <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
                     <a id="antenna-web-chat-button-scotland" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
                 </div>
-                {% set url = webchatUrlScotland %}
-                {% include "components/web-chat.html" %}
+                {{ webChatModal() }}
                 <div id="antenna-web-chat-closed-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
                 <div id="antenna-web-chat-busy-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
                 <div id="antenna-web-chat-no-agents-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
