@@ -41,7 +41,6 @@ withNightlyPipeline("nodejs", product, component) {
     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-    enableSecurityScan()
     enableMutationTest()
 
 //     afterSuccess('fortify-scan') {

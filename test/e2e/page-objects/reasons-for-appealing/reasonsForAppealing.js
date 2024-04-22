@@ -1,13 +1,21 @@
-function enterAnythingElseAndContinue(commonContent, anythingElse) {
-  const I = this;
+const otherReasonForAppealingContentEn = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.en');
+const otherReasonForAppealingContentCy = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.cy');
 
+
+function enterAnythingElseAndContinue(language, commonContent, anythingElse) {
+  const I = this;
+  const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
+
+  I.waitForText(otherReasonForAppealingContent.title);
   I.fillField('#otherReasonForAppealing', anythingElse);
   I.click(commonContent.continue);
 }
 
-function enterAnythingElseAfterSignIn(commonContent, anythingElse) {
+function enterAnythingElseAfterSignIn(language, commonContent, anythingElse) {
   const I = this;
+  const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
 
+  I.waitForText(otherReasonForAppealingContent.title);
   I.fillField('#otherReasonForAppealing', anythingElse);
   I.click(commonContent.saveAndContinue);
 }

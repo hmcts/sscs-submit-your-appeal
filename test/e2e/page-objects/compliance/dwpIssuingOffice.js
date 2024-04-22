@@ -1,9 +1,7 @@
 function enterDWPIssuingOfficeAndContinue(commonContent, id) {
   const I = this;
 
-  I.wait(1);
-  I.scrollPageToBottom();
-  I.wait(1);
+  I.wait(3);
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.continue);
 }
@@ -11,7 +9,7 @@ function enterDWPIssuingOfficeAndContinue(commonContent, id) {
 function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
   const I = this;
 
-  I.scrollPageToBottom();
+  I.wait(3);
   I.selectOption({ id: 'pipNumber' }, id);
   I.click(commonContent.saveAndContinue);
 }
@@ -20,7 +18,7 @@ function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
 function enterDWPIssuingOffice(commonContent, id) {
   const I = this;
 
-  I.scrollPageToBottom();
+  I.wait(3);
   I.selectOption({ id: 'dwpIssuingOffice' }, id);
   I.click(commonContent.continue);
 }

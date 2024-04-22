@@ -1,16 +1,21 @@
-function enterDoYouWantToAttendTheHearing(commonContent, option) {
-  const I = this;
+const hearingAttendanceContentEn = require('steps/hearing/the-hearing/content.en');
+const hearingAttendanceContentCy = require('steps/hearing/the-hearing/content.cy');
 
-  I.wait(2);
+function enterDoYouWantToAttendTheHearing(language, commonContent, option) {
+  const I = this;
+  const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
+
+  I.waitForText(hearingAttendanceContent.title);
   I.checkOption(option);
   I.scrollPageToBottom();
   I.click(commonContent.continue);
 }
 
-function enterDoYouWantToAttendTheHearingAfterSignIn(commonContent, option) {
+function enterDoYouWantToAttendTheHearingAfterSignIn(language, commonContent, option) {
   const I = this;
+  const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
 
-  I.wait(2);
+  I.waitForText(hearingAttendanceContent.title);
   I.checkOption(option);
   I.scrollPageToBottom();
   I.click(commonContent.saveAndContinue);

@@ -15,12 +15,12 @@ After(({ I }) => {
 });
 
 Scenario(`${language.toUpperCase()} - When I select yes I am taken to the DWP Issuing office page`, ({ I }) => {
-  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-yes');
+  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-yes');
   I.seeInCurrentUrl(paths.compliance.dwpIssuingOffice);
 });
 
 Scenario(`${language.toUpperCase()} - When I select no I am taken to the have you contacted DWP page`, ({ I }) => {
-  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-no');
+  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-no');
   I.seeInCurrentUrl(paths.compliance.haveContactedDWP);
 });
 
