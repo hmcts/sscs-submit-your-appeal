@@ -25,10 +25,9 @@
             <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.titleScotland | safe }}</h2>
             <div id="antenna-web-chat-scotland" >
                 <div id="antenna-web-chat-link-scotland">
-                <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                    <a id="antenna-web-chat-button-scotland" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
+                    <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+                    {{ webChatModal() }}
                 </div>
-                {{ webChatModal() }}
                 <div id="antenna-web-chat-closed-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
                 <div id="antenna-web-chat-busy-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
                 <div id="antenna-web-chat-no-agents-scotland" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>

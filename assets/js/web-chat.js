@@ -4,7 +4,6 @@ const close = document.querySelector('#antenna-web-chat-closed');
 const busy = document.querySelector('#antenna-web-chat-busy');
 const noAgents = document.querySelector('#antenna-web-chat-no-agents');
 const link = document.querySelector('#antenna-web-chat-link');
-const buttonScotland = document.querySelector('#antenna-web-chat-button-scotland');
 const webChatScotland = document.querySelector('web-chat-scotland');
 const closeScotland = document.querySelector('#antenna-web-chat-closed-scotland');
 const busyScotland = document.querySelector('#antenna-web-chat-busy-scotland');
@@ -18,17 +17,13 @@ const OPENING_HOUR = 8;
 
 export class WebChat {
   init() {
-    if (button !== null && webChat !== null && buttonScotland && webChatScotland) {
+    if (button !== null && webChat !== null  && webChatScotland) {
       button.addEventListener('click', () => {
         webChat.classList.remove('hidden');
       });
 
       webChat.addEventListener('hide', () => {
         webChat.classList.add('hidden');
-      });
-
-      buttonScotland.addEventListener('click', () => {
-        webChatScotland.classList.remove('hidden');
       });
 
       webChatScotland.addEventListener('hide', () => {
