@@ -17,7 +17,7 @@ const OPENING_HOUR = 8;
 
 export class WebChat {
   init() {
-    if (button !== null && webChat !== null  && webChatScotland) {
+    if (button !== null && webChat !== null && webChatScotland) {
       button.addEventListener('click', () => {
         webChat.classList.remove('hidden');
       });
