@@ -5,6 +5,7 @@ function continueFromStillCanAppeal(language) {
   const I = this;
   const stillCanAppealContent = language === 'en' ? stillCanAppealContentEn : stillCanAppealContentCy;
 
+  I.waitForText(stillCanAppealContent.title);
   I.click(stillCanAppealContent.continueButton);
 }
 

@@ -2,61 +2,74 @@ const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
 const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
 const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');
+const appellantNameContentEn = require('steps/identity/appellant-name/content.en');
+const appellantNameContentCy = require('steps/identity/appellant-name/content.cy');
+const appellantDOBContentEn = require('steps/identity/appellant-dob/content.en');
+const appellantDOBContentCy = require('steps/identity/appellant-dob/content.cy');
+const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en');
+const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
+
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
-function enterAppellantNameAndContinue(commonContent, title, firstName, lastName) {
+function enterAppellantNameAndContinue(language, commonContent, title, firstName, lastName) {
   const I = this;
+  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantNameContent.title.withoutAppointee);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
   I.click(commonContent.continue);
 }
 
-function enterAppellantNameAndContinueAfterSignIn(commonContent, title, firstName, lastName) {
+function enterAppellantNameAndContinueAfterSignIn(language, commonContent, title, firstName, lastName) {
   const I = this;
+  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantNameContent.title.withoutAppointee);
   I.selectOption({ id: 'title' }, title);
   I.fillField({ id: 'firstName' }, firstName);
   I.fillField({ id: 'lastName' }, lastName);
   I.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantDOBAndContinue(commonContent, day, month, year) {
+function enterAppellantDOBAndContinue(language, commonContent, day, month, year) {
   const I = this;
+  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantDOBContent.title.withoutAppointee);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
   I.click(commonContent.continue);
 }
 
-function enterAppellantDOBAndContinueAfterSignIn(commonContent, day, month, year) {
+function enterAppellantDOBAndContinueAfterSignIn(language, commonContent, day, month, year) {
   const I = this;
+  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantDOBContent.title.withoutAppointee);
   I.fillField('input[name*="day"]', day);
   I.fillField('input[name*="month"]', month);
   I.fillField('input[name*="year"]', year);
   I.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantNINOAndContinue(commonContent, nino) {
+function enterAppellantNINOAndContinue(language, commonContent, nino) {
   const I = this;
+  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantNINOContent.title.withoutAppointee);
   I.fillField('#nino', nino);
   I.click(commonContent.continue);
 }
 
-function enterAppellantNINOAndContinueAfterSignIn(commonContent, nino) {
+function enterAppellantNINOAndContinueAfterSignIn(language, commonContent, nino) {
   const I = this;
+  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  I.wait(1);
+  I.waitForText(appellantNINOContent.title.withoutAppointee);
   I.fillField('#nino', nino);
   I.click(commonContent.saveAndContinue);
 }
@@ -65,6 +78,7 @@ function IenterAddressDetailsManual(I) {
   if (postcodeLookupEnabled) {
     I.click({ id: 'manualLink' });
   }
+  I.wait(5);
   I.fillField({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   I.fillField({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   I.fillField({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -76,8 +90,9 @@ function IenterAddressDetails(postcodeLookupContent, I) {
   if (postcodeLookupEnabled) {
     I.fillField({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
     I.click(postcodeLookupContent.findAddress);
+    I.wait(5);
     I.selectOption({ css: 'form select[name=postcodeAddress]' },
-      appellant.contactDetails.postcodeAddress);
+      appellant.contactDetails.addressLine1);
   } else {
     IenterAddressDetailsManual(I);
   }
@@ -133,9 +148,12 @@ function enterAppellantContactDetailsWithMobileAndContinue(commonContent, langua
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
+  I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  I.wait(2);
+  I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
+  I.scrollPageToBottom();
+  I.waitForClickable(commonContent.continue, 5);
   I.click(commonContent.continue);
 }
 
@@ -143,9 +161,12 @@ function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonCont
   const I = this;
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
+  I.waitForText(postcodeLookupContent.textboxLabel);
   IenterAddressDetails(postcodeLookupContent, I);
-  I.wait(2);
+  I.wait(20);
   I.fillField('#phoneNumber', mobileNumber);
+  I.scrollPageToBottom();
+  I.waitForClickable(commonContent.saveAndContinue, 5);
   I.click(commonContent.saveAndContinue);
 }
 
