@@ -8603,17 +8603,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formidable@npm:^3.5.1":
-  version: 3.5.1
-  resolution: "formidable@npm:3.5.1"
-  dependencies:
-    dezalgo: ^1.0.4
-    hexoid: ^1.0.0
-    once: ^1.4.0
-  checksum: 46b21496f9f985161cf7636163147b6728f9997c7e1d59433680d92619758bf6862330e6d105b5816bafcd1ab32f27ef183455991f93ef836ea731c68db62af9
-  languageName: node
-  linkType: hard
-
 "forwarded@npm:0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
@@ -17360,7 +17349,6 @@ __metadata:
     express: ^4.19.2
     express-nunjucks: ^3.1.1
     file-loader: ^6.2.0
-    formidable: ^3.5.1
     fs: ^0.0.1-security
     govuk-frontend: ^4.7.0
     govuk_template_jinja: ^0.26.0
