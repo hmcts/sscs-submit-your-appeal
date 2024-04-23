@@ -1,4 +1,3 @@
-{% from "components/web-chat-scotland.njk" import webChatModal %}
 {% if welshWebchatEnabled  %}
 <details class="govuk-details" open>
 {% else %}
@@ -25,7 +24,7 @@
             <div id="web-chat-scotland" >
                 <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.titleScotland | safe }}</h2>
                 <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                {{ webChatModal() }}
+                <div id="__8x8-chat-button-container-script_1553624711656480310cfd53.70557078"></div>
             </div>
         </div>
     {% endif %}
