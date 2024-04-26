@@ -110,7 +110,7 @@ yarn test:functional:batches
 
 If you wish to increase the speed of the tests, you can decrease the wait time between each action, the default is set
 to 500ms. Override this by setting the env var `E2E_WAIT_FOR_ACTION_VALUE`, I find 50ms works fine.
-Use this together with batching like so:
+Use this together with batching like so: Hi
 
 ```bash
 E2E_WAIT_FOR_ACTION_VALUE=50 yarn test:functional:batches
