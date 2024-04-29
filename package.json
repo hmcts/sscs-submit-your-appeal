@@ -37,8 +37,8 @@
     "lint"
   ],
   "dependencies": {
-    "@babel/core": "^7.22.11",
-    "@babel/preset-env": "^7.22.10",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@cypress/request": "^3.0.0",
     "@cypress/request-promise": "^5.0.0",
     "@hmcts/cookie-manager": "^1.0.0",
@@ -127,7 +127,6 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
-    "@babel/traverse": "^7.23.2",
     "@hmcts/nodejs-logging": "^4.0.4",
     "debug": "^3.2.7",
     "json-schema": "^0.4.0",
