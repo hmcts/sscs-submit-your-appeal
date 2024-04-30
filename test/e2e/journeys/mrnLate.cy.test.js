@@ -27,9 +27,8 @@ After(({ I }) => {
 [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
   Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
     I.wait(1);
-    I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
-    // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
-    I.enterPostcodeAndContinue(commonContent, testData.appellant.contactDetails.postCode);
+    I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
+    I.enterPostcodeAndContinue(language, commonContent, testData.appellant.contactDetails.postCode);
     I.checkOptionAndContinue(commonContent, '#isAppointee-no');
     I.continueFromIndependance(commonContent);
     I.checkOptionAndContinue(commonContent, '#haveAMRN-yes');
@@ -37,12 +36,12 @@ After(({ I }) => {
     I.enterAnMRNDateAndContinue(commonContent, obj.mrnDate);
     I.checkOptionAndContinue(commonContent, '#checkedMRN-yes');
     I.enterReasonsForBeingLateAndContinue(commonContent, testData.mrn.reasonWhyMRNisLate);
-    I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-    I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-    I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+    I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+    I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+    I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
     I.enterAppellantContactDetailsAndContinue(commonContent, language);
     I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-    I.enterDetailsFromNoRepresentativeToEnd(commonContent);
+    I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
     I.confirmDetailsArePresent(language, true, obj.mrnDate);
   }).retry(1);
 });

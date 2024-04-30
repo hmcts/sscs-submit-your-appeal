@@ -15,12 +15,12 @@ After(({ I }) => {
 });
 
 Scenario(`${language.toUpperCase()} - When I select yes I am taken to the No MRN page`, ({ I }) => {
-  I.selectHaveYouContactedDWPAndContinue(commonContent, '#haveContactedDWP-yes');
+  I.selectHaveYouContactedDWPAndContinue(language, commonContent, '#haveContactedDWP-yes');
   I.seeInCurrentUrl(paths.compliance.noMRN);
 });
 
 Scenario(`${language.toUpperCase()} - When I select no I am taken to the contact DWP page`, ({ I }) => {
-  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveContactedDWP-no');
+  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveContactedDWP-no');
   I.seeInCurrentUrl(paths.compliance.contactDWP);
 });
 

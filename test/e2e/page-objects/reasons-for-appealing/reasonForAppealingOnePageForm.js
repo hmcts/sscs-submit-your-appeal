@@ -1,4 +1,6 @@
 const assert = require('assert');
+const reasonForAppealingContentEn = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
+const reasonForAppealingContentCy = require('steps/reasons-for-appealing/reason-for-appealing/content.cy');
 
 async function hasErrorClass(item) {
   const I = this;
@@ -8,27 +10,30 @@ async function hasErrorClass(item) {
   assert.equal(hasClass, true);
 }
 
-function addAReasonForAppealing(whatYouDisagreeWithField, reasonForAppealingField, reason) {
+function addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason) {
   const I = this;
+  const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
+  I.waitForText(reasonForAppealingContent.title);
   I.waitForElement(whatYouDisagreeWithField, 5);
   I.fillField(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
   I.fillField(reasonForAppealingField, reason.reasonForAppealing);
 }
 
-function addAReasonForAppealingAndThenClickAddAnother(whatYouDisagreeWithField,
+function addAReasonForAppealingAndThenClickAddAnother(language, whatYouDisagreeWithField,
   reasonForAppealingField, reason) {
   const I = this;
 
-  I.addAReasonForAppealing(whatYouDisagreeWithField, reasonForAppealingField, reason);
+  I.addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason);
   I.click('Add reason');
 }
 
-function addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, reason) {
+function addReasonForAppealingUsingTheOnePageFormAndContinue(language, commonContent, reason) {
   const I = this;
 
   I.wait(5);
   I.addAReasonForAppealing(
+    language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
     reason
@@ -36,11 +41,11 @@ function addReasonForAppealingUsingTheOnePageFormAndContinue(commonContent, reas
   I.click(commonContent.continue);
 }
 
-function addReasonForAppealingUsingTheOnePageFormAfterSignIn(commonContent, reason) {
+function addReasonForAppealingUsingTheOnePageFormAfterSignIn(language, commonContent, reason) {
   const I = this;
 
-  I.wait(5);
   I.addAReasonForAppealing(
+    language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
     reason

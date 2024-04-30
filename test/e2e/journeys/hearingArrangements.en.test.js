@@ -21,7 +21,7 @@ Scenario(`${language.toUpperCase()} - Selects sign language interpreter and ente
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     commonContent, language,
     [ hearingArrangementsContent.fields.selection.signLanguage.requested.label ],
@@ -34,7 +34,7 @@ Scenario(`${language.toUpperCase()} - Selects sign language interpreter and othe
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     commonContent, language,
     [
@@ -55,7 +55,7 @@ Scenario(`${language.toUpperCase()} - Selects sign language interpreter, languag
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   I.enterDetailsFromAttendingTheHearingWithSupportToEnd(
     commonContent, language,
     [

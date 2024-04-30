@@ -29,7 +29,7 @@ Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend th
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
   I.confirmDetailsArePresent(language);
   I.see(DateUtils.formatDate(moment(randomWeekDay), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
@@ -48,7 +48,7 @@ Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the
   I.enterDetailsFromStartToNINO(commonContent, language);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDayIn8Weeks);
   I.see(DateUtils.formatDate(moment(randomWeekDayIn8Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
 
