@@ -15,8 +15,8 @@ nodejs:
     WEBCHAT_OPENING_TIME_8_5: true
     FT_WELSH: true
     PCQ_ENABLED: true
-    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-3745.preview.platform.hmcts.net
-    UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-3745.preview.platform.hmcts.net/evidence/upload
+    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-3837.preview.platform.hmcts.net
+    UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-3837.preview.platform.hmcts.net/evidence/upload
   keyVaults:
     sscs:
       secrets:
