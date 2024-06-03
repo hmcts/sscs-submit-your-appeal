@@ -48,7 +48,7 @@
     "agentIsTyping": "Mae'rAsiantYnTeipio....",
     "conversationEnded": "Mae'r sesiwn sgwrsio wedi dod i ben ond gallwch ddechrau sgwrs newydd os ydych angen rhagor o gymorth",
     "startNewSession": "Dechrau sesiwn newydd",
-    "endChat": "Dod a'r sgwrs i ben,",
+    "endChat": "Dod â'r sgwrs i ben",
     "prompt": {
       "message": "Os byddwch yn gadael y sgwrs yna byddwch yn colli eich lle yn y ciw. Ydych chi'n siwr?",
       "yes": "Ydw",
