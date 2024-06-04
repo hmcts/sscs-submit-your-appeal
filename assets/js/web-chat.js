@@ -49,10 +49,7 @@ export class WebChat {
   }
 
   isWebchatOpen() {
-    if (document.webchatOpeningFlag) {
-      return (currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR);
-    }
-    return true;
+        return (currentHour >= OPENING_HOUR && currentHour < CLOSING_HOUR)
   }
 
   reset() {
