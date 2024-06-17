@@ -3,6 +3,8 @@ nodejs:
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
+  autoscaling:
+    enabled: false
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
