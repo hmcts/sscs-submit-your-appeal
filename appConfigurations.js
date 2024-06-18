@@ -144,7 +144,8 @@ const configureHelmet = app => {
         'wss://webchat.pp.ctsc.hmcts.net',
         'wss://webchat.ctsc.hmcts.net',
         'https://webchat.pp.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net'
+        'https://webchat.ctsc.hmcts.net',
+        'stats.g.doubleclick.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
