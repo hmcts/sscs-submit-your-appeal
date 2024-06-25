@@ -114,7 +114,8 @@ const configureHelmet = app => {
         '\'self\'',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
-        '\'unsafe-inline\''
+        '\'unsafe-inline\'',
+        'vcc-eu4-cf.8x8.com'
       ],
       scriptSrc: [
         '\'self\'',
@@ -147,7 +148,8 @@ const configureHelmet = app => {
         'https://webchat.pp.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net',
         'stats.g.doubleclick.net',
-        'cloud8-cc-geo.8x8.com'
+        'cloud8-cc-geo.8x8.com',
+        'vcc-eu4-cf.8x8.com'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
