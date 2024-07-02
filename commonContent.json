@@ -73,7 +73,8 @@
       },
       "webchat": {
         "loading": "Loading",
-        "title": "Web chat",
+        "title": "Web chat (England and Wales)",
+        "titleScotland": "Web chat (Scotland only)",
         "desc": "Get some help by messaging an agent online.",
         "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
         "textChatWithAnAgent": "Start web chat (opens in a new window)",

@@ -104,6 +104,9 @@ const configureHelmet = app => {
   // by setting HTTP headers appropriately.
   app.use(helmet());
 
+  // For 8x8 webchat transcripts
+  app.use(helmet.crossOriginOpenerPolicy('same-origin-allow-popups'))
+
   // Helmet content security policy (CSP) to allow only assets from same domain.
   app.use(helmet.contentSecurityPolicy({
     directives: {
@@ -114,7 +117,8 @@ const configureHelmet = app => {
         '\'self\'',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
-        '\'unsafe-inline\''
+        '\'unsafe-inline\'',
+        'vcc-eu4-cf.8x8.com'
       ],
       scriptSrc: [
         '\'self\'',
@@ -128,8 +132,10 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
+        'vcc-eu4-cf.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/'
+        'https://webchat-client.ctsc.hmcts.net/chat-client/',
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js'
       ],
       connectSrc: [
         '\'self\'',
@@ -143,13 +149,17 @@ const configureHelmet = app => {
         'wss://webchat.pp.ctsc.hmcts.net',
         'wss://webchat.ctsc.hmcts.net',
         'https://webchat.pp.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net'
+        'https://webchat.ctsc.hmcts.net',
+        'stats.g.doubleclick.net',
+        'cloud8-cc-geo.8x8.com',
+        'vcc-eu4-cf.8x8.com'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        '*.googletagmanager.com'
+        '*.googletagmanager.com',
+        'vcc-eu4-cf.8x8.com'
       ],
       imgSrc: [
         '\'self\'',
@@ -164,6 +174,7 @@ const configureHelmet = app => {
         '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
+        'vcc-eu4-cf.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
         'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ]
