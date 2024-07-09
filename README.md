@@ -1,5 +1,6 @@
 # SSCS - Submit Your Appeal
 
+
 ## Background:
 Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision.
 The first step is asking the Department for Work and Pensions to look at the decision again.
