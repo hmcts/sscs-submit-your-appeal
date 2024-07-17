@@ -104,9 +104,6 @@ const configureHelmet = app => {
   // by setting HTTP headers appropriately.
   app.use(helmet());
 
-  // For 8x8 webchat transcripts
-  app.use(helmet.crossOriginOpenerPolicy('same-origin-allow-popups'))
-
   // Helmet content security policy (CSP) to allow only assets from same domain.
   app.use(helmet.contentSecurityPolicy({
     directives: {
