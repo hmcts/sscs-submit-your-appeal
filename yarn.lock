@@ -4999,14 +4999,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai-as-promised@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "chai-as-promised@npm:7.1.1"
+"chai-as-promised@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "chai-as-promised@npm:8.0.0"
   dependencies:
-    check-error: ^1.0.2
+    check-error: ^2.0.0
   peerDependencies:
-    chai: ">= 2.1.2 < 5"
-  checksum: 7262868a5b51a12af4e432838ddf97a893109266a505808e1868ba63a12de7ee1166e9d43b5c501a190c377c1b11ecb9ff8e093c89f097ad96c397e8ec0f8d6a
+    chai: ">= 2.1.2 < 6"
+  checksum: 89a1b9702171e006ba9551909c67f0780b768185651f3bd831d74a0951b9405b5761fe2c80c46096c46829ffe62803e68c33bc782279edf386d4be08fe6c3b67
   languageName: node
   linkType: hard
 
@@ -17148,7 +17148,7 @@ __metadata:
     babel-loader: ^8.3.0
     body-parser: ^1.20.2
     chai: ^4.1.2
-    chai-as-promised: ^7.1.1
+    chai-as-promised: ^8.0.0
     chai-jq: ^0.0.9
     chalk: ^4.1.2
     clean-webpack-plugin: ^4.0.0
