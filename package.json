@@ -105,7 +105,7 @@
     "eslint-plugin-mocha": "^5.0.0",
     "fs": "^0.0.1-security",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0",
+    "gulp-cli": "^3.0.0",
     "jsdom": "^16.5.0",
     "mocha": "^6.1.4",
     "mocha-multi": "^1.1.0",
