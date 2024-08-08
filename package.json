@@ -111,7 +111,7 @@
     "mocha-multi": "^1.1.0",
     "mocha-param": "^2.0.0",
     "mochapack": "^2.1.2",
-    "mochawesome": "^4.0.1",
+    "mochawesome": "^7.0.0",
     "nock": "^13.3.3",
     "nyc": "^15.1.0",
     "pa11y": "^6.2.3",
