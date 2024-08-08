@@ -9601,9 +9601,9 @@ __metadata:
   linkType: hard
 
 "html-entities@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "html-entities@npm:2.4.0"
-  checksum: 25bea32642ce9ebd0eedc4d24381883ecb0335ccb8ac26379a0958b9b16652fdbaa725d70207ce54a51db24103436a698a8e454397d3ba8ad81460224751f1dc
+  version: 2.5.2
+  resolution: "html-entities@npm:2.5.2"
+  checksum: b23f4a07d33d49ade1994069af4e13d31650e3fb62621e92ae10ecdf01d1a98065c78fd20fdc92b4c7881612210b37c275f2c9fba9777650ab0d6f2ceb3b99b6
   languageName: node
   linkType: hard
 
