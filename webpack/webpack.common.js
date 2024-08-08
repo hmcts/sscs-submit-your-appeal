@@ -14,8 +14,8 @@ const fontsGokukFrontend = path.resolve(assets, 'fonts');
 module.exports = {
   target: 'web',
   entry: [
-    path.resolve('assets/scss/main.scss'),
-    path.resolve('assets/js/main.js')
+    path.resolve(__dirname, '../assets/scss/main.scss'),
+    path.resolve(__dirname, '../assets/js/main.js')
   ],
   plugins: [
     new webpack.IgnorePlugin({
