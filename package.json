@@ -97,7 +97,7 @@
   "devDependencies": {
     "@babel/register": "^7.23.7",
     "@hmcts/eslint-config": "^1.4.0",
-    "chai": "^4.1.2",
+    "chai": "^5.0.0",
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "codeceptjs": "^3.5.14",
