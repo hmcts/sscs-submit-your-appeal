@@ -8,13 +8,6 @@ module.exports = {
       allowlist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/, 'lodash-es']
     })
   ],
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty',
-    module: 'empty'
-  },
   target: 'web',
   context: '/',
   resolve: {
@@ -24,7 +17,14 @@ module.exports = {
       `${__dirname}/node_modules`,
       `${__dirname}../node_modules`,
       `${__dirname}../../node_modules`
-    ]
+    ],
+    fallback: {
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false,
+      module: false
+    }
   },
   resolveLoader: {
     modules: [path.resolve(__dirname, '../node_modules')]
@@ -45,7 +45,7 @@ module.exports = {
       {
         test: /\.(njk|nunjucks)$/,
         loader: 'nunjucks-loader',
-        query: {
+        options: {
           root: path.resolve(__dirname, '/dist/nunjucks')
         }
       }
