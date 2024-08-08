@@ -5253,6 +5253,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chokidar@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "chokidar@npm:3.6.0"
+  dependencies:
+    anymatch: ~3.1.2
+    braces: ~3.0.2
+    fsevents: ~2.3.2
+    glob-parent: ~5.1.2
+    is-binary-path: ~2.1.0
+    is-glob: ~4.0.1
+    normalize-path: ~3.0.0
+    readdirp: ~3.6.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: d2f29f499705dcd4f6f3bbed79a9ce2388cf530460122eed3b9c48efeab7a4e28739c6551fd15bec9245c6b9eeca7a32baa64694d64d9b6faeb74ddb8c4a413d
+  languageName: node
+  linkType: hard
+
 "chownr@npm:^1.1.1":
   version: 1.1.4
   resolution: "chownr@npm:1.1.4"
@@ -7798,14 +7817,14 @@ __metadata:
   linkType: hard
 
 "express-nunjucks@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "express-nunjucks@npm:3.1.1"
+  version: 3.1.2
+  resolution: "express-nunjucks@npm:3.1.2"
   dependencies:
-    nunjucks-async-loader: ^2.1.2
+    nunjucks-async-loader: ^2.1.3
   peerDependencies:
-    express: ^4.18.2
+    express: ^4.19.2
     nunjucks: ^3.2.4
-  checksum: f41928106dda3afcd8daae8a18753f110072bcc4d9db406f0f72c12943945636532eb8d0841385705c87f843607d606d80dd7b7d5e5a6a0bf248b1d187b0cce3
+  checksum: cccec33d2644032cf806907ea0764a67e829773e5baf69d70d754fd776782952f7935d63419433fe402365ae79e2fba6a5547264463f6e1b054b9732e7f6a63e
   languageName: node
   linkType: hard
 
@@ -13098,14 +13117,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nunjucks-async-loader@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "nunjucks-async-loader@npm:2.1.2"
+"nunjucks-async-loader@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "nunjucks-async-loader@npm:2.1.3"
   dependencies:
-    chokidar: 3.3.1
+    chokidar: ^3.6.0
   peerDependencies:
     nunjucks: ^3.2.4
-  checksum: 6a681533521d0e0a97cf6926dac52dc5e70ed64c3d7b9df89b2fc12e12dc61764b26d5e633adac7ecadecd7b448161817c91ddd3685455a58f4f349d13f877f4
+  checksum: 87520b30000037ca6ae643517aa81342c427e8958c2bb8bb9af080b1d9ed764c75b90d2ace2bb8c50837d20a6f018131fc6754cc17f9f31d025d37175b8d6a68
   languageName: node
   linkType: hard
 
