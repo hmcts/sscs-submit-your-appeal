@@ -102,7 +102,7 @@
         "WelshSpeakers": {
           "desc" : "Benefit appeals helpline (for Welsh Speakers)",
           "phone": "Telephone: 0300 303 5170",
-          "availability": "Monday to Friday, 9am to 4pm",
+          "availability": "Monday to Friday, 8:30am to 5pm",
           "emailText": "Email:",
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Find out about call charges"
@@ -219,7 +219,7 @@
         "WelshSpeakers": {
           "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Cymraeg)",
           "phone": "Rhif ffôn:  0300 303 5170",
-          "availability": "Dydd Llun i ddydd Iau 9am i 4pm, dydd Gwener 9am i 4.30pm.",
+          "availability": "Dydd Llun i ddydd Iau 9am i 5pm, dydd Gwener 9am i 4.30pm.",
           "emailText": "E-bost:",
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau"
