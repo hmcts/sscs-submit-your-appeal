@@ -80,9 +80,9 @@
         "textChatWithAnAgent": "Start web chat (opens in a new window)",
         "textNoAgentsAvailable": "No agents are available, please try again later.",
         "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
-        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 8am to 5pm. Or contact us using one of the ways below.",
+        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 9am to 4pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
-        "textAdditional": "Monday to Friday, 8am to 6pm. \n Saturday, 8am to 2pm",
+        "textAdditional": "Monday to Friday, 9am to 4pm. \n Saturday, 8am to 2pm",
         "language": "English",
         "chatTitle": "HMCTS Web Chat",
         "pageName": "Appeal a benefit decision",
@@ -94,7 +94,7 @@
         "England": {
           "desc" : "Benefit appeals helpline (England and Wales)",
           "phone": "Telephone: 0300 123 1142",
-          "availability": "Monday to Friday, 8am to 5pm",
+          "availability": "Monday to Friday, 9am to 4pm",
           "emailText": "Email:",
           "emailAddress": "Contactsscs@justice.gov.uk",
           "charges": "Find out about call charges"
@@ -199,7 +199,7 @@
         "textAllAgentsBusy": "Mae ein cynghorwyr i gyd yn brysur. Rhowch gynnig arall arni ymhen ychydig funudau.",
         "textChatClosed" : "Mae ein gwasanaeth cyngor ar-lein ar gau ar hyn o bryd.",
         "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
-        "textAdditional": "Dydd Llun i ddydd Gwener, 8.30am – 5pm",
+        "textAdditional": "Dydd Llun i ddydd Gwener, 9am – 4pm",
         "language": "Welsh",
         "chatTitle": "Sgwrsio dros y we GLlTEF",
         "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
@@ -211,7 +211,7 @@
         "England": {
           "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Saesneg)",
           "phone": "Rhif ffôn: 0300 123 1142",
-          "availability": "Dydd Llun i ddydd Gwener, 8am i 5pm",
+          "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
           "emailText": "E-bost:",
           "emailAddress": "Contactsscs@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau"
