@@ -45,7 +45,7 @@
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/nodejs-healthcheck": "^1.8.0",
     "@hmcts/one-per-page": "^5.4.0",
-    "@hmcts/properties-volume": "^1.0.0",
+    "@hmcts/properties-volume": "^1.1.0",
     "@hmcts/uk-bank-holidays": "^1.0.2",
     "accessible-autocomplete": "^2.0.4",
     "applicationinsights": "^2.7.3",

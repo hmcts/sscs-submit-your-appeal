@@ -5,6 +5,8 @@ nodejs:
   livenessPath: /health/readiness
   spotInstances:
     enabled: false
+  autoscaling:
+    enabled: false
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
