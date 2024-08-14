@@ -3,6 +3,8 @@ nodejs:
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
+  spotInstances:
+    enabled: false
   autoscaling:
     enabled: false
   environment:
