@@ -46,9 +46,9 @@ function initWebChat(language) {
   }
 }
 
-function initWebChatScotland(){
-    const webChatScotland = new WebChatScotland();
-    webChatScotland.init();
+function initWebChatScotland() {
+  const webChatScotland = new WebChatScotland();
+  webChatScotland.init();
 }
 function initCookieBanner() {
   if ($('#app-cookie-banner').length) {
