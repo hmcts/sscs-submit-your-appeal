@@ -13,8 +13,8 @@ const fonts = path.resolve(assets, 'fonts');
 
 const copyGovukTemplateAssets = new CopyWebpackPlugin({
   patterns: [
-    { from: images, to: '../../dist/images' },
-    { from: fonts, to: '../../dist/fonts' }
+    { from: images, to: '../dist/images' },
+    { from: fonts, to: '../dist/fonts' }
   ]
 });
 
