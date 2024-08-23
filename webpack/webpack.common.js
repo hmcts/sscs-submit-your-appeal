@@ -18,7 +18,10 @@ module.exports = {
     path.resolve('assets/js/main.js')
   ],
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin(
       {
@@ -30,7 +33,10 @@ module.exports = {
           { from: fontsGokukFrontend, to: 'fonts' }
         ]
       }),
-    new MiniCssExtractPlugin({ filename: '[name].css' })
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
   ],
   output: {
     path: path.resolve('dist'),
@@ -42,6 +48,11 @@ module.exports = {
       chunks(chunk) {
         // exclude `my-excluded-chunk`
         return chunk.name !== 'hmcts-webchat-gds-v3';
+      },
+      name: (module, chunks, cacheGroupKey) => {
+        const allChunksNames = chunks.map(chunk => chunk.name).join('~');
+        const prefix = cacheGroupKey === 'defaultVendors' ? 'vendors' : cacheGroupKey;
+        return `${prefix}~${allChunksNames}`;
       }
     }
   },
@@ -50,7 +61,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/i,
-        loaders: ['file-loader']
+        loader: 'file-loader'
       },
       {
         test: /\.(njk|nunjucks)$/,
