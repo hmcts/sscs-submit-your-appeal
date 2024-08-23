@@ -16472,15 +16472,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-loader@npm:4.0.0":
-  version: 4.0.0
-  resolution: "style-loader@npm:4.0.0"
-  peerDependencies:
-    webpack: ^5.27.0
-  checksum: 0b751b4cc8394a2fe1df6194bb2f6dd68e859e36f22030994bb7b5220f24f9efb5705e78b2442226e6fa4c90f74b397529c7eb0a1d7326fb016e1e140e90151c
-  languageName: node
-  linkType: hard
-
 "stylehacks@npm:^5.0.1":
   version: 5.0.1
   resolution: "stylehacks@npm:5.0.1"
@@ -16714,7 +16705,6 @@ __metadata:
     sass-loader: ^16.0.0
     sinon: ^15.2.0
     sinon-chai: ^3.7.0
-    style-loader: 4.0.0
     superagent: ^8.1.2
     superagent-csrf: ^1.0.0
     supertest: ^6.3.3
