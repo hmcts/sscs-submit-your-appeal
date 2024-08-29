@@ -37,6 +37,8 @@ withPipeline("nodejs", product, component) {
           println "Application URL: " + AppDevUrl
           println "Healthcheck URL: " + AppDevUrl + "/health"
           println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
+          env.TRIBUNALS_CASE_API_URL = "https://sscs-tribunals-api-pr-3863.preview.platform.hmcts.net"
+          println "Trib api URL: " + env.TRIBUNALS_CASE_API_URL
       }
   }
 }
