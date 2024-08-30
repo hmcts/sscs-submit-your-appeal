@@ -7,7 +7,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
+    "start": "cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
     "build": "NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
     "dev": "./bin/generate-ssl-options.sh && cross-env NODE_ENV=development NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node --inspect server.js",
@@ -31,7 +31,7 @@
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha --exit test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportDir=functional-output,reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
-    "mock-ccd": "NODE_ENV=development node mocks/ccd/server.js"
+    "mock-ccd": "node mocks/ccd/server.js"
   },
   "pre-commit": [
     "lint"
