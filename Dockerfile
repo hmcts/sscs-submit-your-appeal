@@ -9,6 +9,7 @@ COPY --chown=hmcts:hmcts config ./config
 COPY --chown=hmcts:hmcts package.json yarn.lock .yarnrc.yml ./
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 RUN yarn workspaces focus --all --production && yarn cache clean
 
