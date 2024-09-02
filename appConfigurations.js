@@ -132,6 +132,7 @@ const configureHelmet = app => {
         'vcc-eu4-cf.8x8.com',
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
+        'https://js-cdn.dynatrace.com',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js'
       ],
       connectSrc: [
