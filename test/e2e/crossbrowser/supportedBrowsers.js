@@ -6,7 +6,7 @@ const supportedBrowsers = {
     edge_win_latest: {
       browserName: 'Microsoft Edge',
       platformName: LATEST_WINDOWS,
-      browserVersion: 'latest-1',
+      browserVersion: 'latest',
       'sauce:options': {
         name: 'SSCS: Edge_Win10',
         screenResolution: '1400x1050'
@@ -40,7 +40,7 @@ const supportedBrowsers = {
     chrome_win_latest: {
       browserName: 'chromium',
       platformName: LATEST_WINDOWS,
-      browserVersion: 'latest-1',
+      browserVersion: 'latest',
       'sauce:options': {
         name: 'SSCS: WIN_CHROME_LATEST',
         screenResolution: '1600x1200'
@@ -51,7 +51,7 @@ const supportedBrowsers = {
     firefox_win_latest: {
       browserName: 'firefox',
       platformName: LATEST_WINDOWS,
-      browserVersion: 'latest-1',
+      browserVersion: 'latest',
       'sauce:options': {
         name: 'SSCS: WIN_FIREFOX_LATEST',
         screenResolution: '1600x1200'
@@ -60,7 +60,7 @@ const supportedBrowsers = {
     firefox_mac_latest: {
       browserName: 'firefox',
       platformName: LATEST_MAC,
-      browserVersion: 'latest-1',
+      browserVersion: 'latest',
       'sauce:options': {
         name: 'SSCS: MAC_FIREFOX_LATEST',
         screenResolution: '1600x1200'
