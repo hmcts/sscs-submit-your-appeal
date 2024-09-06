@@ -5,6 +5,8 @@ nodejs:
     enabled: false
   environment:
     NODE_ENV: "preview"
+    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-pr-3783.preview.platform.hmcts.net
+    UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
