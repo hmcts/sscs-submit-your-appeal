@@ -29,6 +29,7 @@
 !steps.js
 !urls.js
 !gulpfile.js
+!webpack.config.js
 
 !.yarn/**
 !.yarnrc.yml
