@@ -126,8 +126,30 @@ Smoke tests:
 ## Code coverage
     yarn test:coverage
 
-## Security scan of installed packages
-    yarn test:audit
+## Security Scan: Run yarn audit locally
+
+You need `jq` installed
+
+Download `yarn-audit-with-suppressions.sh` and `prettyPrintAudit.sh` from https://github.com/hmcts/cnp-jenkins-library
+to project root folder
+
+```bash
+curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/yarn-audit-with-suppressions.sh
+curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/prettyPrintAudit.sh
+```
+
+Make both files executable
+
+```bash
+chmod +x ./yarn-audit-with-suppressions.sh
+chmod +x ./prettyPrintAudit.sh
+```
+
+Run `yarn-audit-with-suppressions.sh`
+
+```bash
+./yarn-audit-with-suppressions.sh
+```
 
 [Dockerfile]:Dockerfile
 [docker-compose.yml]:docker-compose.yml
