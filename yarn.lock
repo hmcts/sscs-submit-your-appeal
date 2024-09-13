@@ -9045,10 +9045,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "html-entities@npm:2.4.0"
-  checksum: 10/646f2f19214bad751e060ceef4df98520654a1d0cd631b55d45504df2f0aaf8a14d8c0a5a4f92b353be298774d856157ac2d04a031d78889c9011892078ca157
+"html-entities@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "html-entities@npm:2.5.2"
+  checksum: 10/4ec12ebdf2d5ba8192c68e1aef3c1e4a4f36b29246a0a88464fe278a54517d0196d3489af46a3145c7ecacb4fc5fd50497be19eb713b810acab3f0efcf36fdc2
   languageName: node
   linkType: hard
 
@@ -10565,10 +10565,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libphonenumber-js@npm:^1.10.43":
-  version: 1.10.43
-  resolution: "libphonenumber-js@npm:1.10.43"
-  checksum: 10/1e06c154f2206fe490cf29ef17f419247e1753b21aeb612100c2a300ebe12cae66e6eeed60db2b8b1e70e377abb44cb0ca946bf762fd5c74f6d5915d7fc26212
+"libphonenumber-js@npm:^1.11.8":
+  version: 1.11.8
+  resolution: "libphonenumber-js@npm:1.11.8"
+  checksum: 10/3c98336d60cf85d7e4abfca2a8add70db8b63f59ea736820c2eeddf0bd28cce62f513bddfd8d297bf83e9d069bc036b62c05ca994e84d7f714d905d6ed91489d
   languageName: node
   linkType: hard
 
@@ -15627,13 +15627,13 @@ __metadata:
     gulp: "npm:^5.0.0"
     gulp-cli: "npm:^3.0.0"
     helmet: "npm:^7.1.0"
-    html-entities: "npm:^2.4.0"
+    html-entities: "npm:^2.5.2"
     http-status-codes: "npm:^2.3.0"
     jquery: "npm:^3.7.1"
     jquery-modal: "npm:^0.9.2"
     js-base64: "npm:^3.7.7"
     jsdom: "npm:^16.5.0"
-    libphonenumber-js: "npm:^1.10.43"
+    libphonenumber-js: "npm:^1.11.8"
     lodash: "npm:^4.17.21"
     lodash-es: "npm:^4.17.21"
     mini-css-extract-plugin: "npm:^2.9.1"
