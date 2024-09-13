@@ -11552,7 +11552,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha@npm:^6.1.4":
+"mocha@npm:^6.2.3":
   version: 6.2.3
   resolution: "mocha@npm:6.2.3"
   dependencies:
@@ -11843,15 +11843,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:^13.3.3":
-  version: 13.3.3
-  resolution: "nock@npm:13.3.3"
+"nock@npm:^13.5.5":
+  version: 13.5.5
+  resolution: "nock@npm:13.5.5"
   dependencies:
     debug: "npm:^4.1.0"
     json-stringify-safe: "npm:^5.0.1"
-    lodash: "npm:^4.17.21"
     propagate: "npm:^2.0.0"
-  checksum: 10/8695cfec69a5a4a932b5f192e09161b1e5c2a0a50919a3c45d2e71cff166ca48228722547763b93381008e99ab90564675392db34720d11854b83e87b18606fb
+  checksum: 10/c19d7bf9654db056357a22b00127bb5606c1bbdff188a5b6c469825e580e31cd0cb0701bce8dd8b4876dbbd36a145fdb681fd69fd59308d6db4923ce8ab2439e
   languageName: node
   linkType: hard
 
@@ -15481,7 +15480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:^8.0.5, superagent@npm:^8.1.2":
+"superagent@npm:^8.1.2":
   version: 8.1.2
   resolution: "superagent@npm:8.1.2"
   dependencies:
@@ -15499,13 +15498,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supertest@npm:^6.3.3":
-  version: 6.3.3
-  resolution: "supertest@npm:6.3.3"
+"supertest@npm:^6.3.4":
+  version: 6.3.4
+  resolution: "supertest@npm:6.3.4"
   dependencies:
     methods: "npm:^1.1.2"
-    superagent: "npm:^8.0.5"
-  checksum: 10/7a7da05bf0f43bc891fd377f6ee192c6fa115f01034f522d4f53c6305ab8866c760a5b0e7aedb3e422224e35be00a75b283613c446651cc1d9e35f80d9b461b3
+    superagent: "npm:^8.1.2"
+  checksum: 10/93015318f5a90398915a032747973d9eacf9aebec3f07b413eba9d8b3db83ff48fbf6f5a92f9526578cae50153b0f76a37de197141030d856db4371a711b86ee
   languageName: node
   linkType: hard
 
@@ -15637,13 +15636,13 @@ __metadata:
     lodash: "npm:^4.17.21"
     lodash-es: "npm:^4.17.21"
     mini-css-extract-plugin: "npm:^2.9.1"
-    mocha: "npm:^6.1.4"
+    mocha: "npm:^6.2.3"
     mocha-multi: "npm:^1.1.7"
     mocha-param: "npm:^2.0.1"
     mochapack: "npm:^2.1.4"
     mochawesome: "npm:^4.0.1"
     moment: "npm:^2.29.4"
-    nock: "npm:^13.3.3"
+    nock: "npm:^13.5.5"
     nunjucks: "npm:^3.2.4"
     nunjucks-loader: "npm:^3.0.0"
     nyc: "npm:^15.1.0"
@@ -15663,7 +15662,7 @@ __metadata:
     style-loader: "npm:^4.0.0"
     superagent: "npm:^8.1.2"
     superagent-csrf: "npm:^1.0.0"
-    supertest: "npm:^6.3.3"
+    supertest: "npm:^6.3.4"
     terser-webpack-plugin: "npm:^5.3.10"
     uuid: "npm:^9.0.1"
     webdriverio: "npm:8.10.5"
