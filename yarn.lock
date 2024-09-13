@@ -69,7 +69,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/core-client@npm:^1.3.0, @azure/core-client@npm:^1.4.0, @azure/core-client@npm:^1.5.0":
+"@azure/core-client@npm:^1.3.0, @azure/core-client@npm:^1.5.0":
   version: 1.7.3
   resolution: "@azure/core-client@npm:1.7.3"
   dependencies:
@@ -81,6 +81,21 @@ __metadata:
     "@azure/logger": "npm:^1.0.0"
     tslib: "npm:^2.2.0"
   checksum: 10/8564d001b3edddb394b0a1a9590864748899aa512a4a12945cdc7e187dfd8a998acb98fd66ce3b830eda6e54f89107aea4f70aa7fd885b8bee1d9e14d4cb7150
+  languageName: node
+  linkType: hard
+
+"@azure/core-client@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "@azure/core-client@npm:1.9.2"
+  dependencies:
+    "@azure/abort-controller": "npm:^2.0.0"
+    "@azure/core-auth": "npm:^1.4.0"
+    "@azure/core-rest-pipeline": "npm:^1.9.1"
+    "@azure/core-tracing": "npm:^1.0.0"
+    "@azure/core-util": "npm:^1.6.1"
+    "@azure/logger": "npm:^1.0.0"
+    tslib: "npm:^2.6.2"
+  checksum: 10/0358b8245bf23943914eb77384955c994bf3ef84f862234cb3e261f9c602a9f4717beedafd48d1da902b15f3464a4211540976fabb4569039fac8e0d41e59ef1
   languageName: node
   linkType: hard
 
@@ -168,7 +183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/core-util@npm:^1.9.0":
+"@azure/core-util@npm:^1.6.1, @azure/core-util@npm:^1.9.0":
   version: 1.10.0
   resolution: "@azure/core-util@npm:1.10.0"
   dependencies:
@@ -178,25 +193,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/identity@npm:^4.0.0-beta.1":
-  version: 4.2.1
-  resolution: "@azure/identity@npm:4.2.1"
+"@azure/identity@npm:^4.2.1":
+  version: 4.4.1
+  resolution: "@azure/identity@npm:4.4.1"
   dependencies:
     "@azure/abort-controller": "npm:^1.0.0"
     "@azure/core-auth": "npm:^1.5.0"
-    "@azure/core-client": "npm:^1.4.0"
+    "@azure/core-client": "npm:^1.9.2"
     "@azure/core-rest-pipeline": "npm:^1.1.0"
     "@azure/core-tracing": "npm:^1.0.0"
     "@azure/core-util": "npm:^1.3.0"
     "@azure/logger": "npm:^1.0.0"
-    "@azure/msal-browser": "npm:^3.11.1"
+    "@azure/msal-browser": "npm:^3.14.0"
     "@azure/msal-node": "npm:^2.9.2"
     events: "npm:^3.0.0"
     jws: "npm:^4.0.0"
     open: "npm:^8.0.0"
     stoppable: "npm:^1.1.0"
     tslib: "npm:^2.2.0"
-  checksum: 10/56adf3313ae52410d15dc760fe41a56e07f08c7629a7f61d2788a49345e313037a70bc1c82b5beb950f1bbf50e79f9726c58aa7fe335b8785a4c542a88a9c5fa
+  checksum: 10/93891329e115ed675e1cda3dca22031f37a75d0779fd145790c21990bc440ab2ffc9f1fbacec3b33dc7a0ac87661bdd9e8e763ae12d494a5daf3f1baa8915a5b
   languageName: node
   linkType: hard
 
@@ -228,12 +243,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/msal-browser@npm:^3.11.1":
-  version: 3.17.0
-  resolution: "@azure/msal-browser@npm:3.17.0"
+"@azure/msal-browser@npm:^3.14.0":
+  version: 3.23.0
+  resolution: "@azure/msal-browser@npm:3.23.0"
   dependencies:
-    "@azure/msal-common": "npm:14.12.0"
-  checksum: 10/0ff3c7e8abfdc2eed9cf22b72bae413d2e251025113789fec82564f4badfda7812a3d954029ffdbfa1aba48dcf4b2040ee6322d9125326e9aa1ed31f8ac08839
+    "@azure/msal-common": "npm:14.14.2"
+  checksum: 10/8530d86948f9450f7e55f67a8d8ae3351dcc329543f5fda6c71730034622e00c4b0d58b1048c3831d18c54862ab38928af10f654e6d50df74653d5cd5d0d9b29
   languageName: node
   linkType: hard
 
@@ -241,6 +256,13 @@ __metadata:
   version: 14.12.0
   resolution: "@azure/msal-common@npm:14.12.0"
   checksum: 10/5a0905beae17e20d66b352425dfd86d41ddf402f3c2c324aacf0590844e61c2c13ed439c3c63a1d7b4d3861b8d885ed11b7f257373facefe8fa3dc63455ee9c2
+  languageName: node
+  linkType: hard
+
+"@azure/msal-common@npm:14.14.2":
+  version: 14.14.2
+  resolution: "@azure/msal-common@npm:14.14.2"
+  checksum: 10/cbd02afa92761563aff04450173f718fe10045be6c5187c0bfbee3644839e00f99f36a23d24592082cbff4dbe1019d126bcc66ef0dc154cf94ed8bf1ce65dcee
   languageName: node
   linkType: hard
 
@@ -2578,16 +2600,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/properties-volume@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@hmcts/properties-volume@npm:1.1.0"
+"@hmcts/properties-volume@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@hmcts/properties-volume@npm:1.2.0"
   dependencies:
-    "@azure/identity": "npm:^4.0.0-beta.1"
+    "@azure/identity": "npm:^4.2.1"
     "@azure/keyvault-secrets": "npm:^4.7.0"
     "@hmcts/nodejs-logging": "npm:^4.0.4"
     js-yaml: "npm:^4.1.0"
     lodash: "npm:^4.17.21"
-  checksum: 10/82347117098f8cf0286c4f73eaa02016a270b4fdb9e9d98d82834089d81d20ec1d1392eb9a03a7d944ccb3d8032964eb5a35e1b5f135cca23f1310008565dd1d
+  checksum: 10/d8087372250cd954b90f73ff9b1ebcb94badd6188b0c7b642d0e29cc389105147efd6a97a0d6897621261d9eb0ea74507ced6c6e5036b0734a8363d1bac696ca
   languageName: node
   linkType: hard
 
@@ -15594,7 +15616,7 @@ __metadata:
     "@hmcts/eslint-config": "npm:^1.4.0"
     "@hmcts/nodejs-healthcheck": "npm:^1.8.5"
     "@hmcts/one-per-page": "npm:^5.4.0"
-    "@hmcts/properties-volume": "npm:^1.1.0"
+    "@hmcts/properties-volume": "npm:^1.2.0"
     "@hmcts/uk-bank-holidays": "npm:^1.0.2"
     accessible-autocomplete: "npm:^2.0.4"
     applicationinsights: "npm:^2.9.6"
