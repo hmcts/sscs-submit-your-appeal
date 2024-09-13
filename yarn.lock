@@ -9200,10 +9200,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-status-codes@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "http-status-codes@npm:2.2.0"
-  checksum: 10/f78c103dc75de0ac253656235d501842de631a825ecbb0fd56c82a22f40ebdfb5ea3a33b415e8bd99003a6b7912fb4143e46852111f0f3b591dac8adb03d49a5
+"http-status-codes@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "http-status-codes@npm:2.3.0"
+  checksum: 10/1b8a01940b5e14d3c5b2f842313f4531469b41ce4fa40ca3aae5c82a3101828db2cc9406bfb2d50a46e6d521d106577b6656c2b065c76125b99ee54b2cbbac09
   languageName: node
   linkType: hard
 
@@ -11498,7 +11498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha-multi@npm:^1.1.0":
+"mocha-multi@npm:^1.1.7":
   version: 1.1.7
   resolution: "mocha-multi@npm:1.1.7"
   dependencies:
@@ -11513,7 +11513,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha-param@npm:^2.0.0":
+"mocha-param@npm:^2.0.1":
   version: 2.0.1
   resolution: "mocha-param@npm:2.0.1"
   checksum: 10/7f14638931843c752cb81ce1027dc33b916b5e93a045c6692c776a04e03bdf93f80c5e50f9f236a45301a392d8fa7a8d3646e6c3ed0bfa57b7acaf73b7480fb8
@@ -15628,7 +15628,7 @@ __metadata:
     gulp-cli: "npm:^3.0.0"
     helmet: "npm:^7.1.0"
     html-entities: "npm:^2.4.0"
-    http-status-codes: "npm:^2.2.0"
+    http-status-codes: "npm:^2.3.0"
     jquery: "npm:^3.7.1"
     jquery-modal: "npm:^0.9.2"
     js-base64: "npm:^3.7.7"
@@ -15638,8 +15638,8 @@ __metadata:
     lodash-es: "npm:^4.17.21"
     mini-css-extract-plugin: "npm:^2.9.1"
     mocha: "npm:^6.1.4"
-    mocha-multi: "npm:^1.1.0"
-    mocha-param: "npm:^2.0.0"
+    mocha-multi: "npm:^1.1.7"
+    mocha-param: "npm:^2.0.1"
     mochapack: "npm:^2.1.4"
     mochawesome: "npm:^4.0.1"
     moment: "npm:^2.29.4"
