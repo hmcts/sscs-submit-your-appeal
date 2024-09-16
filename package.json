@@ -60,7 +60,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "csurf": "^1.11.0",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-nunjucks": "^3.1.2",
     "file-loader": "^6.2.0",
     "formidable": "^3.5.1",
@@ -128,12 +128,14 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
+    "express": "^4.21.0",
     "debug": "^3.2.7",
     "json-schema": "^0.4.0",
     "qs": "^6.11.2",
     "redis": "^3.1.1",
     "micromatch": "^4.0.8",
-    "puppeteer": "^23.2.0"
+    "puppeteer": "^23.2.0",
+    "path-to-regexp": "^0.1.10"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@4.4.1"
 }
