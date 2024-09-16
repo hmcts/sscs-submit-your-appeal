@@ -20,7 +20,7 @@ evidence.txt
 /test/coverage
 package-lock.json
 *.iml
-
+src/main/resources/localhost-ssl
 # Yarn 3 files
 .pnp.*
 .yarn/*
