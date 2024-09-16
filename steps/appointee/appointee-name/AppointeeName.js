@@ -27,7 +27,7 @@ class AppointeeName extends SaveToDraftStore {
         Joi.string().required()
       ).joi(
         fields.title.error.invalid,
-        Joi.string().valid(validTitles)
+        Joi.string().valid(...validTitles)
       ),
       firstName: text.joi(
         fields.firstName.error.required,

@@ -18,7 +18,7 @@ class SameAddress extends SaveToDraftStore {
     return form({
       isAddressSameAsAppointee: text.joi(
         this.content.fields.isAddressSameAsAppointee.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

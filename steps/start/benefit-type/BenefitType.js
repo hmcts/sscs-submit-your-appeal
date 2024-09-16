@@ -19,7 +19,7 @@ class BenefitType extends SaveToDraftStore {
     return form({
       benefitType: text.joi(
         this.content.fields.benefitType.error.required,
-        Joi.string().valid(types).required()
+        Joi.string().valid(...types).required()
       )
     });
   }

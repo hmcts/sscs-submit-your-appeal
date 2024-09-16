@@ -16,7 +16,7 @@ class CreateAccount extends SaveToDraftStore {
     return form({
       createAccount: text.joi(
         this.content.fields.createAccount.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

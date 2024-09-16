@@ -18,7 +18,7 @@ class EvidenceProvide extends SaveToDraftStore {
     return form({
       evidenceProvide: text.joi(
         this.content.fields.evidenceProvide.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }
