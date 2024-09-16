@@ -18,8 +18,14 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
+
 Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
-Install Redis: download, extract and build:
+
+### If Redis is already installed on your system
+You can simply start the application with `yarn start:dev`.
+
+### Install Redis: 
+download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz
     tar xvzf redis-stable.tar.gz
