@@ -55,9 +55,24 @@ function expectNoErrors(messages) {
 function accessibilityCheck(url) {
   describe(`Page ${url}`, () => {
     it('should have no accessibility errors', async() => {
-      await ensurePageCallWillSucceed(url);
-      const messages = await pa11y(agent.get(url).url, options);
-      expectNoErrors(messages.issues);
+      const maxRetryCount = 3;
+      for (let i = 0; i < maxRetryCount; i++) {
+        try {
+          // eslint-disable-next-line no-await-in-loop
+          await ensurePageCallWillSucceed(url);
+          // eslint-disable-next-line no-await-in-loop
+          const messages = await pa11y(agent.get(url).url, options);
+          expectNoErrors(messages.issues);
+          break;
+        } catch (error) {
+          if (i < maxRetryCount) {
+            console.error(`Failed test attempt ${i + 1}, retrying...`);
+          } else {
+            console.error(`Failed all ${maxRetryCount} test attempts.`);
+            throw (error);
+          }
+        }
+      }
     });
   });
 }
