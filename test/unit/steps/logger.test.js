@@ -12,14 +12,12 @@ describe('logger.js', () => {
   let consoleSpy = null;
   let nativeConsoleSpy = null;
   let sandBox = null;
-
   beforeEach(() => {
-    logger.setIkey('test-key');
-    logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
-    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start')
-      .returns('Stops this from actually starting function');
+    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start').returns(true);
+    logger.setIkey('test-key');
+    logger.setupAppInsights();
     applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,
       'trackException');
     applicationInsightsTraceSpy = sandBox.stub(applicationInsights.defaultClient, 'trackTrace');
