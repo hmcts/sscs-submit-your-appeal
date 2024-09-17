@@ -10,7 +10,6 @@ const logPath = 'AppellantContactDetails.js';
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const postcodeChecker = require('utils/postcodeChecker');
@@ -117,7 +116,7 @@ class AppellantContactDetails extends SaveToDraftStore {
       { name: 'emailAddress',
         validator: text.joi(
           fields.emailAddress.error[prefix].invalid,
-          Joi.string().trim().email(emailOptions).allow('')
+          Joi.string().trim().email().allow('')
         ) }
     ]);
   }

@@ -10,38 +10,38 @@ describe('ValidatePhone', () => {
 
   describe('generic phones', () => {
     it('should work for +44 numbers ', () => {
-      const validation = customJoi.validate('+447512345678', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('+447512345678');
+      expect(validation.error).to.equal(undefined);
     });
 
     it('should work for 0044 numbers', () => {
-      const validation = customJoi.validate('00447512345678', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('00447512345678');
+      expect(validation.error).to.equal(undefined);
     });
 
     it('should work for UK landlines', () => {
-      const validation = customJoi.validate('0115 933 3968', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('0115 933 3968');
+      expect(validation.error).to.equal(undefined);
     });
 
     it('should work with parethesis', () => {
-      const validation = customJoi.validate('(0115) 933 3968', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('(0115) 933 3968');
+      expect(validation.error).to.equal(undefined);
     });
 
     it('should work with hyphens', () => {
-      const validation = customJoi.validate('0115-933-3968', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('0115-933-3968');
+      expect(validation.error).to.equal(undefined);
     });
 
     it('should not work with letters', () => {
-      const validation = customJoi.validate('0044751234567a', schema);
-      expect(validation.error).not.to.equal(null);
+      const validation = schema.validate('0044751234567a');
+      expect(validation.error).not.to.equal(undefined);
     });
 
     it('should not work with malformed numbers', () => {
-      const validation = customJoi.validate('12345679890', schema);
-      expect(validation.error).not.to.equal(null);
+      const validation = schema.validate('12345679890');
+      expect(validation.error).not.to.equal(undefined);
     });
   });
   describe('mobile phones mode', () => {
@@ -50,14 +50,14 @@ describe('ValidatePhone', () => {
     });
 
     it('should work for mobile numbers ', () => {
-      const validation = customJoi.validate('07512345678', schema);
-      expect(validation.error).to.equal(null);
+      const validation = schema.validate('07512345678');
+      expect(validation.error).to.equal(undefined);
     });
 
 
     it('should not work with landlines', () => {
-      const validation = customJoi.validate('0115 933 3968', schema);
-      expect(validation.error).not.to.equal(null);
+      const validation = schema.validate('0115 933 3968');
+      expect(validation.error).not.to.equal(undefined);
     });
   });
 });

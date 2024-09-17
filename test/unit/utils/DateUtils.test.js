@@ -1,10 +1,10 @@
 /* eslint-disable, no-magic-numbers */
 
-const { expect } = require('test/util/chai');
-const DateUtils = require('utils/DateUtils');
+const { expect } = require('../../../test/util/chai');
+const DateUtils = require('../../../utils/DateUtils');
 const moment = require('moment');
-const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
-const { long, short } = require('utils/months');
+const mrnDateImage = require('../../../steps/compliance/mrn-date/mrnDateOnImage');
+const { long, short } = require('../../../utils/months');
 
 describe('MRN date that is <= a calendar month', () => {
   it('should return true when the MRN date is one day short of a month', () => {

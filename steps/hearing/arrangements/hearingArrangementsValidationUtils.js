@@ -1,4 +1,4 @@
-/* eslint-disable no-unneeded-ternary, no-confusing-arrow */
+/* eslint-disable no-unneeded-ternary, no-confusing-arrow, no-undefined */
 
 const { whitelist } = require('utils/regex');
 const languages = require('steps/hearing/arrangements/languages');
@@ -19,20 +19,22 @@ const optionSelected = options => {
 
 const languageInList = value => value.requested ? languages.includes(value.language) : true;
 const signLanguageInList = value => value.requested ? signLanguages.includes(value.language) : true;
-const emptyLanguageFieldValidation = value => value.requested && !value.language ? false : true;
+const emptyLanguageFieldValidation = value => !(value.requested && !value.language);
 
 const validCharacters = value => {
   let validated = null;
 
   if (value.requested) {
-    const validString = Joi.validate(value.language, Joi.string().regex(whitelist));
-    validated = validString.error === null;
+    const schema = Joi.string().pattern(whitelist);
+    const { error } = schema.validate(value.language);
+    validated = error === undefined;
   } else {
     validated = true;
   }
 
   return validated;
 };
+
 
 module.exports = {
   optionSelected,

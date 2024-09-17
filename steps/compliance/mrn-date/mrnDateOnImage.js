@@ -1,6 +1,6 @@
 const mrnDate = {
   day: '27',
-  month: '03',
+  month: '3',
   year: '2016'
 };
 
