@@ -1,4 +1,3 @@
-/* eslint-disable no-process-env */
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const applicationInsights = require('applicationinsights');
@@ -13,7 +12,9 @@ describe('logger.js', () => {
   let consoleSpy = null;
   let nativeConsoleSpy = null;
   let sandBox = null;
+
   beforeEach(() => {
+    logger.setIkey('test-key');
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
