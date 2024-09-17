@@ -251,13 +251,13 @@ class Controller {
     page.postCodeContent = content;
 
     await this.setPageState(page);
-    if (req.body.submitType === 'lookup') {
+    if (req.body && req.body.submitType === 'lookup') {
       this.resetSuggestions();
       page.res.redirect(`${page.path}?validate=1`);
-    } else if (req.body.submitType === 'addressSelection') {
+    } else if (req.body && req.body.submitType === 'addressSelection') {
       this.handleAddressSelection(page);
       page.res.redirect(`${page.path}?validate=1`);
-    } else if (req.body.submitType === 'manual') {
+    } else if (req.body && req.body.submitType === 'manual') {
       this.manualFields();
       page.res.redirect(`${page.path}?type=manual`);
     } else if (req.method === 'GET' && req.query.validate) {
