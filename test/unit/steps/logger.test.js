@@ -4,9 +4,6 @@ const sinon = require('sinon');
 const applicationInsights = require('applicationinsights');
 const logger = require('logger');
 const chalk = require('chalk');
-const config = require('config');
-
-const iKey = config.get('appInsights.instrumentationKey').toString() || process.env.APPINSIGHTS_INSTRUMENTATIONKEY || 'test-key';
 
 describe('logger.js', () => {
   let applicationInsightsStartSpy = null;
@@ -20,7 +17,8 @@ describe('logger.js', () => {
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
-    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start');
+    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start')
+      .returns('Stops this from actually starting function');
     applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,
       'trackException');
     applicationInsightsTraceSpy = sandBox.stub(applicationInsights.defaultClient, 'trackTrace');
@@ -39,7 +37,7 @@ describe('logger.js', () => {
   });
 
   it('startAppInsights should be called', () => {
-    logger.setIkey(iKey);
+    logger.setIkey('test-key');
     logger.startAppInsights();
     expect(applicationInsightsStartSpy).to.have.been.calledOnce;
   });
