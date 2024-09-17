@@ -13,12 +13,21 @@ def secrets = [
                 secret('AppInsightsInstrumentationKey', 'APPINSIGHTS_INSTRUMENTATIONKEY')
         ]
 ]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [ $class: 'AzureKeyVaultSecret',
+      secretType: 'Secret',
+      name: secretName,
+      version: '',
+      envVariable: envVar
+    ]
+}
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
-
+  loadVaultSecrets(secrets)
   afterSuccess('build') {
     yarnBuilder.yarn('build')
   }
