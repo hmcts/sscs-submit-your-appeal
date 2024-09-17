@@ -1,8 +1,12 @@
+/* eslint-disable no-process-env */
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const applicationInsights = require('applicationinsights');
 const logger = require('logger');
 const chalk = require('chalk');
+const config = require('config');
+
+const iKey = config.get('appInsights.instrumentationKey').toString() || process.env.APPINSIGHTS_INSTRUMENTATIONKEY;
 
 describe('logger.js', () => {
   let applicationInsightsStartSpy = null;
@@ -12,9 +16,8 @@ describe('logger.js', () => {
   let consoleSpy = null;
   let nativeConsoleSpy = null;
   let sandBox = null;
-
   beforeEach(() => {
-    logger.setIkey('test-key');
+    logger.setIkey(iKey);
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
@@ -37,7 +40,7 @@ describe('logger.js', () => {
   });
 
   it('startAppInsights should be called', () => {
-    logger.setIkey('test-key');
+    logger.setIkey(iKey);
     logger.startAppInsights();
     expect(applicationInsightsStartSpy).to.have.been.calledOnce;
   });

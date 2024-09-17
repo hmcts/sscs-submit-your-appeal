@@ -8,7 +8,11 @@ properties(
 
 def product = "sscs"
 def component = "tribunals-frontend"
-
+def secrets = [
+        'sscs-${env}': [
+                secret('AppInsightsInstrumentationKey', 'APPINSIGHTS_INSTRUMENTATIONKEY')
+        ]
+]
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
