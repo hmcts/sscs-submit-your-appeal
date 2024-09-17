@@ -5,7 +5,8 @@ const applicationInsights = require('applicationinsights');
 const logger = require('logger');
 const chalk = require('chalk');
 const config = require('config');
-const iKey = config.get('appInsights.instrumentationKey').toString() || process.env.APPINSIGHTS_INSTRUMENTATIONKEY;
+
+const iKey = config.get('appInsights.instrumentationKey').toString() || process.env.APPINSIGHTS_INSTRUMENTATIONKEY || 'test-key';
 
 describe('logger.js', () => {
   let applicationInsightsStartSpy = null;
