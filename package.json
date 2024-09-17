@@ -27,7 +27,7 @@
     "test:e2e-pages": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple pages -c test/e2e/ --steps --reporter mocha-multi",
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
     "test:functional:batches": "for i in `seq -w 1 12`; do BATCH=$i yarn test:functional:batch; [ $? -ne 0 ] && exit $?; done; exit 0;",
-    "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test DEBUG='mocha*' nyc mocha 'test/unit/**/*.test.js'",
+    "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
     "test:crossbrowser": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c test/e2e/saucelabs.conf.js --grep @crossbrowser --steps --reporter mocha-multi --verbose",
     "test:a11y": "cross-env NODE_PATH=. NODE_ENV=a11y LOG_LEVEL=ERROR mocha --exit test/accessibility/a11y.js --exit --timeout 60000 --reporter mochawesome --reporter-options reportDir=functional-output,reportFilename=a11y,inlineAssets=true,reportTitle=submit-your-appeal",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",

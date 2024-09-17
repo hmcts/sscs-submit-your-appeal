@@ -17,8 +17,6 @@ describe('logger.js', () => {
   let nativeConsoleSpy = null;
   let sandBox = null;
   beforeEach(() => {
-    console.log(iKey);
-    logger.setIkey(iKey);
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
