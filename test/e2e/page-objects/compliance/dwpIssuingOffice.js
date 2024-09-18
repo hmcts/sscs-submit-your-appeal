@@ -1,38 +1,37 @@
-function enterDWPIssuingOfficeAndContinue(commonContent, id) {
-  const I = this;
+function enterDWPIssuingOfficeAndContinue(page, commonContent, id) {
+  
 
-  I.wait(3);
-  I.selectOption({ id: 'pipNumber' }, id);
-  I.click(commonContent.continue);
+  await page.waitForTimeout(3);
+  selectOption(page, { id: 'pipNumber' }, id);
+  await page.click(commonContent.continue);
 }
 
-function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
-  const I = this;
+function enterDWPIssuingOfficeAndContinueAfterSignIn(page, commonContent, id) {
+  
 
-  I.wait(3);
-  I.selectOption({ id: 'pipNumber' }, id);
-  I.click(commonContent.saveAndContinue);
+  await page.waitForTimeout(3);
+  selectOption(page, { id: 'pipNumber' }, id);
+  await page.click(commonContent.saveAndContinue);
 }
 
+function enterDWPIssuingOffice(page, commonContent, id) {
+  
 
-function enterDWPIssuingOffice(commonContent, id) {
-  const I = this;
-
-  I.wait(3);
-  I.selectOption({ id: 'dwpIssuingOffice' }, id);
-  I.click(commonContent.continue);
+  await page.waitForTimeout(3);
+  selectOption(page, { id: 'dwpIssuingOffice' }, id);
+  await page.click(commonContent.continue);
 }
 
 function seeDWPIssuingOfficeError(url, error) {
-  const I = this;
+  
 
-  I.seeInCurrentUrl(url);
-  I.see(error);
+  page.seeInCurrentUrl(url);
+  expect(page.getByText(error)).toBeVisible();
 }
 
 module.exports = {
   enterDWPIssuingOfficeAndContinue,
   enterDWPIssuingOfficeAndContinueAfterSignIn,
   enterDWPIssuingOffice,
-  seeDWPIssuingOfficeError
+  seeDWPIssuingOfficeError,
 };

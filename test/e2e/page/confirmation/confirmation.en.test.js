@@ -4,22 +4,23 @@ const confirmationContent = require(`steps/confirmation/content.${language}`);
 const paths = require('paths');
 const urls = require('urls');
 
-Feature(`${language.toUpperCase()} - Confirmation @batch-08`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Confirmation @batch-08`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.confirmation);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.confirmation);
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test(`${language.toUpperCase()} - When I go to the page I see the header`, ({ page }) => {
+    expect(page.getByText(confirmationContent.title)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to the page I see the header`, ({ I }) => {
-  I.see(confirmationContent.title);
-});
-
-Scenario(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(urls.surveyLink);
+  test(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, ({ page }) => {
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(urls.surveyLink);
+  });
 });

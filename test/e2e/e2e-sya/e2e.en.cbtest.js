@@ -1,29 +1,30 @@
 /* eslint-disable no-process-env */
 
-
 const content = require('commonContent');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { enterDetailsFromStartToNINO } = require('../page-objects/cya/checkYourAppeal');
+const { endTheSession } = require('../page-objects/session/endSession');
 
-Feature('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser');
+test.describe('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser', () => {
+  test('English - PIP E2E SYA Journey', async({ page }) => {
+    const commonContent = content.en;
+    const language = 'en';
 
-Scenario('English - PIP E2E SYA Journey', ({ I }) => {
-  const commonContent = content.en;
-  const language = 'en';
+    await createTheSession(page, language);
 
-  I.createTheSession(language);
+    await page.waitForTimeout(1);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await endTheSession(page);
+  });
 
-  I.wait(1);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.endTheSession();
-}).retry(8);
+  test('Welsh - PIP E2E SYA Journey', async({ page }) => {
+    const commonContent = content.cy;
+    const language = 'cy';
 
+    await createTheSession(page, language);
 
-Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
-  const commonContent = content.cy;
-  const language = 'cy';
-
-  I.createTheSession(language);
-
-  I.wait(1);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.endTheSession();
-}).retry(8);
+    await page.waitForTimeout(1);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await endTheSession(page);
+  });
+});

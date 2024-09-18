@@ -1,8 +1,6 @@
-function continueFromIndependance(commonContent) {
-  const I = this;
-
-  I.wait(3);
-  I.click(commonContent.continue);
+async function continueFromIndependance(page, commonContent) {
+  await page.waitForTimeout(3);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { continueFromIndependance };

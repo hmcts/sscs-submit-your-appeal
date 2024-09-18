@@ -1,8 +1,8 @@
 function enterReasonsForBeingLateAndContinue(commonContent, reason) {
-  const I = this;
+  
 
-  I.fillField('#reasonForBeingLate', reason);
-  I.click(commonContent.continue);
+  await page.fill('#reasonForBeingLate', reason);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { enterReasonsForBeingLateAndContinue };

@@ -2800,6 +2800,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@playwright/test@npm:^1.47.1":
+  version: 1.47.1
+  resolution: "@playwright/test@npm:1.47.1"
+  dependencies:
+    playwright: "npm:1.47.1"
+  bin:
+    playwright: cli.js
+  checksum: 10/d26656451cbd4cbb865c6acb25958a25171b3714907e1595301f21655b1be8f521dbd2197eecfa5b34325626c94b8ab535b8571478880633679e63ebfb6775b9
+  languageName: node
+  linkType: hard
+
 "@polka/url@npm:^0.5.0":
   version: 0.5.0
   resolution: "@polka/url@npm:0.5.0"
@@ -3027,6 +3038,15 @@ __metadata:
   version: 16.4.12
   resolution: "@types/node@npm:16.4.12"
   checksum: 10/a461097bba63dfd24b7c1e30b089d1cb9c3eac0a4c182265d4cf6ff4ba3cfadc4a388a5baa47d8eaa57996be977eabd5d7d8f742ad571dfb842d983d653d0757
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.19.50":
+  version: 18.19.50
+  resolution: "@types/node@npm:18.19.50"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10/d238bb877953fcecda830df140f8722b9ba9644ae63e810fe6fa40cab8285c42f9b34c9529f2144a6f8cfeee5b0ff7fefd9425261e41830157d6710d501b829d
   languageName: node
   linkType: hard
 
@@ -12796,6 +12816,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"playwright-core@npm:1.47.1":
+  version: 1.47.1
+  resolution: "playwright-core@npm:1.47.1"
+  bin:
+    playwright-core: cli.js
+  checksum: 10/b5ee08e1a934237fca0f0f52a677e5d49e45578e14b48a886927428bdf453f355a120548ae2f3f97e28a9d5e23a213120f6d8f10e18ee3f9112b10716888dac4
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.47.1":
+  version: 1.47.1
+  resolution: "playwright@npm:1.47.1"
+  dependencies:
+    fsevents: "npm:2.3.2"
+    playwright-core: "npm:1.47.1"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: 10/f4340f28485bd83a856a365a03af2013b3203c8134a075d05f1a834665e1204b98141c335d5c5c1600720c9e07db702db3dbff5ef138fc1c31d5feec3ac0057f
+  languageName: node
+  linkType: hard
+
 "playwright@npm:^1.46.1":
   version: 1.46.1
   resolution: "playwright@npm:1.46.1"
@@ -15388,6 +15432,8 @@ __metadata:
     "@hmcts/one-per-page": "npm:^5.4.0"
     "@hmcts/properties-volume": "npm:^1.1.0"
     "@hmcts/uk-bank-holidays": "npm:^1.0.2"
+    "@playwright/test": "npm:^1.47.1"
+    "@types/node": "npm:^18.19.50"
     accessible-autocomplete: "npm:^2.0.4"
     applicationinsights: "npm:^2.7.3"
     babel-loader: "npm:^9.1.3"

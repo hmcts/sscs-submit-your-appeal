@@ -1,8 +1,8 @@
-function selectDoYouWantToReceiveTextMessageReminders(commonContent, option) {
-  const I = this;
+function selectDoYouWantToReceiveTextMessageReminders(page, commonContent, option) {
+  
 
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await page.locator(option).check()
+  await page.click(commonContent.continue);
 }
 
 module.exports = { selectDoYouWantToReceiveTextMessageReminders };

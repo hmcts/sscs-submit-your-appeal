@@ -10,7 +10,8 @@ const benefitSearch = testDataEn.benefitTypes[8].codeSearchWelsh; // Needed so t
 const hasDwpIssuingOffice = testDataEn.benefitTypes[8].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[8].office;
 
-Feature(`${language.toUpperCase()} - Maternity Allowance E2E SYA - Full Journey`);
-Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, ({ I }) => {
-  e2eBenefit.e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOffice);
-}).retry(8);
+test.describe(`${language.toUpperCase()} - Maternity Allowance E2E SYA - Full Journey`, () => {
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitSearch, office, signer, language, hasDwpIssuingOffice);
+  });
+});

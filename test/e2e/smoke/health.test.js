@@ -1,11 +1,10 @@
 const paths = require('paths');
 
-Feature('Health');
+const { test } = require('@playwright/test');
 
-Scenario('The API is up, healthy and responding to requests to /health', ({ I }) => {
-  I.amOnPage(paths.health);
-  I.retry({
-    minTimeout: 15000,
-    maxTimeout: 15000
-  }).see('"status":"UP"');
+test.describe('Health', () => {
+  test('The API is up, healthy and responding to requests to /health', async({ page }) => {
+    await page.goto(paths.health);
+    await expect(page.locator('"status":"UP"')).toBeVisible();
+  });
 });

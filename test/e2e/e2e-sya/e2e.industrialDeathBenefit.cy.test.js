@@ -9,7 +9,8 @@ const benefitCode = testDataEn.benefitTypes[13].codeWelsh;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[13].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[13].office;
 
-Feature(`${language.toUpperCase()} - Industrial Death Benefit E2E SYA - Full Journey`);
-Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullfunctional @e2e`, ({ I }) => {
-  e2eBenefit.e2eBenefit(I, benefitCode, office, signer, language, hasDwpIssuingOffice);
-}).retry(1);
+test.describe(`${language.toUpperCase()} - Industrial Death Benefit E2E SYA - Full Journey`, () => {
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullfunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitCode, office, signer, language, hasDwpIssuingOffice);
+  });
+});

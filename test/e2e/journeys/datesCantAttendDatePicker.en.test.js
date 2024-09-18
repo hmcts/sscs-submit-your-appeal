@@ -10,55 +10,81 @@ const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors[langu
 const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[language].change}`;
 
 /* eslint-disable max-len */
-Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01`);
+const { test, expect } = require('@playwright/test');
+const {createTheSession} = require("../page-objects/session/createSession");
+const {endTheSession} = require("../page-objects/session/endSession");
+const {selectDates, deselectDates} = require("../page-objects/hearing/datesCantAttend");
+const {
+  enterDetailsFromAttendingTheHearingDatePickerToEnd,
+  enterDetailsFromNoRepresentativeToUploadingEvidence,
+  enterDetailsFromStartToNINO,
+  confirmDetailsArePresent,
+  enterDetailsFromAttendingTheHearingDatePickerToEnd,
+  enterDetailsFromNoRepresentativeToUploadingEvidence,
+  enterDetailsFromStartToNINO
+} = require("../page-objects/cya/checkYourAppeal");
+const {
+  selectDoYouWantToReceiveTextMessageReminders,
+  selectDoYouWantToReceiveTextMessageReminders
+} = require("../page-objects/sms-notify/textReminders");
+const {
+  enterAppellantContactDetailsAndContinue,
+  enterAppellantContactDetailsAndContinue
+} = require("../page-objects/identity/appellantDetails");
+test.describe(
+  `${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker @batch-01`,
+  () => {
+    Before(async ({ page }) => {
+      await createTheSession(page, language);
+    });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+    After(async ({ page }) => {
+      await endTheSession(page);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async ({ page }) => {
+      moment().locale(language);
 
-Scenario(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async({ I }) => {
-  moment().locale(language);
+      const randomWeekDay = DateUtils.getDateInMilliseconds(
+        DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks')),
+      );
+      await enterDetailsFromStartToNINO(page, commonContent, language);
+      await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+      await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
+      await enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, randomWeekDay);
+      await confirmDetailsArePresent(page, language);
+      await expect(page.locator('DD MMMM YYYY'), datesYouCantAttendHearingAnswer)).toHaveText(DateUtils.formatDate(moment(randomWeekDay));
+    });
 
-  const randomWeekDay = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(9, 'weeks'))
-  );
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
-  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
-  I.confirmDetailsArePresent(language);
-  I.see(DateUtils.formatDate(moment(randomWeekDay), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(1);
+    test(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async ({
+      page,
+    }) => {
+      moment().locale(language);
 
-Scenario(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async({ I }) => {
-  moment().locale(language);
+      const randomWeekDayIn8Weeks = DateUtils.getDateInMilliseconds(
+        DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(8, 'weeks')),
+      );
+      const randomWeekDayIn10Weeks = DateUtils.getDateInMilliseconds(
+        DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(10, 'weeks')),
+      );
 
-  const randomWeekDayIn8Weeks = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(8, 'weeks'))
-  );
-  const randomWeekDayIn10Weeks = DateUtils.getDateInMilliseconds(
-    DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(10, 'weeks'))
-  );
+      await enterDetailsFromStartToNINO(page, commonContent, language);
+      await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+      await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
+      await enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, randomWeekDayIn8Weeks);
+      await expect(page.locator('DD MMMM YYYY'), datesYouCantAttendHearingAnswer)).toHaveText(DateUtils.formatDate(moment(randomWeekDayIn8Weeks));
 
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
-  await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDayIn8Weeks);
-  I.see(DateUtils.formatDate(moment(randomWeekDayIn8Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-
-  // Now edit the single date from 5 to 6 weeks.
-  I.click(commonContent.change, datesYouCantAttendHearingChange);
-  I.seeCurrentUrlEquals(paths.hearing.hearingAvailability);
-  I.click(commonContent.continue);
-  await I.deselectDates(language, [randomWeekDayIn8Weeks]);
-  I.wait(1);
-  await I.selectDates(language, [randomWeekDayIn10Weeks]);
-  I.click(commonContent.continue);
-  I.see(DateUtils.formatDate(moment(randomWeekDayIn10Weeks), 'DD MMMM YYYY'), datesYouCantAttendHearingAnswer);
-}).retry(1);
+      // Now edit the single date from 5 to 6 weeks.
+      await page.click(datesYouCantAttendHearingChange);
+      await page.waitForURL(`**\/${paths.hearing.hearingAvailability}`);
+      await page.click(commonContent.continue);
+      await deselectDates(page, language, [randomWeekDayIn8Weeks]);
+      await page.waitForTimeout(1);
+      await selectDates(page, language, [randomWeekDayIn10Weeks]);
+      await page.click(commonContent.continue);
+      await expect(page.locator('DD MMMM YYYY'), datesYouCantAttendHearingAnswer)).toHaveText(DateUtils.formatDate(moment(randomWeekDayIn10Weeks));
+    });
+  },
+);

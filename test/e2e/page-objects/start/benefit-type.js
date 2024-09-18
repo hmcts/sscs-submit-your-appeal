@@ -1,25 +1,22 @@
 const benefitContentEn = require('steps/start/benefit-type/content.en');
 const benefitContentCy = require('steps/start/benefit-type/content.cy');
 
-
-function enterBenefitTypeAndContinue(language, commonContent, type) {
-  const I = this;
+async function enterBenefitTypeAndContinue(page, language, commonContent, type) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
 
-  I.waitForText(benefitContent.title, 5);
-  I.fillField({ id: 'benefitType' }, type);
-  I.click('#benefitType__option--0');
-  I.click(commonContent.continue);
+  await await expect(page.getByText(benefitContent.title, 5)).toBeVisible({ timeout: 45000 });
+  await await page.fill({ id: 'benefitType' }, type);
+  await page.click('#benefitType__option--0');
+  await page.click(commonContent.continue);
 }
 
-function enterBenefitTypeAfterSignIn(language, commonContent, type) {
-  const I = this;
+async function enterBenefitTypeAfterSignIn(page, language, commonContent, type) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
 
-  I.waitForText(benefitContent.title, 5);
-  I.fillField({ id: 'benefitType' }, type);
-  I.click('#benefitType__option--0');
-  I.click(commonContent.saveAndContinue);
+  await await expect(page.getByText(benefitContent.title, 5)).toBeVisible({ timeout: 45000 });
+  await await page.fill({ id: 'benefitType' }, type);
+  await page.click('#benefitType__option--0');
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = { enterBenefitTypeAndContinue, enterBenefitTypeAfterSignIn };

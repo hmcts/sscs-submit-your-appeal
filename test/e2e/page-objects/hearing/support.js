@@ -1,13 +1,12 @@
 const hearingSupportContentEn = require('steps/hearing/support/content.en');
 const hearingSupportContentCy = require('steps/hearing/support/content.cy');
 
-function selectDoYouNeedSupportAndContinue(language, commonContent, option) {
-  const I = this;
+async function selectDoYouNeedSupportAndContinue(page, language, commonContent, option) {
   const hearingSupportContent = language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
 
-  I.waitForText(hearingSupportContent.title);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await expect(page.getByText(hearingSupportContent.title)).toBeVisible({ timeout: 45000 });
+  await page.locator(option).check();
+  await page.click(commonContent.continue);
 }
 
 module.exports = { selectDoYouNeedSupportAndContinue };

@@ -3,29 +3,29 @@ const config = require('config');
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
 function enterRequiredRepresentativeDetailsManual(I) {
-  I.fillField('input[name="name.title"]', 'Mr');
-  I.fillField('input[name="name.first"]', 'Harry');
-  I.fillField('input[name="name.last"]', 'Potter');
+  await page.fill('input[name="name.title"]', 'Mr');
+  await page.fill('input[name="name.first"]', 'Harry');
+  await page.fill('input[name="name.last"]', 'Potter');
 
   if (postcodeLookupEnabled) {
-    I.click({ id: 'manualLink' });
+    await page.click({ id: 'manualLink' });
   }
 
-  I.fillField('#addressLine1', '4 Privet Drive');
-  I.fillField('#addressLine2', 'Off Wizards close');
-  I.fillField('#county', 'Wizard county');
-  I.fillField('#townCity', 'Little Whinging');
-  I.fillField('#postCode', 'PA80 5UU');
+  await page.fill('#addressLine1', '4 Privet Drive');
+  await page.fill('#addressLine2', 'Off Wizards close');
+  await page.fill('#county', 'Wizard county');
+  await page.fill('#townCity', 'Little Whinging');
+  await page.fill('#postCode', 'PA80 5UU');
 }
 
 function enterRequiredRepresentativeDetails(I) {
   if (postcodeLookupEnabled) {
-    I.fillField('input[name="name.title"]', 'Mr');
-    I.fillField('input[name="name.first"]', 'Harry');
-    I.fillField('input[name="name.last"]', 'Potter');
-    I.fillField({ id: 'postcodeLookup' }, 'PA80 5UU');
-    I.click('Find address');
-    I.selectOption({ css: 'form select[name=postcodeAddress]' }, '130075116');
+    await page.fill('input[name="name.title"]', 'Mr');
+    await page.fill('input[name="name.first"]', 'Harry');
+    await page.fill('input[name="name.last"]', 'Potter');
+    await page.fill({ id: 'postcodeLookup' }, 'PA80 5UU');
+    await page.click('Find address');
+    selectOption(page, { css: 'form select[name=postcodeAddress]' }, '130075116');
   } else {
     enterRequiredRepresentativeDetailsManual(I);
   }

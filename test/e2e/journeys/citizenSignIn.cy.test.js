@@ -5,32 +5,45 @@ const moment = require('moment');
 const testData = require(`test/e2e/data.${language}`);
 const testUser = require('../../util/IdamUser');
 
-Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { enterDetailsFromStartToDraftAppeals, checkYourAppealToConfirmationPage } = require('../page-objects/cya/checkYourAppeal');
+const { enterAppellantContactDetailsWithMobileAndContinueAfterSignIn } = require('../page-objects/identity/appellantDetails');
+const { checkOptionAndContinueAfterSignIn } = require('../page-objects/controls/option');
+const { addReasonForAppealingUsingTheOnePageFormAfterSignIn } = require('../page-objects/reasons-for-appealing/reasonForAppealingOnePageForm');
+const { enterAnythingElseAfterSignIn } = require('../page-objects/reasons-for-appealing/reasonsForAppealing');
+const { selectAreYouProvidingEvidenceAfterSignIn } = require('../page-objects/upload-evidence/evidenceProvide');
+const { enterDoYouWantToAttendTheHearingAfterSignIn } = require('../page-objects/hearing/theHearing');
+const { continueFromnotAttendingHearingAfterSignIn } = require('../page-objects/hearing/notAttendingHearing');
+const { appealSubmitConfirmation } = require('../page-objects/cya/appealSubmitConfirmation');
 
-let userEmail;
+test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
+  let userEmail;
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  userEmail = testUser.createUser();
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+    userEmail = testUser.createUser();
+  });
+
+  After(async({ page }) => {
+    await endTheSession(page);
+    testUser.deleteUser(userEmail);
+  });
+
+  test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @flaky-test`, async({ page }) => {
+    await moment().locale(language);
+    await enterDetailsFromStartToDraftAppeals(page, page, commonContent, language, userEmail);
+    await await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222');
+    await await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-no');
+    await enterDetailsFromStartToDraftAppeals(page, page, commonContent, language, userEmail);
+    await await addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.reasons[0]);
+    await await enterAnythingElseAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
+    await await selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, '#evidenceProvide-no');
+    await await enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, '#attendHearing-no');
+    await await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
+    await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
+    await appealSubmitConfirmation(page, language);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-  testUser.deleteUser(userEmail);
-});
-
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @flaky-test`, async({ I }) => {
-  await moment().locale(language);
-  await I.enterDetailsFromStartToDraftAppeals(commonContent, language, userEmail);
-  await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
-  await I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
-  await I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
-  await I.enterDetailsFromStartToDraftAppeals(commonContent, language, userEmail);
-  await I.addReasonForAppealingUsingTheOnePageFormAfterSignIn(language, commonContent, testData.reasonsForAppealing.reasons[0]);
-  await I.enterAnythingElseAfterSignIn(language, commonContent, testData.reasonsForAppealing.otherReasons);
-  await I.selectAreYouProvidingEvidenceAfterSignIn(language, commonContent, '#evidenceProvide-no');
-  await I.enterDoYouWantToAttendTheHearingAfterSignIn(language, commonContent, '#attendHearing-no');
-  await I.continueFromnotAttendingHearingAfterSignIn(commonContent);
-  await I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-  await I.appealSubmitConfirmation(language);
-}).retry(10);

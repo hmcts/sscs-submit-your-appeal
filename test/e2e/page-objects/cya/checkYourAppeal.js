@@ -16,219 +16,283 @@ const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
 const testDataEn = require('test/e2e/data.en');
 const testDataCy = require('test/e2e/data.cy');
+const {enterBenefitTypeAndContinue, enterBenefitTypeAfterSignIn} = require("../start/benefit-type");
+const {chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn} = require("../start/language-preference");
+const {enterPostcodeAndContinue, enterPostcodeAndContinueAfterSignIn} = require("../start/postcode-checker");
+const {continueFromIndependance} = require("../start/independence");
+const {selectIfYouWantToCreateAccount} = require("../idam/createAccount");
+const {selectHaveYouGotAMRNAndContinue, selectHaveYouGotAMRNAndContinueAfterSignIn} = require("../compliance/haveAMRN");
+const {enterAnMRNDateAndContinue, enterAnMRNDateAndContinueAfterSignIn} = require("../compliance/mrnDate");
+const {enterDWPIssuingOfficeAndContinue, enterDWPIssuingOffice, enterDWPIssuingOfficeAndContinueAfterSignIn} = require("../compliance/dwpIssuingOffice");
+const {selectAreYouAnAppointeeAndContinue, selectAreYouAnAppointeeAndContinueAfterSignIn} = require("../identity/appointee");
+const {enterAppellantNameAndContinue, enterAppellantDOBAndContinue, enterAppellantNINOAndContinue,
+  enterAppellantNameAndContinueAfterSignIn, enterAppellantDOBAndContinueAfterSignIn,
+  enterAppellantNINOAndContinueAfterSignIn
+} = require("../identity/appellantDetails");
+const {signIn, signInVerifylanguage, navigateToSignInLink} = require("../sign-in/sign-in-with-valid-creds");
+const {createNewApplication} = require("../draft-appeals/create-new-application");
+const {signOut} = require("../sign-out/sign-out");
+const {createTheSession} = require("../session/createSession");
+const {verifyDraftAppealsAndEditACase, verifyDraftAppealsAndArchiveACase} = require("../draft-appeals/draft-appeals-page");
+const {selectDoYouHaveARepresentativeAndContinue} = require("../representative/representative");
+const {addReasonForAppealingUsingTheOnePageFormAndContinue} = require("../reasons-for-appealing/reasonForAppealingOnePageForm");
+const {enterAnythingElseAndContinue} = require("../reasons-for-appealing/reasonsForAppealing");
+const {readSendingEvidenceAndContinue} = require("../reasons-for-appealing/sendingEvidence");
+const {selectAreYouProvidingEvidenceAndContinue} = require("../upload-evidence/evidenceProvide");
+const {uploadAPieceOfEvidence} = require("../upload-evidence/uploadEvidencePage");
+const {enterDescription} = require("../upload-evidence/evidenceDescription");
+const {enterDoYouWantToAttendTheHearing, readYouHaveChosenNotToAttendTheHearingNoticeAndContinue} = require("../hearing/theHearing");
+const {selectTelephoneHearingOptionsAndContinue} = require("../hearing/options");
+const {selectDoYouNeedSupportAndContinue} = require("../hearing/support");
+const {checkAllArrangementsAndContinue} = require("../hearing/arrangements");
+const {selectHearingAvailabilityAndContinue} = require("../hearing/availability");
+const {enterDateCantAttendAndContinue, selectDates} = require("../hearing/datesCantAttend");
+const {checkYourAppealToConfirmation} = require("./checkYourAnswers");
 
 const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 const appellant = testDataEn.appellant;
 // const oneMonthAgo = DateUtils.oneMonthAgo();
 
-function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
-  const I = this;
-
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  //  if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
+async function enterDetailsFromStartToNINO(page, commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  //  if (actUrl === aatUrl) await chooseLanguagePreference(page, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
   if (allowSaveAndReturnEnabled) {
-    I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-no');
+    await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-no');
   }
-  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo(language));
-  I.enterDWPIssuingOfficeAndContinue(commonContent, testDataEn.mrn.dwpIssuingOffice);
-  I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
+  await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveAMRN-yes');
+  await enterAnMRNDateAndContinue(page,  commonContent, DateUtils.oneMonthAgo(language));
+  enterDWPIssuingOfficeAndContinue(page, commonContent, testDataEn.mrn.dwpIssuingOffice);
+  selectAreYouAnAppointeeAndContinue(page, language, commonContent, '#isAppointee-no');
+  enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  enterAppellantDOBAndContinue(
+    page,
+    language,
+    commonContent,
+    appellant.dob.day,
+    appellant.dob.month,
+    appellant.dob.year,
+  );
+  enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
 }
 
-function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
-  const I = this;
-
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  // if (actUrl === aatUrl) I.chooseLanguagePreference(commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
+async function enterCaseDetailsFromStartToNINO(page, commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  // if (actUrl === aatUrl) await chooseLanguagePreference(page, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
   if (allowSaveAndReturnEnabled) {
-    I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-no');
+    await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-no');
   }
-  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.getRandomDateInLast30Days(language));
+  await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveAMRN-yes');
+  await enterAnMRNDateAndContinue(page,  commonContent, DateUtils.getRandomDateInLast30Days(language));
   if (hasDwpIssuingOffice) {
-    I.enterDWPIssuingOffice(commonContent, office);
+    enterDWPIssuingOffice(page, commonContent, office);
   }
-  I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
+  selectAreYouAnAppointeeAndContinue(page, language, commonContent, '#isAppointee-no');
+  enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  enterAppellantDOBAndContinue(
+    page,
+    language,
+    commonContent,
+    appellant.dob.day,
+    appellant.dob.month,
+    appellant.dob.year,
+  );
+  enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
 }
 
-
-function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
-  const I = this;
-
+async function enterDetailsFromStartToDraftAppeals(
+  page,
+  commonContent,
+  language,
+  newUserEmail,
+  benefitTypeCode = testDataEn.benefitType.code,
+) {
   /* Create new application */
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-yes');
-  I.signIn(newUserEmail, testDataEn.signIn.password, language);
-  I.createNewApplication(language);
-  I.enterBenefitTypeAfterSignIn(language, commonContent, benefitTypeCode);
-  I.signOut(language);
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
+  await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-yes');
+  signIn(page, newUserEmail, testDataEn.signIn.password, language);
+  createNewApplication(page, language);
+  await enterBenefitTypeAfterSignIn(page, language, commonContent, benefitTypeCode);
+  signOut(page, language);
 
   /* Login to submit saved case */
-  I.createTheSession(language);
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-yes');
-  I.signIn(newUserEmail, testDataEn.signIn.password, language);
-  I.verifyDraftAppealsAndEditACase(language);
-  I.chooseLanguagePreferenceAfterSignIn(language, commonContent, 'no');
-  I.continueFromIndependance(commonContent);
-  I.selectHaveYouGotAMRNAndContinueAfterSignIn(language, commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
-  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
-  I.selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, '#isAppointee-no');
-  I.enterAppellantNameAndContinueAfterSignIn(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinueAfterSignIn(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, appellant.nino);
+  createTheSession(page, language);
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
+  await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-yes');
+  signIn(page, newUserEmail, testDataEn.signIn.password, language);
+  verifyDraftAppealsAndEditACase(page, language);
+  chooseLanguagePreferenceAfterSignIn(page, language, commonContent, 'no');
+  await continueFromIndependance(page, commonContent);
+  selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-yes');
+  enterAnMRNDateAndContinueAfterSignIn(page, commonContent, DateUtils.oneMonthAgo(language));
+  enterDWPIssuingOfficeAndContinueAfterSignIn(page, commonContent, testDataEn.mrn.dwpIssuingOffice);
+  selectAreYouAnAppointeeAndContinueAfterSignIn(page, language, commonContent, '#isAppointee-no');
+  enterAppellantNameAndContinueAfterSignIn(
+    page,
+    language,
+    commonContent,
+    appellant.title,
+    appellant.firstName,
+    appellant.lastName,
+  );
+  enterAppellantDOBAndContinueAfterSignIn(
+    page,
+    language,
+    commonContent,
+    appellant.dob.day,
+    appellant.dob.month,
+    appellant.dob.year,
+  );
+  enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, appellant.nino);
 }
 
-async function enterDetailsFromStartToDraft(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
-  const I = this;
-
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-yes');
-  await I.signInVerifylanguage(newUserEmail, testDataEn.signIn.password, language);
-  I.createNewApplication(language);
-  I.enterBenefitTypeAfterSignIn(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreferenceAfterSignIn(language, commonContent, 'no');
-  I.enterPostcodeAndContinueAfterSignIn(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
+async function enterDetailsFromStartToDraft(
+  page,
+  commonContent,
+  language,
+  newUserEmail,
+  benefitTypeCode = testDataEn.benefitType.code,
+) {
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
+  await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-yes');
+  await signInVerifylanguage(page, newUserEmail, testDataEn.signIn.password, language);
+  createNewApplication(page, language);
+  enterBenefitTypeAfterSignIn(page, language, commonContent, benefitTypeCode);
+  chooseLanguagePreferenceAfterSignIn(page, language, commonContent, 'no');
+  enterPostcodeAndContinueAfterSignIn(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
 }
 
-function enterDetailsForNewApplication(commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
-  const I = this;
-
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreference(language, commonContent, 'no');
-  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-yes');
-  I.signIn(userEmail, testDataEn.signIn.password, language);
-  I.createNewApplication(language);
-  I.enterBenefitTypeAfterSignIn(language, commonContent, benefitTypeCode);
-  I.chooseLanguagePreferenceAfterSignIn(language, commonContent, 'no');
-  I.enterPostcodeAndContinueAfterSignIn(language, commonContent, appellant.contactDetails.postCode);
-  I.continueFromIndependance(commonContent);
-  I.selectHaveYouGotAMRNAndContinueAfterSignIn(language, commonContent, '#haveAMRN-yes');
-  I.enterAnMRNDateAndContinueAfterSignIn(commonContent, DateUtils.oneMonthAgo(language));
-  I.enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, testDataEn.mrn.dwpIssuingOffice);
+async function enterDetailsForNewApplication(
+  page,
+  commonContent,
+  language,
+  userEmail,
+  benefitTypeCode = testDataEn.benefitType.code,
+) {
+  await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(page, language, commonContent, 'no');
+  await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
+  await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-yes');
+  signIn(page, userEmail, testDataEn.signIn.password, language);
+  createNewApplication(page, language);
+  enterBenefitTypeAfterSignIn(page, language, commonContent, benefitTypeCode);
+  chooseLanguagePreferenceAfterSignIn(page, language, commonContent, 'no');
+  enterPostcodeAndContinueAfterSignIn(page, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(page, commonContent);
+  selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-yes');
+  enterAnMRNDateAndContinueAfterSignIn(page, commonContent, DateUtils.oneMonthAgo(language));
+  enterDWPIssuingOfficeAndContinueAfterSignIn(page, commonContent, testDataEn.mrn.dwpIssuingOffice);
 }
 
-function enterDetailsToArchiveACase(commonContent, language, userEmail) {
-  const I = this;
-
-  I.amOnPage(`${baseUrl}/sign-out`);
-  I.navigateToSignInLink();
-  I.signIn(userEmail, testDataEn.signIn.password, language);
-  I.verifyDraftAppealsAndArchiveACase(language);
+async function enterDetailsToArchiveACase(page, commonContent, language, userEmail) {
+  page.goto(`${baseUrl}/sign-out`);
+  navigateToSignInLink(page);
+  signIn(page, userEmail, testDataEn.signIn.password, language);
+  verifyDraftAppealsAndArchiveACase(page, language);
 }
 
-function enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent) {
-  const I = this;
-
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(language, commonContent, testDataEn.reasonsForAppealing.reasons[0]);
-  I.enterAnythingElseAndContinue(language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
+async function enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent) {
+  selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+  addReasonForAppealingUsingTheOnePageFormAndContinue(
+    page,
+    language,
+    commonContent,
+    testDataEn.reasonsForAppealing.reasons[0],
+  );
+  enterAnythingElseAndContinue(page, language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue(commonContent);
+    readSendingEvidenceAndContinue(page, commonContent);
   }
   if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
-    I.uploadAPieceOfEvidence();
-    I.enterDescription(commonContent, 'Some description of the evidence');
+    selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+    uploadAPieceOfEvidence(page);
+    enterDescription(page, commonContent, 'Some description of the evidence');
   }
 }
 
-function enterDetailsFromNoRepresentativeToEnd(language, commonContent) {
-  const I = this;
-
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
+async function enterDetailsFromNoRepresentativeToEnd(page, language, commonContent) {
+  await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
+  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
 }
 
-async function enterDetailsFromAttendingTheHearingToEnd(commonContent, language, date) {
-  const I = this;
+async function enterDetailsFromAttendingTheHearingToEnd(page, commonContent, language, date) {
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
-  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-yes');
-  I.checkAllArrangementsAndContinue(commonContent, language);
-  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-yes');
-  await I.turnOffJsAndReloadThePage();
-  I.amOnPage(paths.hearing.datesCantAttend);
-  I.wait(2);
-  I.enterDateCantAttendAndContinue(commonContent, date, datesCantAttendContent.links.add);
-  I.wait(5);
-  I.forceClick(commonContent.continue);
+  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+  await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
+  await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-yes');
+  checkAllArrangementsAndContinue(page, commonContent, language);
+  await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-yes');
+  page.goto(paths.hearing.datesCantAttend);
+  await page.waitForTimeout(2);
+  enterDateCantAttendAndContinue(page, commonContent, date, datesCantAttendContent.links.add);
+  await page.waitForTimeout(5);
+  await page.click(commonContent.continue);
 }
 
-async function enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, date) {
-  const I = this;
+async function enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, date) {
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
-  I.selectDoYouNeedSupportAndContinue(language, supportContent.fields.arrangements.yes);
-  I.checkAllArrangementsAndContinue(commonContent, language);
-  I.wait(1);
-  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-yes');
-  I.wait(1);
-  await I.selectDates(language, [date]);
-  I.click(commonContent.continue);
+  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+  await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
+  await selectDoYouNeedSupportAndContinue(page, language, supportContent.fields.arrangements.yes);
+  checkAllArrangementsAndContinue(page, commonContent, language);
+  await page.waitForTimeout(1);
+  await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-yes');
+  await page.waitForTimeout(1);
+  await selectDates(page, language, [date]);
+  await page.click(commonContent.continue);
 }
 
-function enterDetailsFromAttendingTheHearingWithSupportToEnd(commonContent, language, options, fields = []) {
-  const I = this;
+async function enterDetailsFromAttendingTheHearingWithSupportToEnd(page, commonContent, language, options, fields = []) {
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
-  I.selectDoYouNeedSupportAndContinue(language, supportContent.fields.arrangements.yes);
-  options.forEach(option => {
-    I.click(option);
+  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+  await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
+  await selectDoYouNeedSupportAndContinue(page, language, supportContent.fields.arrangements.yes);
+  for (const option of options) {
+    await page.click(option);
+  }
+  fields.forEach((field) => {
+    await page.fill(field.id, field.content);
   });
-  fields.forEach(field => {
-    I.fillField(field.id, field.content);
-  });
-  I.click(commonContent.continue);
-  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
+  await page.click(commonContent.continue);
+  await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
 }
 
-function enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent) {
-  const I = this;
-
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addReasonForAppealingUsingTheOnePageFormAndContinue(language, commonContent, testDataEn.reasonsForAppealing.reasons[0]);
-  I.enterAnythingElseAndContinue(language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
-  // I.readSendingEvidenceAndContinue(commonContent);
-  I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-no');
+async function enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent) {
+  selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+  addReasonForAppealingUsingTheOnePageFormAndContinue(
+    page,
+    language,
+    commonContent,
+    testDataEn.reasonsForAppealing.reasons[0],
+  );
+  enterAnythingElseAndContinue(page, language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
+  // readSendingEvidenceAndContinue(page, commonContent);
+  selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-no');
 }
 
-function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
+async function confirmDetailsArePresent(page, language, hasMRN = true, mrnDate) {
   const testData = language === 'en' ? testDataEn : testDataCy;
-  const I = this;
   const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
   const oneMonthAgo = DateUtils.oneMonthAgo(language);
   let mrnDateToCheck = mrnDate;
@@ -238,76 +302,74 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   }
 
   // We are on CYA
-  I.seeCurrentUrlEquals(paths.checkYourAppeal);
+  page.seeCurrentUrlEquals(paths.checkYourAppeal);
 
   // Type of benefit
-  I.see(testData.benefitType.description);
+  await expect(page.getByText(testData.benefitType.description)).toBeVisible();
 
   if (hasMRN) {
     // MRN address number
-    I.see(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice);
+    await expect(page.getByText(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice)).toBeVisible();
 
     // The Date of the MRN
-    I.see(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY'));
+    await expect(page.getByText(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY'))).toBeVisible();
 
     if (mrnDateToCheck.isAfter(oneMonthAgo)) {
       // Reason why the MRN is late
-      I.see(testData.mrn.reasonWhyMRNisLate);
+      await expect(page.getByText(testData.mrn.reasonWhyMRNisLate)).toBeVisible();
     }
   } else {
     // Reason for no MRN
-    I.see(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN);
+    await expect(page.getByText(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN)).toBeVisible();
   }
 
   // Appellant name
-  I.see(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`);
+  await expect(page.getByText(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`)).toBeVisible();
 
   // Appellant DOB
   if (language === 'en') {
-    I.see('25 January 1980');
+    await expect(page.getByText('25 January 1980')).toBeVisible();
   } else {
-    I.see('25 Ionawr 1980');
+    await expect(page.getByText('25 Ionawr 1980')).toBeVisible();
   }
 
   // Appellant NINO
-  I.see(appellant.nino);
+  await expect(page.getByText(appellant.nino)).toBeVisible();
 
   // Appellant address
-  I.see(appellant.contactDetails.addressLine1);
-  I.see(appellant.contactDetails.addressLine2);
-  I.see(appellant.contactDetails.townCity);
-  I.see(appellant.contactDetails.county);
-  I.see(appellant.contactDetails.postCode);
+  await expect(page.getByText(appellant.contactDetails.addressLine1)).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.addressLine2)).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.townCity)).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.county)).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.postCode)).toBeVisible();
 
   // Appellant Reason for appealing
-  I.see(testData.reasonsForAppealing.reasons[0].whatYouDisagreeWith);
-  I.see(testData.reasonsForAppealing.reasons[0].reasonForAppealing);
+  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].whatYouDisagreeWith)).toBeVisible();
+  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].reasonForAppealing)).toBeVisible();
 
   // Anything else the appellant wants to tell the tribunal
-  I.see(testData.reasonsForAppealing.otherReasons);
+  await expect(page.getByText(testData.reasonsForAppealing.otherReasons)).toBeVisible();
 
   // Shows when the appeal is complete
-  I.see(checkYourAppealContent.header);
+  await expect(page.getByText(checkYourAppealContent.header)).toBeVisible();
 }
 
-function checkYourAppealToConfirmationPage(language, signer) {
-  const I = this;
-  I.checkYourAppealToConfirmation(language, signer);
+async function checkYourAppealToConfirmationPage(page, language, signer) {
+  checkYourAppealToConfirmation(page, language, signer);
 }
 
-function continueIncompleteAppeal(language) {
-  const I = this;
-  I.seeCurrentUrlEquals(paths.checkYourAppeal);
+async function continueIncompleteAppeal(page, language) {
+  page.seeCurrentUrlEquals(paths.checkYourAppeal);
   if (language === 'en') {
-    I.waitForText('Check your answers');
-    I.see('Your application is incomplete');
-    I.see('There are still some questions to answer.');
-    I.click('Continue your application');
+    await expect(page.getByText('Check your answers')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Your application is incomplete')).toBeVisible();
+    await expect(page.getByText('There are still some questions to answer.')).toBeVisible();
+    await page.click('Continue your application');
   } else {
-    I.waitForText('Gwiriwch eich atebion');
-    I.see('Mae eich cais yn anghyflawn');
-    I.see('Mae yna gwestiynau nad ydych wedi’u hateb.');
-    I.click('Parhau á’ch cais');
+    await expect(page.getByText('Gwiriwch eich atebion')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Mae eich cais yn anghyflawn')).toBeVisible();
+    await expect(page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.')).toBeVisible();
+    await page.click('Parhau á’ch cais');
   }
 }
 
@@ -326,5 +388,5 @@ module.exports = {
   enterDetailsFromAttendingTheHearingWithSupportToEnd,
   checkYourAppealToConfirmationPage,
   enterDetailsFromNoRepresentativeToNoUploadingEvidence,
-  continueIncompleteAppeal
+  continueIncompleteAppeal,
 };

@@ -1,9 +1,9 @@
-function selectDoYouHaveARepresentativeAndContinue(commonContent, option) {
-  const I = this;
+function selectDoYouHaveARepresentativeAndContinue(page, commonContent, option) {
+  
 
-  I.wait(5);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await page.waitForTimeout(5);
+  await page.locator(option).check()
+  await page.click(commonContent.continue);
 }
 
 module.exports = { selectDoYouHaveARepresentativeAndContinue };

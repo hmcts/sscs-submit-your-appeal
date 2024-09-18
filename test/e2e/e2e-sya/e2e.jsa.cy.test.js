@@ -10,8 +10,8 @@ const benefitSearch = testDataEn.benefitTypes[9].codeSearchWelsh; // Needed so t
 const hasDwpIssuingOffice = testDataEn.benefitTypes[9].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[9].office;
 
-Feature(`${language.toUpperCase()} - JSA E2E SYA - Full Journey`);
-
-Scenario(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, ({ I }) => {
-  e2eBenefit.e2eBenefit(I, benefitSearch, office, signer, language, hasDwpIssuingOffice);
-}).retry(8);
+test.describe(`${language.toUpperCase()} - JSA E2E SYA - Full Journey`, () => {
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitSearch, office, signer, language, hasDwpIssuingOffice);
+  });
+});

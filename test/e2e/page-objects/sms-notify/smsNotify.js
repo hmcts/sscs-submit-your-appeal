@@ -1,8 +1,8 @@
 function selectUseSameNumberAndContinue(commonContent, option) {
-  const I = this;
+  
 
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await page.locator(option).check()
+  await page.click(commonContent.continue);
 }
 
 module.exports = { selectUseSameNumberAndContinue };

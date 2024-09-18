@@ -7,76 +7,91 @@ const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.la
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
 const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
 
-Feature(`${language.toUpperCase()} - Hearing arrangements @batch-08`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Hearing arrangements @batch-08`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.hearing.hearingArrangements);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.hearing.hearingArrangements);
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test(`${language.toUpperCase()} - I do not select any checkboxes and continue to see errors`, ({ page }) => {
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.error.required)).toBeVisible();
+    page.seeInCurrentUrl(paths.hearing.hearingArrangements);
+  });
 
-Scenario(`${language.toUpperCase()} - I do not select any checkboxes and continue to see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.error.required);
-  I.seeInCurrentUrl(paths.hearing.hearingArrangements);
-});
+  test(`${language.toUpperCase()} - I select language interpreter and see the interpreter language type field`, ({
+    page,
+  }) => {
+    page.dontSeeElement(languageInterpreterTextField);
+    await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
+    page.seeElement(languageInterpreterTextField);
+  });
 
-Scenario(`${language.toUpperCase()} - I select language interpreter and see the interpreter language type field`, ({ I }) => {
-  I.dontSeeElement(languageInterpreterTextField);
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.seeElement(languageInterpreterTextField);
-});
+  test(`${language.toUpperCase()} - I select sign language interpreter and see the sign language type field`, ({
+    page,
+  }) => {
+    page.dontSeeElement(signLanguageTextField);
+    await page.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
+    page.seeElement(signLanguageTextField);
+  });
 
-Scenario(`${language.toUpperCase()} - I select sign language interpreter and see the sign language type field`, ({ I }) => {
-  I.dontSeeElement(signLanguageTextField);
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.seeElement(signLanguageTextField);
-});
+  test(`${language.toUpperCase()} - I select other and see the anything else field`, ({ page }) => {
+    page.dontSeeElement(anythingElseTextField);
+    await page.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+    page.seeElement(anythingElseTextField);
+  });
 
-Scenario(`${language.toUpperCase()} - I select other and see the anything else field`, ({ I }) => {
-  I.dontSeeElement(anythingElseTextField);
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.seeElement(anythingElseTextField);
-});
+  test(`${language.toUpperCase()} - I select language interpreter and do not enter any language I see errors`, ({
+    page,
+  }) => {
+    await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.required)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select language interpreter and do not enter any language I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.required);
-});
+  test(`${language.toUpperCase()} - I select a language interpreter, enter a non-existent list language, I see errors`, ({
+    page,
+  }) => {
+    await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
+    await page.fill(languageInterpreterTextField, 'Invalid language');
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.invalid)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select a language interpreter, enter a non-existent list language, I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.fillField(languageInterpreterTextField, 'Invalid language');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.invalid);
-});
+  test(`${language.toUpperCase()} - I select sign language and do not enter any language I see errors`, ({ page }) => {
+    await page.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.signLanguage.language.error.required)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select sign language and do not enter any language I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.signLanguage.language.error.required);
-});
+  test(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list I see errors`, ({
+    page,
+  }) => {
+    await page.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
+    await page.fill(signLanguageTextField, 'Invalid language');
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.signLanguage.language.error.invalid)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.fillField(signLanguageTextField, 'Invalid language');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.signLanguage.language.error.invalid);
-});
+  test(`${language.toUpperCase()} - I select anything else and don't enter any thing into the field I see errors`, ({
+    page,
+  }) => {
+    await page.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.anythingElse.language.error.required)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select anything else and don't enter any thing into the field I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.anythingElse.language.error.required);
-});
-
-Scenario(`${language.toUpperCase()} - I select anything else and enter illegal characters in the field I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.fillField(anythingElseTextField, '< $ >');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.anythingElse.language.error.invalid);
+  test(`${language.toUpperCase()} - I select anything else and enter illegal characters in the field I see errors`, ({
+    page,
+  }) => {
+    await page.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+    await page.fill(anythingElseTextField, '< $ >');
+    await page.click(commonContent.continue);
+    expect(page.getByText(hearingArrangementsContent.fields.selection.anythingElse.language.error.invalid)).toBeVisible();
+  });
 });

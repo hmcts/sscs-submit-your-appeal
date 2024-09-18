@@ -1,8 +1,8 @@
 function enterMobileAndContinue(commonContent, mobileNumber) {
-  const I = this;
+  
 
-  I.fillField('enterMobile', mobileNumber);
-  I.click(commonContent.continue);
+  await page.fill('enterMobile', mobileNumber);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { enterMobileAndContinue };

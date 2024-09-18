@@ -2,22 +2,23 @@ const language = 'cy';
 const cantAppealContent = require(`steps/compliance/cant-appeal/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Cannot appeal @batch-07`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Cannot appeal @batch-07`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.compliance.cantAppeal);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.cantAppeal);
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test(`${language.toUpperCase()} - I exit the service after being told I cannot appeal`, ({ page }) => {
+    await page.click(cantAppealContent.govuk);
+    page.goto('https://www.gov.uk');
+  });
 
-Scenario(`${language.toUpperCase()} - I exit the service after being told I cannot appeal`, ({ I }) => {
-  I.click(cantAppealContent.govuk);
-  I.amOnPage('https://www.gov.uk');
-});
-
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
+  test(`${language.toUpperCase()} - I have a csrf token`, ({ page }) => {
+    page.seeElementInDOM('form input[name="_csrf"]');
+  });
 });

@@ -1,23 +1,20 @@
 const lanugagePreferenceContentEn = require('steps/start/language-preference/content.en');
 const lanugagePreferenceContentCy = require('steps/start/language-preference/content.cy');
 
-
-function chooseLanguagePreference(language, commonContent, answer) {
-  const I = this;
+async function chooseLanguagePreference(page, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  I.waitForText(lanugagePreferenceContent.title);
-  I.click({ id: `languagePreferenceWelsh-${answer}` });
-  I.click(commonContent.continue);
+  await expect(page.getByText(lanugagePreferenceContent.title)).toBeVisible({ timeout: 45000 });
+  await page.click({ id: `languagePreferenceWelsh-${answer}` });
+  await page.click(commonContent.continue);
 }
 
-function chooseLanguagePreferenceAfterSignIn(language, commonContent, answer) {
-  const I = this;
+async function chooseLanguagePreferenceAfterSignIn(page, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  I.waitForText(lanugagePreferenceContent.title);
-  I.click({ id: `languagePreferenceWelsh-${answer}` });
-  I.click(commonContent.saveAndContinue);
+  await expect(page.getByText(lanugagePreferenceContent.title)).toBeVisible({ timeout: 45000 });
+  await page.click({ id: `languagePreferenceWelsh-${answer}` });
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = { chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn };

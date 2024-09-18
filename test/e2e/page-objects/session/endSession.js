@@ -1,7 +1,5 @@
-function endTheSession() {
-  const I = this;
-
-  I.amOnPage('/exit', 'to end the current session');
+async function endTheSession(page) {
+  await page.goto('/exit', 'to end the current session');
 }
 
 module.exports = { endTheSession };

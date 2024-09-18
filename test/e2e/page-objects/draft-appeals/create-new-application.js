@@ -1,13 +1,13 @@
-function createNewApplication(language) {
-  const I = this;
+function createNewApplication(page, language) {
+  
 
-  I.seeElement(".form-buttons-group [href='/new-appeal']");
+  page.seeElement(".form-buttons-group [href='/new-appeal']");
   if (language === 'en') {
-    I.waitForText('Your draft benefit appeals');
-    I.click('Create new application');
+    await expect(page.getByText('Your draft benefit appeals')).toBeVisible({ timeout: 45000 })
+    await page.click('Create new application');
   } else {
-    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
-    I.click('Creu cais newydd');
+    await expect(page.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau')).toBeVisible({ timeout: 45000 })
+    await page.click('Creu cais newydd');
   }
 }
 

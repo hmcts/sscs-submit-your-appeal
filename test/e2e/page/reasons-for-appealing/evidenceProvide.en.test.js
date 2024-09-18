@@ -6,27 +6,29 @@ const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature(`${language.toUpperCase()} - Evidence provide page @evidence-upload @batch-10`);
+const { test } = require('@playwright/test');
 
-if (evidenceUploadEnabled) {
-  Before(({ I }) => {
-    I.createTheSession(language);
-    I.amOnPage(paths.reasonsForAppealing.evidenceProvide);
-  });
+test.describe(`${language.toUpperCase()} - Evidence provide page @evidence-upload @batch-10`, () => {
+  if (evidenceUploadEnabled) {
+    Before(async({ page }) => {
+      await createTheSession(page, language);
+      page.goto(paths.reasonsForAppealing.evidenceProvide);
+    });
 
-  After(({ I }) => {
-    I.endTheSession();
-  });
+    After(async({ page }) => {
+      await endTheSession(page);
+    });
 
-  Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, ({ I }) => {
-    I.selectAreYouProvidingEvidenceAndContinue(language, evidenceProvideContent.fields.evidenceProvide.yes);
-    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
-    I.see(evidenceUploadContent.title);
-  });
+    test(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, ({ page }) => {
+      selectAreYouProvidingEvidenceAndContinue(page, language, evidenceProvideContent.fields.evidenceProvide.yes);
+      page.seeInCurrentUrl(paths.reasonsForAppealing.evidenceUpload);
+      expect(page.getByText(evidenceUploadContent.title)).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, ({ I }) => {
-    I.selectAreYouProvidingEvidenceAndContinue(language, evidenceProvideContent.fields.evidenceProvide.no);
-    I.seeInCurrentUrl(paths.hearing.theHearing);
-    I.see(theHearingContent.title);
-  });
-}
+    test(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, ({ page }) => {
+      selectAreYouProvidingEvidenceAndContinue(page, language, evidenceProvideContent.fields.evidenceProvide.no);
+      page.seeInCurrentUrl(paths.hearing.theHearing);
+      expect(page.getByText(theHearingContent.title)).toBeVisible();
+    });
+  }
+});

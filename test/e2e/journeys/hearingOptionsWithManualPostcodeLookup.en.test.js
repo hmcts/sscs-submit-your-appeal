@@ -5,29 +5,45 @@ const commonContent = require('commonContent')[language];
 const paths = require('paths');
 const testData = require(`test/e2e/data.${language}`);
 
-Feature(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const {
+  checkYourAppealToConfirmationPage,
+  enterDetailsFromNoRepresentativeToNoUploadingEvidence,
+  enterDetailsFromStartToNINO
+} = require('../page-objects/cya/checkYourAppeal');
+const { skipPcq } = require('../page-objects/pcq/pcq');
+const { selectHearingAvailabilityAndContinue } = require('../page-objects/hearing/availability');
+const { selectDoYouNeedSupportAndContinue } = require('../page-objects/hearing/support');
+const { selectTelephoneHearingOptionsAndContinue } = require('../page-objects/hearing/options');
+const { enterDoYouWantToAttendTheHearing } = require('../page-objects/hearing/theHearing');
+const { checkOptionAndContinue } = require('../page-objects/controls/option');
+const { enterAppellantContactDetailsManuallyAndContinue } = require('../page-objects/identity/appellantDetails');
 
-Before(({ I }) => {
-  I.wait(1);
-  I.createTheSession(language);
+test.describe(`${language.toUpperCase()} - Hearing options test for type Telephone @functional`, () => {
+  Before(async({ page }) => {
+    await page.waitForTimeout(1);
+    await createTheSession(page, language);
+  });
+
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
+
+  test(`${language.toUpperCase()} - Appellant enters telephone hearing option`, async({ page }) => {
+    await page.goto(paths.session.root);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+    await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
+    await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-no');
+    await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
+    await skipPcq(page);
+    await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
+
+    await endTheSession(page);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - Appellant enters telephone hearing option`, ({ I }) => {
-  I.amOnPage(paths.session.root);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
-  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-no');
-  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
-  I.skipPcq();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-
-  I.endTheSession();
-}).retry(10);

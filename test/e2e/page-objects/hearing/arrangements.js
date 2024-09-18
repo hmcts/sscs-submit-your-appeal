@@ -2,26 +2,23 @@ const hearingArrangementsContentEn = require('steps/hearing/arrangements/content
 const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
 const hearingData = require('test/e2e/data.en').hearing;
 
-function checkAllArrangementsAndContinue(commonContent, language) {
-  const I = this;
+function checkAllArrangementsAndContinue(page, commonContent, language) {
+  
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.hearingLoop.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+  await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
+  await page.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
+  await page.click(hearingArrangementsContent.fields.selection.hearingLoop.requested.label);
+  await page.click(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label);
+  await page.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
 
-  I.fillField('input[id="selection.interpreterLanguage.language"]',
-    hearingData.interpreterLanguageType);
+  await page.fill('input[id="selection.interpreterLanguage.language"]', hearingData.interpreterLanguageType);
 
-  I.fillField('input[id="selection.signLanguage.language"]',
-    hearingData.signLanguageType);
+  await page.fill('input[id="selection.signLanguage.language"]', hearingData.signLanguageType);
 
-  I.fillField('textarea[name="selection.anythingElse.language"]',
-    hearingData.anythingElse);
+  await page.fill('textarea[name="selection.anythingElse.language"]', hearingData.anythingElse);
 
-  I.click(commonContent.continue);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { checkAllArrangementsAndContinue };

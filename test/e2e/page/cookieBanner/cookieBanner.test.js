@@ -3,69 +3,70 @@ const paths = require('paths');
 const language = 'en';
 const cookieContent = require('./cookie-content');
 
-Feature(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.start.benefitType);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.start.benefitType);
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
+
+  test(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ page }) => {
+    await page.waitForTimeout(1);
+    expect(page.getByText(cookieContent.bannerTitle)).toBeVisible();
+    page.seeElement('.govuk-cookie-banner');
+
+    expect(page.getByText(cookieContent.acceptCookie)).toBeVisible();
+    expect(page.getByText(cookieContent.rejectCookie)).toBeVisible();
+
+    await page.click(cookieContent.viewPolicy);
+    expect(page.getByText(cookieContent.policy.title)).toBeVisible();
+    expect(page.getByText(cookieContent.policy.selectCookieOptions)).toBeVisible();
+  });
+
+  test(`${language.toUpperCase()} - PIP accept additional cookies`, ({ page }) => {
+    await page.waitForTimeout(1);
+    await page.click(cookieContent.acceptCookie);
+    expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
+    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    page.refreshPage();
+    await page.waitForTimeout(1);
+    page.seeCookie('_ga');
+    page.seeCookie('_gid');
+    page.seeCookie('_gat_UA-91309785-5');
+  });
+
+  test(`${language.toUpperCase()} - PIP reject additional cookies`, ({ page }) => {
+    await page.waitForTimeout(1);
+    await page.click(cookieContent.rejectCookie);
+    expect(page.getByText(cookieContent.hideAfterReject)).toBeVisible();
+    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    page.refreshPage();
+    await page.waitForTimeout(2);
+  });
+
+  test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ page }) => {
+    await page.waitForTimeout(1);
+    await page.click(cookieContent.acceptCookie);
+    expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
+    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    page.refreshPage();
+
+    page.seeCookie('_ga');
+    page.seeCookie('_gid');
+    page.seeCookie('_gat_UA-91309785-5');
+
+    page.goto(paths.policy.cookies);
+    page.seeElement('input#radio-analytics-on:checked');
+    await page.waitForTimeout(1);
+    await page.click('input#radio-analytics-off');
+    await page.click('Save');
+
+    page.goto(paths.start.benefitType);
+    page.refreshPage();
+    await page.waitForTimeout(2);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }) => {
-  I.wait(1);
-  I.see(cookieContent.bannerTitle);
-  I.seeElement('.govuk-cookie-banner');
-
-  I.see(cookieContent.acceptCookie);
-  I.see(cookieContent.rejectCookie);
-
-  I.click(cookieContent.viewPolicy);
-  I.see(cookieContent.policy.title);
-  I.see(cookieContent.policy.selectCookieOptions);
-});
-
-Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) => {
-  I.wait(1);
-  I.click(cookieContent.acceptCookie);
-  I.see(cookieContent.hideAfterAccept);
-  I.see(cookieContent.hideMessage);
-  I.refreshPage();
-  I.wait(1);
-  I.seeCookie('_ga');
-  I.seeCookie('_gid');
-  I.seeCookie('_gat_UA-91309785-5');
-}).retry(1);
-
-Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, ({ I }) => {
-  I.wait(1);
-  I.click(cookieContent.rejectCookie);
-  I.see(cookieContent.hideAfterReject);
-  I.see(cookieContent.hideMessage);
-  I.refreshPage();
-  I.wait(2);
-}).retry(1);
-
-Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ I }) => {
-  I.wait(1);
-  I.click(cookieContent.acceptCookie);
-  I.see(cookieContent.hideAfterAccept);
-  I.see(cookieContent.hideMessage);
-  I.refreshPage();
-
-  I.seeCookie('_ga');
-  I.seeCookie('_gid');
-  I.seeCookie('_gat_UA-91309785-5');
-
-  I.amOnPage(paths.policy.cookies);
-  I.seeElement('input#radio-analytics-on:checked');
-  I.wait(1);
-  I.click('input#radio-analytics-off');
-  I.click('Save');
-
-  I.amOnPage(paths.start.benefitType);
-  I.refreshPage();
-  I.wait(2);
-}).retry(1);

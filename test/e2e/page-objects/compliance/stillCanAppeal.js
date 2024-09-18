@@ -2,11 +2,11 @@ const stillCanAppealContentEn = require('steps/compliance/still-can-appeal/conte
 const stillCanAppealContentCy = require('steps/compliance/still-can-appeal/content.cy');
 
 function continueFromStillCanAppeal(language) {
-  const I = this;
+  
   const stillCanAppealContent = language === 'en' ? stillCanAppealContentEn : stillCanAppealContentCy;
 
-  I.waitForText(stillCanAppealContent.title);
-  I.click(stillCanAppealContent.continueButton);
+  await expect(page.getByText(stillCanAppealContent.title)).toBeVisible({ timeout: 45000 })
+  await page.click(stillCanAppealContent.continueButton);
 }
 
 module.exports = { continueFromStillCanAppeal };

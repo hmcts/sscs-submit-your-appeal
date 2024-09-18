@@ -1,34 +1,34 @@
 const hearingAttendanceContentEn = require('steps/hearing/the-hearing/content.en');
 const hearingAttendanceContentCy = require('steps/hearing/the-hearing/content.cy');
 
-function enterDoYouWantToAttendTheHearing(language, commonContent, option) {
-  const I = this;
+function enterDoYouWantToAttendTheHearing(page, language, commonContent, option) {
+  
   const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
 
-  I.waitForText(hearingAttendanceContent.title);
-  I.checkOption(option);
-  I.scrollPageToBottom();
-  I.click(commonContent.continue);
+  await expect(page.getByText(hearingAttendanceContent.title)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  scrollPageToBottom(page, );
+  await page.click(commonContent.continue);
 }
 
-function enterDoYouWantToAttendTheHearingAfterSignIn(language, commonContent, option) {
-  const I = this;
+function enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, option) {
+  
   const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
 
-  I.waitForText(hearingAttendanceContent.title);
-  I.checkOption(option);
-  I.scrollPageToBottom();
-  I.click(commonContent.saveAndContinue);
+  await expect(page.getByText(hearingAttendanceContent.title)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  scrollPageToBottom(page, );
+  await page.click(commonContent.saveAndContinue);
 }
 
-function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent) {
-  const I = this;
+function readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent) {
+  
 
-  I.click(commonContent.continue);
+  await page.click(commonContent.continue);
 }
 
 module.exports = {
   enterDoYouWantToAttendTheHearing,
   enterDoYouWantToAttendTheHearingAfterSignIn,
-  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue,
 };

@@ -3,11 +3,11 @@ const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
 const paths = require('paths');
 
 function appealSubmitConfirmation(language) {
-  const I = this;
+  
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
-  I.wait(5);
-  I.seeCurrentUrlEquals(paths.confirmation);
-  I.see(cyaContent.confirmation);
+  await page.waitForTimeout(5);
+  page.seeCurrentUrlEquals(paths.confirmation);
+  expect(page.getByText(cyaContent.confirmation)).toBeVisible();
 }
 
 module.exports = { appealSubmitConfirmation };

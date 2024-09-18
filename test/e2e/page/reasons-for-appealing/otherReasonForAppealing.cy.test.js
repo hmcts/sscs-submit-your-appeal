@@ -2,20 +2,22 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Other Reasons For Appealing`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Other Reasons For Appealing`, () => {
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.reasonsForAppealing.otherReasonForAppealing);
-  I.waitForElement('#otherReasonForAppealing');
-});
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.reasonsForAppealing.otherReasonForAppealing);
+    page.waitForElement('#otherReasonForAppealing');
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter special chars then I see no errors`, ({ I }) => {
-  I.fillField('otherReasonForAppealing', '&$%^&%!~$^&&&*');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceProvide);
-});
+  test(`${language.toUpperCase()} - When I enter special chars then I see no errors`, ({ page }) => {
+    await page.fill('otherReasonForAppealing', '&$%^&%!~$^&&&*');
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(paths.reasonsForAppealing.evidenceProvide);
+  });
+})

@@ -2,18 +2,19 @@ const language = 'cy';
 const contactDwpContent = require(`steps/compliance/contact-dwp/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Contact DWP @batch-07`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Contact DWP @batch-07`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.compliance.contactDWP);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.contactDWP);
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - I exit the service after being told I need to contact DWP`, ({ I }) => {
-  I.click(contactDwpContent.govuk);
-  I.amOnPage('https://www.gov.uk');
+  test(`${language.toUpperCase()} - I exit the service after being told I need to contact DWP`, ({ page }) => {
+    await page.click(contactDwpContent.govuk);
+    page.goto('https://www.gov.uk');
+  });
 });

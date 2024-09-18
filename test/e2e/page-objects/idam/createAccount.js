@@ -1,13 +1,12 @@
 const createAccountContentEn = require('steps/start/create-account/content.en');
 const createAccountContentCy = require('steps/start/create-account/content.cy');
 
-function selectIfYouWantToCreateAccount(language, commonContent, option) {
-  const I = this;
+async function selectIfYouWantToCreateAccount(page, language, commonContent, option) {
   const createAccountContent = language === 'en' ? createAccountContentEn : createAccountContentCy;
 
-  I.waitForText(createAccountContent.title);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await expect(page.getByText(createAccountContent.title)).toBeVisible({ timeout: 45000 });
+  await page.locator(option).check();
+  await page.click(commonContent.continue);
 }
 
 module.exports = { selectIfYouWantToCreateAccount };

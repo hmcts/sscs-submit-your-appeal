@@ -1,7 +1,7 @@
-function readSendingEvidenceAndContinue(commonContent) {
-  const I = this;
+function readSendingEvidenceAndContinue(page, commonContent) {
+  
 
-  I.click(commonContent.continue);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { readSendingEvidenceAndContinue };

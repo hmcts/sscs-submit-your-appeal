@@ -5,40 +5,46 @@ const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature(`${language.toUpperCase()} - Sending Evidence - appellant contact details @evidence-upload @batch-10`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Sending Evidence - appellant contact details @evidence-upload @batch-10`, () => {
 
-if (!evidenceUploadEnabled) {
-  Before(({ I }) => {
-    I.createTheSession(language);
-    I.amOnPage(paths.identity.enterAppellantContactDetails);
-  });
+  if (!evidenceUploadEnabled) {
+    Before(async ({ page }) => {
+      await createTheSession(page, language);
+      page.goto(paths.identity.enterAppellantContactDetails);
+    });
 
-  After(({ I }) => {
-    I.endTheSession();
-  });
+    After(async ({ page }) => {
+      await endTheSession(page);
+    });
 
-  Scenario(`${language.toUpperCase()} - When I omit my email address I see the correct content on /sending-evidence`, ({ I }) => {
-    I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-    I.see(sendingEvidenceContent.postEvidence);
-  });
+    test(`${language.toUpperCase()} - When I omit my email address I see the correct content on /sending-evidence`, ({
+                                                                                                                       page,
+                                                                                                                     }) => {
+      enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      page.goto(paths.reasonsForAppealing.sendingEvidence);
+      expect(page.getByText(sendingEvidenceContent.postEvidence)).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When I add my email address I should see the correct content on /sending-evidence`, ({ I }) => {
-    I.enterAppellantContactDetailsWithEmailAndContinue();
-    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-    I.see(sendingEvidenceContent.postEvidenceWithEmail);
-  });
+    test(`${language.toUpperCase()} - When I add my email address I should see the correct content on /sending-evidence`, ({
+                                                                                                                             page,
+                                                                                                                           }) => {
+      enterAppellantContactDetailsWithEmailAndContinue(page, );
+      page.goto(paths.reasonsForAppealing.sendingEvidence);
+      expect(page.getByText(sendingEvidenceContent.postEvidenceWithEmail)).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When I go to the /sending-evidence page I see the title`, ({ I }) => {
-    I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-    I.see(sendingEvidenceContent.title);
-  });
+    test(`${language.toUpperCase()} - When I go to the /sending-evidence page I see the title`, ({ page }) => {
+      enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      page.goto(paths.reasonsForAppealing.sendingEvidence);
+      expect(page.getByText(sendingEvidenceContent.title)).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When clicking continue I see the correct path`, ({ I }) => {
-    I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.amOnPage(paths.reasonsForAppealing.sendingEvidence);
-    I.click(commonContent.continue);
-    I.seeInCurrentUrl(paths.hearing.theHearing);
-  });
-}
+    test(`${language.toUpperCase()} - When clicking continue I see the correct path`, ({ page }) => {
+      enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      page.goto(paths.reasonsForAppealing.sendingEvidence);
+      await page.click(commonContent.continue);
+      page.seeInCurrentUrl(paths.hearing.theHearing);
+    });
+  }
+})

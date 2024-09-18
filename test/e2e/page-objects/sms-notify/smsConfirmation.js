@@ -1,7 +1,7 @@
 function readSMSConfirmationAndContinue(commonContent) {
-  const I = this;
-  I.wait(5);
-  I.click(commonContent.continue);
+  
+  await page.waitForTimeout(5);
+  await page.click(commonContent.continue);
 }
 
 module.exports = { readSMSConfirmationAndContinue };

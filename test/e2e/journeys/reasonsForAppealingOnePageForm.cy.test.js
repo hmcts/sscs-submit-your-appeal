@@ -8,166 +8,187 @@ const reasonForAppealingField = '#item\\.reasonForAppealing';
 const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
 const testData = require('test/e2e/data.en');
 
-const twoReasons = [
-  reasons[0],
-  reasons[1]
-];
+const twoReasons = [reasons[0], reasons[1]];
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
 const reasonForAppealing = selectors[language].reasonsForAppealing.reasons;
 const reasonForAppealingChange = `${reasonForAppealing}-1 ${selectors.change}`;
 
-Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with reasons for appealing one page form`);
-
-Before(({ I }) => {
-  I.createTheSession(language);
-});
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    reasons[0]
-  );
-  I.addAReasonForAppealing(
-    language,
-    `#items-1 ${whatYouDisagreeWithField}-1`,
-    `#items-1 ${reasonForAppealingField}-1`,
-    reasons[1]
-  );
-  I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
-  if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue(commonContent);
-  }
-  if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
-    I.uploadAPieceOfEvidence();
-    I.enterDescription(commonContent, 'Some description of the evidence');
-  }
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
-  I.confirmDetailsArePresent(language);
-  twoReasons.forEach(({ reason }) => {
-    I.see(reason.whatYouDisagreeWith);
-    I.see(reason.reasonForAppealing);
-  });
-});
-
-Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    reasons[0]
-  );
-  I.addAReasonForAppealing(
-    language,
-    `#items-1 ${whatYouDisagreeWithField}-1`,
-    `#items-1 ${reasonForAppealingField}-1`,
-    reasons[1]
-  );
-  I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
-  if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue(commonContent);
-  }
-  if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
-    I.uploadAPieceOfEvidence();
-    I.enterDescription(commonContent, 'Some description of the evidence');
-  }
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
-  I.confirmDetailsArePresent(language);
-
-  twoReasons.forEach(({ reason }) => {
-    I.see(reason.whatYouDisagreeWith);
-    I.see(reason.reasonForAppealing);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const {
+  addAReasonForAppealing,
+  addAReasonForAppealing,
+  addAReasonForAppealingAndThenClickAddAnother,
+  addAReasonForAppealing,
+  addAReasonForAppealing,
+  addAReasonForAppealingAndThenClickAddAnother,
+  addAReasonForAppealing,
+  addAReasonForAppealingAndThenClickAddAnother,
+} = require('../page-objects/reasons-for-appealing/reasonForAppealingOnePageForm');
+const {
+  confirmDetailsArePresent,
+  enterDetailsFromStartToNINO,
+  confirmDetailsArePresent,
+  enterDetailsFromStartToNINO,
+  confirmDetailsArePresent,
+  enterDetailsFromStartToNINO,
+} = require('../page-objects/cya/checkYourAppeal');
+const {
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue,
+  enterDoYouWantToAttendTheHearing,
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue,
+  enterDoYouWantToAttendTheHearing,
+  readYouHaveChosenNotToAttendTheHearingNoticeAndContinue,
+  enterDoYouWantToAttendTheHearing,
+} = require('../page-objects/hearing/theHearing');
+const { enterDescription, enterDescription, enterDescription } = require('../page-objects/upload-evidence/evidenceDescription');
+const { uploadAPieceOfEvidence, uploadAPieceOfEvidence, uploadAPieceOfEvidence } = require('../page-objects/upload-evidence/uploadEvidencePage');
+const {
+  selectAreYouProvidingEvidenceAndContinue,
+  selectAreYouProvidingEvidenceAndContinue,
+  selectAreYouProvidingEvidenceAndContinue,
+} = require('../page-objects/upload-evidence/evidenceProvide');
+const {
+  readSendingEvidenceAndContinue,
+  readSendingEvidenceAndContinue,
+  readSendingEvidenceAndContinue,
+} = require('../page-objects/reasons-for-appealing/sendingEvidence');
+const {
+  enterAnythingElseAndContinue,
+  enterAnythingElseAndContinue,
+  enterAnythingElseAndContinue,
+} = require('../page-objects/reasons-for-appealing/reasonsForAppealing');
+const {
+  selectDoYouHaveARepresentativeAndContinue,
+  selectDoYouHaveARepresentativeAndContinue,
+  selectDoYouHaveARepresentativeAndContinue,
+} = require('../page-objects/representative/representative');
+const {
+  selectDoYouWantToReceiveTextMessageReminders,
+  selectDoYouWantToReceiveTextMessageReminders,
+  selectDoYouWantToReceiveTextMessageReminders,
+} = require('../page-objects/sms-notify/textReminders');
+const {
+  enterAppellantContactDetailsAndContinue,
+  enterAppellantContactDetailsAndContinue,
+  enterAppellantContactDetailsAndContinue,
+} = require('../page-objects/identity/appellantDetails');
+test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with reasons for appealing one page form`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
   });
 
-  // Now Change the reason a different answer.
-  I.click(commonContent.change, reasonForAppealingChange);
-  I.seeCurrentUrlEquals(paths.reasonsForAppealing.reasonForAppealing);
-  I.waitForElement('#items-0');
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-  I.addAReasonForAppealing(
-    language,
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    reasons[2]
-  );
-  I.click(commonContent.continue);
-  I.click(commonContent.continue);
-  I.dontSee(reasons[0].whatYouDisagreeWith);
-  I.dontSee(reasons[0].reasonForAppealing);
-  I.see(reasons[2].whatYouDisagreeWith);
-  I.see(reasons[2].reasonForAppealing);
-});
-
-Scenario(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.addAReasonForAppealingAndThenClickAddAnother(
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    reasons[0]
-  );
-  I.click(commonContent.continue);
-  I.enterAnythingElseAndContinue(language, commonContent, testData.reasonsForAppealing.otherReasons);
-  if (!evidenceUploadEnabled) {
-    I.readSendingEvidenceAndContinue(commonContent);
-  }
-  if (evidenceUploadEnabled) {
-    I.selectAreYouProvidingEvidenceAndContinue(language, commonContent, '#evidenceProvide-yes');
-    I.uploadAPieceOfEvidence();
-    I.enterDescription(commonContent, 'Some description of the evidence');
-  }
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-no');
-  I.readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see(reasons[0].whatYouDisagreeWith);
-  I.see(reasons[0].reasonForAppealing);
-
-  // Now Change the reason a different answer.
-  I.click(commonContent.change, reasonForAppealingChange);
-  I.seeCurrentUrlEquals(paths.reasonsForAppealing.reasonForAppealing);
-  I.waitForElement('#items-0');
-
-  I.addAReasonForAppealing(
-    language,
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    {
-      whatYouDisagreeWith: '',
-      reasonForAppealing: ''
+  test(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, async ({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await addAReasonForAppealingAndThenClickAddAnother(page, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await addAReasonForAppealing(page, language, `#items-1 ${whatYouDisagreeWithField}-1`, `#items-1 ${reasonForAppealingField}-1`, reasons[1]);
+    await page.click(commonContent.continue);
+    await enterAnythingElseAndContinue(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
+    if (!evidenceUploadEnabled) {
+      await readSendingEvidenceAndContinue(page, commonContent);
     }
-  );
-  I.click(commonContent.continue);
-  I.seeElement('#error-summary-title');
-  I.addAReasonForAppealing(
-    language,
-    `#items-0 ${whatYouDisagreeWithField}-0`,
-    `#items-0 ${reasonForAppealingField}-0`,
-    reasons[2]
-  );
-  I.click(commonContent.continue);
-  I.click(commonContent.continue);
-  I.dontSee(reasons[0].whatYouDisagreeWith);
-  I.dontSee(reasons[0].reasonForAppealing);
-  I.see(reasons[2].whatYouDisagreeWith);
-  I.see(reasons[2].reasonForAppealing);
+    if (evidenceUploadEnabled) {
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await uploadAPieceOfEvidence(page);
+      await enterDescription(page, commonContent, 'Some description of the evidence');
+    }
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
+    await confirmDetailsArePresent(page, language);
+    for (const { reason } of twoReasons) {
+      await expect(page.getByText(reason.whatYouDisagreeWith)).toBeVisible();
+      await expect(page.getByText(reason.reasonForAppealing)).toBeVisible();
+    }
+  });
+
+  test(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, async ({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await addAReasonForAppealingAndThenClickAddAnother(page, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await addAReasonForAppealing(page, language, `#items-1 ${whatYouDisagreeWithField}-1`, `#items-1 ${reasonForAppealingField}-1`, reasons[1]);
+    await page.click(commonContent.continue);
+    await enterAnythingElseAndContinue(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
+    if (!evidenceUploadEnabled) {
+      await readSendingEvidenceAndContinue(page, commonContent);
+    }
+    if (evidenceUploadEnabled) {
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await uploadAPieceOfEvidence(page);
+      await enterDescription(page, commonContent, 'Some description of the evidence');
+    }
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
+    await confirmDetailsArePresent(page, language);
+
+    for (const { reason } of twoReasons) {
+      await expect(page.getByText(reason.whatYouDisagreeWith)).toBeVisible();
+      await expect(page.getByText(reason.reasonForAppealing)).toBeVisible();
+    }
+
+    // Now Change the reason a different answer.
+    await page.click(commonContent.change, reasonForAppealingChange);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.reasonForAppealing}`);
+    await expect(page.locator('#items-0')).toBeVisible();
+
+    await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[2]);
+    await page.click(commonContent.continue);
+    await page.click(commonContent.continue);
+    await expect(page.getByText(reasons[0].whatYouDisagreeWith)).not.toBeVisible();
+    await expect(page.getByText(reasons[0].reasonForAppealing)).not.toBeVisible();
+    await expect(page.getByText(reasons[2].whatYouDisagreeWith)).toBeVisible();
+    await expect(page.getByText(reasons[2].reasonForAppealing)).toBeVisible();
+  });
+
+  test(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, async ({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await addAReasonForAppealingAndThenClickAddAnother(page, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await page.click(commonContent.continue);
+    await enterAnythingElseAndContinue(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
+    if (!evidenceUploadEnabled) {
+      await readSendingEvidenceAndContinue(page, commonContent);
+    }
+    if (evidenceUploadEnabled) {
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await uploadAPieceOfEvidence(page);
+      await enterDescription(page, commonContent, 'Some description of the evidence');
+    }
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText(reasons[0].whatYouDisagreeWith)).toBeVisible();
+    await expect(page.getByText(reasons[0].reasonForAppealing)).toBeVisible();
+
+    // Now Change the reason a different answer.
+    await page.click(commonContent.change, reasonForAppealingChange);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.reasonForAppealing}`);
+    await expect(page.locator('#items-0')).toBeVisible();
+
+    await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, {
+      whatYouDisagreeWith: '',
+      reasonForAppealing: '',
+    });
+    await page.click(commonContent.continue);
+    await expect(page.locator('#error-summary-title')).toBeVisible();
+    await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[2]);
+    await page.click(commonContent.continue);
+    await page.click(commonContent.continue);
+    await expect(page.getByText(reasons[0].whatYouDisagreeWith)).not.toBeVisible();
+    await expect(page.getByText(reasons[0].reasonForAppealing)).not.toBeVisible();
+    await expect(page.getByText(reasons[2].whatYouDisagreeWith)).toBeVisible();
+    await expect(page.getByText(reasons[2].reasonForAppealing)).toBeVisible();
+  });
 });

@@ -3,23 +3,29 @@ const commonContent = require('commonContent')[language];
 const dwpIssuingOfficeContent = require(`steps/compliance/dwp-issuing-office/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - DWP Issuing Office @batch-07`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - DWP Issuing Office @batch-07`, () => {
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.compliance.dwpIssuingOffice);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.dwpIssuingOffice);
-});
+  After(async ({ page }) => {
+    await endTheSession(page);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test(`${language.toUpperCase()} - When I enter a valid issuing office, I am taken to the mrn date page`, ({ page }) => {
+    enterDWPIssuingOfficeAndContinue(page, commonContent, '1');
+    page.seeInCurrentUrl(paths.compliance.mrnDate);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter a valid issuing office, I am taken to the mrn date page`, ({ I }) => {
-  I.enterDWPIssuingOfficeAndContinue(commonContent, '1');
-  I.seeInCurrentUrl(paths.compliance.mrnDate);
-});
-
-Scenario(`${language.toUpperCase()} - When I click continue without adding a dwp issuing office I see an error`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.seeDWPIssuingOfficeError(paths.compliance.dwpIssuingOffice, dwpIssuingOfficeContent.fields.pipNumber.error.required);
+  test(`${language.toUpperCase()} - When I click continue without adding a dwp issuing office I see an error`, ({
+    page,
+  }) => {
+    await page.click(commonContent.continue);
+    page.seeDWPIssuingOfficeError(
+      paths.compliance.dwpIssuingOffice,
+      dwpIssuingOfficeContent.fields.pipNumber.error.required,
+    );
+  });
 });

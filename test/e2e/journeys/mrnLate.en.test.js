@@ -14,34 +14,52 @@ const thirteenMonthsAndOneDayLate = {
   label: 'thirteen months late'
 };
 
-Feature(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { confirmDetailsArePresent, enterDetailsFromNoRepresentativeToEnd } = require('../page-objects/cya/checkYourAppeal');
+const { checkOptionAndContinue } = require('../page-objects/controls/option');
+const {
+  enterAppellantContactDetailsAndContinue,
+  enterAppellantNINOAndContinue,
+  enterAppellantDOBAndContinue,
+  enterAppellantNameAndContinue
+} = require('../page-objects/identity/appellantDetails');
+const { enterReasonsForBeingLateAndContinue } = require('../page-objects/compliance/mrnLate');
+const { enterAnMRNDateAndContinue } = require('../page-objects/compliance/mrnDate');
+const { enterDWPIssuingOfficeAndContinue } = require('../page-objects/compliance/dwpIssuingOffice');
+const { continueFromIndependance } = require('../page-objects/start/independence');
+const { enterPostcodeAndContinue } = require('../page-objects/start/postcode-checker');
+const { enterBenefitTypeAndContinue } = require('../page-objects/start/benefit-type');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+test.describe(`${language.toUpperCase()} - Appellant has a dated MRN @batch-03`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
 
-[oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
-  Scenario(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, ({ I }) => {
-    I.wait(1);
-    I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
-    I.enterPostcodeAndContinue(language, commonContent, testData.appellant.contactDetails.postCode);
-    I.checkOptionAndContinue(commonContent, '#isAppointee-no');
-    I.continueFromIndependance(commonContent);
-    I.checkOptionAndContinue(commonContent, '#haveAMRN-yes');
-    I.enterDWPIssuingOfficeAndContinue(commonContent, testData.mrn.dwpIssuingOffice);
-    I.enterAnMRNDateAndContinue(commonContent, obj.mrnDate);
-    I.checkOptionAndContinue(commonContent, '#checkedMRN-yes');
-    I.enterReasonsForBeingLateAndContinue(commonContent, testData.mrn.reasonWhyMRNisLate);
-    I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
-    I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-    I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
-    I.enterAppellantContactDetailsAndContinue(commonContent, language);
-    I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-    I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-    I.confirmDetailsArePresent(language, true, obj.mrnDate);
-  }).retry(1);
+  [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
+    test(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, async({ page }) => {
+      await page.waitForTimeout(1);
+      await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
+      await enterPostcodeAndContinue(page, language, commonContent, testData.appellant.contactDetails.postCode);
+      await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
+      await continueFromIndependance(page, commonContent);
+      await checkOptionAndContinue(page, commonContent, '#haveAMRN-yes');
+      await enterDWPIssuingOfficeAndContinue(page, commonContent, testData.mrn.dwpIssuingOffice);
+      await enterAnMRNDateAndContinue(page, commonContent, obj.mrnDate);
+      await checkOptionAndContinue(page, commonContent, '#checkedMRN-yes');
+      await enterReasonsForBeingLateAndContinue(page, commonContent, testData.mrn.reasonWhyMRNisLate);
+      await enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+      await enterAppellantDOBAndContinue(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+      await enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
+      await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+      await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+      await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+      await confirmDetailsArePresent(page, language, true, obj.mrnDate);
+    });
+  });
 });

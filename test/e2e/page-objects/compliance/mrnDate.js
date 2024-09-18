@@ -1,25 +1,21 @@
-function enterAnMRNDateAndContinue(commonContent, date) {
-  const I = this;
-
-  I.scrollPageToBottom();
-  I.wait(1);
-  I.fillField('input[name*="day"]', date.date().toString());
-  I.fillField('input[name*="month"]', (date.month() + 1).toString());
-  I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.continue);
+async function enterAnMRNDateAndContinue(page, commonContent, date) {
+  scrollPageToBottom(page);
+  await page.waitForTimeout(1);
+  await page.fill('input[name*="day"]', date.date().toString());
+  await page.fill('input[name*="month"]', (date.month() + 1).toString());
+  await page.fill('input[name*="year"]', date.year().toString());
+  page.waitForClickable(commonContent.continue, 3);
+  await page.click(commonContent.continue);
 }
 
-function enterAnMRNDateAndContinueAfterSignIn(commonContent, date) {
-  const I = this;
-
-  I.scrollPageToBottom();
-  I.wait(1);
-  I.fillField('input[name*="day"]', date.date().toString());
-  I.fillField('input[name*="month"]', (date.month() + 1).toString());
-  I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.saveAndContinue);
+async function enterAnMRNDateAndContinueAfterSignIn(page, commonContent, date) {
+  scrollPageToBottom(page);
+  await page.waitForTimeout(1);
+  await page.fill('input[name*="day"]', date.date().toString());
+  await page.fill('input[name*="month"]', (date.month() + 1).toString());
+  await page.fill('input[name*="year"]', date.year().toString());
+  page.waitForClickable(commonContent.continue, 3);
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = { enterAnMRNDateAndContinue, enterAnMRNDateAndContinueAfterSignIn };

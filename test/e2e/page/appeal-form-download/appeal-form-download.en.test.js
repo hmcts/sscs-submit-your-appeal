@@ -5,35 +5,35 @@ const appealFormDownloadContent = require(`steps/appeal-form-download/content.${
 const benefitTypes = require('steps/start/benefit-type/types');
 
 const dynamicContent = (appealContent, formType, benefitType) =>
-  appealContent.subtitle
-    .replace('{{ formDownload.type }}', formType)
-    .replace('{{ benefitType }}', benefitType);
+  appealContent.subtitle.replace('{{ formDownload.type }}', formType).replace('{{ benefitType }}', benefitType);
 
-Feature(`${language.toUpperCase()} - Appeal form download page @batch-06`);
+const { test } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+test.describe(`${language.toUpperCase()} - Appeal form download page @batch-06`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - I see SSCS1 content when not selecting Carer's Allowance or CBLP`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.disabilityLivingAllowance);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS1', benefitTypeContent.benefitTypes.dla));
-});
+  test(`${language.toUpperCase()} - I see SSCS1 content when not selecting Carer's Allowance or CBLP`, ({ page }) => {
+    enterBenefitTypeAndContinue(page, language, commonContent, benefitTypes.disabilityLivingAllowance);
+    expect(page.getByText(dynamicContent(appealFormDownloadContent, 'SSCS1', benefitTypeContent.benefitTypes.dla))).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I see SSCS5 content when I select CBLP as a benefit type`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.childBenefit);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS5', benefitTypeContent.benefitTypes.cb));
-});
+  test(`${language.toUpperCase()} - I see SSCS5 content when I select CBLP as a benefit type`, ({ page }) => {
+    enterBenefitTypeAndContinue(page, language, commonContent, benefitTypes.childBenefit);
+    expect(page.getByText(dynamicContent(appealFormDownloadContent, 'SSCS5', benefitTypeContent.benefitTypes.cb))).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I see SSCS2 content when I select Child support as a benefit type`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.childSupport);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS2', benefitTypeContent.benefitTypes.childSupport));
-});
+  test(`${language.toUpperCase()} - I see SSCS2 content when I select Child support as a benefit type`, ({ page }) => {
+    enterBenefitTypeAndContinue(page, language, commonContent, benefitTypes.childSupport);
+    expect(page.getByText(dynamicContent(appealFormDownloadContent, 'SSCS2', benefitTypeContent.benefitTypes.childSupport))).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
+  test(`${language.toUpperCase()} - I have a csrf token`, ({ page }) => {
+    page.seeElementInDOM('form input[name="_csrf"]');
+  });
 });

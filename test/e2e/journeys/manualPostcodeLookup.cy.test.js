@@ -4,22 +4,30 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { confirmDetailsArePresent, enterDetailsFromNoRepresentativeToEnd, enterDetailsFromStartToNINO } = require('../page-objects/cya/checkYourAppeal');
+const { skipPcqCY } = require('../page-objects/pcq/pcq');
+const { checkOptionAndContinue } = require('../page-objects/controls/option');
+const { enterAppellantContactDetailsManuallyAndContinue } = require('../page-objects/identity/appellantDetails');
 
-Before(({ I }) => {
-  I.createTheSession(language);
+test.describe(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+  });
+
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
+
+  test(`${language.toUpperCase()} - Appellant enters contact details Manually`, async({ page }) => {
+    await page.goto(paths.session.root);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcqCY(page);
+    await confirmDetailsArePresent(page, language);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, ({ I }) => {
-  I.amOnPage(paths.session.root);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.skipPcqCY();
-  I.confirmDetailsArePresent(language);
-}).retry(10);

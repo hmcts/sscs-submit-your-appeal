@@ -2,71 +2,72 @@
 const assert = require('assert');
 const moment = require('moment');
 const DateUtils = require('utils/DateUtils');
+const myHelper = require("../../helpers/helper");
 
-function enterDateCantAttendAndContinue(commonContent, date, link) {
-  const I = this;
+function enterDateCantAttendAndContinue(page, commonContent, date, link) {
+  
 
-  I.forceClick(link);
-  I.fillField('input[name*="day"]', date.date().toString());
-  I.fillField('input[name*="month"]', (date.month() + 1).toString());
-  I.fillField('input[name*="year"]', date.year().toString());
-  I.forceClick(commonContent.continue);
+  forceClick(page, link);
+  await page.fill('input[name*="day"]', date.date().toString());
+  await page.fill('input[name*="month"]', (date.month() + 1).toString());
+  await page.fill('input[name*="year"]', date.year().toString());
+  forceClick(page, commonContent.continue);
 }
 
-function seeFormattedDate(date) {
-  const I = this;
+function seeFormattedDate(page, date) {
+  
 
-  I.see(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
+  expect(page.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY'))).toBeVisible();
 }
 
 function dontSeeFormattedDate(date) {
-  const I = this;
-  I.wait(2);
-  I.dontSee(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
+  
+  await page.waitForTimeout(2);
+  page.dontSee(DateUtils.formatDate(date, 'dddd D MMMM YYYY'));
 }
 
-async function hasSelectedClass(element) {
-  const I = this;
+async function hasSelectedClass(page, element) {
+  
 
-  const classes = await I.grabAttributeFrom(element, 'class');
+  const classes = await grabAttributeFrom(page, element, 'class');
   const hasClass = classes.includes('active');
   assert.equal(hasClass, true);
 }
 
-async function doesntHaveSelectedClass(element) {
-  const I = this;
+async function doesntHaveSelectedClass(page, element) {
+  
 
-  const classes = await I.grabAttributeFrom(element, 'class');
+  const classes = await grabAttributeFrom(page, element, 'class');
   const hasClass = classes.includes('active');
   assert.equal(hasClass, false);
 }
 
-async function selectDates(language, dates) {
+async function selectDates(page, language, dates) {
   moment().locale(language);
 
-  const I = this;
-  I.waitForElement('#date-picker table', 10);
+  
+  page.waitForElement('#date-picker table', 10);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
-    await I.clickNextIfDateNotVisible(date);
-    I.click(element);
-    I.wait(1);
-    I.seeFormattedDate(moment(date));
-    await I.hasSelectedClass(element);
+    await myHelper.clickNextIfDateNotVisible(page, date);
+    await page.click(element);
+    await page.waitForTimeout(1);
+    seeFormattedDate(page, moment(date));
+    await hasSelectedClass(page, element);
   }
 }
 
-async function deselectDates(language, dates) {
+async function deselectDates(page, language, dates) {
   moment().locale(language);
 
-  const I = this;
+  
 
-  I.waitForElement('#date-picker table', 10);
+  page.waitForElement('#date-picker table', 10);
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
-    I.click(element);
-    I.dontSeeFormattedDate(moment(date));
-    await I.doesntHaveSelectedClass(element);
+    await page.click(element);
+    page.dontSeeFormattedDate(moment(date));
+    await doesntHaveSelectedClass(page, element);
   }
 }
 
@@ -77,5 +78,5 @@ module.exports = {
   hasSelectedClass,
   doesntHaveSelectedClass,
   selectDates,
-  deselectDates
+  deselectDates,
 };

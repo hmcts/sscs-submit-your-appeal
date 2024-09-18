@@ -1,25 +1,24 @@
 const evidenceUploadContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
 const evidenceUploadContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
 
-
-function selectAreYouProvidingEvidenceAndContinue(language, commonContent, option) {
-  const I = this;
+function selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, option) {
+  
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  I.waitForText(evidenceUploadContent.title);
-  I.checkOption(option);
-  I.scrollPageToBottom();
-  I.click(commonContent.continue);
+  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  scrollPageToBottom(page, );
+  await page.click(commonContent.continue);
 }
 
 function selectAreYouProvidingEvidenceAfterSignIn(language, commonContent, option) {
-  const I = this;
+  
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  I.waitForText(evidenceUploadContent.title);
-  I.checkOption(option);
-  I.scrollPageToBottom();
-  I.click(commonContent.saveAndContinue);
+  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  scrollPageToBottom(page, );
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = { selectAreYouProvidingEvidenceAndContinue, selectAreYouProvidingEvidenceAfterSignIn };

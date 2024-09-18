@@ -4,25 +4,27 @@ const appealFormDownloadContent = require(`steps/appeal-form-download/content.${
 const appointeeContent = require(`steps/identity/appointee/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Appointee form @batch-09`);
+const { test } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.identity.areYouAnAppointee);
-});
+test.describe(`${language.toUpperCase()} - Appointee form @batch-09`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.identity.areYouAnAppointee);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, ({ I }) => {
-  I.selectAreYouAnAppointeeAndContinue(language, appointeeContent.fields.isAppointee.yes);
-  I.seeInCurrentUrl(paths.appealFormDownload);
-  I.see(appealFormDownloadContent.title);
-});
+  test(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, ({ page }) => {
+    selectAreYouAnAppointeeAndContinue(page, language, appointeeContent.fields.isAppointee.yes);
+    page.seeInCurrentUrl(paths.appealFormDownload);
+    expect(page.getByText(appealFormDownloadContent.title)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I select No, I am taken to the independence page`, ({ I }) => {
-  I.selectAreYouAnAppointeeAndContinue(language, appointeeContent.fields.isAppointee.no);
-  I.seeInCurrentUrl(paths.start.independence);
-  I.see(independenceContent.title);
+  test(`${language.toUpperCase()} - When I select No, I am taken to the independence page`, ({ page }) => {
+    selectAreYouAnAppointeeAndContinue(page, language, appointeeContent.fields.isAppointee.no);
+    page.seeInCurrentUrl(paths.start.independence);
+    expect(page.getByText(independenceContent.title)).toBeVisible();
+  });
 });

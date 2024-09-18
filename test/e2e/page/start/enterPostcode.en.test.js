@@ -3,39 +3,43 @@ const commonContent = require('commonContent')[language];
 const postcodeCheckerContent = require(`steps/start/postcode-checker/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Enter postcode`);
+const { test } = require('@playwright/test');
+test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.start.postcodeCheck);
-});
+  Before(async ({ page }) => {
+    await createTheSession(page, language);
+    page.goto(paths.start.postcodeCheck);
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, ({ I }) => {
-  I.see(postcodeCheckerContent.title);
-});
+  test(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, ({ page }) => {
+    expect(page.getByText(postcodeCheckerContent.title)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When entering a postcode in England, I go to the /are-you-an-appointee page`, ({ I }) => {
-  I.fillField('#postcode', 'WV11 2HE');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
-});
+  test(`${language.toUpperCase()} - When entering a postcode in England, I go to the /are-you-an-appointee page`, ({
+                                                                                                                     page,
+                                                                                                                   }) => {
+    await page.fill('#postcode', 'WV11 2HE');
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(paths.identity.areYouAnAppointee);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter a postcode in Scotland, I go to the /invalid postcode page`, ({ I }) => {
-  I.fillField('#postcode', 'EH8 8DX');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.invalidPostcode);
-});
+  test(`${language.toUpperCase()} - When I enter a postcode in Scotland, I go to the /invalid postcode page`, ({ page }) => {
+    await page.fill('#postcode', 'EH8 8DX');
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(paths.start.invalidPostcode);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter an invalid postcode I see an error`, ({ I }) => {
-  I.fillField('#postcode', 'INVALID POSTCODE');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.postcodeCheck);
-  I.see(postcodeCheckerContent.fields.postcode.error.invalid);
-});
+  test(`${language.toUpperCase()} - When I enter an invalid postcode I see an error`, ({ page }) => {
+    await page.fill('#postcode', 'INVALID POSTCODE');
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(paths.start.postcodeCheck);
+    expect(page.getByText(postcodeCheckerContent.fields.postcode.error.invalid)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I leave the postcode field empty and continue, I see an error`, ({ I }) => {
-  I.fillField('#postcode', '');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.postcodeCheck);
-  I.see(postcodeCheckerContent.fields.postcode.error.emptyField);
+  test(`${language.toUpperCase()} - When I leave the postcode field empty and continue, I see an error`, ({ page }) => {
+    await page.fill('#postcode', '');
+    await page.click(commonContent.continue);
+    page.seeInCurrentUrl(paths.start.postcodeCheck);
+    expect(page.getByText(postcodeCheckerContent.fields.postcode.error.emptyField)).toBeVisible();
+  });
 });

@@ -29,28 +29,39 @@ const sscs1 = [
   'disabilityWorkAllowance'
 ];
 const sscs3 = ['compensationRecovery'];
-const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFreeChildcare', 'guardiansAllowance', 'guaranteedMinimumPension', 'nationalInsuranceCredits'];
+const sscs5 = [
+  'childBenefit',
+  'childCare',
+  'taxCredit',
+  'contractedOut',
+  'taxFreeChildcare',
+  'guardiansAllowance',
+  'guaranteedMinimumPension',
+  'nationalInsuranceCredits'
+];
 
-Feature(`${language.toUpperCase()} - Benefit Type @batch-12`);
+const { test } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.createTheSession(language);
+test.describe(`${language.toUpperCase()} - Benefit Type @batch-12`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+  });
+
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
+
+  test(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, ({ page }) => {
+    enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
+    page.seeInCurrentUrl(paths.start.postcodeCheck);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, 'pip');
-  I.seeInCurrentUrl(paths.start.postcodeCheck);
-}).retry(2);
 
 /* eslint-disable init-declarations */
 /* eslint-disable no-negated-condition */
 benefitTypesArr.forEach(benefitTypeKey => {
   if (benefitTypeKey !== 'personalIndependencePayment') {
-    Scenario(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, ({ I }) => {
+    test(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, ({ page }) => {
       let benefitForm;
       if (sscs1.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS1';
@@ -61,12 +72,12 @@ benefitTypesArr.forEach(benefitTypeKey => {
       } else {
         throw new Error('I do not know which form this is supposed to go to');
       }
-      I.enterBenefitTypeAndContinue(language, commonContent, benefitTypesObj[benefitTypeKey]);
-      I.seeInCurrentUrl(paths.appealFormDownload);
-      I.see(appealFormDownloadContent.title);
-      I.see(appealFormDownloadContent.button.text);
-      I.see(benefitForm);
-    }).retry(2);
+      enterBenefitTypeAndContinue(page, language, commonContent, benefitTypesObj[benefitTypeKey]);
+      page.seeInCurrentUrl(paths.appealFormDownload);
+      expect(page.getByText(appealFormDownloadContent.title)).toBeVisible();
+      expect(page.getByText(appealFormDownloadContent.button.text)).toBeVisible();
+      expect(page.getByText(benefitForm)).toBeVisible();
+    });
   }
 });
 /* eslint-enable init-declarations */

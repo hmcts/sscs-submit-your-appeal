@@ -2,18 +2,20 @@ const language = 'cy';
 const termsAndConditionsContent = require(`steps/policy-pages/terms-and-conditions/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Terms and Conditions Page @batch-10`);
+const { test } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.amOnPage(paths.policy.termsAndConditions);
-});
+test.describe(`${language.toUpperCase()} - Terms and Conditions Page @batch-10`, () => {
+  Before(async({ page }) => {
+    page.goto(paths.policy.termsAndConditions);
+  });
 
-Scenario(`${language.toUpperCase()} - I see the page title text`, ({ I }) => {
-  I.see(termsAndConditionsContent.title);
-});
+  test(`${language.toUpperCase()} - I see the page title text`, ({ page }) => {
+    expect(page.getByText(termsAndConditionsContent.title)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I see expected links and go to expected urls`, ({ I }) => {
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.privacy.name, paths.policy.privacy);
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.cookie.name, paths.policy.cookiePolicy);
-  I.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.contact.name, paths.policy.contactUs);
+  test(`${language.toUpperCase()} - I see expected links and go to expected urls`, ({ page }) => {
+    page.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.privacy.name, paths.policy.privacy);
+    page.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.cookie.name, paths.policy.cookiePolicy);
+    page.seeAndGoToGivenLink(termsAndConditionsContent.termsAndConditions.links.contact.name, paths.policy.contactUs);
+  });
 });

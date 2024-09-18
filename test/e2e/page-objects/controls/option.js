@@ -1,42 +1,34 @@
-function checkOptionAndContinue(commonContent, option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.continue);
+async function checkOptionAndContinue(page, commonContent, option) {
+  await page.waitForTimeout(10);
+  await page.locator(option).check();
+  page.waitForClickable(commonContent.continue, 3);
+  await page.click(commonContent.continue);
 }
 
-function checkOptionAndContinueAfterSignIn(commonContent, option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable(commonContent.saveAndContinue, 3);
-  I.click(commonContent.saveAndContinue);
+async function checkOptionAndContinueAfterSignIn(page, commonContent, option) {
+  await page.waitForTimeout(10);
+  await page.locator(option).check();
+  page.waitForClickable(commonContent.saveAndContinue, 3);
+  await page.click(commonContent.saveAndContinue);
 }
 
-
-function checkPCQOptionAndContinue(option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable('Continue', 3);
-  I.click('Continue');
+async function checkPCQOptionAndContinue(page, option) {
+  await page.waitForTimeout(10);
+  await page.locator(option).check();
+  page.waitForClickable('Continue', 3);
+  await page.click('Continue');
 }
 
-function checkCYPCQOptionAndContinue(option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable('Parhau', 3);
-  I.click('Parhau');
+async function checkCYPCQOptionAndContinue(page, option) {
+  await page.waitForTimeout(10);
+  await page.locator(option).check();
+  page.waitForClickable('Parhau', 3);
+  await page.click('Parhau');
 }
 
-
-module.exports = { checkOptionAndContinue,
+module.exports = {
+  checkOptionAndContinue,
   checkOptionAndContinueAfterSignIn,
   checkPCQOptionAndContinue,
-  checkCYPCQOptionAndContinue };
+  checkCYPCQOptionAndContinue
+};

@@ -1,17 +1,17 @@
-function signOut(language) {
-  const I = this;
+function signOut(page, language) {
+  
   if (language === 'en') {
-    I.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
+    page.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
   } else {
-    I.retry({ retries: 3, minTimeout: 5000 }).click('Allgofnodi');
+    page.retry({ retries: 3, minTimeout: 5000 }).click('Allgofnodi');
   }
-  I.wait(1);
+  await page.waitForTimeout(1);
 }
 
 function navigateToSignOut() {
-  const I = this;
-  I.amOnPage('/sign-out');
-  I.wait(2);
+  
+  page.goto('/sign-out');
+  await page.waitForTimeout(2);
 }
 
 module.exports = { signOut, navigateToSignOut };

@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+const { test } = require('@playwright/test');
 
 const language = 'cy';
 
@@ -11,8 +12,8 @@ const benefitSearchName = testDataEn.benefitTypes[4].searchNameWelsh;
 const office = testDataEn.benefitTypes[4].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[4].hasDwpIssuingOffice;
 
-Feature(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Journey`);
-
-Scenario(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, ({ I }) => {
-  e2eBenefit.e2eBenefit(I, benefitSearchName, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
-}).retry(8);
+test.describe(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Journey`, () => {
+  test(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitSearchName, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
+  });
+});

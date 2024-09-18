@@ -1,22 +1,22 @@
 const appointeeContentEn = require('steps/identity/appointee/content.en');
 const appointeeContentCy = require('steps/identity/appointee/content.cy');
 
-function selectAreYouAnAppointeeAndContinue(language, commonContent, option) {
-  const I = this;
+function selectAreYouAnAppointeeAndContinue(page, language, commonContent, option) {
+  
   const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
-  I.waitForText(appointeeContent.fields.isAppointee.yes);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await expect(page.getByText(appointeeContent.fields.isAppointee.yes)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  await page.click(commonContent.continue);
 }
 
-function selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, option) {
-  const I = this;
+function selectAreYouAnAppointeeAndContinueAfterSignIn(page, language, commonContent, option) {
+  
   const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
-  I.waitForText(appointeeContent.fields.isAppointee.yes);
-  I.checkOption(option);
-  I.click(commonContent.saveAndContinue);
+  await expect(page.getByText(appointeeContent.fields.isAppointee.yes)).toBeVisible({ timeout: 45000 })
+  await page.locator(option).check()
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = { selectAreYouAnAppointeeAndContinue, selectAreYouAnAppointeeAndContinueAfterSignIn };

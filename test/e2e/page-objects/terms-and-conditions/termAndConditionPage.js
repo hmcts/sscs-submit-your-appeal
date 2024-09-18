@@ -1,12 +1,12 @@
 const paths = require('paths');
 
 function seeAndGoToGivenLink(relatedLinkText, relatedLinkUrl) {
-  const I = this;
+  
 
-  I.see(relatedLinkText);
-  I.click(relatedLinkText);
-  I.seeInCurrentUrl(relatedLinkUrl);
-  I.amOnPage(paths.policy.termsAndConditions);
+  expect(page.getByText(relatedLinkText)).toBeVisible();
+  await page.click(relatedLinkText);
+  page.seeInCurrentUrl(relatedLinkUrl);
+  page.goto(paths.policy.termsAndConditions);
 }
 
 module.exports = { seeAndGoToGivenLink };

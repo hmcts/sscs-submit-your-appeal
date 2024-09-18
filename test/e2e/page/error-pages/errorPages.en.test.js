@@ -2,22 +2,24 @@ const language = 'en';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Error Pages @batch-08`);
+const { test } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+test.describe(`${language.toUpperCase()} - Error Pages @batch-08`, () => {
+  Before(async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to a path that /does-not-exist I see an error message`, ({ I }) => {
-  I.amOnPage(paths.errors.doesNotExist);
-  I.see(commonContent.errors.notFound.title);
-});
+  test(`${language.toUpperCase()} - When I go to a path that /does-not-exist I see an error message`, ({ page }) => {
+    page.goto(paths.errors.doesNotExist);
+    expect(page.getByText(commonContent.errors.notFound.title)).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to /internal-server-error I see an error message`, ({ I }) => {
-  I.amOnPage(paths.errors.internalServerError);
-  I.see(commonContent.errors.serverError.title);
+  test(`${language.toUpperCase()} - When I go to /internal-server-error I see an error message`, ({ page }) => {
+    page.goto(paths.errors.internalServerError);
+    expect(page.getByText(commonContent.errors.serverError.title)).toBeVisible();
+  });
 });

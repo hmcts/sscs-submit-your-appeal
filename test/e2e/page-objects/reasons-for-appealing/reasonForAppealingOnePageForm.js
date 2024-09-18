@@ -3,54 +3,58 @@ const reasonForAppealingContentEn = require('steps/reasons-for-appealing/reason-
 const reasonForAppealingContentCy = require('steps/reasons-for-appealing/reason-for-appealing/content.cy');
 
 async function hasErrorClass(item) {
-  const I = this;
+  
 
-  const classes = await I.grabAttributeFrom(`${item} div`, 'class');
+  const classes = await page.grabAttributeFrom(`${item} div`, 'class');
   const hasClass = classes.includes('govuk-form-group--error');
   assert.equal(hasClass, true);
 }
 
 function addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason) {
-  const I = this;
+  
   const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
-  I.waitForText(reasonForAppealingContent.title);
-  I.waitForElement(whatYouDisagreeWithField, 5);
-  I.fillField(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
-  I.fillField(reasonForAppealingField, reason.reasonForAppealing);
+  await expect(page.getByText(reasonForAppealingContent.title)).toBeVisible({ timeout: 45000 })
+  page.waitForElement(whatYouDisagreeWithField, 5);
+  await page.fill(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
+  await page.fill(reasonForAppealingField, reason.reasonForAppealing);
 }
 
-function addAReasonForAppealingAndThenClickAddAnother(language, whatYouDisagreeWithField,
-  reasonForAppealingField, reason) {
-  const I = this;
+function addAReasonForAppealingAndThenClickAddAnother(
+  language,
+  whatYouDisagreeWithField,
+  reasonForAppealingField,
+  reason,
+) {
+  
 
-  I.addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason);
-  I.click('Add reason');
+  addAReasonForAppealing(page, language, whatYouDisagreeWithField, reasonForAppealingField, reason);
+  await page.click('Add reason');
 }
 
-function addReasonForAppealingUsingTheOnePageFormAndContinue(language, commonContent, reason) {
-  const I = this;
+function addReasonForAppealingUsingTheOnePageFormAndContinue(page, language, commonContent, reason) {
+  
 
-  I.wait(5);
-  I.addAReasonForAppealing(
+  await page.waitForTimeout(5);
+  addAReasonForAppealing(page, 
     language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
-    reason
+    reason,
   );
-  I.click(commonContent.continue);
+  await page.click(commonContent.continue);
 }
 
 function addReasonForAppealingUsingTheOnePageFormAfterSignIn(language, commonContent, reason) {
-  const I = this;
+  
 
-  I.addAReasonForAppealing(
+  addAReasonForAppealing(page, 
     language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
-    reason
+    reason,
   );
-  I.click(commonContent.saveAndContinue);
+  await page.click(commonContent.saveAndContinue);
 }
 
 module.exports = {
@@ -58,5 +62,5 @@ module.exports = {
   addAReasonForAppealing,
   addAReasonForAppealingAndThenClickAddAnother,
   addReasonForAppealingUsingTheOnePageFormAndContinue,
-  addReasonForAppealingUsingTheOnePageFormAfterSignIn
+  addReasonForAppealingUsingTheOnePageFormAfterSignIn,
 };
