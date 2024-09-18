@@ -18,8 +18,14 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
+
 Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
-Install Redis: download, extract and build:
+
+### If Redis is already installed on your system
+You can simply start the application with `yarn start:dev`.
+
+### Install Redis: 
+download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz
     tar xvzf redis-stable.tar.gz
@@ -126,8 +132,30 @@ Smoke tests:
 ## Code coverage
     yarn test:coverage
 
-## Security scan of installed packages
-    yarn test:audit
+## Security Scan: Run yarn audit locally
+
+You need `jq` installed
+
+Download `yarn-audit-with-suppressions.sh` and `prettyPrintAudit.sh` from https://github.com/hmcts/cnp-jenkins-library
+to project root folder
+
+```bash
+curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/yarn-audit-with-suppressions.sh
+curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/prettyPrintAudit.sh
+```
+
+Make both files executable
+
+```bash
+chmod +x ./yarn-audit-with-suppressions.sh
+chmod +x ./prettyPrintAudit.sh
+```
+
+Run `yarn-audit-with-suppressions.sh`
+
+```bash
+./yarn-audit-with-suppressions.sh
+```
 
 [Dockerfile]:Dockerfile
 [docker-compose.yml]:docker-compose.yml
