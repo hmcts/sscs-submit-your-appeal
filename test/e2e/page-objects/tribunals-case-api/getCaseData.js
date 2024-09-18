@@ -10,13 +10,13 @@ function checkTribunalAPIResponse(res) {
     }
     throw Error('Invalid API Response no data returned');
   } else {
-    const status = res && res.status ? res.status : 'null';
+    const status = res ? res.status : 'null';
     throw Error(`HTTP Error ${status} is invalid`);
   }
 }
 
 async function getMYACaseData(page, ccdCaseID) {
-  const res = await page.sendGetRequest(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
+  const res = await page.request.get(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
   const caseData = checkTribunalAPIResponse(res);
   if (caseData.appeal) {
     return caseData.appeal;
@@ -25,15 +25,15 @@ async function getMYACaseData(page, ccdCaseID) {
 }
 
 async function getCaseData(page, ccdCaseID) {
-  const myaCaseData = await getMYACaseData(page, page, ccdCaseID);
-  if (!myaCaseData || !myaCaseData.appealNumber) {
-    throw Error('Invalid Appeal Number)');
-  }
+  const myaCaseData = await getMYACaseData(page, ccdCaseID);
   const tyaID = myaCaseData.appealNumber;
   const cookies = await page.context().cookies();
-  const authTokenCookie = cookies.get(authCookie);
+  const authTokenCookie = cookies.find(cookie => cookie.name === authCookie);
+  if (!authTokenCookie) {
+    throw new Error('Auth cookie not found');
+  }
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
-  const res = await page.sendGetRequest(`${tribunalsApiUrl}/api/citizen/${tyaID}`, headers);
+  const res = await page.request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, { headers });
 
   return checkTribunalAPIResponse(res);
 }

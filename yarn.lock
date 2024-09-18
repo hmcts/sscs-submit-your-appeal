@@ -3041,7 +3041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.19.50":
+"@types/node@npm:^18.17.1":
   version: 18.19.50
   resolution: "@types/node@npm:18.19.50"
   dependencies:
@@ -15433,7 +15433,7 @@ __metadata:
     "@hmcts/properties-volume": "npm:^1.1.0"
     "@hmcts/uk-bank-holidays": "npm:^1.0.2"
     "@playwright/test": "npm:^1.47.1"
-    "@types/node": "npm:^18.19.50"
+    "@types/node": "npm:^18.17.1"
     accessible-autocomplete: "npm:^2.0.4"
     applicationinsights: "npm:^2.7.3"
     babel-loader: "npm:^9.1.3"
