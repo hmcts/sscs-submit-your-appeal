@@ -19,7 +19,7 @@
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint --fix .",
-    "test:smoke": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep @smoke --steps --verbose --reporter mocha-multi",
+    "test:smoke": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep @smoke",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
     "test:mutation": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep @functional",
     "test:functional": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test && npx playwright test --project chromium",
