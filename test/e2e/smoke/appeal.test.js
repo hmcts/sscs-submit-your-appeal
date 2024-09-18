@@ -8,7 +8,7 @@ const commonContent = content[language];
 const { test } = require('@playwright/test');
 
 test.describe(`${language.toUpperCase()} - Full Journey @smoke`, () => {
-  test(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`, async({
+  test(`${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page @smoke`, async({
     page
   }) => {
     await page.goto(`${urls.formDownload.benefitAppeal}/?lng=${language}`);
