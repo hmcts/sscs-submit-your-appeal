@@ -1,5 +1,5 @@
 async function continueFromIndependance(page, commonContent) {
-  await page.waitForTimeout(3);
+  await page.waitForTimeout(3000);
   await page.click(commonContent.continue);
 }
 

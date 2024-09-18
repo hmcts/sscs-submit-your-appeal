@@ -1,6 +1,4 @@
-function enterMobileAndContinue(commonContent, mobileNumber) {
-  
-
+async function enterMobileAndContinue(page, commonContent, mobileNumber) {
   await page.fill('enterMobile', mobileNumber);
   await page.click(commonContent.continue);
 }

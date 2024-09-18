@@ -2,8 +2,7 @@ const hearingArrangementsContentEn = require('steps/hearing/arrangements/content
 const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
 const hearingData = require('test/e2e/data.en').hearing;
 
-function checkAllArrangementsAndContinue(page, commonContent, language) {
-  
+async function checkAllArrangementsAndContinue(page, commonContent, language) {
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
   await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);

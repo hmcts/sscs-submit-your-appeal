@@ -1,8 +1,7 @@
-// @ts-check
+/* eslint-disable */
 const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
-  globalSetup: './global-setup',
   testDir: './test/e2e',
   /* Run tests in files in parallel */
   fullyParallel: true,

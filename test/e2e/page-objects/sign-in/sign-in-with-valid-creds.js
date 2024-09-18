@@ -1,44 +1,42 @@
 const paths = require('paths');
+const { expect } = require('@playwright/test');
 
-function signIn(page, username, password, language) {
-  
-  await page.waitForTimeout(5);
+async function signIn(page, username, password, language) {
+  await page.waitForTimeout(5000);
   await page.fill({ id: 'username' }, username);
   await page.fill({ id: 'password' }, password);
   await page.click({ name: 'save' });
-  // await page.waitForTimeout(5);
-  page.waitForElement(".form-buttons-group [href='/new-appeal']", 20);
+  // await page.waitForTimeout(5000);
+  await page.locator(".form-buttons-group [href='/new-appeal']").first().waitFor({ timeout: 20000 });
   if (language === 'en') {
-    await expect(page.getByText('Your draft benefit appeals')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Your draft benefit appeals')).toBeVisible({ timeout: 45000 });
   } else {
-    await expect(page.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau')).toBeVisible({ timeout: 45000 });
   }
 }
 
 async function signInVerifylanguage(page, username, password, language) {
-  
-  await page.waitForTimeout(5);
+  await page.waitForTimeout(5000);
   await page.fill({ id: 'username' }, username);
   await page.fill({ id: 'password' }, password);
   await page.click({ name: 'save' });
-  page.waitForElement(".form-buttons-group [href='/new-appeal']", 10);
-  const altLang = await grabTextFrom(page, '.language');
+  await page.locator(".form-buttons-group [href='/new-appeal']").first().waitFor({ timeout: 10000 });
+  const altLang = await page.locator('.language').first().textContent().trim();
   if ((altLang === 'English' && language === 'en') || (altLang === 'Cymraeg' && language === 'cy')) {
-    page.goto(`${paths.drafts}?lng=${language}`);
-    await page.waitForTimeout(2);
+    await page.goto(`${paths.drafts}?lng=${language}`);
+    await page.waitForTimeout(2000);
   }
 
   if (language === 'en') {
-    await expect(page.getByText('Your draft benefit appeals')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Your draft benefit appeals')).toBeVisible({ timeout: 45000 });
   } else {
-    await expect(page.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau')).toBeVisible({ timeout: 45000 })
+    await expect(page.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau')).toBeVisible({ timeout: 45000 });
   }
 }
 
-function navigateToSignInLink(page) {
-  
+async function navigateToSignInLink(page) {
   await page.click('Sign back into your appeal');
-  await page.waitForTimeout(2);
+  await page.waitForTimeout(2000);
 }
 
 module.exports = { signIn, signInVerifylanguage, navigateToSignInLink };

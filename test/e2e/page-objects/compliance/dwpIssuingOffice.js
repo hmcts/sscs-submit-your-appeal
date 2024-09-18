@@ -1,37 +1,31 @@
-function enterDWPIssuingOfficeAndContinue(page, commonContent, id) {
-  
+const { expect } = require('@playwright/test');
 
-  await page.waitForTimeout(3);
-  selectOption(page, { id: 'pipNumber' }, id);
+async function enterDWPIssuingOfficeAndContinue(page, commonContent, id) {
+  await page.waitForTimeout(3000);
+  await page.selectOption('#pipNumber', id);
   await page.click(commonContent.continue);
 }
 
-function enterDWPIssuingOfficeAndContinueAfterSignIn(page, commonContent, id) {
-  
-
-  await page.waitForTimeout(3);
-  selectOption(page, { id: 'pipNumber' }, id);
+async function enterDWPIssuingOfficeAndContinueAfterSignIn(page, commonContent, id) {
+  await page.waitForTimeout(3000);
+  await page.selectOption('#pipNumber', id);
   await page.click(commonContent.saveAndContinue);
 }
 
-function enterDWPIssuingOffice(page, commonContent, id) {
-  
-
-  await page.waitForTimeout(3);
-  selectOption(page, { id: 'dwpIssuingOffice' }, id);
+async function enterDWPIssuingOffice(page, commonContent, id) {
+  await page.waitForTimeout(3000);
+  await page.selectOption('#dwpIssuingOffice', id);
   await page.click(commonContent.continue);
 }
 
-function seeDWPIssuingOfficeError(url, error) {
-  
-
-  page.seeInCurrentUrl(url);
-  expect(page.getByText(error)).toBeVisible();
+async function seeDWPIssuingOfficeError(page, url, error) {
+  await page.waitForURL(`**/${url}`);
+  await expect(page.getByText(error)).toBeVisible();
 }
 
 module.exports = {
   enterDWPIssuingOfficeAndContinue,
   enterDWPIssuingOfficeAndContinueAfterSignIn,
   enterDWPIssuingOffice,
-  seeDWPIssuingOfficeError,
+  seeDWPIssuingOfficeError
 };

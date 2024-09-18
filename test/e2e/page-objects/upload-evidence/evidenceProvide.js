@@ -1,23 +1,20 @@
 const evidenceUploadContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
 const evidenceUploadContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
+const { expect } = require('@playwright/test');
 
-function selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, option) {
-  
+async function selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, option) {
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 })
-  await page.locator(option).check()
-  scrollPageToBottom(page, );
+  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 });
+  await page.locator(option).first().check();
   await page.click(commonContent.continue);
 }
 
-function selectAreYouProvidingEvidenceAfterSignIn(language, commonContent, option) {
-  
+async function selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, option) {
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 })
-  await page.locator(option).check()
-  scrollPageToBottom(page, );
+  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 });
+  await page.locator(option).first().check();
   await page.click(commonContent.saveAndContinue);
 }
 

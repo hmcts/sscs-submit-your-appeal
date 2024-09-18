@@ -4,23 +4,32 @@ const confirmationContent = require(`steps/confirmation/content.${language}`);
 const paths = require('paths');
 const urls = require('urls');
 
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
+
 test.describe(`${language.toUpperCase()} - Confirmation @batch-08`, () => {
-  Before(async ({ page }) => {
+  Before(async({ page }) => {
     await createTheSession(page, language);
-    page.goto(paths.confirmation);
+    await page.goto(paths.confirmation);
   });
 
-  After(async ({ page }) => {
+  After(async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When I go to the page I see the header`, ({ page }) => {
-    expect(page.getByText(confirmationContent.title)).toBeVisible();
+  test(`${language.toUpperCase()} - When I go to the page I see the header`, async({
+    page
+  }) => {
+    await expect(page.getByText(confirmationContent.title)).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, ({ page }) => {
+  test(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, async({
+    page
+  }) => {
     await page.click(commonContent.continue);
-    page.seeInCurrentUrl(urls.surveyLink);
+    await page.waitForURL(`**/${urls.surveyLink}`);
   });
 });

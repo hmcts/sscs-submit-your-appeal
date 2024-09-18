@@ -1,14 +1,10 @@
-function continueFromnotAttendingHearing(commonContent) {
-  
-
-  await page.waitForTimeout(5);
+async function continueFromnotAttendingHearing(page, commonContent) {
+  await page.waitForTimeout(5000);
   await page.click(commonContent.continue);
 }
 
-function continueFromnotAttendingHearingAfterSignIn(commonContent) {
-  
-
-  await page.waitForTimeout(5);
+async function continueFromnotAttendingHearingAfterSignIn(page, commonContent) {
+  await page.waitForTimeout(5000);
   await page.click(commonContent.saveAndContinue);
 }
 

@@ -1,21 +1,17 @@
 const paths = require('paths');
 
-function goToCheckMrnPage(commonContent, mrnDate) {
-  
-
+async function goToCheckMrnPage(page, commonContent, mrnDate) {
   await page.fill('#mrnDate.day', mrnDate.date().toString());
   await page.fill('mrnDate.month', (mrnDate.month() + 1).toString());
   await page.fill('mrnDate.year', mrnDate.year().toString());
   await page.click(commonContent.continue);
-  page.seeInCurrentUrl(paths.compliance.checkMRNDate);
+  await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
 }
 
-function goToCorrectPageAfterCheckMRN(commonContent, value, url) {
-  
-
-  await page.locator(`#checkedMRN-${value}`).check()
+async function goToCorrectPageAfterCheckMRN(page, commonContent, value, url) {
+  await page.locator(`#checkedMRN-${value}`).first().check();
   await page.click(commonContent.continue);
-  page.seeInCurrentUrl(url);
+  await page.waitForURL(`**/${url}`);
 }
 
 module.exports = { goToCorrectPageAfterCheckMRN, goToCheckMrnPage };

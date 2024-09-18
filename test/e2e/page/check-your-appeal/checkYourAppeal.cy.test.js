@@ -1,34 +1,48 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const checkYourAppealContent = require(`steps/check-your-appeal/content.${language}`);
+const checkYourAppealContent = require(
+  `steps/check-your-appeal/content.${language}`
+);
 const paths = require('paths');
 
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  enterBenefitTypeAndContinue
+} = require('../../page-objects/start/benefit-type');
+
 test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () => {
-  Before(async ({ page }) => {
+  Before(async({ page }) => {
     await createTheSession(page, language);
   });
 
-  After(async ({ page }) => {
+  After(async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, ({
-    page,
+  test(`${language.toUpperCase()} - When the appeal is incomplete, I am taken to the next step that needs completing`, async({
+    page
   }) => {
-    page.goto(paths.checkYourAppeal);
-    expect(page.getByText('Gwiriwch eich atebion')).toBeVisible();
-    expect(page.getByText('Mae eich cais yn anghyflawn')).toBeVisible();
-    expect(page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.')).toBeVisible();
+    await page.goto(paths.checkYourAppeal);
+    await expect(page.getByText('Gwiriwch eich atebion')).toBeVisible();
+    await expect(page.getByText('Mae eich cais yn anghyflawn')).toBeVisible();
+    await expect(
+      page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.')
+    ).toBeVisible();
     await page.click('Parhau á’ch cais');
-    page.seeCurrentUrlEquals('/benefit-type');
+    await page.waitForURL('**/benefit-type');
   });
 
-  test(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, ({
-    page,
+  test(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, async({
+    page
   }) => {
-    enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
-    page.goto(paths.checkYourAppeal);
-    page.dontSee(checkYourAppealContent.header);
+    await enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
+    await page.goto(paths.checkYourAppeal);
+    await expect(
+      page.getByText(checkYourAppealContent.header)
+    ).not.toBeVisible();
   });
 });

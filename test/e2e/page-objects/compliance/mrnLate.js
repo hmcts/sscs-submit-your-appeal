@@ -1,6 +1,4 @@
-function enterReasonsForBeingLateAndContinue(commonContent, reason) {
-  
-
+async function enterReasonsForBeingLateAndContinue(page, commonContent, reason) {
   await page.fill('#reasonForBeingLate', reason);
   await page.click(commonContent.continue);
 }

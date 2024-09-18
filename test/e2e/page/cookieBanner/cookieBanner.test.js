@@ -2,71 +2,92 @@ const paths = require('paths');
 
 const language = 'en';
 const cookieContent = require('./cookie-content');
+const assert = require('assert');
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
 
-const { test } = require('@playwright/test');
 test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`, () => {
-  Before(async ({ page }) => {
+  Before(async({ page }) => {
     await createTheSession(page, language);
-    page.goto(paths.start.benefitType);
+    await page.goto(paths.start.benefitType);
   });
 
-  After(async ({ page }) => {
+  After(async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ page }) => {
-    await page.waitForTimeout(1);
-    expect(page.getByText(cookieContent.bannerTitle)).toBeVisible();
-    page.seeElement('.govuk-cookie-banner');
+  test(`${language.toUpperCase()} - PIP verify cookies banner Element`, async({
+    page
+  }) => {
+    await page.waitForTimeout(1000);
+    await expect(page.getByText(cookieContent.bannerTitle)).toBeVisible();
+    await expect(page.locator('.govuk-cookie-banner').first()).toBeVisible();
 
-    expect(page.getByText(cookieContent.acceptCookie)).toBeVisible();
-    expect(page.getByText(cookieContent.rejectCookie)).toBeVisible();
+    await expect(page.getByText(cookieContent.acceptCookie)).toBeVisible();
+    await expect(page.getByText(cookieContent.rejectCookie)).toBeVisible();
 
     await page.click(cookieContent.viewPolicy);
-    expect(page.getByText(cookieContent.policy.title)).toBeVisible();
-    expect(page.getByText(cookieContent.policy.selectCookieOptions)).toBeVisible();
+    await expect(page.getByText(cookieContent.policy.title)).toBeVisible();
+    await expect(
+      page.getByText(cookieContent.policy.selectCookieOptions)
+    ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - PIP accept additional cookies`, ({ page }) => {
-    await page.waitForTimeout(1);
+  test(`${language.toUpperCase()} - PIP accept additional cookies`, async({
+    page
+  }) => {
+    await page.waitForTimeout(1000);
     await page.click(cookieContent.acceptCookie);
-    expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
-    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
-    page.refreshPage();
-    await page.waitForTimeout(1);
-    page.seeCookie('_ga');
-    page.seeCookie('_gid');
-    page.seeCookie('_gat_UA-91309785-5');
+    await expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.reload();
+    await page.waitForTimeout(1000);
+    let cookies = await page.context().cookies();
+    cookies = cookies.map(cookie => cookie.name);
+    assert(cookies.includes('_ga'));
+    assert(cookies.includes('_gid'));
+    assert(cookies.includes('_gat_UA-91309785-5'));
   });
 
-  test(`${language.toUpperCase()} - PIP reject additional cookies`, ({ page }) => {
-    await page.waitForTimeout(1);
+  test(`${language.toUpperCase()} - PIP reject additional cookies`, async({
+    page
+  }) => {
+    await page.waitForTimeout(1000);
     await page.click(cookieContent.rejectCookie);
-    expect(page.getByText(cookieContent.hideAfterReject)).toBeVisible();
-    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
-    page.refreshPage();
-    await page.waitForTimeout(2);
+    await expect(page.getByText(cookieContent.hideAfterReject)).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.reload();
+    await page.waitForTimeout(2000);
   });
 
-  test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ page }) => {
-    await page.waitForTimeout(1);
+  test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, async({
+    page
+  }) => {
+    await page.waitForTimeout(1000);
     await page.click(cookieContent.acceptCookie);
-    expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
-    expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
-    page.refreshPage();
+    await expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.reload();
 
-    page.seeCookie('_ga');
-    page.seeCookie('_gid');
-    page.seeCookie('_gat_UA-91309785-5');
+    let cookies = await page.context().cookies();
+    cookies = cookies.map(cookie => cookie.name);
+    assert(cookies.includes('_ga'));
+    assert(cookies.includes('_gid'));
+    assert(cookies.includes('_gat_UA-91309785-5'));
 
-    page.goto(paths.policy.cookies);
-    page.seeElement('input#radio-analytics-on:checked');
-    await page.waitForTimeout(1);
+    await page.goto(paths.policy.cookies);
+    await expect(
+      page.locator('input#radio-analytics-on:checked').first()
+    ).toBeVisible();
+    await page.waitForTimeout(1000);
     await page.click('input#radio-analytics-off');
     await page.click('Save');
 
-    page.goto(paths.start.benefitType);
-    page.refreshPage();
-    await page.waitForTimeout(2);
+    await page.goto(paths.start.benefitType);
+    await page.reload();
+    await page.waitForTimeout(2000);
   });
 });

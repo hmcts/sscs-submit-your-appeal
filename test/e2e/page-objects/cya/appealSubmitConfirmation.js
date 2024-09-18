@@ -1,13 +1,13 @@
 const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
 const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
 const paths = require('paths');
+const { expect } = require('@playwright/test');
 
-function appealSubmitConfirmation(language) {
-  
+async function appealSubmitConfirmation(page, language) {
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
-  await page.waitForTimeout(5);
-  page.seeCurrentUrlEquals(paths.confirmation);
-  expect(page.getByText(cyaContent.confirmation)).toBeVisible();
+  await page.waitForTimeout(5000);
+  await page.waitForURL(`**/${paths.confirmation}`);
+  await expect(page.getByText(cyaContent.confirmation)).toBeVisible();
 }
 
 module.exports = { appealSubmitConfirmation };

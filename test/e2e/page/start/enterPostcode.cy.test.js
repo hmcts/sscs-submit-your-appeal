@@ -1,45 +1,65 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const postcodeCheckerContent = require(`steps/start/postcode-checker/content.${language}`);
+const postcodeCheckerContent = require(
+  `steps/start/postcode-checker/content.${language}`
+);
 const paths = require('paths');
 
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
+
 test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
-
-  Before(async ({ page }) => {
+  Before(async({ page }) => {
     await createTheSession(page, language);
-    page.goto(paths.start.postcodeCheck);
+    await page.goto(paths.start.postcodeCheck);
+  });
+  After(async({ page }) => {
+    await endTheSession(page);
+  });
+  test(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, async({
+    page
+  }) => {
+    await expect(page.getByText(postcodeCheckerContent.title)).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, ({ page }) => {
-    expect(page.getByText(postcodeCheckerContent.title)).toBeVisible();
-  });
-
-  test(`${language.toUpperCase()} - When entering a postcode in England, I go to the /are-you-an-appointee page`, ({
-                                                                                                                     page,
-                                                                                                                   }) => {
+  test(`${language.toUpperCase()} - When entering a postcode in England, I go to the /are-you-an-appointee page`, async({
+    page
+  }) => {
     await page.fill('#postcode', 'WV11 2HE');
     await page.click(commonContent.continue);
-    page.seeInCurrentUrl(paths.identity.areYouAnAppointee);
+    await page.waitForURL(`**/${paths.identity.areYouAnAppointee}`);
   });
 
-  test(`${language.toUpperCase()} - When I enter a postcode in Scotland, I go to the /invalid postcode page`, ({ page }) => {
+  test(`${language.toUpperCase()} - When I enter a postcode in Scotland, I go to the /invalid postcode page`, async({
+    page
+  }) => {
     await page.fill('#postcode', 'EH8 8DX');
     await page.click(commonContent.continue);
-    page.seeInCurrentUrl(paths.start.invalidPostcode);
+    await page.waitForURL(`**/${paths.start.invalidPostcode}`);
   });
 
-  test(`${language.toUpperCase()} - When I enter an invalid postcode I see an error`, ({ page }) => {
+  test(`${language.toUpperCase()} - When I enter an invalid postcode I see an error`, async({
+    page
+  }) => {
     await page.fill('#postcode', 'INVALID POSTCODE');
     await page.click(commonContent.continue);
-    page.seeInCurrentUrl(paths.start.postcodeCheck);
-    expect(page.getByText(postcodeCheckerContent.fields.postcode.error.invalid)).toBeVisible();
+    await page.waitForURL(`**/${paths.start.postcodeCheck}`);
+    await expect(
+      page.getByText(postcodeCheckerContent.fields.postcode.error.invalid)
+    ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I leave the postcode field empty and continue, I see an error`, ({ page }) => {
+  test(`${language.toUpperCase()} - When I leave the postcode field empty and continue, I see an error`, async({
+    page
+  }) => {
     await page.fill('#postcode', '');
     await page.click(commonContent.continue);
-    page.seeInCurrentUrl(paths.start.postcodeCheck);
-    expect(page.getByText(postcodeCheckerContent.fields.postcode.error.emptyField)).toBeVisible();
+    await page.waitForURL(`**/${paths.start.postcodeCheck}`);
+    await expect(
+      page.getByText(postcodeCheckerContent.fields.postcode.error.emptyField)
+    ).toBeVisible();
   });
 });

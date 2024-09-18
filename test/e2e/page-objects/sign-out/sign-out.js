@@ -1,17 +1,15 @@
-function signOut(page, language) {
-  
+async function signOut(page, language) {
   if (language === 'en') {
     page.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
   } else {
     page.retry({ retries: 3, minTimeout: 5000 }).click('Allgofnodi');
   }
-  await page.waitForTimeout(1);
+  await page.waitForTimeout(1000);
 }
 
-function navigateToSignOut() {
-  
-  page.goto('/sign-out');
-  await page.waitForTimeout(2);
+async function navigateToSignOut(page) {
+  await page.goto('/sign-out');
+  await page.waitForTimeout(2000);
 }
 
 module.exports = { signOut, navigateToSignOut };

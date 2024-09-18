@@ -15,7 +15,7 @@ const { endTheSession } = require('../page-objects/session/endSession');
 async function e2eBenefit(page, benefitSearch, office, signer, language, hasDwpIssuingOffice) {
   const commonContent = content[language];
   await createTheSession(page, language);
-  await page.waitForTimeout(1);
+  await page.waitForTimeout(1000);
   await enterCaseDetailsFromStartToNINO(page, commonContent, language, benefitSearch, office, hasDwpIssuingOffice);
   await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
   await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-yes');

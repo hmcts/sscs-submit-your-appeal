@@ -10,74 +10,69 @@ const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en
 const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
+const { expect } = require('@playwright/test');
 
-function enterAppellantNameAndContinue(page, language, commonContent, title, firstName, lastName) {
-  
+async function enterAppellantNameAndContinue(page, language, commonContent, title, firstName, lastName) {
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  await expect(page.getByText(appellantNameContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
-  selectOption(page, { id: 'title' }, title);
+  await expect(page.getByText(appellantNameContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
+  await page.selectOption('#title', title);
   await page.fill({ id: 'firstName' }, firstName);
   await page.fill({ id: 'lastName' }, lastName);
   await page.click(commonContent.continue);
 }
 
-function enterAppellantNameAndContinueAfterSignIn(page, language, commonContent, title, firstName, lastName) {
-  
+async function enterAppellantNameAndContinueAfterSignIn(page, language, commonContent, title, firstName, lastName) {
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  await expect(page.getByText(appellantNameContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
-  selectOption(page, { id: 'title' }, title);
+  await expect(page.getByText(appellantNameContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
+  await page.selectOption('#title', title);
   await page.fill({ id: 'firstName' }, firstName);
   await page.fill({ id: 'lastName' }, lastName);
   await page.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantDOBAndContinue(page, language, commonContent, day, month, year) {
-  
+async function enterAppellantDOBAndContinue(page, language, commonContent, day, month, year) {
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  await expect(page.getByText(appellantDOBContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
+  await expect(page.getByText(appellantDOBContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
   await page.fill('input[name*="day"]', day);
   await page.fill('input[name*="month"]', month);
   await page.fill('input[name*="year"]', year);
   await page.click(commonContent.continue);
 }
 
-function enterAppellantDOBAndContinueAfterSignIn(page, language, commonContent, day, month, year) {
-  
+async function enterAppellantDOBAndContinueAfterSignIn(page, language, commonContent, day, month, year) {
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  await expect(page.getByText(appellantDOBContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
+  await expect(page.getByText(appellantDOBContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
   await page.fill('input[name*="day"]', day);
   await page.fill('input[name*="month"]', month);
   await page.fill('input[name*="year"]', year);
   await page.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantNINOAndContinue(page, language, commonContent, nino) {
-  
+async function enterAppellantNINOAndContinue(page, language, commonContent, nino) {
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  await expect(page.getByText(appellantNINOContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
+  await expect(page.getByText(appellantNINOContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
   await page.fill('#nino', nino);
   await page.click(commonContent.continue);
 }
 
-function enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, nino) {
-  
+async function enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, nino) {
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  await expect(page.getByText(appellantNINOContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 })
+  await expect(page.getByText(appellantNINOContent.title.withoutAppointee)).toBeVisible({ timeout: 45000 });
   await page.fill('#nino', nino);
   await page.click(commonContent.saveAndContinue);
 }
 
-function IenterAddressDetailsManual(I) {
+async function IenterAddressDetailsManual(page) {
   if (postcodeLookupEnabled) {
     await page.click({ id: 'manualLink' });
   }
-  await page.waitForTimeout(5);
+  await page.waitForTimeout(5000);
   await page.fill({ id: 'addressLine1' }, appellant.contactDetails.addressLine1);
   await page.fill({ id: 'addressLine2' }, appellant.contactDetails.addressLine2);
   await page.fill({ id: 'townCity' }, appellant.contactDetails.townCity);
@@ -85,98 +80,87 @@ function IenterAddressDetailsManual(I) {
   await page.fill({ id: 'postCode' }, appellant.contactDetails.postCode);
 }
 
-function IenterAddressDetails(postcodeLookupContent, I) {
+async function IenterAddressDetails(page, postcodeLookupContent) {
   if (postcodeLookupEnabled) {
     await page.fill({ id: 'postcodeLookup' }, appellant.contactDetails.postCode);
     await page.click(postcodeLookupContent.findAddress);
-    await page.waitForTimeout(5);
-    selectOption(page, { css: 'form select[name=postcodeAddress]' }, appellant.contactDetails.addressLine1);
+    await page.waitForTimeout(5000);
+    await page.selectOption('form select[name=postcodeAddress]', appellant.contactDetails.addressLine1);
   } else {
-    IenterAddressDetailsManual(I);
+    await IenterAddressDetailsManual(page);
   }
 }
 
-function enterAppellantContactDetailsManuallyAndContinue(commonContent) {
-  
-
-  await page.waitForTimeout(20);
-  IenterAddressDetailsManual(I);
-  await page.waitForTimeout(20);
+async function enterAppellantContactDetailsManuallyAndContinue(page, commonContent) {
+  await await page.waitForTimeout(20000);
+  await IenterAddressDetailsManual(page);
+  await await page.waitForTimeout(20000);
   await page.fill('#phoneNumber', '07466748336');
   await page.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsAndContinue(page, commonContent, language) {
-  
+async function enterAppellantContactDetailsAndContinue(page, commonContent, language) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await page.fill({ id: 'postcodeLookup' }, 'xxxxx');
     await page.click(postcodeLookupContent.findAddress);
-    expect(page.getByText(postcodeLookupContent.fields.postcodeLookup.error.required)).toBeVisible();
+    await expect(page.getByText(postcodeLookupContent.fields.postcodeLookup.error.required)).toBeVisible();
     await page.fill({ id: 'postcodeLookup' }, 'n29ed');
     await page.click(commonContent.continue);
-    expect(page.getByText(postcodeLookupContent.fields.postcodeAddress.error.required)).toBeVisible();
-    IenterAddressDetails(postcodeLookupContent, I);
+    await expect(page.getByText(postcodeLookupContent.fields.postcodeAddress.error.required)).toBeVisible();
+    await IenterAddressDetails(page, postcodeLookupContent);
   } else {
-    IenterAddressDetailsManual(I);
+    await IenterAddressDetailsManual(page);
   }
   await page.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsAndContinueAfterSignIn(commonContent, language) {
-  
+async function enterAppellantContactDetailsAndContinueAfterSignIn(page, commonContent, language) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await page.fill({ id: 'postcodeLookup' }, 'xxxxx');
     await page.click(postcodeLookupContent.findAddress);
-    expect(page.getByText(postcodeLookupContent.fields.postcodeLookup.error.required)).toBeVisible();
+    await expect(page.getByText(postcodeLookupContent.fields.postcodeLookup.error.required)).toBeVisible();
     await page.fill({ id: 'postcodeLookup' }, 'n29ed');
     await page.click(commonContent.continue);
-    expect(page.getByText(postcodeLookupContent.fields.postcodeAddress.error.required)).toBeVisible();
-    IenterAddressDetails(postcodeLookupContent, I);
+    await expect(page.getByText(postcodeLookupContent.fields.postcodeAddress.error.required)).toBeVisible();
+    await IenterAddressDetails(page, postcodeLookupContent);
   } else {
-    IenterAddressDetailsManual(I);
+    await IenterAddressDetailsManual(page);
   }
   await page.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, mobileNumber = '07466748336') {
-  
+async function enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, mobileNumber = '07466748336') {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  await expect(page.getByText(postcodeLookupContent.textboxLabel)).toBeVisible({ timeout: 45000 })
-  IenterAddressDetails(postcodeLookupContent, I);
-  await page.waitForTimeout(20);
+  await expect(page.getByText(postcodeLookupContent.textboxLabel)).toBeVisible({ timeout: 45000 });
+  await IenterAddressDetails(page, postcodeLookupContent);
+  await await page.waitForTimeout(20000);
   await page.fill('#phoneNumber', mobileNumber);
-  scrollPageToBottom(page, );
-  page.waitForClickable(commonContent.continue, 5);
   await page.click(commonContent.continue);
 }
 
-function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
+async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page,
   commonContent,
   language,
-  mobileNumber = '07466748336',
+  mobileNumber = '07466748336'
 ) {
-  
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  await expect(page.getByText(postcodeLookupContent.textboxLabel)).toBeVisible({ timeout: 45000 })
-  IenterAddressDetails(postcodeLookupContent, I);
-  await page.waitForTimeout(20);
+  await expect(page.getByText(postcodeLookupContent.textboxLabel)).toBeVisible({ timeout: 45000 });
+  await IenterAddressDetails(page, postcodeLookupContent);
+  await await page.waitForTimeout(20000);
   await page.fill('#phoneNumber', mobileNumber);
-  scrollPageToBottom(page, );
-  page.waitForClickable(commonContent.saveAndContinue, 5);
   await page.click(commonContent.saveAndContinue);
 }
 
-function enterAppellantContactDetailsWithEmailAndContinue(commonContent, language) {
-  
+async function enterAppellantContactDetailsWithEmailAndContinue(page, commonContent, language) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  IenterAddressDetails(postcodeLookupContent, I);
+  await IenterAddressDetails(page, postcodeLookupContent);
   await page.fill('#emailAddress', 'harry.potter@wizards.com');
   await page.click(commonContent.continue);
 }
@@ -193,5 +177,5 @@ module.exports = {
   enterAppellantContactDetailsWithMobileAndContinue,
   enterAppellantContactDetailsWithMobileAndContinueAfterSignIn,
   enterAppellantContactDetailsWithEmailAndContinue,
-  enterAppellantContactDetailsManuallyAndContinue,
+  enterAppellantContactDetailsManuallyAndContinue
 };

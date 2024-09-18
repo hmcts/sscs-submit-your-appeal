@@ -10,7 +10,16 @@ const office = testDataEn.benefitTypes[9].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[9].hasDwpIssuingOffice;
 
 test.describe(`${language.toUpperCase()} - JSA E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
-    await e2eBenefit.e2eBenefit(page, benefitCode, office, signer, language, hasDwpIssuingOffice);
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({
+    page
+  }) => {
+    await e2eBenefit.e2eBenefit(
+      page,
+      benefitCode,
+      office,
+      signer,
+      language,
+      hasDwpIssuingOffice
+    );
   });
 });

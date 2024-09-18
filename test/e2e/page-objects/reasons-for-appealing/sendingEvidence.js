@@ -1,6 +1,4 @@
-function readSendingEvidenceAndContinue(page, commonContent) {
-  
-
+async function readSendingEvidenceAndContinue(page, commonContent) {
   await page.click(commonContent.continue);
 }
 

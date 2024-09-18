@@ -2,7 +2,7 @@ const config = require('config');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 
-function enterRequiredRepresentativeDetailsManual(I) {
+async function enterRequiredRepresentativeDetailsManual(page) {
   await page.fill('input[name="name.title"]', 'Mr');
   await page.fill('input[name="name.first"]', 'Harry');
   await page.fill('input[name="name.last"]', 'Potter');
@@ -18,16 +18,16 @@ function enterRequiredRepresentativeDetailsManual(I) {
   await page.fill('#postCode', 'PA80 5UU');
 }
 
-function enterRequiredRepresentativeDetails(I) {
+async function enterRequiredRepresentativeDetails(page) {
   if (postcodeLookupEnabled) {
     await page.fill('input[name="name.title"]', 'Mr');
     await page.fill('input[name="name.first"]', 'Harry');
     await page.fill('input[name="name.last"]', 'Potter');
     await page.fill({ id: 'postcodeLookup' }, 'PA80 5UU');
     await page.click('Find address');
-    selectOption(page, { css: 'form select[name=postcodeAddress]' }, '130075116');
+    await page.selectOption('form select[name=postcodeAddress]', '130075116');
   } else {
-    enterRequiredRepresentativeDetailsManual(I);
+    await enterRequiredRepresentativeDetailsManual(page);
   }
 }
 

@@ -12,7 +12,7 @@ test.describe('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser', () => {
 
     await createTheSession(page, language);
 
-    await page.waitForTimeout(1);
+    await page.waitForTimeout(1000);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await endTheSession(page);
   });
@@ -23,7 +23,7 @@ test.describe('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser', () => {
 
     await createTheSession(page, language);
 
-    await page.waitForTimeout(1);
+    await page.waitForTimeout(1000);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await endTheSession(page);
   });

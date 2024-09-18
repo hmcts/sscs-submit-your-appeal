@@ -30,7 +30,8 @@ async function getCaseData(page, ccdCaseID) {
     throw Error('Invalid Appeal Number)');
   }
   const tyaID = myaCaseData.appealNumber;
-  const authTokenCookie = await grabCookie(page, authCookie);
+  const cookies = await page.context().cookies();
+  const authTokenCookie = cookies.get(authCookie);
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
   const res = await page.sendGetRequest(`${tribunalsApiUrl}/api/citizen/${tyaID}`, headers);
 

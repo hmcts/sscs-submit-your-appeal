@@ -11,7 +11,7 @@ const myHelper = {
   // }
   async clickNextIfDateNotVisible(page, dateElement) {
     try {
-      const hasDate = Boolean(await page.locator(dateElement).isVisible());
+      const hasDate = Boolean(await page.locator(dateElement).first().isVisible());
       if (!hasDate) page.click('.next');
     } catch (error) {
       throw new Error(error);
