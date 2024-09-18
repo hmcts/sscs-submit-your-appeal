@@ -90,7 +90,7 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowRP')) {
       allowedTypes.push(benefitTypes.retirementPension);
     }
-
+    allowedTypes.push(benefitTypes.testyTest);
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return branch(

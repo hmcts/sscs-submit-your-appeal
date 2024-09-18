@@ -8,10 +8,11 @@ const Joi = require('joi');
 const paths = require('paths');
 const config = require('config');
 const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForEnglandOrWales');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
-const { includes } = require('lodash');
+const { includes, get } = require('lodash');
 
 class PostcodeChecker extends SaveToDraftStore {
   static get path() {
@@ -28,6 +29,11 @@ class PostcodeChecker extends SaveToDraftStore {
 
   get isGlasgowIncluded() {
     return includes(allowedRpcs, 'glasgow');
+  }
+
+  get isTypeIba() {
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    return benefitType === benefitTypes.testyTest;
   }
 
   answers() {

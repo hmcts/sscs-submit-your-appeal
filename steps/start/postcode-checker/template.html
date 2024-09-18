@@ -6,7 +6,9 @@
 
 {% block fields %}
     {% call formSection() %}
-        {% if isGlasgowIncluded %}
+        {% if isTypeIba %}
+            <p class="govuk-body">{{ content.subtitleTest | safe }}</p>
+        {% elif isGlasgowIncluded %}
             <p class="govuk-body">{{ content.subtitleScotland | safe }}</p>
         {% else %}
             <p class="govuk-body">{{ content.subtitle | safe }}</p>
