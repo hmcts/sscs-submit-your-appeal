@@ -1,18 +1,22 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const paths = require('../../../../paths');
 const moment = require('moment');
-const answer = require('utils/answer');
+const answer = require('../../../../utils/answer');
 
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { goToCorrectPageAfterCheckMRN, goToCheckMrnPage } = require('../../page-objects/compliance/checkMrn');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Check MRN @batch-07`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.compliance.mrnDate);
+    await page.goto(baseUrl + paths.compliance.mrnDate);
   });
 
   test.afterEach('Close down', async({ page }) => {

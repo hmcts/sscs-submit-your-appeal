@@ -1,5 +1,5 @@
-const lanugagePreferenceContentEn = require('steps/start/language-preference/content.en');
-const lanugagePreferenceContentCy = require('steps/start/language-preference/content.cy');
+const lanugagePreferenceContentEn = require('../../../../steps/start/language-preference/content.en');
+const lanugagePreferenceContentCy = require('../../../../steps/start/language-preference/content.cy');
 const { expect } = require('@playwright/test');
 
 async function chooseLanguagePreference(page, language, commonContent, answer) {

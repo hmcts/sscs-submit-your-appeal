@@ -1,12 +1,12 @@
 /* eslint-disable no-magic-numbers */
 
-const { long, short } = require('utils/months');
+const { long, short } = require('../utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
 const crypto = require('crypto');
 
 
-const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const mrnDateImage = require('../steps/compliance/mrn-date/mrnDateOnImage');
 
 class DateUtils {
   static isLessThanOrEqualToAMonth(mDate) {

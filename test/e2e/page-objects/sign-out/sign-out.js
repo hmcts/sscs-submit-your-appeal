@@ -1,3 +1,7 @@
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 async function signOut(page, language) {
   if (language === 'en') {
     page.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
@@ -8,7 +12,7 @@ async function signOut(page, language) {
 }
 
 async function navigateToSignOut(page) {
-  await page.goto('/sign-out');
+  await page.goto(`${baseUrl}/sign-out`);
   await page.waitForTimeout(2000);
 }
 

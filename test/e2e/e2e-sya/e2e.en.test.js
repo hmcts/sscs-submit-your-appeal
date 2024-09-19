@@ -3,8 +3,8 @@ const { test } = require('@playwright/test');
 
 const language = 'en';
 
-const content = require('commonContent');
-const testData = require(`test/e2e/data.${language}`);
+const content = require('../../../commonContent');
+const testData = require(`../data.${language}`);
 const { createTheSession } = require('../page-objects/session/createSession');
 const { enterDetailsFromStartToNINO, enterDetailsFromNoRepresentativeToNoUploadingEvidence, checkYourAppealToConfirmationPage } = require('../page-objects/cya/checkYourAppeal');
 const { enterAppellantContactDetailsWithMobileAndContinue } = require('../page-objects/identity/appellantDetails');

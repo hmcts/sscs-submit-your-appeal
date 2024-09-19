@@ -1,5 +1,5 @@
-const otherReasonForAppealingContentEn = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.en');
-const otherReasonForAppealingContentCy = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.cy');
+const otherReasonForAppealingContentEn = require('../../../../steps/reasons-for-appealing/other-reasons-for-appealing/content.en');
+const otherReasonForAppealingContentCy = require('../../../../steps/reasons-for-appealing/other-reasons-for-appealing/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterAnythingElseAndContinue(page, language, commonContent, anythingElse) {

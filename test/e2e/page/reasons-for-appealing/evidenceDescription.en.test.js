@@ -1,8 +1,8 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const theHearingContent = require(`steps/hearing/the-hearing/content.${language}`);
-const evidenceDescriptionContent = require(`steps/reasons-for-appealing/evidence-description/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const theHearingContent = require(`../../../../steps/hearing/the-hearing/content.${language}`);
+const evidenceDescriptionContent = require(`../../../../steps/reasons-for-appealing/evidence-description/content.${language}`);
+const paths = require('../../../../paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
@@ -10,12 +10,16 @@ const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterDescription } = require('../../page-objects/upload-evidence/evidenceDescription');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Evidence description page @evidence-upload @batch-10`, () => {
   if (evidenceUploadEnabled) {
     test.beforeEach('Initial navigation', async({ page }) => {
       await createTheSession(page, language);
-      await page.goto(paths.reasonsForAppealing.evidenceDescription);
+      await page.goto(baseUrl + paths.reasonsForAppealing.evidenceDescription);
     });
 
     test.afterEach('Close down', async({ page }) => {

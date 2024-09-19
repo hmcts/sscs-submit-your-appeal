@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const customValidations = require('components/postcodeLookup/customFieldValidations');
+const customValidations = require('../../../../components/postcodeLookup/customFieldValidations');
 const Joi = require('joi');
 
 describe('components/customFieldValidations.js', () => {

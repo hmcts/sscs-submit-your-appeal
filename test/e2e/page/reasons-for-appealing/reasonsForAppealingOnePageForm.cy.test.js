@@ -1,9 +1,9 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const reasonForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
+const commonContent = require('../../../../commonContent')[language];
+const reasonForAppealingContent = require(`../../../../steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
 const assert = require('assert');
-const paths = require('paths');
-const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
+const paths = require('../../../../paths');
+const reasons = require('../../data.en').reasonsForAppealing.reasons;
 
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
@@ -12,11 +12,15 @@ const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { addAReasonForAppealingAndThenClickAddAnother, addAReasonForAppealing, hasErrorClass } = require('../../page-objects/reasons-for-appealing/reasonForAppealingOnePageForm');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Reason For Appealing One Page Form @batch-10`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.reasonsForAppealing.reasonForAppealing);
+    await page.goto(baseUrl + paths.reasonsForAppealing.reasonForAppealing);
     await page.locator('#items-0').first().waitFor();
   });
 

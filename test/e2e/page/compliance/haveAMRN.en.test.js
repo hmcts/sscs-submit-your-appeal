@@ -1,17 +1,21 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const haveAMRNContent = require(`steps/compliance/have-a-mrn/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const haveAMRNContent = require(`../../../../steps/compliance/have-a-mrn/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { selectHaveYouGotAMRNAndContinue } = require('../../page-objects/compliance/haveAMRN');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Check MRN @batch-07`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.compliance.haveAMRN);
+    await page.goto(baseUrl + paths.compliance.haveAMRN);
   });
 
   test.afterEach('Close down', async({ page }) => {

@@ -1,6 +1,6 @@
-const hearingArrangementsContentEn = require('steps/hearing/arrangements/content.en');
-const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
-const hearingData = require('test/e2e/data.en').hearing;
+const hearingArrangementsContentEn = require('../../../../steps/hearing/arrangements/content.en');
+const hearingArrangementsContentCy = require('../../../../steps/hearing/arrangements/content.cy');
+const hearingData = require('../../data.en').hearing;
 
 async function checkAllArrangementsAndContinue(page, commonContent, language) {
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;

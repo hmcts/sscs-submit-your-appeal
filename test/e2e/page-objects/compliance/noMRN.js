@@ -1,5 +1,5 @@
-const noMRNContentEn = require('steps/compliance/no-mrn/content.en');
-const noMRNContentCy = require('steps/compliance/no-mrn/content.cy');
+const noMRNContentEn = require('../../../../steps/compliance/no-mrn/content.en');
+const noMRNContentCy = require('../../../../steps/compliance/no-mrn/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterReasonForNoMRNAndContinue(page, language, commonContent, reason) {

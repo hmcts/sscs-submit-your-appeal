@@ -2,9 +2,9 @@
 const { test } = require('@playwright/test');
 
 const language = 'cy';
-const signer = require(`test/e2e/data.${language}`).signAndSubmit.signer;
-const testDataEn = require('test/e2e/data.en');
-const e2eBenefit = require('test/e2e/e2e-sya/e2e-benefit');
+const signer = require(`../data.${language}`).signAndSubmit.signer;
+const testDataEn = require('../data.en');
+const e2eBenefit = require('../e2e-sya/e2e-benefit');
 
 const benefitCode = testDataEn.benefitTypes[11].codeWelsh;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[11].hasDwpIssuingOffice;

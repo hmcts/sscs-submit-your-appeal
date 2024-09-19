@@ -1,17 +1,21 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const confirmationContent = require(`steps/confirmation/content.${language}`);
-const paths = require('paths');
-const urls = require('urls');
+const commonContent = require('../../../../commonContent')[language];
+const confirmationContent = require(`../../../../steps/confirmation/content.${language}`);
+const paths = require('../../../../paths');
+const urls = require('../../../../urls');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Confirmation @batch-08`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.confirmation);
+    await page.goto(baseUrl + paths.confirmation);
   });
 
   test.afterEach('Close down', async({ page }) => {

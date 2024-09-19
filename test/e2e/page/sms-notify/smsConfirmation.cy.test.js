@@ -1,19 +1,23 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const smsConfirmationContent = require(`steps/sms-notify/sms-confirmation/content.${language}`);
-const textRemindersContent = require(`steps/sms-notify/text-reminders/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const smsConfirmationContent = require(`../../../../steps/sms-notify/sms-confirmation/content.${language}`);
+const textRemindersContent = require(`../../../../steps/sms-notify/text-reminders/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterAppellantContactDetailsWithMobileAndContinue, enterAppellantContactDetailsAndContinue } = require('../../page-objects/identity/appellantDetails');
 const { selectUseSameNumberAndContinue } = require('../../page-objects/sms-notify/smsNotify');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - SMS Confirmation - appellant contact details @batch-11`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.identity.enterAppellantContactDetails);
+    await page.goto(baseUrl + paths.identity.enterAppellantContactDetails);
   });
 
   test.afterEach('Close down', async({ page }) => {

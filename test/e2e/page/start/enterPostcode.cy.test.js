@@ -1,16 +1,20 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const postcodeCheckerContent = require(`steps/start/postcode-checker/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const postcodeCheckerContent = require(`../../../../steps/start/postcode-checker/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.start.postcodeCheck);
+    await page.goto(baseUrl + paths.start.postcodeCheck);
   });
   test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);

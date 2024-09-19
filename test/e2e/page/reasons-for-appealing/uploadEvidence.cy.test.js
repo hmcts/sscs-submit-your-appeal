@@ -1,7 +1,7 @@
 const language = 'cy';
-const evidenceUploadContent = require(`steps/reasons-for-appealing/evidence-upload/content.${language}`);
-const evidenceProvideContent = require(`steps/reasons-for-appealing/evidence-provide/content.${language}`);
-const paths = require('paths');
+const evidenceUploadContent = require(`../../../../steps/reasons-for-appealing/evidence-upload/content.${language}`);
+const evidenceProvideContent = require(`../../../../steps/reasons-for-appealing/evidence-provide/content.${language}`);
+const paths = require('../../../../paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
@@ -9,12 +9,16 @@ const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { selectAreYouProvidingEvidenceAndContinue } = require('../../page-objects/upload-evidence/evidenceProvide');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Uploading Evidence @evidence-upload @batch-10`, () => {
   if (evidenceUploadEnabled) {
     test.beforeEach('Initial navigation', async({ page }) => {
       await createTheSession(page, language);
-      await page.goto(paths.reasonsForAppealing.evidenceProvide);
+      await page.goto(baseUrl + paths.reasonsForAppealing.evidenceProvide);
       await selectAreYouProvidingEvidenceAndContinue(page, evidenceProvideContent.fields.evidenceProvide.yes);
     });
     test.afterEach('Close down', async({ page }) => {

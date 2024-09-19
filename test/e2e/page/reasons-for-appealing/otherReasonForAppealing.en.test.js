@@ -1,15 +1,19 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const paths = require('../../../../paths');
 
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Other Reasons For Appealing`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.reasonsForAppealing.otherReasonForAppealing);
+    await page.goto(baseUrl + paths.reasonsForAppealing.otherReasonForAppealing);
     await page.locator('#otherReasonForAppealing').first().waitFor();
   });
 

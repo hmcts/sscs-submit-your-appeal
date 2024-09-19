@@ -1,17 +1,21 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const textRemindersContent = require(`steps/sms-notify/text-reminders/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const textRemindersContent = require(`../../../../steps/sms-notify/text-reminders/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterAppellantContactDetailsWithMobileAndContinue, enterAppellantContactDetailsAndContinue } = require('../../page-objects/identity/appellantDetails');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Text Reminders - appellant contact details @batch-11`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.identity.enterAppellantContactDetails);
+    await page.goto(baseUrl + paths.identity.enterAppellantContactDetails);
   });
 
   test.afterEach('Close down', async({ page }) => {

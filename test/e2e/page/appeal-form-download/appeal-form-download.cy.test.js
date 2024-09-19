@@ -1,8 +1,8 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const benefitTypeContent = require(`steps/start/benefit-type/content.${language}`);
-const appealFormDownloadContent = require(`steps/appeal-form-download/content.${language}`);
-const benefitTypes = require('steps/start/benefit-type/types');
+const commonContent = require('../../../../commonContent')[language];
+const benefitTypeContent = require(`../../../../steps/start/benefit-type/content.${language}`);
+const appealFormDownloadContent = require(`../../../../steps/appeal-form-download/content.${language}`);
+const benefitTypes = require('../../../../steps/start/benefit-type/types');
 
 const dynamicContent = (appealContent, formType, benefitType) => appealContent.subtitle.replace('{{ formDownload.type }}', formType).replace('{{ benefitType }}', benefitType);
 

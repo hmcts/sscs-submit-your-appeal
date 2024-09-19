@@ -1,4 +1,4 @@
-const paths = require('paths');
+const paths = require('../../../../paths');
 
 async function goToCheckMrnPage(page, commonContent, mrnDate) {
   await page.fill('#mrnDate.day', mrnDate.date().toString());

@@ -60,7 +60,7 @@ describe('postcode lookup', () => {
 
     $ = global.jQuery = jQuery(window);
     // cannot be required earlier than here. Sawry!!
-    PostCodeLookup = require('components/postcodeLookup/assets/main').default;
+    PostCodeLookup = require('../../../../components/postcodeLookup/assets/main').default;
 
     done();
   });

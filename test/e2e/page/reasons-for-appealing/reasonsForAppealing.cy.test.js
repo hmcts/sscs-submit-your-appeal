@@ -1,17 +1,21 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const reasonsForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
-const paths = require('paths');
-const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
+const commonContent = require('../../../../commonContent')[language];
+const reasonsForAppealingContent = require(`../../../../steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
+const paths = require('../../../../paths');
+const reasons = require('../../data.en').reasonsForAppealing.reasons;
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Reason For Appealing @batch-10`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.reasonsForAppealing.reasonForAppealing);
+    await page.goto(baseUrl + paths.reasonsForAppealing.reasonForAppealing);
     // await page.turnOffJsAndReloadThePage();
   });
 

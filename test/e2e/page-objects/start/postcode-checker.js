@@ -1,5 +1,5 @@
-const postCodeContentEn = require('steps/start/postcode-checker/content.en');
-const postCodeContentCy = require('steps/start/postcode-checker/content.cy');
+const postCodeContentEn = require('../../../../steps/start/postcode-checker/content.en');
+const postCodeContentCy = require('../../../../steps/start/postcode-checker/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterPostcodeAndContinue(page, language, commonContent, postcode) {

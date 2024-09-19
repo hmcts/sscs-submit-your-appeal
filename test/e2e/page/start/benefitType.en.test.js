@@ -1,8 +1,8 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const appealFormDownloadContent = require(`steps/appeal-form-download/content.${language}`);
-const benefitTypesObj = require('steps/start/benefit-type/types');
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const appealFormDownloadContent = require(`../../../../steps/appeal-form-download/content.${language}`);
+const benefitTypesObj = require('../../../../steps/start/benefit-type/types');
+const paths = require('../../../../paths');
 
 const benefitTypesArr = Object.keys(benefitTypesObj);
 const sscs1 = [

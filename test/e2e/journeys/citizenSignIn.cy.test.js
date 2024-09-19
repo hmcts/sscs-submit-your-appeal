@@ -1,8 +1,8 @@
 /* eslint init-declarations: ["error", "never"]*/
 const language = 'cy';
-const commonContent = require('commonContent')[language];
+const commonContent = require('../../../commonContent')[language];
 const moment = require('moment');
-const testData = require(`test/e2e/data.${language}`);
+const testData = require(`../data.${language}`);
 const testUser = require('../../util/IdamUser');
 
 const { test } = require('@playwright/test');

@@ -1,7 +1,7 @@
 const language = 'en';
-const paths = require('paths');
+const paths = require('../../../../paths');
 const moment = require('moment');
-const DateUtils = require('utils/DateUtils');
+const DateUtils = require('../../../../utils/DateUtils');
 
 moment().locale(language);
 const dateFiveWeeksFromNow = DateUtils.getDateInMilliseconds(DateUtils.getRandomWeekDayFromDate(moment().utc().startOf('day').add(5, 'weeks')));
@@ -12,11 +12,15 @@ const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { doesntHaveSelectedClass, dontSeeFormattedDate, selectDates, deselectDates } = require('../../page-objects/hearing/datesCantAttend');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Dates can't attend date picker @batch-08`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.hearing.datesCantAttend);
+    await page.goto(baseUrl + paths.hearing.datesCantAttend);
     await page.locator('#date-picker table').first().waitFor({ timeout: 10000 });
   });
 

@@ -1,5 +1,5 @@
-const appointeeContentEn = require('steps/identity/appointee/content.en');
-const appointeeContentCy = require('steps/identity/appointee/content.cy');
+const appointeeContentEn = require('../../../../steps/identity/appointee/content.en');
+const appointeeContentCy = require('../../../../steps/identity/appointee/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectAreYouAnAppointeeAndContinue(page, language, commonContent, option) {

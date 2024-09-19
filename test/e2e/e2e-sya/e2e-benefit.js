@@ -1,4 +1,4 @@
-const content = require('commonContent');
+const content = require('../../../commonContent');
 const { createTheSession } = require('../page-objects/session/createSession');
 const { enterCaseDetailsFromStartToNINO, enterDetailsFromNoRepresentativeToNoUploadingEvidence,
   checkYourAppealToConfirmationPage } = require('../page-objects/cya/checkYourAppeal');

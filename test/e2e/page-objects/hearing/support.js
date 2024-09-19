@@ -1,5 +1,5 @@
-const hearingSupportContentEn = require('steps/hearing/support/content.en');
-const hearingSupportContentCy = require('steps/hearing/support/content.cy');
+const hearingSupportContentEn = require('../../../../steps/hearing/support/content.en');
+const hearingSupportContentCy = require('../../../../steps/hearing/support/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectDoYouNeedSupportAndContinue(page, language, commonContent, option) {

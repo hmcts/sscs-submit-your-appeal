@@ -1,5 +1,9 @@
-const paths = require('paths');
+const paths = require('../../../../paths');
 const { expect } = require('@playwright/test');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 async function verifyDraftAppealsAndEditACase(page, language) {
   await expect(page.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
@@ -73,7 +77,7 @@ async function editDraftAppeal(page, language) {
 }
 
 async function navigateToDrafts(page, language) {
-  await page.goto(`${paths.drafts}?lng=${language}`);
+  await page.goto(`${baseUrl}${paths.drafts}?lng=${language}`);
   await page.locator(`.form-buttons-group [href='${paths.newAppeal}']`).first().waitFor({ timeout: 3000 });
   if (language === 'en') {
     await expect(page.getByText('Your draft benefit appeals').first()).toBeVisible();

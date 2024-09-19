@@ -1,5 +1,5 @@
-const dwpContactContentEn = require('steps/compliance/have-contacted-dwp/content.en');
-const dwpContactContentCy = require('steps/compliance/have-contacted-dwp/content.cy');
+const dwpContactContentEn = require('../../../../steps/compliance/have-contacted-dwp/content.en');
+const dwpContactContentCy = require('../../../../steps/compliance/have-contacted-dwp/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectHaveYouContactedDWPAndContinue(page, language, commonContent, option) {

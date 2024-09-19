@@ -1,9 +1,9 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const mrnDateContent = require(`steps/compliance/mrn-date/content.${language}`);
-const DateUtils = require('utils/DateUtils');
-const paths = require('paths');
-const dateOnImage = require('steps/compliance/mrn-date/mrnDateOnImage');
+const commonContent = require('../../../../commonContent')[language];
+const mrnDateContent = require(`../../../../steps/compliance/mrn-date/content.${language}`);
+const DateUtils = require('../../../../utils/DateUtils');
+const paths = require('../../../../paths');
+const dateOnImage = require('../../../../steps/compliance/mrn-date/mrnDateOnImage');
 const moment = require('moment');
 
 const date = {
@@ -16,11 +16,15 @@ const { createTheSession } = require('../../page-objects/session/createSession')
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterAnMRNDateAndContinue } = require('../../page-objects/compliance/mrnDate');
 const { enterADateAndContinue } = require('../../page-objects/controls/date');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - User has an MRN @batch-07`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.compliance.mrnDate);
+    await page.goto(baseUrl + paths.compliance.mrnDate);
   });
 
   test.afterEach('Close down', async({ page }) => {

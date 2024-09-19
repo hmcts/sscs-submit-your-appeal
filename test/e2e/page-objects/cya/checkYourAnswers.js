@@ -1,6 +1,6 @@
-const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
-const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
-const paths = require('paths');
+const checkYourAppealContentEn = require('../../../../steps/check-your-appeal/content.en');
+const checkYourAppealContentCy = require('../../../../steps/check-your-appeal/content.cy');
+const paths = require('../../../../paths');
 
 async function checkYourAppealToConfirmation(page, language, signer) {
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;

@@ -1,19 +1,22 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const appellantContactDetailsContent = require(`steps/identity/appellant-contact-details/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const appellantContactDetailsContent = require(`../../../../steps/identity/appellant-contact-details/content.${language}`);
+const paths = require('../../../../paths');
 const config = require('config');
 
-const appellant = require('test/e2e/data.en').appellant;
+const appellant = require('../../data.en').appellant;
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
+
 test.describe(`${language.toUpperCase()} - Appellant details form @batch-09`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.identity.enterAppellantContactDetails);
+    await page.goto(baseUrl + paths.identity.enterAppellantContactDetails);
   });
 
   test.afterEach('Close down', async({ page }) => {

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const reasonForAppealingContentEn = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
-const reasonForAppealingContentCy = require('steps/reasons-for-appealing/reason-for-appealing/content.cy');
+const reasonForAppealingContentEn = require('../../../../steps/reasons-for-appealing/reason-for-appealing/content.en');
+const reasonForAppealingContentCy = require('../../../../steps/reasons-for-appealing/reason-for-appealing/content.cy');
 const { expect } = require('@playwright/test');
 
 async function hasErrorClass(page, item) {

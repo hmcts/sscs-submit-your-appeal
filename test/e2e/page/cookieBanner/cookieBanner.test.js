@@ -1,4 +1,4 @@
-const paths = require('paths');
+const paths = require('../../../../paths');
 
 const language = 'en';
 const cookieContent = require('./cookie-content');
@@ -8,11 +8,15 @@ const {
   createTheSession
 } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.start.benefitType);
+    await page.goto(baseUrl + paths.start.benefitType);
   });
 
   test.afterEach('Close down', async({ page }) => {
@@ -78,7 +82,7 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     assert(cookies.includes('_gid'));
     assert(cookies.includes('_gat_UA-91309785-5'));
 
-    await page.goto(paths.policy.cookies);
+    await page.goto(baseUrl + paths.policy.cookies);
     await expect(
       page.locator('input#radio-analytics-on:checked').first()
     ).toBeVisible();
@@ -86,7 +90,7 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     await page.getByText('input#radio-analytics-off').first().click();
     await page.getByText('Save').first().click();
 
-    await page.goto(paths.start.benefitType);
+    await page.goto(baseUrl + paths.start.benefitType);
     await page.reload();
     await page.waitForTimeout(2000);
   });

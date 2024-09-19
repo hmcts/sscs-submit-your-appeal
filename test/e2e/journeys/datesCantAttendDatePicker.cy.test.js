@@ -1,9 +1,9 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const selectors = require('steps/check-your-appeal/selectors');
-const DateUtils = require('utils/DateUtils');
+const commonContent = require('../../../commonContent')[language];
+const selectors = require('../../../steps/check-your-appeal/selectors');
+const DateUtils = require('../../../utils/DateUtils');
 const moment = require('moment');
-const paths = require('paths');
+const paths = require('../../../paths');
 
 const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingAnswer = `${datesYouCantAttend} ${selectors[language].answer}`;

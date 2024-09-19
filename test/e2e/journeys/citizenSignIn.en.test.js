@@ -1,9 +1,9 @@
 /* eslint-disable no-process-env */
 
 const language = 'en';
-const commonContent = require('commonContent')[language];
+const commonContent = require('../../../commonContent')[language];
 const moment = require('moment');
-const testData = require(`test/e2e/data.${language}`);
+const testData = require(`../data.${language}`);
 
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../page-objects/session/createSession');

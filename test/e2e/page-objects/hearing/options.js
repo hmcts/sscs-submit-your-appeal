@@ -1,5 +1,5 @@
-const telHearingContentEn = require('steps/hearing/options/content.en');
-const telHearingContentCy = require('steps/hearing/options/content.cy');
+const telHearingContentEn = require('../../../../steps/hearing/options/content.en');
+const telHearingContentCy = require('../../../../steps/hearing/options/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectTelephoneHearingOptionsAndContinue(page, language, commonContent) {

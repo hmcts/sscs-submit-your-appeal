@@ -1,17 +1,21 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const appellantDOBContent = require(`steps/identity/appellant-dob/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const appellantDOBContent = require(`../../../../steps/identity/appellant-dob/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterAppellantDOBAndContinue } = require('../../page-objects/identity/appellantDetails');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Appellant DOB form @batch-09`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.identity.enterAppellantDOB);
+    await page.goto(baseUrl + paths.identity.enterAppellantDOB);
   });
 
   test.afterEach('Close down', async({ page }) => {

@@ -1,7 +1,7 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const DateUtils = require('utils/DateUtils');
-const testData = require('test/e2e/data.en');
+const commonContent = require('../../../commonContent')[language];
+const DateUtils = require('../../../utils/DateUtils');
+const testData = require('../data.en');
 
 const appellant = testData.appellant;
 

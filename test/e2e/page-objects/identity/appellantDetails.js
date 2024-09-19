@@ -1,13 +1,13 @@
-const appellant = require('test/e2e/data.en').appellant;
+const appellant = require('../../data.en').appellant;
 const config = require('config');
-const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
-const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');
-const appellantNameContentEn = require('steps/identity/appellant-name/content.en');
-const appellantNameContentCy = require('steps/identity/appellant-name/content.cy');
-const appellantDOBContentEn = require('steps/identity/appellant-dob/content.en');
-const appellantDOBContentCy = require('steps/identity/appellant-dob/content.cy');
-const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en');
-const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
+const postcodeLookupContentEn = require('../../../../components/postcodeLookup/content.en');
+const postcodeLookupContentCy = require('../../../../components/postcodeLookup/content.cy');
+const appellantNameContentEn = require('../../../../steps/identity/appellant-name/content.en');
+const appellantNameContentCy = require('../../../../steps/identity/appellant-name/content.cy');
+const appellantDOBContentEn = require('../../../../steps/identity/appellant-dob/content.en');
+const appellantDOBContentCy = require('../../../../steps/identity/appellant-dob/content.cy');
+const appellantNINOContentEn = require('../../../../steps/identity/appellant-nino/content.en');
+const appellantNINOContentCy = require('../../../../steps/identity/appellant-nino/content.cy');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
 const { expect } = require('@playwright/test');

@@ -1,5 +1,9 @@
-const paths = require('paths');
+const paths = require('../../../../paths');
 const { expect } = require('@playwright/test');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 async function signIn(page, username, password, language) {
   await page.waitForTimeout(5000);
@@ -23,7 +27,7 @@ async function signInVerifylanguage(page, username, password, language) {
   await page.locator(".form-buttons-group [href='/new-appeal']").first().waitFor({ timeout: 10000 });
   const altLang = await page.locator('.language').first().textContent().trim();
   if ((altLang === 'English' && language === 'en') || (altLang === 'Cymraeg' && language === 'cy')) {
-    await page.goto(`${paths.drafts}?lng=${language}`);
+    await page.goto(`${baseUrl}${paths.drafts}?lng=${language}`);
     await page.waitForTimeout(2000);
   }
 

@@ -1,9 +1,9 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const datesCantAttendContent = require(`steps/hearing/dates-cant-attend/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const datesCantAttendContent = require(`../../../../steps/hearing/dates-cant-attend/content.${language}`);
+const paths = require('../../../../paths');
 const moment = require('moment');
-const DateUtils = require('utils/DateUtils');
+const DateUtils = require('../../../../utils/DateUtils');
 
 moment().locale(language);
 const validDate = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
@@ -14,11 +14,15 @@ const { createTheSession } = require('../../page-objects/session/createSession')
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { seeFormattedDate, enterDateCantAttendAndContinue, dontSeeFormattedDate } = require('../../page-objects/hearing/datesCantAttend');
 const { enterADateAndContinue } = require('../../page-objects/controls/date');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Dates can't attend @batch-08`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.hearing.datesCantAttend);
+    await page.goto(baseUrl + paths.hearing.datesCantAttend);
     // await page.turnOffJsAndReloadThePage();
   });
 

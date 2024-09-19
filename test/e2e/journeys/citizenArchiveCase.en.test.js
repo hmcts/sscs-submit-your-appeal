@@ -1,6 +1,6 @@
 /* eslint init-declarations: ["error", "never"]*/
 const language = 'en';
-const commonContent = require('commonContent')[language];
+const commonContent = require('../../../commonContent')[language];
 const moment = require('moment');
 const testUser = require('../../util/IdamUser');
 

@@ -1,16 +1,20 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const mrnOverThirteenMonthsLateContent = require(`steps/compliance/mrn-over-thirteen-months-late/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const mrnOverThirteenMonthsLateContent = require(`../../../../steps/compliance/mrn-over-thirteen-months-late/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - MRN Over thirteen months late @batch-07`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.compliance.mrnOverThirteenMonthsLate);
+    await page.goto(baseUrl + paths.compliance.mrnOverThirteenMonthsLate);
   });
 
   test.afterEach('Close down', async({ page }) => {

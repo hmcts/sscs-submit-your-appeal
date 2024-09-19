@@ -1,16 +1,20 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { selectDoYouHaveARepresentativeAndContinue } = require('../../page-objects/representative/representative');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Representative @batch-10`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.representative.representative);
+    await page.goto(baseUrl + paths.representative.representative);
   });
 
   test.afterEach('Close down', async({ page }) => {

@@ -1,5 +1,5 @@
-const evidenceUploadContentEn = require('steps/reasons-for-appealing/evidence-provide/content.en');
-const evidenceUploadContentCy = require('steps/reasons-for-appealing/evidence-provide/content.cy');
+const evidenceUploadContentEn = require('../../../../steps/reasons-for-appealing/evidence-provide/content.en');
+const evidenceUploadContentCy = require('../../../../steps/reasons-for-appealing/evidence-provide/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, option) {

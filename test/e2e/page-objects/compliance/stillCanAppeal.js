@@ -1,5 +1,5 @@
-const stillCanAppealContentEn = require('steps/compliance/still-can-appeal/content.en');
-const stillCanAppealContentCy = require('steps/compliance/still-can-appeal/content.cy');
+const stillCanAppealContentEn = require('../../../../steps/compliance/still-can-appeal/content.en');
+const stillCanAppealContentCy = require('../../../../steps/compliance/still-can-appeal/content.cy');
 const { expect } = require('@playwright/test');
 
 async function continueFromStillCanAppeal(page, language) {

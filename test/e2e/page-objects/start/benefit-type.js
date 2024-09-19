@@ -1,5 +1,5 @@
-const benefitContentEn = require('steps/start/benefit-type/content.en');
-const benefitContentCy = require('steps/start/benefit-type/content.cy');
+const benefitContentEn = require('../../../../steps/start/benefit-type/content.en');
+const benefitContentCy = require('../../../../steps/start/benefit-type/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterBenefitTypeAndContinue(page, language, commonContent, type) {

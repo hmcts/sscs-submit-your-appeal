@@ -1,12 +1,12 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const selectors = require('steps/check-your-appeal/selectors');
-const paths = require('paths');
+const commonContent = require('../../../commonContent')[language];
+const selectors = require('../../../steps/check-your-appeal/selectors');
+const paths = require('../../../paths');
 
 const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
-const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
-const testData = require('test/e2e/data.en');
+const reasons = require('../data.en').reasonsForAppealing.reasons;
+const testData = require('../data.en');
 
 const twoReasons = [reasons[0], reasons[1]];
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');

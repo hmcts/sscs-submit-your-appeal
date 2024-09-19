@@ -1,5 +1,5 @@
-const hearingAttendanceContentEn = require('steps/hearing/the-hearing/content.en');
-const hearingAttendanceContentCy = require('steps/hearing/the-hearing/content.cy');
+const hearingAttendanceContentEn = require('../../../../steps/hearing/the-hearing/content.en');
+const hearingAttendanceContentCy = require('../../../../steps/hearing/the-hearing/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterDoYouWantToAttendTheHearing(page, language, commonContent, option) {

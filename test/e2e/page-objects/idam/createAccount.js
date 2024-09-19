@@ -1,5 +1,5 @@
-const createAccountContentEn = require('steps/start/create-account/content.en');
-const createAccountContentCy = require('steps/start/create-account/content.cy');
+const createAccountContentEn = require('../../../../steps/start/create-account/content.en');
+const createAccountContentCy = require('../../../../steps/start/create-account/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectIfYouWantToCreateAccount(page, language, commonContent, option) {

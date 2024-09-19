@@ -1,18 +1,22 @@
 const language = 'cy';
-const independenceContent = require(`steps/start/independence/content.${language}`);
-const appealFormDownloadContent = require(`steps/appeal-form-download/content.${language}`);
-const appointeeContent = require(`steps/identity/appointee/content.${language}`);
-const paths = require('paths');
+const independenceContent = require(`../../../../steps/start/independence/content.${language}`);
+const appealFormDownloadContent = require(`../../../../steps/appeal-form-download/content.${language}`);
+const appointeeContent = require(`../../../../steps/identity/appointee/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { selectAreYouAnAppointeeAndContinue } = require('../../page-objects/identity/appointee');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Appointee form @batch-09`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.identity.areYouAnAppointee);
+    await page.goto(baseUrl + paths.identity.areYouAnAppointee);
   });
 
   test.afterEach('Close down', async({ page }) => {

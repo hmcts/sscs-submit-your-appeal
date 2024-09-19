@@ -1,5 +1,5 @@
-const haveMRNContentEn = require('steps/compliance/have-a-mrn/content.en');
-const haveMRNContentCy = require('steps/compliance/have-a-mrn/content.cy');
+const haveMRNContentEn = require('../../../../steps/compliance/have-a-mrn/content.en');
+const haveMRNContentCy = require('../../../../steps/compliance/have-a-mrn/content.cy');
 const { expect } = require('@playwright/test');
 
 async function selectHaveYouGotAMRNAndContinue(page, language, commonContent, option) {

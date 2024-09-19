@@ -1,6 +1,6 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const selectors = require('steps/check-your-appeal/selectors');
+const commonContent = require('../../../commonContent')[language];
+const selectors = require('../../../steps/check-your-appeal/selectors');
 
 const appellant = selectors[language].appellant;
 const txtMsgRemnders = selectors[language].textMsgReminders;

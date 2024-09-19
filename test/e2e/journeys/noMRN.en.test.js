@@ -1,9 +1,9 @@
 const language = 'en';
-const commonContent = require('commonContent')[language];
-const contactDWPContent = require(`steps/compliance/contact-dwp/content.${language}`);
+const commonContent = require('../../../commonContent')[language];
+const contactDWPContent = require(`../../../steps/compliance/contact-dwp/content.${language}`);
 
-const DateUtils = require('utils/DateUtils');
-const testData = require('test/e2e/data.en');
+const DateUtils = require('../../../utils/DateUtils');
+const testData = require('../data.en');
 const moment = require('moment');
 const config = require('config');
 

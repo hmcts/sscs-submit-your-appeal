@@ -1,21 +1,21 @@
 /* eslint-disable no-process-env */
 
-const DateUtils = require('utils/DateUtils');
-const checkYourAppealContentEn = require('steps/check-your-appeal/content.en');
-const checkYourAppealContentCy = require('steps/check-your-appeal/content.cy');
-const supportContentEn = require('steps/hearing/support/content.en');
-const supportContentCy = require('steps/hearing/support/content.cy');
-const datesCantAttendContentEn = require('steps/hearing/dates-cant-attend/content.en');
-const datesCantAttendContentCy = require('steps/hearing/dates-cant-attend/content.cy');
+const DateUtils = require('../../../../utils/DateUtils');
+const checkYourAppealContentEn = require('../../../../steps/check-your-appeal/content.en');
+const checkYourAppealContentCy = require('../../../../steps/check-your-appeal/content.cy');
+const supportContentEn = require('../../../../steps/hearing/support/content.en');
+const supportContentCy = require('../../../../steps/hearing/support/content.cy');
+const datesCantAttendContentEn = require('../../../../steps/hearing/dates-cant-attend/content.en');
+const datesCantAttendContentCy = require('../../../../steps/hearing/dates-cant-attend/content.cy');
 const config = require('config');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
-const selectors = require('steps/check-your-appeal/selectors');
-const paths = require('paths');
-const testDataEn = require('test/e2e/data.en');
-const testDataCy = require('test/e2e/data.cy');
+const selectors = require('../../../../steps/check-your-appeal/selectors');
+const paths = require('../../../../paths');
+const testDataEn = require('../../data.en');
+const testDataCy = require('../../data.cy');
 const { enterBenefitTypeAndContinue, enterBenefitTypeAfterSignIn } = require('../start/benefit-type');
 const { chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn } = require('../start/language-preference');
 const { enterPostcodeAndContinue, enterPostcodeAndContinueAfterSignIn } = require('../start/postcode-checker');
@@ -234,7 +234,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(page, commonContent, lan
   await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-yes');
   await checkAllArrangementsAndContinue(page, commonContent, language);
   await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-yes');
-  await page.goto(paths.hearing.datesCantAttend);
+  await page.goto(baseUrl + paths.hearing.datesCantAttend);
   await page.waitForTimeout(2000);
   await enterDateCantAttendAndContinue(page, commonContent, date, datesCantAttendContent.links.add);
   await page.waitForTimeout(5000);

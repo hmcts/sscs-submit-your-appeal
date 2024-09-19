@@ -1,13 +1,17 @@
 const language = 'en';
-const termsAndConditionsContent = require(`steps/policy-pages/terms-and-conditions/content.${language}`);
-const paths = require('paths');
+const termsAndConditionsContent = require(`../../../../steps/policy-pages/terms-and-conditions/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test, expect } = require('@playwright/test');
 const { seeAndGoToGivenLink } = require('../../page-objects/terms-and-conditions/termAndConditionPage');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - Terms and Conditions Page @batch-10`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
-    await page.goto(paths.policy.termsAndConditions);
+    await page.goto(baseUrl + paths.policy.termsAndConditions);
   });
 
   test(`${language.toUpperCase()} - I see the page title text`, async({ page }) => {

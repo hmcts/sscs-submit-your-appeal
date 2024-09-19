@@ -1,10 +1,13 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const haveAMRNContent = require(`steps/compliance/have-a-mrn/content.${language}`);
-const reasonForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
-const independenceContent = require(`steps/start/independence/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../commonContent')[language];
+const haveAMRNContent = require(`../../../steps/compliance/have-a-mrn/content.${language}`);
+const reasonForAppealingContent = require(`../../../steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
+const independenceContent = require(`../../../steps/start/independence/content.${language}`);
+const paths = require('../../../paths');
 const { enterBenefitTypeAndContinue } = require('../page-objects/start/benefit-type');
+const {config} = require("config");
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 /* eslint-disable global-require */
 /* eslint-disable max-len */
@@ -25,21 +28,21 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
     test(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
-      await page.goto(paths.compliance.haveAMRN);
+      await page.goto(baseUrl + paths.compliance.haveAMRN);
       await expect(page.getByText(haveAMRNContent.esa.subtitle).first()).toBeVisible();
     });
 
     test(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
-      await page.goto(paths.reasonsForAppealing.reasonForAppealing);
+      await page.goto(baseUrl + paths.reasonsForAppealing.reasonForAppealing);
       await expect(page.getByText(reasonForAppealingContent.dwpExplained).first()).toBeVisible();
     });
 
     test(`${language.toUpperCase()} - Sees an appropriate message on independence`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
-      await page.goto(paths.start.independence);
+      await page.goto(baseUrl + paths.start.independence);
       await expect(page.getByText(independenceContent.reviewed).first()).toBeVisible();
     });
   });

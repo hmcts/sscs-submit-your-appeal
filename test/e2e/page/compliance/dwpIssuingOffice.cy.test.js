@@ -1,17 +1,21 @@
 const language = 'cy';
-const commonContent = require('commonContent')[language];
-const dwpIssuingOfficeContent = require(`steps/compliance/dwp-issuing-office/content.${language}`);
-const paths = require('paths');
+const commonContent = require('../../../../commonContent')[language];
+const dwpIssuingOfficeContent = require(`../../../../steps/compliance/dwp-issuing-office/content.${language}`);
+const paths = require('../../../../paths');
 
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
 const { enterDWPIssuingOfficeAndContinue, seeDWPIssuingOfficeError } = require('../../page-objects/compliance/dwpIssuingOffice');
+const { config } = require('config');
+
+/* eslint-disable-next-line no-process-env */
+const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
 test.describe(`${language.toUpperCase()} - DWP Issuing Office @batch-07`, () => {
   test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
-    await page.goto(paths.compliance.dwpIssuingOffice);
+    await page.goto(baseUrl + paths.compliance.dwpIssuingOffice);
   });
 
   test.afterEach('Close down', async({ page }) => {

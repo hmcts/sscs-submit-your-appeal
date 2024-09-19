@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 const assert = require('assert');
 const moment = require('moment');
-const DateUtils = require('utils/DateUtils');
+const DateUtils = require('../../../../utils/DateUtils');
 const myHelper = require('../../helpers/helper');
 const { expect } = require('@playwright/test');
 
