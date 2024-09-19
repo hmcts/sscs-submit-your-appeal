@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const textRemindersContent = require(`../../../../steps/sms-notify/text-reminders/content.${language}`);
@@ -18,7 +19,7 @@ test.describe(`${language.toUpperCase()} - Send to number @batch-11`, () => {
     await createTheSession(page, language);
     await page.goto(baseUrl + paths.identity.enterAppellantContactDetails);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07466748336');
-    await page.waitForURL(`**/${paths.smsNotify.appellantTextReminders}`);
+    await page.waitForURL(`**\/${paths.smsNotify.appellantTextReminders}`);
     await page.getByText(textRemindersContent.fields.doYouWantTextMsgReminders.yes).first().click();
     await page.getByText(commonContent.continue).first().click();
   });
@@ -29,11 +30,11 @@ test.describe(`${language.toUpperCase()} - Send to number @batch-11`, () => {
 
   test(`${language.toUpperCase()} - When I select Yes, I am taken to the sms confirmation page`, async({ page }) => {
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-yes');
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
   });
 
   test(`${language.toUpperCase()} - When I select No, I am taken to the enter mobile page`, async({ page }) => {
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-no');
-    await page.waitForURL(`**/${paths.smsNotify.enterMobile}`);
+    await page.waitForURL(`**\/${paths.smsNotify.enterMobile}`);
   });
 });

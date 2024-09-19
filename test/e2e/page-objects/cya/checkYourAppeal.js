@@ -1,4 +1,4 @@
-/* eslint-disable no-process-env */
+/* eslint-disable no-process-env, no-useless-escape */
 
 const DateUtils = require('../../../../utils/DateUtils');
 const checkYourAppealContentEn = require('../../../../steps/check-your-appeal/content.en');
@@ -297,7 +297,7 @@ async function confirmDetailsArePresent(page, language, hasMRN = true, mrnDate) 
   }
 
   // We are on CYA
-  await page.waitForURL(`**/${paths.checkYourAppeal}`);
+  await page.waitForURL(`**\/${paths.checkYourAppeal}`);
 
   // Type of benefit
   await expect(page.getByText(testData.benefitType.description).first()).toBeVisible();
@@ -354,7 +354,7 @@ async function checkYourAppealToConfirmationPage(page, language, signer) {
 }
 
 async function continueIncompleteAppeal(page, language) {
-  await page.waitForURL(`**/${paths.checkYourAppeal}`);
+  await page.waitForURL(`**\/${paths.checkYourAppeal}`);
   if (language === 'en') {
     await expect(page.getByText('Check your answers').first()).toBeVisible({ timeout: 45000 });
     await expect(page.getByText('Your application is incomplete').first()).toBeVisible();

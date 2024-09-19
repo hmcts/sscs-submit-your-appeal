@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const reasonForAppealingContent = require(`../../../../steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
@@ -55,12 +56,12 @@ test.describe(`${language.toUpperCase()} - Reason For Appealing One Page Form @b
   });
 
   test(`${language.toUpperCase()} - When I enter special chars then I see no errors`, async({ page }) => {
-    page.addAReasonForAppealing(language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+    await addAReasonForAppealing(page, language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
       whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
       reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
     });
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
   test(`${language.toUpperCase()} - When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing`, async({ page }) => {
@@ -68,7 +69,7 @@ test.describe(`${language.toUpperCase()} - Reason For Appealing One Page Form @b
     await addAReasonForAppealingAndThenClickAddAnother(page, `#items-1 ${whatYouDisagreeWithField}-1`, `#items-1 ${reasonForAppealingField}-1`, reasons[1]);
     await addAReasonForAppealing(page, language, `#items-2 ${whatYouDisagreeWithField}-2`, `#items-2 ${reasonForAppealingField}-2`, reasons[2]);
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
   test(`${language.toUpperCase()} - When I go to add another reason and then click Continue without entering any data, I see no errors and am taken to /other-reason-for-appealing`, async({
@@ -77,7 +78,7 @@ test.describe(`${language.toUpperCase()} - Reason For Appealing One Page Form @b
     await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
     await page.getByText('Add reason').first().click();
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
   test(`${language.toUpperCase()} - When I click add Reason multiple times and click Continue without entering any data, I see an error in the error summary`, async({ page }) => {

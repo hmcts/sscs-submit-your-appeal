@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const appellantContactDetailsContent = require(`../../../../steps/identity/appellant-contact-details/content.${language}`);
@@ -32,7 +33,7 @@ test.describe(`${language.toUpperCase()} - Appellant details form @batch-09`, ()
     await page.fill('phoneNumber', appellant.contactDetails.phoneNumber);
     await page.fill('emailAddress', appellant.contactDetails.emailAddress);
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.smsNotify.appellantTextReminders}`);
+    await page.waitForURL(`**\/${paths.smsNotify.appellantTextReminders}`);
   });
 
   test(`${language.toUpperCase()} - When I click Continue without completing the form I see errors`, async({ page }) => {
@@ -54,7 +55,7 @@ test.describe(`${language.toUpperCase()} - Appellant details form @batch-09`, ()
       await page.fill('emailAddress', appellant.contactDetails.emailAddress);
       await page.getByText(commonContent.continue).first().click();
 
-      await page.waitForURL(`**/${paths.smsNotify.appellantTextReminders}`);
+      await page.waitForURL(`**\/${paths.smsNotify.appellantTextReminders}`);
     }
   });
 

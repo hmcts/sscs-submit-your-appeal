@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const mrnDateContent = require(`../../../../steps/compliance/mrn-date/content.${language}`);
@@ -33,37 +34,37 @@ test.describe(`${language.toUpperCase()} - User has an MRN @batch-07`, () => {
 
   test(`${language.toUpperCase()} - I have an MRN dated one day short of a month ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.oneDayShortOfAMonthAgo());
-    await page.waitForURL(`**/${paths.identity.enterAppellantName}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantName}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated as the current date`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, moment());
-    await page.waitForURL(`**/${paths.identity.enterAppellantName}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantName}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated one month ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.oneMonthAgo());
-    await page.waitForURL(`**/${paths.identity.enterAppellantName}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantName}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated one month and one day ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.oneMonthAndOneDayAgo());
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated one day short of 13 months ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.oneDayShortOfThirteenMonthsAgo());
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated 13 months ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.thirteenMonthsAgo());
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I have an MRN dated 13 months and one day ago`, async({ page }) => {
     await enterAnMRNDateAndContinue(page, commonContent, DateUtils.thirteenMonthsAndOneDayAgo());
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I have a MRN but I do not enter the day, month or the year`, async({ page }) => {
@@ -110,13 +111,13 @@ test.describe(`${language.toUpperCase()} - User has an MRN @batch-07`, () => {
   test(`${language.toUpperCase()} - I enter a MRN date with name of month`, async({ page }) => {
     date.month = 'ocToBer';
     await enterADateAndContinue(page, commonContent, date.day, date.month, date.year);
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I enter a MRN date with the short name of month`, async({ page }) => {
     date.month = 'aUg';
     await enterADateAndContinue(page, commonContent, date.day, date.month, date.year);
-    await page.waitForURL(`**/${paths.compliance.checkMRNDate}`);
+    await page.waitForURL(`**\/${paths.compliance.checkMRNDate}`);
   });
 
   test(`${language.toUpperCase()} - I enter a MRN date with an invalid name of month`, async({ page }) => {

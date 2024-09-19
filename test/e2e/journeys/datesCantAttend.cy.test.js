@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+/* eslint-disable no-useless-escape */
 
 const language = 'cy';
 const commonContent = require('../../../commonContent')[language];
@@ -66,7 +67,7 @@ test.describe(`${language.toUpperCase()} - PIP, one month ago, attends hearing w
 
     // Now edit the single date from 10 to 11 weeks.
     await page.getByText(datesYouCantAttendHearingChange).first().click();
-    await page.waitForURL(`**/${paths.hearing.hearingAvailability}`);
+    await page.waitForURL(`**\/${paths.hearing.hearingAvailability}`);
     await page.getByText(commonContent.continue).first().click();
     await enterDateCantAttendAndContinue(page, commonContent, randomWeekDayIn7Weeks, commonContent.edit);
     await page.getByText(commonContent.continue).first().click();

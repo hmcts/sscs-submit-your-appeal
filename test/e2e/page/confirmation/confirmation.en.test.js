@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const confirmationContent = require(`../../../../steps/confirmation/content.${language}`);
@@ -28,6 +29,6 @@ test.describe(`${language.toUpperCase()} - Confirmation @batch-08`, () => {
 
   test(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, async({ page }) => {
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${urls.surveyLink}`);
+    await page.waitForURL(`**\/${urls.surveyLink}`);
   });
 });

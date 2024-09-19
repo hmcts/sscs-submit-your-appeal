@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const appellantNinoContent = require(`../../../../steps/identity/appellant-nino/content.${language}`);
@@ -29,7 +30,7 @@ test.describe(`${language.toUpperCase()} - Appellant NINO form @batch-09`, () =>
   test(`${language.toUpperCase()} - The user has entered a NINO in the correct format (e.g. AA123456A) and continued`, async({ page }) => {
     await page.fill('#nino', 'AA123456A');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.identity.enterAppellantContactDetails}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantContactDetails}`);
   });
 
   test(`${language.toUpperCase()} - The user has entered a NINO in the wrong format (e.g.AA1234) and continued`, async({ page }) => {

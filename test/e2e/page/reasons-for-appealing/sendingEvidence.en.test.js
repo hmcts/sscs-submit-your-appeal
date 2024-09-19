@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const sendingEvidenceContent = require(`../../../../steps/reasons-for-appealing/sending-evidence/content.${language}`);
@@ -47,7 +48,7 @@ test.describe(`${language.toUpperCase()} - Sending Evidence - appellant contact 
       await enterAppellantContactDetailsAndContinue(page, commonContent, language);
       await page.goto(baseUrl + paths.reasonsForAppealing.sendingEvidence);
       await page.getByText(commonContent.continue).first().click();
-      await page.waitForURL(`**/${paths.hearing.theHearing}`);
+      await page.waitForURL(`**\/${paths.hearing.theHearing}`);
     });
   }
 });

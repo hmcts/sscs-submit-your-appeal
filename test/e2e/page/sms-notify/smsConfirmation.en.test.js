@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const smsConfirmationContent = require(`../../../../steps/sms-notify/sms-confirmation/content.${language}`);
@@ -29,9 +30,9 @@ test.describe(`${language.toUpperCase()} - SMS Confirmation - appellant contact 
     await page.getByText(textRemindersContent.fields.doYouWantTextMsgReminders.yes).first().click();
     await page.getByText(commonContent.continue).first().click();
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-yes');
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.representative.representative}`);
+    await page.waitForURL(`**\/${paths.representative.representative}`);
   });
 
   test(`${language.toUpperCase()} - Enter a mobile and click use same number, I see the number in SMS confirmation`, async({ page }) => {
@@ -39,7 +40,7 @@ test.describe(`${language.toUpperCase()} - SMS Confirmation - appellant contact 
     await page.getByText(textRemindersContent.fields.doYouWantTextMsgReminders.yes).first().click();
     await page.getByText(commonContent.continue).first().click();
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-yes');
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
     await expect(page.getByText(`${smsConfirmationContent.mobileNumber}07466748336`).first()).toBeVisible();
   });
 
@@ -48,10 +49,10 @@ test.describe(`${language.toUpperCase()} - SMS Confirmation - appellant contact 
     await page.getByText(textRemindersContent.fields.doYouWantTextMsgReminders.yes).first().click();
     await page.getByText(commonContent.continue).first().click();
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-no');
-    await page.waitForURL(`**/${paths.smsNotify.enterMobile}`);
+    await page.waitForURL(`**\/${paths.smsNotify.enterMobile}`);
     await page.fill('#enterMobile', '+447123456789');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
     await expect(page.getByText(`${smsConfirmationContent.mobileNumber}+447123456789`).first()).toBeVisible();
   });
 
@@ -61,7 +62,7 @@ test.describe(`${language.toUpperCase()} - SMS Confirmation - appellant contact 
     await page.getByText(commonContent.continue).first().click();
     await page.fill('#enterMobile', '+447987654321');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
     await expect(page.getByText(`${smsConfirmationContent.mobileNumber}+447987654321`).first()).toBeVisible();
   });
 });

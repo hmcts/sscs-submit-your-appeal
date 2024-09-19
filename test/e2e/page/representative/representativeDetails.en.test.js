@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const representativeDetailsContent = require(`../../../../steps/representative/representative-details/content.${language}`);
@@ -25,7 +26,7 @@ test.describe(`${language.toUpperCase()} - Representative Details @batch-10`, ()
   test(`${language.toUpperCase()} - After completing the form I am taken to the /reasons-for-appealing page`, async({ page }) => {
     await enterRequiredRepresentativeDetails(page);
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.reasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.reasonForAppealing}`);
   });
 
   test(`${language.toUpperCase()} - When I only provide a single character for firstName and lastName I see errors`, async({ page }) => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const hearingArrangementsContent = require(`../../../../steps/hearing/arrangements/content.${language}`);
@@ -28,7 +29,7 @@ test.describe(`${language.toUpperCase()} - Hearing arrangements @batch-08`, () =
   test(`${language.toUpperCase()} - I do not select any checkboxes and continue to see errors`, async({ page }) => {
     await page.getByText(commonContent.continue).first().click();
     await expect(page.getByText(hearingArrangementsContent.fields.selection.error.required).first()).toBeVisible();
-    await page.waitForURL(`**/${paths.hearing.hearingArrangements}`);
+    await page.waitForURL(`**\/${paths.hearing.hearingArrangements}`);
   });
 
   test(`${language.toUpperCase()} - I select language interpreter and see the interpreter language type field`, async({ page }) => {

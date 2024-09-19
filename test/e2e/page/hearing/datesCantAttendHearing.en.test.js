@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const datesCantAttendContent = require(`../../../../steps/hearing/dates-cant-attend/content.${language}`);
@@ -136,7 +137,7 @@ test.describe(`${language.toUpperCase()} - Dates can't attend @batch-08`, () => 
     await page.getByText(datesCantAttendContent.links.add).first().click();
     await enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString(page));
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.checkYourAppeal}`);
+    await page.waitForURL(`**\/${paths.checkYourAppeal}`);
   });
 
   test(`${language.toUpperCase()} - I enter a date I cant attend with the short name of month`, async({ page }) => {
@@ -144,7 +145,7 @@ test.describe(`${language.toUpperCase()} - Dates can't attend @batch-08`, () => 
     await page.getByText(datesCantAttendContent.links.add).first().click();
     await enterADateAndContinue(validDate.date().toString(), month, validDate.year().toString(page));
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.checkYourAppeal}`);
+    await page.waitForURL(`**\/${paths.checkYourAppeal}`);
   });
 
   test(`${language.toUpperCase()} - I enter a date I cant attend with an invalid name of month`, async({ page }) => {

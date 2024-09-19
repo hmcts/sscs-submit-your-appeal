@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const mrnOverAMonthLateContent = require(`../../../../steps/compliance/mrn-over-month-late/content.${language}`);
@@ -24,26 +25,26 @@ test.describe(`${language.toUpperCase()} - MRN Over one month late @batch-07`, (
   test(`${language.toUpperCase()} - I enter a lateness reason, I click continue, I am taken to /enter-appellant-name`, async({ page }) => {
     await page.fill('#reasonForBeingLate', 'Reason for being late');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.identity.enterAppellantName}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantName}`);
   });
 
   test('MRN is over one month late, I do not enter a reason, I see errors', async({ page }) => {
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.compliance.mrnOverMonthLate}`);
+    await page.waitForURL(`**\/${paths.compliance.mrnOverMonthLate}`);
     await expect(page.getByText(mrnOverAMonthLateContent.fields.reasonForBeingLate.error.required).first()).toBeVisible();
   });
 
   test(`${language.toUpperCase()} - I enter a reason why my appeal is late, it is less than five chars, I see errors`, async({ page }) => {
     await page.fill('#reasonForBeingLate', 'n/a');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.compliance.mrnOverMonthLate}`);
+    await page.waitForURL(`**\/${paths.compliance.mrnOverMonthLate}`);
     await expect(page.getByText(mrnOverAMonthLateContent.fields.reasonForBeingLate.error.notEnough).first()).toBeVisible();
   });
 
   test(`${language.toUpperCase()} - I enter a reason why my appeal is late with a special character, I see errors`, async({ page }) => {
     await page.fill('#reasonForBeingLate', '<Reason for being late>');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.compliance.mrnOverMonthLate}`);
+    await page.waitForURL(`**\/${paths.compliance.mrnOverMonthLate}`);
     await expect(page.getByText(mrnOverAMonthLateContent.fields.reasonForBeingLate.error.invalid).first()).toBeVisible();
   });
 });

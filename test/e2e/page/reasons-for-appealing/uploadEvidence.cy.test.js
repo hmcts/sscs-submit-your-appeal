@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const evidenceUploadContent = require(`../../../../steps/reasons-for-appealing/evidence-upload/content.${language}`);
 const evidenceProvideContent = require(`../../../../steps/reasons-for-appealing/evidence-provide/content.${language}`);
@@ -65,7 +66,7 @@ test.describe(`${language.toUpperCase()} - Uploading Evidence @evidence-upload @
       await expect(page.getByText(evidenceUploadContent.noItemsError).first()).toBeVisible();
       await page.locator('#uploadEv').setInputFiles('evidence.txt');
       await expect(page.locator('.govuk-error-summary').first()).not.toBeVisible();
-      await page.waitForURL(`**/${paths.reasonsForAppealing.evidenceUpload}`);
+      await page.waitForURL(`**\/${paths.reasonsForAppealing.evidenceUpload}`);
     });
   }
 });

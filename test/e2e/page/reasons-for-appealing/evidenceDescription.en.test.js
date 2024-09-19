@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const theHearingContent = require(`../../../../steps/hearing/the-hearing/content.${language}`);
@@ -28,20 +29,20 @@ test.describe(`${language.toUpperCase()} - Evidence description page @evidence-u
 
     test(`${language.toUpperCase()} - When I select continue, I am taken to the hearing page`, async({ page }) => {
       await page.getByText(commonContent.continue).first().click();
-      await page.waitForURL(`**/${paths.hearing.theHearing}`);
+      await page.waitForURL(`**\/${paths.hearing.theHearing}`);
       await expect(page.getByText(theHearingContent.title).first()).toBeVisible();
     });
 
     test(`${language.toUpperCase()} - When I enter special characters and select continue, I see errors`, async({ page }) => {
       await enterDescription(page, 'Description with special characters |');
-      await page.waitForURL(`**/${paths.reasonsForAppealing.evidenceDescription}`);
+      await page.waitForURL(`**\/${paths.reasonsForAppealing.evidenceDescription}`);
       await expect(page.getByText(evidenceDescriptionContent.title).first()).toBeVisible();
       await expect(page.getByText(evidenceDescriptionContent.fields.describeTheEvidence.error.invalid).first()).toBeVisible();
     });
 
     test(`${language.toUpperCase()} - When I enter too sort description and select continue, I see errors`, async({ page }) => {
       await enterDescription(page, 'one');
-      await page.waitForURL(`**/${paths.reasonsForAppealing.evidenceDescription}`);
+      await page.waitForURL(`**\/${paths.reasonsForAppealing.evidenceDescription}`);
       await expect(page.getByText(evidenceDescriptionContent.title).first()).toBeVisible();
       await expect(page.getByText(evidenceDescriptionContent.fields.describeTheEvidence.error.tooShort).first()).toBeVisible();
     });

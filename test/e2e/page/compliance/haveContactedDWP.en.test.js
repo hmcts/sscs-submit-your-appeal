@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const haveContactedDWPContent = require(`../../../../steps/compliance/have-contacted-dwp/content.${language}`);
@@ -25,17 +26,17 @@ test.describe(`${language.toUpperCase()} - Have Contacted DWP @batch-07`, () => 
 
   test(`${language.toUpperCase()} - When I select yes I am taken to the No MRN page`, async({ page }) => {
     await selectHaveYouContactedDWPAndContinue(page, language, commonContent, '#haveContactedDWP-yes');
-    await page.waitForURL(`**/${paths.compliance.noMRN}`);
+    await page.waitForURL(`**\/${paths.compliance.noMRN}`);
   });
 
   test(`${language.toUpperCase()} - When I select no I am taken to the contact DWP page`, async({ page }) => {
     await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveContactedDWP-no');
-    await page.waitForURL(`**/${paths.compliance.contactDWP}`);
+    await page.waitForURL(`**\/${paths.compliance.contactDWP}`);
   });
 
   test(`${language.toUpperCase()} - When I click continue without selecting an option, I see an error`, async({ page }) => {
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.compliance.haveContactedDWP}`);
+    await page.waitForURL(`**\/${paths.compliance.haveContactedDWP}`);
     await expect(page.getByText(haveContactedDWPContent.fields.haveContactedDWP.error.required).first()).toBeVisible();
   });
 });

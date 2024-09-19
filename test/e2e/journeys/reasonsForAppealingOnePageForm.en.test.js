@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../commonContent')[language];
 const selectors = require('../../../steps/check-your-appeal/selectors');
@@ -87,7 +88,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
 
     // Now Change the reason a different answer.
     await page.getByText(reasonForAppealingChange).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.reasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.reasonForAppealing}`);
     await expect(page.locator('#items-0').first()).toBeVisible();
 
     await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[2]);
@@ -123,7 +124,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
 
     // Now Change the reason a different answer.
     await page.getByText(reasonForAppealingChange).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.reasonForAppealing}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.reasonForAppealing}`);
     await expect(page.locator('#items-0').first()).toBeVisible();
 
     await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, {

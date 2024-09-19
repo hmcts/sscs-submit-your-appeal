@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const appellantDOBContent = require(`../../../../steps/identity/appellant-dob/content.${language}`);
@@ -24,7 +25,7 @@ test.describe(`${language.toUpperCase()} - Appellant DOB form @batch-09`, () => 
 
   test(`${language.toUpperCase()} - When I complete the form and click Continue, I am taken to /enter-appellant-nino`, async({ page }) => {
     await enterAppellantDOBAndContinue(page, '21', '03', '1981');
-    await page.waitForURL(`**/${paths.identity.enterAppellantNINO}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantNINO}`);
   });
 
   test(`${language.toUpperCase()} - When I click Continue without filling in the fields I see errors`, async({ page }) => {
@@ -65,12 +66,12 @@ test.describe(`${language.toUpperCase()} - Appellant DOB form @batch-09`, () => 
 
   test(`${language.toUpperCase()} - I enter a dob with name of month`, async({ page }) => {
     await enterAppellantDOBAndContinue(page, '21', 'March', '1981');
-    await page.waitForURL(`**/${paths.identity.enterAppellantNINO}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantNINO}`);
   });
 
   test(`${language.toUpperCase()} - I enter a dob with the short name of month`, async({ page }) => {
     await enterAppellantDOBAndContinue(page, '21', 'Jul', '1981');
-    await page.waitForURL(`**/${paths.identity.enterAppellantNINO}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantNINO}`);
   });
 
   test(`${language.toUpperCase()} - I enter a dob with an invalid name of month`, async({ page }) => {

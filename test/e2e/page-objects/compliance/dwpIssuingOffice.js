@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const { expect } = require('@playwright/test');
 
 async function enterDWPIssuingOfficeAndContinue(page, commonContent, id) {
@@ -19,7 +20,7 @@ async function enterDWPIssuingOffice(page, commonContent, id) {
 }
 
 async function seeDWPIssuingOfficeError(page, url, error) {
-  await page.waitForURL(`**/${url}`);
+  await page.waitForURL(`**\/${url}`);
   await expect(page.getByText(error).first()).toBeVisible();
 }
 

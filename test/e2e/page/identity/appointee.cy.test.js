@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const independenceContent = require(`../../../../steps/start/independence/content.${language}`);
 const appealFormDownloadContent = require(`../../../../steps/appeal-form-download/content.${language}`);
@@ -25,13 +26,13 @@ test.describe(`${language.toUpperCase()} - Appointee form @batch-09`, () => {
 
   test(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, async({ page }) => {
     await selectAreYouAnAppointeeAndContinue(page, language, appointeeContent.fields.isAppointee.yes);
-    await page.waitForURL(`**/${paths.appealFormDownload}`);
+    await page.waitForURL(`**\/${paths.appealFormDownload}`);
     await expect(page.getByText(appealFormDownloadContent.title).first()).toBeVisible();
   });
 
   test(`${language.toUpperCase()} - When I select No, I am taken to the independence page`, async({ page }) => {
     await selectAreYouAnAppointeeAndContinue(page, language, appointeeContent.fields.isAppointee.no);
-    await page.waitForURL(`**/${paths.start.independence}`);
+    await page.waitForURL(`**\/${paths.start.independence}`);
     await expect(page.getByText(independenceContent.title).first()).toBeVisible();
   });
 });

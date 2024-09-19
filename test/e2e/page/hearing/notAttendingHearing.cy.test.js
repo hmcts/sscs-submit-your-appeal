@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const paths = require('../../../../paths');
@@ -23,6 +24,6 @@ test.describe(`${language.toUpperCase()} - Not Attending Hearing @batch-08`, () 
 
   test(`${language.toUpperCase()} - When I click Continue, I am taken to the check your appeal page`, async({ page }) => {
     await continueFromnotAttendingHearing(page, commonContent);
-    await page.waitForURL(`**/${paths.checkYourAppeal}`);
+    await page.waitForURL(`**\/${paths.checkYourAppeal}`);
   });
 });

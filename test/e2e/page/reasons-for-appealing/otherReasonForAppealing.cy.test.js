@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const paths = require('../../../../paths');
@@ -24,6 +25,6 @@ test.describe(`${language.toUpperCase()} - Other Reasons For Appealing`, () => {
   test(`${language.toUpperCase()} - When I enter special chars then I see no errors`, async({ page }) => {
     await page.fill('otherReasonForAppealing', '&$%^&%!~$^&&&*');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.reasonsForAppealing.evidenceProvide}`);
+    await page.waitForURL(`**\/${paths.reasonsForAppealing.evidenceProvide}`);
   });
 });

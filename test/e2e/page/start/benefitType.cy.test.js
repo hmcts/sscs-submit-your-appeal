@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const appealFormDownloadContent = require(`../../../../steps/appeal-form-download/content.${language}`);
@@ -47,7 +48,7 @@ test.describe(`${language.toUpperCase()} - Benefit Type @batch-12`, () => {
 
   test(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, async({ page }) => {
     await enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
-    await page.waitForURL(`**/${paths.start.postcodeCheck}`);
+    await page.waitForURL(`**\/${paths.start.postcodeCheck}`);
   });
 });
 
@@ -67,7 +68,7 @@ benefitTypesArr.forEach(benefitTypeKey => {
         throw new Error('I do not know which form this is supposed to go to');
       }
       await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypesObj[benefitTypeKey]);
-      await page.waitForURL(`**/${paths.appealFormDownload}`);
+      await page.waitForURL(`**\/${paths.appealFormDownload}`);
       await expect(page.getByText(appealFormDownloadContent.title).first()).toBeVisible();
       await expect(page.getByText(appealFormDownloadContent.button.text).first()).toBeVisible();
       await expect(page.getByText(benefitForm).first()).toBeVisible();

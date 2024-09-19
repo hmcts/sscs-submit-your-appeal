@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const appellantNameContent = require(`../../../../steps/identity/appellant-name/content.${language}`);
@@ -26,7 +27,7 @@ test.describe(`${language.toUpperCase()} - Appellant Name form @batch-09`, () =>
     await page.fill('firstName', 'Harry');
     await page.fill('lastName', 'Potter');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.identity.enterAppellantDOB}`);
+    await page.waitForURL(`**\/${paths.identity.enterAppellantDOB}`);
   });
 
   test(`${language.toUpperCase()} - When I only provide a single character for firstName and lastName I see errors`, async({ page }) => {

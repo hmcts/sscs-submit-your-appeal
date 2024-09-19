@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../commonContent')[language];
 const selectors = require('../../../steps/check-your-appeal/selectors');
@@ -60,7 +61,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
 
     // Now edit the single date from 5 to 6 weeks.
     await page.getByText(datesYouCantAttendHearingChange).first().click();
-    await page.waitForURL(`**/${paths.hearing.hearingAvailability}`);
+    await page.waitForURL(`**\/${paths.hearing.hearingAvailability}`);
     await page.getByText(commonContent.continue).first().click();
     await deselectDates(page, language, [randomWeekDayIn8Weeks]);
     await page.waitForTimeout(1000);

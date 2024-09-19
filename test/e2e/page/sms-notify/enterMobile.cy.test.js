@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const paths = require('../../../../paths');
@@ -23,6 +24,6 @@ test.describe(`${language.toUpperCase()} - Enter Mobile @batch-11`, () => {
   test(`${language.toUpperCase()} - When I enter a valid mobile number, I am taken to the sms-confirmation page`, async({ page }) => {
     await page.fill('#enterMobile', '07223344556');
     await page.getByText(commonContent.continue).first().click();
-    await page.waitForURL(`**/${paths.smsNotify.smsConfirmation}`);
+    await page.waitForURL(`**\/${paths.smsNotify.smsConfirmation}`);
   });
 });

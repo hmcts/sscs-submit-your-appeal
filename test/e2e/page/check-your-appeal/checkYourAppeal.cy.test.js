@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'cy';
 const commonContent = require('../../../../commonContent')[language];
 const checkYourAppealContent = require(`../../../../steps/check-your-appeal/content.${language}`);
@@ -27,7 +28,7 @@ test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () =>
     await expect(page.getByText('Mae eich cais yn anghyflawn').first()).toBeVisible();
     await expect(page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.').first()).toBeVisible();
     await page.getByText('Parhau á’ch cais').first().click();
-    await page.waitForURL('**/benefit-type');
+    await page.waitForURL('**\/benefit-type');
   });
 
   test(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, async({ page }) => {

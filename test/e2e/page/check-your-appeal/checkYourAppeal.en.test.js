@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const commonContent = require('../../../../commonContent')[language];
 const checkYourAppealContent = require(`../../../../steps/check-your-appeal/content.${language}`);
@@ -27,7 +28,7 @@ test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () =>
     await expect(page.getByText('Your application is incomplete').first()).toBeVisible();
     await expect(page.getByText('There are still some questions to answer.').first()).toBeVisible();
     await page.getByText('Continue your application').first().click();
-    await page.waitForURL('**/benefit-type');
+    await page.waitForURL('**\/benefit-type');
   });
 
   test(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, async({ page }) => {

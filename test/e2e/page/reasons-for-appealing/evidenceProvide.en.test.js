@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const language = 'en';
 const theHearingContent = require(`../../../../steps/hearing/the-hearing/content.${language}`);
 const evidenceUploadContent = require(`../../../../steps/reasons-for-appealing/evidence-upload/content.${language}`);
@@ -28,13 +29,13 @@ test.describe(`${language.toUpperCase()} - Evidence provide page @evidence-uploa
 
     test(`${language.toUpperCase()} - When I select Yes, I am taken to the evidence upload page`, async({ page }) => {
       await selectAreYouProvidingEvidenceAndContinue(page, language, evidenceProvideContent.fields.evidenceProvide.yes);
-      await page.waitForURL(`**/${paths.reasonsForAppealing.evidenceUpload}`);
+      await page.waitForURL(`**\/${paths.reasonsForAppealing.evidenceUpload}`);
       await expect(page.getByText(evidenceUploadContent.title).first()).toBeVisible();
     });
 
     test(`${language.toUpperCase()} - When I select No, I am taken to the hearing page`, async({ page }) => {
       await selectAreYouProvidingEvidenceAndContinue(page, language, evidenceProvideContent.fields.evidenceProvide.no);
-      await page.waitForURL(`**/${paths.hearing.theHearing}`);
+      await page.waitForURL(`**\/${paths.hearing.theHearing}`);
       await expect(page.getByText(theHearingContent.title).first()).toBeVisible();
     });
   }
