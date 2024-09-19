@@ -4,6 +4,8 @@ const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('../start/benefit-type/types');
 
+const hostnames = ['iba-', 'some-prod-hostname'];
+
 class Entry extends RestoreFromDraftStore {
   static get path() {
     return paths.session.entry;
@@ -13,9 +15,7 @@ class Entry extends RestoreFromDraftStore {
     logger.trace('Reached the entry endpoint');
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
-      /* eslint-disable-next-line no-warning-comments */
-      // TODO change localhost to new hostname
-    } else if (req.hostname.includes('localhost')) {
+    } else if (hostnames.includes(req.hostname) || (req.query && req.query.forceIba !== null)) {
       req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
