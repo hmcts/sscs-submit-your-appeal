@@ -4,6 +4,8 @@ const { expect } = require('test/util/chai');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const paths = require('paths');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('../../../../middleware/draftAppealStoreMiddleware');
 
 describe('BenefitType.js', () => {
   let benefitType = null;
@@ -14,7 +16,8 @@ describe('BenefitType.js', () => {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
           PostcodeChecker: paths.start.postcodeCheck,
-          LanguagePreference: paths.start.languagePreference
+          LanguagePreference: paths.start.languagePreference,
+          Independence: paths.start.independence
         }
       }
     });
@@ -52,6 +55,49 @@ describe('BenefitType.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to entry called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      benefitType.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      sinon.assert.notCalled(superStub);
+    });
+    it('no redirect to entry called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      benefitType.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
     });
   });
 
@@ -228,6 +274,12 @@ describe('BenefitType.js', () => {
 
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'false';
+    });
+
+    it('returns /independence when benefit type is IBA when Welsh feature toggle is off', () => {
+      benefitType.fields.benefitType.value = benefitTypes.infectedBloodAppeal;
+      const test = benefitType.next();
+      expect(test.step).to.eql(paths.start.independence);
     });
   });
 });

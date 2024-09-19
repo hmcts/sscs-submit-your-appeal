@@ -9,7 +9,6 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const i18next = require('i18next');
-const { get } = require('lodash');
 
 class BenefitType extends SaveToDraftStore {
   static get path() {
@@ -17,8 +16,7 @@ class BenefitType extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    if (req.method === 'GET' && benefitType === benefitTypes.infectedBloodAppeal) {
+    if (req.method === 'GET' && req.session.BenefitType && req.session.BenefitType.benefitType === benefitTypes.infectedBloodAppeal) {
       res.redirect(paths.session.entry);
     } else {
       super.handler(req, res, next);

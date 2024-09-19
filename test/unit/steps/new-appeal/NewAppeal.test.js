@@ -4,6 +4,7 @@ const {
 const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
+const resetJourney = require('middleware/draftAppealStoreMiddleware').resetJourney;
 
 describe('NewAppeal.js', () => {
   let newAppeal = null;
@@ -46,14 +47,18 @@ describe('NewAppeal.js', () => {
         }
       }
     };
-    const redirect = sinon.spy();
     const res = {
-      redirect,
+      redirect: sinon.spy(),
       sendStatus: sinon.spy()
     };
-    it('should call redirect to check your appeal when draft in body', () => {
+    it('should not call redirect to entry when not a get request', () => {
       newAppeal.handler(req, res);
-      expect(redirect.called).to.eql(false);
+      expect(res.redirect.called).to.eql(false);
+    });
+    it('should call reset journey and redirect to entry when a get request', () => {
+      sinon.spy(resetJourney);
+      newAppeal.handler(req, res);
+      expect(resetJourney.calledOnce);
     });
   });
 });

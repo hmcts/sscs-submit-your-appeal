@@ -12,7 +12,7 @@ const benefitTypes = require('steps/start/benefit-type/types');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
-const { includes, get } = require('lodash');
+const { includes } = require('lodash');
 
 class PostcodeChecker extends SaveToDraftStore {
   static get path() {
@@ -20,8 +20,7 @@ class PostcodeChecker extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    if (req.method === 'GET' && benefitType === benefitTypes.infectedBloodAppeal) {
+    if (req.method === 'GET' && req.session.BenefitType && req.session.BenefitType.benefitType === benefitTypes.infectedBloodAppeal) {
       res.redirect(paths.session.entry);
     } else {
       super.handler(req, res, next);

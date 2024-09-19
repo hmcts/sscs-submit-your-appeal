@@ -4,7 +4,7 @@ const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('../start/benefit-type/types');
 
-const hostnames = ['iba-', 'some-prod-hostname'];
+const hostnames = ['iba-', 'localhost'];
 
 class Entry extends RestoreFromDraftStore {
   static get path() {
