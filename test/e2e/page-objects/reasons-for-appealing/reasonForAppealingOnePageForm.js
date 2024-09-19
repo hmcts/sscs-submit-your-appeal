@@ -12,7 +12,7 @@ async function hasErrorClass(page, item) {
 async function addAReasonForAppealing(page, language, whatYouDisagreeWithField, reasonForAppealingField, reason) {
   const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
-  await expect(page.getByText(reasonForAppealingContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(reasonForAppealingContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(whatYouDisagreeWithField).first().waitFor({ timeout: 5000 });
   await page.fill(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
   await page.fill(reasonForAppealingField, reason.reasonForAppealing);
@@ -25,7 +25,7 @@ async function addAReasonForAppealingAndThenClickAddAnother(page,
   reason
 ) {
   await addAReasonForAppealing(page, language, whatYouDisagreeWithField, reasonForAppealingField, reason);
-  await page.click('Add reason');
+  await page.getByText('Add reason').first().click();
 }
 
 async function addReasonForAppealingUsingTheOnePageFormAndContinue(page, language, commonContent, reason) {
@@ -36,7 +36,7 @@ async function addReasonForAppealingUsingTheOnePageFormAndContinue(page, languag
     '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, reason) {
@@ -46,7 +46,7 @@ async function addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, languag
     '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
-  await page.click(commonContent.saveAndContinue);
+  await page.getByText(commonContent.saveAndContinue).first().click();
 }
 
 module.exports = {

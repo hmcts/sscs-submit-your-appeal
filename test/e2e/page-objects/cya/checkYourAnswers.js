@@ -7,7 +7,7 @@ async function checkYourAppealToConfirmation(page, language, signer) {
   await page.waitForTimeout(1000);
   await page.waitForURL(`**/${paths.checkYourAppeal}`);
   await page.fill({ xpath: '//*[@id="signer"]' }, signer);
-  await page.click(cyaContent.submitButton.value);
+  await page.getByText(cyaContent.submitButton.value).first().click();
 }
 
 module.exports = { checkYourAppealToConfirmation };

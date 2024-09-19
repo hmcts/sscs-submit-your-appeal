@@ -5,17 +5,17 @@ const { expect } = require('@playwright/test');
 async function selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, option) {
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(evidenceUploadContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(option).first().check();
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, option) {
   const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
-  await expect(page.getByText(evidenceUploadContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(evidenceUploadContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(option).first().check();
-  await page.click(commonContent.saveAndContinue);
+  await page.getByText(commonContent.saveAndContinue).first().click();
 }
 
 module.exports = { selectAreYouProvidingEvidenceAndContinue, selectAreYouProvidingEvidenceAfterSignIn };

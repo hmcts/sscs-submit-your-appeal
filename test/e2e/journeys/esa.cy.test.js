@@ -1,18 +1,10 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const haveAMRNContent = require(
-  `steps/compliance/have-a-mrn/content.${language}`
-);
-const reasonForAppealingContent = require(
-  `steps/reasons-for-appealing/reason-for-appealing/content.${language}`
-);
-const independenceContent = require(
-  `steps/start/independence/content.${language}`
-);
+const haveAMRNContent = require(`steps/compliance/have-a-mrn/content.${language}`);
+const reasonForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
+const independenceContent = require(`steps/start/independence/content.${language}`);
 const paths = require('paths');
-const {
-  enterBenefitTypeAndContinue
-} = require('../page-objects/start/benefit-type');
+const { enterBenefitTypeAndContinue } = require('../page-objects/start/benefit-type');
 
 /* eslint-disable global-require */
 /* eslint-disable max-len */
@@ -22,41 +14,33 @@ if (require('config').get('features.allowESA.enabled') === 'true') {
   const { endTheSession } = require('../page-objects/session/endSession');
 
   test.describe(`${language.toUpperCase()} - Appellant who chooses ESA @batch-01 @esa`, () => {
-    Before(async({ page }) => {
+    test.beforeEach('Initial navigation', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    After(async({ page }) => {
+    test.afterEach('Close down', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, async({
-      page
-    }) => {
+    test(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
       await page.goto(paths.compliance.haveAMRN);
-      await expect(page.getByText(haveAMRNContent.esa.subtitle)).toBeVisible();
+      await expect(page.getByText(haveAMRNContent.esa.subtitle).first()).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, async({
-      page
-    }) => {
+    test(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
       await page.goto(paths.reasonsForAppealing.reasonForAppealing);
-      await expect(
-        page.getByText(reasonForAppealingContent.dwpExplained)
-      ).toBeVisible();
+      await expect(page.getByText(reasonForAppealingContent.dwpExplained).first()).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on independence`, async({
-      page
-    }) => {
+    test(`${language.toUpperCase()} - Sees an appropriate message on independence`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
       // await chooseLanguagePreference(page, commonContent, 'no');
       await page.goto(paths.start.independence);
-      await expect(page.getByText(independenceContent.reviewed)).toBeVisible();
+      await expect(page.getByText(independenceContent.reviewed).first()).toBeVisible();
     });
   });
   /* eslint-enable global-require */

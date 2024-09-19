@@ -5,8 +5,8 @@ const { expect } = require('@playwright/test');
 async function continueFromStillCanAppeal(page, language) {
   const stillCanAppealContent = language === 'en' ? stillCanAppealContentEn : stillCanAppealContentCy;
 
-  await expect(page.getByText(stillCanAppealContent.title)).toBeVisible({ timeout: 45000 });
-  await page.click(stillCanAppealContent.continueButton);
+  await expect(page.getByText(stillCanAppealContent.title).first()).toBeVisible({ timeout: 45000 });
+  await page.getByText(stillCanAppealContent.continueButton).first().click();
 }
 
 module.exports = { continueFromStillCanAppeal };

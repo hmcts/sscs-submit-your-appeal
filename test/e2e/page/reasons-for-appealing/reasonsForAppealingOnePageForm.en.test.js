@@ -1,8 +1,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const reasonForAppealingContent = require(
-  `steps/reasons-for-appealing/reason-for-appealing/content.${language}`
-);
+const reasonForAppealingContent = require(`steps/reasons-for-appealing/reason-for-appealing/content.${language}`);
 const paths = require('paths');
 const assert = require('assert');
 const reasons = require('test/e2e/data.en').reasonsForAppealing.reasons;
@@ -11,196 +9,94 @@ const whatYouDisagreeWithField = '#item\\.whatYouDisagreeWith';
 const reasonForAppealingField = '#item\\.reasonForAppealing';
 
 const { test, expect } = require('@playwright/test');
-const {
-  createTheSession
-} = require('../../page-objects/session/createSession');
+const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
-const {
-  addAReasonForAppealingAndThenClickAddAnother,
-  addAReasonForAppealing,
-  hasErrorClass
-} = require('../../page-objects/reasons-for-appealing/reasonForAppealingOnePageForm');
+const { addAReasonForAppealingAndThenClickAddAnother, addAReasonForAppealing, hasErrorClass } = require('../../page-objects/reasons-for-appealing/reasonForAppealingOnePageForm');
 
 test.describe(`${language.toUpperCase()} - Reason For Appealing One Page Form @batch-10`, () => {
-  Before(async({ page }) => {
+  test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
     await page.goto(paths.reasonsForAppealing.reasonForAppealing);
     await page.locator('#items-0').first().waitFor();
   });
 
-  After(async({ page }) => {
+  test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When I go to the page I see two input fields`, async({
-    page
-  }) => {
-    await expect(
-      page.locator(`#items-0 ${whatYouDisagreeWithField}-0`).first()
-    ).toBeVisible();
-    await expect(
-      page.locator(`#items-0 ${reasonForAppealingField}-0`).first()
-    ).toBeVisible();
+  test(`${language.toUpperCase()} - When I go to the page I see two input fields`, async({ page }) => {
+    await expect(page.locator(`#items-0 ${whatYouDisagreeWithField}-0`).first()).toBeVisible();
+    await expect(page.locator(`#items-0 ${reasonForAppealingField}-0`).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I click Continue without adding a reason, I see errors`, async({
-    page
-  }) => {
-    await page.click(commonContent.continue);
-    await expect(
-      page.getByText(reasonForAppealingContent.listError)
-    ).toBeVisible();
+  test(`${language.toUpperCase()} - When I click Continue without adding a reason, I see errors`, async({ page }) => {
+    await page.getByText(commonContent.continue).first().click();
+    await expect(page.getByText(reasonForAppealingContent.listError).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I click add Another I see new fields`, async({
-    page
-  }) => {
-    await page.click('Add reason');
-    await expect(
-      page.locator(`#items-1 ${whatYouDisagreeWithField}-1`).first()
-    ).toBeVisible();
-    await expect(
-      page.locator(`#items-1 ${reasonForAppealingField}-1`).first()
-    ).toBeVisible();
+  test(`${language.toUpperCase()} - When I click add Another I see new fields`, async({ page }) => {
+    await page.getByText('Add reason').first().click();
+    await expect(page.locator(`#items-1 ${whatYouDisagreeWithField}-1`).first()).toBeVisible();
+    await expect(page.locator(`#items-1 ${reasonForAppealingField}-1`).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I enter one character in each field and click Continue, I see errors`, async({
-    page
-  }) => {
-    await addAReasonForAppealing(page,
-      language,
-      `${whatYouDisagreeWithField}-0`,
-      `${reasonForAppealingField}-0`,
-      {
-        whatYouDisagreeWith: 'a',
-        reasonForAppealing: 'a'
-      }
-    );
-    await page.click(commonContent.continue);
-    await expect(
-      page.getByText(
-        reasonForAppealingContent.fields.whatYouDisagreeWith.error.notEnough
-      )
-    ).toBeVisible();
-    await expect(
-      page.getByText(
-        reasonForAppealingContent.fields.reasonForAppealing.error.notEnough
-      )
-    ).toBeVisible();
+  test(`${language.toUpperCase()} - When I enter one character in each field and click Continue, I see errors`, async({ page }) => {
+    await addAReasonForAppealing(page, language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+      whatYouDisagreeWith: 'a',
+      reasonForAppealing: 'a'
+    });
+    await page.getByText(commonContent.continue).first().click();
+    await expect(page.getByText(reasonForAppealingContent.fields.whatYouDisagreeWith.error.notEnough).first()).toBeVisible();
+    await expect(page.getByText(reasonForAppealingContent.fields.reasonForAppealing.error.notEnough).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I enter special chars then I see no errors`, async({
-    page
-  }) => {
-    page.addAReasonForAppealing(
-      language,
-      `${whatYouDisagreeWithField}-0`,
-      `${reasonForAppealingField}-0`,
-      {
-        whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
-        reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
-      }
-    );
-    await page.click(commonContent.continue);
-    await page.waitForURL(
-      `**/${paths.reasonsForAppealing.otherReasonForAppealing}`
-    );
+  test(`${language.toUpperCase()} - When I enter special chars then I see no errors`, async({ page }) => {
+    page.addAReasonForAppealing(language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+      whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
+      reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
+    });
+    await page.getByText(commonContent.continue).first().click();
+    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
-  test(`${language.toUpperCase()} - When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing`, async({
-    page
-  }) => {
-    await addAReasonForAppealingAndThenClickAddAnother(
-      page,
-      `#items-0 ${whatYouDisagreeWithField}-0`,
-      `#items-0 ${reasonForAppealingField}-0`,
-      reasons[0]
-    );
-    await addAReasonForAppealingAndThenClickAddAnother(
-      page,
-      `#items-1 ${whatYouDisagreeWithField}-1`,
-      `#items-1 ${reasonForAppealingField}-1`,
-      reasons[1]
-    );
-    await addAReasonForAppealing(
-      page,
-      language,
-      `#items-2 ${whatYouDisagreeWithField}-2`,
-      `#items-2 ${reasonForAppealingField}-2`,
-      reasons[2]
-    );
-    await page.click(commonContent.continue);
-    await page.waitForURL(
-      `**/${paths.reasonsForAppealing.otherReasonForAppealing}`
-    );
+  test(`${language.toUpperCase()} - When I add multiple reasons and click Continue I am taken to /other-reason-for-appealing`, async({ page }) => {
+    await addAReasonForAppealingAndThenClickAddAnother(page, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await addAReasonForAppealingAndThenClickAddAnother(page, `#items-1 ${whatYouDisagreeWithField}-1`, `#items-1 ${reasonForAppealingField}-1`, reasons[1]);
+    await addAReasonForAppealing(page, language, `#items-2 ${whatYouDisagreeWithField}-2`, `#items-2 ${reasonForAppealingField}-2`, reasons[2]);
+    await page.getByText(commonContent.continue).first().click();
+    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
   test(`${language.toUpperCase()} - When I go to add another reason and then click Continue without entering any data, I see no errors and am taken to /other-reason-for-appealing`, async({
     page
   }) => {
-    await addAReasonForAppealing(
-      page,
-      language,
-      `#items-0 ${whatYouDisagreeWithField}-0`,
-      `#items-0 ${reasonForAppealingField}-0`,
-      reasons[0]
-    );
-    await page.click('Add reason');
-    await page.click(commonContent.continue);
-    await page.waitForURL(
-      `**/${paths.reasonsForAppealing.otherReasonForAppealing}`
-    );
+    await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await page.getByText('Add reason').first().click();
+    await page.getByText(commonContent.continue).first().click();
+    await page.waitForURL(`**/${paths.reasonsForAppealing.otherReasonForAppealing}`);
   });
 
-  test(`${language.toUpperCase()} - When I click add Reason multiple times and click Continue without entering any data, I see an error in the error summary`, async({
-    page
-  }) => {
-    await page.click('Add reason');
-    await page.click('Add reason');
-    await page.click('Add reason');
-    await page.click('Add reason');
-    await page.click(commonContent.continue);
-    await expect(
-      page.locator('.govuk-error-summary__list').first()
-    ).toBeVisible();
+  test(`${language.toUpperCase()} - When I click add Reason multiple times and click Continue without entering any data, I see an error in the error summary`, async({ page }) => {
+    await page.getByText('Add reason').first().click();
+    await page.getByText('Add reason').first().click();
+    await page.getByText('Add reason').first().click();
+    await page.getByText('Add reason').first().click();
+    await page.getByText(commonContent.continue).first().click();
+    await expect(page.locator('.govuk-error-summary__list').first()).toBeVisible();
     assert((await page.locator('.govuk-error-summary__list li').count()) === 1);
-    await expect(
-      page.getByText(reasonForAppealingContent.listError)
-    ).toBeVisible();
+    await expect(page.getByText(reasonForAppealingContent.listError).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When I add a reasons then click the add another reason button and enter the least amount of data, I see error`, async({
-    page
-  }) => {
-    await addAReasonForAppealing(
-      page,
-      language,
-      `#items-0 ${whatYouDisagreeWithField}-0`,
-      `#items-0 ${reasonForAppealingField}-0`,
-      reasons[0]
-    );
-    await page.click('Add reason');
-    await addAReasonForAppealing(
-      page,
-      language,
-      `#items-1 ${whatYouDisagreeWithField}-1`,
-      `#items-1 ${reasonForAppealingField}-1`,
-      {
-        whatYouDisagreeWith: 'a',
-        reasonForAppealing: 'a'
-      }
-    );
-    await page.click(commonContent.continue);
+  test(`${language.toUpperCase()} - When I add a reasons then click the add another reason button and enter the least amount of data, I see error`, async({ page }) => {
+    await addAReasonForAppealing(page, language, `#items-0 ${whatYouDisagreeWithField}-0`, `#items-0 ${reasonForAppealingField}-0`, reasons[0]);
+    await page.getByText('Add reason').first().click();
+    await addAReasonForAppealing(page, language, `#items-1 ${whatYouDisagreeWithField}-1`, `#items-1 ${reasonForAppealingField}-1`, {
+      whatYouDisagreeWith: 'a',
+      reasonForAppealing: 'a'
+    });
+    await page.getByText(commonContent.continue).first().click();
     await hasErrorClass(page, '#items-1');
-    await expect(
-      page.getByText(
-        reasonForAppealingContent.fields.whatYouDisagreeWith.error.notEnough
-      )
-    ).toBeVisible();
-    await expect(
-      page.getByText(
-        reasonForAppealingContent.fields.reasonForAppealing.error.notEnough
-      )
-    ).toBeVisible();
+    await expect(page.getByText(reasonForAppealingContent.fields.whatYouDisagreeWith.error.notEnough).first()).toBeVisible();
+    await expect(page.getByText(reasonForAppealingContent.fields.reasonForAppealing.error.notEnough).first()).toBeVisible();
   });
 });

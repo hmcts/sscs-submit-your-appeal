@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+const { test } = require('@playwright/test');
 
 const language = 'en';
 const signer = require(`test/e2e/data.${language}`).signAndSubmit.signer;
@@ -10,16 +11,7 @@ const office = testDataEn.benefitTypes[8].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[8].hasDwpIssuingOffice;
 
 test.describe(`${language.toUpperCase()} - Social Fund E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({
-    page
-  }) => {
-    await e2eBenefit.e2eBenefit(
-      page,
-      benefitCode,
-      office,
-      signer,
-      language,
-      hasDwpIssuingOffice
-    );
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitCode, office, signer, language, hasDwpIssuingOffice);
   });
 });

@@ -1,5 +1,5 @@
 /* eslint-disable no-process-env */
-
+const { test } = require('@playwright/test');
 const content = require('commonContent');
 const { createTheSession } = require('../page-objects/session/createSession');
 const { enterDetailsFromStartToNINO } = require('../page-objects/cya/checkYourAppeal');

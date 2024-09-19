@@ -5,11 +5,11 @@ const { expect } = require('@playwright/test');
 async function selectTelephoneHearingOptionsAndContinue(page, language, commonContent) {
   const telHearingContent = language === 'en' ? telHearingContentEn : telHearingContentCy;
 
-  await expect(page.getByText(telHearingContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(telHearingContent.title).first()).toBeVisible({ timeout: 45000 });
   // await page.locator('#selectOptions').first().waitFor({ timeout: 5000 })
   await page.locator("//input[@id='selectOptions.telephone.requested-true']").first().check();
   await page.fill("//input[@id='selectOptions.telephone.phoneNumber']", '07534345634');
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 module.exports = { selectTelephoneHearingOptionsAndContinue };

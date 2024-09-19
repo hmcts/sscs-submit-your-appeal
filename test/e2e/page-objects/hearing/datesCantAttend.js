@@ -6,15 +6,15 @@ const myHelper = require('../../helpers/helper');
 const { expect } = require('@playwright/test');
 
 async function enterDateCantAttendAndContinue(page, commonContent, date, link) {
-  await page.click(link);
+  await page.getByText(link).first().click();
   await page.fill('input[name*="day"]', date.date().toString());
   await page.fill('input[name*="month"]', (date.month() + 1).toString());
   await page.fill('input[name*="year"]', date.year().toString());
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function seeFormattedDate(page, date) {
-  await expect(page.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY'))).toBeVisible();
+  await expect(page.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY')).first()).toBeVisible();
 }
 
 async function dontSeeFormattedDate(page, date) {
@@ -42,7 +42,7 @@ async function selectDates(page, language, dates) {
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
     await myHelper.clickNextIfDateNotVisible(page, date);
-    await page.click(element);
+    await page.getByText(element).first().click();
     await page.waitForTimeout(1000);
     await seeFormattedDate(page, moment(date));
     await hasSelectedClass(page, element);
@@ -56,7 +56,7 @@ async function deselectDates(page, language, dates) {
   await page.locator('#date-picker table').first().waitFor({ timeout: 10000 });
   for (const date of dates) {
     const element = `//*[@data-date="${date}"]`;
-    await page.click(element);
+    await page.getByText(element).first().click();
     await dontSeeFormattedDate(page, moment(date));
     await doesntHaveSelectedClass(page, element);
   }

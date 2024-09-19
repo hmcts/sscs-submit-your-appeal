@@ -5,17 +5,17 @@ const { expect } = require('@playwright/test');
 async function selectHaveYouContactedDWPAndContinue(page, language, commonContent, option) {
   const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
-  await expect(page.getByText(dwpContactContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(dwpContactContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(option).first().check();
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function selectHaveYouContactedDWPAndContinueAfterSignIn(page, language, commonContent, option) {
   const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
-  await expect(page.getByText(dwpContactContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(dwpContactContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(option).first().check();
-  await page.click(commonContent.saveAndContinue);
+  await page.getByText(commonContent.saveAndContinue).first().click();
 }
 
 module.exports = { selectHaveYouContactedDWPAndContinue, selectHaveYouContactedDWPAndContinueAfterSignIn };

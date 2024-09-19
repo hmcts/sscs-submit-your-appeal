@@ -238,7 +238,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(page, commonContent, lan
   await page.waitForTimeout(2000);
   await enterDateCantAttendAndContinue(page, commonContent, date, datesCantAttendContent.links.add);
   await page.waitForTimeout(5000);
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, date) {
@@ -252,7 +252,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonCo
   await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-yes');
   await page.waitForTimeout(1000);
   await selectDates(page, language, [date]);
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function enterDetailsFromAttendingTheHearingWithSupportToEnd(page, commonContent, language, options, fields = []) {
@@ -261,9 +261,9 @@ async function enterDetailsFromAttendingTheHearingWithSupportToEnd(page, commonC
   await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
   await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
   await selectDoYouNeedSupportAndContinue(page, language, supportContent.fields.arrangements.yes);
-  await Promise.all(options.map(option => page.click(option)));
+  await Promise.all(options.map(option => page.getByLabel(option).click()));
   await Promise.all(fields.map(field => page.fill(field.id, field.content)));
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
   await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
 }
 
@@ -300,53 +300,53 @@ async function confirmDetailsArePresent(page, language, hasMRN = true, mrnDate) 
   await page.waitForURL(`**/${paths.checkYourAppeal}`);
 
   // Type of benefit
-  await expect(page.getByText(testData.benefitType.description)).toBeVisible();
+  await expect(page.getByText(testData.benefitType.description).first()).toBeVisible();
 
   if (hasMRN) {
     // MRN address number
-    await expect(page.getByText(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice)).toBeVisible();
+    await expect(page.getByText(testData.mrn.dwpIssuingOffice, selectors[language].mrn.dwpIssuingOffice).first()).toBeVisible();
 
     // The Date of the MRN
-    await expect(page.getByText(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY'))).toBeVisible();
+    await expect(page.getByText(DateUtils.formatDate(mrnDateToCheck, 'DD MMMM YYYY')).first()).toBeVisible();
 
     if (mrnDateToCheck.isAfter(oneMonthAgo)) {
       // Reason why the MRN is late
-      await expect(page.getByText(testData.mrn.reasonWhyMRNisLate)).toBeVisible();
+      await expect(page.getByText(testData.mrn.reasonWhyMRNisLate).first()).toBeVisible();
     }
   } else {
     // Reason for no MRN
-    await expect(page.getByText(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN)).toBeVisible();
+    await expect(page.getByText(testData.mrn.reasonForNoMRN, selectors[language].mrn.noMRN).first()).toBeVisible();
   }
 
   // Appellant name
-  await expect(page.getByText(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`)).toBeVisible();
+  await expect(page.getByText(`${appellant.title}. ${appellant.firstName} ${appellant.lastName}`).first()).toBeVisible();
 
   // Appellant DOB
   if (language === 'en') {
-    await expect(page.getByText('25 January 1980')).toBeVisible();
+    await expect(page.getByText('25 January 1980').first()).toBeVisible();
   } else {
-    await expect(page.getByText('25 Ionawr 1980')).toBeVisible();
+    await expect(page.getByText('25 Ionawr 1980').first()).toBeVisible();
   }
 
   // Appellant NINO
-  await expect(page.getByText(appellant.nino)).toBeVisible();
+  await expect(page.getByText(appellant.nino).first()).toBeVisible();
 
   // Appellant address
-  await expect(page.getByText(appellant.contactDetails.addressLine1)).toBeVisible();
-  await expect(page.getByText(appellant.contactDetails.addressLine2)).toBeVisible();
-  await expect(page.getByText(appellant.contactDetails.townCity)).toBeVisible();
-  await expect(page.getByText(appellant.contactDetails.county)).toBeVisible();
-  await expect(page.getByText(appellant.contactDetails.postCode)).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.addressLine1).first()).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.addressLine2).first()).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.townCity).first()).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.county).first()).toBeVisible();
+  await expect(page.getByText(appellant.contactDetails.postCode).first()).toBeVisible();
 
   // Appellant Reason for appealing
-  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].whatYouDisagreeWith)).toBeVisible();
-  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].reasonForAppealing)).toBeVisible();
+  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].whatYouDisagreeWith).first()).toBeVisible();
+  await expect(page.getByText(testData.reasonsForAppealing.reasons[0].reasonForAppealing).first()).toBeVisible();
 
   // Anything else the appellant wants to tell the tribunal
-  await expect(page.getByText(testData.reasonsForAppealing.otherReasons)).toBeVisible();
+  await expect(page.getByText(testData.reasonsForAppealing.otherReasons).first()).toBeVisible();
 
   // Shows when the appeal is complete
-  await expect(page.getByText(checkYourAppealContent.header)).toBeVisible();
+  await expect(page.getByText(checkYourAppealContent.header).first()).toBeVisible();
 }
 
 async function checkYourAppealToConfirmationPage(page, language, signer) {
@@ -356,15 +356,15 @@ async function checkYourAppealToConfirmationPage(page, language, signer) {
 async function continueIncompleteAppeal(page, language) {
   await page.waitForURL(`**/${paths.checkYourAppeal}`);
   if (language === 'en') {
-    await expect(page.getByText('Check your answers')).toBeVisible({ timeout: 45000 });
-    await expect(page.getByText('Your application is incomplete')).toBeVisible();
-    await expect(page.getByText('There are still some questions to answer.')).toBeVisible();
-    await page.click('Continue your application');
+    await expect(page.getByText('Check your answers').first()).toBeVisible({ timeout: 45000 });
+    await expect(page.getByText('Your application is incomplete').first()).toBeVisible();
+    await expect(page.getByText('There are still some questions to answer.').first()).toBeVisible();
+    await page.getByText('Continue your application').first().click();
   } else {
-    await expect(page.getByText('Gwiriwch eich atebion')).toBeVisible({ timeout: 45000 });
-    await expect(page.getByText('Mae eich cais yn anghyflawn')).toBeVisible();
-    await expect(page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.')).toBeVisible();
-    await page.click('Parhau á’ch cais');
+    await expect(page.getByText('Gwiriwch eich atebion').first()).toBeVisible({ timeout: 45000 });
+    await expect(page.getByText('Mae eich cais yn anghyflawn').first()).toBeVisible();
+    await expect(page.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.').first()).toBeVisible();
+    await page.getByText('Parhau á’ch cais').first().click();
   }
 }
 

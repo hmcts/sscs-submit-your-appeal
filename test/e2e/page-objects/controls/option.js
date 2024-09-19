@@ -1,25 +1,25 @@
 async function checkOptionAndContinue(page, commonContent, option) {
-  await await page.waitForTimeout(10000);
+  await page.waitForTimeout(10000);
   await page.locator(option).first().check();
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function checkOptionAndContinueAfterSignIn(page, commonContent, option) {
-  await await page.waitForTimeout(10000);
+  await page.waitForTimeout(10000);
   await page.locator(option).first().check();
-  await page.click(commonContent.saveAndContinue);
+  await page.getByText(commonContent.saveAndContinue).first().click();
 }
 
 async function checkPCQOptionAndContinue(page, option) {
-  await await page.waitForTimeout(10000);
+  await page.waitForTimeout(10000);
   await page.locator(option).first().check();
-  await page.click('Continue');
+  await page.getByText('Continue').first().click();
 }
 
 async function checkCYPCQOptionAndContinue(page, option) {
-  await await page.waitForTimeout(10000);
+  await page.waitForTimeout(10000);
   await page.locator(option).first().check();
-  await page.click('Parhau');
+  await page.getByText('Parhau').first().click();
 }
 
 module.exports = {

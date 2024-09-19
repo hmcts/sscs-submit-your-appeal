@@ -1,8 +1,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const hearingArrangementsContent = require(
-  `steps/hearing/arrangements/content.${language}`
-);
+const hearingArrangementsContent = require(`steps/hearing/arrangements/content.${language}`);
 const testData = require('test/e2e/data.en');
 
 const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';
@@ -18,49 +16,28 @@ const {
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromStartToNINO
 } = require('../page-objects/cya/checkYourAppeal');
-const {
-  selectDoYouWantToReceiveTextMessageReminders
-} = require('../page-objects/sms-notify/textReminders');
-const {
-  enterAppellantContactDetailsAndContinue
-} = require('../page-objects/identity/appellantDetails');
+const { selectDoYouWantToReceiveTextMessageReminders } = require('../page-objects/sms-notify/textReminders');
+const { enterAppellantContactDetailsAndContinue } = require('../page-objects/identity/appellantDetails');
 
 test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with support @batch-02`, () => {
-  Before(async({ page }) => {
+  test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  After(async({ page }) => {
+  test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, async({
-    page
-  }) => {
+  test(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
-    await enterAppellantContactDetailsAndContinue(
-      page,
-      commonContent,
-      language
-    );
-    await selectDoYouWantToReceiveTextMessageReminders(
-      page,
-      commonContent,
-      '#doYouWantTextMsgReminders-no'
-    );
-    await enterDetailsFromNoRepresentativeToUploadingEvidence(
-      page,
-      language,
-      commonContent
-    );
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(
       page,
       commonContent,
       language,
-      [
-        hearingArrangementsContent.fields.selection.signLanguage.requested
-          .label
-      ],
+      [hearingArrangementsContent.fields.selection.signLanguage.requested.label],
       [
         {
           id: signLanguageTextField,
@@ -69,40 +46,19 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       ]
     );
     await confirmDetailsArePresent(page, language);
-    await expect(
-      page.getByText(testData.hearing.signLanguageType)
-    ).toBeVisible();
+    await expect(page.getByText(testData.hearing.signLanguageType).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, async({
-    page
-  }) => {
+  test(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
-    await enterAppellantContactDetailsAndContinue(
-      page,
-      commonContent,
-      language
-    );
-    await selectDoYouWantToReceiveTextMessageReminders(
-      page,
-      commonContent,
-      '#doYouWantTextMsgReminders-no'
-    );
-    await enterDetailsFromNoRepresentativeToUploadingEvidence(
-      page,
-      language,
-      commonContent
-    );
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(
       page,
       commonContent,
       language,
-      [
-        hearingArrangementsContent.fields.selection.signLanguage.requested
-          .label,
-        hearingArrangementsContent.fields.selection.anythingElse.requested
-          .label
-      ],
+      [hearingArrangementsContent.fields.selection.signLanguage.requested.label, hearingArrangementsContent.fields.selection.anythingElse.requested.label],
       [
         {
           id: signLanguageTextField,
@@ -112,42 +68,23 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       ]
     );
     await confirmDetailsArePresent(page, language);
-    await expect(
-      page.getByText(testData.hearing.signLanguageType)
-    ).toBeVisible();
-    await expect(page.getByText(testData.hearing.anythingElse)).toBeVisible();
+    await expect(page.getByText(testData.hearing.signLanguageType).first()).toBeVisible();
+    await expect(page.getByText(testData.hearing.anythingElse).first()).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, async({
-    page
-  }) => {
+  test(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
-    await enterAppellantContactDetailsAndContinue(
-      page,
-      commonContent,
-      language
-    );
-    await selectDoYouWantToReceiveTextMessageReminders(
-      page,
-      commonContent,
-      '#doYouWantTextMsgReminders-no'
-    );
-    await enterDetailsFromNoRepresentativeToUploadingEvidence(
-      page,
-      language,
-      commonContent
-    );
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(
       page,
       commonContent,
       language,
       [
-        hearingArrangementsContent.fields.selection.languageInterpreter
-          .requested.label,
-        hearingArrangementsContent.fields.selection.signLanguage.requested
-          .label,
-        hearingArrangementsContent.fields.selection.anythingElse.requested
-          .label
+        hearingArrangementsContent.fields.selection.languageInterpreter.requested.label,
+        hearingArrangementsContent.fields.selection.signLanguage.requested.label,
+        hearingArrangementsContent.fields.selection.anythingElse.requested.label
       ],
       [
         {
@@ -165,12 +102,8 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       ]
     );
     await confirmDetailsArePresent(page, language);
-    await expect(
-      page.getByText(testData.hearing.signLanguageType)
-    ).toBeVisible();
-    await expect(page.getByText(testData.hearing.anythingElse)).toBeVisible();
-    await expect(
-      page.getByText(testData.hearing.interpreterLanguageType)
-    ).toBeVisible();
+    await expect(page.getByText(testData.hearing.signLanguageType).first()).toBeVisible();
+    await expect(page.getByText(testData.hearing.anythingElse).first()).toBeVisible();
+    await expect(page.getByText(testData.hearing.interpreterLanguageType).first()).toBeVisible();
   });
 });

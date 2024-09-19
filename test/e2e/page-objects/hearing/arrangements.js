@@ -5,11 +5,11 @@ const hearingData = require('test/e2e/data.en').hearing;
 async function checkAllArrangementsAndContinue(page, commonContent, language) {
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
-  await page.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  await page.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  await page.click(hearingArrangementsContent.fields.selection.hearingLoop.requested.label);
-  await page.click(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label);
-  await page.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+  await page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label).first().click();
+  await page.getByText(hearingArrangementsContent.fields.selection.signLanguage.requested.label).first().click();
+  await page.getByText(hearingArrangementsContent.fields.selection.hearingLoop.requested.label).first().click();
+  await page.getByText(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label).first().click();
+  await page.getByText(hearingArrangementsContent.fields.selection.anythingElse.requested.label).first().click();
 
   await page.fill('input[id="selection.interpreterLanguage.language"]', hearingData.interpreterLanguageType);
 
@@ -17,7 +17,7 @@ async function checkAllArrangementsAndContinue(page, commonContent, language) {
 
   await page.fill('textarea[name="selection.anythingElse.language"]', hearingData.anythingElse);
 
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 module.exports = { checkAllArrangementsAndContinue };

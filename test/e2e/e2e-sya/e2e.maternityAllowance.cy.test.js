@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+const { test } = require('@playwright/test');
 
 const language = 'cy';
 const signer = require(`test/e2e/data.${language}`).signAndSubmit.signer;
@@ -11,16 +12,7 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[8].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[8].office;
 
 test.describe(`${language.toUpperCase()} - Maternity Allowance E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({
-    page
-  }) => {
-    await e2eBenefit.e2eBenefit(
-      page,
-      benefitSearch,
-      office,
-      signer,
-      language,
-      hasDwpIssuingOffice
-    );
+  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey @fullFunctional @e2e`, async({ page }) => {
+    await e2eBenefit.e2eBenefit(page, benefitSearch, office, signer, language, hasDwpIssuingOffice);
   });
 });

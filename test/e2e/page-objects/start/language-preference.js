@@ -5,17 +5,17 @@ const { expect } = require('@playwright/test');
 async function chooseLanguagePreference(page, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  await expect(page.getByText(lanugagePreferenceContent.title)).toBeVisible({ timeout: 45000 });
-  await page.click({ id: `languagePreferenceWelsh-${answer}` });
-  await page.click(commonContent.continue);
+  await expect(page.getByText(lanugagePreferenceContent.title).first()).toBeVisible({ timeout: 45000 });
+  await page.locator(`#languagePreferenceWelsh-${answer}`).first().click();
+  await page.getByText(commonContent.continue).first().click();
 }
 
 async function chooseLanguagePreferenceAfterSignIn(page, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  await expect(page.getByText(lanugagePreferenceContent.title)).toBeVisible({ timeout: 45000 });
-  await page.click({ id: `languagePreferenceWelsh-${answer}` });
-  await page.click(commonContent.saveAndContinue);
+  await expect(page.getByText(lanugagePreferenceContent.title).first()).toBeVisible({ timeout: 45000 });
+  await page.locator(`#languagePreferenceWelsh-${answer}`).first().click();
+  await page.getByText(commonContent.saveAndContinue).first().click();
 }
 
 module.exports = { chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn };

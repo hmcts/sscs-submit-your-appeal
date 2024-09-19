@@ -7,37 +7,25 @@ const paths = require('paths');
 const { test } = require('@playwright/test');
 const { createTheSession } = require('../page-objects/session/createSession');
 const { endTheSession } = require('../page-objects/session/endSession');
-const {
-  confirmDetailsArePresent,
-  enterDetailsFromNoRepresentativeToEnd,
-  enterDetailsFromStartToNINO
-} = require('../page-objects/cya/checkYourAppeal');
+const { confirmDetailsArePresent, enterDetailsFromNoRepresentativeToEnd, enterDetailsFromStartToNINO } = require('../page-objects/cya/checkYourAppeal');
 const { skipPcq } = require('../page-objects/pcq/pcq');
 const { checkOptionAndContinue } = require('../page-objects/controls/option');
-const {
-  enterAppellantContactDetailsManuallyAndContinue
-} = require('../page-objects/identity/appellantDetails');
+const { enterAppellantContactDetailsManuallyAndContinue } = require('../page-objects/identity/appellantDetails');
 
 test.describe(`${language.toUpperCase()} - Postcode lookup test for type Manual`, () => {
-  Before(async({ page }) => {
+  test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  After(async({ page }) => {
+  test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - Appellant enters contact details Manually`, async({
-    page
-  }) => {
+  test(`${language.toUpperCase()} - Appellant enters contact details Manually`, async({ page }) => {
     await page.goto(paths.session.root);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
-    await checkOptionAndContinue(
-      page,
-      commonContent,
-      '#doYouWantTextMsgReminders-no'
-    );
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);

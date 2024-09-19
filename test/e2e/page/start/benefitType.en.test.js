@@ -1,8 +1,6 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const appealFormDownloadContent = require(
-  `steps/appeal-form-download/content.${language}`
-);
+const appealFormDownloadContent = require(`steps/appeal-form-download/content.${language}`);
 const benefitTypesObj = require('steps/start/benefit-type/types');
 const paths = require('paths');
 
@@ -31,38 +29,23 @@ const sscs1 = [
   'disabilityWorkAllowance'
 ];
 const sscs3 = ['compensationRecovery'];
-const sscs5 = [
-  'childBenefit',
-  'childCare',
-  'taxCredit',
-  'contractedOut',
-  'taxFreeChildcare',
-  'guardiansAllowance',
-  'guaranteedMinimumPension',
-  'nationalInsuranceCredits'
-];
+const sscs5 = ['childBenefit', 'childCare', 'taxCredit', 'contractedOut', 'taxFreeChildcare', 'guardiansAllowance', 'guaranteedMinimumPension', 'nationalInsuranceCredits'];
 
 const { test, expect } = require('@playwright/test');
-const {
-  createTheSession
-} = require('../../page-objects/session/createSession');
+const { createTheSession } = require('../../page-objects/session/createSession');
 const { endTheSession } = require('../../page-objects/session/endSession');
-const {
-  enterBenefitTypeAndContinue
-} = require('../../page-objects/start/benefit-type');
+const { enterBenefitTypeAndContinue } = require('../../page-objects/start/benefit-type');
 
 test.describe(`${language.toUpperCase()} - Benefit Type @batch-12`, () => {
-  Before(async({ page }) => {
+  test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  After(async({ page }) => {
+  test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, async({
-    page
-  }) => {
+  test(`${language.toUpperCase()} - When I enter PIP, I am taken to the postcode-check page`, async({ page }) => {
     await enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
     await page.waitForURL(`**/${paths.start.postcodeCheck}`);
   });
@@ -72,9 +55,7 @@ test.describe(`${language.toUpperCase()} - Benefit Type @batch-12`, () => {
 /* eslint-disable no-negated-condition */
 benefitTypesArr.forEach(benefitTypeKey => {
   if (benefitTypeKey !== 'personalIndependencePayment') {
-    test(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, async({
-      page
-    }) => {
+    test(`${language.toUpperCase()} - When I enter ${benefitTypesObj[benefitTypeKey]} I go to download page`, async({ page }) => {
       let benefitForm;
       if (sscs1.indexOf(benefitTypeKey) !== -1) {
         benefitForm = 'SSCS1';
@@ -85,20 +66,11 @@ benefitTypesArr.forEach(benefitTypeKey => {
       } else {
         throw new Error('I do not know which form this is supposed to go to');
       }
-      await enterBenefitTypeAndContinue(
-        page,
-        language,
-        commonContent,
-        benefitTypesObj[benefitTypeKey]
-      );
+      await enterBenefitTypeAndContinue(page, language, commonContent, benefitTypesObj[benefitTypeKey]);
       await page.waitForURL(`**/${paths.appealFormDownload}`);
-      await expect(
-        page.getByText(appealFormDownloadContent.title)
-      ).toBeVisible();
-      await expect(
-        page.getByText(appealFormDownloadContent.button.text)
-      ).toBeVisible();
-      await expect(page.getByText(benefitForm)).toBeVisible();
+      await expect(page.getByText(appealFormDownloadContent.title).first()).toBeVisible();
+      await expect(page.getByText(appealFormDownloadContent.button.text).first()).toBeVisible();
+      await expect(page.getByText(benefitForm).first()).toBeVisible();
     });
   }
 });

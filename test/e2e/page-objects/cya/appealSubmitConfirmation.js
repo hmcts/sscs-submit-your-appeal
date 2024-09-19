@@ -7,7 +7,7 @@ async function appealSubmitConfirmation(page, language) {
   const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
   await page.waitForTimeout(5000);
   await page.waitForURL(`**/${paths.confirmation}`);
-  await expect(page.getByText(cyaContent.confirmation)).toBeVisible();
+  await expect(page.getByText(cyaContent.confirmation).first()).toBeVisible();
 }
 
 module.exports = { appealSubmitConfirmation };

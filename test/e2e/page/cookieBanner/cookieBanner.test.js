@@ -10,12 +10,12 @@ const {
 const { endTheSession } = require('../../page-objects/session/endSession');
 
 test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`, () => {
-  Before(async({ page }) => {
+  test.beforeEach('Initial navigation', async({ page }) => {
     await createTheSession(page, language);
     await page.goto(paths.start.benefitType);
   });
 
-  After(async({ page }) => {
+  test.afterEach('Close down', async({ page }) => {
     await endTheSession(page);
   });
 
@@ -23,14 +23,14 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     page
   }) => {
     await page.waitForTimeout(1000);
-    await expect(page.getByText(cookieContent.bannerTitle)).toBeVisible();
+    await expect(page.getByText(cookieContent.bannerTitle).first()).toBeVisible();
     await expect(page.locator('.govuk-cookie-banner').first()).toBeVisible();
 
-    await expect(page.getByText(cookieContent.acceptCookie)).toBeVisible();
-    await expect(page.getByText(cookieContent.rejectCookie)).toBeVisible();
+    await expect(page.getByText(cookieContent.acceptCookie).first()).toBeVisible();
+    await expect(page.getByText(cookieContent.rejectCookie).first()).toBeVisible();
 
-    await page.click(cookieContent.viewPolicy);
-    await expect(page.getByText(cookieContent.policy.title)).toBeVisible();
+    await page.getByText(cookieContent.viewPolicy).first().click();
+    await expect(page.getByText(cookieContent.policy.title).first()).toBeVisible();
     await expect(
       page.getByText(cookieContent.policy.selectCookieOptions)
     ).toBeVisible();
@@ -40,9 +40,9 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     page
   }) => {
     await page.waitForTimeout(1000);
-    await page.click(cookieContent.acceptCookie);
-    await expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.getByText(cookieContent.acceptCookie).first().click();
+    await expect(page.getByText(cookieContent.hideAfterAccept).first()).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
     await page.reload();
     await page.waitForTimeout(1000);
     let cookies = await page.context().cookies();
@@ -56,9 +56,9 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     page
   }) => {
     await page.waitForTimeout(1000);
-    await page.click(cookieContent.rejectCookie);
-    await expect(page.getByText(cookieContent.hideAfterReject)).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.getByText(cookieContent.rejectCookie).first().click();
+    await expect(page.getByText(cookieContent.hideAfterReject).first()).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
     await page.reload();
     await page.waitForTimeout(2000);
   });
@@ -67,9 +67,9 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     page
   }) => {
     await page.waitForTimeout(1000);
-    await page.click(cookieContent.acceptCookie);
-    await expect(page.getByText(cookieContent.hideAfterAccept)).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage)).toBeVisible();
+    await page.getByText(cookieContent.acceptCookie).first().click();
+    await expect(page.getByText(cookieContent.hideAfterAccept).first()).toBeVisible();
+    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
     await page.reload();
 
     let cookies = await page.context().cookies();
@@ -83,8 +83,8 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
       page.locator('input#radio-analytics-on:checked').first()
     ).toBeVisible();
     await page.waitForTimeout(1000);
-    await page.click('input#radio-analytics-off');
-    await page.click('Save');
+    await page.getByText('input#radio-analytics-off').first().click();
+    await page.getByText('Save').first().click();
 
     await page.goto(paths.start.benefitType);
     await page.reload();

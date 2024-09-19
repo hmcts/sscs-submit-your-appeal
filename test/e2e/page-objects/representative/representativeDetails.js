@@ -8,7 +8,7 @@ async function enterRequiredRepresentativeDetailsManual(page) {
   await page.fill('input[name="name.last"]', 'Potter');
 
   if (postcodeLookupEnabled) {
-    await page.click({ id: 'manualLink' });
+    await page.locator('#manualLink').first().click();
   }
 
   await page.fill('#addressLine1', '4 Privet Drive');
@@ -23,8 +23,8 @@ async function enterRequiredRepresentativeDetails(page) {
     await page.fill('input[name="name.title"]', 'Mr');
     await page.fill('input[name="name.first"]', 'Harry');
     await page.fill('input[name="name.last"]', 'Potter');
-    await page.fill({ id: 'postcodeLookup' }, 'PA80 5UU');
-    await page.click('Find address');
+    await page.fill('#postcodeLookup', 'PA80 5UU');
+    await page.getByText('Find address').first().click();
     await page.selectOption('form select[name=postcodeAddress]', '130075116');
   } else {
     await enterRequiredRepresentativeDetailsManual(page);

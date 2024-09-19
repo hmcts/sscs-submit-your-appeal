@@ -5,18 +5,18 @@ const { expect } = require('@playwright/test');
 async function enterPostcodeAndContinue(page, language, commonContent, postcode) {
   const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
 
-  await expect(page.getByText(postCodeContent.title)).toBeVisible({ timeout: 45000 });
-  await page.fill({ id: 'postcode' }, postcode);
-  await page.click(commonContent.continue);
+  await expect(page.getByText(postCodeContent.title).first()).toBeVisible({ timeout: 45000 });
+  await page.fill('#postcode', postcode);
+  await page.getByText(commonContent.continue).first().click();
   await page.waitForTimeout(1000);
 }
 
 async function enterPostcodeAndContinueAfterSignIn(page, language, commonContent, postcode) {
   const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
 
-  await expect(page.getByText(postCodeContent.title)).toBeVisible({ timeout: 45000 });
-  await page.fill({ id: 'postcode' }, postcode);
-  await page.click(commonContent.saveAndContinue);
+  await expect(page.getByText(postCodeContent.title).first()).toBeVisible({ timeout: 45000 });
+  await page.fill('#postcode', postcode);
+  await page.getByText(commonContent.saveAndContinue).first().click();
   await page.waitForTimeout(1000);
 }
 

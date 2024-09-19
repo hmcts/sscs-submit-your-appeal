@@ -5,9 +5,9 @@ const { expect } = require('@playwright/test');
 async function selectHearingAvailabilityAndContinue(page, language, commonContent, option) {
   const hearingAvailabilityContent = language === 'en' ? hearingAvailabilityContentEn : hearingAvailabilityContentCy;
 
-  await expect(page.getByText(hearingAvailabilityContent.title)).toBeVisible({ timeout: 45000 });
+  await expect(page.getByText(hearingAvailabilityContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.locator(option).first().check();
-  await page.click(commonContent.continue);
+  await page.getByText(commonContent.continue).first().click();
 }
 
 module.exports = { selectHearingAvailabilityAndContinue };

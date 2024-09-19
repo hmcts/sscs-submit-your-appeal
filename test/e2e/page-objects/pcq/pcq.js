@@ -6,20 +6,20 @@ async function skipPcq(page) {
 
   await page.waitForTimeout(5000);
   // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
-  await page.click("I don't want to answer these questions");
+  await page.getByText("I don't want to answer these questions").first().click();
   // }
 }
 
 async function skipPcqCY(page) {
   await page.waitForTimeout(5000);
-  await expect(page.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn')).toBeVisible({ timeout: 45000 });
-  await page.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
+  await expect(page.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first()).toBeVisible({ timeout: 45000 });
+  await page.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first().click();
 }
 
 async function completeAllPcq(page) {
   await page.waitForTimeout(5000);
-  await expect(page.getByText('Continue to the question')).toBeVisible({ timeout: 45000 });
-  await page.click('Continue to the question');
+  await expect(page.getByText('Continue to the question').first()).toBeVisible({ timeout: 45000 });
+  await page.getByText('Continue to the question').first().click();
   await checkPCQOptionAndContinue(page, '#language_main');
   await checkPCQOptionAndContinue(page, '#sex');
   await checkPCQOptionAndContinue(page, '#gender_different');
@@ -29,13 +29,13 @@ async function completeAllPcq(page) {
   await checkPCQOptionAndContinue(page, '#ethnicity-2');
   await checkPCQOptionAndContinue(page, '#religion-3');
   await checkPCQOptionAndContinue(page, '#pregnancy-2');
-  await page.click('Continue');
+  await page.getByText('Continue').first().click();
 }
 
 async function completeAllPcqCY(page) {
   await page.waitForTimeout(5000);
-  await expect(page.getByText('Ymlaen i’r cwestiynau')).toBeVisible({ timeout: 45000 });
-  await page.click('Ymlaen i’r cwestiynau');
+  await expect(page.getByText('Ymlaen i’r cwestiynau').first()).toBeVisible({ timeout: 45000 });
+  await page.getByText('Ymlaen i’r cwestiynau').first().click();
   await checkPCQOptionAndContinue(page, '#language_main');
   await checkPCQOptionAndContinue(page, '#sex');
   await checkPCQOptionAndContinue(page, '#gender_different');
@@ -45,7 +45,7 @@ async function completeAllPcqCY(page) {
   await checkPCQOptionAndContinue(page, '#ethnicity-2');
   await checkPCQOptionAndContinue(page, '#religion-3');
   await checkPCQOptionAndContinue(page, '#pregnancy-2');
-  await page.click('Symud ymlaen');
+  await page.getByText('Symud ymlaen').first().click();
 }
 
 module.exports = { skipPcq, completeAllPcq, skipPcqCY, completeAllPcqCY };
