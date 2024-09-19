@@ -72,7 +72,7 @@ async function IenterAddressDetailsManual(page) {
   if (postcodeLookupEnabled) {
     await page.locator('#manualLink').first().click();
   }
-  await page.waitForTimeout(5000);
+  await expect(page.locator('#addressLine1')).toBeVisible();
   await page.fill('#addressLine1', appellant.contactDetails.addressLine1);
   await page.fill('#addressLine2', appellant.contactDetails.addressLine2);
   await page.fill('#townCity', appellant.contactDetails.townCity);
@@ -85,16 +85,16 @@ async function IenterAddressDetails(page, postcodeLookupContent) {
     await page.fill('#postcodeLookup', appellant.contactDetails.postCode);
     await page.getByText(postcodeLookupContent.findAddress).first().click();
     await page.waitForTimeout(5000);
-    await page.selectOption('form select[name=postcodeAddress]', appellant.contactDetails.addressLine1);
+    await page.selectOption('#postcodeAddress', appellant.contactDetails.postcodeAddress);
   } else {
     await IenterAddressDetailsManual(page);
   }
 }
 
 async function enterAppellantContactDetailsManuallyAndContinue(page, commonContent) {
-  await page.waitForTimeout(20000);
+  await page.waitForTimeout(5000);
   await IenterAddressDetailsManual(page);
-  await page.waitForTimeout(20000);
+  await expect(page.locator('#addressLine1')).toBeVisible();
   await page.fill('#phoneNumber', '07466748336');
   await page.getByText(commonContent.continue).first().click();
 }
@@ -138,7 +138,7 @@ async function enterAppellantContactDetailsWithMobileAndContinue(page, commonCon
 
   await expect(page.getByText(postcodeLookupContent.textboxLabel).first()).toBeVisible({ timeout: 45000 });
   await IenterAddressDetails(page, postcodeLookupContent);
-  await page.waitForTimeout(20000);
+  await expect(page.locator('#addressLine1')).toBeVisible();
   await page.fill('#phoneNumber', mobileNumber);
   await page.getByText(commonContent.continue).first().click();
 }
@@ -152,7 +152,7 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page
 
   await expect(page.getByText(postcodeLookupContent.textboxLabel).first()).toBeVisible({ timeout: 45000 });
   await IenterAddressDetails(page, postcodeLookupContent);
-  await page.waitForTimeout(20000);
+  await expect(page.locator('#addressLine1')).toBeVisible();
   await page.fill('#phoneNumber', mobileNumber);
   await page.getByText(commonContent.saveAndContinue).first().click();
 }
@@ -160,7 +160,9 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page
 async function enterAppellantContactDetailsWithEmailAndContinue(page, commonContent, language) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
+  await expect(page.getByText(postcodeLookupContent.textboxLabel).first()).toBeVisible({ timeout: 45000 });
   await IenterAddressDetails(page, postcodeLookupContent);
+  await expect(page.locator('#addressLine1')).toBeVisible();
   await page.fill('#emailAddress', 'harry.potter@wizards.com');
   await page.getByText(commonContent.continue).first().click();
 }

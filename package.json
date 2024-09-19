@@ -22,7 +22,7 @@
     "test:smoke": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep @smoke",
     "test:evidence-upload": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @evidence-upload --steps",
     "test:mutation": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep @functional",
-    "test:functional": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test && npx playwright test --project chromium",
+    "test:functional": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test && npx playwright test --project chromium --workers 4",
     "test:fullfunctional": "cross-env NODE_PATH=. NODE_ENV=test npx playwright test --project chromium --grep 'functional|fullFunctional' --steps --reporter mocha-multi",
     "test:e2e-pages": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run-multiple pages -c test/e2e/ --steps --reporter mocha-multi",
     "test:functional:batch": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/e2e/ --grep @batch-$BATCH --steps",
