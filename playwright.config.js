@@ -24,7 +24,7 @@ module.exports = defineConfig({
   },
   /* Opt out of parallel tests on CI. */
   workers: process.env.FUNCTIONAL_TESTS_WORKERS_COUNT ? 5 : undefined,
-  reporter: process.env.CI ? 'html' : 'list',
+  reporter: 'html',
   use: {
     trace: 'on-first-retry',
     screenshot: {mode: 'only-on-failure', fullPage: true},
@@ -36,7 +36,11 @@ module.exports = defineConfig({
         ...devices['Desktop Chrome'],
         channel: 'chrome',
         launchOptions: {
-          args: ['--ignore-certificate-errors']
+          args: ['--ignore-certificate-errors'],
+          logger: {
+            isEnabled: (name, severity) => name === 'api',
+            log: (name, severity, message, args) => console.log(`${name} ${severity} ${message}`)
+          }
         }
       },
     },
