@@ -19,6 +19,15 @@ class PostcodeChecker extends SaveToDraftStore {
     return paths.start.postcodeCheck;
   }
 
+  handler(req, res, next) {
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    if (req.method === 'GET' && benefitType === benefitTypes.infectedBloodAppeal) {
+      res.redirect(paths.session.entry);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   get form() {
     return form({
       postcode: text
@@ -29,11 +38,6 @@ class PostcodeChecker extends SaveToDraftStore {
 
   get isGlasgowIncluded() {
     return includes(allowedRpcs, 'glasgow');
-  }
-
-  get isTypeIba() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.testyTest;
   }
 
   answers() {

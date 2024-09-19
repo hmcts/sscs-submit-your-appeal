@@ -9,11 +9,22 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const i18next = require('i18next');
+const { get } = require('lodash');
 
 class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }
+
+  handler(req, res, next) {
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    if (req.method === 'GET' && benefitType === benefitTypes.infectedBloodAppeal) {
+      res.redirect(paths.session.entry);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   get form() {
     const types = Object.values(benefitTypes);
     return form({
@@ -90,13 +101,15 @@ class BenefitType extends SaveToDraftStore {
     if (isFeatureFlagEnabled('allowRP')) {
       allowedTypes.push(benefitTypes.retirementPension);
     }
-    allowedTypes.push(benefitTypes.testyTest);
+    allowedTypes.push(benefitTypes.infectedBloodAppeal);
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return branch(
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
         redirectTo(this.journey.steps.AppealFormDownload)
       );
+    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodAppeal) {
+      return goTo(this.journey.steps.Independence);
     }
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),

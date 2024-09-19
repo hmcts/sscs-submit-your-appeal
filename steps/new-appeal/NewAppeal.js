@@ -11,7 +11,7 @@ class NewAppeal extends Redirect {
   handler(req, res, next) {
     if (req.method === 'GET') {
       resetJourney(req);
-      res.redirect(paths.start.benefitType);
+      res.redirect(paths.session.entry);
     } else {
       super.handler(req, res, next);
     }

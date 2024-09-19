@@ -2,7 +2,6 @@
   "titleHead": "Enter postcode",
   "title": "Enter your postcode",
   "subtitle": "This online service is only available in England and Wales.",
-  "subtitleTest": "IBA Spike content.",
   "subtitleScotland": "This online service is only available in England, Scotland and Wales.",
   "fields": {
     "postcode": {

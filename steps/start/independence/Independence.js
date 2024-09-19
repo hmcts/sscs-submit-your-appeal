@@ -30,7 +30,7 @@ class Independence extends Interstitial {
 
   get someBody() {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.testyTest ? 'IBA' : 'DWP';
+    return benefitType === benefitTypes.infectedBloodAppeal ? 'IBA' : 'DWP';
   }
 
   get benefitType() {
