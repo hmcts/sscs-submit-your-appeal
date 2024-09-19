@@ -15,28 +15,40 @@ def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
 
-  afterSuccess('build') {
-    yarnBuilder.yarn('build')
-  }
-
-  enableAksStagingDeployment()
-  disableLegacyDeployment()
-  syncBranchesWithMaster(branchesToSync)
-
-  afterSuccess('akschartsinstall'){
-    onMaster {
-      // Vars needed for AKS testing in path to live
-      env.CHUNKS = 4
+    afterSuccess('build') {
+        yarnBuilder.yarn('build')
     }
-  }
 
-  afterSuccess("smoketest:preview") {
-      stage('Application URLs') {
-          def AppDevUrl = env.TEST_URL.replace("https", "http")
-          AppDevUrl = AppDevUrl.replace("-staging.", ".")
-          println "Application URL: " + AppDevUrl
-          println "Healthcheck URL: " + AppDevUrl + "/health"
-          println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
-      }
-  }
+    enableAksStagingDeployment()
+    disableLegacyDeployment()
+    syncBranchesWithMaster(branchesToSync)
+
+    afterSuccess('akschartsinstall') {
+        onMaster {
+            // Vars needed for AKS testing in path to live
+            env.CHUNKS = 4
+        }
+    }
+
+    afterSuccess("smoketest:preview") {
+        stage('Application URLs') {
+            def AppDevUrl = env.TEST_URL.replace("https", "http")
+            AppDevUrl = AppDevUrl.replace("-staging.", ".")
+            println "Application URL: " + AppDevUrl
+            println "Healthcheck URL: " + AppDevUrl + "/health"
+            println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
+        }
+    }
+
+    afterAlways('functionalTest:preview') {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'Functional Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/*'
+    }
 }
