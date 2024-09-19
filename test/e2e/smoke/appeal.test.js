@@ -5,7 +5,8 @@ const language = 'en';
 const commonContent = content[language];
 
 const { test } = require('@playwright/test');
-const {config} = require("config");
+const { config } = require('config');
+
 /* eslint-disable-next-line no-process-env */
 const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 test.describe(`${language.toUpperCase()} - Full Journey @smoke`, () => {

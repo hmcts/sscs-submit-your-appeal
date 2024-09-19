@@ -5,7 +5,8 @@ const reasonForAppealingContent = require(`../../../steps/reasons-for-appealing/
 const independenceContent = require(`../../../steps/start/independence/content.${language}`);
 const paths = require('../../../paths');
 const { enterBenefitTypeAndContinue } = require('../page-objects/start/benefit-type');
-const {config} = require("config");
+const { config } = require('config');
+
 /* eslint-disable-next-line no-process-env */
 const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 

@@ -11,7 +11,8 @@ const { confirmDetailsArePresent, enterDetailsFromNoRepresentativeToEnd, enterDe
 const { skipPcqCY } = require('../page-objects/pcq/pcq');
 const { checkOptionAndContinue } = require('../page-objects/controls/option');
 const { enterAppellantContactDetailsManuallyAndContinue } = require('../page-objects/identity/appellantDetails');
-const {config} = require("config");
+const { config } = require('config');
+
 /* eslint-disable-next-line no-process-env */
 const baseUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
 
