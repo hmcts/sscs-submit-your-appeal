@@ -4,7 +4,6 @@ const {
 const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
-const resetJourney = require('middleware/draftAppealStoreMiddleware').resetJourney;
 
 describe('NewAppeal.js', () => {
   let newAppeal = null;
@@ -17,6 +16,10 @@ describe('NewAppeal.js', () => {
         }
       }
     });
+  });
+
+  afterEach(() => {
+    sinon.restore();
   });
 
   describe('get path()', () => {
@@ -39,6 +42,7 @@ describe('NewAppeal.js', () => {
   describe('When handler is called', () => {
     const req = {
       session: {
+        save: sinon.spy(),
         isUserSessionRestored: true,
         drafts: {
           101: {
@@ -51,14 +55,18 @@ describe('NewAppeal.js', () => {
       redirect: sinon.spy(),
       sendStatus: sinon.spy()
     };
+
     it('should not call redirect to entry when not a get request', () => {
       newAppeal.handler(req, res);
-      expect(res.redirect.called).to.eql(false);
+      expect(res.redirect.calledOnce).to.eql(false);
+      expect(req.session.save.calledOnce).to.eql(false);
     });
+
     it('should call reset journey and redirect to entry when a get request', () => {
-      sinon.spy(resetJourney);
+      req.method = 'GET';
       newAppeal.handler(req, res);
-      expect(resetJourney.calledOnce);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(req.session.save.calledOnce).to.eql(true);
     });
   });
 });
