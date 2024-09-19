@@ -7,7 +7,7 @@ async function enterBenefitTypeAndContinue(page, language, commonContent, type) 
 
   await expect(page.getByText(benefitContent.title).first()).toBeVisible({ timeout: 45000 });
   await page.fill('#benefitType', type.split(' ')[0]);
-  await page.getByText(type).first().click()
+  await page.getByText(type).first().click();
   await page.getByText(commonContent.continue).first().click();
 }
 
