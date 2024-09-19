@@ -1,6 +1,6 @@
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
-const PCL = require('../../../../components/postcodeLookup/controller');
+const PCL = require('components/postcodeLookup/controller');
 const nock = require('nock');
 
 const enabled = true;

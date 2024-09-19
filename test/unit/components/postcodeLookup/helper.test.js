@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const { buildConcatenatedAddress, cleanLine } = require('../../../../components/postcodeLookup/helper');
+const { buildConcatenatedAddress, cleanLine } = require('components/postcodeLookup/helper');
 
 describe('Components/helper.js', () => {
   describe('cleanLine()', () => {

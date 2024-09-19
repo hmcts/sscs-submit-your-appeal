@@ -19,7 +19,7 @@ const usePostcodeChecker = config.get('postcodeChecker.enabled');
 
 const { decode } = require('utils/stringUtils');
 
-const PCL = require('../../../../components/postcodeLookup/controller');
+const PCL = require('components/postcodeLookup/controller');
 
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
