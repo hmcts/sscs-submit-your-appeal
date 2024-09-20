@@ -1,8 +1,8 @@
-const {expect} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
-const benefitTypes = require("../../../../steps/start/benefit-type/types");
+const benefitTypes = require('../../../../steps/start/benefit-type/types');
 
 const mockHandler = sinon.spy();
 
@@ -38,7 +38,7 @@ describe('Entry.js', () => {
   });
   afterEach(() => {
     sinon.restore();
-  })
+  });
 
   describe('get path()', () => {
     it('returns path /entry', () => {
@@ -48,12 +48,12 @@ describe('Entry.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /benefit-type', () => {
-      expect(entry.next()).to.eql({nextStep: paths.start.benefitType});
+      expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
     });
   });
 
   describe('When method user data is restored', () => {
-    const req = {session: {isUserSessionRestored: true}};
+    const req = { session: { isUserSessionRestored: true } };
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -67,7 +67,7 @@ describe('Entry.js', () => {
   });
 
   describe('When method user data is restored for multi drafts', () => {
-    const req = {session: {isUserSessionRestored: true}};
+    const req = { session: { isUserSessionRestored: true } };
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -116,7 +116,7 @@ describe('Entry.js', () => {
       expect(redirect.called).to.eql(false);
       expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
       expect(mockHandler.called).to.eql(true);
-    })
+    });
   });
 
   describe('When url has ?forceIba', () => {
@@ -139,6 +139,6 @@ describe('Entry.js', () => {
       expect(redirect.called).to.eql(false);
       expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
       expect(mockHandler.called).to.eql(true);
-    })
+    });
   });
 });
