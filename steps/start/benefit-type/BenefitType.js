@@ -17,7 +17,7 @@ class BenefitType extends SaveToDraftStore {
 
   handler(req, res, next) {
     if (req.method === 'GET' && req.session.BenefitType && req.session.BenefitType.benefitType === benefitTypes.infectedBloodAppeal) {
-      res.redirect(paths.session.entry);
+      res.redirect(paths.errors.doesNotExist);
     } else {
       super.handler(req, res, next);
     }
