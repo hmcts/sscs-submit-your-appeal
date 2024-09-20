@@ -52,54 +52,41 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
-  // eslint-disable-next-line complexity
-  next() {
+  getAllowedTypes() {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit
+      benefitTypes.universalCredit,
+      benefitTypes.infectedBloodAppeal
     ];
 
-    if (isFeatureFlagEnabled('allowDLA')) {
-      allowedTypes.push(benefitTypes.disabilityLivingAllowance);
-    }
-    if (isFeatureFlagEnabled('allowCA')) {
-      allowedTypes.push(benefitTypes.carersAllowance);
-    }
-    if (isFeatureFlagEnabled('allowAA')) {
-      allowedTypes.push(benefitTypes.attendanceAllowance);
-    }
-    if (isFeatureFlagEnabled('allowBB')) {
-      allowedTypes.push(benefitTypes.bereavementBenefit);
-    }
-    if (isFeatureFlagEnabled('allowIIDB')) {
-      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
-    }
-    if (isFeatureFlagEnabled('allowJSA')) {
-      allowedTypes.push(benefitTypes.jobseekersAllowance);
-    }
-    if (isFeatureFlagEnabled('allowSF')) {
-      allowedTypes.push(benefitTypes.socialFund);
-    }
-    if (isFeatureFlagEnabled('allowMA')) {
-      allowedTypes.push(benefitTypes.maternityAllowance);
-    }
-    if (isFeatureFlagEnabled('allowIS')) {
-      allowedTypes.push(benefitTypes.incomeSupport);
-    }
-    if (isFeatureFlagEnabled('allowBSPS')) {
-      allowedTypes.push(benefitTypes.bereavementSupportPaymentScheme);
-    }
-    if (isFeatureFlagEnabled('allowIDB')) {
-      allowedTypes.push(benefitTypes.industrialDeathBenefit);
-    }
-    if (isFeatureFlagEnabled('allowPC')) {
-      allowedTypes.push(benefitTypes.pensionCredit);
-    }
-    if (isFeatureFlagEnabled('allowRP')) {
-      allowedTypes.push(benefitTypes.retirementPension);
-    }
-    allowedTypes.push(benefitTypes.infectedBloodAppeal);
+    const featureFlags = [
+      { flag: 'allowDLA', benefit: benefitTypes.disabilityLivingAllowance },
+      { flag: 'allowCA', benefit: benefitTypes.carersAllowance },
+      { flag: 'allowAA', benefit: benefitTypes.attendanceAllowance },
+      { flag: 'allowBB', benefit: benefitTypes.bereavementBenefit },
+      { flag: 'allowIIDB', benefit: benefitTypes.industrialInjuriesDisablement },
+      { flag: 'allowJSA', benefit: benefitTypes.jobseekersAllowance },
+      { flag: 'allowSF', benefit: benefitTypes.socialFund },
+      { flag: 'allowMA', benefit: benefitTypes.maternityAllowance },
+      { flag: 'allowIS', benefit: benefitTypes.incomeSupport },
+      { flag: 'allowBSPS', benefit: benefitTypes.bereavementSupportPaymentScheme },
+      { flag: 'allowIDB', benefit: benefitTypes.industrialDeathBenefit },
+      { flag: 'allowPC', benefit: benefitTypes.pensionCredit },
+      { flag: 'allowRP', benefit: benefitTypes.retirementPension }
+    ];
+
+    featureFlags.forEach(({ flag, benefit }) => {
+      if (isFeatureFlagEnabled(flag)) {
+        allowedTypes.push(benefit);
+      }
+    });
+
+    return allowedTypes;
+  }
+
+  next() {
+    const allowedTypes = this.getAllowedTypes();
     const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return branch(
