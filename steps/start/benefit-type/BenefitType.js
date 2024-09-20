@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const benefitTypeUtils = require('utils/benefitTypeUtils');
 const config = require('config');
 const i18next = require('i18next');
 
@@ -16,7 +17,7 @@ class BenefitType extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    if (req.method === 'GET' && req.session.BenefitType && req.session.BenefitType.benefitType === benefitTypes.infectedBloodAppeal) {
+    if (req.method === 'GET' && benefitTypeUtils.isIba(req)) {
       res.redirect(paths.errors.doesNotExist);
     } else {
       super.handler(req, res, next);
