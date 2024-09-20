@@ -1,13 +1,16 @@
-const { expect } = require('test/util/chai');
+const {expect} = require('test/util/chai');
 const paths = require('paths');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
+const benefitTypes = require("../../../../steps/start/benefit-type/types");
 
 const mockHandler = sinon.spy();
+
 class RestoreFromDraftStore {
   constructor(params) {
     Object.assign(this, params);
   }
+
   handler() {
     mockHandler();
   }
@@ -33,6 +36,9 @@ describe('Entry.js', () => {
       }
     });
   });
+  afterEach(() => {
+    sinon.restore();
+  })
 
   describe('get path()', () => {
     it('returns path /entry', () => {
@@ -42,12 +48,12 @@ describe('Entry.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /benefit-type', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
+      expect(entry.next()).to.eql({nextStep: paths.start.benefitType});
     });
   });
 
   describe('When method user data is restored', () => {
-    const req = { session: { isUserSessionRestored: true } };
+    const req = {session: {isUserSessionRestored: true}};
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -61,7 +67,7 @@ describe('Entry.js', () => {
   });
 
   describe('When method user data is restored for multi drafts', () => {
-    const req = { session: { isUserSessionRestored: true } };
+    const req = {session: {isUserSessionRestored: true}};
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -75,7 +81,12 @@ describe('Entry.js', () => {
   });
 
   describe('When method user data is not restored', () => {
-    const req = { session: { isUserSessionRestored: false } };
+    const req = {
+      hostname: '',
+      session: {
+        isUserSessionRestored: false
+      }
+    };
     const redirect = sinon.spy();
     const res = {
       redirect,
@@ -86,5 +97,48 @@ describe('Entry.js', () => {
       expect(redirect.called).to.eql(false);
       expect(mockHandler.calledOnce).to.eql(true);
     });
+  });
+
+  describe('When hostname contains iba-', () => {
+    const req = {
+      hostname: 'iba-',
+      session: {
+        isUserSessionRestored: false
+      }
+    };
+    const redirect = sinon.spy();
+    const res = {
+      redirect,
+      sendStatus: sinon.spy()
+    };
+    it('should set benefit type and call `super.handler()`', () => {
+      entry.handler(req, res);
+      expect(redirect.called).to.eql(false);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      expect(mockHandler.called).to.eql(true);
+    })
+  });
+
+  describe('When url has ?forceIba', () => {
+    const req = {
+      hostname: '',
+      query: {
+        forceIba: ''
+      },
+      session: {
+        isUserSessionRestored: false
+      }
+    };
+    const redirect = sinon.spy();
+    const res = {
+      redirect,
+      sendStatus: sinon.spy()
+    };
+    it('should set benefit type and call `super.handler()`', () => {
+      entry.handler(req, res);
+      expect(redirect.called).to.eql(false);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      expect(mockHandler.called).to.eql(true);
+    })
   });
 });
