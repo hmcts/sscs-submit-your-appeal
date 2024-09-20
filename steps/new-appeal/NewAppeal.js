@@ -2,6 +2,8 @@ const paths = require('paths');
 const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypeUtils = require('../../utils/benefitTypeUtils');
+const benefitTypes = require('../start/benefit-type/types');
 
 class NewAppeal extends Redirect {
   static get path() {
@@ -10,10 +12,14 @@ class NewAppeal extends Redirect {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      resetJourney(req);
-      delete req.session.isUserSessionRestored;
-      req.session.save();
-      res.redirect(paths.session.entry);
+      if (benefitTypeUtils.isIba(req)) {
+        resetJourney(req);
+        req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+        super.handler(req, res, next);
+      } else {
+        resetJourney(req);
+        res.redirect(paths.start.benefitType);
+      }
     } else {
       super.handler(req, res, next);
     }

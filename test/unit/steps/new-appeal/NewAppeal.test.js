@@ -4,6 +4,8 @@ const {
 const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
+const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const { Redirect } = require('@hmcts/one-per-page');
 
 describe('NewAppeal.js', () => {
   let newAppeal = null;
@@ -57,18 +59,29 @@ describe('NewAppeal.js', () => {
     };
 
     it('should not call redirect to entry when not a get request', () => {
+      const superStub = sinon.stub(Redirect.prototype, 'handler');
       newAppeal.handler(req, res);
-      expect(res.redirect.calledOnce).to.eql(false);
       expect(req.session.save.calledOnce).to.eql(false);
+      expect(res.redirect.calledOnce).to.eql(false);
+      sinon.assert.called(superStub);
     });
 
-    it('should call reset journey and redirect to entry when a get request', () => {
+    it('should call reset journey and redirect to /benefit-type when a get request non IBA', () => {
       req.method = 'GET';
       newAppeal.handler(req, res);
+      expect(req.session.save.calledOnce).to.eql(true);
       expect(res.redirect.calledOnce).to.eql(true);
-      /* eslint-disable-next-line no-undefined */
-      expect(req.session.isUserSessionRestored).to.eql(undefined);
+      expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
+    });
+
+    it('should call reset journey and call super when a get request IBA', () => {
+      const superStub = sinon.stub(Redirect.prototype, 'handler');
+      req.method = 'GET';
+      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      newAppeal.handler(req, res);
       expect(req.session.save.calledTwice).to.eql(true);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      sinon.assert.called(superStub);
     });
   });
 });
