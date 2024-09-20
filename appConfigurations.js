@@ -288,10 +288,18 @@ const configureAppRoutes = app => {
   });
 
   app.get('/', (req, res) => {
-    res.redirect('/entry');
+    if (req.query && Object.prototype.hasOwnProperty.call(req.query, 'forceIba')) {
+      res.redirect('/entry?forceIba');
+    } else {
+      res.redirect('/entry');
+    }
   });
   app.get('/start-an-appeal', (req, res) => {
-    res.redirect('/entry');
+    if (req.query && Object.prototype.hasOwnProperty.call(req.query, 'forceIba')) {
+      res.redirect('/entry?forceIba');
+    } else {
+      res.redirect('/entry');
+    }
   });
 };
 

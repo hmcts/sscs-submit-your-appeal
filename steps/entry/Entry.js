@@ -13,7 +13,7 @@ class Entry extends RestoreFromDraftStore {
     logger.trace('Reached the entry endpoint');
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
-    } else if (req.hostname.includes('iba-') || (req.query && req.query.forceIba !== null)) {
+    } else if (req.hostname.includes('iba-') || (req.query && Object.prototype.hasOwnProperty.call(req.query, 'forceIba'))) {
       req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
