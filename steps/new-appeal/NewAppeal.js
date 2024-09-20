@@ -11,7 +11,8 @@ class NewAppeal extends Redirect {
   handler(req, res, next) {
     if (req.method === 'GET') {
       resetJourney(req);
-      Object.assign(req.session, { isUserSessionRestored: false });
+      delete req.session['isUserSessionRestored'];
+      req.session.save();
       res.redirect(paths.session.entry);
     } else {
       super.handler(req, res, next);
