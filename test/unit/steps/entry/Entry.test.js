@@ -2,7 +2,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
-const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 const mockHandler = sinon.spy();
 

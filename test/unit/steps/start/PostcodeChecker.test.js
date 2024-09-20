@@ -1,9 +1,9 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
-const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const benefitTypes = require('steps/start/benefit-type/types');
 const sinon = require('sinon');
-const { SaveToDraftStore } = require('../../../../middleware/draftAppealStoreMiddleware');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 
 describe('PostcodeChecker.js', () => {
   let postcodeChecker = null;

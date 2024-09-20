@@ -5,8 +5,8 @@ const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
 const paths = require('paths');
 const sinon = require('sinon');
-const { SaveToDraftStore } = require('../../../../middleware/draftAppealStoreMiddleware');
-const { overrideFeatFlag } = require('../../../../utils/stringUtils');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const { overrideFeatFlag } = require('utils/stringUtils');
 
 describe('BenefitType.js', () => {
   let benefitType = null;

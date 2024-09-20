@@ -66,7 +66,9 @@ describe('NewAppeal.js', () => {
       req.method = 'GET';
       newAppeal.handler(req, res);
       expect(res.redirect.calledOnce).to.eql(true);
-      expect(req.session.save.calledOnce).to.eql(true);
+      /* eslint-disable-next-line no-undefined */
+      expect(req.session.isUserSessionRestored).to.eql(undefined);
+      expect(req.session.save.calledTwice).to.eql(true);
     });
   });
 });
