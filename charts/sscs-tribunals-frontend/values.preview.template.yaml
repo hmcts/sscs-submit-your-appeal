@@ -19,6 +19,7 @@ nodejs:
     WEBCHAT_OPENING_TIME_8_5: true
     FT_WELSH: true
     PCQ_ENABLED: true
+    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-3764.preview.platform.hmcts.net
   keyVaults:
     sscs:
       secrets:
@@ -38,4 +39,3 @@ idam-pr:
   redirect_uris:
     SSCS:
       - https://${SERVICE_FQDN}/authenticated # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
-      - https://iba-${SERVICE_FQDN}/authenticated
