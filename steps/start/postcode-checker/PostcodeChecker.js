@@ -12,7 +12,7 @@ const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForE
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
 const { includes } = require('lodash');
-const benefitTypeUtils = require('../../../utils/benefitTypeUtils');
+const benefitTypeUtils = require('utils/benefitTypeUtils');
 
 class PostcodeChecker extends SaveToDraftStore {
   static get path() {

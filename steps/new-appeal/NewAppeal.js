@@ -2,7 +2,7 @@ const paths = require('paths');
 const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
-const benefitTypeUtils = require('../../utils/benefitTypeUtils');
+const benefitTypeUtils = require('utils/benefitTypeUtils');
 const benefitTypes = require('../start/benefit-type/types');
 
 class NewAppeal extends Redirect {

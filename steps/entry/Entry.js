@@ -3,7 +3,7 @@ const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware
 const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('../start/benefit-type/types');
-const { isIba } = require('utils/benefitTypeUtils');
+const benefitTypeUtils = require('utils/benefitTypeUtils');
 
 class Entry extends RestoreFromDraftStore {
   static get path() {
@@ -14,7 +14,7 @@ class Entry extends RestoreFromDraftStore {
     logger.trace('Reached the entry endpoint');
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
-    } else if (isIba(req)) {
+    } else if (benefitTypeUtils.isIba(req)) {
       req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
