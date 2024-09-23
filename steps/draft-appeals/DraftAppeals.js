@@ -33,7 +33,7 @@ class DraftAppeals extends RestoreAllDraftsState {
     return Object.fromEntries(
       // eslint-disable-next-line no-unused-vars
       Object.entries(draftCases).filter(([key, caseData]) => {
-        const { benefitType } = caseData.BenefitType || '';
+        const { benefitType } = caseData.BenefitType || {};
         return isIba ?
           benefitType === benefitTypes.infectedBloodAppeal :
           benefitType !== benefitTypes.infectedBloodAppeal;
