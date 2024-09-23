@@ -29,11 +29,12 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   get drafts() {
     const draftCases = this.req.session.drafts;
+    const ibaCase = isIba(this.req)
     return Object.fromEntries(
       // eslint-disable-next-line no-unused-vars
       Object.entries(draftCases).filter(([key, caseData]) => {
         const { benefitType } = caseData.BenefitType || {};
-        return isIba ?
+        return ibaCase ?
           benefitType === benefitTypes.infectedBloodAppeal :
           benefitType !== benefitTypes.infectedBloodAppeal;
       })
