@@ -14,8 +14,9 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
+      const ibaCase = isIba(req);
       resetJourney(req);
-      if (isIba(req)) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
       res.redirect(this.journey.steps.BenefitType);

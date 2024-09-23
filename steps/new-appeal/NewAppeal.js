@@ -12,8 +12,9 @@ class NewAppeal extends Redirect {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
+      const ibaCase = isIba(req);
       resetJourney(req);
-      if (isIba(req)) {
+      if (ibaCase(req)) {
         req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
         super.handler(req, res, next);
       } else {
