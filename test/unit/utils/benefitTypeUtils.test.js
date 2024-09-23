@@ -31,4 +31,20 @@ describe('isIba() test', () => {
     };
     expect(benefitTypeUtils.isIba(req)).to.be.true;
   });
+
+  it('should return true if req.hostname.includes -iba', () => {
+    const req = {
+      hostname: 'some-iba-hostname'
+    };
+    expect(benefitTypeUtils.isIba(req)).to.be.true;
+  });
+
+  it('should return true if req.query includes forceIba ', () => {
+    const req = {
+      query: {
+        forceIba: ''
+      }
+    };
+    expect(benefitTypeUtils.isIba(req)).to.be.true;
+  });
 });

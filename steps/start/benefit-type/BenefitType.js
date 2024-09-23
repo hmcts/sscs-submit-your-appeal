@@ -88,7 +88,7 @@ class BenefitType extends SaveToDraftStore {
 
   next() {
     const allowedTypes = this.getAllowedTypes();
-    const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
+    const isAllowedBenefit = () => allowedTypes.includes(this.fields.benefitType.value);
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return branch(
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
