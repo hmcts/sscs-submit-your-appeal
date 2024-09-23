@@ -138,5 +138,5 @@
     "puppeteer": "^23.2.0",
     "path-to-regexp": "^0.1.10"
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.5.0"
 }
