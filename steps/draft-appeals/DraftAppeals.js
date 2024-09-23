@@ -4,7 +4,7 @@ const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const benefitTypeUtils = require('utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 class DraftAppeals extends RestoreAllDraftsState {
@@ -14,9 +14,8 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      const isIba = benefitTypeUtils.isIba(req);
       resetJourney(req);
-      if (isIba) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      if (isIba(req)) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
       res.redirect(this.journey.steps.BenefitType);
@@ -29,7 +28,6 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   get drafts() {
     const draftCases = this.req.session.drafts;
-    const isIba = benefitTypeUtils.isIba(this.req);
     return Object.fromEntries(
       // eslint-disable-next-line no-unused-vars
       Object.entries(draftCases).filter(([key, caseData]) => {

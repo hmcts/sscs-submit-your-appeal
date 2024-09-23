@@ -2,7 +2,7 @@ const paths = require('paths');
 const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
-const benefitTypeUtils = require('utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 const benefitTypes = require('../start/benefit-type/types');
 
 class NewAppeal extends Redirect {
@@ -12,9 +12,8 @@ class NewAppeal extends Redirect {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      const isIba = benefitTypeUtils.isIba(req);
       resetJourney(req);
-      if (isIba) {
+      if (isIba(req)) {
         req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
         super.handler(req, res, next);
       } else {

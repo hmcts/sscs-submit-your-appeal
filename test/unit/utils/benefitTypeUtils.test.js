@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const benefitTypeUtils = require('utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('isIba() test', () => {
@@ -7,7 +7,7 @@ describe('isIba() test', () => {
     const req = {
       session: {}
     };
-    expect(benefitTypeUtils.isIba(req)).to.be.false;
+    expect(isIba(req)).to.be.false;
   });
 
   it('should return false if req.session.BenefitType.benefitType is not iba', () => {
@@ -18,7 +18,7 @@ describe('isIba() test', () => {
         }
       }
     };
-    expect(benefitTypeUtils.isIba(req)).to.be.false;
+    expect(isIba(req)).to.be.false;
   });
 
   it('should return true if req.session.BenefitType.benefitType not iba', () => {
@@ -29,14 +29,14 @@ describe('isIba() test', () => {
         }
       }
     };
-    expect(benefitTypeUtils.isIba(req)).to.be.true;
+    expect(isIba(req)).to.be.true;
   });
 
   it('should return true if req.hostname.includes -iba', () => {
     const req = {
       hostname: 'some-iba-hostname'
     };
-    expect(benefitTypeUtils.isIba(req)).to.be.true;
+    expect(isIba(req)).to.be.true;
   });
 
   it('should return true if req.query includes forceIba ', () => {
@@ -45,6 +45,6 @@ describe('isIba() test', () => {
         forceIba: ''
       }
     };
-    expect(benefitTypeUtils.isIba(req)).to.be.true;
+    expect(isIba(req)).to.be.true;
   });
 });
