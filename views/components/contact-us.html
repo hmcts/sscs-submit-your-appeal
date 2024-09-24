@@ -78,6 +78,42 @@
                 <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}</a>
             </p>
 
+            {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc | safe }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.phone | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.availability | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.saturdayAvailability | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.charges | safe }}</a>
+            </p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailText | safe }}
+                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailAddress | safe }}</a>
+            </p>
+            {% endif %}
+
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.desc | safe }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.phone | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.availability | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.saturdayAvailability | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.charges | safe }}</a>
+            </p>
+            {% if ((htmlLang == "cy") or (htmlLang == "en" and welshWebchatEnabled))  %}
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailText | safe }}
+                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress | safe }}</a>
+            </p>
+            {% endif %}
+
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc | safe }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone | safe }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability | safe }}</p>
+            <p class="govuk-body">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.charges | safe }}</a>
+            </p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailText | safe }}
+                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress | safe }}</a>
+            </p>
+
         </div>
     {% endif %}
 </details>
