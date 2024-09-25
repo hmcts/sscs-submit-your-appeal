@@ -4,12 +4,16 @@ const {
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
+const benefitTypes = require('steps/start/benefit-type/types');
+const assert = require('assert');
 
 const mockHandler = sinon.spy();
+
 class RestoreAllDraftsState {
   constructor(params) {
     Object.assign(this, params);
   }
+
   handler() {
     mockHandler();
   }
@@ -55,15 +59,62 @@ describe('DraftAppeals.js', () => {
 
 
   describe('drafts', () => {
-    it('should return drafts', () => {
-      const draftList = ['1', '2', '3'];
-
+    beforeEach(() => {
+      const draftList = {
+        1: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.bereavementBenefit
+            }
+        },
+        2: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.infectedBloodAppeal
+            }
+        },
+        3: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.attendanceAllowance
+            }
+        }
+      };
       draftAppeals.req = {
         session: {
           drafts: draftList
         }
       };
-      expect(draftAppeals.drafts).to.equal(draftList);
+    });
+    it('should return non IBA drafts', () => {
+      const expectedDraftList = {
+        1: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.bereavementBenefit
+            }
+        },
+        3: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.attendanceAllowance
+            }
+        }
+      };
+      assert.deepEqual(draftAppeals.drafts, expectedDraftList);
+    });
+
+    it('should return IBA drafts for IBA', () => {
+      draftAppeals.req.hostname = 'some-iba-hostname';
+      const expectedDraftList = {
+        2: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.infectedBloodAppeal
+            }
+        }
+      };
+      assert.deepEqual(draftAppeals.drafts, expectedDraftList);
     });
   });
 

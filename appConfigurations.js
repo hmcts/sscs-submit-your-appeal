@@ -24,6 +24,7 @@ const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 const webChatBaseUrl = config.get('services.webchat.url');
 const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
+const _ = require('lodash');
 
 const configureNunjucks = (app, commonContent) => {
   // because of a bug with iphone, we need to remove the mime types from accept
@@ -288,10 +289,18 @@ const configureAppRoutes = app => {
   });
 
   app.get('/', (req, res) => {
-    res.redirect('/entry');
+    if (_.isUndefined(req.query?.forceIba)) {
+      res.redirect('/entry');
+    } else {
+      res.redirect('/entry?forceIba');
+    }
   });
   app.get('/start-an-appeal', (req, res) => {
-    res.redirect('/entry');
+    if (_.isUndefined(req.query?.forceIba)) {
+      res.redirect('/entry');
+    } else {
+      res.redirect('/entry?forceIba');
+    }
   });
 };
 

@@ -39,4 +39,8 @@ withPipeline("nodejs", product, component) {
           println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
       }
   }
+
+  afterAlways("functionalTest:preview") {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/**/*.png'
+  }
 }
