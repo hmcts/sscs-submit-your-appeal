@@ -1,119 +1,106 @@
-{% if welshWebchatEnabled  %}
-<details class="govuk-details" open>
-{% else %}
 <details class="govuk-details">
-{% endif %}
-    <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
-    </summary>
-    {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
-        <div class="govuk-details__text">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
-            <div id="antenna-web-chat" >
-                <div id="antenna-web-chat-link">
-                    <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                    <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
-                </div>
-                {% include "components/web-chat.html" %}
-                <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
-                <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
-                <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
-            </div>
-        </div>
-        <div class="govuk-details__text">
-            <div id="web-chat-scotland" >
-                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.titleScotland | safe }}</h2>
-                <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                <div id="__8x8-chat-button-container-script_1553624711656480310cfd53.70557078"></div>
-            </div>
-        </div>
-    {% endif %}
-    {% if contactUsWebFormEnabled %}
-        <div class="govuk-details__text">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.title | safe }}</h2>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.desc | safe }}</p>
-            <p class="govuk-body">
-                <a rel="noopener noreferrer" class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
-            </p>
-        </div>
-    {% endif %}
-    {% if contactUsTelephoneEnabled %}
-        <div class="govuk-details__text">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title | safe }}</h2>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc | safe }}</p>
+  <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
+  </summary>
+  {% if webChatEnabled and htmlLang == "en" %}
+      <div class="govuk-details__text">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
+          <div id="antenna-web-chat" >
+              <div id="antenna-web-chat-link">
+                  <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+                  <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
+              </div>
+              {% include "components/web-chat.html" %}
+              <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
+              <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
+              <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
+          </div>
+      </div>
+  {% endif %}
+  {% if contactUsWebFormEnabled %}
+      <div class="govuk-details__text">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.title | safe }}</h2>
+          <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.desc | safe }}</p>
+          <p class="govuk-body">
+              <a rel="noopener noreferrer" class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
+          </p>
+      </div>
+  {% endif %}
 
-            {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.saturdayAvailability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.charges | safe }}</a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}</a>
-            </p>
-            {% endif %}
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.saturdayAvailability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.charges | safe }}</a>
-            </p>
-            {% if ((htmlLang == "cy") or (htmlLang == "en" and welshWebchatEnabled))  %}
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailAddress | safe }}</a>
-            </p>
-            {% endif %}
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.availability | safe }}</p>
-            <p class="govuk-body">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.charges | safe }}</a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}</a>
-            </p>
+  {% if contactUsTelephoneEnabled %}
 
-            {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.saturdayAvailability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.charges | safe }}</a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailAddress | safe }}</a>
-            </p>
-            {% endif %}
+  {% if isTypeIba %}
+    <div class="govuk-details__text">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title | safe }}</h2>
+      <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc | safe }}</p>
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.availability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.saturdayAvailability | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.charges | safe }}</a>
-            </p>
-            {% if ((htmlLang == "cy") or (htmlLang == "en" and welshWebchatEnabled))  %}
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress | safe }}</a>
-            </p>
-            {% endif %}
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc | safe }}</h3>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.phone | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.availability | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.saturdayAvailability | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">
+          <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.charges | safe }}</a>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailText | safe }}
+          <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailAddress | safe }}</a>
+      </p>
+      {% if htmlLang == "en" %}
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.desc | safe }}</h3>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.phone | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.availability | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">
+          <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.charges | safe }}</a>
+      </p>
+      {% endif %}
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc | safe }}</h3>
+      <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone | safe }}</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability | safe }}</p>
+      <p class="govuk-body">
+          <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.charges | safe }}</a>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailText | safe }}
+          <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress | safe }}</a>
+      </p>
+    </div>
+  {% else %}
+    <div class="govuk-details__text">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title | safe }}</h2>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc | safe }}</p>
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc | safe }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone | safe }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability | safe }}</p>
-            <p class="govuk-body">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.charges | safe }}</a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailText | safe }}
-                <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress | safe }}</a>
-            </p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.desc | safe }}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.phone | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.availability | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.saturdayAvailability | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">
+            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.England.charges | safe }}</a>
+        </p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.emailText | safe }}
+            <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.emailAddress | safe }}</a>
+        </p>
+        {% if htmlLang == "en" %}
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.desc | safe }}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.phone | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.availability | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">
+            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.charges | safe }}</a>
+        </p>
+        {% endif %}
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.desc | safe }}</h3>
+        <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.phone | safe }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.availability | safe }}</p>
+        <p class="govuk-body">
+            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.charges | safe }}</a>
+        </p>
+        <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailText | safe }}
+            <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.emailAddress | safe }}</a>
+        </p>
+    </div>
+  {% endif %}
 
-        </div>
-    {% endif %}
+
+
+
+  {% endif %}
 </details>
