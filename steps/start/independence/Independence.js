@@ -4,6 +4,8 @@ const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh, getHasAcronym, 
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
+const { get } = require('lodash');
+const benefitTypes = require('../benefit-type/types');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
@@ -24,6 +26,11 @@ class Independence extends Interstitial {
       return getTribunalPanel(this.req.session.BenefitType.benefitType);
     }
     return '';
+  }
+
+  get someBody() {
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    return benefitType === benefitTypes.infectedBloodAppeal ? 'IBA' : 'DWP';
   }
 
   get benefitType() {
