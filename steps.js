@@ -18,6 +18,7 @@ const LanguagePreference = require('steps/start/language-preference/LanguagePref
 const PostcodeChecker = require('steps/start/postcode-checker/PostcodeChecker');
 const InvalidPostcode = require('steps/start/invalid-postcode/InvalidPostcode');
 const Independence = require('steps/start/independence/Independence');
+const IbaLandingPage = require('steps/start/iba-landing-page/IbaLandingPage');
 const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
@@ -97,7 +98,8 @@ const startAnAppeal = [
   Independence,
   CreateAccount,
   IdamRedirect,
-  LanguagePreference
+  LanguagePreference,
+  IbaLandingPage
 ];
 
 const compliance = [

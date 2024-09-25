@@ -39,7 +39,10 @@ module.exports = {
     independence: '/independence',
     createAccount: '/create-account',
     idamRedirect: '/idam-redirect',
-    languagePreference: '/language-preference'
+    languagePreference: '/language-preference',
+    // eslint-disable-next-line no-warning-comments
+    // TODO replace below with actual value
+    ibaLandingPage: '/some-landing-page-slug'
   },
 
   appealFormDownload: '/appeal-form-download',

@@ -31,7 +31,15 @@ describe('Entry.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          BenefitType: paths.start.benefitType
+          BenefitType: paths.start.benefitType,
+          IbaLandingPage: paths.start.ibaLandingPage
+        }
+      },
+      req: {
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.personalIndependencePayment
+          }
         }
       }
     });
@@ -47,8 +55,28 @@ describe('Entry.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /benefit-type', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.start.benefitType });
+    it('returns the next step path /benefit-type if not Iba', () => {
+      expect(entry.next().step).to.eql(paths.start.benefitType);
+    });
+
+    // TODO update dummy content
+    it('returns the next step path /some-landing-page-slu if Iba', () => {
+      entry = new Entry({
+        journey: {
+          steps: {
+            BenefitType: paths.start.benefitType,
+            IbaLandingPage: paths.start.ibaLandingPage
+          }
+        },
+        req: {
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes.infectedBloodAppeal
+            }
+          }
+        }
+      });
+      expect(entry.next().step).to.eql(paths.start.ibaLandingPage);
     });
   });
 

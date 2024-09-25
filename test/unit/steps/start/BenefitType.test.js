@@ -17,8 +17,7 @@ describe('BenefitType.js', () => {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
           PostcodeChecker: paths.start.postcodeCheck,
-          LanguagePreference: paths.start.languagePreference,
-          Independence: paths.start.independence
+          LanguagePreference: paths.start.languagePreference
         }
       }
     });
@@ -277,20 +276,13 @@ describe('BenefitType.js', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'false';
     });
-
-    it('returns /independence when benefit type is IBA when Welsh feature toggle is off', () => {
-      benefitType.fields.benefitType.value = benefitTypes.infectedBloodAppeal;
-      const test = benefitType.next();
-      expect(test.step).to.eql(paths.start.independence);
-    });
   });
 
   describe('getAllowedTypes()', () => {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit,
-      benefitTypes.infectedBloodAppeal
+      benefitTypes.universalCredit
     ];
     before(() => {
       overrideFeatFlag({ key: 'allowDLA', value: false });
