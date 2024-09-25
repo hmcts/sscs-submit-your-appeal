@@ -77,11 +77,11 @@ class BenefitType extends SaveToDraftStore {
       { flag: 'allowRP', benefit: benefitTypes.retirementPension }
     ];
 
-    featureFlags.forEach(({ flag, benefit }) => {
-      if (isFeatureFlagEnabled(flag)) {
-        allowedTypes.push(benefit);
-      }
-    });
+    allowedTypes.push(
+      ...featureFlags
+        .filter(f => isFeatureFlagEnabled(f.flag))
+        .map(f => f.benefit)
+    );
 
     return allowedTypes;
   }
