@@ -17,7 +17,8 @@ describe('BenefitType.js', () => {
         steps: {
           AppealFormDownload: paths.appealFormDownload,
           PostcodeChecker: paths.start.postcodeCheck,
-          LanguagePreference: paths.start.languagePreference
+          LanguagePreference: paths.start.languagePreference,
+          Independence: paths.start.independence
         }
       }
     });
@@ -275,6 +276,104 @@ describe('BenefitType.js', () => {
 
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'false';
+    });
+
+    it('returns /independence when benefit type is IBA when Welsh feature toggle is off', () => {
+      benefitType.fields.benefitType.value = benefitTypes.infectedBloodAppeal;
+      const test = benefitType.next();
+      expect(test.step).to.eql(paths.start.independence);
+    });
+  });
+
+  describe('getAllowedTypes()', () => {
+    const allowedTypes = [
+      benefitTypes.personalIndependencePayment,
+      benefitTypes.employmentAndSupportAllowance,
+      benefitTypes.universalCredit,
+      benefitTypes.infectedBloodAppeal
+    ];
+    before(() => {
+      overrideFeatFlag({ key: 'allowDLA', value: false });
+      overrideFeatFlag({ key: 'allowCA', value: false });
+      overrideFeatFlag({ key: 'allowAA', value: false });
+      overrideFeatFlag({ key: 'allowBB', value: false });
+      overrideFeatFlag({ key: 'allowIIDB', value: false });
+      overrideFeatFlag({ key: 'allowJSA', value: false });
+      overrideFeatFlag({ key: 'allowSF', value: false });
+      overrideFeatFlag({ key: 'allowMA', value: false });
+      overrideFeatFlag({ key: 'allowIS', value: false });
+      overrideFeatFlag({ key: 'allowBSPS', value: false });
+      overrideFeatFlag({ key: 'allowIDB', value: false });
+      overrideFeatFlag({ key: 'allowPC', value: false });
+      overrideFeatFlag({ key: 'allowRP', value: false });
+    });
+    it('returns base list when no feature flags on', () => {
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowDLA feature flag on', () => {
+      overrideFeatFlag({ key: 'allowDLA', value: true });
+      allowedTypes.push(benefitTypes.disabilityLivingAllowance);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowCA feature flag on', () => {
+      overrideFeatFlag({ key: 'allowCA', value: true });
+      allowedTypes.push(benefitTypes.carersAllowance);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowAA feature flag on', () => {
+      overrideFeatFlag({ key: 'allowAA', value: true });
+      allowedTypes.push(benefitTypes.attendanceAllowance);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowBB feature flag on', () => {
+      overrideFeatFlag({ key: 'allowBB', value: true });
+      allowedTypes.push(benefitTypes.bereavementBenefit);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowIIDB feature flag on', () => {
+      overrideFeatFlag({ key: 'allowIIDB', value: true });
+      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowJSA feature flag on', () => {
+      overrideFeatFlag({ key: 'allowJSA', value: true });
+      allowedTypes.push(benefitTypes.jobseekersAllowance);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowSF feature flag on', () => {
+      overrideFeatFlag({ key: 'allowSF', value: true });
+      allowedTypes.push(benefitTypes.socialFund);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowMA feature flag on', () => {
+      overrideFeatFlag({ key: 'allowMA', value: true });
+      allowedTypes.push(benefitTypes.maternityAllowance);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowIS feature flag on', () => {
+      overrideFeatFlag({ key: 'allowIS', value: true });
+      allowedTypes.push(benefitTypes.incomeSupport);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowBSPS feature flag on', () => {
+      overrideFeatFlag({ key: 'allowBSPS', value: true });
+      allowedTypes.push(benefitTypes.bereavementSupportPaymentScheme);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowIDB feature flag on', () => {
+      overrideFeatFlag({ key: 'allowIDB', value: true });
+      allowedTypes.push(benefitTypes.industrialDeathBenefit);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowPC feature flag on', () => {
+      overrideFeatFlag({ key: 'allowPC', value: true });
+      allowedTypes.push(benefitTypes.pensionCredit);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
+    });
+    it('returns updated list when allowRP feature flag on', () => {
+      overrideFeatFlag({ key: 'allowRP', value: true });
+      allowedTypes.push(benefitTypes.retirementPension);
+      expect(benefitType.getAllowedTypes()).to.eql(allowedTypes);
     });
   });
 

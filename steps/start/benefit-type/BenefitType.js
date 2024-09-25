@@ -57,7 +57,8 @@ class BenefitType extends SaveToDraftStore {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit
+      benefitTypes.universalCredit,
+      benefitTypes.infectedBloodAppeal
     ];
 
     const featureFlags = [
@@ -93,6 +94,8 @@ class BenefitType extends SaveToDraftStore {
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
         redirectTo(this.journey.steps.AppealFormDownload)
       );
+    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodAppeal) {
+      return goTo(this.journey.steps.Independence);
     }
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
