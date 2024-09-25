@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('HaveAMRN.js', () => {
   let haveAMRN = null;
@@ -11,12 +12,13 @@ describe('HaveAMRN.js', () => {
       journey: {
         steps: {
           MRNDate: paths.compliance.mrnDate,
+          NeedMRN: paths.compliance.needMRN,
           HaveContactedDWP: paths.compliance.haveContactedDWP
         }
       },
       session: {
         BenefitType: {
-          benefitType: 'Universal Credit (UC)'
+          benefitType: benefitTypes.universalCredit
         }
       }
     });
@@ -94,6 +96,30 @@ describe('HaveAMRN.js', () => {
     it('returns the next step path /mrn-date when haveAMRN equals Yes', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
       expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
+    });
+
+    // TODO replace dummy content
+    it('returns the next step path /some-dummy-page-slug when haveAMRN equals No', () => {
+      haveAMRN = new HaveAMRN({
+        journey: {
+          steps: {
+            MRNDate: paths.compliance.mrnDate,
+            NeedMRN: paths.compliance.needMRN,
+            HaveContactedDWP: paths.compliance.haveContactedDWP
+          }
+        },
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      });
+      haveAMRN.fields = {
+        haveAMRN: {
+          value: answer.NO
+        }
+      };
+      expect(haveAMRN.next().step).to.eql(paths.compliance.needMRN);
     });
 
     it('returns the next step path /have-contacted-dwp when haveAMRN equals No', () => {
