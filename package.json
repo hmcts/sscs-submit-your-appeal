@@ -12,6 +12,7 @@
     "build": "NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
     "dev": "./bin/generate-ssl-options.sh && cross-env NODE_ENV=development NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider POSTCODE_LOOKUP_TOKEN=$(sh ./bin/pull_postcode_token.sh) node server.js",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node --inspect server.js",
+    "iba:start:dev": "cross-env IS_IBA=true yarn start:dev",
     "iba:dev": "cross-env IS_IBA=true yarn dev",
     "iba:debug": "cross-env IS_IBA=true yarn debug",
     "setup": "exit 0",
