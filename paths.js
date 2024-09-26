@@ -71,6 +71,8 @@ module.exports = {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
+    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
+    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 

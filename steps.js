@@ -38,6 +38,8 @@ const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownloa
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
 const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
+const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
+const AppointeeInUk = require('steps/appointee/appointee-in-uk/AppointeeInUk');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
@@ -128,6 +130,8 @@ const appointee = [
   AppointeeName,
   AppointeeDOB,
   AppointeeContactDetails,
+  AppointeeInternationalContactDetails,
+  AppointeeInUk,
   SameAddress
 ];
 

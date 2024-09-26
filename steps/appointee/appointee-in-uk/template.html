@@ -1,0 +1,23 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
+{% from "components/toggle_help.njk" import toggleHelp %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block fields %}
+    <div id="languagePreference">
+        {% call formSection() %}
+            {{ selectionButtons(
+                fields.inUk,
+                content.question,
+                hint = '',
+                options = [
+                    { label: content.fields.inUk.yes, value: "yes" },
+                    { label: content.fields.inUk.no,  value: "no" }
+                ])
+            }}
+        {% endcall %}
+    </div>
+{% endblock %}

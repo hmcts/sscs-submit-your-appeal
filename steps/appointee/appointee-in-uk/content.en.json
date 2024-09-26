@@ -1,0 +1,22 @@
+{
+  "titleHead": "Appointee in UK",
+  "title": "Do you live in the UK?",
+  "question": "Do you live in the UK?",
+
+  "fields": {
+    "inUk": {
+      "yes": "Yes",
+      "no": "No",
+      "errors": {
+        "required": "Select ‘Yes’ if you live in the UK."
+      }
+    }
+  },
+  "cya": {
+    "inUk": {
+      "question": "Do you live in the UK?",
+      "yes": "Yes",
+      "no": "No"
+    }
+  }
+}
