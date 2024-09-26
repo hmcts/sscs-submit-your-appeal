@@ -1,4 +1,4 @@
-{% if welshWebchatEnabled  %}
+{% if welshWebchatEnabled and not isIba  %}
 <details class="govuk-details" open>
 {% else %}
 <details class="govuk-details">
@@ -7,35 +7,39 @@
         <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title | safe }}</span>
     </summary>
     {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
+      {% if not isIba %}
         <div class="govuk-details__text">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
-            <div id="antenna-web-chat" >
-                <div id="antenna-web-chat-link">
-                    <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                    <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
-                </div>
-                {% include "components/web-chat.html" %}
-                <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
-                <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
-                <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
-            </div>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title | safe }}</h2>
+          <div id="antenna-web-chat" >
+              <div id="antenna-web-chat-link">
+                  <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+                  <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent | safe }}</a>
+              </div>
+              {% include "components/web-chat.html" %}
+              <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed | safe }}</div>
+              <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy | safe }}</div>
+              <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable | safe }}</div>
+          </div>
         </div>
         <div class="govuk-details__text">
-            <div id="web-chat-scotland" >
-                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.titleScotland | safe }}</h2>
-                <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
-                <div id="__8x8-chat-button-container-script_1553624711656480310cfd53.70557078"></div>
-            </div>
+          <div id="web-chat-scotland" >
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.titleScotland | safe }}</h2>
+              <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc | safe }}</p>
+              <div id="__8x8-chat-button-container-script_1553624711656480310cfd53.70557078"></div>
+          </div>
         </div>
+      {% endif %}      
     {% endif %}
     {% if contactUsWebFormEnabled %}
-        <div class="govuk-details__text">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.title | safe }}</h2>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.desc | safe }}</p>
-            <p class="govuk-body">
-                <a rel="noopener noreferrer" class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
-            </p>
-        </div>
+        {% if not isIba %}
+          <div class="govuk-details__text">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.title | safe }}</h2>
+              <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webform.desc | safe }}</p>
+              <p class="govuk-body">
+                  <a rel="noopener noreferrer" class="govuk-link" href="{{ webFormUrl }}" target="_blank">{{ commonContent[htmlLang].contactUs.webform.link | safe }}</a>
+              </p>
+          </div>
+        {% endif %}
     {% endif %}
     {% if contactUsTelephoneEnabled %}
       {% if isIba %}
