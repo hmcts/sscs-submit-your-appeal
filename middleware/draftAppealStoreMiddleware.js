@@ -6,7 +6,6 @@ const config = require('config');
 const Base64 = require('js-base64').Base64;
 const { get } = require('lodash');
 const { maskNino } = require('utils/stringUtils');
-const benefitTypes = require('../steps/start/benefit-type/types');
 
 
 /* eslint-disable max-lines */
@@ -334,11 +333,6 @@ class SaveToDraftStore extends Question {
       this.journey.collectSteps,
       saveToDraftStore
     ];
-  }
-  
-  get isTypeIba() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.infectedBloodAppeal;
   }
 }
 

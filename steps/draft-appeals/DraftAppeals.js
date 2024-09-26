@@ -29,7 +29,7 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   get drafts() {
     const draftCases = this.req.session.drafts;
-    const ibaCase = isIba(this.req)
+    const ibaCase = isIba(this.req);
     return Object.fromEntries(
       // eslint-disable-next-line no-unused-vars
       Object.entries(draftCases).filter(([key, caseData]) => {
