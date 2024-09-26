@@ -121,6 +121,11 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
 
+    it('returns the next step path /are-you-an-appointee for IBA', () => {
+      setBenefitType(benefitTypes.infectedBloodAppeal);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
     it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA)', () => {
       setBenefitType(benefitTypes.disabilityLivingAllowance);
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
