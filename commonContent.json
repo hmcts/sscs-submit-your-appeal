@@ -99,7 +99,7 @@
           "emailAddress": "Contactsscs@justice.gov.uk",
           "charges": "Find out about call charges",
           "ibca" : {
-            "desc" : "IBCA appeals helpline (England and Wales)",
+            "desc" : "IBCA appeals helpline (All other appellants)",
             "phone": "Telephone: 0300 123 XXXX",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",
