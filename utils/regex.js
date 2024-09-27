@@ -13,6 +13,7 @@ const phoneNumber = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)\d{1,4}\)?[\s-]?(?:\(
 const benefitType = /^[a-zA-Z ()]+$/;
 const mobileNumber = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
 const internationalMobileNumber = /^(?:00|\+|07|\(\d+\))[0-9\s./-]{7,}$/;
+const ibcaRef = /^[0-9]+$/;
 
 module.exports = {
   postCode,
@@ -27,5 +28,6 @@ module.exports = {
   phoneNumber,
   benefitType,
   mobileNumber,
-  internationalMobileNumber
+  internationalMobileNumber,
+  ibcaRef
 };

@@ -1,0 +1,12 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import textbox, formSection %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = title | safe %}
+
+{% block fields %}
+    {% call formSection() %}
+            <p class="govuk-body">{{ subtitle | safe }}</p>
+        {{ textbox(fields.ibcaRef, content.fields.ibcaRef.title, hint="") }}
+    {% endcall %}
+{% endblock %}
