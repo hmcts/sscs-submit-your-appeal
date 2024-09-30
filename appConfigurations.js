@@ -290,6 +290,7 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
+
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });

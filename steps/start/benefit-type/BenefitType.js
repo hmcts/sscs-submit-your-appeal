@@ -7,6 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { isIba } = require('utils/benefitTypeUtils');
 const config = require('config');
 const i18next = require('i18next');
 
@@ -14,6 +15,15 @@ class BenefitType extends SaveToDraftStore {
   static get path() {
     return paths.start.benefitType;
   }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   get form() {
     const types = Object.values(benefitTypes);
     return form({
@@ -43,60 +53,49 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
-  // eslint-disable-next-line complexity
-  next() {
+  getAllowedTypes() {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit
+      benefitTypes.universalCredit,
+      benefitTypes.infectedBloodAppeal
     ];
 
-    if (isFeatureFlagEnabled('allowDLA')) {
-      allowedTypes.push(benefitTypes.disabilityLivingAllowance);
-    }
-    if (isFeatureFlagEnabled('allowCA')) {
-      allowedTypes.push(benefitTypes.carersAllowance);
-    }
-    if (isFeatureFlagEnabled('allowAA')) {
-      allowedTypes.push(benefitTypes.attendanceAllowance);
-    }
-    if (isFeatureFlagEnabled('allowBB')) {
-      allowedTypes.push(benefitTypes.bereavementBenefit);
-    }
-    if (isFeatureFlagEnabled('allowIIDB')) {
-      allowedTypes.push(benefitTypes.industrialInjuriesDisablement);
-    }
-    if (isFeatureFlagEnabled('allowJSA')) {
-      allowedTypes.push(benefitTypes.jobseekersAllowance);
-    }
-    if (isFeatureFlagEnabled('allowSF')) {
-      allowedTypes.push(benefitTypes.socialFund);
-    }
-    if (isFeatureFlagEnabled('allowMA')) {
-      allowedTypes.push(benefitTypes.maternityAllowance);
-    }
-    if (isFeatureFlagEnabled('allowIS')) {
-      allowedTypes.push(benefitTypes.incomeSupport);
-    }
-    if (isFeatureFlagEnabled('allowBSPS')) {
-      allowedTypes.push(benefitTypes.bereavementSupportPaymentScheme);
-    }
-    if (isFeatureFlagEnabled('allowIDB')) {
-      allowedTypes.push(benefitTypes.industrialDeathBenefit);
-    }
-    if (isFeatureFlagEnabled('allowPC')) {
-      allowedTypes.push(benefitTypes.pensionCredit);
-    }
-    if (isFeatureFlagEnabled('allowRP')) {
-      allowedTypes.push(benefitTypes.retirementPension);
-    }
+    const featureFlags = [
+      { flag: 'allowDLA', benefit: benefitTypes.disabilityLivingAllowance },
+      { flag: 'allowCA', benefit: benefitTypes.carersAllowance },
+      { flag: 'allowAA', benefit: benefitTypes.attendanceAllowance },
+      { flag: 'allowBB', benefit: benefitTypes.bereavementBenefit },
+      { flag: 'allowIIDB', benefit: benefitTypes.industrialInjuriesDisablement },
+      { flag: 'allowJSA', benefit: benefitTypes.jobseekersAllowance },
+      { flag: 'allowSF', benefit: benefitTypes.socialFund },
+      { flag: 'allowMA', benefit: benefitTypes.maternityAllowance },
+      { flag: 'allowIS', benefit: benefitTypes.incomeSupport },
+      { flag: 'allowBSPS', benefit: benefitTypes.bereavementSupportPaymentScheme },
+      { flag: 'allowIDB', benefit: benefitTypes.industrialDeathBenefit },
+      { flag: 'allowPC', benefit: benefitTypes.pensionCredit },
+      { flag: 'allowRP', benefit: benefitTypes.retirementPension }
+    ];
 
-    const isAllowedBenefit = () => allowedTypes.indexOf(this.fields.benefitType.value) !== -1;
+    allowedTypes.push(
+      ...featureFlags
+        .filter(f => isFeatureFlagEnabled(f.flag))
+        .map(f => f.benefit)
+    );
+
+    return allowedTypes;
+  }
+
+  next() {
+    const allowedTypes = this.getAllowedTypes();
+    const isAllowedBenefit = () => allowedTypes.includes(this.fields.benefitType.value);
     if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
       return branch(
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
         redirectTo(this.journey.steps.AppealFormDownload)
       );
+    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodAppeal) {
+      return goTo(this.journey.steps.Independence);
     }
     return branch(
       goTo(this.journey.steps.PostcodeChecker).if(isAllowedBenefit),
