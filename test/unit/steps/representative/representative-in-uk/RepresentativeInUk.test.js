@@ -27,6 +27,27 @@ describe('RepresentativeInUk.js', () => {
     });
   });
 
+  describe('get form()', () => {
+    let fields = null;
+
+    beforeEach(() => {
+      fields = representativeInUk.form.fields;
+    });
+
+    it('should contain 1 fields', () => {
+      expect(Object.keys(fields).length).to.equal(1);
+      expect(fields).to.have.all.keys(
+        'inUk'
+      );
+    });
+
+    it('should contain a select reference called \'inUk\'', () => {
+      const selectField = fields.inUk;
+      expect(selectField.constructor.name).to.eq('FieldDescriptor');
+      expect(selectField.validations).to.not.be.empty;
+    });
+  });
+
   describe('answers() and values()', () => {
     const question = 'A Question';
 

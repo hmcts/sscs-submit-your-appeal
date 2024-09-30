@@ -94,6 +94,12 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
   });
 
+  describe('get getCountries()', () => {
+    it('should return the countryList', () => {
+      expect(representativeInternationalDetails.getCountries).to.equal(countriesList);
+    });
+  });
+
   describe('get CYAOrganisation()', () => {
     it('should return Not Provided if there is no organisation value', () => {
       expect(representativeInternationalDetails.CYAOrganisation).to.equal(userAnswer.NOT_PROVIDED);

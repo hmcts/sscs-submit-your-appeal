@@ -166,6 +166,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
         .to.equal(appointeeInternationalContactDetails.fields.phoneNumber.value);
     });
   });
+
   describe('get CYAEmailAddress()', () => {
     it('should return Not Provided if there is no email value', () => {
       appointeeInternationalContactDetails.fields.phoneNumber = {};
@@ -176,6 +177,18 @@ describe('AppointeeInternationalContactDetails.js', () => {
       appointeeInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
       expect(appointeeInternationalContactDetails.CYAEmailAddress)
         .to.equal(appointeeInternationalContactDetails.fields.emailAddress.value);
+    });
+  });
+
+  describe('get getCountries()', () => {
+    it('should return the countryList', () => {
+      expect(appointeeInternationalContactDetails.getCountries).to.equal(countriesList);
+    });
+  });
+
+  describe('get getPortOfEntryList()', () => {
+    it('should return the portOfEntryList', () => {
+      expect(appointeeInternationalContactDetails.getPortOfEntryList).to.equal(portOfEntryList);
     });
   });
 

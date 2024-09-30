@@ -137,6 +137,19 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
   });
 
+
+  describe('get getCountries()', () => {
+    it('should return the countryList', () => {
+      expect(appellantInternationalContactDetails.getCountries).to.equal(countriesList);
+    });
+  });
+
+  describe('get getPortOfEntryList()', () => {
+    it('should return the portOfEntryList', () => {
+      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(portOfEntryList);
+    });
+  });
+
   describe('answers()', () => {
     let answers = null;
 
