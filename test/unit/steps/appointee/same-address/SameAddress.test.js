@@ -1,7 +1,7 @@
 const { expect } = require('test/util/chai');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const i18next = require('i18next');
-const paths = require('../../../../../paths');
+const paths = require('paths');
 
 describe('SameAddress', () => {
   let sameAddress = null;
@@ -98,7 +98,7 @@ describe('SameAddress', () => {
 
     it('returns the next step path /appellant-in-uk for IBA', () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'no';
-      sameAddress.req = { hostname: 'iba-' };
+      sameAddress.req = { hostname: 'some-iba-hostname' };
       expect(sameAddress.next().step)
         .to.eql(paths.identity.enterAppellantInUk);
     });

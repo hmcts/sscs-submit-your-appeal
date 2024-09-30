@@ -1,0 +1,90 @@
+{
+  "titleHead": "Enter representative details",
+  "title": "Enter their details",
+  "subtitle": "If you have a professional representative, you can find their contact details on any letter you’ve received from them.",
+  "noDetails": "I don’t have their details to hand",
+  "fields": {
+    "name": {
+      "error": {
+        "required": "Enter your representative’s name or the organisation they work for",
+        "nameNoTitle": "Enter your representative’s title",
+        "titleNoName": "Enter your representative’s name"
+      },
+      "title": {
+        "title": "Title",
+        "error": {
+          "invalid": "You have entered an invalid title. Check it and enter it again"
+        }
+      },
+      "first": {
+        "title": "First name",
+        "error": {
+          "required": "Enter your representative’s first name",
+          "invalid": "You have entered an invalid first name. Check it and enter it again"
+        }
+      },
+      "last": {
+        "title": "Last name(s)",
+        "error": {
+          "required": "Enter your representative’s surname",
+          "invalid": "You have entered an invalid surname. Check it and enter it again"
+        }
+      },
+      "organisation": {
+        "title": "Organisation (if they work for one)",
+        "error": {
+          "invalid": "You have entered an invalid name. Check it and enter it again"
+        }
+      }
+    },
+    "internationalAddress": {
+      "title": "International address",
+      "error": {
+        "required": "Enter the address of your representative"
+      }
+    },
+    "country": {
+      "title": "Country of residence",
+      "error": {
+        "required": "Select the country of residence of your representative",
+        "invalid": "The country of residence is invalid"
+      }
+    },
+    "phoneNumber": {
+      "title": "Phone number (optional)",
+      "hint": "They will receive SMS updates about your appeal if you enter a mobile phone number",
+      "error": {
+        "invalid": "You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "Email address (optional)",
+      "hint": "They will receive email updates about your appeal and a link so they can track your appeal online",
+      "error": {
+        "invalid": "You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "name":{
+      "question": "Name"
+    },
+    "organisation":{
+      "question": "Organisation"
+    },
+    "country": {
+      "question": "Country of residence for representative"
+    },
+    "address":{
+      "question": "Address"
+    },
+    "phoneNumber": {
+      "question": "Phone number"
+    },
+    "emailAddress": {
+      "question": "Email address"
+    },
+    "change": "Change",
+    "repDetails": "Representative Contact Details"
+  }
+}

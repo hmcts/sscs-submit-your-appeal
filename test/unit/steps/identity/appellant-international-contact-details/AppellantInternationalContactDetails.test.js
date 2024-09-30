@@ -1,27 +1,27 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
-const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
+const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
 const countriesList = require('utils/countriesList');
 const portOfEntryList = require('utils/portOfEntryList');
 const userAnswer = require('utils/answer');
 
-describe('AppointeeInternationalContactDetails.js', () => {
-  let appointeeInternationalContactDetails = null;
+describe('AppellantInternationalContactDetails.js', () => {
+  let appellantInternationalContactDetails = null;
   beforeEach(() => {
-    appointeeInternationalContactDetails = new AppointeeInternationalContactDetails({
+    appellantInternationalContactDetails = new AppellantInternationalContactDetails({
       journey: {
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          TextReminders: paths.smsNotify.appellantTextReminders
         }
       }
     });
-    appointeeInternationalContactDetails.fields = {};
+    appellantInternationalContactDetails.fields = {};
   });
 
   describe('get path()', () => {
-    it('returns path /appointee-international-contact-details', () => {
-      expect(AppointeeInternationalContactDetails.path).to.equal(paths.appointee.enterAppointeeInternationalContactDetails);
+    it('returns path /appellant-international-contact-details', () => {
+      expect(AppellantInternationalContactDetails.path).to.equal(paths.identity.enterAppellantInternationalContactDetails);
     });
   });
 
@@ -30,7 +30,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
     let field = null;
 
     beforeEach(() => {
-      fields = appointeeInternationalContactDetails.form.fields;
+      fields = appellantInternationalContactDetails.form.fields;
     });
 
     it('should contain 5 fields', () => {
@@ -52,7 +52,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
       });
 
       it('validates all valid countries', () => {
-        const schema = appointeeInternationalContactDetails.validCountrySchema();
+        const schema = appellantInternationalContactDetails.validCountrySchema();
         for (const testCountry of countriesList) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
@@ -60,7 +60,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
       });
 
       it('rejects non valid countries', () => {
-        const schema = appointeeInternationalContactDetails.validCountrySchema();
+        const schema = appellantInternationalContactDetails.validCountrySchema();
         const result = schema.validate(decode('Rt Hon'));
         expect(result.error).not.to.eq(null);
       });
@@ -94,7 +94,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
       });
 
       it('validates all valid ports of entry', () => {
-        const schema = appointeeInternationalContactDetails.validPortSchema();
+        const schema = appellantInternationalContactDetails.validPortSchema();
         for (const testPort of portOfEntryList) {
           const result = schema.validate(decode(testPort.value));
           expect(result.error).to.eq(null);
@@ -102,7 +102,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
       });
 
       it('rejects non valid ports of entry', () => {
-        const schema = appointeeInternationalContactDetails.validPortSchema();
+        const schema = appellantInternationalContactDetails.validPortSchema();
         const result = schema.validate(decode('Rt Hon'));
         expect(result.error).not.to.eq(null);
       });
@@ -141,11 +141,11 @@ describe('AppointeeInternationalContactDetails.js', () => {
     let answers = null;
 
     before(() => {
-      answers = appointeeInternationalContactDetails.answers()[0];
+      answers = appellantInternationalContactDetails.answers()[0];
     });
 
     it('should return expected section', () => {
-      expect(answers.section).to.equal('appointee-details');
+      expect(answers.section).to.equal('appellant-details');
     });
 
     it('should return expected template', () => {
@@ -156,40 +156,40 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
   describe('get CYAPhoneNumber()', () => {
     it('should return Not Provided if there is no phoneNumber value', () => {
-      appointeeInternationalContactDetails.fields.phoneNumber = {};
-      expect(appointeeInternationalContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
+      appellantInternationalContactDetails.fields.phoneNumber = {};
+      expect(appellantInternationalContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
-      appointeeInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
-      expect(appointeeInternationalContactDetails.CYAPhoneNumber)
-        .to.equal(appointeeInternationalContactDetails.fields.phoneNumber.value);
+      appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
+      expect(appellantInternationalContactDetails.CYAPhoneNumber)
+        .to.equal(appellantInternationalContactDetails.fields.phoneNumber.value);
     });
   });
   describe('get CYAEmailAddress()', () => {
     it('should return Not Provided if there is no email value', () => {
-      appointeeInternationalContactDetails.fields.phoneNumber = {};
-      expect(appointeeInternationalContactDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
+      appellantInternationalContactDetails.fields.phoneNumber = {};
+      expect(appellantInternationalContactDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
-      appointeeInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
-      expect(appointeeInternationalContactDetails.CYAEmailAddress)
-        .to.equal(appointeeInternationalContactDetails.fields.emailAddress.value);
+      appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
+      expect(appellantInternationalContactDetails.CYAEmailAddress)
+        .to.equal(appellantInternationalContactDetails.fields.emailAddress.value);
     });
   });
 
   describe('values()', () => {
     it('should contain a value object', () => {
-      appointeeInternationalContactDetails.fields.country = { value: 'Iceland' };
-      appointeeInternationalContactDetails.fields.internationalAddress = { value: 'Some rich text field value address here' };
-      appointeeInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
-      appointeeInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
-      appointeeInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
+      appellantInternationalContactDetails.fields.country = { value: 'Iceland' };
+      appellantInternationalContactDetails.fields.internationalAddress = { value: 'Some rich text field value address here' };
+      appellantInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
+      appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
+      appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
 
-      const values = appointeeInternationalContactDetails.values();
+      const values = appellantInternationalContactDetails.values();
       expect(values).to.eql({
-        appointee: {
+        appellant: {
           contactDetails: {
             country: 'Iceland',
             internationalAddress: 'Some rich text field value address here',
@@ -202,14 +202,14 @@ describe('AppointeeInternationalContactDetails.js', () => {
     });
 
     it('should contain an empty object', () => {
-      appointeeInternationalContactDetails.fields.country = {};
-      appointeeInternationalContactDetails.fields.internationalAddress = {};
-      appointeeInternationalContactDetails.fields.portOfEntry = {};
-      appointeeInternationalContactDetails.fields.phoneNumber = {};
-      appointeeInternationalContactDetails.fields.emailAddress = {};
-      const values = appointeeInternationalContactDetails.values();
+      appellantInternationalContactDetails.fields.country = {};
+      appellantInternationalContactDetails.fields.internationalAddress = {};
+      appellantInternationalContactDetails.fields.portOfEntry = {};
+      appellantInternationalContactDetails.fields.phoneNumber = {};
+      appellantInternationalContactDetails.fields.emailAddress = {};
+      const values = appellantInternationalContactDetails.values();
       expect(values).to.deep.equal({
-        appointee: {
+        appellant: {
           contactDetails: {
             country: '',
             internationalAddress: '',
@@ -222,12 +222,12 @@ describe('AppointeeInternationalContactDetails.js', () => {
     });
 
     it('removes whitespace from before and after the phone number string', () => {
-      appointeeInternationalContactDetails.fields.country = {};
-      appointeeInternationalContactDetails.fields.internationalAddress = {};
-      appointeeInternationalContactDetails.fields.portOfEntry = {};
-      appointeeInternationalContactDetails.fields.emailAddress = {};
-      appointeeInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
-      const phoneNumber = appointeeInternationalContactDetails.values().appointee.contactDetails.phoneNumber;
+      appellantInternationalContactDetails.fields.country = {};
+      appellantInternationalContactDetails.fields.internationalAddress = {};
+      appellantInternationalContactDetails.fields.portOfEntry = {};
+      appellantInternationalContactDetails.fields.emailAddress = {};
+      appellantInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
+      const phoneNumber = appellantInternationalContactDetails.values().appellant.contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
@@ -235,9 +235,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name', () => {
-      expect(appointeeInternationalContactDetails.next())
-        .to.eql({ nextStep: paths.identity.enterAppellantName });
+    it('returns the next step path /appellant-text-reminders', () => {
+      expect(appellantInternationalContactDetails.next().step)
+        .to.eql(paths.smsNotify.appellantTextReminders);
     });
   });
 });

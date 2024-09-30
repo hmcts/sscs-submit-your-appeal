@@ -86,7 +86,7 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
 
   values() {
     return {
-      appointee: {
+      appellant: {
         contactDetails: {
           country: decode(this.fields.country.value),
           portOfEntry: decode(this.fields.portOfEntry.value),

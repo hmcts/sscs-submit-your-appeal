@@ -1,0 +1,44 @@
+<div class="govuk-summary-list">
+    <dl class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.name.question | safe }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAName }}</dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
+            <span class="govuk-visually-hidden"> {{ content.cya.repDetails | safe }}</span>
+        </dd>
+    </dl>
+</div>
+<div class="govuk-summary-list">
+    <dl id="cya-representativedetails-organisation-if-they-work-for-one" class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.organisation.question | safe }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAOrganisation }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </dl>
+</div>
+<div class="govuk-summary-list">
+    <dl class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.address.question | safe }}</dt>
+        <dd class="govuk-summary-list__value">
+            {{ fields.addressLine1.value }}<br>
+            {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
+            {{ fields.townCity.value }}<br>
+            {{ fields.county.value }}<br>
+            {{ fields.postCode.value }}<br>
+        </dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </dl>
+</div>
+<div class="govuk-summary-list">
+    <dl id="cya-representativedetails-email-address" class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question | safe }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </dl>
+</div>
+<div class="govuk-summary-list">
+    <dl id="cya-representativedetails-phone-number" class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key ">{{ content.cya.phoneNumber.question | safe }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </dl>
+</div>

@@ -49,7 +49,9 @@ const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
+const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
+const RepresentativeInUk = require('steps/representative/representative-in-uk/RepresentativeInUk');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
@@ -149,7 +151,9 @@ const smsNotify = [
 const representative = [
   Representative,
   RepresentativeDetails,
-  NoRepresentativeDetails
+  NoRepresentativeDetails,
+  RepresentativeInUk,
+  RepresentativeInternationalDetails
 ];
 
 const reasonsForAppealing = [

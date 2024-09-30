@@ -89,7 +89,9 @@ module.exports = {
     representativeDetailsToHand: '/representative-details-to-hand',
     representative: '/representative',
     representativeDetails: '/representative-details',
-    noRepresentativeDetails: '/no-representative-details'
+    noRepresentativeDetails: '/no-representative-details',
+    representativeInUk: '/representative-in-uk',
+    representativeInternationalDetails: '/representative-international-details'
   },
 
   reasonsForAppealing: {

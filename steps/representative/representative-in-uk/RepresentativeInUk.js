@@ -10,9 +10,9 @@ const i18next = require('i18next');
 const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 
-class AppointeeInUk extends SaveToDraftStore {
+class RepresentativeInUk extends SaveToDraftStore {
   static get path() {
-    return paths.appointee.enterAppointeeInUk;
+    return paths.representative.representativeInUk;
   }
 
   get form() {
@@ -29,17 +29,17 @@ class AppointeeInUk extends SaveToDraftStore {
 
     return answer(this, {
       question: this.content.cya.inUk.question,
-      section: sections.appointeeDetails,
+      section: sections.representative,
       answer: titleise(content.cya.inUk[this.fields.inUk.value])
     });
   }
 
   next() {
     return branch(
-      goTo(this.journey.steps.AppointeeContactDetails).if(this.fields.inUk.value === userAnswer.YES),
-      goTo(this.journey.steps.AppointeeInternationalContactDetails)
+      goTo(this.journey.steps.RepresentativeDetails).if(this.fields.inUk.value === userAnswer.YES),
+      goTo(this.journey.steps.RepresentativeInternationalDetails)
     );
   }
 }
 
-module.exports = AppointeeInUk;
+module.exports = RepresentativeInUk;

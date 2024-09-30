@@ -1,0 +1,25 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import textbox, textarea, select, formSection, errorClass, errorsFor %}
+{% from "postcodeLookup/template.html" import postcodeLookup  %}
+
+{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% set title = content.title | safe %}
+
+{% block fields %}
+    <p class="govuk-body">{{ content.subtitle | safe }}</p>
+    <div id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
+        <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
+
+        {{ errorsFor(fields.name) }}
+
+        {{ textbox(fields.name.title,    content.fields.name.title.title) }}
+        {{ textbox(fields.name.first,    content.fields.name.first.title) }}
+        {{ textbox(fields.name.last,     content.fields.name.last.title) }}
+        {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
+
+    </div>
+    {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
+    {{ textarea(fields.internationalAddress,    content.fields.internationalAddress.title,  hint="") }}
+    {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
+    {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
+{% endblock %}

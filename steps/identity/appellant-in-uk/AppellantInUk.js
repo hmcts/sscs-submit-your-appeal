@@ -7,7 +7,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
-const { titleise } = require('../../../utils/stringUtils');
+const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 
 class AppellantInUk extends SaveToDraftStore {

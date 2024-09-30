@@ -116,7 +116,7 @@ describe('AppellantNINO.js', () => {
     });
 
     it('returns the next step path /appellant-international-contact-details for IBA', () => {
-      appellantNINO.req = { hostname: 'iba-' };
+      appellantNINO.req = { hostname: 'some-iba-hostname' };
       expect(appellantNINO.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
 

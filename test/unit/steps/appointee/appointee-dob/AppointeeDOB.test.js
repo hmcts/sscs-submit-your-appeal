@@ -96,7 +96,7 @@ describe('AppointeeDOB.js', () => {
     });
 
     it('returns the next step path /appointee-in-uk for IBA', () => {
-      appointeeDOBClass.req = { hostname: 'iba-' };
+      appointeeDOBClass.req = { hostname: 'some-iba-hostname' };
       expect(appointeeDOBClass.next().step)
         .to.eql(paths.appointee.enterAppointeeInUk);
     });
