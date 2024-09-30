@@ -1,0 +1,60 @@
+{
+  "titleHead": "Enter contact details",
+  "title": "Enter your contact details",
+  "subtitle": "As the appellant, enter your contact details.",
+  "fields": {
+    "internationalAddress": {
+      "title": "International address",
+      "error": {
+        "required": "Enter your address"
+      }
+    },
+    "country": {
+      "title": "Country of residence",
+      "error": {
+        "required": "Select your country of residence",
+        "invalid": "The country of residence is invalid"
+      }
+    },
+    "portOfEntry": {
+      "title": "Port of entry",
+      "error": {
+        "required": "Select your port of entry into the UK",
+        "invalid": "The port of entry is invalid"
+      }
+    },
+    "phoneNumber": {
+      "title": "Phone number (optional)",
+      "hint": "This may be used to contact you about the appeal",
+      "error": {
+        "invalid": "You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "Email address (optional)",
+      "hint": "You’ll get updates and a link so you can track the appeal online",
+      "error": {
+        "invalid": "You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "country": {
+      "question": "Country of residence"
+    },
+    "portOfEntry": {
+      "question": "Port of entry"
+    },
+    "address": {
+      "question": "Address"
+    },
+    "phoneNumber": {
+      "question": "Phone number"
+    },
+    "emailAddress": {
+      "question": "Email"
+    },
+    "change": "Change",
+    "yourDetails": "Your Contact Details"
+  }
+}

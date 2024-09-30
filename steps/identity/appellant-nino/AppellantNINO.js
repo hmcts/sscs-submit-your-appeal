@@ -7,6 +7,8 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
+const { branch } = require('@hmcts/one-per-page');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantNINO extends SaveToDraftStore {
   static get path() {
@@ -57,10 +59,13 @@ class AppellantNINO extends SaveToDraftStore {
   }
 
   next() {
-    if (this.isAppointee()) {
-      return goTo(this.journey.steps.SameAddress);
-    }
-    return redirectTo(this.journey.steps.AppellantContactDetails);
+    return branch(
+      goTo(this.journey.steps.SameAddress).if(this.isAppointee()),
+      // eslint-disable-next-line no-warning-comments
+      // TODO remove this check below as it should be added in the appellant IBCA reference page that will replace NINO
+      goTo(this.journey.steps.AppellantInUk).if(isIba(this.req)),
+      redirectTo(this.journey.steps.AppellantContactDetails)
+    );
   }
 }
 

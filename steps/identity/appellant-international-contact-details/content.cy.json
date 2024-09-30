@@ -1,0 +1,58 @@
+{
+  "titleHead": "Manylion cyswllt",
+  "title": "Rhowch eich manylion cyswllt",
+  "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
+  "fields": {
+    "internationalAddress": {
+      "title": "International address in welsh",
+      "error": {
+        "required": "Enter your address in welsh"
+      }
+    },
+    "country": {
+      "title": "Country in welsh",
+      "error": {
+        "required": "Select your country in welsh"
+      }
+    },
+    "portOfEntry": {
+      "title": "Port of entry in welsh",
+      "error": {
+        "required": "Select your port of entry into the UK in welsh"
+      }
+    },
+    "phoneNumber": {
+      "title": "Rhif ffôn (dewisol)",
+      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch yr apêl",
+      "error": {
+        "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
+      }
+    },
+    "emailAddress": {
+      "title": "Cyfeiriad e-bost (dewisol):",
+      "hint": "Byddwch yn cael diweddariadau a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
+      "error": {
+        "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
+      }
+    }
+  },
+  "cya": {
+    "country": {
+      "question": "Country of residence in welsh"
+    },
+    "portOfEntry": {
+      "question": "Port of entry in welsh"
+    },
+    "address": {
+      "question": "Cyfeiriad"
+    },
+    "phoneNumber": {
+      "question": "Rhif ffôn"
+    },
+    "emailAddress": {
+      "question": "Cyfeiriad e-bost"
+    },
+    "change": "Newid",
+    "yourDetails": "Eich manylion cyswllt"
+  }
+}
