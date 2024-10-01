@@ -80,7 +80,7 @@ describe('AppellantIBCARef.js', () => {
     });
 
     it('should return correct is appointee title', () => {
-        appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
+      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
       expect(appellantIBCARef.title).to.equal(IS_APPOINTEE_TITLE);
     });
 
@@ -89,7 +89,7 @@ describe('AppellantIBCARef.js', () => {
     });
 
     it('should return correct is appointee subtitle', () => {
-        appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
+      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
       expect(appellantIBCARef.subtitle).to.equal(IS_APPOINTEE_SUBTITLE);
     });
   });
