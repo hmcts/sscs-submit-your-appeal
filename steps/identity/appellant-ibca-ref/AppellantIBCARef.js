@@ -1,5 +1,5 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo, redirectTo } = require('@hmcts/one-per-page/flow');
+const { goTo, redirectTo } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { ibcaRef } = require('utils/regex');
@@ -46,7 +46,7 @@ class AppellantIBCARef extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.ibcaRef.question,
         section: sections.appellantDetails,
-        answer: this.fields.AppellantIBCARef
+        answer: this.fields.ibcaRef.value
       })
     ];
   }
@@ -54,7 +54,7 @@ class AppellantIBCARef extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        ibcaRef: this.fields.AppellantIBCARef.value
+        ibcaRef: this.fields.ibcaRef.value
       }
     };
   }
