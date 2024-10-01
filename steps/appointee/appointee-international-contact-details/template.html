@@ -10,7 +10,6 @@
         <p class="govuk-body">{{ content.subtitle | safe }}</p>
         {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
         {{ textarea(fields.internationalAddress,    content.fields.internationalAddress.title,  hint="") }}
-        {{ select(fields.portOfEntry,               content.fields.portOfEntry.title,           options=getPortOfEntryList) }}
         {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress,             content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
     {% endcall %}

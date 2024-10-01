@@ -16,13 +16,6 @@
         "invalid": "The country of residence is invalid"
       }
     },
-    "portOfEntry": {
-      "title": "Port of entry",
-      "error": {
-        "required": "Select your port of entry into the UK",
-        "invalid": "The port of entry is invalid"
-      }
-    },
     "phoneNumber": {
       "title": "Phone number (optional)",
       "hint": "This may be used to contact you about the appeal",
@@ -41,9 +34,6 @@
   "cya": {
     "country": {
       "question": "Country of residence"
-    },
-    "portOfEntry": {
-      "question": "Port of entry"
     },
     "address": {
       "question": "Address"

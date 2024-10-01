@@ -3,7 +3,6 @@ const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
 const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 const userAnswer = require('utils/answer');
 
 describe('AppointeeInternationalContactDetails.js', () => {
@@ -34,8 +33,8 @@ describe('AppointeeInternationalContactDetails.js', () => {
     });
 
     it('should contain 5 fields', () => {
-      expect(Object.keys(fields).length).to.equal(5);
-      expect(fields).to.have.all.keys('country', 'internationalAddress', 'portOfEntry', 'phoneNumber', 'emailAddress');
+      expect(Object.keys(fields).length).to.equal(4);
+      expect(fields).to.have.all.keys('country', 'internationalAddress', 'phoneNumber', 'emailAddress');
     });
 
     describe('country field', () => {
@@ -77,34 +76,6 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
-      });
-    });
-
-    describe('portOfEntry field', () => {
-      beforeEach(() => {
-        field = fields.portOfEntry;
-      });
-
-      it('has constructor name FieldDescriptor', () => {
-        expect(field.constructor.name).to.eq('FieldDescriptor');
-      });
-
-      it('contains validation', () => {
-        expect(field.validations).to.not.be.empty;
-      });
-
-      it('validates all valid ports of entry', () => {
-        const schema = appointeeInternationalContactDetails.validPortSchema();
-        for (const testPort of portOfEntryList) {
-          const result = schema.validate(decode(testPort.value));
-          expect(result.error).to.eq(null);
-        }
-      });
-
-      it('rejects non valid ports of entry', () => {
-        const schema = appointeeInternationalContactDetails.validPortSchema();
-        const result = schema.validate(decode('Rt Hon'));
-        expect(result.error).not.to.eq(null);
       });
     });
 
@@ -186,17 +157,10 @@ describe('AppointeeInternationalContactDetails.js', () => {
     });
   });
 
-  describe('get getPortOfEntryList()', () => {
-    it('should return the portOfEntryList', () => {
-      expect(appointeeInternationalContactDetails.getPortOfEntryList).to.equal(portOfEntryList);
-    });
-  });
-
   describe('values()', () => {
     it('should contain a value object', () => {
       appointeeInternationalContactDetails.fields.country = { value: 'Iceland' };
       appointeeInternationalContactDetails.fields.internationalAddress = { value: 'Some rich text field value address here' };
-      appointeeInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
       appointeeInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
       appointeeInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
 
@@ -206,7 +170,6 @@ describe('AppointeeInternationalContactDetails.js', () => {
           contactDetails: {
             country: 'Iceland',
             internationalAddress: 'Some rich text field value address here',
-            portOfEntry: 'Biggin Hill',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
@@ -217,7 +180,6 @@ describe('AppointeeInternationalContactDetails.js', () => {
     it('should contain an empty object', () => {
       appointeeInternationalContactDetails.fields.country = {};
       appointeeInternationalContactDetails.fields.internationalAddress = {};
-      appointeeInternationalContactDetails.fields.portOfEntry = {};
       appointeeInternationalContactDetails.fields.phoneNumber = {};
       appointeeInternationalContactDetails.fields.emailAddress = {};
       const values = appointeeInternationalContactDetails.values();
@@ -226,7 +188,6 @@ describe('AppointeeInternationalContactDetails.js', () => {
           contactDetails: {
             country: '',
             internationalAddress: '',
-            portOfEntry: '',
             phoneNumber: undefined,
             emailAddress: undefined
           }
@@ -237,7 +198,6 @@ describe('AppointeeInternationalContactDetails.js', () => {
     it('removes whitespace from before and after the phone number string', () => {
       appointeeInternationalContactDetails.fields.country = {};
       appointeeInternationalContactDetails.fields.internationalAddress = {};
-      appointeeInternationalContactDetails.fields.portOfEntry = {};
       appointeeInternationalContactDetails.fields.emailAddress = {};
       appointeeInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
       const phoneNumber = appointeeInternationalContactDetails.values().appointee.contactDetails.phoneNumber;

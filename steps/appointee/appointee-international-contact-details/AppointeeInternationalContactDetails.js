@@ -10,7 +10,6 @@ const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
 const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 
 class AppointeeInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -30,11 +29,6 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
     return Joi.string().valid(validCountries);
   }
 
-  validPortSchema() {
-    const validPorts = portOfEntryList.map(port => port.value);
-    return Joi.string().valid(validPorts);
-  }
-
   get form() {
     const fields = this.content.fields;
     return form({
@@ -48,13 +42,6 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
       internationalAddress: text.joi(
         fields.internationalAddress.error.required,
         Joi.string().required()
-      ),
-      portOfEntry: text.joi(
-        fields.portOfEntry.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.portOfEntry.error.invalid,
-        this.validPortSchema()
       ),
       phoneNumber: text.joi(
         fields.phoneNumber.error.invalid,
@@ -71,10 +58,6 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
     return countriesList;
   }
 
-  get getPortOfEntryList() {
-    return portOfEntryList;
-  }
-
   answers() {
     return [
       answer(this, {
@@ -89,7 +72,6 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
       appointee: {
         contactDetails: {
           country: decode(this.fields.country.value),
-          portOfEntry: decode(this.fields.portOfEntry.value),
           internationalAddress: decode(this.fields.internationalAddress.value),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :

@@ -15,12 +15,6 @@
         "required": "Select your country in welsh"
       }
     },
-    "portOfEntry": {
-      "title": "Port of entry in welsh",
-      "error": {
-        "required": "Select your port of entry into the UK in welsh"
-      }
-    },
     "phoneNumber": {
       "title": "Rhif ffôn (dewisol)",
       "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch yr apêl",
@@ -39,9 +33,6 @@
   "cya": {
     "country": {
       "question": "Country of residence in welsh"
-    },
-    "portOfEntry": {
-      "question": "Port of entry in welsh"
     },
     "address": {
       "question": "Cyfeiriad"
