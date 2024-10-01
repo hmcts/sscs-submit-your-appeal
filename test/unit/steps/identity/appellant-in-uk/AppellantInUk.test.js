@@ -75,18 +75,18 @@ describe('AppellantInUk.js', () => {
         i18next.changeLanguage('en');
       });
       // TODO update welsh
-      it('should return the correct answer \'No in welsh\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inUk.no = 'No in welsh';
+      it('should return the correct answer \'No\' for CYA (Welsh)', () => {
+        appellantInUk.content.cya.inUk.no = 'No';
         appellantInUk.fields.inUk.value = userAnswer.NO;
         const answers = appellantInUk.answers();
-        expect(answers.answer).to.equal('No in welsh');
+        expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
-      it('should return the correct answer \'Yes in welsh\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inUk.yes = 'Yes in welsh';
+      it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
+        appellantInUk.content.cya.inUk.yes = 'Yes';
         appellantInUk.fields.inUk.value = userAnswer.YES;
         const answers = appellantInUk.answers();
-        expect(answers.answer).to.equal('Yes in welsh');
+        expect(answers.answer).to.equal('Yes');
       });
     });
   });

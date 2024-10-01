@@ -1,22 +1,22 @@
 {
-  "titleHead": "Appellant in UK in welsh",
-  "title": "Do you live in the UK? in welsh",
-  "question": "Do you live in the UK? in welsh",
+  "titleHead": "Appellant in UK",
+  "title": "Do you live in the UK?",
+  "question": "Do you live in the UK?",
 
   "fields": {
     "inUk": {
-      "yes": "Yes in welsh",
-      "no": "No in welsh",
+      "yes": "Yes",
+      "no": "No",
       "errors": {
-        "required": "Select ‘Yes’ if you live in the UK in welsh."
+        "required": "Select ‘Yes’ if you live in the UK."
       }
     }
   },
   "cya": {
     "inUk": {
-      "question": "Do you live in the UK? in welsh",
-      "yes": "Yes in welsh",
-      "no": "No in welsh"
+      "question": "Do you live in the UK?",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

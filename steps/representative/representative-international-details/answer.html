@@ -1,52 +1,52 @@
 <div class="govuk-summary-list">
     <dl class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.name.question | safe }}</dt>
+        <dt class="govuk-summary-list__key">{{ content.cya.name.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAName }}</dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
-            <span class="govuk-visually-hidden"> {{ content.cya.repDetails | safe }}</span>
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden"> {{ content.cya.repDetails }}</span>
         </dd>
     </dl>
 </div>
 <div class="govuk-summary-list">
     <dl id="cya-representativedetails-organisation-if-they-work-for-one" class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.organisation.question | safe }}</dt>
+        <dt class="govuk-summary-list__key">{{ content.cya.organisation.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAOrganisation }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
     </dl>
 </div>
 <div class="govuk-summary-list">
     <dl class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.country.question | safe }}</dt>
+        <dt class="govuk-summary-list__key">{{ content.cya.country.question }}</dt>
         <dd class="govuk-summary-list__value">
             {{ fields.country.value }}<br>
         </dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails | safe }}</span>
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
         </dd>
     </dl>
     <dl class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.address.question | safe }}</dt>
+        <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
         <dd class="govuk-summary-list__value">
             {{ fields.internationalAddress.value }}<br>
         </dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails | safe }}</span>
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
         </dd>
     </dl>
 </div>
 <div class="govuk-summary-list">
     <dl id="cya-representativedetails-email-address" class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question | safe }}</dt>
+        <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
     </dl>
 </div>
 <div class="govuk-summary-list">
     <dl id="cya-representativedetails-phone-number" class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key ">{{ content.cya.phoneNumber.question | safe }}</dt>
+        <dt class="govuk-summary-list__key ">{{ content.cya.phoneNumber.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
     </dl>

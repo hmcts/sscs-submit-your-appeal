@@ -3,8 +3,8 @@
 {% from "components/toggle_help.njk" import toggleHelp %}
 {% from "details/macro.njk" import govukDetails %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
 
 {% block fields %}
     <div id="appellantInUk">

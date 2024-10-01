@@ -4,21 +4,21 @@
   "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
   "fields": {
     "internationalAddress": {
-      "title": "International address in welsh",
+      "title": "International address",
       "error": {
-        "required": "Enter your address in welsh"
+        "required": "Enter your address"
       }
     },
     "country": {
-      "title": "Country in welsh",
+      "title": "Country",
       "error": {
-        "required": "Select your country in welsh"
+        "required": "Select your country"
       }
     },
     "portOfEntry": {
-      "title": "Port of entry in welsh",
+      "title": "Port of entry",
       "error": {
-        "required": "Select your port of entry into the UK in welsh"
+        "required": "Select your port of entry into the UK"
       }
     },
     "phoneNumber": {
@@ -38,10 +38,10 @@
   },
   "cya": {
     "country": {
-      "question": "Country of residence in welsh"
+      "question": "Country of residence"
     },
     "portOfEntry": {
-      "question": "Port of entry in welsh"
+      "question": "Port of entry"
     },
     "address": {
       "question": "Cyfeiriad"

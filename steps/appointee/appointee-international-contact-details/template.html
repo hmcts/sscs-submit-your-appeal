@@ -2,12 +2,12 @@
 {% from "components/fields.njk" import textbox, formSection, textarea, select %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
         {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
         {{ textarea(fields.internationalAddress,    content.fields.internationalAddress.title,  hint="") }}
         {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}

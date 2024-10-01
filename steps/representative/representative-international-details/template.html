@@ -2,16 +2,15 @@
 {% from "components/fields.njk" import textbox, textarea, select, formSection, errorClass, errorsFor %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
+    <p class="govuk-body">{{ content.subtitle }}</p>
     <div id="{{ fields.name.id }}" class="govuk-form-group {{ errorClass(fields.name) }}">
-        <legend class="govuk-visually-hidden">{{ content.title | safe }}</legend>
+        <legend class="govuk-visually-hidden">{{ content.title }}</legend>
 
         {{ errorsFor(fields.name) }}
-
         {{ textbox(fields.name.title,    content.fields.name.title.title) }}
         {{ textbox(fields.name.first,    content.fields.name.first.title) }}
         {{ textbox(fields.name.last,     content.fields.name.last.title) }}

@@ -96,18 +96,18 @@ describe('RepresentativeInUk.js', () => {
         i18next.changeLanguage('en');
       });
       // TODO update welsh
-      it('should return the correct answer \'No in welsh\' for CYA (Welsh)', () => {
-        representativeInUk.content.cya.inUk.no = 'No in welsh';
+      it('should return the correct answer \'No\' for CYA (Welsh)', () => {
+        representativeInUk.content.cya.inUk.no = 'No';
         representativeInUk.fields.inUk.value = userAnswer.NO;
         const answers = representativeInUk.answers();
-        expect(answers.answer).to.equal('No in welsh');
+        expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
-      it('should return the correct answer \'Yes in welsh\' for CYA (Welsh)', () => {
-        representativeInUk.content.cya.inUk.yes = 'Yes in welsh';
+      it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
+        representativeInUk.content.cya.inUk.yes = 'Yes';
         representativeInUk.fields.inUk.value = userAnswer.YES;
         const answers = representativeInUk.answers();
-        expect(answers.answer).to.equal('Yes in welsh');
+        expect(answers.answer).to.equal('Yes');
       });
     });
   });

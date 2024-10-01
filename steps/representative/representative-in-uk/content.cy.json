@@ -1,22 +1,22 @@
 {
-  "titleHead": "Representative in UK in welsh",
-  "title": "Does your representative live in the UK? in welsh",
-  "question": "Does your representative live in the UK? in welsh",
+  "titleHead": "Representative in UK",
+  "title": "Does your representative live in the UK?",
+  "question": "Does your representative live in the UK?",
 
   "fields": {
     "inUk": {
-      "yes": "Yes in welsh",
-      "no": "No in welsh",
+      "yes": "Yes",
+      "no": "No",
       "errors": {
-        "required": "Select ‘Yes’ if your representative lives in the UK. in welsh"
+        "required": "Select ‘Yes’ if your representative lives in the UK."
       }
     }
   },
   "cya": {
     "inUk": {
-      "question": "Does your representative live in the UK? in welsh",
-      "yes": "Yes in welsh",
-      "no": "No in welsh"
+      "question": "Does your representative live in the UK?",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }
