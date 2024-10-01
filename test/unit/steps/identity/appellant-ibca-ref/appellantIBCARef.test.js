@@ -55,6 +55,42 @@ describe('AppellantIBCARef.js', () => {
     });
   });
 
+  describe('title() and subtitle()', () => {
+    const NOT_APPOINTEE_TITLE = 'Enter their IBCA Reference';
+    const NOT_APPOINTEE_SUBTITLE = 'Enter their IBCA Reference';
+    const IS_APPOINTEE_TITLE = 'Enter their IBCA Reference';
+    const IS_APPOINTEE_SUBTITLE = 'Enter their IBCA Reference';
+
+    beforeEach(() => {
+      appellantIBCARef.content = {
+        title: {
+          withoutAppointee: NOT_APPOINTEE_TITLE,
+          withAppointee: IS_APPOINTEE_TITLE
+        },
+        subtitle: {
+          withoutAppointee: 'Find your IBCA Reference',
+          withAppointee: 'Enter the IBCA Reference of the person you are authorised to appeal for.'
+        }
+      };
+    });
+
+    it('should return correct not appointee title', () => {
+      expect(appellantIBCARef.title).to.equal(NOT_APPOINTEE_TITLE);
+    });
+
+    it('should return correct is appointee title', () => {
+      expect(appellantIBCARef.title).to.equal(IS_APPOINTEE_TITLE);
+    });
+
+    it('should return correct not appointee subtitle', () => {
+      expect(appellantIBCARef.title).to.equal(NOT_APPOINTEE_SUBTITLE);
+    });
+
+    it('should return correct is appointee subtitle', () => {
+      expect(appellantIBCARef.title).to.equal(IS_APPOINTEE_SUBTITLE);
+    });
+  });
+
   describe('answers() and values() methods', () => {
     const ibcaRefNo = '343545434234';
     const question = 'IBCA Reference';
@@ -85,6 +121,18 @@ describe('AppellantIBCARef.js', () => {
     it('should contain value as IBCA Ref', () => {
       const values = appellantIBCARef.values();
       expect(values).to.eql({ appellant: { ibcaRef: ibcaRefNo } });
+    });
+  });
+
+  describe('next()', () => {
+    it('should return the next step path /enter-appellant-contact-details on not appointee', () => {
+      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'no';
+      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantContactDetails);
+    });
+
+    it('returns the next step path /appointee-same-address on is appointee', () => {
+      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
+      expect(appellantIBCARef.next().step).to.eql(paths.appointee.sameAddress);
     });
   });
 });

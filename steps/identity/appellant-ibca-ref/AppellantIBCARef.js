@@ -1,5 +1,5 @@
 const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo, redirectTo } = require('@hmcts/one-per-page');
+const { goTo, branch } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { ibcaRef } = require('utils/regex');
@@ -60,10 +60,10 @@ class AppellantIBCARef extends SaveToDraftStore {
   }
 
   next() {
-    if (this.isAppointee()) {
-      return goTo(this.journey.steps.SameAddress);
-    }
-    return redirectTo(this.journey.steps.AppellantContactDetails);
+    return branch(
+      goTo(this.journey.steps.SameAddress).if(this.isAppointee()),
+      goTo(this.journey.steps.AppellantContactDetails)
+    );
   }
 }
 
