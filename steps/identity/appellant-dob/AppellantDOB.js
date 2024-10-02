@@ -7,6 +7,8 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
+const { branch } = require('@hmcts/one-per-page/flow');
+const { isIba } = require('../../../utils/benefitTypeUtils');
 
 class AppellantDOB extends SaveToDraftStore {
   static get path() {
@@ -66,7 +68,11 @@ class AppellantDOB extends SaveToDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.AppellantNINO);
+    const isIbaCase = () => isIba(this.req);
+    return branch(
+      goTo(this.journey.steps.AppellantIBCARef).if(isIbaCase),
+      goTo(this.journey.steps.AppellantNINO)
+    );
   }
 }
 
