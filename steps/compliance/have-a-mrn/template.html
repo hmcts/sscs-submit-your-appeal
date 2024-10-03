@@ -1,25 +1,49 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}
+    {% if isIba %}
+        {{ content.titleHeadIrn }} - {{ commonContent[htmlLang].windowTitleSuffix }}
+    {% else %}
+        {{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}
+    {% endif %}
+{% endblock %}
+{% if isIba %}
+    {% set title = content.titleIrn %}
+{% else %}
+    {% set title = content.title %}
+{% endif %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        {% if isIba %}
+            <p class="govuk-body">{{ content.subtitleIrn }}</p>
 
-        {% if benefitCode == 'UC'%}
-            <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
+            {{ selectionButtons(
+                fields.haveAnIRN,
+                content.subtitleIrn,
+                hint = '',
+                options = [
+                    { label: content.fields.haveAnIRN.yes, value: "yes" },
+                    { label: content.fields.haveAnIRN.no,  value: "no" }
+                ])
+            }}
+        {% else %}
+            <p class="govuk-body">{{ content.subtitle }}</p>
+
+            {% if benefitCode == 'UC'%}
+                <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 }}</p>
+            {% endif %}
+
+            {{ selectionButtons(
+                fields.haveAMRN,
+                content.subtitle,
+                hint = '',
+                options = [
+                    { label: content.fields.haveAMRN.yes, value: "yes" },
+                    { label: content.fields.haveAMRN.no,  value: "no" }
+                ])
+            }}
         {% endif %}
-
-        {{ selectionButtons(
-            fields.haveAMRN,
-            content.subtitle,
-            hint = '',
-            options = [
-                { label: content.fields.haveAMRN.yes, value: "yes" },
-                { label: content.fields.haveAMRN.no,  value: "no" }
-            ])
-        }}
     {% endcall %}
 {% endblock %}

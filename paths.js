@@ -46,6 +46,8 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
+    haveAnIRN: '/have-you-got-an-irn',
+    needIRN: '/need-an-irn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
