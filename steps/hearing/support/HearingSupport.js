@@ -16,7 +16,7 @@ class HearingSupport extends SaveToDraftStore {
     return form({
       arrangements: text.joi(
         this.content.fields.arrangements.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

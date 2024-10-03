@@ -56,14 +56,14 @@ describe('AppellantName.js', () => {
 
         for (const testTitle of titlesList) {
           const result = schema.validate(decode(testTitle.value));
-          expect(result.error).to.eq(null);
+          expect(result.error).to.eq(undefined);
         }
       });
 
       it('rejects non valid titles', () => {
         const schema = appellantName.titleSchema();
         const result = schema.validate(decode('Rt Hon'));
-        expect(result.error).not.to.eq(null);
+        expect(result.error).not.to.eq(undefined);
       });
     });
 

@@ -20,7 +20,6 @@ const {
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
@@ -143,7 +142,7 @@ class RepresentativeDetails extends SaveToDraftStore {
       { name: 'emailAddress',
         validator: text.joi(
           fields.emailAddress.error.invalid,
-          Joi.string().trim().email(emailOptions).allow('')
+          Joi.string().trim().email().allow('')
         ) }
     ]);
   }

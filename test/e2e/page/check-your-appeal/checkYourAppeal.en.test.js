@@ -22,7 +22,7 @@ Scenario(`${language.toUpperCase()} - When the appeal is incomplete, I am taken 
   I.seeCurrentUrlEquals('/benefit-type');
 }).retry(10);
 
-Scenario(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section`, ({ I }) => {
+Scenario(`${language.toUpperCase()} - When I go to the check your appeal page, I don't see the Sign and submit section @testytest`, ({ I }) => {
   I.enterBenefitTypeAndContinue(language, commonContent, 'pip');
   I.amOnPage(paths.checkYourAppeal);
   I.dontSee(checkYourAppealContent.header);

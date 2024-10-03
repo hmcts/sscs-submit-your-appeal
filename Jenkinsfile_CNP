@@ -8,13 +8,11 @@ properties(
 
 def product = "sscs"
 def component = "tribunals-frontend"
-
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
-
   afterSuccess('build') {
     yarnBuilder.yarn('build')
   }

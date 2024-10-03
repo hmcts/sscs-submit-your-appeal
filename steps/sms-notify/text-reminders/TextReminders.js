@@ -21,7 +21,7 @@ class TextReminders extends SaveToDraftStore {
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
       doYouWantTextMsgReminders: text.joi(
         this.content.fields.doYouWantTextMsgReminders.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

@@ -15,7 +15,7 @@ class HearingAvailability extends SaveToDraftStore {
     return form({
       scheduleHearing: text.joi(
         this.content.fields.scheduleHearing.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

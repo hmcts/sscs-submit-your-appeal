@@ -12,14 +12,17 @@ module.exports = class Logger {
     iKey = iKeyVal;
   }
 
+  static setupAppInsights() {
+    applicationInsights.setup(iKey)
+      .setAutoCollectConsole(true, true)
+      .setDistributedTracingMode(applicationInsights.DistributedTracingModes.AI_AND_W3C)
+      .setSendLiveMetrics(true);
+    const client = applicationInsights.defaultClient;
+    client.context.tags[client.context.keys.cloudRole] = config.appInsights.roleName;
+  }
   static startAppInsights() {
     if (iKey !== '') {
-      applicationInsights.setup(iKey)
-        .setAutoCollectConsole(true, true)
-        .setDistributedTracingMode(applicationInsights.DistributedTracingModes.AI_AND_W3C)
-        .setSendLiveMetrics(true);
-      const client = applicationInsights.defaultClient;
-      client.context.tags[client.context.keys.cloudRole] = config.appInsights.roleName;
+      this.setupAppInsights();
       applicationInsights.start();
     }
   }

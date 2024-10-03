@@ -18,7 +18,7 @@ class Representative extends SaveToDraftStore {
     return form({
       hasRepresentative: text.joi(
         this.content.fields.hasRepresentative.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

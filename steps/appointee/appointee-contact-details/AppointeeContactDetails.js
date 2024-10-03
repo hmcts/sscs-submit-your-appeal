@@ -9,7 +9,6 @@ const logPath = 'AppointeeContactDetails.js';
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
@@ -97,7 +96,7 @@ class AppointeeContactDetails extends SaveToDraftStore {
       { name: 'emailAddress',
         validator: text.joi(
           fields.emailAddress.error.invalid,
-          Joi.string().trim().email(emailOptions).allow('')
+          Joi.string().trim().email().allow('')
         ) }
     ]);
   }

@@ -23,7 +23,7 @@ class CheckMRN extends SaveToDraftStore {
       mrnDate: ref(this.journey.steps.MRNDate, date),
       checkedMRN: text.joi(
         this.content.fields.checkedMRN.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

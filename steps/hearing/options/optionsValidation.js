@@ -1,6 +1,4 @@
-const customJoi = require('utils/customJoiSchemas');
 const Joi = require('joi');
-const emailOptions = require('utils/emailOptions');
 
 const emptyTelephoneValidation = value => (!(value.requested && !value.phoneNumber));
 const emptyEmailValidation = value => (!(value.requested && !value.email));
@@ -16,14 +14,18 @@ const optionSelected = options => {
 };
 
 const invalidTelephoneValidation = value => {
-  const { error } = Joi.validate(value.phoneNumber, customJoi.string().trim().validatePhone());
+  const schema = Joi.string().pattern(/^\+?(\d{9,15})$/); // Accepts phone numbers with 9 to 15 digits, with optional + for country code;
+  const { error } = schema.validate(value.phoneNumber);
   return !value.requested || !error;
 };
 
+
 const invalidEmailValidation = value => {
-  const { error } = Joi.validate(value.email, Joi.string().trim().email(emailOptions).allow(''));
+  const schema = Joi.string().trim().email().allow('');
+  const { error } = schema.validate(value.email);
   return !value.requested || !error;
 };
+
 
 module.exports = {
   emptyTelephoneValidation,

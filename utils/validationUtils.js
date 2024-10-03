@@ -1,8 +1,7 @@
-const Joi = require('joi');
-
+/* eslint-disable no-undefined */
 const joiValidation = (value, joiSchema) => {
-  const valid = Joi.validate(value, joiSchema);
-  return valid.error === null;
+  const valid = joiSchema.validate(value);
+  return valid.error === undefined;
 };
 
 const hasNameButNoTitleValidation = value => !(

@@ -44,7 +44,7 @@ class HaveAMRN extends SaveToDraftStore {
     return form({
       haveAMRN: text.joi(
         this.content.fields.haveAMRN.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string().valid(...[userAnswer.YES, userAnswer.NO]).required()
       )
     });
   }

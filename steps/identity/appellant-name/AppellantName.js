@@ -41,7 +41,7 @@ class AppellantName extends SaveToDraftStore {
 
   titleSchema() {
     const decodedTitles = this.decodedTitlesList();
-    return Joi.string().valid(decodedTitles);
+    return Joi.string().valid(...decodedTitles);
   }
 
   get form() {
