@@ -1,4 +1,5 @@
-const { Redirect, goTo, branch } = require('@hmcts/one-per-page');
+const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { Redirect } = require('@hmcts/one-per-page');
 const paths = require('paths');
 const idam = require('middleware/idam');
 const { isIba } = require('utils/benefitTypeUtils');
@@ -9,11 +10,12 @@ class IdamRedirect extends Redirect {
   }
 
   next() {
-    return branch(
-      goTo(this.journey.steps.BenefitType).if(!this.req.session.BenefitType),
-      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
-      goTo(this.journey.steps.HaveAMRN)
-    );
+    if (!this.req.session.BenefitType) {
+      return redirectTo(this.journey.steps.BenefitType);
+    } else if (isIba(this.req)) {
+      return redirectTo(this.journey.steps.HaveAnIRN);
+    }
+    return redirectTo(this.journey.steps.HaveAMRN);
   }
 
   get middleware() {
