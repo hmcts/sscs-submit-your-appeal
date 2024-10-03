@@ -192,6 +192,32 @@ describe('MRNDate.js', () => {
       });
     });
 
+    describe('when benefit type is IBA', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /check-mrn-date if date is one day over a month', () => {
+        setMRNDate(DateUtils.oneMonthAndOneDayAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
+      });
+
+      it('returns the next step path /check-mrn-date if date is over a year', () => {
+        setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
+      });
+    });
+
     describe('when date is more than a month ago', () => {
       it('returns the next step path /check-mrn-date if date more than a month', () => {
         setMRNDate(DateUtils.oneMonthAndOneDayAgo());

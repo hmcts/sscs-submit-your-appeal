@@ -119,6 +119,11 @@ describe('MRNOverOneMonth.js', () => {
       expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
 
+    it('returns the next step path /are-you-an-appointee for IBA', () => {
+      setBenefitType(benefitTypes.infectedBloodAppeal);
+      expect(mrnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
     it('returns the next step path /dwp-issuing-office for Disability Living Allowance (DLA) if MRN date is over a month', () => {
       setBenefitType(benefitTypes.disabilityLivingAllowance);
       expect(mrnOverOneMonth.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);

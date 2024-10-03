@@ -6,8 +6,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { get } = require('lodash');
-const benefitTypes = require('../benefit-type/types');
 
 class CreateAccount extends SaveToDraftStore {
   static get path() {
@@ -29,11 +27,6 @@ class CreateAccount extends SaveToDraftStore {
 
   values() {
     return {};
-  }
-
-  get isTypeIba() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.infectedBloodAppeal;
   }
 
   next() {

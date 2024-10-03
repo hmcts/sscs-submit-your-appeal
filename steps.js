@@ -35,6 +35,7 @@ const AppellantContactDetails = require('steps/identity/appellant-contact-detail
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
+const AppellantIBCARef = require('steps/identity/appellant-ibca-ref/AppellantIBCARef');
 const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownload');
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
@@ -122,6 +123,7 @@ const identity = [
   AppellantDOB,
   AppellantName,
   AppellantNINO,
+  AppellantIBCARef,
   Appointee,
   AppealFormDownload
 ];
