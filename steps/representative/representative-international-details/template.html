@@ -1,5 +1,5 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, textarea, select, formSection, errorClass, errorsFor %}
+{% from "components/fields.njk" import textbox, select, formSection, errorClass, errorsFor %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
@@ -17,8 +17,10 @@
         {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
 
     </div>
-    {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
-    {{ textarea(fields.internationalAddress,    content.fields.internationalAddress.title,  hint="") }}
+    {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint="") }}
+    {{ textbox(fields.addressLine2, content.fields.addressLine2.title,  hint="") }}
+    {{ textbox(fields.townCity,     content.fields.townCity.title,      hint="") }}
+    {{ select(fields.country,       content.fields.country.title,       options=getCountries) }}
     {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
     {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
 {% endblock %}

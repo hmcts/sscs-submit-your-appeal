@@ -12,10 +12,25 @@
     <dl id="cya-representativedetails-organisation-if-they-work-for-one" class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">{{ content.cya.organisation.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAOrganisation }}</dd>
-        <dd class="govuk-summary-list__actions"></dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
+            <span class="govuk-visually-hidden"> {{ content.cya.repDetails | safe }}</span>
+        </dd>
     </dl>
 </div>
 <div class="govuk-summary-list">
+    <dl class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
+        <dd class="govuk-summary-list__value">
+            {{ fields.addressLine1.value }}<br>
+            {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
+            {{ fields.townCity.value }}<br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change | safe }}</a>
+            <span class="govuk-visually-hidden"> {{ content.cya.repDetails | safe }}</span>
+        </dd>
+    </dl>
     <dl class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">{{ content.cya.country.question }}</dt>
         <dd class="govuk-summary-list__value">
@@ -23,17 +38,7 @@
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
-        </dd>
-    </dl>
-    <dl class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
-        <dd class="govuk-summary-list__value">
-            {{ fields.internationalAddress.value }}<br>
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+            <span class="govuk-visually-hidden">{{ content.cya.repDetails }}</span>
         </dd>
     </dl>
 </div>

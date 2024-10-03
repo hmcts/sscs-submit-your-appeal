@@ -3,10 +3,24 @@
   "title": "Enter your contact details",
   "subtitle": "As the appellant, enter your contact details.",
   "fields": {
-    "internationalAddress": {
-      "title": "International address",
+    "addressLine1": {
+      "title": "Address line 1",
       "error": {
-        "required": "Enter your address"
+        "required": "Enter the first line of your address",
+        "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
+      }
+    },
+    "addressLine2": {
+      "title": "Address line 2 (optional)",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your Address line 2 and enter it again"
+      }
+    },
+    "townCity": {
+      "title": "Town/City",
+      "error": {
+        "required": "Enter the town or city from your address",
+        "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
       }
     },
     "country": {

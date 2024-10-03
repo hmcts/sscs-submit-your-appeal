@@ -11,6 +11,7 @@ const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
 const countriesList = require('utils/countriesList');
 const portOfEntryList = require('utils/portOfEntryList');
+const { whitelistNotFirst } = require('utils/regex');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -38,16 +39,30 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
     return form({
+      addressLine1: text.joi(
+        fields.addressLine1.error.required,
+        Joi.string().required()
+      ).joi(
+        fields.addressLine1.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
+      addressLine2: text.joi(
+        fields.addressLine1.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
+      townCity: text.joi(
+        fields.townCity.error.required,
+        Joi.string().required()
+      ).joi(
+        fields.addressLine1.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
       country: text.joi(
         fields.country.error.required,
         Joi.string().required()
       ).joi(
         fields.country.error.invalid,
         this.validCountrySchema()
-      ),
-      internationalAddress: text.joi(
-        fields.internationalAddress.error.required,
-        Joi.string().required()
       ),
       portOfEntry: text.joi(
         fields.portOfEntry.error.required,
@@ -88,9 +103,11 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
+          addressLine1: decode(this.fields.addressLine1.value),
+          addressLine2: decode(this.fields.addressLine2.value),
+          townCity: decode(this.fields.townCity.value),
           country: decode(this.fields.country.value),
           portOfEntry: decode(this.fields.portOfEntry.value),
-          internationalAddress: decode(this.fields.internationalAddress.value),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,

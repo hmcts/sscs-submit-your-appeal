@@ -28,6 +28,9 @@ describe('RepresentativeInternationalDetails.js', () => {
         last: { value: '' },
         organisation: { value: '' }
       },
+      addressLine1: { value: '' },
+      addressLine2: { value: '' },
+      townCity: { value: '' },
       internationalAddress: { value: '' },
       country: { value: '' },
       phoneNumber: { value: '' },
@@ -142,11 +145,13 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should contain dynamic fields', () => {
-      expect(Object.keys(fields).length).to.equal(5);
+      expect(Object.keys(fields).length).to.equal(7);
       expect(fields).to.have.all.keys(
         'name',
         'country',
-        'internationalAddress',
+        'addressLine1',
+        'addressLine2',
+        'townCity',
         'emailAddress',
         'phoneNumber'
       );
@@ -195,9 +200,9 @@ describe('RepresentativeInternationalDetails.js', () => {
       });
     });
 
-    describe('internationalAddress field', () => {
+    describe('addressLine1 field', () => {
       beforeEach(() => {
-        field = fields.internationalAddress;
+        field = fields.addressLine1;
       });
 
       it('has constructor name FieldDescriptor', () => {
@@ -205,7 +210,35 @@ describe('RepresentativeInternationalDetails.js', () => {
       });
 
       it('contains validation', () => {
-        expect(field.validations.length).to.eq(1);
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('addressLine2 field', () => {
+      beforeEach(() => {
+        field = fields.addressLine2;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('townCity field', () => {
+      beforeEach(() => {
+        field = fields.townCity;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
       });
     });
 
@@ -261,7 +294,9 @@ describe('RepresentativeInternationalDetails.js', () => {
       representativeInternationalDetails.fields.name.first.value = repName.split(',')[1];
       representativeInternationalDetails.fields.name.last.value = repName.split(',')[2];
       representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
-      representativeInternationalDetails.fields.internationalAddress.value = 'First line of my address';
+      representativeInternationalDetails.fields.addressLine1 = { value: 'Some address line 1' };
+      representativeInternationalDetails.fields.addressLine2 = { value: 'Some address line 2' };
+      representativeInternationalDetails.fields.townCity = { value: 'Some Town or City' };
       representativeInternationalDetails.fields.country.value = 'Iceland';
       representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
       representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
@@ -273,7 +308,9 @@ describe('RepresentativeInternationalDetails.js', () => {
           lastName: 'POTTER',
           organisation: 'Organisation',
           contactDetails: {
-            internationalAddress: 'First line of my address',
+            addressLine1: 'Some address line 1',
+            addressLine2: 'Some address line 2',
+            townCity: 'Some Town or City',
             country: 'Iceland',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
@@ -291,7 +328,9 @@ describe('RepresentativeInternationalDetails.js', () => {
           lastName: '',
           organisation: '',
           contactDetails: {
-            internationalAddress: '',
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
             country: '',
             phoneNumber: '',
             emailAddress: ''

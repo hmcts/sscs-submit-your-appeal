@@ -34,8 +34,8 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
 
     it('should contain 5 fields', () => {
-      expect(Object.keys(fields).length).to.equal(5);
-      expect(fields).to.have.all.keys('country', 'internationalAddress', 'portOfEntry', 'phoneNumber', 'emailAddress');
+      expect(Object.keys(fields).length).to.equal(7);
+      expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'country', 'portOfEntry', 'phoneNumber', 'emailAddress');
     });
 
     describe('country field', () => {
@@ -66,9 +66,37 @@ describe('AppellantInternationalContactDetails.js', () => {
       });
     });
 
-    describe('internationalAddress field', () => {
+    describe('addressLine1 field', () => {
       beforeEach(() => {
-        field = fields.internationalAddress;
+        field = fields.addressLine1;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('addressLine2 field', () => {
+      beforeEach(() => {
+        field = fields.addressLine2;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('townCity field', () => {
+      beforeEach(() => {
+        field = fields.townCity;
       });
 
       it('has constructor name FieldDescriptor', () => {
@@ -195,7 +223,9 @@ describe('AppellantInternationalContactDetails.js', () => {
   describe('values()', () => {
     it('should contain a value object', () => {
       appellantInternationalContactDetails.fields.country = { value: 'Iceland' };
-      appellantInternationalContactDetails.fields.internationalAddress = { value: 'Some rich text field value address here' };
+      appellantInternationalContactDetails.fields.addressLine1 = { value: 'Some address line 1' };
+      appellantInternationalContactDetails.fields.addressLine2 = { value: 'Some address line 2' };
+      appellantInternationalContactDetails.fields.townCity = { value: 'Some Town or City' };
       appellantInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
       appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
       appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
@@ -205,7 +235,9 @@ describe('AppellantInternationalContactDetails.js', () => {
         appellant: {
           contactDetails: {
             country: 'Iceland',
-            internationalAddress: 'Some rich text field value address here',
+            addressLine1: 'Some address line 1',
+            addressLine2: 'Some address line 2',
+            townCity: 'Some Town or City',
             portOfEntry: 'Biggin Hill',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
@@ -216,7 +248,9 @@ describe('AppellantInternationalContactDetails.js', () => {
 
     it('should contain an empty object', () => {
       appellantInternationalContactDetails.fields.country = {};
-      appellantInternationalContactDetails.fields.internationalAddress = {};
+      appellantInternationalContactDetails.fields.addressLine1 = {};
+      appellantInternationalContactDetails.fields.addressLine2 = {};
+      appellantInternationalContactDetails.fields.townCity = {};
       appellantInternationalContactDetails.fields.portOfEntry = {};
       appellantInternationalContactDetails.fields.phoneNumber = {};
       appellantInternationalContactDetails.fields.emailAddress = {};
@@ -225,7 +259,9 @@ describe('AppellantInternationalContactDetails.js', () => {
         appellant: {
           contactDetails: {
             country: '',
-            internationalAddress: '',
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
             portOfEntry: '',
             phoneNumber: undefined,
             emailAddress: undefined
@@ -236,7 +272,9 @@ describe('AppellantInternationalContactDetails.js', () => {
 
     it('removes whitespace from before and after the phone number string', () => {
       appellantInternationalContactDetails.fields.country = {};
-      appellantInternationalContactDetails.fields.internationalAddress = {};
+      appellantInternationalContactDetails.fields.addressLine1 = {};
+      appellantInternationalContactDetails.fields.addressLine2 = {};
+      appellantInternationalContactDetails.fields.townCity = {};
       appellantInternationalContactDetails.fields.portOfEntry = {};
       appellantInternationalContactDetails.fields.emailAddress = {};
       appellantInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };

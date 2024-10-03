@@ -33,8 +33,8 @@ describe('AppointeeInternationalContactDetails.js', () => {
     });
 
     it('should contain 5 fields', () => {
-      expect(Object.keys(fields).length).to.equal(4);
-      expect(fields).to.have.all.keys('country', 'internationalAddress', 'phoneNumber', 'emailAddress');
+      expect(Object.keys(fields).length).to.equal(6);
+      expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'country', 'phoneNumber', 'emailAddress');
     });
 
     describe('country field', () => {
@@ -65,9 +65,37 @@ describe('AppointeeInternationalContactDetails.js', () => {
       });
     });
 
-    describe('internationalAddress field', () => {
+    describe('addressLine1 field', () => {
       beforeEach(() => {
-        field = fields.internationalAddress;
+        field = fields.addressLine1;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('addressLine2 field', () => {
+      beforeEach(() => {
+        field = fields.addressLine2;
+      });
+
+      it('has constructor name FieldDescriptor', () => {
+        expect(field.constructor.name).to.eq('FieldDescriptor');
+      });
+
+      it('contains validation', () => {
+        expect(field.validations).to.not.be.empty;
+      });
+    });
+
+    describe('townCity field', () => {
+      beforeEach(() => {
+        field = fields.townCity;
       });
 
       it('has constructor name FieldDescriptor', () => {
@@ -160,7 +188,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
   describe('values()', () => {
     it('should contain a value object', () => {
       appointeeInternationalContactDetails.fields.country = { value: 'Iceland' };
-      appointeeInternationalContactDetails.fields.internationalAddress = { value: 'Some rich text field value address here' };
+      appointeeInternationalContactDetails.fields.addressLine1 = { value: 'Some address line 1' };
+      appointeeInternationalContactDetails.fields.addressLine2 = { value: 'Some address line 2' };
+      appointeeInternationalContactDetails.fields.townCity = { value: 'Some Town or City' };
       appointeeInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
       appointeeInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
 
@@ -168,8 +198,10 @@ describe('AppointeeInternationalContactDetails.js', () => {
       expect(values).to.eql({
         appointee: {
           contactDetails: {
+            addressLine1: 'Some address line 1',
+            addressLine2: 'Some address line 2',
+            townCity: 'Some Town or City',
             country: 'Iceland',
-            internationalAddress: 'Some rich text field value address here',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
           }
@@ -179,7 +211,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
     it('should contain an empty object', () => {
       appointeeInternationalContactDetails.fields.country = {};
-      appointeeInternationalContactDetails.fields.internationalAddress = {};
+      appointeeInternationalContactDetails.fields.addressLine1 = {};
+      appointeeInternationalContactDetails.fields.addressLine2 = {};
+      appointeeInternationalContactDetails.fields.townCity = {};
       appointeeInternationalContactDetails.fields.phoneNumber = {};
       appointeeInternationalContactDetails.fields.emailAddress = {};
       const values = appointeeInternationalContactDetails.values();
@@ -187,7 +221,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
         appointee: {
           contactDetails: {
             country: '',
-            internationalAddress: '',
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
             phoneNumber: undefined,
             emailAddress: undefined
           }
@@ -197,7 +233,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
     it('removes whitespace from before and after the phone number string', () => {
       appointeeInternationalContactDetails.fields.country = {};
-      appointeeInternationalContactDetails.fields.internationalAddress = {};
+      appointeeInternationalContactDetails.fields.addressLine1 = {};
+      appointeeInternationalContactDetails.fields.addressLine2 = {};
+      appointeeInternationalContactDetails.fields.townCity = {};
       appointeeInternationalContactDetails.fields.emailAddress = {};
       appointeeInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
       const phoneNumber = appointeeInternationalContactDetails.values().appointee.contactDetails.phoneNumber;

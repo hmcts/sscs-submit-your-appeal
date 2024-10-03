@@ -3,10 +3,24 @@
   "title": "Rhowch eich manylion cyswllt",
   "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
   "fields": {
-    "internationalAddress": {
-      "title": "International address",
+    "addressLine1": {
+      "title": "Llinell gyntaf y cyfeiriad",
       "error": {
-        "required": "Enter your address"
+        "required": "Rhowch linell gyntaf eich cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+      }
+    },
+    "addressLine2": {
+      "title": "Ail linell y cyfeiriad (dewisol)",
+      "error": {
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+      }
+    },
+    "townCity": {
+      "title": "Tref/Dinas",
+      "error": {
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "country": {

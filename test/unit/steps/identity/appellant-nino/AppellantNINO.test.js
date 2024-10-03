@@ -12,8 +12,7 @@ describe('AppellantNINO.js', () => {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
           AppellantContactDetails: paths.identity.enterAppellantContactDetails,
-          SameAddress: paths.appointee.sameAddress,
-          AppellantInUk: paths.identity.enterAppellantInUk
+          SameAddress: paths.appointee.sameAddress
         }
       }
     });
@@ -112,17 +111,16 @@ describe('AppellantNINO.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /enter-appellant-contact-details', () => {
-      expect(appellantNINO.next().step).to.eql(paths.identity.enterAppellantContactDetails);
-    });
-
-    it('returns the next step path /appellant-international-contact-details for IBA', () => {
-      appellantNINO.req = { hostname: 'some-iba-hostname' };
-      expect(appellantNINO.next().step).to.eql(paths.identity.enterAppellantInUk);
+      expect(appellantNINO.next()).to.eql({
+        nextStep: paths.identity.enterAppellantContactDetails
+      });
     });
 
     it('returns the next step path /appointee-same-address', () => {
       appellantNINO.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantNINO.next().step).to.eql(paths.appointee.sameAddress);
+      expect(appellantNINO.next()).to.eql({
+        nextStep: paths.appointee.sameAddress
+      });
     });
   });
 });
