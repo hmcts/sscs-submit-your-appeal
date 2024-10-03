@@ -5,17 +5,16 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { isIba } = require('../../../utils/benefitTypeUtils');
 
-class CreateAccount extends SaveToDraftStore {
+class HaveAnIRN extends SaveToDraftStore {
   static get path() {
-    return paths.start.createAccount;
+    return paths.compliance.haveAnIRN;
   }
 
   get form() {
     return form({
-      createAccount: text.joi(
-        this.content.fields.createAccount.error.required,
+      haveAnIRN: text.joi(
+        this.content.fields.haveAnIRN.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -30,14 +29,12 @@ class CreateAccount extends SaveToDraftStore {
   }
 
   next() {
-    const createAccount = this.fields.createAccount.value === 'yes';
-
+    const hasAnIRN = this.fields.haveAnIRN.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.IdamRedirect).if(createAccount),
-      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
-      goTo(this.journey.steps.HaveAMRN)
+      goTo(this.journey.steps.MRNDate).if(hasAnIRN),
+      goTo(this.journey.steps.NeedIRN)
     );
   }
 }
 
-module.exports = CreateAccount;
+module.exports = HaveAnIRN;

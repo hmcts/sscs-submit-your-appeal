@@ -46,9 +46,8 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
-    // eslint-disable-next-line no-warning-comments
-    // TODO replace dummy content
-    needMRN: '/some-dummy-page-slug',
+    haveAnIRN: '/have-you-got-an-irn',
+    needIRN: '/need-an-irn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',

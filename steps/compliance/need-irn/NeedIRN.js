@@ -1,10 +1,10 @@
 const { ExitPoint } = require('@hmcts/one-per-page');
 const paths = require('paths');
 
-class NeedMRN extends ExitPoint {
+class NeedIRN extends ExitPoint {
   static get path() {
-    return paths.compliance.needMRN;
+    return paths.compliance.needIRN;
   }
 }
 
-module.exports = NeedMRN;
+module.exports = NeedIRN;
