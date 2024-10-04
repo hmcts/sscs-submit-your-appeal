@@ -8,6 +8,7 @@ const {
   invalidEmailValidation,
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 
 describe('HearingOptions.js', () => {
@@ -17,7 +18,8 @@ describe('HearingOptions.js', () => {
     hearingOptions = new HearingOptions({
       journey: {
         steps: {
-          HearingSupport: paths.hearing.hearingSupport
+          HearingSupport: paths.hearing.hearingSupport,
+          HearingRoute: paths.hearing.hearingRoute
         },
         values: {
           appellant: {
@@ -175,9 +177,26 @@ describe('HearingOptions.js', () => {
 
 
   describe('next()', () => {
-    it('returns the next step path /hearing-support', () => {
+    it('returns the next step path /hearing-support for non iba', () => {
       hearingOptions.fields.selectOptions.faceToFace.requested.value = true;
+      hearingOptions.req = {
+        session: {
+          BenefitType: benefitTypes.incapacityBenefit
+        }
+      };
       expect(hearingOptions.next().step).to.eq(paths.hearing.hearingSupport);
+    });
+
+    it('returns the next step path /hearing-route for iba', () => {
+      hearingOptions.fields.selectOptions.faceToFace.requested.value = true;
+      hearingOptions.req = {
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      expect(hearingOptions.next().step).to.eq(paths.hearing.hearingRoute);
     });
   });
 

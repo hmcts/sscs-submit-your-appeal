@@ -1,0 +1,24 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons %}
+
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
+
+{% block fields %}
+    {% call formSection() %}
+        {{ selectionButtons(
+            fields.hearingRoute,
+            content.fields.hearingRoute.label,
+            options = [
+                { label: content.fields.hearingRoute.yes, value: "yes", target: "directiveHint" },
+                { label: content.fields.hearingRoute.no, value: "no", target: "substantiveHint" }
+            ])
+        }}
+    {% endcall %}
+    <div class="panel js-hidden" id="directiveHint">
+        <p>{{ content.answerDirective }}</p>
+    </div>
+    <div class="panel js-hidden" id="substantiveHint">
+        <p>{{ content.answerSubstantive }}</p>
+    </div>
+{% endblock %}

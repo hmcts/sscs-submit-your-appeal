@@ -1,0 +1,23 @@
+{
+  "titleHead": "Hearing Route",
+  "title": "What type of hearing route do you require?",
+  "answerDirective": "directive info text",
+  "answerSubstantive": "substantive info text",
+  "fields": {
+    "hearingRoute": {
+      "label": "Select the type of hearing route",
+      "yes": "Directive",
+      "no": "Substantive",
+      "error": {
+        "required": "You need to tell the type of hearing route. Select either Directive or Substantive."
+      }
+    }
+  },
+  "cya": {
+    "hearingRoute": {
+      "question": "Type of hearing route",
+      "yes": "Directive",
+      "no": "Substantive"
+    }
+  }
+}

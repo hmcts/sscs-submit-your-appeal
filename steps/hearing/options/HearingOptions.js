@@ -14,6 +14,8 @@ const {
   invalidEmailValidation,
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
+const { branch, goTo } = require('@hmcts/one-per-page');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class HearingOptions extends SaveToDraftStore {
   static get path() {
@@ -121,7 +123,10 @@ class HearingOptions extends SaveToDraftStore {
   }
 
   next() {
-    return redirectTo(this.journey.steps.HearingSupport);
+    return branch(
+      goTo(this.journey.steps.HearingRoute).if(isIba(this.req)),
+      redirectTo(this.journey.steps.HearingSupport)
+    );
   }
 }
 

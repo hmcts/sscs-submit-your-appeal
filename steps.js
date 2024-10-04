@@ -52,6 +52,7 @@ const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reaso
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
 const EvidenceProvide = require('steps/reasons-for-appealing/evidence-provide/EvidenceProvide');
 const HearingSupport = require('steps/hearing/support/HearingSupport');
+const HearingRoute = require('steps/hearing/route/HearingRoute');
 const HearingOptions = require('steps/hearing/options/HearingOptions');
 const TheHearing = require('steps/hearing/the-hearing/TheHearing');
 const HearingArrangements = require('steps/hearing/arrangements/HearingArrangements');
@@ -164,6 +165,7 @@ if (evidenceUploadEnabled) {
 const hearing = [
   HearingAvailability,
   HearingSupport,
+  HearingRoute,
   HearingArrangements,
   DatesCantAttend,
   NotAttendingHearing,
