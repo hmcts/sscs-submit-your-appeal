@@ -31,7 +31,7 @@ class HaveAnIRN extends SaveToDraftStore {
   next() {
     const hasAnIRN = this.fields.haveAnIRN.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.MRNDate).if(hasAnIRN),
+      goTo(this.journey.steps.IRNDate).if(hasAnIRN),
       goTo(this.journey.steps.NeedIRN)
     );
   }
