@@ -127,32 +127,9 @@ describe('Entry.js', () => {
     });
   });
 
-  describe('When hostname contains iba-', () => {
+  describe('When isIba is true', () => {
     const req = {
       hostname: 'iba-',
-      session: {
-        isUserSessionRestored: false
-      }
-    };
-    const redirect = sinon.spy();
-    const res = {
-      redirect,
-      sendStatus: sinon.spy()
-    };
-    it('should set benefit type and call `super.handler()`', () => {
-      entry.handler(req, res);
-      expect(redirect.called).to.eql(false);
-      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
-      expect(mockHandler.called).to.eql(true);
-    });
-  });
-
-  describe('When url has ?forceIba', () => {
-    const req = {
-      hostname: '',
-      query: {
-        forceIba: ''
-      },
       session: {
         isUserSessionRestored: false
       }

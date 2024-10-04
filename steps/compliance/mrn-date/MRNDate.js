@@ -72,6 +72,7 @@ class MRNDate extends SaveToDraftStore {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
     const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
+    const isIba = String(benefitType) === benefitTypes.infectedBloodAppeal;
     const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)' && !isFeatureFlagEnabled('allowRFE');
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
@@ -79,7 +80,7 @@ class MRNDate extends SaveToDraftStore {
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
+      isBereavementSupportPaymentScheme || isIba) && isLessThanOrEqualToAMonth;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),

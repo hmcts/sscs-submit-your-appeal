@@ -39,12 +39,13 @@ describe('isIba() test', () => {
     expect(isIba(req)).to.be.true;
   });
 
-  it('should return true if req.query includes forceIba ', () => {
+  it('should return true if env var IS_IBA is true ', () => {
+    // eslint-disable-next-line no-process-env
+    process.env.IS_IBA = 'true';
     const req = {
-      query: {
-        forceIba: ''
-      }
     };
     expect(isIba(req)).to.be.true;
+    // eslint-disable-next-line no-process-env
+    process.env.IS_IBA = 'false';
   });
 });
