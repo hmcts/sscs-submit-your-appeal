@@ -55,8 +55,8 @@ describe('Authenticated.js', () => {
       expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
     });
     it('returns the next step path /have-you-got-an-irn for IBA', () => {
-      entry.req.session.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
+      entry.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(entry.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 
