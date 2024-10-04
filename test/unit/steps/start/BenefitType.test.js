@@ -381,7 +381,8 @@ describe('BenefitType.js', () => {
     const allowedTypes = [
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
-      benefitTypes.universalCredit
+      benefitTypes.universalCredit,
+      benefitTypes.infectedBloodAppeal
     ];
     before(() => {
       overrideFeatFlag({ key: 'allowDLA', value: false });

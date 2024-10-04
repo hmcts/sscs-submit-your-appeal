@@ -5,9 +5,9 @@ const config = require('config');
 const { isIba } = require('../../../utils/benefitTypeUtils');
 
 
-class IbaLandingPage extends Interstitial {
+class IbaStartPage extends Interstitial {
   static get path() {
-    return paths.start.ibaLandingPage;
+    return paths.start.ibaStartPage;
   }
 
   handler(req, res, next) {
@@ -27,4 +27,4 @@ class IbaLandingPage extends Interstitial {
   }
 }
 
-module.exports = IbaLandingPage;
+module.exports = IbaStartPage;

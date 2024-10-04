@@ -4,7 +4,7 @@ const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('../start/benefit-type/types');
 const { isIba } = require('utils/benefitTypeUtils');
-const { branch, redirectTo } = require('@hmcts/one-per-page/flow');
+const { branch } = require('@hmcts/one-per-page/flow');
 
 class Entry extends RestoreFromDraftStore {
   static get path() {
@@ -24,10 +24,9 @@ class Entry extends RestoreFromDraftStore {
   }
 
   next() {
-    const isNotIba = () => !isIba(this.req);
     return branch(
-      goTo(this.journey.steps.BenefitType).if(isNotIba),
-      redirectTo(this.journey.steps.IbaLandingPage)
+      goTo(this.journey.steps.IbaOverview).if(isIba(this.req)),
+      goTo(this.journey.steps.BenefitType)
     );
   }
 }

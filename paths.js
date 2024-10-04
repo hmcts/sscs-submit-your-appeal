@@ -40,9 +40,8 @@ module.exports = {
     createAccount: '/create-account',
     idamRedirect: '/idam-redirect',
     languagePreference: '/language-preference',
-    // eslint-disable-next-line no-warning-comments
-    // TODO replace below with actual value
-    ibaLandingPage: '/some-landing-page-slug'
+    ibaOverview: '/ibca-appeals-overview',
+    ibaStartPage: '/ibca-appeal-start-page'
   },
 
   appealFormDownload: '/appeal-form-download',

@@ -32,7 +32,7 @@ describe('Entry.js', () => {
       journey: {
         steps: {
           BenefitType: paths.start.benefitType,
-          IbaLandingPage: paths.start.ibaLandingPage
+          IbaOverview: paths.start.ibaOverview
         }
       },
       req: {
@@ -59,13 +59,12 @@ describe('Entry.js', () => {
       expect(entry.next().step).to.eql(paths.start.benefitType);
     });
 
-    // TODO update dummy content
-    it('returns the next step path /some-landing-page-slu if Iba', () => {
+    it('returns the next step path /ibca-appeals-overview if Iba', () => {
       entry = new Entry({
         journey: {
           steps: {
             BenefitType: paths.start.benefitType,
-            IbaLandingPage: paths.start.ibaLandingPage
+            IbaOverview: paths.start.ibaOverview
           }
         },
         req: {
@@ -76,7 +75,7 @@ describe('Entry.js', () => {
           }
         }
       });
-      expect(entry.next().step).to.eql(paths.start.ibaLandingPage);
+      expect(entry.next().step).to.eql(paths.start.ibaOverview);
     });
   });
 

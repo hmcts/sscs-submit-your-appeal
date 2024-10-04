@@ -4,8 +4,9 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
 
 {% set hideBackButton = true %}
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
+{% set hideBackButton = true %}
 
 {% block head %}
     {{ super() }}
@@ -17,9 +18,7 @@
 {% block full_width %}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
-            <div class="banner-blue">
-                {{ header(title, size='xl') }}
-            </div>
+            {{ header(title, size='xl') }}
         </div>
 
         <div class="govuk-grid-column-full">
@@ -27,10 +26,10 @@
 
                 {% block fields %}
                     <!-- TODO dummy content needs updating -->
-                    <p class="govuk-body-l">{{ content.dummyContent | safe }}</p>
+                    <p class="govuk-body-l">{{ content.infoText }}</p>
                 {% endblock %}
 
-                <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue | safe }}">
+                <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue }}">
             </form>
         </div>
     </div>

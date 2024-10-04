@@ -1,0 +1,31 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% set hideBackButton = true %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
+{% set hideBackButton = false %}
+
+{% block full_width %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        {{ header(title, size='xl') }}
+    </div>
+
+    <div class="govuk-grid-column-full">
+        <form action="{{ path if path else url }}" method="post" class="form">
+
+            {% block fields %}
+            <p class="govuk-body-l">{{ content.infoText }}</p>
+            {% endblock %}
+
+            <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue }}">
+        </form>
+    </div>
+</div>
+<div>
+    {% include "components/inactivity-alert.html" %}
+</div>
+{% endblock %}}
