@@ -21,9 +21,9 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
-const countriesList = require('utils/countriesList');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
+const { getCountryOfResidences } = require('utils/enumJsonLists');
 
 class RepresentativeInternationalDetails extends SaveToDraftStore {
   static get path() {
@@ -60,12 +60,12 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = countriesList.map(country => country.value);
+    const validCountries = getCountryOfResidences().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
   get getCountries() {
-    return countriesList;
+    return getCountryOfResidences();
   }
 
   get form() {

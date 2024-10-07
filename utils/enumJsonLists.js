@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 let portOfEntries = null;
+let countryOfResidences = null;
 
 const getCaseApiUrl = () => {
   let caseApiUrl = 'https://sscs-tribunals-api-aat.service.core-compute-aat.internal';
@@ -34,4 +35,33 @@ function getPortOfEntries() {
   return portOfEntries;
 }
 
-module.exports = { fetchPortOfEntries, getPortOfEntries, setPortOfEntries, getCaseApiUrl };
+
+async function fetchCountryOfResidences() {
+  try {
+    const res = await axios.get(`${getCaseApiUrl()}/api/country-of-residences`);
+    countryOfResidences = res.data.map(entry => {
+      entry.value = entry.label;
+      return entry;
+    });
+  } catch (error) {
+    console.log('Error fetching countryOfResidences data: ', error);
+  }
+}
+
+function setCountryOfResidences(someList) {
+  countryOfResidences = someList;
+}
+
+function getCountryOfResidences() {
+  return countryOfResidences;
+}
+
+module.exports = {
+  fetchPortOfEntries,
+  getPortOfEntries,
+  setPortOfEntries,
+  getCaseApiUrl,
+  fetchCountryOfResidences,
+  getCountryOfResidences,
+  setCountryOfResidences
+};

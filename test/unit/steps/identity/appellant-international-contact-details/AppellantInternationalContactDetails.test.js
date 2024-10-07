@@ -2,12 +2,16 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
-const countriesList = require('utils/countriesList');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { setPortOfEntries, getPortOfEntries } = require('utils/enumJsonLists');
+const {
+  setPortOfEntries,
+  getPortOfEntries,
+  setCountryOfResidences,
+  getCountryOfResidences
+} = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
   setPortOfEntries([
@@ -22,6 +26,18 @@ describe('AppellantInternationalContactDetails.js', () => {
       value: 'Aberdeen Airport',
       trafficType: 'Air traffic',
       locationCode: 'GB000411'
+    }
+  ]);
+  setCountryOfResidences([
+    {
+      label: 'Italy',
+      officialName: 'The Italian Republic',
+      value: 'Italy'
+    },
+    {
+      label: 'Ivory Coast',
+      officialName: 'The Republic of Côte D’Ivoire',
+      value: 'Ivory Coast'
     }
   ]);
   let appellantInternationalContactDetails = null;
@@ -114,7 +130,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appellantInternationalContactDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountryOfResidences()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -229,7 +245,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appellantInternationalContactDetails.getCountries).to.equal(countriesList);
+      expect(appellantInternationalContactDetails.getCountries).to.equal(getCountryOfResidences());
     });
   });
 
