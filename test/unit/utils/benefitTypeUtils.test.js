@@ -32,9 +32,16 @@ describe('isIba() test', () => {
     expect(isIba(req)).to.be.true;
   });
 
-  it('should return true if req.hostname.includes -iba', () => {
+  it('should return true if req.hostname.includes iba', () => {
     const req = {
       hostname: 'some-iba-hostname'
+    };
+    expect(isIba(req)).to.be.true;
+  });
+
+  it('should return true if req.hostname.includes infected-blood-appeal', () => {
+    const req = {
+      hostname: 'some-infected-blood-appeal-hostname'
     };
     expect(isIba(req)).to.be.true;
   });
