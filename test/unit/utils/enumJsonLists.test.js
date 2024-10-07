@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const axios = require('axios');
 const { fetchPortOfEntries, getPortOfEntries, setPortOfEntries } = require('utils/enumJsonLists');
 const { getCountryOfResidences, fetchCountryOfResidences } = require('utils/enumJsonLists');
-const {setCountryOfResidences} = require("../../../utils/enumJsonLists");
+const { setCountryOfResidences } = require('../../../utils/enumJsonLists');
 
 describe('EnumJsonLists util', () => {
   let axiosGetStub = sinon.stub(axios, 'get');
