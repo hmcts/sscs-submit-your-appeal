@@ -3,6 +3,9 @@ const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContac
 const paths = require('paths');
 const answer = require('utils/answer');
 const config = require('config');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('HaveContactedDWP.js', () => {
   let haveContactedDWP = null;
@@ -30,6 +33,50 @@ describe('HaveContactedDWP.js', () => {
   describe('get path()', () => {
     it('returns path /have-contacted-dwp', () => {
       expect(HaveContactedDWP.path).to.equal(paths.compliance.haveContactedDWP);
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      haveContactedDWP.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      haveContactedDWP.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 

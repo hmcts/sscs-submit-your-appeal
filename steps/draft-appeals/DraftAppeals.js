@@ -56,10 +56,16 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   mrnDate(draft) {
-    if (draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate) {
+    const validationForMRN = draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate;
+    const validationForIRN = draft.HaveAnIRN && draft.HaveAnIRN.haveAnIRN === 'yes' && draft.IRNDate;
+    if (validationForMRN) {
       const mrnDateObj = draft.MRNDate.mrnDate;
       const mrnDate = moment(`${mrnDateObj.day}-${mrnDateObj.month}-${mrnDateObj.year}`, 'DD-MM-yyyy');
       return DateUtils.formatDate(mrnDate, 'DD MMM YYYY');
+    } else if (validationForIRN) {
+      const irnDateObj = draft.IRNDate.irnDate;
+      const irnDate = moment(`${irnDateObj.day}-${irnDateObj.month}-${irnDateObj.year}`, 'DD-MM-yyyy');
+      return DateUtils.formatDate(irnDate, 'DD MMM YYYY');
     }
     return 'No Mrn';
   }

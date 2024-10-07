@@ -1,0 +1,22 @@
+{
+  "titleHead": "Rheswm dros apelio yn hwyr",
+  "title": "Dywedwch wrthym pam bod eich apêl yn hwyr",
+  "appealsShouldBeMadeWithOneMonth": "Dylid cyflwyno apeliadau o fewn mis i’r Hysbysiad Gorfodi i Ailystyried gael ei anfon.",
+  "appealMayGoAheadForGoodReason": "Efallai y gallwch barhau â’ch apêl o hyd os oes rheswm pam ei bod yn hwyr.",
+  "noGoodReasonWhyLate": "Nid oes gen i reswm da pam bod fy apêl yn hwyr",
+  "fields": {
+    "reasonForBeingLate": {
+      "label": "Rheswm dros fod yn hwyr",
+      "error": {
+        "required": "Os ydych eisiau apelio, rhaid ichi ddweud pam bod eich apêl yn hwyr",
+        "notEnough": "Nid ydych wedi rhoi digon o wybodaeth. Rhowch ragor o wybodaeth am pam fod eich apêl yn hwyr.",
+        "invalid": "Rydych wedi cynnwys nod annilys. Rhaid ichi ei ddileu cyn y gallwch barhau"
+      }
+    }
+  },
+  "cya": {
+    "reasonForBeingLate": {
+      "question": "Pam bod eich apêl yn hwyr"
+    }
+  }
+}

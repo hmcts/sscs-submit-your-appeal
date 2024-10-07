@@ -2,6 +2,9 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('HaveAMRN.js', () => {
   let haveAMRN = null;
@@ -29,6 +32,50 @@ describe('HaveAMRN.js', () => {
   describe('get path()', () => {
     it('returns path /have-a-mrn', () => {
       expect(HaveAMRN.path).to.equal(paths.compliance.haveAMRN);
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      haveAMRN.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      haveAMRN.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 

@@ -3,6 +3,9 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { it, describe } = require('mocha');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('AppellantIBCARef.js', () => {
   const WITH_APPOINTEE = 'withAppointee';
@@ -14,7 +17,7 @@ describe('AppellantIBCARef.js', () => {
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+          AppellantInUk: paths.identity.enterAppellantInUk,
           SameAddress: paths.appointee.sameAddress
         }
       }
@@ -26,6 +29,49 @@ describe('AppellantIBCARef.js', () => {
   describe('get path()', () => {
     it('returns the path /enter-appellant-ibca-ref', () => {
       expect(AppellantIBCARef.path).to.equal(paths.identity.enterAppellantIBCARef);
+    });
+  });
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to entry called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      appellantIBCARef.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      appellantIBCARef.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 
@@ -128,9 +174,9 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('next()', () => {
-    it('should return the next step path /enter-appellant-contact-details on not appointee', () => {
+    it('should return the next step path /appellant-in-uk on not appointee', () => {
       appellantIBCARef.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantContactDetails);
+      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
 
     it('returns the next step path /appointee-same-address on is appointee', () => {

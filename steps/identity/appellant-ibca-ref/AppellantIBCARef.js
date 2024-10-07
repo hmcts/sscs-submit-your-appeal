@@ -7,10 +7,19 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantIBCARef extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantIBCARef;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && !isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   isAppointee() {
@@ -62,7 +71,7 @@ class AppellantIBCARef extends SaveToDraftStore {
   next() {
     return branch(
       goTo(this.journey.steps.SameAddress).if(this.isAppointee()),
-      goTo(this.journey.steps.AppellantContactDetails)
+      goTo(this.journey.steps.AppellantInUk)
     );
   }
 }

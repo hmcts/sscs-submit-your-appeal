@@ -1,0 +1,14 @@
+{
+  "titleHead": "Have you got an IRN",
+  "title": "Have you got an Internal Review Notice (IRN)?",
+  "subtitle": "This is the letter IBCA sent you if you asked them to reconsider their decision about the Infected Blood Compensation.",
+  "fields": {
+    "haveAnIRN": {
+      "yes": "Yes, I have an Internal Review Notice (IRN)",
+      "no": "No, I don’t have a Internal Review Notice (IRN)",
+      "error": {
+        "required": "You need to say whether you have an IRN. Select either yes or no."
+      }
+    }
+  }
+}

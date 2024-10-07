@@ -46,15 +46,21 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
+    haveAnIRN: '/have-you-got-an-irn',
+    needIRN: '/need-an-irn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
+    checkIRNDate: '/check-irn-date',
     contactDWP: '/contact-dwp',
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
+    irnDate: '/irn-date',
+    irnOverMonthLate: '/irn-over-month-late',
+    irnOverThirteenMonthsLate: '/irn-over-thirteen-months-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
@@ -65,13 +71,17 @@ module.exports = {
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details',
-    enterAppellantIBCARef: '/enter-appellant-ibca-ref'
+    enterAppellantIBCARef: '/enter-appellant-ibca-ref',
+    enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
+    enterAppellantInUk: '/appellant-in-uk'
   },
 
   appointee: {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
+    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
+    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 
@@ -86,7 +96,9 @@ module.exports = {
     representativeDetailsToHand: '/representative-details-to-hand',
     representative: '/representative',
     representativeDetails: '/representative-details',
-    noRepresentativeDetails: '/no-representative-details'
+    noRepresentativeDetails: '/no-representative-details',
+    representativeInUk: '/representative-in-uk',
+    representativeInternationalDetails: '/representative-international-details'
   },
 
   reasonsForAppealing: {

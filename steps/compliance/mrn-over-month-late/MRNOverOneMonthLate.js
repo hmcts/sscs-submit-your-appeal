@@ -8,12 +8,21 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const MIN_CHAR_COUNT = 5;
 
 class MRNOverOneMonthLate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnOverMonthLate;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {
@@ -51,14 +60,14 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
 
     const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
     const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
-    const isIba = String(benefitType) === benefitTypes.infectedBloodAppeal;
+
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
     const skipToAppointee = isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme || isIba;
+      isBereavementSupportPaymentScheme;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),

@@ -1,11 +1,17 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh, getHasAcronym, getBenefitEndText, getBenefitEndTextWelsh } = require('utils/stringUtils');
+const { getBenefitCode,
+  getTribunalPanel,
+  getTribunalPanelWelsh,
+  getHasAcronym,
+  getBenefitEndText,
+  getBenefitEndTextWelsh } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
 const { get } = require('lodash');
 const benefitTypes = require('../benefit-type/types');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
@@ -60,6 +66,7 @@ class Independence extends Interstitial {
   next() {
     return branch(
       goTo(this.journey.steps.CreateAccount).if(allowSaveAndReturn && !this.req.idam),
+      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveAMRN)
     );
   }

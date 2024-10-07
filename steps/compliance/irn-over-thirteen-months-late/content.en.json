@@ -1,0 +1,22 @@
+{
+  "titleHead": "Reason for late appeal",
+  "title": "Tell us why your appeal is late",
+  "yourAppealIsOverOneYearLate": "Your appeal is over one year late. That usually means you can’t appeal.",
+  "appealMayGoAheadForGoodReason": "Your appeal may still be able to go ahead but only if there’s a good reason for it being late. Your reason will be reviewed before your appeal is accepted.",
+  "noGoodReasonWhyLate": "I don’t have a good reason why my appeal is late",
+  "fields": {
+    "reasonForBeingLate": {
+      "label": "Reason for being late",
+      "error": {
+        "required": "If you want to appeal, you must say why your appeal is late",
+        "notEnough": "You have not provided enough information. Write a little more about why your appeal is late.",
+        "invalid": "You’ve entered a special character. Delete it before continuing"
+      }
+    }
+  },
+  "cya": {
+    "reasonForBeingLate": {
+      "question": "Why your appeal is late"
+    }
+  }
+}
