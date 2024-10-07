@@ -28,9 +28,9 @@ class Independence extends Interstitial {
     return '';
   }
 
-  get someBody() {
+  get reviewBody() {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.infectedBloodAppeal ? 'IBA' : 'DWP';
+    return benefitType === benefitTypes.infectedBloodAppeal ? 'Infected Blood Compensation Authority (IBCA)' : 'DWP';
   }
 
   get benefitType() {
