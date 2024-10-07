@@ -8,20 +8,16 @@ const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('Independence.js', () => {
   let independence = null;
-  describe('someBody() check', () => {
+  describe('reviewBody() check', () => {
     it('Should return IBA if benefit type is IBA', () => {
       independence = new Independence({
-        journey: {
-          req: {
-            session: {
-              BenefitType: {
-                benefitType: benefitTypes.infectedBloodAppeal
-              }
-            }
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
           }
         }
       });
-      expect(independence.someBody).to.equal('IBA');
+      expect(independence.reviewBody).to.equal('Infected Blood Compensation Authority (IBCA)');
     });
 
     it('Should return DWP if benefit type is not IBA', () => {
@@ -36,7 +32,7 @@ describe('Independence.js', () => {
           }
         }
       });
-      expect(independence.someBody).to.equal('DWP');
+      expect(independence.reviewBody).to.equal('DWP');
     });
   });
 
@@ -75,7 +71,9 @@ describe('Independence.js', () => {
           }
         });
         const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
-        if (['Benefit', 'benefit'].includes(lastWord.trim())) {
+        if (benefitType === 'Infected Blood Compensation') {
+          expect(independence.benefitEndText).to.equal(' appeal');
+        } else if (['Benefit', 'benefit'].includes(lastWord.trim())) {
           expect(independence.benefitEndText).to.equal('');
         } else {
           expect(independence.benefitEndText).to.equal(' benefit');
@@ -99,7 +97,9 @@ describe('Independence.js', () => {
           }
         });
         const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
-        if (['Benefit', 'benefit'].includes(lastWord.trim())) {
+        if (benefitType === 'Infected Blood Compensation') {
+          expect(independence.benefitEndText).to.equal('apêl ');
+        } else if (['Benefit', 'benefit'].includes(lastWord.trim())) {
           expect(independence.benefitEndText).to.equal('');
         } else {
           expect(independence.benefitEndText).to.equal('budd-dal ');

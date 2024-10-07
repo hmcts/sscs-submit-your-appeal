@@ -55,9 +55,9 @@ class Independence extends Interstitial {
 
   get benefitEndText() {
     if (i18next.language === 'cy') {
-      return isIba ? 'apêl' : getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
+      return isIba(this.req) ? 'apêl ' : getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
     }
-    return isIba ? ' appeal' : getBenefitEndText(this.req.session.BenefitType.benefitType);
+    return isIba(this.req) ? ' appeal' : getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
   next() {
