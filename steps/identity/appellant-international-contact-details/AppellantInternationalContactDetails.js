@@ -10,9 +10,9 @@ const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
 const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
+const { getPortOfEntries } = require('utils/enumJsonLists');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -41,7 +41,7 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   validPortSchema() {
-    const validPorts = portOfEntryList.map(port => port.value);
+    const validPorts = getPortOfEntries().map(port => port.value);
     return Joi.string().valid(validPorts);
   }
 
@@ -96,7 +96,7 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   get getPortOfEntryList() {
-    return portOfEntryList;
+    return getPortOfEntries();
   }
 
   answers() {

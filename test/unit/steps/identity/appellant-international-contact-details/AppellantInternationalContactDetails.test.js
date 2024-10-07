@@ -3,13 +3,27 @@ const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
 const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { setPortOfEntries, getPortOfEntries } = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
+  setPortOfEntries([
+    {
+      label: 'Aberdeen',
+      value: 'Aberdeen',
+      trafficType: 'Sea traffic',
+      locationCode: 'GB000434'
+    },
+    {
+      label: 'Aberdeen Airport',
+      value: 'Aberdeen Airport',
+      trafficType: 'Air traffic',
+      locationCode: 'GB000411'
+    }
+  ]);
   let appellantInternationalContactDetails = null;
   beforeEach(() => {
     appellantInternationalContactDetails = new AppellantInternationalContactDetails({
@@ -27,6 +41,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       expect(AppellantInternationalContactDetails.path).to.equal(paths.identity.enterAppellantInternationalContactDetails);
     });
   });
+
   describe('handler()', () => {
     afterEach(() => {
       sinon.restore();
@@ -169,7 +184,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid ports of entry', () => {
         const schema = appellantInternationalContactDetails.validPortSchema();
-        for (const testPort of portOfEntryList) {
+        for (const testPort of getPortOfEntries()) {
           const result = schema.validate(decode(testPort.value));
           expect(result.error).to.eq(null);
         }
@@ -220,7 +235,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('get getPortOfEntryList()', () => {
     it('should return the portOfEntryList', () => {
-      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(portOfEntryList);
+      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortOfEntries());
     });
   });
 
