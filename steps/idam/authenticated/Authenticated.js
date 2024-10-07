@@ -1,7 +1,7 @@
 const { AuthAndRestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
-const { isIba } = require('../../../utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 const { branch } = require('@hmcts/one-per-page');
 
 class Authenticated extends AuthAndRestoreAllDraftsState {

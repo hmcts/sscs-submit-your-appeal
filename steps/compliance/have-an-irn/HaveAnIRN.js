@@ -5,10 +5,19 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class HaveAnIRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.haveAnIRN;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && !isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {

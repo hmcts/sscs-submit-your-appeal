@@ -8,7 +8,7 @@ const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
 const { branch } = require('@hmcts/one-per-page/flow');
-const { isIba } = require('../../../utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantDOB extends SaveToDraftStore {
   static get path() {

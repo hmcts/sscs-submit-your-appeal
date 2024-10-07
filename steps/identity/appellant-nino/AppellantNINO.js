@@ -7,10 +7,19 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const Joi = require('joi');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantNINO extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantNINO;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   isAppointee() {

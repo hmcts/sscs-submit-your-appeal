@@ -6,7 +6,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { isIba } = require('../../../utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class CreateAccount extends SaveToDraftStore {
   static get path() {

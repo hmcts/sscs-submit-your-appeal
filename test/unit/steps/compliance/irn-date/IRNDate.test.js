@@ -4,7 +4,10 @@ const IRNDate = require('steps/compliance/irn-date/IRNDate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+
 
 describe('IRNDate.js', () => {
   let irnDate = null;
@@ -34,6 +37,49 @@ describe('IRNDate.js', () => {
   describe('get path()', () => {
     it('returns path /irn-date', () => {
       expect(IRNDate.path).to.equal(paths.compliance.irnDate);
+    });
+  });
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to entry called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      irnDate.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('no redirect to entry called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      irnDate.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 
