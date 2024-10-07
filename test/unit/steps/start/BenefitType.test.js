@@ -103,13 +103,13 @@ describe('BenefitType.js', () => {
     });
   });
 
-  describe('answers() and values()', () => {
+  describe('answers() and values() non iba', () => {
     const question = 'A Question';
     const value = 'Personal Independence Payment (PIP)';
 
     beforeEach(() => {
+      benefitType.req = { session: { BenefitType: { benefitType: value } } };
       benefitType.content = { cya: { benefitType: { question } } };
-
       benefitType.fields = { benefitType: { value } };
     });
 
@@ -118,6 +118,7 @@ describe('BenefitType.js', () => {
       expect(answers.question).to.equal(question);
       expect(answers.section).to.equal(sections.benefitType);
       expect(answers.answer).to.equal(value);
+      expect(answers.hide).to.equal(false);
     });
 
     it('should contain a value object', () => {
@@ -126,6 +127,35 @@ describe('BenefitType.js', () => {
         benefitType: {
           code: 'PIP',
           description: 'Personal Independence Payment'
+        }
+      });
+    });
+  });
+
+  describe('answers() and values() iba', () => {
+    const question = 'A Question';
+    const value = benefitTypes.infectedBloodAppeal;
+
+    beforeEach(() => {
+      benefitType.req = { session: { BenefitType: { benefitType: value } } };
+      benefitType.content = { cya: { benefitType: { question } } };
+      benefitType.fields = { benefitType: { value } };
+    });
+
+    it('should contain a single answer', () => {
+      const answers = benefitType.answers();
+      expect(answers.question).to.equal(question);
+      expect(answers.section).to.equal(sections.benefitType);
+      expect(answers.answer).to.equal(value);
+      expect(answers.hide).to.equal(true);
+    });
+
+    it('should contain a value object', () => {
+      const values = benefitType.values();
+      expect(values).to.deep.equal({
+        benefitType: {
+          code: 'infectedBloodAppeal',
+          description: benefitTypes.infectedBloodAppeal
         }
       });
     });
