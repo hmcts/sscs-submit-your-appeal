@@ -7,6 +7,11 @@ nodejs:
     enabled: false
   autoscaling:
     enabled: false
+  ingressHost: benefit-appeal.{{ .Values.global.environment }}.platform.hmcts.net
+  registerAdditionalDns:
+    enabled: true
+    prefix: infected
+    primaryIngressHost: blood-appeal.{{ .Values.global.environment }}.platform.hmcts.net
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
