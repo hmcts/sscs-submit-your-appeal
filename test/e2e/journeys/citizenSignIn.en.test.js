@@ -15,6 +15,7 @@ After(({ I }) => {
   I.endTheSession();
 });
 
+// TODO add @functional back
 Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async({ I }) => {
   await moment().locale(language);
   await I.enterDetailsFromStartToDraftAppeals(commonContent, language, process.env.USEREMAIL_1);
