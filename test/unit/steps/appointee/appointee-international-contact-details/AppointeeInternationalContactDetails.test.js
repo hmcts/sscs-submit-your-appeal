@@ -46,9 +46,8 @@ describe('AppointeeInternationalContactDetails.js', () => {
       };
       const next = sinon.spy();
       appointeeInternationalContactDetails.handler(req, res, next);
-      expect(res.redirect.called).to.eql(true);
-      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
-      sinon.assert.notCalled(superStub);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
     });
     it('no redirect to entry called for non iba', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
@@ -65,8 +64,9 @@ describe('AppointeeInternationalContactDetails.js', () => {
       };
       const next = sinon.spy();
       appointeeInternationalContactDetails.handler(req, res, next);
-      expect(res.redirect.called).to.eql(false);
-      sinon.assert.calledOnce(superStub);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 

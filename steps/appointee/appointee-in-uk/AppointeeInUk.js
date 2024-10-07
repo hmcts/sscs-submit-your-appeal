@@ -17,7 +17,7 @@ class AppointeeInUk extends SaveToDraftStore {
   }
 
   handler(req, res, next) {
-    if (req.method === 'GET' && isIba(req)) {
+    if (req.method === 'GET' && !isIba(req)) {
       res.redirect(paths.errors.doesNotExist);
     } else {
       super.handler(req, res, next);
