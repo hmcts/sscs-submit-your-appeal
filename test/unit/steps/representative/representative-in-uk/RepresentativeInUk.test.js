@@ -34,7 +34,7 @@ describe('RepresentativeInUk.js', () => {
       sinon.restore();
     });
 
-    it('redirect to entry called for iba', () => {
+    it('no redirect to /does-not-exist called for iba', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       const req = {
         method: 'GET',
@@ -52,7 +52,7 @@ describe('RepresentativeInUk.js', () => {
       expect(res.redirect.called).to.eql(false);
       sinon.assert.calledOnce(superStub);
     });
-    it('no redirect to entry called for non iba', () => {
+    it('redirect to /does-not-exist called for non iba', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       const req = {
         method: 'GET',

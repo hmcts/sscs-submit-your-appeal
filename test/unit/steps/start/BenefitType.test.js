@@ -64,7 +64,7 @@ describe('BenefitType.js', () => {
       sinon.restore();
     });
 
-    it('redirect to entry called for iba', () => {
+    it('no redirect to /does-not-exist called for iba', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       const req = {
         method: 'GET',
@@ -83,7 +83,7 @@ describe('BenefitType.js', () => {
       expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
       sinon.assert.notCalled(superStub);
     });
-    it('no redirect to entry called for non iba', () => {
+    it('redirect to /does-not-exist called for non iba', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       const req = {
         method: 'GET',
