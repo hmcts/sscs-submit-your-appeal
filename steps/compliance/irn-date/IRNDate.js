@@ -62,7 +62,7 @@ class IRNDate extends SaveToDraftStore {
 
     return branch(
       goTo(this.journey.steps.Appointee).if(isLessThanOrEqualToAMonth),
-      redirectTo(this.journey.steps.CheckMRN)
+      redirectTo(this.journey.steps.CheckIRN)
     );
   }
 }
