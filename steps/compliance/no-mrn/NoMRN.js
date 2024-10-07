@@ -5,10 +5,19 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class NoMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.noMRN;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {

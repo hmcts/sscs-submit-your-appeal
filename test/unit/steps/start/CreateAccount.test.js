@@ -1,6 +1,7 @@
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('CreateAccount.js', () => {
   let createAccount = null;
@@ -10,7 +11,8 @@ describe('CreateAccount.js', () => {
       journey: {
         steps: {
           IdamRedirect: paths.start.idamRedirect,
-          HaveAMRN: paths.compliance.haveAMRN
+          HaveAMRN: paths.compliance.haveAMRN,
+          HaveAnIRN: paths.compliance.haveAnIRN
         }
       }
     });
@@ -57,9 +59,16 @@ describe('CreateAccount.js', () => {
       expect(createAccount.next().step).to.eql(paths.start.idamRedirect);
     });
 
-    it('returns /have-you-got-an-mrn when user selects no', () => {
+    it('returns /have-you-got-an-mrn when user selects no for non iba', () => {
       createAccount.fields.createAccount.value = 'no';
+      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
+    });
+
+    it('returns /have-you-got-an-mrn when user selects for iba', () => {
+      createAccount.fields.createAccount.value = 'no';
+      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.infectedBloodAppeal } } };
+      expect(createAccount.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 });

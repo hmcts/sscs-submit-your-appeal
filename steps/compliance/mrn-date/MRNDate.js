@@ -9,10 +9,19 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnDate;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get benefitType() {
@@ -72,7 +81,6 @@ class MRNDate extends SaveToDraftStore {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
     const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
-    const isIba = String(benefitType) === benefitTypes.infectedBloodAppeal;
     const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)' && !isFeatureFlagEnabled('allowRFE');
     const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
@@ -80,7 +88,7 @@ class MRNDate extends SaveToDraftStore {
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme || isIba) && isLessThanOrEqualToAMonth;
+      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
