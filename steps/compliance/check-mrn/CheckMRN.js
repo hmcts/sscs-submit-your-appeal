@@ -8,10 +8,19 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
     return paths.compliance.checkMRNDate;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get benefitType() {

@@ -4,8 +4,10 @@ const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
-const benefitTypes = require('steps/start/benefit-type/types');
 const { overrideFeatFlag } = require('utils/stringUtils');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('MRNDate.js', () => {
   let mrnDate = null;
@@ -37,6 +39,50 @@ describe('MRNDate.js', () => {
   describe('get path()', () => {
     it('returns path /mrn-date', () => {
       expect(MRNDate.path).to.equal(paths.compliance.mrnDate);
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      mrnDate.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      mrnDate.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 
@@ -189,32 +235,6 @@ describe('MRNDate.js', () => {
         setBenefitType(benefitTypes.carersAllowance);
         overrideFeatFlag({ key: 'allowCA', value: true });
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-      });
-    });
-
-    describe('when benefit type is IBA', () => {
-      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
-        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-      });
-
-      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
-        setMRNDate(DateUtils.oneMonthAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-      });
-
-      it('returns the next step path /check-mrn-date if date is one day over a month', () => {
-        setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
-      });
-
-      it('returns the next step path /check-mrn-date if date is over a year', () => {
-        setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.compliance.checkMRNDate);
       });
     });
 

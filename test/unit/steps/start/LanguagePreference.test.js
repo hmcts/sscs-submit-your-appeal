@@ -4,7 +4,7 @@ const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
-const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('LanguagePreference.js', () => {
   let languagePreference = null;
