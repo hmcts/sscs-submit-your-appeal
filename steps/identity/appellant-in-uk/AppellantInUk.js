@@ -9,10 +9,19 @@ const userAnswer = require('utils/answer');
 const i18next = require('i18next');
 const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantInUk extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantInUk;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {

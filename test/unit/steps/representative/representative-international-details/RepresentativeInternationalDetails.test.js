@@ -6,12 +6,14 @@ const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const countriesList = require('utils/countriesList');
 const { decode } = require('utils/stringUtils');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('RepresentativeInternationalDetails.js', () => {
   let representativeInternationalDetails = null;
-  const res = { send: sinon.spy() };
-
+  let res = null;
   beforeEach(() => {
+    res = { send: sinon.spy(), redirect: sinon.spy() };
     representativeInternationalDetails = new RepresentativeInternationalDetails({
       journey: {
         steps: {
@@ -41,6 +43,43 @@ describe('RepresentativeInternationalDetails.js', () => {
   describe('get path()', () => {
     it('returns path /representative-international-details', () => {
       expect(RepresentativeInternationalDetails.path).to.equal(paths.representative.representativeInternationalDetails);
+    });
+  });
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to entry called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const next = sinon.spy();
+      representativeInternationalDetails.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
+    });
+    it('no redirect to entry called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const next = sinon.spy();
+      representativeInternationalDetails.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
     });
   });
 

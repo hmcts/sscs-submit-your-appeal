@@ -12,10 +12,19 @@ const { decode } = require('utils/stringUtils');
 const countriesList = require('utils/countriesList');
 const portOfEntryList = require('utils/portOfEntryList');
 const { whitelistNotFirst } = require('utils/regex');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
     return paths.identity.enterAppellantInternationalContactDetails;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get CYAPhoneNumber() {

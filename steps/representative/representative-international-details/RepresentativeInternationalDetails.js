@@ -23,10 +23,19 @@ const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 const countriesList = require('utils/countriesList');
 const { whitelistNotFirst } = require('utils/regex');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class RepresentativeInternationalDetails extends SaveToDraftStore {
   static get path() {
     return paths.representative.representativeInternationalDetails;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get CYAName() {
