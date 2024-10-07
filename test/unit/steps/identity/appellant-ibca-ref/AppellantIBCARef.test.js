@@ -17,7 +17,7 @@ describe('AppellantIBCARef.js', () => {
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+          AppellantInUk: paths.identity.enterAppellantInUk,
           SameAddress: paths.appointee.sameAddress
         }
       }
@@ -174,9 +174,9 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('next()', () => {
-    it('should return the next step path /enter-appellant-contact-details on not appointee', () => {
+    it('should return the next step path /appellant-in-uk on not appointee', () => {
       appellantIBCARef.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantContactDetails);
+      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
 
     it('returns the next step path /appointee-same-address on is appointee', () => {

@@ -71,7 +71,7 @@ class AppellantIBCARef extends SaveToDraftStore {
   next() {
     return branch(
       goTo(this.journey.steps.SameAddress).if(this.isAppointee()),
-      goTo(this.journey.steps.AppellantContactDetails)
+      goTo(this.journey.steps.AppellantInUk)
     );
   }
 }

@@ -41,10 +41,14 @@ const AppellantName = require('steps/identity/appellant-name/AppellantName');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const AppellantIBCARef = require('steps/identity/appellant-ibca-ref/AppellantIBCARef');
+const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
+const AppellantInUk = require('steps/identity/appellant-in-uk/AppellantInUk');
 const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownload');
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
 const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
+const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
+const AppointeeInUk = require('steps/appointee/appointee-in-uk/AppointeeInUk');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
@@ -52,7 +56,9 @@ const EnterMobile = require('steps/sms-notify/enter-mobile/EnterMobile');
 const SmsConfirmation = require('steps/sms-notify/sms-confirmation/SmsConfirmation');
 const Representative = require('steps/representative/representative/Representative');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
+const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
+const RepresentativeInUk = require('steps/representative/representative-in-uk/RepresentativeInUk');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
@@ -135,13 +141,17 @@ const identity = [
   AppellantNINO,
   AppellantIBCARef,
   Appointee,
-  AppealFormDownload
+  AppealFormDownload,
+  AppellantInUk,
+  AppellantInternationalContactDetails
 ];
 
 const appointee = [
   AppointeeName,
   AppointeeDOB,
   AppointeeContactDetails,
+  AppointeeInternationalContactDetails,
+  AppointeeInUk,
   SameAddress
 ];
 
@@ -155,7 +165,9 @@ const smsNotify = [
 const representative = [
   Representative,
   RepresentativeDetails,
-  NoRepresentativeDetails
+  NoRepresentativeDetails,
+  RepresentativeInUk,
+  RepresentativeInternationalDetails
 ];
 
 const reasonsForAppealing = [

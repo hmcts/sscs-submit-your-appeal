@@ -71,13 +71,17 @@ module.exports = {
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details',
-    enterAppellantIBCARef: '/enter-appellant-ibca-ref'
+    enterAppellantIBCARef: '/enter-appellant-ibca-ref',
+    enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
+    enterAppellantInUk: '/appellant-in-uk'
   },
 
   appointee: {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
+    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
+    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 
@@ -92,7 +96,9 @@ module.exports = {
     representativeDetailsToHand: '/representative-details-to-hand',
     representative: '/representative',
     representativeDetails: '/representative-details',
-    noRepresentativeDetails: '/no-representative-details'
+    noRepresentativeDetails: '/no-representative-details',
+    representativeInUk: '/representative-in-uk',
+    representativeInternationalDetails: '/representative-international-details'
   },
 
   reasonsForAppealing: {

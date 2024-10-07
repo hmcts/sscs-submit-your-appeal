@@ -101,7 +101,7 @@ describe('Entry.js', () => {
 
   describe('When isIba is true', () => {
     const req = {
-      hostname: 'iba-',
+      hostname: 'some-iba-hostname',
       session: {
         isUserSessionRestored: false
       }

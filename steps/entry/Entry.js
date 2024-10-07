@@ -2,7 +2,7 @@ const { goTo } = require('@hmcts/one-per-page');
 const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 const logger = require('logger');
-const benefitTypes = require('../start/benefit-type/types');
+const benefitTypes = require('steps/start/benefit-type/types');
 const { isIba } = require('utils/benefitTypeUtils');
 
 class Entry extends RestoreFromDraftStore {
