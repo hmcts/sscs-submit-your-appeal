@@ -40,10 +40,7 @@ withPipeline("nodejs", product, component) {
       }
   }
   afterAlways("smoketest:preview") {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/smoke-output/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/smoke-output/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/**/*.png'
   }
 
   afterAlways("functionalTest:preview") {
