@@ -8,17 +8,14 @@
     {{ content.titleHeadEdit if isEditMode }}
 {% endset %}
 
+{% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+
 {% block head %}
     {{ super() }}
     <noscript>
         <meta http-equiv="refresh" content="{{ timeOut }};URL='/session-timeout'">
     </noscript>
 {% endblock %}
-
-{% set title %}
-    {{ content.title | safe if isListMode }}
-    {{ content.titleEdit | safe if isEditMode }}
-{% endset %}
 
 {% set pageContent = {
     addAnotherLink: addAnotherLinkContent,

@@ -10,6 +10,9 @@
     </noscript>
 {% endblock %}
 
+{% block pageTitle %}
+{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{% endblock %}
 
 {% set pageContent = {
     sendApplication: content.submitButton.value
