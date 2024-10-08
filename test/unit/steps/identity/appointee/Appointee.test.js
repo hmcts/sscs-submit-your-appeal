@@ -147,13 +147,13 @@ describe('Appointee.js', () => {
   });
 
   describe('ReviewBody()', () => {
-    it('should return a "a court" in IBA journey', () => {
+    it('should return "a court" in IBA journey', () => {
       appointee.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
       appointee.fields.isAppointee.value = userAnswer.NO;
       expect(appointee.appointedBy).to.equal('a court');
     });
 
-    it('should return a "DWP" in IBA journey', () => {
+    it('should return a "DWP" in non IBA journey', () => {
       appointee.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
       appointee.fields.isAppointee.value = userAnswer.NO;
       expect(appointee.appointedBy).to.equal('DWP');
