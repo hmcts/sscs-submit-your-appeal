@@ -23,7 +23,7 @@ describe('EnumJsonLists util', () => {
       delete process.env.TRIBUNALS_CASE_API_URL;
       const { getCaseApiUrl } = require('utils/enumJsonLists');
 
-      expect(getCaseApiUrl()).to.equal('https://sscs-tribunals-api-aat.service.core-compute-aat.internal');
+      expect(getCaseApiUrl()).to.equal('http://sscs-tribunals-api-aat.service.core-compute-aat.internal');
     });
 
     it("should return production URL when NODE_ENV is 'prod'", () => {
