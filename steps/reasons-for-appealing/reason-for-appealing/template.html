@@ -57,8 +57,13 @@
 {% endblock %}
 
 {% block listItems %}
-    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.ibaExplained | safe }}</p>
+        <p class="govuk-body">{{ content.readYouIRN | safe }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
+        <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% endif %}
     {{ super() }}
 {% endblock %}
 
