@@ -3,7 +3,6 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block head %}

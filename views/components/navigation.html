@@ -8,7 +8,7 @@
         </div>
         <div class="govuk-header__content">
             <a href="/" class="govuk-header__link govuk-header__link--service-name">
-                {{ commonContent[htmlLang].serviceName | safe }}
+                {{ commonContent[htmlLang].ibca.serviceName if isIba else commonContent[htmlLang].serviceName | safe }}
             </a>
         </div>
         <div class="govuk-header__link--signout">

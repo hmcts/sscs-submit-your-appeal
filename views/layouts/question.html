@@ -10,6 +10,10 @@
     <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
 {% endblock %}
 
+{% block pageTitle %}
+{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{% endblock %}
+
 {% block two_thirds %}
     {{ errorSummary(fields, commonContent[htmlLang].errorSummaryHeading) }}
     {{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}

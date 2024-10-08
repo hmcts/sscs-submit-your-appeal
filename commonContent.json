@@ -2,6 +2,10 @@
   "en": {
     "serviceName": "Appeal a benefit decision",
     "windowTitleSuffix": "Appeal a benefit decision - GOV.UK",
+    "ibca": {
+      "serviceName": "Appeal an infected blood compensation decision",
+      "windowTitleSuffix": "Appeal an infected blood compensation decision - GOV.UK"
+    },
     "signOut": "Sign Out",
     "back": "Back",
     "change": "Change",
@@ -145,6 +149,10 @@
   "cy": {
     "serviceName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
     "windowTitleSuffix": "Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
+    "ibca": {
+      "serviceName": "Appeal an infected blood compensation decision",
+      "windowTitleSuffix": "Appeal an infected blood compensation decision - GOV.UK"
+    },
     "signOut": "Allgofnodi",
     "back": "Yn ôl",
     "change": "Newid",

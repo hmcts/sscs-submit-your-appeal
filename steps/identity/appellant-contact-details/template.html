@@ -2,7 +2,6 @@
 {% from "components/fields.njk" import textbox, formSection %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = title | safe %}
 
 {% block fields %}

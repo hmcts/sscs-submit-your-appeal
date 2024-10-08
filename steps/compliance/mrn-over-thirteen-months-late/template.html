@@ -1,7 +1,6 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, textarea %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
