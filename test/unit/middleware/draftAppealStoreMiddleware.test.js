@@ -481,7 +481,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     describe('AuthAndRestoreAllDraftsState', () => {
       it('Expected Middleware count:', () => {
-        expect(authAndRestoreAllDraftsState.middleware).to.have.length(3);
+        expect(authAndRestoreAllDraftsState.middleware).to.have.length(5);
       });
     });
 
