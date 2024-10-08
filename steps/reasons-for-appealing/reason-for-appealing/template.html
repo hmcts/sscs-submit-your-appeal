@@ -8,8 +8,6 @@
     {{ content.titleHeadEdit if isEditMode }}
 {% endset %}
 
-{% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-
 {% block head %}
     {{ super() }}
     <noscript>
