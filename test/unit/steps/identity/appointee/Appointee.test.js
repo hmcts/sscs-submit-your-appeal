@@ -4,6 +4,7 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('Appointee.js', () => {
   let appointee = null;
@@ -15,6 +16,11 @@ describe('Appointee.js', () => {
           AppealFormDownload: paths.appealFormDownload,
           AppellantName: paths.identity.enterAppellantName,
           AppointeeName: paths.appointee.enterAppointeeName
+        }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
         }
       }
     });
@@ -137,6 +143,20 @@ describe('Appointee.js', () => {
       appointee.fields.isAppointee.value = '';
       const values = appointee.values();
       expect(values).to.eql({ isAppointee: null });
+    });
+  });
+
+  describe('ReviewBody()', () => {
+    it('should return a "a court" in IBA journey', () => {
+      appointee.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      appointee.fields.isAppointee.value = userAnswer.NO;
+      expect(appointee.appointedBy).to.equal('a court');
+    });
+
+    it('should return a "DWP" in IBA journey', () => {
+      appointee.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      appointee.fields.isAppointee.value = userAnswer.NO;
+      expect(appointee.appointedBy).to.equal('DWP');
     });
   });
 
