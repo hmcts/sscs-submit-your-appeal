@@ -5,20 +5,21 @@ let countryOfResidences = null;
 
 const getCaseApiUrl = () => {
   let caseApiUrl = 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal';
-  if (process.env.NODE_ENV === 'prod') {
+  if (process.env.NODE_ENV === 'production') {
     caseApiUrl = 'prod-url';
   } else if (process.env.NODE_ENV === 'development') {
     caseApiUrl = 'http://localhost:8008';
   } else if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
     caseApiUrl = process.env.TRIBUNALS_CASE_API_URL;
   }
-  console.log(caseApiUrl);
   return caseApiUrl;
 };
 
 async function fetchPortOfEntries() {
   try {
-    const res = await axios.get(`${getCaseApiUrl()}/api/port-of-entries`);
+    let caseApiUrl = getCaseApiUrl();
+    console.log(caseApiUrl);
+    const res = await axios.get(`${caseApiUrl}/api/port-of-entries`);
     portOfEntries = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
