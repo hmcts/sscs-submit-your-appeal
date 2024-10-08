@@ -17,6 +17,11 @@
     </noscript>
 {% endblock %}
 
+% set title %}
+    {{ content.title | safe if isListMode }}
+    {{ content.titleEdit | safe if isEditMode }}
+{% endset %}
+
 {% set pageContent = {
     addAnotherLink: addAnotherLinkContent,
     itemLabel: content.itemLabel,
