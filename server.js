@@ -12,12 +12,13 @@ const fs = require('graceful-fs');
 const webpack = require('webpack');
 const webpackDevConfig = require('./webpack.config.js');
 const webpackMiddleware = require('webpack-dev-middleware');
-const { fetchPortOfEntries } = require('utils/enumJsonLists');
+const { fetchPortOfEntries, fetchCountryOfResidences } = require('utils/enumJsonLists');
 
 const logPath = 'server.js';
 
 (async function initializeEnums() {
   await fetchPortOfEntries();
+  await fetchCountryOfResidences();
 }());
 
 if (process.env.NODE_ENV === 'development') {

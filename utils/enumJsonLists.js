@@ -14,7 +14,6 @@ const getCaseApiUrl = () => {
 async function fetchPortOfEntries() {
   try {
     const caseApiUrl = getCaseApiUrl();
-    console.log(caseApiUrl);
     const res = await axios.get(`${caseApiUrl}/api/port-of-entries`);
     portOfEntries = res.data.map(entry => {
       entry.value = entry.label;
