@@ -18,23 +18,9 @@ describe('EnumJsonLists util', () => {
   });
 
   describe('getCaseApiUrl', () => {
-    it('should return default URL when NODE_ENV is not set', () => {
+    it('should return default URL when TRIBUNALS_CASE_API_URL is not set', () => {
       delete process.env.NODE_ENV;
       delete process.env.TRIBUNALS_CASE_API_URL;
-      const { getCaseApiUrl } = require('utils/enumJsonLists');
-
-      expect(getCaseApiUrl()).to.equal('http://sscs-tribunals-api-aat.service.core-compute-aat.internal');
-    });
-
-    it("should return production URL when NODE_ENV is 'prod'", () => {
-      process.env.NODE_ENV = 'prod';
-      const { getCaseApiUrl } = require('utils/enumJsonLists');
-
-      expect(getCaseApiUrl()).to.equal('prod-url');
-    });
-
-    it("should return development URL when NODE_ENV is 'development'", () => {
-      process.env.NODE_ENV = 'development';
       const { getCaseApiUrl } = require('utils/enumJsonLists');
 
       expect(getCaseApiUrl()).to.equal('http://localhost:8008');
