@@ -2,7 +2,6 @@
 {% extends "layouts/add_another.html" %}
 {% from "components/fields.njk" import formSection, fileupload %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% set pageContent = {
