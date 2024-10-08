@@ -12,6 +12,7 @@ const getCaseApiUrl = () => {
   } else if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
     caseApiUrl = process.env.TRIBUNALS_CASE_API_URL;
   }
+  console.log(caseApiUrl)
   return caseApiUrl;
 };
 
