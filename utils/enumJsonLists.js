@@ -4,7 +4,7 @@ let portOfEntries = null;
 let countryOfResidences = null;
 
 const getCaseApiUrl = () => {
-  let caseApiUrl = 'https://sscs-tribunals-api-aat.service.core-compute-aat.internal';
+  let caseApiUrl = 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal';
   if (process.env.NODE_ENV === 'prod') {
     caseApiUrl = 'prod-url';
   } else if (process.env.NODE_ENV === 'development') {
@@ -12,7 +12,7 @@ const getCaseApiUrl = () => {
   } else if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
     caseApiUrl = process.env.TRIBUNALS_CASE_API_URL;
   }
-  console.log(caseApiUrl)
+  console.log(caseApiUrl);
   return caseApiUrl;
 };
 
