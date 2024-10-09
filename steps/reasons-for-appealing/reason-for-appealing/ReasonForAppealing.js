@@ -12,6 +12,7 @@ const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const paths = require('paths');
 const { decode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -44,6 +45,10 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
     }
     return false;
+  }
+
+  get reviewBody() {
+    return isIba(this.req) ? 'IBCA' : 'DWP';
   }
 
   get field() {
