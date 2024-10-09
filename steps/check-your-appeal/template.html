@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
 {% endblock %}
 
 {% set pageContent = {
@@ -28,9 +28,9 @@
 
 {% block statement_of_truth_content %}
     {{ header(content.header, size='m') }}
-    <p class="govuk-body">{{ content.information | safe }}</p>
-    <p class="govuk-body">{{ content.permission | safe }}</p>
-    <p class="govuk-body">{{ content.agree | safe }}</p>
+    <p class="govuk-body">{{ content.information }}</p>
+    <p class="govuk-body">{{ content.permission }}</p>
+    <p class="govuk-body">{{ content.agree }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}

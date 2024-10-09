@@ -3,17 +3,17 @@
     <div class="govuk-header__container govuk-width-container">
         <div class="govuk-header__logo">
             <span class="govuk-header__logotype">
-                <img  src="/assets/images/hmcts-logo-compress.svg" alt="{{ i18n.general.logo | safe }}" >
+                <img  src="/assets/images/hmcts-logo-compress.svg" alt="{{ i18n.general.logo }}" >
             </span>
         </div>
         <div class="govuk-header__content">
             <a href="/" class="govuk-header__link govuk-header__link--service-name">
-                {{ commonContent[htmlLang].ibca.serviceName if isIba else commonContent[htmlLang].serviceName | safe }}
+                {{ commonContent[htmlLang].ibca.serviceName if isIba else commonContent[htmlLang].serviceName }}
             </a>
         </div>
         <div class="govuk-header__link--signout">
             {% if isUserLoggedIn %}
-                <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ commonContent[htmlLang].signOut | safe }}</a>
+                <a href="/sign-out" class="govuk-header__link govuk-header__link">{{ commonContent[htmlLang].signOut }}</a>
             {% endif %}
         </div>
     </div>

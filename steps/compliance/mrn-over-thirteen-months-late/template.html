@@ -4,8 +4,8 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.yourAppealIsOverOneYearLate | safe }}</p>
-    <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason | safe }}</p>
+    <p class="govuk-body">{{ content.yourAppealIsOverOneYearLate }}</p>
+    <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason }}</p>
 
     {% call formSection() %}
         {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true) }}

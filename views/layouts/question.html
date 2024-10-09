@@ -7,11 +7,11 @@
 
 {% block breadcrumbs %}
     {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
-    <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
+    <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back }}</a>
 {% endblock %}
 
 {% block pageTitle %}
-{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
 {% endblock %}
 
 {% block two_thirds %}
@@ -41,7 +41,7 @@
         {% endif %}
 
         <div class="form-buttons-group">
-            <input class="govuk-button" type="submit" value="{{ continueButtonLabel | safe }}">
+            <input class="govuk-button" type="submit" value="{{ continueButtonLabel }}">
         </div>
     </form>
 {% endblock %}

@@ -4,18 +4,18 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
 
 {% block pageTitle %}
-{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
 {% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
-        {{ banner | safe }}
+        {{ banner }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
-    <p class="govuk-body" class="govuk-body">{{ content.body.para1 | safe }}</p>
-    <p class="govuk-body" class="govuk-body">{{ content.body.para2 | safe }}</p>
-    <p class="govuk-body" class="govuk-body">{{ content.body.para3 | safe }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para2 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para3 }}</p>
 {% endblock %}

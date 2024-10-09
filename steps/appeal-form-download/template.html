@@ -5,6 +5,6 @@
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
-    <a class="govuk-button" href="{{ formDownload.link }}">{{ content.button.text | safe }}</a>
+    <p class="govuk-body">{{ content.subtitle }}</p>
+    <a class="govuk-button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
 {% endblock %}

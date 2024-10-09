@@ -6,7 +6,7 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ subtitle | safe }}</p>
+        <p class="govuk-body">{{ subtitle }}</p>
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
             {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}

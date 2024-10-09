@@ -7,11 +7,11 @@
     <p class="govuk-body">{{ content.subtitle | safe}}</p>
     <p class="govuk-body">{{ content.registerList | safe}}</p>
     <ul class="govuk-list govuk-list--bullet">
-        <li>{{ content.info | safe }}</li>
-        <li>{{ content.evidence | safe }}</li>
-        <li>{{ content.talkToUs | safe }}</li>
+        <li>{{ content.info }}</li>
+        <li>{{ content.evidence }}</li>
+        <li>{{ content.talkToUs }}</li>
     </ul>
-    <p class="govuk-body">{{ content.phoneUp | safe }}</p>
+    <p class="govuk-body">{{ content.phoneUp }}</p>
 
     {% call formSection() %}
         {{ selectionButtons(

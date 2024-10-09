@@ -15,10 +15,10 @@
 {% macro phaseBanner(content, urlPath='') %}
     {% if content.phaseBar.phase !== 'LIVE' %}
         {% set html %}
-            {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) | safe }}
+            {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) }}
 
             {% if featureToggles.welsh() == "true" %}
-                {{ content.phaseBar.languageToggle | safe }}
+                {{ content.phaseBar.languageToggle }}
             {% endif %}
         {% endset %}
 

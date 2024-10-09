@@ -4,7 +4,7 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
+    <p class="govuk-body">{{ content.subtitle }}</p>
 
     {% call formSection() %}
         {{ selectionButtons(
