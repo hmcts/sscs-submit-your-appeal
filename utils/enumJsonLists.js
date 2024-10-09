@@ -4,20 +4,9 @@ const config = require('config');
 let portOfEntries = null;
 let countryOfResidences = null;
 
-const getCaseApiUrl = () => {
-  let caseApiUrl = 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal';
-  if (process.env.NODE_ENV === 'development') {
-    caseApiUrl = config.api.url;
-  } else if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
-    caseApiUrl = process.env.TRIBUNALS_CASE_API_URL;
-  }
-  return caseApiUrl;
-};
-
 async function fetchPortOfEntries() {
   try {
-    const caseApiUrl = getCaseApiUrl();
-    const res = await axios.get(`${caseApiUrl}/api/port-of-entries`);
+    const res = await axios.get(`${config.api.url}/api/port-of-entries`);
     portOfEntries = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
@@ -38,7 +27,7 @@ function getPortOfEntries() {
 
 async function fetchCountryOfResidences() {
   try {
-    const res = await axios.get(`${getCaseApiUrl()}/api/country-of-residences`);
+    const res = await axios.get(`${config.api.url}/api/country-of-residences`);
     countryOfResidences = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
@@ -60,7 +49,6 @@ module.exports = {
   fetchPortOfEntries,
   getPortOfEntries,
   setPortOfEntries,
-  getCaseApiUrl,
   fetchCountryOfResidences,
   getCountryOfResidences,
   setCountryOfResidences
