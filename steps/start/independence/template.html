@@ -28,7 +28,7 @@
                 {% if benefitType == 'UC' %}
                     <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
                 {% elif infectedbloodappeal %}
-                    <p class="govuk-body-l">{{ content.IBAreviewed | safe }}</p>
+                    <p class="govuk-body-l">{{ content.IBAreviewed }}</p>
                 {% else %}
                     <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
                 {% endif %}
