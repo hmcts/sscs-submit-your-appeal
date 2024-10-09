@@ -7,14 +7,14 @@ const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 const {
-  setPortOfEntries,
-  getPortOfEntries,
-  setCountryOfResidences,
-  getCountryOfResidences
+  setPortsOfEntry,
+  getPortsOfEntry,
+  setCountriesOfResidence,
+  getCountriesOfResidence
 } = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
-  setPortOfEntries([
+  setPortsOfEntry([
     {
       label: 'Aberdeen',
       value: 'Aberdeen',
@@ -28,7 +28,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       locationCode: 'GB000411'
     }
   ]);
-  setCountryOfResidences([
+  setCountriesOfResidence([
     {
       label: 'Italy',
       officialName: 'The Italian Republic',
@@ -118,7 +118,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('contentPrefix', () => {
     describe('when is Appointee journey', () => {
-      it('should return `withoutAppointee`', () => {
+      it('should return `withAppointee`', () => {
         appellantInternationalContactDetails.journey.req = { session: { Appointee: { isAppointee: 'yes' } } };
         expect(appellantInternationalContactDetails.contentPrefix()).to.equal('withAppointee');
       });
@@ -158,7 +158,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appellantInternationalContactDetails.validCountrySchema();
-        for (const testCountry of getCountryOfResidences()) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -228,7 +228,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid ports of entry', () => {
         const schema = appellantInternationalContactDetails.validPortSchema();
-        for (const testPort of getPortOfEntries()) {
+        for (const testPort of getPortsOfEntry()) {
           const result = schema.validate(decode(testPort.value));
           expect(result.error).to.eq(null);
         }
@@ -273,13 +273,13 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appellantInternationalContactDetails.getCountries).to.equal(getCountryOfResidences());
+      expect(appellantInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
   describe('get getPortOfEntryList()', () => {
     it('should return the portOfEntryList', () => {
-      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortOfEntries());
+      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortsOfEntry());
     });
   });
 

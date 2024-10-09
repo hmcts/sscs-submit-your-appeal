@@ -23,7 +23,7 @@ const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
-const { getCountryOfResidences } = require('utils/enumJsonLists');
+const { getCountriesOfResidence } = require('utils/enumJsonLists');
 
 class RepresentativeInternationalDetails extends SaveToDraftStore {
   static get path() {
@@ -60,12 +60,12 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = getCountryOfResidences().map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
   get getCountries() {
-    return getCountryOfResidences();
+    return getCountriesOfResidence();
   }
 
   get form() {

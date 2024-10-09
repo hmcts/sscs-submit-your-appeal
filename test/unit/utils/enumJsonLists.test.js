@@ -3,12 +3,12 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const axios = require('axios');
 const {
-  fetchPortOfEntries,
-  getPortOfEntries,
-  setPortOfEntries,
-  getCountryOfResidences,
-  fetchCountryOfResidences,
-  setCountryOfResidences
+  fetchPortsOfEntry,
+  getPortsOfEntry,
+  setPortsOfEntry,
+  getCountriesOfResidence,
+  fetchCountriesOfResidence,
+  setCountriesOfResidence
 } = require('utils/enumJsonLists');
 
 describe('EnumJsonLists util', () => {
@@ -22,75 +22,75 @@ describe('EnumJsonLists util', () => {
     sinon.restore();
   });
 
-  describe('fetchPortOfEntries', () => {
-    it('should fetch and set portOfEntries data correctly', async() => {
+  describe('fetchPortsOfEntry', () => {
+    it('should fetch and set portsOfEntry data correctly', async() => {
       // eslint-disable-next-line id-blacklist
       const mockResponse = { data: [{ label: 'Entry1' }, { label: 'Entry2' }] };
       axiosGetStub.resolves(mockResponse);
 
-      await fetchPortOfEntries();
+      await fetchPortsOfEntry();
 
-      const entries = getPortOfEntries();
+      const entries = getPortsOfEntry();
       expect(entries).to.deep.equal([
         { label: 'Entry1', value: 'Entry1' },
         { label: 'Entry2', value: 'Entry2' }
       ]);
     });
 
-    it('should handle errors when fetching portOfEntries data', async() => {
+    it('should handle errors when fetching portsOfEntry data', async() => {
       const consoleStub = sinon.stub(console, 'log');
       axiosGetStub.rejects(new Error('Network error'));
 
-      await fetchPortOfEntries();
+      await fetchPortsOfEntry();
 
       expect(consoleStub.calledWithMatch('Error fetching portOfEntry data:')).to.be.true;
       consoleStub.restore();
     });
   });
 
-  describe('setPortOfEntries and getPortOfEntries', () => {
-    it('should set and get portOfEntries data correctly', () => {
+  describe('setPortsOfEntry and getPortsOfEntry', () => {
+    it('should set and get portsOfEntry data correctly', () => {
       const testEntries = [{ label: 'TestEntry1', value: 'TestEntry1' }];
 
-      setPortOfEntries(testEntries);
-      const entries = getPortOfEntries();
+      setPortsOfEntry(testEntries);
+      const entries = getPortsOfEntry();
 
       expect(entries).to.deep.equal(testEntries);
     });
   });
 
-  describe('fetchCountryOfResidences', () => {
-    it('should fetch and set countryOfResidences data correctly', async() => {
+  describe('fetchCountriesOfResidence', () => {
+    it('should fetch and set countriesOfResidence data correctly', async() => {
       // eslint-disable-next-line id-blacklist
       const mockResponse = { data: [{ label: 'Entry1' }, { label: 'Entry2' }] };
       axiosGetStub.resolves(mockResponse);
 
-      await fetchCountryOfResidences();
+      await fetchCountriesOfResidence();
 
-      const entries = getCountryOfResidences();
+      const entries = getCountriesOfResidence();
       expect(entries).to.deep.equal([
         { label: 'Entry1', value: 'Entry1' },
         { label: 'Entry2', value: 'Entry2' }
       ]);
     });
 
-    it('should handle errors when fetching fetchCountryOfResidences data', async() => {
+    it('should handle errors when fetching fetchCountriesOfResidence data', async() => {
       const consoleStub = sinon.stub(console, 'log');
       axiosGetStub.rejects(new Error('Network error'));
 
-      await fetchCountryOfResidences();
+      await fetchCountriesOfResidence();
 
-      expect(consoleStub.calledWithMatch('Error fetching countryOfResidences data:')).to.be.true;
+      expect(consoleStub.calledWithMatch('Error fetching countriesOfResidence data:')).to.be.true;
       consoleStub.restore();
     });
   });
 
-  describe('setCountryOfResidences and getCountryOfResidences', () => {
-    it('should set and get countryOfResidences data correctly', () => {
+  describe('setCountriesOfResidence and getCountriesOfResidence', () => {
+    it('should set and get countriesOfResidence data correctly', () => {
       const testEntries = [{ label: 'TestEntry1', value: 'TestEntry1' }];
 
-      setCountryOfResidences(testEntries);
-      const entries = getCountryOfResidences();
+      setCountriesOfResidence(testEntries);
+      const entries = getCountriesOfResidence();
 
       expect(entries).to.deep.equal(testEntries);
     });

@@ -11,8 +11,8 @@ const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
-const { getPortOfEntries } = require('utils/enumJsonLists');
-const { getCountryOfResidences } = require('../../../utils/enumJsonLists');
+const { getPortsOfEntry } = require('utils/enumJsonLists');
+const { getCountriesOfResidence } = require('../../../utils/enumJsonLists');
 const { get } = require('lodash');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
@@ -58,12 +58,12 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = getCountryOfResidences().map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
   validPortSchema() {
-    const validPorts = getPortOfEntries().map(port => port.value);
+    const validPorts = getPortsOfEntry().map(port => port.value);
     return Joi.string().valid(validPorts);
   }
 
@@ -114,11 +114,11 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   get getCountries() {
-    return getCountryOfResidences();
+    return getCountriesOfResidence();
   }
 
   get getPortOfEntryList() {
-    return getPortOfEntries();
+    return getPortsOfEntry();
   }
 
   answers() {

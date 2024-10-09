@@ -7,12 +7,12 @@ const sinon = require('sinon');
 const { decode } = require('utils/stringUtils');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { setCountryOfResidences, getCountryOfResidences } = require('utils/enumJsonLists');
+const { setCountriesOfResidence, getCountriesOfResidence } = require('utils/enumJsonLists');
 
 describe('RepresentativeInternationalDetails.js', () => {
   let representativeInternationalDetails = null;
   let res = null;
-  setCountryOfResidences([
+  setCountriesOfResidence([
     {
       label: 'Italy',
       officialName: 'The Italian Republic',
@@ -150,7 +150,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(representativeInternationalDetails.getCountries).to.equal(getCountryOfResidences());
+      expect(representativeInternationalDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
@@ -238,7 +238,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = representativeInternationalDetails.validCountrySchema();
-        for (const testCountry of getCountryOfResidences()) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }

@@ -75,7 +75,7 @@ describe('AppellantInUk.js', () => {
 
   describe('contentPrefix', () => {
     describe('when is Appointee journey', () => {
-      it('should return `withoutAppointee`', () => {
+      it('should return `withAppointee`', () => {
         appellantInUk.journey.req = { session: { Appointee: { isAppointee: 'yes' } } };
         expect(appellantInUk.contentPrefix()).to.equal('withAppointee');
       });

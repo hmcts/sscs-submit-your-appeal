@@ -11,7 +11,7 @@ const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
-const { getCountryOfResidences } = require('utils/enumJsonLists');
+const { getCountriesOfResidence } = require('utils/enumJsonLists');
 
 class AppointeeInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -35,7 +35,7 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = getCountryOfResidences().map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
@@ -79,7 +79,7 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
   }
 
   get getCountries() {
-    return getCountryOfResidences();
+    return getCountriesOfResidence();
   }
 
   answers() {

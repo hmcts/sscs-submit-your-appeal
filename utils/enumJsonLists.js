@@ -1,13 +1,13 @@
 const axios = require('axios');
 const config = require('config');
 
-let portOfEntries = null;
-let countryOfResidences = null;
+let portsOfEntry = null;
+let countriesOfResidence = null;
 
-async function fetchPortOfEntries() {
+async function fetchPortsOfEntry() {
   try {
-    const res = await axios.get(`${config.api.url}/api/citizen/port-of-entries`);
-    portOfEntries = res.data.map(entry => {
+    const res = await axios.get(`${config.api.url}/api/citizen/ports-of-entry`);
+    portsOfEntry = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
     });
@@ -16,40 +16,40 @@ async function fetchPortOfEntries() {
   }
 }
 
-function setPortOfEntries(someList) {
-  portOfEntries = someList;
+function setPortsOfEntry(someList) {
+  portsOfEntry = someList;
 }
 
-function getPortOfEntries() {
-  return portOfEntries;
+function getPortsOfEntry() {
+  return portsOfEntry;
 }
 
 
-async function fetchCountryOfResidences() {
+async function fetchCountriesOfResidence() {
   try {
-    const res = await axios.get(`${config.api.url}/api/citizen/country-of-residences`);
-    countryOfResidences = res.data.map(entry => {
+    const res = await axios.get(`${config.api.url}/api/citizen/countries-of-residence`);
+    countriesOfResidence = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
     });
   } catch (error) {
-    console.log('Error fetching countryOfResidences data: ', error);
+    console.log('Error fetching countriesOfResidence data: ', error);
   }
 }
 
-function setCountryOfResidences(someList) {
-  countryOfResidences = someList;
+function setCountriesOfResidence(someList) {
+  countriesOfResidence = someList;
 }
 
-function getCountryOfResidences() {
-  return countryOfResidences;
+function getCountriesOfResidence() {
+  return countriesOfResidence;
 }
 
 module.exports = {
-  fetchPortOfEntries,
-  getPortOfEntries,
-  setPortOfEntries,
-  fetchCountryOfResidences,
-  getCountryOfResidences,
-  setCountryOfResidences
+  fetchPortsOfEntry,
+  getPortsOfEntry,
+  setPortsOfEntry,
+  fetchCountriesOfResidence,
+  getCountriesOfResidence,
+  setCountriesOfResidence
 };

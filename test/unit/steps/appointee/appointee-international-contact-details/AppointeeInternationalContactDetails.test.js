@@ -6,10 +6,10 @@ const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { setCountryOfResidences, getCountryOfResidences } = require('utils/enumJsonLists');
+const { setCountriesOfResidence, getCountriesOfResidence } = require('utils/enumJsonLists');
 
 describe('AppointeeInternationalContactDetails.js', () => {
-  setCountryOfResidences([
+  setCountriesOfResidence([
     {
       label: 'Italy',
       officialName: 'The Italian Republic',
@@ -110,7 +110,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appointeeInternationalContactDetails.validCountrySchema();
-        for (const testCountry of getCountryOfResidences()) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -239,7 +239,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appointeeInternationalContactDetails.getCountries).to.equal(getCountryOfResidences());
+      expect(appointeeInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
