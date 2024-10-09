@@ -19,7 +19,7 @@
 
     <p class="govuk-body">{{ content.requestingMandatoryReconsideration }}</p>
     {% if benefitType == 'UC' %}
-        <p class="govuk-body">{{ content.linkUCJournal }}</p>
+        <p class="govuk-body">{{ content.linkUCJournal | safe }}</p>
     {% else %}
         <p class="govuk-body">{{ content.contactDetailsFromLettersOrEmails }}</p>
     {% endif %}

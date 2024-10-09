@@ -5,7 +5,7 @@
 
 {% block two_thirds %}
     <h1 class="govuk-heading-l">{{ content.accessibility.title }}</h1>
-    <p class="govuk-body">{{ content.accessibility.description }}</p>
+    <p class="govuk-body">{{ content.accessibility.description | safe }}</p>
     <p class="govuk-body">{{ content.manages.managedBy }}</p>
     <ul class="govuk-list govuk-list--bullet">
         <li>{{ content.manages.ability1 }}</li>
@@ -18,14 +18,14 @@
         {{ content.manages.managedByExtra1 }}
     </p>
     <p class="govuk-body">
-        {{ content.manages.managedByExtra2 }}
+        {{ content.manages.managedByExtra2 | safe }}
     </p>
 
     <h2 class="govuk-heading-m">{{ content.howAccessible.title }}</h2>
     <p class="govuk-body">{{ content.howAccessible.para1 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.whatToDo.title }}</h2>
-    <p class="govuk-body">{{ content.whatToDo.para1 }}</p>
+    <p class="govuk-body">{{ content.whatToDo.para1 | safe }}</p>
     <div class="govuk-details__text">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.England.desc }}</h3>
         <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.England.phone }}</p>
@@ -43,7 +43,7 @@
     <p class="govuk-body govuk-!-margin-top-4">{{ content.whatToDo.para2 }}</p>
 
     <h2 id="using-data" class="govuk-heading-m">{{ content.reportingProblems.title }}</h2>
-    <p class="govuk-body">{{ content.reportingProblems.para1 }}</p>
+    <p class="govuk-body">{{ content.reportingProblems.para1 | safe }}</p>
     <div class="govuk-details__text">
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.England.desc }}</h3>
         <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.England.phone }}</p>
@@ -60,7 +60,7 @@
     </div>
     <br>
     <h2 class="govuk-heading-m">{{ content.enforcement.title }}</h2>
-    <p class="govuk-body">{{ content.enforcement.para1 }}</p>
+    <p class="govuk-body">{{ content.enforcement.para1 | safe }}</p>
 
     <h2 class="govuk-heading-m">{{ content.contactus.title }}</h2>
     <p class="govuk-body">{{ content.contactus.para1 }}</p>
@@ -71,12 +71,12 @@
     <p class="govuk-body">{{ content.technical.para1 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.compliance.title }}</h2>
-    <p class="govuk-body">{{ content.compliance.para1 }}</p>
+    <p class="govuk-body">{{ content.compliance.para1 | safe }}</p>
 
     <h2 class="govuk-heading-m">{{ content.nonAccessible.title }}</h2>
     <p class="govuk-heading-s">{{ content.nonAccessible.para1 }}</p>
     <p class="govuk-body">{{ content.nonAccessible.para2 }}</p>
-    <p class="govuk-body">{{ content.nonAccessible.para3 }}</p>
+    <p class="govuk-body">{{ content.nonAccessible.para3 | safe }}</p>
     <p class="govuk-body">{{ content.nonAccessible.para4 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.toImprove.title }}</h2>
