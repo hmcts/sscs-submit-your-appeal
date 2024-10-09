@@ -28,7 +28,9 @@
       "label": "Pam eich bod yn anghytuno ag ef",
       "error": {
         "required": "Mae angen ichi roi o leiaf un rheswm dros apelio",
-        "notEnough": "Nid ydych wedi dweud digon am pam rydych eisiau apelio. Yn gryno, eglurwch pam eich bod yn anghytuno â phenderfyniad {{reviewBody}}."
+        "notEnough": "Nid ydych wedi dweud digon am pam rydych eisiau apelio. Yn gryno, eglurwch pam eich bod yn anghytuno â phenderfyniad DWP.",
+        "ibaNotEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with IBCA’s decision."
+
       }
     }
   },

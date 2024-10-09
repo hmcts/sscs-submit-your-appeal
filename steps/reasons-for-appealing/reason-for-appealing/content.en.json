@@ -28,7 +28,8 @@
       "label": "Why you disagree with it",
       "error": {
         "required": "You need to give at least one reason for appealing",
-        "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with {{reviewBody}}’s decision."
+        "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision.",
+        "ibaNotEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with IBCA’s decision."
       }
     }
   },

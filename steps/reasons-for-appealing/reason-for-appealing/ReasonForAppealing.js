@@ -55,6 +55,10 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
+    const errorReasonForMsgContent = isIba(this.req)
+      ? content.fields.reasonForAppealing.error.ibaNotEnough
+      : content.fields.reasonForAppealing.error.notEnough;
+
     return object({
       whatYouDisagreeWith: text,
       reasonForAppealing: text
@@ -63,7 +67,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       value => value.whatYouDisagreeWith &&
         isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith))
       .check(
-        errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
+        errorFor('reasonForAppealing', errorReasonForMsgContent),
         value => value.reasonForAppealing &&
           isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
