@@ -2,6 +2,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const axios = require('axios');
+const config = require('config');
 const { fetchPortOfEntries, getPortOfEntries, setPortOfEntries } = require('utils/enumJsonLists');
 const { getCountryOfResidences, fetchCountryOfResidences } = require('utils/enumJsonLists');
 const { setCountryOfResidences } = require('../../../utils/enumJsonLists');
@@ -18,12 +19,19 @@ describe('EnumJsonLists util', () => {
   });
 
   describe('getCaseApiUrl', () => {
-    it('should return default URL when TRIBUNALS_CASE_API_URL is not set', () => {
+    it('should return default URL when NODE_ENV is not set', () => {
       delete process.env.NODE_ENV;
       delete process.env.TRIBUNALS_CASE_API_URL;
       const { getCaseApiUrl } = require('utils/enumJsonLists');
 
-      expect(getCaseApiUrl()).to.equal('http://localhost:8008');
+      expect(getCaseApiUrl()).to.equal('http://sscs-tribunals-api-aat.service.core-compute-aat.internal');
+    });
+
+    it("should return development URL when NODE_ENV is 'development'", () => {
+      process.env.NODE_ENV = 'development';
+      const { getCaseApiUrl } = require('utils/enumJsonLists');
+
+      expect(getCaseApiUrl()).to.equal(config.api.url);
     });
 
     it('should return custom URL when TRIBUNALS_CASE_API_URL is set', () => {

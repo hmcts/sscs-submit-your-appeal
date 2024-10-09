@@ -1,11 +1,14 @@
 const axios = require('axios');
+const config = require('config');
 
 let portOfEntries = null;
 let countryOfResidences = null;
 
 const getCaseApiUrl = () => {
-  let caseApiUrl = 'http://localhost:8008';
-  if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
+  let caseApiUrl = 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal';
+  if (process.env.NODE_ENV === 'development') {
+    caseApiUrl = config.api.url;
+  } else if ((process.env.TRIBUNALS_CASE_API_URL || null) !== null) {
     caseApiUrl = process.env.TRIBUNALS_CASE_API_URL;
   }
   return caseApiUrl;
