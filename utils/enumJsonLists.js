@@ -6,7 +6,7 @@ let countryOfResidences = null;
 
 async function fetchPortOfEntries() {
   try {
-    const res = await axios.get(`${config.api.url}/api/port-of-entries`);
+    const res = await axios.get(`${config.api.url}/api/citizen/port-of-entries`);
     portOfEntries = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
@@ -27,7 +27,7 @@ function getPortOfEntries() {
 
 async function fetchCountryOfResidences() {
   try {
-    const res = await axios.get(`${config.api.url}/api/country-of-residences`);
+    const res = await axios.get(`${config.api.url}/citizen/api/country-of-residences`);
     countryOfResidences = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
