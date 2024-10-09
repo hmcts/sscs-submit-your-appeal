@@ -1,11 +1,11 @@
 {
   "titleHead": "Are you an appointee",
   "title": "Are you an ‘appointee’?",
-  "description": "You’re an appointee if you’ve been appointed by DWP to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
+  "description": "You’re an appointee if you’ve been appointed by {{appointedBy}} to act on behalf of someone who is unable to deal with their benefit claim. For example, a parent who is claiming on behalf of a child.",
   "fields": {
     "isAppointee": {
       "label": "Select whether you’re an appointee or not",
-      "yes": "I have been appointed by DWP to act on behalf of someone else",
+      "yes": "I have been appointed by {{appointedBy}} to act on behalf of someone else",
       "no": "I’m appealing for myself - Choose this option if you are making an appeal for yourself or you are helping someone submit their appeal online.",
       "error": {
         "required": "You need to answer the question before continuing"

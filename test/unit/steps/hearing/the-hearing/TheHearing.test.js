@@ -3,6 +3,7 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('TheHearing.js', () => {
   let theHearing = null;
@@ -14,6 +15,11 @@ describe('TheHearing.js', () => {
           HearingOptions: paths.hearing.hearingOptions,
           HearingSupport: paths.hearing.hearingSupport,
           NotAttendingHearing: paths.hearing.notAttendingHearing
+        }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
         }
       }
     });
@@ -92,6 +98,18 @@ describe('TheHearing.js', () => {
       theHearing.fields.attendHearing.value = '';
       const values = theHearing.values();
       expect(values).to.eql({ hearing: { wantsToAttend: null } });
+    });
+  });
+
+  describe('ReviewBody()', () => {
+    it('should return "IBCA" in IBA journey', () => {
+      theHearing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(theHearing.reviewBody).to.equal('IBCA');
+    });
+
+    it('should return a "DWP" in non IBA journey', () => {
+      theHearing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(theHearing.reviewBody).to.equal('DWP');
     });
   });
 
