@@ -9,8 +9,6 @@ const { getBenefitCode,
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
-const { get } = require('lodash');
-const benefitTypes = require('../benefit-type/types');
 const { isIba } = require('utils/benefitTypeUtils');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -34,9 +32,8 @@ class Independence extends Interstitial {
     return '';
   }
 
-  get someBody() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.infectedBloodAppeal ? 'IBA' : 'DWP';
+  get reviewBody() {
+    return isIba(this.req) ? 'Infected Blood Compensation Authority (IBCA)' : 'DWP';
   }
 
   get benefitType() {
@@ -58,9 +55,9 @@ class Independence extends Interstitial {
 
   get benefitEndText() {
     if (i18next.language === 'cy') {
-      return getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
+      return isIba(this.req) ? 'apêl ' : getBenefitEndTextWelsh(this.req.session.BenefitType.benefitType);
     }
-    return getBenefitEndText(this.req.session.BenefitType.benefitType);
+    return isIba(this.req) ? ' appeal' : getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
   next() {

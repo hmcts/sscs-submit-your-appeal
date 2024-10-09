@@ -1,5 +1,5 @@
 const types = {
-  infectedBloodAppeal: 'IBA Spike',
+  infectedBloodAppeal: 'Infected Blood Compensation',
   attendanceAllowance: 'Attendance Allowance',
   bereavementBenefit: 'Bereavement Benefit',
   carersAllowance: "Carer's Allowance",

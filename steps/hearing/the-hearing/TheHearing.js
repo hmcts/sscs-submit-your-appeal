@@ -9,10 +9,15 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class TheHearing extends SaveToDraftStore {
   static get path() {
     return paths.hearing.theHearing;
+  }
+
+  get reviewBody() {
+    return isIba(this.req) ? 'IBCA' : 'DWP';
   }
 
   get form() {
