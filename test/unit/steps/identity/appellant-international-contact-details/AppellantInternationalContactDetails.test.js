@@ -102,6 +102,34 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
   });
 
+  describe('isAppointee', () => {
+    describe('when is Appointee journey', () => {
+      it('should return `true`', () => {
+        appellantInternationalContactDetails.journey.req = { session: { Appointee: { isAppointee: 'yes' } } };
+        expect(appellantInternationalContactDetails.isAppointee()).to.equal(true);
+      });
+    });
+    describe('when is NOT Appointee journey', () => {
+      it('should return `false`', () => {
+        expect(appellantInternationalContactDetails.isAppointee()).to.equal(false);
+      });
+    });
+  });
+
+  describe('contentPrefix', () => {
+    describe('when is Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        appellantInternationalContactDetails.journey.req = { session: { Appointee: { isAppointee: 'yes' } } };
+        expect(appellantInternationalContactDetails.contentPrefix()).to.equal('withAppointee');
+      });
+    });
+    describe('when is NOT Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        expect(appellantInternationalContactDetails.contentPrefix()).to.equal('withoutAppointee');
+      });
+    });
+  });
+
   describe('get form()', () => {
     let fields = null;
     let field = null;

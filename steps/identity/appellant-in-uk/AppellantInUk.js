@@ -10,6 +10,7 @@ const i18next = require('i18next');
 const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
+const { get } = require('lodash');
 
 class AppellantInUk extends SaveToDraftStore {
   static get path() {
@@ -24,10 +25,22 @@ class AppellantInUk extends SaveToDraftStore {
     }
   }
 
+  isAppointee() {
+    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
+  }
+
+  contentPrefix() {
+    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
+  }
+
+  get title() {
+    return this.content.title[this.contentPrefix()];
+  }
+
   get form() {
     return form({
       inUk: text.joi(
-        this.content.fields.inUk.error.required,
+        this.content.fields.inUk.errors.required[this.contentPrefix()],
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -37,7 +50,7 @@ class AppellantInUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: this.content.cya.inUk.question,
+      question: this.content.cya.inUk.question[this.contentPrefix()],
       section: sections.appellantDetails,
       answer: titleise(content.cya.inUk[this.fields.inUk.value])
     });

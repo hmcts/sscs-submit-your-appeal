@@ -3,17 +3,19 @@
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
 {% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
-{% set title = content.title %}
+{% set title = title %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle }}</p>
+        <p class="govuk-body">{{ subtitle }}</p>
         {{ textbox(fields.addressLine1,             content.fields.addressLine1.title,          hint="") }}
         {{ textbox(fields.addressLine2,             content.fields.addressLine2.title,          hint="") }}
         {{ textbox(fields.townCity,                 content.fields.townCity.title,              hint="") }}
         {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
         {{ select(fields.portOfEntry,               content.fields.portOfEntry.title,           options=getPortOfEntryList) }}
-        {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
-        {{ textbox(fields.emailAddress,             content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
+        {% if not isAppointeeJourney %}
+            {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
+            {{ textbox(fields.emailAddress,             content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
+        {% endif %}
     {% endcall %}
 {% endblock %}

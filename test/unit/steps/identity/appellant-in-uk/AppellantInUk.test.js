@@ -73,6 +73,20 @@ describe('AppellantInUk.js', () => {
     });
   });
 
+  describe('contentPrefix', () => {
+    describe('when is Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        appellantInUk.journey.req = { session: { Appointee: { isAppointee: 'yes' } } };
+        expect(appellantInUk.contentPrefix()).to.equal('withAppointee');
+      });
+    });
+    describe('when is NOT Appointee journey', () => {
+      it('should return `withoutAppointee`', () => {
+        expect(appellantInUk.contentPrefix()).to.equal('withoutAppointee');
+      });
+    });
+  });
+
   describe('answers() and values()', () => {
     const question = 'A Question';
 
@@ -80,7 +94,10 @@ describe('AppellantInUk.js', () => {
       appellantInUk.content = {
         cya: {
           inUk: {
-            question,
+            question: {
+              withAppointee: question,
+              withoutAppointee: question
+            },
             yes: 'Yes',
             no: 'No'
           }
