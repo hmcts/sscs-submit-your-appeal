@@ -111,6 +111,7 @@ describe('Independence.js', () => {
   const steps = {
     steps: {
       HaveAMRN: paths.compliance.haveAMRN,
+      HaveAnIRN: paths.compliance.haveAnIRN,
       CreateAccount: paths.start.createAccount
     }
   };
@@ -121,7 +122,7 @@ describe('Independence.js', () => {
         journey: steps,
         session: {
           BenefitType: {
-            benefitType: 'Personal Independence Payment (PIP)'
+            benefitType: benefitTypes.personalIndependencePayment
           }
         }
       });
@@ -145,7 +146,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Disability Living Allowance (DLA)'
+              benefitType: benefitTypes.disabilityLivingAllowance
             }
           }
         });
@@ -166,7 +167,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Disability Living Allowance (DLA)'
+              benefitType: benefitTypes.disabilityLivingAllowance
             }
           }
         });
@@ -191,7 +192,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Attendance Allowance'
+              benefitType: benefitTypes.attendanceAllowance
             }
           }
         });
@@ -212,7 +213,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Attendance Allowance'
+              benefitType: benefitTypes.attendanceAllowance
             }
           }
         });
@@ -241,7 +242,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Carer\'s Allowance'
+              benefitType: benefitTypes.carersAllowance
             }
           }
         });
@@ -262,7 +263,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Carer\'s Allowance'
+              benefitType: benefitTypes.carersAllowance
             }
           }
         });
@@ -296,8 +297,20 @@ describe('Independence.js', () => {
 
           independence = new Independence({ journey: steps });
         });
-        it('returns the next step path /mrn-date', () => {
+
+        it('returns the next step path /have-you-got-an-mrn for non IBA', () => {
           expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
+        });
+
+        it('returns the next step path /have-you-got-an-irn for IBA', () => {
+          independence.req = {
+            session: {
+              BenefitType: {
+                benefitType: benefitTypes.infectedBloodAppeal
+              }
+            }
+          };
+          expect(independence.next().step).to.eql(paths.compliance.haveAnIRN);
         });
       });
 

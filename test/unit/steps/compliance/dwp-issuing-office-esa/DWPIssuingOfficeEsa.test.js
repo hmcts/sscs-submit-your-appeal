@@ -2,9 +2,11 @@ const { expect } = require('test/util/chai');
 const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const benefitTypes = require('steps/start/benefit-type/types');
 const { overrideFeatFlag } = require('utils/stringUtils');
 const i18next = require('i18next');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('DWPIssuingOfficeEsa.js', () => {
   let dwpIssuingOfficeEsa = null;
@@ -34,6 +36,50 @@ describe('DWPIssuingOfficeEsa.js', () => {
   describe('get path()', () => {
     it('returns path /dwp-issuing-office-other', () => {
       expect(dwpIssuingOfficeEsa.path).to.equal(paths.compliance.dwpIssuingOfficeEsa);
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      dwpIssuingOfficeEsa.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      dwpIssuingOfficeEsa.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 

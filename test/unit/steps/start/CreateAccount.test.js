@@ -11,7 +11,8 @@ describe('CreateAccount.js', () => {
       journey: {
         steps: {
           IdamRedirect: paths.start.idamRedirect,
-          HaveAMRN: paths.compliance.haveAMRN
+          HaveAMRN: paths.compliance.haveAMRN,
+          HaveAnIRN: paths.compliance.haveAnIRN
         }
       }
     });
@@ -58,53 +59,16 @@ describe('CreateAccount.js', () => {
       expect(createAccount.next().step).to.eql(paths.start.idamRedirect);
     });
 
-    it('returns /have-you-got-an-mrn when user selects no', () => {
+    it('returns /have-you-got-an-mrn when user selects no for non iba', () => {
       createAccount.fields.createAccount.value = 'no';
+      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
     });
-  });
 
-  describe('isTypeIba()', () => {
-    it('returns false when no benefit type', () => {
-      expect(createAccount.isTypeIba).to.eql(false);
-    });
-
-    it('returns false when not iba benefit type', () => {
-      createAccount = new CreateAccount({
-        journey: {
-          req: {
-            session: {
-              BenefitType: {
-                benefitType: benefitTypes.personalIndependencePayment
-              }
-            }
-          },
-          steps: {
-            IdamRedirect: paths.start.idamRedirect,
-            HaveAMRN: paths.compliance.haveAMRN
-          }
-        }
-      });
-      expect(createAccount.isTypeIba).to.eql(false);
-    });
-
-    it('returns true when iba benefit type', () => {
-      createAccount = new CreateAccount({
-        journey: {
-          req: {
-            session: {
-              BenefitType: {
-                benefitType: benefitTypes.infectedBloodAppeal
-              }
-            }
-          },
-          steps: {
-            IdamRedirect: paths.start.idamRedirect,
-            HaveAMRN: paths.compliance.haveAMRN
-          }
-        }
-      });
-      expect(createAccount.isTypeIba).to.eql(true);
+    it('returns /have-you-got-an-mrn when user selects for iba', () => {
+      createAccount.fields.createAccount.value = 'no';
+      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.infectedBloodAppeal } } };
+      expect(createAccount.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 });

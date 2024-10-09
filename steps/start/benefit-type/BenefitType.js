@@ -39,11 +39,11 @@ class BenefitType extends SaveToDraftStore {
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
 
     const benTypeKey = getBenefitCode(this.fields.benefitType.value).toLowerCase();
-
     return answer(this, {
       question: this.content.cya.benefitType.question,
       section: sections.benefitType,
-      answer: benefitTypeContent.benefitTypes[benTypeKey]
+      answer: benefitTypeContent.benefitTypes[benTypeKey],
+      hide: isIba(this.req)
     });
   }
 

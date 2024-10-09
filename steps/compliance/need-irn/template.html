@@ -1,0 +1,22 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/two_thirds.html" %}
+{% from "components/header.njk" import header %}
+{% from "components/phase_banner.njk" import phaseBanner %}
+
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+
+{% block breadcrumbs %}
+    {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
+        {{ banner }}
+    {% endcall %}
+    <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back }}</a>
+{% endblock %}
+
+{% block two_thirds %}
+    {{ header(content.title, size="l") }}
+    <p class="govuk-body">{{ content.infoText }}</p>
+
+    <div class="govuk-!-margin-bottom-6">
+        <a class="govuk-link" href="http://www.gov.uk">{{ content.govuk }}</a>
+    </div>
+{% endblock %}

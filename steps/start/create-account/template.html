@@ -5,7 +5,7 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    {% if isTypeIba %}
+    {% if isIba %}
         <p class="govuk-body">{{ content.subtitleIba | safe }}</p>
     {% else %}
         <p class="govuk-body">{{ content.subtitle | safe }}</p>

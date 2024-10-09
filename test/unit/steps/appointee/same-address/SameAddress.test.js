@@ -1,15 +1,20 @@
 const { expect } = require('test/util/chai');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const i18next = require('i18next');
+const paths = require('paths');
 
-describe('answers() and values()', () => {
+describe('SameAddress', () => {
   let sameAddress = null;
   const question = 'A Question';
 
   beforeEach(() => {
     sameAddress = new SameAddress({
       journey: {
-        steps: {}
+        steps: {
+          TextReminders: paths.smsNotify.appellantTextReminders,
+          AppellantInUk: paths.identity.enterAppellantInUk,
+          AppellantContactDetails: paths.identity.enterAppellantContactDetails
+        }
       }
     });
 
@@ -82,5 +87,26 @@ describe('answers() and values()', () => {
     sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
     const values = sameAddress.values();
     expect(values).to.eql({ appellant: { isAddressSameAsAppointee: true } });
+  });
+
+  describe('next()', () => {
+    it('returns the next step path /appellant-text-reminders for same address', () => {
+      sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
+      expect(sameAddress.next().step)
+        .to.eql(paths.smsNotify.appellantTextReminders);
+    });
+
+    it('returns the next step path /appellant-in-uk for IBA', () => {
+      sameAddress.fields.isAddressSameAsAppointee.value = 'no';
+      sameAddress.req = { hostname: 'some-iba-hostname' };
+      expect(sameAddress.next().step)
+        .to.eql(paths.identity.enterAppellantInUk);
+    });
+
+    it('returns the next step path /enter-appellant-contact-details for non IBA', () => {
+      sameAddress.fields.isAddressSameAsAppointee.value = 'no';
+      expect(sameAddress.next().step)
+        .to.eql(paths.identity.enterAppellantContactDetails);
+    });
   });
 });

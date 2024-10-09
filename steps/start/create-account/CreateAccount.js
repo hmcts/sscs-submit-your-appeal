@@ -6,8 +6,7 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { get } = require('lodash');
-const benefitTypes = require('../benefit-type/types');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class CreateAccount extends SaveToDraftStore {
   static get path() {
@@ -31,16 +30,12 @@ class CreateAccount extends SaveToDraftStore {
     return {};
   }
 
-  get isTypeIba() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    return benefitType === benefitTypes.infectedBloodAppeal;
-  }
-
   next() {
     const createAccount = this.fields.createAccount.value === 'yes';
 
     return branch(
       redirectTo(this.journey.steps.IdamRedirect).if(createAccount),
+      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveAMRN)
     );
   }
