@@ -4,7 +4,7 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.description | safe }}</p>
+    <p class="govuk-body">{{ content.description }}</p>
 
     {% call formSection() %}
         {{ date(

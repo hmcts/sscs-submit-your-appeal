@@ -6,7 +6,7 @@
 {% block fields %}
     {% call formSection() %}
         {% if subtitle %}
-            <p class="govuk-body">{{ subtitle | safe }}</p>
+            <p class="govuk-body">{{ subtitle }}</p>
         {% endif %}
 
         {{ select(

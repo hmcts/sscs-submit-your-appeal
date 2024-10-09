@@ -5,9 +5,9 @@
 
 {% block fields %}
     {% if benefitType === 'UC' %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt }}">
     {% else %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt }}">
     {% endif %}
     {% call formSection() %}
         {{ date(

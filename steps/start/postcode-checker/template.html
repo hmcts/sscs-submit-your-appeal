@@ -6,9 +6,9 @@
 {% block fields %}
     {% call formSection() %}
         {% if isGlasgowIncluded %}
-            <p class="govuk-body">{{ content.subtitleScotland | safe }}</p>
+            <p class="govuk-body">{{ content.subtitleScotland }}</p>
         {% else %}
-            <p class="govuk-body">{{ content.subtitle | safe }}</p>
+            <p class="govuk-body">{{ content.subtitle }}</p>
         {% endif %}
 
         {{ textbox(fields.postcode, content.fields.postcode.label, hideLabel=true) }}

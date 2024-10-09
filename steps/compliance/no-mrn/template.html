@@ -5,7 +5,7 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
         {{ textarea(fields.reasonForNoMRN, content.fields.reasonForNoMRN.label, hideLabel=true) }}
     {% endcall %}
 {% endblock %}

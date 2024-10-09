@@ -11,68 +11,68 @@
         <div class="group help-page cookie-settings govuk-grid-column-two-thirds">
             <div class="grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
                 {% include "./cookie-success-banner.njk" %}
-                <h1 class="govuk-heading-xl">{{ content.new.cookies.title | safe }}</h1>
-                <p class="govuk-body-m">{{ content.new.cookies.description | safe }}</p>
-                <p class="govuk-body-m">{{ content.new.usedInService.uses | safe }}</p>
+                <h1 class="govuk-heading-xl">{{ content.new.cookies.title }}</h1>
+                <p class="govuk-body-m">{{ content.new.cookies.description }}</p>
+                <p class="govuk-body-m">{{ content.new.usedInService.uses }}</p>
                 <ul class="govuk-list govuk-list--bullet">
-                    <li>{{ content.new.usedInService.use1 | safe }}</li>
-                    <li>{{ content.new.usedInService.use2 | safe }}</li>
+                    <li>{{ content.new.usedInService.use1 }}</li>
+                    <li>{{ content.new.usedInService.use2 }}</li>
                 </ul>
-                <h2 class="govuk-heading-l">{{ content.new.howAreTheyUsed.title | safe }}</h2>
+                <h2 class="govuk-heading-l">{{ content.new.howAreTheyUsed.title }}</h2>
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.googleCookies.title | safe }}</legend>
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.googleCookies.title }}</legend>
                         <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
                             <p class="govuk-body-m">
-                                {{ content.new.howAreTheyUsed.googleCookies.description | safe }}
+                                {{ content.new.howAreTheyUsed.googleCookies.description }}
                             </p>
                             <table class="govuk-table">
-                                <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.title | safe }}</caption>
+                                <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.title }}</caption>
                                 <thead class="govuk-table__head">
                                 <tr>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName1 | safe }}</th>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName2 | safe }}</th>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName3 | safe }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName1 }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName2 }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.columnName3 }}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="govuk-table__body">
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item1Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item2Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.googleCookies.cookieTable.item3Expires }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.googleCookies.optOut.title | safe }}</legend>
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.googleCookies.optOut.title }}</legend>
                         <div class="govuk-radios">
                             <div class="govuk-radios__item">
                                 <input type="radio" name="analytics" id="radio-analytics-on" value="on" class="govuk-radios__input">
                                 <label for="radio-analytics-on" class="govuk-label govuk-radios__label" id="radio-analytics-on-label">
-                                    <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut1 | safe }}</span>
+                                    <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut1 }}</span>
                                 </label>
                                 </input>
                             </div>
                             <div class="govuk-radios__item">
                                 <input type="radio" name="analytics" id="radio-analytics-off" value="off" class="govuk-radios__input" checked="checked">
                                 <label for="radio-analytics-off" class="govuk-label govuk-radios__label" id="radio-analytics-off-label">
-                                    <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut2 | safe }}</span>
+                                    <span>{{ content.new.howAreTheyUsed.googleCookies.optOut.optOut2 }}</span>
                                 </label>
                                 </input>
                             </div>
@@ -81,101 +81,101 @@
                 </div>
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" aria-describedby="hint-ga">
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.performance.title | safe }}</legend>
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.new.howAreTheyUsed.performance.title }}</legend>
                         <div class="gem-c-hint govuk-hint govuk-!-margin-bottom-3">
                             <p class="govuk-body-m">
-                                {{ content.new.howAreTheyUsed.performance.description | safe }}
+                                {{ content.new.howAreTheyUsed.performance.description }}
                             </p>
                             <ul class="govuk-list govuk-list--bullet">
-                                <li>{{ content.new.howAreTheyUsed.performance.infolist1 | safe }}</li>
-                                <li>{{ content.new.howAreTheyUsed.performance.infolist2 | safe }}</li>
-                                <li>{{ content.new.howAreTheyUsed.performance.infolist3 | safe }}</li>
+                                <li>{{ content.new.howAreTheyUsed.performance.infolist1 }}</li>
+                                <li>{{ content.new.howAreTheyUsed.performance.infolist2 }}</li>
+                                <li>{{ content.new.howAreTheyUsed.performance.infolist3 }}</li>
                             </ul>
                             <p class="govuk-body-m">
-                                {{ content.new.howAreTheyUsed.performance.info2 | safe }}
+                                {{ content.new.howAreTheyUsed.performance.info2 }}
                             </p>
                             <table class="govuk-table">
-                                <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.performance.cookieTable.title | safe }}</caption>
+                                <caption class="govuk-table__caption">{{ content.new.howAreTheyUsed.performance.cookieTable.title }}</caption>
                                 <thead class="govuk-table__head">
                                 <tr>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName1 | safe }}</th>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName2 | safe }}</th>
-                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName3 | safe }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName1 }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName2 }}</th>
+                                    <th scope="col">{{ content.new.howAreTheyUsed.performance.cookieTable.columnName3 }}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="govuk-table__body">
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item1Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item1Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item1Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item1Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item1Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item1Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item2Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item2Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item2Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item2Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item2Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item2Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item3Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item3Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item3Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item3Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item3Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item3Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item4Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item4Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item4Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item4Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item4Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item4Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item5Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item5Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item5Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item5Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item5Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item5Expires }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item6Name | safe }}</td>
+                                    <td>{{ content.new.howAreTheyUsed.performance.cookieTable.item6Name }}</td>
                                     <td>
-                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item6Purpose | safe }}
+                                        {{ content.new.howAreTheyUsed.performance.cookieTable.item6Purpose }}
                                     </td>
-                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item6Expires | safe }}</td>
+                                    <td class="text-area">{{ content.new.howAreTheyUsed.performance.cookieTable.item6Expires }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.performance.optOut.title | safe }}</legend>
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ content.new.howAreTheyUsed.performance.optOut.title }}</legend>
                         <div class="govuk-radios govuk-radios--inline u-margin-top-30">
                             <div class="govuk-radios__item">
                                 <input type="radio" name="apm" id="radio-apm-on" value="on" class="govuk-radios__input">
                                 <label for="radio-apm-on" class="govuk-label govuk-radios__label" id="radio-apm-on-label">
-                                    <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut1 | safe }}</span>
+                                    <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut1 }}</span>
                                 </label>
                                 </input>
                             </div>
                             <div class="govuk-radios__item">
                                 <input type="radio" name="apm" id="radio-apm-off" value="off" class="govuk-radios__input" checked="checked">
                                 <label for="radio-apm-off" class="govuk-label govuk-radios__label" id="radio-apm-off-label">
-                                    <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut2 | safe }}</span>
+                                    <span>{{ content.new.howAreTheyUsed.performance.optOut.optOut2 }}</span>
                                 </label>
                                 </input>
                             </div>
                         </div>
                     </fieldset>
                 </div>
-                <h3 class="govuk-heading-m">{{ content.new.howAreTheyUsed.essentialCookies.title | safe }}</h3>
-                <p class="govuk-body">{{ content.new.howAreTheyUsed.essentialCookies.description | safe }}</p>
+                <h3 class="govuk-heading-m">{{ content.new.howAreTheyUsed.essentialCookies.title }}</h3>
+                <p class="govuk-body">{{ content.new.howAreTheyUsed.essentialCookies.description }}</p>
                 <p class="govuk-body">
                     <a target="_blank" rel="noreferrer noopener" href="https://hmcts-access.service.gov.uk/cookies">
-                        {{ content.new.howAreTheyUsed.essentialCookies.link | safe }}
+                        {{ content.new.howAreTheyUsed.essentialCookies.link }}
                     </a>
                 </p>
-                <p id="save-cookie-preferences" class="govuk-body govuk-button-group"><button class="govuk-button" data-module="govuk-button"> {{ content.new.cookies.save | safe }}</button></p>
+                <p id="save-cookie-preferences" class="govuk-body govuk-button-group"><button class="govuk-button" data-module="govuk-button"> {{ content.new.cookies.save }}</button></p>
             </div>
         </div>
     </form>

@@ -4,17 +4,17 @@
 {% from "components/phase_banner.njk" import phaseBanner %}
 
 {% block pageTitle %}
-{{ content.titleHead | safe }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix | safe }}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
 {% endblock %}
 
 {% block content %}
 
 {{ header(content.title | safe, size='xl') }}
 
-<p class="govuk-body" >{{ content.message | safe }}</p>
+<p class="govuk-body" >{{ content.message }}</p>
 
 <a class="govuk-button" href="/start-an-appeal">{{ content.tryAgain | safe}}</a>
 
-<p class="govuk-body" >{{ content.messageContactUs | safe }}</p>
+<p class="govuk-body" >{{ content.messageContactUs }}</p>
 
 {% endblock %}

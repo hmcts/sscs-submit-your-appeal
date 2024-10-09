@@ -5,10 +5,10 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {% if benefitCode == 'UC'%}
-            <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
+            <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 }}</p>
         {% endif %}
 
         {{ selectionButtons(
