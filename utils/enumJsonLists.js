@@ -27,7 +27,7 @@ function getPortOfEntries() {
 
 async function fetchCountryOfResidences() {
   try {
-    const res = await axios.get(`${config.api.url}/citizen/api/country-of-residences`);
+    const res = await axios.get(`${config.api.url}/api/citizen/country-of-residences`);
     countryOfResidences = res.data.map(entry => {
       entry.value = entry.label;
       return entry;
