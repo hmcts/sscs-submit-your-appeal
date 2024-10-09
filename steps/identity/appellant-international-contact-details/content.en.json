@@ -1,12 +1,21 @@
 {
   "titleHead": "Enter contact details",
-  "title": "Enter your contact details",
-  "subtitle": "As the appellant, enter your contact details.",
+  "title": {
+    "withoutAppointee": "Enter your contact details",
+    "withAppointee": "Enter their address"
+  },
+  "subtitle": {
+    "withoutAppointee": "As the appellant, enter your contact details.",
+    "withAppointee": "Enter the appellant's address."
+  },
   "fields": {
     "addressLine1": {
       "title": "Address line 1",
       "error": {
-        "required": "Enter the first line of your address",
+        "required": {
+          "withoutAppointee": "Enter the first line of your address",
+          "withAppointee": "Enter the first line of their address"
+        },
         "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
       }
     },
@@ -19,21 +28,30 @@
     "townCity": {
       "title": "Town/City",
       "error": {
-        "required": "Enter the town or city from your address",
+        "required": {
+          "withoutAppointee": "Enter the town or city from your address",
+          "withAppointee": "Enter the town or city from their address"
+        },
         "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
       }
     },
     "country": {
       "title": "Country of residence",
       "error": {
-        "required": "Select your country of residence",
+        "required": {
+          "withoutAppointee": "Select your country of residence",
+          "withAppointee": "Select their country of residence"
+        },
         "invalid": "The country of residence is invalid"
       }
     },
     "portOfEntry": {
       "title": "Port of entry",
       "error": {
-        "required": "Select your port of entry into the UK",
+        "required": {
+          "withoutAppointee": "Select your port of entry into the UK",
+          "withAppointee": "Select their port of entry into the UK"
+        },
         "invalid": "The port of entry is invalid"
       }
     },

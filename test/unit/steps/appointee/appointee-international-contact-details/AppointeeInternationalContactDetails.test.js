@@ -2,13 +2,25 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
-const countriesList = require('utils/countriesList');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { setCountriesOfResidence, getCountriesOfResidence } = require('utils/enumJsonLists');
 
 describe('AppointeeInternationalContactDetails.js', () => {
+  setCountriesOfResidence([
+    {
+      label: 'Italy',
+      officialName: 'The Italian Republic',
+      value: 'Italy'
+    },
+    {
+      label: 'Ivory Coast',
+      officialName: 'The Republic of Côte D’Ivoire',
+      value: 'Ivory Coast'
+    }
+  ]);
   let appointeeInternationalContactDetails = null;
   beforeEach(() => {
     appointeeInternationalContactDetails = new AppointeeInternationalContactDetails({
@@ -98,7 +110,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appointeeInternationalContactDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -227,7 +239,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appointeeInternationalContactDetails.getCountries).to.equal(countriesList);
+      expect(appointeeInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 

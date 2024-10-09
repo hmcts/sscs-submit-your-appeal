@@ -9,9 +9,9 @@ const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
-const countriesList = require('utils/countriesList');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
+const { getCountriesOfResidence } = require('utils/enumJsonLists');
 
 class AppointeeInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -35,7 +35,7 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = countriesList.map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
@@ -79,7 +79,7 @@ class AppointeeInternationalContactDetails extends SaveToDraftStore {
   }
 
   get getCountries() {
-    return countriesList;
+    return getCountriesOfResidence();
   }
 
   answers() {
