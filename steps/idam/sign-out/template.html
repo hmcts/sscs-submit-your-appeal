@@ -17,5 +17,5 @@
     {{ header(content.title, size='l') }}
     <p class="govuk-body" class="govuk-body">{{ content.body.para1 }}</p>
     <p class="govuk-body" class="govuk-body">{{ content.body.para2 }}</p>
-    <p class="govuk-body" class="govuk-body">{{ content.body.para3 }}</p>
+    <p class="govuk-body" class="govuk-body">{{ content.body.para3 | safe }}</p>
 {% endblock %}
