@@ -7,6 +7,8 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const benefitTypes = require('../benefit-type/types');
+const { get } = require('lodash');
 
 class LanguagePreference extends SaveToDraftStore {
   static get path() {
@@ -45,6 +47,10 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   next() {
+    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    if (benefitType === benefitTypes.infectedBloodAppeal) {
+      return goTo(this.journey.steps.Independence);
+    }
     return goTo(this.journey.steps.PostcodeChecker);
   }
 }

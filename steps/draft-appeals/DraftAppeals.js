@@ -4,6 +4,8 @@ const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { isIba } = require('utils/benefitTypeUtils');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 class DraftAppeals extends RestoreAllDraftsState {
   static get path() {
@@ -12,7 +14,9 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
+      const ibaCase = isIba(req);
       resetJourney(req);
+      if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
       super.handler(req, res, next);
     } else {
       res.redirect(this.journey.steps.BenefitType);
@@ -25,7 +29,16 @@ class DraftAppeals extends RestoreAllDraftsState {
 
   get drafts() {
     const draftCases = this.req.session.drafts;
-    return draftCases;
+    const ibaCase = isIba(this.req);
+    return Object.fromEntries(
+      // eslint-disable-next-line no-unused-vars
+      Object.entries(draftCases).filter(([key, caseData]) => {
+        const { benefitType } = caseData.BenefitType || {};
+        return ibaCase ?
+          benefitType === benefitTypes.infectedBloodAppeal :
+          benefitType !== benefitTypes.infectedBloodAppeal;
+      })
+    );
   }
 
   appellantName(draft) {
@@ -43,10 +56,16 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   mrnDate(draft) {
-    if (draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate) {
+    const validationForMRN = draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate;
+    const validationForIRN = draft.HaveAnIRN && draft.HaveAnIRN.haveAnIRN === 'yes' && draft.IRNDate;
+    if (validationForMRN) {
       const mrnDateObj = draft.MRNDate.mrnDate;
       const mrnDate = moment(`${mrnDateObj.day}-${mrnDateObj.month}-${mrnDateObj.year}`, 'DD-MM-yyyy');
       return DateUtils.formatDate(mrnDate, 'DD MMM YYYY');
+    } else if (validationForIRN) {
+      const irnDateObj = draft.IRNDate.irnDate;
+      const irnDate = moment(`${irnDateObj.day}-${irnDateObj.month}-${irnDateObj.year}`, 'DD-MM-yyyy');
+      return DateUtils.formatDate(irnDate, 'DD MMM YYYY');
     }
     return 'No Mrn';
   }

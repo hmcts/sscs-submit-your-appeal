@@ -4,6 +4,8 @@ const {
 const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
+const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const { Redirect } = require('@hmcts/one-per-page');
 
 describe('NewAppeal.js', () => {
   let newAppeal = null;
@@ -16,6 +18,10 @@ describe('NewAppeal.js', () => {
         }
       }
     });
+  });
+
+  afterEach(() => {
+    sinon.restore();
   });
 
   describe('get path()', () => {
@@ -38,6 +44,7 @@ describe('NewAppeal.js', () => {
   describe('When handler is called', () => {
     const req = {
       session: {
+        save: sinon.spy(),
         isUserSessionRestored: true,
         drafts: {
           101: {
@@ -46,14 +53,35 @@ describe('NewAppeal.js', () => {
         }
       }
     };
-    const redirect = sinon.spy();
     const res = {
-      redirect,
+      redirect: sinon.spy(),
       sendStatus: sinon.spy()
     };
-    it('should call redirect to check your appeal when draft in body', () => {
+
+    it('should not call redirect to entry when not a get request', () => {
+      const superStub = sinon.stub(Redirect.prototype, 'handler');
       newAppeal.handler(req, res);
-      expect(redirect.called).to.eql(false);
+      expect(req.session.save.calledOnce).to.eql(false);
+      expect(res.redirect.calledOnce).to.eql(false);
+      sinon.assert.called(superStub);
+    });
+
+    it('should call reset journey and redirect to /benefit-type when a get request non IBA', () => {
+      req.method = 'GET';
+      newAppeal.handler(req, res);
+      expect(req.session.save.calledOnce).to.eql(true);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
+    });
+
+    it('should call reset journey and call super when a get request IBA', () => {
+      const superStub = sinon.stub(Redirect.prototype, 'handler');
+      req.method = 'GET';
+      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      newAppeal.handler(req, res);
+      expect(req.session.save.calledTwice).to.eql(true);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      sinon.assert.called(superStub);
     });
   });
 });
