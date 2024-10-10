@@ -4,18 +4,18 @@
 {% from "components/header.njk" import header %}
 
 {% set hideBackButton = true %}
-{% block pageTitle %}{{ content.title | safe }}{% endblock %}
+{% block pageTitle %}{{ content.title }}{% endblock %}
 
 {% block content %}
     <main id="content" role="main">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <div class="govuk-panel govuk-panel--confirmation">
-                    <h1 class="govuk-panel__title">{{ content.applicationComplete | safe }}</h1>
+                    <h1 class="govuk-panel__title">{{ content.applicationComplete }}</h1>
                 </div>
                 <br>
                 <p class="govuk-body text">
-                    {{ content.emailSentTo | safe }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"></strong>.
+                    {{ content.emailSentTo }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"></strong>.
                 </p>
             </div>
         </div>

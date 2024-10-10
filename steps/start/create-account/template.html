@@ -1,14 +1,13 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% if isIba %}
-        <p class="govuk-body">{{ content.subtitleIba | safe }}</p>
+        <p class="govuk-body">{{ content.subtitleIba }}</p>
     {% else %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
     {% endif %}
 
     {% call formSection() %}
@@ -23,5 +22,5 @@
         }}
     {% endcall %}
 
-    <p class="govuk-body">{{ content.fields.createAccount.warning | safe }} {{ content.fields.createAccount.yes | safe }}.</p>
+    <p class="govuk-body">{{ content.fields.createAccount.warning }} {{ content.fields.createAccount.yes }}.</p>
 {% endblock %}

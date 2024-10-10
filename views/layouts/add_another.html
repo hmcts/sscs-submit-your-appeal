@@ -33,12 +33,12 @@
         <dl class="govuk-summary-list">
           {% for fieldName, item in fields.items.fields %}
             {% call addAnotherItem(item, deleteUrl(loop.index0), editUrl(loop.index0), loop.index) %}
-              {% block item %}{{ item.value | safe }}{% endblock %}
+              {% block item %}{{ item.value }}{% endblock %}
             {% endcall %}
           {% else %}
             {% call addAnotherItem(noItems=true) %}
               {% block noItems %}
-                {{ defaultContent.noItemsMessage | safe }}
+                {{ defaultContent.noItemsMessage }}
               {% endblock %}
             {% endcall %}
           {% endfor %}
@@ -47,7 +47,7 @@
 
       {% call formSection() %}
         <a href="{{ addAnotherUrl }}" class="add-another-add-link govuk-button govuk-button--secondary"
-           role="button">{{ defaultContent.addAnotherLink | safe }}</a>
+           role="button">{{ defaultContent.addAnotherLink }}</a>
       {% endcall %}
     {% endblock %}
   {% endif %}
@@ -77,10 +77,10 @@
     {% if deleteUrl or editUrl %}
       <dd class="govuk-summary-list__actions">
         {% if editUrl %}
-          <a href="{{ editUrl }}" class="govuk-link">{{ commonContent[htmlLang].edit }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ editUrl }}" class="govuk-link">{{ commonContent[htmlLang].edit }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
         {% endif %}
         {% if deleteUrl %}
-          <a href="{{ deleteUrl }}" class="govuk-link">{{ commonContent[htmlLang].delete }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel | safe }} {{ itemNumber }}</span></a>
+          <a href="{{ deleteUrl }}" class="govuk-link">{{ commonContent[htmlLang].delete }}<span class="govuk-visually-hidden">{{ defaultContent.itemLabel }} {{ itemNumber }}</span></a>
         {% endif %}
       </dd>
     {% endif %}

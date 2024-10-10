@@ -1,12 +1,11 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {{ selectionButtons(
             fields.doYouWantTextMsgReminders,

@@ -1,19 +1,18 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.healthcarePro | safe }}</p>
-    <p class="govuk-body">{{ content.writeStatement | safe }}</p>
-    <p class="govuk-body">{{ content.sendEvidence | safe }}</p>
+    <p class="govuk-body">{{ content.healthcarePro }}</p>
+    <p class="govuk-body">{{ content.writeStatement }}</p>
+    <p class="govuk-body">{{ content.sendEvidence }}</p>
 
     <p class="govuk-body">
         {% if hasSignedUpForEmail %}
-            {{ content.postEvidenceWithEmail | safe }}
+            {{ content.postEvidenceWithEmail }}
         {% else %}
-            {{ content.postEvidence | safe }}
+            {{ content.postEvidence }}
         {% endif %}
     </p>
 

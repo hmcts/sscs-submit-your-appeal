@@ -3,7 +3,9 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
+{% endblock %}
 {% set title = content.title | safe %}
 
 {% block head %}
@@ -26,16 +28,16 @@
 
                 {% block fields %}
                 {% if benefitType == 'UC' %}
-                    <p class="govuk-body-l">{{ content.UCreviewed | safe }}</p>
-                {% elif infectedbloodappeal %}
+                    <p class="govuk-body-l">{{ content.UCreviewed }}</p>
+                {% elif isIba %}
                     <p class="govuk-body-l">{{ content.IBAreviewed }}</p>
                 {% else %}
-                    <p class="govuk-body-l">{{ content.reviewed | safe }}</p>
+                    <p class="govuk-body-l">{{ content.reviewed }}</p>
                 {% endif %}
-                <p class="govuk-body-l">{{ content.separate | safe }}</p>
+                <p class="govuk-body-l">{{ content.separate }}</p>
                 {% endblock %}
 
-                <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue | safe }}">
+                <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue }}">
             </form>
         </div>
     </div>

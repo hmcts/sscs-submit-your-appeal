@@ -4,7 +4,7 @@
 {% from "components/i18n.njk" import languageSwitch %}
 
 {% block head -%}
-    {{ assets | safe }}
+    {{ assets }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -22,7 +22,7 @@
             You can either:
         <ul class="govuk-list govuk-list--bullet">
             {% for option in nextSteps %}
-                <li>{{ option | safe }}</li>
+                <li>{{ option }}</li>
             {% endfor %}
         </ul>
         </p>
