@@ -11,11 +11,11 @@
       "year": "Year",
       "error": {
         "allRequired": "Enter the IRN date.",
-        "dayRequired": "You have not entered a day. Enter a day",
-        "monthRequired": "You have not entered a month. Enter a month",
-        "yearRequired": "You have not entered a year. Enter a year",
-        "invalid": "You’ve entered an invalid IRN date. Enter the IRN date",
-        "future": "You’ve entered a date in the future. Enter the IRN date",
+        "dayRequired": "You have not entered a valid day. Enter a day.",
+        "monthRequired": "You have not entered a valid month. Enter a month.",
+        "yearRequired": "You have not entered a valid year. Enter a year.",
+        "invalid": "You’ve entered an invalid IRN date. Enter the IRN date.",
+        "future": "You’ve entered a date in the future. Enter the IRN date.",
         "dateSameAsImage": "You have entered the date from the picture. Look at your own IRN and enter the date shown."
       }
     }
