@@ -1,31 +1,20 @@
 {
   "titleHead": "Appellant in UK",
-  "title": {
-    "withoutAppointee": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
-    "withAppointee": "Do they live in The United Kingdom of Great Britain and Northern Ireland?"
-  },
-  "question": {
-    "withoutAppointee": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
-    "withAppointee": "Do they live in The United Kingdom of Great Britain and Northern Ireland?"
-  },
+  "title": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
+  "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
+
   "fields": {
     "inUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
-        "required": {
-          "withoutAppointee": "Select ‘Yes’ if you live in The United Kingdom of Great Britain and Northern Ireland.",
-          "withAppointee": "Select ‘Yes’ if they live in The United Kingdom of Great Britain and Northern Ireland."
-        }
+        "required": "Select ‘Yes’ if you live in The United Kingdom of Great Britain and Northern Ireland."
       }
     }
   },
   "cya": {
     "inUk": {
-      "question": {
-        "withoutAppointee": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
-        "withAppointee": "Do they live in The United Kingdom of Great Britain and Northern Ireland?"
-      },
+      "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
       "yes": "Yes",
       "no": "No"
     }

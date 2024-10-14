@@ -1,21 +1,12 @@
 {
   "titleHead": "Manylion cyswllt",
-  "title": {
-    "withoutAppointee": "Nodwch eich manylion cyswllt",
-    "withAppointee": "Nodwch eich cyfeiriad"
-  },
-  "subtitle": {
-    "withoutAppointee": "As the appellant, enter your contact details.",
-    "withAppointee": "Enter the appellant's address."
-  },
+  "title": "Rhowch eich manylion cyswllt",
+  "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
   "fields": {
     "addressLine1": {
-      "title": "Llinell gyntaf eich cyfeiriad",
+      "title": "Llinell gyntaf y cyfeiriad",
       "error": {
-        "required": {
-          "withoutAppointee": "Rhowch linell gyntaf eich cyfeiriad",
-          "withAppointee": "Rhowch linell gyntaf eu cyfeiriad"
-        },
+        "required": "Rhowch linell gyntaf eich cyfeiriad",
         "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
@@ -28,43 +19,32 @@
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
-        "required": {
-          "withoutAppointee": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
-          "withAppointee": "Nodwch y dref neu’r ddinas o’u cyfeiriad"
-        },
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
         "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "country": {
-      "title": "Country of residence",
+      "title": "Country",
       "error": {
-        "required": {
-          "withoutAppointee": "Select your country of residence",
-          "withAppointee": "Select their country of residence"
-        },
-        "invalid": "The country of residence is invalid"
+        "required": "Select your country"
       }
     },
     "portOfEntry": {
       "title": "Port of entry",
       "error": {
-        "required": {
-          "withoutAppointee": "Select your port of entry into the UK",
-          "withAppointee": "Select their port of entry into the UK"
-        },
-        "invalid": "The port of entry is invalid"
+        "required": "Select your port of entry into the UK"
       }
     },
     "phoneNumber": {
       "title": "Rhif ffôn (dewisol)",
-      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch eich apêl",
+      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch yr apêl",
       "error": {
         "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
       }
     },
     "emailAddress": {
-      "title": "Cyfeiriad e-bost (dewisol)",
-      "hint": "Byddwch yn cael diweddariadau ar eich apêl a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
+      "title": "Cyfeiriad e-bost (dewisol):",
+      "hint": "Byddwch yn cael diweddariadau a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
       "error": {
         "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
       }

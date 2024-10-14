@@ -27,7 +27,7 @@ class AppointeeInUk extends SaveToDraftStore {
   get form() {
     return form({
       inUk: text.joi(
-        this.content.fields.inUk.errors.required,
+        this.content.fields.inUk.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
