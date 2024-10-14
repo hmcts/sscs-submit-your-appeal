@@ -2,7 +2,7 @@
   "titleHead": "IRN dated",
   "title": "When is your Internal Review Notice (IRN) dated?",
   "dateLegend": "Enter the date from the top right of your IRN letter",
-  "dateHint": "For example, 31 3 2017",
+  "dateHint": "For example, 26 1 2024",
   "imageAlt": "A copy of your IRN",
   "fields": {
     "date": {
