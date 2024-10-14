@@ -1,4 +1,4 @@
-const { goTo, branch } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -6,7 +6,6 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
-const { isIba } = require('utils/benefitTypeUtils');
 
 class AppointeeDOB extends SaveToDraftStore {
   static get path() {
@@ -53,10 +52,7 @@ class AppointeeDOB extends SaveToDraftStore {
   }
 
   next() {
-    return branch(
-      goTo(this.journey.steps.AppointeeInUk).if(isIba(this.req)),
-      goTo(this.journey.steps.AppointeeContactDetails)
-    );
+    return goTo(this.journey.steps.AppointeeContactDetails);
   }
 }
 

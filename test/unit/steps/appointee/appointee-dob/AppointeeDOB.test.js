@@ -11,8 +11,7 @@ describe('AppointeeDOB.js', () => {
     appointeeDOBClass = new AppointeeDOB({
       journey: {
         steps: {
-          AppointeeContactDetails: paths.appointee.enterAppointeeContactDetails,
-          AppointeeInUk: paths.appointee.enterAppointeeInUk
+          AppointeeContactDetails: paths.appointee.enterAppointeeContactDetails
         }
       }
     });
@@ -90,15 +89,9 @@ describe('AppointeeDOB.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /appointee-contact-details for non IBA', () => {
-      expect(appointeeDOBClass.next().step)
-        .to.eql(paths.appointee.enterAppointeeContactDetails);
-    });
-
-    it('returns the next step path /appointee-in-uk for IBA', () => {
-      appointeeDOBClass.req = { hostname: 'some-iba-hostname' };
-      expect(appointeeDOBClass.next().step)
-        .to.eql(paths.appointee.enterAppointeeInUk);
+    it('returns the next step path /appointee-contact-details', () => {
+      expect(appointeeDOBClass.next())
+        .to.eql({ nextStep: paths.appointee.enterAppointeeContactDetails });
     });
   });
 });
