@@ -23,6 +23,7 @@ const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
+const {isIba} = require("utils/benefitTypeUtils");
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
@@ -89,6 +90,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
 
     if (this.journey.req && this.journey.req.session) {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
+      if (isIba(this.req)) {
+        values.mrn = values.irn;
+      }
     }
 
     const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));

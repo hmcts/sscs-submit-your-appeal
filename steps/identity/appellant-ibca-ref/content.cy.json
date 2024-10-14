@@ -9,7 +9,7 @@
     "withAppointee": "Enter the IBCA Reference of the person you are authorised to appeal for."
   },
     "fields": {
-      "ibcaRef": {
+      "ibcaReference": {
       "title": "IBCA Reference",
       "error": {
         "withoutAppointee": {
@@ -24,7 +24,7 @@
     }
     },
     "cya": {
-      "ibcaRef": {
+      "ibcaReference": {
         "question": "IBCA Reference"
       }
     }

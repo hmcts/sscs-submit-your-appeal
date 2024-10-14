@@ -2,7 +2,7 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, branch } = require('@hmcts/one-per-page');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { ibcaRef } = require('utils/regex');
+const { ibcaReference } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
@@ -40,12 +40,12 @@ class AppellantIBCARef extends SaveToDraftStore {
 
   get form() {
     return form({
-      ibcaRef: text.joi(
-        this.content.fields.ibcaRef.error[this.contentPrefix()].required,
+      ibcaReference: text.joi(
+        this.content.fields.ibcaReference.error[this.contentPrefix()].required,
         Joi.string().required()
       ).joi(
-        this.content.fields.ibcaRef.error[this.contentPrefix()].invalid,
-        Joi.string().trim().regex(ibcaRef)
+        this.content.fields.ibcaReference.error[this.contentPrefix()].invalid,
+        Joi.string().trim().regex(ibcaReference)
       )
     });
   }
@@ -53,9 +53,9 @@ class AppellantIBCARef extends SaveToDraftStore {
   answers() {
     return [
       answer(this, {
-        question: this.content.cya.ibcaRef.question,
+        question: this.content.cya.ibcaReference.question,
         section: sections.appellantDetails,
-        answer: this.fields.ibcaRef.value
+        answer: this.fields.ibcaReference.value
       })
     ];
   }
@@ -63,7 +63,7 @@ class AppellantIBCARef extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        ibcaRef: this.fields.ibcaRef.value
+        ibcaReference: this.fields.ibcaReference.value
       }
     };
   }

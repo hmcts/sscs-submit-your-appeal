@@ -4,7 +4,7 @@
   "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
 
   "fields": {
-    "inUk": {
+    "isInUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
@@ -13,7 +13,7 @@
     }
   },
   "cya": {
-    "inUk": {
+    "isInUk": {
       "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
       "yes": "Yes",
       "no": "No"
