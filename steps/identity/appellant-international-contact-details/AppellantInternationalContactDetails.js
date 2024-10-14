@@ -13,7 +13,6 @@ const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
 const { getPortsOfEntry } = require('utils/enumJsonLists');
 const { getCountriesOfResidence } = require('../../../utils/enumJsonLists');
-const { get } = require('lodash');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -26,27 +25,6 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     } else {
       super.handler(req, res, next);
     }
-  }
-
-  isAppointee() {
-    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
-  }
-
-  contentPrefix() {
-    return this.isAppointee() ? 'withAppointee' : 'withoutAppointee';
-  }
-
-  get isAppointeeJourney() {
-    return this.isAppointee();
-  }
-
-
-  get title() {
-    return this.content.title[this.contentPrefix()];
-  }
-
-  get subtitle() {
-    return this.content.subtitle[this.contentPrefix()];
   }
 
   get CYAPhoneNumber() {
@@ -71,7 +49,7 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     const fields = this.content.fields;
     return form({
       addressLine1: text.joi(
-        fields.addressLine1.error.required[this.contentPrefix()],
+        fields.addressLine1.error.required,
         Joi.string().required()
       ).joi(
         fields.addressLine1.error.invalid,
@@ -82,21 +60,21 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
         Joi.string().regex(whitelistNotFirst)
       ),
       townCity: text.joi(
-        fields.townCity.error.required[this.contentPrefix()],
+        fields.townCity.error.required,
         Joi.string().required()
       ).joi(
         fields.addressLine1.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       country: text.joi(
-        fields.country.error.required[this.contentPrefix()],
+        fields.country.error.required,
         Joi.string().required()
       ).joi(
         fields.country.error.invalid,
         this.validCountrySchema()
       ),
       portOfEntry: text.joi(
-        fields.portOfEntry.error.required[this.contentPrefix()],
+        fields.portOfEntry.error.required,
         Joi.string().required()
       ).joi(
         fields.portOfEntry.error.invalid,
