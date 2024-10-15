@@ -9,10 +9,19 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnDate;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get benefitType() {

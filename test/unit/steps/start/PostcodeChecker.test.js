@@ -114,7 +114,7 @@ describe('PostcodeChecker.js', () => {
     });
 
     describe('handler()', () => {
-      it('redirect to entry called for iba', () => {
+      it('redirect to /does-not-exist called for iba', () => {
         const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
         const req = {
           method: 'GET',
@@ -133,7 +133,7 @@ describe('PostcodeChecker.js', () => {
         expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
         sinon.assert.notCalled(superStub);
       });
-      it('no redirect to entry called for non iba', () => {
+      it('no redirect to /does-not-exist called for non iba', () => {
         const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
         const req = {
           method: 'GET',

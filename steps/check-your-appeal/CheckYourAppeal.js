@@ -134,6 +134,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     return [
       section(sections.benefitType, { title: this.content.benefitType }),
       section(sections.mrnDate, { title: this.content.compliance.mrnDate }),
+      section(sections.irnDate, { title: this.content.compliance.irnDate }),
       section(sections.noMRN, { title: this.content.compliance.noMRN }),
       section(sections.appellantDetails, { title: this.content.appellantDetails }),
       section(sections.appointeeDetails, { title: this.content.appointeeDetails }),

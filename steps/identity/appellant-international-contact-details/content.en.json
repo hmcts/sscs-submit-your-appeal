@@ -1,0 +1,74 @@
+{
+  "titleHead": "Enter contact details",
+  "title": "Enter your contact details",
+  "subtitle": "As the appellant, enter your contact details.",
+  "fields": {
+    "addressLine1": {
+      "title": "Address line 1",
+      "error": {
+        "required": "Enter the first line of your address",
+        "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
+      }
+    },
+    "addressLine2": {
+      "title": "Address line 2 (optional)",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your Address line 2 and enter it again"
+      }
+    },
+    "townCity": {
+      "title": "Town/City",
+      "error": {
+        "required": "Enter the town or city from your address",
+        "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
+      }
+    },
+    "country": {
+      "title": "Country of residence",
+      "error": {
+        "required": "Select your country of residence",
+        "invalid": "The country of residence is invalid"
+      }
+    },
+    "portOfEntry": {
+      "title": "Port of entry",
+      "error": {
+        "required": "Select your port of entry into the UK",
+        "invalid": "The port of entry is invalid"
+      }
+    },
+    "phoneNumber": {
+      "title": "Phone number (optional)",
+      "hint": "This may be used to contact you about the appeal",
+      "error": {
+        "invalid": "You have entered an invalid phone number. Check it and enter it again"
+      }
+    },
+    "emailAddress": {
+      "title": "Email address (optional)",
+      "hint": "You’ll get updates and a link so you can track the appeal online",
+      "error": {
+        "invalid": "You have entered an invalid email address. Check it and enter it again"
+      }
+    }
+  },
+  "cya": {
+    "country": {
+      "question": "Country of residence"
+    },
+    "portOfEntry": {
+      "question": "Port of entry"
+    },
+    "address": {
+      "question": "Address"
+    },
+    "phoneNumber": {
+      "question": "Phone number"
+    },
+    "emailAddress": {
+      "question": "Email"
+    },
+    "change": "Change",
+    "yourDetails": "Your Contact Details"
+  }
+}

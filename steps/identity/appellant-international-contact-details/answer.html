@@ -1,0 +1,52 @@
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.address.question }}</dt>
+        <dd class="govuk-summary-list__value">
+            {{ fields.addressLine1.value }}<br>
+            {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
+            {{ fields.townCity.value }}<br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+        </dd>
+    </div>
+</dl>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.country.question }}</dt>
+        <dd class="govuk-summary-list__value">
+            {{ fields.country.value }}<br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+        </dd>
+    </div>
+</dl>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.portOfEntry.question }}</dt>
+        <dd class="govuk-summary-list__value">
+            {{ fields.portOfEntry.value }}<br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+        </dd>
+    </div>
+</dl>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.emailAddress.question }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAEmailAddress }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </div>
+</dl>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{ content.cya.phoneNumber.question }}</dt>
+        <dd class="govuk-summary-list__value">{{ CYAPhoneNumber }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+    </div>
+</dl>

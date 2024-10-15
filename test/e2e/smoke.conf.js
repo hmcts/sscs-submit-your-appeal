@@ -12,6 +12,11 @@ exports.config = {
       enabled: evidenceUploadEnabled
     }
   },
+  plugins: {
+    screenshotOnFail: {
+      enabled: true
+    }
+  },
   helpers: {
     Playwright: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),

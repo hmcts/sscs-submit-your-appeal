@@ -7,10 +7,19 @@ const { getBenefitName, getBenefitCode, isFeatureFlagEnabled } = require('utils/
 const Joi = require('joi');
 const paths = require('paths');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class DWPIssuingOffice extends SaveToDraftStore {
   static get path() {
     return paths.compliance.dwpIssuingOffice;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   static selectify(ar) {

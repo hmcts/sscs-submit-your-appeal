@@ -12,6 +12,7 @@ const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const paths = require('paths');
 const { decode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class ReasonForAppealing extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -46,9 +47,17 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     return false;
   }
 
+  get reviewBody() {
+    return isIba(this.req) ? 'IBCA' : 'DWP';
+  }
+
   get field() {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
+
+    const errorReasonForMsgContent = isIba(this.req)
+      ? content.fields.reasonForAppealing.error.ibaNotEnough
+      : content.fields.reasonForAppealing.error.notEnough;
 
     return object({
       whatYouDisagreeWith: text,
@@ -58,7 +67,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       value => value.whatYouDisagreeWith &&
         isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith))
       .check(
-        errorFor('reasonForAppealing', content.fields.reasonForAppealing.error.notEnough),
+        errorFor('reasonForAppealing', errorReasonForMsgContent),
         value => value.reasonForAppealing &&
           isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );

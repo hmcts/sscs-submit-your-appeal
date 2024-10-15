@@ -1,0 +1,21 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, date %}
+
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
+
+{% block fields %}
+    <img class="mrn-image" src="{{ asset_path }}images/irn-date.png"  alt="{{ content.imageAlt }}">
+    {% call formSection() %}
+        {{ date(
+            fields.irnDate,
+            content.dateLegend,
+            hint = content.dateHint,
+            labels = {
+                day: content.fields.date.day,
+                month: content.fields.date.month,
+                year: content.fields.date.year
+            }
+        ) }}
+    {% endcall %}
+{% endblock %}

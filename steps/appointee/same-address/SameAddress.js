@@ -8,6 +8,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class SameAddress extends SaveToDraftStore {
   static get path() {
@@ -52,6 +53,7 @@ class SameAddress extends SaveToDraftStore {
     const isAddressSameAsAppointee = this.fields.isAddressSameAsAppointee.value === userAnswer.YES;
     return branch(
       redirectTo(this.journey.steps.TextReminders).if(isAddressSameAsAppointee),
+      goTo(this.journey.steps.AppellantInUk).if(isIba(this.req)),
       goTo(this.journey.steps.AppellantContactDetails)
     );
   }

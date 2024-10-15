@@ -6,7 +6,7 @@ const { firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const titlesList = require('../../../utils/titlesList');
+const titlesList = require('utils/titlesList');
 const { decode } = require('utils/stringUtils');
 
 class AppointeeName extends SaveToDraftStore {

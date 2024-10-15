@@ -1,0 +1,21 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons %}
+
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
+
+{% block fields %}
+    {% call formSection() %}
+        <p class="govuk-body">{{ content.subtitle }}</p>
+
+        {{ selectionButtons(
+            fields.haveAnIRN,
+            content.subtitle,
+            hint = '',
+            options = [
+                { label: content.fields.haveAnIRN.yes, value: "yes" },
+                { label: content.fields.haveAnIRN.no,  value: "no" }
+            ])
+        }}
+    {% endcall %}
+{% endblock %}

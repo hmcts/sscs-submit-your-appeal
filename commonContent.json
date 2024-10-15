@@ -97,7 +97,15 @@
           "availability": "Monday to Friday, 9am to 4pm",
           "emailText": "Email:",
           "emailAddress": "Contactsscs@justice.gov.uk",
-          "charges": "Find out about call charges"
+          "charges": "Find out about call charges",
+          "ibca" : {
+            "desc" : "IBCA appeals helpline (All other appellants)",
+            "phone": "Telephone: 0300 123 XXXX",
+            "availability": "Monday to Friday, 9am to 4pm",
+            "emailText": "Email:",
+            "emailAddress": "ibca@justice.gov.uk",
+            "charges": "Find out about call charges"
+          }
         },
         "WelshSpeakers": {
           "desc" : "Benefit appeals helpline (for Welsh Speakers)",
@@ -105,7 +113,15 @@
           "availability": "Monday to Friday, 8:30am to 5pm",
           "emailText": "Email:",
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
-          "charges": "Find out about call charges"
+          "charges": "Find out about call charges",
+          "ibca" : {
+            "desc" : "IBCA appeals helpline (for Welsh Speakers)",
+            "phone": "Telephone: 0300 123 XXXX",
+            "availability": "Monday to Friday, 9am to 4pm",
+            "emailText": "Email:",
+            "emailAddress": "ibca-ymholiadaucymraeg@justice.gov.uk",
+            "charges": "Find out about call charges"
+          }
         },
         "Scotland" : {
           "desc": "Benefit appeals helpline (Scotland)",
@@ -113,7 +129,15 @@
           "availability": "Monday to Friday, 8:30am to 5pm",
           "emailText": "Email:",
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
-          "charges": "Find out about call charges"
+          "charges": "Find out about call charges",
+          "ibca" : {
+            "desc" : "IBCA appeals helpline (Scotland)",
+            "phone": "Telephone: 0300 123 XXXX",
+            "availability": "Monday to Friday, 9am to 4pm",
+            "emailText": "Email:",
+            "emailAddress": "ibca-Glasgow@justice.gov.uk",
+            "charges": "Find out about call charges"
+          }
         }
       }
     }
@@ -214,7 +238,15 @@
           "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
           "emailText": "E-bost:",
           "emailAddress": "Contactsscs@justice.gov.uk",
-          "charges": "Gwybodaeth am gost galwadau"
+          "charges": "Gwybodaeth am gost galwadau",
+          "ibca" : {
+            "desc" : "--------IBCA appeals helpline (All other appellants)",
+            "phone": "---------Telephone: 0300 123 XXXX",
+            "availability": "-----------Monday to Friday, 9am to 4pm",
+            "emailText": "--------Email:",
+            "emailAddress": "----------ibca@justice.gov.uk",
+            "charges": "-------Find out about call charges"
+          }
         },
         "WelshSpeakers": {
           "desc" : "Llinell gymorth apeliadau budd-daliadau (Cymru a Lloegr - Siaradwyr Cymraeg)",
@@ -222,7 +254,15 @@
           "availability": "Dydd Llun i ddydd Iau 9am i 5pm, dydd Gwener 9am i 4.30pm.",
           "emailText": "E-bost:",
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
-          "charges": "Gwybodaeth am gost galwadau"
+          "charges": "Gwybodaeth am gost galwadau",
+          "ibca" : {
+            "desc" : "-------IBCA appeals helpline (All other appellants)",
+            "phone": "-------Telephone: 0300 123 XXXX",
+            "availability": "-------Monday to Friday, 9am to 4pm",
+            "emailText": "-------Email:",
+            "emailAddress": "-------ibca@justice.gov.uk",
+            "charges": "-------Find out about call charges"
+          }
         },
         "Scotland" : {
           "desc": "Llinell gymorth apeliadau budd-daliadau (Yr Alban)",
@@ -230,7 +270,15 @@
           "availability": "Dydd Llun i ddydd Gwener, 8.30am i 5pm.",
           "emailText": "E-bost:",
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
-          "charges": "Gwybodaeth am gost galwadau"
+          "charges": "Gwybodaeth am gost galwadau",
+          "ibca" : {
+            "desc" : "-------IBCA appeals helpline (All other appellants)",
+            "phone": "-------Telephone: 0300 123 XXXX",
+            "availability": "-------Monday to Friday, 9am to 4pm",
+            "emailText": "-------Email:",
+            "emailAddress": "-------ibca@justice.gov.uk",
+            "charges": "-------Find out about call charges"
+          }
         }
       }
     }

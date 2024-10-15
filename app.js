@@ -13,7 +13,8 @@ const {
   configureViews,
   configureHelmet,
   configureJourney,
-  configureAppRoutes
+  configureAppRoutes,
+  configureGlobalVariables
 } = require('./appConfigurations');
 
 const app = express();
@@ -45,7 +46,10 @@ configureHelmet(app);
 configureViews(app);
 
 // Configure Nunjucks Settings
-configureNunjucks(app, commonContent);
+const njk = configureNunjucks(app, commonContent);
+
+// Configure App Middleware Global Variable setting
+configureGlobalVariables(app, njk);
 
 // Configure One Per page settings.
 configureJourney(app, commonContent);

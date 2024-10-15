@@ -5,6 +5,7 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
@@ -17,6 +18,11 @@ describe('OtherReasonForAppealing.js', () => {
         steps: {
           SendingEvidence: paths.reasonsForAppealing.sendingEvidence,
           EvidenceProvide: paths.reasonsForAppealing.evidenceProvide
+        }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
         }
       }
     });
@@ -99,6 +105,30 @@ describe('OtherReasonForAppealing.js', () => {
     it('should contain a value object', () => {
       const values = otherReasonForAppealing.values();
       expect(values).to.eql({ reasonsForAppealing: { otherReasons: value } });
+    });
+  });
+
+  describe('reviewBody()', () => {
+    it('should return "IBCA" in IBA journey', () => {
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(otherReasonForAppealing.reviewBody).to.equal('IBCA');
+    });
+
+    it('should return  "DWP" in non IBA journey', () => {
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(otherReasonForAppealing.reviewBody).to.equal('DWP');
+    });
+  });
+
+  describe('subtitleEnd()', () => {
+    it('should return "decision" in IBA journey', () => {
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(otherReasonForAppealing.subtitleEnd).to.equal('decision');
+    });
+
+    it('should return  "assessment" in non IBA journey', () => {
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(otherReasonForAppealing.subtitleEnd).to.equal('assessment');
     });
   });
 

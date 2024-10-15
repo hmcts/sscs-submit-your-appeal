@@ -1,7 +1,7 @@
 {
   "titleHead": "Unrhyw beth arall",
   "title": "Unrhyw beth arall y dymunwch ei ddweud wrth y tribiwnlys",
-  "subtitle": "Gallwch ddweud wrth y tribiwnlys am unrhyw beth y credwch a allai fod yn berthnasol i’ch apêl, megis rhywbeth y teimlwch na wnaeth DWP ei ystyried yn ei asesiad.",
+  "subtitle": "Gallwch ddweud wrth y tribiwnlys am unrhyw beth y credwch a allai fod yn berthnasol i’ch apêl, megis rhywbeth y teimlwch na wnaeth {{reviewBody}} ei ystyried yn ei {{subtitleEnd}}.",
   "additonalInfo": "Does dim rhaid i chi nodi unrhyw beth, os nad oes gennych unrhyw beth pellach i’w ychwanegu.",
   "fields": {
     "otherReasonForAppealing": {

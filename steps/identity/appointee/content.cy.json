@@ -1,11 +1,11 @@
 {
   "titleHead": "Ydych chi’n benodai",
   "title": "Ydych chi’n ‘benodai’?",
-  "description": "Rydych yn benodai os ydych wedi cael eich penodi gan DWP i weithredu ar ran rhywun nad yw’n gallu delio â’i hawliad am fudd-dal. Er enghraifft, rhiant sy’n hawlio ar ran plentyn.",
+  "description": "Rydych yn benodai os ydych wedi cael eich penodi gan {{appointedBy}} i weithredu ar ran rhywun nad yw’n gallu delio â’i hawliad am fudd-dal. Er enghraifft, rhiant sy’n hawlio ar ran plentyn.",
   "fields": {
     "isAppointee": {
       "label": "Dewiswch p’un a ydych yn benodai ai peidio",
-      "yes": "Fe’m penodwyd gan DWP i weithredu ar ran rhywun arall",
+      "yes": "Fe’m penodwyd gan {{appointedBy}} i weithredu ar ran rhywun arall",
       "no": "Rwy’n apelio dros fy hun",
       "error": {
         "required": "Mae angen ichi ateb y cwestiwn cyn y gallwch barhau"

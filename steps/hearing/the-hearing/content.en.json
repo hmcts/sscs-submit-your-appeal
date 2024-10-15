@@ -1,7 +1,7 @@
 {
   "titleHead": "Your hearing",
   "title": "The appeal hearing",
-  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
+  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by {{reviewBody}} will also be considered.",
   "explainReasons": "If you come to the hearing you can explain your reasons for appealing.",
   "arrangeSupport": "Support can be arranged for you such as an interpreter, hearing loop or disabled access.",
   "fields": {

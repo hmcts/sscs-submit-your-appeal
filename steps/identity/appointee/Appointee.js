@@ -9,6 +9,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const config = require('config');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const allowAppointee = config.get('features.allowAppointee.enabled') === 'true';
 
@@ -24,6 +25,10 @@ class Appointee extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get appointedBy() {
+    return isIba(this.req) ? 'a court' : 'DWP';
   }
 
   answers() {
