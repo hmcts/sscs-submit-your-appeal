@@ -1,25 +1,13 @@
 {
     "titleHead": "Enter IBCA Reference number",
-    "title": {
-      "withoutAppointee": "Enter your IBCA Reference",
-      "withAppointee": "Enter their IBCA Reference"
-    },
-    "subtitle": {
-    "withoutAppointee": "You can find your IBCA Reference on your IRN letter.",
-    "withAppointee": "Enter the IBCA Reference of the person you are authorised to appeal for."
-  },
+    "title": "Enter your IBCA Reference",
+    "subtitle": "You can find your IBCA Reference on your IRN letter.",
     "fields": {
       "ibcaRef": {
       "title": "IBCA Reference Number",
       "error": {
-        "withoutAppointee": {
           "required": "Enter your IBCA Reference number",
           "invalid": "Please enter a valid IBCA reference number"
-        },
-        "withAppointee": {
-          "required": "Enter their IBCA Reference number",
-          "invalid": "Please enter a valid IBCA reference number"
-        }
       }
     }
     },
