@@ -22,7 +22,7 @@ describe('IRNOverThirteenMonthsLate.js', () => {
           }
         },
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -141,8 +141,8 @@ describe('IRNOverThirteenMonthsLate.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name for IBA', () => {
-      expect(irnOverThirteenMonthsLate.next().step).to.eql(paths.identity.enterAppellantName);
+    it('returns the next step path /enter-appellant-role for IBA', () => {
+      expect(irnOverThirteenMonthsLate.next().step).to.eql(paths.identity.enterAppellantRole);
     });
   });
 });

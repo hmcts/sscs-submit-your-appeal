@@ -38,6 +38,7 @@ const IRNOverThirteenMonthsLate = require('steps/compliance/irn-over-thirteen-mo
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
+const AppellantRole = require('steps/identity/appellant-role/AppellantRole');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const AppellantIBCARef = require('steps/identity/appellant-ibca-ref/AppellantIBCARef');
@@ -136,6 +137,7 @@ const identity = [
   AppellantContactDetails,
   AppellantDOB,
   AppellantName,
+  AppellantRole,
   AppellantNINO,
   AppellantIBCARef,
   Appointee,

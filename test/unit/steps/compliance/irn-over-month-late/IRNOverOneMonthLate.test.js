@@ -21,7 +21,7 @@ describe('IRNOverOneMonth.js', () => {
           }
         },
         steps: {
-          AppellantName: paths.identity.enterAppellantName
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -139,8 +139,8 @@ describe('IRNOverOneMonth.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /enter-appellant-name for IBA', () => {
-      expect(irnOverOneMonth.next().step).to.eql(paths.identity.enterAppellantName);
+    it('returns the next step path /enter-appellant-role for IBA', () => {
+      expect(irnOverOneMonth.next().step).to.eql(paths.identity.enterAppellantRole);
     });
   });
 });

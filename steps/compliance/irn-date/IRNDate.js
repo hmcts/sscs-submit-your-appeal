@@ -70,7 +70,7 @@ class IRNDate extends SaveToDraftStore {
     const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(irnDate);
 
     return branch(
-      goTo(this.journey.steps.AppellantName).if(isLessThanOrEqualToAMonth),
+      goTo(this.journey.steps.AppellantRole).if(isLessThanOrEqualToAMonth),
       redirectTo(this.journey.steps.CheckIRN)
     );
   }

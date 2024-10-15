@@ -67,6 +67,7 @@ module.exports = {
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',

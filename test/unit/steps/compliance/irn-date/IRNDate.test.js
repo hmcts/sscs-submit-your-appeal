@@ -24,7 +24,7 @@ describe('IRNDate.js', () => {
         },
         steps: {
           CheckIRN: paths.compliance.checkIRNDate,
-          AppellantName: paths.identity.enterAppellantName
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -151,14 +151,14 @@ describe('IRNDate.js', () => {
     };
 
     describe('when benefit type is IBA', () => {
-      it('returns the next step path /enter-appellant-name if date less than a month', () => {
+      it('returns the next step path /enter-appellant-role if date less than a month', () => {
         setIRNDate(DateUtils.oneDayShortOfAMonthAgo());
-        expect(irnDate.next().step).to.eql(paths.identity.enterAppellantName);
+        expect(irnDate.next().step).to.eql(paths.identity.enterAppellantRole);
       });
 
-      it('returns the next step path /enter-appellant-name if date is equal to a month', () => {
+      it('returns the next step path /enter-appellant-role if date is equal to a month', () => {
         setIRNDate(DateUtils.oneMonthAgo());
-        expect(irnDate.next().step).to.eql(paths.identity.enterAppellantName);
+        expect(irnDate.next().step).to.eql(paths.identity.enterAppellantRole);
       });
 
       it('returns the next step path /check-irn-date if date is one day over a month', () => {

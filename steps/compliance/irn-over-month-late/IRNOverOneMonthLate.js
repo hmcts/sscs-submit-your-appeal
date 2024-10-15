@@ -54,7 +54,7 @@ class IRNOverOneMonthLate extends SaveToDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.AppellantName);
+    return goTo(this.journey.steps.AppellantRole);
   }
 }
 
