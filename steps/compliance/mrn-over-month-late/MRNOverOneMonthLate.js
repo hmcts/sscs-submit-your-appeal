@@ -8,12 +8,21 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const MIN_CHAR_COUNT = 5;
 
 class MRNOverOneMonthLate extends SaveToDraftStore {
   static get path() {
     return paths.compliance.mrnOverMonthLate;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {
@@ -57,9 +66,11 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
+    const skipToAppointee = isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
+      isBereavementSupportPaymentScheme;
+
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-        isBereavementSupportPaymentScheme),
+      goTo(this.journey.steps.Appointee).if(skipToAppointee),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)
     );

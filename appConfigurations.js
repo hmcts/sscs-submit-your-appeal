@@ -24,8 +24,9 @@ const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
 const webChatBaseUrl = config.get('services.webchat.url');
 const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
+const { isIba } = require('./utils/benefitTypeUtils');
 
-const configureNunjucks = (app, commonContent) => {
+const configureNunjucks = (app, commonContent) =>
   // because of a bug with iphone, we need to remove the mime types from accept
   expressNunjucks(app, {
     watch: isDev(),
@@ -81,8 +82,6 @@ const configureNunjucks = (app, commonContent) => {
         webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
     }
   });
-};
-
 const configureViews = app => {
   app.set('views', [
     path.resolve(__dirname, 'steps'),
@@ -279,6 +278,17 @@ const configureMiddleWares = (app, express) => {
   }));
 };
 
+const configureGlobalVariables = (app, njk) => {
+  app.use((req, res, next) => {
+    if (isIba(req)) {
+      njk.env.addGlobal('isIba', true);
+    } else {
+      njk.env.addGlobal('isIba', false);
+    }
+    next();
+  });
+};
+
 const configureAppRoutes = app => {
   app.get('/appeal');
 
@@ -290,6 +300,7 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
+
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });
@@ -301,5 +312,6 @@ module.exports = {
   configureHelmet,
   configureJourney,
   configureMiddleWares,
+  configureGlobalVariables,
   configureAppRoutes
 };

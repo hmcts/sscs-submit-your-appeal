@@ -13,7 +13,8 @@ describe('Representative.js', () => {
       journey: {
         steps: {
           RepresentativeDetails: paths.representative.representativeDetails,
-          ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+          ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing,
+          RepresentativeInUk: paths.representative.representativeInUk
         }
       }
     });
@@ -140,16 +141,20 @@ describe('Representative.js', () => {
   });
 
   describe('next()', () => {
-    it('nextStep equals /representative-details', () => {
+    it('nextStep equals /representative-details if not iba with rep', () => {
       representative.fields.hasRepresentative.value = userAnswer.YES;
-      const branches = representative.next().branches[0];
-      expect(branches.redirector).to.eql({ nextStep: paths.representative.representativeDetails });
+      expect(representative.next().step).to.eql(paths.representative.representativeDetails);
     });
 
-    it('nextStep equals /reason-for-appealing', () => {
+    it('nextStep equals /representative-details if iba with rep', () => {
+      representative.req = { hostname: 'some-iba-hostname' };
+      representative.fields.hasRepresentative.value = userAnswer.YES;
+      expect(representative.next().step).to.eql(paths.representative.representativeInUk);
+    });
+
+    it('nextStep equals /reason-for-appealing no rep', () => {
       representative.fields.hasRepresentative.value = userAnswer.NO;
-      const fallback = representative.next().fallback;
-      expect(fallback).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
+      expect(representative.next().step).to.eql(paths.reasonsForAppealing.reasonForAppealing);
     });
   });
 });

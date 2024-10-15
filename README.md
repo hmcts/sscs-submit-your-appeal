@@ -18,8 +18,14 @@ an appeal summary page, allowing the user to edit their answers or sign and subm
 
 **Config**
 
+
 Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
-Install Redis: download, extract and build:
+
+### If Redis is already installed on your system
+You can simply start the application with `yarn start:dev` (`yarn iba:start:dev` for IBA appeals.)
+
+### Install Redis: 
+download, extract and build:
 
     http://download.redis.io/redis-stable.tar.gz
     tar xvzf redis-stable.tar.gz
@@ -55,6 +61,11 @@ Bring up SYA in a new terminal window:
 
     yarn dev
 
+For an IBA appeal, use:
+
+    yarn iba:dev
+
+
 View the application:
 
     https://localhost:3000
@@ -80,7 +91,7 @@ View the application:
 If you prefer to run the application natively but still use docker for Redis you can do so by running:
     docker-compose up redis
 
-You would then start the application by running yarn dev as above
+You would then start the application by running yarn dev (yarn iba:dev for IBA appeal) as above
 
 ## End-to-end testing
 

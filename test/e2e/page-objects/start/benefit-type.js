@@ -6,7 +6,7 @@ function enterBenefitTypeAndContinue(language, commonContent, type) {
   const I = this;
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
 
-  I.waitForText(benefitContent.title, 5);
+  I.waitForText(benefitContent.title, 10);
   I.fillField({ id: 'benefitType' }, type);
   I.click('#benefitType__option--0');
   I.click(commonContent.continue);

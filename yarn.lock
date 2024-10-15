@@ -9115,6 +9115,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ignore-by-default@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "ignore-by-default@npm:1.0.1"
+  checksum: 10/441509147b3615e0365e407a3c18e189f78c07af08564176c680be1fabc94b6c789cad1342ad887175d4ecd5225de86f73d376cec8e06b42fd9b429505ffcf8a
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^5.1.1":
   version: 5.1.8
   resolution: "ignore@npm:5.1.8"
@@ -11784,6 +11791,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nodemon@npm:^3.1.7":
+  version: 3.1.7
+  resolution: "nodemon@npm:3.1.7"
+  dependencies:
+    chokidar: "npm:^3.5.2"
+    debug: "npm:^4"
+    ignore-by-default: "npm:^1.0.1"
+    minimatch: "npm:^3.1.2"
+    pstree.remy: "npm:^1.1.8"
+    semver: "npm:^7.5.3"
+    simple-update-notifier: "npm:^2.0.0"
+    supports-color: "npm:^5.5.0"
+    touch: "npm:^3.1.0"
+    undefsafe: "npm:^2.0.5"
+  bin:
+    nodemon: bin/nodemon.js
+  checksum: 10/07c6b14e4915bfe11abd0ee95bdfd96087dcdb7a37f9d1a57d9526f5f564268432556aa726a4019abf7e48deeff4628a5b34e88ccba8bf46c310c5910ad4a075
+  languageName: node
+  linkType: hard
+
 "nodent-runtime@npm:^3.2.1":
   version: 3.2.1
   resolution: "nodent-runtime@npm:3.2.1"
@@ -13445,6 +13472,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pstree.remy@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "pstree.remy@npm:1.1.8"
+  checksum: 10/ef13b1b5896b35f67dbd4fb7ba54bb2a5da1a5c317276cbad4bcad4159bf8f7b5e1748dc244bf36865f3d560d2fc952521581280a91468c9c2df166cc760c8c1
+  languageName: node
+  linkType: hard
+
 "pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -14655,6 +14689,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"simple-update-notifier@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "simple-update-notifier@npm:2.0.0"
+  dependencies:
+    semver: "npm:^7.5.3"
+  checksum: 10/40bd4f96aa89aedbf717ae9f4ab8fca70e8f7511e8b766feb15471cca3f6fe4fe673743309b08b4ba8abfe0965c9cd927e1de46550a757b819b70fc7430cc85d
+  languageName: node
+  linkType: hard
+
 "sinon-chai@npm:^3.7.0":
   version: 3.7.0
   resolution: "sinon-chai@npm:3.7.0"
@@ -15330,7 +15373,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^5.3.0":
+"supports-color@npm:^5.3.0, supports-color@npm:^5.5.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
   dependencies:
@@ -15447,6 +15490,7 @@ __metadata:
     mochawesome: "npm:^4.0.1"
     moment: "npm:^2.29.4"
     nock: "npm:^13.3.3"
+    nodemon: "npm:^3.1.7"
     nunjucks: "npm:^3.2.4"
     nunjucks-loader: "npm:^3.0.0"
     nyc: "npm:^15.1.0"
@@ -15809,6 +15853,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"touch@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "touch@npm:3.1.1"
+  bin:
+    nodetouch: bin/nodetouch.js
+  checksum: 10/853e763a1f4903302c5654ed353f84ad85baf757dac62c2d37ab67e0477cfd271e8c64771fcfad42310aff7c9d284ddb435ee5ca13ff36d0f3693fedd8e971d1
+  languageName: node
+  linkType: hard
+
 "tough-cookie@npm:^2.3.3, tough-cookie@npm:~2.5.0":
   version: 2.5.0
   resolution: "tough-cookie@npm:2.5.0"
@@ -16140,6 +16193,13 @@ __metadata:
   version: 0.1.2
   resolution: "unc-path-regex@npm:0.1.2"
   checksum: 10/a05fa2006bf4606051c10fc7968f08ce7b28fa646befafa282813aeb1ac1a56f65cb1b577ca7851af2726198d59475bb49b11776036257b843eaacee2860a4ec
+  languageName: node
+  linkType: hard
+
+"undefsafe@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "undefsafe@npm:2.0.5"
+  checksum: 10/f42ab3b5770fedd4ada175fc1b2eb775b78f609156f7c389106aafd231bfc210813ee49f54483d7191d7b76e483bc7f537b5d92d19ded27156baf57592eb02cc
   languageName: node
   linkType: hard
 
