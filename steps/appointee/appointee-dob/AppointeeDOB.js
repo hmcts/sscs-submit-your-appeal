@@ -1,4 +1,4 @@
-const { goTo, branch } = require('@hmcts/one-per-page');
+const { goTo } = require('@hmcts/one-per-page');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -11,6 +11,14 @@ const { isIba } = require('utils/benefitTypeUtils');
 class AppointeeDOB extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeDOB;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {
@@ -53,10 +61,7 @@ class AppointeeDOB extends SaveToDraftStore {
   }
 
   next() {
-    return branch(
-      goTo(this.journey.steps.AppointeeInUk).if(isIba(this.req)),
-      goTo(this.journey.steps.AppointeeContactDetails)
-    );
+    return goTo(this.journey.steps.AppointeeContactDetails);
   }
 }
 

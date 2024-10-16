@@ -7,11 +7,13 @@ const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const config = require('config');
+const benefitTypes = require('steps/start/benefit-type/types');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 
 describe('Appointee-contact-details.js', () => {
   let appointeeContactDetails = null;
   const isPostCodeLookupEnabled = config.postcodeLookup.enabled === 'true';
-  const res = { send: sinon.spy() };
+  const res = { send: sinon.spy(), redirect: sinon.spy() };
 
   beforeEach(() => {
     appointeeContactDetails = new AppointeeContactDetails({
@@ -53,6 +55,7 @@ describe('Appointee-contact-details.js', () => {
 
     afterEach(() => {
       appointeeContactDetails.pcl.init.restore();
+      sinon.restore();
     });
 
     const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
@@ -61,6 +64,19 @@ describe('Appointee-contact-details.js', () => {
       appointeeContactDetails.req = req;
       appointeeContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
+    });
+
+    it('redirect to /does-not-exist called for iba', async() => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      req.session = {
+        BenefitType: {
+          benefitType: benefitTypes.infectedBloodAppeal
+        }
+      };
+      await appointeeContactDetails.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
     });
   });
 

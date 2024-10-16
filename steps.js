@@ -33,6 +33,7 @@ const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-mo
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
+const AppellantRole = require('steps/identity/appellant-role/AppellantRole');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const AppellantIBCARef = require('steps/identity/appellant-ibca-ref/AppellantIBCARef');
@@ -42,8 +43,6 @@ const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownloa
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
 const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
-const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
-const AppointeeInUk = require('steps/appointee/appointee-in-uk/AppointeeInUk');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
@@ -128,6 +127,7 @@ const identity = [
   AppellantContactDetails,
   AppellantDOB,
   AppellantName,
+  AppellantRole,
   AppellantNINO,
   AppellantIBCARef,
   Appointee,
@@ -140,8 +140,6 @@ const appointee = [
   AppointeeName,
   AppointeeDOB,
   AppointeeContactDetails,
-  AppointeeInternationalContactDetails,
-  AppointeeInUk,
   SameAddress
 ];
 

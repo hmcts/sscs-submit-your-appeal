@@ -2,6 +2,9 @@ const { expect } = require('test/util/chai');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const i18next = require('i18next');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const sinon = require('sinon');
 
 describe('SameAddress', () => {
   let sameAddress = null;
@@ -12,7 +15,6 @@ describe('SameAddress', () => {
       journey: {
         steps: {
           TextReminders: paths.smsNotify.appellantTextReminders,
-          AppellantInUk: paths.identity.enterAppellantInUk,
           AppellantContactDetails: paths.identity.enterAppellantContactDetails
         }
       }
@@ -31,6 +33,52 @@ describe('SameAddress', () => {
     sameAddress.fields = {
       isAddressSameAsAppointee: {}
     };
+  });
+
+
+  describe('iba handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodAppeal
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      sameAddress.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      sameAddress.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
+    });
   });
 
   describe('English', () => {
@@ -96,14 +144,8 @@ describe('SameAddress', () => {
         .to.eql(paths.smsNotify.appellantTextReminders);
     });
 
-    it('returns the next step path /appellant-in-uk for IBA', () => {
-      sameAddress.fields.isAddressSameAsAppointee.value = 'no';
-      sameAddress.req = { hostname: 'some-iba-hostname' };
-      expect(sameAddress.next().step)
-        .to.eql(paths.identity.enterAppellantInUk);
-    });
 
-    it('returns the next step path /enter-appellant-contact-details for non IBA', () => {
+    it('returns the next step path /enter-appellant-contact-details', () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'no';
       expect(sameAddress.next().step)
         .to.eql(paths.identity.enterAppellantContactDetails);
