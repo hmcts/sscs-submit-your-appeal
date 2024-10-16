@@ -10,6 +10,7 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
 const { maskNino } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
