@@ -57,7 +57,6 @@ module.exports = {
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
     irnOverMonthLate: '/irn-over-month-late',
-    irnOverThirteenMonthsLate: '/irn-over-thirteen-months-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
