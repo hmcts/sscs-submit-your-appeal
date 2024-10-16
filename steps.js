@@ -22,7 +22,6 @@ const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
-const HaveAnIRN = require('steps/compliance/have-an-irn/HaveAnIRN');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const CheckIRN = require('steps/compliance/check-irn/CheckIRN');
@@ -115,7 +114,6 @@ const startAnAppeal = [
 
 const compliance = [
   HaveAMRN,
-  HaveAnIRN,
   HaveContactedDWP,
   DWPIssuingOffice,
   CantAppeal,
