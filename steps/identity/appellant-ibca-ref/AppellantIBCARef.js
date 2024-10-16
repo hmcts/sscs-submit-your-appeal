@@ -60,7 +60,7 @@ class AppellantIBCARef extends SaveToDraftStore {
   }
 
   next() {
-    return goTo(this.journey.steps.IRNDate);
+    return goTo(this.journey.steps.MRNDate);
   }
 }
 
