@@ -186,7 +186,6 @@ describe('MRNDate.js', () => {
       });
     });
 
-
     describe('when hostname contains iba', () => {
       it('returns the next step path /are-you-an-appointee if date less than a month', () => {
         mrnDate.req.hostname = 'some-iba-hostname';

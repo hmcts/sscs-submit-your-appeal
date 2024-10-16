@@ -4,7 +4,11 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonth }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonthIba }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonth }}</p>
+    {% endif %}
     <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason }}</p>
 
     {% call formSection() %}
