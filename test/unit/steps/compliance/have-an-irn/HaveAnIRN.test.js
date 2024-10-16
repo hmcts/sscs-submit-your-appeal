@@ -14,7 +14,7 @@ describe('HaveAnIRN.js', () => {
     haveAnIRN = new HaveAnIRN({
       journey: {
         steps: {
-          IRNDate: paths.compliance.irnDate,
+          AppellantIBCARef: paths.identity.enterAppellantIBCARef,
           NeedIRN: paths.compliance.needIRN
         }
       },
@@ -120,9 +120,9 @@ describe('HaveAnIRN.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /irn-date when haveAnIRN equals Yes', () => {
+    it('returns the next step path /enter-ibca-reference when haveAnIRN equals Yes', () => {
       haveAnIRN.fields.haveAnIRN.value = answer.YES;
-      expect(haveAnIRN.next().step).to.eql(paths.compliance.irnDate);
+      expect(haveAnIRN.next().step).to.eql(paths.identity.enterAppellantIBCARef);
     });
 
     it('returns the next step path /need-an-irn when haveAnIRN equals No', () => {
