@@ -1,12 +1,16 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, textarea %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content.titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonth | safe }}</p>
-    <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason | safe }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonthIba }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.appealsShouldBeMadeWithOneMonth }}</p>
+    {% endif %}
+    <p class="govuk-body">{{ content.appealMayGoAheadForGoodReason }}</p>
 
     {% call formSection() %}
         {{ textarea(fields.reasonForBeingLate, content.fields.reasonForBeingLate.label, hideLabel = true) }}

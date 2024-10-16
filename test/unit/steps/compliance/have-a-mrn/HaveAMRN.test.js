@@ -76,12 +76,12 @@ describe('HaveAMRN.js', () => {
 
   describe('suffix()', () => {
     it('should return Iba for IBA case', () => {
-      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      haveAMRN.req.hostname = 'some-iba-hostname';
       expect(haveAMRN.suffix).to.eql('Iba');
     });
 
     it('should return empty for non IBA case', () => {
-      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
+      haveAMRN.req.hostname = 'some-normal-hostname';
       expect(haveAMRN.suffix).to.eql('');
     });
   });
