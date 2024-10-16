@@ -24,7 +24,6 @@ const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/D
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
-const CheckIRN = require('steps/compliance/check-irn/CheckIRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
@@ -117,7 +116,6 @@ const compliance = [
   DWPIssuingOffice,
   CantAppeal,
   CheckMRN,
-  CheckIRN,
   ContactDWP,
   MRNDate,
   DWPIssuingOfficeEsa,

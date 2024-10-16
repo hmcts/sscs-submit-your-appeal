@@ -52,7 +52,6 @@ module.exports = {
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
     cantAppeal: '/cant-appeal',
     checkMRNDate: '/check-mrn-date',
-    checkIRNDate: '/check-irn-date',
     contactDWP: '/contact-dwp',
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',

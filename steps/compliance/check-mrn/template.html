@@ -1,27 +1,29 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content.title %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
+    <p class="govuk-body">{{ content["subtitle" + suffix] }}</p>
 
     {% if benefitType === 'UC' %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt }}">
+    {% elif isIba %}
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAltIba }}">
     {% else %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt }}">
     {% endif %}
 
     {% call formSection() %}
-        <legend id="check-mrn" class="govuk-body govuk-!-font-weight-bold">{{ content.question | safe }}</legend>
+        <legend id="check-mrn" class="govuk-body govuk-!-font-weight-bold">{{ content["question" + suffix] }}</legend>
 
         {{ selectionButtons(
             fields.checkedMRN,
-            content.question,
+            content["question" + suffix],
             hint = '',
             options = [
-                { label: content.fields.checkedMRN.yes, value: "yes" },
+                { label: content.fields.checkedMRN["yes" + suffix], value: "yes" },
                 { label: content.fields.checkedMRN.no,  value: "no" }
             ])
         }}
