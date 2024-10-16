@@ -1,10 +1,10 @@
 {
     "titleHead": "Enter IBCA Reference number",
-    "title": "Enter your IBCA Reference",
-    "subtitle": "You can find your IBCA Reference on your IRN letter.",
+    "title": "Enter your IBCA Reference number",
+    "subtitle": "You can find your IBCA Reference number on your IRN letter.",
     "fields": {
       "ibcaRef": {
-      "title": "IBCA Reference Number",
+      "title": "IBCA Reference number",
       "error": {
           "required": "Enter your IBCA Reference number",
           "invalid": "Please enter a valid IBCA reference number"
