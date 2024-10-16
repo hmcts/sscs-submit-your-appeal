@@ -2,6 +2,9 @@
   "titleHead": "Have you got an MRN",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
   "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}}{{benefitEndText}}.",
+  "titleHeadIba": "Have you got an IRN",
+  "titleIba": "Have you got an Internal Review Notice (IRN)?",
+  "subtitleIba": "This is the letter IBCA sent you if you asked them to reconsider their decision about the Infected Blood Compensation.",
   "uc": {
     "subtitle_para2": "Find your MRN in your <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">Universal Credit online journal</a> (opens in a new window)."
   },
@@ -9,8 +12,11 @@
     "haveAMRN": {
       "yes": "Yes, I have a Mandatory Reconsideration Notice (MRN)",
       "no": "No, I don’t have a Mandatory Reconsideration Notice (MRN)",
+      "yesIba": "Yes, I have an Internal Review Notice (IRN)",
+      "noIba": "No, I don’t have a Internal Review Notice (IRN)",
       "error": {
-        "required": "You need to say whether you have an MRN. Select either yes or no."
+        "required": "You need to say whether you have an MRN. Select either yes or no.",
+        "requiredIba": "You need to say whether you have an IRN. Select either yes or no."
       }
     }
   }

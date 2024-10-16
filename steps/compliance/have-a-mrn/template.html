@@ -1,12 +1,12 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content["title" + suffix] %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content["subtitle" + suffix] | safe }}</p>
 
         {% if benefitCode == 'UC'%}
             <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
@@ -14,11 +14,11 @@
 
         {{ selectionButtons(
             fields.haveAMRN,
-            content.subtitle,
+            content["subtitle" + suffix],
             hint = '',
             options = [
-                { label: content.fields.haveAMRN.yes, value: "yes" },
-                { label: content.fields.haveAMRN.no,  value: "no" }
+                { label: content.fields.haveAMRN["yes" + suffix], value: "yes" },
+                { label: content.fields.haveAMRN["no" + suffix],  value: "no" }
             ])
         }}
     {% endcall %}
