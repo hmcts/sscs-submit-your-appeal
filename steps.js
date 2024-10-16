@@ -31,7 +31,6 @@ const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const NeedIRN = require('steps/compliance/need-irn/NeedIRN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
-const IRNDate = require('steps/compliance/irn-date/IRNDate');
 const IRNOverOneMonthLate = require('steps/compliance/irn-over-month-late/IRNOverOneMonthLate');
 const IRNOverThirteenMonthsLate = require('steps/compliance/irn-over-thirteen-months-late/IRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
@@ -126,7 +125,6 @@ const compliance = [
   NeedIRN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,
-  IRNDate,
   IRNOverOneMonthLate,
   IRNOverThirteenMonthsLate,
   StillCanAppeal
