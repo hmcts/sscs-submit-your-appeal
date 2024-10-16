@@ -81,12 +81,12 @@ class MRNDate extends SaveToDraftStore {
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
-    const isIbaCase = String(benefitType) === benefitTypes.infectedBloodAppeal;
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req)) && isLessThanOrEqualToAMonth;
-
+      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
+    const skipToAppellantRole = isIba(this.req) && isLessThanOrEqualToAMonth;
     return branch(
+      goTo(this.journey.steps.AppellantRole).if(skipToAppellantRole),
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
