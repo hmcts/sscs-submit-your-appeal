@@ -4,7 +4,7 @@
   "question": "Does your representative live in The United Kingdom of Great Britain and Northern Ireland?",
 
   "fields": {
-    "isInUk": {
+    "inMainlandUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
@@ -13,7 +13,7 @@
     }
   },
   "cya": {
-    "isInUk": {
+    "inMainlandUk": {
       "question": "Does your representative live in The United Kingdom of Great Britain and Northern Ireland?",
       "yes": "Yes",
       "no": "No"

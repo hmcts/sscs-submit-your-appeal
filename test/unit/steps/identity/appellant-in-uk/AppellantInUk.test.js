@@ -79,7 +79,7 @@ describe('AppellantInUk.js', () => {
     beforeEach(() => {
       appellantInUk.content = {
         cya: {
-          isInUk: {
+          inMainlandUk: {
             question,
             yes: 'Yes',
             no: 'No'
@@ -88,7 +88,7 @@ describe('AppellantInUk.js', () => {
       };
 
       appellantInUk.fields = {
-        isInUk: {}
+        inMainlandUk: {}
       };
     });
 
@@ -100,13 +100,13 @@ describe('AppellantInUk.js', () => {
 
     describe('English', () => {
       it('should return the correct answer \'Yes\' for CYA (English)', () => {
-        appellantInUk.fields.isInUk.value = userAnswer.YES;
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
 
       it('should return the correct answer \'No\' for CYA (English)', () => {
-        appellantInUk.fields.isInUk.value = userAnswer.NO;
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('No');
       });
@@ -122,15 +122,15 @@ describe('AppellantInUk.js', () => {
       });
       // TODO update welsh
       it('should return the correct answer \'No\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.isInUk.no = 'No';
-        appellantInUk.fields.isInUk.value = userAnswer.NO;
+        appellantInUk.content.cya.inMainlandUk.no = 'No';
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
       it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.isInUk.yes = 'Yes';
-        appellantInUk.fields.isInUk.value = userAnswer.YES;
+        appellantInUk.content.cya.inMainlandUk.yes = 'Yes';
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
@@ -147,12 +147,12 @@ describe('AppellantInUk.js', () => {
     it('should contain 1 fields', () => {
       expect(Object.keys(fields).length).to.equal(1);
       expect(fields).to.have.all.keys(
-        'isInUk'
+        'inMainlandUk'
       );
     });
 
-    it('should contain a select reference called \'isInUk\'', () => {
-      const selectField = fields.isInUk;
+    it('should contain a select reference called \'inMainlandUk\'', () => {
+      const selectField = fields.inMainlandUk;
       expect(selectField.constructor.name).to.eq('FieldDescriptor');
       expect(selectField.validations).to.not.be.empty;
     });
@@ -160,12 +160,12 @@ describe('AppellantInUk.js', () => {
 
   describe('next()', () => {
     it('returns /appellant-contact-details for Yes in UK', () => {
-      appellantInUk.fields.isInUk = { value: userAnswer.YES };
+      appellantInUk.fields.inMainlandUk = { value: userAnswer.YES };
       expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantContactDetails);
     });
 
     it('returns /appellant-international-contact-details for No in UK', () => {
-      appellantInUk.fields.isInUk = { value: userAnswer.NO };
+      appellantInUk.fields.inMainlandUk = { value: userAnswer.NO };
       expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantInternationalContactDetails);
     });
   });

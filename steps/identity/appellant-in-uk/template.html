@@ -10,12 +10,12 @@
     <div id="appellantInUk">
         {% call formSection() %}
             {{ selectionButtons(
-                fields.isInUk,
+                fields.inMainlandUk,
                 content.question,
                 hint = '',
                 options = [
-                    { label: content.fields.isInUk.yes, value: "yes" },
-                    { label: content.fields.isInUk.no,  value: "no" }
+                    { label: content.fields.inMainlandUk.yes, value: "yes" },
+                    { label: content.fields.inMainlandUk.no,  value: "no" }
                 ])
             }}
         {% endcall %}

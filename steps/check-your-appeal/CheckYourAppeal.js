@@ -90,9 +90,6 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     const isIbaCase = isIba(this.req);
     if (this.journey.req && this.journey.req.session) {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
-      if (isIbaCase) {
-        values.mrn = values.irn;
-      }
     }
 
     const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));

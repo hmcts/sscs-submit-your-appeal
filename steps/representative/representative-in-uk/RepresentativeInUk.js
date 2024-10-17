@@ -26,8 +26,8 @@ class RepresentativeInUk extends SaveToDraftStore {
 
   get form() {
     return form({
-      isInUk: text.joi(
-        this.content.fields.isInUk.error.required,
+      inMainlandUk: text.joi(
+        this.content.fields.inMainlandUk.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -37,15 +37,15 @@ class RepresentativeInUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: this.content.cya.isInUk.question,
+      question: this.content.cya.inMainlandUk.question,
       section: sections.representative,
-      answer: titleise(content.cya.isInUk[this.fields.isInUk.value])
+      answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });
   }
 
   next() {
     return branch(
-      goTo(this.journey.steps.RepresentativeDetails).if(this.fields.isInUk.value === userAnswer.YES),
+      goTo(this.journey.steps.RepresentativeDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
       goTo(this.journey.steps.RepresentativeInternationalDetails)
     );
   }

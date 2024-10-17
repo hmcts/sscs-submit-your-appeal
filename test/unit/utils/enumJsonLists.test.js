@@ -25,15 +25,15 @@ describe('EnumJsonLists util', () => {
   describe('fetchPortsOfEntry', () => {
     it('should fetch and set portsOfEntry data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockResponse = { data: [{ label: 'Entry1' }, { label: 'Entry2' }] };
+      const mockResponse = { data: [{ label: 'Entry1', locationCode: 'locationCode1' }, { label: 'Entry2', locationCode: 'locationCode2' }] };
       axiosGetStub.resolves(mockResponse);
 
       await fetchPortsOfEntry();
 
       const entries = getPortsOfEntry();
       expect(entries).to.deep.equal([
-        { label: 'Entry1', value: 'Entry1' },
-        { label: 'Entry2', value: 'Entry2' }
+        { label: 'Entry1', value: 'locationCode1', locationCode: 'locationCode1' },
+        { label: 'Entry2', value: 'locationCode2', locationCode: 'locationCode2' }
       ]);
     });
 
@@ -50,7 +50,7 @@ describe('EnumJsonLists util', () => {
 
   describe('setPortsOfEntry and getPortsOfEntry', () => {
     it('should set and get portsOfEntry data correctly', () => {
-      const testEntries = [{ label: 'TestEntry1', value: 'TestEntry1' }];
+      const testEntries = [{ label: 'TestEntry1', value: 'TestValue1' }];
 
       setPortsOfEntry(testEntries);
       const entries = getPortsOfEntry();

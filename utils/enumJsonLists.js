@@ -8,7 +8,7 @@ async function fetchPortsOfEntry() {
   try {
     const res = await axios.get(`${config.api.url}/api/citizen/ports-of-entry`);
     portsOfEntry = res.data.map(entry => {
-      entry.value = entry.label;
+      entry.value = entry.locationCode;
       return entry;
     });
   } catch (error) {
