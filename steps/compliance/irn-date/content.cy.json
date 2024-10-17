@@ -2,7 +2,7 @@
   "titleHead": "Dyddiad yr IRN",
   "title": "When is your Internal Review Notice (IRN) dated?",
   "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr IRN",
-  "dateHint": "Er enghraifft, 31 3 2017",
+  "dateHint": "Er enghraifft, 26 1 2024",
   "imageAlt": "Copi o’ch IRN",
   "fields": {
     "date": {
@@ -11,9 +11,9 @@
       "year": "Blwyddyn",
       "error": {
         "allRequired": "Nodwch ddyddiad yr IRN.",
-        "dayRequired": "Nid ydych wedi nodi diwrnod. Nodwch ddiwrnod",
-        "monthRequired": "Nid ydych wedi nodi mis. Nodwch fis",
-        "yearRequired": "Nid ydych wedi nodi blwyddyn. Nodwch flwyddyn",
+        "dayRequired": "You have not entered a valid day. Enter a day.",
+        "monthRequired": "You have not entered a valid month. Enter a month.",
+        "yearRequired": "You have not entered a valid year. Enter a year.",
         "invalid": "Rydych wedi nodi dyddiad IRN annilys. Nodwch ddyddiad yr IRN",
         "future": "Rydych wedi nodi dyddiad yn y dyfodol. Nodwch ddyddiad yr IRN",
         "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich IRN a nodwch y dyddiad a ddangosir."
