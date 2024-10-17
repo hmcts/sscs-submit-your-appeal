@@ -1,4 +1,4 @@
-const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
+const { goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -88,7 +88,7 @@ class MRNDate extends SaveToDraftStore {
     return branch(
       goTo(this.journey.steps.AppellantRole).if(skipToAppellantRole),
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
-      redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
+      goTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
