@@ -10,7 +10,7 @@ const config = require('config');
 const featureFlagOverrides = {};
 
 const maskNino = nino => (nino ? `XXXX${nino.slice(4)}` : 'not submitted yet');
-
+const getIbcaReference = ibcaReference => (ibcaReference ? ibcaReference : 'not submitted yet');
 const overrideFeatFlag = override => {
   featureFlagOverrides[override.key] = override.value;
 };
@@ -134,6 +134,7 @@ const decodeText = field => decode(field);
 
 module.exports = {
   maskNino,
+  getIbcaReference,
   isFeatureFlagEnabled,
   titleise,
   splitBenefitType,
