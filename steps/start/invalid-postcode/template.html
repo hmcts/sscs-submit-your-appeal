@@ -10,14 +10,16 @@
     {{ super() }}
 {% endblock %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
+{% endblock %}
 {% set title = content.title | safe %}
 
 {% block two_thirds %}
     {{ header(title, size='l') }}
 
-    <p class="govuk-body">{{ content.notCovered | safe }}</p>
-    <a href="{{ formUrl }}" target="_self" class="govuk-button">{{ content.formDownload | safe }}</a>
+    <p class="govuk-body">{{ content.notCovered }}</p>
+    <a href="{{ formUrl }}" target="_self" class="govuk-button">{{ content.formDownload }}</a>
 {% endblock %}
 
 {% block full_width %}

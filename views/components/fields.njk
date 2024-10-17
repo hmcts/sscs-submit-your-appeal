@@ -10,10 +10,10 @@
 #}
 {% macro textarea(field, label, hint="", hideLabel=false, placeholder="") %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+    <label id="{{ field.id }}-label" class="govuk-label {{ 'govuk-visually-hidden' if hideLabel }}" for="{{ field.id }}">{{ label }}</label>
 
     {% if hint %}
-      <span class="govuk-hint">{{ hint | safe }}</span>
+      <span class="govuk-hint">{{ hint }}</span>
     {% endif %}
 
     {{ errorsFor(field) }}
@@ -35,9 +35,9 @@
 #}
 {% macro textbox(field, label, hint=false, hideLabel=false, value=null) %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label | safe }}</label>
+    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label }}</label>
     {%- if hint %}
-      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint | safe }}</div>
+      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
     {%- endif %}
     {{ errorsFor(field) }}
     <input class="govuk-input"
@@ -129,10 +129,10 @@
            class="{{ typeStyle }}__input">
     {% if option.label -%}
       <label for="{{ field.id }}-{{ option_value }}" class="govuk-label {{ typeStyle }}__label">
-        {{ option.label | safe }}
+        {{ option.label }}
         {% if option_description %}
             <span class="choice-description">
-              {{ option.description | safe }}
+              {{ option.description }}
             </span>
         {% endif %}
       </label>
@@ -175,11 +175,11 @@
   <div class="govuk-form-group {{ errorClass(field) }} {{ groupClass }}">
     <fieldset class="govuk-fieldset" id="{{ field.id }}">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl {% if hideQuestion %}govuk-visually-hidden{% endif %}">
-          <h2 class="govuk-heading-m">{{ question | safe }}</h2>
+          <h2 class="govuk-heading-m">{{ question }}</h2>
       </legend>
       {% if hint -%}
         <span id="{{ field.id }}-hint" class="hint-text">
-          {{ hint | safe }}
+          {{ hint }}
         </span>
       {%- endif %}
       {{ errorsFor(field) }}
@@ -224,10 +224,10 @@
 <div class="govuk-form-group {{ errorClass(field) }}">
   <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
          for="{{ field.id }}">
-    {{ label | safe }}
+    {{ label }}
     {%- if hint %}
     <span class="hint-text">
-      {{ hint | safe }}
+      {{ hint }}
     </span>
     {%- endif %}
   </label>
@@ -256,7 +256,7 @@
           {% endif %}
           {% if option_value %}
           value="{{ option_value }}"
-          {% endif %}>{{ option.label | safe }}</option>
+          {% endif %}>{{ option.label }}</option>
     {%- endfor %}
   </select>
 </div>
@@ -269,10 +269,10 @@
 <div class="govuk-form-group">
   {% if not hideQuestion %}
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">{{ question | safe }}</h1>
+      <h1 class="govuk-fieldset__heading">{{ question }}</h1>
     </legend>
     {% if hint %}
-      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint | safe }}</div>
+      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
     {% endif %}
   {% endif %}
   <div id="{{ field.id }}"
@@ -331,7 +331,7 @@
   {% if field.errors %}
     {% for error in field.errors -%}
       <span class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> {{ error | safe }}
+        <span class="govuk-visually-hidden">Error:</span> {{ error }}
       </span>
     {%- endfor %}
   {% endif %}
@@ -359,7 +359,7 @@
 #}
 {% macro fileupload(field, label="Upload file", acceptFileTypes="") %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label for="{{ field.id }}">{{ label | safe }}</label>
+    <label for="{{ field.id }}">{{ label }}</label>
     {{ errorsFor(field) }}
     <input name="{{ field.name }}" id="{{ field.id }}" type="file" accept="{{ acceptFileTypes }}"  />
   </div>

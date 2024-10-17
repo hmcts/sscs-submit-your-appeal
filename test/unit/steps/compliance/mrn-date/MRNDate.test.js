@@ -5,8 +5,6 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
 const { overrideFeatFlag } = require('utils/stringUtils');
-const sinon = require('sinon');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('MRNDate.js', () => {
@@ -42,50 +40,6 @@ describe('MRNDate.js', () => {
     });
   });
 
-  describe('handler()', () => {
-    afterEach(() => {
-      sinon.restore();
-    });
-
-    it('no redirect to /does-not-exist called for non iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.nationalInsuranceCredits
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      mrnDate.handler(req, res, next);
-      expect(res.redirect.called).to.eql(false);
-      sinon.assert.calledOnce(superStub);
-    });
-    it('redirect to /does-not-exist called for iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      mrnDate.handler(req, res, next);
-      expect(res.redirect.called).to.eql(true);
-      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
-      sinon.assert.notCalled(superStub);
-    });
-  });
-
   describe('get benefitType()', () => {
     it('returns PIP code from benefit type', () => {
       mrnDate.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
@@ -118,6 +72,18 @@ describe('MRNDate.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      mrnDate.req.hostname = 'some-iba-hostname';
+      expect(mrnDate.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      mrnDate.req.hostname = 'some-normal-hostname';
+      expect(mrnDate.suffix).to.eql('');
     });
   });
 
@@ -202,6 +168,34 @@ describe('MRNDate.js', () => {
         setMRNDate(DateUtils.oneMonthAgo());
         setBenefitType(benefitTypes.universalCredit);
         overrideFeatFlag({ key: 'allowRFE', value: false });
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when benefit type is IBA', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        setMRNDate(DateUtils.oneMonthAgo());
+        setBenefitType(benefitTypes.infectedBloodAppeal);
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when hostname contains iba', () => {
+      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+        mrnDate.req.hostname = 'some-iba-hostname';
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+
+      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+        mrnDate.req.hostname = 'some-iba-hostname';
+        setMRNDate(DateUtils.oneMonthAgo());
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
       });
     });

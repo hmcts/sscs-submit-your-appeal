@@ -3,10 +3,10 @@
 
 {% block breadcrumbs %}
     {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
-        {{ banner | safe }}
+        {{ banner }}
     {% endcall %}
     {% if not hideBackButton %}
-        <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
+        <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back }}</a>
     {% endif %}
 {% endblock %}
 

@@ -15,7 +15,7 @@ describe('AppellantIBCARef.js', () => {
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          IRNDate: paths.compliance.irnDate
+          MRNDate: paths.compliance.mrnDate
         }
       }
     });
@@ -140,8 +140,8 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('next()', () => {
-    it('should return the next step path /irn-date', () => {
-      expect(appellantIBCARef.next().step).to.eql(paths.compliance.irnDate);
+    it('should return the next step path /mrn-date', () => {
+      expect(appellantIBCARef.next().step).to.eql(paths.compliance.mrnDate);
     });
   });
 });
