@@ -21,21 +21,13 @@ class AppellantIBCARef extends SaveToDraftStore {
     }
   }
 
-  get title() {
-    return this.content.title[this.contentPrefix()];
-  }
-
-  get subtitle() {
-    return this.content.subtitle[this.contentPrefix()];
-  }
-
   get form() {
     return form({
       ibcaReference: text.joi(
-        this.content.fields.ibcaReference.error[this.contentPrefix()].required,
+        this.content.fields.ibcaReference.error.required,
         Joi.string().required()
       ).joi(
-        this.content.fields.ibcaReference.error[this.contentPrefix()].invalid,
+        this.content.fields.ibcaReference.error.invalid,
         Joi.string().trim().regex(ibcaReference)
       )
     });

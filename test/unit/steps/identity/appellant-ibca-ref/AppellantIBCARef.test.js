@@ -86,45 +86,6 @@ describe('AppellantIBCARef.js', () => {
     });
   });
 
-  describe('title() and subtitle()', () => {
-    // TODO: change to the agreed when new designs are ready. Also in content json to change
-    const NOT_APPOINTEE_TITLE = 'Enter IBCA Reference provided';
-    const NOT_APPOINTEE_SUBTITLE = 'Enter your IBCA Reference';
-    const IS_APPOINTEE_TITLE = 'Enter their IBCA Reference';
-    const IS_APPOINTEE_SUBTITLE = 'Enter the IBCA Reference of the person you are authorised to appeal for.';
-
-    beforeEach(() => {
-      appellantibcaReference.content = {
-        title: {
-          withoutAppointee: NOT_APPOINTEE_TITLE,
-          withAppointee: IS_APPOINTEE_TITLE
-        },
-        subtitle: {
-          withoutAppointee: NOT_APPOINTEE_SUBTITLE,
-          withAppointee: IS_APPOINTEE_SUBTITLE
-        }
-      };
-    });
-
-    it('should return correct not appointee title', () => {
-      expect(appellantibcaReference.title).to.equal(NOT_APPOINTEE_TITLE);
-    });
-
-    it('should return correct is appointee title', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantibcaReference.title).to.equal(IS_APPOINTEE_TITLE);
-    });
-
-    it('should return correct not appointee subtitle', () => {
-      expect(appellantibcaReference.subtitle).to.equal(NOT_APPOINTEE_SUBTITLE);
-    });
-
-    it('should return correct is appointee subtitle', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantibcaReference.subtitle).to.equal(IS_APPOINTEE_SUBTITLE);
-    });
-  });
-
   describe('answers() and values() methods', () => {
     const ibcaReferenceNo = '343545434234';
     const question = 'IBCA Reference';
