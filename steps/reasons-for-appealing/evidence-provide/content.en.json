@@ -3,7 +3,7 @@
   "title": "Evidence to support your appeal",
   "descriptionPara1": "Evidence is any information that supports your appeal such as a letter, written statement or medical report.",
   "descriptionPara2": "You can upload evidence now or post it in after you have submitted your appeal. You’ll receive the address after you’ve submitted your appeal.",
-  "descriptionPara3": "You do not need to send or upload your Mandatory Reconsideration Notice (MRN) because you are appealing online.",
+  "descriptionPara3": "You do not need to send or upload your {{noticeType}} because you are appealing online.",
   "fields": {
     "evidenceProvide": {
       "label": "Would you like to upload evidence now?",
