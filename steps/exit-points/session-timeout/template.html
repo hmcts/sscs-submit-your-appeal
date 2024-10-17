@@ -3,19 +3,21 @@
 {% extends "layouts/two_thirds.html" %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
+{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
-        {{ banner | safe }}
+        {{ banner }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
 
-    <p class="govuk-body">{{ content.ends | safe }}</p>
-    <p class="govuk-body">{{ content.detailsDeleted | safe }}</p>
+    <p class="govuk-body">{{ content.ends }}</p>
+    <p class="govuk-body">{{ content.detailsDeleted }}</p>
 
-    <a class="govuk-button" href="/start-an-appeal">{{ content.start | safe }}</a>
+    <a class="govuk-button" href="/start-an-appeal">{{ content.start }}</a>
 {%- endblock %}

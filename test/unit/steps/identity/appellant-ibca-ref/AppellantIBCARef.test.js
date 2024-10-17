@@ -8,8 +8,6 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('AppellantIBCARef.js', () => {
-  const WITH_APPOINTEE = 'withAppointee';
-  const WITHOUT_APPOINTEE = 'withoutAppointee';
   let appellantibcaReference = null;
 
   beforeEach(() => {
@@ -17,8 +15,7 @@ describe('AppellantIBCARef.js', () => {
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          AppellantInUk: paths.identity.enterAppellantInUk,
-          SameAddress: paths.appointee.sameAddress
+          MRNDate: paths.compliance.mrnDate
         }
       }
     });
@@ -27,7 +24,7 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('get path()', () => {
-    it('returns the path /enter-appellant-ibca-ref', () => {
+    it('returns the path /enter-appellant-ibca-reference', () => {
       expect(AppellantIBCARef.path).to.equal(paths.identity.enterAppellantIBCARef);
     });
   });
@@ -86,18 +83,6 @@ describe('AppellantIBCARef.js', () => {
 
     it('should have validations', () => {
       expect(appellantibcaReference.form.fields.ibcaReference.validations).to.not.be.empty;
-    });
-  });
-
-  describe('contentPrefix using isAppointee()', () => {
-    it('should return "withoutAppointee" when is appellant journey', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantibcaReference.contentPrefix()).to.equal(WITHOUT_APPOINTEE);
-    });
-
-    it('should return "withAppointee" when is appellant journey', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantibcaReference.contentPrefix()).to.equal(WITH_APPOINTEE);
     });
   });
 
@@ -174,14 +159,8 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('next()', () => {
-    it('should return the next step path /appellant-in-uk on not appointee', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantibcaReference.next().step).to.eql(paths.identity.enterAppellantInUk);
-    });
-
-    it('returns the next step path /appointee-same-address on is appointee', () => {
-      appellantibcaReference.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantibcaReference.next().step).to.eql(paths.appointee.sameAddress);
+    it('should return the next step path /mrn-date', () => {
+      expect(appellantibcaReference.next().step).to.eql(paths.compliance.mrnDate);
     });
   });
 });

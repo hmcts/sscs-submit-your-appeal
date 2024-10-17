@@ -353,6 +353,8 @@ class AuthAndRestoreAllDraftsState extends Redirect {
   get middleware() {
     return [
       idam.landingPage,
+      this.journey.collectSteps,
+      saveToDraftStore,
       restoreAllDraftsState,
       ...super.middleware
     ];

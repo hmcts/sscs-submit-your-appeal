@@ -1,9 +1,8 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.sendInEvidence | safe }}</p>
+    <p class="govuk-body">{{ content.sendInEvidence }}</p>
 {% endblock %}

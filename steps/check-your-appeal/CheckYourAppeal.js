@@ -10,6 +10,7 @@ const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
 const { maskNino, getIbcaReference } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const logPath = 'CheckYourAppeal.js';
 const HttpStatus = require('http-status-codes');
@@ -23,7 +24,6 @@ const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
-const { isIba } = require('utils/benefitTypeUtils');
 
 const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 

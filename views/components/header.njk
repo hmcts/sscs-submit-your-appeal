@@ -15,9 +15,9 @@
   <h1 class="govuk-heading-{{ size }}">
   {% if section != '' and (size == 'xl' or size == 'l') %}
     <span class="heading-secondary">
-      {{ section | safe }}
+      {{ section }}
     </span>
     {% endif %}
-    {{ heading | safe }}
+    {{ heading }}
   </h1>
 {% endmacro %}

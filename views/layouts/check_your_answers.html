@@ -26,11 +26,11 @@
   } %}
 {% endif %}
 
-{% block pageTitle %}{{ pageContent.title | default(defaultContent.title) | safe }}{% endblock %}
+{% block pageTitle %}{{ pageContent.title | default(defaultContent.title) }}{% endblock %}
 
 {% block breadcrumbs %}
   {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
-  <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back | safe }}</a>
+  <a class="govuk-back-link" href="#">{{ commonContent[htmlLang].back }}</a>
 {% endblock %}
 
 {% block two_thirds %}
@@ -45,7 +45,7 @@
       {% for part in section.completedAnswers %}
         {% if not part.hide %}
           {% if part.html %}
-            {{ part.html | safe }}
+            {{ part.html }}
           {% else %}
             {{ answer(part.question, part.answer, part.url, part.id, commonContent[htmlLang]) }}
           {% endif %}
@@ -57,15 +57,15 @@
   {% if incomplete %}
     {% block continue_application %}
       {{ header(pageContent.incompleteHeader | default(defaultContent.incompleteHeader), size='m') }}
-      <p class="govuk-body">{{ pageContent.incompleteMessage | default(defaultContent.incompleteMessage) | safe }}</p>
-      <a href="{{ continueUrl }}" class="govuk-button">{{ pageContent.continue | default(defaultContent.continue) | safe }}</a>
+      <p class="govuk-body">{{ pageContent.incompleteMessage | default(defaultContent.incompleteMessage) }}</p>
+      <a href="{{ continueUrl }}" class="govuk-button">{{ pageContent.continue | default(defaultContent.continue) }}</a>
     {% endblock %}
   {% endif %}
 
   {% if complete %}
     {% block statement_of_truth_content %}
       {{ header('Now send your application', size='m') }}
-      <p class="govuk-body">{{ pageContent.statementOfTruth | default(defaultContent.statementOfTruth) | safe }}</p>
+      <p class="govuk-body">{{ pageContent.statementOfTruth | default(defaultContent.statementOfTruth) }}</p>
     {% endblock %}
     <form action="{{ postUrl | default(path if path else url) }}"
           method="post"
@@ -79,7 +79,7 @@
         {{ hiddenInput(fields.statementOfTruth, value=true) }}
       {%- endblock %}
 
-      <input class="govuk-button" type="submit" value="{{ pageContent.sendApplication | default(defaultContent.sendApplication) | safe }}">
+      <input class="govuk-button" type="submit" value="{{ pageContent.sendApplication | default(defaultContent.sendApplication) }}">
     </form>
   {% endif %}
 

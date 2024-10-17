@@ -1,14 +1,13 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.mobileNumber | safe }}
+    <p class="govuk-body">{{ content.mobileNumber }}
         <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ mobileNumber | default('') }}</span>
     </p>
-    <p class="govuk-body">{{ content.firstMessage | safe }}</p>
+    <p class="govuk-body">{{ content.firstMessage }}</p>
 
     {% call formSection() %}
     {% endcall %}
