@@ -21,7 +21,7 @@ describe('IRNOverOneMonth.js', () => {
           }
         },
         steps: {
-          Appointee: paths.identity.areYouAnAppointee
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -139,8 +139,8 @@ describe('IRNOverOneMonth.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /are-you-an-appointee for IBA', () => {
-      expect(irnOverOneMonth.next().step).to.eql(paths.identity.areYouAnAppointee);
+    it('returns the next step path /enter-appellant-role for IBA', () => {
+      expect(irnOverOneMonth.next().step).to.eql(paths.identity.enterAppellantRole);
     });
   });
 });

@@ -18,6 +18,14 @@ class Appointee extends SaveToDraftStore {
     return paths.identity.areYouAnAppointee;
   }
 
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   get form() {
     return form({
       isAppointee: text.joi(
@@ -25,10 +33,6 @@ class Appointee extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
-  }
-
-  get appointedBy() {
-    return isIba(this.req) ? 'a court' : 'DWP';
   }
 
   answers() {

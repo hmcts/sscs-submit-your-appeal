@@ -67,6 +67,7 @@ module.exports = {
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
@@ -80,8 +81,6 @@ module.exports = {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
-    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
-    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 

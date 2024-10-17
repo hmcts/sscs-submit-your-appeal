@@ -5,15 +5,12 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const userAnswer = require('utils/answer');
 const i18next = require('i18next');
-const { titleise } = require('utils/stringUtils');
-const { branch } = require('@hmcts/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
 
-class AppointeeInUk extends SaveToDraftStore {
+class AppellantRole extends SaveToDraftStore {
   static get path() {
-    return paths.appointee.enterAppointeeInUk;
+    return paths.identity.enterAppellantRole;
   }
 
   handler(req, res, next) {
@@ -26,9 +23,9 @@ class AppointeeInUk extends SaveToDraftStore {
 
   get form() {
     return form({
-      inUk: text.joi(
-        this.content.fields.inUk.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+      ibcRole: text.joi(
+        this.content.fields.ibcRole.error.required,
+        Joi.string().required()
       )
     });
   }
@@ -37,18 +34,15 @@ class AppointeeInUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: this.content.cya.inUk.question,
-      section: sections.appointeeDetails,
-      answer: titleise(content.cya.inUk[this.fields.inUk.value])
+      question: this.content.cya.ibcRole.question,
+      section: sections.appellantDetails,
+      answer: content.cya.ibcRole[this.fields.ibcRole.value]
     });
   }
 
   next() {
-    return branch(
-      goTo(this.journey.steps.AppointeeContactDetails).if(this.fields.inUk.value === userAnswer.YES),
-      goTo(this.journey.steps.AppointeeInternationalContactDetails)
-    );
+    return goTo(this.journey.steps.AppellantName);
   }
 }
 
-module.exports = AppointeeInUk;
+module.exports = AppellantRole;

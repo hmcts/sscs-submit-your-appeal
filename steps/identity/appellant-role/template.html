@@ -7,15 +7,18 @@
 {% set title = content.title %}
 
 {% block fields %}
-    <div id="appointeeInUk">
+    <div id="ibcRole">
         {% call formSection() %}
             {{ selectionButtons(
-                fields.inUk,
+                fields.ibcRole,
                 content.question,
                 hint = '',
                 options = [
-                    { label: content.fields.inUk.yes, value: "yes" },
-                    { label: content.fields.inUk.no,  value: "no" }
+                    { label: content.fields.ibcRole.myself,                   value: "myself" },
+                    { label: content.fields.ibcRole.parent,                   value: "parent" },
+                    { label: content.fields.ibcRole.guardian,                 value: "guardian" },
+                    { label: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
+                    { label: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
                 ])
             }}
         {% endcall %}

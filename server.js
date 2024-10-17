@@ -12,8 +12,14 @@ const fs = require('graceful-fs');
 const webpack = require('webpack');
 const webpackDevConfig = require('./webpack.config.js');
 const webpackMiddleware = require('webpack-dev-middleware');
+const { fetchPortsOfEntry, fetchCountriesOfResidence } = require('utils/enumJsonLists');
 
 const logPath = 'server.js';
+
+(async function initialiseEnums() {
+  await fetchPortsOfEntry();
+  await fetchCountriesOfResidence();
+}());
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
@@ -36,4 +42,5 @@ if (process.env.NODE_ENV === 'development') {
         logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
       });
 }
+
 app.timeout = 240000;
