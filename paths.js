@@ -56,13 +56,13 @@ module.exports = {
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
-    irnOverMonthLate: '/irn-over-month-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
@@ -76,8 +76,6 @@ module.exports = {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
-    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
-    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 

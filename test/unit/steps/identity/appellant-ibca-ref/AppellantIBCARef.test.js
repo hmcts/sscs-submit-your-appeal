@@ -8,10 +8,10 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('AppellantIBCARef.js', () => {
-  let appellantIBCARef = null;
+  let appellantibcaReference = null;
 
   beforeEach(() => {
-    appellantIBCARef = new AppellantIBCARef({
+    appellantibcaReference = new AppellantIBCARef({
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
@@ -20,7 +20,7 @@ describe('AppellantIBCARef.js', () => {
       }
     });
 
-    appellantIBCARef.fields = {};
+    appellantibcaReference.fields = {};
   });
 
   describe('get path()', () => {
@@ -47,7 +47,7 @@ describe('AppellantIBCARef.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      appellantIBCARef.handler(req, res, next);
+      appellantibcaReference.handler(req, res, next);
       expect(res.redirect.called).to.eql(false);
       sinon.assert.calledOnce(superStub);
     });
@@ -65,7 +65,7 @@ describe('AppellantIBCARef.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      appellantIBCARef.handler(req, res, next);
+      appellantibcaReference.handler(req, res, next);
       expect(res.redirect.called).to.eql(true);
       expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
       sinon.assert.notCalled(superStub);
@@ -74,74 +74,54 @@ describe('AppellantIBCARef.js', () => {
 
   describe('get form()', () => {
     it('should have one field', () => {
-      expect(Object.keys(appellantIBCARef.form.fields).length).to.equal(1);
+      expect(Object.keys(appellantibcaReference.form.fields).length).to.equal(1);
     });
 
-    it('should have the key to only field "ibcaRef" ', () => {
-      expect(appellantIBCARef.form.fields).to.have.all.keys('ibcaRef');
+    it('should have the key to only field "ibcaReference" ', () => {
+      expect(appellantibcaReference.form.fields).to.have.all.keys('ibcaReference');
     });
 
     it('should have validations', () => {
-      expect(appellantIBCARef.form.fields.ibcaRef.validations).to.not.be.empty;
-    });
-  });
-
-  describe('title() and subtitle()', () => {
-    const TITLE = 'IBCA Reference number';
-    const SUBTITLE = 'Enter your IBCA Reference number';
-
-    beforeEach(() => {
-      appellantIBCARef.content = {
-        title: TITLE,
-        subtitle: SUBTITLE
-      };
-    });
-
-    it('should return correct not appointee title', () => {
-      expect(appellantIBCARef.title).to.equal(TITLE);
-    });
-
-    it('should return correct not appointee subtitle', () => {
-      expect(appellantIBCARef.subtitle).to.equal(SUBTITLE);
+      expect(appellantibcaReference.form.fields.ibcaReference.validations).to.not.be.empty;
     });
   });
 
   describe('answers() and values() methods', () => {
-    const ibcaRefNo = '343545434234';
+    const ibcaReferenceNo = '343545434234';
     const question = 'IBCA Reference';
 
     beforeEach(() => {
-      appellantIBCARef.content = {
+      appellantibcaReference.content = {
         cya: {
-          ibcaRef: {
+          ibcaReference: {
             question
           }
         }
       };
 
-      appellantIBCARef.fields = {
-        ibcaRef: {
-          value: ibcaRefNo
+      appellantibcaReference.fields = {
+        ibcaReference: {
+          value: ibcaReferenceNo
         }
       };
     });
 
     it('should contain a single question, section and answer', () => {
-      const answers = appellantIBCARef.answers();
+      const answers = appellantibcaReference.answers();
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal(ibcaRefNo);
+      expect(answers[0].answer).to.equal(ibcaReferenceNo);
     });
 
     it('should contain value as IBCA Ref', () => {
-      const values = appellantIBCARef.values();
-      expect(values).to.eql({ appellant: { ibcaRef: ibcaRefNo } });
+      const values = appellantibcaReference.values();
+      expect(values).to.eql({ appellant: { ibcaReference: ibcaReferenceNo } });
     });
   });
 
   describe('next()', () => {
     it('should return the next step path /mrn-date', () => {
-      expect(appellantIBCARef.next().step).to.eql(paths.compliance.mrnDate);
+      expect(appellantibcaReference.next().step).to.eql(paths.compliance.mrnDate);
     });
   });
 });

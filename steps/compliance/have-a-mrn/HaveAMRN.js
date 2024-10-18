@@ -65,6 +65,7 @@ class HaveAMRN extends SaveToDraftStore {
   next() {
     const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;
     return branch(
+      goTo(this.journey.steps.AppellantIBCARef).if(hasAMRN && isIba(this.req)),
       goTo(this.journey.steps.MRNDate).if(hasAMRN),
       goTo(this.journey.steps.NeedIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveContactedDWP)
