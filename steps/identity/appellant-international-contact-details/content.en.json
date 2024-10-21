@@ -23,6 +23,12 @@
         "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
       }
     },
+    "postCode": {
+      "title": "Postcode/ZIP code",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
+      }
+    },
     "country": {
       "title": "Country of residence",
       "error": {

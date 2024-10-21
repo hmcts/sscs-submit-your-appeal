@@ -80,8 +80,8 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
 
     it('should contain 5 fields', () => {
-      expect(Object.keys(fields).length).to.equal(7);
-      expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'country', 'portOfEntry', 'phoneNumber', 'emailAddress');
+      expect(Object.keys(fields).length).to.equal(8);
+      expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'postCode', 'country', 'portOfEntry', 'phoneNumber', 'emailAddress');
     });
 
     describe('country field', () => {
@@ -272,6 +272,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       appellantInternationalContactDetails.fields.addressLine1 = { value: 'Some address line 1' };
       appellantInternationalContactDetails.fields.addressLine2 = { value: 'Some address line 2' };
       appellantInternationalContactDetails.fields.townCity = { value: 'Some Town or City' };
+      appellantInternationalContactDetails.fields.postCode = { value: 'Some Postcode or ZIP code' };
       appellantInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
       appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
       appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
@@ -284,6 +285,7 @@ describe('AppellantInternationalContactDetails.js', () => {
             addressLine1: 'Some address line 1',
             addressLine2: 'Some address line 2',
             townCity: 'Some Town or City',
+            postCode: 'Some Postcode or ZIP code',
             portOfEntry: 'Biggin Hill',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
@@ -297,6 +299,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       appellantInternationalContactDetails.fields.addressLine1 = {};
       appellantInternationalContactDetails.fields.addressLine2 = {};
       appellantInternationalContactDetails.fields.townCity = {};
+      appellantInternationalContactDetails.fields.postCode = {};
       appellantInternationalContactDetails.fields.portOfEntry = {};
       appellantInternationalContactDetails.fields.phoneNumber = {};
       appellantInternationalContactDetails.fields.emailAddress = {};
@@ -308,6 +311,7 @@ describe('AppellantInternationalContactDetails.js', () => {
             addressLine1: '',
             addressLine2: '',
             townCity: '',
+            postCode: undefined,
             portOfEntry: '',
             phoneNumber: undefined,
             emailAddress: undefined
@@ -321,6 +325,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       appellantInternationalContactDetails.fields.addressLine1 = {};
       appellantInternationalContactDetails.fields.addressLine2 = {};
       appellantInternationalContactDetails.fields.townCity = {};
+      appellantInternationalContactDetails.fields.postCode = {};
       appellantInternationalContactDetails.fields.portOfEntry = {};
       appellantInternationalContactDetails.fields.emailAddress = {};
       appellantInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
