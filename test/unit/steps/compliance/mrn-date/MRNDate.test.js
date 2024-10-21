@@ -24,7 +24,8 @@ describe('MRNDate.js', () => {
           CheckMRN: paths.compliance.checkMRNDate,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeEsa,
-          Appointee: paths.identity.areYouAnAppointee
+          Appointee: paths.identity.areYouAnAppointee,
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -172,31 +173,17 @@ describe('MRNDate.js', () => {
       });
     });
 
-    describe('when benefit type is IBA', () => {
-      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
-        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-      });
-
-      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
-        setMRNDate(DateUtils.oneMonthAgo());
-        setBenefitType(benefitTypes.infectedBloodAppeal);
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
-      });
-    });
-
-    describe('when hostname contains iba', () => {
-      it('returns the next step path /are-you-an-appointee if date less than a month', () => {
+    describe('when is IBA', () => {
+      it('returns the next step path /enter-appellant-role if date less than a month', () => {
         mrnDate.req.hostname = 'some-iba-hostname';
         setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+        expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantRole);
       });
 
-      it('returns the next step path /are-you-an-appointee if date is equal to a month', () => {
+      it('returns the next step path /enter-appellant-role if date is equal to a month', () => {
         mrnDate.req.hostname = 'some-iba-hostname';
         setMRNDate(DateUtils.oneMonthAgo());
-        expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+        expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantRole);
       });
     });
 
