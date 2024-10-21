@@ -8,7 +8,7 @@
     {{ content.titleHeadEdit if isEditMode }}
 {% endset %}
 
-{% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}{{ titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
 
 {% block head %}
     {{ super() }}
@@ -43,12 +43,12 @@
         {% if fields.validated and not fields.valid %}
             {%- for error in fields.errors -%}
                 <span class="govuk-error-message">
-                    {{ error.message | safe }}
+                    {{ error.message }}
                 </span>
             {%- endfor -%}
         {% endif %}
 
-        {{ content.noReasons | safe }}
+        {{ content.noReasons }}
     </div>
 {% endblock %}
 

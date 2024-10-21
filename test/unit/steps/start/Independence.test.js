@@ -111,7 +111,6 @@ describe('Independence.js', () => {
   const steps = {
     steps: {
       HaveAMRN: paths.compliance.haveAMRN,
-      HaveAnIRN: paths.compliance.haveAnIRN,
       CreateAccount: paths.start.createAccount
     }
   };
@@ -298,19 +297,8 @@ describe('Independence.js', () => {
           independence = new Independence({ journey: steps });
         });
 
-        it('returns the next step path /have-you-got-an-mrn for non IBA', () => {
+        it('returns the next step path /have-you-got-an-mrn', () => {
           expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
-        });
-
-        it('returns the next step path /have-you-got-an-irn for IBA', () => {
-          independence.req = {
-            session: {
-              BenefitType: {
-                benefitType: benefitTypes.infectedBloodAppeal
-              }
-            }
-          };
-          expect(independence.next().step).to.eql(paths.compliance.haveAnIRN);
         });
       });
 

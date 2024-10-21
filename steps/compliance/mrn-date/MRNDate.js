@@ -16,16 +16,12 @@ class MRNDate extends SaveToDraftStore {
     return paths.compliance.mrnDate;
   }
 
-  handler(req, res, next) {
-    if (req.method === 'GET' && isIba(req)) {
-      res.redirect(paths.errors.doesNotExist);
-    } else {
-      super.handler(req, res, next);
-    }
-  }
-
   get benefitType() {
     return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {
@@ -35,19 +31,19 @@ class MRNDate extends SaveToDraftStore {
       mrnDate: convert(
         d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
-          allRequired: fields.date.error.allRequired,
+          allRequired: fields.date.error[`allRequired${this.suffix}`],
           dayRequired: fields.date.error.dayRequired,
           monthRequired: fields.date.error.monthRequired,
           yearRequired: fields.date.error.yearRequired
         })
       ).check(
-        fields.date.error.invalid,
+        fields.date.error[`invalid${this.suffix}`],
         value => DateUtils.isDateValid(value)
       ).check(
-        fields.date.error.future,
+        fields.date.error[`future${this.suffix}`],
         value => DateUtils.isDateInPast(value)
       ).check(
-        fields.date.error.dateSameAsImage,
+        fields.date.error[`dateSameAsImage${this.suffix}`],
         value => !DateUtils.mrnDateSameAsImage(value)
       )
 
@@ -57,10 +53,9 @@ class MRNDate extends SaveToDraftStore {
   answers() {
     return [
       answer(this, {
-        question: this.content.cya.mrnDate.question,
+        question: this.content.cya.mrnDate[`question${this.suffix}`],
         section: sections.mrnDate,
         answer: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY')
-
       })
     ];
   }
@@ -86,9 +81,10 @@ class MRNDate extends SaveToDraftStore {
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
+    const isIbaCase = String(benefitType) === benefitTypes.infectedBloodAppeal;
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
+      isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req)) && isLessThanOrEqualToAMonth;
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),

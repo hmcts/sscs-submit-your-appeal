@@ -11,7 +11,6 @@ describe('IdamRedirect.js', () => {
       journey: {
         steps: {
           HaveAMRN: paths.compliance.haveAMRN,
-          HaveAnIRN: paths.compliance.haveAnIRN,
           BenefitType: paths.start.benefitType
         }
       }
@@ -32,7 +31,7 @@ describe('IdamRedirect.js', () => {
       expect(entry.next().step).to.eql(paths.start.benefitType);
     });
 
-    it('should redirect to HaveAMRN if benefit type is non IBA', () => {
+    it('should redirect to HaveAMRN if there is a benefit type', () => {
       entry.req = {
         session: {
           BenefitType: {
@@ -41,18 +40,6 @@ describe('IdamRedirect.js', () => {
         }
       };
       expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
-    });
-
-    it('should redirect to NeedAnIRN if benefit type is IBA', () => {
-      entry.req = {
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
-          }
-        }
-      };
-
-      expect(entry.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 });
