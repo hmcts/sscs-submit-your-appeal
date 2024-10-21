@@ -45,7 +45,7 @@
       {% for part in section.completedAnswers %}
         {% if not part.hide %}
           {% if part.html %}
-            {{ part.html }}
+            {{ part.html | safe }}
           {% else %}
             {{ answer(part.question, part.answer, part.url, part.id, commonContent[htmlLang]) }}
           {% endif %}
