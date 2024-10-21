@@ -43,6 +43,22 @@ class RepresentativeInUk extends SaveToDraftStore {
     });
   }
 
+  getInUkValue() {
+    if (this.fields.inMainlandUk.value === userAnswer.YES) return true;
+    if (this.fields.inMainlandUk.value === userAnswer.NO) return false;
+    return null;
+  }
+
+  values() {
+    return {
+      appellant: {
+        contactDetails: {
+          inMainlandUk: this.getInUkValue()
+        }
+      }
+    };
+  }
+
   next() {
     return branch(
       goTo(this.journey.steps.RepresentativeDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),

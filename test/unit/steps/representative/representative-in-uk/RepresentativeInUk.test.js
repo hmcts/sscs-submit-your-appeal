@@ -156,6 +156,20 @@ describe('RepresentativeInUk.js', () => {
         expect(answers.answer).to.equal('Yes');
       });
     });
+
+    describe('values', () => {
+      it('should return the correct value true for Yes', () => {
+        representativeInUk.fields.inMainlandUk.value = userAnswer.YES;
+        const values = representativeInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(true);
+      });
+
+      it('should return the correct value false for No', () => {
+        representativeInUk.fields.inMainlandUk.value = userAnswer.NO;
+        const values = representativeInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(false);
+      });
+    });
   });
 
   describe('next()', () => {
