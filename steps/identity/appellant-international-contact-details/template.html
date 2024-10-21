@@ -10,8 +10,8 @@
         {{ textbox(fields.addressLine1,             content.fields.addressLine1.title,          hint="") }}
         {{ textbox(fields.addressLine2,             content.fields.addressLine2.title,          hint="") }}
         {{ textbox(fields.townCity,                 content.fields.townCity.title,              hint="") }}
-        {{ textbox(fields.postCode,                 content.fields.postCode.title,              hint="") }}
         {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
+        {{ textbox(fields.postCode,                 content.fields.postCode.title,              hint="") }}
         {{ select(fields.portOfEntry,               content.fields.portOfEntry.title,           options=getPortOfEntryList) }}
         {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress,             content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
