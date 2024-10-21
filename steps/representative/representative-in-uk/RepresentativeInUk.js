@@ -51,7 +51,7 @@ class RepresentativeInUk extends SaveToDraftStore {
 
   values() {
     return {
-      appellant: {
+      representative: {
         contactDetails: {
           inMainlandUk: this.getInUkValue()
         }
