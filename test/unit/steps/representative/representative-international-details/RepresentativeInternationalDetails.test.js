@@ -4,14 +4,26 @@ const RepresentativeInternationalDetails = require('steps/representative/represe
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
-const countriesList = require('utils/countriesList');
 const { decode } = require('utils/stringUtils');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { setCountriesOfResidence, getCountriesOfResidence } = require('utils/enumJsonLists');
 
 describe('RepresentativeInternationalDetails.js', () => {
   let representativeInternationalDetails = null;
   let res = null;
+  setCountriesOfResidence([
+    {
+      label: 'Italy',
+      officialName: 'The Italian Republic',
+      value: 'Italy'
+    },
+    {
+      label: 'Ivory Coast',
+      officialName: 'The Republic of Côte D’Ivoire',
+      value: 'Ivory Coast'
+    }
+  ]);
   beforeEach(() => {
     res = { send: sinon.spy(), redirect: sinon.spy() };
     representativeInternationalDetails = new RepresentativeInternationalDetails({
@@ -138,7 +150,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(representativeInternationalDetails.getCountries).to.equal(countriesList);
+      expect(representativeInternationalDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
@@ -226,7 +238,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = representativeInternationalDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
