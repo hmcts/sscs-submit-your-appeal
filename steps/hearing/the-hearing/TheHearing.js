@@ -36,7 +36,7 @@ class TheHearing extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.attendHearing[`question${this.suffix}`],
         section: sections.theHearing,
-        answer: titleise(content.cya.attendHearing[this.fields.attendHearing.value + this.suffix])
+        answer: titleise(content.cya.attendHearing[`${this.fields.attendHearing.value}${this.suffix}`])
       })
     ];
   }
