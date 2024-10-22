@@ -22,29 +22,19 @@
         </ul>
 
         <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
-
-        {{ selectionButtons(
-            fields.attendHearing,
-            content.fields.attendHearing.titleIba,
-            hideQuestion = false,
-            options = [
-                { label: content.fields.attendHearing["yes" + suffix], value: "yes" },
-                { label: content.fields.attendHearing["no" + suffix], value: "no" }
-            ])
-        }}
     {% else %}   
         <p class="govuk-body">{{ content.subtitle | safe }}</p>
         <p class="govuk-body">{{ content.explainReasons | safe }}</p>
         <p class="govuk-body">{{ content.arrangeSupport | safe }}</p>
-
-        {{ selectionButtons(
-            fields.attendHearing,
-            content.fields.attendHearing.title,
-            hideQuestion = false,
-            options = [
-                { label: content.fields.attendHearing.yes, value: "yes" },
-                { label: content.fields.attendHearing.no, value: "no" }
-            ])
-        }}
     {% endif %}
+
+    {{ selectionButtons(
+        fields.attendHearing,
+        content.fields.attendHearing["title" + suffix],
+        hideQuestion = false,
+        options = [
+            { label: content.fields.attendHearing["yes" + suffix], value: "yes" },
+            { label: content.fields.attendHearing["no" + suffix], value: "no" }
+        ])
+    }}
 {% endblock %}
