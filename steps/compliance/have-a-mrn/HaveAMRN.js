@@ -14,14 +14,6 @@ class HaveAMRN extends SaveToDraftStore {
     return paths.compliance.haveAMRN;
   }
 
-  handler(req, res, next) {
-    if (req.method === 'GET' && isIba(req)) {
-      res.redirect(paths.errors.doesNotExist);
-    } else {
-      super.handler(req, res, next);
-    }
-  }
-
   get benefitType() {
     const sessionLanguage = i18next.language;
     const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
@@ -49,10 +41,14 @@ class HaveAMRN extends SaveToDraftStore {
     return getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
+  }
+
   get form() {
     return form({
       haveAMRN: text.joi(
-        this.content.fields.haveAMRN.error.required,
+        this.content.fields.haveAMRN.error[`required${this.suffix}`],
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -70,6 +66,7 @@ class HaveAMRN extends SaveToDraftStore {
     const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;
     return branch(
       goTo(this.journey.steps.MRNDate).if(hasAMRN),
+      goTo(this.journey.steps.NeedIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveContactedDWP)
     );
   }

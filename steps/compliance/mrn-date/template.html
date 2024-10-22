@@ -1,20 +1,22 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, date %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
+{% set title = content["title" + suffix] %}
 
 {% block fields %}
     {% if benefitType === 'UC' %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date-uc.png"  alt="{{ content.imageAlt }}">
+    {% elif isIba %}
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAltIba }}">
     {% else %}
-        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt | safe }}">
+        <img class="mrn-image" src="{{ asset_path }}images/mrn-date.png"  alt="{{ content.imageAlt }}">
     {% endif %}
     {% call formSection() %}
         {{ date(
             fields.mrnDate,
-            content.dateLegend,
-            hint = content.dateHint,
+            content["dateLegend" + suffix],
+            hint = content["dateHint" + suffix],
             labels = {
                 day: content.fields.date.day,
                 month: content.fields.date.month,

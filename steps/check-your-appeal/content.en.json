@@ -7,9 +7,7 @@
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
     "irnDate": "Internal Review Notice (IRN)",
     "mrnOverOneMonthLate": "Appeal over a month late",
-    "irnOverOneMonthLate": "Appeal over a month late",
     "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
-    "irnOverThirteenMonthsLate": "Why your appeal over 13 months late",
     "noMRN": "Why you don’t have a Mandatory Reconsideration Notice (MRN)"
   },
   "appellantDetails": "Claimant",

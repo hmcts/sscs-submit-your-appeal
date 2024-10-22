@@ -7,7 +7,7 @@
 {% set serviceName = 'submit your appeal' %}
 {% set htmlLang = i18n.currentLanguage if i18n.currentLanguage else "en" %}
 
-{% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
+{% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
 
 {% block headIcons %}
   {% include "components/touch-icons.html" %}

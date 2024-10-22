@@ -1,7 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "layouts/question.html" %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block full_width %}
@@ -26,7 +25,7 @@
     <br>
 
     <div class="form-buttons-group">
-        <a class="govuk-button" href="/new-appeal">{{ content.buttons.create | safe }}</a>
+        <a class="govuk-button" href="/new-appeal">{{ content.buttons.create }}</a>
     </div>
 
     <style> .equal-width-twenty th { width: 20%; } </style>
@@ -42,10 +41,10 @@
             <caption class="govuk-visually-hidden">Table Caption</caption>
             <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col" class ="equal-width-twenty">{{ content.tableHeadings.appealRef | safe }}</th>
-                <th class="govuk-table__header" scope="col" class ="equal-width-forty">{{ content.tableHeadings.benefit | safe }}</th>
-                <th class="govuk-table__header" scope="col" class ="equal-width-twenty-five">{{ content.tableHeadings.mrnDate | safe }}</th>
-                <th class="govuk-table__header" scope="col" class ="equal-width-fifteen">{{ content.tableHeadings.action | safe }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-twenty">{{ content.tableHeadings.appealRef }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-forty">{{ content.tableHeadings.benefit }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-twenty-five">{{ content.tableHeadings.mrnDate }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-fifteen">{{ content.tableHeadings.action }}</th>
             </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -55,7 +54,7 @@
                 <td class="govuk-table__cell">{{ content.benefitTypes[benefit(draft)] }}</td>
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
                 <td class="govuk-table__cell">
-                    <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit | safe }}</a>
+                    <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit }}</a>
                     <a id="archive-link" href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
             </tr>
             </tbody>

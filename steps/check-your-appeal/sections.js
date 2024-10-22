@@ -1,7 +1,6 @@
 module.exports = {
   benefitType: 'benefit-type',
   mrnDate: 'mrn-date',
-  irnDate: 'irn-date',
   noMRN: 'no-mrn',
   appellantDetails: 'appellant-details',
   appointeeDetails: 'appointee-details',
