@@ -14,8 +14,10 @@
   },
   "hearingSupportList": {
     "title": "Hearing support",
-    "subtitle": "If you take part in a hearing, you can ask for support, such as:",
-    "bulletPoint1": "support can be arranged, such as an interpreter, hearing loop or disabled access. You <b>can’t</b> bring your own interpreter to the hearing"
+    "subtitle": "If you take part in a hearing, you can ask for:",
+    "information": "You <b>can’t</b> bring your own interpreter to the hearing.",
+    "bulletPoint1": "A language interpreter",
+    "bulletPoint2": "Reasonable adjustments if you have a health condition or disability"
   },
   "fields": {
     "attendHearing": {

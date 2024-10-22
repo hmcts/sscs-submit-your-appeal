@@ -17,8 +17,11 @@
         <p class="govuk-heading-m">{{ content.hearingSupportList.title }}</p>
         <p class="govuk-body">{{ content.hearingSupportList.subtitle }}</p>
         <ul class="govuk-list govuk-list--bullet">
-            <li>{{ content.hearingSupportList.bulletPoint1 | safe }}</li>
+            <li>{{ content.hearingSupportList.bulletPoint1 }}</li>
+            <li>{{ content.hearingSupportList.bulletPoint2 }}</li>
         </ul>
+
+        <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
 
         {{ selectionButtons(
             fields.attendHearing,
