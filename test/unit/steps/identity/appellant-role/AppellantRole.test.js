@@ -104,19 +104,19 @@ describe('AppellantRole.js', () => {
         appellantRole.fields.ibcRole.value = 'guardian';
         const answers = appellantRole.answers();
         expect(answers.answer).to
-          .equal('I am appealing for a person as their Guardian, Deputy or Controller for reasons of their mental incapacity (the word \'mental incapacity\' is being challenged)');
+          .equal('I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller');
       });
 
       it('should return the correct answer for \'powerOfAttorney\' for CYA (English)', () => {
         appellantRole.fields.ibcRole.value = 'powerOfAttorney';
         const answers = appellantRole.answers();
-        expect(answers.answer).to.equal('I am appealing on behalf of a person for who I have been granted a Power of Attorney');
+        expect(answers.answer).to.equal('I am appealing on behalf of a person for who I have been granted a power of attorney');
       });
 
       it('should return the correct answer for \'deceasedRepresentative\' for CYA (English)', () => {
         appellantRole.fields.ibcRole.value = 'deceasedRepresentative';
         const answers = appellantRole.answers();
-        expect(answers.answer).to.equal('I am appealing on behalf of a deceased person as their Personal Representative');
+        expect(answers.answer).to.equal('I am appealing on behalf of a deceased person as their personal representative');
       });
     });
 
