@@ -3,6 +3,7 @@ const EvidenceProvide = require('steps/reasons-for-appealing/evidence-provide/Ev
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
+const benefitTypes = require('steps/start/benefit-type/types');
 const i18next = require('i18next');
 
 describe('EvidenceProvide.js', () => {
@@ -15,6 +16,11 @@ describe('EvidenceProvide.js', () => {
           EvidenceUpload: paths.reasonsForAppealing.evidenceUpload,
           TheHearing: paths.hearing.theHearing
         }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
+        }
       }
     });
 
@@ -26,6 +32,28 @@ describe('EvidenceProvide.js', () => {
   describe('get path()', () => {
     it('returns path /evidence-provide', () => {
       expect(EvidenceProvide.path).to.equal(paths.reasonsForAppealing.evidenceProvide);
+    });
+  });
+
+  describe('noticeType()', () => {
+    it('should return "Review Decision Notice" when in IBA journey', () => {
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(evidenceProvide.noticeType).to.equal('Review Decision Notice');
+    });
+
+    it('should return "Mandatory Reconsideration Notice (MRN)"', () => {
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(evidenceProvide.noticeType).to.equal('Mandatory Reconsideration Notice (MRN)');
+    });
+
+    it('should return "Mandatory Reconsideration Notice (MRN)" in welsh', () => {
+      i18next.changeLanguage('cy');
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(evidenceProvide.noticeType).to.equal('Hysbysiad Gorfodi i Ailystyried (MRN)');
+    });
+
+    after(() => {
+      i18next.changeLanguage('en');
     });
   });
 

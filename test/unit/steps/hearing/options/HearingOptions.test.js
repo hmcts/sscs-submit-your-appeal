@@ -53,6 +53,18 @@ describe('HearingOptions.js', () => {
     });
   });
 
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      hearingOptions.req.hostname = 'some-iba-hostname';
+      expect(hearingOptions.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      hearingOptions.req.hostname = 'some-normal-hostname';
+      expect(hearingOptions.suffix).to.eql('');
+    });
+  });
+
   describe('get form()', () => {
     let fields = null;
     let field = null;
