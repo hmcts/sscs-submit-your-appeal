@@ -5,10 +5,8 @@ const superagent = require('superagent');
 const {
   fetchPortsOfEntry,
   getPortsOfEntry,
-  setPortsOfEntry,
   getCountriesOfResidence,
-  fetchCountriesOfResidence,
-  setCountriesOfResidence
+  fetchCountriesOfResidence
 } = require('utils/enumJsonLists');
 
 describe('EnumJsonLists util', () => {
@@ -48,17 +46,6 @@ describe('EnumJsonLists util', () => {
     });
   });
 
-  describe('setPortsOfEntry and getPortsOfEntry', () => {
-    it('should set and get portsOfEntry data correctly', () => {
-      const testEntries = [{ label: 'TestEntry1', value: 'TestValue1' }];
-
-      setPortsOfEntry(testEntries);
-      const entries = getPortsOfEntry();
-
-      expect(entries).to.deep.equal(testEntries);
-    });
-  });
-
   describe('fetchCountriesOfResidence', () => {
     it('should fetch and set countriesOfResidence data correctly', async() => {
       // eslint-disable-next-line id-blacklist
@@ -82,17 +69,6 @@ describe('EnumJsonLists util', () => {
 
       expect(consoleStub.calledWithMatch('Error fetching countriesOfResidence data:')).to.be.true;
       consoleStub.restore();
-    });
-  });
-
-  describe('setCountriesOfResidence and getCountriesOfResidence', () => {
-    it('should set and get countriesOfResidence data correctly', () => {
-      const testEntries = [{ label: 'TestEntry1', value: 'TestEntry1' }];
-
-      setCountriesOfResidence(testEntries);
-      const entries = getCountriesOfResidence();
-
-      expect(entries).to.deep.equal(testEntries);
     });
   });
 });

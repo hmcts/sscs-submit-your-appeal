@@ -17,10 +17,6 @@ async function fetchPortsOfEntry() {
     });
 }
 
-function setPortsOfEntry(someList) {
-  portsOfEntry = someList;
-}
-
 function getPortsOfEntry() {
   return portsOfEntry;
 }
@@ -39,10 +35,6 @@ async function fetchCountriesOfResidence() {
     });
 }
 
-function setCountriesOfResidence(someList) {
-  countriesOfResidence = someList;
-}
-
 function getCountriesOfResidence() {
   return countriesOfResidence;
 }
@@ -50,8 +42,6 @@ function getCountriesOfResidence() {
 module.exports = {
   fetchPortsOfEntry,
   getPortsOfEntry,
-  setPortsOfEntry,
   fetchCountriesOfResidence,
-  getCountriesOfResidence,
-  setCountriesOfResidence
+  getCountriesOfResidence
 };
