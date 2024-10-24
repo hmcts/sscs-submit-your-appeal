@@ -16,14 +16,14 @@ class TheHearing extends SaveToDraftStore {
     return paths.hearing.theHearing;
   }
 
-  get reviewBody() {
-    return isIba(this.req) ? 'IBCA' : 'DWP';
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {
     return form({
       attendHearing: text.joi(
-        this.content.fields.attendHearing.error.required,
+        this.content.fields.attendHearing.error[`required${this.suffix}`],
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -34,9 +34,9 @@ class TheHearing extends SaveToDraftStore {
 
     return [
       answer(this, {
-        question: this.content.cya.attendHearing.question,
+        question: this.content.cya.attendHearing[`question${this.suffix}`],
         section: sections.theHearing,
-        answer: titleise(content.cya.attendHearing[this.fields.attendHearing.value])
+        answer: titleise(content.cya.attendHearing[`${this.fields.attendHearing.value}${this.suffix}`])
       })
     ];
   }
