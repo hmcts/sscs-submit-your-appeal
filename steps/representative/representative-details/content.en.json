@@ -68,7 +68,8 @@
     "postCode": {
       "title": "Postcode",
       "error": {
-        "required": "Enter the postcode from your representative’s address"
+        "required": "Enter the postcode from your representative’s address",
+        "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales."
       }
     },
     "phoneNumber": {

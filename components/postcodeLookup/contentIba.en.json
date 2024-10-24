@@ -1,0 +1,20 @@
+{
+  "textboxLabel": "Enter a postcode in England, Scotland or Wales",
+  "addressSelectionLabel": "Pick an address",
+  "manualEntryLabel": "I can't find my address",
+  "dropdownCount": "address found",
+  "findAddress": "Find address",
+  "fields": {
+    "postcodeLookup": {
+      "error": {
+        "required": "We cannot find an England, Scotland or Wales address with that postcode.",
+        "invalidPostcode": "We cannot find an England, Scotland or Wales address with that postcode."
+      }
+    },
+    "postcodeAddress": {
+      "error": {
+        "required": "Please choose an address."
+      }
+    }
+  }
+}

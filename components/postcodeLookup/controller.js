@@ -6,6 +6,8 @@ const i18next = require('i18next');
 const customFieldValidations = require('./customFieldValidations.js');
 const { text } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
+const { isIba } = require('utils/benefitTypeUtils');
+const { notNiPostcode } = require('utils/regex');
 
 class Controller {
   constructor(enabled = true, token = '', apiUrl = '', page = {}) {
@@ -33,18 +35,31 @@ class Controller {
     if (this.isManualSession()) {
       this.manualFields();
     }
+    const isIbaCase = isIba(this.page.req);
+    const getPostcodeLookup = () => {
+      if (isIbaCase) {
+        return text.joi(
+          content.fields.postcodeLookup.error.requiredIba,
+          Joi.string().trim().regex(notNiPostcode).required()
+        ).joi(
+          content.fields.postcodeAddress.error.required,
+          customFieldValidations.string().validateAddressList(this.page)
+        );
+      }
+      return text.joi(
+        content.fields.postcodeLookup.error.required,
+        Joi.string().trim().required()
+      ).joi(
+        content.fields.postcodeAddress.error.required,
+        customFieldValidations.string().validateAddressList(this.page)
+      );
+    };
 
     const newForm = Object.create(null);
     for (let i = 0; i < fields.length; i++) {
       if (!includes(this.disabledFields, fields[i].name)) {
         if (fields[i].name === this.fieldMap.postcodeLookup) {
-          newForm[fields[i].name] = text.joi(
-            content.fields.postcodeLookup.error.required,
-            Joi.string().trim().required()
-          ).joi(
-            content.fields.postcodeAddress.error.required,
-            customFieldValidations.string().validateAddressList(this.page)
-          );
+          newForm[fields[i].name] = getPostcodeLookup();
         } else if (fields[i].name === this.fieldMap.postcodeAddress) {
           newForm[fields[i].name] = text.joi(
             content.fields.postcodeAddress.error.required,
@@ -202,12 +217,14 @@ class Controller {
     }
     page.store();
   }
+
   handleGetValidate() {
     const page = this.page;
-    if (page.postcodeLookupType === 'manaul' || page.addressSuggestions.length === 0) {
+    if (page.postcodeLookupType === 'manual' || page.addressSuggestions.length === 0) {
       this.page.validate();
     }
   }
+
   // eslint-disable-next-line complexity
   async setPageState() {
     const page = this.page;
@@ -243,9 +260,10 @@ class Controller {
   // eslint-disable-next-line complexity
   async init(callBack) {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
 
     const req = this.page.req;
+    const content = require(`./content${isIba(req) ? 'Iba' : ''}.${sessionLanguage}`);
+
     const page = this.page;
 
     page.postCodeContent = content;

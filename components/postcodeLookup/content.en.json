@@ -8,6 +8,7 @@
     "postcodeLookup": {
       "error": {
         "required": "We cannot find an address with that postcode",
+        "requiredIba": "We cannot find an England, Scotland or Wales address with that postcode",
         "invalidPostcode": "We cannot find an address with that postcode"
       }
     },
