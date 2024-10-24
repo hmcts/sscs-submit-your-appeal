@@ -1,19 +1,20 @@
-const axios = require('axios');
 const config = require('config');
+const request = require('superagent');
 
 let portsOfEntry = null;
 let countriesOfResidence = null;
 
 async function fetchPortsOfEntry() {
-  try {
-    const res = await axios.get(`${config.api.url}/api/citizen/ports-of-entry`);
-    portsOfEntry = res.data.map(entry => {
-      entry.value = entry.locationCode;
-      return entry;
+  await request.get(`${config.api.url}/api/citizen/ports-of-entry`)
+    .then(res => {
+      portsOfEntry = res.body.map(entry => {
+        entry.value = entry.locationCode;
+        return entry;
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching portOfEntry data: ', error);
     });
-  } catch (error) {
-    console.log('Error fetching portOfEntry data: ', error);
-  }
 }
 
 function setPortsOfEntry(someList) {
@@ -26,15 +27,16 @@ function getPortsOfEntry() {
 
 
 async function fetchCountriesOfResidence() {
-  try {
-    const res = await axios.get(`${config.api.url}/api/citizen/countries-of-residence`);
-    countriesOfResidence = res.data.map(entry => {
-      entry.value = entry.label;
-      return entry;
+  await request.get(`${config.api.url}/api/citizen/countries-of-residence`)
+    .then(res => {
+      countriesOfResidence = res.body.map(entry => {
+        entry.value = entry.label;
+        return entry;
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching countriesOfResidence data: ', error);
     });
-  } catch (error) {
-    console.log('Error fetching countriesOfResidence data: ', error);
-  }
 }
 
 function setCountriesOfResidence(someList) {

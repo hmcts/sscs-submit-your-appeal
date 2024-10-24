@@ -1,7 +1,7 @@
 /* eslint-disable global-require, no-process-env */
 const { expect } = require('chai');
 const sinon = require('sinon');
-const axios = require('axios');
+const superagent = require('superagent');
 const {
   fetchPortsOfEntry,
   getPortsOfEntry,
@@ -12,10 +12,10 @@ const {
 } = require('utils/enumJsonLists');
 
 describe('EnumJsonLists util', () => {
-  let axiosGetStub = sinon.stub(axios, 'get');
+  let superagentGetStub = null;
 
   beforeEach(() => {
-    axiosGetStub = sinon.stub(axios, 'get');
+    superagentGetStub = sinon.stub(superagent, 'get');
   });
 
   afterEach(() => {
@@ -25,8 +25,8 @@ describe('EnumJsonLists util', () => {
   describe('fetchPortsOfEntry', () => {
     it('should fetch and set portsOfEntry data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockResponse = { data: [{ label: 'Entry1', locationCode: 'locationCode1' }, { label: 'Entry2', locationCode: 'locationCode2' }] };
-      axiosGetStub.resolves(mockResponse);
+      const mockResponse = { body: [{ label: 'Entry1', locationCode: 'locationCode1' }, { label: 'Entry2', locationCode: 'locationCode2' }], status: 200 };
+      superagentGetStub.resolves(mockResponse);
 
       await fetchPortsOfEntry();
 
@@ -38,8 +38,8 @@ describe('EnumJsonLists util', () => {
     });
 
     it('should handle errors when fetching portsOfEntry data', async() => {
-      const consoleStub = sinon.stub(console, 'log');
-      axiosGetStub.rejects(new Error('Network error'));
+      const consoleStub = sinon.stub(console, 'error');
+      superagentGetStub.rejects(new Error('Network error'));
 
       await fetchPortsOfEntry();
 
@@ -62,8 +62,8 @@ describe('EnumJsonLists util', () => {
   describe('fetchCountriesOfResidence', () => {
     it('should fetch and set countriesOfResidence data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockResponse = { data: [{ label: 'Entry1' }, { label: 'Entry2' }] };
-      axiosGetStub.resolves(mockResponse);
+      const mockResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
+      superagentGetStub.resolves(mockResponse);
 
       await fetchCountriesOfResidence();
 
@@ -75,8 +75,8 @@ describe('EnumJsonLists util', () => {
     });
 
     it('should handle errors when fetching fetchCountriesOfResidence data', async() => {
-      const consoleStub = sinon.stub(console, 'log');
-      axiosGetStub.rejects(new Error('Network error'));
+      const consoleStub = sinon.stub(console, 'error');
+      superagentGetStub.rejects(new Error('Network error'));
 
       await fetchCountriesOfResidence();
 
