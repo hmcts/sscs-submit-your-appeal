@@ -1,0 +1,27 @@
+{
+  "titleHead": "Appellant Role",
+  "title": "What is your role in this appeal?",
+  "question": "What is your role in this appeal?",
+  "fields": {
+    "ibcRole": {
+      "myself": "I am appealing for myself",
+      "parent": "I am appealing for a person under 18 for whom I have parental responsibility",
+      "guardian": "I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller",
+      "powerOfAttorney": "I am appealing on behalf of a person for whom I have been granted a power of attorney",
+      "deceasedRepresentative": "I am appealing on behalf of a deceased person as their personal representative",
+      "error": {
+        "required": "Please choose an Appellant role option."
+      }
+    }
+  },
+  "cya": {
+    "ibcRole": {
+      "question": "What is your role in this appeal?",
+      "myself": "I am appealing for myself",
+      "parent": "I am appealing for a person under 18 for whom I have parental responsibility",
+      "guardian": "I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller",
+      "powerOfAttorney": "I am appealing on behalf of a person for who I have been granted a power of attorney",
+      "deceasedRepresentative": "I am appealing on behalf of a deceased person as their personal representative"
+    }
+  }
+}
