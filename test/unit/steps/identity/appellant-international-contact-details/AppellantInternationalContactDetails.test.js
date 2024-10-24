@@ -7,41 +7,17 @@ const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 const {
-  setPortsOfEntry,
   getPortsOfEntry,
-  setCountriesOfResidence,
   getCountriesOfResidence
 } = require('utils/enumJsonLists');
+const superagent = require('superagent');
+const config = require('config');
+const { fetchCountriesOfResidence, fetchPortsOfEntry } = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
-  setPortsOfEntry([
-    {
-      label: 'Aberdeen',
-      value: 'Aberdeen',
-      trafficType: 'Sea traffic',
-      locationCode: 'GB000434'
-    },
-    {
-      label: 'Aberdeen Airport',
-      value: 'Aberdeen Airport',
-      trafficType: 'Air traffic',
-      locationCode: 'GB000411'
-    }
-  ]);
-  setCountriesOfResidence([
-    {
-      label: 'Italy',
-      officialName: 'The Italian Republic',
-      value: 'Italy'
-    },
-    {
-      label: 'Ivory Coast',
-      officialName: 'The Republic of Côte D’Ivoire',
-      value: 'Ivory Coast'
-    }
-  ]);
+  let superagentGetStub = null;
   let appellantInternationalContactDetails = null;
-  beforeEach(() => {
+  beforeEach(async() => {
     appellantInternationalContactDetails = new AppellantInternationalContactDetails({
       journey: {
         steps: {
@@ -50,6 +26,24 @@ describe('AppellantInternationalContactDetails.js', () => {
       }
     });
     appellantInternationalContactDetails.fields = {};
+    const mockPortsResponse = {
+      body: [
+        { label: 'Entry1', locationCode: 'locationCode1' }, {
+          label: 'Entry2',
+          locationCode: 'locationCode2'
+        }
+      ], status: 200
+    };
+    const mockCountryResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
+    superagentGetStub = sinon.stub(superagent, 'get');
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/ports-of-entry`).resolves(mockPortsResponse);
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    await fetchPortsOfEntry();
+    await fetchCountriesOfResidence();
+  });
+
+  afterEach(() => {
+    sinon.restore();
   });
 
   describe('get path()', () => {

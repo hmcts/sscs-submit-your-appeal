@@ -6,23 +6,14 @@ const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { setCountriesOfResidence, getCountriesOfResidence } = require('utils/enumJsonLists');
+const { getCountriesOfResidence, fetchCountriesOfResidence } = require('utils/enumJsonLists');
+const superagent = require('superagent');
+const config = require('config');
 
 describe('AppointeeInternationalContactDetails.js', () => {
-  setCountriesOfResidence([
-    {
-      label: 'Italy',
-      officialName: 'The Italian Republic',
-      value: 'Italy'
-    },
-    {
-      label: 'Ivory Coast',
-      officialName: 'The Republic of Côte D’Ivoire',
-      value: 'Ivory Coast'
-    }
-  ]);
+  let superagentGetStub = null;
   let appointeeInternationalContactDetails = null;
-  beforeEach(() => {
+  beforeEach(async() => {
     appointeeInternationalContactDetails = new AppointeeInternationalContactDetails({
       journey: {
         steps: {
@@ -31,7 +22,13 @@ describe('AppointeeInternationalContactDetails.js', () => {
       }
     });
     appointeeInternationalContactDetails.fields = {};
+    const mockCountryResponse = { body: [{ label: 'Italy' }, { label: 'Ivory Coast' }], status: 200 };
+    superagentGetStub = sinon.stub(superagent, 'get');
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    await fetchCountriesOfResidence();
   });
+
+  afterEach(() => sinon.restore());
 
   describe('get path()', () => {
     it('returns path /appointee-international-contact-details', () => {
