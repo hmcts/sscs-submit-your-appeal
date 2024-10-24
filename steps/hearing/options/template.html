@@ -1,11 +1,22 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, textbox, selectionButton, selectionButtons %}
 
-{% set title = content.title | safe %}
+{% set title = content["title" + suffix] %}
 
 {% block fields %}
-<p class="govuk-body">{{ content.subtitle }}</p>
-<p class="govuk-body">{{ content.instructions }}</p>
+{% if isIba %}
+    <p class="govuk-body">{{ content.subtitleIba }}</p>
+    <p class="govuk-body">{{ content.tribunalExplained }}</p>
+    <p class="govuk-body">{{ content.supportExplained }}</p>
+    
+    <p class="govuk-heading-m">{{ content.fields.title }}</p>
+    <p class="govuk-hint">{{ content.instructionsIba }}</p>
+
+{% else %}
+    <p class="govuk-body">{{ content.subtitle }}</p>
+    <p class="govuk-body">{{ content.instructions }}</p>
+{% endif %}
+
 
 
 
@@ -38,7 +49,7 @@ type = 'checkbox')
 
 {{ selectionButton(
 fields.selectOptions.faceToFace.requested,
-{ label: content.fields.options.faceToFace.requested.label, value: 'true' },
+{ label: content.fields.options.faceToFace.requested["label" + suffix], value: 'true' },
 type = 'checkbox')
 }}
 
