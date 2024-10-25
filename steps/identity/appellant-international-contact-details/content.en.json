@@ -24,7 +24,7 @@
       }
     },
     "postCode": {
-      "title": "Postcode/ZIP code",
+      "title": "Postcode/ZIP code (optional)",
       "error": {
         "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
       }
