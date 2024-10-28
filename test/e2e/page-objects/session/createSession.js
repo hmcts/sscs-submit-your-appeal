@@ -1,7 +1,11 @@
-function createTheSession(language) {
+function createTheSession(language, url = '') {
   const I = this;
-
-  I.amOnPage(`/entry?lng=${language}`, `to create a session in ${language.toUpperCase()}`);
+  if (url === '') {
+    I.amOnPage(`/entry?lng=${language}`, `to create a session in ${language.toUpperCase()}`);
+  } else {
+    const destinationURL = url.replace(/^https:\/\//, 'https://iba-');
+    I.amOnPage(`${destinationURL}/entry?lng=${language}`, `to create a session in ${language.toUpperCase()}`);
+  }
 }
 
 module.exports = { createTheSession };
