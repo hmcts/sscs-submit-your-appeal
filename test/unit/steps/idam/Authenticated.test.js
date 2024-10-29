@@ -30,8 +30,7 @@ describe('Authenticated.js', () => {
     entry = new Entry({
       journey: {
         steps: {
-          HaveAMRN: paths.compliance.haveAMRN,
-          HaveAnIRN: paths.compliance.haveAnIRN
+          HaveAMRN: paths.compliance.haveAMRN
         }
       },
       req: {
@@ -51,12 +50,8 @@ describe('Authenticated.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /have-you-got-an-mrn for non IBA', () => {
+    it('returns the next step path /have-you-got-an-mrn', () => {
       expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
-    });
-    it('returns the next step path /have-you-got-an-irn for IBA', () => {
-      entry.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(entry.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 

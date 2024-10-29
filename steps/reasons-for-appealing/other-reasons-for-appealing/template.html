@@ -2,13 +2,12 @@
 {% from "components/fields.njk" import formSection %}
 {% from "components/fields.njk" import textarea %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
-        <p class="govuk-body">{{ content.additonalInfo | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
+        <p class="govuk-body">{{ content.additonalInfo }}</p>
 
         {{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true) }}
     {% endcall %}

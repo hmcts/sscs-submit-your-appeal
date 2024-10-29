@@ -1,13 +1,12 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import select, textbox, formSection %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = title | safe %}
 
 {% block fields %}
     {% call formSection() %}
         {% if subtitle %}
-            <p class="govuk-body">{{ subtitle | safe }}</p>
+            <p class="govuk-body">{{ subtitle }}</p>
         {% endif %}
 
         {{ select(

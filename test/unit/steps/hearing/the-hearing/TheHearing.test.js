@@ -3,7 +3,6 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('TheHearing.js', () => {
   let theHearing = null;
@@ -32,6 +31,18 @@ describe('TheHearing.js', () => {
   describe('get path()', () => {
     it('returns path /the-hearing', () => {
       expect(theHearing.path).to.equal(paths.hearing.theHearing);
+    });
+  });
+
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      theHearing.req.hostname = 'some-iba-hostname';
+      expect(theHearing.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      theHearing.req.hostname = 'some-normal-hostname';
+      expect(theHearing.suffix).to.eql('');
     });
   });
 
@@ -98,18 +109,6 @@ describe('TheHearing.js', () => {
       theHearing.fields.attendHearing.value = '';
       const values = theHearing.values();
       expect(values).to.eql({ hearing: { wantsToAttend: null } });
-    });
-  });
-
-  describe('ReviewBody()', () => {
-    it('should return "IBCA" in IBA journey', () => {
-      theHearing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(theHearing.reviewBody).to.equal('IBCA');
-    });
-
-    it('should return a "DWP" in non IBA journey', () => {
-      theHearing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(theHearing.reviewBody).to.equal('DWP');
     });
   });
 

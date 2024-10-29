@@ -3,12 +3,11 @@
 {% from "components/toggle_help.njk" import toggleHelp %}
 {% from "details/macro.njk" import govukDetails %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
     <div id="languagePreference">
-        <p class="govuk-body">{{ content.summary | safe }}</p>
+        <p class="govuk-body">{{ content.summary }}</p>
 
         {% call formSection() %}
             {{ selectionButtons(
@@ -21,7 +20,7 @@
                 ])
             }}
             <div class="panel js-hidden" id="noWelsh">
-                <p class="govuk-body">{{ content.answerNo | safe }}</p>
+                <p class="govuk-body">{{ content.answerNo }}</p>
             </div>
         {% endcall %}
     </div>

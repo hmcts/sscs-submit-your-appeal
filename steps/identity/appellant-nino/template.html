@@ -1,12 +1,11 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, formSection %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = title | safe %}
+{% set title = title %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ subtitle | safe }}</p>
+        <p class="govuk-body">{{ subtitle }}</p>
         {{ textbox(fields.nino, content.fields.nino.label, hideLabel=true) }}
     {% endcall %}
 {% endblock %}

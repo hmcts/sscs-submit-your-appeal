@@ -15,14 +15,6 @@ class CheckMRN extends SaveToDraftStore {
     return paths.compliance.checkMRNDate;
   }
 
-  handler(req, res, next) {
-    if (req.method === 'GET' && isIba(req)) {
-      res.redirect(paths.errors.doesNotExist);
-    } else {
-      super.handler(req, res, next);
-    }
-  }
-
   get benefitType() {
     return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
@@ -35,6 +27,10 @@ class CheckMRN extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   answers() {

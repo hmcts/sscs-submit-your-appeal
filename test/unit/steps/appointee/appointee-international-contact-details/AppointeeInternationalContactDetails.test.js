@@ -2,15 +2,18 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
-const countriesList = require('utils/countriesList');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { getCountriesOfResidence, fetchCountriesOfResidence } = require('utils/enumJsonLists');
+const superagent = require('superagent');
+const config = require('config');
 
 describe('AppointeeInternationalContactDetails.js', () => {
+  let superagentGetStub = null;
   let appointeeInternationalContactDetails = null;
-  beforeEach(() => {
+  beforeEach(async() => {
     appointeeInternationalContactDetails = new AppointeeInternationalContactDetails({
       journey: {
         steps: {
@@ -19,7 +22,13 @@ describe('AppointeeInternationalContactDetails.js', () => {
       }
     });
     appointeeInternationalContactDetails.fields = {};
+    const mockCountryResponse = { body: [{ label: 'Italy' }, { label: 'Ivory Coast' }], status: 200 };
+    superagentGetStub = sinon.stub(superagent, 'get');
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    await fetchCountriesOfResidence();
   });
+
+  afterEach(() => sinon.restore());
 
   describe('get path()', () => {
     it('returns path /appointee-international-contact-details', () => {
@@ -98,7 +107,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appointeeInternationalContactDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -227,7 +236,7 @@ describe('AppointeeInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appointeeInternationalContactDetails.getCountries).to.equal(countriesList);
+      expect(appointeeInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 

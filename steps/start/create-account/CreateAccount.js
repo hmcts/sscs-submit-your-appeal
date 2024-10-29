@@ -6,7 +6,6 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { isIba } = require('utils/benefitTypeUtils');
 
 class CreateAccount extends SaveToDraftStore {
   static get path() {
@@ -35,7 +34,6 @@ class CreateAccount extends SaveToDraftStore {
 
     return branch(
       redirectTo(this.journey.steps.IdamRedirect).if(createAccount),
-      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveAMRN)
     );
   }

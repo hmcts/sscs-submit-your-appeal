@@ -1,20 +1,20 @@
 {
   "titleHead": "Appellant in UK",
-  "title": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
-  "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
+  "title": "Do you live in England, Scotland or Wales?",
+  "question": "Do you live in England, Scotland or Wales?",
 
   "fields": {
     "inUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
-        "required": "Select ‘Yes’ if you live in The United Kingdom of Great Britain and Northern Ireland."
+        "required": "Select ‘Yes’ if you live in England, Scotland or Wales."
       }
     }
   },
   "cya": {
     "inUk": {
-      "question": "Do you live in The United Kingdom of Great Britain and Northern Ireland?",
+      "question": "Do you live in England, Scotland or Wales?",
       "yes": "Yes",
       "no": "No"
     }

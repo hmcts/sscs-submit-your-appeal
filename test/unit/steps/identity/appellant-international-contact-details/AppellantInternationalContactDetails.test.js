@@ -2,16 +2,22 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const { decode } = require('utils/stringUtils');
 const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
-const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const {
+  getPortsOfEntry,
+  getCountriesOfResidence
+} = require('utils/enumJsonLists');
+const superagent = require('superagent');
+const config = require('config');
+const { fetchCountriesOfResidence, fetchPortsOfEntry } = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
+  let superagentGetStub = null;
   let appellantInternationalContactDetails = null;
-  beforeEach(() => {
+  beforeEach(async() => {
     appellantInternationalContactDetails = new AppellantInternationalContactDetails({
       journey: {
         steps: {
@@ -20,6 +26,24 @@ describe('AppellantInternationalContactDetails.js', () => {
       }
     });
     appellantInternationalContactDetails.fields = {};
+    const mockPortsResponse = {
+      body: [
+        { label: 'Entry1', locationCode: 'locationCode1' }, {
+          label: 'Entry2',
+          locationCode: 'locationCode2'
+        }
+      ], status: 200
+    };
+    const mockCountryResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
+    superagentGetStub = sinon.stub(superagent, 'get');
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/ports-of-entry`).resolves(mockPortsResponse);
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    await fetchPortsOfEntry();
+    await fetchCountriesOfResidence();
+  });
+
+  afterEach(() => {
+    sinon.restore();
   });
 
   describe('get path()', () => {
@@ -27,6 +51,7 @@ describe('AppellantInternationalContactDetails.js', () => {
       expect(AppellantInternationalContactDetails.path).to.equal(paths.identity.enterAppellantInternationalContactDetails);
     });
   });
+
   describe('handler()', () => {
     afterEach(() => {
       sinon.restore();
@@ -99,7 +124,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = appellantInternationalContactDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -169,7 +194,7 @@ describe('AppellantInternationalContactDetails.js', () => {
 
       it('validates all valid ports of entry', () => {
         const schema = appellantInternationalContactDetails.validPortSchema();
-        for (const testPort of portOfEntryList) {
+        for (const testPort of getPortsOfEntry()) {
           const result = schema.validate(decode(testPort.value));
           expect(result.error).to.eq(null);
         }
@@ -214,13 +239,13 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appellantInternationalContactDetails.getCountries).to.equal(countriesList);
+      expect(appellantInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
   describe('get getPortOfEntryList()', () => {
     it('should return the portOfEntryList', () => {
-      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(portOfEntryList);
+      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortsOfEntry());
     });
   });
 

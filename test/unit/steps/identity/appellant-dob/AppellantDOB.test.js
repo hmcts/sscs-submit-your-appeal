@@ -13,7 +13,7 @@ describe('AppellantDOB.js', () => {
       journey: {
         steps: {
           AppellantNINO: paths.identity.enterAppellantNINO,
-          AppellantIBCARef: paths.identity.enterAppellantIBCARef
+          AppellantInUk: paths.identity.enterAppellantInUk
 
         }
       },
@@ -102,9 +102,9 @@ describe('AppellantDOB.js', () => {
       expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantNINO);
     });
 
-    it('returns the next step path /enter-appellant-ibca-ref', () => {
+    it('returns the next step path /appellent-in-uk in Iba journey', () => {
       appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantIBCARef);
+      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
   });
 });

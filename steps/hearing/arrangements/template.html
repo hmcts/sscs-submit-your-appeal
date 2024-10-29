@@ -1,12 +1,11 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, textarea, select, selectionButton, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.clickAllArrangements | safe }}</p>
-    <p class="govuk-body">{{ content.you | safe }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant | safe }}</strong> {{ content.bringYourOwnInterpreter | safe }}</p>
+    <p class="govuk-body">{{ content.clickAllArrangements }}</p>
+    <p class="govuk-body">{{ content.you }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
 
     {% call selectionButtons(
         field = fields.selection,

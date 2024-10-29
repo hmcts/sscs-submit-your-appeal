@@ -22,19 +22,14 @@ const CantAppeal = require('steps/compliance/cant-appeal/CantAppeal');
 const DWPIssuingOffice = require('steps/compliance/dwp-issuing-office/DWPIssuingOffice');
 const DWPIssuingOfficeEsa = require('steps/compliance/dwp-issuing-office-other/DWPIssuingOfficeEsa');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
-const HaveAnIRN = require('steps/compliance/have-an-irn/HaveAnIRN');
 const HaveContactedDWP = require('steps/compliance/have-contacted-dwp/HaveContactedDWP');
 const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
-const CheckIRN = require('steps/compliance/check-irn/CheckIRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
 const NeedIRN = require('steps/compliance/need-irn/NeedIRN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
-const IRNDate = require('steps/compliance/irn-date/IRNDate');
-const IRNOverOneMonthLate = require('steps/compliance/irn-over-month-late/IRNOverOneMonthLate');
-const IRNOverThirteenMonthsLate = require('steps/compliance/irn-over-thirteen-months-late/IRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
@@ -115,12 +110,10 @@ const startAnAppeal = [
 
 const compliance = [
   HaveAMRN,
-  HaveAnIRN,
   HaveContactedDWP,
   DWPIssuingOffice,
   CantAppeal,
   CheckMRN,
-  CheckIRN,
   ContactDWP,
   MRNDate,
   DWPIssuingOfficeEsa,
@@ -128,9 +121,6 @@ const compliance = [
   NeedIRN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,
-  IRNDate,
-  IRNOverOneMonthLate,
-  IRNOverThirteenMonthsLate,
   StillCanAppeal
 ];
 

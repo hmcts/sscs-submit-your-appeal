@@ -11,8 +11,7 @@ describe('CreateAccount.js', () => {
       journey: {
         steps: {
           IdamRedirect: paths.start.idamRedirect,
-          HaveAMRN: paths.compliance.haveAMRN,
-          HaveAnIRN: paths.compliance.haveAnIRN
+          HaveAMRN: paths.compliance.haveAMRN
         }
       }
     });
@@ -59,16 +58,10 @@ describe('CreateAccount.js', () => {
       expect(createAccount.next().step).to.eql(paths.start.idamRedirect);
     });
 
-    it('returns /have-you-got-an-mrn when user selects no for non iba', () => {
+    it('returns /have-you-got-an-mrn when user selects no', () => {
       createAccount.fields.createAccount.value = 'no';
       createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
-    });
-
-    it('returns /have-you-got-an-mrn when user selects for iba', () => {
-      createAccount.fields.createAccount.value = 'no';
-      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.infectedBloodAppeal } } };
-      expect(createAccount.next().step).to.eql(paths.compliance.haveAnIRN);
     });
   });
 });

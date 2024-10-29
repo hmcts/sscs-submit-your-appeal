@@ -63,7 +63,6 @@ class Independence extends Interstitial {
   next() {
     return branch(
       goTo(this.journey.steps.CreateAccount).if(allowSaveAndReturn && !this.req.idam),
-      goTo(this.journey.steps.HaveAnIRN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveAMRN)
     );
   }

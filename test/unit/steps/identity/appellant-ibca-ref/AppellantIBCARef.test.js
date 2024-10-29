@@ -8,8 +8,6 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('AppellantIBCARef.js', () => {
-  const WITH_APPOINTEE = 'withAppointee';
-  const WITHOUT_APPOINTEE = 'withoutAppointee';
   let appellantIBCARef = null;
 
   beforeEach(() => {
@@ -17,8 +15,7 @@ describe('AppellantIBCARef.js', () => {
       journey: {
         req: { session: { Appointee: { isAppointee: 'no' } } },
         steps: {
-          AppellantInUk: paths.identity.enterAppellantInUk,
-          SameAddress: paths.appointee.sameAddress
+          MRNDate: paths.compliance.mrnDate
         }
       }
     });
@@ -27,7 +24,7 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('get path()', () => {
-    it('returns the path /enter-appellant-ibca-ref', () => {
+    it('returns the path /enter-appellant-ibca-reference', () => {
       expect(AppellantIBCARef.path).to.equal(paths.identity.enterAppellantIBCARef);
     });
   });
@@ -89,54 +86,23 @@ describe('AppellantIBCARef.js', () => {
     });
   });
 
-  describe('contentPrefix using isAppointee()', () => {
-    it('should return "withoutAppointee" when is appellant journey', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantIBCARef.contentPrefix()).to.equal(WITHOUT_APPOINTEE);
-    });
-
-    it('should return "withAppointee" when is appellant journey', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantIBCARef.contentPrefix()).to.equal(WITH_APPOINTEE);
-    });
-  });
-
   describe('title() and subtitle()', () => {
-    // TODO: change to the agreed when new designs are ready. Also in content json to change
-    const NOT_APPOINTEE_TITLE = 'Enter IBCA Reference provided';
-    const NOT_APPOINTEE_SUBTITLE = 'Enter your IBCA Reference';
-    const IS_APPOINTEE_TITLE = 'Enter their IBCA Reference';
-    const IS_APPOINTEE_SUBTITLE = 'Enter the IBCA Reference of the person you are authorised to appeal for.';
+    const TITLE = 'IBCA Reference number';
+    const SUBTITLE = 'Enter your IBCA Reference number';
 
     beforeEach(() => {
       appellantIBCARef.content = {
-        title: {
-          withoutAppointee: NOT_APPOINTEE_TITLE,
-          withAppointee: IS_APPOINTEE_TITLE
-        },
-        subtitle: {
-          withoutAppointee: NOT_APPOINTEE_SUBTITLE,
-          withAppointee: IS_APPOINTEE_SUBTITLE
-        }
+        title: TITLE,
+        subtitle: SUBTITLE
       };
     });
 
     it('should return correct not appointee title', () => {
-      expect(appellantIBCARef.title).to.equal(NOT_APPOINTEE_TITLE);
-    });
-
-    it('should return correct is appointee title', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantIBCARef.title).to.equal(IS_APPOINTEE_TITLE);
+      expect(appellantIBCARef.title).to.equal(TITLE);
     });
 
     it('should return correct not appointee subtitle', () => {
-      expect(appellantIBCARef.subtitle).to.equal(NOT_APPOINTEE_SUBTITLE);
-    });
-
-    it('should return correct is appointee subtitle', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantIBCARef.subtitle).to.equal(IS_APPOINTEE_SUBTITLE);
+      expect(appellantIBCARef.subtitle).to.equal(SUBTITLE);
     });
   });
 
@@ -174,14 +140,8 @@ describe('AppellantIBCARef.js', () => {
   });
 
   describe('next()', () => {
-    it('should return the next step path /appellant-in-uk on not appointee', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'no';
-      expect(appellantIBCARef.next().step).to.eql(paths.identity.enterAppellantInUk);
-    });
-
-    it('returns the next step path /appointee-same-address on is appointee', () => {
-      appellantIBCARef.journey.req.session.Appointee.isAppointee = 'yes';
-      expect(appellantIBCARef.next().step).to.eql(paths.appointee.sameAddress);
+    it('should return the next step path /mrn-date', () => {
+      expect(appellantIBCARef.next().step).to.eql(paths.compliance.mrnDate);
     });
   });
 });

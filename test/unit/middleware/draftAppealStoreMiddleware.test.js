@@ -221,6 +221,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       cookies: { '__auth-token': 'xxx' }
     };
     res.redirect = sinon.spy();
+
     it('Expected error on posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
       expect(loggerSpy).to.have.been.calledWith('Exception on creating/updating a draft for case with nino: XXXX3344B', 'draftAppealStoreMiddleware.js');
@@ -481,7 +482,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     describe('AuthAndRestoreAllDraftsState', () => {
       it('Expected Middleware count:', () => {
-        expect(authAndRestoreAllDraftsState.middleware).to.have.length(3);
+        expect(authAndRestoreAllDraftsState.middleware).to.have.length(5);
       });
     });
 

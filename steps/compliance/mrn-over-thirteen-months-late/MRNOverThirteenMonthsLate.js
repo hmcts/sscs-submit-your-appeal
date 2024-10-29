@@ -17,14 +17,6 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
     return paths.compliance.mrnOverThirteenMonthsLate;
   }
 
-  handler(req, res, next) {
-    if (req.method === 'GET' && isIba(req)) {
-      res.redirect(paths.errors.doesNotExist);
-    } else {
-      super.handler(req, res, next);
-    }
-  }
-
   get form() {
     return form({
       reasonForBeingLate: text.joi(
@@ -65,9 +57,10 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
+    const isIbaCase = String(benefitType) === benefitTypes.infectedBloodAppeal;
 
     const skipToAppointee = isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme;
+      isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req);
 
     return branch(
       goTo(this.journey.steps.Appointee).if(skipToAppointee),

@@ -14,10 +14,15 @@ const {
   invalidEmailValidation,
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class HearingOptions extends SaveToDraftStore {
   static get path() {
     return paths.hearing.hearingOptions;
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {
@@ -105,10 +110,21 @@ class HearingOptions extends SaveToDraftStore {
 
     const setRequestedOrNotRequested = value => (value ? cyaContent.requested : cyaContent.notRequested);
 
+    const inPersonOrFaceToFaceContent = () => {
+      if (isIba(this.req)) {
+        return {
+          hearingTypeInPersonIba: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
+        };
+      }
+      return {
+        hearingTypeFaceToFace: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
+      };
+    };
+
     const arrangementsAnswer = {
       hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
       hearingTypeVideo: setRequestedOrNotRequested(selectOptions.video.requested),
-      hearingTypeFaceToFace: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
+      ...inPersonOrFaceToFaceContent()
     };
 
     arrangementsAnswer.hearingTypeTelephone = setCYAValue(

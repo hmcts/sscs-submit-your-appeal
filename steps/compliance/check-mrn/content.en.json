@@ -4,9 +4,14 @@
   "subtitle": "Your appeal may be late. Just check you entered the date from the top right of your Mandatory Reconsideration Notice.",
   "question": "Did you enter the date from the top right of your MRN?",
   "imageAlt": "A copy of your MRN",
+  "titleHeadIba": "Double check IRN date",
+  "subtitleIba": "Your appeal may be late. Just check you entered the date from the top right of your Internal Review Notice (IRN).",
+  "questionIba": "Did you enter the date from the top right of your IRN?",
+  "imageAltIba": "A copy of your IRN",
   "fields": {
     "checkedMRN": {
       "yes": "Yes, I entered the date from the top right of my MRN",
+      "yesIba": "Yes, I entered the date from the top right of my IRN",
       "no": "No, I entered a different date",
       "error": {
         "required": "You have not answered the question. Select either yes or no"

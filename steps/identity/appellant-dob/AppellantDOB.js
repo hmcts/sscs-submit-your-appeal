@@ -70,7 +70,7 @@ class AppellantDOB extends SaveToDraftStore {
   next() {
     const isIbaCase = () => isIba(this.req);
     return branch(
-      goTo(this.journey.steps.AppellantIBCARef).if(isIbaCase),
+      goTo(this.journey.steps.AppellantInUk).if(isIbaCase),
       goTo(this.journey.steps.AppellantNINO)
     );
   }

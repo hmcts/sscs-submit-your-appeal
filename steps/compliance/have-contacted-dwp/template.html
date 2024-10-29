@@ -1,7 +1,6 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
 {% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
@@ -11,7 +10,7 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {{ selectionButtons(
             fields.haveContactedDWP,

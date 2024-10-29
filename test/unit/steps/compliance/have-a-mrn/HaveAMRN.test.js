@@ -2,8 +2,6 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
-const sinon = require('sinon');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('HaveAMRN.js', () => {
@@ -14,12 +12,13 @@ describe('HaveAMRN.js', () => {
       journey: {
         steps: {
           MRNDate: paths.compliance.mrnDate,
+          NeedIRN: paths.compliance.needIRN,
           HaveContactedDWP: paths.compliance.haveContactedDWP
         }
       },
       session: {
         BenefitType: {
-          benefitType: 'Universal Credit (UC)'
+          benefitType: benefitTypes.universalCredit
         }
       }
     });
@@ -32,50 +31,6 @@ describe('HaveAMRN.js', () => {
   describe('get path()', () => {
     it('returns path /have-a-mrn', () => {
       expect(HaveAMRN.path).to.equal(paths.compliance.haveAMRN);
-    });
-  });
-
-  describe('handler()', () => {
-    afterEach(() => {
-      sinon.restore();
-    });
-
-    it('no redirect to /does-not-exist called for non iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.nationalInsuranceCredits
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      haveAMRN.handler(req, res, next);
-      expect(res.redirect.called).to.eql(false);
-      sinon.assert.calledOnce(superStub);
-    });
-    it('redirect to /does-not-exist called for iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      haveAMRN.handler(req, res, next);
-      expect(res.redirect.called).to.eql(true);
-      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
-      sinon.assert.notCalled(superStub);
     });
   });
 
@@ -119,6 +74,18 @@ describe('HaveAMRN.js', () => {
     });
   });
 
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      haveAMRN.req.hostname = 'some-iba-hostname';
+      expect(haveAMRN.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      haveAMRN.req.hostname = 'some-normal-hostname';
+      expect(haveAMRN.suffix).to.eql('');
+    });
+  });
+
   describe('benefitType()', () => {
     it('should return benefit type', () => {
       expect(haveAMRN.benefitType).to.eql('UC');
@@ -143,8 +110,16 @@ describe('HaveAMRN.js', () => {
       expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
     });
 
-    it('returns the next step path /have-contacted-dwp when haveAMRN equals No', () => {
+    it('returns the next step path /need-an-irn when haveAMRN equals No for IBA', () => {
+      haveAMRN.fields.haveAMRN.value = answer.YES;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
+    });
+
+
+    it('returns the next step path /have-contacted-dwp when haveAMRN equals No for non IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.NO;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(haveAMRN.next().step).to.eql(paths.compliance.haveContactedDWP);
     });
   });

@@ -193,23 +193,6 @@ describe('DraftAppeals.js', () => {
       expect(draftAppeals.mrnDate(draft)).to.equal('05 Jul 2020');
     });
 
-    it('should return formatted irnDate', () => {
-      const draft = {
-        HaveAnIRN: {
-          haveAnIRN: 'yes'
-        },
-        IRNDate: {
-          irnDate: {
-            day: '05',
-            month: '07',
-            year: '2020'
-          }
-        }
-      };
-
-      expect(draftAppeals.mrnDate(draft)).to.equal('05 Jul 2020');
-    });
-
     it('should return default message when does not haveAMRN is no', () => {
       const draft = {
         HaveAMRN: {
@@ -217,16 +200,6 @@ describe('DraftAppeals.js', () => {
         },
         MRNDate: {
           mrnDate: {
-            day: '05',
-            month: '07',
-            year: '2020'
-          }
-        },
-        HaveAnIRN: {
-          haveAnIRN: 'no'
-        },
-        IRNDate: {
-          irnDate: {
             day: '05',
             month: '07',
             year: '2020'

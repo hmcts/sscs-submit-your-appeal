@@ -2,12 +2,11 @@
 {% from "components/fields.njk" import textbox, formSection %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
             {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}

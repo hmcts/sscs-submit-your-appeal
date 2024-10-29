@@ -4,8 +4,6 @@ const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
-const sinon = require('sinon');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
 
@@ -34,50 +32,6 @@ describe('MRNOverThirteenMonthsLate.js', () => {
   describe('get path()', () => {
     it('returns path /mrn-over-thirteen-months-late', () => {
       expect(MRNOverThirteenMonthsLate.path).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
-    });
-  });
-
-  describe('handler()', () => {
-    afterEach(() => {
-      sinon.restore();
-    });
-
-    it('no redirect to /does-not-exist called for non iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.nationalInsuranceCredits
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      mrnOverThirteenMonthsLate.handler(req, res, next);
-      expect(res.redirect.called).to.eql(false);
-      sinon.assert.calledOnce(superStub);
-    });
-    it('redirect to /does-not-exist called for iba', () => {
-      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
-      const req = {
-        method: 'GET',
-        session: {
-          BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
-          }
-        }
-      };
-      const res = {
-        redirect: sinon.spy()
-      };
-      const next = sinon.spy();
-      mrnOverThirteenMonthsLate.handler(req, res, next);
-      expect(res.redirect.called).to.eql(true);
-      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
-      sinon.assert.notCalled(superStub);
     });
   });
 
@@ -206,6 +160,16 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     it('returns the next step path /dwp-issuing-office for Retirement Pension', () => {
       setBenefitType(benefitTypes.retirementPension);
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
+    });
+
+    it('returns the next step path /are-you-an-appointee for Infected Blood Appeal', () => {
+      setBenefitType(benefitTypes.infectedBloodAppeal);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
+    });
+
+    it('returns the next step path /are-you-an-appointee for iba hostname', () => {
+      mrnOverThirteenMonthsLate.req.hostname = 'some-iba-hostname';
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
     });
   });
 });

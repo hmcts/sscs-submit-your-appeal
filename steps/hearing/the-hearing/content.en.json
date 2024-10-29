@@ -1,24 +1,46 @@
 {
   "titleHead": "Your hearing",
   "title": "The appeal hearing",
-  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by {{reviewBody}} will also be considered.",
+  "titleIba": "Your hearing preference",
+  "subtitle": "Your appeal will be decided using the information you submit in this form and any additional evidence you send in. Information and evidence submitted by DWP will also be considered.",
+  "subtitleIba": "The Tribunal will decide your appeal using the information you give in this appeal form and any further information you send. Information provided by (FTA) will also be considered.",
   "explainReasons": "If you come to the hearing you can explain your reasons for appealing.",
   "arrangeSupport": "Support can be arranged for you such as an interpreter, hearing loop or disabled access.",
+  "hearingFormatsList": {
+    "title": "Hearing formats",
+    "subtitle": "Your appeal could be decided:",
+    "bulletPoint1": "at a hearing you take part in – most hearings are held in person at a tribunal building but you can ask to have the hearing remotely by video or by phone",
+    "bulletPoint2": "as a 'paper hearing' – the tribunal looks at the documents and evidence and makes a decision without you taking part in a hearing"
+  },
+  "hearingSupportList": {
+    "title": "Hearing support",
+    "subtitle": "If you take part in a hearing, you can ask for:",
+    "information": "You <b>can’t</b> bring your own interpreter to the hearing.",
+    "bulletPoint1": "A language interpreter",
+    "bulletPoint2": "Reasonable adjustments if you have a health condition or disability"
+  },
   "fields": {
     "attendHearing": {
       "title": "Do you want to attend the hearing?",
+      "titleIba": "Which type of hearing would you prefer?",
       "yes": "Yes",
       "no": "No",
+      "yesIba": "I prefer a hearing that I take part either in person, by video or by phone",
+      "noIba": "I prefer a ‘paper hearing’ where I do not take part, decided on documents and information provided",
       "error": {
-        "required": "You need to say whether you want to attend the hearing. Select either yes or no"
+        "required": "You need to say whether you want to attend the hearing. Select either yes or no",
+        "requiredIba": "You need to say whether you want to take part in the hearing. Select either option"
       }
     }
   },
   "cya": {
     "attendHearing": {
       "question": "Attending the hearing",
+      "questionIba": "Type of hearing would you prefer",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "yesIba": "Take part either in person, by video or by phone",
+      "noIba": "Do not take part, decided on documents and information provided"
     }
   }
 }
