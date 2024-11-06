@@ -68,7 +68,8 @@
     "postCode": {
       "title": "Cod post",
       "error": {
-        "required": "Nodwch y cod post o gyfeiriad eich cynrychiolydd"
+        "required": "Nodwch y cod post o gyfeiriad eich cynrychiolydd",
+        "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales."
       }
     },
     "phoneNumber": {

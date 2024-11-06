@@ -107,14 +107,18 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
         Joi.string().regex(whitelistNotFirst)
       ),
       addressLine2: text.joi(
-        fields.addressLine1.error.invalid,
+        fields.addressLine2.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       townCity: text.joi(
         fields.townCity.error.required,
         Joi.string().required()
       ).joi(
-        fields.addressLine1.error.invalid,
+        fields.townCity.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
+      postCode: text.joi(
+        fields.postCode.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       country: text.joi(
