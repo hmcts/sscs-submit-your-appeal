@@ -10,7 +10,8 @@ const {
   lastName,
   whitelist,
   whitelistNotFirst,
-  title
+  title,
+  notNiPostcode
 } = require('utils/regex');
 const {
   joiValidation,
@@ -36,6 +37,7 @@ class RepresentativeDetails extends SaveToDraftStore {
     super(...args);
     this.pcl = new PCL(enabled, token, url, this);
   }
+
   static get path() {
     return paths.representative.representativeDetails;
   }
@@ -134,6 +136,9 @@ class RepresentativeDetails extends SaveToDraftStore {
         validator: text.joi(
           fields.postCode.error.required,
           Joi.string().trim().regex(postCode).required()
+        ).joi(
+          fields.postCode.error.invalidPostcodeIba,
+          Joi.string().trim().regex(notNiPostcode)
         ) },
       { name: 'phoneNumber',
         validator: text.joi(

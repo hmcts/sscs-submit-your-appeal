@@ -23,6 +23,12 @@
         "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
+    "postCode": {
+      "title": "Postcode/ZIP code (optional)",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
+      }
+    },
     "country": {
       "title": "Country",
       "error": {
