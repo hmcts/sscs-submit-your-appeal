@@ -21,14 +21,6 @@ class AppellantIBCARef extends SaveToDraftStore {
     }
   }
 
-  get title() {
-    return this.content.title;
-  }
-
-  get subtitle() {
-    return this.content.subtitle;
-  }
-
   get form() {
     return form({
       ibcaRef: text.joi(

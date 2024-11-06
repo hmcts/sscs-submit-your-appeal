@@ -15,6 +15,14 @@ class SameAddress extends SaveToDraftStore {
     return paths.appointee.sameAddress;
   }
 
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
+  }
+
   get form() {
     return form({
       isAddressSameAsAppointee: text.joi(
@@ -53,7 +61,6 @@ class SameAddress extends SaveToDraftStore {
     const isAddressSameAsAppointee = this.fields.isAddressSameAsAppointee.value === userAnswer.YES;
     return branch(
       redirectTo(this.journey.steps.TextReminders).if(isAddressSameAsAppointee),
-      goTo(this.journey.steps.AppellantInUk).if(isIba(this.req)),
       goTo(this.journey.steps.AppellantContactDetails)
     );
   }
