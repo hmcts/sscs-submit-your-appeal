@@ -169,6 +169,12 @@ describe('RepresentativeInUk.js', () => {
         const values = representativeInUk.values();
         expect(values.representative.contactDetails.inMainlandUk).to.equal(false);
       });
+
+      it('should return the correct value false for null', () => {
+        representativeInUk.fields.inMainlandUk.value = null;
+        const values = representativeInUk.values();
+        expect(values.representative.contactDetails.inMainlandUk).to.equal(null);
+      });
     });
   });
 

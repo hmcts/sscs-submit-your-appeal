@@ -8,6 +8,7 @@ const appellantRoleContent = require('steps/identity/appellant-role/content.en.j
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const userAnswer = require("../../../../../utils/answer");
 
 describe('AppellantRole.js', () => {
   let appellantRole = null;
@@ -85,6 +86,12 @@ describe('AppellantRole.js', () => {
       const answers = appellantRole.answers();
       expect(answers.question).to.equal(appellantRoleContent.question);
       expect(answers.section).to.equal(sections.appellantDetails);
+    });
+
+    it('should return the correct values for yes', () => {
+      appellantRole.fields.ibcRole.value = 'some value';
+      const values = appellantRole.values();
+      expect(values.appellant.ibcRole).to.equal('some value');
     });
 
     describe('English', () => {

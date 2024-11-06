@@ -98,6 +98,26 @@ describe('AppellantInUk.js', () => {
       expect(answers.section).to.equal(sections.appellantDetails);
     });
 
+    describe('values()', () => {
+      it('should return the correct values for yes', () => {
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(true);
+      });
+
+      it('should return the correct values for no', () => {
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(false);
+      });
+
+      it('should return null for null', () => {
+        appellantInUk.fields.inMainlandUk.value = null;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(null);
+      });
+    });
+
     describe('English', () => {
       it('should return the correct answer \'Yes\' for CYA (English)', () => {
         appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
