@@ -28,10 +28,8 @@ describe('AppellantInternationalContactDetails.js', () => {
     appellantInternationalContactDetails.fields = {};
     const mockPortsResponse = {
       body: [
-        { label: 'Entry1', locationCode: 'locationCode1' }, {
-          label: 'Entry2',
-          locationCode: 'locationCode2'
-        }
+        { label: 'Entry1', locationCode: 'locationCode1' },
+        { label: 'Entry2', locationCode: 'locationCode2' }
       ], status: 200
     };
     const mockCountryResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
@@ -246,6 +244,18 @@ describe('AppellantInternationalContactDetails.js', () => {
   describe('get getPortOfEntryList()', () => {
     it('should return the portOfEntryList', () => {
       expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortsOfEntry());
+    });
+  });
+
+  describe('get getPortOfEntryFromCode()', () => {
+    it('should return the correct port of entry for code locationCode1', () => {
+      appellantInternationalContactDetails.fields.portOfEntry = { value: 'locationCode1' };
+      expect(appellantInternationalContactDetails.getPortOfEntryFromCode).to.equal('Entry1');
+    });
+
+    it('should return the correct port of entry for code locationCode2', () => {
+      appellantInternationalContactDetails.fields.portOfEntry = { value: 'locationCode2' };
+      expect(appellantInternationalContactDetails.getPortOfEntryFromCode).to.equal('Entry2');
     });
   });
 
