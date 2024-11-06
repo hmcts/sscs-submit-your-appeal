@@ -36,13 +36,17 @@ describe('EnumJsonLists util', () => {
     });
 
     it('should handle errors when fetching portsOfEntry data', async() => {
-      const consoleStub = sinon.stub(console, 'error');
-      superagentGetStub.rejects(new Error('Network error'));
+      const consoleErrorStub = sinon.stub(console, 'error');
+      const consoleLogStub = sinon.stub(console, 'log');
+      const error = new Error('Network error');
+      superagentGetStub.rejects(error);
 
-      await fetchPortsOfEntry();
+      await expect(fetchPortsOfEntry()).to.be.rejectedWith(error);
 
-      expect(consoleStub.calledWithMatch('Error fetching portOfEntry data:')).to.be.true;
-      consoleStub.restore();
+      expect(consoleErrorStub.calledWithMatch('Error requesting portOfEntry data from : ')).to.be.true;
+      expect(consoleLogStub.calledWithMatch('Requesting from AAT...')).to.be.true;
+      consoleErrorStub.restore();
+      consoleLogStub.restore();
     });
   });
 
@@ -62,13 +66,17 @@ describe('EnumJsonLists util', () => {
     });
 
     it('should handle errors when fetching fetchCountriesOfResidence data', async() => {
-      const consoleStub = sinon.stub(console, 'error');
-      superagentGetStub.rejects(new Error('Network error'));
+      const consoleErrorStub = sinon.stub(console, 'error');
+      const consoleLogStub = sinon.stub(console, 'log');
+      const error = new Error('Network error');
+      superagentGetStub.rejects(error);
 
-      await fetchCountriesOfResidence();
+      await expect(fetchCountriesOfResidence()).to.be.rejectedWith(error);
 
-      expect(consoleStub.calledWithMatch('Error fetching countriesOfResidence data:')).to.be.true;
-      consoleStub.restore();
+      expect(consoleErrorStub.calledWithMatch('Error requesting countriesOfResidence data from : ')).to.be.true;
+      expect(consoleLogStub.calledWithMatch('Requesting from AAT...')).to.be.true;
+      consoleErrorStub.restore();
+      consoleLogStub.restore();
     });
   });
 });
