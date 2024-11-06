@@ -8,7 +8,6 @@ const appellantRoleContent = require('steps/identity/appellant-role/content.en.j
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
-const userAnswer = require("../../../../../utils/answer");
 
 describe('AppellantRole.js', () => {
   let appellantRole = null;
