@@ -4,8 +4,8 @@ const request = require('superagent');
 let portsOfEntry = null;
 let countriesOfResidence = null;
 
-async function requestPortsOfEntry(apiUrl) {
-  await request.get(`${apiUrl}/api/citizen/ports-of-entry`)
+async function fetchPortsOfEntry() {
+  await request.get(`${config.api.url}/api/citizen/ports-of-entry`)
     .then(res => {
       portsOfEntry = res.body.map(entry => {
         entry.value = entry.locationCode;
@@ -13,26 +13,17 @@ async function requestPortsOfEntry(apiUrl) {
       });
     })
     .catch(error => {
-      console.error(`Error requesting portOfEntry data from : ${apiUrl}`, error);
-      throw error;
+      console.error('Error fetching portOfEntry data: ', error);
     });
-}
-
-async function fetchPortsOfEntry() {
-  try {
-    await requestPortsOfEntry(config.api.url);
-  } catch {
-    console.log('Requesting from AAT...');
-    await requestPortsOfEntry(config.api.aatUrl);
-  }
 }
 
 function getPortsOfEntry() {
   return portsOfEntry;
 }
 
-async function requestCountriesOfResidence(apiUrl) {
-  await request.get(`${apiUrl}/api/citizen/countries-of-residence`)
+
+async function fetchCountriesOfResidence() {
+  await request.get(`${config.api.url}/api/citizen/countries-of-residence`)
     .then(res => {
       countriesOfResidence = res.body.map(entry => {
         entry.value = entry.label;
@@ -40,18 +31,8 @@ async function requestCountriesOfResidence(apiUrl) {
       });
     })
     .catch(error => {
-      console.error(`Error requesting countriesOfResidence data from : ${apiUrl}`, error);
-      throw error;
+      console.error('Error fetching countriesOfResidence data: ', error);
     });
-}
-
-async function fetchCountriesOfResidence() {
-  try {
-    await requestCountriesOfResidence(config.api.url);
-  } catch {
-    console.log('Requesting from AAT...');
-    await requestCountriesOfResidence(config.api.aatUrl);
-  }
 }
 
 function getCountriesOfResidence() {

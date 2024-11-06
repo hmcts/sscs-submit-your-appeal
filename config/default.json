@@ -20,8 +20,7 @@
   "api": {
     "url": "http://localhost:8008",
     "uploadEvidenceUrl": "http://localhost:8008/evidence/upload",
-    "draftUrl": "https://localhost:3000/appeal",
-    "aatUrl": "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+    "draftUrl": "https://localhost:3000/appeal"
   },
   "appInsights": {
     "instrumentationKey": "",
