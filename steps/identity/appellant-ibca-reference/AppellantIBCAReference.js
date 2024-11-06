@@ -8,9 +8,9 @@ const paths = require('paths');
 const Joi = require('joi');
 const { isIba } = require('utils/benefitTypeUtils');
 
-class AppellantIBCARef extends SaveToDraftStore {
+class AppellantIBCAReference extends SaveToDraftStore {
   static get path() {
-    return paths.identity.enterAppellantIBCARef;
+    return paths.identity.enterAppellantIBCAReference;
   }
 
   handler(req, res, next) {
@@ -56,4 +56,4 @@ class AppellantIBCARef extends SaveToDraftStore {
   }
 }
 
-module.exports = AppellantIBCARef;
+module.exports = AppellantIBCAReference;

@@ -67,7 +67,7 @@ module.exports = {
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details',
-    enterAppellantIBCARef: '/enter-appellant-ibca-reference',
+    enterAppellantIBCAReference: '/enter-appellant-ibca-reference',
     enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
     enterAppellantInUk: '/appellant-in-uk'
   },

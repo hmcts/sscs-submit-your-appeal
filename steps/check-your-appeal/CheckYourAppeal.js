@@ -93,8 +93,8 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     }
 
     const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));
-    const ibcaRef = getIbcaReference(get(this, 'journey.values.appellant.ibcaReference'));
-    const referenceValue = isIbaCase ? ibcaRef : maskedNino;
+    const ibcaReference = getIbcaReference(get(this, 'journey.values.appellant.ibcaReference'));
+    const referenceValue = isIbaCase ? ibcaReference : maskedNino;
     const referenceName = isIbaCase ? 'IBCA' : 'NINO';
     logger.trace([
       'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
