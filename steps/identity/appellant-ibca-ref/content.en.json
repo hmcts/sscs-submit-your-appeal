@@ -1,7 +1,7 @@
 {
     "titleHead": "Enter IBCA Reference number",
     "title": "Enter your IBCA Reference number",
-    "subtitle": "You can find your IBCA Reference number on your IRN letter.",
+    "subtitle": "You can find your IBCA Reference number on your Review Decision Notice.",
     "fields": {
       "ibcaRef": {
       "title": "IBCA Reference number",
