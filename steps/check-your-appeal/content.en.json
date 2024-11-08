@@ -3,9 +3,9 @@
   "benefitType": "Benefit",
   "compliance": {
     "checkMRN": "Check MRN Date",
-    "checkIRN": "Check IRN Date",
+    "checkIRN": "Check Review Decision Notice Date",
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
-    "irnDate": "Internal Review Notice (IRN)",
+    "irnDate": "Review Decision Notice",
     "mrnOverOneMonthLate": "Appeal over a month late",
     "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
     "noMRN": "Why you don’t have a Mandatory Reconsideration Notice (MRN)"
