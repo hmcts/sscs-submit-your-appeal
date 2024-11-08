@@ -27,7 +27,7 @@ const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
-const NeedIRN = require('steps/compliance/need-irn/NeedIRN');
+const NeedRDN = require('steps/compliance/need-rdn/NeedRDN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
@@ -117,7 +117,7 @@ const compliance = [
   MRNDate,
   DWPIssuingOfficeEsa,
   NoMRN,
-  NeedIRN,
+  NeedRDN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,
   StillCanAppeal

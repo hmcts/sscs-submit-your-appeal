@@ -1,18 +1,18 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
-const NeedIRN = require('steps/compliance/need-irn/NeedIRN');
+const NeedRDN = require('steps/compliance/need-rdn/NeedRDN');
 const sinon = require('sinon');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { ExitPoint } = require('@hmcts/one-per-page');
 
-describe('NeedIRN.js', () => {
-  let needIRN = null;
-  it('returns path /need-an-irn', () => {
-    expect(NeedIRN.path).to.equal(paths.compliance.needIRN);
+describe('NeedRDN.js', () => {
+  let needRDN = null;
+  it('returns path /need-a-review-decision-notice', () => {
+    expect(NeedRDN.path).to.equal(paths.compliance.needRDN);
   });
   describe('handler()', () => {
     beforeEach(() => {
-      needIRN = new NeedIRN({
+      needRDN = new NeedRDN({
         journey: {
           req: {
             session: {
@@ -43,7 +43,7 @@ describe('NeedIRN.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      needIRN.handler(req, res, next);
+      needRDN.handler(req, res, next);
       expect(res.redirect.called).to.eql(false);
       sinon.assert.calledOnce(superStub);
     });
@@ -61,7 +61,7 @@ describe('NeedIRN.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      needIRN.handler(req, res, next);
+      needRDN.handler(req, res, next);
       expect(res.redirect.called).to.eql(true);
       expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
       sinon.assert.notCalled(superStub);

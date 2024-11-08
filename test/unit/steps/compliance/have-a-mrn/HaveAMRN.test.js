@@ -12,7 +12,7 @@ describe('HaveAMRN.js', () => {
       journey: {
         steps: {
           MRNDate: paths.compliance.mrnDate,
-          NeedIRN: paths.compliance.needIRN,
+          NeedRDN: paths.compliance.needRDN,
           HaveContactedDWP: paths.compliance.haveContactedDWP,
           AppellantIBCARef: paths.identity.enterAppellantIBCARef
         }
@@ -117,10 +117,10 @@ describe('HaveAMRN.js', () => {
       expect(haveAMRN.next().step).to.eql(paths.identity.enterAppellantIBCARef);
     });
 
-    it('returns the next step path /need-an-irn when haveAMRN equals No for IBA', () => {
+    it('returns the next step path /need-a-review-decision-notice when haveAMRN equals No for IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.NO;
       haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(haveAMRN.next().step).to.eql(paths.compliance.needIRN);
+      expect(haveAMRN.next().step).to.eql(paths.compliance.needRDN);
     });
 
 
