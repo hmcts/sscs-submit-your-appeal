@@ -4,11 +4,11 @@
   "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr MRN",
   "dateHint": "Er enghraifft, 31 3 2017",
   "imageAlt": "Copi o’ch MRN",
-  "titleHeadIba": "IRN dated",
-  "titleIba": "When is your Internal Review Notice (IRN) dated?",
-  "dateLegendIba": "Enter the date from the top right of your IRN letter",
-  "dateHintIba": "For example, 26 1 2024",
-  "imageAltIba": "A copy of your IRN",
+  "titleHeadIba": "Review Decision Notice dated",
+  "titleIba": "When is your Review Decision Notice dated?",
+  "dateLegendIba": "Enter the date from the top right of your Review Decision Notice",
+  "dateHintIba": "Er enghraifft, 26 1 2024",
+  "imageAltIba": "A copy of your Review Decision Notice",
   "fields": {
     "date": {
       "day": "Diwrnod",
@@ -22,17 +22,17 @@
         "invalid": "Rydych wedi nodi dyddiad MRN annilys. Nodwch ddyddiad yr MRN",
         "future": "Rydych wedi nodi dyddiad yn y dyfodol. Nodwch ddyddiad yr MRN",
         "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich MRN a nodwch y dyddiad a ddangosir.",
-        "allRequiredIba": "Enter the IRN date.",
-        "invalidIba": "You’ve entered an invalid IRN date. Enter the IRN date.",
-        "futureIba": "You’ve entered a date in the future. Enter the IRN date.",
-        "dateSameAsImageIba": "You have entered the date from the picture. Look at your own IRN and enter the date shown."
+        "allRequiredIba": "Enter the Review Decision Notice date.",
+        "invalidIba": "You’ve entered an invalid Review Decision Notice date. Enter the Review Decision Notice date.",
+        "futureIba": "You’ve entered a date in the future. Enter the Review Decision Notice date.",
+        "dateSameAsImageIba": "You have entered the date from the picture. Look at your own Review Decision Notice and enter the date shown."
       }
     }
   },
   "cya": {
     "mrnDate": {
       "question": "Dyddiad yr MRN",
-      "questionIba": "Date of IRN"
+      "questionIba": "Date of Review Decision Notice"
     }
   }
 }

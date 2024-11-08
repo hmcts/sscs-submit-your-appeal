@@ -4,11 +4,11 @@
   "dateLegend": "Enter the date from the top right of your MRN letter",
   "dateHint": "For example, 31 3 2017",
   "imageAlt": "A copy of your MRN",
-  "titleHeadIba": "IRN dated",
-  "titleIba": "When is your Internal Review Notice (IRN) dated?",
-  "dateLegendIba": "Enter the date from the top right of your IRN letter",
+  "titleHeadIba": "Review Decision Notice dated",
+  "titleIba": "When is your Review Decision Notice dated?",
+  "dateLegendIba": "Enter the date from the top right of your Review Decision Notice",
   "dateHintIba": "For example, 26 1 2024",
-  "imageAltIba": "A copy of your IRN",
+  "imageAltIba": "A copy of your Review Decision Notice",
   "fields": {
     "date": {
       "day": "Day",
@@ -22,17 +22,17 @@
         "invalid": "You’ve entered an invalid MRN date. Enter the MRN date",
         "future": "You’ve entered a date in the future. Enter the MRN date",
         "dateSameAsImage": "You have entered the date from the picture. Look at your own MRN and enter the date shown.",
-        "allRequiredIba": "Enter the IRN date.",
-        "invalidIba": "You’ve entered an invalid IRN date. Enter the IRN date.",
-        "futureIba": "You’ve entered a date in the future. Enter the IRN date.",
-        "dateSameAsImageIba": "You have entered the date from the picture. Look at your own IRN and enter the date shown."
+        "allRequiredIba": "Enter the Review Decision Notice date.",
+        "invalidIba": "You’ve entered an invalid Review Decision Notice date. Enter the Review Decision Notice date.",
+        "futureIba": "You’ve entered a date in the future. Enter the Review Decision Notice date.",
+        "dateSameAsImageIba": "You have entered the date from the picture. Look at your own Review Decision Notice and enter the date shown."
       }
     }
   },
   "cya": {
     "mrnDate": {
       "question": "Date of MRN",
-      "questionIba": "Date of IRN"
+      "questionIba": "Date of Review Decision Notice"
     }
   }
 }

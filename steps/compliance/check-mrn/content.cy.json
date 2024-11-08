@@ -4,14 +4,14 @@
   "subtitle": "Efallai bod eich apêl yn hwyr. Gwiriwch eich bod wedi nodi’r dyddiad sydd yng nghornel dde uchaf eich Hysbysiad Gorfodi i Ailystyried (MRN).",
   "question": "A wnaethoch nodi’r dyddiad sydd yng nghornel dde uchaf eich MRN?",
   "imageAlt": "Copi o’ch MRN",
-  "titleHeadIba": "Double check IRN date",
-  "subtitleIba": "Your appeal may be late. Just check you entered the date from the top right of your Internal Review Notice (IRN).",
-  "questionIba": "Did you enter the date from the top right of your IRN?",
-  "imageAltIba": "A copy of your IRN",
+  "titleHeadIba": "Double check Review Decision Notice date",
+  "subtitleIba": "Your appeal may be late. Just check you entered the date from the top right of your Review Decision Notice.",
+  "questionIba": "Did you enter the date from the top right of your Review Decision Notice?",
+  "imageAltIba": "A copy of your Review Decision Notice",
   "fields": {
     "checkedMRN": {
       "yes": "Do, mi wnes i nodi’r dyddiad sydd yng nghornel dde uchaf fy MRN ",
-      "yesIba": "Yes, I entered the date from the top right of my IRN",
+      "yesIba": "Yes, I entered the date from the top right of my Review Decision Notice",
       "no": "Na, mi wnes i nodi dyddiad gwahanol",
       "error": {
         "required": "Nid ydych wedi ateb y cwestiwn. Dewiswch naill ai Do neu Na"
