@@ -12,7 +12,7 @@
     "haveAMRN": {
       "yes": "Oes, mae gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
       "no": "Nac oes, nid oes gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
-      "yesIba": "Yes, I have an Review Decision Notice",
+      "yesIba": "Yes, I have a Review Decision Notice",
       "noIba": "No, I don’t have a Review Decision Notice",
       "error": {
         "required": "Mae’n rhaid i chi ddweud os oes gennych Hysbysiad Gorfodi i Ailystyried neu beidio. Dewiswch oes neu nac oes.",

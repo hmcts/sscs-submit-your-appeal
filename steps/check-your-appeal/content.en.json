@@ -3,7 +3,7 @@
   "benefitType": "Benefit",
   "compliance": {
     "checkMRN": "Check MRN Date",
-    "checkIRN": "Check Review Decision Notice Date",
+    "checkRDN": "Check Review Decision Notice Date",
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
     "rdnDate": "Review Decision Notice",
     "mrnOverOneMonthLate": "Appeal over a month late",

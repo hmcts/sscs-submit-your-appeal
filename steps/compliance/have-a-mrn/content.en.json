@@ -1,8 +1,8 @@
 {
-  "titleHead": "Have you got an MRN",
+  "titleHead": "Have you got a MRN",
   "title": "Have you got a Mandatory Reconsideration Notice (MRN)?",
   "subtitle": "This is the letter DWP sent you if you asked them to reconsider their decision about the {{benefitType}}{{benefitEndText}}.",
-  "titleHeadIba": "Have you got an Review Decision Notice",
+  "titleHeadIba": "Have you got a Review Decision Notice",
   "titleIba": "Have you got a Review Decision Notice?",
   "subtitleIba": "This is the letter IBCA sent you if you asked them to reconsider their decision about the Infected Blood Compensation.",
   "uc": {
@@ -16,7 +16,7 @@
       "noIba": "No, I don’t have a Review Decision Notice",
       "error": {
         "required": "You need to say whether you have an MRN. Select either yes or no.",
-        "requiredIba": "You need to say whether you have an Review Decision Notice. Select either yes or no."
+        "requiredIba": "You need to say whether you have a Review Decision Notice. Select either yes or no."
       }
     }
   }
