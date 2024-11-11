@@ -3,7 +3,9 @@
   "benefitType": "Budd-dal",
   "compliance": {
     "checkMRN": "Gwirio dyddiad y MRN ",
+    "checkRDN": "Check Review Decision Notice Date",
     "mrnDate": "Hysbysiad Gorfodi i Ailystyried (MRN)",
+    "rdnDate": "Review Decision Notice",
     "mrnOverOneMonthLate": "Mae’r apêl dros fis yn hwyr",
     "mrnOverThirteenMonthsLate": "Pam fod eich apêl dros 13 mis yn hwyr",
     "noMRN": "Pam nad oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)"
