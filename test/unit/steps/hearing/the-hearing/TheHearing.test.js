@@ -15,6 +15,11 @@ describe('TheHearing.js', () => {
           HearingSupport: paths.hearing.hearingSupport,
           NotAttendingHearing: paths.hearing.notAttendingHearing
         }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
+        }
       }
     });
 
@@ -26,6 +31,18 @@ describe('TheHearing.js', () => {
   describe('get path()', () => {
     it('returns path /the-hearing', () => {
       expect(theHearing.path).to.equal(paths.hearing.theHearing);
+    });
+  });
+
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      theHearing.req.hostname = 'some-iba-hostname';
+      expect(theHearing.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      theHearing.req.hostname = 'some-normal-hostname';
+      expect(theHearing.suffix).to.eql('');
     });
   });
 

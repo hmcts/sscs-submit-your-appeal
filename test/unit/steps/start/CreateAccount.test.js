@@ -1,6 +1,7 @@
 const CreateAccount = require('steps/start/create-account/CreateAccount');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('CreateAccount.js', () => {
   let createAccount = null;
@@ -59,6 +60,7 @@ describe('CreateAccount.js', () => {
 
     it('returns /have-you-got-an-mrn when user selects no', () => {
       createAccount.fields.createAccount.value = 'no';
+      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
     });
   });

@@ -1,7 +1,7 @@
 {
   "titleHead": "Anything else",
   "title": "Anything else you want to tell the tribunal",
-  "subtitle": "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel DWP didn’t consider in their assessment.",
+  "subtitle": "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel {{reviewBody}} didn’t consider in their {{subtitleEnd}}.",
   "additonalInfo": "You don’t have to write anything, if you have nothing further to add.",
   "fields": {
     "otherReasonForAppealing": {

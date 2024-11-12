@@ -8,6 +8,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -56,10 +57,14 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
     const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
     const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
     const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
+    const isIbaCase = String(benefitType) === benefitTypes.infectedBloodAppeal;
+
+    const skipToAppointee = isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
+      isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req);
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-        isBereavementSupportPaymentScheme),
+      goTo(this.journey.steps.AppellantRole).if(isIba(this.req)),
+      goTo(this.journey.steps.Appointee).if(skipToAppointee),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)
     );

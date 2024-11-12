@@ -1,24 +1,23 @@
 {% extends "components/globals.html" %}
 {% extends "layouts/question.html" %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.contact.title | safe %}
 
 {% block two_thirds %}
-    <h1 class="govuk-heading-l">{{ content.contact.title | safe }}</h1>
-    <p class="govuk-body">{{ content.contact.description | safe }}</p>
+    <h1 class="govuk-heading-l">{{ content.contact.title }}</h1>
+    <p class="govuk-body">{{ content.contact.description }}</p>
 
-    <h2 class="govuk-heading-m">{{ content.englandAndWales.title | safe }}</h2>
+    <h2 class="govuk-heading-m">{{ content.englandAndWales.title }}</h2>
     <p class="govuk-body">
-        {{ content.englandAndWales.phone | safe }}<br/>
-        {{ content.englandAndWales.days | safe }}<br/>
-        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.englandAndWales.callCharge | safe }}</a>
+        {{ content.englandAndWales.phone }}<br/>
+        {{ content.englandAndWales.days }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.englandAndWales.callCharge }}</a>
     </p>
 
-    <h2 class="govuk-heading-m">{{ content.scotland.title | safe }}</h2>
+    <h2 class="govuk-heading-m">{{ content.scotland.title }}</h2>
     <p class="govuk-body">
-        {{ content.scotland.phone | safe }}<br/>
-        {{ content.scotland.days | safe }}<br/>
-        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.scotland.callCharge | safe }}</a>
+        {{ content.scotland.phone }}<br/>
+        {{ content.scotland.days }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.scotland.callCharge }}</a>
     </p>
 {% endblock %}

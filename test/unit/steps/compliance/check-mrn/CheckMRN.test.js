@@ -41,6 +41,18 @@ describe('CheckMRN.js', () => {
     });
   });
 
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      checkMRN.req.hostname = 'some-iba-hostname';
+      expect(checkMRN.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      checkMRN.req.hostname = 'some-normal-hostname';
+      expect(checkMRN.suffix).to.eql('');
+    });
+  });
+
   describe('get benefitType()', () => {
     it('returns PIP code from benefit type', () => {
       checkMRN.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';

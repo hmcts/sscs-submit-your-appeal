@@ -46,6 +46,7 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
+    needIRN: '/need-an-irn',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
@@ -55,16 +56,21 @@ module.exports = {
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
+    irnOverMonthLate: '/irn-over-month-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
-    enterAppellantContactDetails: '/enter-appellant-contact-details'
+    enterAppellantContactDetails: '/enter-appellant-contact-details',
+    enterAppellantIBCARef: '/enter-appellant-ibca-reference',
+    enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
+    enterAppellantInUk: '/appellant-in-uk'
   },
 
   appointee: {
@@ -85,7 +91,9 @@ module.exports = {
     representativeDetailsToHand: '/representative-details-to-hand',
     representative: '/representative',
     representativeDetails: '/representative-details',
-    noRepresentativeDetails: '/no-representative-details'
+    noRepresentativeDetails: '/no-representative-details',
+    representativeInUk: '/representative-in-uk',
+    representativeInternationalDetails: '/representative-international-details'
   },
 
   reasonsForAppealing: {

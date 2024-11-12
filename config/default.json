@@ -18,8 +18,8 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url": "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
+    "url": "http://localhost:8008",
+    "uploadEvidenceUrl": "http://localhost:8008/evidence/upload",
     "draftUrl": "https://localhost:3000/appeal"
   },
   "appInsights": {

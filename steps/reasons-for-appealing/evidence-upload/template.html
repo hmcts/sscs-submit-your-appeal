@@ -2,7 +2,6 @@
 {% extends "layouts/add_another.html" %}
 {% from "components/fields.njk" import formSection, fileupload %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% set pageContent = {
@@ -23,13 +22,13 @@
 {% endblock %}
 
 {% block item %}
-    <span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value | safe }}</span>
+    <span data-index="{{ safeId(item.id) }}">{{ item.uploadEv.value }}</span>
 {% endblock %}
 
 {% block listItems %}
-    <p class="govuk-body">{{ content.description | safe }}</p>
+    <p class="govuk-body">{{ content.description }}</p>
     {% if mediaFilesAllowed %}
-        <p class="govuk-body">{{ content.description2 | safe }}</p>
+        <p class="govuk-body">{{ content.description2 }}</p>
     {% endif %}
     <div id="evidence-upload"></div>
 

@@ -3,6 +3,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
 const moment = require('moment');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('AppellantDOB.js', () => {
   let appellantDOBClass = null;
@@ -11,7 +12,14 @@ describe('AppellantDOB.js', () => {
     appellantDOBClass = new AppellantDOB({
       journey: {
         steps: {
-          AppellantNINO: paths.identity.enterAppellantNINO
+          AppellantNINO: paths.identity.enterAppellantNINO,
+          AppellantInUk: paths.identity.enterAppellantInUk
+
+        }
+      },
+      session: {
+        BenefitType: {
+          benefitType: benefitTypes.infectedBloodAppeal
         }
       }
     });
@@ -90,7 +98,13 @@ describe('AppellantDOB.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /enter-appellant-nino', () => {
-      expect(appellantDOBClass.next()).to.eql({ nextStep: paths.identity.enterAppellantNINO });
+      appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
+      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantNINO);
+    });
+
+    it('returns the next step path /appellent-in-uk in Iba journey', () => {
+      appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
   });
 });

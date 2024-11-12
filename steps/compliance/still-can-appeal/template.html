@@ -3,7 +3,9 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}
+{{ content.titleHead }} - {{ commonContent[htmlLang].ibca.windowTitleSuffix if isIba else commonContent[htmlLang].windowTitleSuffix }}
+{% endblock %}
 {% set title = content.title | safe %}
 
 {% block head %}
@@ -19,9 +21,9 @@
             {{ header(title, size='l') }}
             <form action="{{ path if path else url }}" method="post" class="form">
                 {% block fields %}
-                    <p class="govuk-body-l">{{ content.canAppeal | safe }}</p>
+                    <p class="govuk-body-l">{{ content.canAppeal }}</p>
                 {% endblock %}
-                <input class="govuk-button" type="submit" value="{{ content.continueButton | safe }}">
+                <input class="govuk-button" type="submit" value="{{ content.continueButton }}">
             </form>
         </div>
     </div>

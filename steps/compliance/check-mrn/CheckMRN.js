@@ -8,6 +8,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class CheckMRN extends SaveToDraftStore {
   static get path() {
@@ -26,6 +27,10 @@ class CheckMRN extends SaveToDraftStore {
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   answers() {
