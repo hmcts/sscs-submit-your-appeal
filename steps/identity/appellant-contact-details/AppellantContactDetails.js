@@ -17,6 +17,7 @@ const postcodeChecker = require('utils/postcodeChecker');
 const config = require('config');
 const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
+const { isIba } = require('utils/benefitTypeUtils');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
@@ -106,7 +107,7 @@ class AppellantContactDetails extends SaveToDraftStore {
           fields.postCode.error[prefix].required,
           Joi.string().trim().regex(postCode).required()
         ).joi(
-          fields.postCode.error[prefix].invalidPostcode,
+          fields.postCode.error[prefix][isIba(this.req) ? 'invalidPostcodeIba' : 'invalidPostcode'],
           customJoi.string().trim().validatePostcode(this.req.session.invalidPostcode)
         ) },
       { name: 'phoneNumber',

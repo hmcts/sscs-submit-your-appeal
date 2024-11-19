@@ -15,6 +15,7 @@
     "iba:start:dev": "cross-env IS_IBA=true yarn start:dev",
     "iba:dev": "cross-env IS_IBA=true yarn dev",
     "iba:debug": "cross-env IS_IBA=true yarn debug",
+    "iba:dev:aat": "cross-env TRIBUNALS_CASE_API_URL=http://sscs-tribunals-api-aat.service.core-compute-aat.internal yarn iba:dev",
     "setup": "exit 0",
     "mock": "yarn mock-uploader & yarn debug",
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --exit 'test/unit/**/*.test.js'",

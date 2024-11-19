@@ -41,20 +41,26 @@
       "title": "Llinell gyntaf y cyfeiriad",
       "error": {
         "required": "Rhowch linell gyntaf eich cyfeiriad",
-        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+        "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
       }
     },
     "addressLine2": {
       "title": "Ail linell y cyfeiriad (dewisol)",
       "error": {
-        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+        "invalid": "You have entered an invalid character. Check your Address line 2 and enter it again"
       }
     },
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
         "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
-        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+        "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
+      }
+    },
+    "postCode": {
+      "title": "Postcode/ZIP code (optional)",
+      "error": {
+        "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
       }
     },
     "country": {

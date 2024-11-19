@@ -194,13 +194,14 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should contain dynamic fields', () => {
-      expect(Object.keys(fields).length).to.equal(7);
+      expect(Object.keys(fields).length).to.equal(8);
       expect(fields).to.have.all.keys(
         'name',
         'country',
         'addressLine1',
         'addressLine2',
         'townCity',
+        'postCode',
         'emailAddress',
         'phoneNumber'
       );

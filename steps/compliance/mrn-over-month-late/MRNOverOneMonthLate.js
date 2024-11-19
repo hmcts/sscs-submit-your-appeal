@@ -63,6 +63,7 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
       isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req);
 
     return branch(
+      goTo(this.journey.steps.AppellantRole).if(isIba(this.req)),
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)

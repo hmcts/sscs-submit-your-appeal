@@ -23,7 +23,8 @@ describe('MRNOverThirteenMonthsLate.js', () => {
         steps: {
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeEsa,
-          Appointee: paths.identity.areYouAnAppointee
+          Appointee: paths.identity.areYouAnAppointee,
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -162,14 +163,9 @@ describe('MRNOverThirteenMonthsLate.js', () => {
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
     });
 
-    it('returns the next step path /are-you-an-appointee for Infected Blood Appeal', () => {
-      setBenefitType(benefitTypes.infectedBloodAppeal);
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
-    });
-
-    it('returns the next step path /are-you-an-appointee for iba hostname', () => {
+    it('returns the next step path /enter-appellant-role for IBA', () => {
       mrnOverThirteenMonthsLate.req.hostname = 'some-iba-hostname';
-      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.enterAppellantRole);
     });
   });
 });

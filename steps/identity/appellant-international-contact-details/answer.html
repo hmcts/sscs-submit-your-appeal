@@ -5,6 +5,7 @@
             {{ fields.addressLine1.value }}<br>
             {% if fields.addressLine2.value %}{{ fields.addressLine2.value }}<br>{% endif %}
             {{ fields.townCity.value }}<br>
+            {% if fields.postCode.value %}{{ fields.postCode.value }}<br>{% endif %}
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
