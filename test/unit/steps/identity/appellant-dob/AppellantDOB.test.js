@@ -19,7 +19,7 @@ describe('AppellantDOB.js', () => {
       },
       session: {
         BenefitType: {
-          benefitType: benefitTypes.infectedBloodAppeal
+          benefitType: benefitTypes.infectedBloodCompensation
         }
       }
     });
@@ -103,7 +103,7 @@ describe('AppellantDOB.js', () => {
     });
 
     it('returns the next step path /appellent-in-uk in Iba journey', () => {
-      appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantInUk);
     });
   });

@@ -70,7 +70,7 @@ describe('Appointee-contact-details.js', () => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       req.session = {
         BenefitType: {
-          benefitType: benefitTypes.infectedBloodAppeal
+          benefitType: benefitTypes.infectedBloodCompensation
         }
       };
       await appointeeContactDetails.handler(req, res, next);

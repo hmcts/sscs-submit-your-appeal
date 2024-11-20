@@ -56,7 +56,7 @@ describe('ContactDWP.js', () => {
           method: 'GET',
           session: {
             BenefitType: {
-              benefitType: benefitTypes.infectedBloodAppeal
+              benefitType: benefitTypes.infectedBloodCompensation
             }
           }
         };

@@ -77,10 +77,10 @@ describe('NewAppeal.js', () => {
     it('should call reset journey and call super when a get request IBA', () => {
       const superStub = sinon.stub(Redirect.prototype, 'handler');
       req.method = 'GET';
-      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
       newAppeal.handler(req, res);
       expect(req.session.save.calledTwice).to.eql(true);
-      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodCompensation);
       sinon.assert.called(superStub);
     });
   });

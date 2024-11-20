@@ -139,7 +139,7 @@ describe('LanguagePreference.js', () => {
           req: {
             session: {
               BenefitType: {
-                benefitType: benefitTypes.infectedBloodAppeal
+                benefitType: benefitTypes.infectedBloodCompensation
               }
             }
           },

@@ -70,7 +70,7 @@ describe('BenefitType.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -134,7 +134,7 @@ describe('BenefitType.js', () => {
 
   describe('answers() and values() iba', () => {
     const question = 'A Question';
-    const value = benefitTypes.infectedBloodAppeal;
+    const value = benefitTypes.infectedBloodCompensation;
 
     beforeEach(() => {
       benefitType.req = { session: { BenefitType: { benefitType: value } } };
@@ -154,8 +154,8 @@ describe('BenefitType.js', () => {
       const values = benefitType.values();
       expect(values).to.deep.equal({
         benefitType: {
-          code: 'infectedBloodAppeal',
-          description: benefitTypes.infectedBloodAppeal
+          code: 'infectedBloodCompensation',
+          description: benefitTypes.infectedBloodCompensation
         }
       });
     });
@@ -309,7 +309,7 @@ describe('BenefitType.js', () => {
     });
 
     it('returns /independence when benefit type is IBA when Welsh feature toggle is off', () => {
-      benefitType.fields.benefitType.value = benefitTypes.infectedBloodAppeal;
+      benefitType.fields.benefitType.value = benefitTypes.infectedBloodCompensation;
       const test = benefitType.next();
       expect(test.step).to.eql(paths.start.independence);
     });
@@ -320,7 +320,7 @@ describe('BenefitType.js', () => {
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
       benefitTypes.universalCredit,
-      benefitTypes.infectedBloodAppeal
+      benefitTypes.infectedBloodCompensation
     ];
     before(() => {
       overrideFeatFlag({ key: 'allowDLA', value: false });

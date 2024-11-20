@@ -114,7 +114,7 @@ describe('Entry.js', () => {
     it('should set benefit type and call `super.handler()`', () => {
       entry.handler(req, res);
       expect(redirect.called).to.eql(false);
-      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodAppeal);
+      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodCompensation);
       expect(mockHandler.called).to.eql(true);
     });
   });

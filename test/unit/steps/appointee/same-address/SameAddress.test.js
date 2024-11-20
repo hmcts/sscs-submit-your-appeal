@@ -47,7 +47,7 @@ describe('SameAddress', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
