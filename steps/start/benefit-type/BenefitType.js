@@ -58,7 +58,7 @@ class BenefitType extends SaveToDraftStore {
       benefitTypes.personalIndependencePayment,
       benefitTypes.employmentAndSupportAllowance,
       benefitTypes.universalCredit,
-      benefitTypes.infectedBloodAppeal
+      benefitTypes.infectedBloodCompensation
     ];
 
     const featureFlags = [
@@ -94,7 +94,7 @@ class BenefitType extends SaveToDraftStore {
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
         redirectTo(this.journey.steps.AppealFormDownload)
       );
-    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodAppeal) {
+    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodCompensation) {
       return goTo(this.journey.steps.Independence);
     }
     return branch(

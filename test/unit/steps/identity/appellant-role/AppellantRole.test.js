@@ -39,7 +39,7 @@ describe('AppellantRole.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -85,6 +85,12 @@ describe('AppellantRole.js', () => {
       const answers = appellantRole.answers();
       expect(answers.question).to.equal(appellantRoleContent.question);
       expect(answers.section).to.equal(sections.appellantDetails);
+    });
+
+    it('should return the correct values for yes', () => {
+      appellantRole.fields.ibcRole.value = 'some value';
+      const values = appellantRole.values();
+      expect(values.appellant.ibcRole).to.equal('some value');
     });
 
     describe('English', () => {

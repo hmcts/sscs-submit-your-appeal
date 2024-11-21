@@ -4,7 +4,7 @@
   "question": "Does your representative live in England, Scotland or Wales?",
 
   "fields": {
-    "inUk": {
+    "inMainlandUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
@@ -13,7 +13,7 @@
     }
   },
   "cya": {
-    "inUk": {
+    "inMainlandUk": {
       "question": "Does your representative live in England, Scotland or Wales?",
       "yes": "Yes",
       "no": "No"

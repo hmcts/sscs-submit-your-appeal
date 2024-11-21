@@ -110,7 +110,7 @@ describe('OtherReasonForAppealing.js', () => {
 
   describe('reviewBody()', () => {
     it('should return "IBCA" in IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(otherReasonForAppealing.reviewBody).to.equal('IBCA');
     });
 
@@ -122,7 +122,7 @@ describe('OtherReasonForAppealing.js', () => {
 
   describe('subtitleEnd()', () => {
     it('should return "decision" in IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(otherReasonForAppealing.subtitleEnd).to.equal('decision');
     });
 

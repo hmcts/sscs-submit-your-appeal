@@ -15,7 +15,7 @@ class Entry extends RestoreFromDraftStore {
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
     } else if (isIba(req)) {
-      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
       super.handler(req, res, next);
     } else {
       super.handler(req, res, next);

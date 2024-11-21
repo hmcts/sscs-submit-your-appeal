@@ -48,7 +48,7 @@ class LanguagePreference extends SaveToDraftStore {
 
   next() {
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
-    if (benefitType === benefitTypes.infectedBloodAppeal) {
+    if (benefitType === benefitTypes.infectedBloodCompensation) {
       return goTo(this.journey.steps.Independence);
     }
     return goTo(this.journey.steps.PostcodeChecker);

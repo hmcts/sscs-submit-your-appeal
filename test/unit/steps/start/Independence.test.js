@@ -13,7 +13,7 @@ describe('Independence.js', () => {
       independence = new Independence({
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       });

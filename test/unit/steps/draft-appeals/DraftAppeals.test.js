@@ -70,7 +70,7 @@ describe('DraftAppeals.js', () => {
         2: {
           BenefitType:
             {
-              benefitType: benefitTypes.infectedBloodAppeal
+              benefitType: benefitTypes.infectedBloodCompensation
             }
         },
         3: {
@@ -110,7 +110,7 @@ describe('DraftAppeals.js', () => {
         2: {
           BenefitType:
             {
-              benefitType: benefitTypes.infectedBloodAppeal
+              benefitType: benefitTypes.infectedBloodCompensation
             }
         }
       };

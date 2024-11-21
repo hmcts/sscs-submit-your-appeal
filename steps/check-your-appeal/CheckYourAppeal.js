@@ -9,7 +9,7 @@ const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const logger = require('logger');
-const { maskNino } = require('utils/stringUtils');
+const { maskNino, getIbcaReference } = require('utils/stringUtils');
 const { isIba } = require('utils/benefitTypeUtils');
 
 const logPath = 'CheckYourAppeal.js';
@@ -87,15 +87,18 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     const headers = this.tokenHeader(this.req);
 
     const values = this.journey.values;
-
+    const isIbaCase = isIba(this.req);
     if (this.journey.req && this.journey.req.session) {
       values.ccdCaseId = this.journey.req.session.ccdCaseId;
     }
 
     const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));
+    const ibcaReference = getIbcaReference(get(this, 'journey.values.appellant.ibcaReference'));
+    const referenceValue = isIbaCase ? ibcaReference : maskedNino;
+    const referenceName = isIbaCase ? 'IBCA' : 'NINO';
     logger.trace([
       'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
-      'the NINO is ', maskedNino,
+      'the ', referenceName, ' is ', referenceValue,
       'the benefit code is', get(this, 'journey.values.benefitType.code'),
       'the draft case id is', get(values, 'ccdCaseId')
     ], logPath);
@@ -107,7 +110,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .then(result => {
         logger.trace([
           'Successfully submitted application for session id', get(this, 'journey.req.session.id'),
-          'and nino', maskedNino,
+          'and ', referenceName, ' is ', referenceValue,
           'the benefit code is', get(this, 'journey.values.benefitType.code'),
           'the status is ', result.status
         ], logPath);
@@ -121,7 +124,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         logger.exception([
           'Error on submission:', get(this, 'journey.req.session.id'),
           errMsg,
-          'the NINO is', maskedNino,
+          'the ', referenceName, ' is', referenceValue,
           'the benefit code is ', get(this, 'journey.values.benefitType.code')
         ], logPath);
 

@@ -3,7 +3,7 @@
     "title": "Enter your IBCA Reference number",
     "subtitle": "You can find your IBCA Reference number on your IRN letter.",
     "fields": {
-      "ibcaRef": {
+      "ibcaReference": {
       "title": "IBCA Reference number",
       "error": {
           "required": "Enter your IBCA Reference number",
@@ -12,7 +12,7 @@
     }
     },
     "cya": {
-      "ibcaRef": {
+      "ibcaReference": {
         "question": "IBCA Reference number"
       }
     }

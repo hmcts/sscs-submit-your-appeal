@@ -56,7 +56,6 @@ module.exports = {
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
-    irnOverMonthLate: '/irn-over-month-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
@@ -68,7 +67,7 @@ module.exports = {
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details',
-    enterAppellantIBCARef: '/enter-appellant-ibca-reference',
+    enterAppellantIBCAReference: '/enter-appellant-ibca-reference',
     enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
     enterAppellantInUk: '/appellant-in-uk'
   },
