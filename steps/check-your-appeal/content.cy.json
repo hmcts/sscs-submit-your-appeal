@@ -1,6 +1,7 @@
 {
   "titleHead": "Gwirio eich apêl",
   "benefitType": "Budd-dal",
+  "benefitTypeIbc": "Appeal",
   "compliance": {
     "checkMRN": "Gwirio dyddiad y MRN ",
     "checkRDN": "Check Review Decision Notice Date",

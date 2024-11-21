@@ -1,6 +1,7 @@
 {
   "titleHead": "Check appeal",
   "benefitType": "Benefit",
+  "benefitTypeIbc": "Appeal",
   "compliance": {
     "checkMRN": "Check MRN Date",
     "checkRDN": "Check Review Decision Notice Date",
