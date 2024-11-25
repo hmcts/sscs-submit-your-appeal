@@ -9,7 +9,7 @@ const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
 const i18next = require('i18next');
-const { isIba } = require('../../utils/benefitTypeUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class Pcq extends SaveToDraftStore {
   static get path() {
