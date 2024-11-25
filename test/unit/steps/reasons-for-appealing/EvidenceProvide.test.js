@@ -37,7 +37,7 @@ describe('EvidenceProvide.js', () => {
 
   describe('noticeType()', () => {
     it('should return "Review Decision Notice" when in IBA journey', () => {
-      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(evidenceProvide.noticeType).to.equal('Review Decision Notice');
     });
 

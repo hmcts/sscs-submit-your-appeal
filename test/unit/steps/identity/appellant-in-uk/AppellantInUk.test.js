@@ -40,7 +40,7 @@ describe('AppellantInUk.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -79,7 +79,7 @@ describe('AppellantInUk.js', () => {
     beforeEach(() => {
       appellantInUk.content = {
         cya: {
-          inUk: {
+          inMainlandUk: {
             question,
             yes: 'Yes',
             no: 'No'
@@ -88,7 +88,7 @@ describe('AppellantInUk.js', () => {
       };
 
       appellantInUk.fields = {
-        inUk: {}
+        inMainlandUk: {}
       };
     });
 
@@ -98,15 +98,35 @@ describe('AppellantInUk.js', () => {
       expect(answers.section).to.equal(sections.appellantDetails);
     });
 
+    describe('values()', () => {
+      it('should return the correct values for yes', () => {
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(true);
+      });
+
+      it('should return the correct values for no', () => {
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(false);
+      });
+
+      it('should return null for null', () => {
+        appellantInUk.fields.inMainlandUk.value = null;
+        const values = appellantInUk.values();
+        expect(values.appellant.contactDetails.inMainlandUk).to.equal(null);
+      });
+    });
+
     describe('English', () => {
       it('should return the correct answer \'Yes\' for CYA (English)', () => {
-        appellantInUk.fields.inUk.value = userAnswer.YES;
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
 
       it('should return the correct answer \'No\' for CYA (English)', () => {
-        appellantInUk.fields.inUk.value = userAnswer.NO;
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('No');
       });
@@ -122,15 +142,15 @@ describe('AppellantInUk.js', () => {
       });
       // TODO update welsh
       it('should return the correct answer \'No\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inUk.no = 'No';
-        appellantInUk.fields.inUk.value = userAnswer.NO;
+        appellantInUk.content.cya.inMainlandUk.no = 'No';
+        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
       it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inUk.yes = 'Yes';
-        appellantInUk.fields.inUk.value = userAnswer.YES;
+        appellantInUk.content.cya.inMainlandUk.yes = 'Yes';
+        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
@@ -147,12 +167,12 @@ describe('AppellantInUk.js', () => {
     it('should contain 1 fields', () => {
       expect(Object.keys(fields).length).to.equal(1);
       expect(fields).to.have.all.keys(
-        'inUk'
+        'inMainlandUk'
       );
     });
 
-    it('should contain a select reference called \'inUk\'', () => {
-      const selectField = fields.inUk;
+    it('should contain a select reference called \'inMainlandUk\'', () => {
+      const selectField = fields.inMainlandUk;
       expect(selectField.constructor.name).to.eq('FieldDescriptor');
       expect(selectField.validations).to.not.be.empty;
     });
@@ -160,12 +180,12 @@ describe('AppellantInUk.js', () => {
 
   describe('next()', () => {
     it('returns /appellant-contact-details for Yes in UK', () => {
-      appellantInUk.fields.inUk = { value: userAnswer.YES };
+      appellantInUk.fields.inMainlandUk = { value: userAnswer.YES };
       expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantContactDetails);
     });
 
     it('returns /appellant-international-contact-details for No in UK', () => {
-      appellantInUk.fields.inUk = { value: userAnswer.NO };
+      appellantInUk.fields.inMainlandUk = { value: userAnswer.NO };
       expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantInternationalContactDetails);
     });
   });

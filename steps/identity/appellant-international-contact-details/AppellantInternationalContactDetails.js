@@ -103,6 +103,12 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     return getPortsOfEntry();
   }
 
+  get getPortOfEntryFromCode() {
+    return getPortsOfEntry()
+      .filter(port => port.value === this.fields.portOfEntry.value)
+      .map(port => port.label)[0];
+  }
+
   answers() {
     return [
       answer(this, {

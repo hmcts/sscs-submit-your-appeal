@@ -16,7 +16,7 @@ class DraftAppeals extends RestoreAllDraftsState {
     if (req.method === 'GET') {
       const ibaCase = isIba(req);
       resetJourney(req);
-      if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodAppeal };
+      if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
       super.handler(req, res, next);
     } else {
       res.redirect(this.journey.steps.BenefitType);
@@ -35,8 +35,8 @@ class DraftAppeals extends RestoreAllDraftsState {
       Object.entries(draftCases).filter(([key, caseData]) => {
         const { benefitType } = caseData.BenefitType || {};
         return ibaCase ?
-          benefitType === benefitTypes.infectedBloodAppeal :
-          benefitType !== benefitTypes.infectedBloodAppeal;
+          benefitType === benefitTypes.infectedBloodCompensation :
+          benefitType !== benefitTypes.infectedBloodCompensation;
       })
     );
   }

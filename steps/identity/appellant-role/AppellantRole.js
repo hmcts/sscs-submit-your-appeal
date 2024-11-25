@@ -40,6 +40,14 @@ class AppellantRole extends SaveToDraftStore {
     });
   }
 
+  values() {
+    return {
+      appellant: {
+        ibcRole: this.fields.ibcRole.value
+      }
+    };
+  }
+
   next() {
     return goTo(this.journey.steps.AppellantName);
   }

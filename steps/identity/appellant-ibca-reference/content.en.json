@@ -3,7 +3,7 @@
     "title": "Enter your IBCA Reference number",
     "subtitle": "You can find your IBCA Reference number on your Review Decision Notice.",
     "fields": {
-      "ibcaRef": {
+      "ibcaReference": {
       "title": "IBCA Reference number",
       "error": {
           "required": "Enter your IBCA Reference number",
@@ -12,8 +12,8 @@
     }
     },
     "cya": {
-      "ibcaRef": {
-        "question": "IBCA Reference"
+      "ibcaReference": {
+        "question": "IBCA Reference number"
       }
     }
   }

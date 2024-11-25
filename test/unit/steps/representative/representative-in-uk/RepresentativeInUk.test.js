@@ -40,7 +40,7 @@ describe('RepresentativeInUk.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -83,12 +83,12 @@ describe('RepresentativeInUk.js', () => {
     it('should contain 1 fields', () => {
       expect(Object.keys(fields).length).to.equal(1);
       expect(fields).to.have.all.keys(
-        'inUk'
+        'inMainlandUk'
       );
     });
 
-    it('should contain a select reference called \'inUk\'', () => {
-      const selectField = fields.inUk;
+    it('should contain a select reference called \'inMainlandUk\'', () => {
+      const selectField = fields.inMainlandUk;
       expect(selectField.constructor.name).to.eq('FieldDescriptor');
       expect(selectField.validations).to.not.be.empty;
     });
@@ -100,7 +100,7 @@ describe('RepresentativeInUk.js', () => {
     beforeEach(() => {
       representativeInUk.content = {
         cya: {
-          inUk: {
+          inMainlandUk: {
             question,
             yes: 'Yes',
             no: 'No'
@@ -109,7 +109,7 @@ describe('RepresentativeInUk.js', () => {
       };
 
       representativeInUk.fields = {
-        inUk: {}
+        inMainlandUk: {}
       };
     });
 
@@ -121,13 +121,13 @@ describe('RepresentativeInUk.js', () => {
 
     describe('English', () => {
       it('should return the correct answer \'Yes\' for CYA (English)', () => {
-        representativeInUk.fields.inUk.value = userAnswer.YES;
+        representativeInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = representativeInUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
 
       it('should return the correct answer \'No\' for CYA (English)', () => {
-        representativeInUk.fields.inUk.value = userAnswer.NO;
+        representativeInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = representativeInUk.answers();
         expect(answers.answer).to.equal('No');
       });
@@ -143,29 +143,49 @@ describe('RepresentativeInUk.js', () => {
       });
       // TODO update welsh
       it('should return the correct answer \'No\' for CYA (Welsh)', () => {
-        representativeInUk.content.cya.inUk.no = 'No';
-        representativeInUk.fields.inUk.value = userAnswer.NO;
+        representativeInUk.content.cya.inMainlandUk.no = 'No';
+        representativeInUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = representativeInUk.answers();
         expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
       it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
-        representativeInUk.content.cya.inUk.yes = 'Yes';
-        representativeInUk.fields.inUk.value = userAnswer.YES;
+        representativeInUk.content.cya.inMainlandUk.yes = 'Yes';
+        representativeInUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = representativeInUk.answers();
         expect(answers.answer).to.equal('Yes');
+      });
+    });
+
+    describe('values', () => {
+      it('should return the correct value true for Yes', () => {
+        representativeInUk.fields.inMainlandUk.value = userAnswer.YES;
+        const values = representativeInUk.values();
+        expect(values.representative.contactDetails.inMainlandUk).to.equal(true);
+      });
+
+      it('should return the correct value false for No', () => {
+        representativeInUk.fields.inMainlandUk.value = userAnswer.NO;
+        const values = representativeInUk.values();
+        expect(values.representative.contactDetails.inMainlandUk).to.equal(false);
+      });
+
+      it('should return the correct value false for null', () => {
+        representativeInUk.fields.inMainlandUk.value = null;
+        const values = representativeInUk.values();
+        expect(values.representative.contactDetails.inMainlandUk).to.equal(null);
       });
     });
   });
 
   describe('next()', () => {
     it('returns /representative-contact-details for Yes in UK', () => {
-      representativeInUk.fields.inUk = { value: userAnswer.YES };
+      representativeInUk.fields.inMainlandUk = { value: userAnswer.YES };
       expect(representativeInUk.next().step).to.eql(paths.representative.representativeDetails);
     });
 
     it('returns /representative-international-contact-details for No in UK', () => {
-      representativeInUk.fields.inUk = { value: userAnswer.NO };
+      representativeInUk.fields.inMainlandUk = { value: userAnswer.NO };
       expect(representativeInUk.next().step).to.eql(paths.representative.representativeInternationalDetails);
     });
   });

@@ -26,8 +26,8 @@ class AppellantInUk extends SaveToDraftStore {
 
   get form() {
     return form({
-      inUk: text.joi(
-        this.content.fields.inUk.error.required,
+      inMainlandUk: text.joi(
+        this.content.fields.inMainlandUk.errors.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -37,15 +37,31 @@ class AppellantInUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: this.content.cya.inUk.question,
+      question: this.content.cya.inMainlandUk.question,
       section: sections.appellantDetails,
-      answer: titleise(content.cya.inUk[this.fields.inUk.value])
+      answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });
+  }
+
+  getInUkValue() {
+    if (this.fields.inMainlandUk.value === userAnswer.YES) return true;
+    if (this.fields.inMainlandUk.value === userAnswer.NO) return false;
+    return null;
+  }
+
+  values() {
+    return {
+      appellant: {
+        contactDetails: {
+          inMainlandUk: this.getInUkValue()
+        }
+      }
+    };
   }
 
   next() {
     return branch(
-      goTo(this.journey.steps.AppellantContactDetails).if(this.fields.inUk.value === userAnswer.YES),
+      goTo(this.journey.steps.AppellantContactDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
       goTo(this.journey.steps.AppellantInternationalContactDetails)
     );
   }
