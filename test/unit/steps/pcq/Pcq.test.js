@@ -123,13 +123,6 @@ describe('Pcq.js', () => {
   });
 
   describe('skips PCQ', () => {
-    beforeEach(() => {
-      req.journey = {
-        steps: {
-          CheckYourAppeal: paths.checkYourAppeal
-        }
-      };
-    });
     it('if it is unhealthy', done => {
       nock(pcqHost)
         .get('/health')

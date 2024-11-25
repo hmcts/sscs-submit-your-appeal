@@ -44,7 +44,7 @@ class Pcq extends SaveToDraftStore {
   }
 
   skipPcq(req, res) {
-    res.redirect(this.journey.steps.CheckYourAppeal);
+    res.redirect(paths.checkYourAppeal);
   }
 
   invokePcq(req, res) {
