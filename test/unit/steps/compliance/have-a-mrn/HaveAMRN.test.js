@@ -120,7 +120,7 @@ describe('HaveAMRN.js', () => {
     it('returns the next step path /need-a-review-decision-notice when haveAMRN equals No for IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.NO;
       haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
-      expect(haveAMRN.next().step).to.eql(paths.compliance.needIRN);
+      expect(haveAMRN.next().step).to.eql(paths.compliance.needRDN);
     });
 
 
