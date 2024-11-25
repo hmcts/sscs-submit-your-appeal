@@ -29,6 +29,7 @@
   "information": "Mae’r wybodaeth rwyf wedi’i rhoi yn yr apêl hon yn gywir hyd eithaf fy ngwybodaeth.",
   "permission": "Rwy’n rhoi caniatâd ichi ohebu â fy nghynrychiolydd am fy apêl (os gwnaethoch roi manylion cynrychiolydd).",
   "agree": "Rwy’n cytuno i’r <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">telerau a’r amodau</a> ar gyfer defnyddio’r gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’.",
+  "agreeIbc": "Rwy’n cytuno i’r <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">telerau a’r amodau</a> ar gyfer defnyddio’r gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch’.",
   "fields": {
     "signer": {
       "label": "Rhowch eich enw",
