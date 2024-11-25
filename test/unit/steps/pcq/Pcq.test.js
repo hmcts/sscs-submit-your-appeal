@@ -3,6 +3,8 @@ const nock = require('nock');
 const rewire = require('rewire');
 const config = require('config');
 const httpStatus = require('http-status-codes');
+const benefitTypes = require('../../../../steps/start/benefit-type/types');
+const paths = require('../../../../paths');
 
 const Pcq = rewire('steps/pcq/Pcq');
 
@@ -24,9 +26,7 @@ describe('Pcq.js', () => {
   beforeEach(() => {
     req = {
       session: {},
-      journey: {
-        steps: {}
-      },
+      journey: {},
       idam: { userDetails: { email: 'test+test@test.com' } },
       headers: { host: 'localhost' }
     };
@@ -84,28 +84,83 @@ describe('Pcq.js', () => {
     }, 100);
   });
 
-  it('skips PCQ if it is unhealthy', done => {
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'DOWN' });
+  describe('skips PCQ', () => {
+    beforeEach(() => {
+      req.journey = {
+        steps: {
+          CheckYourAppeal: paths.checkYourAppeal
+        }
+      };
+    });
+    it('if it is unhealthy', done => {
+      nock(pcqHost)
+        .get('/health')
+        .reply(httpStatus.OK, { status: 'DOWN' });
 
-    const step = new Pcq(req, res);
-    step.handler(req, res);
+      const step = new Pcq(req, res);
+      step.handler(req, res);
 
-    setTimeout(() => {
-      expect(res.redirect.calledOnce).to.equal(false);
-      done();
-    }, 100);
-  });
+      setTimeout(() => {
+        expect(res.redirect.calledOnce).to.equal(true);
+        expect(res.redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
+        done();
+      }, 100);
+    });
 
-  it('skips PCQ if there is an error retrieving the PCQ health', done => {
-    const step = new Pcq(req, res);
-    step.handler(req, res);
+    it('if there is an error retrieving the PCQ health', done => {
+      const step = new Pcq(req, res);
+      step.handler(req, res);
 
-    setTimeout(() => {
-      expect(res.redirect.calledOnce).to.equal(false);
-      done();
-    }, 100);
+      setTimeout(() => {
+        expect(res.redirect.calledOnce).to.equal(true);
+        expect(res.redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
+        done();
+      }, 100);
+    });
+
+    it('if IBC case', () => {
+      req.session = {
+        BenefitType: {
+          benefitType: benefitTypes.infectedBloodCompensation
+        }
+      };
+      nock(pcqHost)
+        .get('/health')
+        .reply(httpStatus.OK, { status: 'UP' });
+      const step = new Pcq(req, res);
+      step.handler(req, res);
+
+      expect(res.redirect.calledOnce).to.equal(true);
+      expect(res.redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
+    });
+
+    it('if PCQ not enabled', () => {
+      testConfig.features.pcq.enabled = 'false';
+      nock(pcqHost)
+        .get('/health')
+        .reply(httpStatus.OK, { status: 'UP' });
+      const step = new Pcq(req, res);
+      step.handler(req, res);
+
+      expect(res.redirect.calledOnce).to.equal(true);
+      expect(res.redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
+      testConfig.features.pcq.enabled = 'true';
+    });
+
+    it('if PCQ already called', done => {
+      req.session.Pcq = 'some-id';
+      nock(pcqHost)
+        .get('/health')
+        .reply(httpStatus.OK, { status: 'UP' });
+      const step = new Pcq(req, res);
+      step.handler(req, res);
+
+      setTimeout(() => {
+        expect(res.redirect.calledOnce).to.equal(true);
+        expect(res.redirect.calledWith(paths.checkYourAppeal)).to.eql(true);
+        done();
+      }, 100);
+    });
   });
 
   it('answers() returns an empty array', () => {
