@@ -13,15 +13,15 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   get title() {
-    return isIba(this.req) ? this.content.titleIba : this.content.title
+    return isIba(this.req) ? this.content.titleIbc : this.content.title;
   }
 
   get tableHeadingTwo() {
-    return isIba(this.req) ? this.content.tableHeadings.appeal : this.content.tableHeadings.benefit
+    return isIba(this.req) ? this.content.tableHeadings.appeal : this.content.tableHeadings.benefit;
   }
 
   get tableHeadingThree() {
-    return isIba(this.req) ? this.content.tableHeadings.rdnDate : this.content.tableHeadings.mrnDate
+    return isIba(this.req) ? this.content.tableHeadings.rdnDate : this.content.tableHeadings.mrnDate;
   }
 
   handler(req, res, next) {
