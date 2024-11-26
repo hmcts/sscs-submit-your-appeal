@@ -30,7 +30,7 @@
     {{ header(content.header, size='m') }}
     <p class="govuk-body">{{ content.information }}</p>
     <p class="govuk-body">{{ content.permission }}</p>
-    <p class="govuk-body">{{ content.agree | safe }}</p>
+    <p class="govuk-body">{{ content.agreeIbc | safe if isIba else content.agree | safe }}</p>
 {% endblock %}
 
 {% block statement_of_truth_fields %}

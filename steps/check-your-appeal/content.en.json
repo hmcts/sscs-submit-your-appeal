@@ -1,11 +1,12 @@
 {
   "titleHead": "Check appeal",
   "benefitType": "Benefit",
+  "benefitTypeIbc": "Appeal",
   "compliance": {
     "checkMRN": "Check MRN Date",
-    "checkIRN": "Check IRN Date",
+    "checkRDN": "Check Review Decision Notice Date",
     "mrnDate": "Mandatory Reconsideration Notice (MRN)",
-    "irnDate": "Internal Review Notice (IRN)",
+    "rdnDate": "Review Decision Notice",
     "mrnOverOneMonthLate": "Appeal over a month late",
     "mrnOverThirteenMonthsLate": "Why your appeal over 13 months late",
     "noMRN": "Why you don’t have a Mandatory Reconsideration Notice (MRN)"
@@ -28,6 +29,7 @@
   "information": "The information I have provided in this appeal is accurate, to the best of my knowledge.",
   "permission": "I give permission to correspond with my named representative about my appeal (if you entered details of a representative).",
   "agree": "I agree to the <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">terms and conditions</a> of using the ‘Appeal a benefit decision’ service.",
+  "agreeIbc": "I agree to the <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">terms and conditions</a> of using the ‘Appeal a decision’ service.",
   "fields": {
     "signer": {
       "label": "Enter your name",
