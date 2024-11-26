@@ -2,8 +2,8 @@
   "titleHead": "A oes gennych chi MRN",
   "title": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
   "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch eich hawl i gael {{benefitType}}.",
-  "titleHeadIba": "Have you got an IRN",
-  "titleIba": "Have you got an Internal Review Notice (IRN)?",
+  "titleHeadIba": "Have you got a Review Decision Notice",
+  "titleIba": "Have you got a Review Decision Notice?",
   "subtitleIba": "This is the letter IBCA sent you if you asked them to reconsider their decision about the Infected Blood Compensation.",
   "uc": {
     "subtitle_para2": "Mae eich MRN yn eich <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">dyddlyfr ar-lein Credyd Cynhwysol</a> (agor mewn ffenestr newydd)."
@@ -12,11 +12,11 @@
     "haveAMRN": {
       "yes": "Oes, mae gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
       "no": "Nac oes, nid oes gennyf Hysbysiad Gorfodi i Ailystyried (MRN)",
-      "yesIba": "Yes, I have an Internal Review Notice (IRN)",
-      "noIba": "No, I don’t have a Internal Review Notice (IRN)",
+      "yesIba": "Yes, I have a Review Decision Notice",
+      "noIba": "No, I don’t have a Review Decision Notice",
       "error": {
         "required": "Mae’n rhaid i chi ddweud os oes gennych Hysbysiad Gorfodi i Ailystyried neu beidio. Dewiswch oes neu nac oes.",
-        "requiredIba": "You need to say whether you have an IRN. Select either yes or no."
+        "requiredIba": "You need to say whether you have a Review Decision Notice. Select either yes or no."
       }
     }
   }

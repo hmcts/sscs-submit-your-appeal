@@ -2,7 +2,6 @@
   "titleHead": "Arbed yr apêl hon nes ymlaen",
   "title": "Ydych chi eisiau gallu arbed yr apêl hon nes ymlaen?",
   "subtitle": "Mae angen i chi greu cyfrif nawr os ydych eisiau gallu arbed eich cais am apêl nes ymlaen. Er enghraifft, os bydd angen i chi gymryd saib neu gasglu gwybodaeth.",
-  "subtitleIba": "This is to show the IBA spike but in Welsh",
   "fields": {
     "createAccount": {
       "label": "Dewiswch p’un a ydych eisiau creu cyfrif neu beidio",
