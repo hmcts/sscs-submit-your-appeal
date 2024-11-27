@@ -16,7 +16,7 @@ class Entry extends RestoreFromDraftStore {
       res.redirect(paths.drafts);
     } else if (isIba(req)) {
       // eslint-disable-next-line no-negated-condition
-      if (process.env.HAS_IBC_RELEASED !== 'true') {
+      if (process.env.INFECTED_BLOOD_COMPENSATION_ENABLED !== 'true') {
         res.redirect(paths.policy.requestIbcAppealForm);
       } else {
         req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
