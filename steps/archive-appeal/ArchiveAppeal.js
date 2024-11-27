@@ -26,7 +26,7 @@ class ArchiveAppeal extends LoadJourneyAndRedirect {
         res.redirect(`${paths.archiveDraft}/?caseId=${caseId}`);
       }
     } else {
-      res.redirect(this.journey.steps.BenefitType);
+      res.redirect(paths.start.benefitType);
     }
   }
 

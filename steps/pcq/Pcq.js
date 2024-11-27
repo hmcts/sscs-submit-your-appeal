@@ -9,6 +9,7 @@ const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class Pcq extends SaveToDraftStore {
   static get path() {
@@ -21,7 +22,7 @@ class Pcq extends SaveToDraftStore {
 
   handler(req, res, next) {
     // PCQ is enabled and not already called
-    if (this.isEnabled() && !req.session.Pcq) {
+    if (this.isEnabled() && !req.session.Pcq && !isIba(req)) {
       // Check PCQ Health
       const uri = `${config.services.pcq.url}/health`;
       request.get({ uri, json: true })
@@ -42,8 +43,8 @@ class Pcq extends SaveToDraftStore {
     }
   }
 
-  skipPcq(req, res, next) {
-    this.next().redirect(req, res, next);
+  skipPcq(req, res) {
+    res.redirect(paths.checkYourAppeal);
   }
 
   invokePcq(req, res) {
