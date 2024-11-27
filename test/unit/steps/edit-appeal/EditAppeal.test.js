@@ -76,7 +76,7 @@ describe('EditAppeal.js', () => {
     it('should call redirect to benefit type when not handleable', () => {
       req.method = 'PUT';
       editAppeal.handler(req, res);
-      expect(redirect.called).to.eql(true);
+      expect(redirect.calledWith(paths.start.benefitType)).to.eql(true);
     });
   });
 });
