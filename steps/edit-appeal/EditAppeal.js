@@ -25,7 +25,7 @@ class EditAppeal extends Redirect {
         res.redirect(paths.session.entry);
       }
     } else {
-      res.redirect(this.journey.steps.BenefitType);
+      res.redirect(paths.start.benefitType);
     }
   }
 
