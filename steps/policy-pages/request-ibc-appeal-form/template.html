@@ -1,0 +1,30 @@
+{% extends "components/globals.html" %}
+{% extends "layouts/question.html" %}
+
+{% set title = content.titleHead %}
+{% set allowContactUs = false %}
+{% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ content.title }}</h1>
+    <p class="govuk-body">{{ content.description }}</p>
+
+    <h2 class="govuk-heading-s">{{ content.default.title }}</h2>
+    <p class="govuk-body">
+        {{ content.default.phone }}<br/>
+        {{ content.default.days }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.default.callCharge }}</a>
+    </p>
+
+    <h2 class="govuk-heading-s">{{ content.scotland.title }}</h2>
+    <p class="govuk-body">
+        {{ content.scotland.phone }}<br/>
+        {{ content.scotland.days }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.scotland.callCharge }}</a>
+    </p>
+
+    <h2 class="govuk-heading-s">{{ content.welshSpeaking.title }}</h2>
+    <p class="govuk-body">
+        {{ content.welshSpeaking.phone }}<br/>
+        {{ content.welshSpeaking.days }}<br/>
+        <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges">{{ content.welshSpeaking.callCharge }}</a>
+    </p>
+{% endblock %}
