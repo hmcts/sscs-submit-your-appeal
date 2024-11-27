@@ -31,7 +31,7 @@ class DraftAppeals extends RestoreAllDraftsState {
       if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
       super.handler(req, res, next);
     } else {
-      res.redirect(this.journey.steps.BenefitType);
+      res.redirect(paths.start.benefitType);
     }
   }
 

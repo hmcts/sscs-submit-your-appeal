@@ -1,0 +1,23 @@
+{
+  "titleHead": "Request an appeal form",
+  "title": "Request an appeal form",
+  "description": "To appeal against an infected blood compensation decision, call the relevant number to ask for an appeal form.",
+  "default": {
+    "title": "If you live in England, Wales, Northern Ireland or overseas",
+    "phone": "Phone: 0127 426 7247",
+    "days": "Monday to Friday, 9am to 4pm",
+    "callCharge": "Find out about call charges"
+  },
+  "scotland": {
+    "title": "If you live in Scotland",
+    "phone": "Phone: 0300 790 6234",
+    "days": "Monday to Friday, 8:30am to 5pm",
+    "callCharge": "Find out about call charges"
+  },
+  "welshSpeaking": {
+    "title": "For Welsh Speakers",
+    "phone": "Phone: 0300 303 5170",
+    "days": "Monday to Friday, 8:30am to 5pm",
+    "callCharge": "Find out about call charges"
+  }
+}

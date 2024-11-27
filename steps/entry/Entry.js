@@ -15,8 +15,13 @@ class Entry extends RestoreFromDraftStore {
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
     } else if (isIba(req)) {
-      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
-      super.handler(req, res, next);
+      // eslint-disable-next-line no-negated-condition
+      if (process.env.HAS_IBC_RELEASED !== 'true') {
+        res.redirect(paths.policy.requestIbcAppealForm);
+      } else {
+        req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
+        super.handler(req, res, next);
+      }
     } else {
       super.handler(req, res, next);
     }

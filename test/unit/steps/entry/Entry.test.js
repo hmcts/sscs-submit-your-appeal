@@ -111,11 +111,23 @@ describe('Entry.js', () => {
       redirect,
       sendStatus: sinon.spy()
     };
+
     it('should set benefit type and call `super.handler()`', () => {
       entry.handler(req, res);
       expect(redirect.called).to.eql(false);
       expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodCompensation);
       expect(mockHandler.called).to.eql(true);
+    });
+
+    it('should redirect to landing if shuttered', () => {
+      // eslint-disable-next-line no-process-env
+      process.env.HAS_IBC_RELEASED = 'false';
+      entry.handler(req, res);
+      expect(redirect.called).to.eql(true);
+      expect(redirect.calledWith(paths.policy.requestIbcAppealForm)).to.eql(true);
+
+      // eslint-disable-next-line no-process-env
+      process.env.HAS_IBC_RELEASED = 'true';
     });
   });
 });

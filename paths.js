@@ -18,6 +18,7 @@ module.exports = {
     termsAndConditions: '/terms-and-conditions',
     privacy: '/privacy-policy',
     contactUs: '/contact-us',
+    requestIbcAppealForm: '/request-ibc-appeal-form',
     accessibility: '/accessibility'
   },
 

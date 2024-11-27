@@ -85,6 +85,7 @@ const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
 const Cookies = require('steps/policy-pages/cookie-policy/Cookies');
 const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
+const RequestIbcAppealForm = require('steps/policy-pages/request-ibc-appeal-form/RequestIbcAppealForm');
 const TermsAndConditions = require('steps/policy-pages/terms-and-conditions/TermsAndConditions');
 
 const init = [
@@ -211,6 +212,7 @@ const policyPages = [
   CookiePolicy,
   Cookies,
   PrivacyPolicy,
+  RequestIbcAppealForm,
   TermsAndConditions
 ];
 

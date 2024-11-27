@@ -270,16 +270,22 @@ describe('DraftAppeals.js', () => {
       },
       method: 'GET'
     };
-    const redirect = sinon.spy();
-
-    const res = {
-      redirect,
-      sendStatus: sinon.spy()
-    };
     it('should call `super.handler()`', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
       draftAppeals.handler(req, res);
       expect(mockHandler.calledOnce).to.eql(true);
       expect(saveF.calledOnce).to.eql(true);
+    });
+
+    it('should redirect to benefitType if not a GET', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
+      req.method = 'POST';
+      draftAppeals.handler(req, res);
+      expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
     });
   });
 
