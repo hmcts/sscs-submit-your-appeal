@@ -6,7 +6,7 @@
     "checkMRN": "Gwirio dyddiad y MRN ",
     "checkRDN": "Check Review Decision Notice Date",
     "mrnDate": "Hysbysiad Gorfodi i Ailystyried (MRN)",
-    "rdnDate": "Review Decision Notice",
+    "rdnDate": "Hysbysiad o Benderfyniad Adolygiad",
     "mrnOverOneMonthLate": "Mae’r apêl dros fis yn hwyr",
     "mrnOverThirteenMonthsLate": "Pam fod eich apêl dros 13 mis yn hwyr",
     "noMRN": "Pam nad oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)"
@@ -26,14 +26,14 @@
   "representative": "Cynrychiolydd",
   "reasonsForAppealing": "Rhesymau dros apelio",
   "header": "Llofnodi a chyflwyno",
-  "information": "Mae’r wybodaeth rwyf wedi’i rhoi yn yr apêl hon yn gywir hyd eithaf fy ngwybodaeth.",
-  "permission": "Rwy’n rhoi caniatâd ichi ohebu â fy nghynrychiolydd am fy apêl (os gwnaethoch roi manylion cynrychiolydd).",
+  "information": "Mae'r wybodaeth a roddais yn yr apêl hon yn gywir, hyd eithaf fy ngwybodaeth.",
+  "permission": "Rwy'n rhoi caniatâd i chi ohebu â'm cynrychiolydd a enwir ynghylch fy apêl (os gwnaethoch roi manylion cynrychiolydd).",
   "agree": "Rwy’n cytuno i’r <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">telerau a’r amodau</a> ar gyfer defnyddio’r gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch budd-dal’.",
-  "agreeIbc": "Rwy’n cytuno i’r <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">telerau a’r amodau</a> ar gyfer defnyddio’r gwasanaeth ‘Apelio yn erbyn penderfyniad ynghylch’.",
+  "agreeIbc": "Rwy’n cytuno i’r <a class=\"govuk-link\" href=\"{{ termsAndConditionPath }}\">telerau a’r amodau</a> ar ddefnyddio'r gwasanaeth 'Apelio penderfyniad am iawndal'.",
   "fields": {
     "signer": {
       "label": "Rhowch eich enw",
-      "hint": "Dyma’r unigolyn a enwir yn yr apêl",
+      "hint": "Dylai hwn fod y sawl sy'n cael ei enwi ar yr apêl",
       "error": {
         "required": "Mae angen i chi roi eich enw cyn cyflwyno’ch apêl. Rhowch eich enw a chliciwch ar ‘cyflwyno eich apêl’"
       }
