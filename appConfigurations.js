@@ -332,7 +332,7 @@ const configureAppRoutes = app => {
     res.redirect('/entry');
   });
 
-  if (process.env.HAS_IBC_RELEASED !== 'true') {
+  if (process.env.INFECTED_BLOOD_COMPENSATION_ENABLED !== 'true') {
     app.get(new RegExp(`^(${hiddenSlugs.join('|')})`), (req, res, next) => {
       if (isIba(req)) {
         res.redirect('/entry');
