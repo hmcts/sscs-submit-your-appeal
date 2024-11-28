@@ -249,11 +249,11 @@
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
             "desc" : "--------IBC appeals helpline (All other appellants)",
-            "phone": "---------Telephone: 0300 123 XXXX",
-            "availability": "-----------Monday to Friday, 9am to 4pm",
-            "emailText": "--------Email:",
+            "phone": "---------Rhif ffôn: 0300 123 XXXX",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
             "emailAddress": "----------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "charges": "Gwybodaeth am gost galwadau"
           }
         },
         "WelshSpeakers": {
@@ -264,12 +264,12 @@
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "-------IBC appeals helpline (All other appellants)",
-            "phone": "-------Telephone: 0300 123 XXXX",
-            "availability": "-------Monday to Friday, 9am to 4pm",
-            "emailText": "-------Email:",
+            "desc" : "-------IBC appeals helpline (for Welsh Speakers)",
+            "phone": "-------Rhif ffôn: 0300 123 XXXX",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
             "emailAddress": "-------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "charges": "Gwybodaeth am gost galwadau"
           }
         },
         "Scotland" : {
@@ -280,12 +280,12 @@
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "-------IBC appeals helpline (All other appellants)",
-            "phone": "-------Telephone: 0300 123 XXXX",
-            "availability": "-------Monday to Friday, 9am to 4pm",
-            "emailText": "-------Email:",
+            "desc" : "-------IBC appeals helpline (Scotland)",
+            "phone": "-------Rhif ffôn: 0300 123 XXXX",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
             "emailAddress": "-------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "charges": "Gwybodaeth am gost galwadau"
           }
         }
       }
