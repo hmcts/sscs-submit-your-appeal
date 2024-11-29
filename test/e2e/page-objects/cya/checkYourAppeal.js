@@ -8,6 +8,7 @@ const supportContentCy = require('steps/hearing/support/content.cy');
 const datesCantAttendContentEn = require('steps/hearing/dates-cant-attend/content.en');
 const datesCantAttendContentCy = require('steps/hearing/dates-cant-attend/content.cy');
 const config = require('config');
+const testNIData = require('../../../util/randomData');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -39,7 +40,7 @@ function enterDetailsFromStartToNINO(commonContent, language, benefitTypeCode = 
   I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
+  I.enterAppellantNINOAndContinue(language, commonContent, testNIData.generateValidNINumber());
 }
 
 function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
@@ -61,7 +62,7 @@ function enterCaseDetailsFromStartToNINO(commonContent, language, benefitTypeCod
   I.selectAreYouAnAppointeeAndContinue(language, commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
+  I.enterAppellantNINOAndContinue(language, commonContent, testNIData.generateValidNINumber());
 }
 
 
@@ -96,7 +97,7 @@ function enterDetailsFromStartToDraftAppeals(commonContent, language, newUserEma
   I.selectAreYouAnAppointeeAndContinueAfterSignIn(language, commonContent, '#isAppointee-no');
   I.enterAppellantNameAndContinueAfterSignIn(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   I.enterAppellantDOBAndContinueAfterSignIn(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, appellant.nino);
+  I.enterAppellantNINOAndContinueAfterSignIn(language, commonContent, testNIData.generateValidNINumber());
 }
 
 async function enterDetailsFromStartToDraft(commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
