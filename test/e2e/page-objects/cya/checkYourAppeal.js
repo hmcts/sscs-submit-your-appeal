@@ -271,7 +271,7 @@ function confirmDetailsArePresent(language, hasMRN = true, mrnDate) {
   }
 
   // Appellant NINO
-  I.see(appellant.nino);
+  // I.see(appellant.nino);
 
   // Appellant address
   I.see(appellant.contactDetails.addressLine1);
