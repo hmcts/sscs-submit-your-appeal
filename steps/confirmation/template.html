@@ -19,34 +19,6 @@
     </div>
 
     <section class="progress-bar">
-        {% if isIba %}
-            <div class="appeal-received active">
-                <div class="ring">
-                    <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
-                </div>
-                <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
-            </div>
-
-            <div class="ibca-respond">
-                <div class="leg"></div>
-                <div class="ring">
-                    <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
-                </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.textIba }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.response.srTextIba }}</span>
-            </div>
-
-            <div class="ibca-decision">
-                <div class="leg"></div>
-                <div class="ring">
-                    <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
-                </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.decision.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.decision.srText }}</span>
-            </div>      
-        {% else %}
-
             {% if oralCase %}
                 <div class="appeal-received active">
                     <div class="ring">
@@ -55,15 +27,26 @@
                     <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
                     <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
                 </div>
-
-                <div class="dwp-respond">
-                    <div class="leg"></div>
-                    <div class="ring">
-                        <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+                
+                {% if isIba %}
+                    <div class="ibca-respond">
+                        <div class="leg"></div>
+                        <div class="ring">
+                            <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+                        </div>
+                        <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.textIba }}</h4>
+                        <span class="screen-reader-text">{{ content.progressBar.response.srTextIba }}</span>
                     </div>
-                    <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                    <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
-                </div>
+                {% else %}
+                    <div class="dwp-respond">
+                        <div class="leg"></div>
+                        <div class="ring">
+                            <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+                        </div>
+                        <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
+                        <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                    </div>
+                {% endif %}
 
                 <div class="hearing-booked">
                     <div class="leg"></div>
@@ -91,16 +74,26 @@
                     <h4 class="govuk-heading-s" aria-hidden="true">{{ content.progressBar.appeal.text }}</h4>
                     <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
                 </div>
-    
-                <div class="dwp-respond paper">
-                    <div class="leg"></div>
-                    <div class="ring">
-                        <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+
+                {% if isIba %}
+                    <div class="ibca-respond paper">
+                        <div class="leg"></div>
+                        <div class="ring">
+                            <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+                        </div>
+                        <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.textIba }}</h4>
+                        <span class="screen-reader-text">{{ content.progressBar.response.srTextIba }}</span>
                     </div>
-                    <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                    <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
-                </div>
-    
+                {% else %}
+                    <div class="dwp-respond paper">
+                        <div class="leg"></div>
+                        <div class="ring">
+                            <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
+                        </div>
+                        <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
+                        <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                    </div>
+                {% endif %}
                 <div class="hearing paper">
                     <div class="leg"></div>
                     <div class="ring">
@@ -110,7 +103,6 @@
                     <span class="screen-reader-text">{{ content.progressBar.decision.srText }}</span>
                 </div>
             {% endif %}
-        {% endif %}
     </section>
 
     <div class="description">
