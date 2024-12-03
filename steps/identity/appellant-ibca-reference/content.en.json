@@ -7,7 +7,7 @@
       "title": "IBCA Reference number",
       "error": {
           "required": "An IBCA reference is required to update this case. Please refer to your Review Decision Notice.",
-          "invalid": "The IBCA reference must be 6 characters. Please refer to your Review Decision Notice."
+          "invalid": "The IBCA reference you entered is invalid. Please refer to your Review Decision Notice."
       }
     }
     },
