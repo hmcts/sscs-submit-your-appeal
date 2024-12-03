@@ -4,6 +4,7 @@ $ring-border: 6px;
 @mixin wrap-dwp-and-hearing-booked-text {
   margin-bottom: 20%;
   .dwp-respond h4,
+  .ibca-respond h4,
   .hearing-booked h4 {
     position: absolute;
     white-space: normal;
@@ -28,6 +29,7 @@ $ring-border: 6px;
 
     .appeal-received,
     .dwp-respond,
+    .ibca-respond,
     .hearing-booked,
     .hearing {
       display: inline-block;
@@ -84,6 +86,7 @@ $ring-border: 6px;
     }
 
     .dwp-respond h4,
+    .ibca-respond h4,
     .hearing-booked h4 {
       right: -22%;
     }
@@ -93,6 +96,7 @@ $ring-border: 6px;
     }
 
     .dwp-respond,
+    .ibca-respond,
     .hearing-booked,
     .hearing {
       width: calc((100% - #{$ring-diameter} - #{$ring-border} ) / 3);
