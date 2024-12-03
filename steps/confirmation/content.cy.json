@@ -3,8 +3,9 @@
   "title": "Mae eich apêl wedi cael ei chyflwyno",
   "imageAlt": "Llun o’r bar ‘dilyn trywydd eich apêl’",
   "next": {
-    "heading": "Beth fydd yn digwydd nesaf?",
+    "heading": "Beth fydd yn digwydd nesaf",
     "notify": "Bydd DWP yn cael gwybod eich bod eisiau apelio yn erbyn eu penderfyniad. Byddwch yn cael gwybod beth fydd y camau nesaf pan fydd DWP wedi ymateb.",
+    "notifyIba": "Bydd yr IBCA yn cael gwybod eich bod am apelio yn erbyn eu penderfyniad. Byddwch yn cael gwybod y camau nesaf pan fydd yr IBCA wedi ymateb.",
     "contact": "Efallai y bydd angen i’r tribiwnlys gysylltu â chi i ofyn rhai cwestiynau ychwanegol i chi. Mae’n bwysig eich bod yn ateb cyn gynted ag y gallwch."
   },
   "email": "Os ydych wedi cofrestru ar gyfer cael negeseuon e-bost neu negeseuon SMS ac wedi dewis mynychu gwrandawiad, byddwch yn cael neges o fewn 3 diwrnod gwaith gyda dolen fel y gallwch ddilyn trywydd eich apêl ar-lein.",
@@ -12,11 +13,13 @@
   "progressBar": {
     "appeal": {
       "text": "Apêl",
-      "srText": "Apêl wedi cyrraedd. Mae’r cam hwn wedi ei gwblhau."
+      "srText": "Rydym wedi cael eich apêl. Mae’r cam hwn wedi ei gwblhau."
     },
     "response": {
       "text": "Ymateb DWP",
-      "srText": "Bydd DWP yn ymateb i’ch apêl. Nid yw hyn wedi digwydd eto."
+      "srText": "Bydd DWP yn ymateb i’ch apêl. Nid yw hyn wedi digwydd eto.",
+      "textIba": "Ymateb yr IBCA",
+      "srTextIba": "Yr IBCA yn ymateb i'ch apêl. Nid yw hyn wedi digwydd eto."
     },
     "hearingBooked": {
       "text": "Gwrandawiad<br>wedi ei drefnu",
@@ -28,7 +31,7 @@
     },
     "decision": {
       "text": "Penderfyniad",
-      "srText": "Bydd tribiwnlys yn penderfynu ar eich apêl. Nid yw’r cam hwn wedi digwydd eto."
+      "srText": "Mae tribiwnlys yn gwneud penderfyniad ar eich apêl. Nid yw’r cam hwn wedi digwydd eto."
     }
   }
 }

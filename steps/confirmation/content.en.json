@@ -5,6 +5,7 @@
   "next": {
     "heading": "What happens next",
     "notify": "DWP will be notified that you want to appeal against their decision. You’ll be told the next steps when DWP have responded.",
+    "notifyIba": "IBCA will be notified that you want to appeal against their decision. You’ll be told the next steps when IBCA have responded.",
     "contact": "The tribunal may need to contact you and ask you some additional questions. It’s important that you reply as soon as you can."
   },
   "email": "If you’ve signed up for emails or SMS and have chosen to attend a hearing, then you’ll get a message within 3 working days with a link so you can track your appeal online.",
@@ -16,7 +17,9 @@
     },
     "response": {
       "text": "DWP response",
-      "srText": "DWP respond to your appeal. This has not happened yet."
+      "srText": "DWP respond to your appeal. This has not happened yet.",
+      "textIba": "IBCA response",
+      "srTextIba": "IBCA respond to your appeal. This has not happened yet."
     },
     "hearingBooked": {
       "text": "Hearing booked",
