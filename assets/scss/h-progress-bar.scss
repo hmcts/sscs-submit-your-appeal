@@ -30,7 +30,6 @@ $ring-border: 6px;
     .appeal-received,
     .dwp-respond,
     .ibca-respond,
-    .ibca-decision,
     .hearing-booked,
     .hearing {
       display: inline-block;
@@ -105,6 +104,7 @@ $ring-border: 6px;
   }
 
     .dwp-respond,
+    .ibca-respond,
     .hearing-booked,
     .hearing {
       width: calc((100% - #{$ring-diameter} - #{$ring-border} ) / 3);
