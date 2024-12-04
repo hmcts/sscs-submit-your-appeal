@@ -1,22 +1,22 @@
 {
   "titleHead": "Eich gwrandawiad",
   "title": "Dewiswch y math o wrandawiad y byddech yn ei ffafrio.",
-  "titleIba": "Select the suitable options for you to attend the hearing.",
+  "titleIba": "Cymryd rhan mewn gwrandawiad",
   "subtitle": "Y tribiwnlys fydd yn gwneud y penderfyniad terfynol ynghylch y math o wrandawiad a gynhelir.",
-  "subtitleIba": "The type of hearing you take part in will be decided by the tribunal. In most cases it will be in person at a tribunal venue.",
+  "subtitleIba": "Bydd y math o wrandawiad y byddwch yn cymryd rhan ynddo yn cael ei benderfynu gan y tribiwnlys. Yn y rhan fwyaf o achosion, bydd wyneb yn wyneb mewn lleoliad tribiwnlys.",
   "instructions": "Dewiswch yr holl opsiynau a fyddai’n eich galluogi i gymryd rhan yn y gwrandawiad..",
-  "instructionsIba": "Select all that apply",
-  "tribunalExplained": "The tribunal will tell you how to take part before your hearing date",
-  "supportExplained": "If you need physical support to take part in a hearing, you can tell us later in this appeal form.",
+  "instructionsIba": "Dewiswch bob un sy'n berthnasol",
+  "tribunalExplained": "Bydd y tribiwnlys yn dweud wrthych sut i gymryd rhan cyn dyddiad eich gwrandawiad.",
+  "supportExplained": "Os oes angen cymorth corfforol arnoch i gymryd rhan mewn gwrandawiad, gallwch ddweud wrthym yn ddiweddarach yn y ffurflen apelio hon.",
   "fields": {
-    "title": "How would you prefer to take part in your hearing?",
+    "title": "Sut fyddai'n well gennych gymryd rhan yn eich gwrandawiad?",
     "options": {
       "error": {
         "required": "Mae angen i chi ddarparu opsiwn i chi fynychu'r gwrandawiad"
       },
       "telephone": {
         "requested": {
-          "label": "Ffôn (byddwch angen dod o hyd i rywle tawel a phreifat i siarad) Rhowch y rhif ffôn yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r rhif a ddarparwyd gennych yn barod."
+          "label": "Dros y ffôn (bydd angen rhywle tawel a phreifat arnoch i siarad). Rhowch eich rhif ffôn dewisol i ni os yw'n wahanol i'r rhif a ddarparwyd eisoes."
         },
         "error": {
           "required": "Nodwch rif ffôn",
@@ -25,7 +25,7 @@
       },
       "video": {
         "requested": {
-          "label": "Fideo (byddwch angen mynediad at gyfrifiadur neu ddyfais symudol sydd â chysylltiad cryf â’r rhyngrwyd a rhywle tawel a phreifat i siarad). Rhowch y cyfeiriad e-bost yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r un a ddarparwyd gennych yn barod."
+          "label": "Drwy fideo (bydd angen i chi gael mynediad at gyfrifiadur neu ddyfais symudol gyda chyflymder rhyngrwyd da a rhywle tawel a phreifat i siarad). Rhowch eich cyfeiriad e-bost dewisol i ni os yw'n wahanol i'r cyfeiriad e-bost a ddarparwyd eisoes."
         },
         "error": {
           "required": "Nodwch gyfeiriad e-bost",
@@ -35,7 +35,7 @@
       "faceToFace": {
         "requested": {
           "label": " Wyneb yn wyneb (byddwch angen teithio i'r gwrandawiad).",
-          "labelIba": "In person (you'll need to travel to a hearing venue)."
+          "labelIba": "Wyneb yn wyneb (bydd angen i chi deithio i leoliad y gwrandawiad)."
 
         }
       }

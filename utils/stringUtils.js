@@ -126,7 +126,7 @@ const getTribunalPanelWelsh = ben => {
     UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg',
     industrialInjuriesDisablement: 'barnwr ac 1 neu 2 feddyg',
     industrialDeathBenefit: 'barnwr ac 1 neu 2 feddyg',
-    infectedBloodCompensation: 'barnwr ac if appropriate, a doctor and or a financial expert'
+    infectedBloodCompensation: 'barnwr ac, os yw’n briodol, meddyg a neu arbenigwr ariannol'
   }[key];
 };
 

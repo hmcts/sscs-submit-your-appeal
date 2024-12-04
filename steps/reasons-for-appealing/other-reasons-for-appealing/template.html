@@ -6,7 +6,7 @@
 
 {% block fields %}
     {% call formSection() %}
-        <p class="govuk-body">{{ content.subtitle }}</p>
+        <p class="govuk-body">{{ content["subtitle" + suffix] }}</p>
         <p class="govuk-body">{{ content.additonalInfo }}</p>
 
         {{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true) }}
