@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block two_thirds %}
-    {% set title = content.title | safe %}
 
     <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">{{ content.title }}</h1>
@@ -29,13 +28,13 @@
                 <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
             </div>
 
-            <div class="dwp-respond">
+            <div class="{{ 'ibca-respond' if isIba else 'dwp-respond' }}">
                 <div class="leg"></div>
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response["text" + suffix] }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.response["srText" + suffix] }}</span>
             </div>
 
             <div class="hearing-booked">
@@ -66,13 +65,13 @@
                 <span class="screen-reader-text">{{ content.progressBar.appeal.srText }}</span>
             </div>
 
-            <div class="dwp-respond paper">
+            <div class="{{ 'ibca-respond paper' if isIba else 'dwp-respond paper' }}">
                 <div class="leg"></div>
                 <div class="ring">
                     <img class="tick" src="{{ asset_path }}images/tick.png" alt="ignored by screen readers" aria-hidden="true">
                 </div>
-                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response.text }}</h4>
-                <span class="screen-reader-text">{{ content.progressBar.response.srText }}</span>
+                <h4 aria-hidden="true" class="govuk-heading-s govuk-!-font-weight-regular">{{ content.progressBar.response["text" + suffix] }}</h4>
+                <span class="screen-reader-text">{{ content.progressBar.response["srText" + suffix] }}</span>
             </div>
 
             <div class="hearing paper">
@@ -88,7 +87,7 @@
 
     <div class="description">
         <h2 class="govuk-heading-s">{{ content.next.heading }}</h2>
-        <p class="govuk-body">{{ content.next.notify }}</p>
+        <p class="govuk-body">{{ content.next["notify" + suffix] }}</p>
         <p class="govuk-body">{{ content.next.contact }}</p>
     </div>
 

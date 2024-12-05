@@ -50,6 +50,18 @@ describe('Confirmation.js', () => {
     });
   });
 
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      confirmationClass.req.hostname = 'some-iba-hostname';
+      expect(confirmationClass.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      confirmationClass.req.hostname = 'some-normal-hostname';
+      expect(confirmationClass.suffix).to.eql('');
+    });
+  });
+
   describe('get session()', () => {
     it('returns path /confirmation', () => {
       expect(confirmationClass.session).to.equal(confirmationClass.req.sess);

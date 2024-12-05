@@ -3,10 +3,15 @@ const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');
 const preserveSession = require('middleware/preserveSession');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class Confirmation extends ExitPoint {
   static get path() {
     return paths.confirmation;
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get session() {
