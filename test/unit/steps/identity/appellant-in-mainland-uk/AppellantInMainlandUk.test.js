@@ -4,16 +4,16 @@ const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
-const AppellantInUk = require('steps/identity/appellant-in-uk/AppellantInUk');
+const AppellantInMainlandUk = require('steps/identity/appellant-in-mainland-uk/AppellantInMainlandUk');
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 
-describe('AppellantInUk.js', () => {
-  let appellantInUk = null;
+describe('AppellantInMainlandUk.js', () => {
+  let appellantInMainlandUk = null;
 
   beforeEach(() => {
-    appellantInUk = new AppellantInUk({
+    appellantInMainlandUk = new AppellantInMainlandUk({
       journey: {
         steps: {
           AppellantContactDetails: paths.identity.enterAppellantContactDetails,
@@ -21,12 +21,12 @@ describe('AppellantInUk.js', () => {
         }
       }
     });
-    appellantInUk.fields = { appellantInUk: {} };
+    appellantInMainlandUk.fields = { appellantInMainlandUk: {} };
   });
 
   describe('get path()', () => {
-    it('returns path /appellant-in-uk', () => {
-      expect(AppellantInUk.path).to.equal(paths.identity.enterAppellantInUk);
+    it('returns path /appellant-in-mainland-uk', () => {
+      expect(AppellantInMainlandUk.path).to.equal(paths.identity.enterAppellantInMainlandUk);
     });
   });
   describe('handler()', () => {
@@ -48,7 +48,7 @@ describe('AppellantInUk.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      appellantInUk.handler(req, res, next);
+      appellantInMainlandUk.handler(req, res, next);
       expect(res.redirect.called).to.eql(false);
       sinon.assert.calledOnce(superStub);
     });
@@ -66,7 +66,7 @@ describe('AppellantInUk.js', () => {
         redirect: sinon.spy()
       };
       const next = sinon.spy();
-      appellantInUk.handler(req, res, next);
+      appellantInMainlandUk.handler(req, res, next);
       expect(res.redirect.called).to.eql(true);
       expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
       sinon.assert.notCalled(superStub);
@@ -77,7 +77,7 @@ describe('AppellantInUk.js', () => {
     const question = 'A Question';
 
     beforeEach(() => {
-      appellantInUk.content = {
+      appellantInMainlandUk.content = {
         cya: {
           inMainlandUk: {
             question,
@@ -87,47 +87,47 @@ describe('AppellantInUk.js', () => {
         }
       };
 
-      appellantInUk.fields = {
+      appellantInMainlandUk.fields = {
         inMainlandUk: {}
       };
     });
 
     it('should set the question and section', () => {
-      const answers = appellantInUk.answers();
+      const answers = appellantInMainlandUk.answers();
       expect(answers.question).to.equal(question);
       expect(answers.section).to.equal(sections.appellantDetails);
     });
 
     describe('values()', () => {
       it('should return the correct values for yes', () => {
-        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
-        const values = appellantInUk.values();
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
+        const values = appellantInMainlandUk.values();
         expect(values.appellant.contactDetails.inMainlandUk).to.equal(true);
       });
 
       it('should return the correct values for no', () => {
-        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
-        const values = appellantInUk.values();
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
+        const values = appellantInMainlandUk.values();
         expect(values.appellant.contactDetails.inMainlandUk).to.equal(false);
       });
 
       it('should return null for null', () => {
-        appellantInUk.fields.inMainlandUk.value = null;
-        const values = appellantInUk.values();
+        appellantInMainlandUk.fields.inMainlandUk.value = null;
+        const values = appellantInMainlandUk.values();
         expect(values.appellant.contactDetails.inMainlandUk).to.equal(null);
       });
     });
 
     describe('English', () => {
       it('should return the correct answer \'Yes\' for CYA (English)', () => {
-        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
-        const answers = appellantInUk.answers();
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
+        const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
 
       it('should return the correct answer \'No\' for CYA (English)', () => {
-        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
-        const answers = appellantInUk.answers();
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
+        const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('No');
       });
     });
@@ -142,16 +142,16 @@ describe('AppellantInUk.js', () => {
       });
       // TODO update welsh
       it('should return the correct answer \'No\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inMainlandUk.no = 'No';
-        appellantInUk.fields.inMainlandUk.value = userAnswer.NO;
-        const answers = appellantInUk.answers();
+        appellantInMainlandUk.content.cya.inMainlandUk.no = 'No';
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
+        const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('No');
       });
       // TODO update welsh
       it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
-        appellantInUk.content.cya.inMainlandUk.yes = 'Yes';
-        appellantInUk.fields.inMainlandUk.value = userAnswer.YES;
-        const answers = appellantInUk.answers();
+        appellantInMainlandUk.content.cya.inMainlandUk.yes = 'Yes';
+        appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
+        const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
     });
@@ -161,7 +161,7 @@ describe('AppellantInUk.js', () => {
     let fields = null;
 
     beforeEach(() => {
-      fields = appellantInUk.form.fields;
+      fields = appellantInMainlandUk.form.fields;
     });
 
     it('should contain 1 fields', () => {
@@ -180,13 +180,13 @@ describe('AppellantInUk.js', () => {
 
   describe('next()', () => {
     it('returns /appellant-contact-details for Yes in UK', () => {
-      appellantInUk.fields.inMainlandUk = { value: userAnswer.YES };
-      expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantContactDetails);
+      appellantInMainlandUk.fields.inMainlandUk = { value: userAnswer.YES };
+      expect(appellantInMainlandUk.next().step).to.eql(paths.identity.enterAppellantContactDetails);
     });
 
     it('returns /appellant-international-contact-details for No in UK', () => {
-      appellantInUk.fields.inMainlandUk = { value: userAnswer.NO };
-      expect(appellantInUk.next().step).to.eql(paths.identity.enterAppellantInternationalContactDetails);
+      appellantInMainlandUk.fields.inMainlandUk = { value: userAnswer.NO };
+      expect(appellantInMainlandUk.next().step).to.eql(paths.identity.enterAppellantInternationalContactDetails);
     });
   });
 });

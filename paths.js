@@ -70,7 +70,7 @@ module.exports = {
     enterAppellantContactDetails: '/enter-appellant-contact-details',
     enterAppellantIBCAReference: '/enter-appellant-ibca-reference',
     enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
-    enterAppellantInUk: '/appellant-in-uk'
+    enterAppellantInMainlandUk: '/appellant-in-mainland-uk'
   },
 
   appointee: {
@@ -92,7 +92,7 @@ module.exports = {
     representative: '/representative',
     representativeDetails: '/representative-details',
     noRepresentativeDetails: '/no-representative-details',
-    representativeInUk: '/representative-in-uk',
+    representativeInMainlandUk: '/representative-in-mainland-uk',
     representativeInternationalDetails: '/representative-international-details'
   },
 

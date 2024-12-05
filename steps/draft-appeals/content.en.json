@@ -1,6 +1,7 @@
 {
   "titleHead": "Your draft benefit appeals",
   "title": "Your draft benefit appeals",
+  "titleIbc": "Your draft appeals",
   "description": {
     "line1": "The cases in this list have yet to be submitted to HM Courts & Tribunals Service.",
     "line2": "If you wish to edit an application for appeal, please select ‘edit’ next to the appropriate application.",
@@ -23,7 +24,9 @@
   "tableHeadings": {
     "appealRef": "Appeal reference",
     "benefit": "Benefit",
+    "appeal": "Appeal",
     "mrnDate": "MRN date",
+    "rdnDate": "Review Decision Notice date",
     "action": "Action"
   },
   "benefitTypes": {
