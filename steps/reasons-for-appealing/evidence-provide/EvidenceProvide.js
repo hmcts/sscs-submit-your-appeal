@@ -15,10 +15,9 @@ class EvidenceProvide extends SaveToDraftStore {
     return paths.reasonsForAppealing.evidenceProvide;
   }
 
-  /** TODO: Welsh translation for RDN and sentance of welsh MRN */
   get noticeType() {
     if (i18next.language === 'cy') {
-      return isIba(this.req) ? 'Review Decision Notice' : 'Hysbysiad Gorfodi i Ailystyried (MRN)';
+      return isIba(this.req) ? 'Hysbysiad o Benderfyniad Adolygiad' : 'Hysbysiad Gorfodi i Ailystyried (MRN)';
     }
     return isIba(this.req) ? 'Review Decision Notice' : 'Mandatory Reconsideration Notice (MRN)';
   }

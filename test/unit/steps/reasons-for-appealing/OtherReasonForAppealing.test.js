@@ -5,7 +5,6 @@ const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const benefitTypes = require('steps/start/benefit-type/types');
 
 const evidenceUploadEnabled = require('config').features.evidenceUpload.enabled;
 
@@ -108,27 +107,15 @@ describe('OtherReasonForAppealing.js', () => {
     });
   });
 
-  describe('reviewBody()', () => {
-    it('should return "IBCA" in IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
-      expect(otherReasonForAppealing.reviewBody).to.equal('IBCA');
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      otherReasonForAppealing.req.hostname = 'some-iba-hostname';
+      expect(otherReasonForAppealing.suffix).to.eql('Iba');
     });
 
-    it('should return  "DWP" in non IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(otherReasonForAppealing.reviewBody).to.equal('DWP');
-    });
-  });
-
-  describe('subtitleEnd()', () => {
-    it('should return "decision" in IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
-      expect(otherReasonForAppealing.subtitleEnd).to.equal('decision');
-    });
-
-    it('should return  "assessment" in non IBA journey', () => {
-      otherReasonForAppealing.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(otherReasonForAppealing.subtitleEnd).to.equal('assessment');
+    it('should return empty for non IBA case', () => {
+      otherReasonForAppealing.req.hostname = 'some-normal-hostname';
+      expect(otherReasonForAppealing.suffix).to.eql('');
     });
   });
 
