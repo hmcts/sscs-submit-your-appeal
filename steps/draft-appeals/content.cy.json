@@ -1,6 +1,7 @@
 {
   "titleHead": "Your draft benefit appeals",
   "title": "Drafft o’ch apeliadau ynghylch budd-daliadau",
+  "titleIba": "Your draft appeals",
   "description": {
     "line1": "Nid yw'r achosion yn y rhestr hon wedi'u cyflwyno eto i Wasanaeth Llysoedd a Thribiwnlysoedd EM.",
     "line2": "Os hoffech olygu cais am apêl, dewiswch 'golygu' wrth ymyl y cais priodol.",
@@ -23,7 +24,9 @@
   "tableHeadings": {
     "appealRef": "Cyfeirnod yr apêl",
     "benefit": "Budd-dal",
+    "appeal": "Appeal",
     "mrnDate": "Dyddiad MRN",
+    "rdnDate": "Review Decision Notice date",
     "action": "Cam Gweithredu"
   },
   "benefitTypes": {
@@ -31,13 +34,14 @@
     "Personal Independence Payment (PIP)": "Taliad Annibyniaeth Personol (PIP)",
     "Universal Credit (UC)": "Credyd Cynhwysol (UC)",
     "Attendance Allowance": "Lwfans Gweini",
-    "Carer's Allowance" : "Lwfans Gofalwr",
     "Bereavement Benefit": "Budd-dal Profedigaeth",
     "Bereavement Support Payment Scheme": "Cynllun Taliad Cymorth Profedigaeth",
+    "Carer's Allowance" : "Lwfans Gofalwr",
     "Disability Living Allowance": "Lwfans Byw i’r Anabl (DLA)",
     "Income Support": "Cymhorthdal Incwm",
     "Industrial Injuries Disablement Benefit": "Budd-dal Anabledd Anafiadau Diwydiannol",
     "Industrial Death Benefit": "Budd-dal Marwolaeth Ddiwydiannol",
+    "Infected Blood Compensation": "Infected Blood Compensation",
     "Jobseeker’s Allowance (JSA)": "Lwfans Ceisio Gwaith (JSA)",
     "Maternity Allowance": "Lwfans Mamolaeth",
     "Social Fund": "SCronfa Gymdeithasol",
