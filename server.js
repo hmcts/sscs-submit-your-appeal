@@ -13,15 +13,15 @@ const webpack = require('webpack');
 const webpackDevConfig = require('./webpack.config.js');
 const webpackMiddleware = require('webpack-dev-middleware');
 const { fetchAndSetPortsAndCountries } = require('./utils/enumJsonLists');
-const schedule = require('node-schedule');
 
 const logPath = 'server.js';
 
 (async function initialiseEnums() {
   await fetchAndSetPortsAndCountries();
-  await schedule.scheduleJob('0 * * * *', async() => {
+  setInterval(async() => {
     await fetchAndSetPortsAndCountries();
-  });
+    /* eslint-disable-next-line no-magic-numbers */
+  }, 60 * 60 * 1000);
 }());
 
 if (process.env.NODE_ENV === 'development') {
