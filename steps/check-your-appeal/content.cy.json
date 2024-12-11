@@ -4,7 +4,7 @@
   "benefitTypeIbc": "Apêl",
   "compliance": {
     "checkMRN": "Gwirio dyddiad y MRN ",
-    "checkRDN": "Check Review Decision Notice Date",
+    "checkRDN": "Gwirio dyddiad yr Hysbysiad o Benderfyniad Adolygiad",
     "mrnDate": "Hysbysiad Gorfodi i Ailystyried (MRN)",
     "rdnDate": "Hysbysiad o Benderfyniad Adolygiad",
     "mrnOverOneMonthLate": "Mae’r apêl dros fis yn hwyr",

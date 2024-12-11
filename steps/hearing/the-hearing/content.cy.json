@@ -29,18 +29,18 @@
       "noIba": "Mae'n well gennyf 'wrandawiad papur’ lle nad wyf yn cymryd rhan, ac a benderfynir ar y dogfennau a’r wybodaeth a ddarparwyd",
       "error": {
         "required": "Mae angen ichi ddweud a ydych eisiau mynychu’r gwrandawiad. Dewiswch oes neu nac oes",
-        "requiredIba": "You need to say whether you want to take part in the hearing. Select either option"
+        "requiredIba": "Mae angen ichi ddweud p’un a ydych eisiau cymryd rhan yn y gwrandawiad. Dewiswch opsiwn"
       }
     }
   },
   "cya": {
     "attendHearing": {
       "question": "Mynychu’r gwrandawiad",
-      "questionIba": "Type of hearing would you prefer",
+      "questionIba": "Pa fath o wrandawiad fyddai orau gennych",
       "yes": "Oes",
       "no": "Nac oes",
-      "yesIba": "Take part either in person, by video or by phone",
-      "noIba": "Do not take part, decided on documents and information provided"
+      "yesIba": "Cymryd rhan wyneb yn wyneb, drwy fideo neu dros y ffôn",
+      "noIba": "Peidio â chymryd rhan, penderfynu ar sail y dogfennau a’r wybodaeth a ddarparwyd"
     }
   }
 }
