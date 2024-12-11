@@ -43,8 +43,10 @@ function getCountriesOfResidence() {
 async function fetchAndSetPortsAndCountries() {
   const fetchLimit = 5;
   for (let i = 0; i < fetchLimit; i++) {
-    await fetchPortsOfEntry();
-    await fetchCountriesOfResidence();
+    await Promise.all([
+      fetchPortsOfEntry(),
+      fetchCountriesOfResidence()
+    ]);
     if (getPortsOfEntry().length > 0 && getCountriesOfResidence().length > 0) {
       break;
     }
