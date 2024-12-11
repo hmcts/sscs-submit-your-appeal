@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 const config = require('@hmcts/properties-volume').addTo(require('config'));
 const setupSecrets = require('services/setupSecrets');
 
@@ -13,20 +12,16 @@ const fs = require('graceful-fs');
 const webpack = require('webpack');
 const webpackDevConfig = require('./webpack.config.js');
 const webpackMiddleware = require('webpack-dev-middleware');
-const { fetchPortsOfEntry, fetchCountriesOfResidence } = require('utils/enumJsonLists');
-const { getPortsOfEntry, getCountriesOfResidence } = require('./utils/enumJsonLists');
+const { fetchAndSetPortsAndCountries } = require('./utils/enumJsonLists');
+const schedule = require('node-schedule');
 
 const logPath = 'server.js';
 
 (async function initialiseEnums() {
-  const fetchLimit = 5;
-  for (let i = 0; i < fetchLimit; i++) {
-    await fetchPortsOfEntry();
-    await fetchCountriesOfResidence();
-    if (getPortsOfEntry().length > 0 && getCountriesOfResidence().length > 0) {
-      break;
-    }
-  }
+  await fetchAndSetPortsAndCountries();
+  await schedule.scheduleJob('0 * * * *', async() => {
+    await fetchAndSetPortsAndCountries();
+  });
 }());
 
 if (process.env.NODE_ENV === 'development') {
