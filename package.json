@@ -139,14 +139,14 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
-    "express": "^4.21.2",
+    "express": "^4.21.0",
     "debug": "^3.2.7",
     "json-schema": "^0.4.0",
     "qs": "^6.11.2",
     "redis": "^3.1.1",
     "micromatch": "^4.0.8",
     "puppeteer": "^23.2.0",
-    "path-to-regexp": "^0.1.12"
+    "path-to-regexp": "^0.1.10"
   },
   "packageManager": "yarn@4.4.1"
 }
