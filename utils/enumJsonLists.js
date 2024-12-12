@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const config = require('config');
 const request = require('superagent');
 
@@ -39,9 +40,23 @@ function getCountriesOfResidence() {
   return countriesOfResidence;
 }
 
+async function fetchAndSetPortsAndCountries() {
+  const fetchLimit = 5;
+  for (let i = 0; i < fetchLimit; i++) {
+    await Promise.all([
+      fetchPortsOfEntry(),
+      fetchCountriesOfResidence()
+    ]);
+    if (getPortsOfEntry().length > 0 && getCountriesOfResidence().length > 0) {
+      break;
+    }
+  }
+}
+
 module.exports = {
   fetchPortsOfEntry,
   getPortsOfEntry,
   fetchCountriesOfResidence,
-  getCountriesOfResidence
+  getCountriesOfResidence,
+  fetchAndSetPortsAndCountries
 };
