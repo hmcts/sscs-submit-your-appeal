@@ -11,9 +11,9 @@ const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
 
-class RepresentativeInUk extends SaveToDraftStore {
+class AppellantInMainlandUk extends SaveToDraftStore {
   static get path() {
-    return paths.representative.representativeInUk;
+    return paths.identity.enterAppellantInMainlandUk;
   }
 
   handler(req, res, next) {
@@ -27,7 +27,7 @@ class RepresentativeInUk extends SaveToDraftStore {
   get form() {
     return form({
       inMainlandUk: text.joi(
-        this.content.fields.inMainlandUk.error.required,
+        this.content.fields.inMainlandUk.errors.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -38,12 +38,12 @@ class RepresentativeInUk extends SaveToDraftStore {
 
     return answer(this, {
       question: this.content.cya.inMainlandUk.question,
-      section: sections.representative,
+      section: sections.appellantDetails,
       answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });
   }
 
-  getInUkValue() {
+  getInMainlandUkValue() {
     if (this.fields.inMainlandUk.value === userAnswer.YES) return true;
     if (this.fields.inMainlandUk.value === userAnswer.NO) return false;
     return null;
@@ -51,9 +51,9 @@ class RepresentativeInUk extends SaveToDraftStore {
 
   values() {
     return {
-      representative: {
+      appellant: {
         contactDetails: {
-          inMainlandUk: this.getInUkValue()
+          inMainlandUk: this.getInMainlandUkValue()
         }
       }
     };
@@ -61,10 +61,10 @@ class RepresentativeInUk extends SaveToDraftStore {
 
   next() {
     return branch(
-      goTo(this.journey.steps.RepresentativeDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
-      goTo(this.journey.steps.RepresentativeInternationalDetails)
+      goTo(this.journey.steps.AppellantContactDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
+      goTo(this.journey.steps.AppellantInternationalContactDetails)
     );
   }
 }
 
-module.exports = RepresentativeInUk;
+module.exports = AppellantInMainlandUk;

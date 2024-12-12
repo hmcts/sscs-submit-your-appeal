@@ -1,8 +1,6 @@
 {% extends "components/globals.html" %}
 {% extends "layouts/question.html" %}
 
-{% set title = content.title | safe %}
-
 {% block full_width %}
     {{ super() }}
     <div>
@@ -12,7 +10,7 @@
 
 
 {% block two_thirds %}
-    <h1  class="govuk-heading-l">{{ content.title | safe}}</h1>
+    <h1  class="govuk-heading-l">{{ title}}</h1>
 
     <p>{{ content.description.line1 }}</p>
 
@@ -42,8 +40,8 @@
             <thead class="govuk-table__head">
             <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="col" class ="equal-width-twenty">{{ content.tableHeadings.appealRef }}</th>
-                <th class="govuk-table__header" scope="col" class ="equal-width-forty">{{ content.tableHeadings.benefit }}</th>
-                <th class="govuk-table__header" scope="col" class ="equal-width-twenty-five">{{ content.tableHeadings.mrnDate }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-forty">{{ tableHeadingTwo }}</th>
+                <th class="govuk-table__header" scope="col" class ="equal-width-twenty-five">{{ tableHeadingThree }}</th>
                 <th class="govuk-table__header" scope="col" class ="equal-width-fifteen">{{ content.tableHeadings.action }}</th>
             </tr>
             </thead>
