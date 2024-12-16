@@ -16,6 +16,7 @@ After(({ I }) => {
 
 Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }) => {
   I.wait(1);
+  I.waitForElement('.govuk-cookie-banner', 5);
   I.see(cookieContent.bannerTitle);
   I.seeElement('.govuk-cookie-banner');
 
@@ -29,6 +30,7 @@ Scenario(`${language.toUpperCase()} - PIP verify cookies banner Element`, ({ I }
 
 Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) => {
   I.wait(1);
+  I.waitForElement('.govuk-cookie-banner', 5);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
@@ -41,6 +43,7 @@ Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) =>
 
 Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, ({ I }) => {
   I.wait(1);
+  I.waitForElement('.govuk-cookie-banner', 5);
   I.click(cookieContent.rejectCookie);
   I.see(cookieContent.hideAfterReject);
   I.see(cookieContent.hideMessage);
@@ -50,6 +53,7 @@ Scenario(`${language.toUpperCase()} - PIP reject additional cookies`, ({ I }) =>
 
 Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, ({ I }) => {
   I.wait(1);
+  I.waitForElement('.govuk-cookie-banner', 5);
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
