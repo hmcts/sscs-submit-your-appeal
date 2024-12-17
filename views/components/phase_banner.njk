@@ -17,7 +17,7 @@
         {% set html %}
             {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) | safe }}
 
-            {% if featureToggles.welsh() == "true" %}
+            {% if featureToggles.welsh() == "true" and not isIba %}
                 {{ content.phaseBar.languageToggle | safe }}
             {% endif %}
         {% endset %}
