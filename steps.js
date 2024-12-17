@@ -38,7 +38,7 @@ const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
 const AppellantIBCAReference = require('steps/identity/appellant-ibca-reference/AppellantIBCAReference');
 const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
-const AppellantInUk = require('steps/identity/appellant-in-uk/AppellantInUk');
+const AppellantInMainlandUk = require('steps/identity/appellant-in-mainland-uk/AppellantInMainlandUk');
 const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownload');
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
@@ -52,7 +52,7 @@ const Representative = require('steps/representative/representative/Representati
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
-const RepresentativeInUk = require('steps/representative/representative-in-uk/RepresentativeInUk');
+const RepresentativeInMainlandUk = require('steps/representative/representative-in-mainland-uk/RepresentativeInMainlandUk');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
@@ -133,7 +133,7 @@ const identity = [
   AppellantIBCAReference,
   Appointee,
   AppealFormDownload,
-  AppellantInUk,
+  AppellantInMainlandUk,
   AppellantInternationalContactDetails
 ];
 
@@ -155,7 +155,7 @@ const representative = [
   Representative,
   RepresentativeDetails,
   NoRepresentativeDetails,
-  RepresentativeInUk,
+  RepresentativeInMainlandUk,
   RepresentativeInternationalDetails
 ];
 

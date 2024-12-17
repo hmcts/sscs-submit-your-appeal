@@ -51,7 +51,7 @@ class Representative extends SaveToDraftStore {
     const isIbaCase = isIba(this.req);
     return branch(
       goTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative && !isIbaCase),
-      goTo(this.journey.steps.RepresentativeInUk).if(hasARepresentative && isIbaCase),
+      goTo(this.journey.steps.RepresentativeInMainlandUk).if(hasARepresentative && isIbaCase),
       goTo(this.journey.steps.ReasonForAppealing)
     );
   }
