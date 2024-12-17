@@ -32,8 +32,9 @@ Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) =>
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
+  I.wait(2);
   I.refreshPage();
-  I.wait(1);
+  I.wait(2);
   I.seeCookie('_ga');
   I.seeCookie('_gid');
   I.seeCookie('_gat_UA-91309785-5');
@@ -53,7 +54,9 @@ Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie po
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
+  I.wait(2);
   I.refreshPage();
+  I.wait(2);
 
   I.seeCookie('_ga');
   I.seeCookie('_gid');
