@@ -39,6 +39,7 @@ describe('RepresentativeInternationalDetails.js', () => {
       townCity: { value: '' },
       internationalAddress: { value: '' },
       country: { value: '' },
+      postCode: { value: '' },
       phoneNumber: { value: '' },
       emailAddress: { value: '' }
     };
@@ -348,6 +349,7 @@ describe('RepresentativeInternationalDetails.js', () => {
       representativeInternationalDetails.fields.addressLine2 = { value: 'Some address line 2' };
       representativeInternationalDetails.fields.townCity = { value: 'Some Town or City' };
       representativeInternationalDetails.fields.country.value = 'Iceland';
+      representativeInternationalDetails.fields.postCode.value = 'some-international postCode';
       representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
       representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       const values = representativeInternationalDetails.values();
@@ -361,6 +363,7 @@ describe('RepresentativeInternationalDetails.js', () => {
             addressLine1: 'Some address line 1',
             addressLine2: 'Some address line 2',
             townCity: 'Some Town or City',
+            postCode: 'some-international postCode',
             country: 'Iceland',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
@@ -381,6 +384,7 @@ describe('RepresentativeInternationalDetails.js', () => {
             addressLine1: '',
             addressLine2: '',
             townCity: '',
+            postCode: '',
             country: '',
             phoneNumber: '',
             emailAddress: ''
@@ -394,6 +398,13 @@ describe('RepresentativeInternationalDetails.js', () => {
       const phoneNumber = representativeInternationalDetails.values().representative.contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
+    });
+
+    it('removes whitespace from before and after the postCode string', () => {
+      representativeInternationalDetails.fields.postCode.value = ' some-postCode ';
+      const postCode = representativeInternationalDetails.values().representative.contactDetails.postCode;
+      expect(postCode).to.not.equal(' some-postCode ');
+      expect(postCode).to.equal('some-postCode');
     });
   });
 
