@@ -162,6 +162,7 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
           country: decode(this.fields.country.value),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
