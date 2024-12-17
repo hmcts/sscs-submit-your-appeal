@@ -10,6 +10,7 @@ nodejs:
   environment:
     NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
+    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-4230.preview.platform.hmcts.net
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     WELSH_WEBCHAT_ENABLED: true
