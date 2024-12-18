@@ -39,7 +39,7 @@ class SmsConfirmation extends SaveToDraftStore {
       useSameNumber: text.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
       internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
-      inMainlandUk: text.ref(this.journey.steps.AppellantInUk, 'inMainlandUk'),
+      inMainlandUk: text.ref(this.journey.steps.AppellantInMainlandUk, 'inMainlandUk'),
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber')
     });
   }
