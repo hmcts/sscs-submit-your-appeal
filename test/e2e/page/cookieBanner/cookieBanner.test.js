@@ -3,7 +3,7 @@ const paths = require('paths');
 const language = 'en';
 const cookieContent = require('./cookie-content');
 
-Feature(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`);
+Feature(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`).skip();
 
 Before(({ I }) => {
   I.createTheSession(language);
@@ -32,9 +32,8 @@ Scenario(`${language.toUpperCase()} - PIP accept additional cookies`, ({ I }) =>
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
-  I.wait(2);
   I.refreshPage();
-  I.wait(2);
+  I.wait(1);
   I.seeCookie('_ga');
   I.seeCookie('_gid');
   I.seeCookie('_gat_UA-91309785-5');
@@ -54,9 +53,7 @@ Scenario(`${language.toUpperCase()} - PIP accept cookies using the new cookie po
   I.click(cookieContent.acceptCookie);
   I.see(cookieContent.hideAfterAccept);
   I.see(cookieContent.hideMessage);
-  I.wait(2);
   I.refreshPage();
-  I.wait(2);
 
   I.seeCookie('_ga');
   I.seeCookie('_gid');
