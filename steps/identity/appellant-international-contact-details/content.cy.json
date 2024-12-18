@@ -24,19 +24,19 @@
       }
     },
     "postCode": {
-      "title": "cod post/cod ZIP (dewisol)",
+      "title": "Cod post/Cod ZIP (dewisol)",
       "error": {
         "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
       }
     },
     "country": {
-      "title": "gwlad",
+      "title": "Gwlad",
       "error": {
         "required": "Dewiswch eich gwlad"
       }
     },
     "portOfEntry": {
-      "title": "man mynediad",
+      "title": "Man mynediad",
       "error": {
         "required": "Dewiswch eich man mynediad i'r DU"
       }

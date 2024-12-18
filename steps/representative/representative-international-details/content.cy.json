@@ -58,7 +58,7 @@
       }
     },
     "postCode": {
-      "title": "cod post/cod ZIP (dewisol)",
+      "title": "Cod post/Cod ZIP (dewisol)",
       "error": {
         "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
       }
@@ -93,7 +93,7 @@
       "question": "Sefydliad"
     },
     "country": {
-      "question": "Country of residence for representative"
+      "question": "Gwlad preswylio'r cynrychiolydd"
     },
     "address":{
       "question": "Cyfeiriad"
