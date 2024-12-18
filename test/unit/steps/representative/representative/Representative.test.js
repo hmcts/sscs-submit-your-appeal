@@ -14,7 +14,7 @@ describe('Representative.js', () => {
         steps: {
           RepresentativeDetails: paths.representative.representativeDetails,
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing,
-          RepresentativeInUk: paths.representative.representativeInUk
+          RepresentativeInMainlandUk: paths.representative.representativeInMainlandUk
         }
       }
     });
@@ -149,7 +149,7 @@ describe('Representative.js', () => {
     it('nextStep equals /representative-details if iba with rep', () => {
       representative.req = { hostname: 'some-iba-hostname' };
       representative.fields.hasRepresentative.value = userAnswer.YES;
-      expect(representative.next().step).to.eql(paths.representative.representativeInUk);
+      expect(representative.next().step).to.eql(paths.representative.representativeInMainlandUk);
     });
 
     it('nextStep equals /reason-for-appealing no rep', () => {
