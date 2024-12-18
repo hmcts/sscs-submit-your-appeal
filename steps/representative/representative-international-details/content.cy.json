@@ -41,33 +41,33 @@
       "title": "Llinell gyntaf y cyfeiriad",
       "error": {
         "required": "Rhowch linell gyntaf eich cyfeiriad",
-        "invalid": "You have entered an invalid character. Check your Address line 1 and enter it again"
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "addressLine2": {
       "title": "Ail linell y cyfeiriad (dewisol)",
       "error": {
-        "invalid": "You have entered an invalid character. Check your Address line 2 and enter it again"
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
     "townCity": {
       "title": "Tref/Dinas",
       "error": {
         "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
-        "invalid": "You have entered an invalid character. Check your Town/City and enter it again"
+        "invalid": "Rydych chi wedi nodi cymeriad annilys. Gwiriwch eich Tref/Dinas a nodi eto"
       }
     },
     "postCode": {
-      "title": "Postcode/ZIP code (optional)",
+      "title": "cod post/cod ZIP (dewisol)",
       "error": {
-        "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
+        "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
       }
     },
     "country": {
-      "title": "Country of residence",
+      "title": "Gwlad preswylio",
       "error": {
-        "required": "Select the country of residence of your representative",
-        "invalid": "The country of residence is invalid"
+        "required": "Dewiswch wlad preswylio eich cynrychiolydd",
+        "invalid": "Mae'r wlad preswylio'n annilys"
       }
     },
     "phoneNumber": {
