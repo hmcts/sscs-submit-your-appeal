@@ -141,19 +141,18 @@ describe('RepresentativeInMainlandUk.js', () => {
       afterEach(() => {
         i18next.changeLanguage('en');
       });
-      // TODO update welsh
-      it('should return the correct answer \'No\' for CYA (Welsh)', () => {
+      it('should return the correct answer \'Nac ydw\' for CYA (Welsh)', () => {
         representativeInMainlandUk.content.cya.inMainlandUk.no = 'No';
         representativeInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = representativeInMainlandUk.answers();
-        expect(answers.answer).to.equal('No');
+        expect(answers.answer).to.equal('Nac ydw');
       });
-      // TODO update welsh
-      it('should return the correct answer \'Yes\' for CYA (Welsh)', () => {
+
+      it('should return the correct answer \'Ydw\' for CYA (Welsh)', () => {
         representativeInMainlandUk.content.cya.inMainlandUk.yes = 'Yes';
         representativeInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = representativeInMainlandUk.answers();
-        expect(answers.answer).to.equal('Yes');
+        expect(answers.answer).to.equal('Ydw');
       });
     });
 
