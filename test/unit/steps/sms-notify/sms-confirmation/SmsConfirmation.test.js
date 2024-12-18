@@ -20,7 +20,9 @@ describe('SmsConfirmation.js', () => {
       phoneNumber: {},
       appointeePhoneNumber: {},
       enterMobile: {},
-      useSameNumber: {}
+      useSameNumber: {},
+      internationalPhoneNumber: {},
+      inMainlandUk: { value: 'yes' }
     };
   });
 
@@ -55,6 +57,21 @@ describe('SmsConfirmation.js', () => {
       smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
       expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.phoneNumber.value);
     });
+
+    it('should return internationalAppellantPhoneNumber inMainlandUk No when is not a mobile', () => {
+      smsConfirmation.fields.inMainlandUk.value = 'no';
+      smsConfirmation.fields.internationalPhoneNumber.value = '01277345672';
+      smsConfirmation.fields.enterMobile.value = '07411738663';
+      smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
+    });
+
+    it('should return internationalAppellantPhoneNumber inMainlandUk No when which is a mobile', () => {
+      smsConfirmation.fields.inMainlandUk.value = 'no';
+      smsConfirmation.fields.internationalPhoneNumber.value = '07411738765';
+      smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
+      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.internationalPhoneNumber.value);
+    });
   });
 
   describe('get form()', () => {
@@ -64,13 +81,15 @@ describe('SmsConfirmation.js', () => {
       fields = smsConfirmation.form.fields;
     });
 
-    it('should contain 4 fields', () => {
-      expect(Object.keys(fields).length).to.equal(4);
+    it('should contain 6 fields', () => {
+      expect(Object.keys(fields).length).to.equal(6);
       expect(fields).to.have.all.keys(
         'appointeePhoneNumber',
         'enterMobile',
         'useSameNumber',
-        'phoneNumber'
+        'phoneNumber',
+        'internationalPhoneNumber',
+        'inMainlandUk'
       );
     });
 
@@ -118,7 +137,8 @@ describe('SmsConfirmation.js', () => {
         },
         enterMobile: {
           value: '07411444444'
-        }
+        },
+        inMainlandUk: { value: 'yes' }
       };
     });
 

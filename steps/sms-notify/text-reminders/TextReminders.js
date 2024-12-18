@@ -18,6 +18,7 @@ class TextReminders extends SaveToDraftStore {
   get form() {
     return form({
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
       doYouWantTextMsgReminders: text.joi(
         this.content.fields.doYouWantTextMsgReminders.error.required,
@@ -57,7 +58,8 @@ class TextReminders extends SaveToDraftStore {
     let nextStep = null;
     if (regex.mobileNumber.test(
       this.fields.phoneNumber.value ||
-      this.fields.appointeePhoneNumber.value)
+      this.fields.appointeePhoneNumber.value ||
+      this.fields.internationalPhoneNumber.value)
     ) {
       nextStep = this.journey.steps.SendToNumber;
     } else {

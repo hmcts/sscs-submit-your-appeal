@@ -24,6 +24,7 @@ describe('TextReminders.js', () => {
     textReminders.fields = {
       doYouWantTextMsgReminders: {},
       phoneNumber: {},
+      internationalPhoneNumber: {},
       appointeePhoneNumber: {}
     };
   });
@@ -41,12 +42,13 @@ describe('TextReminders.js', () => {
       fields = textReminders.form.fields;
     });
 
-    it('should contain 3 fields', () => {
-      expect(Object.keys(fields).length).to.equal(3);
+    it('should contain 4 fields', () => {
+      expect(Object.keys(fields).length).to.equal(4);
       expect(fields).to.have.all.keys(
         'appointeePhoneNumber',
         'doYouWantTextMsgReminders',
-        'phoneNumber'
+        'phoneNumber',
+        'internationalPhoneNumber'
       );
     });
 
@@ -154,6 +156,13 @@ describe('TextReminders.js', () => {
     it('returns the next step path /enter-mobile', () => {
       textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
       textReminders.fields.phoneNumber.value = '01277456378';
+      const nextStep = textReminders.next().branches[0].redirector.nextStep;
+      expect(nextStep).to.eq(paths.smsNotify.enterMobile);
+    });
+
+    it('returns the next step path /enter-mobile', () => {
+      textReminders.fields.doYouWantTextMsgReminders.value = answer.YES;
+      textReminders.fields.internationalPhoneNumber.value = '01277456378';
       const nextStep = textReminders.next().branches[0].redirector.nextStep;
       expect(nextStep).to.eq(paths.smsNotify.enterMobile);
     });
