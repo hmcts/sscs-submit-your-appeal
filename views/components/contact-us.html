@@ -77,11 +77,6 @@
           <p class="govuk-body govuk-!-margin-bottom-2">
               <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.charges }}</a>
           </p>
-          {% if ((htmlLang == "cy") or (htmlLang == "en" and welshWebchatEnabled))  %}
-          <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailText }}
-              <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.emailAddress }}</a>
-          </p>
-          {% endif %}
         </div>
       {% else %} 
         <div class="govuk-details__text">

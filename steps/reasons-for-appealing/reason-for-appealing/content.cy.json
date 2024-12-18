@@ -4,9 +4,9 @@
   "title": "Eich rhesymau dros apelio",
   "titleEdit": "Dywedwch pam eich bod yn apelio",
   "dwpExplained": "Dylai fod DWP wedi egluro eu penderfyniad am eich hawl i gael {{benefitType}} yn yr Hysbysiad Gorfodi i Ailystyried (MRN) neu’r llythyr penderfyniad a anfonwyd atoch.",
-  "ibaExplained": "IBCA should have explained their decision on your {{benefitType}} claim in the Review Decision Notice they sent you.",
+  "ibaExplained": "Dylai’r IBCA fod wedi egluro eu penderfyniad ar eich hawliad Iawndal Gwaed Heintiedig yn yr Hysbysiad o Benderfyniad Adolygiad a anfonwyd atoch.",
   "readYouMRN": "Darllenwch eich MRN neu’r llythyr penderfyniad a nodwch beth ydych yn anghytuno ag ef a pham. Caiff eich rhesymau eu hystyried gan dribiwnlys annibynnol sydd ar wahân i DWP.",
-  "readYouRDN": "Read your Review Decision Notice and write what you disagree with and why. Your reasons will be considered by an independent tribunal who are separate from IBCA.",
+  "readYouRDN": "Darllenwch eich Hysbysiad o Benderfyniad Adolygiad ac ysgrifennwch yr hyn yr ydych yn anghytuno ag ef a pham. Bydd eich rhesymau yn cael eu hystyried gan dribiwnlys annibynnol sydd ar wahân i’r IBCA.",
   "placeholder": "Gallwch ysgrifennu faint bynnag a fynnoch",
   "links": {
     "add": "Ychwanegu rheswm arall",
@@ -29,8 +29,7 @@
       "error": {
         "required": "Mae angen ichi roi o leiaf un rheswm dros apelio",
         "notEnough": "Nid ydych wedi dweud digon am pam rydych eisiau apelio. Yn gryno, eglurwch pam eich bod yn anghytuno â phenderfyniad DWP.",
-        "ibaNotEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with IBCA’s decision."
-
+        "ibaNotEnough": "Nid ydych wedi dweud digon am pam rydych chi eisiau apelio. Esboniwch yn fyr pam rydych chi'n anghytuno â phenderfyniad yr IBCA."
       }
     }
   },

@@ -1,27 +1,27 @@
 {
-  "titleHead": "Appellant Role",
-  "title": "What is your role in this appeal?",
-  "question": "What is your role in this appeal?",
+  "titleHead": "Rôl yr Apelydd",
+  "title": "Beth yw eich rôl yn yr apêl hon?",
+  "question": "Beth yw eich rôl yn yr apêl hon?",
   "fields": {
     "ibcRole": {
-      "myself": "I am appealing for myself",
-      "parent": "I am appealing for a person under 18 for whom I have parental responsibility",
-      "guardian": "I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller",
-      "powerOfAttorney": "I am appealing on behalf of a person for whom I have been granted a power of attorney",
-      "deceasedRepresentative": "I am appealing on behalf of a deceased person as their personal representative",
+      "myself": "Rwy’n apelio ar ran fy hun",
+      "parent": "Rwy’n apelio ar ran unigolyn dan 18 oed y mae gennyf gyfrifoldeb rhiant drosto",
+      "guardian": "Rwy’n apelio ar ran unigolyn sydd heb alluedd fel ei warcheidwad, dirprwy, neu reolydd",
+      "powerOfAttorney": "Rwy’n apelio ar ran unigolyn y mae gennyf atwrneiaeth arhosol drosto",
+      "deceasedRepresentative": "Rwy’n apelio ar ran yr ymadawedig fel ei gynrychiolydd personol",
       "error": {
-        "required": "Please choose an Appellant role option."
+        "required": "Dewiswch opsiwn ar gyfer rôl Atebydd."
       }
     }
   },
   "cya": {
     "ibcRole": {
-      "question": "What is your role in this appeal?",
-      "myself": "I am appealing for myself",
-      "parent": "I am appealing for a person under 18 for whom I have parental responsibility",
-      "guardian": "I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller",
-      "powerOfAttorney": "I am appealing on behalf of a person for who I have been granted a power of attorney",
-      "deceasedRepresentative": "I am appealing on behalf of a deceased person as their personal representative"
+      "question": "Beth yw eich rôl yn yr apêl hon?",
+      "myself": "Rwy’n apelio ar ran fy hun",
+      "parent": "Rwy’n apelio ar ran unigolyn dan 18 oed y mae gennyf gyfrifoldeb rhiant drosto",
+      "guardian": "Rwy’n apelio ar ran unigolyn sydd heb alluedd fel ei warcheidwad, dirprwy, neu reolydd",
+      "powerOfAttorney": "Rwy’n apelio ar ran unigolyn y mae gennyf atwrneiaeth arhosol drosto",
+      "deceasedRepresentative": "Rwy’n apelio ar ran yr ymadawedig fel ei gynrychiolydd personol"
     }
   }
 }

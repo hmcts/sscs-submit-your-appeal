@@ -14,12 +14,8 @@ class OtherReasonForAppealing extends SaveToDraftStore {
     return paths.reasonsForAppealing.otherReasonForAppealing;
   }
 
-  get reviewBody() {
-    return isIba(this.req) ? 'IBCA' : 'DWP';
-  }
-
-  get subtitleEnd() {
-    return isIba(this.req) ? 'decision' : 'assessment';
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {

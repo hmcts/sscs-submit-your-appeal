@@ -1,22 +1,22 @@
 {
-  "titleHead": "Appellant in UK",
-  "title": "Do you live in England, Scotland or Wales?",
-  "question": "Do you live in England, Scotland or Wales?",
+  "titleHead": "Apelydd yn y DU",
+  "title": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
+  "question": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
 
   "fields": {
     "inMainlandUk": {
-      "yes": "Yes",
-      "no": "No",
+      "yes": "Ydw",
+      "no": "Nac ydw",
       "errors": {
-        "required": "Select ‘Yes’ if you live in England, Scotland or Wales."
+        "required": "Dewiswch ‘ydw’ os ydych yn byw yng Nghymru, Lloegr neu’r Alban."
       }
     }
   },
   "cya": {
     "inMainlandUk": {
-      "question": "Do you live in England, Scotland or Wales?",
-      "yes": "Yes",
-      "no": "No"
+      "question": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
+      "yes": "Ydw",
+      "no": "Nac ydw"
     }
   }
 }

@@ -24,21 +24,21 @@
       }
     },
     "postCode": {
-      "title": "Postcode/ZIP code (optional)",
+      "title": "Cod post/Cod ZIP (dewisol)",
       "error": {
-        "invalid": "You have entered an invalid character. Check your Postcode/ZIP code and enter it again"
+        "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
       }
     },
     "country": {
-      "title": "Country",
+      "title": "Gwlad",
       "error": {
-        "required": "Select your country"
+        "required": "Dewiswch eich gwlad"
       }
     },
     "portOfEntry": {
-      "title": "Port of entry",
+      "title": "Man mynediad",
       "error": {
-        "required": "Select your port of entry into the UK"
+        "required": "Dewiswch eich man mynediad i'r DU"
       }
     },
     "phoneNumber": {
@@ -58,10 +58,10 @@
   },
   "cya": {
     "country": {
-      "question": "Country of residence"
+      "question": "Gwlad"
     },
     "portOfEntry": {
-      "question": "Port of entry"
+      "question": "Man mynediad"
     },
     "address": {
       "question": "Cyfeiriad"
