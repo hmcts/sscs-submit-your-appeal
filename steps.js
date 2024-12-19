@@ -27,23 +27,22 @@ const CheckMRN = require('steps/compliance/check-mrn/CheckMRN');
 const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const NoMRN = require('steps/compliance/no-mrn/NoMRN');
-const NeedIRN = require('steps/compliance/need-irn/NeedIRN');
+const NeedRDN = require('steps/compliance/need-rdn/NeedRDN');
 const MRNOverOneMonthLate = require('steps/compliance/mrn-over-month-late/MRNOverOneMonthLate');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const Appointee = require('steps/identity/appointee/Appointee');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const AppellantName = require('steps/identity/appellant-name/AppellantName');
+const AppellantRole = require('steps/identity/appellant-role/AppellantRole');
 const AppellantDOB = require('steps/identity/appellant-dob/AppellantDOB');
 const AppellantNINO = require('steps/identity/appellant-nino/AppellantNINO');
-const AppellantIBCARef = require('steps/identity/appellant-ibca-ref/AppellantIBCARef');
+const AppellantIBCAReference = require('steps/identity/appellant-ibca-reference/AppellantIBCAReference');
 const AppellantInternationalContactDetails = require('steps/identity/appellant-international-contact-details/AppellantInternationalContactDetails');
-const AppellantInUk = require('steps/identity/appellant-in-uk/AppellantInUk');
+const AppellantInMainlandUk = require('steps/identity/appellant-in-mainland-uk/AppellantInMainlandUk');
 const AppealFormDownload = require('steps/appeal-form-download/AppealFormDownload');
 const AppointeeName = require('steps/appointee/appointee-name/AppointeeName');
 const AppointeeDOB = require('steps/appointee/appointee-dob/AppointeeDOB');
 const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
-const AppointeeInternationalContactDetails = require('steps/appointee/appointee-international-contact-details/AppointeeInternationalContactDetails');
-const AppointeeInUk = require('steps/appointee/appointee-in-uk/AppointeeInUk');
 const SameAddress = require('steps/appointee/same-address/SameAddress');
 const TextReminders = require('steps/sms-notify/text-reminders/TextReminders');
 const SendToNumber = require('steps/sms-notify/send-to-number/SendToNumber');
@@ -53,7 +52,7 @@ const Representative = require('steps/representative/representative/Representati
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
-const RepresentativeInUk = require('steps/representative/representative-in-uk/RepresentativeInUk');
+const RepresentativeInMainlandUk = require('steps/representative/representative-in-mainland-uk/RepresentativeInMainlandUk');
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const SendingEvidence = require('steps/reasons-for-appealing/sending-evidence/SendingEvidence');
@@ -86,6 +85,7 @@ const ContactUs = require('steps/policy-pages/contact-us/ContactUs');
 const CookiePolicy = require('steps/policy-pages/cookie-policy/CookiePolicy');
 const Cookies = require('steps/policy-pages/cookie-policy/Cookies');
 const PrivacyPolicy = require('steps/policy-pages/privacy-policy/PrivacyPolicy');
+const RequestIbcAppealForm = require('steps/policy-pages/request-ibc-appeal-form/RequestIbcAppealForm');
 const TermsAndConditions = require('steps/policy-pages/terms-and-conditions/TermsAndConditions');
 
 const init = [
@@ -118,7 +118,7 @@ const compliance = [
   MRNDate,
   DWPIssuingOfficeEsa,
   NoMRN,
-  NeedIRN,
+  NeedRDN,
   MRNOverOneMonthLate,
   MRNOverThirteenMonthsLate,
   StillCanAppeal
@@ -128,11 +128,12 @@ const identity = [
   AppellantContactDetails,
   AppellantDOB,
   AppellantName,
+  AppellantRole,
   AppellantNINO,
-  AppellantIBCARef,
+  AppellantIBCAReference,
   Appointee,
   AppealFormDownload,
-  AppellantInUk,
+  AppellantInMainlandUk,
   AppellantInternationalContactDetails
 ];
 
@@ -140,8 +141,6 @@ const appointee = [
   AppointeeName,
   AppointeeDOB,
   AppointeeContactDetails,
-  AppointeeInternationalContactDetails,
-  AppointeeInUk,
   SameAddress
 ];
 
@@ -156,7 +155,7 @@ const representative = [
   Representative,
   RepresentativeDetails,
   NoRepresentativeDetails,
-  RepresentativeInUk,
+  RepresentativeInMainlandUk,
   RepresentativeInternationalDetails
 ];
 
@@ -213,6 +212,7 @@ const policyPages = [
   CookiePolicy,
   Cookies,
   PrivacyPolicy,
+  RequestIbcAppealForm,
   TermsAndConditions
 ];
 

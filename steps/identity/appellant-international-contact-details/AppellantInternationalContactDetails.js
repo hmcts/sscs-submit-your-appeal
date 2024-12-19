@@ -9,10 +9,10 @@ const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const customJoi = require('utils/customJoiSchemas');
 const { decode } = require('utils/stringUtils');
-const countriesList = require('utils/countriesList');
-const portOfEntryList = require('utils/portOfEntryList');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
+const { getPortsOfEntry } = require('utils/enumJsonLists');
+const { getCountriesOfResidence } = require('../../../utils/enumJsonLists');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
@@ -36,12 +36,12 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = countriesList.map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
   validPortSchema() {
-    const validPorts = portOfEntryList.map(port => port.value);
+    const validPorts = getPortsOfEntry().map(port => port.value);
     return Joi.string().valid(validPorts);
   }
 
@@ -56,14 +56,18 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
         Joi.string().regex(whitelistNotFirst)
       ),
       addressLine2: text.joi(
-        fields.addressLine1.error.invalid,
+        fields.addressLine2.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       townCity: text.joi(
         fields.townCity.error.required,
         Joi.string().required()
       ).joi(
-        fields.addressLine1.error.invalid,
+        fields.townCity.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
+      postCode: text.joi(
+        fields.postCode.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       country: text.joi(
@@ -92,11 +96,17 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   get getCountries() {
-    return countriesList;
+    return getCountriesOfResidence();
   }
 
   get getPortOfEntryList() {
-    return portOfEntryList;
+    return getPortsOfEntry();
+  }
+
+  get getPortOfEntryFromCode() {
+    return getPortsOfEntry()
+      .filter(port => port.value === this.fields.portOfEntry.value)
+      .map(port => port.label)[0];
   }
 
   answers() {
@@ -115,6 +125,7 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
           country: decode(this.fields.country.value),
           portOfEntry: decode(this.fields.portOfEntry.value),
           phoneNumber: this.fields.phoneNumber.value ?

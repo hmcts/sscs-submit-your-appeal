@@ -1,0 +1,25 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
+{% from "components/toggle_help.njk" import toggleHelp %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% set title = content.title %}
+
+{% block fields %}
+    <div id="ibcRole">
+        {% call formSection() %}
+            {{ selectionButtons(
+                fields.ibcRole,
+                content.question,
+                hint = '',
+                options = [
+                    { label: content.fields.ibcRole.myself,                   value: "myself" },
+                    { label: content.fields.ibcRole.parent,                   value: "parent" },
+                    { label: content.fields.ibcRole.guardian,                 value: "guardian" },
+                    { label: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
+                    { label: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
+                ])
+            }}
+        {% endcall %}
+    </div>
+{% endblock %}

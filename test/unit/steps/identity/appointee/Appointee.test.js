@@ -5,6 +5,8 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
 const benefitTypes = require('steps/start/benefit-type/types');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 
 describe('Appointee.js', () => {
   let appointee = null;
@@ -61,6 +63,51 @@ describe('Appointee.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('handler()', () => {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('redirect to /does-not-exist called for iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodCompensation
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      appointee.handler(req, res, next);
+      expect(res.redirect.called).to.eql(true);
+      expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+      sinon.assert.notCalled(superStub);
+    });
+
+    it('no redirect to /does-not-exist called for non iba', () => {
+      const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+      const req = {
+        method: 'GET',
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.nationalInsuranceCredits
+          }
+        }
+      };
+      const res = {
+        redirect: sinon.spy()
+      };
+      const next = sinon.spy();
+      appointee.handler(req, res, next);
+      expect(res.redirect.called).to.eql(false);
+      sinon.assert.calledOnce(superStub);
     });
   });
 
@@ -143,20 +190,6 @@ describe('Appointee.js', () => {
       appointee.fields.isAppointee.value = '';
       const values = appointee.values();
       expect(values).to.eql({ isAppointee: null });
-    });
-  });
-
-  describe('ReviewBody()', () => {
-    it('should return "a court" in IBA journey', () => {
-      appointee.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      appointee.fields.isAppointee.value = userAnswer.NO;
-      expect(appointee.appointedBy).to.equal('a court');
-    });
-
-    it('should return a "DWP" in non IBA journey', () => {
-      appointee.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      appointee.fields.isAppointee.value = userAnswer.NO;
-      expect(appointee.appointedBy).to.equal('DWP');
     });
   });
 

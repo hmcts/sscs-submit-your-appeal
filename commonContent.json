@@ -104,10 +104,10 @@
           "charges": "Find out about call charges",
           "ibca" : {
             "desc" : "IBC appeals helpline (All other appellants)",
-            "phone": "Telephone: 0300 123 XXXX",
+            "phone": "Telephone: 0300 131 2850",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",
-            "emailAddress": "ibca@justice.gov.uk",
+            "emailAddress": "ContactIBCAppeals@justice.gov.uk",
             "charges": "Find out about call charges"
           }
         },
@@ -120,10 +120,10 @@
           "charges": "Find out about call charges",
           "ibca" : {
             "desc" : "IBC appeals helpline (for Welsh Speakers)",
-            "phone": "Telephone: 0300 123 XXXX",
+            "phone": "Telephone: 0300 303 5170",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",
-            "emailAddress": "ibca-ymholiadaucymraeg@justice.gov.uk",
+            "emailAddress": "",
             "charges": "Find out about call charges"
           }
         },
@@ -136,10 +136,10 @@
           "charges": "Find out about call charges",
           "ibca" : {
             "desc" : "IBC appeals helpline (Scotland)",
-            "phone": "Telephone: 0300 123 XXXX",
+            "phone": "Telephone: 0300 790 6234",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",
-            "emailAddress": "ibca-Glasgow@justice.gov.uk",
+            "emailAddress": "sscsa-glasgow@Justice.gov.uk",
             "charges": "Find out about call charges"
           }
         }
@@ -150,8 +150,8 @@
     "serviceName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
     "windowTitleSuffix": "Apelio yn erbyn penderfyniad ynghylch budd-dal - GOV.UK",
     "ibca": {
-      "serviceName": "Appeal an infected blood compensation decision",
-      "windowTitleSuffix": "Appeal an infected blood compensation decision - GOV.UK"
+      "serviceName": "Apelio yn erbyn penderfyniad Iawndal Gwaed Heintiedig",
+      "windowTitleSuffix": "Apelio yn erbyn penderfyniad Iawndal Gwaed Heintiedig - GOV.UK"
     },
     "signOut": "Allgofnodi",
     "back": "Yn ôl",
@@ -248,12 +248,12 @@
           "emailAddress": "Contactsscs@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "--------IBC appeals helpline (All other appellants)",
-            "phone": "---------Telephone: 0300 123 XXXX",
-            "availability": "-----------Monday to Friday, 9am to 4pm",
-            "emailText": "--------Email:",
-            "emailAddress": "----------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "desc" : "Llinell gymorth apeliadau IBC (Pob apelydd arall)",
+            "phone": "Rhif ffôn: 0300 131 2850",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
+            "emailAddress": "ContactIBCAppeals@justice.gov.uk",
+            "charges": "Gwybodaeth am gost galwadau"
           }
         },
         "WelshSpeakers": {
@@ -264,12 +264,12 @@
           "emailAddress": "ymholiadaucymraeg@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "-------IBC appeals helpline (All other appellants)",
-            "phone": "-------Telephone: 0300 123 XXXX",
-            "availability": "-------Monday to Friday, 9am to 4pm",
-            "emailText": "-------Email:",
-            "emailAddress": "-------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "desc" : "Llinell gymorth apeliadau IBC (Cymru a Lloegr - Siaradwyr Cymraeg)",
+            "phone": "Rhif ffôn: 0300 303 5170",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
+            "emailAddress": "",
+            "charges": "Gwybodaeth am gost galwadau"
           }
         },
         "Scotland" : {
@@ -280,12 +280,12 @@
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "-------IBC appeals helpline (All other appellants)",
-            "phone": "-------Telephone: 0300 123 XXXX",
-            "availability": "-------Monday to Friday, 9am to 4pm",
-            "emailText": "-------Email:",
-            "emailAddress": "-------ibca@justice.gov.uk",
-            "charges": "-------Find out about call charges"
+            "desc" : "Llinell gymorth apeliadau IBC (Yr Alban)",
+            "phone": "Rhif ffôn: 0300 790 6234",
+            "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
+            "emailText": "E-bost:",
+            "emailAddress": "sscsa-glasgow@Justice.gov.uk",
+            "charges": "Gwybodaeth am gost galwadau"
           }
         }
       }

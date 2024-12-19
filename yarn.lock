@@ -15462,7 +15462,7 @@ __metadata:
     csurf: "npm:^1.11.0"
     eslint: "npm:^8.48.0"
     eslint-plugin-mocha: "npm:^5.0.0"
-    express: "npm:^4.21.0"
+    express: "npm:^4.21.2"
     express-nunjucks: "npm:^3.1.2"
     file-loader: "npm:^6.2.0"
     formidable: "npm:^3.5.1"

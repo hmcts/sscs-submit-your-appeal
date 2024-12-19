@@ -5,7 +5,8 @@ const {
   whitelist,
   phoneNumber,
   internationalMobileNumber,
-  postCode
+  postCode,
+  ibcaReference
 } = require('utils/regex');
 
 describe('validating a string', () => {
@@ -174,5 +175,91 @@ describe('validating a international mobile number', () => {
     const number = '447332198765';
     const mobileNumberValidator = number.match(internationalMobileNumber);
     expect(mobileNumberValidator).to.equal(null);
+  });
+});
+
+describe('IBCA Reference Regex', () => {
+  it('should validate a correct IBCA reference for England', () => {
+    const reference = 'E24A45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in lowercase for England', () => {
+    const reference = 'e24a45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference for Scotland', () => {
+    const reference = 'S35B67';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in lowercase for Scotland', () => {
+    const reference = 's35b67';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference for Wales', () => {
+    const reference = 'W29C89';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in lowercase for Wales', () => {
+    const reference = 'w29c89';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference for Northern Ireland', () => {
+    const reference = 'N31D12';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in lowercase for Northern Ireland', () => {
+    const reference = 'n31d12';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should not validate a reference with an invalid year', () => {
+    const reference = 'E2A45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with missing characters', () => {
+    const reference = 'E24A4';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with extra characters', () => {
+    const reference = 'E24A456';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with an invalid letter "i" ', () => {
+    const reference = 'E24I45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with an invalid letter "o" ', () => {
+    const reference = 'E24O45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with an invalid letter "l" ', () => {
+    const reference = 'E24L45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
   });
 });

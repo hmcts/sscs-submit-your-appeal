@@ -4,11 +4,7 @@
 {% set title = content.title | safe %}
 
 {% block fields %}
-    {% if isIba %}
-        <p class="govuk-body">{{ content.subtitleIba }}</p>
-    {% else %}
-        <p class="govuk-body">{{ content.subtitle }}</p>
-    {% endif %}
+    <p class="govuk-body">{{ content.subtitle }}</p>
 
     {% call formSection() %}
         {{ selectionButtons(

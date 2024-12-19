@@ -18,6 +18,7 @@ module.exports = {
     termsAndConditions: '/terms-and-conditions',
     privacy: '/privacy-policy',
     contactUs: '/contact-us',
+    requestIbcAppealForm: '/request-ibc-appeal-form',
     accessibility: '/accessibility'
   },
 
@@ -46,7 +47,7 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
-    needIRN: '/need-an-irn',
+    needRDN: '/need-a-review-decision-notice',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
@@ -56,28 +57,26 @@ module.exports = {
     mrnDate: '/mrn-date',
     mrnOverMonthLate: '/mrn-over-month-late',
     mrnOverThirteenMonthsLate: '/mrn-over-thirteen-months-late',
-    irnOverMonthLate: '/irn-over-month-late',
     noMRN: '/no-mrn',
     stillCanAppeal: '/still-can-appeal'
   },
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
     enterAppellantContactDetails: '/enter-appellant-contact-details',
-    enterAppellantIBCARef: '/enter-appellant-ibca-reference',
+    enterAppellantIBCAReference: '/enter-appellant-ibca-reference',
     enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
-    enterAppellantInUk: '/appellant-in-uk'
+    enterAppellantInMainlandUk: '/appellant-in-mainland-uk'
   },
 
   appointee: {
     enterAppointeeName: '/enter-appointee-name',
     enterAppointeeDOB: '/enter-appointee-dob',
     enterAppointeeContactDetails: '/appointee-contact-details',
-    enterAppointeeInternationalContactDetails: '/appointee-international-contact-details',
-    enterAppointeeInUk: '/appointee-in-uk',
     sameAddress: '/appointee-same-address'
   },
 
@@ -93,7 +92,7 @@ module.exports = {
     representative: '/representative',
     representativeDetails: '/representative-details',
     noRepresentativeDetails: '/no-representative-details',
-    representativeInUk: '/representative-in-uk',
+    representativeInMainlandUk: '/representative-in-mainland-uk',
     representativeInternationalDetails: '/representative-international-details'
   },
 

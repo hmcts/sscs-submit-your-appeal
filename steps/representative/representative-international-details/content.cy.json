@@ -54,14 +54,20 @@
       "title": "Tref/Dinas",
       "error": {
         "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
-        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+        "invalid": "Rydych chi wedi nodi cymeriad annilys. Gwiriwch eich Tref/Dinas a nodi eto"
+      }
+    },
+    "postCode": {
+      "title": "Cod post/Cod ZIP (dewisol)",
+      "error": {
+        "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
       }
     },
     "country": {
-      "title": "Country of residence",
+      "title": "Gwlad preswylio",
       "error": {
-        "required": "Select the country of residence of your representative",
-        "invalid": "The country of residence is invalid"
+        "required": "Dewiswch wlad preswylio eich cynrychiolydd",
+        "invalid": "Mae'r wlad preswylio'n annilys"
       }
     },
     "phoneNumber": {
@@ -87,7 +93,7 @@
       "question": "Sefydliad"
     },
     "country": {
-      "question": "Country of residence for representative"
+      "question": "Gwlad preswylio'r cynrychiolydd"
     },
     "address":{
       "question": "Cyfeiriad"

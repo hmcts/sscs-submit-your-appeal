@@ -23,16 +23,22 @@
         "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
       }
     },
-    "country": {
-      "title": "Country",
+    "postCode": {
+      "title": "Cod post/Cod ZIP (dewisol)",
       "error": {
-        "required": "Select your country"
+        "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
+      }
+    },
+    "country": {
+      "title": "Gwlad",
+      "error": {
+        "required": "Dewiswch eich gwlad"
       }
     },
     "portOfEntry": {
-      "title": "Port of entry",
+      "title": "Man mynediad",
       "error": {
-        "required": "Select your port of entry into the UK"
+        "required": "Dewiswch eich man mynediad i'r DU"
       }
     },
     "phoneNumber": {
@@ -52,10 +58,10 @@
   },
   "cya": {
     "country": {
-      "question": "Country of residence"
+      "question": "Gwlad"
     },
     "portOfEntry": {
-      "question": "Port of entry"
+      "question": "Man mynediad"
     },
     "address": {
       "question": "Cyfeiriad"

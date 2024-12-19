@@ -4,15 +4,19 @@ const RepresentativeInternationalDetails = require('steps/representative/represe
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sinon = require('sinon');
-const countriesList = require('utils/countriesList');
 const { decode } = require('utils/stringUtils');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const { getCountriesOfResidence } = require('utils/enumJsonLists');
+const superagent = require('superagent');
+const config = require('config');
+const { fetchCountriesOfResidence } = require('utils/enumJsonLists');
 
 describe('RepresentativeInternationalDetails.js', () => {
   let representativeInternationalDetails = null;
   let res = null;
-  beforeEach(() => {
+  let superagentGetStub = null;
+  beforeEach(async() => {
     res = { send: sinon.spy(), redirect: sinon.spy() };
     representativeInternationalDetails = new RepresentativeInternationalDetails({
       journey: {
@@ -35,10 +39,17 @@ describe('RepresentativeInternationalDetails.js', () => {
       townCity: { value: '' },
       internationalAddress: { value: '' },
       country: { value: '' },
+      postCode: { value: '' },
       phoneNumber: { value: '' },
       emailAddress: { value: '' }
     };
+    const mockCountryResponse = { body: [{ label: 'Italy' }, { label: 'Ivory Coast' }], status: 200 };
+    superagentGetStub = sinon.stub(superagent, 'get');
+    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    await fetchCountriesOfResidence();
   });
+
+  afterEach(() => sinon.restore());
 
   describe('get path()', () => {
     it('returns path /representative-international-details', () => {
@@ -56,7 +67,7 @@ describe('RepresentativeInternationalDetails.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -138,7 +149,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(representativeInternationalDetails.getCountries).to.equal(countriesList);
+      expect(representativeInternationalDetails.getCountries).to.equal(getCountriesOfResidence());
     });
   });
 
@@ -184,13 +195,14 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should contain dynamic fields', () => {
-      expect(Object.keys(fields).length).to.equal(7);
+      expect(Object.keys(fields).length).to.equal(8);
       expect(fields).to.have.all.keys(
         'name',
         'country',
         'addressLine1',
         'addressLine2',
         'townCity',
+        'postCode',
         'emailAddress',
         'phoneNumber'
       );
@@ -226,7 +238,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
       it('validates all valid countries', () => {
         const schema = representativeInternationalDetails.validCountrySchema();
-        for (const testCountry of countriesList) {
+        for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
           expect(result.error).to.eq(null);
         }
@@ -337,6 +349,7 @@ describe('RepresentativeInternationalDetails.js', () => {
       representativeInternationalDetails.fields.addressLine2 = { value: 'Some address line 2' };
       representativeInternationalDetails.fields.townCity = { value: 'Some Town or City' };
       representativeInternationalDetails.fields.country.value = 'Iceland';
+      representativeInternationalDetails.fields.postCode.value = 'some-international postCode';
       representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
       representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       const values = representativeInternationalDetails.values();
@@ -350,6 +363,7 @@ describe('RepresentativeInternationalDetails.js', () => {
             addressLine1: 'Some address line 1',
             addressLine2: 'Some address line 2',
             townCity: 'Some Town or City',
+            postCode: 'some-international postCode',
             country: 'Iceland',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
@@ -370,6 +384,7 @@ describe('RepresentativeInternationalDetails.js', () => {
             addressLine1: '',
             addressLine2: '',
             townCity: '',
+            postCode: '',
             country: '',
             phoneNumber: '',
             emailAddress: ''
@@ -383,6 +398,13 @@ describe('RepresentativeInternationalDetails.js', () => {
       const phoneNumber = representativeInternationalDetails.values().representative.contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
+    });
+
+    it('removes whitespace from before and after the postCode string', () => {
+      representativeInternationalDetails.fields.postCode.value = ' some-postCode ';
+      const postCode = representativeInternationalDetails.values().representative.contactDetails.postCode;
+      expect(postCode).to.not.equal(' some-postCode ');
+      expect(postCode).to.equal('some-postCode');
     });
   });
 

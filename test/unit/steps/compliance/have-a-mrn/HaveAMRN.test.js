@@ -12,8 +12,9 @@ describe('HaveAMRN.js', () => {
       journey: {
         steps: {
           MRNDate: paths.compliance.mrnDate,
-          NeedIRN: paths.compliance.needIRN,
-          HaveContactedDWP: paths.compliance.haveContactedDWP
+          NeedRDN: paths.compliance.needRDN,
+          HaveContactedDWP: paths.compliance.haveContactedDWP,
+          AppellantIBCAReference: paths.identity.enterAppellantIBCAReference
         }
       },
       session: {
@@ -105,15 +106,21 @@ describe('HaveAMRN.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /mrn-date when haveAMRN equals Yes', () => {
+    it('returns the next step path /mrn-date when haveAMRN equals Yes for non IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
       expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
     });
 
-    it('returns the next step path /need-an-irn when haveAMRN equals No for IBA', () => {
+    it('returns the next step path /enter-appellant-ibca-reference when haveAMRN equals Yes for IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
-      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodAppeal;
-      expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
+      expect(haveAMRN.next().step).to.eql(paths.identity.enterAppellantIBCAReference);
+    });
+
+    it('returns the next step path /need-a-review-decision-notice when haveAMRN equals No for IBA', () => {
+      haveAMRN.fields.haveAMRN.value = answer.NO;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
+      expect(haveAMRN.next().step).to.eql(paths.compliance.needRDN);
     });
 
 

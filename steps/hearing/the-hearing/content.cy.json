@@ -1,46 +1,46 @@
 {
   "titleHead": "Eich gwrandawiad",
   "title": "Gwrandawiad yr apêl",
-  "titleIba": "Your hearing preference",
+  "titleIba": "Eich dewisiadau o ran y gwrandawiad",
   "subtitle": "Bydd eich apêl yn cael ei phenderfynu gan ddefnyddio’r wybodaeth rydych yn ei chyflwyno ar y ffurflen hon ac unrhyw dystiolaeth ychwanegol y byddwch yn ei hanfon. Bydd gwybodaeth a thystiolaeth a gyflwynir gan DWP hefyd yn cael eu hystyried.",
-  "subtitleIba": "The Tribunal will decide your appeal using the information you give in this appeal form and any further information you send. Information provided by (FTA) will also be considered.",
+  "subtitleIba": "Bydd y Tribiwnlys yn penderfynu ar eich apêl gan ddefnyddio'r wybodaeth a roddwch yn y ffurflen apêl hon ac unrhyw wybodaeth bellach a anfonwch. Bydd gwybodaeth a ddarperir gan (FTA) hefyd yn cael ei hystyried.",
   "explainReasons": "Os byddwch yn dod i’r gwrandawiad gallwch egluro eich rhesymau dros apelio.",
   "arrangeSupport": "Gellir trefnu cymorth ar eich cyfer megis cyfieithydd, dolen glyw neu fynediad i’r anabl.",
   "hearingFormatsList": {
-    "title": "Hearing formats",
-    "subtitle": "Your appeal could be decided:",
-    "bulletPoint1": "at a hearing you take part in – most hearings are held in person at a tribunal building but you can ask to have the hearing remotely by video or by phone",
-    "bulletPoint2": "as a 'paper hearing' – the tribunal looks at the documents and evidence and makes a decision without you taking part in a hearing"
+    "title": "Fformatau gwrandawiadau",
+    "subtitle": "Gellir penderfynu ar eich apêl:",
+    "bulletPoint1": "Mewn gwrandawiad rydych chi'n cymryd rhan ynddo - mae'r rhan fwyaf o wrandawiadau'n cael eu cynnal wyneb yn wyneb mewn adeilad tribiwnlys ond gallwch ofyn am gael y gwrandawiad o bell drwy fideo neu dros y ffôn",
+    "bulletPoint2": "fel 'gwrandawiad papur' – mae'r tribiwnlys yn edrych ar y dogfennau a'r dystiolaeth ac yn gwneud penderfyniad heb i chi gymryd rhan mewn gwrandawiad"
   },
   "hearingSupportList": {
-    "title": "Hearing support",
-    "subtitle": "If you take part in a hearing, you can ask for:",
-    "information": "You <b>can’t</b> bring your own interpreter to the hearing.",
-    "bulletPoint1": "A language interpreter",
-    "bulletPoint2": "Reasonable adjustments if you have a health condition or disability"
+    "title": "Cefnogaeth yn y gwrandawiad",
+    "subtitle": "Os byddwch yn cymryd rhan mewn gwrandawiad, gallwch ofyn am:",
+    "information": "<b>Ni allwch</b> ddod â'ch cyfieithydd eich hun i'r gwrandawiad.",
+    "bulletPoint1": "Gyfieithydd ar y pryd",
+    "bulletPoint2": "Addasiadau rhesymol os oes gennych gyflwr iechyd neu anabledd"
   },
   "fields": {
     "attendHearing": {
       "title": "A ydych eisiau mynychu’r gwrandawiad?",
-      "titleIba": "Which type of hearing would you prefer?",
+      "titleIba": "Pa fath o wrandawiad fyddai'n well gennych?",
       "yes": "Oes",
       "no": "Nac oes",
-      "yesIba": "I prefer a hearing that I take part either in person, by video or by phone",
-      "noIba": "I prefer a ‘paper hearing’ where I do not take part, decided on documents and information provided",
+      "yesIba": "Mae'n well gennyf wrandawiad lle byddaf yn cymryd rhan naill ai wyneb yn wyneb, trwy fideo neu dros y ffôn",
+      "noIba": "Mae'n well gennyf 'wrandawiad papur’ lle nad wyf yn cymryd rhan, ac a benderfynir ar y dogfennau a’r wybodaeth a ddarparwyd",
       "error": {
         "required": "Mae angen ichi ddweud a ydych eisiau mynychu’r gwrandawiad. Dewiswch oes neu nac oes",
-        "requiredIba": "You need to say whether you want to take part in the hearing. Select either option"
+        "requiredIba": "Mae angen ichi ddweud p’un a ydych eisiau cymryd rhan yn y gwrandawiad. Dewiswch opsiwn"
       }
     }
   },
   "cya": {
     "attendHearing": {
       "question": "Mynychu’r gwrandawiad",
-      "questionIba": "Type of hearing would you prefer",
+      "questionIba": "Pa fath o wrandawiad fyddai orau gennych",
       "yes": "Oes",
       "no": "Nac oes",
-      "yesIba": "Take part either in person, by video or by phone",
-      "noIba": "Do not take part, decided on documents and information provided"
+      "yesIba": "Cymryd rhan wyneb yn wyneb, drwy fideo neu dros y ffôn",
+      "noIba": "Peidio â chymryd rhan, penderfynu ar sail y dogfennau a’r wybodaeth a ddarparwyd"
     }
   }
 }

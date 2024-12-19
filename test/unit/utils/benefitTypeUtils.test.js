@@ -25,7 +25,7 @@ describe('isIba() test', () => {
     const req = {
       session: {
         BenefitType: {
-          benefitType: benefitTypes.infectedBloodAppeal
+          benefitType: benefitTypes.infectedBloodCompensation
         }
       }
     };

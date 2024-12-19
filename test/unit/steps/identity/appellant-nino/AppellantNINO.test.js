@@ -58,7 +58,7 @@ describe('AppellantNINO.js', () => {
         method: 'GET',
         session: {
           BenefitType: {
-            benefitType: benefitTypes.infectedBloodAppeal
+            benefitType: benefitTypes.infectedBloodCompensation
           }
         }
       };
@@ -75,7 +75,7 @@ describe('AppellantNINO.js', () => {
 
   describe('contentPrefix', () => {
     describe('when is Appointee journey', () => {
-      it('should return `withoutAppointee`', () => {
+      it('should return `withAppointee`', () => {
         appellantNINO.journey.req.session.Appointee.isAppointee = 'yes';
         expect(appellantNINO.contentPrefix()).to.equal('withAppointee');
       });

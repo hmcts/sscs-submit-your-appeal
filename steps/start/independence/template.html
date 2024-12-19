@@ -34,7 +34,7 @@
                 {% else %}
                     <p class="govuk-body-l">{{ content.reviewed }}</p>
                 {% endif %}
-                <p class="govuk-body-l">{{ content.separate }}</p>
+                <p class="govuk-body-l">{{ content.IBAseparate if isIba else content.separate }}</p>
                 {% endblock %}
 
                 <input class="govuk-button" type="submit" value="{{ commonContent[htmlLang].continue }}">

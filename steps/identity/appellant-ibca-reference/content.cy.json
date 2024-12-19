@@ -1,0 +1,20 @@
+{
+    "titleHead": "Nodwch eich cyfeirnod IBCA",
+    "title": "Nodwch eich cyfeirnod IBCA",
+    "subtitle": "Gallwch ddod o hyd i’ch cyfeirnod IBCA ar eich Hysbysiad o Benderfyniad Adolygiad.",
+    "fields": {
+      "ibcaReference": {
+      "title": "Cyfeirnod IBCA",
+      "error": {
+          "required": "Mae angen cyfeirnod IBCA i ddiweddaru’r achos hwn. Cyfeiriwch at eich Hysbysiad o Benderfyniad Adolygiad.",
+          "invalid": "Mae’r cyfeirnod IBCA a nodwyd gennych yn annilys. Cyfeiriwch at eich Hysbysiad o Benderfyniad Adolygiad."
+      }
+    }
+    },
+    "cya": {
+      "ibcaReference": {
+        "question": "Cyfeirnod IBCA"
+      }
+    }
+  }
+  

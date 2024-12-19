@@ -1,9 +1,9 @@
 {
   "titleHead": "Rheswm dros apelio yn hwyr",
   "title": "Dywedwch wrthym pam bod eich apêl yn hwyr",
-  "appealsShouldBeMadeWithOneMonthIba": "Appeals should be made within one month of the Internal Review Notice being sent.",
+  "appealsShouldBeMadeWithOneMonthIba": "Dylid gwneud apeliadau o fewn mis i'r Hysbysiad o Adolygiad Mewnol gael ei anfon.",
   "appealsShouldBeMadeWithOneMonth": "Dylid cyflwyno apeliadau o fewn mis i’r Hysbysiad Gorfodi i Ailystyried gael ei anfon.",
-  "appealMayGoAheadForGoodReason": "Efallai y gallwch barhau â’ch apêl o hyd os oes rheswm pam ei bod yn hwyr.",
+  "appealMayGoAheadForGoodReason": "Efallai y bydd eich apêl yn parhau os oes rheswm pam ei bod hi'n hwyr",
   "noGoodReasonWhyLate": "Nid oes gen i reswm da pam bod fy apêl yn hwyr",
   "fields": {
     "reasonForBeingLate": {

@@ -21,9 +21,9 @@ const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
-const countriesList = require('utils/countriesList');
 const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
+const { getCountriesOfResidence } = require('utils/enumJsonLists');
 
 class RepresentativeInternationalDetails extends SaveToDraftStore {
   static get path() {
@@ -60,12 +60,12 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = countriesList.map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(country => country.value);
     return Joi.string().valid(validCountries);
   }
 
   get getCountries() {
-    return countriesList;
+    return getCountriesOfResidence();
   }
 
   get form() {
@@ -107,14 +107,18 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
         Joi.string().regex(whitelistNotFirst)
       ),
       addressLine2: text.joi(
-        fields.addressLine1.error.invalid,
+        fields.addressLine2.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       townCity: text.joi(
         fields.townCity.error.required,
         Joi.string().required()
       ).joi(
-        fields.addressLine1.error.invalid,
+        fields.townCity.error.invalid,
+        Joi.string().regex(whitelistNotFirst)
+      ),
+      postCode: text.joi(
+        fields.postCode.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
       country: text.joi(
@@ -158,6 +162,7 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
           country: decode(this.fields.country.value),
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
