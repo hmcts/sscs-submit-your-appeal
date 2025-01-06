@@ -18,9 +18,9 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url": "http://docker.host.internal:8080",
-    "uploadEvidenceUrl": "http://docker.host.internal:8080/evidence/upload",
-    "draftUrl": "https://docker.host.internal:3000/appeal"
+    "url": "http://localhost:8008",
+    "uploadEvidenceUrl": "http://localhost:8008/evidence/upload",
+    "draftUrl": "https://localhost:3000/appeal"
   },
   "appInsights": {
     "instrumentationKey": "",
@@ -31,7 +31,8 @@
     "waitForAction": "500",
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
-    "frontendUrl": "https://localhost:3000"
+    "frontendUrl": "http://localhost:3000",
+    "retry": 8
   },
   "features": {
     "evidenceUpload": {
@@ -54,7 +55,7 @@
       "enabled": "true",
       "telephoneEnabled": "true",
       "webFormEnabled": "true",
-      "webChatEnabled": "false"
+      "welshWebchatEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -113,7 +114,9 @@
     "cookieBanner": {
       "enabled": "false"
     },
-    "SAME_SITE_COOKIE_FLAG_ENABLED": "false"
+    "webchatOpen8to5": {
+      "enabled": "false"
+    }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
@@ -142,9 +145,9 @@
       "releaseVersion": "4.0"
     },
     "idam": {
-      "apiUrl": "http://idam-api.aat.platform.hmcts.net",
+      "apiUrl": "http://localhost:5062",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://idam-api.aat.platform.hmcts.net/login",
+      "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
       "useMock": "false"
     },
@@ -154,6 +157,10 @@
     },
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
+    },
+    "webchat": {
+      "url": "webchat.pp.ctsc.hmcts.net",
+      "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
     },
     "pcq": {
       "name": "Equality and Diversity Service",
