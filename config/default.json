@@ -18,9 +18,9 @@
     "inactivityAlert": 1080
   },
   "api": {
-    "url": "http://localhost:8080",
-    "uploadEvidenceUrl": "http://localhost:8080/evidence/upload",
-    "draftUrl": "https://localhost:3000/appeal"
+    "url": "http://docker.host.internal:8080",
+    "uploadEvidenceUrl": "http://docker.host.internal:8080/evidence/upload",
+    "draftUrl": "https://docker.host.internal:3000/appeal"
   },
   "appInsights": {
     "instrumentationKey": "",
@@ -142,9 +142,9 @@
       "releaseVersion": "4.0"
     },
     "idam": {
-      "apiUrl": "http://localhost:5062",
+      "apiUrl": "http://idam-api.aat.platform.hmcts.net",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:5062/login",
+      "loginUrl": "http://idam-api.aat.platform.hmcts.net/login",
       "clientId": "sscs",
       "useMock": "false"
     },
