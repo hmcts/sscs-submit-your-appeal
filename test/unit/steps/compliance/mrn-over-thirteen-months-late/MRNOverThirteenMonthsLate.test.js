@@ -6,6 +6,7 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 
+
 describe('MRNOverThirteenMonthsLate.js', () => {
   let mrnOverThirteenMonthsLate = null;
 
@@ -22,7 +23,8 @@ describe('MRNOverThirteenMonthsLate.js', () => {
         steps: {
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeEsa,
-          Appointee: paths.identity.areYouAnAppointee
+          Appointee: paths.identity.areYouAnAppointee,
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -159,6 +161,11 @@ describe('MRNOverThirteenMonthsLate.js', () => {
     it('returns the next step path /dwp-issuing-office for Retirement Pension', () => {
       setBenefitType(benefitTypes.retirementPension);
       expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.compliance.dwpIssuingOfficeEsa);
+    });
+
+    it('returns the next step path /enter-appellant-role for IBA', () => {
+      mrnOverThirteenMonthsLate.req.hostname = 'some-iba-hostname';
+      expect(mrnOverThirteenMonthsLate.next().step).to.eql(paths.identity.enterAppellantRole);
     });
   });
 });

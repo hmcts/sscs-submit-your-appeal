@@ -1,6 +1,11 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode, getTribunalPanel, getTribunalPanelWelsh, getHasAcronym, getBenefitEndText, getBenefitEndTextWelsh } = require('utils/stringUtils');
+const { getBenefitCode,
+  getTribunalPanel,
+  getTribunalPanelWelsh,
+  getHasAcronym,
+  getBenefitEndText,
+  getBenefitEndTextWelsh } = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');

@@ -10,11 +10,11 @@
 {% macro toggleHelp(link, text, id, openByDefault = false) %}
     <details role="group">
         <summary role="button" aria-expanded="{{ openByDefault.toString() }}">
-            <span class="govuk-link">{{ link | safe }}</span>
+            <span class="govuk-link">{{ link }}</span>
         </summary>
         <div id="{{ id }}-0" aria-hidden="{{ not openByDefault.toString() }}">
             <p class="govuk-body">
-                {{ text | safe }}
+                {{ text }}
             </p>
         </div>
     </details>

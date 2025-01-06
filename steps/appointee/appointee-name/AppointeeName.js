@@ -6,12 +6,21 @@ const { firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
-const titlesList = require('../../../utils/titlesList');
+const titlesList = require('utils/titlesList');
 const { decode } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppointeeName extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeName;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get titlesList() {

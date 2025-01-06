@@ -5,10 +5,19 @@ const paths = require('paths');
 const urls = require('urls');
 const benefitTypes = require('steps/start/benefit-type/types');
 const preserveSession = require('middleware/preserveSession');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppealFormDownload extends SaveToDraftStore {
   static get path() {
     return paths.appealFormDownload;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get session() {

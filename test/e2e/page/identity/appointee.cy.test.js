@@ -16,13 +16,13 @@ After(({ I }) => {
 });
 
 Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the download appointee form page`, ({ I }) => {
-  I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.yes);
+  I.selectAreYouAnAppointeeAndContinue(language, appointeeContent.fields.isAppointee.yes);
   I.seeInCurrentUrl(paths.appealFormDownload);
   I.see(appealFormDownloadContent.title);
 });
 
 Scenario(`${language.toUpperCase()} - When I select No, I am taken to the independence page`, ({ I }) => {
-  I.selectAreYouAnAppointeeAndContinue(appointeeContent.fields.isAppointee.no);
+  I.selectAreYouAnAppointeeAndContinue(language, appointeeContent.fields.isAppointee.no);
   I.seeInCurrentUrl(paths.start.independence);
   I.see(independenceContent.title);
 });

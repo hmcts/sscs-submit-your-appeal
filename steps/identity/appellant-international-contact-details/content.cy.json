@@ -1,0 +1,78 @@
+{
+  "titleHead": "Manylion cyswllt",
+  "title": "Rhowch eich manylion cyswllt",
+  "subtitle": "Fel y penodai, rhowch eich manylion cyswllt chi.",
+  "fields": {
+    "addressLine1": {
+      "title": "Llinell gyntaf y cyfeiriad",
+      "error": {
+        "required": "Rhowch linell gyntaf eich cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+      }
+    },
+    "addressLine2": {
+      "title": "Ail linell y cyfeiriad (dewisol)",
+      "error": {
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+      }
+    },
+    "townCity": {
+      "title": "Tref/Dinas",
+      "error": {
+        "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
+        "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
+      }
+    },
+    "postCode": {
+      "title": "Cod post/Cod ZIP (dewisol)",
+      "error": {
+        "invalid": "Rydych chi wedi rhoi nod annilys. Gwiriwch eich cod post/cod ZIP nodi eto"
+      }
+    },
+    "country": {
+      "title": "Gwlad",
+      "error": {
+        "required": "Dewiswch eich gwlad"
+      }
+    },
+    "portOfEntry": {
+      "title": "Man mynediad",
+      "error": {
+        "required": "Dewiswch eich man mynediad i'r DU"
+      }
+    },
+    "phoneNumber": {
+      "title": "Rhif ffôn (dewisol)",
+      "hint": "Gellir defnyddio hwn i gysylltu â chi ynghylch yr apêl",
+      "error": {
+        "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
+      }
+    },
+    "emailAddress": {
+      "title": "Cyfeiriad e-bost (dewisol):",
+      "hint": "Byddwch yn cael diweddariadau a dolen fel y gallwch ddilyn trywydd eich apêl ar-lein",
+      "error": {
+        "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
+      }
+    }
+  },
+  "cya": {
+    "country": {
+      "question": "Gwlad"
+    },
+    "portOfEntry": {
+      "question": "Man mynediad"
+    },
+    "address": {
+      "question": "Cyfeiriad"
+    },
+    "phoneNumber": {
+      "question": "Rhif ffôn"
+    },
+    "emailAddress": {
+      "question": "Cyfeiriad e-bost"
+    },
+    "change": "Newid",
+    "yourDetails": "Eich manylion cyswllt"
+  }
+}

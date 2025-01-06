@@ -1,16 +1,22 @@
 {
   "titleHead": "Eich gwrandawiad",
   "title": "Dewiswch y math o wrandawiad y byddech yn ei ffafrio.",
+  "titleIba": "Cymryd rhan mewn gwrandawiad",
   "subtitle": "Y tribiwnlys fydd yn gwneud y penderfyniad terfynol ynghylch y math o wrandawiad a gynhelir.",
+  "subtitleIba": "Bydd y math o wrandawiad y byddwch yn cymryd rhan ynddo yn cael ei benderfynu gan y tribiwnlys. Yn y rhan fwyaf o achosion, bydd wyneb yn wyneb mewn lleoliad tribiwnlys.",
   "instructions": "Dewiswch yr holl opsiynau a fyddai’n eich galluogi i gymryd rhan yn y gwrandawiad..",
+  "instructionsIba": "Dewiswch bob un sy'n berthnasol",
+  "tribunalExplained": "Bydd y tribiwnlys yn dweud wrthych sut i gymryd rhan cyn dyddiad eich gwrandawiad.",
+  "supportExplained": "Os oes angen cymorth corfforol arnoch i gymryd rhan mewn gwrandawiad, gallwch ddweud wrthym yn ddiweddarach yn y ffurflen apelio hon.",
   "fields": {
+    "title": "Sut fyddai'n well gennych gymryd rhan yn eich gwrandawiad?",
     "options": {
       "error": {
         "required": "Mae angen i chi ddarparu opsiwn i chi fynychu'r gwrandawiad"
       },
       "telephone": {
         "requested": {
-          "label": "Ffôn (byddwch angen dod o hyd i rywle tawel a phreifat i siarad) Rhowch y rhif ffôn yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r rhif a ddarparwyd gennych yn barod."
+          "label": "Dros y ffôn (bydd angen rhywle tawel a phreifat arnoch i siarad). Rhowch eich rhif ffôn dewisol i ni os yw'n wahanol i'r rhif a ddarparwyd eisoes."
         },
         "error": {
           "required": "Nodwch rif ffôn",
@@ -19,7 +25,7 @@
       },
       "video": {
         "requested": {
-          "label": "Fideo (byddwch angen mynediad at gyfrifiadur neu ddyfais symudol sydd â chysylltiad cryf â’r rhyngrwyd a rhywle tawel a phreifat i siarad). Rhowch y cyfeiriad e-bost yr hoffech i ni ei ddefnyddio os yw’n wahanol i'r un a ddarparwyd gennych yn barod."
+          "label": "Drwy fideo (bydd angen i chi gael mynediad at gyfrifiadur neu ddyfais symudol gyda chyflymder rhyngrwyd da a rhywle tawel a phreifat i siarad). Rhowch eich cyfeiriad e-bost dewisol i ni os yw'n wahanol i'r cyfeiriad e-bost a ddarparwyd eisoes."
         },
         "error": {
           "required": "Nodwch gyfeiriad e-bost",
@@ -28,7 +34,9 @@
       },
       "faceToFace": {
         "requested": {
-          "label": " Wyneb yn wyneb (byddwch angen teithio i'r gwrandawiad)."
+          "label": " Wyneb yn wyneb (byddwch angen teithio i'r gwrandawiad).",
+          "labelIba": "Wyneb yn wyneb (bydd angen i chi deithio i leoliad y gwrandawiad)."
+
         }
       }
     }
@@ -42,6 +50,7 @@
     "notRequired": "Nid yw’n ofynnol",
     "hearingTypeTelephone": "Gwrandawiad dros y ffôn",
     "hearingTypeVideo": "Gwrandawiad drwy fideo",
-    "hearingTypeFaceToFace": "Gwrandawiad wyneb yn wyneb"
+    "hearingTypeFaceToFace": "Gwrandawiad wyneb yn wyneb",
+    "hearingTypeInPersonIba": "Gwrandawiad wyneb yn wyneb"
   }
 }

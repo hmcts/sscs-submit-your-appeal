@@ -73,21 +73,35 @@ describe('ArchiveAppeal.js', () => {
         caseId: '1234'
       }
     };
-    const redirect = sinon.spy();
-    const res = {
-      redirect,
-      sendStatus: sinon.spy()
-    };
+
+    afterEach(() => {
+      sinon.restore();
+    });
 
     it('should load chosen draft and redirect when not current case', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
       archiveAppeal.handler(req, res);
-      expect(redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
+      expect(res.redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
     });
 
     it('should archived draft by case id and redirect', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
       req.query.caseId = 1234;
       archiveAppeal.handler(req, res);
-      expect(redirect.calledWith(paths.drafts)).to.eql(false);
+      expect(res.redirect.calledWith(paths.drafts)).to.eql(false);
+    });
+
+    it('should redirect to benefitType if not a GET', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
+      req.method = 'POST';
+      archiveAppeal.handler(req, res);
+      expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
     });
   });
 });

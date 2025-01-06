@@ -96,70 +96,70 @@ describe('AppellantName.js', () => {
     });
   });
 
-    describe(`answers() appellant full name with random case`, () => {
-      const NAME = 'Mr,harry John,pOttEr';
-      beforeEach(() => {
-        appellantName.fields = {
-          title: {
-            value: NAME.split(',')[0]
-          },
-          firstName: {
-            value: NAME.split(',')[1]
-          },
-          lastName: {
-            value: NAME.split(',')[2]
-          }
-        };
-      });
-      it('should normalise appellant full name in the answers()', () => {
-        const answers = appellantName.answers();
-        expect(answers[0].answer).to.equal('Mr harry John pOttEr');
-      });
-
-      it('should normalise appellant full name in the values()', () => {
-        const values = appellantName.values();
-        expect(values).to.eql({
-          appellant: {
-            title: 'Mr',
-            firstName: 'harry John',
-            lastName: 'pOttEr'
-          }
-        });
-      });
+  describe('answers() appellant full name with random case', () => {
+    const NAME = 'Mr,harry John,pOttEr';
+    beforeEach(() => {
+      appellantName.fields = {
+        title: {
+          value: NAME.split(',')[0]
+        },
+        firstName: {
+          value: NAME.split(',')[1]
+        },
+        lastName: {
+          value: NAME.split(',')[2]
+        }
+      };
+    });
+    it('should normalise appellant full name in the answers()', () => {
+      const answers = appellantName.answers();
+      expect(answers[0].answer).to.equal('Mr harry John pOttEr');
     });
 
-
-    describe(`answers() appellant full name with apostrophe`, () => {
-      const NAME = 'Miss,Sarah,O`Brian';
-      beforeEach(() => {
-        appellantName.fields = {
-          title: {
-            value: NAME.split(',')[0]
-          },
-          firstName: {
-            value: NAME.split(',')[1]
-          },
-          lastName: {
-            value: NAME.split(',')[2]
-          }
-        };
-      });
-      it('should normalise appellant full name in the answers()', () => {
-        const answers = appellantName.answers();
-        expect(answers[0].answer).to.equal('Miss Sarah O`Brian');
-      });
-
-      it('should normalise appellant full name in the values()', () => {
-        const values = appellantName.values();
-        expect(values).to.eql({
-          appellant: {
-            title: 'Miss',
-            firstName: 'Sarah',
-            lastName: 'O`Brian'
-          }
-        });
+    it('should normalise appellant full name in the values()', () => {
+      const values = appellantName.values();
+      expect(values).to.eql({
+        appellant: {
+          title: 'Mr',
+          firstName: 'harry John',
+          lastName: 'pOttEr'
+        }
       });
     });
+  });
+
+
+  describe('answers() appellant full name with apostrophe', () => {
+    const NAME = 'Miss,Sarah,O`Brian';
+    beforeEach(() => {
+      appellantName.fields = {
+        title: {
+          value: NAME.split(',')[0]
+        },
+        firstName: {
+          value: NAME.split(',')[1]
+        },
+        lastName: {
+          value: NAME.split(',')[2]
+        }
+      };
+    });
+    it('should normalise appellant full name in the answers()', () => {
+      const answers = appellantName.answers();
+      expect(answers[0].answer).to.equal('Miss Sarah O`Brian');
+    });
+
+    it('should normalise appellant full name in the values()', () => {
+      const values = appellantName.values();
+      expect(values).to.eql({
+        appellant: {
+          title: 'Miss',
+          firstName: 'Sarah',
+          lastName: 'O`Brian'
+        }
+      });
+    });
+  });
 
   describe('answers() and values()', () => {
     const question = 'A Question';

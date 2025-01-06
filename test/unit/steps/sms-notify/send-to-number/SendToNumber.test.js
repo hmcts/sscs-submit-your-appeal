@@ -21,6 +21,12 @@ describe('SendToNumber.js', () => {
       phoneNumber: {
         // value: '07411785336'
       },
+      internationalPhoneNumber: {
+        // value: '07411785336'
+      },
+      inMainlandUk: {
+        value: 'yes'
+      },
       appointeePhoneNumber: {
         // value: '07411785336'
       }
@@ -47,6 +53,14 @@ describe('SendToNumber.js', () => {
         expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.appointeePhoneNumber.value);
       });
     });
+
+    describe('when not in mainland uk phone number is given', () => {
+      it('should be defined', () => {
+        sendToNumber.fields.internationalPhoneNumber.value = '07411785336';
+        sendToNumber.fields.inMainlandUk.value = 'no';
+        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.internationalPhoneNumber.value);
+      });
+    });
   });
 
   describe('get form()', () => {
@@ -56,12 +70,14 @@ describe('SendToNumber.js', () => {
       fields = sendToNumber.form.fields;
     });
 
-    it('should contain 3 fields', () => {
-      expect(Object.keys(fields).length).to.equal(3);
+    it('should contain 5 fields', () => {
+      expect(Object.keys(fields).length).to.equal(5);
       expect(fields).to.have.all.keys(
         'appointeePhoneNumber',
         'phoneNumber',
-        'useSameNumber'
+        'internationalPhoneNumber',
+        'useSameNumber',
+        'inMainlandUk'
       );
     });
 
@@ -73,6 +89,18 @@ describe('SendToNumber.js', () => {
 
     it('should contain a textField reference called \'phoneNumber\'', () => {
       const textField = fields.phoneNumber;
+      expect(textField.constructor.name).to.eq('FieldDescriptor');
+      expect(textField.validations).to.be.empty;
+    });
+
+    it('should contain a textField reference called \'internationalPhoneNumber\'', () => {
+      const textField = fields.internationalPhoneNumber;
+      expect(textField.constructor.name).to.eq('FieldDescriptor');
+      expect(textField.validations).to.be.empty;
+    });
+
+    it('should contain a textField reference called \'inMainlandUk\'', () => {
+      const textField = fields.inMainlandUk;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });

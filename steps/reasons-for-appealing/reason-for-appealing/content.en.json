@@ -4,7 +4,9 @@
   "title": "Your reasons for appealing",
   "titleEdit": "Enter a reason for your appeal",
   "dwpExplained": "DWP should have explained their decision on your entitlement to {{benefitType}} in the Mandatory Reconsideration Notice (MRN) or the decision letter they sent you.",
+  "ibaExplained": "IBCA should have explained their decision on your {{benefitType}} claim in the Review Decision Notice they sent you.",
   "readYouMRN": "Read your MRN or the decision letter and write what you disagree with and why. Your reasons will be considered by an independent tribunal who are separate from DWP.",
+  "readYouRDN": "Read your Review Decision Notice and write what you disagree with and why. Your reasons will be considered by an independent tribunal who are separate from IBCA.",
   "placeholder": "You can write as much as you want",
   "links": {
     "add": "Add another reason",
@@ -26,7 +28,8 @@
       "label": "Why you disagree with it",
       "error": {
         "required": "You need to give at least one reason for appealing",
-        "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision."
+        "notEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with DWP’s decision.",
+        "ibaNotEnough": "You have not said enough about why you want to appeal. Briefly explain why you disagree with IBCA’s decision."
       }
     }
   },

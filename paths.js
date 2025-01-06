@@ -18,6 +18,7 @@ module.exports = {
     termsAndConditions: '/terms-and-conditions',
     privacy: '/privacy-policy',
     contactUs: '/contact-us',
+    requestIbcAppealForm: '/request-ibc-appeal-form',
     accessibility: '/accessibility'
   },
 
@@ -46,6 +47,7 @@ module.exports = {
 
   compliance: {
     haveAMRN: '/have-you-got-an-mrn',
+    needRDN: '/need-a-review-decision-notice',
     haveContactedDWP: '/have-contacted-dwp',
     dwpIssuingOffice: '/dwp-issuing-office',
     dwpIssuingOfficeEsa: '/dwp-issuing-office-other',
@@ -61,10 +63,14 @@ module.exports = {
 
   identity: {
     areYouAnAppointee: '/are-you-an-appointee',
+    enterAppellantRole: '/enter-appellant-role',
     enterAppellantName: '/enter-appellant-name',
     enterAppellantDOB: '/enter-appellant-dob',
     enterAppellantNINO: '/enter-appellant-nino',
-    enterAppellantContactDetails: '/enter-appellant-contact-details'
+    enterAppellantContactDetails: '/enter-appellant-contact-details',
+    enterAppellantIBCAReference: '/enter-appellant-ibca-reference',
+    enterAppellantInternationalContactDetails: '/appellant-international-contact-details',
+    enterAppellantInMainlandUk: '/appellant-in-mainland-uk'
   },
 
   appointee: {
@@ -85,7 +91,9 @@ module.exports = {
     representativeDetailsToHand: '/representative-details-to-hand',
     representative: '/representative',
     representativeDetails: '/representative-details',
-    noRepresentativeDetails: '/no-representative-details'
+    noRepresentativeDetails: '/no-representative-details',
+    representativeInMainlandUk: '/representative-in-mainland-uk',
+    representativeInternationalDetails: '/representative-international-details'
   },
 
   reasonsForAppealing: {

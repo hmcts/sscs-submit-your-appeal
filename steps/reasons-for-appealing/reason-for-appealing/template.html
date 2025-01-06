@@ -8,7 +8,7 @@
     {{ content.titleHeadEdit if isEditMode }}
 {% endset %}
 
-{% block pageTitle %}{{ titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
+{% block pageTitle %}{{ titleHead }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
 
 {% block head %}
     {{ super() }}
@@ -43,12 +43,12 @@
         {% if fields.validated and not fields.valid %}
             {%- for error in fields.errors -%}
                 <span class="govuk-error-message">
-                    {{ error.message | safe }}
+                    {{ error.message }}
                 </span>
             {%- endfor -%}
         {% endif %}
 
-        {{ content.noReasons | safe }}
+        {{ content.noReasons }}
     </div>
 {% endblock %}
 
@@ -57,8 +57,13 @@
 {% endblock %}
 
 {% block listItems %}
-    <p class="govuk-body">{{ content.dwpExplained | safe }}</p>
-    <p class="govuk-body">{{ content.readYouMRN | safe }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.ibaExplained }}</p>
+        <p class="govuk-body">{{ content.readYouRDN }}</p>
+    {% else %}
+        <p class="govuk-body">{{ content.dwpExplained }}</p>
+        <p class="govuk-body">{{ content.readYouMRN }}</p>
+    {% endif %}
     {{ super() }}
 {% endblock %}
 

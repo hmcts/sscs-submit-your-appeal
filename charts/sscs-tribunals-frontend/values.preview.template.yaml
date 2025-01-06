@@ -1,6 +1,10 @@
 nodejs:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  registerAdditionalDns:
+    enabled: true
+    prefix: iba
+    primaryIngressHost: ${SERVICE_FQDN}
   autoscaling:
     enabled: false
   environment:
@@ -8,13 +12,14 @@ nodejs:
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
-    CONTACT_US_WEBCHAT_ENABLED: false
-    #Added for new Webchat with Agent
+    WELSH_WEBCHAT_ENABLED: true
     WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
     ALLOW_COOKIE_BANNER_ENABLED: true
+    WEBCHAT_OPENING_TIME_8_5: true
     FT_WELSH: true
     PCQ_ENABLED: true
+    INFECTED_BLOOD_COMPENSATION_ENABLED: true
   keyVaults:
     sscs:
       secrets:
@@ -34,3 +39,4 @@ idam-pr:
   redirect_uris:
     SSCS:
       - https://${SERVICE_FQDN}/authenticated # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
+      - https://iba-${SERVICE_FQDN}/authenticated

@@ -1,0 +1,22 @@
+{
+  "titleHead": "Apelydd yn y DU",
+  "title": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
+  "question": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
+
+  "fields": {
+    "inMainlandUk": {
+      "yes": "Ydw",
+      "no": "Nac ydw",
+      "errors": {
+        "required": "Dewiswch ‘ydw’ os ydych yn byw yng Nghymru, Lloegr neu’r Alban."
+      }
+    }
+  },
+  "cya": {
+    "inMainlandUk": {
+      "question": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
+      "yes": "Ydw",
+      "no": "Nac ydw"
+    }
+  }
+}

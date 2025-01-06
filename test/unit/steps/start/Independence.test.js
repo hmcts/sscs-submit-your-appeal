@@ -1,11 +1,82 @@
+/* eslint-disable no-loop-func, guard-for-in */
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const i18next = require('i18next');
 let Independence = require('steps/start/independence/Independence');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('Independence.js', () => {
   let independence = null;
+
+  describe('benefitCode() check', () => {
+    const benefitCodes = Object.keys(benefitTypes);
+    const longCodes = ['disabilityLivingAllowance', 'employmentAndSupportAllowance', 'jobseekersAllowance', 'personalIndependencePayment', 'universalCredit'];
+    const shortenedCodes = ['DLA', 'ESA', 'JSA', 'PIP', 'UC'];
+    for (let i = 0; i < benefitCodes.length; i++) {
+      let code = benefitCodes[i];
+      it(`Should return correct code for benefit type ${benefitTypes[code]}`, () => {
+        independence = new Independence({
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes[code]
+            }
+          }
+        });
+        if (longCodes.includes(code)) {
+          const index = longCodes.indexOf(code);
+          code = shortenedCodes[index];
+        }
+        expect(independence.benefitCode).to.equal(code);
+      });
+    }
+  });
+
+  describe('benefitEndText() check', () => {
+    for (const code in benefitTypes) {
+      const benefitType = benefitTypes[code];
+      it(`EN - Should return ' benefit' if ${benefitType} doesn't already end in 'benefit'`, () => {
+        independence = new Independence({
+          session: {
+            BenefitType: {
+              benefitType
+            }
+          }
+        });
+        const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
+        if (['Benefit', 'benefit'].includes(lastWord.trim())) {
+          expect(independence.benefitEndText).to.equal('');
+        } else {
+          expect(independence.benefitEndText).to.equal(' benefit');
+        }
+      });
+    }
+
+    for (const code in benefitTypes) {
+      const benefitType = benefitTypes[code];
+      it(`CY - Should return ' budd-dal' if ${benefitType} doesn't already end in 'benefit'`, () => {
+        const MockedIndependence = proxyquire('steps/start/independence/Independence', {
+          i18next: {
+            language: 'cy'
+          }
+        });
+        independence = new MockedIndependence({
+          session: {
+            BenefitType: {
+              benefitType
+            }
+          }
+        });
+        const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
+        if (['Benefit', 'benefit'].includes(lastWord.trim())) {
+          expect(independence.benefitEndText).to.equal('');
+        } else {
+          expect(independence.benefitEndText).to.equal('budd-dal ');
+        }
+      });
+    }
+  });
+
   const steps = {
     steps: {
       HaveAMRN: paths.compliance.haveAMRN,
@@ -19,7 +90,7 @@ describe('Independence.js', () => {
         journey: steps,
         session: {
           BenefitType: {
-            benefitType: 'Personal Independence Payment (PIP)'
+            benefitType: benefitTypes.personalIndependencePayment
           }
         }
       });
@@ -43,7 +114,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Disability Living Allowance (DLA)'
+              benefitType: benefitTypes.disabilityLivingAllowance
             }
           }
         });
@@ -64,7 +135,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Disability Living Allowance (DLA)'
+              benefitType: benefitTypes.disabilityLivingAllowance
             }
           }
         });
@@ -89,7 +160,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Attendance Allowance'
+              benefitType: benefitTypes.attendanceAllowance
             }
           }
         });
@@ -110,7 +181,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Attendance Allowance'
+              benefitType: benefitTypes.attendanceAllowance
             }
           }
         });
@@ -139,7 +210,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Carer\'s Allowance'
+              benefitType: benefitTypes.carersAllowance
             }
           }
         });
@@ -160,7 +231,7 @@ describe('Independence.js', () => {
           journey: steps,
           session: {
             BenefitType: {
-              benefitType: 'Carer\'s Allowance'
+              benefitType: benefitTypes.carersAllowance
             }
           }
         });
@@ -194,7 +265,8 @@ describe('Independence.js', () => {
 
           independence = new Independence({ journey: steps });
         });
-        it('returns the next step path /mrn-date', () => {
+
+        it('returns the next step path /have-you-got-an-mrn', () => {
           expect(independence.next().step).to.eql(paths.compliance.haveAMRN);
         });
       });

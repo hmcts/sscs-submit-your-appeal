@@ -4,12 +4,17 @@ const {
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
+const benefitTypes = require('steps/start/benefit-type/types');
+const assert = require('assert');
+const content = require('steps/draft-appeals/content.en');
 
 const mockHandler = sinon.spy();
+
 class RestoreAllDraftsState {
   constructor(params) {
     Object.assign(this, params);
   }
+
   handler() {
     mockHandler();
   }
@@ -32,6 +37,10 @@ describe('DraftAppeals.js', () => {
         steps: {
           BenefitType: paths.start.benefitType
         }
+      },
+      req: {
+        session: {},
+        hostname: ''
       }
     });
   });
@@ -55,15 +64,62 @@ describe('DraftAppeals.js', () => {
 
 
   describe('drafts', () => {
-    it('should return drafts', () => {
-      const draftList = ['1', '2', '3'];
-
+    beforeEach(() => {
+      const draftList = {
+        1: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.bereavementBenefit
+            }
+        },
+        2: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.infectedBloodCompensation
+            }
+        },
+        3: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.attendanceAllowance
+            }
+        }
+      };
       draftAppeals.req = {
         session: {
           drafts: draftList
         }
       };
-      expect(draftAppeals.drafts).to.equal(draftList);
+    });
+    it('should return non IBA drafts', () => {
+      const expectedDraftList = {
+        1: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.bereavementBenefit
+            }
+        },
+        3: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.attendanceAllowance
+            }
+        }
+      };
+      assert.deepEqual(draftAppeals.drafts, expectedDraftList);
+    });
+
+    it('should return IBA drafts for IBA', () => {
+      draftAppeals.req.hostname = 'some-iba-hostname';
+      const expectedDraftList = {
+        2: {
+          BenefitType:
+            {
+              benefitType: benefitTypes.infectedBloodCompensation
+            }
+        }
+      };
+      assert.deepEqual(draftAppeals.drafts, expectedDraftList);
     });
   });
 
@@ -159,6 +215,25 @@ describe('DraftAppeals.js', () => {
       expect(draftAppeals.mrnDate(draft)).to.equal('No Mrn');
     });
 
+
+    it('should return IBC default message when does not haveAMRN is no', () => {
+      const draft = {
+        HaveAMRN: {
+          haveAMRN: 'no'
+        },
+        MRNDate: {
+          mrnDate: {
+            day: '05',
+            month: '07',
+            year: '2020'
+          }
+        }
+      };
+      draftAppeals.req.hostname = 'some-iba-hostname';
+
+      expect(draftAppeals.mrnDate(draft)).to.equal('No Review Decision Notice');
+    });
+
     it('should return default message when does not haveAMRN is not present', () => {
       const draft = {
         MRNDate: {
@@ -195,16 +270,61 @@ describe('DraftAppeals.js', () => {
       },
       method: 'GET'
     };
-    const redirect = sinon.spy();
-
-    const res = {
-      redirect,
-      sendStatus: sinon.spy()
-    };
     it('should call `super.handler()`', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
       draftAppeals.handler(req, res);
       expect(mockHandler.calledOnce).to.eql(true);
       expect(saveF.calledOnce).to.eql(true);
+    });
+
+    it('should redirect to benefitType if not a GET', () => {
+      const res = {
+        redirect: sinon.spy()
+      };
+      req.method = 'POST';
+      draftAppeals.handler(req, res);
+      expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
+    });
+  });
+
+  describe('get title()', () => {
+    it('should be correct for non ibc', () => {
+      draftAppeals.content = content;
+      expect(draftAppeals.title).to.eql(content.title);
+    });
+
+    it('should be correct for ibc', () => {
+      draftAppeals.content = content;
+      draftAppeals.req.hostname = 'some-iba-hostname';
+      expect(draftAppeals.title).to.eql(content.titleIbc);
+    });
+  });
+
+  describe('get tableHeadingTwo()', () => {
+    it('should be correct for non ibc', () => {
+      draftAppeals.content = content;
+      expect(draftAppeals.tableHeadingTwo).to.eql(content.tableHeadings.benefit);
+    });
+
+    it('should be correct for ibc', () => {
+      draftAppeals.content = content;
+      draftAppeals.req.hostname = 'some-iba-hostname';
+      expect(draftAppeals.tableHeadingTwo).to.eql(content.tableHeadings.appeal);
+    });
+  });
+
+  describe('get tableHeadingThree()', () => {
+    it('should be correct for non ibc', () => {
+      draftAppeals.content = content;
+      expect(draftAppeals.tableHeadingThree).to.eql(content.tableHeadings.mrnDate);
+    });
+
+    it('should be correct for ibc', () => {
+      draftAppeals.content = content;
+      draftAppeals.req.hostname = 'some-iba-hostname';
+      expect(draftAppeals.tableHeadingThree).to.eql(content.tableHeadings.rdnDate);
     });
   });
 });

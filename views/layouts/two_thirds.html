@@ -7,7 +7,7 @@
 {% set serviceName = 'submit your appeal' %}
 {% set htmlLang = i18n.currentLanguage if i18n.currentLanguage else "en" %}
 
-{% block pageTitle %}{{ title | default(defaultContent.title) | safe }}{% endblock %}
+{% block pageTitle %}{{ title | default(defaultContent.title) }}{% endblock %}
 
 {% block headIcons %}
   {% include "components/touch-icons.html" %}
@@ -31,6 +31,21 @@
 {%- endblock %}
 
 {% block content -%}
+  <script>
+    
+    {% if featureToggles.webchatOpen8to5() == "true" %}
+      document.webchatOpeningFlag = true;
+    {% else %}
+      document.webchatOpeningFlag = false;
+    {% endif %}
+    
+    {% if welshWebchatEnabled %}
+      document.welshWebchatFlag = true;
+    {% else %}
+      document.welshWebchatFlag = false;
+    {% endif %}
+    
+  </script>
   {% block full_width %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">

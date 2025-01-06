@@ -36,7 +36,7 @@ Scenario(`${language.toUpperCase()} - When I click add Another I see new fields`
 });
 
 Scenario(`${language.toUpperCase()} - When I enter one character in each field and click Continue, I see errors`, ({ I }) => {
-  I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+  I.addAReasonForAppealing(language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
     whatYouDisagreeWith: 'a',
     reasonForAppealing: 'a'
   });
@@ -46,7 +46,7 @@ Scenario(`${language.toUpperCase()} - When I enter one character in each field a
 });
 
 Scenario(`${language.toUpperCase()} - When I enter special chars then I see no errors`, ({ I }) => {
-  I.addAReasonForAppealing(`${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
+  I.addAReasonForAppealing(language, `${whatYouDisagreeWithField}-0`, `${reasonForAppealingField}-0`, {
     whatYouDisagreeWith: 'aaaa&$%^&%!~$^&&&*',
     reasonForAppealing: 'aaaa&$%^&%!~$^&&&*'
   });
@@ -66,6 +66,7 @@ Scenario(`${language.toUpperCase()} - When I add multiple reasons and click Cont
     reasons[1]
   );
   I.addAReasonForAppealing(
+    language,
     `#items-2 ${whatYouDisagreeWithField}-2`,
     `#items-2 ${reasonForAppealingField}-2`,
     reasons[2]
@@ -76,6 +77,7 @@ Scenario(`${language.toUpperCase()} - When I add multiple reasons and click Cont
 
 Scenario(`${language.toUpperCase()} - When I go to add another reason and then click Continue without entering any data, I see no errors and am taken to /other-reason-for-appealing`, ({ I }) => {
   I.addAReasonForAppealing(
+    language,
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
@@ -97,12 +99,14 @@ Scenario(`${language.toUpperCase()} - When I click add Reason multiple times and
 
 Scenario(`${language.toUpperCase()} - When I add a reasons then click the add another reason button and enter the least amount of data, I see error`, async({ I }) => {
   I.addAReasonForAppealing(
+    language,
     `#items-0 ${whatYouDisagreeWithField}-0`,
     `#items-0 ${reasonForAppealingField}-0`,
     reasons[0]
   );
   I.click('Add reason');
   I.addAReasonForAppealing(
+    language,
     `#items-1 ${whatYouDisagreeWithField}-1`,
     `#items-1 ${reasonForAppealingField}-1`,
     {

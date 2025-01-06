@@ -1,13 +1,12 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.descriptionPara1 | safe }}</p>
-    <p class="govuk-body">{{ content.descriptionPara2 | safe }}</p>
-    <p class="govuk-body">{{ content.descriptionPara3 | safe }}</p>
+    <p class="govuk-body">{{ content.descriptionPara1 }}</p>
+    <p class="govuk-body">{{ content.descriptionPara2 }}</p>
+    <p class="govuk-body">{{ content.descriptionPara3 }}</p>
 
     {% call formSection() %}
         {{ selectionButtons(

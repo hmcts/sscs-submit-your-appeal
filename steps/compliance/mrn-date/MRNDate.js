@@ -1,4 +1,4 @@
-const { goTo, branch, redirectTo } = require('@hmcts/one-per-page/flow');
+const { goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -9,6 +9,7 @@ const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class MRNDate extends SaveToDraftStore {
   static get path() {
@@ -19,6 +20,10 @@ class MRNDate extends SaveToDraftStore {
     return getBenefitCode(this.journey.req.session.BenefitType.benefitType);
   }
 
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
+  }
+
   get form() {
     const fields = this.content.fields;
 
@@ -26,19 +31,19 @@ class MRNDate extends SaveToDraftStore {
       mrnDate: convert(
         d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
         date.required({
-          allRequired: fields.date.error.allRequired,
+          allRequired: fields.date.error[`allRequired${this.suffix}`],
           dayRequired: fields.date.error.dayRequired,
           monthRequired: fields.date.error.monthRequired,
           yearRequired: fields.date.error.yearRequired
         })
       ).check(
-        fields.date.error.invalid,
+        fields.date.error[`invalid${this.suffix}`],
         value => DateUtils.isDateValid(value)
       ).check(
-        fields.date.error.future,
+        fields.date.error[`future${this.suffix}`],
         value => DateUtils.isDateInPast(value)
       ).check(
-        fields.date.error.dateSameAsImage,
+        fields.date.error[`dateSameAsImage${this.suffix}`],
         value => !DateUtils.mrnDateSameAsImage(value)
       )
 
@@ -48,10 +53,9 @@ class MRNDate extends SaveToDraftStore {
   answers() {
     return [
       answer(this, {
-        question: this.content.cya.mrnDate.question,
+        question: this.content.cya.mrnDate[`question${this.suffix}`],
         section: sections.mrnDate,
         answer: DateUtils.formatDate(this.fields.mrnDate.value, 'DD MMMM YYYY')
-
       })
     ];
   }
@@ -80,10 +84,11 @@ class MRNDate extends SaveToDraftStore {
 
     const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
       isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
-
+    const skipToAppellantRole = isIba(this.req) && isLessThanOrEqualToAMonth;
     return branch(
+      goTo(this.journey.steps.AppellantRole).if(skipToAppellantRole),
       goTo(this.journey.steps.Appointee).if(skipToAppointee),
-      redirectTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
+      goTo(this.journey.steps.CheckMRN).if(!isLessThanOrEqualToAMonth),
       goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeOther),
       goTo(this.journey.steps.DWPIssuingOffice)
     );

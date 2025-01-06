@@ -3,18 +3,18 @@
 {% from "components/header.njk" import header %}
 {% from "components/phase_banner.njk" import phaseBanner %}
 
-{% block pageTitle %}{{ title | safe }}{% endblock %}
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block breadcrumbs %}
     {% call phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) %}
-        {{ banner | safe }}
+        {{ banner }}
     {% endcall %}
 {% endblock %}
 
 {% block two_thirds %}
     {{ header(title, size='xl') }}
 
-    <p class="govuk-body" class="govuk-body">{{ message | safe }}</p>
+    <p class="govuk-body" class="govuk-body">{{ message }}</p>
 
     <a class="govuk-button" href="/start-an-appeal">Try again</a>
 
@@ -23,7 +23,7 @@
             <label>
                 <span class="govuk-form-label-bold">Error Message</span>
                 <span class="govuk-hint">HTTP 500: An internal server error has occurred</span>
-                <span>{{ error | safe }}</span>
+                <span>{{ error }}</span>
             </label>
         </div>
     {% endif %}

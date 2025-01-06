@@ -12,6 +12,7 @@ import EvidenceUpload from './evidence-upload/evidence-upload';
 import CheckCookies from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 import { WebChat } from './web-chat';
+import { WebChatScotland } from './web-chat-scotland';
 import ArchiveWarning from './archive-warning';
 
 /* eslint-disable init-declarations */
@@ -36,12 +37,19 @@ function initShowHideContent() {
 }
 
 function initWebChat(language) {
-  if (language === 'en' && $('#antenna-web-chat').length) {
+  if (document.welshWebchatFlag) {
+    const webChat = new WebChat();
+    webChat.init();
+  } else if (language === 'en' && $('#antenna-web-chat').length) {
     const webChat = new WebChat();
     webChat.init();
   }
 }
 
+function initWebChatScotland() {
+  const webChatScotland = new WebChatScotland();
+  webChatScotland.init();
+}
 function initCookieBanner() {
   if ($('#app-cookie-banner').length) {
     const checkCookies = new CheckCookies();
@@ -162,6 +170,7 @@ $(document).ready(() => {
   initArchiveWarning();
   PostCodeLookup.init();
   initCookieBanner();
+  initWebChatScotland();
 });
 
 $(window).on('unload', () => {

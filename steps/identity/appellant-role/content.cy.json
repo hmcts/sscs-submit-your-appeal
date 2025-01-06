@@ -1,0 +1,27 @@
+{
+  "titleHead": "Rôl yr Apelydd",
+  "title": "Beth yw eich rôl yn yr apêl hon?",
+  "question": "Beth yw eich rôl yn yr apêl hon?",
+  "fields": {
+    "ibcRole": {
+      "myself": "Rwy’n apelio ar ran fy hun",
+      "parent": "Rwy’n apelio ar ran unigolyn dan 18 oed y mae gennyf gyfrifoldeb rhiant drosto",
+      "guardian": "Rwy’n apelio ar ran unigolyn sydd heb alluedd fel ei warcheidwad, dirprwy, neu reolydd",
+      "powerOfAttorney": "Rwy’n apelio ar ran unigolyn y mae gennyf atwrneiaeth arhosol drosto",
+      "deceasedRepresentative": "Rwy’n apelio ar ran yr ymadawedig fel ei gynrychiolydd personol",
+      "error": {
+        "required": "Dewiswch opsiwn ar gyfer rôl Atebydd."
+      }
+    }
+  },
+  "cya": {
+    "ibcRole": {
+      "question": "Beth yw eich rôl yn yr apêl hon?",
+      "myself": "Rwy’n apelio ar ran fy hun",
+      "parent": "Rwy’n apelio ar ran unigolyn dan 18 oed y mae gennyf gyfrifoldeb rhiant drosto",
+      "guardian": "Rwy’n apelio ar ran unigolyn sydd heb alluedd fel ei warcheidwad, dirprwy, neu reolydd",
+      "powerOfAttorney": "Rwy’n apelio ar ran unigolyn y mae gennyf atwrneiaeth arhosol drosto",
+      "deceasedRepresentative": "Rwy’n apelio ar ran yr ymadawedig fel ei gynrychiolydd personol"
+    }
+  }
+}

@@ -6,10 +6,19 @@ const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppointeeDOB extends SaveToDraftStore {
   static get path() {
     return paths.appointee.enterAppointeeDOB;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {

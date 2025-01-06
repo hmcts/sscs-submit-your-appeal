@@ -1,9 +1,53 @@
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
+const benefitTypes = require('steps/start/benefit-type/types');
+const sinon = require('sinon');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 
 describe('PostcodeChecker.js', () => {
   let postcodeChecker = null;
+  describe('isGlasgowIncluded() check', () => {
+    it('Should return false if Glasgow not in allowedRpcs', () => {
+      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
+        config: {
+          get: () => 'leicester, notGlasgow, belfast'
+        }
+      });
+
+      postcodeChecker = new PostcodeChecker({
+        journey: {
+          steps: {
+            Independence: paths.start.independence,
+            InvalidPostcode: paths.start.invalidPostcode
+          }
+        }
+      });
+
+      postcodeChecker.fields = { postcode: {} };
+      expect(postcodeChecker.isGlasgowIncluded).to.equal(false);
+    });
+
+    it('Should return true if Glasgow is in allowedRpcs', () => {
+      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
+        config: {
+          get: () => 'leicester, notGlasgow, belfast, glasgow'
+        }
+      });
+
+      postcodeChecker = new PostcodeChecker({
+        journey: {
+          steps: {
+            Independence: paths.start.independence,
+            InvalidPostcode: paths.start.invalidPostcode
+          }
+        }
+      });
+
+      postcodeChecker.fields = { postcode: {} };
+      expect(postcodeChecker.isGlasgowIncluded).to.equal(true);
+    });
+  });
 
   describe('when postcode checker disabled', () => {
     beforeEach(() => {
@@ -23,6 +67,10 @@ describe('PostcodeChecker.js', () => {
       });
 
       postcodeChecker.fields = { postcode: {} };
+    });
+
+    afterEach(() => {
+      sinon.restore();
     });
 
     describe('get path()', () => {
@@ -62,6 +110,46 @@ describe('PostcodeChecker.js', () => {
     describe('answers()', () => {
       it('should be hidden', () => {
         expect(postcodeChecker.answers().hide).to.equal(true);
+      });
+    });
+
+    describe('handler()', () => {
+      it('redirect to /does-not-exist called for iba', () => {
+        const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+        const req = {
+          method: 'GET',
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes.infectedBloodCompensation
+            }
+          }
+        };
+        const res = {
+          redirect: sinon.spy()
+        };
+        const next = sinon.spy();
+        postcodeChecker.handler(req, res, next);
+        expect(res.redirect.called).to.eql(true);
+        expect(res.redirect.calledWith(paths.errors.doesNotExist)).to.eql(true);
+        sinon.assert.notCalled(superStub);
+      });
+      it('no redirect to /does-not-exist called for non iba', () => {
+        const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
+        const req = {
+          method: 'GET',
+          session: {
+            BenefitType: {
+              benefitType: benefitTypes.nationalInsuranceCredits
+            }
+          }
+        };
+        const res = {
+          redirect: sinon.spy()
+        };
+        const next = sinon.spy();
+        postcodeChecker.handler(req, res, next);
+        expect(res.redirect.called).to.eql(false);
+        sinon.assert.calledOnce(superStub);
       });
     });
 

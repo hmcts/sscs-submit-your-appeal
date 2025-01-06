@@ -8,10 +8,18 @@ const Joi = require('joi');
 const { titleise } = require('utils/stringUtils');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class EvidenceProvide extends SaveToDraftStore {
   static get path() {
     return paths.reasonsForAppealing.evidenceProvide;
+  }
+
+  get noticeType() {
+    if (i18next.language === 'cy') {
+      return isIba(this.req) ? 'Hysbysiad o Benderfyniad Adolygiad' : 'Hysbysiad Gorfodi i Ailystyried (MRN)';
+    }
+    return isIba(this.req) ? 'Review Decision Notice' : 'Mandatory Reconsideration Notice (MRN)';
   }
 
   get form() {

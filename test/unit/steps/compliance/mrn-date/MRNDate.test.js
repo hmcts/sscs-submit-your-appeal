@@ -4,8 +4,8 @@ const MRNDate = require('steps/compliance/mrn-date/MRNDate');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const moment = require('moment');
-const benefitTypes = require('steps/start/benefit-type/types');
 const { overrideFeatFlag } = require('utils/stringUtils');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('MRNDate.js', () => {
   let mrnDate = null;
@@ -24,7 +24,8 @@ describe('MRNDate.js', () => {
           CheckMRN: paths.compliance.checkMRNDate,
           DWPIssuingOffice: paths.compliance.dwpIssuingOffice,
           DWPIssuingOfficeEsa: paths.compliance.dwpIssuingOfficeEsa,
-          Appointee: paths.identity.areYouAnAppointee
+          Appointee: paths.identity.areYouAnAppointee,
+          AppellantRole: paths.identity.enterAppellantRole
         }
       }
     });
@@ -72,6 +73,18 @@ describe('MRNDate.js', () => {
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
       });
+    });
+  });
+
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      mrnDate.req.hostname = 'some-iba-hostname';
+      expect(mrnDate.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      mrnDate.req.hostname = 'some-normal-hostname';
+      expect(mrnDate.suffix).to.eql('');
     });
   });
 
@@ -157,6 +170,20 @@ describe('MRNDate.js', () => {
         setBenefitType(benefitTypes.universalCredit);
         overrideFeatFlag({ key: 'allowRFE', value: false });
         expect(mrnDate.next().step).to.eql(paths.identity.areYouAnAppointee);
+      });
+    });
+
+    describe('when is IBA', () => {
+      it('returns the next step path /enter-appellant-role if date less than a month', () => {
+        mrnDate.req.hostname = 'some-iba-hostname';
+        setMRNDate(DateUtils.oneDayShortOfAMonthAgo());
+        expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantRole);
+      });
+
+      it('returns the next step path /enter-appellant-role if date is equal to a month', () => {
+        mrnDate.req.hostname = 'some-iba-hostname';
+        setMRNDate(DateUtils.oneMonthAgo());
+        expect(mrnDate.next().step).to.eql(paths.identity.enterAppellantRole);
       });
     });
 

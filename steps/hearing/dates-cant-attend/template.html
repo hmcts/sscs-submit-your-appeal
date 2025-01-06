@@ -9,7 +9,6 @@
     </noscript>
 {% endblock %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 
 {% set title %}
     {{ content.title | safe if isListMode }}
@@ -39,22 +38,22 @@
 
 {% block listItems %}
     <div id="date-picker-content">
-        <p class="govuk-body">{{ content.datePicker.itsImportant | safe }}</p>
-        <p class="govuk-body">{{ content.datePicker.select | safe }} <span class="govuk-!-font-weight-bold">{{ content.datePicker.cant | safe }}</span> {{ content.datePicker.hearing | safe }}</p>
+        <p class="govuk-body">{{ content.datePicker.itsImportant }}</p>
+        <p class="govuk-body">{{ content.datePicker.select }} <span class="govuk-!-font-weight-bold">{{ content.datePicker.cant }}</span> {{ content.datePicker.hearing }}</p>
     </div>
     <noscript>
-        <p class="govuk-body">{{ content.nonJS.itsImportant | safe }}</p>
-        <p class="govuk-body">{{ content.nonJS.yourHearing | safe }}</p>
+        <p class="govuk-body">{{ content.nonJS.itsImportant }}</p>
+        <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
     </noscript>
 
     <div id="date-picker" class="datepicker"></div>
 
-    <h2 class="govuk-heading-m">{{ content.fields.cantAttendDate.legendList | safe }}</h2>
+    <h2 class="govuk-heading-m">{{ content.fields.cantAttendDate.legendList }}</h2>
     {{ super() }}
 {% endblock %}
 
 {% block editItem %}
-    <p class="govuk-body">{{ content.nonJS.yourHearing | safe }}</p>
+    <p class="govuk-body">{{ content.nonJS.yourHearing }}</p>
     {{ date(
         fields.item,
         content.fields.cantAttendDate.legend,

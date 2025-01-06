@@ -3,7 +3,7 @@
   "title": "Tystiolaeth i gefnogi’ch apêl",
   "descriptionPara1": "Tystiolaeth yw unrhyw wybodaeth sy’n cefnogi eich apêl megis llythyr, datganiad ysgrifenedig neu adroddiad meddygol.",
   "descriptionPara2": "Gallwch lwytho tystiolaeth nawr neu ei phostio i mewn ar ôl i chi gyflwyno eich apêl. Byddwch yn cael y cyfeiriad ar gyfer postio tystiolaeth ar ôl ichi gyflwyno’ch apêl.",
-  "descriptionPara3": "Nid oes angen ichi anfon neu uwchlwytho eich Hysbysiad Gorfodi i Ailystyried (MRN) oherwydd eich bod yn apelio ar-lein",
+  "descriptionPara3": "Nid oes angen ichi anfon neu uwchlwytho eich {{noticeType}} oherwydd eich bod yn apelio ar-lein.",
   "fields": {
     "evidenceProvide": {
       "label": "A hoffech lwytho eich tystiolaeth nawr?",

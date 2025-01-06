@@ -10,10 +10,19 @@ const https = require('https');
 
 const fs = require('graceful-fs');
 const webpack = require('webpack');
-const webpackDevConfig = require('./webpack/webpack.dev.js');
+const webpackDevConfig = require('./webpack.config.js');
 const webpackMiddleware = require('webpack-dev-middleware');
+const { fetchAndSetPortsAndCountries } = require('./utils/enumJsonLists');
 
 const logPath = 'server.js';
+
+(async function initialiseEnums() {
+  await fetchAndSetPortsAndCountries();
+  setInterval(async() => {
+    await fetchAndSetPortsAndCountries();
+    /* eslint-disable-next-line no-magic-numbers */
+  }, 60 * 60 * 1000);
+}());
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
@@ -23,8 +32,8 @@ if (process.env.NODE_ENV === 'development') {
   wp.waitUntilValid(stats => {
     app.locals.webpackHash = stats.hash;
     https.createServer({
-      key: fs.readFileSync('keys/server.key'), // eslint-disable-line
-      cert: fs.readFileSync('keys/server.cert') // eslint-disable-line
+      key: fs.readFileSync('src/main/resources/localhost-ssl/localhost.key'), // eslint-disable-line
+      cert: fs.readFileSync('src/main/resources/localhost-ssl/localhost.crt') // eslint-disable-line
     }, app).listen(config.node.port, () => {
       logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
     });
@@ -36,4 +45,5 @@ if (process.env.NODE_ENV === 'development') {
         logger.trace(`SYA server listening on port: ${config.node.port}`, logPath);
       });
 }
+
 app.timeout = 240000;

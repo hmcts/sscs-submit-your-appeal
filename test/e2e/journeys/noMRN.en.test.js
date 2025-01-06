@@ -28,35 +28,33 @@ Scenario(`${language.toUpperCase()} - Appellant has contacted DWP`, async({ I })
 
   const hasMRN = false;
 
-  I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
-  // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
-  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
+  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
   I.checkOptionAndContinue(commonContent, '#isAppointee-no');
   I.continueFromIndependance(commonContent);
   I.checkOptionAndContinue(commonContent, '#haveAMRN-no');
   I.checkOptionAndContinue(commonContent, '#haveContactedDWP-yes');
-  I.enterReasonForNoMRNAndContinue(commonContent, testData.mrn.reasonForNoMRN);
+  I.enterReasonForNoMRNAndContinue(language, commonContent, testData.mrn.reasonForNoMRN);
   I.continueFromStillCanAppeal(language);
-  I.enterAppellantNameAndContinue(commonContent, appellant.title, appellant.firstName, appellant.lastName);
-  I.enterAppellantDOBAndContinue(commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
-  I.enterAppellantNINOAndContinue(commonContent, appellant.nino);
+  I.enterAppellantNameAndContinue(language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  I.enterAppellantDOBAndContinue(language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  I.enterAppellantNINOAndContinue(language, commonContent, appellant.nino);
   I.enterAppellantContactDetailsAndContinue(commonContent, language);
   I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToUploadingEvidence(commonContent);
+  I.enterDetailsFromNoRepresentativeToUploadingEvidence(language, commonContent);
   await I.enterDetailsFromAttendingTheHearingDatePickerToEnd(commonContent, language, randomWeekDay);
   I.confirmDetailsArePresent(language, hasMRN);
 }).retry(1);
 
 Scenario(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(commonContent, testData.benefitType.code);
-  // I.chooseLanguagePreference(commonContent, testData.languagePreferenceWelsh);
-  I.enterPostcodeAndContinue(commonContent, appellant.contactDetails.postCode);
+  I.enterBenefitTypeAndContinue(language, commonContent, testData.benefitType.code);
+  I.enterPostcodeAndContinue(language, commonContent, appellant.contactDetails.postCode);
   I.checkOptionAndContinue(commonContent, '#isAppointee-no');
   I.continueFromIndependance(commonContent);
   if (allowSaveAndReturnEnabled) {
-    I.selectIfYouWantToCreateAccount(commonContent, '#createAccount-no');
+    I.selectIfYouWantToCreateAccount(language, commonContent, '#createAccount-no');
   }
-  I.selectHaveYouGotAMRNAndContinue(commonContent, '#haveAMRN-no');
+  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-no');
   I.checkOptionAndContinue(commonContent, '#haveContactedDWP-no');
   I.see(contactDWPContent.title);
   I.click(contactDWPContent.govuk);

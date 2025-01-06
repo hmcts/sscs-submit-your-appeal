@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 const mockHandler = sinon.spy();
 
@@ -31,6 +32,13 @@ describe('Authenticated.js', () => {
         steps: {
           HaveAMRN: paths.compliance.haveAMRN
         }
+      },
+      req: {
+        session: {
+          BenefitType: {
+            benefitType: benefitTypes.personalIndependencePayment
+          }
+        }
       }
     });
   });
@@ -43,7 +51,7 @@ describe('Authenticated.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /have-you-got-an-mrn', () => {
-      expect(entry.next()).to.eql({ nextStep: paths.compliance.haveAMRN });
+      expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
     });
   });
 

@@ -1,24 +1,46 @@
 {
   "titleHead": "Eich gwrandawiad",
   "title": "Gwrandawiad yr apêl",
+  "titleIba": "Eich dewisiadau o ran y gwrandawiad",
   "subtitle": "Bydd eich apêl yn cael ei phenderfynu gan ddefnyddio’r wybodaeth rydych yn ei chyflwyno ar y ffurflen hon ac unrhyw dystiolaeth ychwanegol y byddwch yn ei hanfon. Bydd gwybodaeth a thystiolaeth a gyflwynir gan DWP hefyd yn cael eu hystyried.",
+  "subtitleIba": "Bydd y Tribiwnlys yn penderfynu ar eich apêl gan ddefnyddio'r wybodaeth a roddwch yn y ffurflen apêl hon ac unrhyw wybodaeth bellach a anfonwch. Bydd gwybodaeth a ddarperir gan (FTA) hefyd yn cael ei hystyried.",
   "explainReasons": "Os byddwch yn dod i’r gwrandawiad gallwch egluro eich rhesymau dros apelio.",
   "arrangeSupport": "Gellir trefnu cymorth ar eich cyfer megis cyfieithydd, dolen glyw neu fynediad i’r anabl.",
+  "hearingFormatsList": {
+    "title": "Fformatau gwrandawiadau",
+    "subtitle": "Gellir penderfynu ar eich apêl:",
+    "bulletPoint1": "Mewn gwrandawiad rydych chi'n cymryd rhan ynddo - mae'r rhan fwyaf o wrandawiadau'n cael eu cynnal wyneb yn wyneb mewn adeilad tribiwnlys ond gallwch ofyn am gael y gwrandawiad o bell drwy fideo neu dros y ffôn",
+    "bulletPoint2": "fel 'gwrandawiad papur' – mae'r tribiwnlys yn edrych ar y dogfennau a'r dystiolaeth ac yn gwneud penderfyniad heb i chi gymryd rhan mewn gwrandawiad"
+  },
+  "hearingSupportList": {
+    "title": "Cefnogaeth yn y gwrandawiad",
+    "subtitle": "Os byddwch yn cymryd rhan mewn gwrandawiad, gallwch ofyn am:",
+    "information": "<b>Ni allwch</b> ddod â'ch cyfieithydd eich hun i'r gwrandawiad.",
+    "bulletPoint1": "Gyfieithydd ar y pryd",
+    "bulletPoint2": "Addasiadau rhesymol os oes gennych gyflwr iechyd neu anabledd"
+  },
   "fields": {
     "attendHearing": {
       "title": "A ydych eisiau mynychu’r gwrandawiad?",
+      "titleIba": "Pa fath o wrandawiad fyddai'n well gennych?",
       "yes": "Oes",
       "no": "Nac oes",
+      "yesIba": "Mae'n well gennyf wrandawiad lle byddaf yn cymryd rhan naill ai wyneb yn wyneb, trwy fideo neu dros y ffôn",
+      "noIba": "Mae'n well gennyf 'wrandawiad papur’ lle nad wyf yn cymryd rhan, ac a benderfynir ar y dogfennau a’r wybodaeth a ddarparwyd",
       "error": {
-        "required": "Mae angen ichi ddweud a ydych eisiau mynychu’r gwrandawiad. Dewiswch oes neu nac oes"
+        "required": "Mae angen ichi ddweud a ydych eisiau mynychu’r gwrandawiad. Dewiswch oes neu nac oes",
+        "requiredIba": "Mae angen ichi ddweud p’un a ydych eisiau cymryd rhan yn y gwrandawiad. Dewiswch opsiwn"
       }
     }
   },
   "cya": {
     "attendHearing": {
       "question": "Mynychu’r gwrandawiad",
+      "questionIba": "Pa fath o wrandawiad fyddai orau gennych",
       "yes": "Oes",
-      "no": "Nac oes"
+      "no": "Nac oes",
+      "yesIba": "Cymryd rhan wyneb yn wyneb, drwy fideo neu dros y ffôn",
+      "noIba": "Peidio â chymryd rhan, penderfynu ar sail y dogfennau a’r wybodaeth a ddarparwyd"
     }
   }
 }

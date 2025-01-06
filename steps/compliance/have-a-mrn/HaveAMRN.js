@@ -7,6 +7,7 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { getBenefitCode, getBenefitName, getHasAcronym, getBenefitEndText } = require('utils/stringUtils');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class HaveAMRN extends SaveToDraftStore {
   static get path() {
@@ -40,10 +41,14 @@ class HaveAMRN extends SaveToDraftStore {
     return getBenefitEndText(this.req.session.BenefitType.benefitType);
   }
 
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
+  }
+
   get form() {
     return form({
       haveAMRN: text.joi(
-        this.content.fields.haveAMRN.error.required,
+        this.content.fields.haveAMRN.error[`required${this.suffix}`],
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -60,7 +65,9 @@ class HaveAMRN extends SaveToDraftStore {
   next() {
     const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;
     return branch(
+      goTo(this.journey.steps.AppellantIBCAReference).if(hasAMRN && isIba(this.req)),
       goTo(this.journey.steps.MRNDate).if(hasAMRN),
+      goTo(this.journey.steps.NeedRDN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveContactedDWP)
     );
   }

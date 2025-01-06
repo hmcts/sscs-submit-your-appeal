@@ -1,11 +1,10 @@
 {% extends "components/form-template.html" %}
 {% from "components/header.njk" import header %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
 {% set title = content.title | safe %}
 
 {% block two_thirds %}
     {{ header(content.title, size='l') }}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
-    <a class="govuk-button" href="{{ formDownload.link }}">{{ content.button.text | safe }}</a>
+    <p class="govuk-body">{{ content.subtitle }}</p>
+    <a class="govuk-button" href="{{ formDownload.link }}">{{ content.button.text }}</a>
 {% endblock %}

@@ -2,6 +2,7 @@ const { expect } = require('test/util/chai');
 const HaveAMRN = require('steps/compliance/have-a-mrn/HaveAMRN');
 const paths = require('paths');
 const answer = require('utils/answer');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('HaveAMRN.js', () => {
   let haveAMRN = null;
@@ -11,12 +12,14 @@ describe('HaveAMRN.js', () => {
       journey: {
         steps: {
           MRNDate: paths.compliance.mrnDate,
-          HaveContactedDWP: paths.compliance.haveContactedDWP
+          NeedRDN: paths.compliance.needRDN,
+          HaveContactedDWP: paths.compliance.haveContactedDWP,
+          AppellantIBCAReference: paths.identity.enterAppellantIBCAReference
         }
       },
       session: {
         BenefitType: {
-          benefitType: 'Universal Credit (UC)'
+          benefitType: benefitTypes.universalCredit
         }
       }
     });
@@ -72,6 +75,18 @@ describe('HaveAMRN.js', () => {
     });
   });
 
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      haveAMRN.req.hostname = 'some-iba-hostname';
+      expect(haveAMRN.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      haveAMRN.req.hostname = 'some-normal-hostname';
+      expect(haveAMRN.suffix).to.eql('');
+    });
+  });
+
   describe('benefitType()', () => {
     it('should return benefit type', () => {
       expect(haveAMRN.benefitType).to.eql('UC');
@@ -91,13 +106,27 @@ describe('HaveAMRN.js', () => {
   });
 
   describe('next()', () => {
-    it('returns the next step path /mrn-date when haveAMRN equals Yes', () => {
+    it('returns the next step path /mrn-date when haveAMRN equals Yes for non IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
       expect(haveAMRN.next().step).to.eql(paths.compliance.mrnDate);
     });
 
-    it('returns the next step path /have-contacted-dwp when haveAMRN equals No', () => {
+    it('returns the next step path /enter-appellant-ibca-reference when haveAMRN equals Yes for IBA', () => {
+      haveAMRN.fields.haveAMRN.value = answer.YES;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
+      expect(haveAMRN.next().step).to.eql(paths.identity.enterAppellantIBCAReference);
+    });
+
+    it('returns the next step path /need-a-review-decision-notice when haveAMRN equals No for IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.NO;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
+      expect(haveAMRN.next().step).to.eql(paths.compliance.needRDN);
+    });
+
+
+    it('returns the next step path /have-contacted-dwp when haveAMRN equals No for non IBA', () => {
+      haveAMRN.fields.haveAMRN.value = answer.NO;
+      haveAMRN.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(haveAMRN.next().step).to.eql(paths.compliance.haveContactedDWP);
     });
   });

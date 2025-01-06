@@ -4,6 +4,11 @@
   "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr MRN",
   "dateHint": "Er enghraifft, 31 3 2017",
   "imageAlt": "Copi o’ch MRN",
+  "titleHeadIba": "Hysbysiad o Benderfyniad Adolygiad dyddiedig",
+  "titleIba": "Beth yw dyddiad eich Hysbysiad o Benderfyniad Adolygiad?",
+  "dateLegendIba": "Rhowch y dyddiad sydd yng nghornel dde uchaf eich Hysbysiad o Benderfyniad Adolygiad",
+  "dateHintIba": "Er enghraifft, 26 1 2024",
+  "imageAltIba": "Copi o’ch Hysbysiad o Benderfyniad Adolygiad",
   "fields": {
     "date": {
       "day": "Diwrnod",
@@ -16,13 +21,18 @@
         "yearRequired": "Nid ydych wedi nodi blwyddyn. Nodwch flwyddyn",
         "invalid": "Rydych wedi nodi dyddiad MRN annilys. Nodwch ddyddiad yr MRN",
         "future": "Rydych wedi nodi dyddiad yn y dyfodol. Nodwch ddyddiad yr MRN",
-        "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich MRN a nodwch y dyddiad a ddangosir."
+        "dateSameAsImage": "Rydych wedi nodi’r dyddiad sydd yn y llun. Edrychwch ar eich MRN a nodwch y dyddiad a ddangosir.",
+        "allRequiredIba": "Nodwch ddyddiad yr Hysbysiad o Benderfyniad Adolygiad.",
+        "invalidIba": "Rydych wedi nodi dyddiad annilys ar gyfer yr Hysbysiad o Benderfyniad Adolygiad. Nodwch ddyddiad yr Hysbysiad o Benderfyniad Adolygiad.",
+        "futureIba": "Rydych wedi rhoi dyddiad sydd yn y dyfodol. Nodwch ddyddiad yr Hysbysiad o Benderfyniad Adolygiad.",
+        "dateSameAsImageIba": "Rydych wedi rhoi’r dyddiad sydd yn y llun. Edrychwch ar eich Hysbysiad o Benderfyniad Adolygiad a nodwch y dyddiad a ddangosir."
       }
     }
   },
   "cya": {
     "mrnDate": {
-      "question": "Dyddiad yr MRN"
+      "question": "Dyddiad yr MRN",
+      "questionIba": "Dyddiad yr Hysbysiad o Benderfyniad Adolygiad"
     }
   }
 }

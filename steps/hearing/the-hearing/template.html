@@ -1,21 +1,40 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% block pageTitle %}{{ content.titleHead | safe }} - {{ commonContent[htmlLang].windowTitleSuffix | safe }}{% endblock %}
-{% set title = content.title | safe %}
+{% set title = content["title" + suffix] %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe }}</p>
-    <p class="govuk-body">{{ content.explainReasons | safe }}</p>
-    <p class="govuk-body">{{ content.arrangeSupport | safe }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.subtitleIba }}</p>
+
+        <p class="govuk-heading-m">{{ content.hearingFormatsList.title }}</p>
+        <p class="govuk-body">{{ content.hearingFormatsList.subtitle }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>{{ content.hearingFormatsList.bulletPoint1 }}</li>
+            <li>{{ content.hearingFormatsList.bulletPoint2 }}</li>
+        </ul>
+
+        <p class="govuk-heading-m">{{ content.hearingSupportList.title }}</p>
+        <p class="govuk-body">{{ content.hearingSupportList.subtitle }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>{{ content.hearingSupportList.bulletPoint1 }}</li>
+            <li>{{ content.hearingSupportList.bulletPoint2 }}</li>
+        </ul>
+
+        <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
+    {% else %}   
+        <p class="govuk-body">{{ content.subtitle | safe }}</p>
+        <p class="govuk-body">{{ content.explainReasons | safe }}</p>
+        <p class="govuk-body">{{ content.arrangeSupport | safe }}</p>
+    {% endif %}
 
     {{ selectionButtons(
         fields.attendHearing,
-        content.fields.attendHearing.title,
+        content.fields.attendHearing["title" + suffix],
         hideQuestion = false,
         options = [
-            { label: content.fields.attendHearing.yes, value: "yes" },
-            { label: content.fields.attendHearing.no, value: "no" }
+            { label: content.fields.attendHearing["yes" + suffix], value: "yes" },
+            { label: content.fields.attendHearing["no" + suffix], value: "no" }
         ])
     }}
 {% endblock %}

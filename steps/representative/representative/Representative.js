@@ -1,4 +1,4 @@
-const { branch, goTo, redirectTo } = require('@hmcts/one-per-page/flow');
+const { branch, goTo } = require('@hmcts/one-per-page');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
@@ -8,6 +8,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class Representative extends SaveToDraftStore {
   static get path() {
@@ -47,8 +48,10 @@ class Representative extends SaveToDraftStore {
 
   next() {
     const hasARepresentative = this.fields.hasRepresentative.value === userAnswer.YES;
+    const isIbaCase = isIba(this.req);
     return branch(
-      redirectTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative),
+      goTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative && !isIbaCase),
+      goTo(this.journey.steps.RepresentativeInMainlandUk).if(hasARepresentative && isIbaCase),
       goTo(this.journey.steps.ReasonForAppealing)
     );
   }

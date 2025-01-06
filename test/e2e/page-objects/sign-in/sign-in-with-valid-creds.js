@@ -2,20 +2,22 @@ const paths = require('paths');
 
 function signIn(username, password, language) {
   const I = this;
+  I.wait(5);
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
-  I.wait(5);
+  // I.wait(5);
   I.waitForElement(".form-buttons-group [href='/new-appeal']", 20);
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
+    I.waitForText('Your draft benefit appeals');
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
   }
 }
 
 async function signInVerifylanguage(username, password, language) {
   const I = this;
+  I.wait(5);
   I.fillField({ id: 'username' }, username);
   I.fillField({ id: 'password' }, password);
   I.click({ name: 'save' });
@@ -27,9 +29,9 @@ async function signInVerifylanguage(username, password, language) {
   }
 
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
+    I.waitForText('Your draft benefit appeals');
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
   }
 }
 

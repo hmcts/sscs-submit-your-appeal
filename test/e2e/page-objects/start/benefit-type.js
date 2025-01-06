@@ -1,13 +1,23 @@
-function enterBenefitTypeAndContinue(commonContent, type) {
+const benefitContentEn = require('steps/start/benefit-type/content.en');
+const benefitContentCy = require('steps/start/benefit-type/content.cy');
+
+
+function enterBenefitTypeAndContinue(language, commonContent, type) {
   const I = this;
-  I.retry({ retries: 3, minTimeout: 2000 }).fillField({ id: 'benefitType' }, type);
+  const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
+
+  I.waitForText(benefitContent.title, 10);
+  I.fillField({ id: 'benefitType' }, type);
   I.click('#benefitType__option--0');
   I.click(commonContent.continue);
 }
 
-function enterBenefitTypeAfterSignIn(commonContent, type) {
+function enterBenefitTypeAfterSignIn(language, commonContent, type) {
   const I = this;
-  I.retry({ retries: 3, minTimeout: 2000 }).fillField({ id: 'benefitType' }, type);
+  const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
+
+  I.waitForText(benefitContent.title, 5);
+  I.fillField({ id: 'benefitType' }, type);
   I.click('#benefitType__option--0');
   I.click(commonContent.saveAndContinue);
 }

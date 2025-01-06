@@ -18,6 +18,7 @@ let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === '
 const authTokenString = '__auth-token';
 const idam = require('middleware/idam');
 const logger = require('logger');
+const { activeProperty } = require('@hmcts/one-per-page/src/session/sessionShims');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
@@ -41,6 +42,9 @@ const resetJourney = req => {
 
   for (const keyToDelete of keysToDelete) {
     delete req.session[keyToDelete];
+  }
+  if (!req.session[activeProperty]) {
+    req.session[activeProperty] = true;
   }
   req.session.save();
 };
@@ -353,6 +357,8 @@ class AuthAndRestoreAllDraftsState extends Redirect {
   get middleware() {
     return [
       idam.landingPage,
+      this.journey.collectSteps,
+      saveToDraftStore,
       restoreAllDraftsState,
       ...super.middleware
     ];

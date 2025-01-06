@@ -1,6 +1,7 @@
 const { expect } = require('test/util/chai');
 const Entry = require('steps/idam/idam-redirect/IdamRedirect');
 const paths = require('paths');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('IdamRedirect.js', () => {
   let entry = null;
@@ -27,23 +28,18 @@ describe('IdamRedirect.js', () => {
       entry.req = {
         session: {}
       };
-      expect(entry.next()).to.eql({
-        nextStep: paths.start.benefitType
-      });
+      expect(entry.next().step).to.eql(paths.start.benefitType);
     });
-  });
 
-  describe('next()', () => {
-    it('should redirect to HaveAMRN if there is benefit type', () => {
+    it('should redirect to HaveAMRN if there is a benefit type', () => {
       entry.req = {
         session: {
-          BenefitType: 'Personal Independence Payment (PIP)'
+          BenefitType: {
+            benefitType: benefitTypes.personalIndependencePayment
+          }
         }
       };
-
-      expect(entry.next()).to.eql({
-        nextStep: paths.compliance.haveAMRN
-      });
+      expect(entry.next().step).to.eql(paths.compliance.haveAMRN);
     });
   });
 });

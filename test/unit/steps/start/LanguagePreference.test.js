@@ -4,6 +4,7 @@ const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
+const benefitTypes = require('steps/start/benefit-type/types');
 
 describe('LanguagePreference.js', () => {
   let languagePreference = null;
@@ -109,8 +110,48 @@ describe('LanguagePreference.js', () => {
   });
 
   describe('next()', () => {
-    it('returns /postcode-check for next', () => {
+    it('returns /postcode-check for no benefit type', () => {
       expect(languagePreference.next().step).to.eql(paths.start.postcodeCheck);
+    });
+
+    it('returns /independence for non IBA', () => {
+      languagePreference = new LanguagePreference({
+        journey: {
+          req: {
+            session: {
+              BenefitType: {
+                benefitType: benefitTypes.pensionCredit
+              }
+            }
+          },
+          steps: {
+            PostcodeChecker: paths.start.postcodeCheck
+          }
+        }
+      });
+      languagePreference.fields = { languagePreference: {} };
+      expect(languagePreference.next().step).to.eql(paths.start.postcodeCheck);
+    });
+
+    it('returns /independence for IBA', () => {
+      languagePreference = new LanguagePreference({
+        journey: {
+          req: {
+            session: {
+              BenefitType: {
+                benefitType: benefitTypes.infectedBloodCompensation
+              }
+            }
+          },
+          steps: {
+            AppealFormDownload: paths.appealFormDownload,
+            PostcodeChecker: paths.start.postcodeCheck,
+            Independence: paths.start.independence
+          }
+        }
+      });
+      languagePreference.fields = { languagePreference: {} };
+      expect(languagePreference.next().step).to.eql(paths.start.independence);
     });
   });
 });

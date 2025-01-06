@@ -12,10 +12,19 @@ const BranchForEnglandOrWales = require('steps/start/postcode-checker/BranchForE
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const allowedRpcs = config.get('postcodeChecker.allowedRpcs');
 const { includes } = require('lodash');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class PostcodeChecker extends SaveToDraftStore {
   static get path() {
     return paths.start.postcodeCheck;
+  }
+
+  handler(req, res, next) {
+    if (req.method === 'GET' && isIba(req)) {
+      res.redirect(paths.errors.doesNotExist);
+    } else {
+      super.handler(req, res, next);
+    }
   }
 
   get form() {

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -13,6 +14,7 @@ const idam = require('middleware/idam');
 const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
+/* eslint max-lines: off */
 /* eslint-disable max-len */
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
@@ -20,16 +22,11 @@ const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') ===
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
-let webChatBaseUrl = process.env.WEBCHAT_URL;
-if (!webChatBaseUrl) {
-  webChatBaseUrl = 'webchat.ctsc.hmcts.net';
-}
-let webChatClientBaseUrl = process.env.WEBCHAT_CLIENT_URL;
-if (!webChatClientBaseUrl) {
-  webChatClientBaseUrl = 'webchat-client.ctsc.hmcts.net';
-}
+const webChatBaseUrl = config.get('services.webchat.url');
+const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
+const { isIba } = require('./utils/benefitTypeUtils');
 
-const configureNunjucks = (app, commonContent) => {
+const configureNunjucks = (app, commonContent) =>
   // because of a bug with iphone, we need to remove the mime types from accept
   expressNunjucks(app, {
     watch: isDev(),
@@ -73,21 +70,18 @@ const configureNunjucks = (app, commonContent) => {
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
+      welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
-      webChatEnabled: config.get('features.allowContactUs.webChatEnabled') === 'true',
       webChatClientUrl: webChatClientBaseUrl,
       webChatUrl: webChatBaseUrl,
       paths,
       urls,
-      featureToggles: {
-        welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled
-      }
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+        cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
+        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
     }
   });
-};
-
 const configureViews = app => {
   app.set('views', [
     path.resolve(__dirname, 'steps'),
@@ -117,9 +111,10 @@ const configureHelmet = app => {
       formAction: [`'self' ${config.get('services.idam.loginUrl')} ${config.get('services.pcq.url')}`],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
-        '\'unsafe-inline\''
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/',
+        '\'unsafe-inline\'',
+        'vcc-eu4-cf.8x8.com'
       ],
       scriptSrc: [
         '\'self\'',
@@ -133,8 +128,11 @@ const configureHelmet = app => {
         'chatbuilder.netlify.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'vcc-eu4-cf.8x8.com',
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/',
+        'https://js-cdn.dynatrace.com',
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js'
       ],
       connectSrc: [
         '\'self\'',
@@ -148,13 +146,17 @@ const configureHelmet = app => {
         'wss://webchat.pp.ctsc.hmcts.net',
         'wss://webchat.ctsc.hmcts.net',
         'https://webchat.pp.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net'
+        'https://webchat.ctsc.hmcts.net',
+        'stats.g.doubleclick.net',
+        'cloud8-cc-geo.8x8.com',
+        'vcc-eu4-cf.8x8.com'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        '*.googletagmanager.com'
+        '*.googletagmanager.com',
+        'vcc-eu4-cf.8x8.com'
       ],
       imgSrc: [
         '\'self\'',
@@ -169,8 +171,9 @@ const configureHelmet = app => {
         '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
+        'vcc-eu4-cf.8x8.com',
+        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/'
       ]
     }
   }));
@@ -205,7 +208,8 @@ const configureJourney = (app, commonContent) => {
       },
       cookie: {
         secure: config.get('node.protocol') === 'https',
-        sameSite: config.features.sameSiteCookieFlag ? 'lax' : false},
+        sameSite: 'lax' // required for the oauth2 redirect
+      },
       secret: config.redis.secret
     },
     errorPages: {
@@ -274,6 +278,44 @@ const configureMiddleWares = (app, express) => {
   }));
 };
 
+const configureGlobalVariables = (app, njk) => {
+  app.use((req, res, next) => {
+    if (isIba(req)) {
+      njk.env.addGlobal('isIba', true);
+    } else {
+      njk.env.addGlobal('isIba', false);
+    }
+    next();
+  });
+};
+
+const hiddenSlugs = [];
+const sections = [
+  'start',
+  'compliance',
+  'identity',
+  'appointee',
+  'smsNotify',
+  'representative',
+  'reasonsForAppealing',
+  'hearing',
+  'idam'
+];
+sections.forEach(section => {
+  if (paths[section]) {
+    hiddenSlugs.push(...Object.values(paths[section]));
+  }
+});
+hiddenSlugs.push(
+  paths.pcq,
+  paths.checkYourAppeal,
+  paths.drafts,
+  paths.editDraft,
+  paths.newAppeal,
+  paths.archiveDraft,
+  paths.confirmation
+);
+
 const configureAppRoutes = app => {
   app.get('/appeal');
 
@@ -285,9 +327,20 @@ const configureAppRoutes = app => {
   app.get('/', (req, res) => {
     res.redirect('/entry');
   });
+
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });
+
+  if (process.env.INFECTED_BLOOD_COMPENSATION_ENABLED !== 'true') {
+    app.get(new RegExp(`^(${hiddenSlugs.join('|')})`), (req, res, next) => {
+      if (isIba(req)) {
+        res.redirect('/entry');
+      } else {
+        next();
+      }
+    });
+  }
 };
 
 module.exports = {
@@ -296,5 +349,6 @@ module.exports = {
   configureHelmet,
   configureJourney,
   configureMiddleWares,
+  configureGlobalVariables,
   configureAppRoutes
 };

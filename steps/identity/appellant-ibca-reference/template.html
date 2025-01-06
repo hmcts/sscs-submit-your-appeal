@@ -1,0 +1,11 @@
+{% extends "components/form-template.html" %}
+{% from "components/fields.njk" import textbox, formSection %}
+
+{% set title = content.title %}
+
+{% block fields %}
+    {% call formSection() %}
+            <p class="govuk-body">{{ content.subtitle }}</p>
+        {{ textbox(fields.ibcaReference, content.fields.ibcaReference.title, hint="") }}
+    {% endcall %}
+{% endblock %}

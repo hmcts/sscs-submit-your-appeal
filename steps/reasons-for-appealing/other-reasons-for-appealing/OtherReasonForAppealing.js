@@ -7,10 +7,15 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class OtherReasonForAppealing extends SaveToDraftStore {
   static get path() {
     return paths.reasonsForAppealing.otherReasonForAppealing;
+  }
+
+  get suffix() {
+    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {

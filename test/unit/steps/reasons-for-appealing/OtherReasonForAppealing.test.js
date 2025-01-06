@@ -18,6 +18,11 @@ describe('OtherReasonForAppealing.js', () => {
           SendingEvidence: paths.reasonsForAppealing.sendingEvidence,
           EvidenceProvide: paths.reasonsForAppealing.evidenceProvide
         }
+      },
+      session: {
+        BenefitType: {
+          benefitType: {}
+        }
       }
     });
 
@@ -99,6 +104,18 @@ describe('OtherReasonForAppealing.js', () => {
     it('should contain a value object', () => {
       const values = otherReasonForAppealing.values();
       expect(values).to.eql({ reasonsForAppealing: { otherReasons: value } });
+    });
+  });
+
+  describe('suffix()', () => {
+    it('should return Iba for IBA case', () => {
+      otherReasonForAppealing.req.hostname = 'some-iba-hostname';
+      expect(otherReasonForAppealing.suffix).to.eql('Iba');
+    });
+
+    it('should return empty for non IBA case', () => {
+      otherReasonForAppealing.req.hostname = 'some-normal-hostname';
+      expect(otherReasonForAppealing.suffix).to.eql('');
     });
   });
 

@@ -12,8 +12,13 @@ exports.config = {
       enabled: evidenceUploadEnabled
     }
   },
+  plugins: {
+    screenshotOnFail: {
+      enabled: true
+    }
+  },
   helpers: {
-    Puppeteer: {
+    Playwright: {
       url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
       waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
       waitForAction: parseInt(config.get('e2e.waitForAction')),

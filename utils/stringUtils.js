@@ -10,7 +10,7 @@ const config = require('config');
 const featureFlagOverrides = {};
 
 const maskNino = nino => (nino ? `XXXX${nino.slice(4)}` : 'not submitted yet');
-
+const getIbcaReference = ibcaReference => ibcaReference || 'not submitted yet';
 const overrideFeatFlag = override => {
   featureFlagOverrides[override.key] = override.value;
 };
@@ -102,7 +102,8 @@ const getTribunalPanel = ben => {
     incomeSupport: 'judge',
     UC: 'judge and for some appeals, a doctor',
     industrialInjuriesDisablement: 'judge and 1 or 2 doctors',
-    industrialDeathBenefit: 'judge and 1 or 2 doctors'
+    industrialDeathBenefit: 'judge and 1 or 2 doctors',
+    infectedBloodCompensation: 'judge and if appropriate, a doctor and or a financial expert'
   }[key];
 };
 
@@ -124,7 +125,8 @@ const getTribunalPanelWelsh = ben => {
     incomeSupport: 'barnwr',
     UC: 'barnwr ac, ar gyfer rhai apeliadau, meddyg',
     industrialInjuriesDisablement: 'barnwr ac 1 neu 2 feddyg',
-    industrialDeathBenefit: 'barnwr ac 1 neu 2 feddyg'
+    industrialDeathBenefit: 'barnwr ac 1 neu 2 feddyg',
+    infectedBloodCompensation: 'barnwr ac, os yw’n briodol, meddyg a neu arbenigwr ariannol'
   }[key];
 };
 
@@ -132,6 +134,7 @@ const decodeText = field => decode(field);
 
 module.exports = {
   maskNino,
+  getIbcaReference,
   isFeatureFlagEnabled,
   titleise,
   splitBenefitType,

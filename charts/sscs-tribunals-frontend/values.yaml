@@ -3,6 +3,10 @@ nodejs:
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
+  spotInstances:
+    enabled: false
+  autoscaling:
+    enabled: false
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
@@ -16,10 +20,10 @@ nodejs:
     MEDIA_FILES_ALLOWED_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
-    CONTACT_US_WEBCHAT_ENABLED: false
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
     #Added for new Webchat with Agent
+    WELSH_WEBCHAT_ENABLED: false
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
 
