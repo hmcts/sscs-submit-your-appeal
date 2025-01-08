@@ -12,9 +12,9 @@ const translationAnswers = {
     NOT_REQUIRED: 'Dim ei angen'
   }
 };
-
-const answer = translationAnswers.en;
-answer.en = translationAnswers.en;
-answer.cy = translationAnswers.cy;
+const answer = {
+  ...translationAnswers.en,
+  ...translationAnswers
+};
 
 module.exports = answer;
