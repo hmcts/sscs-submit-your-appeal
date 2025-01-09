@@ -1,18 +1,18 @@
 {
   "titleHead": "Gwiriwch ddyddiad yr MRN eto",
-  "title": "Gwiriwch y dyddiad y gwnaethoch roi eto",
+  "title": "Gwiriwch y dyddiad y gwnaethoch ei nodi",
   "subtitle": "Efallai bod eich apêl yn hwyr. Gwiriwch eich bod wedi nodi’r dyddiad sydd yng nghornel dde uchaf eich Hysbysiad Gorfodi i Ailystyried (MRN).",
   "question": "A wnaethoch nodi’r dyddiad sydd yng nghornel dde uchaf eich MRN?",
   "imageAlt": "Copi o’ch MRN",
-  "titleHeadIba": "Double check Review Decision Notice date",
-  "subtitleIba": "Your appeal may be late. Just check you entered the date from the top right of your Review Decision Notice.",
-  "questionIba": "Did you enter the date from the top right of your Review Decision Notice?",
-  "imageAltIba": "A copy of your Review Decision Notice",
+  "titleHeadIba": "Gwiriwch ddyddiad yr Hysbysiad o Benderfyniad Adolygiad",
+  "subtitleIba": "Efallai y bydd eich apêl yn hwyr. Gwiriwch eich bod wedi nodi'r dyddiad sydd yng nghornel dde uchaf eich Hysbysiad o Benderfyniad Adolygiad.",
+  "questionIba": "A wnaethoch chi nodi'r dyddiad sydd yng nghornel dde uchaf eich Hysbysiad o Benderfyniad Adolygiad?",
+  "imageAltIba": "Copi o’ch Hysbysiad o Benderfyniad Adolygiad",
   "fields": {
     "checkedMRN": {
       "yes": "Do, mi wnes i nodi’r dyddiad sydd yng nghornel dde uchaf fy MRN ",
-      "yesIba": "Yes, I entered the date from the top right of my Review Decision Notice",
-      "no": "Na, mi wnes i nodi dyddiad gwahanol",
+      "yesIba": "Do, fe wnes i nodi'r dyddiad sydd yng nghornel dde uchaf fy Hysbysiad o Benderfyniad Adolygiad",
+      "no": "Na, fe wnes i nodi dyddiad gwahanol",
       "error": {
         "required": "Nid ydych wedi ateb y cwestiwn. Dewiswch naill ai Do neu Na"
       }

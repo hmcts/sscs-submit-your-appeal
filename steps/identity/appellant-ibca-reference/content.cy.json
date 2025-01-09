@@ -1,19 +1,19 @@
 {
-    "titleHead": "Enter IBCA Reference number",
-    "title": "Enter your IBCA Reference number",
-    "subtitle": "You can find your IBCA Reference number on your Review Decision Notice.",
+    "titleHead": "Nodwch eich cyfeirnod IBCA",
+    "title": "Nodwch eich cyfeirnod IBCA",
+    "subtitle": "Gallwch ddod o hyd i’ch cyfeirnod IBCA ar eich Hysbysiad o Benderfyniad Adolygiad.",
     "fields": {
       "ibcaReference": {
-      "title": "IBCA Reference number",
+      "title": "Cyfeirnod IBCA",
       "error": {
-          "required": "An IBCA reference is required to update this case. Please refer to your Review Decision Notice.",
-          "invalid": "The IBCA reference you entered is invalid. Please refer to your Review Decision Notice."
+          "required": "Mae angen cyfeirnod IBCA i ddiweddaru’r achos hwn. Cyfeiriwch at eich Hysbysiad o Benderfyniad Adolygiad.",
+          "invalid": "Mae’r cyfeirnod IBCA a nodwyd gennych yn annilys. Cyfeiriwch at eich Hysbysiad o Benderfyniad Adolygiad."
       }
     }
     },
     "cya": {
       "ibcaReference": {
-        "question": "IBCA Reference"
+        "question": "Cyfeirnod IBCA"
       }
     }
   }

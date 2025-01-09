@@ -46,4 +46,12 @@ withPipeline("nodejs", product, component) {
   afterAlways("functionalTest:preview") {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/**/*.png'
   }
+
+  afterAlways("smoketest:aat") {
+  steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/**/*.png'
+}
+
+afterAlways("functionalTest:aat") {
+  steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/**/*.png'
+}
 }

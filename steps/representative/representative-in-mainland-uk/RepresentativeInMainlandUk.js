@@ -27,7 +27,7 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
   get form() {
     return form({
       inMainlandUk: text.joi(
-        this.content.fields.inMainlandUk.error.required,
+        this.content.fields.inMainlandUk.errors.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });

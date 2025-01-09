@@ -8,7 +8,7 @@ const generateValidNINumber = () => {
   const digits = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
 
   const validLastLetters = ['A', 'B', 'C', 'D'];
-  
+
   const lastLetter = validLastLetters[Math.floor(Math.random() * validLastLetters.length)];
 
   // Combine parts into a valid NI number

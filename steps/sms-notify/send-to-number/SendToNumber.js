@@ -12,13 +12,17 @@ class SendToNumber extends SaveToDraftStore {
   }
 
   get phoneNumber() {
-    return this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
+    return this.fields.inMainlandUk.value === 'no' ?
+      this.fields.internationalPhoneNumber.value :
+      this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
   }
 
   get form() {
     return form({
       phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
+      internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
       appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
+      inMainlandUk: text.ref(this.journey.steps.AppellantInMainlandUk, 'inMainlandUk'),
       useSameNumber: text.joi(
         this.content.fields.useSameNumber.error.required,
         Joi.string().required()
