@@ -282,8 +282,10 @@ const configureGlobalVariables = (app, njk) => {
   app.use((req, res, next) => {
     if (isIba(req)) {
       njk.env.addGlobal('isIba', true);
+      njk.env.addGlobal('gtmAccountId', 'GTM-KZ33DQ42');
     } else {
       njk.env.addGlobal('isIba', false);
+      njk.env.addGlobal('gtmAccountId', 'GTM-T56C5T7');
     }
     next();
   });
