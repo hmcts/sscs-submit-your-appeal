@@ -18,7 +18,8 @@ After(({ I }) => {
 Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @functional`, async({ I }) => {
   await moment().locale(language);
   await I.enterDetailsFromStartToDraftAppeals(commonContent, language, process.env.USEREMAIL_1);
-  await I.waitForElement('.form-buttons-group [href="/new-appeal"]', 90);
+  await I.waitForElement('.form-buttons-group [href="/new-appeal"]', 30);
+  await I.waitForText('What language do you want us to use when we contact you?', 90);
   await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#doYouWantTextMsgReminders-no');
   await I.checkOptionAndContinueAfterSignIn(commonContent, '#hasRepresentative-no');
