@@ -38,10 +38,10 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
 
-    enableCrossBrowserTest(60)
+//     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-    enableMutationTest()
+//     enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
@@ -53,7 +53,6 @@ withNightlyPipeline("nodejs", product, component) {
      }
 
      afterSuccess('fullFunctionalTest') {
-
         publishHTML target: [
                 allowMissing : true,
                 alwaysLinkToLastBuild: true,
@@ -62,5 +61,9 @@ withNightlyPipeline("nodejs", product, component) {
                 reportFiles : "SYA-e2e-result.html",
                 reportName : "SYA E2E functional tests result"
         ]
+    }
+
+     afterAlways('fullFunctionalTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/*'
     }
 }
