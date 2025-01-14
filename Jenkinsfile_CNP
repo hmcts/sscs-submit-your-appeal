@@ -1,57 +1,66 @@
 #!groovy
-properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
-         pipelineTriggers([[$class: 'GitHubPushTrigger']])]
-)
+
+properties([
+        pipelineTriggers([cron('H 08 * * 1-5')]),
+        parameters([
+                string(name: 'URL_TO_TEST', defaultValue: 'https://benefit-appeal.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
+                string(name: 'IDAM_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The IDAM URL where test accounts get created'),
+                string(name: 'TRIBUNALS_CASE_API_URL', defaultValue: 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal', description: 'The Tribunal api to view the cases'),
+                string(name: 'SecurityRules',
+                 defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
+                 description: 'The URL you want to run these tests against'),
+        ])
+])
 
 @Library("Infrastructure")
 
-def product = "sscs"
-def component = "tribunals-frontend"
+def product = "sscs-tribunals"
+def component = "frontend"
+def secrets = [
+        'sscs-${env}': [
+                secret('idam-sscs-oauth2-client-secret', 'SERVICES_IDAM_SECRET'),
+                secret('postcode-lookup-token', 'POSTCODE_LOOKUP_TOKEN'),
+                secret('pcq-token-key', 'SERVICE_TOKEN_KEY')
+        ]
+]
 
-def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [ $class: 'AzureKeyVaultSecret',
+      secretType: 'Secret',
+      name: secretName,
+      version: '',
+      envVariable: envVar
+    ]
+}
 
-def branchesToSync = ['demo', 'ithc', 'perftest']
+withNightlyPipeline("nodejs", product, component) {
+    loadVaultSecrets(secrets)
+    env.TEST_URL = params.URL_TO_TEST
+    env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
 
-withPipeline("nodejs", product, component) {
+    enableCrossBrowserTest(60)
+//     enableFortifyScan('sscs-aat')
+    enableFullFunctionalTest(120)
+    enableMutationTest()
 
-  afterSuccess('build') {
-    yarnBuilder.yarn('build')
-  }
+//     afterSuccess('fortify-scan') {
+//         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+//     }
 
-  enableAksStagingDeployment()
-  disableLegacyDeployment()
-  syncBranchesWithMaster(branchesToSync)
+    afterSuccess('crossBrowserTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        enableSlackNotifications('#sscs-tech')
+     }
 
-  afterSuccess('akschartsinstall'){
-    onMaster {
-      // Vars needed for AKS testing in path to live
-      env.CHUNKS = 4
+     afterSuccess('fullFunctionalTest') {
+
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "output",
+                reportFiles : "SYA-e2e-result.html",
+                reportName : "SYA E2E functional tests result"
+        ]
     }
-  }
-
-  afterSuccess("smoketest:preview") {
-      stage('Application URLs') {
-          def AppDevUrl = env.TEST_URL.replace("https", "http")
-          AppDevUrl = AppDevUrl.replace("-staging.", ".")
-          println "Application URL: " + AppDevUrl
-          println "Healthcheck URL: " + AppDevUrl + "/health"
-          println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
-      }
-  }
-  afterAlways("smoketest:preview") {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/**/*.png'
-  }
-
-  afterAlways("functionalTest:preview") {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/**/*.png'
-  }
-
-  afterAlways("smoketest:aat") {
-  steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/**/*.png'
-}
-
-afterAlways("functionalTest:aat") {
-  steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/**/*.png'
-}
 }
