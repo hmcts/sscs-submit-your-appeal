@@ -64,6 +64,6 @@ withNightlyPipeline("nodejs", product, component) {
     }
 
      afterAlways('fullFunctionalTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/*'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
     }
 }
