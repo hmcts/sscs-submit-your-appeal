@@ -75,8 +75,9 @@ class DateUtils {
     return moment().isSameOrAfter(date, 'day');
   }
 
-  static mrnDateSameAsImage(date) {
-    const imageDate = this.createMoment(mrnDateImage.day, mrnDateImage.month, mrnDateImage.year);
+  static mrnDateSameAsImage(date, isIbaDate) {
+    const dateObject = isIbaDate ? mrnDateImage.rdnDate : mrnDateImage.mrnDate;
+    const imageDate = this.createMoment(dateObject.day, dateObject.month, dateObject.year);
     return imageDate.isSame(date);
   }
 
