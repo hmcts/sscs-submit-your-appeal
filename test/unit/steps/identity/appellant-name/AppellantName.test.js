@@ -33,7 +33,16 @@ describe('AppellantName.js', () => {
       fields = appellantName.form.fields;
     });
 
-    it('should contain 3 fields', () => {
+    it('should contain 2 fields if ibca', () => {
+      appellantName.req.hostname = 'some-iba-hostname';
+      fields = appellantName.form.fields;
+      expect(Object.keys(fields).length).to.equal(2);
+      expect(fields).to.have.all.keys('firstName', 'lastName');
+    });
+
+    it('should contain 3 fields if non ibca', () => {
+      appellantName.req.hostname = 'some-hostname';
+      fields = appellantName.form.fields;
       expect(Object.keys(fields).length).to.equal(3);
       expect(fields).to.have.all.keys('title', 'firstName', 'lastName');
     });
@@ -128,6 +137,38 @@ describe('AppellantName.js', () => {
     });
   });
 
+  describe('answers() appellant full name with IBC case', () => {
+    beforeEach(() => {
+      appellantName.req.hostname = 'some-iba-hostname';
+      appellantName.fields = {
+        title: {
+          value: 'mr'
+        },
+        firstName: {
+          value: 'harry'
+        },
+        lastName: {
+          value: 'pOttEr'
+        }
+      };
+    });
+
+    it('should normalise appellant full name in the answers()', () => {
+      const answers = appellantName.answers();
+      expect(answers[0].answer).to.equal('harry pOttEr');
+    });
+
+    it('should normalise appellant full name in the values()', () => {
+      const values = appellantName.values();
+      expect(values).to.eql({
+        appellant: {
+          title: '',
+          firstName: 'harry',
+          lastName: 'pOttEr'
+        }
+      });
+    });
+  });
 
   describe('answers() appellant full name with apostrophe', () => {
     const NAME = 'Miss,Sarah,O`Brian';
