@@ -98,6 +98,6 @@
     <p class="govuk-body">{{ content.toImprove.para1 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.preperation.title }}</h2>
-    <p class="govuk-body">{{ content.preperation.para1 }}</p>
-    <p class="govuk-body">{{ content.preperation.para2 }}</p>
+    <p class="govuk-body">{{ content.preperation["para1" + suffix] }}</p>
+    <p class="govuk-body">{{ content.preperation["para2" + suffix] }}</p>
 {% endblock %}
