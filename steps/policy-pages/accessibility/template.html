@@ -1,11 +1,52 @@
 {% extends "components/globals.html" %}
 {% extends "layouts/question.html" %}
 
-{% set title = content.accessibility.title | safe %}
+{% set title = content.accessibility["title" + suffix] %}
+
+{% set telephoneDetails %}
+    <div class="govuk-details__text">
+        {% if isIba %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone[suffix].Scotland.desc }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone[suffix].Scotland.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone[suffix].Scotland.availability }}</p>
+            <p class="govuk-body">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone[suffix].England.desc }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone[suffix].England.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone[suffix].England.availability }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone[suffix].Welsh.desc }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone[suffix].Welsh.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone[suffix].Welsh.availability }}</p>
+            <p class="govuk-body">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+        {% else %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone[suffix].England.desc }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone[suffix].England.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone[suffix].England.availability }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone[suffix].Scotland.desc }}</h3>
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone[suffix].Scotland.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone[suffix].Scotland.availability }}</p>
+            <p class="govuk-body">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+        {% endif %}
+    </div>
+{% endset %}
+
 
 {% block two_thirds %}
-    <h1 class="govuk-heading-l">{{ content.accessibility.title }}</h1>
-    <p class="govuk-body">{{ content.accessibility.description | safe }}</p>
+    <h1 class="govuk-heading-l">{{ content.accessibility["title" + suffix] }}</h1>
+    <p class="govuk-body">{{ content.accessibility["description" + suffix] | safe }}</p>
     <p class="govuk-body">{{ content.manages.managedBy }}</p>
     <ul class="govuk-list govuk-list--bullet">
         <li>{{ content.manages.ability1 }}</li>
@@ -26,38 +67,12 @@
 
     <h2 class="govuk-heading-m">{{ content.whatToDo.title }}</h2>
     <p class="govuk-body">{{ content.whatToDo.para1 | safe }}</p>
-    <div class="govuk-details__text">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.England.desc }}</h3>
-        <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.England.phone }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.England.availability }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">
-            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.England.charges }}</a>
-        </p>
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.Scotland.desc }}</h3>
-        <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.Scotland.phone }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.Scotland.availability }}</p>
-        <p class="govuk-body">
-            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.Scotland.charges }}</a>
-        </p>
-    </div>
+    {{ telephoneDetails | safe }}
     <p class="govuk-body govuk-!-margin-top-4">{{ content.whatToDo.para2 }}</p>
 
     <h2 id="using-data" class="govuk-heading-m">{{ content.reportingProblems.title }}</h2>
     <p class="govuk-body">{{ content.reportingProblems.para1 | safe }}</p>
-    <div class="govuk-details__text">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.England.desc }}</h3>
-        <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.England.phone }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.England.availability }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">
-            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.England.charges }}</a>
-        </p>
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.Scotland.desc }}</h3>
-        <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.Scotland.phone }}</p>
-        <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.Scotland.availability }}</p>
-        <p class="govuk-body">
-            <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.Scotland.charges }}</a>
-        </p>
-    </div>
+    {{ telephoneDetails | safe }}
     <br>
     <h2 class="govuk-heading-m">{{ content.enforcement.title }}</h2>
     <p class="govuk-body">{{ content.enforcement.para1 | safe }}</p>
