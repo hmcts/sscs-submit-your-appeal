@@ -117,6 +117,13 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.name.last.value = '  LastName ';
       expect(representativeDetails.CYAName).to.equal('LastName');
     });
+
+    it('should normalise reps full name without title', () => {
+      representativeDetails.fields.name.title.value = '';
+      representativeDetails.fields.name.first.value = 'Firstname';
+      representativeDetails.fields.name.last.value = 'Lastname';
+      expect(representativeDetails.CYAName).to.equal('Firstname Lastname');
+    });
   });
 
   describe('get CYAOrganisation()', () => {
@@ -363,6 +370,34 @@ describe('RepresentativeDetails.js', () => {
             postcodeAddress: '200000',
             phoneNumber: '0800109756',
             emailAddress: 'myemailaddress@sscs.com'
+          }
+        }
+      });
+    });
+
+    it('should contain a value object with no title', () => {
+      representativeDetails.fields.name.title.value = '';
+      representativeDetails.fields.name.first.value = 'harry';
+      representativeDetails.fields.name.last.value = 'potter';
+      representativeDetails.fields.postcodeLookup.value = undefined;
+      representativeDetails.fields.postcodeAddress.value = undefined;
+      const values = representativeDetails.values();
+      expect(values).to.eql({
+        representative: {
+          title: '',
+          firstName: 'harry',
+          lastName: 'potter',
+          organisation: '',
+          contactDetails: {
+            addressLine1: '',
+            addressLine2: '',
+            townCity: '',
+            county: '',
+            postCode: '',
+            postcodeLookup: '',
+            postcodeAddress: '',
+            phoneNumber: '',
+            emailAddress: ''
           }
         }
       });

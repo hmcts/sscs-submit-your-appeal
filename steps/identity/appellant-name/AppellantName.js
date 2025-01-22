@@ -77,14 +77,14 @@ class AppellantName extends SaveToDraftStore {
   }
 
   answers() {
-    const title = isIba(this.req) ? '' : `${this.fields.title.value} `;
+    const title = isIba(this.req) ? '' : this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
     return [
       answer(this, {
         question: this.content.cya.appellantName.question,
         section: sections.appellantDetails,
-        answer: decode(`${title}${first} ${last}`)
+        answer: decode(`${title} ${first} ${last}`.trim())
       })
     ];
   }
