@@ -14,11 +14,18 @@
     "ability4": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio meddalwedd adnabod llais",
     "ability5": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
     "managedByExtra1": "Rydym hefyd wedi sicrhau ein bod wedi defnyddio iaith syml ar y wefan.",
-    "managedByExtra2": " Mae gan <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>Ability Net</a>  gyngor ynghylch gwneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd."
+    "managedByExtra2": " Mae gan <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>Ability Net</a>  gyngor ynghylch gwneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd.",
+    "iba": {
+      "ability1": "",
+      "ability2": "",
+      "ability3": "",
+      "ability4": ""
+    }
   },
   "howAccessible": {
     "title": "Pa mor hygyrch yw'r wefan hon",
-    "para1": "Mae'r wefan wedi'i phrofi gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe F2.1, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Ac eithrio lle y nodir isod, mae'r holl faterion ac argymhellion gan y DAC wedi'u rhoi ar waith."
+    "para1": "Mae'r wefan wedi'i phrofi gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe F2.1, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Ac eithrio lle y nodir isod, mae'r holl faterion ac argymhellion gan y DAC wedi'u rhoi ar waith.",
+    "para1Iba": ""
   },
   "telephone" : {
     "charges": "Gwybodaeth am brisiau galwadau",
@@ -75,29 +82,42 @@
   },
   "compliance": {
     "title": "Statws cydymffurfiaeth",
-    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â'r <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'>Canllawiau Hygyrchedd Cynnwys Gwe fersiwn 2.1 safon AA.</a>"
+    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â'r <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'>Canllawiau Hygyrchedd Cynnwys Gwe fersiwn 2.1 safon AA.</a>",
+    "para1Iba": ""
   },
   "nonAccessible": {
     "title": "Cynnwys sydd ddim o fewn cwmpas y rheoliadau hygyrchedd",
     "para1": "Dogfennau PDF a dogfennau eraill",
     "para2": "Mae rhai o'n dogfennau PDF a Word yn hanfodol i'r gwasanaethau a ddarparwn. Er enghraifft, mae gennym PDFs gyda gwybodaeth am sut y gall defnyddwyr gael mynediad i'n gwasanaethau, a ffurflenni a gyhoeddir ar ffurf dogfennau Word.",
     "para3": "Nid yw'r rheoliadau hygyrchedd <a class='govuk-link' href='https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made'>yn ei gwneud yn ofynnol i ni ddiweddaru PDFs neu ddogfennau eraill a gyhoeddwyd cyn 23 Medi 2018</a> os nad ydynt yn hanfodol i ddarparu ein gwasanaethau.",
-    "para4": "Bydd unrhyw ddogfennau PDF neu Word newydd y byddwn yn eu cyhoeddi yn bodloni'r safonau hygyrchedd."
-  },
-  "contentNotInScope": {
-    "title": "Cynnwys sydd ddim o fewn cwmpas y rheoliadau hygyrchedd",
-    "subTitle": "Dogfennau PDF a dogfennau eraill",
-    "para1": "Mae'n bosib na fydd dogfennau PDF, dogfennau eraill ac atodiadau mewn negeseuon e-bost a gyhoeddwyd cyn 23 Medi 2018 yn cydymffurfio â'r safonau hygyrchedd. Er enghraifft, efallai nad ydynt wedi'u strwythuro fel eu bod yn hygyrch i raglen darllen sgrin."
+    "para4": "Bydd unrhyw ddogfennau PDF neu Word newydd y byddwn yn eu cyhoeddi yn bodloni'r safonau hygyrchedd.",
+    "iba": {
+      "title": "",
+      "description": "",
+      "subTitle": "",
+      "para1": "",
+      "para2": "",
+      "para3": "",
+      "para4": "",
+      "para5": "",
+      "para6": "",
+      "para7": "",
+      "para8": ""
+    }
   },
   "toImprove": {
     "title": "Beth rydym yn ei wneud i wella hygyrchedd",
-    "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi."
+    "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi.",
+    "iba": {
+      "para1": "",
+      "para2": ""
+    }
   },
   "preperation": {
     "title": "Paratoi'r datganiad hygyrchedd hwn",
     "para1": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i adolygwyd ddiwethaf ar 21 Mawrth 2022",
-    "para1Iba": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i adolygwyd ddiwethaf ar 20 Rhagfyr 2024.",
+    "para1Iba": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i adolygwyd ddiwethaf ar 21 Ionawr 2025.",
     "para2": "Profwyd y wefan hon ddiwethaf ar 28 Tachwedd 2019. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol (DAC). Cafodd y materion a godwyd gan y DAC eu datrys ym mis Mawrth 2021.",
-    "para2Iba": "Profwyd y wefan hon ddiwethaf ar 20 Rhagfyr 2024. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol (DAC). Cafodd y materion a godwyd gan y DAC eu datrys ym mis Mawrth 2021."
+    "para2Iba": ""
   }
 }

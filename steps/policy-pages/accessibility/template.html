@@ -49,11 +49,18 @@
     <p class="govuk-body">{{ content.accessibility["description" + suffix] | safe }}</p>
     <p class="govuk-body">{{ content.manages.managedBy }}</p>
     <ul class="govuk-list govuk-list--bullet">
-        <li>{{ content.manages.ability1 }}</li>
-        <li>{{ content.manages.ability2 }}</li>
-        <li>{{ content.manages.ability3 }}</li>
-        <li>{{ content.manages.ability4 }}</li>
-        <li>{{ content.manages.ability5 }}</li>
+        {% if isIba %}
+            <li>{{ content.manages.iba.ability1 }}</li>
+            <li>{{ content.manages.iba.ability2 }}</li>
+            <li>{{ content.manages.iba.ability3 }}</li>
+            <li>{{ content.manages.iba.ability4 }}</li>
+        {% else %}
+            <li>{{ content.manages.ability1 }}</li>
+            <li>{{ content.manages.ability2 }}</li>
+            <li>{{ content.manages.ability3 }}</li>
+            <li>{{ content.manages.ability4 }}</li>
+            <li>{{ content.manages.ability5 }}</li>
+        {% endif %}
     </ul>
     <p class="govuk-body">
         {{ content.manages.managedByExtra1 }}
@@ -63,7 +70,7 @@
     </p>
 
     <h2 class="govuk-heading-m">{{ content.howAccessible.title }}</h2>
-    <p class="govuk-body">{{ content.howAccessible.para1 }}</p>
+    <p class="govuk-body">{{ content.howAccessible["para1" + suffix] }}</p>
 
     <h2 class="govuk-heading-m">{{ content.whatToDo.title }}</h2>
     <p class="govuk-body">{{ content.whatToDo.para1 | safe }}</p>
@@ -74,19 +81,33 @@
     <p class="govuk-body">{{ content.reportingProblems.para1 | safe }}</p>
     {{ telephoneDetails | safe }}
     <br>
-    <h2 class="govuk-heading-m">{{ content.enforcement.title }}</h2>
-    <p class="govuk-body">{{ content.enforcement.para1 | safe }}</p>
-
     <h2 class="govuk-heading-m">{{ content.contactus.title }}</h2>
     <p class="govuk-body">{{ content.contactus.para1 }}</p>
     <p class="govuk-body">{{ content.contactus.para2 }}</p>
     <p class="govuk-body">{{ content.contactus.para3 }}</p>
 
+    <h2 class="govuk-heading-m">{{ content.enforcement.title }}</h2>
+    <p class="govuk-body">{{ content.enforcement.para1 | safe }}</p>
+
     <h2 class="govuk-heading-m">{{ content.technical.title }}</h2>
     <p class="govuk-body">{{ content.technical.para1 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.compliance.title }}</h2>
-    <p class="govuk-body">{{ content.compliance.para1 | safe }}</p>
+    <p class="govuk-body">{{ content.compliance["para1" + suffix] | safe }}</p>
+
+    {% if isIba %}
+        <h2 class="govuk-heading-m">{{ content.nonAccessible.iba.title }}</h2>
+        <p class="govuk-body">{{ content.nonAccessible.iba.description }}</p>
+        <p class="govuk-heading-s">{{ content.nonAccessible.iba.subTitle }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para1 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para2 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para3 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para4 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para5 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para6 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para7 }}</p>
+        <p class="govuk-body">{{ content.nonAccessible.iba.para8 }}</p>
+    {% endif %}
 
     <h2 class="govuk-heading-m">{{ content.nonAccessible.title }}</h2>
     <p class="govuk-heading-s">{{ content.nonAccessible.para1 }}</p>
@@ -95,7 +116,11 @@
     <p class="govuk-body">{{ content.nonAccessible.para4 }}</p>
 
     <h2 class="govuk-heading-m">{{ content.toImprove.title }}</h2>
-    <p class="govuk-body">{{ content.toImprove.para1 }}</p>
+    <p class="govuk-body">{{ content.toImprove["para1" + suffix] }}</p>
+    {% if isIba %}
+        <p class="govuk-body">{{ content.toImprove["para2" + suffix] }}</p>
+    {% endif %}
+
 
     <h2 class="govuk-heading-m">{{ content.preperation.title }}</h2>
     <p class="govuk-body">{{ content.preperation["para1" + suffix] }}</p>

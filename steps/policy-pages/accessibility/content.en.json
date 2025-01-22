@@ -14,11 +14,18 @@
     "ability4": "navigate most of the website using speech recognition software",
     "ability5": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
     "managedByExtra1": "We’ve also made the website text as simple as possible to understand.",
-    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability."
+    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability.",
+    "iba": {
+      "ability1": "change colours, contrast levels and fonts using browser or device settings",
+      "ability2": "zoom in up to 400% without the text spilling off the screen",
+      "ability3": "navigate most of the website using a keyboard or speech recognition software",
+      "ability4": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)"
+    }
   },
   "howAccessible": {
     "title": "How accessible this website is",
-    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines V2.1, using a combination of technical auditing and feedback from users with accessibility needs. Except where stated below, all issues and recommendations from DAC have been implemented."
+    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines V2.1, using a combination of technical auditing and feedback from users with accessibility needs. Except where stated below, all issues and recommendations from DAC have been implemented.",
+    "para1Iba": "We know some parts of this service are not accessible, and the issues are listed under Non-compliances. We plan to carry out further testing and address the issues as soon as we can."
   },
   "telephone" : {
     "charges": "Find out about call charges",
@@ -57,7 +64,7 @@
   },
   "reportingProblems": {
     "title": "Reporting accessibility problems with this website",
-    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\"> HMCTSforms@justice.gov.uk </a> or contact:"
+    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\"> HMCTSforms@justice.gov.uk </a> or phone:"
   },
   "enforcement": {
     "title": "Enforcement procedure",
@@ -74,30 +81,42 @@
     "para1": "HMCTS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018."
   },
   "compliance": {
-    "title": "Compliance status ",
-    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>."
+    "title": "Compliance status",
+    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>.",
+    "para1Iba": "The website is partially compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG22/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.2 AA standard</a>."
   },
   "nonAccessible": {
     "title": "Content that’s not within the scope of the accessibility regulations",
     "para1": "PDFs and other documents",
     "para2": "Some of our PDFs and Word documents are essential to providing our services. For example, we have PDFs with information on how users can access our services, and forms published as Word documents.",
     "para3": "The accessibility regulations <a class=\"govuk-link\" href=\"https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made\">do not require us to fix PDFs or other documents published before 23 September 2018</a> if they’re not essential to providing our services.",
-    "para4": "Any new PDFs or Word documents we publish will meet accessibility standards"
-  },
-  "contentNotInScope": {
-    "title": "Content that’s not within the scope of the accessibility regulations",
-    "subTitle": "PDFs and other documents",
-    "para1": "PDFs, documents and attachments to email notifications published before 23 September 2018 may not meet accessibility standards. For example, they may not be structured so they’re accessible to a screen reader."
+    "para4": "Any new PDFs or Word documents we publish will meet accessibility standards",
+    "iba": {
+      "title": "Non-accessible content",
+      "description": "The content listed below is non-accessible for the following reasons.",
+      "subTitle": "Non-compliance with the accessibility regulations",
+      "para1": "On some pages a user can tab to text elements, when they shouldn't be able to. This may cause confusion for keyboard users as they would expect tabbing to go only to interactive elements. This fails against WCAG 2.2 success criterion 1.3.2. (meaningful sequence).",
+      "para2": "On some pages, links are not unique, so screen reader users may have difficulty understanding the purpose of each link. This fails WCAG 2.2 success criterion 2.4.4 (link purpose).",
+      "para3": "Some web pages have multiple heading level 1’s, so people using a screen reader may be confused about the main content on the page. This fails WCAG 2.2 success criterion 2.4.6 (headings and labels).",
+      "para4": "Some web pages have missing heading levels, so some screen reader users may miss information on the page. This fails WCAG 2.2 success criterion 2.4.6 (headings and labels).",
+      "para5": "On some pages, there are missing or broken aria-labels, so labels may be communicated incorrectly to screen reader users. This fails WCAG 2.2 success criterion 2.4.6 (headings and labels).",
+      "para6": "On some webpages, the error message link does not move focus to the field where the error was made, so some users may lose where they are on the page. This fails WCAG 2.2 success criterion 3.2.2 (on input).",
+      "para7": "On some pages, there is no hint text to indicate a specific format for information to be entered, so some users may not understand what information they are required to provide. This fails WCAG 2.2 success criterion 3.3.2 (labels or instructions).",
+      "para8": "On some pages, the error message does not provide a link to the field where the error was made so, keyboard users may not be able to tab to the field directly from the error message. This fails WCAG 2.2 success criterion 3.3.3 (error identification)."
+    }
   },
   "toImprove": {
     "title": "What we’re doing to improve accessibility",
-    "para1": "This website is continually tested using accessibility software internally and externally. Any new features which are introduced are also tested."
+    "para1": "This website is continually tested using accessibility software internally and externally. Any new features which are introduced are also tested.",
+    "para1Iba": "We plan to fix the issues listed under non-compliances by 21 March 2025.",
+    "para2Iba": "We also plan to work with the internal HMCTS accessibility testing team to arrange a full WCAG 2.2 audit covering a wider range of assistive technologies in February 2025."
+
   },
   "preperation": {
     "title": "Preparation of this accessibility statement",
     "para1": "This statement was prepared on 30th September 2020 it was last reviewed 21st March 2022.",
-    "para1Iba": "This statement was prepared on 30th September 2020 it was last reviewed 20th December 2024.",
+    "para1Iba": "This statement was prepared on 30th September 2020 and it was last reviewed on 21 January 2025.",
     "para2": "This website was last tested on 28th November 2019. The test was carried out by the Digital Accessibility Centre (DAC) Issues raised by the DAC were resolved in March 2021.",
-    "para2Iba": "This website was last tested on 20th December 2024. The test was carried out by the Digital Accessibility Centre (DAC) Issues raised by the DAC were resolved in March 2021."
+    "para2Iba": "This website was last tested on 19th December 2024. The testing was carried out by the internal HMCTS accessibility testing team, who carried out a high-level review using Wave, Keyboard and Google Lighthouse."
   }
 }
