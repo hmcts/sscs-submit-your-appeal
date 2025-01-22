@@ -49,16 +49,11 @@
     <p class="govuk-body">{{ content.accessibility["description" + suffix] | safe }}</p>
     <p class="govuk-body">{{ content.manages.managedBy }}</p>
     <ul class="govuk-list govuk-list--bullet">
-        {% if isIba %}
-            <li>{{ content.manages.iba.ability1 }}</li>
-            <li>{{ content.manages.iba.ability2 }}</li>
-            <li>{{ content.manages.iba.ability3 }}</li>
-            <li>{{ content.manages.iba.ability4 }}</li>
-        {% else %}
-            <li>{{ content.manages.ability1 }}</li>
-            <li>{{ content.manages.ability2 }}</li>
-            <li>{{ content.manages.ability3 }}</li>
-            <li>{{ content.manages.ability4 }}</li>
+        <li>{{ content.manages["ability1" + suffix] }}</li>
+        <li>{{ content.manages["ability2" + suffix] }}</li>
+        <li>{{ content.manages["ability3" + suffix] }}</li>
+        <li>{{ content.manages["ability4" + suffix] }}</li>
+        {% if not isIba %}
             <li>{{ content.manages.ability5 }}</li>
         {% endif %}
     </ul>

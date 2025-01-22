@@ -13,14 +13,12 @@
     "ability3": "navigate most of the website using just a keyboard",
     "ability4": "navigate most of the website using speech recognition software",
     "ability5": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
+    "ability1Iba": "change colours, contrast levels and fonts using browser or device settings",
+    "ability2Iba": "zoom in up to 400% without the text spilling off the screen",
+    "ability3Iba": "navigate most of the website using a keyboard or speech recognition software",
+    "ability4Iba": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
     "managedByExtra1": "We’ve also made the website text as simple as possible to understand.",
-    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability.",
-    "iba": {
-      "ability1": "change colours, contrast levels and fonts using browser or device settings",
-      "ability2": "zoom in up to 400% without the text spilling off the screen",
-      "ability3": "navigate most of the website using a keyboard or speech recognition software",
-      "ability4": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)"
-    }
+    "managedByExtra2": "<a class=\"govuk-link\" target=\"_blank\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability."
   },
   "howAccessible": {
     "title": "How accessible this website is",

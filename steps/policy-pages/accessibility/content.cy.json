@@ -13,14 +13,12 @@
     "ability3": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd yn unig",
     "ability4": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio meddalwedd adnabod llais",
     "ability5": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
+    "ability1Iba": "",
+    "ability2Iba": "",
+    "ability3Iba": "",
+    "ability4Iba": "",
     "managedByExtra1": "Rydym hefyd wedi sicrhau ein bod wedi defnyddio iaith syml ar y wefan.",
-    "managedByExtra2": " Mae gan <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>Ability Net</a>  gyngor ynghylch gwneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd.",
-    "iba": {
-      "ability1": "",
-      "ability2": "",
-      "ability3": "",
-      "ability4": ""
-    }
+    "managedByExtra2": " Mae gan <a class='govuk-link' target='_blank' href='https://mcmw.abilitynet.org.uk/'>Ability Net</a>  gyngor ynghylch gwneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd."
   },
   "howAccessible": {
     "title": "Pa mor hygyrch yw'r wefan hon",
