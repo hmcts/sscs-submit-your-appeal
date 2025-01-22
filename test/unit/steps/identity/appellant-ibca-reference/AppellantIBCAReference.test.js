@@ -87,7 +87,7 @@ describe('AppellantIBCAReference.js', () => {
   });
 
   describe('answers() and values() methods', () => {
-    const ibcaReferenceNo = '343545434234';
+    const ibcaReferenceNo = 'e12t34';
     const question = 'IBCA Reference';
 
     beforeEach(() => {
@@ -110,12 +110,12 @@ describe('AppellantIBCAReference.js', () => {
       const answers = appellantIbcaReference.answers();
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal(ibcaReferenceNo);
+      expect(answers[0].answer).to.equal('E12T34');
     });
 
     it('should contain value as IBCA Ref', () => {
       const values = appellantIbcaReference.values();
-      expect(values).to.eql({ appellant: { ibcaReference: ibcaReferenceNo } });
+      expect(values).to.eql({ appellant: { ibcaReference: 'E12T34' } });
     });
   });
 
