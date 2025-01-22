@@ -9,21 +9,16 @@ const paths = require('paths');
 const userAnswer = require('utils/answer');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
-const { isIba } = require('utils/benefitTypeUtils');
 
 class TheHearing extends SaveToDraftStore {
   static get path() {
     return paths.hearing.theHearing;
   }
 
-  get suffix() {
-    return isIba(this.req) ? 'Iba' : '';
-  }
-
   get form() {
     return form({
       attendHearing: text.joi(
-        this.content.fields.attendHearing.error[`required${this.suffix}`],
+        this.content.fields.attendHearing.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -34,9 +29,9 @@ class TheHearing extends SaveToDraftStore {
 
     return [
       answer(this, {
-        question: this.content.cya.attendHearing[`question${this.suffix}`],
+        question: this.content.cya.attendHearing.question,
         section: sections.theHearing,
-        answer: titleise(content.cya.attendHearing[`${this.fields.attendHearing.value}${this.suffix}`])
+        answer: titleise(content.cya.attendHearing[this.fields.attendHearing.value])
       })
     ];
   }
