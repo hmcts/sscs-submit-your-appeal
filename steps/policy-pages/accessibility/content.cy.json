@@ -106,10 +106,8 @@
   "toImprove": {
     "title": "Beth rydym yn ei wneud i wella hygyrchedd",
     "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi.",
-    "iba": {
-      "para1": "",
-      "para2": ""
-    }
+    "para1Iba": "",
+    "para2Iba": ""
   },
   "preperation": {
     "title": "Paratoi'r datganiad hygyrchedd hwn",
