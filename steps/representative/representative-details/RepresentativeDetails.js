@@ -1,8 +1,8 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const {goTo} = require('@hmcts/one-per-page');
+const {text, object} = require('@hmcts/one-per-page/forms');
+const {answer} = require('@hmcts/one-per-page/checkYourAnswers');
+const {errorFor} = require('@hmcts/one-per-page/src/forms/validator');
+const {SaveToDraftStore} = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,
@@ -23,10 +23,10 @@ const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
-const { decode } = require('utils/stringUtils');
+const {decode} = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
-const { isIba } = require('utils/benefitTypeUtils');
+const {isIba} = require('utils/benefitTypeUtils');
 
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
@@ -71,40 +71,39 @@ class RepresentativeDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
 
-    const nameValidator = object({
-      title: text,
-      first: text,
-      last: text,
-      organisation: text
-    }).check(
-      fields.name.error.required,
-      value => Object.keys(value).length > 0
-    ).check(
-      fields.name.error.titleNoName,
-      value => hasTitleButNoNameValidation(value)
-    ).check(
-      errorFor('first', fields.name.first.error.invalid),
-      value => joiValidation(value.first, Joi.string().trim().regex(firstName))
-    ).check(
-      errorFor('last', fields.name.last.error.invalid),
-      value => joiValidation(value.last, Joi.string().trim().regex(lastName))
-    ).check(
-      errorFor('organisation', fields.name.organisation.error.invalid),
-      value => joiValidation(value.organisation, Joi.string().regex(whitelist))
-    ).check(
-      fields.name.error.nameNoTitle,
-      value => isIba(this.req) || hasNameButNoTitleValidation(value)
-    ).check(
-      errorFor('title', fields.name.title.error.invalid),
-      value => isIba(this.req) || joiValidation(value.title, Joi.string().trim().regex(title))
-    );
     return this.pcl.schemaBuilder([
       {
         name: 'name',
-        validator: nameValidator
+        validator: object({
+          title: text,
+          first: text,
+          last: text,
+          organisation: text
+        }).check(
+          fields.name.error.required,
+          value => Object.keys(value).length > 0
+        ).check(
+          fields.name.error.nameNoTitle,
+          value => isIba(this.req) || hasNameButNoTitleValidation(value)
+        ).check(
+          fields.name.error.titleNoName,
+          value => hasTitleButNoNameValidation(value)
+        ).check(
+          errorFor('title', fields.name.title.error.invalid),
+          value => isIba(this.req) || joiValidation(value.title, Joi.string().trim().regex(title))
+        ).check(
+          errorFor('first', fields.name.first.error.invalid),
+          value => joiValidation(value.first, Joi.string().trim().regex(firstName))
+        ).check(
+          errorFor('last', fields.name.last.error.invalid),
+          value => joiValidation(value.last, Joi.string().trim().regex(lastName))
+        ).check(
+          errorFor('organisation', fields.name.organisation.error.invalid),
+          value => joiValidation(value.organisation, Joi.string().regex(whitelist))
+        )
       },
-      { name: this.pcl.fieldMap.postcodeLookup },
-      { name: this.pcl.fieldMap.postcodeAddress },
+      {name: this.pcl.fieldMap.postcodeLookup},
+      {name: this.pcl.fieldMap.postcodeAddress},
       {
         name: this.pcl.fieldMap.line1,
         validator: text.joi(
