@@ -1,8 +1,8 @@
-const {goTo} = require('@hmcts/one-per-page');
-const {text, object} = require('@hmcts/one-per-page/forms');
-const {answer} = require('@hmcts/one-per-page/checkYourAnswers');
-const {errorFor} = require('@hmcts/one-per-page/src/forms/validator');
-const {SaveToDraftStore} = require('middleware/draftAppealStoreMiddleware');
+const { goTo } = require('@hmcts/one-per-page');
+const { text, object } = require('@hmcts/one-per-page/forms');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const {
   postCode,
@@ -23,10 +23,10 @@ const Joi = require('joi');
 const paths = require('paths');
 const emailOptions = require('utils/emailOptions');
 const userAnswer = require('utils/answer');
-const {decode} = require('utils/stringUtils');
+const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
-const {isIba} = require("utils/benefitTypeUtils");
+const { isIba } = require('utils/benefitTypeUtils');
 
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
@@ -71,7 +71,7 @@ class RepresentativeDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
 
-    let nameValidator = object({
+    const nameValidator = object({
       title: text,
       first: text,
       last: text,
@@ -103,8 +103,8 @@ class RepresentativeDetails extends SaveToDraftStore {
         name: 'name',
         validator: nameValidator
       },
-      {name: this.pcl.fieldMap.postcodeLookup},
-      {name: this.pcl.fieldMap.postcodeAddress},
+      { name: this.pcl.fieldMap.postcodeLookup },
+      { name: this.pcl.fieldMap.postcodeAddress },
       {
         name: this.pcl.fieldMap.line1,
         validator: text.joi(
