@@ -136,7 +136,7 @@ describe('HearingOptions.js', () => {
           telephone: '07325561123',
           hearingTypeVideo: false,
           email: null,
-          hearingTypeInPerson: false
+          hearingTypeFaceToFace: false
         }
       } });
     });
@@ -152,7 +152,7 @@ describe('HearingOptions.js', () => {
           telephone: null,
           hearingTypeVideo: true,
           email: 'jey@gmail.com',
-          hearingTypeInPerson: false
+          hearingTypeFaceToFace: false
         }
       } });
     });
@@ -167,7 +167,7 @@ describe('HearingOptions.js', () => {
           telephone: null,
           hearingTypeVideo: false,
           email: null,
-          hearingTypeInPerson: true
+          hearingTypeFaceToFace: true
         }
       } });
     });
