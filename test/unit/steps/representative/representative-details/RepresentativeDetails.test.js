@@ -73,13 +73,11 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.name.last.value = '';
     });
 
-    beforeEach(() => {
-      it('should normalise reps full name with hyphen and apostrophe', () => {
-        representativeDetails.fields.name.title.value = NAME.split(',')[0];
-        representativeDetails.fields.name.first.value = NAME.split(',')[1];
-        representativeDetails.fields.name.last.value = NAME.split(',')[2];
-        expect(representativeDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
-      });
+    it('should normalise reps full name with hyphen and apostrophe', () => {
+      representativeDetails.fields.name.title.value = NAME.split(',')[0];
+      representativeDetails.fields.name.first.value = NAME.split(',')[1];
+      representativeDetails.fields.name.last.value = NAME.split(',')[2];
+      expect(representativeDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
     });
 
     it('should return Not Provided if firstName or lastName has not been set', () => {
@@ -159,6 +157,99 @@ describe('RepresentativeDetails.js', () => {
     });
   });
 
+  describe('form validations', () => {
+    describe('nameRequiredValidation', () => {
+      it('true if all fields present', () => {
+        const value = { title: 'Mr', first: 'John', last: 'Doe', organisation: 'Org' };
+        expect(representativeDetails.nameRequiredValidation(value)).to.equal(true);
+      });
+
+      it('true if one field present', () => {
+        expect(representativeDetails.nameRequiredValidation({ title: 'Mr' })).to.equal(true);
+        expect(representativeDetails.nameRequiredValidation({ first: 'Mr' })).to.equal(true);
+        expect(representativeDetails.nameRequiredValidation({ last: 'Mr' })).to.equal(true);
+        expect(representativeDetails.nameRequiredValidation({ organisation: 'Mr' })).to.equal(true);
+      });
+
+      it('false if fields empty', () => {
+        expect(representativeDetails.nameRequiredValidation({})).to.equal(false);
+      });
+    });
+
+    describe('nameNoTitleValidation', () => {
+      it('true if IBC', () => {
+        representativeDetails.req.hostname = 'some-iba-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ first: 'Mr' })).to.equal(true);
+      });
+
+      it('true if hasNameButNoTitleValidation is true', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ title: 'Mr', first: 'first' })).to.equal(true);
+      });
+
+      it('false if non IBC and hasNameButNoTitleValidation is false', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ first: 'first' })).to.equal(false);
+      });
+    });
+
+    describe('titleNoNameValidation', () => {
+      it('true if hasNameButNoTitleValidation is true', () => {
+        expect(representativeDetails.titleNoNameValidation({ title: 'Mr', first: 'first' })).to.equal(true);
+      });
+
+      it('false if hasNameButNoTitleValidation is false', () => {
+        expect(representativeDetails.titleNoNameValidation({ title: 'Mr' })).to.equal(false);
+      });
+    });
+
+    describe('titleValidation', () => {
+      it('true if IBC', () => {
+        representativeDetails.req.hostname = 'some-iba-hostname';
+        expect(representativeDetails.titleValidation({ title: null })).to.equal(true);
+      });
+
+      it('true if titleValidation is true', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.titleValidation({ title: 'Mr' })).to.equal(true);
+      });
+
+      it('false if non IBC and titleValidation is false', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.titleValidation({ title: '!!!' })).to.equal(false);
+      });
+    });
+
+    describe('firstValidation', () => {
+      it('true if firstValidation is true', () => {
+        expect(representativeDetails.firstValidation({ first: 'first' })).to.equal(true);
+      });
+
+      it('false if firstValidation is false', () => {
+        expect(representativeDetails.firstValidation({ first: '!!!' })).to.equal(false);
+      });
+    });
+
+    describe('lastValidation', () => {
+      it('true if lastValidation is true', () => {
+        expect(representativeDetails.lastValidation({ last: 'first' })).to.equal(true);
+      });
+
+      it('false if lastValidation is false', () => {
+        expect(representativeDetails.lastValidation({ last: '!!!' })).to.equal(false);
+      });
+    });
+
+    describe('orgValidation', () => {
+      it('true if orgValidation is true', () => {
+        expect(representativeDetails.orgValidation({ organisation: 'first' })).to.equal(true);
+      });
+
+      it('false if orgValidation is false', () => {
+        expect(representativeDetails.orgValidation({ organisation: '!@£$%^&*()¡€#¢∞§¶•ªº' })).to.equal(false);
+      });
+    });
+  });
   describe('get form()', () => {
     let fields = null;
     let field = null;

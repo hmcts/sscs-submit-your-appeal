@@ -68,6 +68,28 @@ class RepresentativeDetails extends SaveToDraftStore {
     return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
   }
 
+  nameRequiredValidation(value) {
+    return Object.keys(value).length > 0;
+  }
+  nameNoTitleValidation(value) {
+    return isIba(this.req) || hasNameButNoTitleValidation(value);
+  }
+  titleNoNameValidation(value) {
+    return hasTitleButNoNameValidation(value);
+  }
+  titleValidation(value) {
+    return isIba(this.req) || joiValidation(value.title, Joi.string().trim().regex(title));
+  }
+  firstValidation(value) {
+    return joiValidation(value.first, Joi.string().trim().regex(firstName));
+  }
+  lastValidation(value) {
+    return joiValidation(value.last, Joi.string().trim().regex(lastName));
+  }
+  orgValidation(value) {
+    return joiValidation(value.organisation, Joi.string().regex(whitelist));
+  }
+
   get form() {
     const fields = this.content.fields;
 
@@ -81,25 +103,25 @@ class RepresentativeDetails extends SaveToDraftStore {
           organisation: text
         }).check(
           fields.name.error.required,
-          value => Object.keys(value).length > 0
+          this.nameRequiredValidation
         ).check(
           fields.name.error.nameNoTitle,
-          value => isIba(this.req) || hasNameButNoTitleValidation(value)
+          this.nameNoTitleValidation
         ).check(
           fields.name.error.titleNoName,
-          value => hasTitleButNoNameValidation(value)
+          this.titleNoNameValidation
         ).check(
           errorFor('title', fields.name.title.error.invalid),
-          value => isIba(this.req) || joiValidation(value.title, Joi.string().trim().regex(title))
+          this.titleValidation
         ).check(
           errorFor('first', fields.name.first.error.invalid),
-          value => joiValidation(value.first, Joi.string().trim().regex(firstName))
+          this.firstValidation
         ).check(
           errorFor('last', fields.name.last.error.invalid),
-          value => joiValidation(value.last, Joi.string().trim().regex(lastName))
+          this.lastValidation
         ).check(
           errorFor('organisation', fields.name.organisation.error.invalid),
-          value => joiValidation(value.organisation, Joi.string().regex(whitelist))
+          this.orgValidation
         )
       },
       { name: this.pcl.fieldMap.postcodeLookup },
