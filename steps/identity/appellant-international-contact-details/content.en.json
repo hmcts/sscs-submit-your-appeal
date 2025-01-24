@@ -38,6 +38,7 @@
     },
     "portOfEntry": {
       "title": "Port of entry",
+      "hint": "This is where you will expect to enter GB mainland by air/sea/train. You can change this at a later date if needed.",
       "error": {
         "required": "Select your port of entry into the UK",
         "invalid": "The port of entry is invalid"
