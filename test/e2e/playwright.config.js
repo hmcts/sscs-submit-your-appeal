@@ -22,7 +22,7 @@ module.exports = {
     timeout: 10 * 1000
   },
   timeout: 90000,
-  workers: testChunks, // Parallel chunks
+  workers: parseInt(testChunks), // Parallel chunks
   retries: 5, // Set retries as per requirement
   fullyParallel: true,
   reporter: [
