@@ -1,29 +1,28 @@
-/* eslint-disable no-process-env */
-
-
+// test/e2e/e2e-sya/e2e.en.cbtest.js
+const { test } = require('@playwright/test');
 const content = require('commonContent');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { enterDetailsFromStartToNINO } = require('../page-objects/cya/checkYourAppeal');
+const { endTheSession } = require('../page-objects/session/endSession');
 
-Feature('Crossbrowser - PIP E2E SYA - Full Journey @crossbrowser');
+test.describe('Crossbrowser - PIP E2E SYA - Full Journey', { tag: '@crossbrowser' }, () => {
+  test('English - PIP E2E SYA Journey', async({ page }) => {
+    const commonContent = content.en;
+    const language = 'en';
 
-Scenario('English - PIP E2E SYA Journey', ({ I }) => {
-  const commonContent = content.en;
-  const language = 'en';
+    await createTheSession(page, language);
+    await page.waitForTimeout(1000);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await endTheSession(page);
+  });
 
-  I.createTheSession(language);
+  test('Welsh - PIP E2E SYA Journey', async({ page }) => {
+    const commonContent = content.cy;
+    const language = 'cy';
 
-  I.wait(1);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.endTheSession();
-}).retry(8);
-
-
-Scenario('Welsh - PIP E2E SYA Journey', ({ I }) => {
-  const commonContent = content.cy;
-  const language = 'cy';
-
-  I.createTheSession(language);
-
-  I.wait(1);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.endTheSession();
-}).retry(8);
+    await createTheSession(page, language);
+    await page.waitForTimeout(1000);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await endTheSession(page);
+  });
+});

@@ -1,12 +1,12 @@
 const stillCanAppealContentEn = require('steps/compliance/still-can-appeal/content.en');
 const stillCanAppealContentCy = require('steps/compliance/still-can-appeal/content.cy');
+const { expect } = require('@playwright/test');
 
-function continueFromStillCanAppeal(language) {
-  const I = this;
+async function continueFromStillCanAppeal(I, language) {
   const stillCanAppealContent = language === 'en' ? stillCanAppealContentEn : stillCanAppealContentCy;
 
-  I.waitForText(stillCanAppealContent.title);
-  I.click(stillCanAppealContent.continueButton);
+  await expect(I.getByText(stillCanAppealContent.title).first()).toBeVisible();
+  await I.getByText(stillCanAppealContent.continueButton).first().click();
 }
 
 module.exports = { continueFromStillCanAppeal };

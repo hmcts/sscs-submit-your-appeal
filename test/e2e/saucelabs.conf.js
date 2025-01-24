@@ -1,121 +1,86 @@
+// playwright.config.js
 /* eslint-disable no-process-env */
-
 const config = require('config');
-const fileAcceptor = require('test/file_acceptor');
 const supportedBrowsers = require('./crossbrowser/supportedBrowsers.js');
-const logger = require('logger');
 
-const logPath = 'saucelabs.conf.js';
-const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
 const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
 const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
-const browser = process.env.BROWSER_GROUP || 'chromium';
+const sauceUsername = process.env.SAUCE_USERNAME || config.get('saucelabs.username');
+const sauceAccessKey = process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key');
+const testUrl = process.env.TEST_URL || config.get('e2e.frontendUrl');
+const outputDir = config.get('saucelabs.outputDir');
 
-const defaultSauceOptions = {
-  username: process.env.SAUCE_USERNAME || config.get('saucelabs.username'),
-  accessKey: process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key'),
-  acceptSslCerts: true,
-  tags: ['SSCS']
-};
+// Generate Playwright projects from supported browsers
+const generateProjects = browserGroup => {
+  const projects = [];
+  for (const browserName in supportedBrowsers[browserGroup]) {
+    if (browserName) {
+      const capabilities = supportedBrowsers[browserGroup][browserName];
 
-function merge(intoObject, fromObject) {
-  return Object.assign({}, intoObject, fromObject);
-}
-
-function getBrowserConfig(browserGroup) {
-  const browserConfig = [];
-  for (const candidateBrowser in supportedBrowsers[browserGroup]) {
-    if (candidateBrowser) {
-      const candidateCapabilities = supportedBrowsers[browserGroup][candidateBrowser];
-      candidateCapabilities['sauce:options'] = merge(
-        defaultSauceOptions, candidateCapabilities['sauce:options']
-      );
-      browserConfig.push({
-        browser: candidateCapabilities.browserName,
-        capabilities: candidateCapabilities
+      projects.push({
+        name: `${browserGroup}-${browserName}`,
+        use: {
+          browserName: capabilities.browserName,
+          headless: true,
+          viewport: { width: 1280, height: 800 },
+          ignoreHTTPSErrors: true,
+          actionTimeout: smartWait,
+          navigationTimeout: waitForTimeout,
+          baseURL: testUrl,
+          launchOptions: {
+            args: capabilities['goog:chromeOptions'].args || [],
+            // Sauce-specific options
+            proxy: {
+              server: 'http://ondemand.eu-central-1.saucelabs.com:80'
+            },
+            connectOptions: {
+              username: sauceUsername,
+              accessKey: sauceAccessKey,
+              region: 'eu'
+            }
+          },
+          contextOptions: {
+            recordVideo: { dir: `${outputDir}/videos` }
+          },
+          trace: 'on',
+          video: 'on'
+        }
       });
     } else {
       console.error('ERROR: supportedBrowsers.js is empty or incorrectly defined');
     }
   }
-  return browserConfig;
-}
-
-const pauseFor = seconds => {
-  setTimeout(() => {
-    return true;
-  }, seconds * 1000);
+  return projects;
 };
 
-const setupConfig = {
-  tests: './e2e-sya/e2e.en.cbtest.js',
-  output: config.get('saucelabs.outputDir'),
-  features: {
-    evidenceUpload: {
-      enabled: evidenceUploadEnabled
-    }
-  },
-  helpers: {
-    Playwright: {
-      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
-      browser,
-      smartWait,
-      waitForTimeout,
-      cssSelectorsEnabled: 'true',
-      host: 'ondemand.eu-central-1.saucelabs.com',
-      port: 80,
-      region: 'eu',
-      capabilities: {}
-    },
-    MyHelper: {
-      require: './helpers/helper.js',
-      url: config.get('e2e.frontendUrl')
-    },
-    Mochawesome: {
-      uniqueScreenshotNames: 'true'
-    }
-  },
-  include: {
-    I: './page-objects/steps.js'
-  },
-  bootstrapAll: done => {
-    fileAcceptor.bootstrap(done);
-  },
-  teardownAll: done => {
-    // Pause to allow SauceLabs to finish updating before Jenkins queries it for results
-    logger.trace('Wait for 30 seconds before Jenkins queries SauceLabs results...'
-      , logPath);
-    pauseFor(30);
-    fileAcceptor.teardown(done);
-  },
-  mocha: {
-    reporterOptions: {
-      'codeceptjs-cli-reporter': {
-        stdout: '-',
-        options: { steps: true }
-      },
-      mochawesome: {
-        stdout: './functional-output/console.log',
-        options: {
-          reportDir: config.get('saucelabs.outputDir'),
-          reportName: 'index',
-          inlineAssets: true
-        }
+// Generate projects for all browser groups
+const projects = [
+  ...generateProjects('chromium'),
+  ...generateProjects('firefox'),
+  ...generateProjects('webkit')
+];
+
+module.exports = {
+  testDir: './e2e-sya',
+  outputDir,
+  timeout: waitForTimeout,
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: `${outputDir}/reports`,
+        open: 'never'
       }
-    }
-  },
-  multiple: {
-    chrome: {
-      browsers: getBrowserConfig('chromium')
-    },
-    firefox: {
-      browsers: getBrowserConfig('firefox')
-    },
-    webkit: {
-      browsers: getBrowserConfig('webkit')
-    }
+    ]
+  ],
+  globalSetup: require.resolve('./global-x-setup'),
+  globalTeardown: require.resolve('./global-x-teardown'),
+  projects,
+  use: {
+    baseURL: testUrl,
+    actionTimeout: smartWait,
+    navigationTimeout: waitForTimeout
   },
   name: 'Submit Your Appeal Crossbrowser Tests'
 };
-
-exports.config = setupConfig;

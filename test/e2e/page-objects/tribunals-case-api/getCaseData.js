@@ -15,8 +15,9 @@ function checkTribunalAPIResponse(res) {
   }
 }
 
-async function getMYACaseData(I, ccdCaseID) {
-  const res = await I.sendGetRequest(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
+async function getMYACaseData(request, ccdCaseID) {
+  const response = await request.get(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
+  const res = response.json();
   const caseData = checkTribunalAPIResponse(res);
   if (caseData.appeal) {
     return caseData.appeal;
@@ -24,16 +25,17 @@ async function getMYACaseData(I, ccdCaseID) {
   throw Error('Invalid API Response appeal is missing from returned data');
 }
 
-async function getCaseData(I, ccdCaseID) {
-  const myaCaseData = await I.getMYACaseData(I, ccdCaseID);
+async function getCaseData(browser, request, ccdCaseID) {
+  const myaCaseData = await getMYACaseData(request, ccdCaseID);
   if (!myaCaseData || !myaCaseData.appealNumber) {
     throw Error('Invalid Appeal Number)');
   }
   const tyaID = myaCaseData.appealNumber;
-  const authTokenCookie = await I.grabCookie(authCookie);
+  const cookies = await browser.contexts()[0].cookies();
+  const authTokenCookie = (cookies.filter(cookie => cookie.name === authCookie) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
-  const res = await I.sendGetRequest(`${tribunalsApiUrl}/api/citizen/${tyaID}`, headers);
-
+  const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, headers);
+  const res = await response.json();
   return checkTribunalAPIResponse(res);
 }
 

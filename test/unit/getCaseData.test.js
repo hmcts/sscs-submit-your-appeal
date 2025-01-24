@@ -7,16 +7,27 @@ describe('getCaseData E2E function', () => {
   const ccdCaseID = '1641472310079136';
   let apiResponse = {};
   let myaCaseResponse = {};
+  const responseObject = {
+    json: () => {
+      return apiResponse;
+    }
+  };
 
-  const I = {
+  const request = {
     getMYACaseData: () => {
       return myaCaseResponse;
     },
-    sendGetRequest: () => {
-      return apiResponse;
-    },
-    grabCookie: () => {
-      return '00000000000000000000';
+    get: () => {
+      return responseObject;
+    }
+  };
+
+  const browserContext = {
+    cookies: () => [{ name: '__auth-token', value: '00000000000000000000' }]
+  };
+  const browser = {
+    contexts: () => {
+      return [browserContext];
     }
   };
 
@@ -64,7 +75,7 @@ describe('getCaseData E2E function', () => {
           }
         }
       };
-      const resMYACaseData = await GetCaseData.getMYACaseData(I, ccdCaseID);
+      const resMYACaseData = await GetCaseData.getMYACaseData(request, ccdCaseID);
       expect(apiResponse.data.appeal).to.equal(resMYACaseData);
     });
 
@@ -73,7 +84,7 @@ describe('getCaseData E2E function', () => {
         status: 200,
         data: {}
       };
-      expect(GetCaseData.getMYACaseData(I, ccdCaseID)).to.be.rejectedWith('Invalid API Response appeal is missing from returned data');
+      expect(GetCaseData.getMYACaseData(request, ccdCaseID)).to.be.rejectedWith('Invalid API Response appeal is missing from returned data');
     });
   });
   describe('getCaseData', () => {
@@ -81,23 +92,25 @@ describe('getCaseData E2E function', () => {
       myaCaseResponse = { appealNumber: 'bVLwEI7OQY' };
       apiResponse = {
         status: 200,
-        data: [
-          {
-            appeal_details: {
-              state: 'validAppeal'
-            }
+        data: {
+          appeal: {
+            state: 'validAppeal',
+            appealNumber: ccdCaseID
           }
-        ]
+        }
       };
-      const resCaseData = await GetCaseData.getCaseData(I, ccdCaseID);
+      const resCaseData = await GetCaseData.getCaseData(browser, request, ccdCaseID);
       expect(apiResponse.data).to.equal(resCaseData);
     });
     it('should return a invalid appeal number error when the getMYACaseData response is empty', () => {
       myaCaseResponse = null;
       apiResponse = {
-        status: 200
+        status: 200,
+        data: {
+          appeal: {}
+        }
       };
-      expect(GetCaseData.getCaseData(I, ccdCaseID)).to.be.rejectedWith('Invalid Appeal Number)');
+      expect(GetCaseData.getCaseData(browser, request, ccdCaseID)).to.be.rejectedWith('Invalid Appeal Number)');
     });
   });
 });

@@ -1,67 +1,51 @@
+// playwright.config.js
 /* eslint-disable no-process-env */
 const config = require('config');
-const fileAcceptor = require('test/file_acceptor');
 
-const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-
-exports.config = {
-  tests: './smoke/*.test.js',
-  output: process.env.E2E_OUTPUT_DIR || config.get('e2e.smokeOutputDir'),
-  features: {
-    evidenceUpload: {
-      enabled: evidenceUploadEnabled
-    }
-  },
-  plugins: {
-    screenshotOnFail: {
-      enabled: true
-    }
-  },
-  helpers: {
-    Playwright: {
-      url: process.env.TEST_URL || config.get('e2e.frontendUrl'),
-      waitForTimeout: parseInt(config.get('e2e.waitForTimeout')),
-      waitForAction: parseInt(config.get('e2e.waitForAction')),
-      waitForNavigation: 'load',
-      getPageTimeout: 60000,
-      show: false,
-      windowSize: '1000x1000',
-      chrome: {
+module.exports = {
+  testDir: './smoke', // Directory for smoke test files
+  outputDir: process.env.E2E_OUTPUT_DIR || config.get('e2e.smokeOutputDir'),
+  timeout: parseInt(config.get('e2e.waitForTimeout').toString()),
+  retries: 0, // Adjust if you want to retry failed tests
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: './smoke-output',
+        open: 'never'
+      }
+    ]
+  ],
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        browserName: 'chromium',
+        headless: true,
+        viewport: { width: 1000, height: 1000 },
         ignoreHTTPSErrors: true,
-        args: ['--headless=new', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors']
-      }
-    },
-    MyHelper: {
-      require: './helpers/helper.js',
-      url: config.get('e2e.frontendUrl')
-    }
-  },
-  include: {
-    I: './page-objects/steps.js'
-  },
-  bootstrapAll: done => {
-    fileAcceptor.bootstrap(done);
-  },
-  teardownAll: done => {
-    fileAcceptor.teardown(done);
-  },
-  mocha: {
-    reporterOptions: {
-      'codeceptjs-cli-reporter': {
-        stdout: '-',
-        options: {
-          steps: true
-        }
-      },
-      mochawesome: {
-        stdout: './smoke-output/console.log',
-        options: {
-          reportDir: './smoke-output',
-          reportName: 'index',
-          inlineAssets: true
+        video: 'on-first-retry',
+        trace: 'on',
+        baseURL: process.env.TEST_URL || config.get('e2e.frontendUrl'),
+        launchOptions: {
+          args: [
+            '--headless=new',
+            '--disable-gpu',
+            '--no-sandbox',
+            '--allow-running-insecure-content',
+            '--ignore-certificate-errors'
+          ]
         }
       }
     }
+  ],
+  use: {
+    baseURL: process.env.TEST_URL || config.get('e2e.frontendUrl'),
+    actionTimeout: parseInt(config.get('e2e.waitForAction').toString()),
+    navigationTimeout: 60000
   },
+  globalSetup: require.resolve('./global-smoke-setup'),
+  globalTeardown: require.resolve('./global-smoke-teardown'),
   name: 'Smoke test - Submit Your Appeal'
 };

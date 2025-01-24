@@ -2,12 +2,14 @@ const language = 'en';
 const invalidPostcodeContent = require(`steps/start/invalid-postcode/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Invalid postcode @batch-12`);
+const { test, expect } = require('@playwright/test');
 
-Before(({ I }) => {
-  I.amOnPage(paths.start.invalidPostcode);
-});
+test.describe(`${language.toUpperCase()} - Invalid postcode`, { tag: '@batch-12' }, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await page.goto(paths.start.invalidPostcode);
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to the invalid postcode page I see the page heading`, ({ I }) => {
-  I.see(invalidPostcodeContent.title);
+  test(`${language.toUpperCase()} - When page go to the invalid postcode page page see the page heading`, async({ page }) => {
+    await expect(page.getByText(invalidPostcodeContent.title).first()).toBeVisible();
+  });
 });

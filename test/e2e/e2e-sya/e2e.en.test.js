@@ -1,29 +1,39 @@
-/* eslint-disable no-process-env */
-
-const language = 'en';
-
+// test/e2e/e2e-sya/e2e.en.test.js
+const { test } = require('@playwright/test');
 const content = require('commonContent');
-const testData = require(`test/e2e/data.${language}`);
+const testData = require('test/e2e/data.en');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { enterDetailsFromStartToNINO, enterDetailsFromNoRepresentativeToNoUploadingEvidence,
+  checkYourAppealToConfirmationPage } = require('../page-objects/cya/checkYourAppeal');
+const { enterAppellantContactDetailsWithMobileAndContinue } = require('../page-objects/identity/appellantDetails');
+const { checkOptionAndContinue } = require('../page-objects/controls/option');
+const { readSMSConfirmationAndContinue } = require('../page-objects/sms-notify/smsConfirmation');
+const { enterDoYouWantToAttendTheHearing } = require('../page-objects/hearing/theHearing');
+const { selectTelephoneHearingOptionsAndContinue } = require('../page-objects/hearing/options');
+const { selectDoYouNeedSupportAndContinue } = require('../page-objects/hearing/support');
+const { selectHearingAvailabilityAndContinue } = require('../page-objects/hearing/availability');
+const { skipPcq } = require('../page-objects/pcq/pcq');
+const { endTheSession } = require('../page-objects/session/endSession');
 
-Feature(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`);
+test.describe('EN - PIP E2E SYA - Full Journey', () => {
+  test('EN - PIP E2E SYA Journey', { tag: ['@functional', '@e2e'] }, async({ page }) => {
+    const commonContent = content.en;
+    const language = 'en';
 
-Scenario(`${language.toUpperCase()} - PIP E2E SYA Journey @functional @e2e`, ({ I }) => {
-  const commonContent = content[language];
-
-  I.createTheSession(language);
-
-  I.wait(1);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411222222');
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-yes');
-  I.checkOptionAndContinue(commonContent, '#useSameNumber-yes');
-  I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(language, commonContent);
-  I.enterDoYouWantToAttendTheHearing(language, commonContent, '#attendHearing-yes');
-  I.selectTelephoneHearingOptionsAndContinue(language, commonContent);
-  I.selectDoYouNeedSupportAndContinue(language, commonContent, '#arrangements-no');
-  I.selectHearingAvailabilityAndContinue(language, commonContent, '#scheduleHearing-no');
-  I.skipPcq();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
-  I.endTheSession();
-}).retry(10);
+    await createTheSession(page, language);
+    await page.waitForTimeout(1000);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-yes');
+    await checkOptionAndContinue(page, commonContent, '#useSameNumber-yes');
+    await readSMSConfirmationAndContinue(page, commonContent);
+    await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+    await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
+    await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-no');
+    await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
+    await skipPcq(page);
+    await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
+    await endTheSession(page);
+  });
+});

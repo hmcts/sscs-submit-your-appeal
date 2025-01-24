@@ -1,25 +1,30 @@
 /* eslint init-declarations: ["error", "never"]*/
+const { test } = require('@playwright/test');
+
 const language = 'en';
 const commonContent = require('commonContent')[language];
 const moment = require('moment');
 const testUser = require('../../util/IdamUser');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { enterDetailsForNewApplication, enterDetailsToArchiveACase } = require('../page-objects/cya/checkYourAppeal');
 
-Feature(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`);
+test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
+  let userEmail;
 
-let userEmail;
+  test.beforeEach('Create session and user', async({ page }) => {
+    await createTheSession(page, language);
+    userEmail = testUser.createUser();
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  userEmail = testUser.createUser();
+  test.afterEach('End session and delete user', async({ page }) => {
+    await endTheSession(page);
+    testUser.deleteUser(userEmail);
+  });
+
+  test(`${language.toUpperCase()} - Sign in as a new user and create a new application `, { tag: '@fullFunctional' }, async({ page }) => {
+    await moment().locale(language);
+    await enterDetailsForNewApplication(page, commonContent, language, userEmail);
+    await enterDetailsToArchiveACase(page, commonContent, language, userEmail);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-  testUser.deleteUser(userEmail);
-});
-
-Scenario(`${language.toUpperCase()} - Sign in as a new user and create a new application @fullFunctional`, async({ I }) => {
-  await moment().locale(language);
-  await I.enterDetailsForNewApplication(commonContent, language, userEmail);
-  await I.enterDetailsToArchiveACase(commonContent, language, userEmail);
-}).retry(8);

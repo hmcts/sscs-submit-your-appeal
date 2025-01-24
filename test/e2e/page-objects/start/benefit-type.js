@@ -1,25 +1,23 @@
 const benefitContentEn = require('steps/start/benefit-type/content.en');
 const benefitContentCy = require('steps/start/benefit-type/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function enterBenefitTypeAndContinue(language, commonContent, type) {
-  const I = this;
+async function enterBenefitTypeAndContinue(I, language, commonContent, type) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
 
-  I.waitForText(benefitContent.title, 10);
-  I.fillField({ id: 'benefitType' }, type);
-  I.click('#benefitType__option--0');
-  I.click(commonContent.continue);
+  await expect(I.getByText(benefitContent.title).first()).toBeVisible();
+  await I.locator('#benefitType').first().pressSequentially(type);
+  await I.locator('#benefitType__option--0').first().click();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterBenefitTypeAfterSignIn(language, commonContent, type) {
-  const I = this;
+async function enterBenefitTypeAfterSignIn(I, language, commonContent, type) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
 
-  I.waitForText(benefitContent.title, 5);
-  I.fillField({ id: 'benefitType' }, type);
-  I.click('#benefitType__option--0');
-  I.click(commonContent.saveAndContinue);
+  await expect(I.getByText(benefitContent.title).first()).toBeVisible();
+  await I.locator('#benefitType').first().pressSequentially(type);
+  await I.locator('#benefitType__option--0').first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = { enterBenefitTypeAndContinue, enterBenefitTypeAfterSignIn };
