@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable no-await-in-loop */
 /* eslint-disable no-undef */
 async function clickNextIfDateNotVisible(page, dateElement) {
   try {

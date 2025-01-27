@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 const config = require('config');
 
 const tribunalsApiUrl = config.get('api.url');
@@ -5,7 +6,6 @@ const authCookie = '__auth-token';
 
 async function checkTribunalAPIResponse(response) {
   if (response && response.ok()) {
-    /* eslint-disable-next-line no-return-await */
     return await response.json();
   }
   const status = response && response.status() ? response.status() : 'null';

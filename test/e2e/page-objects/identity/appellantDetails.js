@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop,max-depth */
 const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
 const paths = require('paths');
@@ -93,7 +94,7 @@ async function enterAddressDetails(I, postcodeLookupContent) {
         break;
       } catch (error) {
         if (i === 4) throw new Error(error);
-        await I.goto(paths.identity.enterAppellantContactDetails)
+        await I.goto(paths.identity.enterAppellantContactDetails);
         console.log(`Failed attempt ${i + 1}, trying again.`);
       }
     }
