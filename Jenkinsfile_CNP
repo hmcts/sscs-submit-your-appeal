@@ -54,18 +54,19 @@ withNightlyPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'crossbrowser-output/**/*'
      }
 
+    afterAlways('fullFunctionalTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-test-report/*/**'
+    }
+
      afterSuccess('fullFunctionalTest') {
         publishHTML target: [
                 allowMissing : true,
                 alwaysLinkToLastBuild: true,
                 keepAll : true,
-                reportDir : "output",
-                reportFiles : "SYA-e2e-result.html",
-                reportName : "SYA E2E functional tests result"
+                reportDir : "test/e2e/functional-test-report",
+                reportFiles : "index.html",
+                reportName : "SYA E2E functional tests report"
         ]
-    }
-
-     afterAlways('fullFunctionalTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
     }
 }
