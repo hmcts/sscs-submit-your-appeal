@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const { test } = require('@playwright/test');
 
 const language = 'cy';
@@ -77,9 +78,15 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
       await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
       await appealSubmitConfirmation(page, language);
-      getCaseData(browser, request, ccdCaseID).then(ccdCaseData => {
-        assert.equal(ccdCaseData.length, 1);
-        assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-      });
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+      let ccdCaseData = await getCaseData(browser, request, ccdCaseID);
+      for (let count = 0; count < 5; count++) {
+        ccdCaseData = await getCaseData(browser, request, ccdCaseID);
+        if (ccdCaseData.length > 0) {
+          break;
+        }
+        await delay(1000); // wait for 1 second before retrying
+      }
+      assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
     });
 });

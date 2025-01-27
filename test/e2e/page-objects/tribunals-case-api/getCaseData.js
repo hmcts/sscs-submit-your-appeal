@@ -31,8 +31,6 @@ async function getCaseData(browser, request, ccdCaseID) {
   const authTokenCookie = (cookies.filter(cookie => cookie.name === authCookie) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
   const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, { headers });
-  console.log(`${tribunalsApiUrl}/api/citizen/${tyaID}`);
-  console.log(authTokenCookie.value);
   return await checkTribunalAPIResponse(response);
 }
 
