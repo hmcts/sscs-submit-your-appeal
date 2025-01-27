@@ -176,6 +176,23 @@ describe('RepresentativeDetails.js', () => {
       });
     });
 
+    describe('nameNoTitleValidation', () => {
+      it('true if IBC', () => {
+        representativeDetails.req.hostname = 'some-iba-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ first: 'Mr' })).to.equal(true);
+      });
+
+      it('true if hasNameButNoTitleValidation is true', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ title: 'Mr', first: 'first' })).to.equal(true);
+      });
+
+      it('false if non IBC and hasNameButNoTitleValidation is false', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.nameNoTitleValidation({ first: 'first' })).to.equal(false);
+      });
+    });
+
     describe('titleNoNameValidation', () => {
       it('true if hasNameButNoTitleValidation is true', () => {
         expect(representativeDetails.titleNoNameValidation({ title: 'Mr', first: 'first' })).to.equal(true);
@@ -183,6 +200,23 @@ describe('RepresentativeDetails.js', () => {
 
       it('false if hasNameButNoTitleValidation is false', () => {
         expect(representativeDetails.titleNoNameValidation({ title: 'Mr' })).to.equal(false);
+      });
+    });
+
+    describe('titleValidation', () => {
+      it('true if IBC', () => {
+        representativeDetails.req.hostname = 'some-iba-hostname';
+        expect(representativeDetails.titleValidation({ title: null })).to.equal(true);
+      });
+
+      it('true if titleValidation is true', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.titleValidation({ title: 'Mr' })).to.equal(true);
+      });
+
+      it('false if non IBC and titleValidation is false', () => {
+        representativeDetails.req.hostname = 'some-normal-hostname';
+        expect(representativeDetails.titleValidation({ title: '!!!' })).to.equal(false);
       });
     });
 
