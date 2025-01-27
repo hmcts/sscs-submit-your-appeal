@@ -158,14 +158,24 @@ describe('isDateInPast', () => {
 describe('mrnDateSameAsImage', () => {
   let date = null;
 
-  it('should return true if date is the same as the image', () => {
-    date = DateUtils.createMoment(mrnDateImage.day, mrnDateImage.month, mrnDateImage.year);
-    expect(DateUtils.mrnDateSameAsImage(date)).to.be.true;
+  it('should return true if date is the same as the image for non-iba', () => {
+    date = DateUtils.createMoment(mrnDateImage.mrnDate.day, mrnDateImage.mrnDate.month, mrnDateImage.mrnDate.year);
+    expect(DateUtils.mrnDateSameAsImage(date, false)).to.be.true;
   });
 
-  it('should return false if date is the different to the image', () => {
+  it('should return false if date is the different to the image for non-iba', () => {
     date = moment();
-    expect(DateUtils.mrnDateSameAsImage(date)).to.be.false;
+    expect(DateUtils.mrnDateSameAsImage(date, false)).to.be.false;
+  });
+
+  it('should return true if date is the same as the image for iba', () => {
+    date = DateUtils.createMoment(mrnDateImage.rdnDate.day, mrnDateImage.rdnDate.month, mrnDateImage.rdnDate.year);
+    expect(DateUtils.mrnDateSameAsImage(date, true)).to.be.true;
+  });
+
+  it('should return false if date is the different to the image for iba', () => {
+    date = moment();
+    expect(DateUtils.mrnDateSameAsImage(date, true)).to.be.false;
   });
 });
 
