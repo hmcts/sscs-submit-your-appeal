@@ -1,4 +1,4 @@
-// test/e2e/e2e-sya/e2e.en.cbtest.js
+// test/e2e/e2e-sya/e2e.en.cb.test.js
 const { test } = require('@playwright/test');
 const content = require('commonContent');
 const { createTheSession } = require('../page-objects/session/createSession');

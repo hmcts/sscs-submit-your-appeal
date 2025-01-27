@@ -50,8 +50,8 @@ withNightlyPipeline("nodejs", product, component) {
 //     }
 
     afterSuccess('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-        enableSlackNotifications('#sscs-tech')
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'crossbrowser-output/**/*'
      }
 
      afterSuccess('fullFunctionalTest') {
