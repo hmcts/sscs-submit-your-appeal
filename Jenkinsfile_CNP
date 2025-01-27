@@ -40,9 +40,9 @@ withNightlyPipeline("nodejs", product, component) {
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
 
-     enableCrossBrowserTest(60)
+//     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
-//    enableFullFunctionalTest(120)
+    enableFullFunctionalTest(120)
 //     enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
