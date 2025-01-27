@@ -7,7 +7,7 @@
   "extends": "@hmcts/eslint-config/test",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2017
+    "ecmaVersion": 2020
   },
   "rules": {
 	"linebreak-style": ["warn", "unix"],
@@ -29,6 +29,5 @@
     "Feature": true,
     "Scenario": true,
     "xScenario": true
-  },
-  "parser": "@babel/eslint-parser"
+  }
 }

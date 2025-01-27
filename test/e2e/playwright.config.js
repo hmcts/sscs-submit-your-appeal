@@ -1,7 +1,8 @@
 // playwright.config.js
 /* eslint-disable no-process-env */
 /* eslint-disable no-sync */
-const { devices } = require("playwright");
+const { devices } = require('playwright');
+
 const testChunks = process.env.CHUNKS || 1;
 
 module.exports = {
@@ -40,7 +41,7 @@ module.exports = {
     headless: process.env.SHOW_BROWSER_WINDOW !== 'true',
     viewport: { width: 1280, height: 960 },
     bypassCSP: true,
-    ignoreHTTPSErrors: true,
+    ignoreHTTPSErrors: true
   },
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
