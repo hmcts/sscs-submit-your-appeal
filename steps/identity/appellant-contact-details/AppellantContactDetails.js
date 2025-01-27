@@ -18,6 +18,7 @@ const config = require('config');
 const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
 const { isIba } = require('utils/benefitTypeUtils');
+const i18next = require('i18next');
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
@@ -59,11 +60,11 @@ class AppellantContactDetails extends SaveToDraftStore {
   }
 
   get CYAPhoneNumber() {
-    return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
+    return this.fields.phoneNumber.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get CYAEmailAddress() {
-    return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
+    return this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get form() {
