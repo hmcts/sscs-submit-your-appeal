@@ -6,7 +6,7 @@ const { devices } = require('playwright');
 const testChunks = process.env.CHUNKS || 1;
 
 module.exports = {
-  testDir: './',
+  testDir: process.env.E2E_TEST_DIR || './',
   outputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
   expect: {
     timeout: 10 * 1000
