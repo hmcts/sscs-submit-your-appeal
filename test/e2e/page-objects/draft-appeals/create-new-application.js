@@ -7,7 +7,7 @@ async function createNewApplication(I, language) {
     await I.locator('a.govuk-button:has-text("Create new application")').first().click();
   } else {
     await expect(I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()).toBeVisible();
-    await I.getByText('a.govuk-button:has-text("Creu cais newydd")').first().click();
+    await I.locator('a.govuk-button:has-text("Creu cais newydd")').first().click();
   }
 }
 

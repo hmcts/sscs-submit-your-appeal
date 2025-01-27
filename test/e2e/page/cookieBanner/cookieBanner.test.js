@@ -62,8 +62,8 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
 
     await page.goto(paths.policy.cookies);
     await expect(page.locator('input#radio-analytics-on:checked').first()).toBeVisible();
-    await page.getByText('input#radio-analytics-off').first().click();
-    await page.getByText('Save').first().click();
+    await page.locator('input#radio-analytics-off').first().click();
+    await page.getByRole('button', { name: 'Save' }).first().click();
 
     await page.goto(paths.start.benefitType);
     await page.reload();

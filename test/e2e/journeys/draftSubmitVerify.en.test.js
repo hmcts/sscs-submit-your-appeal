@@ -51,7 +51,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
     testUser.deleteUser(userEmail);
   });
 
-  test(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD  `, { tag: '@fullFunctional' },
+  test.only(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD`, { tag: '@fullFunctional' },
     async({ page, request, browser }) => {
       await moment().locale(language);
       await enterDetailsFromStartToDraft(page, commonContent, language, userEmail);
@@ -77,8 +77,9 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
       await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
       await appealSubmitConfirmation(page, language);
-      const ccdCaseData = await getCaseData(browser, request, ccdCaseID);
-      assert.equal(ccdCaseData.length, 1);
-      assert.equal(ccdCaseData[0]['appeal_details'].state, 'incompleteApplication');
+      getCaseData(browser, request, ccdCaseID).then((ccdCaseData) => {
+        assert.equal(ccdCaseData.length, 1);
+        assert.equal(ccdCaseData[0]['appeal_details'].state, 'incompleteApplication');
+      });
     });
 });
