@@ -15,16 +15,7 @@ module.exports = defineConfig({
   workers: parseInt(testChunks), // Parallel chunks
   retries: 2, // Set retries as per requirement
   fullyParallel: true,
-  reporter: [
-    ['list'],
-    [
-      'html',
-      {
-        outputFolder: process.env.E2E_OUTPUT_DIR || './functional-output',
-        open: 'never'
-      }
-    ]
-  ],
+  reporter: process.env.CI ? 'html' : 'list',
   projects: [
     {
       name: 'chrome',

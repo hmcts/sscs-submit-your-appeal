@@ -39,7 +39,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
-
+    env.CI = true
 //     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
@@ -66,9 +66,6 @@ withNightlyPipeline("nodejs", product, component) {
     }
 
      afterAlways('fullFunctionalTest') {
-         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**'
-         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/*/**'
     }
 }
