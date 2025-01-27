@@ -23,7 +23,6 @@ const { createTheSession } = require('../page-objects/session/createSession');
 
 test.describe(`${language.toUpperCase()} - Hearing options test for type Telephone`, { tag: '@functional' }, () => {
   test.beforeEach('Create session and user', async({ page }) => {
-    await page.waitForTimeout(1000);
     await createTheSession(page, language);
   });
 

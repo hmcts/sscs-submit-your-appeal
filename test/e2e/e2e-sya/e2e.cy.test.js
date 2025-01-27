@@ -22,7 +22,6 @@ test.describe(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`, () => {
     const commonContent = content[language];
 
     await createTheSession(page, language);
-    await page.waitForTimeout(2000);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
     await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-yes');

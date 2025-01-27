@@ -3,22 +3,18 @@ const config = require('config');
 const tribunalsApiUrl = config.get('api.url');
 const authCookie = '__auth-token';
 
-function checkTribunalAPIResponse(res) {
-  if (res && res.status === 200) {
-    if (res.data) {
-      return res.data;
-    }
-    throw Error('Invalid API Response no data returned');
-  } else {
-    const status = res && res.status ? res.status : 'null';
-    throw Error(`HTTP Error ${status} is invalid`);
+async function checkTribunalAPIResponse(response) {
+  if (response && response.ok()) {
+    /* eslint-disable-next-line no-return-await */
+    return await response.json();
   }
+  const status = response && response.status() ? response.status() : 'null';
+  throw Error(`HTTP Error ${status} is invalid`);
 }
 
 async function getMYACaseData(request, ccdCaseID) {
   const response = await request.get(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
-  const res = response.json();
-  const caseData = checkTribunalAPIResponse(res);
+  const caseData = await checkTribunalAPIResponse(response);
   if (caseData.appeal) {
     return caseData.appeal;
   }
@@ -34,9 +30,8 @@ async function getCaseData(browser, request, ccdCaseID) {
   const cookies = await browser.contexts()[0].cookies();
   const authTokenCookie = (cookies.filter(cookie => cookie.name === authCookie) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
-  const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, headers);
-  const res = await response.json();
-  return checkTribunalAPIResponse(res);
+  const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, { headers });
+  return checkTribunalAPIResponse(response);
 }
 
 module.exports = { checkTribunalAPIResponse, getMYACaseData, getCaseData };

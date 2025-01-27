@@ -19,7 +19,6 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
   });
 
   test(`${language.toUpperCase()} - PIP verify cookies banner Element`, async({ page }) => {
-    await page.waitForTimeout(1000);
     await expect(page.getByText(cookieContent.bannerTitle).first()).toBeVisible();
     await expect(page.locator('.govuk-cookie-banner').first()).toBeVisible();
 
@@ -32,12 +31,10 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
   });
 
   test(`${language.toUpperCase()} - PIP accept additional cookies`, async({ page, browser }) => {
-    await page.waitForTimeout(1000);
     await page.getByText(cookieContent.acceptCookie).first().click();
     await expect(page.getByText(cookieContent.hideAfterAccept).first()).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: cookieContent.hideMessage }).first()).toBeVisible();
     await page.reload();
-    await page.waitForTimeout(1000);
     const cookies = await browser.contexts()[0].cookies();
     const cookieNames = cookies.map(cookie => cookie.name);
     assert(cookieNames.includes('_ga'));
@@ -46,19 +43,15 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
   });
 
   test(`${language.toUpperCase()} - PIP reject additional cookies`, async({ page }) => {
-    await page.waitForTimeout(1000);
     await page.getByText(cookieContent.rejectCookie).first().click();
     await expect(page.getByText(cookieContent.hideAfterReject).first()).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
-    await page.reload();
-    await page.waitForTimeout(2000);
+    await expect(page.getByRole('button', { name: cookieContent.hideMessage }).first()).toBeVisible();
   });
 
   test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, async({ page, browser }) => {
-    await page.waitForTimeout(1000);
     await page.getByText(cookieContent.acceptCookie).first().click();
     await expect(page.getByText(cookieContent.hideAfterAccept).first()).toBeVisible();
-    await expect(page.getByText(cookieContent.hideMessage).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: cookieContent.hideMessage }).first()).toBeVisible();
     await page.reload();
 
     const cookies = await browser.contexts()[0].cookies();
@@ -69,12 +62,10 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
 
     await page.goto(paths.policy.cookies);
     await expect(page.locator('input#radio-analytics-on:checked').first()).toBeVisible();
-    await page.waitForTimeout(1000);
     await page.getByText('input#radio-analytics-off').first().click();
     await page.getByText('Save').first().click();
 
     await page.goto(paths.start.benefitType);
     await page.reload();
-    await page.waitForTimeout(2000);
   });
 });

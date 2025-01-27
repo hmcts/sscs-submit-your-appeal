@@ -17,7 +17,7 @@ const testChunks = process.env.CHUNKS || defaultChunks;
 
 module.exports = {
   testDir: './page',
-  outputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+  outputDir: process.env.E2E_OUTPUT_DIR || './test/e2e/functional-output',
   expect: {
     timeout: 10 * 1000
   },
@@ -30,7 +30,7 @@ module.exports = {
     [
       'html',
       {
-        outputFolder: process.env.E2E_OUTPUT_DIR || './functional-output',
+        outputFolder: process.env.E2E_OUTPUT_DIR || './test/e2e/functional-output',
         open: 'never'
       }
     ]

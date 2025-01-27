@@ -48,7 +48,6 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
 
   [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
     test(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, async({ page }) => {
-      await page.waitForTimeout(1000);
       await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
       await enterPostcodeAndContinue(page, language, commonContent, testData.appellant.contactDetails.postCode);
       await checkOptionAndContinue(page, commonContent, '#isAppointee-no');

@@ -75,7 +75,6 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
     await page.waitForURL(paths.hearing.hearingAvailability);
     await page.getByText(commonContent.continue).first().click();
     await deselectDates(page, language, [randomWeekDayIn9Weeks]);
-    await page.waitForTimeout(1000);
     await selectDates(page, language, [randomWeekDayIn11Weeks]);
     await page.getByText(commonContent.continue).first().click();
     await expect(page.getByText(DateUtils.formatDate(moment(randomWeekDayIn11Weeks), 'DD MMMM YYYY')).first()).toBeVisible();

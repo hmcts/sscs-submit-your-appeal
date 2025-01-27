@@ -62,7 +62,6 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingToEnd(page, commonContent, language, randomWeekDayIn5Weeks);
-    await page.waitForTimeout(5000);
     await page.getByText(commonContent.continue).click();
     await expect(page.getByText(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY')).first()).toBeVisible();
 

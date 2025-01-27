@@ -64,9 +64,7 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
     await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingToEnd(page, commonContent, language, randomWeekDayIn5Weeks);
-    await page.waitForTimeout(5000);
     await page.getByText(commonContent.continue).click();
-    await page.waitForTimeout(1000);
     console.log(`language assigned is ${moment.locale()}`);
     console.log(`Generated date is ############# ${randomWeekDayIn5Weeks}`);
     await expect(page.getByText(DateUtils.formatDate(randomWeekDayIn5Weeks, 'DD MMMM YYYY')).first()).toBeVisible();
@@ -77,7 +75,6 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     await page.getByText(commonContent.continue).click();
     await enterDateCantAttendAndContinue(page, commonContent, randomWeekDayIn7Weeks, commonContent.edit);
     await page.getByText(commonContent.continue).click();
-    await page.waitForTimeout(1000);
     await expect(page.getByText(DateUtils.formatDate(randomWeekDayIn7Weeks, 'DD MMMM YYYY')).first()).toBeVisible();
   });
 });

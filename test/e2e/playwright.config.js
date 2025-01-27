@@ -1,23 +1,11 @@
 // playwright.config.js
 /* eslint-disable no-process-env */
 /* eslint-disable no-sync */
-const fs = require('fs');
-
-const defaultChunks = files => {
-  const hasFunctionalOrFullFunctionalAnnotation = file => {
-    const content = fs.readFileSync(file, 'utf-8');
-    return content.includes('@functional') || content.includes('@fullFunctional');
-  };
-
-  const filesWithKeyword = files.filter(file => hasFunctionalOrFullFunctionalAnnotation(file));
-  return filesWithKeyword.map(file => [file]);
-};
-
-const testChunks = process.env.CHUNKS || defaultChunks;
+const testChunks = process.env.CHUNKS || 1;
 
 module.exports = {
   testDir: './',
-  outputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+  outputDir: process.env.E2E_OUTPUT_DIR || './test/e2e/functional-output',
   expect: {
     timeout: 10 * 1000
   },
@@ -30,7 +18,7 @@ module.exports = {
     [
       'html',
       {
-        outputFolder: process.env.E2E_OUTPUT_DIR || './functional-output',
+        outputFolder: process.env.E2E_OUTPUT_DIR || './test/e2e/functional-output',
         open: 'never'
       }
     ]
