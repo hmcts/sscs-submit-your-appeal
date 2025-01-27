@@ -78,6 +78,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
       await appealSubmitConfirmation(page, language);
       const ccdCaseData = await getCaseData(browser, request, ccdCaseID);
+      console.log(ccdCaseID);
       assert.equal(ccdCaseData.length, 1);
       assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
     });
