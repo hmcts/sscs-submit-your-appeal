@@ -12,6 +12,7 @@ properties([
                 string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
         ])
 ])
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 @Library("Infrastructure")
 
@@ -40,9 +41,12 @@ withNightlyPipeline("nodejs", product, component) {
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
 
-//     enableCrossBrowserTest(60)
+     enableCrossBrowserTest(60)
+    before('crossBrowserTest') {
+        yarnBuilder.smokeTest()
+    }
 //     enableFortifyScan('sscs-aat')
-    enableFullFunctionalTest(120)
+//    enableFullFunctionalTest(120)
 //     enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
