@@ -28,7 +28,7 @@
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
     "lint": "cross-env NODE_PATH=. eslint --fix .",
-    "test:playwright": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test playwright test --config=test/e2e/playwright.config.js",
+    "test:playwright": "yarn playwright install && cross-env TRIBUNALS_CASE_API_URL=http://sscs-tribunals-api-aat.service.core-compute-aat.internal NODE_PATH=. NODE_ENV=test playwright test --config=test/e2e/playwright.config.js",
     "test:smoke": "yarn playwright install && NODE_PATH=. NODE_ENV=test playwright test --config=test/e2e/smoke.conf.js --grep \"@smoke\"",
     "test:evidence-upload": "yarn test:playwright --grep \"@evidence-upload\"",
     "test:mutation": "yarn test:playwright --grep \"@functional\"",
@@ -109,6 +109,7 @@
     "webpack-merge": "^6.0.1"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.26.5",
     "@babel/register": "^7.24.6",
     "@hmcts/eslint-config": "^1.4.0",
     "chai": "^4.1.2",

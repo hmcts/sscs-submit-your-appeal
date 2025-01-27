@@ -29,5 +29,6 @@
     "Feature": true,
     "Scenario": true,
     "xScenario": true
-  }
+  },
+  "parser": "@babel/eslint-parser"
 }
