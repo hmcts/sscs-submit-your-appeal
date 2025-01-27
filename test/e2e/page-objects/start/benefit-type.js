@@ -4,14 +4,6 @@ const benefitContentCy = require('steps/start/benefit-type/content.cy');
 const { expect } = require('@playwright/test');
 const paths = require("paths");
 
-async function enterBenefitTypeAndContinue(I, language, commonContent, type) {
-  await handleFlakey(I, language, type, commonContent.continue);
-}
-
-async function enterBenefitTypeAfterSignIn(I, language, commonContent, type) {
-  await handleFlakey(I, language, type, commonContent.saveAndContinue);
-}
-
 async function handleFlakey(I, language, type, continueText) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
   for (let i = 0; i < 5; i++) {
@@ -27,6 +19,14 @@ async function handleFlakey(I, language, type, continueText) {
       console.log(`Failed attempt ${i + 1}, trying again.`);
     }
   }
+}
+
+async function enterBenefitTypeAndContinue(I, language, commonContent, type) {
+  await handleFlakey(I, language, type, commonContent.continue);
+}
+
+async function enterBenefitTypeAfterSignIn(I, language, commonContent, type) {
+  await handleFlakey(I, language, type, commonContent.saveAndContinue);
 }
 
 module.exports = { enterBenefitTypeAndContinue, enterBenefitTypeAfterSignIn };
