@@ -71,14 +71,14 @@ class RepresentativeDetails extends SaveToDraftStore {
   nameRequiredValidation(value) {
     return Object.keys(value).length > 0;
   }
-  nameNoTitleValidation(value) {
-    return isIba(this.req) || hasNameButNoTitleValidation(value);
+  nameNoTitleValidation(value, req) {
+    return isIba(req) || hasNameButNoTitleValidation(value);
   }
   titleNoNameValidation(value) {
     return hasTitleButNoNameValidation(value);
   }
-  titleValidation(value) {
-    return isIba(this.req) || joiValidation(value.title, Joi.string().trim().regex(title));
+  titleValidation(value, req) {
+    return isIba(req) || joiValidation(value.title, Joi.string().trim().regex(title));
   }
   firstValidation(value) {
     return joiValidation(value.first, Joi.string().trim().regex(firstName));
@@ -106,13 +106,13 @@ class RepresentativeDetails extends SaveToDraftStore {
           this.nameRequiredValidation
         ).check(
           fields.name.error.nameNoTitle,
-          this.nameNoTitleValidation
+          value => this.nameNoTitleValidation(value, this.req)
         ).check(
           fields.name.error.titleNoName,
           this.titleNoNameValidation
         ).check(
           errorFor('title', fields.name.title.error.invalid),
-          this.titleValidation
+          value => this.titleValidation(value, this.req)
         ).check(
           errorFor('first', fields.name.first.error.invalid),
           this.firstValidation
