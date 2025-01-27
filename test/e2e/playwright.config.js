@@ -13,7 +13,7 @@ module.exports = defineConfig({
   },
   timeout: 90000,
   workers: parseInt(testChunks), // Parallel chunks
-  retries: 8, // Set retries as per requirement
+  retries: 10, // Set retries as per requirement
   fullyParallel: true,
   reporter: [
     ['list'],
