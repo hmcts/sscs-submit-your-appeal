@@ -15,7 +15,16 @@ module.exports = defineConfig({
   workers: parseInt(testChunks), // Parallel chunks
   retries: 2, // Set retries as per requirement
   fullyParallel: true,
-  reporter: process.env.CI ? 'html' : 'list',
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: process.env.E2E_OUTPUT_DIR || './functional-test-report',
+        open: 'never'
+      }
+    ]
+  ],
   projects: [
     {
       name: 'chrome',
@@ -38,7 +47,7 @@ module.exports = defineConfig({
     actionTimeout: 30000,
     navigationTimeout: 30000,
     baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
-    trace: 'on-first-retry',
+    // trace: 'on-first-retry',
     screenshot: { mode: 'only-on-failure', fullPage: true },
     headless: process.env.SHOW_BROWSER_WINDOW !== 'true',
     bypassCSP: true,
