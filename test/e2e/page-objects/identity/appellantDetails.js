@@ -1,5 +1,6 @@
 const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
+const paths = require('paths');
 const postcodeLookupContentEn = require('components/postcodeLookup/content.en');
 const postcodeLookupContentCy = require('components/postcodeLookup/content.cy');
 const appellantNameContentEn = require('steps/identity/appellant-name/content.en');
@@ -11,7 +12,6 @@ const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
 const { expect } = require('@playwright/test');
-const { handleFlakeyBlock } = require('../../helpers/helper');
 
 async function enterAppellantNameAndContinue(I, language, commonContent, title, firstName, lastName) {
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
@@ -82,15 +82,21 @@ async function enterAddressDetailsManual(I) {
 
 async function enterAddressDetails(I, postcodeLookupContent) {
   if (postcodeLookupEnabled) {
-    const codeBlock = [
-      I.locator('#postcodeLookup').fill(appellant.contactDetails.postCode),
-      I.getByText(postcodeLookupContent.findAddress).click(),
-      I.waitForTimeout(1000),
-      I.locator('select[name="postcodeAddress"]').selectOption(`${appellant.contactDetails.addressLine1}, ${appellant.contactDetails.townCity}, ${appellant.contactDetails.postCode}`),
-      I.waitForURL(new RegExp('.*?validate=1')),
-      expect(I.locator('#addressLine1')).toHaveValue(appellant.contactDetails.addressLine1)
-    ];
-    await handleFlakeyBlock(I, codeBlock, 5);
+    for (let i = 0; i < 5; i++) {
+      await I.locator('#postcodeLookup').fill(appellant.contactDetails.postCode);
+      await I.getByText(postcodeLookupContent.findAddress).click();
+      await I.waitForTimeout(1000);
+      await I.locator('select[name="postcodeAddress"]').selectOption(`${appellant.contactDetails.addressLine1}, ${appellant.contactDetails.townCity}, ${appellant.contactDetails.postCode}`);
+      await I.waitForURL(new RegExp('.*?validate=1'));
+      try {
+        await expect(I.locator('#addressLine1')).toHaveValue(appellant.contactDetails.addressLine1);
+        break;
+      } catch (error) {
+        if (i === 4) throw new Error(error);
+        await I.goto(paths.identity.enterAppellantContactDetails)
+        console.log(`Failed attempt ${i + 1}, trying again.`);
+      }
+    }
   } else {
     await enterAddressDetailsManual(I);
   }

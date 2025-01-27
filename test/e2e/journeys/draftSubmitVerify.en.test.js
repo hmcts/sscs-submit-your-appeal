@@ -77,9 +77,8 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
       await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
       await appealSubmitConfirmation(page, language);
-      getCaseData(browser, request, ccdCaseID).then(ccdCaseData => {
-        assert.equal(ccdCaseData.length, 1);
-        assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
-      });
+      const ccdCaseData = await getCaseData(browser, request, ccdCaseID)
+      assert.equal(ccdCaseData.length, 1);
+      assert.equal(ccdCaseData[0].appeal_details.state, 'incompleteApplication');
     });
 });

@@ -31,7 +31,7 @@ async function getCaseData(browser, request, ccdCaseID) {
   const authTokenCookie = (cookies.filter(cookie => cookie.name === authCookie) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
   const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, { headers });
-  return checkTribunalAPIResponse(response);
+  return await checkTribunalAPIResponse(response);
 }
 
 module.exports = { checkTribunalAPIResponse, getMYACaseData, getCaseData };
