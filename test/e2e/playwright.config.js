@@ -1,6 +1,7 @@
 // playwright.config.js
 /* eslint-disable no-process-env */
 /* eslint-disable no-sync */
+const { devices } = require("playwright");
 const testChunks = process.env.CHUNKS || 1;
 
 module.exports = {
@@ -26,23 +27,20 @@ module.exports = {
   projects: [
     {
       name: 'chromium',
-      use: {
-        browserName: 'chromium',
-        headless: process.env.SHOW_BROWSER_WINDOW !== 'true',
-        viewport: { width: 1280, height: 960 },
-        trace: 'on-first-retry',
-        screenshot: { mode: 'only-on-failure', fullPage: true },
-        baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
-        bypassCSP: true,
-        ignoreHTTPSErrors: true,
-        actionTimeout: 10 * 1000
-      }
+      use: { ...devices['Desktop Chrome'] }
     }
   ],
   use: {
     actionTimeout: 30000,
     navigationTimeout: 30000,
-    baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/'
+    baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
+    trace: 'on-first-retry',
+    screenshot: { mode: 'only-on-failure', fullPage: true },
+    browserName: 'chromium',
+    headless: process.env.SHOW_BROWSER_WINDOW !== 'true',
+    viewport: { width: 1280, height: 960 },
+    bypassCSP: true,
+    ignoreHTTPSErrors: true,
   },
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
