@@ -31,7 +31,7 @@
     "test:playwright": "yarn playwright install && cross-env NODE_PATH=. NODE_ENV=test playwright test --config=test/e2e/playwright.config.js",
     "test:smoke": "E2E_OUTPUT_DIR=\"./smoke-report\" E2E_TEST_DIR=\"./smoke\" yarn test:playwright --grep \"@smoke\" --project chrome",
     "test:evidence-upload": "yarn test:playwright --grep \"@evidence-upload\" --project chrome",
-    "test:mutation": "yarn test:playwright --grep \"@functional\" --project chrome",
+    "test:mutation": "E2E_OUTPUT_DIR=\"./mutation-report\" yarn test:playwright --grep \"@functional\" --project chrome",
     "test:functional": "yarn test:playwright --grep \"@functional\" --project chrome",
     "test:fullfunctional": "yarn test:playwright --grep \"@functional|@fullFunctional\" --project chrome",
     "test:e2e-pages": "E2E_TEST_DIR=\"./page\" yarn test:playwright --project chrome",
