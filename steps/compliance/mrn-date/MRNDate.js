@@ -44,7 +44,7 @@ class MRNDate extends SaveToDraftStore {
         value => DateUtils.isDateInPast(value)
       ).check(
         fields.date.error[`dateSameAsImage${this.suffix}`],
-        value => !DateUtils.mrnDateSameAsImage(value)
+        value => !DateUtils.mrnDateSameAsImage(value, isIba(this.req))
       )
 
     });
