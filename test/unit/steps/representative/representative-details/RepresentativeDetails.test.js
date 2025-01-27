@@ -179,17 +179,17 @@ describe('RepresentativeDetails.js', () => {
     describe('nameNoTitleValidation', () => {
       it('true if IBC', () => {
         representativeDetails.req.hostname = 'some-iba-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ first: 'Mr' })).to.equal(true);
+        expect(representativeDetails.nameNoTitleValidation({ first: 'Mr' }, representativeDetails.req)).to.equal(true);
       });
 
       it('true if hasNameButNoTitleValidation is true', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ title: 'Mr', first: 'first' })).to.equal(true);
+        expect(representativeDetails.nameNoTitleValidation({ title: 'Mr', first: 'first' }, representativeDetails.req)).to.equal(true);
       });
 
       it('false if non IBC and hasNameButNoTitleValidation is false', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ first: 'first' })).to.equal(false);
+        expect(representativeDetails.nameNoTitleValidation({ first: 'first' }, representativeDetails.req)).to.equal(false);
       });
     });
 
@@ -206,17 +206,17 @@ describe('RepresentativeDetails.js', () => {
     describe('titleValidation', () => {
       it('true if IBC', () => {
         representativeDetails.req.hostname = 'some-iba-hostname';
-        expect(representativeDetails.titleValidation({ title: null })).to.equal(true);
+        expect(representativeDetails.titleValidation({ title: null }, representativeDetails.req)).to.equal(true);
       });
 
       it('true if titleValidation is true', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.titleValidation({ title: 'Mr' })).to.equal(true);
+        expect(representativeDetails.titleValidation({ title: 'Mr' }, representativeDetails.req)).to.equal(true);
       });
 
       it('false if non IBC and titleValidation is false', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.titleValidation({ title: '!!!' })).to.equal(false);
+        expect(representativeDetails.titleValidation({ title: '!!!' }, representativeDetails.req)).to.equal(false);
       });
     });
 
