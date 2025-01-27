@@ -40,10 +40,10 @@ withNightlyPipeline("nodejs", product, component) {
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
 
-//     enableCrossBrowserTest(60)
+     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-//     enableMutationTest()
+    enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
@@ -51,12 +51,24 @@ withNightlyPipeline("nodejs", product, component) {
 
     afterAlways('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'crossbrowser-output/**/*'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*/**'
      }
+
+    afterSuccess('crossBrowserTest') {
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "test/e2e/crossbrowser-report",
+                reportFiles : "index.html",
+                reportName : "SYA E2E Crossbrowser test report"
+        ]
+        enableSlackNotifications('#sscs-tech')
+    }
 
     afterAlways('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-test-report/*/**'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
     }
 
      afterSuccess('fullFunctionalTest') {
@@ -66,7 +78,7 @@ withNightlyPipeline("nodejs", product, component) {
                 keepAll : true,
                 reportDir : "test/e2e/functional-test-report",
                 reportFiles : "index.html",
-                reportName : "SYA E2E functional tests report"
+                reportName : "SYA E2E Functional test report"
         ]
     }
 }

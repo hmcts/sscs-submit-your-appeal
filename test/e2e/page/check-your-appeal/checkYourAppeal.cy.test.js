@@ -17,8 +17,7 @@ test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () =>
     await endTheSession(page);
   });
 
-  test.only(`${language.toUpperCase()} - When the appeal is incomplete, page am taken to the next step that needs completing`, async({ page }) => {
-    await expect('a').toBe('b');
+  test(`${language.toUpperCase()} - When the appeal is incomplete, page am taken to the next step that needs completing`, async({ page }) => {
     await page.goto(paths.checkYourAppeal);
     await expect(page.getByText('Gwiriwch eich atebion').first()).toBeVisible();
     await expect(page.getByText('Mae eich cais yn anghyflawn').first()).toBeVisible();
