@@ -20,7 +20,6 @@ nodejs:
     FT_WELSH: true
     PCQ_ENABLED: true
     INFECTED_BLOOD_COMPENSATION_ENABLED: true
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-aat.service.core-compute-aat.internal
   keyVaults:
     sscs:
       secrets:

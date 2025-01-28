@@ -14,7 +14,9 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
-
+    onPR() {
+        env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+    }
     afterSuccess('build') {
         yarnBuilder.yarn('build')
     }
