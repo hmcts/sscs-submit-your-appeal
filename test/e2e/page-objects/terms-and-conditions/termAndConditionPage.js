@@ -1,12 +1,11 @@
 const paths = require('paths');
+const { expect } = require('@playwright/test');
 
-function seeAndGoToGivenLink(relatedLinkText, relatedLinkUrl) {
-  const I = this;
-
-  I.see(relatedLinkText);
-  I.click(relatedLinkText);
-  I.seeInCurrentUrl(relatedLinkUrl);
-  I.amOnPage(paths.policy.termsAndConditions);
+async function seeAndGoToGivenLink(I, relatedLinkText, relatedLinkUrl) {
+  await expect(I.getByText(relatedLinkText).first()).toBeVisible();
+  await I.getByText(relatedLinkText).click();
+  await I.waitForURL(`**/${relatedLinkUrl}`);
+  await I.goto(paths.policy.termsAndConditions);
 }
 
 module.exports = { seeAndGoToGivenLink };

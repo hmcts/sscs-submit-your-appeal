@@ -101,6 +101,7 @@
       "description": "Industrial Death Benefit",
       "code": "Industrial Death Benefit",
       "codeWelsh": "Budd-dal Marwolaeth Ddiwydiannol",
+      "codeSearchWelsh": "Ddiwydiannol",
       "office": "Barrow IIDB Centre",
       "hasDwpIssuingOffice": true
     },

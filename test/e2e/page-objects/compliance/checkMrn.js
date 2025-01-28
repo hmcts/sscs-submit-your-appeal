@@ -1,21 +1,17 @@
 const paths = require('paths');
 
-function goToCheckMrnPage(commonContent, mrnDate) {
-  const I = this;
-
-  I.fillField('#mrnDate.day', mrnDate.date().toString());
-  I.fillField('mrnDate.month', (mrnDate.month() + 1).toString());
-  I.fillField('mrnDate.year', mrnDate.year().toString());
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.compliance.checkMRNDate);
+async function goToCheckMrnPage(I, commonContent, mrnDate) {
+  await I.locator('#mrnDate.day').fill(mrnDate.date().toString());
+  await I.locator('#mrnDate.month').fill((mrnDate.month() + 1).toString());
+  await I.locator('#mrnDate.year').fill(mrnDate.year().toString());
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
+  await I.waitForURL(`**/${paths.compliance.checkMRNDate}`);
 }
 
-function goToCorrectPageAfterCheckMRN(commonContent, value, url) {
-  const I = this;
-
-  I.checkOption(`#checkedMRN-${value}`);
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(url);
+async function goToCorrectPageAfterCheckMRN(I, commonContent, value, url) {
+  await I.locator(`#checkedMRN-${value}`).check();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
+  await I.waitForURL(`**/${url}`);
 }
 
 module.exports = { goToCorrectPageAfterCheckMRN, goToCheckMrnPage };
