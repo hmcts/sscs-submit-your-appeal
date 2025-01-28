@@ -7,76 +7,80 @@ const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.la
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
 const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
 
-Feature(`${language.toUpperCase()} - Hearing arrangements @batch-08`);
+const { test, expect } = require('@playwright/test');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const { createTheSession } = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.hearing.hearingArrangements);
-});
+test.describe(`${language.toUpperCase()} - Hearing arrangements`, { tag: '@batch-08' }, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await createTheSession(page, language);
+    await page.goto(paths.hearing.hearingArrangements);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test.afterEach('End session', async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - I do not select any checkboxes and continue to see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.error.required);
-  I.seeInCurrentUrl(paths.hearing.hearingArrangements);
-});
+  test(`${language.toUpperCase()} - page do not select any checkboxes and continue to see errors`, async({ page }) => {
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.error.required).first()).toBeVisible();
+    await page.waitForURL(`**${paths.hearing.hearingArrangements}`);
+  });
 
-Scenario(`${language.toUpperCase()} - I select language interpreter and see the interpreter language type field`, ({ I }) => {
-  I.dontSeeElement(languageInterpreterTextField);
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.seeElement(languageInterpreterTextField);
-});
+  test(`${language.toUpperCase()} - page select language interpreter and see the interpreter language type field`, async({ page }) => {
+    await expect(page.locator(languageInterpreterTextField)).toBeHidden();
+    await page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label).first().click();
+    await expect(page.locator(languageInterpreterTextField).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select sign language interpreter and see the sign language type field`, ({ I }) => {
-  I.dontSeeElement(signLanguageTextField);
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.seeElement(signLanguageTextField);
-});
+  test(`${language.toUpperCase()} - page select sign language interpreter and see the sign language type field`, async({ page }) => {
+    await expect(page.locator(signLanguageTextField)).toBeHidden();
+    await page.getByText(hearingArrangementsContent.fields.selection.signLanguage.requested.label).first().click();
+    await expect(page.locator(signLanguageTextField).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select other and see the anything else field`, ({ I }) => {
-  I.dontSeeElement(anythingElseTextField);
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.seeElement(anythingElseTextField);
-});
+  test(`${language.toUpperCase()} - page select other and see the anything else field`, async({ page }) => {
+    await expect(page.locator(anythingElseTextField)).toBeHidden();
+    await page.getByText(hearingArrangementsContent.fields.selection.anythingElse.requested.label).first().click();
+    await expect(page.locator(anythingElseTextField).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select language interpreter and do not enter any language I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.required);
-});
+  test(`${language.toUpperCase()} - page select language interpreter and do not enter any language page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label).first().click();
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.required).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select a language interpreter, enter a non-existent list language, I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.fillField(languageInterpreterTextField, 'Invalid language');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.invalid);
-});
+  test(`${language.toUpperCase()} - page select a language interpreter, enter a non-existent list language, page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label).first().click();
+    await page.locator(languageInterpreterTextField).first().fill('Invalid language');
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.languageInterpreter.language.error.invalid).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select sign language and do not enter any language I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.signLanguage.language.error.required);
-});
+  test(`${language.toUpperCase()} - page select sign language and do not enter any language page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.signLanguage.requested.label).first().click();
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.signLanguage.language.error.required).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.fillField(signLanguageTextField, 'Invalid language');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.signLanguage.language.error.invalid);
-});
+  test(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.signLanguage.requested.label).first().click();
+    await page.locator(signLanguageTextField).first().fill('Invalid language');
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.signLanguage.language.error.invalid).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select anything else and don't enter any thing into the field I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.anythingElse.language.error.required);
-});
+  test(`${language.toUpperCase()} - page select anything else and don't enter any thing into the field page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.anythingElse.requested.label).first().click();
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.anythingElse.language.error.required).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - I select anything else and enter illegal characters in the field I see errors`, ({ I }) => {
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
-  I.fillField(anythingElseTextField, '< $ >');
-  I.click(commonContent.continue);
-  I.see(hearingArrangementsContent.fields.selection.anythingElse.language.error.invalid);
+  test(`${language.toUpperCase()} - page select anything else and enter illegal characters in the field page see errors`, async({ page }) => {
+    await page.getByText(hearingArrangementsContent.fields.selection.anythingElse.requested.label).first().click();
+    await page.locator(anythingElseTextField).first().fill('< $ >');
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await expect(page.getByText(hearingArrangementsContent.fields.selection.anythingElse.language.error.invalid).first()).toBeVisible();
+  });
 });

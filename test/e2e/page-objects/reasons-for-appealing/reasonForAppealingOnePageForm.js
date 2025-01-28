@@ -1,56 +1,49 @@
 const assert = require('assert');
 const reasonForAppealingContentEn = require('steps/reasons-for-appealing/reason-for-appealing/content.en');
 const reasonForAppealingContentCy = require('steps/reasons-for-appealing/reason-for-appealing/content.cy');
+const { expect } = require('@playwright/test');
 
-async function hasErrorClass(item) {
-  const I = this;
-
-  const classes = await I.grabAttributeFrom(`${item} div`, 'class');
+async function hasErrorClass(I, item) {
+  const classes = await I.locator(`${item} div`).getAttribute('class');
   const hasClass = classes.includes('govuk-form-group--error');
   assert.equal(hasClass, true);
 }
 
-function addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason) {
-  const I = this;
+async function addAReasonForAppealing(I, language, whatYouDisagreeWithField, reasonForAppealingField, reason) {
   const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
-  I.waitForText(reasonForAppealingContent.title);
-  I.waitForElement(whatYouDisagreeWithField, 5);
-  I.fillField(whatYouDisagreeWithField, reason.whatYouDisagreeWith);
-  I.fillField(reasonForAppealingField, reason.reasonForAppealing);
+  await expect(I.getByText(reasonForAppealingContent.title).first()).toBeVisible();
+  await expect(I.locator(whatYouDisagreeWithField).first()).toBeVisible();
+  await I.locator(whatYouDisagreeWithField).first().fill(reason.whatYouDisagreeWith);
+  await I.locator(reasonForAppealingField).first().fill(reason.reasonForAppealing);
 }
 
-function addAReasonForAppealingAndThenClickAddAnother(language, whatYouDisagreeWithField,
+async function addAReasonForAppealingAndThenClickAddAnother(I, language, whatYouDisagreeWithField,
   reasonForAppealingField, reason) {
-  const I = this;
-
-  I.addAReasonForAppealing(language, whatYouDisagreeWithField, reasonForAppealingField, reason);
-  I.click('Add reason');
+  await addAReasonForAppealing(I, language, whatYouDisagreeWithField, reasonForAppealingField, reason);
+  await I.getByText('Add reason').first().click();
 }
 
-function addReasonForAppealingUsingTheOnePageFormAndContinue(language, commonContent, reason) {
-  const I = this;
-
-  I.wait(5);
-  I.addAReasonForAppealing(
+async function addReasonForAppealingUsingTheOnePageFormAndContinue(I, language, commonContent, reason) {
+  await addAReasonForAppealing(
+    I,
     language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
-  I.click(commonContent.continue);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function addReasonForAppealingUsingTheOnePageFormAfterSignIn(language, commonContent, reason) {
-  const I = this;
-
-  I.addAReasonForAppealing(
+async function addReasonForAppealingUsingTheOnePageFormAfterSignIn(I, language, commonContent, reason) {
+  await addAReasonForAppealing(
+    I,
     language,
     '#items-0 #item\\.whatYouDisagreeWith-0',
     '#items-0 #item\\.reasonForAppealing-0',
     reason
   );
-  I.click(commonContent.saveAndContinue);
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = {

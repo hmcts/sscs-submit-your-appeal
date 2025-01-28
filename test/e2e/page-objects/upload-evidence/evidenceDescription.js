@@ -1,8 +1,7 @@
-function enterDescription(commonContent, description) {
-  const I = this;
-  I.seeInCurrentUrl('evidence-description');
-  I.fillField('textarea[name="describeTheEvidence"]', description);
-  I.click(commonContent.continue);
+async function enterDescription(I, commonContent, description) {
+  await I.waitForURL('**/evidence-description');
+  await I.locator('textarea[name="describeTheEvidence"]').fill(description);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { enterDescription };
