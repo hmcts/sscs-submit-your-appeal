@@ -1,10 +1,8 @@
-function enterADateAndContinue(commonContent, day, month, year) {
-  const I = this;
-
-  I.fillField('input[name*="day"]', day);
-  I.fillField('input[name*="month"]', month);
-  I.fillField('input[name*="year"]', year);
-  I.click(commonContent.continue);
+async function enterADateAndContinue(I, commonContent, day, month, year) {
+  await I.locator('input[name*="day"]').first().fill(day);
+  await I.locator('input[name*="month"]').first().fill(month);
+  await I.locator('input[name*="year"]').first().fill(year);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { enterADateAndContinue };

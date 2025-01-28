@@ -1,10 +1,14 @@
-function uploadAPieceOfEvidence() {
-  const I = this;
-  I.wait(1);
-  I.attachFile('#uploadEv', 'evidence.txt');
-  I.wait(2);
-  I.click('Continue');
-  I.wait(2);
+const { expect } = require('@playwright/test');
+
+async function uploadAPieceOfEvidence(I) {
+  await I.locator('#uploadEv').setInputFiles('evidence.txt');
+  await expect(I.locator('a[href="/evidence-upload/item-0/delete"]').first()).toBeVisible();
+  await I.getByRole('button', { name: 'Continue' }).first().click();
+  try {
+    await I.waitForURL('**/evidence-description');
+  } catch (error) {
+    await I.getByRole('button', { name: 'Continue' }).first().click();
+  }
 }
 
 module.exports = {

@@ -3,7 +3,7 @@ const steps = requireDirectory(module);
 
 let actions = {};
 
-function setActorActions(data) {
+async function setActorActions(data) {
 
     for (let k in data) {
 
@@ -14,7 +14,7 @@ function setActorActions(data) {
     }
 }
 
-module.exports = function () {
+module.exports = async function () {
 
     let stepsKeys = Object.keys(steps);
 
@@ -24,7 +24,7 @@ module.exports = function () {
 
         for (let section in sectionKeys) {
 
-            setActorActions(steps[stepsKeys[step]][sectionKeys[section]]);
+            await setActorActions(steps[stepsKeys[step]][sectionKeys[section]]);
         }
     }
 
