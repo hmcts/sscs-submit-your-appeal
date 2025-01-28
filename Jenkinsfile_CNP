@@ -1,12 +1,12 @@
 #!groovy
-properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
-         pipelineTriggers([[$class: 'GitHubPushTrigger']])],
+properties([
+        [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
+        pipelineTriggers([[$class: 'GitHubPushTrigger']]),
         parameters([
-            string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
-            string(name: 'RETRIES', defaultValue: '5', description: 'Number of retries for failed tests')
+                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '5', description: 'Number of retries for failed tests')
         ])
-)
+])
 
 @Library("Infrastructure")
 
@@ -52,12 +52,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 
@@ -65,12 +65,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 
@@ -78,12 +78,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/smoke-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Smoke test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/smoke-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Smoke test report"
         ]
     }
 
@@ -91,12 +91,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/smoke-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Smoke test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/smoke-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Smoke test report"
         ]
     }
 }
