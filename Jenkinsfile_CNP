@@ -3,8 +3,8 @@ properties([
         [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
         pipelineTriggers([[$class: 'GitHubPushTrigger']]),
         parameters([
-                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
-                string(name: 'RETRIES', defaultValue: '5', description: 'Number of retries for failed tests')
+                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '2', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '10', description: 'Number of retries for failed tests')
         ])
 ])
 
