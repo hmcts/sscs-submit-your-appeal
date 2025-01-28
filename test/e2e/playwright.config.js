@@ -13,7 +13,7 @@ module.exports = defineConfig({
   },
   timeout: 90000,
   workers: parseInt(testChunks), // Parallel chunks
-  retries: 10, // Set retries as per requirement
+  retries: 0, // Set retries as per requirement
   fullyParallel: true,
   reporter: [
     ['list'],
@@ -47,6 +47,7 @@ module.exports = defineConfig({
     actionTimeout: 30000,
     navigationTimeout: 30000,
     baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
+    ibcaBaseURL: process.env.IBCA_TEST_URL || 'https://infected-blood-appeal.aat.platform.hmcts.net/',
     trace: 'on-first-retry',
     screenshot: { mode: 'only-on-failure', fullPage: true },
     headless: process.env.SHOW_BROWSER_WINDOW !== 'true',
