@@ -1,23 +1,21 @@
 const lanugagePreferenceContentEn = require('steps/start/language-preference/content.en');
 const lanugagePreferenceContentCy = require('steps/start/language-preference/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function chooseLanguagePreference(language, commonContent, answer) {
-  const I = this;
+async function chooseLanguagePreference(I, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  I.waitForText(lanugagePreferenceContent.title);
-  I.click({ id: `languagePreferenceWelsh-${answer}` });
-  I.click(commonContent.continue);
+  await expect(I.getByText(lanugagePreferenceContent.title).first()).toBeVisible();
+  await I.locator(`#languagePreferenceWelsh-${answer}`).first().click();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function chooseLanguagePreferenceAfterSignIn(language, commonContent, answer) {
-  const I = this;
+async function chooseLanguagePreferenceAfterSignIn(I, language, commonContent, answer) {
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
-  I.waitForText(lanugagePreferenceContent.title);
-  I.click({ id: `languagePreferenceWelsh-${answer}` });
-  I.click(commonContent.saveAndContinue);
+  await expect(I.getByText(lanugagePreferenceContent.title).first()).toBeVisible();
+  await I.locator(`#languagePreferenceWelsh-${answer}`).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = { chooseLanguagePreference, chooseLanguagePreferenceAfterSignIn };

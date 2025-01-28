@@ -1,17 +1,13 @@
-function signOut(language) {
-  const I = this;
+async function signOut(I, language) {
   if (language === 'en') {
-    I.retry({ retries: 3, minTimeout: 5000 }).click('Sign Out');
+    await I.getByText('Sign Out').first().click();
   } else {
-    I.retry({ retries: 3, minTimeout: 5000 }).click('Allgofnodi');
+    await I.getByText('Allgofnodi').first().click();
   }
-  I.wait(1);
 }
 
-function navigateToSignOut() {
-  const I = this;
-  I.amOnPage('/sign-out');
-  I.wait(2);
+async function navigateToSignOut(I) {
+  await I.goto('/sign-out');
 }
 
 module.exports = { signOut, navigateToSignOut };

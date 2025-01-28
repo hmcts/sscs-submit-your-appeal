@@ -1,25 +1,21 @@
 const postCodeContentEn = require('steps/start/postcode-checker/content.en');
 const postCodeContentCy = require('steps/start/postcode-checker/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function enterPostcodeAndContinue(language, commonContent, postcode) {
-  const I = this;
+async function enterPostcodeAndContinue(I, language, commonContent, postcode) {
   const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
 
-  I.waitForText(postCodeContent.title);
-  I.fillField({ id: 'postcode' }, postcode);
-  I.click(commonContent.continue);
-  I.wait(1);
+  await expect(I.getByText(postCodeContent.title).first()).toBeVisible();
+  await I.locator('#postcode').first().fill(postcode);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterPostcodeAndContinueAfterSignIn(language, commonContent, postcode) {
-  const I = this;
+async function enterPostcodeAndContinueAfterSignIn(I, language, commonContent, postcode) {
   const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
 
-  I.waitForText(postCodeContent.title);
-  I.fillField({ id: 'postcode' }, postcode);
-  I.click(commonContent.saveAndContinue);
-  I.wait(1);
+  await expect(I.getByText(postCodeContent.title).first()).toBeVisible();
+  await I.locator('#postcode').first().fill(postcode);
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = { enterPostcodeAndContinue, enterPostcodeAndContinueAfterSignIn };

@@ -1,8 +1,6 @@
-function selectUseSameNumberAndContinue(commonContent, option) {
-  const I = this;
-
-  I.checkOption(option);
-  I.click(commonContent.continue);
+async function selectUseSameNumberAndContinue(I, commonContent, option) {
+  await I.locator(option).check();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { selectUseSameNumberAndContinue };

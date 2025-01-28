@@ -6,39 +6,44 @@ const paths = require('paths');
 
 const evidenceUploadEnabled = require('config').get('features.evidenceUpload.enabled');
 
-Feature(`${language.toUpperCase()} - Evidence description page @evidence-upload @batch-10`);
+const { test, expect } = require('@playwright/test');
+const { enterDescription } = require('../../page-objects/upload-evidence/evidenceDescription');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const { createTheSession } = require('../../page-objects/session/createSession');
 
-if (evidenceUploadEnabled) {
-  Before(({ I }) => {
-    I.createTheSession(language);
-    I.amOnPage(paths.reasonsForAppealing.evidenceDescription);
-  });
+test.describe(`${language.toUpperCase()} - Evidence description page @evidence-upload`, { tag: '@batch-10' }, () => {
+  if (evidenceUploadEnabled) {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.reasonsForAppealing.evidenceDescription);
+    });
 
-  After(({ I }) => {
-    I.endTheSession();
-  });
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-  Scenario(`${language.toUpperCase()} - When I select continue, I am taken to the hearing page`, ({ I }) => {
-    I.click(commonContent.continue);
-    I.seeInCurrentUrl(paths.hearing.theHearing);
-    I.see(theHearingContent.title);
-  });
+    test(`${language.toUpperCase()} - When page select continue, page am taken to the hearing page`, async({ page }) => {
+      await page.getByRole('button', { name: commonContent.continue }).first().click();
+      await page.waitForURL(`**${paths.hearing.theHearing}`);
+      await expect(page.getByText(theHearingContent.title).first()).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When I enter special characters and select continue, I see errors`, ({ I }) => {
-    I.enterDescription('Description with special characters |');
-    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceDescription);
-    I.see(evidenceDescriptionContent.title);
-    I.see(evidenceDescriptionContent.fields.describeTheEvidence.error.invalid);
-  });
+    test(`${language.toUpperCase()} - When page enter special characters and select continue, page see errors`, async({ page }) => {
+      await enterDescription(page, 'Description with special characters |');
+      await page.waitForURL(`**${paths.reasonsForAppealing.evidenceDescription}`);
+      await expect(page.getByText(evidenceDescriptionContent.title).first()).toBeVisible();
+      await expect(page.getByText(evidenceDescriptionContent.fields.describeTheEvidence.error.invalid).first()).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - When I enter too sort description and select continue, I see errors`, ({ I }) => {
-    I.enterDescription('one');
-    I.seeInCurrentUrl(paths.reasonsForAppealing.evidenceDescription);
-    I.see(evidenceDescriptionContent.title);
-    I.see(evidenceDescriptionContent.fields.describeTheEvidence.error.tooShort);
-  });
+    test(`${language.toUpperCase()} - When page enter too sort description and select continue, page see errors`, async({ page }) => {
+      await enterDescription(page, 'one');
+      await page.waitForURL(`**${paths.reasonsForAppealing.evidenceDescription}`);
+      await expect(page.getByText(evidenceDescriptionContent.title).first()).toBeVisible();
+      await expect(page.getByText(evidenceDescriptionContent.fields.describeTheEvidence.error.tooShort).first()).toBeVisible();
+    });
 
-  Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-    I.seeElementInDOM('form input[name="_csrf"]');
-  });
-}
+    test(`${language.toUpperCase()} - page have a csrf token`, async({ page }) => {
+      await expect(page.locator('form input[name="_csrf"]').first()).toBeVisible();
+    });
+  }
+});
