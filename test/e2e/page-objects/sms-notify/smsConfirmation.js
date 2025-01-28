@@ -1,7 +1,5 @@
-function readSMSConfirmationAndContinue(commonContent) {
-  const I = this;
-  I.wait(5);
-  I.click(commonContent.continue);
+async function readSMSConfirmationAndContinue(I, commonContent) {
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { readSMSConfirmationAndContinue };

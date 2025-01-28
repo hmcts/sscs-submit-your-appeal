@@ -7,8 +7,9 @@ properties([
                 string(name: 'IDAM_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The IDAM URL where test accounts get created'),
                 string(name: 'TRIBUNALS_CASE_API_URL', defaultValue: 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal', description: 'The Tribunal api to view the cases'),
                 string(name: 'SecurityRules',
-                 defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
-                 description: 'The URL you want to run these tests against'),
+                        defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
+                        description: 'The URL you want to run these tests against'),
+                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
         ])
 ])
 
@@ -37,6 +38,7 @@ withNightlyPipeline("nodejs", product, component) {
     loadVaultSecrets(secrets)
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
+    env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
 
     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
@@ -47,20 +49,52 @@ withNightlyPipeline("nodejs", product, component) {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
 //     }
 
+    afterAlways('crossBrowserTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*/**'
+    }
+
     afterSuccess('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-        enableSlackNotifications('#sscs-tech')
-     }
-
-     afterSuccess('fullFunctionalTest') {
-
         publishHTML target: [
                 allowMissing : true,
                 alwaysLinkToLastBuild: true,
                 keepAll : true,
-                reportDir : "output",
-                reportFiles : "SYA-e2e-result.html",
-                reportName : "SYA E2E functional tests result"
+                reportDir : "test/e2e/crossbrowser-report",
+                reportFiles : "index.html",
+                reportName : "SYA E2E Crossbrowser test report"
+        ]
+        enableSlackNotifications('#sscs-tech')
+    }
+
+    afterAlways('mutationTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/mutation-output/*/**'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/mutation-report/*/**'
+    }
+
+    afterSuccess('mutationTest') {
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "test/e2e/mutation-report",
+                reportFiles : "index.html",
+                reportName : "SYA E2E Mutation test report"
+        ]
+    }
+
+    afterAlways('fullFunctionalTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
+    }
+
+    afterSuccess('fullFunctionalTest') {
+        publishHTML target: [
+                allowMissing : true,
+                alwaysLinkToLastBuild: true,
+                keepAll : true,
+                reportDir : "test/e2e/functional-report",
+                reportFiles : "index.html",
+                reportName : "SYA E2E Functional test report"
         ]
     }
 }

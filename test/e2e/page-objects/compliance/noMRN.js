@@ -1,23 +1,21 @@
 const noMRNContentEn = require('steps/compliance/no-mrn/content.en');
 const noMRNContentCy = require('steps/compliance/no-mrn/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function enterReasonForNoMRNAndContinue(language, commonContent, reason) {
-  const I = this;
+async function enterReasonForNoMRNAndContinue(I, language, commonContent, reason) {
   const noMRNContent = language === 'en' ? noMRNContentEn : noMRNContentCy;
 
-  I.waitForText(noMRNContent.title);
-  I.fillField('#reasonForNoMRN', reason);
-  I.click(commonContent.continue);
+  await expect(I.getByText(noMRNContent.title).first()).toBeVisible();
+  await I.locator('#reasonForNoMRN').first().fill(reason);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterReasonForNoMRNAndContinueAfterSignIn(language, commonContent, reason) {
-  const I = this;
+async function enterReasonForNoMRNAndContinueAfterSignIn(I, language, commonContent, reason) {
   const noMRNContent = language === 'en' ? noMRNContentEn : noMRNContentCy;
 
-  I.waitForText(noMRNContent.title);
-  I.fillField('#reasonForNoMRN', reason);
-  I.click(commonContent.saveAndContinue);
+  await expect(I.getByText(noMRNContent.title).first()).toBeVisible();
+  await I.locator('#reasonForNoMRN').first().fill(reason);
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = { enterReasonForNoMRNAndContinue, enterReasonForNoMRNAndContinueAfterSignIn };

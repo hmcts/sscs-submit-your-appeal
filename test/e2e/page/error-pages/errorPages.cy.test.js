@@ -2,22 +2,26 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Error Pages @batch-08`);
+const { test, expect } = require('@playwright/test');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const { createTheSession } = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+test.describe(`${language.toUpperCase()} - Error Pages`, { tag: '@batch-08' }, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test.afterEach('End session', async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to a path that /does-not-exist I see an error message`, ({ I }) => {
-  I.amOnPage(paths.errors.doesNotExist);
-  I.see(commonContent.errors.notFound.title);
-});
+  test(`${language.toUpperCase()} - When page go to a path that /does-not-exist page see an error message`, async({ page }) => {
+    await page.goto(paths.errors.doesNotExist);
+    await expect(page.getByText(commonContent.errors.notFound.title).first()).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to /internal-server-error I see an error message`, ({ I }) => {
-  I.amOnPage(paths.errors.internalServerError);
-  I.see(commonContent.errors.serverError.title);
+  test(`${language.toUpperCase()} - When page go to /internal-server-error page see an error message`, async({ page }) => {
+    await page.goto(paths.errors.internalServerError);
+    await expect(page.getByText(commonContent.errors.serverError.title).first()).toBeVisible();
+  });
 });
