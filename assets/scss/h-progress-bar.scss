@@ -88,7 +88,10 @@ $ring-border: 6px;
     .dwp-respond h4,
     .ibca-respond h4,
     .hearing-booked h4 {
-      right: -22%;
+      right: -5%;
+      white-space: normal;
+      text-align: center;
+      width: 50%;
     }
 
     .hearing h4 {

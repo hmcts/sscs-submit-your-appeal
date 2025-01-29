@@ -27,6 +27,7 @@ const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
 const { isIba } = require('utils/benefitTypeUtils');
+const i18next = require('i18next');
 
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
@@ -52,20 +53,20 @@ class RepresentativeDetails extends SaveToDraftStore {
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
     return first === '' && last === '' ?
-      userAnswer.NOT_PROVIDED :
+      userAnswer[i18next.language].NOT_PROVIDED :
       `${repTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
-    return this.fields.name.organisation.value || userAnswer.NOT_PROVIDED;
+    return this.fields.name.organisation.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get CYAPhoneNumber() {
-    return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
+    return this.fields.phoneNumber.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get CYAEmailAddress() {
-    return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
+    return this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   nameRequiredValidation(value) {

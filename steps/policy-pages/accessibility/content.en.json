@@ -57,12 +57,12 @@
   },
   "whatToDo": {
     "title": "Feedback and contact information",
-    "para1": "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille then email HMCTSforms@justice.gov.uk or phone:",
+    "para1": "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille then email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\">HMCTSforms@justice.gov.uk</a> or phone:",
     "para2": "We’ll consider your request and get back to you within 10 working days."
   },
   "reportingProblems": {
     "title": "Reporting accessibility problems with this website",
-    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\"> HMCTSforms@justice.gov.uk </a> or phone:"
+    "para1": "We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email: <a class=\"govuk-link\" href=\"mailto:HMCTSforms@justice.gov.uk\">HMCTSforms@justice.gov.uk</a> or phone:"
   },
   "enforcement": {
     "title": "Enforcement procedure",

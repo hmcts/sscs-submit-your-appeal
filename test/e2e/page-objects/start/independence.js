@@ -1,8 +1,5 @@
-function continueFromIndependance(commonContent) {
-  const I = this;
-
-  I.wait(3);
-  I.click(commonContent.continue);
+async function continueFromIndependance(I, commonContent) {
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { continueFromIndependance };
