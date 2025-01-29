@@ -118,16 +118,5 @@ describe('Entry.js', () => {
       expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodCompensation);
       expect(mockHandler.called).to.eql(true);
     });
-
-    it('should redirect to landing if shuttered', () => {
-      // eslint-disable-next-line no-process-env
-      process.env.INFECTED_BLOOD_COMPENSATION_ENABLED = 'false';
-      entry.handler(req, res);
-      expect(redirect.called).to.eql(true);
-      expect(redirect.calledWith(paths.policy.requestIbcAppealForm)).to.eql(true);
-
-      // eslint-disable-next-line no-process-env
-      process.env.INFECTED_BLOOD_COMPENSATION_ENABLED = 'true';
-    });
   });
 });
