@@ -1,0 +1,13 @@
+{
+    "name": "sscs-sya-playwright-tests",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "playwright test",
+        "install": "npm install"
+    },
+    "devDependencies": {
+        "@playwright/test": "latest",
+        "typescript": "latest",
+        "url-join-ts": "^1.0.5"
+    }
+}
