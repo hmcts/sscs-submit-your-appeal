@@ -29,7 +29,6 @@ describe('RepresentativeInternationalDetails.js', () => {
 
     representativeInternationalDetails.fields = {
       name: {
-        title: { value: '' },
         first: { value: '' },
         last: { value: '' },
         organisation: { value: '' }
@@ -95,7 +94,7 @@ describe('RepresentativeInternationalDetails.js', () => {
   });
 
   describe('get getCYAName()', () => {
-    const NAME = 'MR,HARRY-Kane,O`Brian';
+    const NAME = 'HARRY-Kane,O`Brian';
     beforeEach(() => {
       representativeInternationalDetails.fields.name.first.value = '';
       representativeInternationalDetails.fields.name.last.value = '';
@@ -103,10 +102,9 @@ describe('RepresentativeInternationalDetails.js', () => {
 
     beforeEach(() => {
       it('should normalise reps full name with hyphen and apostrophe', () => {
-        representativeInternationalDetails.fields.name.title.value = NAME.split(',')[0];
-        representativeInternationalDetails.fields.name.first.value = NAME.split(',')[1];
-        representativeInternationalDetails.fields.name.last.value = NAME.split(',')[2];
-        expect(representativeInternationalDetails.CYAName).to.equal('MR HARRY-Kane O`Brian');
+        representativeInternationalDetails.fields.name.first.value = NAME.split(',')[0];
+        representativeInternationalDetails.fields.name.last.value = NAME.split(',')[1];
+        expect(representativeInternationalDetails.CYAName).to.equal('HARRY-Kane O`Brian');
       });
     });
 
@@ -219,7 +217,7 @@ describe('RepresentativeInternationalDetails.js', () => {
 
       it('contains validation', () => {
         expect(field.validations).to.not.be.empty;
-        expect(field.validations.length).to.eq(7);
+        expect(field.validations.length).to.eq(4);
       });
     });
 
@@ -339,11 +337,10 @@ describe('RepresentativeInternationalDetails.js', () => {
   });
 
   describe('values()', () => {
-    const repName = 'MR,HARRY,POTTER';
+    const repName = 'HARRY,POTTER';
     it('should contain a value object with full name in caps', () => {
-      representativeInternationalDetails.fields.name.title.value = repName.split(',')[0];
-      representativeInternationalDetails.fields.name.first.value = repName.split(',')[1];
-      representativeInternationalDetails.fields.name.last.value = repName.split(',')[2];
+      representativeInternationalDetails.fields.name.first.value = repName.split(',')[0];
+      representativeInternationalDetails.fields.name.last.value = repName.split(',')[1];
       representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
       representativeInternationalDetails.fields.addressLine1 = { value: 'Some address line 1' };
       representativeInternationalDetails.fields.addressLine2 = { value: 'Some address line 2' };
@@ -355,7 +352,7 @@ describe('RepresentativeInternationalDetails.js', () => {
       const values = representativeInternationalDetails.values();
       expect(values).to.eql({
         representative: {
-          title: 'MR',
+          title: '',
           firstName: 'HARRY',
           lastName: 'POTTER',
           organisation: 'Organisation',

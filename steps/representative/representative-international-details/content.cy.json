@@ -6,15 +6,7 @@
   "fields": {
     "name": {
       "error": {
-        "required": "Rhowch enw eich cynrychiolydd neu enw’r sefydliad mhant yn gweithio iddo",
-        "nameNoTitle": "Rhowch deitl eich cynrychiolydd",
-        "titleNoName": "Rhowch enw eich cynrychiolydd"
-      },
-      "title": {
-        "title": "Teitl",
-        "error": {
-          "invalid": "Rydych wedi rhoi teitl annilys. Gwiriwch ef a’i nodi eto"
-        }
+        "required": "Rhowch enw eich cynrychiolydd neu enw’r sefydliad mhant yn gweithio iddo"
       },
       "first": {
         "title": "Enw cyntaf",

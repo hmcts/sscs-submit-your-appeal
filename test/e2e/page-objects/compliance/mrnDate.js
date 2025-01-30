@@ -1,25 +1,19 @@
-function enterAnMRNDateAndContinue(commonContent, date) {
-  const I = this;
+const { expect } = require('@playwright/test');
 
-  I.scrollPageToBottom();
-  I.wait(1);
-  I.fillField('input[name*="day"]', date.date().toString());
-  I.fillField('input[name*="month"]', (date.month() + 1).toString());
-  I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.continue);
+async function enterAnMRNDateAndContinue(I, commonContent, date) {
+  await I.locator('input[name*="day"]').fill(date.date().toString());
+  await I.locator('input[name*="month"]').fill((date.month() + 1).toString());
+  await I.locator('input[name*="year"]').fill(date.year().toString());
+  await expect(I.getByText(commonContent.continue).first()).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterAnMRNDateAndContinueAfterSignIn(commonContent, date) {
-  const I = this;
-
-  I.scrollPageToBottom();
-  I.wait(1);
-  I.fillField('input[name*="day"]', date.date().toString());
-  I.fillField('input[name*="month"]', (date.month() + 1).toString());
-  I.fillField('input[name*="year"]', date.year().toString());
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.saveAndContinue);
+async function enterAnMRNDateAndContinueAfterSignIn(I, commonContent, date) {
+  await I.locator('input[name*="day"]').fill(date.date().toString());
+  await I.locator('input[name*="month"]').fill((date.month() + 1).toString());
+  await I.locator('input[name*="year"]').fill(date.year().toString());
+  await expect(I.getByText(commonContent.continue).first()).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
 }
 
 module.exports = { enterAnMRNDateAndContinue, enterAnMRNDateAndContinueAfterSignIn };

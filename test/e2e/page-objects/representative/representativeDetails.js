@@ -1,33 +1,36 @@
 const config = require('config');
+const { expect } = require('@playwright/test');
 
-const postcodeLookupEnabled = config.get('postcodeLookup.enabled') === 'true';
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
 
-function enterRequiredRepresentativeDetailsManual(I) {
-  I.fillField('input[name="name.title"]', 'Mr');
-  I.fillField('input[name="name.first"]', 'Harry');
-  I.fillField('input[name="name.last"]', 'Potter');
+async function enterRequiredRepresentativeDetailsManual(I) {
+  await I.locator('input[name="name.title"]').fill('Mr');
+  await I.locator('input[name="name.first"]').fill('Harry');
+  await I.locator('input[name="name.last"]').fill('Potter');
 
   if (postcodeLookupEnabled) {
-    I.click({ id: 'manualLink' });
+    await I.locator('#manualLink').first().click();
   }
 
-  I.fillField('#addressLine1', '4 Privet Drive');
-  I.fillField('#addressLine2', 'Off Wizards close');
-  I.fillField('#county', 'Wizard county');
-  I.fillField('#townCity', 'Little Whinging');
-  I.fillField('#postCode', 'PA80 5UU');
+  await I.locator('#addressLine1').fill('4 Privet Drive');
+  await I.locator('#addressLine2').fill('Off Wizards close');
+  await I.locator('#county').fill('Wizard county');
+  await I.locator('#townCity').fill('Little Whinging');
+  await I.locator('#postCode').fill('PA80 5UU');
 }
 
-function enterRequiredRepresentativeDetails(I) {
+async function enterRequiredRepresentativeDetails(I) {
   if (postcodeLookupEnabled) {
-    I.fillField('input[name="name.title"]', 'Mr');
-    I.fillField('input[name="name.first"]', 'Harry');
-    I.fillField('input[name="name.last"]', 'Potter');
-    I.fillField({ id: 'postcodeLookup' }, 'PA80 5UU');
-    I.click('Find address');
-    I.selectOption({ css: 'form select[name=postcodeAddress]' }, '130075116');
+    await I.locator('input[name="name.title"]').fill('Mr');
+    await I.locator('input[name="name.first"]').fill('Harry');
+    await I.locator('input[name="name.last"]').fill('Potter');
+    await I.locator('#postcodeLookup').fill('PA80 5UU');
+    await I.getByText('Find address').first().click();
+    await I.locator('select[name="postcodeAddress"]').selectOption('130075116');
+    await I.waitForURL(new RegExp('.*?validate=1'));
+    await expect(I.locator('#addressLine1')).not.toBeEmpty();
   } else {
-    enterRequiredRepresentativeDetailsManual(I);
+    await enterRequiredRepresentativeDetailsManual(I);
   }
 }
 

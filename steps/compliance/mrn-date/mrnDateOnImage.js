@@ -4,4 +4,13 @@ const mrnDate = {
   year: '2016'
 };
 
-module.exports = mrnDate;
+const rdnDate = {
+  day: '06',
+  month: '01',
+  year: '2025'
+};
+
+module.exports = {
+  mrnDate,
+  rdnDate
+};

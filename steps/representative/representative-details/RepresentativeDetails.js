@@ -26,6 +26,8 @@ const userAnswer = require('utils/answer');
 const { decode } = require('utils/stringUtils');
 const PCL = require('components/postcodeLookup/controller');
 const config = require('config');
+const { isIba } = require('utils/benefitTypeUtils');
+const i18next = require('i18next');
 
 const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
@@ -51,20 +53,42 @@ class RepresentativeDetails extends SaveToDraftStore {
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
     return first === '' && last === '' ?
-      userAnswer.NOT_PROVIDED :
+      userAnswer[i18next.language].NOT_PROVIDED :
       `${repTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
-    return this.fields.name.organisation.value || userAnswer.NOT_PROVIDED;
+    return this.fields.name.organisation.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get CYAPhoneNumber() {
-    return this.fields.phoneNumber.value || userAnswer.NOT_PROVIDED;
+    return this.fields.phoneNumber.value || userAnswer[i18next.language].NOT_PROVIDED;
   }
 
   get CYAEmailAddress() {
-    return this.fields.emailAddress.value || userAnswer.NOT_PROVIDED;
+    return this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED;
+  }
+
+  nameRequiredValidation(value) {
+    return Object.keys(value).length > 0;
+  }
+  nameNoTitleValidation(value, req) {
+    return isIba(req) || hasNameButNoTitleValidation(value);
+  }
+  titleNoNameValidation(value) {
+    return hasTitleButNoNameValidation(value);
+  }
+  titleValidation(value, req) {
+    return isIba(req) || joiValidation(value.title, Joi.string().trim().regex(title));
+  }
+  firstValidation(value) {
+    return joiValidation(value.first, Joi.string().trim().regex(firstName));
+  }
+  lastValidation(value) {
+    return joiValidation(value.last, Joi.string().trim().regex(lastName));
+  }
+  orgValidation(value) {
+    return joiValidation(value.organisation, Joi.string().regex(whitelist));
   }
 
   get form() {
@@ -80,25 +104,25 @@ class RepresentativeDetails extends SaveToDraftStore {
           organisation: text
         }).check(
           fields.name.error.required,
-          value => Object.keys(value).length > 0
+          this.nameRequiredValidation
         ).check(
           fields.name.error.nameNoTitle,
-          value => hasNameButNoTitleValidation(value)
+          value => this.nameNoTitleValidation(value, this.req)
         ).check(
           fields.name.error.titleNoName,
-          value => hasTitleButNoNameValidation(value)
+          this.titleNoNameValidation
         ).check(
           errorFor('title', fields.name.title.error.invalid),
-          value => joiValidation(value.title, Joi.string().trim().regex(title))
+          value => this.titleValidation(value, this.req)
         ).check(
           errorFor('first', fields.name.first.error.invalid),
-          value => joiValidation(value.first, Joi.string().trim().regex(firstName))
+          this.firstValidation
         ).check(
           errorFor('last', fields.name.last.error.invalid),
-          value => joiValidation(value.last, Joi.string().trim().regex(lastName))
+          this.lastValidation
         ).check(
           errorFor('organisation', fields.name.organisation.error.invalid),
-          value => joiValidation(value.organisation, Joi.string().regex(whitelist))
+          this.orgValidation
         )
       },
       { name: this.pcl.fieldMap.postcodeLookup },
@@ -163,7 +187,7 @@ class RepresentativeDetails extends SaveToDraftStore {
   }
 
   values() {
-    const repTitle = this.fields.name.title.value;
+    const repTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value;
     const last = this.fields.name.last.value;
     return {
