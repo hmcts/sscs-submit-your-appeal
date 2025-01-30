@@ -1,13 +1,17 @@
 {% extends "components/form-template.html" %}
-{% from "components/toggle_help.njk" import toggleHelp %}
+{% from "components/fields.njk" import formSection %}
 {% from "components/common/radio.njk" import govRadio %}
 
+{% set title = content.title %}
+
 {% block fields %}
-        {{ govRadio(fieldName=fields.ibcRole.id, headerText=content.title, isPageHeading=true, classes="govuk-fieldset__legend--l", items = [
-        { text: content.fields.ibcRole.myself,                   value: "myself" },
-        { text: content.fields.ibcRole.parent,                   value: "parent" },
-        { text: content.fields.ibcRole.guardian,                 value: "guardian" },
-        { text: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
-        { text: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
-        ]) }}
+        {% call formSection() %}
+            {{ govRadio(field=fields.ibcRole, headerText=content.title, hideQuestion = true, items = [
+            { text: content.fields.ibcRole.myself,                   value: "myself" },
+            { text: content.fields.ibcRole.parent,                   value: "parent" },
+            { text: content.fields.ibcRole.guardian,                 value: "guardian" },
+            { text: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
+            { text: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
+            ]) }}
+        {% endcall %}
 {% endblock %}
