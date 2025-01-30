@@ -1,25 +1,19 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
 {% set title = content["title" + suffix] %}
 
 {% block fields %}
-    {% call formSection() %}
         <p class="govuk-body">{{ content["subtitle" + suffix] }}</p>
 
         {% if benefitCode == 'UC'%}
             <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
-        {{ selectionButtons(
-            fields.haveAMRN,
-            content["subtitle" + suffix],
-            hint = '',
-            options = [
-                { label: content.fields.haveAMRN["yes" + suffix], value: "yes" },
-                { label: content.fields.haveAMRN["no" + suffix],  value: "no" }
-            ])
-        }}
-    {% endcall %}
+        {{ govRadio(fieldName=fields.haveAMRN.id, headerText=content["question" + suffix], isPageHeading=false, items = [
+        { value: "yes", text: content.fields.haveAMRN["yes" + suffix] },
+        { value: "no", text: content.fields.haveAMRN["no" + suffix] }
+        ]) }}
 {% endblock %}
