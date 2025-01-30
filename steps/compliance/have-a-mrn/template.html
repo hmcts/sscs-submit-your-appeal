@@ -6,14 +6,16 @@
 {% set title = content["title" + suffix] %}
 
 {% block fields %}
+    {% call formSection() %}
         <p class="govuk-body">{{ content["subtitle" + suffix] }}</p>
 
         {% if benefitCode == 'UC'%}
             <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
-        {{ govRadio(fieldName=fields.haveAMRN.id, headerText=content["question" + suffix], isPageHeading=false, items = [
+        {{ govRadio(field = fields.haveAMRN, headerText=content["title" + suffix], isPageHeading=false, items = [
         { value: "yes", text: content.fields.haveAMRN["yes" + suffix] },
         { value: "no", text: content.fields.haveAMRN["no" + suffix] }
         ]) }}
+    {% endcall %}
 {% endblock %}

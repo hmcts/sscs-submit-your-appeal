@@ -1,11 +1,9 @@
 {
   "titleHead": "A oes gennych chi MRN",
-  "title": "Hysbysiad Gorfodi i Ailystyried (MRN)",
-  "question": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
+  "title": "A oes gennych chi Hysbysiad Gorfodi i Ailystyried (MRN)?",
   "subtitle": "Dyma’r llythyr a anfonwyd atoch gan DWP os gofynnoch iddynt ailystyried eu penderfyniad ynghylch eich hawl i gael {{benefitType}}.",
   "titleHeadIba": "A oes gennych Hysbysiad o Benderfyniad Adolygiad",
-  "titleIba": "Hysbysiad o Benderfyniad Adolygiad",
-  "questionIba": "A oes gennych Hysbysiad o Benderfyniad Adolygiad?",
+  "titleIba": "A oes gennych Hysbysiad o Benderfyniad Adolygiad?",
   "subtitleIba": "Dyma'r llythyr a anfonodd IBCA atoch os gofynnoch iddynt ailystyried eu penderfyniad ynghylch yr Iawndal Gwaed Heintiedig.",
   "uc": {
     "subtitle_para2": "Mae eich MRN yn eich <a target=\"_blank\" href=\"https://www.gov.uk/sign-in-universal-credit\" class=\"govuk-link\">dyddlyfr ar-lein Credyd Cynhwysol</a> (agor mewn ffenestr newydd)."
