@@ -1,25 +1,13 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
 {% from "components/toggle_help.njk" import toggleHelp %}
-{% from "details/macro.njk" import govukDetails %}
-
-{% set title = content.title %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% block fields %}
-    <div id="ibcRole">
-        {% call formSection() %}
-            {{ selectionButtons(
-                fields.ibcRole,
-                content.question,
-                hint = '',
-                options = [
-                    { label: content.fields.ibcRole.myself,                   value: "myself" },
-                    { label: content.fields.ibcRole.parent,                   value: "parent" },
-                    { label: content.fields.ibcRole.guardian,                 value: "guardian" },
-                    { label: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
-                    { label: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
-                ])
-            }}
-        {% endcall %}
-    </div>
+        {{ govRadio(fieldName=fields.ibcRole.id, headerText=content.title, isPageHeading=true, classes="govuk-fieldset__legend--l", items = [
+        { text: content.fields.ibcRole.myself,                   value: "myself" },
+        { text: content.fields.ibcRole.parent,                   value: "parent" },
+        { text: content.fields.ibcRole.guardian,                 value: "guardian" },
+        { text: content.fields.ibcRole.powerOfAttorney,          value: "powerOfAttorney" },
+        { text: content.fields.ibcRole.deceasedRepresentative,   value: "deceasedRepresentative" }
+        ]) }}
 {% endblock %}
