@@ -269,7 +269,7 @@
 <div class="govuk-form-group">
   {% if not hideQuestion %}
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">{{ question }}</h1>
+      <h2 class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ question }}</h1>
     </legend>
     {% if hint %}
       <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
@@ -288,10 +288,7 @@
           <label class="govuk-label govuk-date-input__label" for="{{ field.day.id }}">{{ labels.day | default('Day') }}</label>
           <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
                  id="{{ field.day.id }}"
-                 type="text" inputmode="numeric"
-                 pattern="[0-9]*"
-                 min="1"
-                 max="31"
+                 type="text"
                  name="{{ field.day.id }}"
                  {% if field.day.value %}value="{{ field.day.value }}"{% endif %}>
         </div>
@@ -302,7 +299,7 @@
           <label class="govuk-label govuk-date-input__label" for="{{ field.month.id }}">{{ labels.month | default('Month') }}</label>
           <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.month, 'control') }} {{ errorClass(field, 'control') }}"
                  id="{{ field.month.id }}"
-                 type="text" inputmode="numeric"
+                 type="text"
                  name="{{ field.month.id }}"
                  {% if field.month.value %}value="{{ field.month.value }}"{% endif %}>
         </div>
@@ -313,9 +310,7 @@
           <label  class="govuk-label govuk-date-input__label" for="{{ field.year.id }}">{{ labels.year | default('Year') }}</label>
           <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
                  id="{{ field.year.id }}"
-                 type="text" inputmode="numeric"
-                 pattern="[0-9]*"
-                 min="1"
+                 type="text"
                  name="{{ field.year.id }}"
                  {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>
         </div>
