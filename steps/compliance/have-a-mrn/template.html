@@ -1,5 +1,5 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
 {% from "components/common/radio.njk" import govRadio %}
 
 {% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
@@ -13,7 +13,7 @@
             <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
-        {{ govRadio(field = fields.haveAMRN, headerText=content["title" + suffix], isPageHeading=false, items = [
+        {{ govRadio(field = fields.haveAMRN, headerText=content["title" + suffix], hideQuestion = true, isPageHeading=false, items = [
         { value: "yes", text: content.fields.haveAMRN["yes" + suffix] },
         { value: "no", text: content.fields.haveAMRN["no" + suffix] }
         ]) }}
