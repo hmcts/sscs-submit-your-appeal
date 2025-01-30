@@ -226,9 +226,7 @@
          for="{{ field.id }}">
     {{ label }}
     {%- if hint %}
-    <span class="hint-text">
-      {{ hint }}
-    </span>
+          <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
     {%- endif %}
   </label>
 

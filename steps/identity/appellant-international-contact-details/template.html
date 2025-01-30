@@ -12,7 +12,7 @@
         {{ textbox(fields.townCity,                 content.fields.townCity.title,              hint="") }}
         {{ select(fields.country,                   content.fields.country.title,               options=getCountries) }}
         {{ textbox(fields.postCode,                 content.fields.postCode.title,            hint="") }}
-        {{ select(fields.portOfEntry,               content.fields.portOfEntry.title,           options=getPortOfEntryList) }}
+        {{ select(fields.portOfEntry,               content.fields.portOfEntry.title,           hint=content.fields.portOfEntry.hint,           options=getPortOfEntryList)}}
         {{ textbox(fields.phoneNumber,              content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
         {{ textbox(fields.emailAddress,             content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
     {% endcall %}
