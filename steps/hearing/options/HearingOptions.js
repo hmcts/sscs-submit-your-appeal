@@ -14,15 +14,10 @@ const {
   invalidEmailValidation,
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
-const { isIba } = require('utils/benefitTypeUtils');
 
 class HearingOptions extends SaveToDraftStore {
   static get path() {
     return paths.hearing.hearingOptions;
-  }
-
-  get suffix() {
-    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {
@@ -48,7 +43,7 @@ class HearingOptions extends SaveToDraftStore {
           errorFor('email', this.content.fields.options.video.error.invalid),
           value => invalidEmailValidation(value)
         ),
-        faceToFace: object({
+        inPerson: object({
           requested: bool.default(false)
         })
       }).check(
@@ -87,7 +82,7 @@ class HearingOptions extends SaveToDraftStore {
     const selectOptions = this.fields.selectOptions;
     const telephoneSelected = Boolean(selectOptions.telephone.requested.value);
     const videoSelected = Boolean(selectOptions.video.requested.value);
-    const f2fSelected = Boolean(selectOptions.faceToFace.requested.value);
+    const inPersonSelected = Boolean(selectOptions.inPerson.requested.value);
     const telephone = telephoneSelected ? selectOptions.telephone.phoneNumber.value : null;
     const email = videoSelected ? selectOptions.video.email.value : null;
     return {
@@ -97,7 +92,7 @@ class HearingOptions extends SaveToDraftStore {
           telephone,
           hearingTypeVideo: videoSelected,
           email,
-          hearingTypeFaceToFace: f2fSelected
+          hearingTypeFaceToFace: inPersonSelected
         }
       }
     };
@@ -110,21 +105,10 @@ class HearingOptions extends SaveToDraftStore {
 
     const setRequestedOrNotRequested = value => (value ? cyaContent.requested : cyaContent.notRequested);
 
-    const inPersonOrFaceToFaceContent = () => {
-      if (isIba(this.req)) {
-        return {
-          hearingTypeInPersonIba: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
-        };
-      }
-      return {
-        hearingTypeFaceToFace: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
-      };
-    };
-
     const arrangementsAnswer = {
       hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
       hearingTypeVideo: setRequestedOrNotRequested(selectOptions.video.requested),
-      ...inPersonOrFaceToFaceContent()
+      hearingTypeInPerson: setRequestedOrNotRequested(selectOptions.inPerson.requested)
     };
 
     arrangementsAnswer.hearingTypeTelephone = setCYAValue(
