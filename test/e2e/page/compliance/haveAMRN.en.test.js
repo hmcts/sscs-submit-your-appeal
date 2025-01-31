@@ -18,12 +18,12 @@ test.describe(`${language.toUpperCase()} - Check MRN`, { tag: '@batch-07' }, () 
   });
 
   test(`${language.toUpperCase()} - When page select yes page am taken to the DWP Issuing office page`, async({ page }) => {
-    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-yes');
+    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN');
     await page.waitForURL(`**${paths.compliance.dwpIssuingOffice}`);
   });
 
   test(`${language.toUpperCase()} - When page select no page am taken to the have you contacted DWP page`, async({ page }) => {
-    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-no');
+    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-2');
     await page.waitForURL(`**${paths.compliance.haveContactedDWP}`);
   });
 

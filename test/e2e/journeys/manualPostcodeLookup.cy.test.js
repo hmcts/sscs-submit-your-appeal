@@ -29,7 +29,7 @@ test.describe(`${language.toUpperCase()} - Postcode lookup test for type Manual`
     await page.goto(paths.session.root);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
-    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
     await skipPcqCY(page);
     await confirmDetailsArePresent(page, language);
