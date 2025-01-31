@@ -99,6 +99,24 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
+    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
+  }
+  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN');
+  await enterAnMRNDateAndContinue(I, commonContent, DateUtils.oneMonthAgo(language));
+  await enterDWPIssuingOfficeAndContinue(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
+  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
+  await enterAppellantNameAndContinue(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
+  await enterAppellantDOBAndContinue(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
+  await enterAppellantNINOAndContinue(I, language, commonContent, testNIData.generateValidNINumber());
+}
+
+async function enterDetailsFromStartToNINOSmoke(I, commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
+  await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
+  await chooseLanguagePreference(I, language, commonContent, 'no');
+  //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, 'no');
+  await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
+  await continueFromIndependance(I, commonContent);
+  if (allowSaveAndReturnEnabled) {
     await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-no');
   }
   await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN-yes');
@@ -354,6 +372,7 @@ async function continueIncompleteAppeal(I, language) {
 }
 
 module.exports = {
+  enterDetailsFromStartToNINOSmoke,
   enterDetailsFromStartToNINO,
   enterCaseDetailsFromStartToNINO,
   enterDetailsFromStartToDraftAppeals,
