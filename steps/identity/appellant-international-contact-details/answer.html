@@ -8,8 +8,8 @@
             {% if fields.postCode.value %}{{ fields.postCode.value }}<br>{% endif %}
         </dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+            <a id="cya-change-internationalcontactdetails" aria-labelledby="cya-change-internationalcontactdetails cya-internationalcontactdetails-label" class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span id="cya-internationalcontactdetails-label" class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
         </dd>
     </div>
 </dl>
@@ -19,10 +19,6 @@
         <dd class="govuk-summary-list__value">
             {{ fields.country.value }}<br>
         </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
-        </dd>
     </div>
 </dl>
 <dl class="govuk-summary-list">
@@ -30,10 +26,6 @@
         <dt class="govuk-summary-list__key">{{ content.cya.portOfEntry.question }}</dt>
         <dd class="govuk-summary-list__value">
             {{ getPortOfEntryFromCode }}<br>
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
         </dd>
     </div>
 </dl>

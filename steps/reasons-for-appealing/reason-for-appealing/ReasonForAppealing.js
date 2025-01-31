@@ -47,10 +47,6 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     return false;
   }
 
-  get reviewBody() {
-    return isIba(this.req) ? 'IBCA' : 'DWP';
-  }
-
   get field() {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
