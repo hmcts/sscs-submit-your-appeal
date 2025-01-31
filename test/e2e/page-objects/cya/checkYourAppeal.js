@@ -99,9 +99,9 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
-    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
+    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-no');
   }
-  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN');
+  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN-yes');
   await enterAnMRNDateAndContinue(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinue(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
   await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
