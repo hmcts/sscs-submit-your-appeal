@@ -6,7 +6,8 @@
   "additonalInfo": "You don’t have to write anything, if you have nothing further to add.",
   "fields": {
     "otherReasonForAppealing": {
-      "label": "Other reasons for appealing"
+      "label": "Other reasons for appealing",
+      "hint": "(optional)"
     }
   },
   "cya": {

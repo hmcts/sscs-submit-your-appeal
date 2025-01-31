@@ -7,14 +7,9 @@ const customJoi = require('utils/customJoiSchemas');
 const {
   firstName,
   lastName,
-  whitelist,
-  title
+  whitelist
 } = require('utils/regex');
-const {
-  joiValidation,
-  hasNameButNoTitleValidation,
-  hasTitleButNoNameValidation
-} = require('utils/validationUtils');
+const { joiValidation } = require('utils/validationUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -39,12 +34,11 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   }
 
   get CYAName() {
-    const repTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
     return first === '' && last === '' ?
       userAnswer.NOT_PROVIDED :
-      `${repTitle} ${first} ${last}`.trim();
+      `${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -73,22 +67,12 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
 
     return form({
       name: object({
-        title: text,
         first: text,
         last: text,
         organisation: text
       }).check(
         fields.name.error.required,
         value => Object.keys(value).length > 0
-      ).check(
-        fields.name.error.nameNoTitle,
-        value => hasNameButNoTitleValidation(value)
-      ).check(
-        fields.name.error.titleNoName,
-        value => hasTitleButNoNameValidation(value)
-      ).check(
-        errorFor('title', fields.name.title.error.invalid),
-        value => joiValidation(value.title, Joi.string().trim().regex(title))
       ).check(
         errorFor('first', fields.name.first.error.invalid),
         value => joiValidation(value.first, Joi.string().trim().regex(firstName))
@@ -149,12 +133,11 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   }
 
   values() {
-    const repTitle = this.fields.name.title.value;
     const first = this.fields.name.first.value;
     const last = this.fields.name.last.value;
     return {
       representative: {
-        title: decode(repTitle),
+        title: '',
         firstName: decode(first),
         lastName: decode(last),
         organisation: decode(this.fields.name.organisation.value),
