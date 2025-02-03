@@ -17,7 +17,10 @@ import {
     EvidenceProvidePage,
     CheckYourAppealPage,
     LanguagePreferencePage,
-    AppellantContactDetailsPage
+    AppellantContactDetailsPage,
+    ConfirmationPage,
+    IbcaReferenceLateDatePage,
+    IbcaReferenceLateDateReasonPage
 } from '../pages';
 
 export class PageFactory {
@@ -29,6 +32,8 @@ export class PageFactory {
             'reviewDecisionNoticePage': new ReviewDecisionNotice(page),
             'ibcaRefNumPage': new IbcaReferenceNumberPage(page),
             'ibcaReferenceDatePage': new IbcaReferenceDatePage(page),
+            'ibcaReferenceLateDatePage': new IbcaReferenceLateDatePage(page),
+            'ibcaReferenceLateDateReasonPage': new IbcaReferenceLateDateReasonPage(page),
             'enterAppellantRolePage': new EnterAppellantRolePage(page),
             'enterAppellantNamePage': new EnterAppellantNamePage(page),
             'appellantContactDetailsPage': new AppellantContactDetailsPage(page),
@@ -41,6 +46,7 @@ export class PageFactory {
             'theHearingPage': new TheHearingPage(page),
             'checkYourAppealPage': new CheckYourAppealPage(page),
             'languagePreferencePage': new LanguagePreferencePage(page),
+            'confirmationPage': new ConfirmationPage(page),
         };
         return pages;
     }

@@ -1,6 +1,8 @@
 import { AppellantInMainlandUkPage } from "./appellant-in-mainland-uk.page";
 import { AppellantTextRemindersPage } from "./appellant-text-reminders.page";
+import { IbcaReferenceLateDatePage, IbcaReferenceLateDateReasonPage } from "./check-mrn-date.page";
 import { CheckYourAppealPage } from "./check-your-appeal.page";
+import { ConfirmationPage } from "./confirmation.page";
 import { CreateAccountPage } from "./create-account.page";
 import { AppellantContactDetailsPage } from "./enter-appellant-contact-details.page";
 import { AppellantDobPage } from "./enter-appellant-dob.page";
@@ -35,6 +37,8 @@ export {
     ReviewDecisionNotice,
     IbcaReferenceNumberPage,
     IbcaReferenceDatePage,
+    IbcaReferenceLateDatePage,
+    IbcaReferenceLateDateReasonPage,
     EnterAppellantRolePage,
     EnterAppellantNamePage,
     AppellantContactDetailsPage,
@@ -46,5 +50,6 @@ export {
     EvidenceProvidePage,
     TheHearingPage,
     CheckYourAppealPage,
+    ConfirmationPage,
     getAllPages
 }

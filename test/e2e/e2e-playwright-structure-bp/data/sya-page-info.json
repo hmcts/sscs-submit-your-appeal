@@ -1,0 +1,133 @@
+{
+    "langPref": {
+        "heading": "What language do you want us to use when we contact you?",
+        "bodyContents": [
+            "We’ll send you emails and documents as we progress your appeal. Choose which language you’d like these in.",
+            "All documents will be in English."
+        ]
+    },
+    "independence": {
+        "heading": "Your appeal will be decided by an independent tribunal",
+        "bodyContents": [
+            "Your appeal will be reviewed by a tribunal made up of a judge and if appropriate, a doctor and or a financial expert. They will consider everything you tell them and make a decision on your Infected Blood Compensation appeal.",
+            "The tribunal is separate from Infected Blood Compensation Authority (IBCA)."
+        ]
+    },
+    "createAccount": {
+        "heading": "Do you want to be able to save this appeal later?",
+        "bodyContents": [
+            "You need to create an account now if you want to save your appeal application later. For example, if you need to take a break or gather information.",
+            "If you decide not to create an account now, and leave an appeal part-way through, you will have to start over when you decide to complete an appeal. If you think you will want to save part-way through, then select I want to be able to save this appeal later."
+        ]
+    },
+    "reviewDecisionNotice": {
+        "heading": "Have you got a Review Decision Notice?",
+        "bodyContents": [
+           "This is the letter IBCA sent you if you asked them to reconsider their decision about the Infected Blood Compensation."
+        ]
+    },
+    "ibcaRefNum": {
+        "heading": "Enter your IBCA Reference number",
+        "bodyContents": [
+            "You can find your IBCA Reference number on your Review Decision Notice."
+        ]
+    },
+    "ibcaRefDate": {
+        "heading": "When is your Review Decision Notice dated?",
+        "bodyContents": [
+            "Enter the date from the top right of your Review Decision Notice"
+        ]
+    },
+    "appellantRole": {
+        "heading": "What is your role in this appeal?",
+        "bodyContents": []
+    },
+    "appellantName": {
+        "heading": "Enter your name",
+        "bodyContents": []
+    },
+    "appellantDob": {
+        "heading": "Enter your date of birth",
+        "bodyContents": []
+    },
+    "appellantCountry": {
+        "heading": "Do you live in England, Scotland or Wales?",
+        "bodyContents": []
+    },
+    "appellantContactDetails": {
+        "heading": "Enter your contact details",
+        "bodyContents": [
+            "These will be used to send you information about your appeal.",
+            "Phone number (optional)",
+            "This may be used to contact you about your appeal",
+            "Email address (optional)",
+            "You’ll get updates on your appeal and a link so you can track your appeal online"
+        ]
+    },
+    "appellantTextReminders": {
+        "heading": "Do you want to receive text message notifications?",
+        "bodyContents": [
+            "You’ll only get them when something important happens on your appeal. You won’t be charged to receive them."
+        ]
+    },
+    "smsNotification": {
+        "heading": "Shall we send them to the number you provided earlier?",
+        "bodyContents": []
+    },
+    "smsConfirmation": {
+        "heading": "You’re signed up for text message reminders",
+        "bodyContents": [
+            "Text messages will be sent to the following number:",
+            "You’ll get your first message within 3 working days, once your appeal has been lodged."
+        ]
+    },
+    "legalRep": {
+        "heading": "Do you want to register a representative?",
+        "bodyContents": [
+            "Your representative can be anyone who’s helping you with your appeal and you think should be kept updated. For example, a welfare rights adviser, family member or carer.",
+            "Registering them means they can:\nreceive information about your appeal\nsubmit evidence (and see any that’s submitted)\ntalk to us on your behalf during your appeal\nYou can register them after you’ve submitted your appeal if you don’t have their details to hand."
+    ]
+    },
+    "legalRepCountry": {
+        "heading": "Do you live in England, Scotland or Wales?",
+        "bodyContents": []
+    },
+    "legalRepDetails": {
+        "heading": "Enter their details",
+        "bodyContents": [
+            "If you have a professional representative, you can find their contact details on any letter you’ve received from them.",
+            "Phone number (optional)",
+            "They will receive SMS updates about your appeal if you enter a mobile phone number",
+            "Email address (optional)",
+            "They will receive email updates about your appeal and a link so they can track your appeal online"
+        ]
+    },
+    "reasonsForAppeal": {
+        "heading": "Your reasons for appealing",
+        "bodyContents": [
+            "IBCA should have explained their decision on your Infected Blood Compensation claim in the Review Decision Notice they sent you.\nRead your Review Decision Notice and write what you disagree with and why. Your reasons will be considered by an independent tribunal who are separate from IBCA."
+        ]
+    },
+    "otherReasons": {
+        "heading": "Anything else you want to tell the tribunal",
+        "bodyContents": [
+            "You can tell the tribunal about anything you think may be relevant to your appeal, such as something you feel IBCA didn’t consider in their decision.\nYou don’t have to write anything, if you have nothing further to add."
+        ]
+    },
+    "evidence": {
+        "heading": "Evidence to support your appeal",
+        "bodyContents": [
+            "Evidence is any information that supports your appeal such as a letter, written statement or medical report.",
+            "You can upload evidence now or post it in after you have submitted your appeal. You’ll receive the address after you’ve submitted your appeal.",
+            "You do not need to send or upload your Review Decision Notice because you are appealing online."
+        ]
+    },
+    "theHearing": {
+        "heading": "Your hearing preference",
+        "bodyContents": [
+            "The Tribunal will decide your appeal using the information you give in this appeal form and any further information you send. Information provided by (FTA) will also be considered.",
+            "Your appeal could be decided:\nat a hearing you take part in – most hearings are held in person at a tribunal building but you can ask to have the hearing remotely by video or by phone\nas a 'paper hearing' – the tribunal looks at the documents and evidence and makes a decision without you taking part in a hearing",
+            "If you take part in a hearing, you can ask for:\nA language interpreter\nReasonable adjustments if you have a health condition or disability\nYou can’t bring your own interpreter to the hearing."
+        ]
+    }
+}

@@ -1,6 +1,10 @@
 import { BasePage } from './ibca-base.page';
 
 export class AppellantInMainlandUkPage extends BasePage {
+    defaultPageContent: any = {
+        "heading": "Do you live in England, Scotland or Wales?",
+        "bodyContents": []
+    };
     async chooseLanguage(language: string) {
 
         const supportedLanguages: any = {
