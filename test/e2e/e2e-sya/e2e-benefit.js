@@ -17,14 +17,14 @@ async function e2eBenefit(page, benefitSearch, office, signer, language, hasDwpI
   await createTheSession(page, language);
   await enterCaseDetailsFromStartToNINO(page, commonContent, language, benefitSearch, office, hasDwpIssuingOffice);
   await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
-  await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-yes');
+  await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders');
   await checkOptionAndContinue(page, commonContent, '#useSameNumber-yes');
   await readSMSConfirmationAndContinue(page, commonContent);
   await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
-  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+  await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing');
   await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
-  await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-no');
-  await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
+  await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-2');
+  await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-2');
   if (language === 'en') {
     await completeAllPcq(page);
   } else {

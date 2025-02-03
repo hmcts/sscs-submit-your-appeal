@@ -37,7 +37,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(page,
       commonContent, language,
@@ -51,7 +51,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(page,
       commonContent, language,
@@ -73,7 +73,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingWithSupportToEnd(page,
       commonContent, language,

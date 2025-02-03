@@ -44,7 +44,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
     );
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, randomWeekDay);
     await skipPcq(page);
@@ -64,7 +64,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
 
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, randomWeekDayIn9Weeks);
     await skipPcq(page);

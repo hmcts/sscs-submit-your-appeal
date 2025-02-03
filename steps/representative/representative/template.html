@@ -1,11 +1,12 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
-{% set title = content.title | safe %}
+{% set title = content.title %}
 
 {% block fields %}
-    <p class="govuk-body">{{ content.subtitle | safe}}</p>
-    <p class="govuk-body">{{ content.registerList | safe}}</p>
+    <p class="govuk-body">{{ content.subtitle }}</p>
+    <p class="govuk-body">{{ content.registerList }}</p>
     <ul class="govuk-list govuk-list--bullet">
         <li>{{ content.info }}</li>
         <li>{{ content.evidence }}</li>
@@ -14,14 +15,12 @@
     <p class="govuk-body">{{ content.phoneUp }}</p>
 
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.hasRepresentative,
-            content.fields.hasRepresentative.label,
+        {{ govRadio(field = fields.hasRepresentative,
+            headerText=content.fields.hasRepresentative.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.hasRepresentative.yes, value: "yes" },
-                { label: content.fields.hasRepresentative.no,  value: "no" }
-            ])
-        }}
+            items = [
+                { value: "yes", text: content.fields.hasRepresentative.yes },
+                { value: "no", text: content.fields.hasRepresentative.no }
+        ]) }}
     {% endcall %}
 {% endblock %}

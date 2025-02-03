@@ -60,7 +60,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       const ccdCaseID = await editDraftAppeal(page, language);
       await continueIncompleteAppeal(page, language);
       await continueFromIndependance(page, commonContent);
-      await selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-no');
+      await selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-2');
       await selectHaveYouContactedDWPAndContinueAfterSignIn(page, language, commonContent, '#haveContactedDWP-yes');
       await enterReasonForNoMRNAndContinueAfterSignIn(page, language, commonContent, testData.mrn.reasonForNoMRN);
       await continueFromStillCanAppeal(page, language);
@@ -69,12 +69,12 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await enterAppellantDOBAndContinueAfterSignIn(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
       await enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, appellant.nino);
       await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language);
-      await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-no');
-      await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-no');
+      await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-2');
+      await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-2');
       await addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.reasons[0]);
       await enterAnythingElseAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
-      await selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, '#evidenceProvide-no');
-      await enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, '#attendHearing-no');
+      await selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, '#evidenceProvide-2');
+      await enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, '#attendHearing-2');
       await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
       await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
       await appealSubmitConfirmation(page, language);
