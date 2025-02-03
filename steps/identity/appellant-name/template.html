@@ -8,12 +8,13 @@
         {% if subtitle %}
             <p class="govuk-body">{{ subtitle }}</p>
         {% endif %}
-
-        {{ select(
-            fields.title,
-            content.fields.title.title,
-            options = titlesList
-        ) }}
+        {% if not isIba %}
+            {{ select(
+                fields.title,
+                content.fields.title.title,
+                options = titlesList
+            ) }}
+        {% endif %}
         {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
         {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
     {% endcall %}

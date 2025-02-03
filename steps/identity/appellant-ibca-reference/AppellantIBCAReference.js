@@ -38,7 +38,7 @@ class AppellantIBCAReference extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.ibcaReference.question,
         section: sections.appellantDetails,
-        answer: this.fields.ibcaReference.value
+        answer: this.fields.ibcaReference.value.toUpperCase()
       })
     ];
   }
@@ -46,7 +46,7 @@ class AppellantIBCAReference extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        ibcaReference: this.fields.ibcaReference.value
+        ibcaReference: this.fields.ibcaReference.value.toUpperCase()
       }
     };
   }
