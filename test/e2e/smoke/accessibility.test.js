@@ -44,10 +44,11 @@ function accessibilityCheck(url, language) {
 }
 
 test.describe('Accessibility tests', { tag: '@accessibility' }, () => {
-  let urls = [...new Set(steps.filter(step => !excludeSteps.includes(step.path)
+  let filteredSteps = steps.filter(step => !excludeSteps.includes(step.path)
     && !ibcSteps.includes(step.path)
     && !loggedInSteps.includes(step.path))
-    .map(steps => steps.path))];
+    .map(steps => steps.path)
+  let urls = [...new Set(filteredSteps)];
   const languages = ['en', 'cy'];
   languages.forEach(language => {
     urls.forEach(url => {

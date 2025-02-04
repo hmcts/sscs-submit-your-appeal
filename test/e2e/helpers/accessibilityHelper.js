@@ -1,5 +1,4 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, Page } from '@playwright/test';
 
 async function axeTest(page) {
   let violations = [];
