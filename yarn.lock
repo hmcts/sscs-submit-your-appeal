@@ -29,6 +29,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@axe-core/playwright@npm:^4.10.1":
+  version: 4.10.1
+  resolution: "@axe-core/playwright@npm:4.10.1"
+  dependencies:
+    axe-core: "npm:~4.10.2"
+  peerDependencies:
+    playwright-core: ">= 1.0.0"
+  checksum: 10/842dde90a43157938235db8699816fc910f8f2bd737f1daa6ef96e4e407153394ae42dfde71add501161c87f25539b861f2f1aeee2e7a6e5f905cde4e6a10952
+  languageName: node
+  linkType: hard
+
 "@azure/abort-controller@npm:^1.0.0, @azure/abort-controller@npm:^1.0.4":
   version: 1.1.0
   resolution: "@azure/abort-controller@npm:1.1.0"
@@ -4148,6 +4159,13 @@ __metadata:
   version: 1.11.0
   resolution: "aws4@npm:1.11.0"
   checksum: 10/54886f07b3f9555f7f3ae9fb2aef7abbac302e892263ec4d9901f4502e667bb302a0639672f6bc8453033102ddd2512b79886a7de417dc0c24ecce003a888297
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:~4.10.2":
+  version: 4.10.2
+  resolution: "axe-core@npm:4.10.2"
+  checksum: 10/a69423b2ff16c15922c4ea7cf9cc5112728a2817bbe0f2cc212248d648885ffd1ba554e3a341dfc289cd9e67fc0d06f333b5c6837c5c38ca6652507381216fc1
   languageName: node
   linkType: hard
 
@@ -15442,6 +15460,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sya@workspace:."
   dependencies:
+    "@axe-core/playwright": "npm:^4.10.1"
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-env": "npm:^7.25.3"
     "@babel/register": "npm:^7.24.6"
