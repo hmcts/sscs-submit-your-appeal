@@ -15512,7 +15512,7 @@ __metadata:
     playwright: "npm:^1.50.0"
     pre-commit: "npm:^1.2.2"
     proxyquire: "npm:^2.1.3"
-    puppeteer: "npm:^23.2.0"
+    puppeteer: "npm:^24.1.1"
     redis: "npm:^4.6.8"
     require-directory: "npm:^2.1.1"
     rewire: "npm:^7.0.0"
