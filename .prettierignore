@@ -1,8 +1,24 @@
-node_modules/
-functional-output/
-test/unit/coverage
-cookie-banner/
+# Ignore everything in the root except the directories listed below
+*
 
-# Ignore artifacts:
-build
-coverage
+!/test/
+!steps/
+!utils/
+!views/
+!middleware/
+!services/
+!cookie-banner/
+!webpack/
+!components/
+!assets/
+
+!/test/**/*
+!steps/**
+!utils/**
+!views/**
+!middleware/**
+!services/**
+!cookie-banner/**
+!webpack/**
+!components/**
+!assets/**

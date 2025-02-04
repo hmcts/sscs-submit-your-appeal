@@ -3,5 +3,14 @@
   "singleQuote": true,
   "semi": true,
   "tabWidth": 2,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "plugins": ["prettier-plugin-jinja-template"],
+  "overrides": [
+    {
+      "files": ["*.html", "*.njk"],
+      "options": {
+        "parser": "jinja-template"
+      }
+    }
+  ]
 }
