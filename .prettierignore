@@ -1,0 +1,8 @@
+node_modules/
+functional-output/
+test/unit/coverage
+cookie-banner/
+
+# Ignore artifacts:
+build
+coverage
