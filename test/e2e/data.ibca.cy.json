@@ -57,22 +57,27 @@
     }
   },
   "reasonsForAppealing": {
-    "reasons": [ {
-      "whatYouDisagreeWith": "Disagree with A",
-      "reasonForAppealing": "Reason for appealing A"
-    }, {
-      "whatYouDisagreeWith": "Disagree with B",
-      "reasonForAppealing": "Reason for appealing B"
-    }, {
-      "whatYouDisagreeWith": "Disagree with C",
-      "reasonForAppealing": "Reason for appealing C"
-    }, {
-      "whatYouDisagreeWith": "All",
-      "reasonForAppealing": "None"
-    }, {
-      "whatYouDisagreeWith": "          ",
-      "reasonForAppealing": "          "
-    }
+    "reasons": [
+      {
+        "whatYouDisagreeWith": "Disagree with A",
+        "reasonForAppealing": "Reason for appealing A"
+      },
+      {
+        "whatYouDisagreeWith": "Disagree with B",
+        "reasonForAppealing": "Reason for appealing B"
+      },
+      {
+        "whatYouDisagreeWith": "Disagree with C",
+        "reasonForAppealing": "Reason for appealing C"
+      },
+      {
+        "whatYouDisagreeWith": "All",
+        "reasonForAppealing": "None"
+      },
+      {
+        "whatYouDisagreeWith": "          ",
+        "reasonForAppealing": "          "
+      }
     ],
     "otherReasons": "Others reasons.."
   },
