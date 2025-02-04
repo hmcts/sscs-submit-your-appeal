@@ -3,8 +3,6 @@
 /* eslint-disable no-sync */
 import { defineConfig, devices } from '@playwright/test';
 
-const testChunks = process.env.CHUNKS || 1;
-
 module.exports = defineConfig({
   testDir: process.env.E2E_TEST_DIR || './',
   outputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
@@ -12,7 +10,7 @@ module.exports = defineConfig({
     timeout: 10 * 1000
   },
   timeout: 90000,
-  workers: parseInt(testChunks), // Parallel chunks
+  workers: parseInt(process.env.CHUNKS) || 1, // Parallel chunks
   retries: parseInt(process.env.RETRIES) || 10, // Set retries as per requirement
   fullyParallel: true,
   reporter: [
@@ -20,7 +18,7 @@ module.exports = defineConfig({
     [
       'html',
       {
-        outputFolder: process.env.E2E_OUTPUT_DIR || './functional-report',
+        outputFolder: process.env.E2E_REPORT_DIR || './functional-report',
         open: 'never'
       }
     ]
