@@ -14,7 +14,9 @@ let excludeSteps = [
   '/session-timeout-redirect',
   '/equality-and-diversity',
   '/edit-appeal',
-  '/new-appeal'
+  '/new-appeal',
+  '/language-preference',
+  '/dates-cant-attend'
 ];
 
 let ibcSteps = [
