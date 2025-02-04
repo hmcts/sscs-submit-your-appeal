@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 const { test, expect } = require("@playwright/test");
 const accessibilityTestHelper = require("../helpers/accessibilityHelper");
-const steps = require("../../../steps");
+const steps = require("steps");
 
 let excludeSteps = [
   '/sessions',
