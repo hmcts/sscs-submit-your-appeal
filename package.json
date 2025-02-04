@@ -39,7 +39,7 @@
     "test:functional:batches": "for i in `seq -w 1 12`; do BATCH=$i yarn test:functional:batch; [ $? -ne 0 ] && exit $?; done; exit 0;",
     "test:coverage": "cross-env INFECTED_BLOOD_COMPENSATION_ENABLED=true NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
     "test:crossbrowser": "E2E_OUTPUT_DIR=\"./crossbrowser-output\" E2E_REPORT_DIR=\"./crossbrowser-report\" E2E_TEST_DIR=\"./\" yarn test:playwright --grep \"@crossbrowser\"",
-    "test:a11y": "echo \"a11y done later\"",
+    "test:a11y": "echo \"a11y replaced with axe in separate stage.\"",
     "test:accessibility": "CHUNKS=4 RETRIES=3 E2E_OUTPUT_DIR=\"./accessibility-output\" E2E_REPORT_DIR=\"./accessibility-report\" yarn test:playwright --grep \"@accessibility\" --project chrome",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
@@ -116,7 +116,6 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
-    "codeceptjs": "^3.5.14",
     "eslint": "^8.48.0",
     "eslint-plugin-mocha": "^5.0.0",
     "fs": "^0.0.1-security",
@@ -131,16 +130,13 @@
     "nock": "^13.3.3",
     "nodemon": "^3.1.7",
     "nyc": "^15.1.0",
-    "pa11y": "^8.0.0",
     "playwright": "^1.50.0",
     "pre-commit": "^1.2.2",
     "proxyquire": "^2.1.3",
-    "puppeteer": "^23.2.0",
     "rewire": "^7.0.0",
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0",
     "supertest": "^6.3.3",
-    "webdriverio": "8.10.5",
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
@@ -150,7 +146,6 @@
     "qs": "^6.11.2",
     "redis": "^3.1.1",
     "micromatch": "^4.0.8",
-    "puppeteer": "^23.2.0",
     "path-to-regexp": "^0.1.10"
   },
   "packageManager": "yarn@4.4.1"

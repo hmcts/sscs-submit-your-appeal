@@ -64,7 +64,7 @@ withNightlyPipeline("nodejs", product, component) {
                         keepAll              : true,
                         reportDir            : "test/e2e/accessibility-report",
                         reportFiles          : 'index.html',
-                        reportName           : 'Accessibility Report'
+                        reportName           : 'SYA E2E Accessibility test report'
                 ])
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
