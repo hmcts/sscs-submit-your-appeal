@@ -57,7 +57,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
     await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
     await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
     await continueFromIndependance(page, commonContent);
-    await checkOptionAndContinue(page, commonContent, '#haveAMRN-no');
+    await checkOptionAndContinue(page, commonContent, '#haveAMRN-2');
     await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-yes');
     await enterReasonForNoMRNAndContinue(page, language, commonContent, testData.mrn.reasonForNoMRN);
     await continueFromStillCanAppeal(page, language);
@@ -65,7 +65,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
     await enterAppellantDOBAndContinue(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
     await enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingDatePickerToEnd(page, commonContent, language, randomWeekDay);
     await confirmDetailsArePresent(page, language, hasMRN);
@@ -77,9 +77,9 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
     await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
     await continueFromIndependance(page, commonContent);
     if (allowSaveAndReturnEnabled) {
-      await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-no');
+      await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-2');
     }
-    await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveAMRN-no');
+    await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveAMRN-2');
     await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-no');
     await expect(page.getByText(contactDWPContent.title).first()).toBeVisible();
     await page.getByText(contactDWPContent.govuk).first().click();

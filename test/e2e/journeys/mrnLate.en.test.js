@@ -53,7 +53,7 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
       await enterPostcodeAndContinue(page, language, commonContent, testData.appellant.contactDetails.postCode);
       await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
       await continueFromIndependance(page, commonContent);
-      await checkOptionAndContinue(page, commonContent, '#haveAMRN-yes');
+      await checkOptionAndContinue(page, commonContent, '#haveAMRN');
       await enterDWPIssuingOfficeAndContinue(page, commonContent, testData.mrn.dwpIssuingOffice);
       await enterAnMRNDateAndContinue(page, commonContent, obj.mrnDate);
       await checkOptionAndContinue(page, commonContent, '#checkedMRN-yes');
@@ -62,7 +62,7 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
       await enterAppellantDOBAndContinue(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
       await enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
       await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-      await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+      await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-2');
       await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
       await skipPcq(page);
       await confirmDetailsArePresent(page, language, true, obj.mrnDate);

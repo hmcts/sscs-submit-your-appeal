@@ -17,12 +17,12 @@ test.describe(`${language.toUpperCase()} - Representative`, { tag: '@batch-10' }
   });
 
   test(`${language.toUpperCase()} - When page select yes, page am taken to the representative details page`, async({ page }) => {
-    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-yes');
+    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative');
     await page.waitForURL(`**${paths.representative.representativeDetails}`);
   });
 
   test(`${language.toUpperCase()} - When page select No, page am taken to the reason for appealing page`, async({ page }) => {
-    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
+    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-2');
     await page.waitForURL(`**${paths.reasonsForAppealing.reasonForAppealing}`);
   });
 

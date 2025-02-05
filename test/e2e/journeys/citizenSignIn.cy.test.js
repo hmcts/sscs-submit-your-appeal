@@ -40,13 +40,13 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
     await moment().locale(language);
     await enterDetailsFromStartToDraftAppeals(page, commonContent, language, userEmail);
     await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222');
-    await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-no');
-    await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-no');
+    await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-2');
     await enterDetailsFromStartToDraftAppeals(page, commonContent, language, userEmail);
     await addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.reasons[0]);
     await enterAnythingElseAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.otherReasons);
-    await selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, '#evidenceProvide-no');
-    await enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, '#attendHearing-no');
+    await selectAreYouProvidingEvidenceAfterSignIn(page, language, commonContent, '#evidenceProvide-2');
+    await enterDoYouWantToAttendTheHearingAfterSignIn(page, language, commonContent, '#attendHearing-2');
     await continueFromnotAttendingHearingAfterSignIn(page, commonContent);
     await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
     await appealSubmitConfirmation(page, language);

@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% block pageTitle %}{{ content["titleHead" + suffix] }} - {{ commonContent[htmlLang].windowTitleSuffix }}{% endblock %}
 {% set title = content.title %}
@@ -16,16 +17,13 @@
     {% endif %}
 
     {% call formSection() %}
-        <legend id="check-mrn" class="govuk-body govuk-!-font-weight-bold">{{ content["question" + suffix] }}</legend>
-
-        {{ selectionButtons(
-            fields.checkedMRN,
-            content["question" + suffix],
-            hint = '',
-            options = [
-                { label: content.fields.checkedMRN["yes" + suffix], value: "yes" },
-                { label: content.fields.checkedMRN.no,  value: "no" }
-            ])
-        }}
+        {{ govRadio(field = fields.checkedMRN,
+            headerText=content["question" + suffix],
+            hideQuestion = true,
+            isPageHeading=false,
+            items = [
+                { value: "yes", text: content.fields.checkedMRN["yes" + suffix] },
+                { value: "no", text: content.fields.checkedMRN.no }
+        ]) }}
     {% endcall %}
 {% endblock %}

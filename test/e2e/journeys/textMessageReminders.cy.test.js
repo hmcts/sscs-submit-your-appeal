@@ -37,7 +37,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
   test(`${language.toUpperCase()} - Appellant omits optional phone number, does not sign up for text msg reminders.`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);
@@ -48,7 +48,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
   test(`${language.toUpperCase()} - Appellant omits optional phone number, enters mobile for text msg reminders.`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-yes');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
     await enterMobileAndContinue(page, commonContent, '07455678444');
     await readSMSConfirmationAndContinue(page, commonContent);
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
@@ -62,7 +62,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
     await enterDetailsFromStartToNINO(page, commonContent, language);
 
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-yes');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-yes');
     await readSMSConfirmationAndContinue(page, commonContent);
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
@@ -75,7 +75,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
   test(`${language.toUpperCase()} - Appellant adds a phone number, provides a separate number for text msg reminders.`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-yes');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
     await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-no');
     await enterMobileAndContinue(page, commonContent, '07411333333');
     await readSMSConfirmationAndContinue(page, commonContent);
@@ -89,7 +89,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
   test(`${language.toUpperCase()} - Appellant adds a phone number, but does not sign up for text msg reminders.`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);
