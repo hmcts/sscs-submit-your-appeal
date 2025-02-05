@@ -1,4 +1,5 @@
-/* eslint-disable no-shadow no-await-in-loop */
+/* eslint-disable no-shadow */
+/* eslint-disable no-await-in-loop */
 const { test, expect } = require('@playwright/test');
 const accessibilityTestHelper = require('../helpers/accessibilityHelper');
 const steps = require('steps');
