@@ -1,7 +1,5 @@
 const { expect } = require('test/util/chai');
-const AppointeeContactDetails = require(
-  'steps/appointee/appointee-contact-details/AppointeeContactDetails'
-);
+const AppointeeContactDetails = require('steps/appointee/appointee-contact-details/AppointeeContactDetails');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const proxyquire = require('proxyquire');
@@ -16,14 +14,17 @@ describe('Appointee-contact-details.js', () => {
   const res = { send: sinon.spy(), redirect: sinon.spy() };
 
   beforeEach(() => {
-    appointeeContactDetails = new AppointeeContactDetails({
-      journey: {
-        steps: {
-          AppellantName: paths.identity.enterAppellantName
-        }
+    appointeeContactDetails = new AppointeeContactDetails(
+      {
+        journey: {
+          steps: {
+            AppellantName: paths.identity.enterAppellantName
+          }
+        },
+        session: {}
       },
-      session: {}
-    }, res);
+      res
+    );
 
     appointeeContactDetails.fields = {
       firstName: { value: '' },
@@ -42,7 +43,9 @@ describe('Appointee-contact-details.js', () => {
 
   describe('get path()', () => {
     it('returns path /appointee-contact-details', () => {
-      expect(AppointeeContactDetails.path).to.equal(paths.appointee.enterAppointeeContactDetails);
+      expect(AppointeeContactDetails.path).to.equal(
+        paths.appointee.enterAppointeeContactDetails
+      );
     });
   });
 
@@ -82,24 +85,30 @@ describe('Appointee-contact-details.js', () => {
 
   describe('get CYAPhoneNumber()', () => {
     it('should return Not Provided if there is no phoneNumber value', () => {
-      expect(appointeeContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
+      expect(appointeeContactDetails.CYAPhoneNumber).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
       appointeeContactDetails.fields.phoneNumber.value = '0800109756';
-      expect(appointeeContactDetails.CYAPhoneNumber)
-        .to.equal(appointeeContactDetails.fields.phoneNumber.value);
+      expect(appointeeContactDetails.CYAPhoneNumber).to.equal(
+        appointeeContactDetails.fields.phoneNumber.value
+      );
     });
 
     describe('get CYAEmailAddress()', () => {
       it('should return Not Provided if there is no email value', () => {
-        expect(appointeeContactDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
+        expect(appointeeContactDetails.CYAEmailAddress).to.equal(
+          userAnswer.NOT_PROVIDED
+        );
       });
 
       it('should return the email address if an emailaddress value has been set', () => {
         appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-        expect(appointeeContactDetails.CYAEmailAddress)
-          .to.equal(appointeeContactDetails.fields.emailAddress.value);
+        expect(appointeeContactDetails.CYAEmailAddress).to.equal(
+          appointeeContactDetails.fields.emailAddress.value
+        );
       });
     });
   });
@@ -111,26 +120,34 @@ describe('Appointee-contact-details.js', () => {
           'steps/appointee/appointee-contact-details/AppointeeContactDetails',
           {
             config: { get: () => false }
-          });
+          }
+        );
 
         const theSession = {};
         const req = { session: theSession };
         const resp = sinon.stub();
         const next = sinon.stub();
 
-        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, resp, next);
+        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
+          req,
+          resp,
+          next
+        );
 
         expect(theSession.invalidPostcode).to.equal(false);
         expect(next).to.have.been.called;
       });
     });
 
-
     describe('postcode checker enabled', () => {
       let responseFromPostcodeChecker = null;
       let appointeeContactDetailsWithoutPostcodeChecker = null;
       const theSession = {};
-      const req = { session: theSession, method: 'POST', body: { postCode: 'S10 2FG' } };
+      const req = {
+        session: theSession,
+        method: 'POST',
+        body: { postCode: 'S10 2FG' }
+      };
 
       beforeEach(() => {
         appointeeContactDetailsWithoutPostcodeChecker = proxyquire(
@@ -140,34 +157,47 @@ describe('Appointee-contact-details.js', () => {
             'utils/postcodeChecker': () => {
               return responseFromPostcodeChecker;
             }
-          });
+          }
+        );
       });
 
       it('checks postcode and it is valid', done => {
         responseFromPostcodeChecker = Promise.resolve(true);
 
-        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
-          expect(theSession.invalidPostcode).to.equal(false);
-          done();
-        });
+        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
+          req,
+          {},
+          () => {
+            expect(theSession.invalidPostcode).to.equal(false);
+            done();
+          }
+        );
       });
 
       it('checks postcode and it is invalid', done => {
         responseFromPostcodeChecker = Promise.resolve(false);
 
-        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
-          expect(theSession.invalidPostcode).to.equal(true);
-          done();
-        });
+        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
+          req,
+          {},
+          () => {
+            expect(theSession.invalidPostcode).to.equal(true);
+            done();
+          }
+        );
       });
 
       it('error checking postcode', done => {
         responseFromPostcodeChecker = Promise.reject(new Error());
 
-        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(req, {}, () => {
-          expect(theSession.invalidPostcode).to.equal(true);
-          done();
-        });
+        appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
+          req,
+          {},
+          () => {
+            expect(theSession.invalidPostcode).to.equal(true);
+            done();
+          }
+        );
       });
     });
   });
@@ -182,7 +212,13 @@ describe('Appointee-contact-details.js', () => {
 
     describe('all field names', () => {
       it('should contain dynamic fields', () => {
-        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
+        const req = {
+          method: 'GET',
+          body: {},
+          session: {},
+          query: {},
+          xhr: true
+        };
         const next = sinon.spy();
         appointeeContactDetails.req = req;
         appointeeContactDetails.handler(req, res, next);
@@ -192,7 +228,8 @@ describe('Appointee-contact-details.js', () => {
           expect(fields).to.have.all.keys(
             'phoneNumber',
             'emailAddress',
-            'postcodeLookup');
+            'postcodeLookup'
+          );
         } else {
           expect(Object.keys(fields).length).to.equal(7);
           expect(fields).to.have.all.keys(
@@ -202,7 +239,8 @@ describe('Appointee-contact-details.js', () => {
             'county',
             'postCode',
             'phoneNumber',
-            'emailAddress');
+            'emailAddress'
+          );
         }
       });
     });
@@ -400,8 +438,9 @@ describe('Appointee-contact-details.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /appellant-text-reminders', () => {
-      expect(appointeeContactDetails.next())
-        .to.eql({ nextStep: paths.identity.enterAppellantName });
+      expect(appointeeContactDetails.next()).to.eql({
+        nextStep: paths.identity.enterAppellantName
+      });
     });
   });
 });

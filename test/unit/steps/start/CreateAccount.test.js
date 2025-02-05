@@ -60,7 +60,11 @@ describe('CreateAccount.js', () => {
 
     it('returns /have-you-got-an-mrn when user selects no', () => {
       createAccount.fields.createAccount.value = 'no';
-      createAccount.req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
+      createAccount.req = {
+        session: {
+          BenefitType: { benefitType: benefitTypes.personalIndependencePayment }
+        }
+      };
       expect(createAccount.next().step).to.eql(paths.compliance.haveAMRN);
     });
   });

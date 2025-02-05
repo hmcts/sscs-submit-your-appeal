@@ -112,7 +112,6 @@ describe('validating a last name regular expression', () => {
     expect(lastNameValidator).to.not.equal(null);
   });
 
-
   it('should not validate against numbers "12345"', () => {
     const name = '12345';
     const lastNameValidator = name.match(lastName);

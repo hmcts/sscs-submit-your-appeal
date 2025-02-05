@@ -121,10 +121,16 @@ describe('CheckYourAppeal.js', () => {
       loggerStub.trace = sinon.stub().returns();
       loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
-      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
+      request.post = () => ({
+        set: () => ({
+          send: sinon.stub().resolves({ status: HttpStatus.CREATED })
+        })
+      });
 
       return cya.sendToAPI().then(() => {
-        expect(loggerStub.trace).to.have.been.calledWith('POST api:/appeals status:201');
+        expect(loggerStub.trace).to.have.been.calledWith(
+          'POST api:/appeals status:201'
+        );
         expect(loggerStub.event).to.have.been.calledOnce;
       });
     });
@@ -132,7 +138,11 @@ describe('CheckYourAppeal.js', () => {
     it('should log an event when missing data from journey values', () => {
       loggerStub.event = sinon.stub();
       // eslint-disable-next-line max-len
-      request.post = () => ({ set: () => ({ send: sinon.stub().resolves({ status: HttpStatus.CREATED }) }) });
+      request.post = () => ({
+        set: () => ({
+          send: sinon.stub().resolves({ status: HttpStatus.CREATED })
+        })
+      });
 
       return cyaWithSession.sendToAPI().then(() => {
         expect(loggerStub.event).to.have.been.calledTwice;
@@ -141,23 +151,35 @@ describe('CheckYourAppeal.js', () => {
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
-      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ message: 'Internal server error' }) }) });
+      request.post = () => ({
+        set: () => ({
+          send: sinon.stub().rejects({ message: 'Internal server error' })
+        })
+      });
       loggerStub.exception = sinon.spy();
       loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
-        expect(loggerStub.event).to.have.been.calledWith('SYA-SendToApi-Failed');
+        expect(loggerStub.event).to.have.been.calledWith(
+          'SYA-SendToApi-Failed'
+        );
       });
     });
 
     it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', () => {
       // eslint-disable-next-line max-len
-      request.post = () => ({ set: () => ({ send: sinon.stub().rejects({ status: HttpStatus.CONFLICT }) }) });
+      request.post = () => ({
+        set: () => ({
+          send: sinon.stub().rejects({ status: HttpStatus.CONFLICT })
+        })
+      });
       loggerStub.exception = sinon.spy();
       loggerStub.event = sinon.spy();
       return cya.sendToAPI().catch(() => {
         expect(loggerStub.exception).to.have.been.calledOnce;
-        expect(loggerStub.event).to.have.been.calledWith('SYA-SendToApi-Duplicate');
+        expect(loggerStub.event).to.have.been.calledWith(
+          'SYA-SendToApi-Duplicate'
+        );
       });
     });
   });
@@ -165,7 +187,9 @@ describe('CheckYourAppeal.js', () => {
   describe('get section()', () => {
     it('returns the CYA sections', () => {
       const cyaSections = cya.sections();
-      Object.values(sections).map((value, index) => expect(cyaSections[index].id).to.equal(value));
+      Object.values(sections).map((value, index) =>
+        expect(cyaSections[index].id).to.equal(value)
+      );
     });
   });
 
@@ -207,7 +231,9 @@ describe('CheckYourAppeal.js', () => {
 
   describe('termsAndConditionPath()', () => {
     it('should return /terms-and-conditions', () => {
-      expect(cya.termsAndConditionPath).to.equal(paths.policy.termsAndConditions);
+      expect(cya.termsAndConditionPath).to.equal(
+        paths.policy.termsAndConditions
+      );
     });
   });
 

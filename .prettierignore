@@ -1,6 +1,7 @@
 # Ignore everything in the root except the directories listed below
 *
 
+# Ignore all .html and .njk files
 !/test/
 !steps/
 !utils/
@@ -13,12 +14,34 @@
 !assets/
 
 !/test/**/*
-!steps/**
-!utils/**
-!views/**
-!middleware/**
-!services/**
-!cookie-banner/**
-!webpack/**
-!components/**
-!assets/**
+!/steps/**/*
+!/utils/**/*
+!/views/**/*
+!/middleware/**/*
+!/services/**/*
+!/cookie-banner/**/*
+!/webpack/**/*
+!/components/**/*
+!/assets/**/*
+
+
+/test/**/*.html
+test/**/*.njk
+/steps/**/*.html
+/steps/**/*.njk
+/utils/**/*.html
+/utils/**/*.njk
+/views/**/*.html
+/views/**/*.njk
+/middleware/**/*.html
+/middleware/**/*.njk
+/services/**/*.html
+/services/**/*.njk
+/cookie-banner/**/*.html
+/cookie-banner/**/*.njk
+/webpack/**/*.html
+/webpack/**/*.njk
+/components/**/*.html
+/components/**/*.njk
+/assets/**/*.html
+/assets/**/*.njk

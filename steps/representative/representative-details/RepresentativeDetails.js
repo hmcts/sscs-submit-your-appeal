@@ -33,7 +33,6 @@ const url = config.postcodeLookup.url;
 const token = config.postcodeLookup.token;
 const enabled = config.postcodeLookup.enabled === 'true';
 
-
 class RepresentativeDetails extends SaveToDraftStore {
   constructor(...args) {
     super(...args);
@@ -58,15 +57,23 @@ class RepresentativeDetails extends SaveToDraftStore {
   }
 
   get CYAOrganisation() {
-    return this.fields.name.organisation.value || userAnswer[i18next.language].NOT_PROVIDED;
+    return (
+      this.fields.name.organisation.value ||
+      userAnswer[i18next.language].NOT_PROVIDED
+    );
   }
 
   get CYAPhoneNumber() {
-    return this.fields.phoneNumber.value || userAnswer[i18next.language].NOT_PROVIDED;
+    return (
+      this.fields.phoneNumber.value || userAnswer[i18next.language].NOT_PROVIDED
+    );
   }
 
   get CYAEmailAddress() {
-    return this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED;
+    return (
+      this.fields.emailAddress.value ||
+      userAnswer[i18next.language].NOT_PROVIDED
+    );
   }
 
   nameRequiredValidation(value) {
@@ -79,7 +86,9 @@ class RepresentativeDetails extends SaveToDraftStore {
     return hasTitleButNoNameValidation(value);
   }
   titleValidation(value, req) {
-    return isIba(req) || joiValidation(value.title, Joi.string().trim().regex(title));
+    return (
+      isIba(req) || joiValidation(value.title, Joi.string().trim().regex(title))
+    );
   }
   firstValidation(value) {
     return joiValidation(value.first, Joi.string().trim().regex(firstName));
@@ -102,78 +111,90 @@ class RepresentativeDetails extends SaveToDraftStore {
           first: text,
           last: text,
           organisation: text
-        }).check(
-          fields.name.error.required,
-          this.nameRequiredValidation
-        ).check(
-          fields.name.error.nameNoTitle,
-          value => this.nameNoTitleValidation(value, this.req)
-        ).check(
-          fields.name.error.titleNoName,
-          this.titleNoNameValidation
-        ).check(
-          errorFor('title', fields.name.title.error.invalid),
-          value => this.titleValidation(value, this.req)
-        ).check(
-          errorFor('first', fields.name.first.error.invalid),
-          this.firstValidation
-        ).check(
-          errorFor('last', fields.name.last.error.invalid),
-          this.lastValidation
-        ).check(
-          errorFor('organisation', fields.name.organisation.error.invalid),
-          this.orgValidation
-        )
+        })
+          .check(fields.name.error.required, this.nameRequiredValidation)
+          .check(fields.name.error.nameNoTitle, value =>
+            this.nameNoTitleValidation(value, this.req)
+          )
+          .check(fields.name.error.titleNoName, this.titleNoNameValidation)
+          .check(errorFor('title', fields.name.title.error.invalid), value =>
+            this.titleValidation(value, this.req)
+          )
+          .check(
+            errorFor('first', fields.name.first.error.invalid),
+            this.firstValidation
+          )
+          .check(
+            errorFor('last', fields.name.last.error.invalid),
+            this.lastValidation
+          )
+          .check(
+            errorFor('organisation', fields.name.organisation.error.invalid),
+            this.orgValidation
+          )
       },
       { name: this.pcl.fieldMap.postcodeLookup },
       { name: this.pcl.fieldMap.postcodeAddress },
-      { name: this.pcl.fieldMap.line1,
-        validator: text.joi(
-          fields.addressLine1.error.required,
-          Joi.string().required()
-        ).joi(
-          fields.addressLine1.error.invalid,
-          Joi.string().regex(whitelistNotFirst)
-        ) },
-      { name: this.pcl.fieldMap.line2,
+      {
+        name: this.pcl.fieldMap.line1,
+        validator: text
+          .joi(fields.addressLine1.error.required, Joi.string().required())
+          .joi(
+            fields.addressLine1.error.invalid,
+            Joi.string().regex(whitelistNotFirst)
+          )
+      },
+      {
+        name: this.pcl.fieldMap.line2,
         validator: text.joi(
           fields.addressLine2.error.invalid,
           Joi.string().regex(whitelistNotFirst).allow('')
-        ) },
-      { name: this.pcl.fieldMap.town,
-        validator: text.joi(
-          fields.townCity.error.required,
-          Joi.string().required()
-        ).joi(
-          fields.townCity.error.invalid,
-          Joi.string().regex(whitelistNotFirst)
-        ) },
-      { name: this.pcl.fieldMap.county,
-        validator: text.joi(
-          fields.county.error.required,
-          Joi.string().required()
-        ).joi(
-          fields.county.error.invalid,
-          Joi.string().regex(whitelistNotFirst)
-        ) },
-      { name: this.pcl.fieldMap.postCode,
-        validator: text.joi(
-          fields.postCode.error.required,
-          Joi.string().trim().regex(postCode).required()
-        ).joi(
-          fields.postCode.error.invalidPostcodeIba,
-          Joi.string().trim().regex(notNiPostcode)
-        ) },
-      { name: 'phoneNumber',
+        )
+      },
+      {
+        name: this.pcl.fieldMap.town,
+        validator: text
+          .joi(fields.townCity.error.required, Joi.string().required())
+          .joi(
+            fields.townCity.error.invalid,
+            Joi.string().regex(whitelistNotFirst)
+          )
+      },
+      {
+        name: this.pcl.fieldMap.county,
+        validator: text
+          .joi(fields.county.error.required, Joi.string().required())
+          .joi(
+            fields.county.error.invalid,
+            Joi.string().regex(whitelistNotFirst)
+          )
+      },
+      {
+        name: this.pcl.fieldMap.postCode,
+        validator: text
+          .joi(
+            fields.postCode.error.required,
+            Joi.string().trim().regex(postCode).required()
+          )
+          .joi(
+            fields.postCode.error.invalidPostcodeIba,
+            Joi.string().trim().regex(notNiPostcode)
+          )
+      },
+      {
+        name: 'phoneNumber',
         validator: text.joi(
           fields.phoneNumber.error.invalid,
           customJoi.string().trim().validatePhone()
-        ) },
-      { name: 'emailAddress',
+        )
+      },
+      {
+        name: 'emailAddress',
         validator: text.joi(
           fields.emailAddress.error.invalid,
           Joi.string().trim().email(emailOptions).allow('')
-        ) }
+        )
+      }
     ]);
   }
 
@@ -207,7 +228,9 @@ class RepresentativeDetails extends SaveToDraftStore {
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
+          postCode: this.fields.postCode.value ?
+            this.fields.postCode.value.trim() :
+            this.fields.postCode.value,
           phoneNumber: this.fields.phoneNumber.value ?
             this.fields.phoneNumber.value.trim() :
             this.fields.phoneNumber.value,

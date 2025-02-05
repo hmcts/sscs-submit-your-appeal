@@ -47,6 +47,7 @@
     "format-code": "prettier --write ."
   },
   "pre-commit": [
+    "format-code",
     "lint"
   ],
   "dependencies": {

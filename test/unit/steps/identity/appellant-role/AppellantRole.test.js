@@ -1,4 +1,3 @@
-
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
@@ -94,35 +93,42 @@ describe('AppellantRole.js', () => {
     });
 
     describe('English', () => {
-      it('should return the correct answer for \'myself\' for CYA (English)', () => {
+      it("should return the correct answer for 'myself' for CYA (English)", () => {
         appellantRole.fields.ibcRole.value = 'myself';
         const answers = appellantRole.answers();
         expect(answers.answer).to.equal('I am appealing for myself');
       });
 
-      it('should return the correct answer for \'parent\' for CYA (English)', () => {
+      it("should return the correct answer for 'parent' for CYA (English)", () => {
         appellantRole.fields.ibcRole.value = 'parent';
         const answers = appellantRole.answers();
-        expect(answers.answer).to.equal('I am appealing for a person under 18 for whom I have parental responsibility');
+        expect(answers.answer).to.equal(
+          'I am appealing for a person under 18 for whom I have parental responsibility'
+        );
       });
 
-      it('should return the correct answer for \'guardian\' for CYA (English)', () => {
+      it("should return the correct answer for 'guardian' for CYA (English)", () => {
         appellantRole.fields.ibcRole.value = 'guardian';
         const answers = appellantRole.answers();
-        expect(answers.answer).to
-          .equal('I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller');
+        expect(answers.answer).to.equal(
+          'I am appealing on behalf of a person who lacks capacity as their guardian, deputy or controller'
+        );
       });
 
-      it('should return the correct answer for \'powerOfAttorney\' for CYA (English)', () => {
+      it("should return the correct answer for 'powerOfAttorney' for CYA (English)", () => {
         appellantRole.fields.ibcRole.value = 'powerOfAttorney';
         const answers = appellantRole.answers();
-        expect(answers.answer).to.equal('I am appealing on behalf of a person for who I have been granted a power of attorney');
+        expect(answers.answer).to.equal(
+          'I am appealing on behalf of a person for who I have been granted a power of attorney'
+        );
       });
 
-      it('should return the correct answer for \'deceasedRepresentative\' for CYA (English)', () => {
+      it("should return the correct answer for 'deceasedRepresentative' for CYA (English)", () => {
         appellantRole.fields.ibcRole.value = 'deceasedRepresentative';
         const answers = appellantRole.answers();
-        expect(answers.answer).to.equal('I am appealing on behalf of a deceased person as their personal representative');
+        expect(answers.answer).to.equal(
+          'I am appealing on behalf of a deceased person as their personal representative'
+        );
       });
     });
 
@@ -147,12 +153,10 @@ describe('AppellantRole.js', () => {
 
     it('should contain 1 fields', () => {
       expect(Object.keys(fields).length).to.equal(1);
-      expect(fields).to.have.all.keys(
-        'ibcRole'
-      );
+      expect(fields).to.have.all.keys('ibcRole');
     });
 
-    it('should contain a select reference called \'ibcRole\'', () => {
+    it("should contain a select reference called 'ibcRole'", () => {
       const selectField = fields.ibcRole;
       expect(selectField.constructor.name).to.eq('FieldDescriptor');
       expect(selectField.validations).to.not.be.empty;
@@ -161,7 +165,9 @@ describe('AppellantRole.js', () => {
 
   describe('next()', () => {
     it('returns /appellant-name', () => {
-      expect(appellantRole.next().step).to.eql(paths.identity.enterAppellantName);
+      expect(appellantRole.next().step).to.eql(
+        paths.identity.enterAppellantName
+      );
     });
   });
 });

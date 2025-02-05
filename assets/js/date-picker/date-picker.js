@@ -21,7 +21,9 @@ const datePicker = {
       url: 'https://www.gov.uk/bank-holidays.json',
       success: res => {
         const events = res['england-and-wales'].events;
-        const dates = events.map(event => moment(event.date).format('MM-D-YYYY'));
+        const dates = events.map(event =>
+          moment(event.date).format('MM-D-YYYY')
+        );
         callback(dates);
       }
     });
@@ -42,11 +44,27 @@ const datePicker = {
   },
 
   addAriaAttributes: language => {
-    let daysOfTheWeekArray = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let daysOfTheWeekArray = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
+    ];
     let previousMonthString = 'previous month';
     let nextMonthString = 'next month';
     if (language === 'cy') {
-      daysOfTheWeekArray = ['Dydd Llun', 'Dydd Mawrth', 'Dydd Mercher', 'Dydd Iau', 'Dydd Gwener', 'Dydd Sadwrn', 'Dydd Sul'];
+      daysOfTheWeekArray = [
+        'Dydd Llun',
+        'Dydd Mawrth',
+        'Dydd Mercher',
+        'Dydd Iau',
+        'Dydd Gwener',
+        'Dydd Sadwrn',
+        'Dydd Sul'
+      ];
       previousMonthString = 'y mis blaenorol';
       nextMonthString = 'mis nesaf';
     }
@@ -55,7 +73,9 @@ const datePicker = {
     /* eslint-disable no-invalid-this */
     $('.dow').each(function tabIndexOnWeekDays(index) {
       const content = $(this).text();
-      $(this).html(`<div aria-label="${daysOfTheWeekArray[index]}">${content}</div>`);
+      $(this).html(
+        `<div aria-label="${daysOfTheWeekArray[index]}">${content}</div>`
+      );
     });
     $('.prev').attr('role', 'button').attr('aria-label', previousMonthString);
     $('.next').attr('role', 'button').attr('aria-label', nextMonthString);
@@ -86,7 +106,9 @@ const datePicker = {
     /* eslint-disable consistent-return */
     datePicker.selector().on('keydown', event => {
       const index = $(document.activeElement)
-        .closest('tr').children().index($(document.activeElement));
+        .closest('tr')
+        .children()
+        .index($(document.activeElement));
       switch (event.keyCode) {
       case enterKey:
         // Why this? Because the synthetic event triggered by
@@ -103,11 +125,19 @@ const datePicker = {
         break;
       case upArrowKey:
         event.preventDefault();
-        $(document.activeElement).closest('tr').prev().find(`td:eq(${index})`).focus();
+        $(document.activeElement)
+          .closest('tr')
+          .prev()
+          .find(`td:eq(${index})`)
+          .focus();
         break;
       case downArrowKey:
         event.preventDefault();
-        $(document.activeElement).closest('tr').next().find(`td:eq(${index})`).focus();
+        $(document.activeElement)
+          .closest('tr')
+          .next()
+          .find(`td:eq(${index})`)
+          .focus();
         break;
       default:
         return true;
@@ -126,29 +156,41 @@ const datePicker = {
       nextString = 'Mis nesaf';
     }
 
-    datePicker.selector().datepicker({
-      language,
-      multidate: true,
-      daysOfWeekDisabled: '06',
-      defaultViewDate: moment().add(eight, 'weeks').format('MM-D-YYYY'),
-      startDate: '+8w',
-      endDate: '+22w',
-      weekStart: 1,
-      maxViewMode: 0,
-      datesDisabled,
-      templates: {
-        leftArrow: datePicker.toggleArrows(previousImgString, previousString),
-        rightArrow: datePicker.toggleArrows(nextImgString, nextString)
-      },
-      beforeShowDay: date => datePickerUtils.displayFirstOfMonth(date, language)
-    }).on('changeDate', event => datePicker.changeDateHandler(event, language));
+    datePicker
+      .selector()
+      .datepicker({
+        language,
+        multidate: true,
+        daysOfWeekDisabled: '06',
+        defaultViewDate: moment().add(eight, 'weeks').format('MM-D-YYYY'),
+        startDate: '+8w',
+        endDate: '+22w',
+        weekStart: 1,
+        maxViewMode: 0,
+        datesDisabled,
+        templates: {
+          leftArrow: datePicker.toggleArrows(previousImgString, previousString),
+          rightArrow: datePicker.toggleArrows(nextImgString, nextString)
+        },
+        beforeShowDay: date =>
+          datePickerUtils.displayFirstOfMonth(date, language)
+      })
+      .on('changeDate', event =>
+        datePicker.changeDateHandler(event, language)
+      );
     datePicker.setUpDOWHeading(language);
     // Update the date-picker with dates that have already been added.
-    datePicker.selector().datepicker('setDates', datePicker.getData().map(date => date.value));
+    datePicker.selector().datepicker(
+      'setDates',
+      datePicker.getData().map(date => date.value)
+    );
     datePicker.selector().off('keydown');
     datePicker.enableKeyActions();
     $('.prev, .next').on('click', event => {
-      if ($(event.target).hasClass('prev') || $(event.target).hasClass('next')) {
+      if (
+        $(event.target).hasClass('prev') ||
+        $(event.target).hasClass('next')
+      ) {
         window.setTimeout(datePicker.addAccessibilityFeatures(language), 0);
       }
     });
@@ -166,25 +208,9 @@ const datePicker = {
     let days = [];
 
     if (language === 'cy') {
-      days = [
-        'Ll',
-        'M',
-        'M',
-        'I',
-        'G',
-        'S',
-        'S'
-      ];
+      days = ['Ll', 'M', 'M', 'I', 'G', 'S', 'S'];
     } else {
-      days = [
-        'MON',
-        'TUE',
-        'WED',
-        'THU',
-        'FRI',
-        'SAT',
-        'SUN'
-      ];
+      days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     }
     const dow = $('.dow');
     $.each(dow, function changeText(index) {
@@ -210,7 +236,11 @@ const datePicker = {
       datePicker.updateAriaAttributesOnSelect(selected);
       return datePicker.postDate(dates, language);
     } else if (removed) {
-      const deselected = differenceWith(currentDates.map(value => value.value), dates, isEqual);
+      const deselected = differenceWith(
+        currentDates.map(value => value.value),
+        dates,
+        isEqual
+      );
       const deselectedCell = datePickerUtils.findCellByTimestamp(deselected[0]);
       datePicker.updateAriaAttributesOnSelect(deselectedCell);
       return datePicker.removeDate(dates, language);
@@ -219,14 +249,16 @@ const datePicker = {
   },
 
   displayDateList: (dates, language) => {
-    const datesIndex = dates.map((date, index) => datePickerUtils.buildDatesArray(index, date));
+    const datesIndex = dates.map((date, index) =>
+      datePickerUtils.buildDatesArray(index, date)
+    );
     const orderDates = datePickerUtils.sortDates(datesIndex);
     let elements = '';
     let removeLinkString = 'Remove';
     let noDatesAddedYetString = 'No dates added yet';
     if (language === 'cy') {
       removeLinkString = 'Tynnu';
-      noDatesAddedYetString = 'Dim dyddiadau wedi\'u hychwanegu eto';
+      noDatesAddedYetString = "Dim dyddiadau wedi'u hychwanegu eto";
     }
 
     $.each(orderDates, (index, date) => {
@@ -289,11 +321,15 @@ const datePicker = {
   },
 
   getData: () => {
-    const list = $('.govuk-summary-list .govuk-summary-list__value > span.govuk-visually-hidden').toArray();
-    return list.map(item => datePickerUtils.buildDatesArray(
-      datePickerUtils.getIndexOfDate(item),
-      datePickerUtils.getValueOfDate(item)
-    ));
+    const list = $(
+      '.govuk-summary-list .govuk-summary-list__value > span.govuk-visually-hidden'
+    ).toArray();
+    return list.map(item =>
+      datePickerUtils.buildDatesArray(
+        datePickerUtils.getIndexOfDate(item),
+        datePickerUtils.getValueOfDate(item)
+      )
+    );
   }
 };
 

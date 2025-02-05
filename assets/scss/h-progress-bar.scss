@@ -102,9 +102,9 @@ $ring-border: 6px;
     .ibca-respond,
     .hearing-booked,
     .hearing {
-      width: calc((100% - #{$ring-diameter} - #{$ring-border} ) / 3);
+      width: calc((100% - #{$ring-diameter} - #{$ring-border}) / 3);
       &.paper {
-        width: calc((100% - #{$ring-diameter} - #{$ring-border} ) / 2);
+        width: calc((100% - #{$ring-diameter} - #{$ring-border}) / 2);
       }
       margin-left: -7px;
       margin-right: -1px;

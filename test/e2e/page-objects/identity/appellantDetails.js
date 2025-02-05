@@ -14,60 +14,111 @@ const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
 const { expect } = require('@playwright/test');
 
-async function enterAppellantNameAndContinue(I, language, commonContent, title, firstName, lastName) {
+async function enterAppellantNameAndContinue(
+  I,
+  language,
+  commonContent,
+  title,
+  firstName,
+  lastName
+) {
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  await expect(I.getByText(appellantNameContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantNameContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('#title').first().selectOption(title);
   await I.locator('#firstName').first().fill(firstName);
   await I.locator('#lastName').first().fill(lastName);
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantNameAndContinueAfterSignIn(I, language, commonContent, title, firstName, lastName) {
+async function enterAppellantNameAndContinueAfterSignIn(
+  I,
+  language,
+  commonContent,
+  title,
+  firstName,
+  lastName
+) {
   const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
-  await expect(I.getByText(appellantNameContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantNameContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('#title').first().selectOption(title);
   await I.locator('#firstName').first().fill(firstName);
   await I.locator('#lastName').first().fill(lastName);
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-async function enterAppellantDOBAndContinue(I, language, commonContent, day, month, year) {
+async function enterAppellantDOBAndContinue(
+  I,
+  language,
+  commonContent,
+  day,
+  month,
+  year
+) {
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  await expect(I.getByText(appellantDOBContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantDOBContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('input[name*="day"]').first().fill(day);
   await I.locator('input[name*="month"]').fill(month);
   await I.locator('input[name*="year"]').fill(year);
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantDOBAndContinueAfterSignIn(I, language, commonContent, day, month, year) {
+async function enterAppellantDOBAndContinueAfterSignIn(
+  I,
+  language,
+  commonContent,
+  day,
+  month,
+  year
+) {
   const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
-  await expect(I.getByText(appellantDOBContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantDOBContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('input[name*="day"]').fill(day);
   await I.locator('input[name*="month"]').fill(month);
   await I.locator('input[name*="year"]').fill(year);
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
 async function enterAppellantNINOAndContinue(I, language, commonContent, nino) {
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  await expect(I.getByText(appellantNINOContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantNINOContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('#nino').fill(nino);
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantNINOAndContinueAfterSignIn(I, language, commonContent, nino) {
+async function enterAppellantNINOAndContinueAfterSignIn(
+  I,
+  language,
+  commonContent,
+  nino
+) {
   const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
-  await expect(I.getByText(appellantNINOContent.title.withoutAppointee).first()).toBeVisible();
+  await expect(
+    I.getByText(appellantNINOContent.title.withoutAppointee).first()
+  ).toBeVisible();
   await I.locator('#nino').fill(nino);
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
 async function enterAddressDetailsManual(I) {
@@ -84,13 +135,19 @@ async function enterAddressDetailsManual(I) {
 async function enterAddressDetails(I, postcodeLookupContent) {
   if (postcodeLookupEnabled) {
     for (let i = 0; i < 5; i++) {
-      await I.locator('#postcodeLookup').fill(appellant.contactDetails.postCode);
+      await I.locator('#postcodeLookup').fill(
+        appellant.contactDetails.postCode
+      );
       await I.getByText(postcodeLookupContent.findAddress).click();
       await I.waitForTimeout(1000);
-      await I.locator('select[name="postcodeAddress"]').selectOption(`${appellant.contactDetails.addressLine1}, ${appellant.contactDetails.townCity}, ${appellant.contactDetails.postCode}`);
+      await I.locator('select[name="postcodeAddress"]').selectOption(
+        `${appellant.contactDetails.addressLine1}, ${appellant.contactDetails.townCity}, ${appellant.contactDetails.postCode}`
+      );
       await I.waitForURL(new RegExp('.*?validate=1'));
       try {
-        await expect(I.locator('#addressLine1')).toHaveValue(appellant.contactDetails.addressLine1);
+        await expect(I.locator('#addressLine1')).toHaveValue(
+          appellant.contactDetails.addressLine1
+        );
         break;
       } catch (error) {
         if (i === 4) throw new Error(error);
@@ -103,19 +160,30 @@ async function enterAddressDetails(I, postcodeLookupContent) {
   }
 }
 
-async function enterAppellantContactDetailsManuallyAndContinue(I, commonContent) {
+async function enterAppellantContactDetailsManuallyAndContinue(
+  I,
+  commonContent
+) {
   await enterAddressDetailsManual(I);
   await I.locator('#phoneNumber').fill('07466748336');
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantContactDetailsAndContinue(I, commonContent, language) {
+async function enterAppellantContactDetailsAndContinue(
+  I,
+  commonContent,
+  language
+) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await I.locator('#postcodeLookup').fill('xxxxx');
     await I.getByText(postcodeLookupContent.findAddress).click();
-    await expect(I.getByText(postcodeLookupContent.fields.postcodeLookup.error.required).first()).toBeVisible();
+    await expect(
+      I.getByText(
+        postcodeLookupContent.fields.postcodeLookup.error.required
+      ).first()
+    ).toBeVisible();
     await enterAddressDetails(I, postcodeLookupContent);
   } else {
     await enterAddressDetailsManual(I);
@@ -123,45 +191,82 @@ async function enterAppellantContactDetailsAndContinue(I, commonContent, languag
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantContactDetailsAndContinueAfterSignIn(I, commonContent, language) {
+async function enterAppellantContactDetailsAndContinueAfterSignIn(
+  I,
+  commonContent,
+  language
+) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await I.locator('#postcodeLookup').fill('xxxxx');
     await I.getByText(postcodeLookupContent.findAddress).click();
-    await expect(I.getByText(postcodeLookupContent.fields.postcodeLookup.error.required).first()).toBeVisible();
+    await expect(
+      I.getByText(
+        postcodeLookupContent.fields.postcodeLookup.error.required
+      ).first()
+    ).toBeVisible();
     await I.locator('#postcodeLookup').fill('n29ed');
-    await I.getByRole('button', { name: commonContent.continue }).first().click();
-    await expect(I.getByText(postcodeLookupContent.fields.postcodeAddress.error.required).first()).toBeVisible();
+    await I.getByRole('button', { name: commonContent.continue })
+      .first()
+      .click();
+    await expect(
+      I.getByText(
+        postcodeLookupContent.fields.postcodeAddress.error.required
+      ).first()
+    ).toBeVisible();
     await enterAddressDetails(I, postcodeLookupContent);
   } else {
     await enterAddressDetailsManual(I);
   }
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-async function enterAppellantContactDetailsWithMobileAndContinue(I, commonContent, language, mobileNumber = '07466748336') {
+async function enterAppellantContactDetailsWithMobileAndContinue(
+  I,
+  commonContent,
+  language,
+  mobileNumber = '07466748336'
+) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  await expect(I.getByText(postcodeLookupContent.textboxLabel).first()).toBeVisible();
+  await expect(
+    I.getByText(postcodeLookupContent.textboxLabel).first()
+  ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
   await expect(I.getByText(commonContent.continue).first()).toBeEnabled();
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(I, commonContent, language, mobileNumber = '07466748336') {
+async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
+  I,
+  commonContent,
+  language,
+  mobileNumber = '07466748336'
+) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
-  await expect(I.getByText(postcodeLookupContent.textboxLabel).first()).toBeVisible();
+  await expect(
+    I.getByText(postcodeLookupContent.textboxLabel).first()
+  ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
-  await expect(I.getByText(commonContent.saveAndContinue).first()).toBeEnabled();
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await expect(
+    I.getByText(commonContent.saveAndContinue).first()
+  ).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-
-async function enterAppellantContactDetailsWithEmailAndContinue(I, commonContent, language) {
+async function enterAppellantContactDetailsWithEmailAndContinue(
+  I,
+  commonContent,
+  language
+) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await enterAddressDetails(I, postcodeLookupContent);

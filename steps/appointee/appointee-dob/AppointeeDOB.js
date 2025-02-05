@@ -25,20 +25,26 @@ class AppointeeDOB extends SaveToDraftStore {
     const fields = this.content.fields;
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
+        d =>
+          DateUtils.createMoment(
+            d.day,
+            DateUtils.getMonthValue(d, i18next.language),
+            d.year,
+            i18next.language
+          ),
         date.required({
           allRequired: fields.date.error.allRequired,
           dayRequired: fields.date.error.dayRequired,
           monthRequired: fields.date.error.monthRequired,
           yearRequired: fields.date.error.yearRequired
         })
-      ).check(
-        fields.date.error.invalid,
-        value => DateUtils.isDateValid(value)
-      ).check(
-        fields.date.error.future,
-        value => DateUtils.isDateInPast(value)
       )
+        .check(fields.date.error.invalid, value =>
+          DateUtils.isDateValid(value)
+        )
+        .check(fields.date.error.future, value =>
+          DateUtils.isDateInPast(value)
+        )
     });
   }
 

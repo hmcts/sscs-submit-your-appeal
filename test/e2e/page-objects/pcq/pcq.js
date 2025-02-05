@@ -1,15 +1,20 @@
-const { checkCYPCQOptionAndContinue, checkPCQOptionAndContinue } = require('../controls/option');
+const {
+  checkCYPCQOptionAndContinue,
+  checkPCQOptionAndContinue
+} = require('../controls/option');
 const { expect } = require('@playwright/test');
 
 async function skipPcq(I) {
   // if (config.features.pcq.enabled === 'true') {
   // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
-  await I.getByText('I don\'t want to answer these questions').first().click();
+  await I.getByText("I don't want to answer these questions").first().click();
   // }
 }
 
 async function skipPcqCY(I) {
-  await expect(I.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first()).toBeVisible();
+  await expect(
+    I.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first()
+  ).toBeVisible();
   await I.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first().click();
 }
 
@@ -43,8 +48,4 @@ async function completeAllPcqCY(I) {
   await I.getByText('Symud ymlaen').first().click();
 }
 
-
-module.exports = { skipPcq,
-  completeAllPcq,
-  skipPcqCY,
-  completeAllPcqCY };
+module.exports = { skipPcq, completeAllPcq, skipPcqCY, completeAllPcqCY };

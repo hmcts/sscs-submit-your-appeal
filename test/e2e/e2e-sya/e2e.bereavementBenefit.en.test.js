@@ -11,7 +11,18 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[12].hasDwpIssuingOffice;
 const office = testDataEn.benefitTypes[12].office;
 
 test.describe(`${language.toUpperCase()} - Bereavement Support Payment Scheme E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey`, { tag: ['@fullFunctional', '@e2e'] }, async({ page }) => {
-    await e2eBenefit.e2eBenefit(page, benefitCode, office, signer, language, hasDwpIssuingOffice);
-  });
+  test(
+    `${language.toUpperCase()} - ${benefitCode} E2E SYA Journey`,
+    { tag: ['@fullFunctional', '@e2e'] },
+    async({ page }) => {
+      await e2eBenefit.e2eBenefit(
+        page,
+        benefitCode,
+        office,
+        signer,
+        language,
+        hasDwpIssuingOffice
+      );
+    }
+  );
 });

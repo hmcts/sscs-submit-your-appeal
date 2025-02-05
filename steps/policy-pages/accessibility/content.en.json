@@ -25,14 +25,14 @@
     "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines V2.1, using a combination of technical auditing and feedback from users with accessibility needs. Except where stated below, all issues and recommendations from DAC have been implemented.",
     "para1Iba": "We know some parts of this service are not accessible, and the issues are listed under Non-compliances. We plan to carry out further testing and address the issues as soon as we can."
   },
-  "telephone" : {
+  "telephone": {
     "charges": "Find out about call charges",
     "England": {
       "desc": "Benefit appeals helpline (England and Wales)",
       "phone": "Telephone: 0300 123 1142",
       "availability": "Monday to Friday, 8am to 5pm"
     },
-    "Scotland" : {
+    "Scotland": {
       "desc": "Benefit appeals helpline (Scotland)",
       "phone": "Telephone: 0300 790 6234",
       "availability": "Monday to Friday, 8:30am to 5pm"
@@ -43,7 +43,7 @@
         "phone": "Telephone: 0300 131 2850",
         "availability": "Monday to Friday, 9am to 4pm"
       },
-      "Scotland" : {
+      "Scotland": {
         "desc": "IBC appeals helpline (Scotland)",
         "phone": "Telephone: 0300 790 6234",
         "availability": "Monday to Friday, 9am to 4pm"

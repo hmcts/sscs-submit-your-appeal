@@ -18,7 +18,12 @@ class DuplicateError extends Page {
 
   get duplicateErrorMrnDate() {
     const d = this.req.session.MRNDate.mrnDate;
-    return DateUtils.createMoment(d.day, d.month, d.year, i18next.language).format('DD MMM YYYY');
+    return DateUtils.createMoment(
+      d.day,
+      d.month,
+      d.year,
+      i18next.language
+    ).format('DD MMM YYYY');
   }
 }
 

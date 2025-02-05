@@ -1,8 +1,10 @@
+const { section } = require('@hmcts/one-per-page/checkYourAnswers');
 const {
-  section
-} = require('@hmcts/one-per-page/checkYourAnswers');
-const { SaveToDraftStoreCYA } = require('middleware/draftAppealStoreMiddleware');
-const { removeRevertInvalidSteps } = require('middleware/draftAppealStoreMiddleware');
+  SaveToDraftStoreCYA
+} = require('middleware/draftAppealStoreMiddleware');
+const {
+  removeRevertInvalidSteps
+} = require('middleware/draftAppealStoreMiddleware');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
 const { lastName } = require('utils/regex');
@@ -25,7 +27,8 @@ const csurf = require('csurf');
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
 
-const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+const allowSaveAndReturn =
+  config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 class CheckYourAppeal extends SaveToDraftStoreCYA {
   constructor(...args) {
@@ -48,7 +51,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   get middleware() {
-    const mw = [ ...super.middleware ];
+    const mw = [...super.middleware];
     if (this.journey.settings.useCsrfToken) {
       mw.push(csrfProtection);
     }
@@ -74,10 +77,14 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   }
 
   validateJourneyValues() {
-    if (typeof this.journey.values.hearing === 'undefined' ||
-      !this.journey.values.hearing) {
-      logger.exception(new Error(`Missing hearing values from Check Your Appeal for' +
-        'SessionId ${this.journey.req.session.id} and nino ${maskNino(this.journey.values.appellant.nino)}`));
+    if (
+      typeof this.journey.values.hearing === 'undefined' ||
+      !this.journey.values.hearing
+    ) {
+      logger.exception(
+        new Error(`Missing hearing values from Check Your Appeal for' +
+        'SessionId ${this.journey.req.session.id} and nino ${maskNino(this.journey.values.appellant.nino)}`)
+      );
       logger.event('SYA-Missing-Answers-At-CheckYourAppeal');
     }
   }
@@ -93,42 +100,75 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     }
 
     const maskedNino = maskNino(get(this, 'journey.values.appellant.nino'));
-    const ibcaReference = getIbcaReference(get(this, 'journey.values.appellant.ibcaReference'));
+    const ibcaReference = getIbcaReference(
+      get(this, 'journey.values.appellant.ibcaReference')
+    );
     const referenceValue = isIbaCase ? ibcaReference : maskedNino;
     const referenceName = isIbaCase ? 'IBCA' : 'NINO';
-    logger.trace([
-      'About to send to api the application with session id ', get(this, 'journey.req.session.id'),
-      'the ', referenceName, ' is ', referenceValue,
-      'the benefit code is', get(this, 'journey.values.benefitType.code'),
-      'the draft case id is', get(values, 'ccdCaseId')
-    ], logPath);
+    logger.trace(
+      [
+        'About to send to api the application with session id ',
+        get(this, 'journey.req.session.id'),
+        'the ',
+        referenceName,
+        ' is ',
+        referenceValue,
+        'the benefit code is',
+        get(this, 'journey.values.benefitType.code'),
+        'the draft case id is',
+        get(values, 'ccdCaseId')
+      ],
+      logPath
+    );
 
-
-    return request.post(this.journey.settings.apiUrl)
+    return request
+      .post(this.journey.settings.apiUrl)
       .set(headers)
       .send(values)
       .then(result => {
-        logger.trace([
-          'Successfully submitted application for session id', get(this, 'journey.req.session.id'),
-          'and ', referenceName, ' is ', referenceValue,
-          'the benefit code is', get(this, 'journey.values.benefitType.code'),
-          'the status is ', result.status
-        ], logPath);
         logger.trace(
-          `POST api:${this.journey.settings.apiUrl} status:${result.status}`, logPath);
+          [
+            'Successfully submitted application for session id',
+            get(this, 'journey.req.session.id'),
+            'and ',
+            referenceName,
+            ' is ',
+            referenceValue,
+            'the benefit code is',
+            get(this, 'journey.values.benefitType.code'),
+            'the status is ',
+            result.status
+          ],
+          logPath
+        );
+        logger.trace(
+          `POST api:${this.journey.settings.apiUrl} status:${result.status}`,
+          logPath
+        );
         logger.event('SYA-SendToApi-Success');
-      }).catch(error => {
-        const errMsg =
-          `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
+      })
+      .catch(error => {
+        const errMsg = `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
-        logger.exception([
-          'Error on submission:', get(this, 'journey.req.session.id'),
-          errMsg,
-          'the ', referenceName, ' is', referenceValue,
-          'the benefit code is ', get(this, 'journey.values.benefitType.code')
-        ], logPath);
+        logger.exception(
+          [
+            'Error on submission:',
+            get(this, 'journey.req.session.id'),
+            errMsg,
+            'the ',
+            referenceName,
+            ' is',
+            referenceValue,
+            'the benefit code is ',
+            get(this, 'journey.values.benefitType.code')
+          ],
+          logPath
+        );
 
-        const metricEvent = (error.status === HttpStatus.CONFLICT) ? 'SYA-SendToApi-Duplicate' : 'SYA-SendToApi-Failed';
+        const metricEvent =
+          error.status === HttpStatus.CONFLICT ?
+            'SYA-SendToApi-Duplicate' :
+            'SYA-SendToApi-Failed';
         logger.event(metricEvent);
         return Promise.reject(error);
       });
@@ -136,23 +176,38 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
 
   sections() {
     return [
-      section(sections.benefitType, { title: isIba(this.req) ? this.content.benefitTypeIbc : this.content.benefitType }),
-      section(sections.mrnDate, { title: this.content.compliance[isIba(this.req) ? 'rdnDate' : 'mrnDate'] }),
+      section(sections.benefitType, {
+        title: isIba(this.req) ?
+          this.content.benefitTypeIbc :
+          this.content.benefitType
+      }),
+      section(sections.mrnDate, {
+        title: this.content.compliance[isIba(this.req) ? 'rdnDate' : 'mrnDate']
+      }),
       section(sections.noMRN, { title: this.content.compliance.noMRN }),
-      section(sections.appellantDetails, { title: this.content.appellantDetails }),
-      section(sections.appointeeDetails, { title: this.content.appointeeDetails }),
-      section(sections.textMsgReminders, { title: this.content.smsNotify.textMsgReminders }),
+      section(sections.appellantDetails, {
+        title: this.content.appellantDetails
+      }),
+      section(sections.appointeeDetails, {
+        title: this.content.appointeeDetails
+      }),
+      section(sections.textMsgReminders, {
+        title: this.content.smsNotify.textMsgReminders
+      }),
       section(sections.representative, { title: this.content.representative }),
-      section(sections.reasonsForAppealing, { title: this.content.reasonsForAppealing }),
+      section(sections.reasonsForAppealing, {
+        title: this.content.reasonsForAppealing
+      }),
       section(sections.theHearing, { title: this.content.hearing.theHearing }),
       section(sections.hearingOptions, { title: this.content.hearing.options }),
-      section(sections.hearingArrangements, { title: this.content.hearing.arrangements })
+      section(sections.hearingArrangements, {
+        title: this.content.hearing.arrangements
+      })
     ];
   }
 
   get form() {
     return form({
-
       signer: text.joi(
         this.content.fields.signer.error.required,
         Joi.string().regex(lastName).trim().required()
@@ -179,7 +234,11 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .onFailure((error, req, res, next) => {
         logger.exception(error, logPath);
         if (error.status === HttpStatus.CONFLICT) {
-          redirectTo(this.journey.steps.DuplicateError).redirect(req, res, next);
+          redirectTo(this.journey.steps.DuplicateError).redirect(
+            req,
+            res,
+            next
+          );
         } else {
           redirectTo(this.journey.steps.Error500).redirect(req, res, next);
         }

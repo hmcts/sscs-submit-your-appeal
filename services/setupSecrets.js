@@ -12,9 +12,15 @@ const setupSecrets = () => {
   if (config.has('secrets.sscs')) {
     setSecret('secrets.sscs.sscs-redis-connection-string', 'redis.url');
     setSecret('secrets.sscs.sscs-redis-access-key', 'redis.secret');
-    setSecret('secrets.sscs.idam-sscs-oauth2-client-secret', 'services.idam.secret');
+    setSecret(
+      'secrets.sscs.idam-sscs-oauth2-client-secret',
+      'services.idam.secret'
+    );
     setSecret('secrets.sscs.postcode-lookup-token', 'postcodeLookup.token');
-    setSecret('secrets.sscs.AppInsightsInstrumentationKey', 'appInsights.instrumentationKey');
+    setSecret(
+      'secrets.sscs.AppInsightsInstrumentationKey',
+      'appInsights.instrumentationKey'
+    );
     setSecret('secrets.sscs.pcq-token-key', 'services.pcq.tokenKey');
   }
 };

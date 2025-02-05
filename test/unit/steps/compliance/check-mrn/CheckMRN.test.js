@@ -71,7 +71,7 @@ describe('CheckMRN.js', () => {
       expect(checkMRN.form.fields).to.have.all.keys('mrnDate', 'checkedMRN');
     });
 
-    it('should contain a textField reference called \'mrnDate\'', () => {
+    it("should contain a textField reference called 'mrnDate'", () => {
       const textField = checkMRN.form.fields.mrnDate;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
@@ -110,17 +110,23 @@ describe('CheckMRN.js', () => {
 
       it('returns /mrn-over-month-late when the date is less than thirteen months', () => {
         setMRNDate(DateUtils.oneMonthAndOneDayAgo());
-        expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverMonthLate);
+        expect(checkMRN.next().step).to.equal(
+          paths.compliance.mrnOverMonthLate
+        );
       });
 
       it('returns /mrn-over-month-late when date is equal to thirteen months', () => {
         setMRNDate(DateUtils.thirteenMonthsAgo());
-        expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverMonthLate);
+        expect(checkMRN.next().step).to.equal(
+          paths.compliance.mrnOverMonthLate
+        );
       });
 
       it('returns /mrn-over-thirteen-months-late when date is over thirteen months', () => {
         setMRNDate(DateUtils.thirteenMonthsAndOneDayAgo());
-        expect(checkMRN.next().step).to.equal(paths.compliance.mrnOverThirteenMonthsLate);
+        expect(checkMRN.next().step).to.equal(
+          paths.compliance.mrnOverThirteenMonthsLate
+        );
       });
     });
 

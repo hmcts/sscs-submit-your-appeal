@@ -7,7 +7,6 @@ const enabled = true;
 const url = 'http://mockapi.com/v';
 const token = 'xxxx';
 
-
 describe('Components/controller.js', () => {
   let page = {};
   let pcl = {};
@@ -18,12 +17,15 @@ describe('Components/controller.js', () => {
   let superCallback = {};
 
   beforeEach(() => {
-    req = { body: {},
+    req = {
+      body: {},
       query: { type: 'auto' },
-      session: { addressSuggestions: [], postcodeLookupType: '' } };
+      session: { addressSuggestions: [], postcodeLookupType: '' }
+    };
     res = { redirect: sinon.spy(), render: sinon.spy() };
     next = sinon.spy();
-    page = { name: 'unit',
+    page = {
+      name: 'unit',
       path: 'unit-url',
       template: '',
       locals: [],
@@ -32,7 +34,11 @@ describe('Components/controller.js', () => {
       retrieve: sinon.spy(),
       store: sinon.spy(),
       validate: sinon.spy(),
-      addressSuggestions: [], req, res, next };
+      addressSuggestions: [],
+      req,
+      res,
+      next
+    };
     superCallback = sinon.spy();
 
     nock(url)
@@ -40,7 +46,7 @@ describe('Components/controller.js', () => {
         'Content-Type': 'application/json'
       })
       .get(`/postcode?&key=${token}&postcode=n29ed&lr=EN`)
-      .reply(200, { results: [ 'address:1', 'address:2'] });
+      .reply(200, { results: ['address:1', 'address:2'] });
   });
 
   afterEach(() => {
@@ -117,7 +123,7 @@ describe('Components/controller.js', () => {
 
     it('isManualPost()', () => {
       page.req.method = 'POST';
-      page.req.body = { };
+      page.req.body = {};
       pcl = new PCL(enabled, token, url, page);
       expect(pcl.isManualPost()).to.eql(true);
     });
@@ -149,7 +155,6 @@ describe('Components/controller.js', () => {
       pcl = new PCL(enabled, token, url, page);
       expect(pcl.isManualSession()).to.eql(undefined);
     });
-
 
     it('setMode() auto', () => {
       pcl = new PCL(enabled, token, url, page);
@@ -265,7 +270,9 @@ describe('Components/controller.js', () => {
 
   describe('setPageState()', () => {
     it('setPageState restore suggestions', () => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true }
+      };
       pcl = new PCL(enabled, token, url, page);
       const handlePostCodeLookupSpy = sinon.spy(pcl, 'handlePostCodeLookup');
       pcl.setPageState();
@@ -283,8 +290,10 @@ describe('Components/controller.js', () => {
     });
 
     it('setPageState auto all fields', async() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true },
-        postcodeAddress: { value: '2000', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true },
+        postcodeAddress: { value: '2000', validate: () => true }
+      };
       page.addressSuggestions.push('address 1', 'address2');
       pcl = new PCL(enabled, token, url, page);
       const alldFieldsSpy = sinon.spy(pcl, 'alldFields');
@@ -294,7 +303,9 @@ describe('Components/controller.js', () => {
     });
 
     it('setPageState auto postcodeAddressFields', async() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true }
+      };
       page.addressSuggestions.push('address 1', 'address2');
       pcl = new PCL(enabled, token, url, page);
       const postcodeAddressFieldsSpy = sinon.spy(pcl, 'postcodeAddressFields');
@@ -326,28 +337,36 @@ describe('Components/controller.js', () => {
 
   describe('handlePostCodeLookup()', () => {
     it('handlePostCodeLookup adress options found', async() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true }
+      };
       pcl = new PCL(enabled, token, url, page);
       await pcl.handlePostCodeLookup();
       expect(page.addressSuggestions.length).to.eql(2);
     });
 
     it('handlePostCodeLookup adress options found', async() => {
-      page.fields = { postcodeLookup: { value: 'non valid', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'non valid', validate: () => true }
+      };
       pcl = new PCL(enabled, token, url, page);
       await pcl.handlePostCodeLookup();
       expect(page.fields.postcodeLookup.value).to.eql('');
     });
 
     it('handlePostCodeLookup server not available', async() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true }
+      };
       pcl = new PCL(enabled, token, 'non-valid-server', page);
       await pcl.handlePostCodeLookup();
       expect(page.fields.postcodeLookup.value).to.eql('');
     });
 
     it('handlePostCodeLookup server not valid token', async() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true } };
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true }
+      };
       pcl = new PCL(enabled, 'non-valid-token', url, page);
       await pcl.handlePostCodeLookup();
       expect(page.fields.postcodeLookup.value).to.eql('');
@@ -357,23 +376,29 @@ describe('Components/controller.js', () => {
   describe('handleAddressSelection()', () => {
     beforeEach(() => {
       page.addressSuggestions = [
-        { DPA: { UPRN: '200206013',
-          UDPRN: '15487017',
-          ADDRESS: 'ROYALTY LOUNGE, 118, HIGH ROAD, LONDON, N2 9ED',
-          ORGANISATION_NAME: 'ROYALTY LOUNGE',
-          BUILDING_NUMBER: '118',
-          THOROUGHFARE_NAME: 'HIGH ROAD',
-          POST_TOWN: 'LONDON',
-          POSTCODE: 'N2 9ED' } }
+        {
+          DPA: {
+            UPRN: '200206013',
+            UDPRN: '15487017',
+            ADDRESS: 'ROYALTY LOUNGE, 118, HIGH ROAD, LONDON, N2 9ED',
+            ORGANISATION_NAME: 'ROYALTY LOUNGE',
+            BUILDING_NUMBER: '118',
+            THOROUGHFARE_NAME: 'HIGH ROAD',
+            POST_TOWN: 'LONDON',
+            POSTCODE: 'N2 9ED'
+          }
+        }
       ];
 
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true },
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true },
         postcodeAddress: { value: '200206013', validate: () => true },
         addressLine1: { value: '' },
         addressLine2: { value: '' },
         townCity: { value: '' },
         county: { value: '' },
-        postCode: { value: '' } };
+        postCode: { value: '' }
+      };
     });
 
     afterEach(() => {
@@ -408,13 +433,15 @@ describe('Components/controller.js', () => {
 
   describe('init()', () => {
     beforeEach(() => {
-      page.fields = { postcodeLookup: { value: 'n29ed', validate: () => true },
+      page.fields = {
+        postcodeLookup: { value: 'n29ed', validate: () => true },
         postcodeAddress: { value: '200206013', validate: () => false },
         addressLine1: { value: '' },
         addressLine2: { value: '' },
         townCity: { value: '' },
         county: { value: '' },
-        postCode: { value: '' } };
+        postCode: { value: '' }
+      };
     });
 
     afterEach(() => {
@@ -429,7 +456,9 @@ describe('Components/controller.js', () => {
       await pcl.init(superCallback);
       expect(resetSuggestionsSpy).to.have.been.calledOnce;
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?validate=1`);
+      expect(page.res.redirect).to.have.been.calledWith(
+        `${page.path}?validate=1`
+      );
       pcl.resetSuggestions.restore();
       pcl.setPageState.restore();
     });
@@ -437,12 +466,17 @@ describe('Components/controller.js', () => {
     it('controller addressSelection', async() => {
       page.req.body = { submitType: 'addressSelection' };
       pcl = new PCL(enabled, token, url, page);
-      const handleAddressSelectionSpy = sinon.spy(pcl, 'handleAddressSelection');
+      const handleAddressSelectionSpy = sinon.spy(
+        pcl,
+        'handleAddressSelection'
+      );
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
       await pcl.init(superCallback);
       expect(handleAddressSelectionSpy).to.have.been.calledOnce;
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?validate=1`);
+      expect(page.res.redirect).to.have.been.calledWith(
+        `${page.path}?validate=1`
+      );
       pcl.handleAddressSelection.restore();
       pcl.setPageState.restore();
     });
@@ -455,7 +489,9 @@ describe('Components/controller.js', () => {
       await pcl.init(superCallback);
       expect(manualFieldsSpy).to.have.been.calledOnce;
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?type=manual`);
+      expect(page.res.redirect).to.have.been.calledWith(
+        `${page.path}?type=manual`
+      );
       pcl.manualFields.restore();
       pcl.setPageState.restore();
     });
@@ -469,7 +505,10 @@ describe('Components/controller.js', () => {
       await pcl.init(superCallback);
       expect(handleGetValidateSpy).to.have.been.calledOnce;
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.render).to.have.been.calledWith(page.template, page.locals);
+      expect(page.res.render).to.have.been.calledWith(
+        page.template,
+        page.locals
+      );
       pcl.handleGetValidate.restore();
       pcl.setPageState.restore();
     });
@@ -481,20 +520,25 @@ describe('Components/controller.js', () => {
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
       await pcl.init(superCallback);
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.render).to.have.been.calledWith(page.template, page.locals);
+      expect(page.res.render).to.have.been.calledWith(
+        page.template,
+        page.locals
+      );
       pcl.setPageState.restore();
     });
 
     it('manual and not valid', async() => {
       page.req.method = 'POST';
-      page.req.body = { };
+      page.req.body = {};
       page.valid = false;
       page.validate = () => page;
       pcl = new PCL(enabled, token, url, page);
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
       await pcl.init(superCallback);
       expect(setPageStateSpy).to.have.been.calledOnce;
-      expect(page.res.redirect).to.have.been.calledWith(`${page.path}?type=manual&validate=1`);
+      expect(page.res.redirect).to.have.been.calledWith(
+        `${page.path}?type=manual&validate=1`
+      );
       pcl.setPageState.restore();
     });
 
@@ -510,7 +554,11 @@ describe('Components/controller.js', () => {
     it('controller default super call error', () => {
       pcl = new PCL(enabled, token, url, page);
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
-      pcl.init('').catch(reason => expect(reason.message).to.eq('Super Callback function is not defined'));
+      pcl
+        .init('')
+        .catch(reason =>
+          expect(reason.message).to.eq('Super Callback function is not defined')
+        );
       expect(setPageStateSpy).to.have.been.calledOnce;
     });
   });

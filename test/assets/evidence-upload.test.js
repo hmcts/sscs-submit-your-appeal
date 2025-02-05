@@ -66,9 +66,15 @@ describe('evidence upload', () => {
     expect(num).to.equal(2);
   });
   it('#getNumberForNextItem will read the dom and find a missing number', () => {
-    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-2"></dd>');
-    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-3"></dd>');
-    $('.govuk-summary-list').append('<dd class="govuk-summary-list__value" id="item-5"></dd>');
+    $('.govuk-summary-list').append(
+      '<dd class="govuk-summary-list__value" id="item-2"></dd>'
+    );
+    $('.govuk-summary-list').append(
+      '<dd class="govuk-summary-list__value" id="item-3"></dd>'
+    );
+    $('.govuk-summary-list').append(
+      '<dd class="govuk-summary-list__value" id="item-5"></dd>'
+    );
     const num = evidenceUpload.getNumberForNextItem();
     expect(num).to.equal(4);
   });

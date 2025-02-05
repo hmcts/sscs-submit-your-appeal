@@ -23,7 +23,9 @@ class AppellantNINO extends SaveToDraftStore {
   }
 
   isAppointee() {
-    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
+    return (
+      String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes'
+    );
   }
 
   contentPrefix() {
@@ -60,7 +62,9 @@ class AppellantNINO extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        nino: (this.fields.nino.value) ? this.fields.nino.value.trim() : this.fields.nino.value
+        nino: this.fields.nino.value ?
+          this.fields.nino.value.trim() :
+          this.fields.nino.value
       }
     };
   }

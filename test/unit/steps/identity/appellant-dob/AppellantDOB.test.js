@@ -14,7 +14,6 @@ describe('AppellantDOB.js', () => {
         steps: {
           AppellantNINO: paths.identity.enterAppellantNINO,
           AppellantInMainlandUk: paths.identity.enterAppellantInMainlandUk
-
         }
       },
       session: {
@@ -99,12 +98,16 @@ describe('AppellantDOB.js', () => {
   describe('next()', () => {
     it('returns the next step path /enter-appellant-nino', () => {
       appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantNINO);
+      expect(appellantDOBClass.next().step).to.eql(
+        paths.identity.enterAppellantNINO
+      );
     });
 
     it('returns the next step path /appellent-in-mainland-uk in Iba journey', () => {
       appellantDOBClass.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
-      expect(appellantDOBClass.next().step).to.eql(paths.identity.enterAppellantInMainlandUk);
+      expect(appellantDOBClass.next().step).to.eql(
+        paths.identity.enterAppellantInMainlandUk
+      );
     });
   });
 });

@@ -59,7 +59,11 @@ export class ShowHideContent {
     // Handle radio show/hide
     function handleRadioContent($control, $content) {
       // All radios in this group which control content
-      var selector = selectors.radio + '[name="' + $control.attr('name') + '"][aria-controls]';
+      var selector =
+        selectors.radio +
+        '[name="' +
+        $control.attr('name') +
+        '"][aria-controls]';
       var $form = $control.closest('form');
       var $radios = $form.length ? $form.find(selector) : $(selector);
       // Hide content for radios in group
@@ -76,8 +80,8 @@ export class ShowHideContent {
       // Show checkbox content
       if ($control.is(':checked')) {
         showToggledContent($control, $content);
-      }
-      else { // Hide checkbox content
+      } else {
+        // Hide checkbox content
         hideToggledContent($control, $content);
       }
     }
@@ -116,11 +120,21 @@ export class ShowHideContent {
     }
     // Set up radio show/hide content for container
     self.showHideRadioToggledContent = function ($container) {
-      init($container, selectors.radio, getEventSelectorsForRadioGroups(), handleRadioContent);
+      init(
+        $container,
+        selectors.radio,
+        getEventSelectorsForRadioGroups(),
+        handleRadioContent
+      );
     };
     // Set up checkbox show/hide content for container
     self.showHideCheckboxToggledContent = function ($container) {
-      init($container, selectors.checkbox, [selectors.checkbox], handleCheckboxContent);
+      init(
+        $container,
+        selectors.checkbox,
+        [selectors.checkbox],
+        handleCheckboxContent
+      );
     };
     // Remove event handlers
     self.destroy = function ($container) {
@@ -133,5 +147,3 @@ export class ShowHideContent {
     this.showHideCheckboxToggledContent($container);
   }
 }
-
-

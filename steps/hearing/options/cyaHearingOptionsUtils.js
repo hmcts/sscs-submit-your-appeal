@@ -8,7 +8,11 @@ const setCYAValue = (arrangementValue, hiddenFieldValue) => {
 
   let cyaValue = null;
 
-  if (arrangementValue === cyaContent.requested && (hiddenFieldValue !== undefined && hiddenFieldValue !== '')) {
+  if (
+    arrangementValue === cyaContent.requested &&
+    hiddenFieldValue !== undefined &&
+    hiddenFieldValue !== ''
+  ) {
     cyaValue = hiddenFieldValue;
   } else {
     cyaValue = arrangementValue;

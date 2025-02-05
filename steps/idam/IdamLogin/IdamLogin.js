@@ -11,9 +11,7 @@ class IdamLogin extends Question {
 
   get form() {
     const answers = ['yes', 'no'];
-    const validAnswers = Joi.string()
-      .valid(answers)
-      .required();
+    const validAnswers = Joi.string().valid(answers).required();
 
     const success = text.joi(this.content.errors.required, validAnswers);
 

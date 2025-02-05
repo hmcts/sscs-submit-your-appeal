@@ -8,14 +8,19 @@ async function checkOptionAndContinue(I, commonContent, option) {
 
 async function checkOptionAndContinueAfterSignIn(I, commonContent, option) {
   await I.locator(option).first().check();
-  await expect(I.getByText(commonContent.saveAndContinue).first()).toBeEnabled();
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await expect(
+    I.getByText(commonContent.saveAndContinue).first()
+  ).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
-
 
 async function checkPCQOptionAndContinue(I, option) {
   await I.locator(option).first().check();
-  await expect(I.getByRole('button', { name: 'Continue' }).first()).toBeEnabled();
+  await expect(
+    I.getByRole('button', { name: 'Continue' }).first()
+  ).toBeEnabled();
   await I.getByRole('button', { name: 'Continue' }).first().click();
 }
 
@@ -25,8 +30,9 @@ async function checkCYPCQOptionAndContinue(I, option) {
   await I.getByText('Parhau').first().click();
 }
 
-
-module.exports = { checkOptionAndContinue,
+module.exports = {
+  checkOptionAndContinue,
   checkOptionAndContinueAfterSignIn,
   checkPCQOptionAndContinue,
-  checkCYPCQOptionAndContinue };
+  checkCYPCQOptionAndContinue
+};

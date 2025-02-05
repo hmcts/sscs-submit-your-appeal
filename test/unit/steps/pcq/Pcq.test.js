@@ -41,9 +41,7 @@ describe('Pcq.js', () => {
   });
 
   it('redirects to PCQ with the correct parameters', done => {
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'UP' });
+    nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
 
     const revert = Pcq.__set__('uuidv4', () => {
       return 'r123';
@@ -54,10 +52,12 @@ describe('Pcq.js', () => {
 
     setTimeout(() => {
       expect(res.redirect.calledOnce).to.equal(true);
-      expect(res.redirect.args[0][0]).to.satisfy(str => str.startsWith(
-        // eslint-disable-next-line max-len
-        'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=test%2Btest%40test.com&returnUrl=localhost/check-your-appeal&language=en&token='
-      ));
+      expect(res.redirect.args[0][0]).to.satisfy(str =>
+        str.startsWith(
+          // eslint-disable-next-line max-len
+          'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=test%2Btest%40test.com&returnUrl=localhost/check-your-appeal&language=en&token='
+        )
+      );
       revert();
       done();
     }, 100);
@@ -69,9 +69,7 @@ describe('Pcq.js', () => {
         email: 'specificuser@idam.com'
       }
     };
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'UP' });
+    nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
 
     const revert = Pcq.__set__('uuidv4', () => {
       return 'r123';
@@ -82,19 +80,19 @@ describe('Pcq.js', () => {
 
     setTimeout(() => {
       expect(res.redirect.calledOnce).to.equal(true);
-      expect(res.redirect.args[0][0]).to.satisfy(str => str.startsWith(
-        // eslint-disable-next-line max-len
-        'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=specificuser%40idam.com&returnUrl=localhost/check-your-appeal&language=en&token='
-      ));
+      expect(res.redirect.args[0][0]).to.satisfy(str =>
+        str.startsWith(
+          // eslint-disable-next-line max-len
+          'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=specificuser%40idam.com&returnUrl=localhost/check-your-appeal&language=en&token='
+        )
+      );
       revert();
       done();
     }, 100);
   });
 
   it('values() returns the correct pcqId if present', done => {
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'UP' });
+    nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
 
     const revert = Pcq.__set__('uuidv4', () => {
       return 'r123';
@@ -124,9 +122,7 @@ describe('Pcq.js', () => {
 
   describe('skips PCQ', () => {
     it('if it is unhealthy', done => {
-      nock(pcqHost)
-        .get('/health')
-        .reply(httpStatus.OK, { status: 'DOWN' });
+      nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'DOWN' });
 
       const step = new Pcq(req, res);
       step.handler(req, res);
@@ -155,9 +151,7 @@ describe('Pcq.js', () => {
           benefitType: benefitTypes.infectedBloodCompensation
         }
       };
-      nock(pcqHost)
-        .get('/health')
-        .reply(httpStatus.OK, { status: 'UP' });
+      nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
       const step = new Pcq(req, res);
       step.handler(req, res);
 
@@ -167,9 +161,7 @@ describe('Pcq.js', () => {
 
     it('if PCQ not enabled', () => {
       testConfig.features.pcq.enabled = 'false';
-      nock(pcqHost)
-        .get('/health')
-        .reply(httpStatus.OK, { status: 'UP' });
+      nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
       const step = new Pcq(req, res);
       step.handler(req, res);
 
@@ -180,9 +172,7 @@ describe('Pcq.js', () => {
 
     it('if PCQ already called', done => {
       req.session.Pcq = 'some-id';
-      nock(pcqHost)
-        .get('/health')
-        .reply(httpStatus.OK, { status: 'UP' });
+      nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
       const step = new Pcq(req, res);
       step.handler(req, res);
 
