@@ -1,11 +1,10 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% set title = content["title" + suffix] %}
+{% set title = content.title %}
 
 {% block fields %}
-    {% if isIba %}
-        <p class="govuk-body">{{ content.subtitleIba }}</p>
+        <p class="govuk-body">{{ content.subtitle }}</p>
 
         <h2 class="govuk-heading-m">{{ content.hearingFormatsList.title }}</h2>
         <p class="govuk-body">{{ content.hearingFormatsList.subtitle }}</p>
@@ -22,19 +21,14 @@
         </ul>
 
         <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
-    {% else %}   
-        <p class="govuk-body">{{ content.subtitle | safe }}</p>
-        <p class="govuk-body">{{ content.explainReasons | safe }}</p>
-        <p class="govuk-body">{{ content.arrangeSupport | safe }}</p>
-    {% endif %}
 
     {{ selectionButtons(
         fields.attendHearing,
-        content.fields.attendHearing["title" + suffix],
+        content.fields.attendHearing.title,
         hideQuestion = false,
         options = [
-            { label: content.fields.attendHearing["yes" + suffix], value: "yes" },
-            { label: content.fields.attendHearing["no" + suffix], value: "no" }
+            { label: content.fields.attendHearing.yes, value: "yes" },
+            { label: content.fields.attendHearing.no, value: "no" }
         ])
     }}
 {% endblock %}
