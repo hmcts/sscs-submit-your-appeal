@@ -95,8 +95,25 @@ withPipeline("nodejs", product, component) {
                 reportFiles          : "index.html",
                 reportName           : "SYA E2E Smoke test report"
         ]
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
-
     afterAlways('smoketest:aat') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-report/*/**'
@@ -108,5 +125,23 @@ withPipeline("nodejs", product, component) {
                 reportFiles          : "index.html",
                 reportName           : "SYA E2E Smoke test report"
         ]
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
 }
