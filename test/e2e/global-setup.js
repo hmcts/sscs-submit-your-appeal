@@ -3,6 +3,9 @@ const testUser = require('../util/IdamUser');
 const fileAcceptor = require('test/file_acceptor');
 
 module.exports = () => {
+  setTimeout(() => {
+    done();
+  }, 5000);
   fileAcceptor.bootstrap();
   process.env.USEREMAIL_1 = testUser.createUser();
 };

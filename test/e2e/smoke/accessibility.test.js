@@ -35,7 +35,15 @@ function accessibilityCheck(url, language) {
   test(`Page ${url} - ${language} should have no accessibility errors`, async({
     page
   }) => {
-    await page.goto('/');
+    for (let i = 1; i < 5; i ++) {
+      try {
+        await page.goto('/');
+        await expect(page.getByText('Which benefit is your appeal about?').first()).toBeVisible();
+        break;
+      } catch (error) {
+        console.error(`Error loading home page, trying again attempt ${i + 1} of 5:`, error);
+      }
+    }
     await page.goto(`${url}?lng=${language}`);
     await page.waitForURL(`${url}?lng=${language}`);
     const violations = await accessibilityTestHelper.axeTest(page);
