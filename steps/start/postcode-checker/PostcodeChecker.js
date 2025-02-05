@@ -30,8 +30,14 @@ class PostcodeChecker extends SaveToDraftStore {
   get form() {
     return form({
       postcode: text
-        .joi(this.content.fields.postcode.error.emptyField, Joi.string().required())
-        .joi(this.content.fields.postcode.error.invalid, Joi.string().trim().regex(postCode))
+        .joi(
+          this.content.fields.postcode.error.emptyField,
+          Joi.string().required()
+        )
+        .joi(
+          this.content.fields.postcode.error.invalid,
+          Joi.string().trim().regex(postCode)
+        )
     });
   }
 
@@ -60,7 +66,10 @@ class PostcodeChecker extends SaveToDraftStore {
     }
 
     const postcode = this.fields.postcode.value;
-    const outcode = postcode.trim().replace(inwardPostcode, '').replace(/\s+/, '');
+    const outcode = postcode
+      .trim()
+      .replace(inwardPostcode, '')
+      .replace(/\s+/, '');
     const isPostcodeOnList = () => postcodeList.includes(outcode.toUpperCase());
 
     return branch(

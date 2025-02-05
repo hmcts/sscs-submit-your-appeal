@@ -25,7 +25,10 @@ app.post('/evidence/upload', (req, res) => {
   });
 
   incoming.once('error', er => {
-    console.log(`error while receiving the file from the client ${er}`, logPath);
+    console.log(
+      `error while receiving the file from the client ${er}`,
+      logPath
+    );
   });
 
   incoming.on('file', (field, file) => {
@@ -91,7 +94,8 @@ process.on('SIGINT', teardown);
 process.on('SIGTERM', teardown);
 
 module.exports = {
-  bootstrap, teardown
+  bootstrap,
+  teardown
 };
 
 /* eslint-enable no-console */

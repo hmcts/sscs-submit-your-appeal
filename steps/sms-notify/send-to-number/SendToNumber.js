@@ -19,10 +19,22 @@ class SendToNumber extends SaveToDraftStore {
 
   get form() {
     return form({
-      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
-      internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
-      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
-      inMainlandUk: text.ref(this.journey.steps.AppellantInMainlandUk, 'inMainlandUk'),
+      phoneNumber: text.ref(
+        this.journey.steps.AppellantContactDetails,
+        'phoneNumber'
+      ),
+      internationalPhoneNumber: text.ref(
+        this.journey.steps.AppellantInternationalContactDetails,
+        'phoneNumber'
+      ),
+      appointeePhoneNumber: text.ref(
+        this.journey.steps.AppointeeContactDetails,
+        'phoneNumber'
+      ),
+      inMainlandUk: text.ref(
+        this.journey.steps.AppellantInMainlandUk,
+        'inMainlandUk'
+      ),
       useSameNumber: text.joi(
         this.content.fields.useSameNumber.error.required,
         Joi.string().required()

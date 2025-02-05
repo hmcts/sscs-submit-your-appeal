@@ -10,12 +10,16 @@ class SendingEvidence extends Interstitial {
 
   get hasSignedUpForEmail() {
     const appellantEmailField = form({
-      emailAddress: ref(this.journey.steps.AppellantContactDetails, text, 'emailAddress')
+      emailAddress: ref(
+        this.journey.steps.AppellantContactDetails,
+        text,
+        'emailAddress'
+      )
     });
-    const emailFieldValue = appellantEmailField
-      .retrieve(this.journey.steps.AppellantContactDetails, this.req)
-      .emailAddress
-      .value;
+    const emailFieldValue = appellantEmailField.retrieve(
+      this.journey.steps.AppellantContactDetails,
+      this.req
+    ).emailAddress.value;
 
     if (typeof emailFieldValue === 'undefined') {
       return false;

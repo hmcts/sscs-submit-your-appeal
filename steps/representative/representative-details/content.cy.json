@@ -88,13 +88,13 @@
     }
   },
   "cya": {
-    "name":{
+    "name": {
       "question": "Enw"
     },
-    "organisation":{
+    "organisation": {
       "question": "Sefydliad"
     },
-    "address":{
+    "address": {
       "question": "Cyfeiriad"
     },
     "phoneNumber": {

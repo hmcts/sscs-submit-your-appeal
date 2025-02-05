@@ -5,7 +5,12 @@ const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
-const { getBenefitCode, getBenefitName, getHasAcronym, getBenefitEndText } = require('utils/stringUtils');
+const {
+  getBenefitCode,
+  getBenefitName,
+  getHasAcronym,
+  getBenefitEndText
+} = require('utils/stringUtils');
 const i18next = require('i18next');
 const { isIba } = require('utils/benefitTypeUtils');
 
@@ -16,15 +21,21 @@ class HaveAMRN extends SaveToDraftStore {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+    const benefitTypeContent = require(
+      `steps/start/benefit-type/content.${sessionLanguage}`
+    );
 
-    const benefitShortCode = getBenefitCode(this.req.session.BenefitType.benefitType);
+    const benefitShortCode = getBenefitCode(
+      this.req.session.BenefitType.benefitType
+    );
 
     if (this.req.session.BenefitType) {
       if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
         return benefitShortCode;
       }
-      return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+      return benefitTypeContent.benefitTypes[
+        getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()
+      ];
     }
     return '';
   }
@@ -65,7 +76,9 @@ class HaveAMRN extends SaveToDraftStore {
   next() {
     const hasAMRN = this.fields.haveAMRN.value === userAnswer.YES;
     return branch(
-      goTo(this.journey.steps.AppellantIBCAReference).if(hasAMRN && isIba(this.req)),
+      goTo(this.journey.steps.AppellantIBCAReference).if(
+        hasAMRN && isIba(this.req)
+      ),
       goTo(this.journey.steps.MRNDate).if(hasAMRN),
       goTo(this.journey.steps.NeedRDN).if(isIba(this.req)),
       goTo(this.journey.steps.HaveContactedDWP)

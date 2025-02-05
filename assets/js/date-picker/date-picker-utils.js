@@ -2,12 +2,47 @@ import * as $ from 'jquery';
 import moment from 'moment';
 import { find } from 'lodash-es';
 
-const welshFullMonths = ['Ionawr', 'Chwefror', 'Mawrth', 'Ebrill', 'Mai', 'Mehefin', 'Gorffennaf', 'Awst', 'Medi', 'Hydref', 'Tachwedd', 'Rhagfyr'];
-const welshMonths = ['Ion', 'Chw', 'Maw', 'Ebr', 'Mai', 'Meh', 'Gor', 'Awst', 'Medi', 'Hyd', 'Tach', 'Rhag'];
-const welshWeekdays = ['Dydd Sul', 'Dydd Llun', 'Dydd Mawrth', 'Dydd Mercher', 'Dydd Iau', 'Dydd Gwener', 'Dydd Sadwrn'];
+const welshFullMonths = [
+  'Ionawr',
+  'Chwefror',
+  'Mawrth',
+  'Ebrill',
+  'Mai',
+  'Mehefin',
+  'Gorffennaf',
+  'Awst',
+  'Medi',
+  'Hydref',
+  'Tachwedd',
+  'Rhagfyr'
+];
+const welshMonths = [
+  'Ion',
+  'Chw',
+  'Maw',
+  'Ebr',
+  'Mai',
+  'Meh',
+  'Gor',
+  'Awst',
+  'Medi',
+  'Hyd',
+  'Tach',
+  'Rhag'
+];
+const welshWeekdays = [
+  'Dydd Sul',
+  'Dydd Llun',
+  'Dydd Mawrth',
+  'Dydd Mercher',
+  'Dydd Iau',
+  'Dydd Gwener',
+  'Dydd Sadwrn'
+];
 
 const datePickerUtils = {
-  getIndexFromDate: (dateList, date) => find(dateList, { value: new Date(date) }).index,
+  getIndexFromDate: (dateList, date) =>
+    find(dateList, { value: new Date(date) }).index,
 
   getIndexOfDate: element => $(element).data('index').split('-').pop(),
 
@@ -31,15 +66,18 @@ const datePickerUtils = {
     return date.format('dddd D MMMM YYYY');
   },
 
-  isDateAdded: (currentDateList, newDateList) => newDateList.length > currentDateList.length,
+  isDateAdded: (currentDateList, newDateList) =>
+    newDateList.length > currentDateList.length,
 
-  isDateRemoved: (currentDateList, newDateList) => currentDateList.length > newDateList.length,
+  isDateRemoved: (currentDateList, newDateList) =>
+    currentDateList.length > newDateList.length,
 
-  sortDates: dates => dates.sort((date1, date2) => {
-    if (date1.value > date2.value) return 1;
-    if (date1.value < date2.value) return -1;
-    return 0;
-  }),
+  sortDates: dates =>
+    dates.sort((date1, date2) => {
+      if (date1.value > date2.value) return 1;
+      if (date1.value < date2.value) return -1;
+      return 0;
+    }),
 
   displayFirstOfMonth: (date, language) => {
     const mDate = moment(date);

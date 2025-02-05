@@ -1,6 +1,4 @@
-const {
-  expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
@@ -77,10 +75,14 @@ describe('NewAppeal.js', () => {
     it('should call reset journey and call super when a get request IBA', () => {
       const superStub = sinon.stub(Redirect.prototype, 'handler');
       req.method = 'GET';
-      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
+      req.session.BenefitType = {
+        benefitType: benefitTypes.infectedBloodCompensation
+      };
       newAppeal.handler(req, res);
       expect(req.session.save.calledTwice).to.eql(true);
-      expect(req.session.BenefitType.benefitType).to.eql(benefitTypes.infectedBloodCompensation);
+      expect(req.session.BenefitType.benefitType).to.eql(
+        benefitTypes.infectedBloodCompensation
+      );
       sinon.assert.called(superStub);
     });
   });

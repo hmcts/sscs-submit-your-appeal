@@ -14,7 +14,8 @@ describe('Representative.js', () => {
         steps: {
           RepresentativeDetails: paths.representative.representativeDetails,
           ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing,
-          RepresentativeInMainlandUk: paths.representative.representativeInMainlandUk
+          RepresentativeInMainlandUk:
+            paths.representative.representativeInMainlandUk
         }
       }
     });
@@ -84,13 +85,13 @@ describe('Representative.js', () => {
     });
 
     describe('English', () => {
-      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+      it("should titleise the users selection to 'No' for CYA (English)", () => {
         representative.fields.hasRepresentative.value = userAnswer.NO;
         const answers = representative.answers();
         expect(answers.answer).to.equal('No');
       });
 
-      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+      it("should titleise the users selection to 'Yes' for CYA (English)", () => {
         representative.fields.hasRepresentative.value = userAnswer.YES;
         const answers = representative.answers();
         expect(answers.answer).to.equal('Yes');
@@ -106,14 +107,14 @@ describe('Representative.js', () => {
         i18next.changeLanguage('en');
       });
 
-      it('should titleise the users selection to \'Nac ydw\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Nac ydw' for CYA (Welsh)", () => {
         representative.content.cya.hasRepresentative.no = 'Nac ydw';
         representative.fields.hasRepresentative.value = userAnswer.NO;
         const answers = representative.answers();
         expect(answers.answer).to.equal('Nac ydw');
       });
 
-      it('should titleise the users selection to \'Ydw\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Ydw' for CYA (Welsh)", () => {
         representative.content.cya.hasRepresentative.yes = 'Ydw';
         representative.fields.hasRepresentative.value = userAnswer.YES;
         const answers = representative.answers();
@@ -143,18 +144,24 @@ describe('Representative.js', () => {
   describe('next()', () => {
     it('nextStep equals /representative-details if not iba with rep', () => {
       representative.fields.hasRepresentative.value = userAnswer.YES;
-      expect(representative.next().step).to.eql(paths.representative.representativeDetails);
+      expect(representative.next().step).to.eql(
+        paths.representative.representativeDetails
+      );
     });
 
     it('nextStep equals /representative-details if iba with rep', () => {
       representative.req = { hostname: 'some-iba-hostname' };
       representative.fields.hasRepresentative.value = userAnswer.YES;
-      expect(representative.next().step).to.eql(paths.representative.representativeInMainlandUk);
+      expect(representative.next().step).to.eql(
+        paths.representative.representativeInMainlandUk
+      );
     });
 
     it('nextStep equals /reason-for-appealing no rep', () => {
       representative.fields.hasRepresentative.value = userAnswer.NO;
-      expect(representative.next().step).to.eql(paths.reasonsForAppealing.reasonForAppealing);
+      expect(representative.next().step).to.eql(
+        paths.reasonsForAppealing.reasonForAppealing
+      );
     });
   });
 });

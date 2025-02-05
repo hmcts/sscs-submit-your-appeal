@@ -2,9 +2,9 @@
   "titleHead": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
   "accessibility": {
     "title": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad ynghylch budd-daliadau'",
-    "titleIba":"Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad Iawndal Gwaed Heintiedig'",
+    "titleIba": "Datganiad hygyrchedd ar gyfer y gwasanaeth 'Apelio yn erbyn penderfyniad Iawndal Gwaed Heintiedig'",
     "description": "Mae'r datganiad hygyrchedd hwn yn berthnasol i'r wefan <a class='govuk-link' target='_blank' href='https://www.appeal-benefit-decision.service.gov.uk/'>https://www.appeal-benefit-decision.service.gov.uk/</a> sy'n caniatáu i ddefnyddwyr gyflwyno, olrhain a rheoli apêl yn erbyn penderfyniad ynghylch budd-daliadau ar-lein.",
-    "descriptionIba":"Mae'r datganiad hygyrchedd hwn yn berthnasol i'r wefan <a class='govuk-link' target='_blank' href='https://www.gov.uk/guidance/appeal-an-infected-blood-compensation-decision/'>https:// www.gov.uk/guidance/appeal-an-infected-blood-compensation-decision/</a> sy’n galluogi defnyddwyr i gyflwyno, olrhain a rheoli apêl penderfyniad Iawndal Gwaed Heintiedig ar-lein."
+    "descriptionIba": "Mae'r datganiad hygyrchedd hwn yn berthnasol i'r wefan <a class='govuk-link' target='_blank' href='https://www.gov.uk/guidance/appeal-an-infected-blood-compensation-decision/'>https:// www.gov.uk/guidance/appeal-an-infected-blood-compensation-decision/</a> sy’n galluogi defnyddwyr i gyflwyno, olrhain a rheoli apêl penderfyniad Iawndal Gwaed Heintiedig ar-lein."
   },
   "manages": {
     "managedBy": "Gwasanaeth Llysoedd a Thribiwnlysoedd EM sy'n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio'r wefan hon, felly rydym wedi ei dylunio i fod yn hygyrch. Er enghraifft, golyga hyn y dylech allu:",
@@ -25,14 +25,14 @@
     "para1": "Mae'r wefan wedi'i phrofi gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe F2.1, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Ac eithrio lle y nodir isod, mae'r holl faterion ac argymhellion gan y DAC wedi'u rhoi ar waith.",
     "para1Iba": "Rydym yn gwybod nad yw rhai rhannau o'r gwasanaeth hwn yn hygyrch, ac mae'r materion wedi'u rhestru o dan yr adran diffyg cydymffurfiaeth. Rydym yn bwriadu cynnal profion pellach a mynd i'r afael â'r materion cyn gynted ag y gallwn."
   },
-  "telephone" : {
+  "telephone": {
     "charges": "Gwybodaeth am brisiau galwadau",
     "England": {
       "desc": "Llinell gymorth ar gyfer apeliadau yn erbyn penderfyniad ynghylch budd-daliadau (Cymru a Lloegr)",
       "phone": "Rhif ffôn ar gyfer siaradwyr Cymraeg: 0300 303 5170",
       "availability": "Dydd Llun i ddydd Gwener, 8am i 5pm"
     },
-    "Scotland" : {
+    "Scotland": {
       "desc": "Llinell gymorth ar gyfer apeliadau yn erbyn penderfyniad ynghylch budd-daliadau (Yr Alban)",
       "phone": "Rhif ffôn: 0300 790 6234",
       "availability": "Dydd Llun i ddydd Gwener, 8:30am i 5pm"
@@ -43,7 +43,7 @@
         "phone": "Rhif ffôn: 0300 131 2850",
         "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm"
       },
-      "Scotland" : {
+      "Scotland": {
         "desc": "Llinell gymorth apeliadau IBC (Yr Alban)",
         "phone": "Rhif ffôn: 0300 790 6234",
         "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm"

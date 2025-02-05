@@ -22,9 +22,7 @@ describe('Sessions.js', () => {
 
   describe('get path()', () => {
     it('returns path /sessions', () => {
-      expect(Sessions.path)
-        .to
-        .equal(paths.session.sessions);
+      expect(Sessions.path).to.equal(paths.session.sessions);
     });
   });
 

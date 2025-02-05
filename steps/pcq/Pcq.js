@@ -17,7 +17,10 @@ class Pcq extends SaveToDraftStore {
   }
 
   isEnabled() {
-    return process.env.PCQ_ENABLED === 'true' || config.features.pcq.enabled === 'true';
+    return (
+      process.env.PCQ_ENABLED === 'true' ||
+      config.features.pcq.enabled === 'true'
+    );
   }
 
   handler(req, res, next) {
@@ -25,7 +28,8 @@ class Pcq extends SaveToDraftStore {
     if (this.isEnabled() && !req.session.Pcq && !isIba(req)) {
       // Check PCQ Health
       const uri = `${config.services.pcq.url}/health`;
-      request.get({ uri, json: true })
+      request
+        .get({ uri, json: true })
         .then(json => {
           if (json.status && json.status === 'UP') {
             this.invokePcq(req, res);

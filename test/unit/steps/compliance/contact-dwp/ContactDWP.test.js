@@ -26,7 +26,6 @@ describe('ContactDWP.js', () => {
       expect(ContactDWP.path).to.equal(paths.compliance.contactDWP);
     });
 
-
     describe('handler()', () => {
       afterEach(() => {
         sinon.restore();

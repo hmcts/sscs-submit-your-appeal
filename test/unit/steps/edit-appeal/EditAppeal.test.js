@@ -1,6 +1,4 @@
-const {
-  expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const EditAppeal = require('steps/edit-appeal/EditAppeal');
 const sinon = require('sinon');

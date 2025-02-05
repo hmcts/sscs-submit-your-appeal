@@ -31,27 +31,18 @@ class AppointeeName extends SaveToDraftStore {
     const fields = this.content.fields;
     const validTitles = titlesList.map(title => title.value);
     return form({
-      title: text.joi(
-        fields.title.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.title.error.invalid,
-        Joi.string().valid(validTitles)
-      ),
-      firstName: text.joi(
-        fields.firstName.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.firstName.error.invalid,
-        Joi.string().trim().regex(firstName)
-      ),
-      lastName: text.joi(
-        fields.lastName.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.lastName.error.invalid,
-        Joi.string().trim().regex(lastName)
-      )
+      title: text
+        .joi(fields.title.error.required, Joi.string().required())
+        .joi(fields.title.error.invalid, Joi.string().valid(validTitles)),
+      firstName: text
+        .joi(fields.firstName.error.required, Joi.string().required())
+        .joi(
+          fields.firstName.error.invalid,
+          Joi.string().trim().regex(firstName)
+        ),
+      lastName: text
+        .joi(fields.lastName.error.required, Joi.string().required())
+        .joi(fields.lastName.error.invalid, Joi.string().trim().regex(lastName))
     });
   }
 

@@ -9,11 +9,14 @@ describe('PostcodeChecker.js', () => {
   let postcodeChecker = null;
   describe('isGlasgowIncluded() check', () => {
     it('Should return false if Glasgow not in allowedRpcs', () => {
-      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
-        config: {
-          get: () => 'leicester, notGlasgow, belfast'
+      const PostcodeChecker = proxyquire(
+        'steps/start/postcode-checker/PostcodeChecker',
+        {
+          config: {
+            get: () => 'leicester, notGlasgow, belfast'
+          }
         }
-      });
+      );
 
       postcodeChecker = new PostcodeChecker({
         journey: {
@@ -29,11 +32,14 @@ describe('PostcodeChecker.js', () => {
     });
 
     it('Should return true if Glasgow is in allowedRpcs', () => {
-      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
-        config: {
-          get: () => 'leicester, notGlasgow, belfast, glasgow'
+      const PostcodeChecker = proxyquire(
+        'steps/start/postcode-checker/PostcodeChecker',
+        {
+          config: {
+            get: () => 'leicester, notGlasgow, belfast, glasgow'
+          }
         }
-      });
+      );
 
       postcodeChecker = new PostcodeChecker({
         journey: {
@@ -51,11 +57,14 @@ describe('PostcodeChecker.js', () => {
 
   describe('when postcode checker disabled', () => {
     beforeEach(() => {
-      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
-        config: {
-          get: () => false
+      const PostcodeChecker = proxyquire(
+        'steps/start/postcode-checker/PostcodeChecker',
+        {
+          config: {
+            get: () => false
+          }
         }
-      });
+      );
 
       postcodeChecker = new PostcodeChecker({
         journey: {
@@ -176,11 +185,14 @@ describe('PostcodeChecker.js', () => {
   });
   describe('when postcode checker enabled', () => {
     beforeEach(() => {
-      const PostcodeChecker = proxyquire('steps/start/postcode-checker/PostcodeChecker', {
-        config: {
-          get: () => true
+      const PostcodeChecker = proxyquire(
+        'steps/start/postcode-checker/PostcodeChecker',
+        {
+          config: {
+            get: () => true
+          }
         }
-      });
+      );
 
       postcodeChecker = new PostcodeChecker({
         journey: {

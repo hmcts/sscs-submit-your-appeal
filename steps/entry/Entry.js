@@ -1,5 +1,7 @@
 const { goTo } = require('@hmcts/one-per-page');
-const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const {
+  RestoreFromDraftStore
+} = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('steps/start/benefit-type/types');
@@ -15,7 +17,9 @@ class Entry extends RestoreFromDraftStore {
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
     } else if (isIba(req)) {
-      req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
+      req.session.BenefitType = {
+        benefitType: benefitTypes.infectedBloodCompensation
+      };
       super.handler(req, res, next);
     } else {
       super.handler(req, res, next);

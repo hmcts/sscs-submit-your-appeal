@@ -13,7 +13,9 @@ async function checkTribunalAPIResponse(response) {
 }
 
 async function getMYACaseData(request, ccdCaseID) {
-  const response = await request.get(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`);
+  const response = await request.get(
+    `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`
+  );
   const caseData = await checkTribunalAPIResponse(response);
   if (caseData.appeal) {
     return caseData.appeal;
@@ -28,9 +30,14 @@ async function getCaseData(browser, request, ccdCaseID) {
   }
   const tyaID = myaCaseData.appealNumber;
   const cookies = await browser.contexts()[0].cookies();
-  const authTokenCookie = (cookies.filter(cookie => cookie.name === authCookie) || [''])[0];
+  const authTokenCookie = (cookies.filter(
+    cookie => cookie.name === authCookie
+  ) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
-  const response = await request.get(`${tribunalsApiUrl}/api/citizen/${tyaID}`, { headers });
+  const response = await request.get(
+    `${tribunalsApiUrl}/api/citizen/${tyaID}`,
+    { headers }
+  );
   return await checkTribunalAPIResponse(response);
 }
 

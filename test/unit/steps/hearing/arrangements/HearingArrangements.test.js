@@ -43,7 +43,9 @@ describe('HearingArrangements.js', () => {
 
   describe('get path()', () => {
     it('returns path /arrangements', () => {
-      expect(HearingArrangements.path).to.equal(paths.hearing.hearingArrangements);
+      expect(HearingArrangements.path).to.equal(
+        paths.hearing.hearingArrangements
+      );
     });
   });
 
@@ -165,7 +167,9 @@ describe('HearingArrangements.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /hearing-availability', () => {
-      expect(hearingArrangements.next()).to.eql({ nextStep: paths.hearing.hearingAvailability });
+      expect(hearingArrangements.next()).to.eql({
+        nextStep: paths.hearing.hearingAvailability
+      });
     });
   });
 });

@@ -27,7 +27,9 @@ class HearingAvailability extends SaveToDraftStore {
   values() {
     return {
       hearing: {
-        scheduleHearing: this.getScheduleHearingValue(this.fields.scheduleHearing.value)
+        scheduleHearing: this.getScheduleHearingValue(
+          this.fields.scheduleHearing.value
+        )
       }
     };
   }
@@ -39,7 +41,8 @@ class HearingAvailability extends SaveToDraftStore {
   }
 
   next() {
-    const shouldScheduleHearing = () => this.fields.scheduleHearing.value === userAnswer.NO;
+    const shouldScheduleHearing = () =>
+      this.fields.scheduleHearing.value === userAnswer.NO;
     return branch(
       redirectTo(this.journey.steps.Pcq).if(shouldScheduleHearing),
       redirectTo(this.journey.steps.DatesCantAttend)

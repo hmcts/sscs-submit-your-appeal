@@ -13,13 +13,15 @@ class EnterMobile extends SaveToDraftStore {
 
   get form() {
     return form({
-      enterMobile: text.joi(
-        this.content.fields.enterMobile.error.emptyField,
-        Joi.string().required()
-      ).joi(
-        this.content.fields.enterMobile.error.invalidNumber,
-        customJoi.string().trim().validatePhone({ phoneType: 'MOBILE' })
-      )
+      enterMobile: text
+        .joi(
+          this.content.fields.enterMobile.error.emptyField,
+          Joi.string().required()
+        )
+        .joi(
+          this.content.fields.enterMobile.error.invalidNumber,
+          customJoi.string().trim().validatePhone({ phoneType: 'MOBILE' })
+        )
     });
   }
 

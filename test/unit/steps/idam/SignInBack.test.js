@@ -1,6 +1,4 @@
-const {
-  expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const SignInBack = require('steps/idam/sign-in-back/SignInBack');
 const paths = require('paths');
 
