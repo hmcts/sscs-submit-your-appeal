@@ -40,7 +40,7 @@ describe('HearingOptions.js', () => {
           requested: {},
           email: {}
         },
-        faceToFace: {
+        inPerson: {
           requested: {}
         }
       }
@@ -50,18 +50,6 @@ describe('HearingOptions.js', () => {
   describe('get path()', () => {
     it('returns path /hearing-options', () => {
       expect(hearingOptions.path).to.equal(paths.hearing.hearingOptions);
-    });
-  });
-
-  describe('suffix()', () => {
-    it('should return Iba for IBA case', () => {
-      hearingOptions.req.hostname = 'some-iba-hostname';
-      expect(hearingOptions.suffix).to.eql('Iba');
-    });
-
-    it('should return empty for non IBA case', () => {
-      hearingOptions.req.hostname = 'some-normal-hostname';
-      expect(hearingOptions.suffix).to.eql('');
     });
   });
 
@@ -170,7 +158,7 @@ describe('HearingOptions.js', () => {
     });
 
     it('returns the hearing type face to face value', () => {
-      hearingOptions.fields.selectOptions.faceToFace.requested.value = true;
+      hearingOptions.fields.selectOptions.inPerson.requested.value = true;
 
       const values = hearingOptions.values();
       expect(values).to.eql({ hearing: {
@@ -188,7 +176,7 @@ describe('HearingOptions.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /hearing-support', () => {
-      hearingOptions.fields.selectOptions.faceToFace.requested.value = true;
+      hearingOptions.fields.selectOptions.inPerson.requested.value = true;
       expect(hearingOptions.next().step).to.eq(paths.hearing.hearingSupport);
     });
   });
@@ -198,7 +186,7 @@ describe('HearingOptions.js', () => {
     const options = {
       telephone: {},
       video: {},
-      faceToFace: {}
+      inPerson: {}
     };
 
     it('returns false when telephone field has not been set', () => {
@@ -250,14 +238,14 @@ describe('HearingOptions.js', () => {
     it('returns false when no option has been set', () => {
       options.telephone.requested = false;
       options.video.requested = false;
-      options.faceToFace.requested = false;
+      options.inPerson.requested = false;
       expect(optionSelected(options)).to.equal(false);
     });
 
     it('returns true when some option has been set', () => {
       options.telephone.requested = true;
       options.video.requested = false;
-      options.faceToFace.requested = true;
+      options.inPerson.requested = true;
       expect(optionSelected(options)).to.equal(true);
     });
   });
@@ -269,7 +257,7 @@ describe('HearingOptions.js', () => {
         selectOptions: {
           value: {
             telephone: { requested: { value: true }, phoneNumber: '0987654321' },
-            video: { requested: { value: true }, email: 'name@email' }, faceToFace: { requested: { value: true } }
+            video: { requested: { value: true }, email: 'name@email' }, inPerson: { requested: { value: true } }
           }
         }
       };
@@ -277,7 +265,7 @@ describe('HearingOptions.js', () => {
       expect(hearingOptions.cyaOptions).to.eql({
         hearingTypeTelephone: '0987654321',
         hearingTypeVideo: 'name@email',
-        hearingTypeFaceToFace: 'Requested'
+        hearingTypeInPerson: 'Requested'
       });
     });
   });
