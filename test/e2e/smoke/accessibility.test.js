@@ -1,4 +1,4 @@
-/* eslint-disable no-shadow */
+/* eslint-disable no-shadow no-await-in-loop */
 const { test, expect } = require('@playwright/test');
 const accessibilityTestHelper = require('../helpers/accessibilityHelper');
 const steps = require('steps');
@@ -35,7 +35,7 @@ function accessibilityCheck(url, language) {
   test(`Page ${url} - ${language} should have no accessibility errors`, async({
     page
   }) => {
-    for (let i = 1; i < 5; i ++) {
+    for (let i = 1; i < 5; i++) {
       try {
         await page.goto('/');
         await expect(page.getByText('Which benefit is your appeal about?').first()).toBeVisible();

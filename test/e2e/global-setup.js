@@ -4,7 +4,7 @@ const fileAcceptor = require('test/file_acceptor');
 
 module.exports = () => {
   setTimeout(() => {
-    done();
+    console.log('Waiting for the server to start');
   }, 5000);
   fileAcceptor.bootstrap();
   process.env.USEREMAIL_1 = testUser.createUser();
