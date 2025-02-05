@@ -26,11 +26,11 @@ def secrets = [
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-    [ $class: 'AzureKeyVaultSecret',
-      secretType: 'Secret',
-      name: secretName,
-      version: '',
-      envVariable: envVar
+    [$class     : 'AzureKeyVaultSecret',
+     secretType : 'Secret',
+     name       : secretName,
+     version    : '',
+     envVariable: envVar
     ]
 }
 
@@ -52,16 +52,34 @@ withNightlyPipeline("nodejs", product, component) {
     afterAlways('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*/**'
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
 
     afterSuccess('crossBrowserTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/crossbrowser-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Crossbrowser test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/crossbrowser-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Crossbrowser test report"
         ]
         enableSlackNotifications('#sscs-tech')
     }
@@ -73,12 +91,12 @@ withNightlyPipeline("nodejs", product, component) {
 
     afterSuccess('mutationTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/mutation-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Mutation test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/mutation-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Mutation test report"
         ]
     }
 
@@ -89,12 +107,12 @@ withNightlyPipeline("nodejs", product, component) {
 
     afterSuccess('fullFunctionalTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 }
