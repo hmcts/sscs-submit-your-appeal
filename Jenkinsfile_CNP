@@ -1,10 +1,16 @@
 #!groovy
-properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
-         pipelineTriggers([[$class: 'GitHubPushTrigger']])]
-)
+properties([
+        [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
+        pipelineTriggers([[$class: 'GitHubPushTrigger']]),
+        parameters([
+                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '2', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '10', description: 'Number of retries for failed tests')
+        ])
+])
 
 @Library("Infrastructure")
+
+import uk.gov.hmcts.contino.GithubAPI
 
 def product = "sscs"
 def component = "tribunals-frontend"
@@ -14,7 +20,19 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
+    def githubApi = new GithubAPI(this)
 
+    env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
+    env.RETRIES = params.RETRIES
+    onPR() {
+        def isRegression = githubApi.getLabelsbyPattern(env.BRANCH_NAME, "test-suite:preview-regression").size() > 0
+        env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+        if (isRegression) {
+            env.E2E_TEST_TAGS = "@functional,@fullFunctional"
+        } else {
+            env.E2E_TEST_TAGS = "@functional"
+        }
+    }
     afterSuccess('build') {
         yarnBuilder.yarn('build')
     }
