@@ -1,18 +1,18 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.useSameNumber,
-            content.fields.useSameNumber.label,
+        {{ govRadio(field = fields.useSameNumber,
+            headerText = content.fields.useSameNumber.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.useSameNumber.yes, value: "yes" },
-                { label: content.fields.useSameNumber.no,  value: "no" }
-            ])
-        }}
+            isPageHeading=false,
+            items = [
+                { value: "yes", text: content.fields.useSameNumber.yes },
+                { value: "no", text: content.fields.useSameNumber.no }
+        ]) }}
     {% endcall %}
 {% endblock %}
