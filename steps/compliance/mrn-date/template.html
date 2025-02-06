@@ -16,6 +16,7 @@
         {{ date(
             fields.mrnDate,
             content["dateLegend" + suffix],
+            isPageHeading = false,
             hint = content["dateHint" + suffix],
             labels = {
                 day: content.fields.date.day,

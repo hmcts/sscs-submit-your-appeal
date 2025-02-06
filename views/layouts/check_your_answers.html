@@ -40,7 +40,7 @@
   {% for section in _sections %}
     {% if section.atLeast1Completed %}
       {% if section.title and _sections|length > 1 %}
-        {{ header(section.title, size='m') }}
+        {{ header(section.title, size='m', isPageHeader=false) }}
       {% endif %}
       {% for part in section.completedAnswers %}
         {% if not part.hide %}

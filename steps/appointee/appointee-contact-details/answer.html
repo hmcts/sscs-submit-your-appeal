@@ -9,8 +9,8 @@
             {{ fields.postCode.value }}<br>
         </dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
+            <a id="cya-change-appointeecontactdetails" aria-labelledby="cya-change-appointeecontactdetails cya-appointeecontactdetails-label" class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span id="cya-appointeecontactdetails-label" class="govuk-visually-hidden">{{ content.cya.yourDetails }}</span>
         </dd>
     </div>
 </dl>
