@@ -28,9 +28,9 @@ withPipeline("nodejs", product, component) {
         def isRegression = githubApi.getLabelsbyPattern(env.BRANCH_NAME, "test-suite:preview-regression").size() > 0
         env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
         if (isRegression) {
-            env.E2E_TEST_TAGS = "@functional,@fullFunctional"
+            env.E2E_FULL_F_TAGS = "@functional,@fullFunctional"
         } else {
-            env.E2E_TEST_TAGS = "@functional"
+            env.E2E_FULL_F_TAGS = "@functional"
         }
     }
     afterSuccess('build') {
