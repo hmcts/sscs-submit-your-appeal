@@ -1,0 +1,17 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% macro govTextInput(field, labelText = "", isPageHeading = false, hideLabel = false, hint = null, classes = "", width = "") %}
+    {{ govukInput({
+        id: field.id,
+       name: field.id,
+      label: {
+        text: labelText,
+        classes: ("govuk-visually-hidden") if hideLabel else ((" govuk-label--l") if isPageHeading else classes),
+        isPageHeading: isPageHeading
+      },
+      hint: {
+            text: hint
+          } if hint else undefined,
+      classes: " govuk-input--width-" + width if width else ""
+    }) }}
+{% endmacro %}
