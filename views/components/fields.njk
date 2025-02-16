@@ -267,7 +267,7 @@
 <div class="govuk-form-group">
   {% if not hideQuestion %}
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">{{ question }}</h1>
+      <h2 class="govuk-fieldset__heading">{{ question }}</h2>
     </legend>
     {% if hint %}
       <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
@@ -287,7 +287,6 @@
           <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ errorClass(field.day, 'control') }} {{ errorClass(field, 'control') }}"
                  id="{{ field.day.id }}"
                  type="text" inputmode="numeric"
-                 pattern="[0-9]*"
                  min="1"
                  max="31"
                  name="{{ field.day.id }}"
@@ -312,7 +311,6 @@
           <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ errorClass(field.year, 'control') }} {{ errorClass(field, 'control') }}"
                  id="{{ field.year.id }}"
                  type="text" inputmode="numeric"
-                 pattern="[0-9]*"
                  min="1"
                  name="{{ field.year.id }}"
                  {% if field.year.value %}value="{{ field.year.value }}"{% endif %}>

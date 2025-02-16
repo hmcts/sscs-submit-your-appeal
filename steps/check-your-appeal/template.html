@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block statement_of_truth_content %}
-    {{ header(content.header, size='m') }}
+    <h2 id="{{ content.header }}">{{ content.header }}</h2>
     <p class="govuk-body">{{ content.information }}</p>
     <p class="govuk-body">{{ content.permission }}</p>
     <p class="govuk-body">{{ content.agreeIbc | safe if isIba else content.agree | safe }}</p>
