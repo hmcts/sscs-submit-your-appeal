@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, textbox, selectionButton, selectionButtons %}
+{% from "components/fields.njk" import textbox %}
+{% from "components/common/checkbox.njk" import govCheckbox %}
 
 {% set title = content.title %}
 
@@ -10,43 +11,19 @@
     <p class="govuk-heading-m">{{ content.fields.title }}</p>
     <p class="govuk-hint">{{ content.instructions }}</p>
 
-
-
-
-{% call selectionButtons(
-field = fields.selectOptions,
-hideQuestion = true,
-hint = '',
-inline = false,
-type = 'checkbox'
-) %}
-
-{{ selectionButton(
-fields.selectOptions.telephone.requested,
-{ label: content.fields.options.telephone.requested.label, value: 'true', target: 'telephoneTextField' },
-type = 'checkbox')
-}}
-
-<div class="panel js-hidden" id="telephoneTextField">
+{% set telephoneTextField %}
     {{ textbox(fields.selectOptions.telephone.phoneNumber, hideLabel=true, value=phoneNumber) }}
-</div>
+{% endset -%}
 
-{{ selectionButton(
-fields.selectOptions.video.requested,
-{ label: content.fields.options.video.requested.label, value: 'true', target: 'emailTextField' },
-type = 'checkbox')
-}}
-<div class="panel js-hidden" id="emailTextField">
+{% set emailTextField %}
     {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
-</div>
+{% endset -%}
 
-{{ selectionButton(
-fields.selectOptions.inPerson.requested,
-{ label: content.fields.options.inPerson.requested.label, value: 'true' },
-type = 'checkbox')
-}}
-
-{% endcall %}
-
+{{ govCheckbox(field = fields.selectOptions, headerText = '', hideQuestion = true, isPageHeading = false,
+items = [
+    { value: 'true', name: fields.selectOptions.telephone.requested.id, text: content.fields.options.telephone.requested.label, conditional: {html: telephoneTextField}, checked: fields.selectOptions.value.telephone.requested },
+    { value: 'true', name: fields.selectOptions.video.requested.id, text: content.fields.options.video.requested.label, conditional: {html: emailTextField}, checked: fields.selectOptions.value.video.requested },
+    { value: 'true', name: fields.selectOptions.inPerson.requested.id, text: content.fields.options.inPerson.requested.label, checked: fields.selectOptions.value.video.requested }
+]) }}
 
 {% endblock %}
