@@ -78,16 +78,16 @@
     }
   },
   "cya": {
-    "name":{
+    "name": {
       "question": "Name"
     },
-    "organisation":{
+    "organisation": {
       "question": "Organisation"
     },
     "country": {
       "question": "Country of residence for representative"
     },
-    "address":{
+    "address": {
       "question": "Address"
     },
     "phoneNumber": {

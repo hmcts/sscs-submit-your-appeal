@@ -6,7 +6,11 @@ describe('steps.js', () => {
     expect(steps).to.be.an('array');
   });
   it('should return SessionTimeoutRedirect', () => {
-    const sessionTimeOutRedirectStep = steps.filter(step => step.name === 'SessionTimeoutRedirect');
-    expect(sessionTimeOutRedirectStep.pop().name).to.equal('SessionTimeoutRedirect');
+    const sessionTimeOutRedirectStep = steps.filter(
+      step => step.name === 'SessionTimeoutRedirect'
+    );
+    expect(sessionTimeOutRedirectStep.pop().name).to.equal(
+      'SessionTimeoutRedirect'
+    );
   });
 });

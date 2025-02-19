@@ -3,7 +3,12 @@ async function continueFromnotAttendingHearing(I, commonContent) {
 }
 
 async function continueFromnotAttendingHearingAfterSignIn(I, commonContent) {
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-module.exports = { continueFromnotAttendingHearing, continueFromnotAttendingHearingAfterSignIn };
+module.exports = {
+  continueFromnotAttendingHearing,
+  continueFromnotAttendingHearingAfterSignIn
+};

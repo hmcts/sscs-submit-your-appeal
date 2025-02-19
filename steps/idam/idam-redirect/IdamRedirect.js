@@ -16,10 +16,7 @@ class IdamRedirect extends Redirect {
   }
 
   get middleware() {
-    return [
-      idam.authenticate,
-      ...super.middleware
-    ];
+    return [idam.authenticate, ...super.middleware];
   }
 }
 

@@ -9,7 +9,6 @@ const {
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
 
-
 describe('HearingOptions.js', () => {
   let hearingOptions = null;
 
@@ -113,16 +112,19 @@ describe('HearingOptions.js', () => {
     });
 
     it('return empty phone number for null contact', () => {
-      hearingOptions = new HearingOptions({ journey: { values: { contactDetails: {} } } });
+      hearingOptions = new HearingOptions({
+        journey: { values: { contactDetails: {} } }
+      });
       expect(hearingOptions.phoneNumber).to.eql(null);
     });
 
     it('return empty email for null contact', () => {
-      hearingOptions = new HearingOptions({ journey: { values: { contactDetails: {} } } });
+      hearingOptions = new HearingOptions({
+        journey: { values: { contactDetails: {} } }
+      });
       expect(hearingOptions.email).to.eql(null);
     });
   });
-
 
   describe('value()', () => {
     it('returns the hearing type telephone value', () => {
@@ -130,15 +132,17 @@ describe('HearingOptions.js', () => {
       hearingOptions.fields.selectOptions.telephone.phoneNumber.value = '07325561123';
 
       const values = hearingOptions.values();
-      expect(values).to.eql({ hearing: {
-        options: {
-          hearingTypeTelephone: true,
-          telephone: '07325561123',
-          hearingTypeVideo: false,
-          email: null,
-          hearingTypeFaceToFace: false
+      expect(values).to.eql({
+        hearing: {
+          options: {
+            hearingTypeTelephone: true,
+            telephone: '07325561123',
+            hearingTypeVideo: false,
+            email: null,
+            hearingTypeFaceToFace: false
+          }
         }
-      } });
+      });
     });
 
     it('returns the hearing type video value', () => {
@@ -146,33 +150,36 @@ describe('HearingOptions.js', () => {
       hearingOptions.fields.selectOptions.video.email.value = 'jey@gmail.com';
 
       const values = hearingOptions.values();
-      expect(values).to.eql({ hearing: {
-        options: {
-          hearingTypeTelephone: false,
-          telephone: null,
-          hearingTypeVideo: true,
-          email: 'jey@gmail.com',
-          hearingTypeFaceToFace: false
+      expect(values).to.eql({
+        hearing: {
+          options: {
+            hearingTypeTelephone: false,
+            telephone: null,
+            hearingTypeVideo: true,
+            email: 'jey@gmail.com',
+            hearingTypeFaceToFace: false
+          }
         }
-      } });
+      });
     });
 
     it('returns the hearing type face to face value', () => {
       hearingOptions.fields.selectOptions.inPerson.requested.value = true;
 
       const values = hearingOptions.values();
-      expect(values).to.eql({ hearing: {
-        options: {
-          hearingTypeTelephone: false,
-          telephone: null,
-          hearingTypeVideo: false,
-          email: null,
-          hearingTypeFaceToFace: true
+      expect(values).to.eql({
+        hearing: {
+          options: {
+            hearingTypeTelephone: false,
+            telephone: null,
+            hearingTypeVideo: false,
+            email: null,
+            hearingTypeFaceToFace: true
+          }
         }
-      } });
+      });
     });
   });
-
 
   describe('next()', () => {
     it('returns the next step path /hearing-support', () => {
@@ -256,8 +263,12 @@ describe('HearingOptions.js', () => {
       hearingOptions.fields = {
         selectOptions: {
           value: {
-            telephone: { requested: { value: true }, phoneNumber: '0987654321' },
-            video: { requested: { value: true }, email: 'name@email' }, inPerson: { requested: { value: true } }
+            telephone: {
+              requested: { value: true },
+              phoneNumber: '0987654321'
+            },
+            video: { requested: { value: true }, email: 'name@email' },
+            inPerson: { requested: { value: true } }
           }
         }
       };

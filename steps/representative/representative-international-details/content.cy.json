@@ -78,16 +78,16 @@
     }
   },
   "cya": {
-    "name":{
+    "name": {
       "question": "Enw"
     },
-    "organisation":{
+    "organisation": {
       "question": "Sefydliad"
     },
     "country": {
       "question": "Gwlad preswylio'r cynrychiolydd"
     },
-    "address":{
+    "address": {
       "question": "Cyfeiriad"
     },
     "phoneNumber": {

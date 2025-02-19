@@ -7,7 +7,9 @@
 /* eslint-disable max-len */
 
 const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
+const {
+  SaveToDraftStoreAddAnother
+} = require('middleware/draftAppealStoreMiddleware');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
@@ -50,9 +52,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   static isCorrectFileType(mimetype, filename) {
-    const hasCorrectMT = Boolean(fileTypeWhitelist.find(el => el === mimetype));
-    return hasCorrectMT && (filename &&
-      fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`));
+    const hasCorrectMT = Boolean(
+      fileTypeWhitelist.find(el => el === mimetype)
+    );
+    return (
+      hasCorrectMT &&
+      filename &&
+      fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`)
+    );
   }
 
   static getTotalSize(items, bytesExpected) {
@@ -69,30 +76,42 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
     const emptyRequestSize = 200;
     const multiplier = 1024;
     const items = get(req, 'session.EvidenceUpload.items');
-    const itemsCount = (items && items.length) ? items.length : 0;
+    const itemsCount = items && items.length ? items.length : 0;
     const totalUploadedFileSize = EvidenceUpload.getTotalSize(items, 0);
 
-    logger.trace(`Total files already uploaded count: ${itemsCount}` +
-      `and files size: ${totalUploadedFileSize} , current file size: ${incoming.bytesExpected}`);
+    logger.trace(
+      `Total files already uploaded count: ${itemsCount}` +
+        `and files size: ${totalUploadedFileSize} , current file size: ${incoming.bytesExpected}`
+    );
 
-    if (incoming.bytesExpected === null ||
-      incoming.bytesExpected <= emptyRequestSize) {
+    if (
+      incoming.bytesExpected === null ||
+      incoming.bytesExpected <= emptyRequestSize
+    ) {
       req.body = {
         'item.uploadEv': fileMissingError,
         'item.link': '',
         'item.size': incoming.bytesExpected
       };
-      logger.exception('Evidence upload error: you need to choose a file', logPath);
-    } else if (incoming.bytesExpected > (maxFileSize * multiplier * multiplier)) {
+      logger.exception(
+        'Evidence upload error: you need to choose a file',
+        logPath
+      );
+    } else if (incoming.bytesExpected > maxFileSize * multiplier * multiplier) {
       req.body = {
         'item.uploadEv': maxFileSizeExceededError,
         'item.link': '',
         'item.size': incoming.bytesExpected,
         'item.totalFileCount': itemsCount + 1
       };
-      logger.trace(`Evidence upload error: the file is too big - file was: ${incoming.bytesExpected} bytes`, logPath);
-    } else if (EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
-      (maxFileSize * multiplier * multiplier)) {
+      logger.trace(
+        `Evidence upload error: the file is too big - file was: ${incoming.bytesExpected} bytes`,
+        logPath
+      );
+    } else if (
+      EvidenceUpload.getTotalSize(items, incoming.bytesExpected) >
+      maxFileSize * multiplier * multiplier
+    ) {
       logger.trace('File is not empty and within file size limit', logPath);
       req.body = {
         'item.uploadEv': totalFileSizeExceededError,
@@ -106,10 +125,15 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static handleUpload(req, res, next) {
     const pathToUploadFolder = './../../../uploads';
 
-    const urlRegex = RegExp(`${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`);
+    const urlRegex = RegExp(
+      `${paths.reasonsForAppealing.evidenceUpload}/item-[0-9]*$`
+    );
     if (req.method.toLowerCase() === 'post' && urlRegex.test(req.originalUrl)) {
       logger.trace(`Url req : ${req.url}`, logPath);
-      return EvidenceUpload.makeDir(pathToUploadFolder, EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req));
+      return EvidenceUpload.makeDir(
+        pathToUploadFolder,
+        EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req)
+      );
     }
     return next();
   }
@@ -127,24 +151,38 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         keepExtensions: true,
         type: 'multipart'
       });
-      incoming.on('fileBegin', () => EvidenceUpload.handleFileBegin(req, incoming));
-      return incoming.parse(req, EvidenceUpload.handleIcomingParse(req, next, pathToUploadFolder));
+      incoming.on('fileBegin', () =>
+        EvidenceUpload.handleFileBegin(req, incoming)
+      );
+      return incoming.parse(
+        req,
+        EvidenceUpload.handleIcomingParse(req, next, pathToUploadFolder)
+      );
     };
   }
 
   static handleIcomingParse(req, next, pathToUploadFolder) {
     return (uploadingError, fields, files) => {
       logger.trace(`req body :  ${req.body['item.uploadEv']}`);
-      if (req.body && req.body['item.uploadEv'] &&
+      if (
+        req.body &&
+        req.body['item.uploadEv'] &&
         (req.body['item.uploadEv'] === maxFileSizeExceededError ||
           req.body['item.uploadEv'] === fileMissingError ||
-          req.body['item.uploadEv'] === totalFileSizeExceededError)) {
+          req.body['item.uploadEv'] === totalFileSizeExceededError)
+      ) {
         logger.trace(`req body :  ${req.body['item.uploadEv']}`);
         return fs.unlink(files['item.uploadEv'][0].filepath, next);
       }
 
-      if (files && files['item.uploadEv'] && files['item.uploadEv'][0].filepath &&
-        !fileTypeWhitelist.find(el => el === files['item.uploadEv'][0].mimetype)) {
+      if (
+        files &&
+        files['item.uploadEv'] &&
+        files['item.uploadEv'][0].filepath &&
+        !fileTypeWhitelist.find(
+          el => el === files['item.uploadEv'][0].mimetype
+        )
+      ) {
         req.body = {
           'item.uploadEv': wrongFileTypeError,
           'item.link': '',
@@ -155,9 +193,11 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       }
       let uploadingErrorText = uploadingError;
       if (uploadingError || !files['item.uploadEv'][0].originalFilename) {
-        if (uploadingError &&
+        if (
+          uploadingError &&
           uploadingError.message &&
-          uploadingError.message.match(/maxFileSize exceeded/)) {
+          uploadingError.message.match(/maxFileSize exceeded/)
+        ) {
           uploadingErrorText = maxFileSizeExceededError;
         }
 
@@ -172,18 +212,25 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
       const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
-      return fs.rename(files['item.uploadEv'][0].filepath, pathToFile, EvidenceUpload.handleRename(pathToFile, req, size, next));
+      return fs.rename(
+        files['item.uploadEv'][0].filepath,
+        pathToFile,
+        EvidenceUpload.handleRename(pathToFile, req, size, next)
+      );
     };
   }
 
   static handleRename(pathToFile, req, size, next) {
     return () => {
-      return request.post({
-        url: uploadEvidenceUrl,
-        formData: {
-          file: fs.createReadStream(pathToFile)
-        }
-      }, EvidenceUpload.handlePostResponse(req, size, pathToFile, next));
+      return request.post(
+        {
+          url: uploadEvidenceUrl,
+          formData: {
+            file: fs.createReadStream(pathToFile)
+          }
+        },
+        EvidenceUpload.handlePostResponse(req, size, pathToFile, next)
+      );
     };
   }
 
@@ -223,16 +270,15 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   get middleware() {
-    return [
-      ...super.middleware,
-      EvidenceUpload.handleUpload
-    ];
+    return [...super.middleware, EvidenceUpload.handleUpload];
   }
 
   get addAnotherLinkContent() {
     // eslint-disable-next-line no-undefined
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0 ? 'Add another file' : 'Add file';
+      return this.fields.items.value.length > 0
+        ? 'Add another file'
+        : 'Add file';
     }
     return false;
   }
@@ -249,22 +295,27 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
     const content = require(`./content.${sessionLanguage}`);
 
     return object({
-      uploadEv: text.joi(
-        content.fields.uploadEv.error.required,
-        Joi.string().disallow(fileMissingError)
-      ).joi(
-        content.fields.uploadEv.error.wrongFileType,
-        Joi.string().disallow(wrongFileTypeError)
-      ).joi(
-        content.fields.uploadEv.error.maxFileSizeExceeded,
-        Joi.string().disallow(maxFileSizeExceededError)
-      ).joi(
-        content.fields.uploadEv.error.technical,
-        Joi.string().disallow(technicalProblemError)
-      ).joi(
-        content.fields.uploadEv.error.totalFileSizeExceeded,
-        Joi.string().disallow(totalFileSizeExceededError)
-      ),
+      uploadEv: text
+        .joi(
+          content.fields.uploadEv.error.required,
+          Joi.string().disallow(fileMissingError)
+        )
+        .joi(
+          content.fields.uploadEv.error.wrongFileType,
+          Joi.string().disallow(wrongFileTypeError)
+        )
+        .joi(
+          content.fields.uploadEv.error.maxFileSizeExceeded,
+          Joi.string().disallow(maxFileSizeExceededError)
+        )
+        .joi(
+          content.fields.uploadEv.error.technical,
+          Joi.string().disallow(technicalProblemError)
+        )
+        .joi(
+          content.fields.uploadEv.error.totalFileSizeExceeded,
+          Joi.string().disallow(totalFileSizeExceededError)
+        ),
       link: text.joi('', Joi.string().optional()),
       hashToken: text.joi('', Joi.string().optional()),
       size: text.joi(0, Joi.number().optional()),

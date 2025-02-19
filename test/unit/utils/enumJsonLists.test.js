@@ -25,15 +25,29 @@ describe('EnumJsonLists util', () => {
   describe('fetchPortsOfEntry', () => {
     it('should fetch and set portsOfEntry data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockResponse = { body: [{ label: 'Entry1', locationCode: 'locationCode1' }, { label: 'Entry2', locationCode: 'locationCode2' }], status: 200 };
+      const mockResponse = {
+        body: [
+          { label: 'Entry1', locationCode: 'locationCode1' },
+          { label: 'Entry2', locationCode: 'locationCode2' }
+        ],
+        status: 200
+      };
       superagentGetStub.resolves(mockResponse);
 
       await fetchPortsOfEntry();
 
       const entries = getPortsOfEntry();
       expect(entries).to.deep.equal([
-        { label: 'Entry1', value: 'locationCode1', locationCode: 'locationCode1' },
-        { label: 'Entry2', value: 'locationCode2', locationCode: 'locationCode2' }
+        {
+          label: 'Entry1',
+          value: 'locationCode1',
+          locationCode: 'locationCode1'
+        },
+        {
+          label: 'Entry2',
+          value: 'locationCode2',
+          locationCode: 'locationCode2'
+        }
       ]);
     });
 
@@ -43,7 +57,8 @@ describe('EnumJsonLists util', () => {
 
       await fetchPortsOfEntry();
 
-      expect(consoleStub.calledWithMatch('Error fetching portOfEntry data:')).to.be.true;
+      expect(consoleStub.calledWithMatch('Error fetching portOfEntry data:')).to
+        .be.true;
       consoleStub.restore();
     });
   });
@@ -51,7 +66,10 @@ describe('EnumJsonLists util', () => {
   describe('fetchCountriesOfResidence', () => {
     it('should fetch and set countriesOfResidence data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
+      const mockResponse = {
+        body: [{ label: 'Entry1' }, { label: 'Entry2' }],
+        status: 200
+      };
       superagentGetStub.resolves(mockResponse);
 
       await fetchCountriesOfResidence();
@@ -69,7 +87,9 @@ describe('EnumJsonLists util', () => {
 
       await fetchCountriesOfResidence();
 
-      expect(consoleStub.calledWithMatch('Error fetching countriesOfResidence data:')).to.be.true;
+      expect(
+        consoleStub.calledWithMatch('Error fetching countriesOfResidence data:')
+      ).to.be.true;
       consoleStub.restore();
     });
   });
@@ -77,17 +97,38 @@ describe('EnumJsonLists util', () => {
   describe('fetchAndSetPortsAndCountries', () => {
     it('should fetch and set portsOfEntry and countries of residence data correctly', async() => {
       // eslint-disable-next-line id-blacklist
-      const mockPortsOfEntryResponse = { body: [{ label: 'Entry1', locationCode: 'locationCode1' }, { label: 'Entry2', locationCode: 'locationCode2' }], status: 200 };
+      const mockPortsOfEntryResponse = {
+        body: [
+          { label: 'Entry1', locationCode: 'locationCode1' },
+          { label: 'Entry2', locationCode: 'locationCode2' }
+        ],
+        status: 200
+      };
       // eslint-disable-next-line id-blacklist
-      const mockCountriesOfResidenceResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
-      superagentGetStub.withArgs(`${config.api.url}/api/citizen/ports-of-entry`).resolves(mockPortsOfEntryResponse);
-      superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountriesOfResidenceResponse);
+      const mockCountriesOfResidenceResponse = {
+        body: [{ label: 'Entry1' }, { label: 'Entry2' }],
+        status: 200
+      };
+      superagentGetStub
+        .withArgs(`${config.api.url}/api/citizen/ports-of-entry`)
+        .resolves(mockPortsOfEntryResponse);
+      superagentGetStub
+        .withArgs(`${config.api.url}/api/citizen/countries-of-residence`)
+        .resolves(mockCountriesOfResidenceResponse);
 
       await fetchAndSetPortsAndCountries();
 
       expect(getPortsOfEntry()).to.deep.equal([
-        { label: 'Entry1', value: 'locationCode1', locationCode: 'locationCode1' },
-        { label: 'Entry2', value: 'locationCode2', locationCode: 'locationCode2' }
+        {
+          label: 'Entry1',
+          value: 'locationCode1',
+          locationCode: 'locationCode1'
+        },
+        {
+          label: 'Entry2',
+          value: 'locationCode2',
+          locationCode: 'locationCode2'
+        }
       ]);
 
       expect(getCountriesOfResidence()).to.deep.equal([

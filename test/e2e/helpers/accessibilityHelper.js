@@ -15,18 +15,16 @@ async function axeTest(page) {
     .analyze();
   if (accessibilityScanResults.violations.length > 0) {
     accessibilityScanResults.violations.forEach(violationType => {
-      const instances = violationType.nodes.map(
-        violationInstance => {
-          return {
-            issue: violationType.help,
-            impact: violationType.impact,
-            failureSummary: violationInstance.failureSummary,
-            targetHtmlObject: violationInstance.target,
-            fullHtml: violationInstance.html,
-            pageUrl: accessibilityScanResults.url
-          };
-        }
-      );
+      const instances = violationType.nodes.map(violationInstance => {
+        return {
+          issue: violationType.help,
+          impact: violationType.impact,
+          failureSummary: violationInstance.failureSummary,
+          targetHtmlObject: violationInstance.target,
+          fullHtml: violationInstance.html,
+          pageUrl: accessibilityScanResults.url
+        };
+      });
       violations.push(...instances);
     });
   }

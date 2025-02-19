@@ -1,7 +1,7 @@
 {
-    "titleHead": "Apêl wedi’i chyflwyno",
-    "title": "Mae apêl eisoes wedi’i chyflwyno ar gyfer y dyddiad penderfyniad hwnnw {{ duplicateErrorMrnDate }}",
-    "message": "Gwiriwch ddyddiad eich MRN, a rhowch gynnig arall arni.",
-    "messageContactUs": "Os nad oeddech yn disgwyl gweld y neges hon, defnyddiwch y manylion cyswllt isod i gysylltu â ni.",
-    "tryAgain": "Rhowch gynnig arall arni"
+  "titleHead": "Apêl wedi’i chyflwyno",
+  "title": "Mae apêl eisoes wedi’i chyflwyno ar gyfer y dyddiad penderfyniad hwnnw {{ duplicateErrorMrnDate }}",
+  "message": "Gwiriwch ddyddiad eich MRN, a rhowch gynnig arall arni.",
+  "messageContactUs": "Os nad oeddech yn disgwyl gweld y neges hon, defnyddiwch y manylion cyswllt isod i gysylltu â ni.",
+  "tryAgain": "Rhowch gynnig arall arni"
 }

@@ -27,10 +27,7 @@ class Confirmation extends ExitPoint {
   }
 
   get middleware() {
-    return [
-      preserveSession,
-      ...super.middleware
-    ];
+    return [preserveSession, ...super.middleware];
   }
 
   get surveyLink() {

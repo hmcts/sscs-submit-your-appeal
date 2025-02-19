@@ -159,7 +159,6 @@ describe('AppointeeName.js', () => {
     });
   });
 
-
   describe('answers() appellant full name with random case', () => {
     const NAME = 'Mr,Harry,POTTER';
     beforeEach(() => {
@@ -239,7 +238,9 @@ describe('AppointeeName.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /enter-appointee-dob', () => {
-      expect(appointeeName.next()).to.eql({ nextStep: paths.appointee.enterAppointeeDOB });
+      expect(appointeeName.next()).to.eql({
+        nextStep: paths.appointee.enterAppointeeDOB
+      });
     });
   });
 });

@@ -82,7 +82,9 @@ describe('HaveContactedDWP.js', () => {
 
   describe('isBenefitEnabled', () => {
     it('should return wheter benefit is active', () => {
-      expect(haveContactedDWP.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
+      expect(haveContactedDWP.isBenefitEnabled('allowUC')).to.equal(
+        config.get('features.allowUC.enabled') === 'true'
+      );
     });
   });
 

@@ -31,7 +31,9 @@ describe('EvidenceProvide.js', () => {
 
   describe('get path()', () => {
     it('returns path /evidence-provide', () => {
-      expect(EvidenceProvide.path).to.equal(paths.reasonsForAppealing.evidenceProvide);
+      expect(EvidenceProvide.path).to.equal(
+        paths.reasonsForAppealing.evidenceProvide
+      );
     });
   });
 
@@ -43,13 +45,17 @@ describe('EvidenceProvide.js', () => {
 
     it('should return "Mandatory Reconsideration Notice (MRN)"', () => {
       evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(evidenceProvide.noticeType).to.equal('Mandatory Reconsideration Notice (MRN)');
+      expect(evidenceProvide.noticeType).to.equal(
+        'Mandatory Reconsideration Notice (MRN)'
+      );
     });
 
     it('should return "Mandatory Reconsideration Notice (MRN)" in welsh', () => {
       i18next.changeLanguage('cy');
       evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
-      expect(evidenceProvide.noticeType).to.equal('Hysbysiad Gorfodi i Ailystyried (MRN)');
+      expect(evidenceProvide.noticeType).to.equal(
+        'Hysbysiad Gorfodi i Ailystyried (MRN)'
+      );
     });
 
     after(() => {
@@ -111,13 +117,13 @@ describe('EvidenceProvide.js', () => {
     });
 
     describe('English', () => {
-      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+      it("should titleise the users selection to 'No' for CYA (English)", () => {
         evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
         const answers = evidenceProvide.answers();
         expect(answers.answer).to.equal('No');
       });
 
-      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+      it("should titleise the users selection to 'Yes' for CYA (English)", () => {
         evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
         const answers = evidenceProvide.answers();
         expect(answers.answer).to.equal('Yes');
@@ -133,14 +139,14 @@ describe('EvidenceProvide.js', () => {
         i18next.changeLanguage('en');
       });
 
-      it('should titleise the users selection to \'Na hoffwn\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Na hoffwn' for CYA (Welsh)", () => {
         evidenceProvide.content.cya.evidenceProvide.no = 'Na hoffwn';
         evidenceProvide.fields.evidenceProvide.value = userAnswer.NO;
         const answers = evidenceProvide.answers();
         expect(answers.answer).to.equal('Na hoffwn');
       });
 
-      it('should titleise the users selection to \'Hoffwn\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Hoffwn' for CYA (Welsh)", () => {
         evidenceProvide.content.cya.evidenceProvide.yes = 'Hoffwn';
         evidenceProvide.fields.evidenceProvide.value = userAnswer.YES;
         const answers = evidenceProvide.answers();

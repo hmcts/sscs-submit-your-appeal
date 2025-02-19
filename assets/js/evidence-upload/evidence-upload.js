@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import fieldTemplates from '../../../views/components/fields.njk';
 import errorSummary from '../../../views/components/errors.njk';
-import fileTypeWhiteList
-  from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
+import fileTypeWhiteList from '../../../steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js';
 
 /* eslint-disable id-blacklist */
 class EvidenceUpload {
@@ -37,18 +36,22 @@ class EvidenceUpload {
     return num;
   }
   setup(error, components) {
-    const chooseFile = $('html').attr('lang') === 'en' ? 'Choose file' : 'Dewis ffeil';
+    const chooseFile =
+      $('html').attr('lang') === 'en' ? 'Choose file' : 'Dewis ffeil';
     // give it the time to finish painting the dom...
     window.setTimeout(() => {
       if (components && components.fileupload) {
         this.numberForNextItem = this.getNumberForNextItem();
         this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
-        this.fileupload = components.fileupload({
-          id: this.elId,
-          name: `item.${this.elId}`,
-          value: '',
-          errors: this.errors
-        }, chooseFile, fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
+        this.fileupload = components.fileupload(
+          {
+            id: this.elId,
+            name: `item.${this.elId}`,
+            value: '',
+            errors: this.errors
+          },
+          chooseFile,
+          fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
         );
         this.appendForm();
       }
@@ -93,18 +96,26 @@ class EvidenceUpload {
       // Trigger custom google tracking event.
       if (errors[0].value === 'MAX_FILESIZE_EXCEEDED_ERROR') {
         // eslint-disable-next-line
-        window.dataLayer =  window.dataLayer  || [];
-        window.dataLayer.push({ event: 'max-filesize-exceeded-error',
-          uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'max-filesize-exceeded-error',
+          uploadFileSize: errors[2].value,
+          totalFileCount: errors[3].value
+        });
       } else if (errors[0].value === 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR') {
         // eslint-disable-next-line
-        window.dataLayer =  window.dataLayer  || [];
-        window.dataLayer.push({ event: 'total-max-filesize-exceeded-error',
-          uploadFileSize: errors[2].value, totalFileCount: errors[3].value });
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'total-max-filesize-exceeded-error',
+          uploadFileSize: errors[2].value,
+          totalFileCount: errors[3].value
+        });
       }
 
       // eslint-disable-next-line max-len
-      $('label').after(`<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`);
+      $('label').after(
+        `<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`
+      );
     }
   }
   hideUnnecessaryMarkup() {
@@ -146,14 +157,15 @@ class EvidenceUpload {
           $('.govuk-error-message').remove();
           $(`#${this.elId}`).val('');
           /* eslint-disable max-len */
-          const pageErrors = (error.responseJSON && error.responseJSON.validationErrors) ?
-            error.responseJSON.validationErrors :
-            [
-              {
-                field: 'uploadEv',
-                errors: ['Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.']
-              }
-            ];
+          const pageErrors =
+            error.responseJSON && error.responseJSON.validationErrors ?
+              error.responseJSON.validationErrors :
+              [
+                {
+                  field: 'uploadEv',
+                  errors: ['Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.']
+                }
+              ];
           /* eslint-enable max-len */
           this.handleErrorSummary(pageErrors);
           this.handleInlineError(pageErrors);

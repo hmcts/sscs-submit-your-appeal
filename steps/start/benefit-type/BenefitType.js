@@ -2,7 +2,11 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
 const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { splitBenefitType, getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const {
+  splitBenefitType,
+  getBenefitCode,
+  isFeatureFlagEnabled
+} = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
@@ -36,9 +40,13 @@ class BenefitType extends SaveToDraftStore {
 
   answers() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+    const benefitTypeContent = require(
+      `steps/start/benefit-type/content.${sessionLanguage}`
+    );
 
-    const benTypeKey = getBenefitCode(this.fields.benefitType.value).toLowerCase();
+    const benTypeKey = getBenefitCode(
+      this.fields.benefitType.value
+    ).toLowerCase();
     return answer(this, {
       question: this.content.cya.benefitType.question,
       section: sections.benefitType,
@@ -66,12 +74,18 @@ class BenefitType extends SaveToDraftStore {
       { flag: 'allowCA', benefit: benefitTypes.carersAllowance },
       { flag: 'allowAA', benefit: benefitTypes.attendanceAllowance },
       { flag: 'allowBB', benefit: benefitTypes.bereavementBenefit },
-      { flag: 'allowIIDB', benefit: benefitTypes.industrialInjuriesDisablement },
+      {
+        flag: 'allowIIDB',
+        benefit: benefitTypes.industrialInjuriesDisablement
+      },
       { flag: 'allowJSA', benefit: benefitTypes.jobseekersAllowance },
       { flag: 'allowSF', benefit: benefitTypes.socialFund },
       { flag: 'allowMA', benefit: benefitTypes.maternityAllowance },
       { flag: 'allowIS', benefit: benefitTypes.incomeSupport },
-      { flag: 'allowBSPS', benefit: benefitTypes.bereavementSupportPaymentScheme },
+      {
+        flag: 'allowBSPS',
+        benefit: benefitTypes.bereavementSupportPaymentScheme
+      },
       { flag: 'allowIDB', benefit: benefitTypes.industrialDeathBenefit },
       { flag: 'allowPC', benefit: benefitTypes.pensionCredit },
       { flag: 'allowRP', benefit: benefitTypes.retirementPension }
@@ -88,13 +102,19 @@ class BenefitType extends SaveToDraftStore {
 
   next() {
     const allowedTypes = this.getAllowedTypes();
-    const isAllowedBenefit = () => allowedTypes.includes(this.fields.benefitType.value);
-    if (process.env.FT_WELSH === 'true' || config.features.welsh.enabled === 'true') {
+    const isAllowedBenefit = () =>
+      allowedTypes.includes(this.fields.benefitType.value);
+    if (
+      process.env.FT_WELSH === 'true' ||
+      config.features.welsh.enabled === 'true'
+    ) {
       return branch(
         goTo(this.journey.steps.LanguagePreference).if(isAllowedBenefit),
         redirectTo(this.journey.steps.AppealFormDownload)
       );
-    } else if (this.fields.benefitType.value === benefitTypes.infectedBloodCompensation) {
+    } else if (
+      this.fields.benefitType.value === benefitTypes.infectedBloodCompensation
+    ) {
       return goTo(this.journey.steps.Independence);
     }
     return branch(

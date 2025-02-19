@@ -249,7 +249,9 @@ describe('AppellantName.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /enter-appellant-dob', () => {
-      expect(appellantName.next()).to.eql({ nextStep: paths.identity.enterAppellantDOB });
+      expect(appellantName.next()).to.eql({
+        nextStep: paths.identity.enterAppellantDOB
+      });
     });
   });
 });

@@ -12,7 +12,9 @@ describe('PostcodeChecker.js', () => {
 
   function setupPostcodeChecker(allowedRPCs) {
     configGetStub.withArgs('api.url').returns('http://localhost:8080');
-    configGetStub.withArgs('postcodeChecker.endpoint').returns('/regionalcentre');
+    configGetStub
+      .withArgs('postcodeChecker.endpoint')
+      .returns('/regionalcentre');
     configGetStub.withArgs('postcodeChecker.allowedRpcs').returns(allowedRPCs);
     /* eslint-disable max-len */
     postcodeChecker = proxyquire('utils/postcodeChecker', {
@@ -43,7 +45,10 @@ describe('PostcodeChecker.js', () => {
   }
 
   function setRegionalCenterTo(regionalCentreValue) {
-    setResponse({ status: HttpStatus.OK, body: { regionalCentre: regionalCentreValue } });
+    setResponse({
+      status: HttpStatus.OK,
+      body: { regionalCentre: regionalCentreValue }
+    });
   }
 
   function buildExpectedUrl(outcode) {
@@ -59,7 +64,8 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -72,7 +78,8 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -90,7 +97,8 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -102,17 +110,17 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
 
     it('postcode starts with BT so is in Northern Island', () => {
-      return postcodeChecker('BT1 2AB')
-        .then(isEnglandOrWalesPostcode => {
-          expect(isEnglandOrWalesPostcode).to.equal(false);
-          expect(getStub).not.to.have.been.called;
-        });
+      return postcodeChecker('BT1 2AB').then(isEnglandOrWalesPostcode => {
+        expect(isEnglandOrWalesPostcode).to.equal(false);
+        expect(getStub).not.to.have.been.called;
+      });
     });
 
     it('allow postcode that are not found', () => {
@@ -122,7 +130,8 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -134,7 +143,8 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -144,11 +154,11 @@ describe('PostcodeChecker.js', () => {
         .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).not.to.have.been.called;
-        }).catch(error => {
+        })
+        .catch(error => {
           expect.fail(error);
         });
     });
-
 
     it('error getting country', () => {
       const expectedError = 'Some error';
@@ -163,10 +173,9 @@ describe('PostcodeChecker.js', () => {
         }
       });
 
-      return postcodeChecker('AB1 2CD')
-        .catch(error => {
-          expect(error).to.equal(expectedError);
-        });
+      return postcodeChecker('AB1 2CD').catch(error => {
+        expect(error).to.equal(expectedError);
+      });
     });
   });
 });

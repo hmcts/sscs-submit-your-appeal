@@ -154,7 +154,9 @@ describe('DWPIssuingOffice.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dWPIssuingOffice.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dWPIssuingOffice.next()).to.eql({
+        nextStep: paths.identity.areYouAnAppointee
+      });
     });
   });
 });

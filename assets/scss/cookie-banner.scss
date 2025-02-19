@@ -1,12 +1,12 @@
 #app-cookie-banner {
-    display:none;
-    @extend .govuk-body;
-    @extend .govuk-\!-font-size-16;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #d5e8f3;
-    margin-bottom:0;
+  display: none;
+  @extend .govuk-body;
+  @extend .govuk-\!-font-size-16;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #d5e8f3;
+  margin-bottom: 0;
 }

@@ -26,29 +26,38 @@ class HearingOptions extends SaveToDraftStore {
         telephone: object({
           requested: bool.default(false),
           phoneNumber: text
-        }).check(
-          errorFor('phoneNumber', this.content.fields.options.telephone.error.required),
-          value => emptyTelephoneValidation(value)
-        ).check(
-          errorFor('phoneNumber', this.content.fields.options.telephone.error.invalid),
-          value => invalidTelephoneValidation(value)
-        ),
+        })
+          .check(
+            errorFor(
+              'phoneNumber',
+              this.content.fields.options.telephone.error.required
+            ),
+            value => emptyTelephoneValidation(value)
+          )
+          .check(
+            errorFor(
+              'phoneNumber',
+              this.content.fields.options.telephone.error.invalid
+            ),
+            value => invalidTelephoneValidation(value)
+          ),
         video: object({
           requested: bool.default(false),
           email: text
-        }).check(
-          errorFor('email', this.content.fields.options.video.error.required),
-          value => emptyEmailValidation(value)
-        ).check(
-          errorFor('email', this.content.fields.options.video.error.invalid),
-          value => invalidEmailValidation(value)
-        ),
+        })
+          .check(
+            errorFor('email', this.content.fields.options.video.error.required),
+            value => emptyEmailValidation(value)
+          )
+          .check(
+            errorFor('email', this.content.fields.options.video.error.invalid),
+            value => invalidEmailValidation(value)
+          ),
         inPerson: object({
           requested: bool.default(false)
         })
-      }).check(
-        this.content.fields.options.error.required,
-        value => optionSelected(value)
+      }).check(this.content.fields.options.error.required, value =>
+        optionSelected(value)
       )
     });
   }
@@ -83,7 +92,9 @@ class HearingOptions extends SaveToDraftStore {
     const telephoneSelected = Boolean(selectOptions.telephone.requested.value);
     const videoSelected = Boolean(selectOptions.video.requested.value);
     const inPersonSelected = Boolean(selectOptions.inPerson.requested.value);
-    const telephone = telephoneSelected ? selectOptions.telephone.phoneNumber.value : null;
+    const telephone = telephoneSelected ?
+      selectOptions.telephone.phoneNumber.value :
+      null;
     const email = videoSelected ? selectOptions.video.email.value : null;
     return {
       hearing: {
@@ -103,19 +114,30 @@ class HearingOptions extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequestedOrNotRequested = value => (value ? cyaContent.requested : cyaContent.notRequested);
+    const setRequestedOrNotRequested = value =>
+      (value ? cyaContent.requested : cyaContent.notRequested);
 
     const arrangementsAnswer = {
-      hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
-      hearingTypeVideo: setRequestedOrNotRequested(selectOptions.video.requested),
-      hearingTypeInPerson: setRequestedOrNotRequested(selectOptions.inPerson.requested)
+      hearingTypeTelephone: setRequestedOrNotRequested(
+        selectOptions.telephone.requested
+      ),
+      hearingTypeVideo: setRequestedOrNotRequested(
+        selectOptions.video.requested
+      ),
+      hearingTypeInPerson: setRequestedOrNotRequested(
+        selectOptions.inPerson.requested
+      )
     };
 
     arrangementsAnswer.hearingTypeTelephone = setCYAValue(
-      arrangementsAnswer.hearingTypeTelephone, selectOptions.telephone.phoneNumber);
+      arrangementsAnswer.hearingTypeTelephone,
+      selectOptions.telephone.phoneNumber
+    );
 
     arrangementsAnswer.hearingTypeVideo = setCYAValue(
-      arrangementsAnswer.hearingTypeVideo, selectOptions.video.email);
+      arrangementsAnswer.hearingTypeVideo,
+      selectOptions.video.email
+    );
 
     return arrangementsAnswer;
   }

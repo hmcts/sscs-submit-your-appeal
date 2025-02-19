@@ -19,13 +19,15 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
 
   get form() {
     return form({
-      reasonForBeingLate: text.joi(
-        this.content.fields.reasonForBeingLate.error.required,
-        Joi.string().required()
-      ).joi(
-        this.content.fields.reasonForBeingLate.error.notEnough,
-        Joi.string().min(MIN_CHAR_COUNT)
-      )
+      reasonForBeingLate: text
+        .joi(
+          this.content.fields.reasonForBeingLate.error.required,
+          Joi.string().required()
+        )
+        .joi(
+          this.content.fields.reasonForBeingLate.error.notEnough,
+          Joi.string().min(MIN_CHAR_COUNT)
+        )
     });
   }
 
@@ -48,19 +50,34 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
   }
 
   next() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    const benefitType = get(
+      this,
+      'journey.req.session.BenefitType.benefitType'
+    );
 
-    const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
+    const isDWPOfficeOther =
+      String(benefitType) !== benefitTypes.personalIndependencePayment;
     const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
 
-    const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
-    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
-    const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
-    const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
-    const isIbaCase = String(benefitType) === benefitTypes.infectedBloodCompensation;
+    const isCarersAllowanceBenefit =
+      String(benefitType) === benefitTypes.carersAllowance;
+    const isBereavementBenefit =
+      String(benefitType) === benefitTypes.bereavementBenefit;
+    const isMaternityAllowance =
+      String(benefitType) === benefitTypes.maternityAllowance;
+    const isBereavementSupportPaymentScheme =
+      String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
+    const isIbaCase =
+      String(benefitType) === benefitTypes.infectedBloodCompensation;
 
-    const skipToAppointee = isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme || isIbaCase || isIba(this.req);
+    const skipToAppointee =
+      isUCBenefit ||
+      isCarersAllowanceBenefit ||
+      isBereavementBenefit ||
+      isMaternityAllowance ||
+      isBereavementSupportPaymentScheme ||
+      isIbaCase ||
+      isIba(this.req);
 
     return branch(
       goTo(this.journey.steps.AppellantRole).if(isIba(this.req)),

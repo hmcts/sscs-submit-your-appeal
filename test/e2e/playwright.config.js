@@ -3,9 +3,14 @@
 /* eslint-disable no-sync */
 import { defineConfig, devices } from '@playwright/test';
 
+const getE2eTestTags = (process.env.E2E_TEST_TAGS || '@functional')
+  .split(',')
+  .map(tag => new RegExp(tag.trim()));
+
 module.exports = defineConfig({
   testDir: process.env.E2E_TEST_DIR || './',
   outputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+  grep: getE2eTestTags,
   expect: {
     timeout: 10 * 1000
   },
@@ -44,7 +49,8 @@ module.exports = defineConfig({
   use: {
     actionTimeout: 30000,
     navigationTimeout: 30000,
-    baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
+    baseURL:
+      process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
     trace: 'on-first-retry',
     screenshot: { mode: 'only-on-failure', fullPage: true },
     headless: process.env.SHOW_BROWSER_WINDOW !== 'true',

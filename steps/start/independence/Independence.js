@@ -1,16 +1,19 @@
 const { Interstitial } = require('@hmcts/one-per-page/steps');
 const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { getBenefitCode,
+const {
+  getBenefitCode,
   getTribunalPanel,
   getTribunalPanelWelsh,
   getHasAcronym,
   getBenefitEndText,
-  getBenefitEndTextWelsh } = require('utils/stringUtils');
+  getBenefitEndTextWelsh
+} = require('utils/stringUtils');
 const paths = require('paths');
 const config = require('config');
 const i18next = require('i18next');
 
-const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+const allowSaveAndReturn =
+  config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 class Independence extends Interstitial {
   get isUserLoggedIn() {
@@ -33,13 +36,17 @@ class Independence extends Interstitial {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+    const benefitTypeContent = require(
+      `steps/start/benefit-type/content.${sessionLanguage}`
+    );
 
     if (this.req.session.BenefitType) {
       if (getHasAcronym(this.req.session.BenefitType.benefitType)) {
         return getBenefitCode(this.req.session.BenefitType.benefitType);
       }
-      return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+      return benefitTypeContent.benefitTypes[
+        getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()
+      ];
     }
     return '';
   }
@@ -57,7 +64,9 @@ class Independence extends Interstitial {
 
   next() {
     return branch(
-      goTo(this.journey.steps.CreateAccount).if(allowSaveAndReturn && !this.req.idam),
+      goTo(this.journey.steps.CreateAccount).if(
+        allowSaveAndReturn && !this.req.idam
+      ),
       goTo(this.journey.steps.HaveAMRN)
     );
   }

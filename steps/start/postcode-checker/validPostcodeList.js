@@ -2041,7 +2041,4 @@ const postCodes = [
   'WV9'
 ];
 
-module.exports = concat(
-  postCodes,
-  southEastPostCodes
-);
+module.exports = concat(postCodes, southEastPostCodes);

@@ -31,7 +31,9 @@ class TheHearing extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.attendHearing.question,
         section: sections.theHearing,
-        answer: titleise(content.cya.attendHearing[this.fields.attendHearing.value])
+        answer: titleise(
+          content.cya.attendHearing[this.fields.attendHearing.value]
+        )
       })
     ];
   }
@@ -39,7 +41,9 @@ class TheHearing extends SaveToDraftStore {
   values() {
     return {
       hearing: {
-        wantsToAttend: this.getWantsToAttendValue(this.fields.attendHearing.value)
+        wantsToAttend: this.getWantsToAttendValue(
+          this.fields.attendHearing.value
+        )
       }
     };
   }
@@ -51,7 +55,8 @@ class TheHearing extends SaveToDraftStore {
   }
 
   next() {
-    const isAttendingHearing = () => this.fields.attendHearing.value === userAnswer.YES;
+    const isAttendingHearing = () =>
+      this.fields.attendHearing.value === userAnswer.YES;
     return branch(
       goTo(this.journey.steps.HearingOptions).if(isAttendingHearing()),
       goTo(this.journey.steps.HearingSupport).if(isAttendingHearing()),

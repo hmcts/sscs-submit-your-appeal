@@ -61,7 +61,9 @@ class AppellantInMainlandUk extends SaveToDraftStore {
 
   next() {
     return branch(
-      goTo(this.journey.steps.AppellantContactDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
+      goTo(this.journey.steps.AppellantContactDetails).if(
+        this.fields.inMainlandUk.value === userAnswer.YES
+      ),
       goTo(this.journey.steps.AppellantInternationalContactDetails)
     );
   }

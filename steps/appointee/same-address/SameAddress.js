@@ -38,7 +38,11 @@ class SameAddress extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.isAddressSameAsAppointee.question,
       section: sections.appellantDetails,
-      answer: titleise(content.cya.isAddressSameAsAppointee[this.fields.isAddressSameAsAppointee.value])
+      answer: titleise(
+        content.cya.isAddressSameAsAppointee[
+          this.fields.isAddressSameAsAppointee.value
+        ]
+      )
     });
   }
 
@@ -46,7 +50,8 @@ class SameAddress extends SaveToDraftStore {
     return {
       appellant: {
         isAddressSameAsAppointee: this.getIsAddressSameAsAppointee(
-          this.fields.isAddressSameAsAppointee.value)
+          this.fields.isAddressSameAsAppointee.value
+        )
       }
     };
   }
@@ -58,7 +63,8 @@ class SameAddress extends SaveToDraftStore {
   }
 
   next() {
-    const isAddressSameAsAppointee = this.fields.isAddressSameAsAppointee.value === userAnswer.YES;
+    const isAddressSameAsAppointee =
+      this.fields.isAddressSameAsAppointee.value === userAnswer.YES;
     return branch(
       redirectTo(this.journey.steps.TextReminders).if(isAddressSameAsAppointee),
       goTo(this.journey.steps.AppellantContactDetails)

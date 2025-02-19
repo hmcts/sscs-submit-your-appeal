@@ -49,8 +49,7 @@ describe('isIba() test', () => {
   it('should return true if env var IS_IBA is true ', () => {
     // eslint-disable-next-line no-process-env
     process.env.IS_IBA = 'true';
-    const req = {
-    };
+    const req = {};
     expect(isIba(req)).to.be.true;
     // eslint-disable-next-line no-process-env
     process.env.IS_IBA = 'false';

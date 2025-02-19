@@ -36,7 +36,9 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
 
   // eslint-disable-next-line complexity
   get options() {
-    if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA') {
+    if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'ESA'
+    ) {
       if (isFeatureFlagEnabled('allowRFE')) {
         return DWPIssuingOfficeEsa.selectify([
           'Balham DRT',
@@ -70,54 +72,79 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
         'Wellingborough DRT',
         'Worthing DRT'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'DLA') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'DLA'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Disability Benefit Centre 4',
         'The Pension Service 11',
         'Recovery from Estates'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'attendanceAllowance') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+      'attendanceAllowance'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'The Pension Service 11',
         'Recovery from Estates'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'JSA') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'JSA'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Worthing DRT',
         'Birkenhead DRT',
         'Inverness DRT',
         'Recovery from Estates'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialInjuriesDisablement') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+      'industrialInjuriesDisablement'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'industrialDeathBenefit') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+      'industrialDeathBenefit'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Barrow IIDB Centre',
         'Barnsley Benefit Centre'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'pensionCredit' ||
-    getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'retirementPension') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+        'pensionCredit' ||
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+        'retirementPension'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Pensions Dispute Resolution Team',
         'Recovery from Estates'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'socialFund') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+      'socialFund'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'St Helens Sure Start Maternity Grant',
         'Funeral Payment Dispute Resolution Team',
         'Pensions Dispute Resolution Team'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'incomeSupport') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) ===
+      'incomeSupport'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Worthing DRT',
         'Birkenhead DRT',
         'Inverness DRT',
         'Recovery from Estates'
       ]);
-    } else if (getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'UC') {
+    } else if (
+      getBenefitCode(this.journey.req.session.BenefitType.benefitType) === 'UC'
+    ) {
       return DWPIssuingOfficeEsa.selectify([
         'Universal Credit',
         'Recovery from Estates'
@@ -133,7 +160,8 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
     return form({
       dwpIssuingOffice: text.joi(
         this.content.fields.dwpIssuingOffice.error.required,
-        Joi.string().required())
+        Joi.string().required()
+      )
     });
   }
 

@@ -8,32 +8,44 @@ const { long, short } = require('utils/months');
 
 describe('MRN date that is <= a calendar month', () => {
   it('should return true when the MRN date is one day short of a month', () => {
-    expect(DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneDayShortOfAMonthAgo())).to.be.true;
+    expect(
+      DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneDayShortOfAMonthAgo())
+    ).to.be.true;
   });
 
   it('should return true when the MRN date is exactly one month', () => {
-    expect(DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneMonthAgo())).to.be.true;
+    expect(DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneMonthAgo())).to.be
+      .true;
   });
 
   it('should return false when the MRN date is 1 month and 1 day', () => {
-    expect(DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneMonthAndOneDayAgo())).to.be.false;
+    expect(
+      DateUtils.isLessThanOrEqualToAMonth(DateUtils.oneMonthAndOneDayAgo())
+    ).to.be.false;
   });
 });
 
 describe('MRN date that is <= 13 calendar months', () => {
   it('should return true when the MRN date is one day short of 13 months', () => {
     const oneDayShortOfThirteenMonthsAgo = DateUtils.oneDayShortOfThirteenMonthsAgo();
-    expect(DateUtils.isLessThanOrEqualToThirteenMonths(oneDayShortOfThirteenMonthsAgo)).to.be.true;
+    expect(
+      DateUtils.isLessThanOrEqualToThirteenMonths(
+        oneDayShortOfThirteenMonthsAgo
+      )
+    ).to.be.true;
   });
 
   it('should return true when the MRN date is exactly 13 months', () => {
     const thirteenMonthsAgo = DateUtils.thirteenMonthsAgo();
-    expect(DateUtils.isLessThanOrEqualToThirteenMonths(thirteenMonthsAgo)).to.be.true;
+    expect(DateUtils.isLessThanOrEqualToThirteenMonths(thirteenMonthsAgo)).to.be
+      .true;
   });
 
   it('should return false when the MRN date is 13 months and 1 day', () => {
     const thirteenMonthsAndOneDayAgo = DateUtils.thirteenMonthsAndOneDayAgo();
-    expect(DateUtils.isLessThanOrEqualToThirteenMonths(thirteenMonthsAndOneDayAgo)).to.be.false;
+    expect(
+      DateUtils.isLessThanOrEqualToThirteenMonths(thirteenMonthsAndOneDayAgo)
+    ).to.be.false;
   });
 });
 
@@ -159,7 +171,11 @@ describe('mrnDateSameAsImage', () => {
   let date = null;
 
   it('should return true if date is the same as the image for non-iba', () => {
-    date = DateUtils.createMoment(mrnDateImage.mrnDate.day, mrnDateImage.mrnDate.month, mrnDateImage.mrnDate.year);
+    date = DateUtils.createMoment(
+      mrnDateImage.mrnDate.day,
+      mrnDateImage.mrnDate.month,
+      mrnDateImage.mrnDate.year
+    );
     expect(DateUtils.mrnDateSameAsImage(date, false)).to.be.true;
   });
 
@@ -169,7 +185,11 @@ describe('mrnDateSameAsImage', () => {
   });
 
   it('should return true if date is the same as the image for iba', () => {
-    date = DateUtils.createMoment(mrnDateImage.rdnDate.day, mrnDateImage.rdnDate.month, mrnDateImage.rdnDate.year);
+    date = DateUtils.createMoment(
+      mrnDateImage.rdnDate.day,
+      mrnDateImage.rdnDate.month,
+      mrnDateImage.rdnDate.year
+    );
     expect(DateUtils.mrnDateSameAsImage(date, true)).to.be.true;
   });
 
@@ -183,8 +203,7 @@ describe('isGreaterThanOrEqualToFourWeeks', () => {
   let date = null;
 
   it('should return false if date is under four weeks', () => {
-    date = moment().add(4, 'weeks')
-      .subtract(1, 'day');
+    date = moment().add(4, 'weeks').subtract(1, 'day');
     expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.false;
   });
 
@@ -194,8 +213,7 @@ describe('isGreaterThanOrEqualToFourWeeks', () => {
   });
 
   it('should return true if date is over four weeks', () => {
-    date = moment().add(4, 'weeks')
-      .add(1, 'day');
+    date = moment().add(4, 'weeks').add(1, 'day');
     expect(DateUtils.isGreaterThanOrEqualToFourWeeks(date)).to.be.true;
   });
 });
@@ -204,11 +222,9 @@ describe('isLessThanOrEqualToTwentyTwoWeeks', () => {
   let date = null;
 
   it('should return true if date is under twenty two weeks', () => {
-    date = moment().add(22, 'weeks')
-      .subtract(1, 'day');
+    date = moment().add(22, 'weeks').subtract(1, 'day');
     expect(DateUtils.isLessThanOrEqualToTwentyTwoWeeks(date)).to.be.true;
   });
-
 
   it('should return true if date is exactly twenty two weeks', () => {
     date = moment().add(22, 'weeks');
@@ -216,8 +232,7 @@ describe('isLessThanOrEqualToTwentyTwoWeeks', () => {
   });
 
   it('should return false if date is over twenty two weeks', () => {
-    date = moment().add(22, 'weeks')
-      .add(1, 'day');
+    date = moment().add(22, 'weeks').add(1, 'day');
     expect(DateUtils.isLessThanOrEqualToTwentyTwoWeeks(date)).to.be.false;
   });
 });
@@ -337,7 +352,9 @@ describe('formatDate', () => {
   it('should return a formatted date in English', () => {
     const date = DateUtils.createMoment('12', '8', '2018', 'en');
 
-    expect(DateUtils.formatDate(date, 'DD MMMM YYYY')).to.equal('12 August 2018');
+    expect(DateUtils.formatDate(date, 'DD MMMM YYYY')).to.equal(
+      '12 August 2018'
+    );
   });
 
   it('should return a formatted date in Welsh', () => {

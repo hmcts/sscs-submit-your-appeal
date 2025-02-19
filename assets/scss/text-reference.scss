@@ -2,10 +2,9 @@
 Text
 */
 
-$module: "text";
+$module: 'text';
 
 .#{$module} {
-
   &-reference {
     display: block;
     margin-top: 10px;
@@ -16,7 +15,5 @@ $module: "text";
       letter-spacing: 2px;
       margin-top: 5px;
     }
-
   }
-
 }
