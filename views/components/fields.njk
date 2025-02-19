@@ -80,7 +80,7 @@
 
 
 
-{#
+{# DEPRECATED
   selectionButton
     field                - (required) A field object containing name, id and value
     option               - (required) Options used to populate the possible answers
@@ -139,66 +139,6 @@
     {%- endif %}
   </div>
 {% endmacro %}
-
-
-
-
-{#
-  selectionButtons
-    field          - (required) A field object containing name, id and value
-    label          - (required) The label to apply to the field
-    hint           - (default = '') Extra hint text to place under the label
-    hideQuestion   - (default = true) Hides the question in the legend (for when you have a heading on the page that is the same question)
-    inline         - (default = false) Renders the options inline
-    options        - (default = []) Options used to populate the possible answers
-
-    options.label  - (required) The label text to display for this option
-    options.value  - (default = label.lowercase()) The value to be sent on post for this option
-    options.target - (default = '') Id of the panel to expand if selected
-
-  Renders multiple option radio buttons
-#}
-{% macro selectionButtons(field,
-                          question,
-                          options=[],
-                          hint=false,
-                          hideQuestion=true,
-                          inline=false,
-                          type='radio',
-                          groupClass='') %}
-
-  {% set typeStyle = "govuk-radios" %}
-  {% if type == 'checkbox' -%}
-    {% set typeStyle = "govuk-checkboxes {% if inline %}govuk-checkboxes--inline{% endif %}" %}
-  {%- endif %}
-
-  <div class="govuk-form-group {{ errorClass(field) }} {{ groupClass }}">
-    <fieldset class="govuk-fieldset" id="{{ field.id }}">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl {% if hideQuestion %}govuk-visually-hidden{% endif %}">
-          <h2 class="govuk-heading-m">{{ question }}</h2>
-      </legend>
-      {% if hint -%}
-        <span id="{{ field.id }}-hint" class="hint-text">
-          {{ hint }}
-        </span>
-      {%- endif %}
-      {{ errorsFor(field) }}
-
-      {% if caller %}
-        {{ caller() }}
-      {% else %}
-
-        <div class="{{ typeStyle }} {% if inline %}govuk-radios--inline{% endif %}">
-          {% for option in options -%}
-            {{ selectionButton(field, option, type) }}
-          {%- endfor %}
-        </div>
-      {% endif %}
-    </fieldset>
-  </div>
-{% endmacro %}
-
-
 
 
 {#
