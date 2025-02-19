@@ -39,10 +39,15 @@ function accessibilityCheck(url, language) {
     for (let i = 1; i < 5; i++) {
       try {
         await page.goto('/');
-        await expect(page.getByText('Which benefit is your appeal about?').first()).toBeVisible();
+        await expect(
+          page.getByText('Which benefit is your appeal about?').first()
+        ).toBeVisible();
         break;
       } catch (error) {
-        console.error(`Error loading home page, trying again attempt ${i + 1} of 5:`, error);
+        console.error(
+          `Error loading home page, trying again attempt ${i + 1} of 5:`,
+          error
+        );
       }
     }
     await page.goto(`${url}?lng=${language}`);
