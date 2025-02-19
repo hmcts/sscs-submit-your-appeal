@@ -1,5 +1,4 @@
 const content = require('commonContent');
-const urls = require('urls');
 const {
   enterDetailsFromStartToNINO
 } = require('../page-objects/cya/checkYourAppeal');
