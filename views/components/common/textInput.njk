@@ -4,6 +4,7 @@
     {{ govukInput({
         id: field.id,
        name: field.id,
+       value: field.value if field.value else "",
       label: {
         text: labelText,
         classes: ("govuk-visually-hidden") if hideLabel else ((" govuk-label--l") if isPageHeading else classes),
@@ -12,6 +13,15 @@
       hint: {
             text: hint
           } if hint else undefined,
+          errorMessage: null if field.errors.length == 0 else {text: getErrors(field)},
       classes: " govuk-input--width-" + width if width else ""
     }) }}
+{% endmacro %}
+
+{% macro getErrors(field) %}
+  {% if field.errors %}
+    {% for error in field.errors %}
+        {{ error }}
+    {% endfor %}
+  {% endif %}
 {% endmacro %}
