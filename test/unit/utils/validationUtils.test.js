@@ -14,18 +14,24 @@ describe('validationUtils.js', () => {
       expect(valid).to.equal(true);
     });
 
-    it('should return false if value hasn\'t been set', () => {
+    it("should return false if value hasn't been set", () => {
       const valid = joiValidation(null, Joi.string().required());
       expect(valid).to.equal(false);
     });
 
     it('should return true if value is valid', () => {
-      const valid = joiValidation('valid value!', Joi.string().regex(whitelist));
+      const valid = joiValidation(
+        'valid value!',
+        Joi.string().regex(whitelist)
+      );
       expect(valid).to.equal(true);
     });
 
-    it('should return false if value isn\'t valid', () => {
-      const valid = joiValidation('<invalid value>', Joi.string().regex(whitelist));
+    it("should return false if value isn't valid", () => {
+      const valid = joiValidation(
+        '<invalid value>',
+        Joi.string().regex(whitelist)
+      );
       expect(valid).to.equal(false);
     });
   });

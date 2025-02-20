@@ -26,7 +26,9 @@ describe('DWPIssuingOfficeIIDB.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office-other', () => {
-      expect(dwpIssuingOfficeEsa.path).to.equal(paths.compliance.dwpIssuingOfficeEsa);
+      expect(dwpIssuingOfficeEsa.path).to.equal(
+        paths.compliance.dwpIssuingOfficeEsa
+      );
     });
   });
 
@@ -93,7 +95,9 @@ describe('DWPIssuingOfficeIIDB.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dwpIssuingOfficeEsa.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dwpIssuingOfficeEsa.next()).to.eql({
+        nextStep: paths.identity.areYouAnAppointee
+      });
     });
   });
 
@@ -101,7 +105,9 @@ describe('DWPIssuingOfficeIIDB.js', () => {
     it('has options for IIDB', () => {
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Barrow IIDB Centre');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Barnsley Benefit Centre');
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
+        'Barnsley Benefit Centre'
+      );
     });
   });
 });

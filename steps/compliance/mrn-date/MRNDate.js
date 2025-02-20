@@ -29,24 +29,30 @@ class MRNDate extends SaveToDraftStore {
 
     return form({
       mrnDate: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
+        d =>
+          DateUtils.createMoment(
+            d.day,
+            DateUtils.getMonthValue(d, i18next.language),
+            d.year,
+            i18next.language
+          ),
         date.required({
           allRequired: fields.date.error[`allRequired${this.suffix}`],
           dayRequired: fields.date.error.dayRequired,
           monthRequired: fields.date.error.monthRequired,
           yearRequired: fields.date.error.yearRequired
         })
-      ).check(
-        fields.date.error[`invalid${this.suffix}`],
-        value => DateUtils.isDateValid(value)
-      ).check(
-        fields.date.error[`future${this.suffix}`],
-        value => DateUtils.isDateInPast(value)
-      ).check(
-        fields.date.error[`dateSameAsImage${this.suffix}`],
-        value => !DateUtils.mrnDateSameAsImage(value, isIba(this.req))
       )
-
+        .check(fields.date.error[`invalid${this.suffix}`], value =>
+          DateUtils.isDateValid(value)
+        )
+        .check(fields.date.error[`future${this.suffix}`], value =>
+          DateUtils.isDateInPast(value)
+        )
+        .check(
+          fields.date.error[`dateSameAsImage${this.suffix}`],
+          value => !DateUtils.mrnDateSameAsImage(value, isIba(this.req))
+        )
     });
   }
 
@@ -71,19 +77,36 @@ class MRNDate extends SaveToDraftStore {
 
   next() {
     const mrnDate = this.fields.mrnDate.value;
-    const isLessThanOrEqualToAMonth = DateUtils.isLessThanOrEqualToAMonth(mrnDate);
+    const isLessThanOrEqualToAMonth =
+      DateUtils.isLessThanOrEqualToAMonth(mrnDate);
 
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    const benefitType = get(
+      this,
+      'journey.req.session.BenefitType.benefitType'
+    );
 
-    const isDWPOfficeOther = String(benefitType) !== benefitTypes.personalIndependencePayment;
-    const isUCBenefit = benefitType && String(benefitType) === 'Universal Credit (UC)' && !isFeatureFlagEnabled('allowRFE');
-    const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
-    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
-    const isMaternityAllowance = String(benefitType) === benefitTypes.maternityAllowance;
-    const isBereavementSupportPaymentScheme = String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
+    const isDWPOfficeOther =
+      String(benefitType) !== benefitTypes.personalIndependencePayment;
+    const isUCBenefit =
+      benefitType &&
+      String(benefitType) === 'Universal Credit (UC)' &&
+      !isFeatureFlagEnabled('allowRFE');
+    const isCarersAllowanceBenefit =
+      String(benefitType) === benefitTypes.carersAllowance;
+    const isBereavementBenefit =
+      String(benefitType) === benefitTypes.bereavementBenefit;
+    const isMaternityAllowance =
+      String(benefitType) === benefitTypes.maternityAllowance;
+    const isBereavementSupportPaymentScheme =
+      String(benefitType) === benefitTypes.bereavementSupportPaymentScheme;
 
-    const skipToAppointee = (isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit || isMaternityAllowance ||
-      isBereavementSupportPaymentScheme) && isLessThanOrEqualToAMonth;
+    const skipToAppointee =
+      (isUCBenefit ||
+        isCarersAllowanceBenefit ||
+        isBereavementBenefit ||
+        isMaternityAllowance ||
+        isBereavementSupportPaymentScheme) &&
+      isLessThanOrEqualToAMonth;
     const skipToAppellantRole = isIba(this.req) && isLessThanOrEqualToAMonth;
     return branch(
       goTo(this.journey.steps.AppellantRole).if(skipToAppellantRole),

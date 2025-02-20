@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+/* eslint-disable max-lines */
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
@@ -12,14 +13,17 @@ describe('RepresentativeDetails.js', () => {
   const res = { send: sinon.spy() };
 
   beforeEach(() => {
-    representativeDetails = new RepresentativeDetails({
-      journey: {
-        steps: {
-          ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        }
+    representativeDetails = new RepresentativeDetails(
+      {
+        journey: {
+          steps: {
+            ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+          }
+        },
+        session: {}
       },
-      session: {}
-    }, res);
+      res
+    );
 
     representativeDetails.fields = {
       name: {
@@ -42,7 +46,9 @@ describe('RepresentativeDetails.js', () => {
 
   describe('get path()', () => {
     it('returns path /representative-details', () => {
-      expect(RepresentativeDetails.path).to.equal(paths.representative.representativeDetails);
+      expect(RepresentativeDetails.path).to.equal(
+        paths.representative.representativeDetails
+      );
     });
   });
 
@@ -126,127 +132,207 @@ describe('RepresentativeDetails.js', () => {
 
   describe('get CYAOrganisation()', () => {
     it('should return Not Provided if there is no organisation value', () => {
-      expect(representativeDetails.CYAOrganisation).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeDetails.CYAOrganisation).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the organisation if an organisation value has been set', () => {
       representativeDetails.fields.name.organisation.value = 'Organisation';
-      expect(representativeDetails.CYAOrganisation).to.equal(representativeDetails.fields.name.organisation.value);
+      expect(representativeDetails.CYAOrganisation).to.equal(
+        representativeDetails.fields.name.organisation.value
+      );
     });
   });
 
   describe('get CYAPhoneNumber()', () => {
     it('should return Not Provided if there is no phoneNumber value', () => {
-      expect(representativeDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeDetails.CYAPhoneNumber).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
       representativeDetails.fields.phoneNumber.value = '0800109756';
-      expect(representativeDetails.CYAPhoneNumber).to.equal(representativeDetails.fields.phoneNumber.value);
+      expect(representativeDetails.CYAPhoneNumber).to.equal(
+        representativeDetails.fields.phoneNumber.value
+      );
     });
   });
 
   describe('get CYAEmailAddress()', () => {
     it('should return Not Provided if there is no email value', () => {
-      expect(representativeDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeDetails.CYAEmailAddress).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
       representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      expect(representativeDetails.CYAEmailAddress).to.equal(representativeDetails.fields.emailAddress.value);
+      expect(representativeDetails.CYAEmailAddress).to.equal(
+        representativeDetails.fields.emailAddress.value
+      );
     });
   });
 
   describe('form validations', () => {
     describe('nameRequiredValidation', () => {
       it('true if all fields present', () => {
-        const value = { title: 'Mr', first: 'John', last: 'Doe', organisation: 'Org' };
-        expect(representativeDetails.nameRequiredValidation(value)).to.equal(true);
+        const value = {
+          title: 'Mr',
+          first: 'John',
+          last: 'Doe',
+          organisation: 'Org'
+        };
+        expect(representativeDetails.nameRequiredValidation(value)).to.equal(
+          true
+        );
       });
 
       it('true if one field present', () => {
-        expect(representativeDetails.nameRequiredValidation({ title: 'Mr' })).to.equal(true);
-        expect(representativeDetails.nameRequiredValidation({ first: 'Mr' })).to.equal(true);
-        expect(representativeDetails.nameRequiredValidation({ last: 'Mr' })).to.equal(true);
-        expect(representativeDetails.nameRequiredValidation({ organisation: 'Mr' })).to.equal(true);
+        expect(
+          representativeDetails.nameRequiredValidation({ title: 'Mr' })
+        ).to.equal(true);
+        expect(
+          representativeDetails.nameRequiredValidation({ first: 'Mr' })
+        ).to.equal(true);
+        expect(
+          representativeDetails.nameRequiredValidation({ last: 'Mr' })
+        ).to.equal(true);
+        expect(
+          representativeDetails.nameRequiredValidation({ organisation: 'Mr' })
+        ).to.equal(true);
       });
 
       it('false if fields empty', () => {
-        expect(representativeDetails.nameRequiredValidation({})).to.equal(false);
+        expect(representativeDetails.nameRequiredValidation({})).to.equal(
+          false
+        );
       });
     });
 
     describe('nameNoTitleValidation', () => {
       it('true if IBC', () => {
         representativeDetails.req.hostname = 'some-iba-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ first: 'Mr' }, representativeDetails.req)).to.equal(true);
+        expect(
+          representativeDetails.nameNoTitleValidation(
+            { first: 'Mr' },
+            representativeDetails.req
+          )
+        ).to.equal(true);
       });
 
       it('true if hasNameButNoTitleValidation is true', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ title: 'Mr', first: 'first' }, representativeDetails.req)).to.equal(true);
+        expect(
+          representativeDetails.nameNoTitleValidation(
+            { title: 'Mr', first: 'first' },
+            representativeDetails.req
+          )
+        ).to.equal(true);
       });
 
       it('false if non IBC and hasNameButNoTitleValidation is false', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.nameNoTitleValidation({ first: 'first' }, representativeDetails.req)).to.equal(false);
+        expect(
+          representativeDetails.nameNoTitleValidation(
+            { first: 'first' },
+            representativeDetails.req
+          )
+        ).to.equal(false);
       });
     });
 
     describe('titleNoNameValidation', () => {
       it('true if hasNameButNoTitleValidation is true', () => {
-        expect(representativeDetails.titleNoNameValidation({ title: 'Mr', first: 'first' })).to.equal(true);
+        expect(
+          representativeDetails.titleNoNameValidation({
+            title: 'Mr',
+            first: 'first'
+          })
+        ).to.equal(true);
       });
 
       it('false if hasNameButNoTitleValidation is false', () => {
-        expect(representativeDetails.titleNoNameValidation({ title: 'Mr' })).to.equal(false);
+        expect(
+          representativeDetails.titleNoNameValidation({ title: 'Mr' })
+        ).to.equal(false);
       });
     });
 
     describe('titleValidation', () => {
       it('true if IBC', () => {
         representativeDetails.req.hostname = 'some-iba-hostname';
-        expect(representativeDetails.titleValidation({ title: null }, representativeDetails.req)).to.equal(true);
+        expect(
+          representativeDetails.titleValidation(
+            { title: null },
+            representativeDetails.req
+          )
+        ).to.equal(true);
       });
 
       it('true if titleValidation is true', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.titleValidation({ title: 'Mr' }, representativeDetails.req)).to.equal(true);
+        expect(
+          representativeDetails.titleValidation(
+            { title: 'Mr' },
+            representativeDetails.req
+          )
+        ).to.equal(true);
       });
 
       it('false if non IBC and titleValidation is false', () => {
         representativeDetails.req.hostname = 'some-normal-hostname';
-        expect(representativeDetails.titleValidation({ title: '!!!' }, representativeDetails.req)).to.equal(false);
+        expect(
+          representativeDetails.titleValidation(
+            { title: '!!!' },
+            representativeDetails.req
+          )
+        ).to.equal(false);
       });
     });
 
     describe('firstValidation', () => {
       it('true if firstValidation is true', () => {
-        expect(representativeDetails.firstValidation({ first: 'first' })).to.equal(true);
+        expect(
+          representativeDetails.firstValidation({ first: 'first' })
+        ).to.equal(true);
       });
 
       it('false if firstValidation is false', () => {
-        expect(representativeDetails.firstValidation({ first: '!!!' })).to.equal(false);
+        expect(
+          representativeDetails.firstValidation({ first: '!!!' })
+        ).to.equal(false);
       });
     });
 
     describe('lastValidation', () => {
       it('true if lastValidation is true', () => {
-        expect(representativeDetails.lastValidation({ last: 'first' })).to.equal(true);
+        expect(
+          representativeDetails.lastValidation({ last: 'first' })
+        ).to.equal(true);
       });
 
       it('false if lastValidation is false', () => {
-        expect(representativeDetails.lastValidation({ last: '!!!' })).to.equal(false);
+        expect(representativeDetails.lastValidation({ last: '!!!' })).to.equal(
+          false
+        );
       });
     });
 
     describe('orgValidation', () => {
       it('true if orgValidation is true', () => {
-        expect(representativeDetails.orgValidation({ organisation: 'first' })).to.equal(true);
+        expect(
+          representativeDetails.orgValidation({ organisation: 'first' })
+        ).to.equal(true);
       });
 
       it('false if orgValidation is false', () => {
-        expect(representativeDetails.orgValidation({ organisation: '!@£$%^&*()¡€#¢∞§¶•ªº' })).to.equal(false);
+        expect(
+          representativeDetails.orgValidation({
+            organisation: '!@£$%^&*()¡€#¢∞§¶•ªº'
+          })
+        ).to.equal(false);
       });
     });
   });
@@ -260,7 +346,13 @@ describe('RepresentativeDetails.js', () => {
 
     it('should contain dynamic fields', () => {
       if (isPostCodeLookupEnabled) {
-        const req = { method: 'GET', body: {}, session: {}, query: {}, xhr: true };
+        const req = {
+          method: 'GET',
+          body: {},
+          session: {},
+          query: {},
+          xhr: true
+        };
         const next = sinon.spy();
         representativeDetails.req = req;
         representativeDetails.handler(req, res, next);
@@ -528,7 +620,8 @@ describe('RepresentativeDetails.js', () => {
 
     it('removes whitespace from before and after the phone number string', () => {
       representativeDetails.fields.phoneNumber.value = ' 0800109756 ';
-      const phoneNumber = representativeDetails.values().representative.contactDetails.phoneNumber;
+      const phoneNumber = representativeDetails.values().representative.contactDetails
+        .phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
@@ -536,7 +629,9 @@ describe('RepresentativeDetails.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /reason-for-appealing', () => {
-      expect(representativeDetails.next()).to.eql({ nextStep: paths.reasonsForAppealing.reasonForAppealing });
+      expect(representativeDetails.next()).to.eql({
+        nextStep: paths.reasonsForAppealing.reasonForAppealing
+      });
     });
   });
 });

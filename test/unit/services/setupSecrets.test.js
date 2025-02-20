@@ -24,48 +24,49 @@ describe(modulePath, () => {
       };
 
       // Update config with secret setup
-      const setupSecrets = proxyquire(modulePath,
-        { config: mockConfig });
+      const setupSecrets = proxyquire(modulePath, { config: mockConfig });
       setupSecrets();
 
-      expect(mockConfig.redis.secret)
-        .to.equal(mockConfig.secrets.sscs['sscs-redis-access-key']);
-      expect(mockConfig.services.idam.secret)
-        .to.equal(mockConfig.secrets.sscs['idam-sscs-oauth2-client-secret']);
-      expect(mockConfig.postcodeLookup.token)
-        .to.equal(mockConfig.secrets.sscs['postcode-lookup-token']);
+      expect(mockConfig.redis.secret).to.equal(
+        mockConfig.secrets.sscs['sscs-redis-access-key']
+      );
+      expect(mockConfig.services.idam.secret).to.equal(
+        mockConfig.secrets.sscs['idam-sscs-oauth2-client-secret']
+      );
+      expect(mockConfig.postcodeLookup.token).to.equal(
+        mockConfig.secrets.sscs['postcode-lookup-token']
+      );
     });
 
     it('should not set config values when secrets path is not set', () => {
       // Update config with secret setup
-      const setupSecrets = proxyquire(modulePath,
-        { config: mockConfig });
+      const setupSecrets = proxyquire(modulePath, { config: mockConfig });
       setupSecrets();
 
-      expect(mockConfig.redis.secret)
-        .to.equal(config.redis.secret);
-      expect(mockConfig.redis.secret)
-        .to.equal(config.redis.secret);
-      expect(mockConfig.services.idam.secret)
-        .to.equal(config.services.idam.secret);
+      expect(mockConfig.redis.secret).to.equal(config.redis.secret);
+      expect(mockConfig.redis.secret).to.equal(config.redis.secret);
+      expect(mockConfig.services.idam.secret).to.equal(
+        config.services.idam.secret
+      );
     });
 
     it('should only set one config value when single secret path is set', () => {
-      mockConfig.secrets = { sscs: { 'idam-sscs-oauth2-client-secret': 'idamValue' } };
+      mockConfig.secrets = {
+        sscs: { 'idam-sscs-oauth2-client-secret': 'idamValue' }
+      };
 
       // Update config with secret setup
-      const setupSecrets = proxyquire(modulePath,
-        { config: mockConfig });
+      const setupSecrets = proxyquire(modulePath, { config: mockConfig });
       setupSecrets();
 
-      expect(mockConfig.redis.secret)
-        .to.equal(config.redis.secret);
-      expect(mockConfig.redis.secret)
-        .to.equal(config.redis.secret);
-      expect(mockConfig.services.idam.secret)
-        .to.not.equal(config.services.idam.secret);
-      expect(mockConfig.services.idam.secret)
-        .to.equal(mockConfig.secrets.sscs['idam-sscs-oauth2-client-secret']);
+      expect(mockConfig.redis.secret).to.equal(config.redis.secret);
+      expect(mockConfig.redis.secret).to.equal(config.redis.secret);
+      expect(mockConfig.services.idam.secret).to.not.equal(
+        config.services.idam.secret
+      );
+      expect(mockConfig.services.idam.secret).to.equal(
+        mockConfig.secrets.sscs['idam-sscs-oauth2-client-secret']
+      );
     });
   });
 });

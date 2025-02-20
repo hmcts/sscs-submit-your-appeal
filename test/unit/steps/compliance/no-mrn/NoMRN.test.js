@@ -133,7 +133,9 @@ describe('NoMRN.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /still-can-appeal', () => {
-      expect(noMRN.next()).to.eql({ nextStep: paths.compliance.stillCanAppeal });
+      expect(noMRN.next()).to.eql({
+        nextStep: paths.compliance.stillCanAppeal
+      });
     });
   });
 });

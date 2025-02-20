@@ -17,15 +17,21 @@ const optionSelected = options => {
   return valueSet;
 };
 
-const languageInList = value => value.requested ? languages.includes(value.language) : true;
-const signLanguageInList = value => value.requested ? signLanguages.includes(value.language) : true;
-const emptyLanguageFieldValidation = value => value.requested && !value.language ? false : true;
+const languageInList = value =>
+  value.requested ? languages.includes(value.language) : true;
+const signLanguageInList = value =>
+  value.requested ? signLanguages.includes(value.language) : true;
+const emptyLanguageFieldValidation = value =>
+  value.requested && !value.language ? false : true;
 
 const validCharacters = value => {
   let validated = null;
 
   if (value.requested) {
-    const validString = Joi.validate(value.language, Joi.string().regex(whitelist));
+    const validString = Joi.validate(
+      value.language,
+      Joi.string().regex(whitelist)
+    );
     validated = validString.error === null;
   } else {
     validated = true;

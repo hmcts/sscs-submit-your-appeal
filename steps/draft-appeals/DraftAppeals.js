@@ -1,5 +1,7 @@
 const paths = require('paths');
-const { RestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
+const {
+  RestoreAllDraftsState
+} = require('middleware/draftAppealStoreMiddleware');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
@@ -17,18 +19,26 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   get tableHeadingTwo() {
-    return isIba(this.req) ? this.content.tableHeadings.appeal : this.content.tableHeadings.benefit;
+    return isIba(this.req) ?
+      this.content.tableHeadings.appeal :
+      this.content.tableHeadings.benefit;
   }
 
   get tableHeadingThree() {
-    return isIba(this.req) ? this.content.tableHeadings.rdnDate : this.content.tableHeadings.mrnDate;
+    return isIba(this.req) ?
+      this.content.tableHeadings.rdnDate :
+      this.content.tableHeadings.mrnDate;
   }
 
   handler(req, res, next) {
     if (req.method === 'GET') {
       const ibaCase = isIba(req);
       resetJourney(req);
-      if (ibaCase) req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
+      if (ibaCase) {
+        req.session.BenefitType = {
+          benefitType: benefitTypes.infectedBloodCompensation
+        };
+      }
       super.handler(req, res, next);
     } else {
       res.redirect(paths.start.benefitType);
@@ -54,7 +64,11 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   appellantName(draft) {
-    if (draft.AppellantName && draft.AppellantName.firstName && draft.AppellantName.lastName) {
+    if (
+      draft.AppellantName &&
+      draft.AppellantName.firstName &&
+      draft.AppellantName.lastName
+    ) {
       return `${draft.AppellantName.firstName} ${draft.AppellantName.lastName}`;
     }
     return 'Appellant Name Not Set';
@@ -70,7 +84,10 @@ class DraftAppeals extends RestoreAllDraftsState {
   mrnDate(draft) {
     if (draft.HaveAMRN && draft.HaveAMRN.haveAMRN === 'yes' && draft.MRNDate) {
       const mrnDateObj = draft.MRNDate.mrnDate;
-      const mrnDate = moment(`${mrnDateObj.day}-${mrnDateObj.month}-${mrnDateObj.year}`, 'DD-MM-yyyy');
+      const mrnDate = moment(
+        `${mrnDateObj.day}-${mrnDateObj.month}-${mrnDateObj.year}`,
+        'DD-MM-yyyy'
+      );
       return DateUtils.formatDate(mrnDate, 'DD MMM YYYY');
     }
     return isIba(this.req) ? 'No Review Decision Notice' : 'No Mrn';

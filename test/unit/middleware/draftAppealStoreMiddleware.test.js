@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const sinon = require('sinon');
 const { expect } = require('test/util/chai');
 const Base64 = require('js-base64').Base64;
@@ -39,13 +40,19 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('removeRevertInvalidSteps', () => {
     const journey = {};
-    journey.visitedSteps = [{ name: 'step1', valid: true }, { name: 'step1', valid: false }];
+    journey.visitedSteps = [
+      { name: 'step1', valid: true },
+      { name: 'step1', valid: false }
+    ];
     const callBack = sinon.spy();
 
     it('keep initial steps', () => {
       draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, callBack);
       // eslint-disable-next-line max-len
-      expect(journey.visitedSteps).to.eql([{ name: 'step1', valid: true }, { name: 'step1', valid: false }]);
+      expect(journey.visitedSteps).to.eql([
+        { name: 'step1', valid: true },
+        { name: 'step1', valid: false }
+      ]);
     });
 
     it('use only valid steps', () => {
@@ -86,9 +93,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('archiveDraft api call', () => {
     let req = {
-      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
-        visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
+      journey: {
+        values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
+        visitedSteps: [{ benefitType: '', valid: true }],
+        settings: {
+          apiDraftUrlCreate: `${apiUrl}/drafts`,
+          apiDraftUrl: `${apiUrl}/drafts`
+        }
+      },
       idam: {
         userDetails: {
           id: '1'
@@ -110,11 +122,15 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .delete('/drafts/case1234').reply(200, {});
+        .delete('/drafts/case1234')
+        .reply(200, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
 
-      expect(loggerSpy).to.have.been.calledWith('DELETE api:http://mockapi.com/drafts status:200', 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(
+        'DELETE api:http://mockapi.com/drafts status:200',
+        'draftAppealStoreMiddleware.js'
+      );
       expect(req.session.drafts).to.be.empty;
     });
 
@@ -122,15 +138,20 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .delete('/drafts/case1234').reply(500, {});
+        .delete('/drafts/case1234')
+        .reply(500, {});
 
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .delete('/drafts/case1234').reply(200, {});
+        .delete('/drafts/case1234')
+        .reply(200, {});
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
 
-      expect(loggerSpy).to.have.been.calledWith('Exception on archiving a draft for case with caseId: case1234', 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(
+        'Exception on archiving a draft for case with caseId: case1234',
+        'draftAppealStoreMiddleware.js'
+      );
     });
 
     it('Handles Archive a draft fail:', async() => {
@@ -144,7 +165,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
       await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
 
-      expect(loggerSpy).to.have.been.calledWith('Exception on archiving a draft for case with caseId: case1234', 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(
+        'Exception on archiving a draft for case with caseId: case1234',
+        'draftAppealStoreMiddleware.js'
+      );
     });
   });
 
@@ -156,7 +180,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         expires: '__expires__'
       },
       journey: {
-        visitedSteps: [ { benefitType: '', valid: false } ]
+        visitedSteps: [{ benefitType: '', valid: false }]
       },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' }
@@ -170,9 +194,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('saveToDraftStore api call', () => {
     let req = {
-      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
-        visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrlCreate: `${apiUrl}/drafts`, apiDraftUrl: `${apiUrl}/drafts` } },
+      journey: {
+        values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
+        visitedSteps: [{ benefitType: '', valid: true }],
+        settings: {
+          apiDraftUrlCreate: `${apiUrl}/drafts`,
+          apiDraftUrl: `${apiUrl}/drafts`
+        }
+      },
       idam: {
         userDetails: {
           id: '1'
@@ -187,12 +216,16 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .defaultReplyHeaders({
           'Content-Type': 'application/json'
         })
-        .put('/drafts').reply(200, { id: 12 });
+        .put('/drafts')
+        .reply(200, { id: 12 });
 
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
 
       expect(loggerSpy).to.have.been.calledWith('About to create new draft');
-      expect(loggerSpy).to.have.been.calledWith(['Successfully created a draft for case with nino: XXXX3344B', 200], 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(
+        ['Successfully created a draft for case with nino: XXXX3344B', 200],
+        'draftAppealStoreMiddleware.js'
+      );
       expect(req.session).to.eql({ ccdCaseId: 12 });
     });
 
@@ -207,12 +240,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('saveToDraftStore api failed call', () => {
     const req = {
-      journey: { values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
+      journey: {
+        values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
         steps: {
           Error500: paths.errors.internalServerError
         },
-        visitedSteps: [ { benefitType: '', valid: true } ],
-        settings: { apiDraftUrlCreate: `${apiUrl}/random-url` } },
+        visitedSteps: [{ benefitType: '', valid: true }],
+        settings: { apiDraftUrlCreate: `${apiUrl}/random-url` }
+      },
       idam: {
         userDetails: {
           id: '1'
@@ -224,7 +259,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('Expected error on posted a draft:', async() => {
       await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledWith('Exception on creating/updating a draft for case with nino: XXXX3344B', 'draftAppealStoreMiddleware.js');
+      expect(loggerSpy).to.have.been.calledWith(
+        'Exception on creating/updating a draft for case with nino: XXXX3344B',
+        'draftAppealStoreMiddleware.js'
+      );
     });
   });
 
@@ -259,7 +297,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
   describe('restoreUserState from api', () => {
     let req = {
-      journey: { values: { BenefitType: 'PIP' }, settings: { apiDraftUrl: `${apiUrl}/drafts` } },
+      journey: {
+        values: { BenefitType: 'PIP' },
+        settings: { apiDraftUrl: `${apiUrl}/drafts` }
+      },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' },
       session: {},
@@ -272,18 +313,29 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .defaultReplyHeaders({
           'Content-Type': 'application/json'
         })
-        .get('/drafts').reply(200, { benefitType: true });
+        .get('/drafts')
+        .reply(200, { benefitType: true });
 
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
 
-      expect(loggerSpy).to.have.been.calledWith(['Successfully get a draft', 200], 'draftAppealStoreMiddleware.js');
-      expect(req.session).to.eql({ isUserSessionRestored: true, benefitType: true, entryPoint: 'Entry' });
+      expect(loggerSpy).to.have.been.calledWith(
+        ['Successfully get a draft', 200],
+        'draftAppealStoreMiddleware.js'
+      );
+      expect(req.session).to.eql({
+        isUserSessionRestored: true,
+        benefitType: true,
+        entryPoint: 'Entry'
+      });
     });
   });
 
   describe('restoreAllDraftsState from api', () => {
     const req = {
-      journey: { values: { BenefitType: 'PIP' }, settings: { apiAllDraftUrl: `${apiUrl}/drafts/all` } },
+      journey: {
+        values: { BenefitType: 'PIP' },
+        settings: { apiAllDraftUrl: `${apiUrl}/drafts/all` }
+      },
       idam: 'test_user',
       cookies: { '__auth-token': 'xxx' },
       session: {},
@@ -296,27 +348,36 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       const draf2 = { ccdCaseId: 'draft2', key2: 'value2' };
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .get('/drafts/all').reply(200, [draf1, draf2]);
+        .get('/drafts/all')
+        .reply(200, [draf1, draf2]);
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(
+        request,
+        res,
+        next
+      );
 
       expect(request.session.drafts.draft1).to.eql(draf1);
       expect(request.session.drafts.draft2).to.eql(draf2);
     });
 
-
     it('Expected no drafts saved when save and return disabled:', async() => {
       const request = { session: {} };
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-        .get('/drafts/all').reply(200, [
+        .get('/drafts/all')
+        .reply(200, [
           { ccdCaseId: 'draft1', key1: 'value1' },
           { ccdCaseId: 'draft2', key1: 'value1' }
         ]);
 
       draftAppealStoreMiddleware.setFeatureFlag(false);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(
+        request,
+        res,
+        next
+      );
 
       expect(request.session.drafts).to.be.undefined;
     });
@@ -331,7 +392,11 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .reply(204, {});
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
-      await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
+      await draftAppealStoreMiddleware.restoreAllDraftsState(
+        request,
+        res,
+        next
+      );
 
       expect(request.session.drafts).to.be.empty;
     });
@@ -363,7 +428,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     });
-
 
     class authAndRestoreAllDraftsStateClass extends draftAppealStoreMiddleware.AuthAndRestoreAllDraftsState {
       next() {
@@ -412,7 +476,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         sinon.spy();
       }
     }
-
 
     const saveToDraftStore = new saveToDraftStoreClass({
       journey: {

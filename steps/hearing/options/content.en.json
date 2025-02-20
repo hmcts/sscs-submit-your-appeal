@@ -1,11 +1,8 @@
 {
   "titleHead": "Your hearing",
-  "title": "Select the suitable options for you to attend the hearing.",
-  "titleIba": "Taking part in a hearing",
-  "subtitle": "The type of oral hearing will be at the discretion of the tribunal.",
-  "subtitleIba": "The type of hearing you take part in will be decided by the tribunal. In most cases it will be in person at a tribunal venue.",
-  "instructions": "Please select all the suitable options for you to take part in the hearing.",
-  "instructionsIba": "Select all that apply",
+  "title": "Taking part in a hearing",
+  "subtitle": "The type of hearing you take part in will be decided by the tribunal. In most cases it will be in person at a tribunal venue.",
+  "instructions": "Select all that apply",
   "tribunalExplained": "The tribunal will tell you how to take part before your hearing date.",
   "supportExplained": "If you need physical support to take part in a hearing, you can tell us later in this appeal form.",
   "fields": {
@@ -32,11 +29,9 @@
           "invalid": "You have entered an invalid email address. Check it and enter it again"
         }
       },
-      "faceToFace": {
+      "inPerson": {
         "requested": {
-          "label": "Face to face (you'll need to travel to the hearing in person).",
-          "labelIba": "In person (you'll need to travel to a hearing venue)."
-          
+          "label": "In person (you'll need to travel to a hearing venue)."
         }
       }
     }
@@ -50,7 +45,6 @@
     "notRequired": "Not required",
     "hearingTypeTelephone": "Telephone hearing",
     "hearingTypeVideo": "Video hearing",
-    "hearingTypeFaceToFace": "Face to face hearing",
-    "hearingTypeInPersonIba": "In person hearing"
+    "hearingTypeInPerson": "In person hearing"
   }
 }

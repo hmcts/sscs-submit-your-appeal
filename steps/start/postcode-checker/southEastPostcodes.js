@@ -183,14 +183,7 @@ const cambridge = [
   'SG8'
 ];
 
-const chatham = [
-  'ME1',
-  'ME2',
-  'ME3',
-  'ME4',
-  'ME5',
-  'ME6'
-];
+const chatham = ['ME1', 'ME2', 'ME3', 'ME4', 'ME5', 'ME6'];
 
 const colchester = [
   'CM0',
@@ -212,14 +205,7 @@ const colchester = [
   'CO9'
 ];
 
-const eastbourne = [
-  'TN41',
-  'BN20',
-  'BN21',
-  'BN22',
-  'BN23',
-  'BN24'
-];
+const eastbourne = ['TN41', 'BN20', 'BN21', 'BN22', 'BN23', 'BN24'];
 
 const harlow = [
   'CM10',
@@ -524,13 +510,7 @@ const reading = [
   'RG45'
 ];
 
-const southend = [
-  'SS0',
-  'SS1',
-  'SS2',
-  'SS3',
-  'SS4'
-];
+const southend = ['SS0', 'SS1', 'SS2', 'SS3', 'SS4'];
 const stevenage = [
   'SG1',
   'SG2',

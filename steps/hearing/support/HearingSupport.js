@@ -34,9 +34,12 @@ class HearingSupport extends SaveToDraftStore {
   }
 
   next() {
-    const makeHearingArrangements = this.fields.arrangements.value === userAnswer.YES;
+    const makeHearingArrangements =
+      this.fields.arrangements.value === userAnswer.YES;
     return branch(
-      redirectTo(this.journey.steps.HearingArrangements).if(makeHearingArrangements),
+      redirectTo(this.journey.steps.HearingArrangements).if(
+        makeHearingArrangements
+      ),
       redirectTo(this.journey.steps.HearingAvailability)
     );
   }

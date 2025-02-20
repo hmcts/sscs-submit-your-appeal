@@ -36,26 +36,34 @@ describe('SmsConfirmation.js', () => {
     it('should return enterMobile when the appellantPhoneNumber is an empty string', () => {
       smsConfirmation.fields.phoneNumber.value = '';
       smsConfirmation.fields.enterMobile.value = '07411738663';
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.enterMobile.value
+      );
     });
 
     it('should return enterMobile when the appellantPhoneNumber is not a mobile', () => {
       smsConfirmation.fields.phoneNumber.value = '01277345672';
       smsConfirmation.fields.enterMobile.value = '07411738663';
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.enterMobile.value
+      );
     });
 
     it('should return enterMobile, appellantPhoneNumber is a mobile but provides another', () => {
       smsConfirmation.fields.phoneNumber.value = '07411738765';
       smsConfirmation.fields.useSameNumber.value = userAnswer.NO;
       smsConfirmation.fields.enterMobile.value = '07411738371';
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.enterMobile.value
+      );
     });
 
     it('should return appellantPhoneNumber which is a mobile', () => {
       smsConfirmation.fields.phoneNumber.value = '07411738765';
       smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.phoneNumber.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.phoneNumber.value
+      );
     });
 
     it('should return internationalAppellantPhoneNumber inMainlandUk No when is not a mobile', () => {
@@ -63,14 +71,18 @@ describe('SmsConfirmation.js', () => {
       smsConfirmation.fields.internationalPhoneNumber.value = '01277345672';
       smsConfirmation.fields.enterMobile.value = '07411738663';
       smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.enterMobile.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.enterMobile.value
+      );
     });
 
     it('should return internationalAppellantPhoneNumber inMainlandUk No when which is a mobile', () => {
       smsConfirmation.fields.inMainlandUk.value = 'no';
       smsConfirmation.fields.internationalPhoneNumber.value = '07411738765';
       smsConfirmation.fields.useSameNumber.value = userAnswer.YES;
-      expect(smsConfirmation.mobileNumber).to.eq(smsConfirmation.fields.internationalPhoneNumber.value);
+      expect(smsConfirmation.mobileNumber).to.eq(
+        smsConfirmation.fields.internationalPhoneNumber.value
+      );
     });
   });
 
@@ -93,25 +105,25 @@ describe('SmsConfirmation.js', () => {
       );
     });
 
-    it('should contain a textField reference called \'enterMobile\'', () => {
+    it("should contain a textField reference called 'enterMobile'", () => {
       const textField = fields.enterMobile;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'useSameNumber\'', () => {
+    it("should contain a textField reference called 'useSameNumber'", () => {
       const textField = fields.useSameNumber;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'phoneNumber\'', () => {
+    it("should contain a textField reference called 'phoneNumber'", () => {
       const textField = fields.phoneNumber;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'appointeePhoneNumber\'', () => {
+    it("should contain a textField reference called 'appointeePhoneNumber'", () => {
       const textField = fields.appointeePhoneNumber;
       expect(textField.constructor.name).to.equal('FieldDescriptor');
       expect(textField.validations).to.be.empty;
@@ -175,8 +187,9 @@ describe('SmsConfirmation.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /representative', () => {
-      expect(smsConfirmation.next()).to
-        .eql({ nextStep: paths.representative.representative });
+      expect(smsConfirmation.next()).to.eql({
+        nextStep: paths.representative.representative
+      });
     });
   });
 });

@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
@@ -7,14 +8,13 @@
     <p class="govuk-body">{{ content.supportCanBeArranged }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwn }}</p>
 
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.arrangements,
-            content.fields.arrangements.label,
+        {{ govRadio(
+            field = fields.arrangements,
+            headerText = content.fields.arrangements.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.arrangements.yes, value: "yes" },
-                { label: content.fields.arrangements.no, value: "no" }
-            ])
-        }}
+            items = [
+                { text: content.fields.arrangements.yes, value: "yes" },
+                { text: content.fields.arrangements.no, value: "no" }
+        ]) }}
     {% endcall %}
 {% endblock %}

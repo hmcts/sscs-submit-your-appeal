@@ -22,7 +22,9 @@ describe('HearingAvailability.js', () => {
 
   describe('get path()', () => {
     it('returns path /hearing-availability', () => {
-      expect(HearingAvailability.path).to.equal(paths.hearing.hearingAvailability);
+      expect(HearingAvailability.path).to.equal(
+        paths.hearing.hearingAvailability
+      );
     });
   });
 
@@ -94,7 +96,9 @@ describe('HearingAvailability.js', () => {
   describe('next()', () => {
     it('returns the next step path /dates-cant-attend when scheduleHearing value is Yes', () => {
       hearingAvailability.fields.scheduleHearing.value = 'yes';
-      expect(hearingAvailability.next().step).to.eq(paths.hearing.datesCantAttend);
+      expect(hearingAvailability.next().step).to.eq(
+        paths.hearing.datesCantAttend
+      );
     });
 
     it('returns the next step path /check-your-appeal when scheduleHearing value is No', () => {

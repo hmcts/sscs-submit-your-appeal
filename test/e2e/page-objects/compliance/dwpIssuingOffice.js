@@ -5,11 +5,16 @@ async function enterDWPIssuingOfficeAndContinue(I, commonContent, id) {
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-async function enterDWPIssuingOfficeAndContinueAfterSignIn(I, commonContent, id) {
+async function enterDWPIssuingOfficeAndContinueAfterSignIn(
+  I,
+  commonContent,
+  id
+) {
   await I.locator('#pipNumber').selectOption(id);
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
-
 
 async function enterDWPIssuingOffice(I, commonContent, id) {
   await I.locator('#dwpIssuingOffice').selectOption(id);

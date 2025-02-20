@@ -147,13 +147,20 @@ to project root folder
 ```bash
 curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/yarn-audit-with-suppressions.sh
 curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/prettyPrintAudit.sh
+curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/format-v4-audit.cjs
 ```
 
-Make both files executable
+Make the scripts executable
 
 ```bash
 chmod +x ./yarn-audit-with-suppressions.sh
 chmod +x ./prettyPrintAudit.sh
+```
+
+Set the environment variable of yarn version
+
+```bash
+export YARN_VERSION=$(yarn --version | cut -d. -f1)
 ```
 
 Run `yarn-audit-with-suppressions.sh`

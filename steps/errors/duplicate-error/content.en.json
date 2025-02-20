@@ -1,7 +1,7 @@
 {
-    "titleHead": "Appeal submitted",
-    "title": "An appeal has already been submitted, for that decision date {{ duplicateErrorMrnDate }}",
-    "message": "Please check the date of your MRN, and try again.",
-    "messageContactUs": "If you were not expecting to see this message, please use the details below to contact us.",
-    "tryAgain": "Try again"
+  "titleHead": "Appeal submitted",
+  "title": "An appeal has already been submitted, for that decision date {{ duplicateErrorMrnDate }}",
+  "message": "Please check the date of your MRN, and try again.",
+  "messageContactUs": "If you were not expecting to see this message, please use the details below to contact us.",
+  "tryAgain": "Try again"
 }

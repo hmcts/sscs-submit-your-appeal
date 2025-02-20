@@ -13,7 +13,12 @@ async function enterAnMRNDateAndContinueAfterSignIn(I, commonContent, date) {
   await I.locator('input[name*="month"]').fill((date.month() + 1).toString());
   await I.locator('input[name*="year"]').fill(date.year().toString());
   await expect(I.getByText(commonContent.continue).first()).toBeEnabled();
-  await I.getByRole('button', { name: commonContent.saveAndContinue }).first().click();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-module.exports = { enterAnMRNDateAndContinue, enterAnMRNDateAndContinueAfterSignIn };
+module.exports = {
+  enterAnMRNDateAndContinue,
+  enterAnMRNDateAndContinueAfterSignIn
+};

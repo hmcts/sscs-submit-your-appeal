@@ -16,8 +16,9 @@
 
 {% block two_thirds %}
     {{ errorSummary(fields, commonContent[htmlLang].errorSummaryHeading) }}
-    {{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
-
+    {% if title %}
+        {{ header(title, size='l', fieldsValidated=fields.validated, fieldsValid=fields.valid) }}
+    {% endif %}
     <form enctype="{{ enc_type | default('application/x-www-form-urlencoded') }}"
           action="{{ postUrl | default(path if path else url) }}"
           method="post"
@@ -25,6 +26,7 @@
           {% if config.autocomplete %}
               autocomplete="{{ config.autocomplete }}"
           {% endif %}
+          novalidate
     >
         {% block fields -%}
         {%- endblock %}

@@ -10,6 +10,8 @@ properties([
                         defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
                         description: 'The URL you want to run these tests against'),
                 string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '10', description: 'Number of retries for failed tests'),
+                string(name: 'E2E_TEST_TAGS', defaultValue: '@functional,@fullFunctional', description: 'The tags to run the e2e tests against - separate with ,')
         ])
 ])
 
@@ -25,12 +27,14 @@ def secrets = [
         ]
 ]
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-    [ $class: 'AzureKeyVaultSecret',
-      secretType: 'Secret',
-      name: secretName,
-      version: '',
-      envVariable: envVar
+    [$class     : 'AzureKeyVaultSecret',
+     secretType : 'Secret',
+     name       : secretName,
+     version    : '',
+     envVariable: envVar
     ]
 }
 
@@ -39,6 +43,8 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
+    env.RETRIES = params.RETRIES
+    env.E2E_TEST_TAGS = params.E2E_TEST_TAGS
 
     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
@@ -52,16 +58,34 @@ withNightlyPipeline("nodejs", product, component) {
     afterAlways('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*/**'
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
 
     afterSuccess('crossBrowserTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/crossbrowser-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Crossbrowser test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/crossbrowser-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Crossbrowser test report"
         ]
         enableSlackNotifications('#sscs-tech')
     }
@@ -73,12 +97,12 @@ withNightlyPipeline("nodejs", product, component) {
 
     afterSuccess('mutationTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/mutation-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Mutation test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/mutation-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Mutation test report"
         ]
     }
 
@@ -89,12 +113,12 @@ withNightlyPipeline("nodejs", product, component) {
 
     afterSuccess('fullFunctionalTest') {
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 }

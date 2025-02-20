@@ -50,18 +50,18 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
     test(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, async({ page }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
       await enterPostcodeAndContinue(page, language, commonContent, testData.appellant.contactDetails.postCode);
-      await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
+      await checkOptionAndContinue(page, commonContent, '#isAppointee');
       await continueFromIndependance(page, commonContent);
-      await checkOptionAndContinue(page, commonContent, '#haveAMRN-yes');
+      await checkOptionAndContinue(page, commonContent, '#haveAMRN');
       await enterDWPIssuingOfficeAndContinue(page, commonContent, testData.mrn.dwpIssuingOffice);
       await enterAnMRNDateAndContinue(page, commonContent, obj.mrnDate);
-      await checkOptionAndContinue(page, commonContent, '#checkedMRN-yes');
+      await checkOptionAndContinue(page, commonContent, '#checkedMRN');
       await enterReasonsForBeingLateAndContinue(page, commonContent, testData.mrn.reasonWhyMRNisLate);
       await enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
       await enterAppellantDOBAndContinue(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
       await enterAppellantNINOAndContinue(page, language, commonContent, appellant.nino);
       await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-      await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+      await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-2');
       await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
       await confirmDetailsArePresent(page, language, true, obj.mrnDate);
     });

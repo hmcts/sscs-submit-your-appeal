@@ -34,12 +34,12 @@ test.describe(`${language.toUpperCase()} - Hearing options test for type Telepho
     await page.goto(paths.session.root);
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
-    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
-    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-yes');
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing');
     await selectTelephoneHearingOptionsAndContinue(page, language, commonContent);
-    await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-no');
-    await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-no');
+    await selectDoYouNeedSupportAndContinue(page, language, commonContent, '#arrangements-2');
+    await selectHearingAvailabilityAndContinue(page, language, commonContent, '#scheduleHearing-2');
     await skipPcq(page);
     await checkYourAppealToConfirmationPage(page, language, testData.signAndSubmit.signer);
 

@@ -12,7 +12,10 @@ const {
 } = require('utils/enumJsonLists');
 const superagent = require('superagent');
 const config = require('config');
-const { fetchCountriesOfResidence, fetchPortsOfEntry } = require('utils/enumJsonLists');
+const {
+  fetchCountriesOfResidence,
+  fetchPortsOfEntry
+} = require('utils/enumJsonLists');
 
 describe('AppellantInternationalContactDetails.js', () => {
   let superagentGetStub = null;
@@ -30,12 +33,20 @@ describe('AppellantInternationalContactDetails.js', () => {
       body: [
         { label: 'Entry1', locationCode: 'locationCode1' },
         { label: 'Entry2', locationCode: 'locationCode2' }
-      ], status: 200
+      ],
+      status: 200
     };
-    const mockCountryResponse = { body: [{ label: 'Entry1' }, { label: 'Entry2' }], status: 200 };
+    const mockCountryResponse = {
+      body: [{ label: 'Entry1' }, { label: 'Entry2' }],
+      status: 200
+    };
     superagentGetStub = sinon.stub(superagent, 'get');
-    superagentGetStub.withArgs(`${config.api.url}/api/citizen/ports-of-entry`).resolves(mockPortsResponse);
-    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    superagentGetStub
+      .withArgs(`${config.api.url}/api/citizen/ports-of-entry`)
+      .resolves(mockPortsResponse);
+    superagentGetStub
+      .withArgs(`${config.api.url}/api/citizen/countries-of-residence`)
+      .resolves(mockCountryResponse);
     await fetchPortsOfEntry();
     await fetchCountriesOfResidence();
   });
@@ -46,7 +57,9 @@ describe('AppellantInternationalContactDetails.js', () => {
 
   describe('get path()', () => {
     it('returns path /appellant-international-contact-details', () => {
-      expect(AppellantInternationalContactDetails.path).to.equal(paths.identity.enterAppellantInternationalContactDetails);
+      expect(AppellantInternationalContactDetails.path).to.equal(
+        paths.identity.enterAppellantInternationalContactDetails
+      );
     });
   });
 
@@ -104,7 +117,16 @@ describe('AppellantInternationalContactDetails.js', () => {
 
     it('should contain 5 fields', () => {
       expect(Object.keys(fields).length).to.equal(8);
-      expect(fields).to.have.all.keys('addressLine1', 'addressLine2', 'townCity', 'country', 'postCode', 'portOfEntry', 'phoneNumber', 'emailAddress');
+      expect(fields).to.have.all.keys(
+        'addressLine1',
+        'addressLine2',
+        'townCity',
+        'country',
+        'postCode',
+        'portOfEntry',
+        'phoneNumber',
+        'emailAddress'
+      );
     });
 
     describe('country field', () => {
@@ -234,28 +256,39 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
   });
 
-
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(appellantInternationalContactDetails.getCountries).to.equal(getCountriesOfResidence());
+      expect(appellantInternationalContactDetails.getCountries).to.equal(
+        getCountriesOfResidence()
+      );
     });
   });
 
   describe('get getPortOfEntryList()', () => {
     it('should return the portOfEntryList', () => {
-      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(getPortsOfEntry());
+      expect(appellantInternationalContactDetails.getPortOfEntryList).to.equal(
+        getPortsOfEntry()
+      );
     });
   });
 
   describe('get getPortOfEntryFromCode()', () => {
     it('should return the correct port of entry for code locationCode1', () => {
-      appellantInternationalContactDetails.fields.portOfEntry = { value: 'locationCode1' };
-      expect(appellantInternationalContactDetails.getPortOfEntryFromCode).to.equal('Entry1');
+      appellantInternationalContactDetails.fields.portOfEntry = {
+        value: 'locationCode1'
+      };
+      expect(
+        appellantInternationalContactDetails.getPortOfEntryFromCode
+      ).to.equal('Entry1');
     });
 
     it('should return the correct port of entry for code locationCode2', () => {
-      appellantInternationalContactDetails.fields.portOfEntry = { value: 'locationCode2' };
-      expect(appellantInternationalContactDetails.getPortOfEntryFromCode).to.equal('Entry2');
+      appellantInternationalContactDetails.fields.portOfEntry = {
+        value: 'locationCode2'
+      };
+      expect(
+        appellantInternationalContactDetails.getPortOfEntryFromCode
+      ).to.equal('Entry2');
     });
   });
 
@@ -275,42 +308,67 @@ describe('AppellantInternationalContactDetails.js', () => {
     });
   });
 
-
   describe('get CYAPhoneNumber()', () => {
     it('should return Not Provided if there is no phoneNumber value', () => {
       appellantInternationalContactDetails.fields.phoneNumber = {};
-      expect(appellantInternationalContactDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
+      expect(appellantInternationalContactDetails.CYAPhoneNumber).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
-      appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
-      expect(appellantInternationalContactDetails.CYAPhoneNumber)
-        .to.equal(appellantInternationalContactDetails.fields.phoneNumber.value);
+      appellantInternationalContactDetails.fields.phoneNumber = {
+        value: '0800109756'
+      };
+      expect(appellantInternationalContactDetails.CYAPhoneNumber).to.equal(
+        appellantInternationalContactDetails.fields.phoneNumber.value
+      );
     });
   });
   describe('get CYAEmailAddress()', () => {
     it('should return Not Provided if there is no email value', () => {
       appellantInternationalContactDetails.fields.phoneNumber = {};
-      expect(appellantInternationalContactDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
+      expect(appellantInternationalContactDetails.CYAEmailAddress).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
-      appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
-      expect(appellantInternationalContactDetails.CYAEmailAddress)
-        .to.equal(appellantInternationalContactDetails.fields.emailAddress.value);
+      appellantInternationalContactDetails.fields.emailAddress = {
+        value: 'myemailaddress@sscs.com'
+      };
+      expect(appellantInternationalContactDetails.CYAEmailAddress).to.equal(
+        appellantInternationalContactDetails.fields.emailAddress.value
+      );
     });
   });
 
   describe('values()', () => {
     it('should contain a value object', () => {
-      appellantInternationalContactDetails.fields.country = { value: 'Iceland' };
-      appellantInternationalContactDetails.fields.addressLine1 = { value: 'Some address line 1' };
-      appellantInternationalContactDetails.fields.addressLine2 = { value: 'Some address line 2' };
-      appellantInternationalContactDetails.fields.townCity = { value: 'Some Town or City' };
-      appellantInternationalContactDetails.fields.postCode = { value: 'Some Zipcode' };
-      appellantInternationalContactDetails.fields.portOfEntry = { value: 'Biggin Hill' };
-      appellantInternationalContactDetails.fields.phoneNumber = { value: '0800109756' };
-      appellantInternationalContactDetails.fields.emailAddress = { value: 'myemailaddress@sscs.com' };
+      appellantInternationalContactDetails.fields.country = {
+        value: 'Iceland'
+      };
+      appellantInternationalContactDetails.fields.addressLine1 = {
+        value: 'Some address line 1'
+      };
+      appellantInternationalContactDetails.fields.addressLine2 = {
+        value: 'Some address line 2'
+      };
+      appellantInternationalContactDetails.fields.townCity = {
+        value: 'Some Town or City'
+      };
+      appellantInternationalContactDetails.fields.postCode = {
+        value: 'Some Zipcode'
+      };
+      appellantInternationalContactDetails.fields.portOfEntry = {
+        value: 'Biggin Hill'
+      };
+      appellantInternationalContactDetails.fields.phoneNumber = {
+        value: '0800109756'
+      };
+      appellantInternationalContactDetails.fields.emailAddress = {
+        value: 'myemailaddress@sscs.com'
+      };
 
       const values = appellantInternationalContactDetails.values();
       expect(values).to.eql({
@@ -363,18 +421,21 @@ describe('AppellantInternationalContactDetails.js', () => {
       appellantInternationalContactDetails.fields.postCode = {};
       appellantInternationalContactDetails.fields.portOfEntry = {};
       appellantInternationalContactDetails.fields.emailAddress = {};
-      appellantInternationalContactDetails.fields.phoneNumber = { value: ' 0800109756 ' };
-      const phoneNumber = appellantInternationalContactDetails.values().appellant.contactDetails.phoneNumber;
+      appellantInternationalContactDetails.fields.phoneNumber = {
+        value: ' 0800109756 '
+      };
+      const phoneNumber = appellantInternationalContactDetails.values().appellant.contactDetails
+        .phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
   });
 
-
   describe('next()', () => {
     it('returns the next step path /appellant-text-reminders', () => {
-      expect(appellantInternationalContactDetails.next().step)
-        .to.eql(paths.smsNotify.appellantTextReminders);
+      expect(appellantInternationalContactDetails.next().step).to.eql(
+        paths.smsNotify.appellantTextReminders
+      );
     });
   });
 });

@@ -17,9 +17,18 @@ class TextReminders extends SaveToDraftStore {
 
   get form() {
     return form({
-      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
-      internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
-      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber'),
+      phoneNumber: text.ref(
+        this.journey.steps.AppellantContactDetails,
+        'phoneNumber'
+      ),
+      internationalPhoneNumber: text.ref(
+        this.journey.steps.AppellantInternationalContactDetails,
+        'phoneNumber'
+      ),
+      appointeePhoneNumber: text.ref(
+        this.journey.steps.AppointeeContactDetails,
+        'phoneNumber'
+      ),
       doYouWantTextMsgReminders: text.joi(
         this.content.fields.doYouWantTextMsgReminders.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
@@ -34,7 +43,11 @@ class TextReminders extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.doYouWantTextMsgReminders.question,
         section: sections.textMsgReminders,
-        answer: titleise(content.cya.doYouWantTextMsgReminders[this.fields.doYouWantTextMsgReminders.value])
+        answer: titleise(
+          content.cya.doYouWantTextMsgReminders[
+            this.fields.doYouWantTextMsgReminders.value
+          ]
+        )
       })
     ];
   }
@@ -54,12 +67,15 @@ class TextReminders extends SaveToDraftStore {
   }
 
   next() {
-    const wantsTextMsgReminders = this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
+    const wantsTextMsgReminders =
+      this.fields.doYouWantTextMsgReminders.value === userAnswer.YES;
     let nextStep = null;
-    if (regex.mobileNumber.test(
-      this.fields.phoneNumber.value ||
-      this.fields.appointeePhoneNumber.value ||
-      this.fields.internationalPhoneNumber.value)
+    if (
+      regex.mobileNumber.test(
+        this.fields.phoneNumber.value ||
+          this.fields.appointeePhoneNumber.value ||
+          this.fields.internationalPhoneNumber.value
+      )
     ) {
       nextStep = this.journey.steps.SendToNumber;
     } else {

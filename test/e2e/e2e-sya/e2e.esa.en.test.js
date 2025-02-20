@@ -11,7 +11,18 @@ const office = testDataEn.benefitTypes[1].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[1].hasDwpIssuingOffice;
 
 test.describe(`${language.toUpperCase()} - ESA E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ESA E2E SYA Journey`, { tag: ['@fullFunctional', '@e2e'] }, async({ page }) => {
-    await e2eBenefit.e2eBenefit(page, benefitCode, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
-  });
+  test(
+    `${language.toUpperCase()} - ESA E2E SYA Journey`,
+    { tag: ['@fullFunctional', '@e2e'] },
+    async({ page }) => {
+      await e2eBenefit.e2eBenefit(
+        page,
+        benefitCode,
+        office,
+        testData.signAndSubmit.signer,
+        language,
+        hasDwpIssuingOffice
+      );
+    }
+  );
 });

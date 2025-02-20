@@ -3,7 +3,6 @@ const SignOut = require('steps/idam/sign-out/SignOut');
 
 const paths = require('paths');
 
-
 describe('SignOut.js', () => {
   describe('get path()', () => {
     it('returns path /exit', () => {

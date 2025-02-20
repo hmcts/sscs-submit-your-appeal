@@ -3,7 +3,11 @@ const { form, text } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
-const { getBenefitName, getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
+const {
+  getBenefitName,
+  getBenefitCode,
+  isFeatureFlagEnabled
+} = require('utils/stringUtils');
 const Joi = require('joi');
 const paths = require('paths');
 const i18next = require('i18next');
@@ -68,7 +72,8 @@ class DWPIssuingOffice extends SaveToDraftStore {
     return form({
       pipNumber: text.joi(
         this.content.fields.pipNumber.error.required,
-        Joi.string().required())
+        Joi.string().required()
+      )
     });
   }
 

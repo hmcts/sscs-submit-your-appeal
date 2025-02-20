@@ -21,7 +21,9 @@ describe('HearingArrangements.js', () => {
 
   describe('get path()', () => {
     it('returns path /not-attending-hearing', () => {
-      expect(notAttendingHearing.path).to.equal(paths.hearing.notAttendingHearing);
+      expect(notAttendingHearing.path).to.equal(
+        paths.hearing.notAttendingHearing
+      );
     });
   });
 
@@ -54,7 +56,7 @@ describe('HearingArrangements.js', () => {
       expect(notAttendingHearing.byPostOrEmail).to.equal('post');
     });
 
-    it('returns post content when emailAddress field doesn\'t have a value', () => {
+    it("returns post content when emailAddress field doesn't have a value", () => {
       notAttendingHearing.fields.emailAddress.value = 'email address';
       expect(notAttendingHearing.byPostOrEmail).to.equal('email');
     });
@@ -66,7 +68,6 @@ describe('HearingArrangements.js', () => {
       expect(answers.hide).to.equal(true);
     });
   });
-
 
   describe('next()', () => {
     it('returns the next step path /check-your-appeal', () => {

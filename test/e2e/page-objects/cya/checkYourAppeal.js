@@ -94,17 +94,17 @@ const appellant = testDataEn.appellant;
 
 async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
-  //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
+  //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
-    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-no');
+    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
   }
-  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN-yes');
+  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinue(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinue(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
-  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinue(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinue(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinue(I, language, commonContent, testNIData.generateValidNINumber());
@@ -112,19 +112,19 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
 
 async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
-  // if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
+  // if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
-    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-no');
+    await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
   }
-  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN-yes');
+  await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinue(I, commonContent, DateUtils.getRandomDateInLast30Days(language));
   if (hasDwpIssuingOffice) {
     await enterDWPIssuingOffice(I, commonContent, office);
   }
-  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinue(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinue(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinue(I, language, commonContent, testNIData.generateValidNINumber());
@@ -134,10 +134,10 @@ async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benef
 async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
   /* Create new application */
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
-  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-yes');
+  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, newUserEmail, testDataEn.signIn.password, language);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
@@ -146,17 +146,17 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   /* Login to submit saved case */
   await createTheSession(I, language);
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
-  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-yes');
+  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, newUserEmail, testDataEn.signIn.password, language);
   await verifyDraftAppealsAndEditACase(I, language);
   await continueFromIndependance(I, commonContent);
-  await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN-yes');
+  await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinueAfterSignIn(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinueAfterSignIn(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
-  await selectAreYouAnAppointeeAndContinueAfterSignIn(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinueAfterSignIn(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinueAfterSignIn(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinueAfterSignIn(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinueAfterSignIn(I, language, commonContent, testNIData.generateValidNINumber());
@@ -164,31 +164,31 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
 
 async function enterDetailsFromStartToDraft(I, commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
-  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-yes');
+  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signInVerifylanguage(I, newUserEmail, testDataEn.signIn.password, language);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, 'no');
+  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinueAfterSignIn(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
 }
 
 async function enterDetailsForNewApplication(I, commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
-  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-yes');
+  await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, userEmail, testDataEn.signIn.password, language);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, 'no');
+  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinueAfterSignIn(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
-  await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN-yes');
+  await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinueAfterSignIn(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinueAfterSignIn(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
 }
@@ -201,41 +201,41 @@ async function enterDetailsToArchiveACase(I, commonContent, language, userEmail)
 }
 
 async function enterDetailsFromNoRepresentativeToUploadingEvidence(I, language, commonContent) {
-  await selectDoYouHaveARepresentativeAndContinue(I, commonContent, '#hasRepresentative-no');
+  await selectDoYouHaveARepresentativeAndContinue(I, commonContent, '#hasRepresentative-2');
   await addReasonForAppealingUsingTheOnePageFormAndContinue(I, language, commonContent, testDataEn.reasonsForAppealing.reasons[0]);
   await enterAnythingElseAndContinue(I, language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
   if (!evidenceUploadEnabled) {
     await readSendingEvidenceAndContinue(I, commonContent);
   }
   if (evidenceUploadEnabled) {
-    await selectAreYouProvidingEvidenceAndContinue(I, language, commonContent, '#evidenceProvide-yes');
+    await selectAreYouProvidingEvidenceAndContinue(I, language, commonContent, '#evidenceProvide');
     await uploadAPieceOfEvidence(I);
     await enterDescription(I, commonContent, 'Some description of the evidence');
   }
 }
 
 async function enterDetailsFromNoRepresentativeToNoUploadingEvidence(I, language, commonContent) {
-  await selectDoYouHaveARepresentativeAndContinue(I, commonContent, '#hasRepresentative-no');
+  await selectDoYouHaveARepresentativeAndContinue(I, commonContent, '#hasRepresentative-2');
   await addReasonForAppealingUsingTheOnePageFormAndContinue(I, language, commonContent, testDataEn.reasonsForAppealing.reasons[0]);
   await enterAnythingElseAndContinue(I, language, commonContent, testDataEn.reasonsForAppealing.otherReasons);
   // await readSendingEvidenceAndContinue(I, commonContent);
-  await selectAreYouProvidingEvidenceAndContinue(I, language, commonContent, '#evidenceProvide-no');
+  await selectAreYouProvidingEvidenceAndContinue(I, language, commonContent, '#evidenceProvide-2');
 }
 
 async function enterDetailsFromNoRepresentativeToEnd(I, language, commonContent) {
   await enterDetailsFromNoRepresentativeToNoUploadingEvidence(I, language, commonContent);
-  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing-no');
+  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing-2');
   await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(I, commonContent);
 }
 
 async function enterDetailsFromAttendingTheHearingToEnd(I, commonContent, language, date) {
   const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
-  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing-yes');
+  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing');
   await selectTelephoneHearingOptionsAndContinue(I, language, commonContent);
-  await selectDoYouNeedSupportAndContinue(I, language, commonContent, '#arrangements-yes');
+  await selectDoYouNeedSupportAndContinue(I, language, commonContent, '#arrangements');
   await checkAllArrangementsAndContinue(I, commonContent, language);
-  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#scheduleHearing-yes');
+  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#hasRepresentative');
   await I.goto(paths.hearing.datesCantAttend);
   await enterDateCantAttendAndContinue(I, commonContent, date, datesCantAttendContent.links.add);
   await I.click(commonContent.continue);
@@ -244,11 +244,11 @@ async function enterDetailsFromAttendingTheHearingToEnd(I, commonContent, langua
 async function enterDetailsFromAttendingTheHearingDatePickerToEnd(I, commonContent, language, date) {
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing-yes');
+  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing');
   await selectTelephoneHearingOptionsAndContinue(I, language, commonContent);
   await selectDoYouNeedSupportAndContinue(I, language, commonContent, supportContent.fields.arrangements.yes);
   await checkAllArrangementsAndContinue(I, commonContent, language);
-  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#scheduleHearing-yes');
+  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#hasRepresentative');
   await selectDates(I, language, [date]);
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
@@ -256,7 +256,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(I, commonConte
 async function enterDetailsFromAttendingTheHearingWithSupportToEnd(I, commonContent, language, options, fields = []) {
   const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
-  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing-yes');
+  await enterDoYouWantToAttendTheHearing(I, language, commonContent, '#attendHearing');
   await selectTelephoneHearingOptionsAndContinue(I, language, commonContent);
   await selectDoYouNeedSupportAndContinue(I, language, commonContent, supportContent.fields.arrangements.yes);
   await Promise.all(options.map(option =>
@@ -266,7 +266,7 @@ async function enterDetailsFromAttendingTheHearingWithSupportToEnd(I, commonCont
     I.locator(`#${field.id}`).first().fill(field.content)
   ));
   await I.getByRole('button', { name: commonContent.continue }).first().click();
-  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#scheduleHearing-no');
+  await selectHearingAvailabilityAndContinue(I, language, commonContent, '#scheduleHearing-2');
 }
 
 async function confirmDetailsArePresent(I, language, hasMRN = true, mrnDate) {

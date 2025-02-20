@@ -31,7 +31,6 @@ class HaveContactedDWP extends SaveToDraftStore {
 
   get form() {
     return form({
-
       haveContactedDWP: text.joi(
         this.content.fields.haveContactedDWP.error.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
@@ -46,7 +45,6 @@ class HaveContactedDWP extends SaveToDraftStore {
   values() {
     return {};
   }
-
 
   next() {
     const hasContactDWP = this.fields.haveContactedDWP.value === userAnswer.YES;

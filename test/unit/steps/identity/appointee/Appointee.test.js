@@ -137,13 +137,13 @@ describe('Appointee.js', () => {
     });
 
     describe('English', () => {
-      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+      it("should titleise the users selection to 'No' for CYA (English)", () => {
         appointee.fields.isAppointee.value = userAnswer.NO;
         const answers = appointee.answers();
         expect(answers.answer).to.equal('No');
       });
 
-      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+      it("should titleise the users selection to 'Yes' for CYA (English)", () => {
         appointee.fields.isAppointee.value = userAnswer.YES;
         const answers = appointee.answers();
         expect(answers.answer).to.equal('Yes');
@@ -159,14 +159,14 @@ describe('Appointee.js', () => {
         i18next.changeLanguage('en');
       });
 
-      it('should titleise the users selection to \'Na\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Na' for CYA (Welsh)", () => {
         appointee.content.cya.isAppointee.no = 'Na';
         appointee.fields.isAppointee.value = userAnswer.NO;
         const answers = appointee.answers();
         expect(answers.answer).to.equal('Na');
       });
 
-      it('should titleise the users selection to \'Do\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Do' for CYA (Welsh)", () => {
         appointee.content.cya.isAppointee.yes = 'Do';
         appointee.fields.isAppointee.value = userAnswer.YES;
         const answers = appointee.answers();

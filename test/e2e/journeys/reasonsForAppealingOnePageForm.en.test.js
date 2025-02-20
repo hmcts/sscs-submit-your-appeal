@@ -71,8 +71,8 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
-    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-2');
     await addAReasonForAppealingAndThenClickAddAnother(page,
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -90,11 +90,11 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       await readSendingEvidenceAndContinue(page, commonContent);
     }
     if (evidenceUploadEnabled) {
-      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide');
       await uploadAPieceOfEvidence(page);
       await enterDescription(page, commonContent, 'Some description of the evidence');
     }
-    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-2');
     await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);
@@ -107,8 +107,8 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
-    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-2');
     await addAReasonForAppealingAndThenClickAddAnother(page,
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -126,11 +126,11 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       await readSendingEvidenceAndContinue(page, commonContent);
     }
     if (evidenceUploadEnabled) {
-      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide');
       await uploadAPieceOfEvidence(page);
       await enterDescription(page, commonContent, 'Some description of the evidence');
     }
-    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-2');
     await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);
@@ -162,8 +162,8 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
   test(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, async({ page }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
-    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await selectDoYouHaveARepresentativeAndContinue(page, commonContent, '#hasRepresentative-2');
     await addAReasonForAppealingAndThenClickAddAnother(page,
       `#items-0 ${whatYouDisagreeWithField}-0`,
       `#items-0 ${reasonForAppealingField}-0`,
@@ -175,11 +175,11 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
       await readSendingEvidenceAndContinue(page, commonContent);
     }
     if (evidenceUploadEnabled) {
-      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide-yes');
+      await selectAreYouProvidingEvidenceAndContinue(page, language, commonContent, '#evidenceProvide');
       await uploadAPieceOfEvidence(page);
       await enterDescription(page, commonContent, 'Some description of the evidence');
     }
-    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-no');
+    await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing-2');
     await readYouHaveChosenNotToAttendTheHearingNoticeAndContinue(page, commonContent);
     await skipPcq(page);
     await confirmDetailsArePresent(page, language);
