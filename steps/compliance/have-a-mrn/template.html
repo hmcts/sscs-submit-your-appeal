@@ -13,9 +13,10 @@
             <p class="govuk-body">{{ content[benefitCode.toLowerCase()].subtitle_para2 | safe }}</p>
         {% endif %}
 
-        {{ govRadio(field = fields.haveAMRN, headerText=content["title" + suffix], hideQuestion = true, isPageHeading=false, items = [
-        { value: "yes", text: content.fields.haveAMRN["yes" + suffix] },
-        { value: "no", text: content.fields.haveAMRN["no" + suffix] }
+        {{ govRadio(field = fields.haveAMRN, headerText=content["title" + suffix], hideQuestion = true, isPageHeading=false,
+            items = [
+                { value: "yes", text: content.fields.haveAMRN["yes" + suffix] },
+                { value: "no", text: content.fields.haveAMRN["no" + suffix] }
         ]) }}
     {% endcall %}
 {% endblock %}

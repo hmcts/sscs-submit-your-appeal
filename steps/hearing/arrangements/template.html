@@ -34,38 +34,38 @@
 
 {{ govCheckbox(field = fields.selection, headerText = content.fields.selection.label, hideQuestion = true, isPageHeading = false,
   items = [
-  {
-  value: 'true',
-  name: fields.selection.interpreterLanguage.requested.id,
-  text: content.fields.selection.languageInterpreter.requested.label,
-  conditional: { html: languageInterpreterTextField },
-  checked: fields.selection.value.interpreterLanguage.requested
-  },
-  {
-  value: 'true',
-  name: fields.selection.signLanguage.requested.id,
-  text: content.fields.selection.signLanguage.requested.label,
-  conditional: { html: signLanguageInterpreterTextField },
-  checked: fields.selection.value.signLanguage.requested
-  },
-  {
-  value: 'true',
-  name: fields.selection.hearingLoop.requested.id,
-  text: content.fields.selection.hearingLoop.requested.label,
-  checked: fields.selection.value.hearingLoop.requested
-  },
-  {
-  value: 'true',
-  name: fields.selection.accessibleHearingRoom.requested.id,
-  text: content.fields.selection.accessibleHearingRoom.requested.label,
-  checked: fields.selection.value.accessibleHearingRoom.requested
-  },
-  {
-  value: 'true',
-  name: fields.selection.anythingElse.requested.id,
-  text: content.fields.selection.anythingElse.requested.label,
-  conditional: { html: anythingElseTextArea },
-  checked: fields.selection.value.anythingElse.requested
-  }
+    {
+      value: 'true',
+      name: fields.selection.interpreterLanguage.requested.id,
+      text: content.fields.selection.languageInterpreter.requested.label,
+      conditional: { html: languageInterpreterTextField },
+      checked: fields.selection.value.interpreterLanguage.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.signLanguage.requested.id,
+      text: content.fields.selection.signLanguage.requested.label,
+      conditional: { html: signLanguageInterpreterTextField },
+      checked: fields.selection.value.signLanguage.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.hearingLoop.requested.id,
+      text: content.fields.selection.hearingLoop.requested.label,
+      checked: fields.selection.value.hearingLoop.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.accessibleHearingRoom.requested.id,
+      text: content.fields.selection.accessibleHearingRoom.requested.label,
+      checked: fields.selection.value.accessibleHearingRoom.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.anythingElse.requested.id,
+      text: content.fields.selection.anythingElse.requested.label,
+      conditional: { html: anythingElseTextArea },
+      checked: fields.selection.value.anythingElse.requested
+    }
 ]) }}
 {% endblock %}

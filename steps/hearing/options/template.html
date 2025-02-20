@@ -19,11 +19,33 @@
     {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
 {% endset -%}
 
-{{ govCheckbox(field = fields.selectOptions, headerText = '', hideQuestion = true, isPageHeading = false,
-items = [
-    { value: 'true', name: fields.selectOptions.telephone.requested.id, text: content.fields.options.telephone.requested.label, conditional: {html: telephoneTextField}, checked: fields.selectOptions.value.telephone.requested },
-    { value: 'true', name: fields.selectOptions.video.requested.id, text: content.fields.options.video.requested.label, conditional: {html: emailTextField}, checked: fields.selectOptions.value.video.requested },
-    { value: 'true', name: fields.selectOptions.inPerson.requested.id, text: content.fields.options.inPerson.requested.label, checked: fields.selectOptions.value.video.requested }
-]) }}
+{{ govCheckbox(
+  field = fields.selectOptions,
+  headerText = '',
+  hideQuestion = true,
+  isPageHeading = false,
+  items = [
+    {
+      value: 'true',
+      name: fields.selectOptions.telephone.requested.id,
+      text: content.fields.options.telephone.requested.label,
+      conditional: { html: telephoneTextField },
+      checked: fields.selectOptions.value.telephone.requested
+    },
+    {
+      value: 'true',
+      name: fields.selectOptions.video.requested.id,
+      text: content.fields.options.video.requested.label,
+      conditional: { html: emailTextField },
+      checked: fields.selectOptions.value.video.requested
+    },
+    {
+      value: 'true',
+      name: fields.selectOptions.inPerson.requested.id,
+      text: content.fields.options.inPerson.requested.label,
+      checked: fields.selectOptions.value.video.requested
+    }
+  ]
+) }}
 
 {% endblock %}

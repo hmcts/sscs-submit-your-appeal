@@ -1,4 +1,5 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "components/common/errors.njk" import getErrors %}
 
 {% macro govRadio(field, headerText = "", isPageHeading = false, hideQuestion = true, hint = null, classes = "govuk-fieldset__legend--m", items) %}
 
@@ -18,12 +19,3 @@
     errorMessage: null if field.errors.length == 0 else {text: getErrors(field)}
   }) }}
 {% endmacro %}
-
-{% macro getErrors(field) %}
-  {% if field.errors %}
-    {% for error in field.errors %}
-        {{ error }}
-    {% endfor %}
-  {% endif %}
-{% endmacro %}
-
