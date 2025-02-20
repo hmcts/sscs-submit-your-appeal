@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
 {% from "components/fields.njk" import textbox, formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title | safe %}
 
@@ -11,6 +12,6 @@
             <p class="govuk-body">{{ content.subtitle }}</p>
         {% endif %}
 
-        {{ textbox(fields.postcode, content.fields.postcode.label, hideLabel=true) }}
+        {{ govTextInput(fields.postcode,    content.fields.postcode.label,  hideLabel=true) }}
     {% endcall %}
 {% endblock %}
