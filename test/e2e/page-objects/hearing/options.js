@@ -11,7 +11,7 @@ async function selectTelephoneHearingOptionsAndContinue(
 
   await expect(I.getByText(telHearingContent.title).first()).toBeVisible();
   await expect(I.locator('#selectOptions').first()).toBeVisible();
-  await I.locator("//input[@id='selectOptions.telephone.requested-true']")
+  await I.locator("//input[@name='selectOptions.telephone.requested']")
     .first()
     .check();
   await I.locator("//input[@id='selectOptions.telephone.phoneNumber']")

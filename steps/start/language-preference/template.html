@@ -1,27 +1,25 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
+{% from "components/fields.njk" import formSection %}
 {% from "components/toggle_help.njk" import toggleHelp %}
-{% from "details/macro.njk" import govukDetails %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
 {% block fields %}
-    <div id="languagePreference">
         <p class="govuk-body">{{ content.summary }}</p>
 
         {% call formSection() %}
-            {{ selectionButtons(
-                fields.languagePreferenceWelsh,
-                content.question,
-                hint = '',
-                options = [
-                    { label: content.fields.languagePreferenceWelsh.no,  value: "no", target: "noWelsh", selected: true },
-                    { label: content.fields.languagePreferenceWelsh.yes, value: "yes" }
-                ])
-            }}
-            <div class="panel js-hidden" id="noWelsh">
-                <p class="govuk-body">{{ content.answerNo }}</p>
-            </div>
+        {{ govRadio(field = fields.languagePreferenceWelsh,
+            headerText = content.question,
+            hideQuestion = true,
+            isPageHeading=false,
+            items = [
+                { value: "no", text: content.fields.languagePreferenceWelsh.no, checked: true },
+                { value: "yes", text: content.fields.languagePreferenceWelsh.yes }
+        ]) }}
+
+<div class="panel" id="noWelsh">
+  <p class="govuk-body">{{ content.answerNo }}</p>
+</div>
         {% endcall %}
-    </div>
 {% endblock %}

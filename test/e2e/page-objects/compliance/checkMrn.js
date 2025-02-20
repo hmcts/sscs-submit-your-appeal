@@ -9,7 +9,7 @@ async function goToCheckMrnPage(I, commonContent, mrnDate) {
 }
 
 async function goToCorrectPageAfterCheckMRN(I, commonContent, value, url) {
-  await I.locator(`#checkedMRN-${value}`).check();
+  await I.locator(`#checkedMRN${value === 'yes' ? '' : '-2'}`).check();
   await I.getByRole('button', { name: commonContent.continue }).first().click();
   await I.waitForURL(`**/${url}`);
 }

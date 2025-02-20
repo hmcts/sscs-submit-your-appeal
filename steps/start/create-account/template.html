@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
@@ -7,15 +8,14 @@
     <p class="govuk-body">{{ content.subtitle }}</p>
 
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.createAccount,
-            content.fields.createAccount.label,
+        {{ govRadio(
+            field = fields.createAccount,
+            headerText = content.fields.createAccount.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.createAccount.yes, value: "yes" },
-                { label: content.fields.createAccount.no, value: "no" }
-            ])
-        }}
+            items = [
+                { text: content.fields.createAccount.yes, value: "yes" },
+                { text: content.fields.createAccount.no, value: "no" }
+        ]) }}
     {% endcall %}
 
     <p class="govuk-body">{{ content.fields.createAccount.warning }} {{ content.fields.createAccount.yes }}.</p>

@@ -1,25 +1,25 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 
-{% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes | safe %}
-{% set selectionButtonNoLabel = content.fields.haveContactedDWP.no | safe %}
+{% set selectionButtonYesLabel = content.fields.haveContactedDWP.yes %}
+{% set selectionButtonNoLabel = content.fields.haveContactedDWP.no %}
 {% set contentTitle = content.title %}
 
-{% set title = contentTitle | safe %}
+{% set title = contentTitle %}
 
 {% block fields %}
     {% call formSection() %}
         <p class="govuk-body">{{ content.subtitle }}</p>
 
-        {{ selectionButtons(
-            fields.haveContactedDWP,
-            content.subtitle | safe,
-            hint = '',
-            options = [
-                { label: selectionButtonYesLabel, value: "yes" },
-                { label: selectionButtonNoLabel,  value: "no" }
-            ])
-        }}
+        {{ govRadio(field = fields.haveContactedDWP,
+            headerText = content.title,
+            hideQuestion = true,
+            isPageHeading = false,
+            items = [
+                { value: "yes", text: selectionButtonYesLabel },
+                { value: "no", text: selectionButtonNoLabel }
+        ]) }}
     {% endcall %}
 {% endblock %}

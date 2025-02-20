@@ -45,14 +45,14 @@ test.describe(
     test(`${language.toUpperCase()} - When page select Yes, page am taken to the sms confirmation page`, async({
       page
     }) => {
-      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber');
       await page.waitForURL(`**${paths.smsNotify.smsConfirmation}`);
     });
 
     test(`${language.toUpperCase()} - When page select No, page am taken to the enter mobile page`, async({
       page
     }) => {
-      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-2');
       await page.waitForURL(`**${paths.smsNotify.enterMobile}`);
     });
   }

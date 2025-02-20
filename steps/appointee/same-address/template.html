@@ -1,18 +1,18 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.isAddressSameAsAppointee,
-            content.fields.isAddressSameAsAppointee.label,
+        {{ govRadio(field = fields.isAddressSameAsAppointee,
+            headerText=content.fields.isAddressSameAsAppointee.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.isAddressSameAsAppointee.yes, value: "yes" },
-                { label: content.fields.isAddressSameAsAppointee.no, value: "no" }
-            ])
-        }}
+            isPageHeading=false,
+            items = [
+                { value: "yes", text: content.fields.isAddressSameAsAppointee.yes },
+                { value: "no", text: content.fields.isAddressSameAsAppointee.no }
+        ]) }}
     {% endcall %}
 {% endblock %}
