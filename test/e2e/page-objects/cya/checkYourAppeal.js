@@ -94,8 +94,8 @@ const appellant = testDataEn.appellant;
 
 async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
-  //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
+  //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
@@ -104,7 +104,7 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
   await selectHaveYouGotAMRNAndContinue(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinue(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinue(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
-  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinue(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinue(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinue(I, language, commonContent, testNIData.generateValidNINumber());
@@ -112,8 +112,8 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
 
 async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benefitTypeCode, office, hasDwpIssuingOffice) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
-  // if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
+  // if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   if (allowSaveAndReturnEnabled) {
@@ -124,7 +124,7 @@ async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benef
   if (hasDwpIssuingOffice) {
     await enterDWPIssuingOffice(I, commonContent, office);
   }
-  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinue(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinue(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinue(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinue(I, language, commonContent, testNIData.generateValidNINumber());
@@ -134,7 +134,7 @@ async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benef
 async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
   /* Create new application */
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
@@ -146,7 +146,7 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   /* Login to submit saved case */
   await createTheSession(I, language);
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
@@ -156,7 +156,7 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinueAfterSignIn(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinueAfterSignIn(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
-  await selectAreYouAnAppointeeAndContinueAfterSignIn(I, language, commonContent, '#isAppointee-no');
+  await selectAreYouAnAppointeeAndContinueAfterSignIn(I, language, commonContent, '#isAppointee');
   await enterAppellantNameAndContinueAfterSignIn(I, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
   await enterAppellantDOBAndContinueAfterSignIn(I, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
   await enterAppellantNINOAndContinueAfterSignIn(I, language, commonContent, testNIData.generateValidNINumber());
@@ -164,28 +164,28 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
 
 async function enterDetailsFromStartToDraft(I, commonContent, language, newUserEmail, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signInVerifylanguage(I, newUserEmail, testDataEn.signIn.password, language);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, 'no');
+  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinueAfterSignIn(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
 }
 
 async function enterDetailsForNewApplication(I, commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreference(I, language, commonContent, 'no');
+  await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, userEmail, testDataEn.signIn.password, language);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
-  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, 'no');
+  await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinueAfterSignIn(I, language, commonContent, appellant.contactDetails.postCode);
   await continueFromIndependance(I, commonContent);
   await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN');

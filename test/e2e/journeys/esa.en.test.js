@@ -34,7 +34,7 @@ if (require('config').get('features.allowESA.enabled').toString() === 'true') {
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
-      // page.chooseLanguagePreference(commonContent, 'no');
+      // page.chooseLanguagePreference(commonContent, '#languagePreferenceWelsh');
       await page.goto(paths.compliance.haveAMRN);
       await expect(
         page.getByText(haveAMRNContent.esa.subtitle).first()
@@ -45,7 +45,7 @@ if (require('config').get('features.allowESA.enabled').toString() === 'true') {
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
-      // page.chooseLanguagePreference(commonContent, 'no');
+      // page.chooseLanguagePreference(commonContent, '#languagePreferenceWelsh');
       await page.goto(paths.reasonsForAppealing.reasonForAppealing);
       await expect(
         page.getByText(reasonForAppealingContent.dwpExplained).first()
@@ -56,7 +56,7 @@ if (require('config').get('features.allowESA.enabled').toString() === 'true') {
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
-      // page.chooseLanguagePreference(commonContent, 'no');
+      // page.chooseLanguagePreference(commonContent, '#languagePreferenceWelsh');
       await page.goto(paths.start.independence);
       await expect(
         page.getByText(independenceContent.reviewed).first()

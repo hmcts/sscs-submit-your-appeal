@@ -55,7 +55,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
 
     await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
     await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
-    await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
+    await checkOptionAndContinue(page, commonContent, '#isAppointee');
     await continueFromIndependance(page, commonContent);
     await checkOptionAndContinue(page, commonContent, '#haveAMRN-2');
     await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-yes');
@@ -74,7 +74,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
   test(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, async({ page }) => {
     await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
     await enterPostcodeAndContinue(page, language, commonContent, appellant.contactDetails.postCode);
-    await checkOptionAndContinue(page, commonContent, '#isAppointee-no');
+    await checkOptionAndContinue(page, commonContent, '#isAppointee');
     await continueFromIndependance(page, commonContent);
     if (allowSaveAndReturnEnabled) {
       await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-2');

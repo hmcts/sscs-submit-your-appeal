@@ -64,7 +64,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await selectHaveYouContactedDWPAndContinueAfterSignIn(page, language, commonContent, '#haveContactedDWP-yes');
       await enterReasonForNoMRNAndContinueAfterSignIn(page, language, commonContent, testData.mrn.reasonForNoMRN);
       await continueFromStillCanAppeal(page, language);
-      await selectAreYouAnAppointeeAndContinueAfterSignIn(page, language, commonContent, '#isAppointee-no');
+      await selectAreYouAnAppointeeAndContinueAfterSignIn(page, language, commonContent, '#isAppointee');
       await enterAppellantNameAndContinueAfterSignIn(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
       await enterAppellantDOBAndContinueAfterSignIn(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
       await enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, appellant.nino);
