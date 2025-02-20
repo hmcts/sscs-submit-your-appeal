@@ -18,7 +18,7 @@ async function e2eBenefit(page, benefitSearch, office, signer, language, hasDwpI
   await enterCaseDetailsFromStartToNINO(page, commonContent, language, benefitSearch, office, hasDwpIssuingOffice);
   await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
   await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders');
-  await checkOptionAndContinue(page, commonContent, '#useSameNumber-yes');
+  await checkOptionAndContinue(page, commonContent, '#useSameNumber');
   await readSMSConfirmationAndContinue(page, commonContent);
   await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
   await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing');

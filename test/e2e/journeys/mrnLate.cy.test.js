@@ -55,7 +55,7 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
       await checkOptionAndContinue(page, commonContent, '#haveAMRN');
       await enterDWPIssuingOfficeAndContinue(page, commonContent, testData.mrn.dwpIssuingOffice);
       await enterAnMRNDateAndContinue(page, commonContent, obj.mrnDate);
-      await checkOptionAndContinue(page, commonContent, '#checkedMRN-yes');
+      await checkOptionAndContinue(page, commonContent, '#checkedMRN');
       await enterReasonsForBeingLateAndContinue(page, commonContent, testData.mrn.reasonWhyMRNisLate);
       await enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
       await enterAppellantDOBAndContinue(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);

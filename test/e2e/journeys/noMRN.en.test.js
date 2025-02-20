@@ -58,7 +58,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
     await checkOptionAndContinue(page, commonContent, '#isAppointee');
     await continueFromIndependance(page, commonContent);
     await checkOptionAndContinue(page, commonContent, '#haveAMRN-2');
-    await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-yes');
+    await checkOptionAndContinue(page, commonContent, '#haveContactedDWP');
     await enterReasonForNoMRNAndContinue(page, language, commonContent, testData.mrn.reasonForNoMRN);
     await continueFromStillCanAppeal(page, language);
     await enterAppellantNameAndContinue(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
@@ -80,7 +80,7 @@ test.describe(`${language.toUpperCase()} - Appellant does not have a MRN`, { tag
       await selectIfYouWantToCreateAccount(page, language, commonContent, '#createAccount-2');
     }
     await selectHaveYouGotAMRNAndContinue(page, language, commonContent, '#haveAMRN-2');
-    await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-no');
+    await checkOptionAndContinue(page, commonContent, '#haveContactedDWP-2');
     await expect(page.getByText(contactDWPContent.title).first()).toBeVisible();
     await page.getByText(contactDWPContent.govuk).first().click();
     await page.waitForURL('https://www.gov.uk/');

@@ -63,7 +63,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
 
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
     await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
-    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-yes');
+    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber');
     await readSMSConfirmationAndContinue(page, commonContent);
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
     await skipPcq(page);
@@ -76,7 +76,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does no
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
     await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
-    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-no');
+    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-2');
     await enterMobileAndContinue(page, commonContent, '07411333333');
     await readSMSConfirmationAndContinue(page, commonContent);
     await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);

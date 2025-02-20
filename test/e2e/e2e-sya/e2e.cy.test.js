@@ -25,7 +25,7 @@ test.describe(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`, () => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411222222');
     await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders');
-    await checkOptionAndContinue(page, commonContent, '#useSameNumber-yes');
+    await checkOptionAndContinue(page, commonContent, '#useSameNumber');
     await readSMSConfirmationAndContinue(page, commonContent);
     await enterDetailsFromNoRepresentativeToNoUploadingEvidence(page, language, commonContent);
     await enterDoYouWantToAttendTheHearing(page, language, commonContent, '#attendHearing');
