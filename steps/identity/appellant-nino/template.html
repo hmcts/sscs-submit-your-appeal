@@ -1,11 +1,17 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = title %}
 
 {% block fields %}
     {% call formSection() %}
         <p class="govuk-body">{{ subtitle }}</p>
-        {{ textbox(fields.nino, content.fields.nino.label, hideLabel=true) }}
+        {{ govTextInput(
+            fields.nino,
+            content.fields.nino.label,
+            hideLabel = true,
+            isPageHeading = false
+        ) }}
     {% endcall %}
 {% endblock %}

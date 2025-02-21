@@ -1,11 +1,14 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title %}
 
 {% block fields %}
     {% call formSection() %}
-            <p class="govuk-body">{{ content.subtitle }}</p>
-        {{ textbox(fields.ibcaReference, content.fields.ibcaReference.title, hint="") }}
+      {{ govTextInput(fields.ibcaReference,
+          content.fields.ibcaReference.title,
+          hideLabel = false,
+          isPageHeading = false) }}
     {% endcall %}
 {% endblock %}
