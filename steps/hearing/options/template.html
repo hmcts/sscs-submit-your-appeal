@@ -1,6 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox %}
 {% from "components/common/checkbox.njk" import govCheckbox %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title %}
 
@@ -12,11 +12,11 @@
     <p class="govuk-hint">{{ content.instructions }}</p>
 
 {% set telephoneTextField %}
-    {{ textbox(fields.selectOptions.telephone.phoneNumber, hideLabel=true, value=phoneNumber) }}
+    {{ govTextInput(fields.selectOptions.telephone.phoneNumber, hideLabel=true) }}
 {% endset -%}
 
 {% set emailTextField %}
-    {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
+    {{ govTextInput(fields.selectOptions.video.email, hideLabel=true) }}
 {% endset -%}
 
 {{ govCheckbox(
