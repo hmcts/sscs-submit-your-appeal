@@ -263,11 +263,15 @@
 
 
 
-{% macro date(field, question, hint='', hideQuestion=false, labels={}) %}
+{% macro date(field, question, isPageHeading=true, hint='', hideQuestion=false, labels={}) %}
 <div class="govuk-form-group">
   {% if not hideQuestion %}
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">{{ question }}</h1>
+    <legend class="govuk-fieldset__legend {% if not isPageHeading %}govuk-fieldset__legend--m{% else %}govuk-fieldset__legend--l{% endif %}">
+        {% if not isPageHeading %}
+            <h2 class="govuk-fieldset__heading">{{ question }}</h1>
+        {% else %}
+            <h1 class="govuk-fieldset__heading">{{ question }}</h1>
+        {% endif %}
     </legend>
     {% if hint %}
       <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
