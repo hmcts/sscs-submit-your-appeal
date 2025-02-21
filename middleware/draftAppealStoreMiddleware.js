@@ -113,7 +113,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   }
 };
 
-const archiveDraft = async(req, caseId) => {
+const deleteDraft = async(req, caseId) => {
   let values = null;
 
   if (allowSaveAndReturn) {
@@ -123,7 +123,7 @@ const archiveDraft = async(req, caseId) => {
   }
 
   logger.trace(
-    `archiveDraft - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
+    `deleteDraft - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
   );
 
   values.ccdCaseId = caseId;
@@ -135,7 +135,7 @@ const archiveDraft = async(req, caseId) => {
     .then(result => {
       logger.trace(
         [
-          `Successfully archived a draft for case with caseId: ${caseId}`,
+          `Successfully deleted a draft for case with caseId: ${caseId}`,
           result.status
         ],
         logPath
@@ -451,7 +451,7 @@ module.exports = {
   RestoreAllDraftsState,
   updateDraftInDraftStore,
   createDraftInDraftStore,
-  archiveDraft,
+  deleteDraft,
   LoadJourneyAndRedirect,
   resetJourney,
   handleDraftCreateUpdateFail

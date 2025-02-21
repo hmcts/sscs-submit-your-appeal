@@ -91,7 +91,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
     });
   });
 
-  describe('archiveDraft api call', () => {
+  describe('deleteDraft api call', () => {
     let req = {
       journey: {
         values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
@@ -118,14 +118,14 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     };
-    it('Expected Successfully Archive a draft:', async() => {
+    it('Expected Successfully Delete a draft:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
         .delete('/drafts/case1234')
         .reply(200, {});
 
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.deleteDraft(req, 'case1234');
 
       expect(loggerSpy).to.have.been.calledWith(
         'DELETE api:http://mockapi.com/drafts status:200',
@@ -134,7 +134,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(req.session.drafts).to.be.empty;
     });
 
-    it('Expected Successfully Archive a draft after first request failed:', async() => {
+    it('Expected Successfully Delete a draft after first request failed:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
@@ -146,7 +146,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .delete('/drafts/case1234')
         .reply(200, {});
 
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.deleteDraft(req, 'case1234');
 
       expect(loggerSpy).to.have.been.calledWith(
         'Exception on archiving a draft for case with caseId: case1234',
@@ -154,7 +154,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       );
     });
 
-    it('Handles Archive a draft fail:', async() => {
+    it('Handles Delete a draft fail:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
@@ -163,7 +163,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         .delete('/drafts/case1234')
         .reply(404, {});
 
-      await draftAppealStoreMiddleware.archiveDraft(req, 'case1234');
+      await draftAppealStoreMiddleware.deleteDraft(req, 'case1234');
 
       expect(loggerSpy).to.have.been.calledWith(
         'Exception on archiving a draft for case with caseId: case1234',

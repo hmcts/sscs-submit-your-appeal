@@ -5,19 +5,20 @@
   "description": {
     "line1": "The cases in this list have yet to be submitted to HM Courts & Tribunals Service.",
     "line2": "If you wish to edit an application for appeal, please select ‘edit’ next to the appropriate application.",
-    "line3": "If you no longer wish to submit any of these applications for appeal, please select ‘archive’ next to the appropriate application.",
-    "line4": "If you wish to submit a new appeal, please select ‘create new application’ to provide your appeal information."
+    "line3": "If you no longer wish to submit any of these applications for appeal, please select ‘delete’ next to the appropriate application.",
+    "line4": "If you wish to submit a new appeal, please select ‘create new application’ to provide your appeal information.",
+    "line5": "Any applications not submitted to HMCTS within 6 months will be automatically deleted and you will need to Create a new application.."
   },
   "buttons": {
     "create": "Create new application",
     "edit": "Edit",
-    "archive": "Archive"
+    "delete": "Delete"
   },
   "dialog": {
-    "title": "Archive?",
-    "warnMessage": "Are you sure you want to archive your appeal application? You will not be able to retrieve your application once it is archived.",
+    "title": "Delete?",
+    "warnMessage": "Are you sure you want to delete your appeal application? You will not be able to retrieve your application once it is deleted.",
     "buttons": {
-      "archive": "Yes",
+      "delete": "Yes",
       "save": "No"
     }
   },

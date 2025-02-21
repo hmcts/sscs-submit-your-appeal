@@ -6,18 +6,19 @@
     "line1": "Nid yw'r achosion yn y rhestr hon wedi'u cyflwyno eto i Wasanaeth Llysoedd a Thribiwnlysoedd EM.",
     "line2": "Os hoffech olygu cais am apêl, dewiswch 'golygu' wrth ymyl y cais priodol.",
     "line3": "Os nad ydych am gyflwyno unrhyw un o'r ceisiadau hyn am apêl mwyach, dewiswch 'cadw' wrth ymyl y cais priodol.",
-    "line4": "Os hoffech gyflwyno apêl newydd, dewiswch 'creu cais newydd' i ddarparu gwybodaeth am eich apêl."
+    "line4": "Os hoffech gyflwyno apêl newydd, dewiswch 'creu cais newydd' i ddarparu gwybodaeth am eich apêl.",
+    "line5": "Bydd unrhyw geisiadau na gyflwynir i GLlTEF o fewn 6 mis yn cael eu dileu yn awtomatig a bydd angen i chi Greu cais newydd."
   },
   "buttons": {
     "create": "Creu cais newydd",
     "edit": "Golygu",
-    "archive": "Cadw"
+    "delete": "Cadw"
   },
   "dialog": {
     "title": "Cadw?",
     "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo.",
     "buttons": {
-      "archive": "Ydw",
+      "delete": "Ydw",
       "save": "Nac Ydw"
     }
   },

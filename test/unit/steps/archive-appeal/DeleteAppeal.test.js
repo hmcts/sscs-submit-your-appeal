@@ -16,17 +16,17 @@ class LoadJourneyAndRedirect {
 
 LoadJourneyAndRedirect.handler = sinon.spy();
 
-const ArchiveAppeal = proxyquire('steps/archive-appeal/ArchiveAppeal', {
+const DeleteAppeal = proxyquire('steps/delete-appeal/DeleteAppeal', {
   'middleware/draftAppealStoreMiddleware': {
     LoadJourneyAndRedirect
   }
 });
 
-describe('ArchiveAppeal.js', () => {
-  let archiveAppeal = null;
+describe('DeleteAppeal.js', () => {
+  let deleteAppeal = null;
 
   beforeEach(() => {
-    archiveAppeal = new ArchiveAppeal({
+    deleteAppeal = new DeleteAppeal({
       journey: {
         steps: {
           BenefitType: paths.start.benefitType
@@ -36,17 +36,17 @@ describe('ArchiveAppeal.js', () => {
   });
 
   describe('get path()', () => {
-    it('returns path /archive-appeal', () => {
-      expect(ArchiveAppeal.path).to.equal(paths.archiveDraft);
+    it('returns path /delete-appeal', () => {
+      expect(DeleteAppeal.path).to.equal(paths.deleteDraft);
     });
   });
 
   describe('next()', () => {
     it('should redirect to Drafts', () => {
-      archiveAppeal.req = {
+      deleteAppeal.req = {
         session: {}
       };
-      expect(archiveAppeal.next()).to.eql({
+      expect(deleteAppeal.next()).to.eql({
         nextStep: paths.start.benefitType
       });
     });
@@ -80,18 +80,18 @@ describe('ArchiveAppeal.js', () => {
       const res = {
         redirect: sinon.spy()
       };
-      archiveAppeal.handler(req, res);
+      deleteAppeal.handler(req, res);
       expect(
-        res.redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)
+        res.redirect.calledWith(`${paths.deleteDraft}/?caseId=1234`)
       ).to.eql(true);
     });
 
-    it('should archived draft by case id and redirect', () => {
+    it('should deleted draft by case id and redirect', () => {
       const res = {
         redirect: sinon.spy()
       };
       req.query.caseId = 1234;
-      archiveAppeal.handler(req, res);
+      deleteAppeal.handler(req, res);
       expect(res.redirect.calledWith(paths.drafts)).to.eql(false);
     });
 
@@ -100,7 +100,7 @@ describe('ArchiveAppeal.js', () => {
         redirect: sinon.spy()
       };
       req.method = 'POST';
-      archiveAppeal.handler(req, res);
+      deleteAppeal.handler(req, res);
       expect(res.redirect.calledWith(paths.start.benefitType)).to.eql(true);
     });
   });

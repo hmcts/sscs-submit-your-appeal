@@ -10,7 +10,7 @@ const excludeSteps = [
   '/idam-redirect',
   '/authenticated',
   '/sign-in-back',
-  '/archive-appeal',
+  '/delete-appeal',
   '/entry',
   '/session-timeout-redirect',
   '/equality-and-diversity',

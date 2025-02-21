@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import 'jquery-modal';
 
-class ArchiveWarning {
+class DeleteWarning {
   constructor() {
     this.elExtend = $('#extend');
 
-    this.archiveButton = document.querySelector('#archive');
+    this.deleteButton = document.querySelector('#delete');
 
     this.init = this.init.bind(this);
     this.destroy = this.destroy.bind(this);
@@ -17,13 +17,13 @@ class ArchiveWarning {
     window.location.href = event.target.getAttribute('href');
   }
 
-  stopArchive(event) {
-    this.archiveButton.setAttribute('href', event.target.href);
+  stopDelete(event) {
+    this.deleteButton.setAttribute('href', event.target.href);
 
     event.stopPropagation();
     event.preventDefault();
 
-    const el = $('#archive-dialog');
+    const el = $('#delete-dialog');
     el.modal();
   }
 
@@ -36,23 +36,23 @@ class ArchiveWarning {
     });
   }
   attachHandlers() {
-    document.querySelectorAll('#archive-link').forEach(link => {
-      link.addEventListener('click', this.stopArchive.bind(this));
+    document.querySelectorAll('#delete-link').forEach(link => {
+      link.addEventListener('click', this.stopDelete.bind(this));
     });
 
-    if (this.archiveButton) {
-      this.archiveButton.addEventListener(
+    if (this.deleteButton) {
+      this.deleteButton.addEventListener(
         'click',
         this.navigateAway.bind(this)
       );
     }
   }
   detachHandlers() {
-    document.querySelectorAll('#archive-link').forEach(link => {
-      link.off('click', this.stopArchive.bind(this));
+    document.querySelectorAll('#delete-link').forEach(link => {
+      link.off('click', this.stopDelete.bind(this));
     });
 
-    this.archiveButton.off('click', this.navigateAway.bind(this));
+    this.deleteButton.off('click', this.navigateAway.bind(this));
   }
   destroy() {
     this.detachHandlers();
@@ -60,4 +60,4 @@ class ArchiveWarning {
   }
 }
 
-export default ArchiveWarning;
+export default DeleteWarning;

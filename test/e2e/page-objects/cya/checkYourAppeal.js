@@ -78,7 +78,7 @@ const {
   selectDoYouHaveARepresentativeAndContinue
 } = require('../representative/representative');
 const {
-  verifyDraftAppealsAndArchiveACase,
+  verifyDraftAppealsAndDeleteACase,
   verifyDraftAppealsAndEditACase
 } = require('../draft-appeals/draft-appeals-page');
 const {
@@ -483,7 +483,7 @@ async function enterDetailsForNewApplication(
   );
 }
 
-async function enterDetailsToArchiveACase(
+async function enterDetailsToDeleteACase(
   I,
   commonContent,
   language,
@@ -492,7 +492,7 @@ async function enterDetailsToArchiveACase(
   await I.goto('/sign-out');
   await navigateToSignInLink(I);
   await signIn(I, userEmail, testDataEn.signIn.password, language);
-  await verifyDraftAppealsAndArchiveACase(I, language);
+  await verifyDraftAppealsAndDeleteACase(I, language);
 }
 
 async function enterDetailsFromNoRepresentativeToUploadingEvidence(
@@ -836,7 +836,7 @@ module.exports = {
   enterDetailsFromStartToDraftAppeals,
   enterDetailsFromStartToDraft,
   enterDetailsForNewApplication,
-  enterDetailsToArchiveACase,
+  enterDetailsToDeleteACase,
   enterDetailsFromNoRepresentativeToUploadingEvidence,
   enterDetailsFromAttendingTheHearingToEnd,
   enterDetailsFromAttendingTheHearingDatePickerToEnd,
