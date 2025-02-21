@@ -12,13 +12,13 @@
   "buttons": {
     "create": "Create new application",
     "edit": "Edit",
-    "archive": "Archive"
+    "delete": "Delete"
   },
   "dialog": {
-    "title": "Archive?",
-    "warnMessage": "Are you sure you want to archive your appeal application? You will not be able to retrieve your application once it is archived.",
+    "title": "Delete?",
+    "warnMessage": "Are you sure you want to delete your appeal application? You will not be able to retrieve your application once it is deleted.",
     "buttons": {
-      "archive": "Yes",
+      "delete": "Yes",
       "save": "No"
     }
   },

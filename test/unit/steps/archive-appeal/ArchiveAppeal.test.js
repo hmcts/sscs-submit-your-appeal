@@ -22,7 +22,7 @@ const ArchiveAppeal = proxyquire('steps/archive-appeal/ArchiveAppeal', {
   }
 });
 
-describe('ArchiveAppeal.js', () => {
+describe('DeleteAppeal.js', () => {
   let archiveAppeal = null;
 
   beforeEach(() => {
