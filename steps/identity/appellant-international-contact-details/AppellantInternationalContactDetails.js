@@ -36,7 +36,9 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   }
 
   validCountrySchema() {
-    const validCountries = getCountriesOfResidence().map(country => country.value);
+    const validCountries = getCountriesOfResidence().map(
+      country => country.value
+    );
     return Joi.string().valid(validCountries);
   }
 
@@ -48,42 +50,32 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
     return form({
-      addressLine1: text.joi(
-        fields.addressLine1.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.addressLine1.error.invalid,
-        Joi.string().regex(whitelistNotFirst)
-      ),
+      addressLine1: text
+        .joi(fields.addressLine1.error.required, Joi.string().required())
+        .joi(
+          fields.addressLine1.error.invalid,
+          Joi.string().regex(whitelistNotFirst)
+        ),
       addressLine2: text.joi(
         fields.addressLine2.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
-      townCity: text.joi(
-        fields.townCity.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.townCity.error.invalid,
-        Joi.string().regex(whitelistNotFirst)
-      ),
+      townCity: text
+        .joi(fields.townCity.error.required, Joi.string().required())
+        .joi(
+          fields.townCity.error.invalid,
+          Joi.string().regex(whitelistNotFirst)
+        ),
       postCode: text.joi(
         fields.postCode.error.invalid,
         Joi.string().regex(whitelistNotFirst)
       ),
-      country: text.joi(
-        fields.country.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.country.error.invalid,
-        this.validCountrySchema()
-      ),
-      portOfEntry: text.joi(
-        fields.portOfEntry.error.required,
-        Joi.string().required()
-      ).joi(
-        fields.portOfEntry.error.invalid,
-        this.validPortSchema()
-      ),
+      country: text
+        .joi(fields.country.error.required, Joi.string().required())
+        .joi(fields.country.error.invalid, this.validCountrySchema()),
+      portOfEntry: text
+        .joi(fields.portOfEntry.error.required, Joi.string().required())
+        .joi(fields.portOfEntry.error.invalid, this.validPortSchema()),
       phoneNumber: text.joi(
         fields.phoneNumber.error.invalid,
         customJoi.string().trim().validatePhone()
@@ -125,7 +117,9 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
-          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
+          postCode: this.fields.postCode.value ?
+            this.fields.postCode.value.trim() :
+            this.fields.postCode.value,
           country: decode(this.fields.country.value),
           portOfEntry: decode(this.fields.portOfEntry.value),
           phoneNumber: this.fields.phoneNumber.value ?

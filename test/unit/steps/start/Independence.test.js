@@ -11,7 +11,13 @@ describe('Independence.js', () => {
 
   describe('benefitCode() check', () => {
     const benefitCodes = Object.keys(benefitTypes);
-    const longCodes = ['disabilityLivingAllowance', 'employmentAndSupportAllowance', 'jobseekersAllowance', 'personalIndependencePayment', 'universalCredit'];
+    const longCodes = [
+      'disabilityLivingAllowance',
+      'employmentAndSupportAllowance',
+      'jobseekersAllowance',
+      'personalIndependencePayment',
+      'universalCredit'
+    ];
     const shortenedCodes = ['DLA', 'ESA', 'JSA', 'PIP', 'UC'];
     for (let i = 0; i < benefitCodes.length; i++) {
       let code = benefitCodes[i];
@@ -55,11 +61,14 @@ describe('Independence.js', () => {
     for (const code in benefitTypes) {
       const benefitType = benefitTypes[code];
       it(`CY - Should return ' budd-dal' if ${benefitType} doesn't already end in 'benefit'`, () => {
-        const MockedIndependence = proxyquire('steps/start/independence/Independence', {
-          i18next: {
-            language: 'cy'
+        const MockedIndependence = proxyquire(
+          'steps/start/independence/Independence',
+          {
+            i18next: {
+              language: 'cy'
+            }
           }
-        });
+        );
         independence = new MockedIndependence({
           session: {
             BenefitType: {
@@ -101,7 +110,9 @@ describe('Independence.js', () => {
     });
 
     it('returns tribunal panel', () => {
-      expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+      expect(independence.tribunalPanel).to.equal(
+        'judge, doctor and disability expert'
+      );
     });
 
     it('returns benefit type', () => {
@@ -121,7 +132,9 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel', () => {
-        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+        expect(independence.tribunalPanel).to.equal(
+          'judge, doctor and disability expert'
+        );
       });
 
       it('returns benefit type', () => {
@@ -150,7 +163,9 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel in Welsh', () => {
-        expect(independence.tribunalPanel).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+        expect(independence.tribunalPanel).to.equal(
+          'barnwr, meddyg ac arbenigwr anabledd'
+        );
       });
     });
 
@@ -167,7 +182,9 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel', () => {
-        expect(independence.tribunalPanel).to.equal('judge, doctor and disability expert');
+        expect(independence.tribunalPanel).to.equal(
+          'judge, doctor and disability expert'
+        );
       });
 
       it('returns benefit type', () => {
@@ -196,7 +213,9 @@ describe('Independence.js', () => {
       });
 
       it('returns tribunal panel in Welsh', () => {
-        expect(independence.tribunalPanel).to.equal('barnwr, meddyg ac arbenigwr anabledd');
+        expect(independence.tribunalPanel).to.equal(
+          'barnwr, meddyg ac arbenigwr anabledd'
+        );
       });
 
       it('returns benefit name in Welsh', () => {
@@ -204,7 +223,7 @@ describe('Independence.js', () => {
       });
     });
 
-    describe('Carer\'s Allowance', () => {
+    describe("Carer's Allowance", () => {
       beforeEach(() => {
         independence = new Independence({
           journey: steps,
@@ -225,7 +244,7 @@ describe('Independence.js', () => {
       });
     });
 
-    describe('Carer\'s Allowance', () => {
+    describe("Carer's Allowance", () => {
       beforeEach(() => {
         independence = new Independence({
           journey: steps,

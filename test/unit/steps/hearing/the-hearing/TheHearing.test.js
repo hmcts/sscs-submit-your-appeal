@@ -85,7 +85,9 @@ describe('TheHearing.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.theHearing);
-      expect(answers[0].answer).to.equal('Do not take part, decided on documents and information provided');
+      expect(answers[0].answer).to.equal(
+        'Do not take part, decided on documents and information provided'
+      );
     });
 
     it('should contain a value object', () => {

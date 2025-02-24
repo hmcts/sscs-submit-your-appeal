@@ -2,7 +2,6 @@ import $ from 'jquery';
 import 'jquery-modal';
 import moment from 'moment/moment';
 
-
 const secondsToMilliseconds = 1000;
 
 class InactivityAlert {
@@ -26,34 +25,39 @@ class InactivityAlert {
     window.location.href = '/session-timeout-redirect';
   }
   setSessionTimeout() {
-    this.timeoutForSession = window
-      .setTimeout(InactivityAlert.navigateAway, this.sessionSeconds * secondsToMilliseconds);
+    this.timeoutForSession = window.setTimeout(
+      InactivityAlert.navigateAway,
+      this.sessionSeconds * secondsToMilliseconds
+    );
   }
   setTimeoutForModal() {
     const el = $('#timeout-dialog');
-    this.timeoutForModal = window
-      .setTimeout(() => {
-        const count = 1000;
-        /* eslint-disable no-magic-numbers */
-        let startTime = 120000;
-        /* eslint-enable no-magic-numbers */
-        const splitMessage = this.elMessage.length ? this.elMessage.html().split(/ [0-9:]+ /) : '';
+    this.timeoutForModal = window.setTimeout(() => {
+      const count = 1000;
+      /* eslint-disable no-magic-numbers */
+      let startTime = 120000;
+      /* eslint-enable no-magic-numbers */
+      const splitMessage = this.elMessage.length ?
+        this.elMessage.html().split(/ [0-9:]+ /) :
+        '';
 
-        this.detachHandlers();
+      this.detachHandlers();
 
-        const updateMessage = function uM() {
-          // here update the time displayed in the modal
-          if (this.elMessage.length) {
-            const formatted = moment.utc(startTime).format('m:ss');
-            this.elMessage.html(`${splitMessage[0]} ${formatted} ${splitMessage[1]}`);
-          }
-          startTime -= count;
-        }.bind(this);
+      const updateMessage = function uM() {
+        // here update the time displayed in the modal
+        if (this.elMessage.length) {
+          const formatted = moment.utc(startTime).format('m:ss');
+          this.elMessage.html(
+            `${splitMessage[0]} ${formatted} ${splitMessage[1]}`
+          );
+        }
+        startTime -= count;
+      }.bind(this);
 
-        updateMessage();
-        this.intervalToUpdate = window.setInterval(updateMessage, count);
-        el.modal();
-      }, this.showAfterSeconds * secondsToMilliseconds);
+      updateMessage();
+      this.intervalToUpdate = window.setInterval(updateMessage, count);
+      el.modal();
+    }, this.showAfterSeconds * secondsToMilliseconds);
   }
   startCountdown() {
     this.setTimeoutForModal();
@@ -92,6 +96,5 @@ class InactivityAlert {
     this.elDestroy.off('click');
   }
 }
-
 
 export default InactivityAlert;

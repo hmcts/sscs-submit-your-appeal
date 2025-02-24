@@ -5,7 +5,9 @@ const generateValidNINumber = () => {
 
   const firstPart = firstLetters[Math.floor(Math.random() * firstLetters.length)];
 
-  const digits = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+  const digits = Math.floor(Math.random() * 1000000)
+    .toString()
+    .padStart(6, '0');
 
   const validLastLetters = ['A', 'B', 'C', 'D'];
 

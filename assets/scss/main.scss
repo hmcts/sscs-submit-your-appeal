@@ -19,7 +19,7 @@ p.contact-us::first-line {
   font-weight: bold;
 }
 
-label.form-label[for="signer"] {
+label.form-label[for='signer'] {
   font-weight: bold;
 }
 
@@ -40,17 +40,17 @@ label.form-label[for="signer"] {
   max-width: 365px;
 }
 
-.autocomplete__input, .autocomplete__option  {
+.autocomplete__input,
+.autocomplete__option {
   @extend .govuk-body;
   margin: 0;
 }
 
-.autocomplete__option--focused  {
-  color: govuk-colour("white");
+.autocomplete__option--focused {
+  color: govuk-colour('white');
 }
 
 .after-form {
-
   &.time-out-message {
     color: $govuk-secondary-text-colour;
     @extend .govuk-body;
@@ -61,7 +61,6 @@ label.form-label[for="signer"] {
     margin: 0;
   }
 }
-
 
 .mrn-image {
   padding-bottom: 1.5em;
@@ -78,19 +77,35 @@ label.form-label[for="signer"] {
   width: 100%;
 }
 
-#addressLine1, #addressLine2, #townCity, #county, #emailAddress, #firstName, #lastName, #selection\.anythingElse\.language, #reasonForBeingLate, #reasonForNoMRN  {
+#addressLine1,
+#addressLine2,
+#townCity,
+#county,
+#emailAddress,
+#firstName,
+#lastName,
+#selection\.anythingElse\.language,
+#reasonForBeingLate,
+#reasonForNoMRN {
   &.govuk-input {
     @extend .govuk-\!-width-three-quarters;
   }
 }
 
-#postCode, #phoneNumber, #enterMobile, #name\.first, #name\.last, #name\.organisation, #signer {
+#postCode,
+#phoneNumber,
+#enterMobile,
+#name\.first,
+#name\.last,
+#name\.organisation,
+#signer {
   &.govuk-input {
     @extend .govuk-\!-width-one-half;
   }
 }
 
-#postcode, #nino {
+#postcode,
+#nino {
   &.govuk-input {
     @extend .govuk-\!-width-one-quarter;
   }
@@ -101,7 +116,7 @@ label.form-label[for="signer"] {
     width: 100% !important;
 
     @include govuk-media-query($from: tablet) {
-      width:12.5% !important;
+      width: 12.5% !important;
     }
   }
 }
@@ -118,15 +133,15 @@ label.form-label[for="signer"] {
   margin-bottom: 45px;
 }
 
-.banner-blue h1{
+.banner-blue h1 {
   background: #005ea5;
   margin-bottom: 30px;
   color: white;
   padding: {
     top: 30px;
     bottom: 30px;
-    left:29px;
-  };
+    left: 29px;
+  }
   @media (min-width: 641px) {
     max-width: 100%;
   }
@@ -142,25 +157,28 @@ label.form-label[for="signer"] {
 
 .policy-links {
   a {
-    padding-right: 10%
+    padding-right: 10%;
   }
 }
 
 .cya-whatYouDisagreeWith {
-  dt, dd {
+  dt,
+  dd {
     border-bottom: none;
     padding-bottom: 0;
   }
 }
 
 .cya-hearingArrangements {
-  dt, dd {
+  dt,
+  dd {
     border-bottom: none;
     padding-bottom: 0;
   }
 
   &:last-child {
-    dt, dd {
+    dt,
+    dd {
       border-bottom: 1px solid #bfc1c3;
     }
   }
@@ -176,7 +194,6 @@ label.form-label[for="signer"] {
   padding: 0;
 
   .modal-dialog-box {
-
     h2 {
       background-color: #df3034;
       background-position: 15px center;
@@ -218,7 +235,6 @@ label.form-label[for="signer"] {
 }
 
 .progress-bar {
-
   // Display a horizontal progress bar when on larger devices.
   @include h-progress-bar;
 
@@ -244,7 +260,6 @@ label.form-label[for="signer"] {
   }
 
   details {
-
     summary {
       span {
         margin-left: -5px;
@@ -262,7 +277,7 @@ label.form-label[for="signer"] {
     }
 
     div:after {
-      content: "";
+      content: '';
       background: govuk-colour('light-grey');
       position: absolute;
       bottom: 0;
@@ -281,12 +296,10 @@ label.form-label[for="signer"] {
   }
 }
 
-
-
 #dynamic-form {
   .items-container {
-
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
     }
 
@@ -328,8 +341,8 @@ label.form-label[for="signer"] {
 
 @media (min-width: 641px) {
   #global-header .header-proposition .proposition-name {
-      font-size: 24px;
-      line-height: 1.25;
+    font-size: 24px;
+    line-height: 1.25;
   }
 }
 
@@ -345,20 +358,21 @@ label.form-label[for="signer"] {
   @extend .govuk-body;
   @extend .govuk-\!-font-size-16;
   color: $govuk-secondary-text-colour;
-  display:block;
+  display: block;
 }
 
 .panel {
   @extend .govuk-details__text;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 .hidden,
 .js-enabled .js-hidden {
   display: none;
-  visibility: hidden; }
+  visibility: hidden;
+}
 
-[for=uploadEv]{
+[for='uploadEv'] {
   @extend .govuk-button;
   @extend .govuk-button--secondary;
 }
@@ -368,13 +382,13 @@ label.form-label[for="signer"] {
 
   .govuk-link {
     @include govuk-media-query($from: tablet) {
-      @include govuk-responsive-margin(3, "left");
+      @include govuk-responsive-margin(3, 'left');
     }
   }
 }
 #ctsc-web-chat {
   p {
-    margin-bottom:0;
+    margin-bottom: 0;
   }
   a {
     @extend .govuk-link;
@@ -387,14 +401,14 @@ label.form-label[for="signer"] {
 
 .govuk-header__content {
   @include govuk-media-query($from: desktop) {
-    width: 60%
+    width: 60%;
   }
 }
 
 .govuk-header__link--signout {
-  margin-top:5px;
-  float:right;
-  font-weight:700;
+  margin-top: 5px;
+  float: right;
+  font-weight: 700;
 }
 
 .nowrap {
@@ -408,5 +422,5 @@ label.form-label[for="signer"] {
 }
 
 .archive-warning-button {
-  margin-right:5px;
+  margin-right: 5px;
 }

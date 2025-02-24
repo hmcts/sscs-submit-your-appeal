@@ -7,21 +7,22 @@ const Base64 = require('js-base64').Base64;
 const { get } = require('lodash');
 const { maskNino } = require('utils/stringUtils');
 
-
 /* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
 } = require('@hmcts/one-per-page/checkYourAnswers');
 
-let allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
+let allowSaveAndReturn =
+  config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 const authTokenString = '__auth-token';
 const idam = require('middleware/idam');
 const logger = require('logger');
-const { activeProperty } = require('@hmcts/one-per-page/src/session/sessionShims');
+const {
+  activeProperty
+} = require('@hmcts/one-per-page/src/session/sessionShims');
 
 const logPath = 'draftAppealStoreMiddleware.js';
-
 
 const setFeatureFlag = value => {
   allowSaveAndReturn = value;
@@ -33,8 +34,15 @@ const resetJourney = req => {
   // as we are only preserving the meta data, drafts and cookie. Anything else is journey data.
 
   const keysToKeep = [
-    'cookie', 'entryPoint', 'isUserSessionRestored', 'drafts', 'active',
-    'hydrate', 'dehydrate', 'generate', 'save'
+    'cookie',
+    'entryPoint',
+    'isUserSessionRestored',
+    'drafts',
+    'active',
+    'hydrate',
+    'dehydrate',
+    'generate',
+    'save'
   ];
 
   const allKeys = Object.keys(req.session);
@@ -53,10 +61,18 @@ const parseErrorResponse = error => {
   const parsedErrorObj = error;
   const dataToRemove = '_data';
   const headerToRemove = '_header';
-  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._data) {
+  if (
+    parsedErrorObj.response &&
+    parsedErrorObj.response.request &&
+    parsedErrorObj.response.request._data
+  ) {
     delete parsedErrorObj.response.request[dataToRemove];
   }
-  if (parsedErrorObj.response && parsedErrorObj.response.request && parsedErrorObj.response.request._header) {
+  if (
+    parsedErrorObj.response &&
+    parsedErrorObj.response.request &&
+    parsedErrorObj.response.request._header
+  ) {
     delete parsedErrorObj.response.request[headerToRemove];
   }
   return JSON.stringify(parsedErrorObj);
@@ -76,13 +92,19 @@ const removeRevertInvalidSteps = (journey, callBack) => {
       journey.visitedSteps = allVisitedSteps;
     }
   } catch (error) {
-    logger.trace('removeRevertInvalidSteps invalid steps, or callback function', logPath);
+    logger.trace(
+      'removeRevertInvalidSteps invalid steps, or callback function',
+      logPath
+    );
   }
 };
 
 const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
-  logger.trace('Exception on creating/updating a draft for case with nino: ' +
-    `${maskNino(get(values, 'appellant.nino'))}`, logPath);
+  logger.trace(
+    'Exception on creating/updating a draft for case with nino: ' +
+      `${maskNino(get(values, 'appellant.nino'))}`,
+    logPath
+  );
   logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);
@@ -100,24 +122,38 @@ const archiveDraft = async(req, caseId) => {
     });
   }
 
-  logger.trace(`archiveDraft - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
+  logger.trace(
+    `archiveDraft - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
+  );
 
   values.ccdCaseId = caseId;
-  await request.delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
+  await request
+    .delete(`${req.journey.settings.apiDraftUrl}/${caseId}`)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
     .then(result => {
-      logger.trace([`Successfully archived a draft for case with caseId: ${caseId}`, result.status], logPath);
+      logger.trace(
+        [
+          `Successfully archived a draft for case with caseId: ${caseId}`,
+          result.status
+        ],
+        logPath
+      );
 
-      logger.trace(`DELETE api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
-        logPath);
+      logger.trace(
+        `DELETE api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logPath
+      );
 
       delete req.session.drafts[caseId];
       req.session.save();
     })
     .catch(error => {
-      logger.trace(`Exception on archiving a draft for case with caseId: ${caseId}`, logPath);
+      logger.trace(
+        `Exception on archiving a draft for case with caseId: ${caseId}`,
+        logPath
+      );
       logger.exception(parseErrorResponse(error), logPath);
     });
 };
@@ -125,19 +161,28 @@ const archiveDraft = async(req, caseId) => {
 const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
-  logger.trace(`updateDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
-  await request.post(req.journey.settings.apiDraftUrl)
+  logger.trace(
+    `updateDraftInDraftStore - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
+  );
+  await request
+    .post(req.journey.settings.apiDraftUrl)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
     .then(result => {
-      logger.trace([
-        'Successfully updated a draft for case with nino: ' +
-        `${maskNino(get(values, 'appellant.nino'))}`, result.status
-      ], logPath);
+      logger.trace(
+        [
+          'Successfully updated a draft for case with nino: ' +
+            `${maskNino(get(values, 'appellant.nino'))}`,
+          result.status
+        ],
+        logPath
+      );
 
-      logger.trace(`POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
-        logPath);
+      logger.trace(
+        `POST api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+        logPath
+      );
 
       next();
     })
@@ -147,19 +192,28 @@ const updateDraftInDraftStore = async(req, res, next, values) => {
 };
 
 const createDraftInDraftStore = async(req, res, next, values) => {
-  logger.trace(`createDraftInDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
-  await request.put(req.journey.settings.apiDraftUrlCreate)
+  logger.trace(
+    `createDraftInDraftStore - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
+  );
+  await request
+    .put(req.journey.settings.apiDraftUrlCreate)
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
     .then(result => {
-      logger.trace([
-        'Successfully created a draft for case with nino: ' +
-        `${maskNino(get(values, 'appellant.nino'))}`, result.status
-      ], logPath);
+      logger.trace(
+        [
+          'Successfully created a draft for case with nino: ' +
+            `${maskNino(get(values, 'appellant.nino'))}`,
+          result.status
+        ],
+        logPath
+      );
 
-      logger.trace(`PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,
-        logPath);
+      logger.trace(
+        `PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,
+        logPath
+      );
 
       Object.assign(req.session, { ccdCaseId: result.body.id });
 
@@ -171,19 +225,25 @@ const createDraftInDraftStore = async(req, res, next, values) => {
 };
 
 // eslint-disable-next-line
-const saveToDraftStore = async(req, res, next) => {
+const saveToDraftStore = async (req, res, next) => {
   let values = null;
   if (allowSaveAndReturn) {
     removeRevertInvalidSteps(req.journey, () => {
       values = req.journey.values;
-      logger.trace(`saveToDraftStore - Benefit Type ${(values && values.benefitType) ? values.benefitType.code : 'null'}`);
+      logger.trace(
+        `saveToDraftStore - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
+      );
     });
   }
 
   if (allowSaveAndReturn && req.idam && values) {
-    logger.trace(`Create/Post draft for CCD Id ${(values && values.id) ? values.id : null} , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`);
+    logger.trace(
+      `Create/Post draft for CCD Id ${values && values.id ? values.id : null} , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`
+    );
     if (req.session && req.session.ccdCaseId) {
-      logger.trace(`About to update draft for Session CaseId: ${req.session.ccdCaseId}`);
+      logger.trace(
+        `About to update draft for Session CaseId: ${req.session.ccdCaseId}`
+      );
       await updateDraftInDraftStore(req, res, next, values);
     } else {
       logger.trace('About to create new draft');
@@ -203,24 +263,26 @@ const restoreUserState = async(req, res, next) => {
     }
 
     // Try to Restore from backend if user already have a saved data.
-    await request.get(req.journey.settings.apiDraftUrl)
+    await request
+      .get(req.journey.settings.apiDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
-        logger.trace([
-          'Successfully get a draft',
-          result.status
-        ], logPath);
+        logger.trace(['Successfully get a draft', result.status], logPath);
 
-        logger.trace(`GET api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
-          logPath);
+        logger.trace(
+          `GET api:${req.journey.settings.apiDraftUrl} status:${result.status}`,
+          logPath
+        );
 
         if (result.body) {
           result.body.isUserSessionRestored = true;
           result.body.entryPoint = 'Entry';
           Object.assign(req.session, result.body);
         }
-        logger.trace(`restoreUserState - Benefit Type in session ${(req.session.benefitType) ? req.session.benefitType.code : 'null'}`);
+        logger.trace(
+          `restoreUserState - Benefit Type in session ${req.session.benefitType ? req.session.benefitType.code : 'null'}`
+        );
         next();
       })
       .catch(error => {
@@ -244,14 +306,12 @@ const restoreAllDraftsState = async(req, res, next) => {
     }
 
     // Try to Restore from backend if user already have a saved data.
-    await request.get(req.journey.settings.apiAllDraftUrl)
+    await request
+      .get(req.journey.settings.apiAllDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
-        logger.trace([
-          'Successfully get all drafts',
-          result.status
-        ], logPath);
+        logger.trace(['Successfully get all drafts', result.status], logPath);
 
         if (result.body) {
           const shimmed = {};
@@ -268,7 +328,9 @@ const restoreAllDraftsState = async(req, res, next) => {
           shimmed.entryPoint = 'Entry';
           Object.assign(req.session, shimmed);
         }
-        logger.trace(`restoreAllDraftsState - Benefit Type in session ${(req.session.benefitType) ? req.session.benefitType.code : 'null'}`);
+        logger.trace(
+          `restoreAllDraftsState - Benefit Type in session ${req.session.benefitType ? req.session.benefitType.code : 'null'}`
+        );
         next();
       })
       .catch(error => {
@@ -297,11 +359,7 @@ class SaveToDraftStoreAddAnother extends AddAnother {
   }
 
   get middleware() {
-    return [
-      ...super.middleware,
-      this.journey.collectSteps,
-      saveToDraftStore
-    ];
+    return [...super.middleware, this.journey.collectSteps, saveToDraftStore];
   }
 }
 
@@ -310,11 +368,7 @@ class SaveToDraftStoreCYA extends CYA {
     return this.req.idam;
   }
   get middleware() {
-    return [
-      ...super.middleware,
-      this.journey.collectSteps,
-      saveToDraftStore
-    ];
+    return [...super.middleware, this.journey.collectSteps, saveToDraftStore];
   }
 }
 
@@ -332,11 +386,7 @@ class SaveToDraftStore extends Question {
   }
 
   get middleware() {
-    return [
-      ...super.middleware,
-      this.journey.collectSteps,
-      saveToDraftStore
-    ];
+    return [...super.middleware, this.journey.collectSteps, saveToDraftStore];
   }
 }
 
@@ -367,32 +417,22 @@ class AuthAndRestoreAllDraftsState extends Redirect {
 
 class LoadJourneyAndRedirect extends Redirect {
   get middleware() {
-    return [
-      this.journey.collectSteps,
-      ...super.middleware
-    ];
+    return [this.journey.collectSteps, ...super.middleware];
   }
 }
 
 class RestoreAllDraftsState extends Page {
   get middleware() {
-    return [
-      restoreAllDraftsState,
-      ...super.middleware
-    ];
+    return [restoreAllDraftsState, ...super.middleware];
   }
 }
-
 
 class RestoreFromDraftStore extends EntryPoint {
   get isUserLoggedIn() {
     return this.req.idam;
   }
   get middleware() {
-    return [
-      ...super.middleware,
-      restoreUserState
-    ];
+    return [...super.middleware, restoreUserState];
   }
 }
 

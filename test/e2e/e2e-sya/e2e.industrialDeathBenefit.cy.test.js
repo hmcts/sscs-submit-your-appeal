@@ -12,7 +12,18 @@ const hasDwpIssuingOffice = testDataEn.benefitTypes[13].hasDwpIssuingOffice;
 const benefitSearch = testDataEn.benefitTypes[13].codeSearchWelsh;
 
 test.describe(`${language.toUpperCase()} - Industrial Death Benefit E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - ${benefitCode} E2E SYA Journey`, { tag: ['@fullFunctional', '@e2e'] }, async({ page }) => {
-    await e2eBenefit.e2eBenefit(page, benefitSearch, office, testData.signAndSubmit.signer, language, hasDwpIssuingOffice);
-  });
+  test(
+    `${language.toUpperCase()} - ${benefitCode} E2E SYA Journey`,
+    { tag: ['@fullFunctional', '@e2e'] },
+    async({ page }) => {
+      await e2eBenefit.e2eBenefit(
+        page,
+        benefitSearch,
+        office,
+        testData.signAndSubmit.signer,
+        language,
+        hasDwpIssuingOffice
+      );
+    }
+  );
 });

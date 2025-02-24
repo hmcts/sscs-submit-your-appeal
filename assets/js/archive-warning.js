@@ -41,7 +41,10 @@ class ArchiveWarning {
     });
 
     if (this.archiveButton) {
-      this.archiveButton.addEventListener('click', this.navigateAway.bind(this));
+      this.archiveButton.addEventListener(
+        'click',
+        this.navigateAway.bind(this)
+      );
     }
   }
   detachHandlers() {
@@ -56,6 +59,5 @@ class ArchiveWarning {
     this.elExtend.off('click');
   }
 }
-
 
 export default ArchiveWarning;

@@ -19,10 +19,18 @@ describe('logger.js', () => {
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
     applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start');
-    applicationInsightsExceptionSpy = sandBox.stub(applicationInsights.defaultClient,
-      'trackException');
-    applicationInsightsTraceSpy = sandBox.stub(applicationInsights.defaultClient, 'trackTrace');
-    applicationInsightsEventSpy = sandBox.stub(applicationInsights.defaultClient, 'trackEvent');
+    applicationInsightsExceptionSpy = sandBox.stub(
+      applicationInsights.defaultClient,
+      'trackException'
+    );
+    applicationInsightsTraceSpy = sandBox.stub(
+      applicationInsights.defaultClient,
+      'trackTrace'
+    );
+    applicationInsightsEventSpy = sandBox.stub(
+      applicationInsights.defaultClient,
+      'trackEvent'
+    );
     consoleSpy = sandBox.spy(logger, 'console');
   });
 
@@ -50,15 +58,19 @@ describe('logger.js', () => {
 
     const msgBuild = logger.msgBuilder(error, label);
 
-    expect(applicationInsightsExceptionSpy).to.have.been
-      .calledWith(sinon.match({
-        exception: sinon.match.instanceOf(Error).and(sinon.match.has('message', msgBuild))
-      }));
+    expect(applicationInsightsExceptionSpy).to.have.been.calledWith(
+      sinon.match({
+        exception: sinon.match
+          .instanceOf(Error)
+          .and(sinon.match.has('message', msgBuild))
+      })
+    );
 
-    expect(consoleSpy).to.have.been.calledWith(sinon.match.instanceOf(Error)
-      .and(sinon.match.has('message', msgBuild)), 3);
+    expect(consoleSpy).to.have.been.calledWith(
+      sinon.match.instanceOf(Error).and(sinon.match.has('message', msgBuild)),
+      3
+    );
   });
-
 
   it('exception should not call  appinsight tracking', () => {
     const error = 'Error happened here';
@@ -69,7 +81,6 @@ describe('logger.js', () => {
     expect(applicationInsightsExceptionSpy).to.not.have.been.calledOnce;
     expect(consoleSpy).to.have.been.calledOnce;
   });
-
 
   it('trace should be called with proper args', () => {
     const error = 'Trace happened here';
@@ -110,7 +121,6 @@ describe('logger.js', () => {
     expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
   });
 
-
   it('msgBuilder should be return expected msg text', () => {
     const result = logger.msgBuilder('builder', 'test.js');
     expect(result).to.equal('[test.js] - builder');
@@ -119,19 +129,34 @@ describe('logger.js', () => {
   it('console should return expected text in color', () => {
     const testProps = { test: '' };
     logger.console('console logging', 0, testProps);
-    expect(nativeConsoleSpy).to.have.been.calledWith(chalk.white('console logging'), testProps);
+    expect(nativeConsoleSpy).to.have.been.calledWith(
+      chalk.white('console logging'),
+      testProps
+    );
 
     logger.console('console logging', 1);
-    expect(nativeConsoleSpy).to.have.been.calledWith(chalk.green('console logging'), '');
+    expect(nativeConsoleSpy).to.have.been.calledWith(
+      chalk.green('console logging'),
+      ''
+    );
 
     logger.console('console logging', 2);
-    expect(nativeConsoleSpy).to.have.been.calledWith(chalk.yellow('console logging'), '');
+    expect(nativeConsoleSpy).to.have.been.calledWith(
+      chalk.yellow('console logging'),
+      ''
+    );
 
     logger.console('console logging', 3);
-    expect(nativeConsoleSpy).to.have.been.calledWith(chalk.red('console logging'), '');
+    expect(nativeConsoleSpy).to.have.been.calledWith(
+      chalk.red('console logging'),
+      ''
+    );
 
     logger.console('console logging', 4);
-    expect(nativeConsoleSpy).to.have.been.calledWith(chalk.bgRed('console logging'), '');
+    expect(nativeConsoleSpy).to.have.been.calledWith(
+      chalk.bgRed('console logging'),
+      ''
+    );
 
     logger.console('console logging');
     expect(nativeConsoleSpy).to.have.been.calledWith('console logging', '');

@@ -15,9 +15,12 @@ describe('DatesCantAttend.js', () => {
     }
   }
 
-  const DatesCantAttend = proxyquire('steps/hearing/dates-cant-attend/DatesCantAttend', {
-    '@hmcts/uk-bank-holidays': UKBankHolidays
-  });
+  const DatesCantAttend = proxyquire(
+    'steps/hearing/dates-cant-attend/DatesCantAttend',
+    {
+      '@hmcts/uk-bank-holidays': UKBankHolidays
+    }
+  );
 
   beforeEach(() => {
     datesCantAttend = new DatesCantAttend({
@@ -65,7 +68,9 @@ describe('DatesCantAttend.js', () => {
 
     it('returns addAnother link when there are items in the list', () => {
       datesCantAttend.fields.items.value = [moment()];
-      expect(datesCantAttend.addAnotherLinkContent).to.equal(content.links.addAnother);
+      expect(datesCantAttend.addAnotherLinkContent).to.equal(
+        content.links.addAnother
+      );
     });
   });
 
@@ -105,10 +110,7 @@ describe('DatesCantAttend.js', () => {
 
   describe('answers() and values()', () => {
     const question = 'A Question';
-    const value = [
-      moment().add(5, 'weeks'),
-      moment().add(6, 'weeks')
-    ];
+    const value = [moment().add(5, 'weeks'), moment().add(6, 'weeks')];
     const answersMappedValue = value.map(d => d.format('DD MMMM YYYY'));
     const valuesMappedValue = value.map(d => d.format('DD-MM-YYYY'));
 
@@ -135,7 +137,9 @@ describe('DatesCantAttend.js', () => {
 
     it('should contain a value object when dates array is not empty', () => {
       const values = datesCantAttend.values();
-      expect(values).to.eql({ hearing: { datesCantAttend: valuesMappedValue } });
+      expect(values).to.eql({
+        hearing: { datesCantAttend: valuesMappedValue }
+      });
     });
 
     it('should contain an empty object when dates array is empty', () => {

@@ -22,7 +22,6 @@ const Entry = proxyquire('steps/idam/authenticated/Authenticated', {
   }
 });
 
-
 describe('Authenticated.js', () => {
   let entry = null;
 

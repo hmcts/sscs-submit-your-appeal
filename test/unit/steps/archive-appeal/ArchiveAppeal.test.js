@@ -1,6 +1,4 @@
-const {
-  expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
@@ -83,7 +81,9 @@ describe('ArchiveAppeal.js', () => {
         redirect: sinon.spy()
       };
       archiveAppeal.handler(req, res);
-      expect(res.redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)).to.eql(true);
+      expect(
+        res.redirect.calledWith(`${paths.archiveDraft}/?caseId=1234`)
+      ).to.eql(true);
     });
 
     it('should archived draft by case id and redirect', () => {

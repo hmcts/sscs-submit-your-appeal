@@ -4,7 +4,7 @@
   "description": "Briefly describe the evidence you’ve just uploaded.",
   "fields": {
     "describeTheEvidence": {
-      "label":  "Describe the evidence",
+      "label": "Describe the evidence",
       "error": {
         "tooShort": "Describe the evidence in a bit more detail",
         "noContent": "Briefly describe the evidence you have uploaded",

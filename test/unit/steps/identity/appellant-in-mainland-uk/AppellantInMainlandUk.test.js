@@ -1,4 +1,3 @@
-
 const { expect } = require('test/util/chai');
 const paths = require('paths');
 const sections = require('steps/check-your-appeal/sections');
@@ -17,7 +16,8 @@ describe('AppellantInMainlandUk.js', () => {
       journey: {
         steps: {
           AppellantContactDetails: paths.identity.enterAppellantContactDetails,
-          AppellantInternationalContactDetails: paths.identity.enterAppellantInternationalContactDetails
+          AppellantInternationalContactDetails:
+            paths.identity.enterAppellantInternationalContactDetails
         }
       }
     });
@@ -26,7 +26,9 @@ describe('AppellantInMainlandUk.js', () => {
 
   describe('get path()', () => {
     it('returns path /appellant-in-mainland-uk', () => {
-      expect(AppellantInMainlandUk.path).to.equal(paths.identity.enterAppellantInMainlandUk);
+      expect(AppellantInMainlandUk.path).to.equal(
+        paths.identity.enterAppellantInMainlandUk
+      );
     });
   });
   describe('handler()', () => {
@@ -119,13 +121,13 @@ describe('AppellantInMainlandUk.js', () => {
     });
 
     describe('English', () => {
-      it('should return the correct answer \'Yes\' for CYA (English)', () => {
+      it("should return the correct answer 'Yes' for CYA (English)", () => {
         appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('Yes');
       });
 
-      it('should return the correct answer \'No\' for CYA (English)', () => {
+      it("should return the correct answer 'No' for CYA (English)", () => {
         appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('No');
@@ -140,14 +142,14 @@ describe('AppellantInMainlandUk.js', () => {
       afterEach(() => {
         i18next.changeLanguage('en');
       });
-      it('should return the correct answer \'Nac ydw\' for CYA (Welsh)', () => {
+      it("should return the correct answer 'Nac ydw' for CYA (Welsh)", () => {
         appellantInMainlandUk.content.cya.inMainlandUk.no = 'Nac ydw';
         appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.NO;
         const answers = appellantInMainlandUk.answers();
         expect(answers.answer).to.equal('Nac ydw');
       });
 
-      it('should return the correct answer \'Ydw\' for CYA (Welsh)', () => {
+      it("should return the correct answer 'Ydw' for CYA (Welsh)", () => {
         appellantInMainlandUk.content.cya.inMainlandUk.yes = 'Ydw';
         appellantInMainlandUk.fields.inMainlandUk.value = userAnswer.YES;
         const answers = appellantInMainlandUk.answers();
@@ -165,12 +167,10 @@ describe('AppellantInMainlandUk.js', () => {
 
     it('should contain 1 fields', () => {
       expect(Object.keys(fields).length).to.equal(1);
-      expect(fields).to.have.all.keys(
-        'inMainlandUk'
-      );
+      expect(fields).to.have.all.keys('inMainlandUk');
     });
 
-    it('should contain a select reference called \'inMainlandUk\'', () => {
+    it("should contain a select reference called 'inMainlandUk'", () => {
       const selectField = fields.inMainlandUk;
       expect(selectField.constructor.name).to.eq('FieldDescriptor');
       expect(selectField.validations).to.not.be.empty;
@@ -180,12 +180,16 @@ describe('AppellantInMainlandUk.js', () => {
   describe('next()', () => {
     it('returns /appellant-contact-details for Yes in UK', () => {
       appellantInMainlandUk.fields.inMainlandUk = { value: userAnswer.YES };
-      expect(appellantInMainlandUk.next().step).to.eql(paths.identity.enterAppellantContactDetails);
+      expect(appellantInMainlandUk.next().step).to.eql(
+        paths.identity.enterAppellantContactDetails
+      );
     });
 
     it('returns /appellant-international-contact-details for No in UK', () => {
       appellantInMainlandUk.fields.inMainlandUk = { value: userAnswer.NO };
-      expect(appellantInMainlandUk.next().step).to.eql(paths.identity.enterAppellantInternationalContactDetails);
+      expect(appellantInMainlandUk.next().step).to.eql(
+        paths.identity.enterAppellantInternationalContactDetails
+      );
     });
   });
 });

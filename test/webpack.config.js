@@ -5,7 +5,13 @@ module.exports = {
   mode: 'none',
   externals: [
     nodeExternals({
-      allowlist: ['jquery', 'nunjucks', 'nunjucks-loader', /@hmcts/, 'lodash-es']
+      allowlist: [
+        'jquery',
+        'nunjucks',
+        'nunjucks-loader',
+        /@hmcts/,
+        'lodash-es'
+      ]
     })
   ],
   target: 'web',

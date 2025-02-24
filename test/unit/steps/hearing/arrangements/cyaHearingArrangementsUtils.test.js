@@ -1,5 +1,7 @@
 const { expect } = require('test/util/chai');
-const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
+const {
+  setCYAValue
+} = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const cyaContent = require('steps/hearing/arrangements/content.en').cya;
 
 const NOT_REQUIRED = cyaContent.notRequired;
@@ -21,7 +23,9 @@ describe('cyaHearingArrangementsUtils.js', () => {
     });
 
     it('should return the hidden field value when hiddenFieldValue is set', () => {
-      expect(setCYAValue(REQUIRED, hiddenFieldValue)).to.equal(hiddenFieldValue);
+      expect(setCYAValue(REQUIRED, hiddenFieldValue)).to.equal(
+        hiddenFieldValue
+      );
     });
   });
 });

@@ -20,7 +20,8 @@ describe('date-picker-utils.js', () => {
         {
           index: '1',
           value: testDate
-        }, {
+        },
+        {
           index: '2',
           value: new Date('2018-12-24')
         }
@@ -40,12 +41,18 @@ describe('date-picker-utils.js', () => {
     it('returns true when the newDateList is greater than the currentDateList', () => {
       const newDateList = currentDateList.slice(0);
       newDateList.push('2018-12-25');
-      const dateAdded = datePickerUtils.isDateAdded(currentDateList, newDateList);
+      const dateAdded = datePickerUtils.isDateAdded(
+        currentDateList,
+        newDateList
+      );
       expect(dateAdded).to.equal(true);
     });
     it('returns false when the newDateList is less than the currentDateList', () => {
       const newDateList = [];
-      const dateAdded = datePickerUtils.isDateAdded(currentDateList, newDateList);
+      const dateAdded = datePickerUtils.isDateAdded(
+        currentDateList,
+        newDateList
+      );
       expect(dateAdded).to.equal(false);
     });
   });
@@ -54,12 +61,18 @@ describe('date-picker-utils.js', () => {
     it('returns false when the newDateList is less than the currentDateList', () => {
       const newDateList = currentDateList.slice(0);
       newDateList.push('2018-12-25');
-      const dateRemoved = datePickerUtils.isDateRemoved(currentDateList, newDateList);
+      const dateRemoved = datePickerUtils.isDateRemoved(
+        currentDateList,
+        newDateList
+      );
       expect(dateRemoved).to.equal(false);
     });
     it('returns true when the newDateList is greater than the currentDateList', () => {
       const newDateList = [];
-      const dateRemoved = datePickerUtils.isDateRemoved(currentDateList, newDateList);
+      const dateRemoved = datePickerUtils.isDateRemoved(
+        currentDateList,
+        newDateList
+      );
       expect(dateRemoved).to.equal(true);
     });
   });
@@ -68,18 +81,22 @@ describe('date-picker-utils.js', () => {
       const datesOutOfOrder = [
         {
           value: new Date('2018-12-25')
-        }, {
+        },
+        {
           value: new Date('2017-08-30')
-        }, {
+        },
+        {
           value: new Date('2018-02-03')
         }
       ];
       const datesInOrder = [
         {
           value: new Date('2017-08-30')
-        }, {
+        },
+        {
           value: new Date('2018-02-03')
-        }, {
+        },
+        {
           value: new Date('2018-12-25')
         }
       ];
@@ -92,18 +109,22 @@ describe('date-picker-utils.js', () => {
       const datesOutOfOrder = [
         {
           value: new Date('2018-12-25')
-        }, {
+        },
+        {
           value: new Date('2017-08-30')
-        }, {
+        },
+        {
           value: new Date('2018-02-03')
         }
       ];
       const datesInOrder = [
         {
           value: new Date('2017-08-30')
-        }, {
+        },
+        {
           value: new Date('2018-02-03')
-        }, {
+        },
+        {
           value: new Date('2018-12-25')
         }
       ];
@@ -113,15 +134,20 @@ describe('date-picker-utils.js', () => {
   });
   describe('displayFirstOfMonth()', () => {
     it('returns span with the day when the day is not the first of the month', () => {
-      const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-25'));
+      const displayMonth = datePickerUtils.displayFirstOfMonth(
+        new Date('2018-12-25')
+      );
       expect(displayMonth).to.eql({
         content: '<span>25</span>'
       });
     });
     it('returns an object with html string when the day is the first of the month', () => {
-      const displayMonth = datePickerUtils.displayFirstOfMonth(new Date('2018-12-01'));
+      const displayMonth = datePickerUtils.displayFirstOfMonth(
+        new Date('2018-12-01')
+      );
       expect(displayMonth).to.eql({
-        content: '<span>1</span><p class="govuk-body first-of-month" aria-label="December">Dec</p>'
+        content:
+          '<span>1</span><p class="govuk-body first-of-month" aria-label="December">Dec</p>'
       });
     });
   });

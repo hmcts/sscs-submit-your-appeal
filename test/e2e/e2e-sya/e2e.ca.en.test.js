@@ -11,7 +11,18 @@ const office = testDataEn.benefitTypes[4].office;
 const hasDwpIssuingOffice = testDataEn.benefitTypes[4].hasDwpIssuingOffice;
 
 test.describe(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Journey`, () => {
-  test(`${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey`, { tag: ['@fullFunctional', '@e2e'] }, async({ page }) => {
-    await e2eBenefit.e2eBenefit(page, benefitCode, office, signer, language, hasDwpIssuingOffice);
-  });
+  test(
+    `${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey`,
+    { tag: ['@fullFunctional', '@e2e'] },
+    async({ page }) => {
+      await e2eBenefit.e2eBenefit(
+        page,
+        benefitCode,
+        office,
+        signer,
+        language,
+        hasDwpIssuingOffice
+      );
+    }
+  );
 });

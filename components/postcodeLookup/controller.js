@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const rp = require('@cypress/request-promise');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
@@ -38,21 +39,25 @@ class Controller {
     const isIbaCase = isIba(this.page.req);
     const getPostcodeLookup = () => {
       if (isIbaCase) {
-        return text.joi(
-          content.fields.postcodeLookup.error.requiredIba,
-          Joi.string().trim().regex(notNiPostcode).required()
-        ).joi(
+        return text
+          .joi(
+            content.fields.postcodeLookup.error.requiredIba,
+            Joi.string().trim().regex(notNiPostcode).required()
+          )
+          .joi(
+            content.fields.postcodeAddress.error.required,
+            customFieldValidations.string().validateAddressList(this.page)
+          );
+      }
+      return text
+        .joi(
+          content.fields.postcodeLookup.error.required,
+          Joi.string().trim().required()
+        )
+        .joi(
           content.fields.postcodeAddress.error.required,
           customFieldValidations.string().validateAddressList(this.page)
         );
-      }
-      return text.joi(
-        content.fields.postcodeLookup.error.required,
-        Joi.string().trim().required()
-      ).joi(
-        content.fields.postcodeAddress.error.required,
-        customFieldValidations.string().validateAddressList(this.page)
-      );
     };
 
     const newForm = Object.create(null);
@@ -100,10 +105,7 @@ class Controller {
 
   manualFields() {
     const fieldMap = this.fieldMap;
-    this.disabledFields = [
-      fieldMap.postcodeLookup,
-      fieldMap.postcodeAddress
-    ];
+    this.disabledFields = [fieldMap.postcodeLookup, fieldMap.postcodeAddress];
     return this.disabledFields;
   }
 
@@ -122,14 +124,20 @@ class Controller {
 
   isManualPost() {
     const req = this.page.req;
-    return req.method === 'POST' && typeof req.body[this.fieldMap.postcodeLookup] === 'undefined';
+    return (
+      req.method === 'POST' &&
+      typeof req.body[this.fieldMap.postcodeLookup] === 'undefined'
+    );
   }
 
   isManualSession() {
     const req = this.page.req;
     const page = this.page;
-    return (req.session[page.name] && req.session[page.name].type === 'manual') ||
-      (req.session[this.sessionName] && req.session[this.sessionName].type === 'manual');
+    return (
+      (req.session[page.name] && req.session[page.name].type === 'manual') ||
+      (req.session[this.sessionName] &&
+        req.session[this.sessionName].type === 'manual')
+    );
   }
 
   setMode(type = 'auto') {
@@ -178,17 +186,19 @@ class Controller {
       method: 'GET'
     };
 
-    await rp(options).then(body => {
-      if (body.results && body.results.length > 0) {
-        page.addressSuggestions = body.results;
-      } else {
+    await rp(options)
+      .then(body => {
+        if (body.results && body.results.length > 0) {
+          page.addressSuggestions = body.results;
+        } else {
+          page.fields[fieldMap.postcodeLookup].value = '';
+        }
+        Promise.resolve();
+      })
+      .catch(() => {
         page.fields[fieldMap.postcodeLookup].value = '';
-      }
-      Promise.resolve();
-    }).catch(() => {
-      page.fields[fieldMap.postcodeLookup].value = '';
-      Promise.resolve();
-    });
+        Promise.resolve();
+      });
 
     page.store();
   }
@@ -197,12 +207,18 @@ class Controller {
     let selectedAddress = [];
     const page = this.page;
     const fieldMap = this.fieldMap;
-    if (page.fields && page.fields[fieldMap.postcodeAddress] &&
-      page.fields[fieldMap.postcodeAddress].validate() && page.addressSuggestions) {
+    if (
+      page.fields &&
+      page.fields[fieldMap.postcodeAddress] &&
+      page.fields[fieldMap.postcodeAddress].validate() &&
+      page.addressSuggestions
+    ) {
       const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
       if (selectedUPRN) {
         // eslint-disable-next-line max-len
-        selectedAddress = page.addressSuggestions.filter(address => address.DPA.UPRN === selectedUPRN);
+        selectedAddress = page.addressSuggestions.filter(
+          address => address.DPA.UPRN === selectedUPRN
+        );
       }
     }
 
@@ -220,7 +236,10 @@ class Controller {
 
   handleGetValidate() {
     const page = this.page;
-    if (page.postcodeLookupType === 'manual' || page.addressSuggestions.length === 0) {
+    if (
+      page.postcodeLookupType === 'manual' ||
+      page.addressSuggestions.length === 0
+    ) {
       this.page.validate();
     }
   }
@@ -232,21 +251,27 @@ class Controller {
     this.restoreValues();
     // restore suggestions if they exits
     page.addressSuggestions = [];
-    if (page.fields[fieldMap.postcodeLookup] &&
-      page.fields[fieldMap.postcodeLookup].validate()) {
+    if (
+      page.fields[fieldMap.postcodeLookup] &&
+      page.fields[fieldMap.postcodeLookup].validate()
+    ) {
       await this.handlePostCodeLookup();
     }
     const formType = this.getFormType();
     if (formType === 'auto') {
-      if (page.fields[fieldMap.postcodeLookup] &&
+      if (
+        page.fields[fieldMap.postcodeLookup] &&
         page.fields[fieldMap.postcodeLookup].validate() &&
         page.addressSuggestions.length > 0 &&
         page.fields[fieldMap.postcodeAddress] &&
-        page.fields[fieldMap.postcodeAddress].validate()) {
+        page.fields[fieldMap.postcodeAddress].validate()
+      ) {
         this.alldFields();
-      } else if (page.fields[fieldMap.postcodeLookup] &&
+      } else if (
+        page.fields[fieldMap.postcodeLookup] &&
         page.fields[fieldMap.postcodeLookup].validate() &&
-        page.addressSuggestions.length > 0) {
+        page.addressSuggestions.length > 0
+      ) {
         this.postcodeAddressFields();
       } else {
         this.postcodeLookupFields();
@@ -262,7 +287,9 @@ class Controller {
     const sessionLanguage = i18next.language;
 
     const req = this.page.req;
-    const content = require(`./content${isIba(req) ? 'Iba' : ''}.${sessionLanguage}`);
+    const content = require(
+      `./content${isIba(req) ? 'Iba' : ''}.${sessionLanguage}`
+    );
 
     const page = this.page;
 

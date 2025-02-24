@@ -138,8 +138,9 @@ describe('AppointeeDOB.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /appointee-contact-details', () => {
-      expect(appointeeDOBClass.next())
-        .to.eql({ nextStep: paths.appointee.enterAppointeeContactDetails });
+      expect(appointeeDOBClass.next()).to.eql({
+        nextStep: paths.appointee.enterAppointeeContactDetails
+      });
     });
   });
 });
