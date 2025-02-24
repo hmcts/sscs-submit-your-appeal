@@ -25,26 +25,22 @@
 
 
 {#
-  textbox
+  addReasonTextBox
     field - (required) A field object containing name, id and value
     label - (required) The label to apply to the field
     hint  - (default = '') Extra hint text to place under the label
     hideLabel - (default = false) Hides the input label
 
-  Renders a simple text box input field.
+  Renders a simple text box input field from the deprecated textBox solely for add reason page.
 #}
-{% macro textbox(field, label, hint=false, hideLabel=false, value=null) %}
+{% macro addReasonTextBox(field, label, hint=false, hideLabel=false, value=null) %}
   <div class="govuk-form-group {{ errorClass(field) }}">
-    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" for="{{ field.id }}">{{ label }}</label>
-    {%- if hint %}
-      <div id="{{ field.id }}-hint" class="govuk-hint">{{ hint }}</div>
-    {%- endif %}
+    <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}" id="{{ field.id }}-hint" for="{{ field.id }}">{{ label }}</label>
     {{ errorsFor(field) }}
     <input class="govuk-input"
            id="{{ field.id }}"
            name="{{ field.id }}"
            type="text"
-           aria-describedby="{{ field.id }}-hint"
            {% if field.value %}
            value="{{field.value}}"
            {% elseif value %}
