@@ -1,5 +1,6 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title | safe %}
 
@@ -7,14 +8,13 @@
     <p class="govuk-body">{{ content.description }}</p>
 
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.isAppointee,
-            content.fields.isAppointee.label,
+               {{ govRadio(field = fields.isAppointee,
+            headerText = content.fields.isAppointee.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.isAppointee.no, value: "no" },
-                { label: content.fields.isAppointee.yes, value: "yes" }
-            ])
-        }}
+            isPageHeading = false,
+            items = [
+                { value: "no", text: content.fields.isAppointee.no },
+                { value: "yes", text: content.fields.isAppointee.yes }
+        ]) }}
     {% endcall %}
 {% endblock %}
