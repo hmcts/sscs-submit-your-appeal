@@ -12,11 +12,11 @@
   "buttons": {
     "create": "Creu cais newydd",
     "edit": "Golygu",
-    "delete": "Cadw"
+    "delete": "Dileu"
   },
   "dialog": {
-    "title": "Cadw?",
-    "warnMessage": "Ydych chi’n siŵr eich bod eisiau archifo eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi’i archifo.",
+    "title": "Dileu?",
+    "warnMessage": "Ydych chi'n siŵr eich bod eisiau dileu eich cais apêl? Ni fyddwch yn gallu adfer eich cais unwaith y bydd wedi'i wedi’i ddileu.",
     "buttons": {
       "delete": "Ydw",
       "save": "Nac Ydw"
