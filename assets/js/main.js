@@ -14,6 +14,7 @@ import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 import { WebChat } from './web-chat';
 import { WebChatScotland } from './web-chat-scotland';
 import DeleteWarning from './delete-warning';
+import LanguagePreferenceToggle from './language-preference';
 
 /* eslint-disable init-declarations */
 let timeoutM;
@@ -165,6 +166,16 @@ function initBackButton() {
   });
 }
 
+function initLanguagePreferenceToggle() {
+  if (LanguagePreferenceToggle.startLanguagePreferenceToggle()) new LanguagePreferenceToggle();
+}
+
+function initGovUkComponentJavascript() {
+  const govUK = require('govuk-frontend');
+
+  govUK.initAll();
+}
+
 $(document).ready(() => {
   const language = $('html').attr('lang');
   initShowHideContent();
@@ -180,6 +191,8 @@ $(document).ready(() => {
   PostCodeLookup.init();
   initCookieBanner();
   initWebChatScotland();
+  initLanguagePreferenceToggle();
+  initGovUkComponentJavascript();
 });
 
 $(window).on('unload', () => {

@@ -47,7 +47,7 @@ test.describe(
         .getByRole('button', { name: commonContent.continue })
         .first()
         .click();
-      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber');
       await page.waitForURL(`**${paths.smsNotify.smsConfirmation}`);
       await page
         .getByRole('button', { name: commonContent.continue })
@@ -73,7 +73,7 @@ test.describe(
         .getByRole('button', { name: commonContent.continue })
         .first()
         .click();
-      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber');
       await page.waitForURL(`**${paths.smsNotify.smsConfirmation}`);
       await expect(
         page
@@ -99,7 +99,7 @@ test.describe(
         .getByRole('button', { name: commonContent.continue })
         .first()
         .click();
-      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-2');
       await page.waitForURL(`**${paths.smsNotify.enterMobile}`);
       await page.locator('#enterMobile').fill('+447123456789');
       await page

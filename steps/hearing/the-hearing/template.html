@@ -1,34 +1,34 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.title %}
 
 {% block fields %}
-        <p class="govuk-body">{{ content.subtitle }}</p>
+  <p class="govuk-body">{{ content.subtitle }}</p>
 
-        <p class="govuk-heading-m">{{ content.hearingFormatsList.title }}</p>
-        <p class="govuk-body">{{ content.hearingFormatsList.subtitle }}</p>
-        <ul class="govuk-list govuk-list--bullet">
-            <li>{{ content.hearingFormatsList.bulletPoint1 }}</li>
-            <li>{{ content.hearingFormatsList.bulletPoint2 }}</li>
-        </ul>
+  <p class="govuk-heading-m">{{ content.hearingFormatsList.title }}</p>
+  <p class="govuk-body">{{ content.hearingFormatsList.subtitle }}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{ content.hearingFormatsList.bulletPoint1 }}</li>
+    <li>{{ content.hearingFormatsList.bulletPoint2 }}</li>
+  </ul>
 
-        <p class="govuk-heading-m">{{ content.hearingSupportList.title }}</p>
-        <p class="govuk-body">{{ content.hearingSupportList.subtitle }}</p>
-        <ul class="govuk-list govuk-list--bullet">
-            <li>{{ content.hearingSupportList.bulletPoint1 }}</li>
-            <li>{{ content.hearingSupportList.bulletPoint2 }}</li>
-        </ul>
+  <p class="govuk-heading-m">{{ content.hearingSupportList.title }}</p>
+  <p class="govuk-body">{{ content.hearingSupportList.subtitle }}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{ content.hearingSupportList.bulletPoint1 }}</li>
+    <li>{{ content.hearingSupportList.bulletPoint2 }}</li>
+  </ul>
 
-        <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
+  <p class="govuk-body">{{ content.hearingSupportList.information | safe }}</p>
 
-    {{ selectionButtons(
-        fields.attendHearing,
-        content.fields.attendHearing.title,
-        hideQuestion = false,
-        options = [
-            { label: content.fields.attendHearing.yes, value: "yes" },
-            { label: content.fields.attendHearing.no, value: "no" }
-        ])
-    }}
+  {{ govRadio(field = fields.attendHearing,
+    headerText = content.fields.attendHearing.title,
+    hideQuestion = false,
+    isPageHeading=false,
+    items = [
+      { value: "yes", text: content.fields.attendHearing.yes },
+      { value: "no", text: content.fields.attendHearing.no }
+  ]) }}
 {% endblock %}

@@ -1,0 +1,21 @@
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "components/common/errors.njk" import getErrors %}
+
+{% macro govCheckbox(field, headerText = "", isPageHeading = false, hideQuestion = true, hint = null, classes = "govuk-fieldset__legend--m", items) %}
+    {{ govukCheckboxes({
+      name: field.id,
+      fieldset: {
+        legend: {
+          text: headerText,
+          isPageHeading: isPageHeading,
+          classes: classes + " govuk-visually-hidden" if hideQuestion else classes
+        }
+      },
+      hint: {
+        text: hint
+            } if hint else undefined,
+      items: items,
+      errorMessage: null if field.errors.length == 0 else {text: getErrors(field)}
+    }) }}
+{% endmacro %}
+
