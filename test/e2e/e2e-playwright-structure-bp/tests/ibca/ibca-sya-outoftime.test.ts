@@ -9,15 +9,19 @@ async function runAssertions(ibcaPageObject: any) {
 }
 
 [
-  { refNumPredatedBy: 1 },
-  { refNumPredatedBy: 13 }
-].forEach(({ refNumPredatedBy }) => {
-  test(`testing end to end ibca journey for ref. num predated by ${refNumPredatedBy} month(s) scenario`, { tag: '@ibca-smoke' }, async ({ page }) => {
+  { refNumPredatedBy: 1, saveForLater: false },
+  { refNumPredatedBy: 13, saveForLater: false },
+  { refNumPredatedBy: 1, saveForLater: true },
+  { refNumPredatedBy: 13, saveForLater: true },
+].forEach(({ refNumPredatedBy, saveForLater }) => {
+  test(`testing end to end ibca journey for ref. num predated by ${refNumPredatedBy} month(s) and saveForLater set to ${saveForLater} scenario`, { tag: '@fullFunctional' }, async ({ page }) => {
     // eslint-disable-next-line no-process-env
     process.env.LANGUAGE_TO_TEST = 'en';
     // eslint-disable-next-line no-process-env
     const testData = await getJsonFromFile(`test/e2e/data.ibca.${process.env.LANGUAGE_TO_TEST}.json`);
     const ibcaPages = await PageFactory.getAllPages(page);
+
+    testData.sidamCredentials.username = process.env.USEREMAIL_1;
 
     await ibcaPages.languagePreferencePage.goto();
 
@@ -31,7 +35,14 @@ async function runAssertions(ibcaPageObject: any) {
 
     // Create account page
     await runAssertions(ibcaPages.createAccountPage);
-    await ibcaPages.createAccountPage.saveForLater(false);
+    await ibcaPages.createAccountPage.saveForLater(saveForLater, testData.sidamCredentials);
+
+    // Agree to independent tribunal - Repeat only if saveForLater set to true
+    if (saveForLater) {
+      await runAssertions(ibcaPages.independencePage);
+      await ibcaPages.independencePage.submitPage();
+    }
+
 
     // Review decision notice page
     await runAssertions(ibcaPages.reviewDecisionNoticePage);
@@ -110,5 +121,15 @@ async function runAssertions(ibcaPageObject: any) {
 
     //  Confirmation page
     await runAssertions(ibcaPages.confirmationPage);
+
+    // Go back to home page
+    if (saveForLater) {
+      await ibcaPages.languagePreferencePage.goto();
+      await runAssertions(ibcaPages.draftAppealsPage);
+
+      // Edit appeal and check if landing page is cya
+      await ibcaPages.draftAppealsPage.editAppeal();
+      await runAssertions(ibcaPages.checkYourAppealPage);
+    }
   });
 });

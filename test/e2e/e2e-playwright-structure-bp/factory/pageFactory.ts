@@ -20,7 +20,8 @@ import {
     AppellantContactDetailsPage,
     ConfirmationPage,
     IbcaReferenceLateDatePage,
-    IbcaReferenceLateDateReasonPage
+    IbcaReferenceLateDateReasonPage,
+    DraftAppealsPage
 } from '../pages';
 
 export class PageFactory {
@@ -47,6 +48,7 @@ export class PageFactory {
             'checkYourAppealPage': new CheckYourAppealPage(page),
             'languagePreferencePage': new LanguagePreferencePage(page),
             'confirmationPage': new ConfirmationPage(page),
+            'draftAppealsPage': new DraftAppealsPage(page),
         };
         return pages;
     }

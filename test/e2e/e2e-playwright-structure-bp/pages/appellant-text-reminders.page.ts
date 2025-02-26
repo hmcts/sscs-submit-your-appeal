@@ -10,7 +10,7 @@ export class AppellantTextRemindersPage extends BasePage {
 
   async receiveTextMessageNotifications(smsNotify: any) {
     if (smsNotify.wantsSMSNotifications) {
-      await this.page.locator("#doYouWantTextMsgReminders-yes").click()
+      await this.page.getByText('Yes').click();
       await this.submitPage();
       await this.page.getByRole('radio', { name: 'No, send them to a different' }).check();
       await this.submitPage();
@@ -18,7 +18,7 @@ export class AppellantTextRemindersPage extends BasePage {
       await this.submitPage();
 
     } else {
-      await this.page.locator("#doYouWantTextMsgReminders-no").click()
+      await this.page.getByText('No').click();
     }
     await this.submitPage();
   }
