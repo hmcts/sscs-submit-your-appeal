@@ -1,4 +1,7 @@
 {
+  "sidamCredentials": {
+    "password": "Testing123"
+  },
   "language": "en",
   "reviewDecisionNotice": true,
   "ibcaRefNum": "A12B34",

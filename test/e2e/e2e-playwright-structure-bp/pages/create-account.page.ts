@@ -8,13 +8,20 @@ export class CreateAccountPage extends BasePage {
       "If you decide not to create an account now, and leave an appeal part-way through, you will have to start over when you decide to complete an appeal. If you think you will want to save part-way through, then select I want to be able to save this appeal later."
     ]
   };
-  async saveForLater(saveOption: boolean) {
+  async saveForLater(saveOption: boolean, credentials: any = {}) {
     if (saveOption) {
-      await this.page.getByText('I want to be able to save this appeal later').click();
-    }
-    else {
+      await this.page.getByText('I want to be able to save this appeal later', { exact: true }).click();
+      await this.submitPage();
+      
+      await this.page.getByRole('textbox', { name: 'Email address' }).fill(credentials.username);
+      await this.page.getByRole('textbox', { name: 'Password' }).fill(credentials.password);
+      await this.submitPage('Sign in');
+      
+      await this.page.getByRole('link', { name: 'Create new application' }).click();
+      await this.submitPage('Save and continue');        
+    } else {
       await this.page.getByText('I do not want to be able to save this appeal later').click();
+      await this.submitPage();
     }
-    await this.submitPage();
   }
 }
