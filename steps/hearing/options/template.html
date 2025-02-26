@@ -4,25 +4,24 @@
 
 {% set title = content.title %}
 
+{% set telephoneTextField %}
+{{ govTextInput(fields.selectOptions.telephone.phoneNumber, content.fields.options.telephone.error.required, hideLabel=true) }}
+{% endset -%}
+
+{% set emailTextField %}
+{{ govTextInput(fields.selectOptions.video.email, content.fields.options.video.error.required, hideLabel=true) }}
+{% endset -%}
+
 {% block fields %}
     <p class="govuk-body">{{ content.subtitle }}</p>
     <p class="govuk-body">{{ content.tribunalExplained }}</p>
     <p class="govuk-body">{{ content.supportExplained }}</p>
-    <p class="govuk-heading-m">{{ content.fields.title }}</p>
-    <p class="govuk-hint">{{ content.instructions }}</p>
-
-{% set telephoneTextField %}
-    {{ govTextInput(fields.selectOptions.telephone.phoneNumber, hideLabel=true) }}
-{% endset -%}
-
-{% set emailTextField %}
-    {{ govTextInput(fields.selectOptions.video.email, hideLabel=true) }}
-{% endset -%}
 
 {{ govCheckbox(
   field = fields.selectOptions,
-  headerText = '',
-  hideQuestion = true,
+  headerText = content.fields.title,
+  hint = content.instructions,
+  hideQuestion = false,
   isPageHeading = false,
   items = [
     {
