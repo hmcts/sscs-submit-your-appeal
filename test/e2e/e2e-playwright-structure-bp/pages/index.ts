@@ -4,6 +4,7 @@ import { IbcaReferenceLateDatePage, IbcaReferenceLateDateReasonPage } from "./ch
 import { CheckYourAppealPage } from "./check-your-appeal.page";
 import { ConfirmationPage } from "./confirmation.page";
 import { CreateAccountPage } from "./create-account.page";
+import { DraftAppealsPage } from "./draft-appeals.page";
 import { AppellantContactDetailsPage } from "./enter-appellant-contact-details.page";
 import { AppellantDobPage } from "./enter-appellant-dob.page";
 import { IbcaReferenceNumberPage } from "./enter-appellant-ibca-reference.page";
@@ -42,4 +43,5 @@ export {
   TheHearingPage,
   CheckYourAppealPage,
   ConfirmationPage,
+  DraftAppealsPage,
 }
