@@ -1,6 +1,7 @@
 {% extends "layouts/question.html" %}
 {% from "components/fields.njk" import formSection, errorClass, errorsFor %}
 {% from "components/header.njk" import header %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% block fields %}
   {% if i18n.currentLanguage == "en" %}
@@ -59,7 +60,7 @@
       <pre>
         {% raw %}
           {% block editItem %}
-          {{ textbox(this.fields.item, 'Item label') }}
+          {{ govTextInput(this.fields.item, 'Item label') }}
           {% endblock %}
         {% endraw %}
       </pre>

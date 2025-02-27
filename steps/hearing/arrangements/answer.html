@@ -5,8 +5,8 @@
             <dd class="govuk-summary-list__value">{{ answer }}</dd>
             <dd class="govuk-summary-list__actions">
                 {% if loop.first %}
-                    <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-                    <span class="govuk-visually-hidden"> {{ content.cya.arrangements }}</span>
+                    <a id="cya-change-hearingarrangements" aria-labelledby="cya-change-hearingarrangements cya-hearingarrangements-label" class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+                    <span id="cya-hearingarrangements-label" class="govuk-visually-hidden"> {{ content.cya.arrangements }}</span>
                 {% endif %}
             </dd>
         </dl>
