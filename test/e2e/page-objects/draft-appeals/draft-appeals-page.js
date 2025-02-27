@@ -10,9 +10,7 @@ async function verifyDraftAppealsAndEditACase(I, language) {
       I.getByText('Your draft benefit appeals').first()
     ).toBeVisible();
     await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
-    await expect(
-      I.getByRole('link', { name: 'Archive' }).first()
-    ).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
     await I.getByRole('link', { name: 'Edit' }).first().click();
 
     await expect(I.getByText('Check your answers').first()).toBeVisible();
@@ -42,23 +40,23 @@ async function verifyDraftAppealsAndEditACase(I, language) {
   }
 }
 
-async function verifyDraftAppealsAndArchiveACase(I) {
+async function verifyDraftAppealsAndDeleteACase(I) {
   await expect(
     I.locator(".form-buttons-group [href='/new-appeal']").first()
   ).toBeVisible();
   await expect(I.getByText('Your draft benefit appeals').first()).toBeVisible();
   await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
-  await expect(I.getByRole('link', { name: 'Archive' }).first()).toBeVisible();
-  await I.getByRole('link', { name: 'Archive' }).first().click();
+  await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
+  await I.getByRole('link', { name: 'Delete' }).first().click();
   await expect(
     I.getByText(
-      'Are you sure you want to archive your appeal application?'
+      'Are you sure you want to delete your appeal application?'
     ).first()
   ).toBeVisible();
   await I.getByText('Yes').first().click();
   await I.reload();
   await expect(I.locator('Edit').first()).toBeHidden();
-  await expect(I.locator('Archive').first()).toBeHidden();
+  await expect(I.locator('Delete').first()).toBeHidden();
 }
 
 async function editDraftAppeal(I, language) {
@@ -70,9 +68,7 @@ async function editDraftAppeal(I, language) {
       I.getByText('Your draft benefit appeals').first()
     ).toBeVisible();
     await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
-    await expect(
-      I.getByRole('link', { name: 'Archive' }).first()
-    ).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
   } else {
     await expect(
       I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
@@ -124,7 +120,7 @@ async function navigateToDrafts(I, language) {
 
 module.exports = {
   verifyDraftAppealsAndEditACase,
-  verifyDraftAppealsAndArchiveACase,
+  verifyDraftAppealsAndDeleteACase,
   editDraftAppeal,
   navigateToDrafts
 };
