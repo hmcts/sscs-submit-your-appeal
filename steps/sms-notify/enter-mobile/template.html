@@ -1,11 +1,16 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title | safe %}
 
 {% block fields %}
     {% call formSection() %}
         <p class="govuk-body">{{ content.description }}</p>
-        {{ textbox(fields.enterMobile, content.fields.enterMobile.label, hideLabel=true) }}
+        {{ govTextInput(fields.enterMobile,
+            content.fields.enterMobile.label,
+            hideLabel = true,
+            isPageHeading = false
+        ) }}
     {% endcall %}
 {% endblock %}
