@@ -28,7 +28,7 @@ async function verifyDraftAppealsAndEditACase(I, language) {
       I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
     ).toBeVisible();
     await expect(I.getByText('Golygu').first()).toBeVisible();
-    await expect(I.getByText('Cadw').first()).toBeVisible();
+    await expect(I.getByText('Dileu').first()).toBeVisible();
     await I.getByText('Golygu').first().click();
 
     await expect(I.getByText('Gwiriwch eich atebion').first()).toBeVisible();
@@ -78,7 +78,7 @@ async function editDraftAppeal(I, language) {
       I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
     ).toBeVisible();
     await expect(I.getByText('Golygu').first()).toBeVisible();
-    await expect(I.getByText('Cadw').first()).toBeVisible();
+    await expect(I.getByText('Dileu').first()).toBeVisible();
   }
 
   const ccdCaseIDLocators = await I.locator(
