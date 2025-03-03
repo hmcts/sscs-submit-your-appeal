@@ -90,7 +90,7 @@ class AddReason {
 
   setUpTemplateComponents() {
     fieldTemplates.getExported((error, components) => {
-      this.textboxField = components.textbox;
+      this.textboxField = components.addReasonTextBox;
       this.textareaField = components.textarea;
     });
     errorSummary.getExported((error, components) => {

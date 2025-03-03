@@ -3,8 +3,8 @@
         <dt class="govuk-summary-list__key">{{ content.cya.name.question }}</dt>
         <dd class="govuk-summary-list__value">{{ CYAName }}</dd>
         <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
-            <span class="govuk-visually-hidden"> {{ content.cya.repDetails }}</span>
+            <a id="cya-change-representativedetails" aria-labelledby="cya-change-representativedetails cya-representativedetails-label" class="govuk-link" href="{{ path }}">{{ content.cya.change }}</a>
+            <span id="cya-representativedetails-label" class="govuk-visually-hidden"> {{ content.cya.repDetails }}</span>
         </dd>
     </dl>
 </div>

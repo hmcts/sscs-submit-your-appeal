@@ -1,7 +1,8 @@
 {% set config = {'autocomplete': 'off'} %}
 {% extends "components/globals.html" %}
 {% extends "layouts/add_another.html" %}
-{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor, textarea %}
+{% from "components/fields.njk" import formSection, errorClass, errorsFor, textarea %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set titleHead %}
     {{ content.titleHead if isListMode }}
@@ -68,7 +69,7 @@
 {% endblock %}
 
 {% block editItem %}
-    {{ textbox(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
+    {{ govTextInput(fields.item.whatYouDisagreeWith, content.fields.whatYouDisagreeWith.label) }}
     {{ textarea(fields.item.reasonForAppealing, content.fields.reasonForAppealing.label, placeholder=content.placeholder) }}
 {% endblock %}
 
