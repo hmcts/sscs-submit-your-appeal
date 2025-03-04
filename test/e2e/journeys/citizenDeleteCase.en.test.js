@@ -9,7 +9,7 @@ const { createTheSession } = require('../page-objects/session/createSession');
 const { endTheSession } = require('../page-objects/session/endSession');
 const {
   enterDetailsForNewApplication,
-  enterDetailsToArchiveACase
+  enterDetailsToDeleteACase
 } = require('../page-objects/cya/checkYourAppeal');
 
 test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
@@ -36,12 +36,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
         language,
         userEmail
       );
-      await enterDetailsToArchiveACase(
-        page,
-        commonContent,
-        language,
-        userEmail
-      );
+      await enterDetailsToDeleteACase(page, commonContent, language, userEmail);
     }
   );
 });
