@@ -4,7 +4,6 @@
     "appConfigurations.js",
     "app-insights.js",
     "server.js",
-    "gulpfile.js",
     "config/**",
     "charts/**",
     "**/healthcheck.js",
