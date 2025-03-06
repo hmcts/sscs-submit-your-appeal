@@ -9,7 +9,6 @@ const crypto = require('crypto');
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = config.get('services.idam-aat.apiCallTimeout');
 
-
 const createUser = () => {
   console.log('Creating Idam test user');
   const password = testDataEn.signIn.password;
@@ -57,6 +56,5 @@ const deleteUser = email => {
 
   console.log(`Deleted SIDAM user for ${email}`);
 };
-
 
 module.exports = { createUser, deleteUser };

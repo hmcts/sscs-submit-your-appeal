@@ -34,7 +34,9 @@ class AddReason {
   }
 
   buildForm() {
-    const hasNoReasonsError = $(`.govuk-error-summary__list:contains(${this.content.listError})`).length;
+    const hasNoReasonsError = $(
+      `.govuk-error-summary__list:contains(${this.content.listError})`
+    ).length;
     // eslint-disable-next-line arrow-body-style
     const values = this.items.map((item, index) => ({
       index,
@@ -79,11 +81,7 @@ class AddReason {
   }
 
   getFieldValues(items) {
-    const removeKeys = [
-      'id',
-      'name',
-      'validations'
-    ];
+    const removeKeys = ['id', 'name', 'validations'];
     for (const key in items) {
       if (includes(removeKeys, key)) delete items[key];
     }
@@ -92,7 +90,7 @@ class AddReason {
 
   setUpTemplateComponents() {
     fieldTemplates.getExported((error, components) => {
-      this.textboxField = components.textbox;
+      this.textboxField = components.addReasonTextBox;
       this.textareaField = components.textarea;
     });
     errorSummary.getExported((error, components) => {
@@ -117,7 +115,9 @@ class AddReason {
       opts.reasonForAppealing.errors || [],
       opts.reasonForAppealing.value
     );
-    $(`#${this.formId}`).append(`<div id="items-${this.counter}" class="items-container">`);
+    $(`#${this.formId}`).append(
+      `<div id="items-${this.counter}" class="items-container">`
+    );
     $(`#items-${this.counter}`)
       .append(whatYouDisagreeWithField.val)
       .append(reasonForAppealingField.val);
@@ -132,24 +132,42 @@ class AddReason {
   }
 
   buildWhatYouDisagreeWithField(errors, value) {
-    const whatYouDisagreeWith = this.language === 'cy' ? 'Beth rydych chi\'n anghytuno ag ef' : 'What you disagree with';
+    const whatYouDisagreeWith =
+      this.language === 'cy' ?
+        "Beth rydych chi'n anghytuno ag ef" :
+        'What you disagree with';
 
-    return this.textboxField({
-      id: `${this.textboxId}-${this.counter}`,
-      errors: errors || [],
-      value: value || ''
-    }, whatYouDisagreeWith);
+    return this.textboxField(
+      {
+        id: `${this.textboxId}-${this.counter}`,
+        errors: errors || [],
+        value: value || ''
+      },
+      whatYouDisagreeWith
+    );
   }
 
   buildReasonForAppealingField(errors, value) {
-    const whyYouDisagreeWithIt = this.language === 'cy' ? 'Pam rydych chi\'n anghytuno ag ef' : 'Why you disagree with it';
-    const youCanWriteAsMuchAsYouWant = this.language === 'cy' ? 'Gallwch chi ysgrifennu cymaint ag y dymunwch' : 'You can write as much as you want';
+    const whyYouDisagreeWithIt =
+      this.language === 'cy' ?
+        "Pam rydych chi'n anghytuno ag ef" :
+        'Why you disagree with it';
+    const youCanWriteAsMuchAsYouWant =
+      this.language === 'cy' ?
+        'Gallwch chi ysgrifennu cymaint ag y dymunwch' :
+        'You can write as much as you want';
 
-    return this.textareaField({
-      id: `${this.textareaId}-${this.counter}`,
-      errors: errors || [],
-      value: value || ''
-    }, whyYouDisagreeWithIt, null, false, youCanWriteAsMuchAsYouWant);
+    return this.textareaField(
+      {
+        id: `${this.textareaId}-${this.counter}`,
+        errors: errors || [],
+        value: value || ''
+      },
+      whyYouDisagreeWithIt,
+      null,
+      false,
+      youCanWriteAsMuchAsYouWant
+    );
   }
 
   static readToken() {
@@ -182,18 +200,17 @@ class AddReason {
           answers.splice(itemIndex, 1);
         });
 
-        deleteItems = itemsToDelete.map(itemIndex => (
-          () => (
+        deleteItems = itemsToDelete.map(
+          itemIndex => () =>
             $.ajax({
               type: 'GET',
               url: `/reason-for-appealing/item-${itemIndex}/delete`
             })
-          )
-        ));
+        );
       }
       // Creates the array of ajax to post the items
-      const postItems = answers.map((answer, index) => (
-        () => (
+      const postItems = answers.map(
+        (answer, index) => () =>
           $.ajax({
             type: 'POST',
             url: `/reason-for-appealing/item-${index}`,
@@ -213,7 +230,11 @@ class AddReason {
                   otherErrors = true;
                   self.handleValidationError(index, resJson.validationErrors);
                 }
-              } else if ($(`#items-${index}`).children().hasClass('govuk-form-group--error')) {
+              } else if (
+                $(`#items-${index}`)
+                  .children()
+                  .hasClass('govuk-form-group--error')
+              ) {
                 $(`#items-${index} .govuk-form-group`)
                   .removeClass('govuk-form-group--error')
                   .children()
@@ -221,19 +242,26 @@ class AddReason {
               }
             }
           })
-        ))
       );
       // Puts the promises in sequence rather than parellel
       const promiseSequence = funcs =>
-        funcs.reduce((promise, func) => promise
-          .then(result => func().then(Array.prototype.concat.bind(result))),
-        Promise.resolve([]));
+        funcs.reduce(
+          (promise, func) =>
+            promise.then(result =>
+              func().then(Array.prototype.concat.bind(result))
+            ),
+          Promise.resolve([])
+        );
 
       // Call the ajax promises, deleting the items first and then posting
-      return promiseSequence([...deleteItems, ...postItems])
-        .then(responses => {
-          const validationErrors = responses.filter(response => response.validationErrors);
-          const actualErrors = validationErrors.filter(error => error.validationErrors.length > 0);
+      return promiseSequence([...deleteItems, ...postItems]).then(
+        responses => {
+          const validationErrors = responses.filter(
+            response => response.validationErrors
+          );
+          const actualErrors = validationErrors.filter(
+            error => error.validationErrors.length > 0
+          );
           if (actualErrors.length === 0 || (firstItemValid && !otherErrors)) {
             $('.govuk-error-summary').remove();
             // eslint-disable-next-line no-invalid-this
@@ -241,7 +269,8 @@ class AddReason {
           } else {
             self.handleErrorSummary(validationErrors);
           }
-        });
+        }
+      );
     });
   }
 
@@ -249,7 +278,8 @@ class AddReason {
     const itemsToDelete = [];
     $.each(answers, (index, answer) => {
       if (
-        answer['item.whatYouDisagreeWith'] !== '' && answer['item.reasonForAppealing'] !== ''
+        answer['item.whatYouDisagreeWith'] !== '' &&
+        answer['item.reasonForAppealing'] !== ''
       ) {
         return true;
       }
@@ -261,7 +291,9 @@ class AddReason {
 
   isMinCharacterError(validationErrors) {
     const errors = validationErrors.map(error => error.errors[0]);
-    const contentErrors = Object.values(this.content.fields).map(field => field.error.notEnough);
+    const contentErrors = Object.values(this.content.fields).map(
+      field => field.error.notEnough
+    );
     let hasError = false;
     $.each(errors, (index, error) => {
       hasError = includes(contentErrors, error);
@@ -271,13 +303,13 @@ class AddReason {
   }
 
   handleErrorSummary(fieldErrors) {
-    const errorSummaryList = fieldErrors.map((fieldError, index) => (
+    const errorSummaryList = fieldErrors.map((fieldError, index) =>
       // eslint-disable-next-line arrow-body-style
       fieldError.validationErrors.map(validationError => ({
         id: `items-${index}`,
         message: validationError.errors[0]
       }))
-    ));
+    );
     const summary = this.buildErrorSummary(flatten(errorSummaryList));
     $('.govuk-error-summary').remove();
     $('.govuk-grid-column-two-thirds').prepend(summary.val);
@@ -294,14 +326,19 @@ class AddReason {
       reasonForAppealing.errors,
       reasonForAppealing.value
     );
-    $(`#items-${index}`).empty()
+    $(`#items-${index}`)
+      .empty()
       .append(errorTextbox.val)
       .append(errorTextArea.val);
   }
 
   buildAnswers(index) {
-    const whatYouDisagreeWith = $(`#items-${index} #item\\.whatYouDisagreeWith-${index}`).val();
-    const reasonForAppealing = $(`#items-${index} #item\\.reasonForAppealing-${index}`).val();
+    const whatYouDisagreeWith = $(
+      `#items-${index} #item\\.whatYouDisagreeWith-${index}`
+    ).val();
+    const reasonForAppealing = $(
+      `#items-${index} #item\\.reasonForAppealing-${index}`
+    ).val();
     return {
       'item.whatYouDisagreeWith': whatYouDisagreeWith || '',
       'item.reasonForAppealing': reasonForAppealing || ''
@@ -317,7 +354,7 @@ class AddReason {
   }
 
   static startAddReason() {
-    return (window.location.pathname === '/reason-for-appealing');
+    return window.location.pathname === '/reason-for-appealing';
   }
 }
 

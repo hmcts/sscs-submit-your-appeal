@@ -18,14 +18,17 @@ describe('RepresentativeInternationalDetails.js', () => {
   let superagentGetStub = null;
   beforeEach(async() => {
     res = { send: sinon.spy(), redirect: sinon.spy() };
-    representativeInternationalDetails = new RepresentativeInternationalDetails({
-      journey: {
-        steps: {
-          ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
-        }
+    representativeInternationalDetails = new RepresentativeInternationalDetails(
+      {
+        journey: {
+          steps: {
+            ReasonForAppealing: paths.reasonsForAppealing.reasonForAppealing
+          }
+        },
+        session: {}
       },
-      session: {}
-    }, res);
+      res
+    );
 
     representativeInternationalDetails.fields = {
       name: {
@@ -42,9 +45,14 @@ describe('RepresentativeInternationalDetails.js', () => {
       phoneNumber: { value: '' },
       emailAddress: { value: '' }
     };
-    const mockCountryResponse = { body: [{ label: 'Italy' }, { label: 'Ivory Coast' }], status: 200 };
+    const mockCountryResponse = {
+      body: [{ label: 'Italy' }, { label: 'Ivory Coast' }],
+      status: 200
+    };
     superagentGetStub = sinon.stub(superagent, 'get');
-    superagentGetStub.withArgs(`${config.api.url}/api/citizen/countries-of-residence`).resolves(mockCountryResponse);
+    superagentGetStub
+      .withArgs(`${config.api.url}/api/citizen/countries-of-residence`)
+      .resolves(mockCountryResponse);
     await fetchCountriesOfResidence();
   });
 
@@ -52,7 +60,9 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('get path()', () => {
     it('returns path /representative-international-details', () => {
-      expect(RepresentativeInternationalDetails.path).to.equal(paths.representative.representativeInternationalDetails);
+      expect(RepresentativeInternationalDetails.path).to.equal(
+        paths.representative.representativeInternationalDetails
+      );
     });
   });
   describe('handler()', () => {
@@ -104,12 +114,16 @@ describe('RepresentativeInternationalDetails.js', () => {
       it('should normalise reps full name with hyphen and apostrophe', () => {
         representativeInternationalDetails.fields.name.first.value = NAME.split(',')[0];
         representativeInternationalDetails.fields.name.last.value = NAME.split(',')[1];
-        expect(representativeInternationalDetails.CYAName).to.equal('HARRY-Kane O`Brian');
+        expect(representativeInternationalDetails.CYAName).to.equal(
+          'HARRY-Kane O`Brian'
+        );
       });
     });
 
     it('should return Not Provided if firstName or lastName has not been set', () => {
-      expect(representativeInternationalDetails.CYAName).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeInternationalDetails.CYAName).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the firstName if only the firstName has been set', () => {
@@ -125,13 +139,17 @@ describe('RepresentativeInternationalDetails.js', () => {
     it('should return the full name if both firstName and lastName has been set', () => {
       representativeInternationalDetails.fields.name.first.value = 'FirstName';
       representativeInternationalDetails.fields.name.last.value = 'LastName';
-      expect(representativeInternationalDetails.CYAName).to.equal('FirstName LastName');
+      expect(representativeInternationalDetails.CYAName).to.equal(
+        'FirstName LastName'
+      );
     });
 
     it('should return the full name without whitespace before or after the name', () => {
       representativeInternationalDetails.fields.name.first.value = '    FirstName';
       representativeInternationalDetails.fields.name.last.value = 'LastName    ';
-      expect(representativeInternationalDetails.CYAName).to.equal('FirstName LastName');
+      expect(representativeInternationalDetails.CYAName).to.equal(
+        'FirstName LastName'
+      );
     });
 
     it('should return the first name without whitespace before or after the name', () => {
@@ -147,40 +165,54 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('get getCountries()', () => {
     it('should return the countryList', () => {
-      expect(representativeInternationalDetails.getCountries).to.equal(getCountriesOfResidence());
+      expect(representativeInternationalDetails.getCountries).to.equal(
+        getCountriesOfResidence()
+      );
     });
   });
 
   describe('get CYAOrganisation()', () => {
     it('should return Not Provided if there is no organisation value', () => {
-      expect(representativeInternationalDetails.CYAOrganisation).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeInternationalDetails.CYAOrganisation).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the organisation if an organisation value has been set', () => {
       representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
-      expect(representativeInternationalDetails.CYAOrganisation).to.equal(representativeInternationalDetails.fields.name.organisation.value);
+      expect(representativeInternationalDetails.CYAOrganisation).to.equal(
+        representativeInternationalDetails.fields.name.organisation.value
+      );
     });
   });
 
   describe('get CYAPhoneNumber()', () => {
     it('should return Not Provided if there is no phoneNumber value', () => {
-      expect(representativeInternationalDetails.CYAPhoneNumber).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeInternationalDetails.CYAPhoneNumber).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
       representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
-      expect(representativeInternationalDetails.CYAPhoneNumber).to.equal(representativeInternationalDetails.fields.phoneNumber.value);
+      expect(representativeInternationalDetails.CYAPhoneNumber).to.equal(
+        representativeInternationalDetails.fields.phoneNumber.value
+      );
     });
   });
 
   describe('get CYAEmailAddress()', () => {
     it('should return Not Provided if there is no email value', () => {
-      expect(representativeInternationalDetails.CYAEmailAddress).to.equal(userAnswer.NOT_PROVIDED);
+      expect(representativeInternationalDetails.CYAEmailAddress).to.equal(
+        userAnswer.NOT_PROVIDED
+      );
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
       representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
-      expect(representativeInternationalDetails.CYAEmailAddress).to.equal(representativeInternationalDetails.fields.emailAddress.value);
+      expect(representativeInternationalDetails.CYAEmailAddress).to.equal(
+        representativeInternationalDetails.fields.emailAddress.value
+      );
     });
   });
 
@@ -342,9 +374,15 @@ describe('RepresentativeInternationalDetails.js', () => {
       representativeInternationalDetails.fields.name.first.value = repName.split(',')[0];
       representativeInternationalDetails.fields.name.last.value = repName.split(',')[1];
       representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
-      representativeInternationalDetails.fields.addressLine1 = { value: 'Some address line 1' };
-      representativeInternationalDetails.fields.addressLine2 = { value: 'Some address line 2' };
-      representativeInternationalDetails.fields.townCity = { value: 'Some Town or City' };
+      representativeInternationalDetails.fields.addressLine1 = {
+        value: 'Some address line 1'
+      };
+      representativeInternationalDetails.fields.addressLine2 = {
+        value: 'Some address line 2'
+      };
+      representativeInternationalDetails.fields.townCity = {
+        value: 'Some Town or City'
+      };
       representativeInternationalDetails.fields.country.value = 'Iceland';
       representativeInternationalDetails.fields.postCode.value = 'some-international postCode';
       representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
@@ -392,14 +430,16 @@ describe('RepresentativeInternationalDetails.js', () => {
 
     it('removes whitespace from before and after the phone number string', () => {
       representativeInternationalDetails.fields.phoneNumber.value = ' 0800109756 ';
-      const phoneNumber = representativeInternationalDetails.values().representative.contactDetails.phoneNumber;
+      const phoneNumber = representativeInternationalDetails.values().representative
+        .contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
 
     it('removes whitespace from before and after the postCode string', () => {
       representativeInternationalDetails.fields.postCode.value = ' some-postCode ';
-      const postCode = representativeInternationalDetails.values().representative.contactDetails.postCode;
+      const postCode = representativeInternationalDetails.values().representative
+        .contactDetails.postCode;
       expect(postCode).to.not.equal(' some-postCode ');
       expect(postCode).to.equal('some-postCode');
     });
@@ -407,7 +447,9 @@ describe('RepresentativeInternationalDetails.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /reason-for-appealing', () => {
-      expect(representativeInternationalDetails.next().step).to.eql(paths.reasonsForAppealing.reasonForAppealing);
+      expect(representativeInternationalDetails.next().step).to.eql(
+        paths.reasonsForAppealing.reasonForAppealing
+      );
     });
   });
 });

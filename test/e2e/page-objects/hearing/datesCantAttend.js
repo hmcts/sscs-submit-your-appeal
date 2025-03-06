@@ -8,17 +8,23 @@ const { clickNextIfDateNotVisible } = require('../../helpers/helper');
 async function enterDateCantAttendAndContinue(I, commonContent, date, link) {
   await I.click(link);
   await I.locator('input[name*="day"]').first().fill(date.date().toString());
-  await I.locator('input[name*="month"]').first().fill((date.month() + 1).toString());
+  await I.locator('input[name*="month"]')
+    .first()
+    .fill((date.month() + 1).toString());
   await I.locator('input[name*="year"]').first().fill(date.year().toString());
   await I.click(commonContent.continue);
 }
 
 async function seeFormattedDate(I, date) {
-  await expect(I.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY')).first()).toBeVisible();
+  await expect(
+    I.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY')).first()
+  ).toBeVisible();
 }
 
 async function dontSeeFormattedDate(I, date) {
-  await expect(I.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY')).first()).toBeHidden();
+  await expect(
+    I.getByText(DateUtils.formatDate(date, 'dddd D MMMM YYYY')).first()
+  ).toBeHidden();
 }
 
 async function hasSelectedClass(I, element) {
@@ -48,7 +54,6 @@ async function selectDates(I, language, dates) {
 
 async function deselectDates(I, language, dates) {
   moment().locale(language);
-
 
   await expect(I.locator('#date-picker table').first()).toBeVisible();
   for (const date of dates) {

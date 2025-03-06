@@ -114,7 +114,9 @@ describe('HaveAMRN.js', () => {
     it('returns the next step path /enter-appellant-ibca-reference when haveAMRN equals Yes for IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.YES;
       haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
-      expect(haveAMRN.next().step).to.eql(paths.identity.enterAppellantIBCAReference);
+      expect(haveAMRN.next().step).to.eql(
+        paths.identity.enterAppellantIBCAReference
+      );
     });
 
     it('returns the next step path /need-a-review-decision-notice when haveAMRN equals No for IBA', () => {
@@ -122,7 +124,6 @@ describe('HaveAMRN.js', () => {
       haveAMRN.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(haveAMRN.next().step).to.eql(paths.compliance.needRDN);
     });
-
 
     it('returns the next step path /have-contacted-dwp when haveAMRN equals No for non IBA', () => {
       haveAMRN.fields.haveAMRN.value = answer.NO;

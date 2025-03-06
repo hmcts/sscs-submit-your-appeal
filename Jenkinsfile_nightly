@@ -10,6 +10,8 @@ properties([
                         defaultValue: 'http://raw.githubusercontent.com/hmcts/security-test-rules/master/conf/security-rules.conf',
                         description: 'The URL you want to run these tests against'),
                 string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '4', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '10', description: 'Number of retries for failed tests'),
+                string(name: 'E2E_TEST_TAGS', defaultValue: '@functional,@fullFunctional', description: 'The tags to run the e2e tests against - separate with ,')
         ])
 ])
 
@@ -25,6 +27,8 @@ def secrets = [
         ]
 ]
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
     [$class     : 'AzureKeyVaultSecret',
      secretType : 'Secret',
@@ -39,6 +43,8 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
+    env.RETRIES = params.RETRIES
+    env.E2E_TEST_TAGS = params.E2E_TEST_TAGS
 
     enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')

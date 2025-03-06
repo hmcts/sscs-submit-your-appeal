@@ -30,13 +30,17 @@ class Representative extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.hasRepresentative.question,
       section: sections.representative,
-      answer: titleise(content.cya.hasRepresentative[this.fields.hasRepresentative.value])
+      answer: titleise(
+        content.cya.hasRepresentative[this.fields.hasRepresentative.value]
+      )
     });
   }
 
   values() {
     return {
-      hasRepresentative: this.getHasRepresentativeValue(this.fields.hasRepresentative.value)
+      hasRepresentative: this.getHasRepresentativeValue(
+        this.fields.hasRepresentative.value
+      )
     };
   }
 
@@ -47,11 +51,16 @@ class Representative extends SaveToDraftStore {
   }
 
   next() {
-    const hasARepresentative = this.fields.hasRepresentative.value === userAnswer.YES;
+    const hasARepresentative =
+      this.fields.hasRepresentative.value === userAnswer.YES;
     const isIbaCase = isIba(this.req);
     return branch(
-      goTo(this.journey.steps.RepresentativeDetails).if(hasARepresentative && !isIbaCase),
-      goTo(this.journey.steps.RepresentativeInMainlandUk).if(hasARepresentative && isIbaCase),
+      goTo(this.journey.steps.RepresentativeDetails).if(
+        hasARepresentative && !isIbaCase
+      ),
+      goTo(this.journey.steps.RepresentativeInMainlandUk).if(
+        hasARepresentative && isIbaCase
+      ),
       goTo(this.journey.steps.ReasonForAppealing)
     );
   }

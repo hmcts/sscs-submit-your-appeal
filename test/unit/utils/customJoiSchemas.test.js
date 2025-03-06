@@ -54,7 +54,6 @@ describe('ValidatePhone', () => {
       expect(validation.error).to.equal(null);
     });
 
-
     it('should not work with landlines', () => {
       const validation = customJoi.validate('0115 933 3968', schema);
       expect(validation.error).not.to.equal(null);

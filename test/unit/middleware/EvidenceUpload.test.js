@@ -26,7 +26,10 @@ describe('The EvidenceUpload middleware', () => {
   });
   const unlinker = sinon.stub().yields();
   const renamer = sinon.stub().yields();
-  const poster = sinon.stub().yields(null, null, `{
+  const poster = sinon.stub().yields(
+    null,
+    null,
+    `{
     "documents": [{
       "originalDocumentName": "ugo",
       "_links": {
@@ -34,7 +37,8 @@ describe('The EvidenceUpload middleware', () => {
           "href": "www.bigcheese.com"
         }
       }
-    }]}`);
+    }]}`
+  );
 
   beforeEach(function() {
     this.timeout(2500);
@@ -61,7 +65,10 @@ describe('The EvidenceUpload middleware', () => {
 
     loggerExceptionSpy = sinon.spy(logger, 'exception');
     loggerTraceSpy = sinon.spy(logger, 'trace');
-    EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
+    EvidenceUpload = proxyquire(
+      'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+      stubs
+    );
     EvidenceUpload.makeDir = sinon.stub().callsArg(1);
   });
 
@@ -75,7 +82,7 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('handlePostResponse', () => {
-    describe('when there isn\'t a forwarding error', () => {
+    describe("when there isn't a forwarding error", () => {
       it('should call fs.unlink', () => {
         const req = {};
 
@@ -84,7 +91,12 @@ describe('The EvidenceUpload middleware', () => {
         const next = sinon.mock();
         const body = '{"documents":[{"originalDocumentName":"__originalDocumentName__","_links":{"self":{"href":"__href__"}}}]}';
 
-        const handlePostResponse = EvidenceUpload.handlePostResponse(req, size, pathToFile, next);
+        const handlePostResponse = EvidenceUpload.handlePostResponse(
+          req,
+          size,
+          pathToFile,
+          next
+        );
 
         handlePostResponse(undefined, undefined, body);
         expect(unlinker).to.have.been.called;
@@ -93,14 +105,19 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('handlePostResponse', () => {
-    describe('when there isn\'t a forwarding error but HTTP status is 500 error', () => {
+    describe("when there isn't a forwarding error but HTTP status is 500 error", () => {
       it('should call fs.unlink', () => {
         const req = {};
         const size = 42;
         const pathToFile = '__path__';
         const next = sinon.mock();
         const body = '{"status": 500,"error": "Internal Server Error","message": "","path": "/evidence/upload"}';
-        const handlePostResponse = EvidenceUpload.handlePostResponse(req, size, pathToFile, next);
+        const handlePostResponse = EvidenceUpload.handlePostResponse(
+          req,
+          size,
+          pathToFile,
+          next
+        );
 
         handlePostResponse(undefined, undefined, body);
         expect(unlinker).to.have.been.called;
@@ -124,7 +141,11 @@ describe('The EvidenceUpload middleware', () => {
         const req = {
           originalUrl: 'originalUrl'
         };
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req);
+        const handleMakeDir = EvidenceUpload.handleMakeDir(
+          next,
+          pathToUploadFolder,
+          req
+        );
         handleMakeDir('error');
         expect(next).to.have.been.calledWith('error');
       });
@@ -137,7 +158,11 @@ describe('The EvidenceUpload middleware', () => {
         const req = {
           originalUrl: 'originalUrl'
         };
-        const handleMakeDir = EvidenceUpload.handleMakeDir(next, pathToUploadFolder, req);
+        const handleMakeDir = EvidenceUpload.handleMakeDir(
+          next,
+          pathToUploadFolder,
+          req
+        );
         handleMakeDir();
         expect(EvidenceUpload.handleIcomingParse).to.have.been.called;
       });
@@ -317,26 +342,34 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('static handleUpload', () => {
-    it('if req.method is NOT post, it doesn\'t do anything apart from just invoking the callback', done => {
-      EvidenceUpload.handleUpload({
-        method: 'get'
-      }, {}, error => {
-        expect(EvidenceUpload.makeDir).not.to.have.been.called;
-        expect(parser).not.to.have.been.called;
-        expect(poster).not.to.have.been.called;
-        expect(error).not.to.exist;
-        done();
-      });
+    it("if req.method is NOT post, it doesn't do anything apart from just invoking the callback", done => {
+      EvidenceUpload.handleUpload(
+        {
+          method: 'get'
+        },
+        {},
+        error => {
+          expect(EvidenceUpload.makeDir).not.to.have.been.called;
+          expect(parser).not.to.have.been.called;
+          expect(poster).not.to.have.been.called;
+          expect(error).not.to.exist;
+          done();
+        }
+      );
     });
 
     it('if req.method is post, it calls makeDir', () => {
-      EvidenceUpload.handleUpload({
-        method: 'post',
-        originalUrl: `${paths.reasonsForAppealing.evidenceUpload}/item-42`
-      }, {}, () => {
-        expect(EvidenceUpload.makeDir).not.to.have.been.called;
-        expect(EvidenceUpload.handleMakeDir).not.to.have.been.called;
-      });
+      EvidenceUpload.handleUpload(
+        {
+          method: 'post',
+          originalUrl: `${paths.reasonsForAppealing.evidenceUpload}/item-42`
+        },
+        {},
+        () => {
+          expect(EvidenceUpload.makeDir).not.to.have.been.called;
+          expect(EvidenceUpload.handleMakeDir).not.to.have.been.called;
+        }
+      );
     });
   });
 
@@ -345,7 +378,10 @@ describe('The EvidenceUpload middleware', () => {
     const stubs = {};
 
     beforeEach(() => {
-      EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js', stubs);
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
       EvidenceUpload.makeDir = sinon.stub().callsArg(1);
     });
 
@@ -354,10 +390,14 @@ describe('The EvidenceUpload middleware', () => {
       const incoming = { bytesExpected: 0 };
       it('should error accordingly', () => {
         EvidenceUpload.handleFileBegin(req, incoming);
-        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.fileMissingError);
+        expect(req.body['item.uploadEv']).to.equal(
+          EvidenceUpload.fileMissingError
+        );
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(0);
-        expect(loggerExceptionSpy).to.have.been.calledWith('Evidence upload error: you need to choose a file');
+        expect(loggerExceptionSpy).to.have.been.calledWith(
+          'Evidence upload error: you need to choose a file'
+        );
       });
     });
 
@@ -366,29 +406,37 @@ describe('The EvidenceUpload middleware', () => {
       const incoming = { bytesExpected: 5242881 };
       it('should error accordingly', () => {
         EvidenceUpload.handleFileBegin(req, incoming);
-        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.maxFileSizeExceededError);
+        expect(req.body['item.uploadEv']).to.equal(
+          EvidenceUpload.maxFileSizeExceededError
+        );
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(5242881);
         expect(req.body['item.totalFileCount']).to.equal(1);
-        expect(loggerTraceSpy).to.have.been.calledWith('Evidence upload error: the file is too big - file was: 5242881 bytes');
+        expect(loggerTraceSpy).to.have.been.calledWith(
+          'Evidence upload error: the file is too big - file was: 5242881 bytes'
+        );
       });
     });
 
     describe('when total size too big', () => {
-      const req = { session: {
-        EvidenceUpload: {
-          items: [
-            { size: 1048576 },
-            { size: 1048576 },
-            { size: 1048576 },
-            { size: 1048576 }
-          ]
+      const req = {
+        session: {
+          EvidenceUpload: {
+            items: [
+              { size: 1048576 },
+              { size: 1048576 },
+              { size: 1048576 },
+              { size: 1048576 }
+            ]
+          }
         }
-      } };
+      };
       const incoming = { bytesExpected: 1048577 };
       it('should error accordingly', () => {
         EvidenceUpload.handleFileBegin(req, incoming);
-        expect(req.body['item.uploadEv']).to.equal(EvidenceUpload.totalFileSizeExceededError);
+        expect(req.body['item.uploadEv']).to.equal(
+          EvidenceUpload.totalFileSizeExceededError
+        );
         expect(req.body['item.link']).to.equal('');
         expect(req.body['item.size']).to.equal(1048577);
         expect(req.body['item.totalFileCount']).to.equal(5);
@@ -429,7 +477,7 @@ describe('static makeDir', () => {
     });
   });
 
-  describe('when directory doesn\'t exist', () => {
+  describe("when directory doesn't exist", () => {
     const EvidenceUpload = proxyquire(
       'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
       getStubs(() => {
@@ -478,13 +526,17 @@ describe('The other methods of EvidenceUpload', () => {
   describe('static methods', () => {
     describe('total file size', () => {
       it('returns the sum of the items plus what is being uploaded', () => {
-        const total = EvidenceUpload.getTotalSize([
-          {
-            size: 1000
-          }, {
-            size: 2001
-          }
-        ], '392');
+        const total = EvidenceUpload.getTotalSize(
+          [
+            {
+              size: 1000
+            },
+            {
+              size: 2001
+            }
+          ],
+          '392'
+        );
         expect(total).to.equal(3393);
       });
 
@@ -530,9 +582,11 @@ describe('The other methods of EvidenceUpload', () => {
 
   describe('answer', () => {
     it('answer', () => {
-      instance.fields = { items: {
-        value: [{ uploadEv: 'firstFile.png' }, { uploadEv: 'secondFile.pdf' }]
-      } };
+      instance.fields = {
+        items: {
+          value: [{ uploadEv: 'firstFile.png' }, { uploadEv: 'secondFile.pdf' }]
+        }
+      };
       const answers = instance.answers();
       expect(answers.answer).to.deep.equal(['firstFile.png', 'secondFile.pdf']);
     });
@@ -540,14 +594,19 @@ describe('The other methods of EvidenceUpload', () => {
 
   describe('next', () => {
     it('the next step is /evidence-description', () => {
-      expect(instance.next().step).to.equal(paths.reasonsForAppealing.evidenceDescription);
+      expect(instance.next().step).to.equal(
+        paths.reasonsForAppealing.evidenceDescription
+      );
     });
   });
 
   describe('isCorrectFileType', () => {
     describe('when the file is of a permitted type', () => {
       it('should return the file extension', () => {
-        const result = EvidenceUpload.isCorrectFileType('image/jpeg', 'foo.jpeg');
+        const result = EvidenceUpload.isCorrectFileType(
+          'image/jpeg',
+          'foo.jpeg'
+        );
         expect(result).to.equal('.jpeg');
       });
     });
@@ -613,7 +672,8 @@ describe('The other methods of EvidenceUpload', () => {
             link: 'link1',
             hashToken: 'token',
             uploadEv: 'uploadEv1'
-          }, {
+          },
+          {
             link: 'link2',
             hashToken: 'token',
             uploadEv: 'uploadEv2'

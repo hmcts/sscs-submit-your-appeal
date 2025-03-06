@@ -16,7 +16,9 @@ class AppellantDOB extends SaveToDraftStore {
   }
 
   isAppointee() {
-    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
+    return (
+      String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes'
+    );
   }
 
   contentPrefix() {
@@ -32,20 +34,22 @@ class AppellantDOB extends SaveToDraftStore {
     const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
-        d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
+        d =>
+          DateUtils.createMoment(
+            d.day,
+            DateUtils.getMonthValue(d, i18next.language),
+            d.year,
+            i18next.language
+          ),
         date.required({
           allRequired: error.allRequired,
           dayRequired: error.dayRequired,
           monthRequired: error.monthRequired,
           yearRequired: error.yearRequired
         })
-      ).check(
-        error.invalid,
-        value => DateUtils.isDateValid(value)
-      ).check(
-        error.future,
-        value => DateUtils.isDateInPast(value)
       )
+        .check(error.invalid, value => DateUtils.isDateValid(value))
+        .check(error.future, value => DateUtils.isDateInPast(value))
     });
   }
 

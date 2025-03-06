@@ -14,15 +14,10 @@ const {
   invalidEmailValidation,
   optionSelected
 } = require('steps/hearing/options/optionsValidation');
-const { isIba } = require('utils/benefitTypeUtils');
 
 class HearingOptions extends SaveToDraftStore {
   static get path() {
     return paths.hearing.hearingOptions;
-  }
-
-  get suffix() {
-    return isIba(this.req) ? 'Iba' : '';
   }
 
   get form() {
@@ -31,29 +26,38 @@ class HearingOptions extends SaveToDraftStore {
         telephone: object({
           requested: bool.default(false),
           phoneNumber: text
-        }).check(
-          errorFor('phoneNumber', this.content.fields.options.telephone.error.required),
-          value => emptyTelephoneValidation(value)
-        ).check(
-          errorFor('phoneNumber', this.content.fields.options.telephone.error.invalid),
-          value => invalidTelephoneValidation(value)
-        ),
+        })
+          .check(
+            errorFor(
+              'phoneNumber',
+              this.content.fields.options.telephone.error.required
+            ),
+            value => emptyTelephoneValidation(value)
+          )
+          .check(
+            errorFor(
+              'phoneNumber',
+              this.content.fields.options.telephone.error.invalid
+            ),
+            value => invalidTelephoneValidation(value)
+          ),
         video: object({
           requested: bool.default(false),
           email: text
-        }).check(
-          errorFor('email', this.content.fields.options.video.error.required),
-          value => emptyEmailValidation(value)
-        ).check(
-          errorFor('email', this.content.fields.options.video.error.invalid),
-          value => invalidEmailValidation(value)
-        ),
-        faceToFace: object({
+        })
+          .check(
+            errorFor('email', this.content.fields.options.video.error.required),
+            value => emptyEmailValidation(value)
+          )
+          .check(
+            errorFor('email', this.content.fields.options.video.error.invalid),
+            value => invalidEmailValidation(value)
+          ),
+        inPerson: object({
           requested: bool.default(false)
         })
-      }).check(
-        this.content.fields.options.error.required,
-        value => optionSelected(value)
+      }).check(this.content.fields.options.error.required, value =>
+        optionSelected(value)
       )
     });
   }
@@ -87,8 +91,10 @@ class HearingOptions extends SaveToDraftStore {
     const selectOptions = this.fields.selectOptions;
     const telephoneSelected = Boolean(selectOptions.telephone.requested.value);
     const videoSelected = Boolean(selectOptions.video.requested.value);
-    const f2fSelected = Boolean(selectOptions.faceToFace.requested.value);
-    const telephone = telephoneSelected ? selectOptions.telephone.phoneNumber.value : null;
+    const inPersonSelected = Boolean(selectOptions.inPerson.requested.value);
+    const telephone = telephoneSelected ?
+      selectOptions.telephone.phoneNumber.value :
+      null;
     const email = videoSelected ? selectOptions.video.email.value : null;
     return {
       hearing: {
@@ -97,7 +103,7 @@ class HearingOptions extends SaveToDraftStore {
           telephone,
           hearingTypeVideo: videoSelected,
           email,
-          hearingTypeFaceToFace: f2fSelected
+          hearingTypeFaceToFace: inPersonSelected
         }
       }
     };
@@ -108,30 +114,30 @@ class HearingOptions extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequestedOrNotRequested = value => (value ? cyaContent.requested : cyaContent.notRequested);
-
-    const inPersonOrFaceToFaceContent = () => {
-      if (isIba(this.req)) {
-        return {
-          hearingTypeInPersonIba: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
-        };
-      }
-      return {
-        hearingTypeFaceToFace: setRequestedOrNotRequested(selectOptions.faceToFace.requested)
-      };
-    };
+    const setRequestedOrNotRequested = value =>
+      (value ? cyaContent.requested : cyaContent.notRequested);
 
     const arrangementsAnswer = {
-      hearingTypeTelephone: setRequestedOrNotRequested(selectOptions.telephone.requested),
-      hearingTypeVideo: setRequestedOrNotRequested(selectOptions.video.requested),
-      ...inPersonOrFaceToFaceContent()
+      hearingTypeTelephone: setRequestedOrNotRequested(
+        selectOptions.telephone.requested
+      ),
+      hearingTypeVideo: setRequestedOrNotRequested(
+        selectOptions.video.requested
+      ),
+      hearingTypeInPerson: setRequestedOrNotRequested(
+        selectOptions.inPerson.requested
+      )
     };
 
     arrangementsAnswer.hearingTypeTelephone = setCYAValue(
-      arrangementsAnswer.hearingTypeTelephone, selectOptions.telephone.phoneNumber);
+      arrangementsAnswer.hearingTypeTelephone,
+      selectOptions.telephone.phoneNumber
+    );
 
     arrangementsAnswer.hearingTypeVideo = setCYAValue(
-      arrangementsAnswer.hearingTypeVideo, selectOptions.video.email);
+      arrangementsAnswer.hearingTypeVideo,
+      selectOptions.video.email
+    );
 
     return arrangementsAnswer;
   }

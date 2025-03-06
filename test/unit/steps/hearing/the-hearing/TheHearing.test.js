@@ -34,18 +34,6 @@ describe('TheHearing.js', () => {
     });
   });
 
-  describe('suffix()', () => {
-    it('should return Iba for IBA case', () => {
-      theHearing.req.hostname = 'some-iba-hostname';
-      expect(theHearing.suffix).to.eql('Iba');
-    });
-
-    it('should return empty for non IBA case', () => {
-      theHearing.req.hostname = 'some-normal-hostname';
-      expect(theHearing.suffix).to.eql('');
-    });
-  });
-
   describe('get form()', () => {
     let fields = null;
     let field = null;
@@ -83,8 +71,8 @@ describe('TheHearing.js', () => {
         cya: {
           attendHearing: {
             question,
-            yes: 'Yes',
-            no: 'No'
+            yes: 'Take part either in person, by video or by phone',
+            no: 'Do not take part, decided on documents and information provided'
           }
         }
       };
@@ -97,7 +85,9 @@ describe('TheHearing.js', () => {
       expect(answers.length).to.equal(1);
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.theHearing);
-      expect(answers[0].answer).to.equal('No');
+      expect(answers[0].answer).to.equal(
+        'Do not take part, decided on documents and information provided'
+      );
     });
 
     it('should contain a value object', () => {

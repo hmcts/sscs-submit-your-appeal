@@ -43,14 +43,18 @@ describe('SendToNumber.js', () => {
     describe('when appellant phone number is given', () => {
       it('should be defined', () => {
         sendToNumber.fields.phoneNumber.value = '07411785336';
-        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.phoneNumber.value);
+        expect(sendToNumber.phoneNumber).to.eq(
+          sendToNumber.fields.phoneNumber.value
+        );
       });
     });
 
     describe('when appointee phone number is given', () => {
       it('should be defined', () => {
         sendToNumber.fields.appointeePhoneNumber.value = '07411785336';
-        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.appointeePhoneNumber.value);
+        expect(sendToNumber.phoneNumber).to.eq(
+          sendToNumber.fields.appointeePhoneNumber.value
+        );
       });
     });
 
@@ -58,7 +62,9 @@ describe('SendToNumber.js', () => {
       it('should be defined', () => {
         sendToNumber.fields.internationalPhoneNumber.value = '07411785336';
         sendToNumber.fields.inMainlandUk.value = 'no';
-        expect(sendToNumber.phoneNumber).to.eq(sendToNumber.fields.internationalPhoneNumber.value);
+        expect(sendToNumber.phoneNumber).to.eq(
+          sendToNumber.fields.internationalPhoneNumber.value
+        );
       });
     });
   });
@@ -81,25 +87,25 @@ describe('SendToNumber.js', () => {
       );
     });
 
-    it('should contain a textField reference called \'appointeePhoneNumber\'', () => {
+    it("should contain a textField reference called 'appointeePhoneNumber'", () => {
       const textField = fields.appointeePhoneNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'phoneNumber\'', () => {
+    it("should contain a textField reference called 'phoneNumber'", () => {
       const textField = fields.phoneNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'internationalPhoneNumber\'', () => {
+    it("should contain a textField reference called 'internationalPhoneNumber'", () => {
       const textField = fields.internationalPhoneNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
     });
 
-    it('should contain a textField reference called \'inMainlandUk\'', () => {
+    it("should contain a textField reference called 'inMainlandUk'", () => {
       const textField = fields.inMainlandUk;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
@@ -152,7 +158,9 @@ describe('SendToNumber.js', () => {
 
     it('returns branch object where condition nextStep equals /sms-confirmation', () => {
       const branches = sendToNumber.next().branches[0];
-      expect(branches.redirector).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
+      expect(branches.redirector).to.eql({
+        nextStep: paths.smsNotify.smsConfirmation
+      });
     });
 
     it('returns fallback object where nextStep equals /enter-mobile', () => {

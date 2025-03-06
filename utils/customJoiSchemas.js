@@ -11,11 +11,19 @@ const customJoi = Joi.extend(joi => {
       {
         name: 'validatePostcode',
         params: {
-          invalidPostcode: joi.alternatives([joi.boolean().required(), joi.func().ref()])
+          invalidPostcode: joi.alternatives([
+            joi.boolean().required(),
+            joi.func().ref()
+          ])
         },
         validate(params, value, state, options) {
           if (params.invalidPostcode) {
-            return this.createError('string.validatePostcode', { v: value }, state, options);
+            return this.createError(
+              'string.validatePostcode',
+              { v: value },
+              state,
+              options
+            );
           }
 
           return value;
@@ -39,7 +47,12 @@ const customJoi = Joi.extend(joi => {
           }
 
           if (!isValidPhone || !matchesRegex) {
-            return this.createError('string.validatePhone', { v: value }, state, options);
+            return this.createError(
+              'string.validatePhone',
+              { v: value },
+              state,
+              options
+            );
           }
 
           return value;

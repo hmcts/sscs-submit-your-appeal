@@ -31,7 +31,9 @@ describe('TextReminders.js', () => {
 
   describe('get path()', () => {
     it('returns path /appellant-text-reminders', () => {
-      expect(TextReminders.path).to.equal(paths.smsNotify.appellantTextReminders);
+      expect(TextReminders.path).to.equal(
+        paths.smsNotify.appellantTextReminders
+      );
     });
   });
 
@@ -52,13 +54,13 @@ describe('TextReminders.js', () => {
       );
     });
 
-    it('should contain a textField reference called \'doYouWantTextMsgReminders\'', () => {
+    it("should contain a textField reference called 'doYouWantTextMsgReminders'", () => {
       const textField = fields.doYouWantTextMsgReminders;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.not.be.empty;
     });
 
-    it('should contain a textField reference called \'phoneNumber\'', () => {
+    it("should contain a textField reference called 'phoneNumber'", () => {
       const textField = fields.phoneNumber;
       expect(textField.constructor.name).to.eq('FieldDescriptor');
       expect(textField.validations).to.be.empty;
@@ -89,13 +91,13 @@ describe('TextReminders.js', () => {
     });
 
     describe('English', () => {
-      it('should titleise the users selection to \'No\' for CYA (English)', () => {
+      it("should titleise the users selection to 'No' for CYA (English)", () => {
         textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
         const answers = textReminders.answers();
         expect(answers[0].answer).to.equal('No');
       });
 
-      it('should titleise the users selection to \'Yes\' for CYA (English)', () => {
+      it("should titleise the users selection to 'Yes' for CYA (English)", () => {
         textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
         const answers = textReminders.answers();
         expect(answers[0].answer).to.equal('Yes');
@@ -111,14 +113,14 @@ describe('TextReminders.js', () => {
         i18next.changeLanguage('en');
       });
 
-      it('should titleise the users selection to \'Nac oes\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Nac oes' for CYA (Welsh)", () => {
         textReminders.content.cya.doYouWantTextMsgReminders.no = 'Nac oes';
         textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.NO;
         const answers = textReminders.answers();
         expect(answers[0].answer).to.equal('Nac oes');
       });
 
-      it('should titleise the users selection to \'Oes\' for CYA (Welsh)', () => {
+      it("should titleise the users selection to 'Oes' for CYA (Welsh)", () => {
         textReminders.content.cya.doYouWantTextMsgReminders.yes = 'Oes';
         textReminders.fields.doYouWantTextMsgReminders.value = userAnswer.YES;
         const answers = textReminders.answers();

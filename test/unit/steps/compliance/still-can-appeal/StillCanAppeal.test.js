@@ -67,6 +67,8 @@ describe('StillCanAppeal', () => {
   });
 
   it('next returns the next step path /are-you-an-appointee', () => {
-    expect(stillCanAppeal.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+    expect(stillCanAppeal.next()).to.eql({
+      nextStep: paths.identity.areYouAnAppointee
+    });
   });
 });

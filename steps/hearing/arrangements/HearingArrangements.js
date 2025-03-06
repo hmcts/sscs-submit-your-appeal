@@ -4,7 +4,9 @@ const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { setCYAValue } = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
+const {
+  setCYAValue
+} = require('steps/hearing/arrangements/cyaHearingArrangementsUtils');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {
   optionSelected,
@@ -43,25 +45,41 @@ class HearingArrangements extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequiredOrNotRequired = value => value ? cyaContent.required : cyaContent.notRequired;
+    const setRequiredOrNotRequired = value =>
+      value ? cyaContent.required : cyaContent.notRequired;
 
     const arrangementsAnswer = {
-      interpreterLanguage: setRequiredOrNotRequired(selectionValues.interpreterLanguage.requested),
-      signLanguage: setRequiredOrNotRequired(selectionValues.signLanguage.requested),
-      hearingLoop: setRequiredOrNotRequired(selectionValues.hearingLoop.requested),
+      interpreterLanguage: setRequiredOrNotRequired(
+        selectionValues.interpreterLanguage.requested
+      ),
+      signLanguage: setRequiredOrNotRequired(
+        selectionValues.signLanguage.requested
+      ),
+      hearingLoop: setRequiredOrNotRequired(
+        selectionValues.hearingLoop.requested
+      ),
       accessibleHearingRoom: setRequiredOrNotRequired(
-        selectionValues.accessibleHearingRoom.requested),
-      anythingElse: setRequiredOrNotRequired(selectionValues.anythingElse.requested)
+        selectionValues.accessibleHearingRoom.requested
+      ),
+      anythingElse: setRequiredOrNotRequired(
+        selectionValues.anythingElse.requested
+      )
     };
 
     arrangementsAnswer.interpreterLanguage = setCYAValue(
-      arrangementsAnswer.interpreterLanguage, selectionValues.interpreterLanguage.language);
+      arrangementsAnswer.interpreterLanguage,
+      selectionValues.interpreterLanguage.language
+    );
 
     arrangementsAnswer.signLanguage = setCYAValue(
-      arrangementsAnswer.signLanguage, selectionValues.signLanguage.language);
+      arrangementsAnswer.signLanguage,
+      selectionValues.signLanguage.language
+    );
 
     arrangementsAnswer.anythingElse = setCYAValue(
-      arrangementsAnswer.anythingElse, selectionValues.anythingElse.language);
+      arrangementsAnswer.anythingElse,
+      selectionValues.anythingElse.language
+    );
 
     return arrangementsAnswer;
   }
@@ -73,30 +91,49 @@ class HearingArrangements extends SaveToDraftStore {
         interpreterLanguage: object({
           requested: bool.default(false),
           language: text
-        }).check(
-          errorFor('language', selectionField.languageInterpreter.language.error.required),
-          value => emptyLanguageFieldValidation(value)
-        ).check(
-          errorFor('language', selectionField.languageInterpreter.language.error.invalid),
-          value => languageInList(value)
-        ),
+        })
+          .check(
+            errorFor(
+              'language',
+              selectionField.languageInterpreter.language.error.required
+            ),
+            value => emptyLanguageFieldValidation(value)
+          )
+          .check(
+            errorFor(
+              'language',
+              selectionField.languageInterpreter.language.error.invalid
+            ),
+            value => languageInList(value)
+          ),
 
         signLanguage: object({
           requested: bool.default(false),
           language: text
-        }).check(
-          errorFor('language', selectionField.signLanguage.language.error.required),
-          value => emptyLanguageFieldValidation(value)
-        ).check(
-          errorFor('language', selectionField.signLanguage.language.error.invalid),
-          value => signLanguageInList(value)
-        ),
+        })
+          .check(
+            errorFor(
+              'language',
+              selectionField.signLanguage.language.error.required
+            ),
+            value => emptyLanguageFieldValidation(value)
+          )
+          .check(
+            errorFor(
+              'language',
+              selectionField.signLanguage.language.error.invalid
+            ),
+            value => signLanguageInList(value)
+          ),
 
         anythingElse: object({
           requested: bool.default(false),
           language: text
         }).check(
-          errorFor('language', selectionField.anythingElse.language.error.required),
+          errorFor(
+            'language',
+            selectionField.anythingElse.language.error.required
+          ),
           value => emptyLanguageFieldValidation(value)
         ),
 
@@ -107,12 +144,7 @@ class HearingArrangements extends SaveToDraftStore {
         accessibleHearingRoom: object({
           requested: bool.default(false)
         })
-
-      }).check(
-        selectionField.error.required,
-        value => optionSelected(value)
-      )
-
+      }).check(selectionField.error.required, value => optionSelected(value))
     });
   }
 
@@ -136,9 +168,15 @@ class HearingArrangements extends SaveToDraftStore {
           accessibleHearingRoom: fieldValues.accessibleHearingRoom.requested,
           other: fieldValues.anythingElse.requested
         },
-        interpreterLanguageType: fieldValues.interpreterLanguage.requested ? fieldValues.interpreterLanguage.language : undefined,
-        signLanguageType: fieldValues.signLanguage.requested ? fieldValues.signLanguage.language : undefined,
-        anythingElse: fieldValues.anythingElse.requested ? decode(fieldValues.anythingElse.language) : undefined
+        interpreterLanguageType: fieldValues.interpreterLanguage.requested ?
+          fieldValues.interpreterLanguage.language :
+          undefined,
+        signLanguageType: fieldValues.signLanguage.requested ?
+          fieldValues.signLanguage.language :
+          undefined,
+        anythingElse: fieldValues.anythingElse.requested ?
+          decode(fieldValues.anythingElse.language) :
+          undefined
       }
     };
     return values;

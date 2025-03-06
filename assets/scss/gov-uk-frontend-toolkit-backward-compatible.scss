@@ -2,7 +2,8 @@
 .hidden,
 .js-enabled .js-hidden {
   display: none;
-  visibility: hidden; }
+  visibility: hidden;
+}
 
 /* Hide only visually, but have it available for screenreaders */
 .govuk-visually-hidden,
@@ -16,16 +17,19 @@
   /*
    * Extends the .govuk-visually-hidden-focusable class to allow the element to be
    * focusable when navigated to via the keyboard
-   */ }
-  .govuk-visually-hidden.focusable:active, .govuk-visually-hidden.focusable:focus,
-  .govuk-visually-hidden-focusable.focusable:active,
-  .govuk-visually-hidden-focusable.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto; }
+   */
+}
+.govuk-visually-hidden.focusable:active,
+.govuk-visually-hidden.focusable:focus,
+.govuk-visually-hidden-focusable.focusable:active,
+.govuk-visually-hidden-focusable.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
 
 .govuk-header nav {
   float: right;

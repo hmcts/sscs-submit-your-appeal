@@ -17,7 +17,9 @@ class AppellantName extends SaveToDraftStore {
   }
 
   isAppointee() {
-    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
+    return (
+      String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes'
+    );
   }
 
   contentPrefix() {
@@ -49,29 +51,23 @@ class AppellantName extends SaveToDraftStore {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
     const formArgs = {
-      firstName: text.joi(
-        fields.firstName.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.firstName.error[prefix].invalid,
-        Joi.string().trim().regex(firstName)
-      ),
-      lastName: text.joi(
-        fields.lastName.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.lastName.error[prefix].invalid,
-        Joi.string().trim().regex(lastName)
-      )
+      firstName: text
+        .joi(fields.firstName.error[prefix].required, Joi.string().required())
+        .joi(
+          fields.firstName.error[prefix].invalid,
+          Joi.string().trim().regex(firstName)
+        ),
+      lastName: text
+        .joi(fields.lastName.error[prefix].required, Joi.string().required())
+        .joi(
+          fields.lastName.error[prefix].invalid,
+          Joi.string().trim().regex(lastName)
+        )
     };
     if (!isIba(this.req)) {
-      formArgs.title = text.joi(
-        fields.title.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.title.error[prefix].invalid,
-        this.titleSchema()
-      );
+      formArgs.title = text
+        .joi(fields.title.error[prefix].required, Joi.string().required())
+        .joi(fields.title.error[prefix].invalid, this.titleSchema());
     }
     return form(formArgs);
   }

@@ -2,7 +2,7 @@
 const benefitContentEn = require('steps/start/benefit-type/content.en');
 const benefitContentCy = require('steps/start/benefit-type/content.cy');
 const { expect } = require('@playwright/test');
-const paths = require("paths");
+const paths = require('paths');
 
 async function handleFlakey(I, language, type, continueText) {
   const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;

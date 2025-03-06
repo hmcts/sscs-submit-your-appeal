@@ -11,7 +11,10 @@ class NotAttendingHearing extends SaveToDraftStore {
 
   get form() {
     return form({
-      emailAddress: text.ref(this.journey.steps.AppellantContactDetails, 'emailAddress')
+      emailAddress: text.ref(
+        this.journey.steps.AppellantContactDetails,
+        'emailAddress'
+      )
     });
   }
 

@@ -1,6 +1,8 @@
 /* eslint-disable no-undefined */
 
-const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
+const {
+  SaveToDraftStoreAddAnother
+} = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { date, convert } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
@@ -31,7 +33,9 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
     const content = require(`./content.${sessionLanguage}`);
 
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
+      return this.fields.items.value.length > 0 ?
+        content.links.addAnother :
+        content.links.add;
     }
     return false;
   }
@@ -39,29 +43,37 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   get field() {
     const fields = this.content.fields;
     return convert(
-      d => DateUtils.createMoment(d.day, DateUtils.getMonthValue(d, i18next.language), d.year, i18next.language),
+      d =>
+        DateUtils.createMoment(
+          d.day,
+          DateUtils.getMonthValue(d, i18next.language),
+          d.year,
+          i18next.language
+        ),
       date.required({
         allRequired: fields.cantAttendDate.error.allRequired,
         dayRequired: fields.cantAttendDate.error.dayRequired,
         monthRequired: fields.cantAttendDate.error.monthRequired,
         yearRequired: fields.cantAttendDate.error.yearRequired
       })
-    ).check(
-      fields.cantAttendDate.error.invalid,
-      value => DateUtils.isDateValid(value)
-    ).check(
-      fields.cantAttendDate.error.underFourWeeks,
-      value => DateUtils.isGreaterThanOrEqualToFourWeeks(value)
-    ).check(
-      fields.cantAttendDate.error.overTwentyTwoWeeks,
-      value => DateUtils.isLessThanOrEqualToTwentyTwoWeeks(value)
-    ).check(
-      fields.cantAttendDate.error.weekend,
-      value => !DateUtils.isDateOnTheWeekend(value, i18next.language)
-    ).check(
-      fields.cantAttendDate.error.bankHoliday,
-      value => !this.ukBankHolidays.isDateABankHoliday(value)
-    );
+    )
+      .check(fields.cantAttendDate.error.invalid, value =>
+        DateUtils.isDateValid(value)
+      )
+      .check(fields.cantAttendDate.error.underFourWeeks, value =>
+        DateUtils.isGreaterThanOrEqualToFourWeeks(value)
+      )
+      .check(fields.cantAttendDate.error.overTwentyTwoWeeks, value =>
+        DateUtils.isLessThanOrEqualToTwentyTwoWeeks(value)
+      )
+      .check(
+        fields.cantAttendDate.error.weekend,
+        value => !DateUtils.isDateOnTheWeekend(value, i18next.language)
+      )
+      .check(
+        fields.cantAttendDate.error.bankHoliday,
+        value => !this.ukBankHolidays.isDateABankHoliday(value)
+      );
   }
 
   validateList(list) {
@@ -77,14 +89,18 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: orderedItems.map(d => DateUtils.formatDate(d, 'DD MMMM YYYY')),
+        answer: orderedItems.map(d =>
+          DateUtils.formatDate(d, 'DD MMMM YYYY')
+        ),
         url: paths.hearing.hearingAvailability
       })
     ];
   }
 
   values() {
-    const datesCantAttend = this.fields.items.value.map(d => d.format('DD-MM-YYYY'));
+    const datesCantAttend = this.fields.items.value.map(d =>
+      d.format('DD-MM-YYYY')
+    );
     if (datesCantAttend.length === 0) {
       return {};
     }

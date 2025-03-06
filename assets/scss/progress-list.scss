@@ -2,33 +2,33 @@
 Progress
 */
 
-$module: "progress";
+$module: 'progress';
 
 .#{$module} {
   overflow: hidden;
   position: relative;
 
   &:before {
-    background-color: govuk-colour("green");
-    content: "";
+    background-color: govuk-colour('green');
+    content: '';
     height: 6px;
     position: absolute;
-    top: 19px; left: 0;
+    top: 19px;
+    left: 0;
     width: 100%;
   }
 
   &__list {
-    font-size: .1px; // hide whitespace between elements
+    font-size: 0.1px; // hide whitespace between elements
     position: relative;
     text-align: justify;
     vertical-align: top;
 
     &::after {
-      content: "";
+      content: '';
       display: inline-block;
       width: 100%;
     }
-
   }
 
   &__icon {
@@ -40,17 +40,16 @@ $module: "progress";
     width: 32px;
 
     &::before {
-      background-color: govuk-colour("white");
+      background-color: govuk-colour('white');
       border-radius: 50%;
-      box-shadow: inset 0 0 0 0.375em govuk-colour("green");
-      content: "";
+      box-shadow: inset 0 0 0 0.375em govuk-colour('green');
+      content: '';
       display: block;
       height: 32px;
       position: absolute;
       width: 32px;
       z-index: 2;
     }
-
   }
 
   &__label {
@@ -70,26 +69,20 @@ $module: "progress";
     vertical-align: top;
 
     &--complete {
-
       .#{$module}__icon {
-
         &::before {
-          background-image: url("/assets/images/icons/icon-progress-tick.svg"); // if less than ie9 provide png fallback (TODO)
-          background-color: govuk-colour("green");
+          background-image: url('/assets/images/icons/icon-progress-tick.svg'); // if less than ie9 provide png fallback (TODO)
+          background-color: govuk-colour('green');
           background-position: 50% 50%;
           background-repeat: no-repeat;
         }
-
       }
-
     }
 
     &--current {
-
       .#{$module}__label {
         font-weight: bold;
       }
-
     }
 
     &:first-child,
@@ -100,28 +93,23 @@ $module: "progress";
         position: relative;
 
         &::after {
-          background-color: govuk-colour("white");
-          content: "";
+          background-color: govuk-colour('white');
+          content: '';
           height: 32px;
           position: absolute;
-          right: 16px; top: 0;
+          right: 16px;
+          top: 0;
           width: 495px;
           z-index: 0;
         }
-
       }
-
     }
 
     &:last-child {
-
       .#{$module}__icon::after {
         left: 16px;
         right: auto;
       }
-
     }
-
   }
-
 }

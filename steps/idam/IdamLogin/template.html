@@ -1,16 +1,19 @@
 {% extends "components/form-template.html" %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
-{% from "components/fields.njk" import formSection, selectionButtons %}
 
-{% set title = content.title | safe %}
+{% set title = content.title %}
 
 {% block fields %}
   {% call formSection() %}
-    {{ selectionButtons(fields.success, content.title,
-      options = [
-        { label: content.fields.success.yes, value: "yes" },
-        { label: content.fields.success.no, value: "no" }
-      ]
-    ) }}
+    {{ govRadio(field = fields.success,
+    headerText = content.title,
+    hideQuestion = true,
+    isPageHeading = false,
+    items = [
+      { value: "yes", text: content.fields.success.yes },
+      { value: "no", text: content.fields.success.no }
+    ]) }}
   {% endcall %}
 {% endblock %}

@@ -1,6 +1,4 @@
-const {
-  expect
-} = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const paths = require('paths');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
@@ -62,27 +60,23 @@ describe('DraftAppeals.js', () => {
     });
   });
 
-
   describe('drafts', () => {
     beforeEach(() => {
       const draftList = {
         1: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.bereavementBenefit
-            }
+          BenefitType: {
+            benefitType: benefitTypes.bereavementBenefit
+          }
         },
         2: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.infectedBloodCompensation
-            }
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodCompensation
+          }
         },
         3: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.attendanceAllowance
-            }
+          BenefitType: {
+            benefitType: benefitTypes.attendanceAllowance
+          }
         }
       };
       draftAppeals.req = {
@@ -94,16 +88,14 @@ describe('DraftAppeals.js', () => {
     it('should return non IBA drafts', () => {
       const expectedDraftList = {
         1: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.bereavementBenefit
-            }
+          BenefitType: {
+            benefitType: benefitTypes.bereavementBenefit
+          }
         },
         3: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.attendanceAllowance
-            }
+          BenefitType: {
+            benefitType: benefitTypes.attendanceAllowance
+          }
         }
       };
       assert.deepEqual(draftAppeals.drafts, expectedDraftList);
@@ -113,10 +105,9 @@ describe('DraftAppeals.js', () => {
       draftAppeals.req.hostname = 'some-iba-hostname';
       const expectedDraftList = {
         2: {
-          BenefitType:
-            {
-              benefitType: benefitTypes.infectedBloodCompensation
-            }
+          BenefitType: {
+            benefitType: benefitTypes.infectedBloodCompensation
+          }
         }
       };
       assert.deepEqual(draftAppeals.drafts, expectedDraftList);
@@ -141,7 +132,9 @@ describe('DraftAppeals.js', () => {
           firstName: 'Joe'
         }
       };
-      expect(draftAppeals.appellantName(draft)).to.equal('Appellant Name Not Set');
+      expect(draftAppeals.appellantName(draft)).to.equal(
+        'Appellant Name Not Set'
+      );
     });
 
     it('should return default message when no firstName present', () => {
@@ -150,12 +143,16 @@ describe('DraftAppeals.js', () => {
           lastName: 'Bloggs'
         }
       };
-      expect(draftAppeals.appellantName(draft)).to.equal('Appellant Name Not Set');
+      expect(draftAppeals.appellantName(draft)).to.equal(
+        'Appellant Name Not Set'
+      );
     });
 
     it('should return default message when no AppellantName present', () => {
       const draft = {};
-      expect(draftAppeals.appellantName(draft)).to.equal('Appellant Name Not Set');
+      expect(draftAppeals.appellantName(draft)).to.equal(
+        'Appellant Name Not Set'
+      );
     });
   });
 
@@ -214,7 +211,6 @@ describe('DraftAppeals.js', () => {
 
       expect(draftAppeals.mrnDate(draft)).to.equal('No Mrn');
     });
-
 
     it('should return IBC default message when does not haveAMRN is no', () => {
       const draft = {
@@ -305,7 +301,9 @@ describe('DraftAppeals.js', () => {
   describe('get tableHeadingTwo()', () => {
     it('should be correct for non ibc', () => {
       draftAppeals.content = content;
-      expect(draftAppeals.tableHeadingTwo).to.eql(content.tableHeadings.benefit);
+      expect(draftAppeals.tableHeadingTwo).to.eql(
+        content.tableHeadings.benefit
+      );
     });
 
     it('should be correct for ibc', () => {
@@ -318,13 +316,17 @@ describe('DraftAppeals.js', () => {
   describe('get tableHeadingThree()', () => {
     it('should be correct for non ibc', () => {
       draftAppeals.content = content;
-      expect(draftAppeals.tableHeadingThree).to.eql(content.tableHeadings.mrnDate);
+      expect(draftAppeals.tableHeadingThree).to.eql(
+        content.tableHeadings.mrnDate
+      );
     });
 
     it('should be correct for ibc', () => {
       draftAppeals.content = content;
       draftAppeals.req.hostname = 'some-iba-hostname';
-      expect(draftAppeals.tableHeadingThree).to.eql(content.tableHeadings.rdnDate);
+      expect(draftAppeals.tableHeadingThree).to.eql(
+        content.tableHeadings.rdnDate
+      );
     });
   });
 });
