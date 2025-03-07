@@ -1,0 +1,94 @@
+{
+  "sidamCredentials": {
+    "password": "Testing123"
+  },
+  "language": "en",
+  "reviewDecisionNotice": true,
+  "ibcaRefNum": "A12B34",
+  "appellantRole": "I am appealing for myself",
+  "appellant": {
+    "title": "Mr",
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "dob": {
+      "day": "25",
+      "month": "01",
+      "year": "1980"
+    },
+    "isInCountry": true,
+    "contactDetails": {
+      "addressLine1": "15, PHILLIPS AVENUE",
+      "addressLine2": "",
+      "townCity": "WOLVERHAMPTON",
+      "county": "WOLVERHAMPTON",
+      "postCode": "WV11 2HE",
+      "phoneNumber": "07411222222",
+      "emailAddress": "joe@bloggs.com",
+      "postcodeAddress": "100071185892"
+    }
+  },
+  "smsNotify": {
+    "wantsSMSNotifications": true,
+    "smsNumber": "07411333333"
+  },
+  "hasRepresentative": true,
+  "representative": {
+    "firstName": "Hermione",
+    "lastName": "Granger",
+    "organisation": "HP Ltd",
+    "contactDetails": {
+      "inCountry": true,
+      "addressLine1": "Address line 1",
+      "addressLine2": "Address line 2",
+      "townCity": "Town",
+      "county": "County",
+      "postCode": "SW1A 0AA",
+      "phoneNumber": "07411999999",
+      "emailAddress": "hermione.granger@wizards.com"
+    }
+  },
+  "reasonsForAppealing": {
+    "reasons": [ {
+        "whatYouDisagreeWith": "Disagree with A",
+        "reasonForAppealing": "Reason for appealing A"
+      }, {
+        "whatYouDisagreeWith": "Disagree with B",
+        "reasonForAppealing": "Reason for appealing B"
+      }, {
+        "whatYouDisagreeWith": "Disagree with C",
+        "reasonForAppealing": "Reason for appealing C"
+      }, {
+        "whatYouDisagreeWith": "All",
+        "reasonForAppealing": "None"
+      }, {
+        "whatYouDisagreeWith": "          ",
+        "reasonForAppealing": "          "
+      }
+    ],
+    "otherReasons": "Others reasons.."
+  },
+  "isEvidenceRequired": false,
+  "hearing": {
+    "wantsToAttend": false,
+    "wantsSupport": true,
+    "anythingElse": "Yes, this...",
+    "interpreterLanguageType": "Portuguese",
+    "signLanguageType": "Lipspeak",
+    "arrangements": {
+      "languageInterpreter": true,
+      "signLanguageInterpreter": true,
+      "hearingLoop": true,
+      "accessibleHearingRoom": false,
+      "other": false
+    },
+    "scheduleHearing": true,
+    "datesCantAttend": [
+      "04-04-2018",
+      "05-04-2018",
+      "06-04-2018"
+    ]
+  },
+  "signAndSubmit": {
+    "signer": "Joe Bloggs"
+  }
+}
