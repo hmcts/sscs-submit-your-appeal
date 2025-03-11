@@ -1,5 +1,7 @@
 const { goTo } = require('@hmcts/one-per-page');
-const { RestoreFromDraftStore } = require('middleware/draftAppealStoreMiddleware');
+const {
+  RestoreFromDraftStore
+} = require('middleware/draftAppealStoreMiddleware');
 const paths = require('paths');
 const logger = require('logger');
 const benefitTypes = require('steps/start/benefit-type/types');
@@ -15,13 +17,10 @@ class Entry extends RestoreFromDraftStore {
     if (req.session.isUserSessionRestored) {
       res.redirect(paths.drafts);
     } else if (isIba(req)) {
-      // eslint-disable-next-line no-negated-condition
-      if (process.env.INFECTED_BLOOD_COMPENSATION_ENABLED !== 'true') {
-        res.redirect(paths.policy.requestIbcAppealForm);
-      } else {
-        req.session.BenefitType = { benefitType: benefitTypes.infectedBloodCompensation };
-        super.handler(req, res, next);
-      }
+      req.session.BenefitType = {
+        benefitType: benefitTypes.infectedBloodCompensation
+      };
+      super.handler(req, res, next);
     } else {
       super.handler(req, res, next);
     }

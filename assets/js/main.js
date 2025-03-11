@@ -13,11 +13,12 @@ import CheckCookies from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
 import { WebChat } from './web-chat';
 import { WebChatScotland } from './web-chat-scotland';
-import ArchiveWarning from './archive-warning';
+import DeleteWarning from './delete-warning';
+import LanguagePreferenceToggle from './language-preference';
 
 /* eslint-disable init-declarations */
 let timeoutM;
-let archiveM;
+let deleteM;
 let evidenceUpload;
 /* eslint-enable init-declarations */
 
@@ -25,7 +26,12 @@ let evidenceUpload;
   Some selects are not to be enhanced, the following array and function are
   there to manage the exceptions, read discussion on SSCS-3960 for context
 */
-const nonEhanceableSelects = ['dwpIssuingOffice', 'title', 'postcodeAddress', 'pipNumber'];
+const nonEhanceableSelects = [
+  'dwpIssuingOffice',
+  'title',
+  'postcodeAddress',
+  'pipNumber'
+];
 
 function isNonEhanceableSelect(select) {
   return nonEhanceableSelects.includes(select.id);
@@ -73,14 +79,14 @@ function initAutocomplete() {
           const options = Array.from(select.options).map(opt => opt.label);
 
           const startingWithLetter = remove(options, opt =>
-            opt.match(new RegExp(`^${query}.+`, 'i')));
+            opt.match(new RegExp(`^${query}.+`, 'i'))
+          );
           const containingLetter = remove(options, opt =>
-            opt.match(new RegExp(`${query}`, 'i')));
+            opt.match(new RegExp(`${query}`, 'i'))
+          );
           return populateResults([...startingWithLetter, ...containingLetter]);
         }
       });
-      // Accessibility Fix
-      $('.autocomplete__wrapper').attr('aria-label', 'Benefit Type');
     }
   });
 }
@@ -104,7 +110,9 @@ function initDatePicker(language) {
 function hasMetaRefresh() {
   // document.querySelectorAll('noscript meta') doesn't work! :-o
   const noscripts = document.querySelectorAll('noscript');
-  return Array.from(noscripts).some(el => el.innerHTML.indexOf('refresh') !== -1);
+  return Array.from(noscripts).some(
+    el => el.innerHTML.indexOf('refresh') !== -1
+  );
 }
 
 function initTM(sessionSeconds, showAfterSeconds) {
@@ -113,8 +121,8 @@ function initTM(sessionSeconds, showAfterSeconds) {
   }
 }
 
-function initArchiveWarning() {
-  archiveM = new ArchiveWarning();
+function initDeleteWarning() {
+  deleteM = new DeleteWarning();
 }
 
 function destroyTM() {
@@ -124,8 +132,8 @@ function destroyTM() {
 }
 
 function destroyAM() {
-  if (archiveM) {
-    archiveM.destroy();
+  if (deleteM) {
+    deleteM.destroy();
   }
 }
 
@@ -156,6 +164,16 @@ function initBackButton() {
   });
 }
 
+function initLanguagePreferenceToggle() {
+  if (LanguagePreferenceToggle.startLanguagePreferenceToggle()) new LanguagePreferenceToggle();
+}
+
+function initGovUkComponentJavascript() {
+  const govUK = require('govuk-frontend');
+
+  govUK.initAll();
+}
+
 $(document).ready(() => {
   const language = $('html').attr('lang');
   initShowHideContent();
@@ -167,10 +185,12 @@ $(document).ready(() => {
   initDoNotSubmitTwice();
   initBackButton();
   initWebChat(language);
-  initArchiveWarning();
+  initDeleteWarning();
   PostCodeLookup.init();
   initCookieBanner();
   initWebChatScotland();
+  initLanguagePreferenceToggle();
+  initGovUkComponentJavascript();
 });
 
 $(window).on('unload', () => {

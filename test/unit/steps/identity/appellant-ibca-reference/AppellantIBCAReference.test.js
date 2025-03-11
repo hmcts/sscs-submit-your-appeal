@@ -25,7 +25,9 @@ describe('AppellantIBCAReference.js', () => {
 
   describe('get path()', () => {
     it('returns the path /enter-appellant-ibca-reference', () => {
-      expect(AppellantIBCAReference.path).to.equal(paths.identity.enterAppellantIBCAReference);
+      expect(AppellantIBCAReference.path).to.equal(
+        paths.identity.enterAppellantIBCAReference
+      );
     });
   });
   describe('handler()', () => {
@@ -74,20 +76,25 @@ describe('AppellantIBCAReference.js', () => {
 
   describe('get form()', () => {
     it('should have one field', () => {
-      expect(Object.keys(appellantIbcaReference.form.fields).length).to.equal(1);
+      expect(Object.keys(appellantIbcaReference.form.fields).length).to.equal(
+        1
+      );
     });
 
     it('should have the key to only field "ibcaReference" ', () => {
-      expect(appellantIbcaReference.form.fields).to.have.all.keys('ibcaReference');
+      expect(appellantIbcaReference.form.fields).to.have.all.keys(
+        'ibcaReference'
+      );
     });
 
     it('should have validations', () => {
-      expect(appellantIbcaReference.form.fields.ibcaReference.validations).to.not.be.empty;
+      expect(appellantIbcaReference.form.fields.ibcaReference.validations).to
+        .not.be.empty;
     });
   });
 
   describe('answers() and values() methods', () => {
-    const ibcaReferenceNo = '343545434234';
+    const ibcaReferenceNo = 'e12t34';
     const question = 'IBCA Reference';
 
     beforeEach(() => {
@@ -110,18 +117,20 @@ describe('AppellantIBCAReference.js', () => {
       const answers = appellantIbcaReference.answers();
       expect(answers[0].question).to.equal(question);
       expect(answers[0].section).to.equal(sections.appellantDetails);
-      expect(answers[0].answer).to.equal(ibcaReferenceNo);
+      expect(answers[0].answer).to.equal('E12T34');
     });
 
     it('should contain value as IBCA Ref', () => {
       const values = appellantIbcaReference.values();
-      expect(values).to.eql({ appellant: { ibcaReference: ibcaReferenceNo } });
+      expect(values).to.eql({ appellant: { ibcaReference: 'E12T34' } });
     });
   });
 
   describe('next()', () => {
     it('should return the next step path /mrn-date', () => {
-      expect(appellantIbcaReference.next().step).to.eql(paths.compliance.mrnDate);
+      expect(appellantIbcaReference.next().step).to.eql(
+        paths.compliance.mrnDate
+      );
     });
   });
 });

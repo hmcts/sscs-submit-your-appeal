@@ -4,7 +4,7 @@
 {% block full_width %}
     {{ super() }}
     <div>
-        {% include "components/archive-warning.html" %}
+        {% include "components/delete-warning.html" %}
     </div>
 {% endblock %}
 
@@ -19,6 +19,8 @@
     <p>{{ content.description.line3 }}</p>
 
     <p>{{ content.description.line4 }}</p>
+
+    <p>{{ content.description.line5 }}</p>
 
     <br>
 
@@ -53,7 +55,7 @@
                 <td class="govuk-table__cell">{{ mrnDate(draft) }}</td>
                 <td class="govuk-table__cell">
                     <a href="/edit-appeal?caseId={{ caseId }}">{{ content.buttons.edit }}</a>
-                    <a id="archive-link" href="/archive-appeal?caseId={{ caseId }}">{{ content.buttons.archive }}</a></td>
+                    <a id="delete-link" href="/delete-appeal?caseId={{ caseId }}">{{ content.buttons.delete }}</a></td>
             </tr>
             </tbody>
         </table>

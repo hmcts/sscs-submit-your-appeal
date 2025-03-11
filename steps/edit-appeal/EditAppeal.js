@@ -3,7 +3,6 @@ const { Redirect } = require('@hmcts/one-per-page');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 
-
 class EditAppeal extends Redirect {
   static get path() {
     return paths.editDraft;
@@ -14,7 +13,11 @@ class EditAppeal extends Redirect {
     if (req.method === 'GET') {
       const caseId = req.query.caseId;
 
-      if (req.query.caseId && req.session.drafts && req.session.drafts[caseId]) {
+      if (
+        req.query.caseId &&
+        req.session.drafts &&
+        req.session.drafts[caseId]
+      ) {
         resetJourney(req);
         const draft = req.session.drafts[caseId];
         draft.isUserSessionRestored = true;

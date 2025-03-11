@@ -50,7 +50,8 @@ class CheckMRN extends SaveToDraftStore {
     );
 
     const hasCheckedMRN = this.fields.checkedMRN.value === userAnswer.YES;
-    const lessThan13Months = DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
+    const lessThan13Months =
+      DateUtils.isLessThanOrEqualToThirteenMonths(mrnDate);
 
     if (!hasCheckedMRN && this.req.session) {
       delete this.req.session.MRNDate;
@@ -58,7 +59,9 @@ class CheckMRN extends SaveToDraftStore {
     }
 
     return branch(
-      goTo(this.journey.steps.MRNOverOneMonthLate).if(hasCheckedMRN && lessThan13Months),
+      goTo(this.journey.steps.MRNOverOneMonthLate).if(
+        hasCheckedMRN && lessThan13Months
+      ),
       goTo(this.journey.steps.MRNOverThirteenMonthsLate).if(hasCheckedMRN),
       redirectTo(this.journey.steps.MRNDate)
     );

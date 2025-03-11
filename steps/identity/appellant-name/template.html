@@ -1,20 +1,30 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import select, textbox, formSection %}
+{% from "components/fields.njk" import select, formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
-{% set title = title | safe %}
+{% set title = title %}
 
 {% block fields %}
     {% call formSection() %}
         {% if subtitle %}
             <p class="govuk-body">{{ subtitle }}</p>
         {% endif %}
+        {% if not isIba %}
+            {{ select(
+                fields.title,
+                content.fields.title.title,
+                options = titlesList
+            ) }}
+        {% endif %}
+        {{ govTextInput(fields.firstName,
+        content.fields.firstName.title,
+        hideLabel = false,
+        isPageHeading = false) }}
 
-        {{ select(
-            fields.title,
-            content.fields.title.title,
-            options = titlesList
-        ) }}
-        {{ textbox(fields.firstName, content.fields.firstName.title, hint="") }}
-        {{ textbox(fields.lastName, content.fields.lastName.title, hint="") }}
+        {{ govTextInput(fields.lastName,
+        content.fields.lastName.title,
+        hideLabel = false,
+
+        isPageHeading = false) }}
     {% endcall %}
 {% endblock %}

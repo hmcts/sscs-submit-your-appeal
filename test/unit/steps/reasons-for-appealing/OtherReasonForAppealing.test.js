@@ -33,7 +33,9 @@ describe('OtherReasonForAppealing.js', () => {
 
   describe('get path()', () => {
     it('returns path /other-reason-for-appealing', () => {
-      expect(otherReasonForAppealing.path).to.eq(paths.reasonsForAppealing.otherReasonForAppealing);
+      expect(otherReasonForAppealing.path).to.eq(
+        paths.reasonsForAppealing.otherReasonForAppealing
+      );
     });
   });
 
@@ -94,7 +96,7 @@ describe('OtherReasonForAppealing.js', () => {
         expect(answers[0].answer).to.equal(value);
       });
 
-      it('should set the answer index as Not Required when it hasn\'t been set', () => {
+      it("should set the answer index as Not Required when it hasn't been set", () => {
         otherReasonForAppealing.fields.otherReasonForAppealing.value = undefined;
         const answers = otherReasonForAppealing.answers();
         expect(answers[0].answer).to.equal(userAnswer.NOT_REQUIRED);
@@ -123,7 +125,9 @@ describe('OtherReasonForAppealing.js', () => {
     const expectedPath = evidenceUploadEnabled ? 'evidence-provide' : 'sending-evidence';
     const pathObjectName = evidenceUploadEnabled ? 'evidenceProvide' : 'sendingEvidence';
     it(`returns the next step path /${expectedPath}`, () => {
-      expect(otherReasonForAppealing.next().step).to.eq(paths.reasonsForAppealing[pathObjectName]);
+      expect(otherReasonForAppealing.next().step).to.eq(
+        paths.reasonsForAppealing[pathObjectName]
+      );
     });
   });
 });

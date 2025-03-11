@@ -1,23 +1,36 @@
 const dwpContactContentEn = require('steps/compliance/have-contacted-dwp/content.en');
 const dwpContactContentCy = require('steps/compliance/have-contacted-dwp/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function selectHaveYouContactedDWPAndContinue(language, commonContent, option) {
-  const I = this;
+async function selectHaveYouContactedDWPAndContinue(
+  I,
+  language,
+  commonContent,
+  option
+) {
   const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
-  I.waitForText(dwpContactContent.title);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+  await expect(I.getByText(dwpContactContent.title).first()).toBeVisible();
+  await I.locator(option).first().check();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function selectHaveYouContactedDWPAndContinueAfterSignIn(language, commonContent, option) {
-  const I = this;
+async function selectHaveYouContactedDWPAndContinueAfterSignIn(
+  I,
+  language,
+  commonContent,
+  option
+) {
   const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
-  I.waitForText(dwpContactContent.title);
-  I.checkOption(option);
-  I.click(commonContent.saveAndContinue);
+  await expect(I.getByText(dwpContactContent.title).first()).toBeVisible();
+  await I.locator(option).first().check();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-module.exports = { selectHaveYouContactedDWPAndContinue, selectHaveYouContactedDWPAndContinueAfterSignIn };
+module.exports = {
+  selectHaveYouContactedDWPAndContinue,
+  selectHaveYouContactedDWPAndContinueAfterSignIn
+};

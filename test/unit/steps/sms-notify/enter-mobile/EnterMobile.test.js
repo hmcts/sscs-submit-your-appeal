@@ -74,7 +74,9 @@ describe('EnterMobile.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /sms-confirmation', () => {
-      expect(enterMobile.next()).to.eql({ nextStep: paths.smsNotify.smsConfirmation });
+      expect(enterMobile.next()).to.eql({
+        nextStep: paths.smsNotify.smsConfirmation
+      });
     });
   });
 });

@@ -23,7 +23,9 @@ describe('NoRepresentativeDetails.js', () => {
 
   describe('get path()', () => {
     it('returns path /no-representative-details', () => {
-      expect(noRepresentativeDetails.path).to.equal(paths.representative.noRepresentativeDetails);
+      expect(noRepresentativeDetails.path).to.equal(
+        paths.representative.noRepresentativeDetails
+      );
     });
   });
 

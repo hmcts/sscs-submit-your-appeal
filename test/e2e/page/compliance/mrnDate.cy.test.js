@@ -11,111 +11,239 @@ const date = {
   year: '2016'
 };
 
-Feature(`${language.toUpperCase()} - User has an MRN @batch-07`);
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  enterAnMRNDateAndContinue
+} = require('../../page-objects/compliance/mrnDate');
+const { enterADateAndContinue } = require('../../page-objects/controls/date');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.mrnDate);
-});
+test.describe(
+  `${language.toUpperCase()} - User has an MRN`,
+  { tag: '@batch-07' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.compliance.mrnDate);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated one day short of a month ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneDayShortOfAMonthAgo());
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated one day short of a month ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.oneDayShortOfAMonthAgo(page)
+      );
+      await expect(page).toHaveURL(paths.identity.enterAppellantName);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated as the current date`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, moment());
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated as the current date`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(page, commonContent, moment());
+      await expect(page).toHaveURL(paths.identity.enterAppellantName);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated one month ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAgo());
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantName);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated one month ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.oneMonthAgo(page)
+      );
+      await expect(page).toHaveURL(paths.identity.enterAppellantName);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated one month and one day ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneMonthAndOneDayAgo());
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated one month and one day ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.oneMonthAndOneDayAgo(page)
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated one day short of 13 months ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.oneDayShortOfThirteenMonthsAgo());
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated one day short of 13 months ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.oneDayShortOfThirteenMonthsAgo(page)
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated 13 months ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.thirteenMonthsAgo());
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated 13 months ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.thirteenMonthsAgo(page)
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I have an MRN dated 13 months and one day ago`, ({ I }) => {
-  I.enterAnMRNDateAndContinue(commonContent, DateUtils.thirteenMonthsAndOneDayAgo());
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page have an MRN dated 13 months and one day ago`, async({
+      page
+    }) => {
+      await enterAnMRNDateAndContinue(
+        commonContent,
+        DateUtils.thirteenMonthsAndOneDayAgo(page)
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I have a MRN but I do not enter the day, month or the year`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(mrnDateContent.fields.date.error.allRequired);
-});
+    test(`${language.toUpperCase()} - page have a MRN but page do not enter the day, month or the year`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.allRequired).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the day field I see errors`, ({ I }) => {
-  I.fillField('input[name*="day"]', '21');
-  I.click(commonContent.continue);
-  I.see(mrnDateContent.fields.date.error.monthRequired);
-  I.see(mrnDateContent.fields.date.error.yearRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="day"]').first().fill('21');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.monthRequired).first()
+      ).toBeVisible();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.yearRequired).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the month field I see errors`, ({ I }) => {
-  I.fillField('input[name*="month"]', '12');
-  I.click(commonContent.continue);
-  I.see(mrnDateContent.fields.date.error.yearRequired);
-  I.see(mrnDateContent.fields.date.error.dayRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="month"]').first().fill('12');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.yearRequired).first()
+      ).toBeVisible();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.dayRequired).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the year field I see errors`, ({ I }) => {
-  I.fillField('input[name*="year"]', '1999');
-  I.click(commonContent.continue);
-  I.see(mrnDateContent.fields.date.error.monthRequired);
-  I.see(mrnDateContent.fields.date.error.dayRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="year"]').first().fill('1999');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.monthRequired).first()
+      ).toBeVisible();
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.dayRequired).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I enter an invalid date I see errors`, ({ I }) => {
-  I.enterADateAndContinue(commonContent, '30', '02', '1981');
-  I.see(mrnDateContent.fields.date.error.invalid);
-});
+    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async({
+      page
+    }) => {
+      await enterADateAndContinue(page, commonContent, '30', '02', '1981');
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.invalid).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I enter a date in the future I see errors`, ({ I }) => {
-  I.enterADateAndContinue(commonContent, '25', '02', '3400');
-  I.see(mrnDateContent.fields.date.error.future);
-});
+    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async({
+      page
+    }) => {
+      await enterADateAndContinue(page, commonContent, '25', '02', '3400');
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.future).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I enter a date that is the same as the date on the image I see errors`, ({ I }) => {
-  I.enterADateAndContinue(commonContent, dateOnImage.day, dateOnImage.month, dateOnImage.year);
-  I.see(mrnDateContent.fields.date.error.dateSameAsImage);
-});
+    test(`${language.toUpperCase()} - When page enter a date that is the same as the date on the image page see errors`, async({
+      page
+    }) => {
+      await enterADateAndContinue(
+        page,
+        commonContent,
+        dateOnImage.day,
+        dateOnImage.month,
+        dateOnImage.year
+      );
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.dateSameAsImage).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a MRN date with name of month`, ({ I }) => {
-  date.month = 'ocToBer';
-  I.enterADateAndContinue(commonContent, date.day, date.month, date.year);
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page enter a MRN date with name of month`, async({
+      page
+    }) => {
+      date.month = 'ocToBer';
+      await enterADateAndContinue(
+        page,
+        commonContent,
+        date.day,
+        date.month,
+        date.year
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a MRN date with the short name of month`, ({ I }) => {
-  date.month = 'aUg';
-  I.enterADateAndContinue(commonContent, date.day, date.month, date.year);
-  I.seeCurrentUrlEquals(paths.compliance.checkMRNDate);
-});
+    test(`${language.toUpperCase()} - page enter a MRN date with the short name of month`, async({
+      page
+    }) => {
+      date.month = 'aUg';
+      await enterADateAndContinue(
+        page,
+        commonContent,
+        date.day,
+        date.month,
+        date.year
+      );
+      await expect(page).toHaveURL(paths.compliance.checkMRNDate);
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a MRN date with an invalid name of month`, ({ I }) => {
-  date.month = 'invalidMonth';
-  I.enterADateAndContinue(commonContent, date.day, date.month, date.year);
-  I.see(mrnDateContent.fields.date.error.invalid);
-});
+    test(`${language.toUpperCase()} - page enter a MRN date with an invalid name of month`, async({
+      page
+    }) => {
+      date.month = 'invalidMonth';
+      await enterADateAndContinue(
+        page,
+        commonContent,
+        date.day,
+        date.month,
+        date.year
+      );
+      await expect(
+        page.getByText(mrnDateContent.fields.date.error.invalid).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
-});
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
+      page
+    }) => {
+      await expect(
+        page.locator('form input[name="_csrf"]').first()
+      ).toBeVisible();
+    });
+  }
+);

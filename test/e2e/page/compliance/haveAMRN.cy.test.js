@@ -3,29 +3,33 @@ const commonContent = require('commonContent')[language];
 const haveAMRNContent = require(`steps/compliance/have-a-mrn/content.${language}`);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Check MRN @batch-07`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.haveAMRN);
-});
+test.describe(`${language.toUpperCase()} - Check MRN`, { tag: '@batch-07' }, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await createTheSession(page, language);
+    await page.goto(paths.compliance.haveAMRN);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test.afterEach('End session', async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I select yes I am taken to the DWP Issuing office page`, ({ I }) => {
-  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-yes');
-  I.seeInCurrentUrl(paths.compliance.dwpIssuingOffice);
-});
+  test(`${language.toUpperCase()} - When page select yes page am taken to the DWP Issuing office page`, async({ page }) => {
+    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN');
+    await page.waitForURL(`**${paths.compliance.dwpIssuingOffice}`);
+  });
 
-Scenario(`${language.toUpperCase()} - When I select no I am taken to the have you contacted DWP page`, ({ I }) => {
-  I.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-no');
-  I.seeInCurrentUrl(paths.compliance.haveContactedDWP);
-});
+  test(`${language.toUpperCase()} - When page select no page am taken to the have you contacted DWP page`, async({ page }) => {
+    page.selectHaveYouGotAMRNAndContinue(language, commonContent, '#haveAMRN-2');
+    await page.waitForURL(`**${paths.compliance.haveContactedDWP}`);
+  });
 
-Scenario(`${language.toUpperCase()} - When I click continue without selecting an option, I see an error`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.compliance.haveAMRN);
-  I.see(haveAMRNContent.fields.haveAMRN.error.required);
+  test(`${language.toUpperCase()} - When page click continue without selecting an option, page see an error`, async({ page }) => {
+    await page.getByRole('button', { name: commonContent.continue }).first().click();
+    await page.waitForURL(`**${paths.compliance.haveAMRN}`);
+    await expect(page.getByText(haveAMRNContent.fields.haveAMRN.error.required).first()).toBeVisible();
+  });
 });

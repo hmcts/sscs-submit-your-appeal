@@ -1,41 +1,80 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const postcodeCheckerContent = require(`steps/start/postcode-checker/content.${language}`);
+const postcodeCheckerContent = require(
+  `steps/start/postcode-checker/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Enter postcode`);
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.start.postcodeCheck);
-});
+test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await createTheSession(page, language);
+    await page.goto(paths.start.postcodeCheck);
+  });
 
-Scenario(`${language.toUpperCase()} - When I go to the enter postcode page I see the page heading`, ({ I }) => {
-  I.see(postcodeCheckerContent.title);
-});
+  test(`${language.toUpperCase()} - When page go to the enter postcode page page see the page heading`, async({
+    page
+  }) => {
+    await expect(
+      page.getByText(postcodeCheckerContent.title).first()
+    ).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When entering a postcode in England, I go to the /are-you-an-appointee page`, ({ I }) => {
-  I.fillField('#postcode', 'WV11 2HE');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.identity.areYouAnAppointee);
-});
+  test(`${language.toUpperCase()} - When entering a postcode in England, page go to the /are-you-an-appointee page`, async({
+    page
+  }) => {
+    await page.locator('#postcode').fill('WV11 2HE');
+    await page
+      .getByRole('button', { name: commonContent.continue })
+      .first()
+      .click();
+    await page.waitForURL(`**${paths.identity.areYouAnAppointee}`);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter a postcode in Scotland, I go to the /invalid postcode page`, ({ I }) => {
-  I.fillField('#postcode', 'EH8 8DX');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.invalidPostcode);
-});
+  test(`${language.toUpperCase()} - When page enter a postcode in Scotland, page go to the /invalid postcode page`, async({
+    page
+  }) => {
+    await page.locator('#postcode').fill('EH8 8DX');
+    await page
+      .getByRole('button', { name: commonContent.continue })
+      .first()
+      .click();
+    await page.waitForURL(`**${paths.start.invalidPostcode}`);
+  });
 
-Scenario(`${language.toUpperCase()} - When I enter an invalid postcode I see an error`, ({ I }) => {
-  I.fillField('#postcode', 'INVALID POSTCODE');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.postcodeCheck);
-  I.see(postcodeCheckerContent.fields.postcode.error.invalid);
-});
+  test(`${language.toUpperCase()} - When page enter an invalid postcode page see an error`, async({
+    page
+  }) => {
+    await page.locator('#postcode').fill('INVALID POSTCODE');
+    await page
+      .getByRole('button', { name: commonContent.continue })
+      .first()
+      .click();
+    await page.waitForURL(`**${paths.start.postcodeCheck}`);
+    await expect(
+      page
+        .getByText(postcodeCheckerContent.fields.postcode.error.invalid)
+        .first()
+    ).toBeVisible();
+  });
 
-Scenario(`${language.toUpperCase()} - When I leave the postcode field empty and continue, I see an error`, ({ I }) => {
-  I.fillField('#postcode', '');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.start.postcodeCheck);
-  I.see(postcodeCheckerContent.fields.postcode.error.emptyField);
+  test(`${language.toUpperCase()} - When page leave the postcode field empty and continue, page see an error`, async({
+    page
+  }) => {
+    await page.locator('#postcode').fill('');
+    await page
+      .getByRole('button', { name: commonContent.continue })
+      .first()
+      .click();
+    await page.waitForURL(`**${paths.start.postcodeCheck}`);
+    await expect(
+      page
+        .getByText(postcodeCheckerContent.fields.postcode.error.emptyField)
+        .first()
+    ).toBeVisible();
+  });
 });

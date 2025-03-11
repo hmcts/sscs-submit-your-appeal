@@ -14,9 +14,11 @@ class SmsConfirmation extends SaveToDraftStore {
   }
 
   get mobileNumber() {
-    const contactPhoneNumber = this.fields.inMainlandUk.value === 'no' ?
-      this.fields.internationalPhoneNumber.value :
-      this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
+    const contactPhoneNumber =
+      this.fields.inMainlandUk.value === 'no' ?
+        this.fields.internationalPhoneNumber.value :
+        this.fields.phoneNumber.value ||
+          this.fields.appointeePhoneNumber.value;
     const isMobile = regex.internationalMobileNumber.test(contactPhoneNumber);
     let number = null;
 
@@ -37,10 +39,22 @@ class SmsConfirmation extends SaveToDraftStore {
     return form({
       enterMobile: text.ref(this.journey.steps.EnterMobile, 'enterMobile'),
       useSameNumber: text.ref(this.journey.steps.SendToNumber, 'useSameNumber'),
-      phoneNumber: text.ref(this.journey.steps.AppellantContactDetails, 'phoneNumber'),
-      internationalPhoneNumber: text.ref(this.journey.steps.AppellantInternationalContactDetails, 'phoneNumber'),
-      inMainlandUk: text.ref(this.journey.steps.AppellantInMainlandUk, 'inMainlandUk'),
-      appointeePhoneNumber: text.ref(this.journey.steps.AppointeeContactDetails, 'phoneNumber')
+      phoneNumber: text.ref(
+        this.journey.steps.AppellantContactDetails,
+        'phoneNumber'
+      ),
+      internationalPhoneNumber: text.ref(
+        this.journey.steps.AppellantInternationalContactDetails,
+        'phoneNumber'
+      ),
+      inMainlandUk: text.ref(
+        this.journey.steps.AppellantInMainlandUk,
+        'inMainlandUk'
+      ),
+      appointeePhoneNumber: text.ref(
+        this.journey.steps.AppointeeContactDetails,
+        'phoneNumber'
+      )
     });
   }
 
@@ -50,18 +64,23 @@ class SmsConfirmation extends SaveToDraftStore {
         question: this.content.cya.mobileNumber.question,
         section: sections.textMsgReminders,
         answer: this.mobileNumber,
-        url: get(this, 'journey.req.session.SendToNumber.useSameNumber', 'no') === 'yes' ?
-          paths.smsNotify.sendToNumber :
-          paths.smsNotify.enterMobile
+        url:
+          get(this, 'journey.req.session.SendToNumber.useSameNumber', 'no') ===
+          'yes' ?
+            paths.smsNotify.sendToNumber :
+            paths.smsNotify.enterMobile
       })
     ];
   }
 
   values() {
     const values = { smsNotify: {} };
-    values.smsNotify.useSameNumber = this.fields.useSameNumber.value === userAnswer.YES;
+    values.smsNotify.useSameNumber =
+      this.fields.useSameNumber.value === userAnswer.YES;
     if (values.smsNotify.useSameNumber) {
-      values.smsNotify.smsNumber = this.fields.phoneNumber.value || this.fields.internationalPhoneNumber.value;
+      values.smsNotify.smsNumber =
+        this.fields.phoneNumber.value ||
+        this.fields.internationalPhoneNumber.value;
     } else {
       values.smsNotify.smsNumber = this.fields.enterMobile.value;
     }

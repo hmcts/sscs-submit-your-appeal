@@ -1,59 +1,51 @@
+const {
+  checkCYPCQOptionAndContinue,
+  checkPCQOptionAndContinue
+} = require('../controls/option');
+const { expect } = require('@playwright/test');
 
-
-function skipPcq() {
+async function skipPcq(I) {
   // if (config.features.pcq.enabled === 'true') {
-  const I = this;
-  I.wait(5);
   // This will need to be changed to 'I don\'t want to answer these questions' once the PCQ side of SSCS is merged.
-  I.click('I don\'t want to answer these questions');
+  await I.getByText("I don't want to answer these questions").first().click();
   // }
 }
 
-
-function skipPcqCY() {
-  const I = this;
-  I.wait(5);
-  I.waitForText('Dydw i ddim eisiau ateb y cwestiynau hyn');
-  I.click('Dydw i ddim eisiau ateb y cwestiynau hyn');
+async function skipPcqCY(I) {
+  await expect(
+    I.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first()
+  ).toBeVisible();
+  await I.getByText('Dydw i ddim eisiau ateb y cwestiynau hyn').first().click();
 }
 
-
-function completeAllPcq() {
-  const I = this;
-  I.wait(5);
-  I.waitForText('Continue to the question');
-  I.click('Continue to the question');
-  I.checkPCQOptionAndContinue('#language_main');
-  I.checkPCQOptionAndContinue('#sex');
-  I.checkPCQOptionAndContinue('#gender_different');
-  I.checkPCQOptionAndContinue('#sexuality');
-  I.checkPCQOptionAndContinue('#marriage-2');
-  I.checkPCQOptionAndContinue('#ethnic_group');
-  I.checkPCQOptionAndContinue('#ethnicity-2');
-  I.checkPCQOptionAndContinue('#religion-3');
-  I.checkPCQOptionAndContinue('#pregnancy-2');
-  I.click('Continue');
+async function completeAllPcq(I) {
+  await expect(I.getByText('Continue to the question').first()).toBeVisible();
+  await I.getByText('Continue to the question').first().click();
+  await checkPCQOptionAndContinue(I, '#language_main');
+  await checkPCQOptionAndContinue(I, '#sex');
+  await checkPCQOptionAndContinue(I, '#gender_different');
+  await checkPCQOptionAndContinue(I, '#sexuality');
+  await checkPCQOptionAndContinue(I, '#marriage-2');
+  await checkPCQOptionAndContinue(I, '#ethnic_group');
+  await checkPCQOptionAndContinue(I, '#ethnicity-2');
+  await checkPCQOptionAndContinue(I, '#religion-3');
+  await checkPCQOptionAndContinue(I, '#pregnancy-2');
+  await I.getByRole('button', { name: 'Continue' }).first().click();
 }
 
-function completeAllPcqCY() {
-  const I = this;
-  I.wait(5);
-  I.waitForText('Ymlaen i’r cwestiynau');
-  I.click('Ymlaen i’r cwestiynau');
-  I.checkCYPCQOptionAndContinue('#language_main');
-  I.checkCYPCQOptionAndContinue('#sex');
-  I.checkCYPCQOptionAndContinue('#gender_different');
-  I.checkCYPCQOptionAndContinue('#sexuality');
-  I.checkCYPCQOptionAndContinue('#marriage-2');
-  I.checkCYPCQOptionAndContinue('#ethnic_group');
-  I.checkCYPCQOptionAndContinue('#ethnicity-2');
-  I.checkCYPCQOptionAndContinue('#religion-3');
-  I.checkCYPCQOptionAndContinue('#pregnancy-2');
-  I.click('Symud ymlaen');
+async function completeAllPcqCY(I) {
+  await expect(I.getByText('Ymlaen i’r cwestiynau').first()).toBeVisible();
+  await I.getByText('Ymlaen i’r cwestiynau').first().click();
+  await checkCYPCQOptionAndContinue(I, '#language_main');
+  await checkCYPCQOptionAndContinue(I, '#sex');
+  await checkCYPCQOptionAndContinue(I, '#gender_different');
+  await checkCYPCQOptionAndContinue(I, '#sexuality');
+  await checkCYPCQOptionAndContinue(I, '#marriage-2');
+  await checkCYPCQOptionAndContinue(I, '#ethnic_group');
+  await checkCYPCQOptionAndContinue(I, '#ethnicity-2');
+  await checkCYPCQOptionAndContinue(I, '#religion-3');
+  await checkCYPCQOptionAndContinue(I, '#pregnancy-2');
+  await I.getByText('Symud ymlaen').first().click();
 }
 
-
-module.exports = { skipPcq,
-  completeAllPcq,
-  skipPcqCY,
-  completeAllPcqCY };
+module.exports = { skipPcq, completeAllPcq, skipPcqCY, completeAllPcqCY };

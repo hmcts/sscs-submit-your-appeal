@@ -1,78 +1,99 @@
+const { test, expect } = require('@playwright/test');
+
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const selectors = require('steps/check-your-appeal/selectors');
+const {
+  confirmDetailsArePresent,
+  enterDetailsFromNoRepresentativeToEnd,
+  enterDetailsFromStartToNINO
+} = require('../page-objects/cya/checkYourAppeal');
+const {
+  selectDoYouWantToReceiveTextMessageReminders
+} = require('../page-objects/sms-notify/textReminders');
+const {
+  enterAppellantContactDetailsWithMobileAndContinue,
+  enterAppellantContactDetailsAndContinue
+} = require('../page-objects/identity/appellantDetails');
+const {
+  readSMSConfirmationAndContinue
+} = require('../page-objects/sms-notify/smsConfirmation');
+const { enterMobileAndContinue } = require('../page-objects/sms-notify/enterMobile');
+const {
+  selectUseSameNumberAndContinue
+} = require('../page-objects/sms-notify/smsNotify');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { createTheSession } = require('../page-objects/session/createSession');
+const { skipPcq } = require('../page-objects/pcq/pcq');
 
-const appellant = selectors[language].appellant;
-const txtMsgRemnders = selectors[language].textMsgReminders;
+test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, does not attend hearing.`, { tag: '@batch-05' }, () => {
+  test.beforeEach('Create session and user', async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-const appellantPhoneNumberAnswer = `${appellant.phoneNumber} ${selectors.answer}`;
-const textMsgRemindersMobileAnswer = `${txtMsgRemnders.mobileNumber} ${selectors.answer}`;
-const receiveTxtMsgRemindersAnswer = `${txtMsgRemnders.receiveTxtMsgReminders} ${selectors.answer}`;
+  test.afterEach('End session and delete user', async({ page }) => {
+    await endTheSession(page);
+  });
 
-Feature(`${language.toUpperCase()} - Appellant PIP, one month ago, does not attend hearing. @batch-05`);
+  test(`${language.toUpperCase()} - Appellant omits optional phone number, does not sign up for text msg reminders.`, async({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcq(page);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText('Not provided').first()).toBeVisible();
+    await expect(page.getByText('No').first()).toBeVisible();
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
+  test(`${language.toUpperCase()} - Appellant omits optional phone number, enters mobile for text msg reminders.`, async({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsAndContinue(page, commonContent, language);
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
+    await enterMobileAndContinue(page, commonContent, '07455678444');
+    await readSMSConfirmationAndContinue(page, commonContent);
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcq(page);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText('Not provided').first()).toBeVisible();
+    await expect(page.getByText('07455678444').first()).toBeVisible();
+  });
+
+  test(`${language.toUpperCase()} - Appellant adds a phone number and uses it to sign up for text msg reminders.`, async({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+
+    await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
+    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber');
+    await readSMSConfirmationAndContinue(page, commonContent);
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcq(page);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText('07411738663').first()).toBeVisible();
+    await expect(page.getByText('07411738663').first()).toBeVisible();
+  });
+
+  test(`${language.toUpperCase()} - Appellant adds a phone number, provides a separate number for text msg reminders.`, async({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders');
+    await selectUseSameNumberAndContinue(page, commonContent, '#useSameNumber-2');
+    await enterMobileAndContinue(page, commonContent, '07411333333');
+    await readSMSConfirmationAndContinue(page, commonContent);
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcq(page);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText('07411738663').first()).toBeVisible();
+    await expect(page.getByText('07411333333').first()).toBeVisible();
+  });
+
+  test(`${language.toUpperCase()} - Appellant adds a phone number, but does not sign up for text msg reminders.`, async({ page }) => {
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsWithMobileAndContinue(page, commonContent, language, '07411738663');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcq(page);
+    await confirmDetailsArePresent(page, language);
+    await expect(page.getByText('07411738663').first()).toBeVisible();
+    await expect(page.getByText('No').first()).toBeVisible();
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - Appellant omits optional phone number, does not sign up for text msg reminders.`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see('Not provided', appellantPhoneNumberAnswer);
-  I.see('No', receiveTxtMsgRemindersAnswer);
-}).retry(2);
-
-Scenario(`${language.toUpperCase()} - Appellant omits optional phone number, enters mobile for text msg reminders.`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsAndContinue(commonContent, language);
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
-  I.enterMobileAndContinue(commonContent, '07455678444');
-  I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see('Not provided', appellantPhoneNumberAnswer);
-  I.see('07455678444', textMsgRemindersMobileAnswer);
-}).retry(2);
-
-Scenario(`${language.toUpperCase()} - Appellant adds a phone number and uses it to sign up for text msg reminders.`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-
-  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
-  I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
-  I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see('07411738663', appellantPhoneNumberAnswer);
-  I.see('07411738663', textMsgRemindersMobileAnswer);
-}).retry(2);
-
-Scenario(`${language.toUpperCase()} - Appellant adds a phone number, provides a separate number for text msg reminders.`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-yes');
-  I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
-  I.enterMobileAndContinue(commonContent, '07411333333');
-  I.readSMSConfirmationAndContinue(commonContent);
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see('07411738663', appellantPhoneNumberAnswer);
-  I.see('07411333333', textMsgRemindersMobileAnswer);
-}).retry(2);
-
-Scenario(`${language.toUpperCase()} - Appellant adds a phone number, but does not sign up for text msg reminders.`, ({ I }) => {
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07411738663');
-  I.selectDoYouWantToReceiveTextMessageReminders(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.confirmDetailsArePresent(language);
-  I.see('07411738663', appellantPhoneNumberAnswer);
-  I.see('No', receiveTxtMsgRemindersAnswer);
-}).retry(2);

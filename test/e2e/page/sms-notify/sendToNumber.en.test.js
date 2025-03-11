@@ -1,29 +1,59 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const textRemindersContent = require(`steps/sms-notify/text-reminders/content.${language}`);
+const textRemindersContent = require(
+  `steps/sms-notify/text-reminders/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Send to number @batch-11`);
+const { test } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const {
+  enterAppellantContactDetailsWithMobileAndContinue
+} = require('../../page-objects/identity/appellantDetails');
+const { endTheSession } = require('../../page-objects/session/endSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.identity.enterAppellantContactDetails);
-  I.enterAppellantContactDetailsWithMobileAndContinue(commonContent, language, '07466748336');
-  I.seeInCurrentUrl(paths.smsNotify.appellantTextReminders);
-  I.click(textRemindersContent.fields.doYouWantTextMsgReminders.yes);
-  I.click(commonContent.continue);
-});
+test.describe(
+  `${language.toUpperCase()} - Send to number`,
+  { tag: '@batch-11' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.identity.enterAppellantContactDetails);
+      await enterAppellantContactDetailsWithMobileAndContinue(
+        page,
+        commonContent,
+        language,
+        '07466748336'
+      );
+      await page.waitForURL(`**${paths.smsNotify.appellantTextReminders}`);
+      await page
+        .getByText(textRemindersContent.fields.doYouWantTextMsgReminders.yes)
+        .first()
+        .click();
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - When I select Yes, I am taken to the sms confirmation page`, ({ I }) => {
-  I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-yes');
-  I.seeInCurrentUrl(paths.smsNotify.smsConfirmation);
-});
+    test(`${language.toUpperCase()} - When page select Yes, page am taken to the sms confirmation page`, async({
+      page
+    }) => {
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber');
+      await page.waitForURL(`**${paths.smsNotify.smsConfirmation}`);
+    });
 
-Scenario(`${language.toUpperCase()} - When I select No, I am taken to the enter mobile page`, ({ I }) => {
-  I.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-no');
-  I.seeInCurrentUrl(paths.smsNotify.enterMobile);
-});
+    test(`${language.toUpperCase()} - When page select No, page am taken to the enter mobile page`, async({
+      page
+    }) => {
+      page.selectUseSameNumberAndContinue(commonContent, '#useSameNumber-2');
+      await page.waitForURL(`**${paths.smsNotify.enterMobile}`);
+    });
+  }
+);

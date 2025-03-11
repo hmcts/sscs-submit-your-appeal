@@ -1,10 +1,22 @@
 const language = 'en';
-const cookiePolicyContent = require(`steps/policy-pages/cookie-policy/content.${language}`);
+const cookiePolicyContent = require(
+  `steps/policy-pages/cookie-policy/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Cookie policy @batch-10`);
+const { test, expect } = require('@playwright/test');
 
-Scenario(`${language.toUpperCase()} - When I go to the cookie policy page, I see the page heading`, ({ I }) => {
-  I.amOnPage(paths.policy.cookiePolicy);
-  I.see(cookiePolicyContent.cookies.title);
-});
+test.describe(
+  `${language.toUpperCase()} - Cookie policy`,
+  { tag: '@batch-10' },
+  () => {
+    test(`${language.toUpperCase()} - When page go to the cookie policy page, page see the page heading`, async({
+      page
+    }) => {
+      await page.goto(paths.policy.cookiePolicy);
+      await expect(
+        page.getByText(cookiePolicyContent.cookies.title).first()
+      ).toBeVisible();
+    });
+  }
+);

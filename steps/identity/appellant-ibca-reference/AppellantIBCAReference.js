@@ -23,13 +23,15 @@ class AppellantIBCAReference extends SaveToDraftStore {
 
   get form() {
     return form({
-      ibcaReference: text.joi(
-        this.content.fields.ibcaReference.error.required,
-        Joi.string().required()
-      ).joi(
-        this.content.fields.ibcaReference.error.invalid,
-        Joi.string().trim().regex(ibcaReference)
-      )
+      ibcaReference: text
+        .joi(
+          this.content.fields.ibcaReference.error.required,
+          Joi.string().required()
+        )
+        .joi(
+          this.content.fields.ibcaReference.error.invalid,
+          Joi.string().trim().regex(ibcaReference)
+        )
     });
   }
 
@@ -38,7 +40,7 @@ class AppellantIBCAReference extends SaveToDraftStore {
       answer(this, {
         question: this.content.cya.ibcaReference.question,
         section: sections.appellantDetails,
-        answer: this.fields.ibcaReference.value
+        answer: this.fields.ibcaReference.value.toUpperCase()
       })
     ];
   }
@@ -46,7 +48,7 @@ class AppellantIBCAReference extends SaveToDraftStore {
   values() {
     return {
       appellant: {
-        ibcaReference: this.fields.ibcaReference.value
+        ibcaReference: this.fields.ibcaReference.value.toUpperCase()
       }
     };
   }

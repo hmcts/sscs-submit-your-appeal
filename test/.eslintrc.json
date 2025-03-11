@@ -7,16 +7,21 @@
   "extends": "@hmcts/eslint-config/test",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2017
+    "ecmaVersion": 2020
   },
   "rules": {
-	"linebreak-style": ["warn", "unix"],
-    "object-curly-newline": ["error", {
-      "consistent": true
-    }],
-    "no-invalid-this":"off",
+    "linebreak-style": ["warn", "unix"],
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "no-invalid-this": "off",
     "new-cap": "off",
-    "max-len": ["error", {
+    "max-len": [
+      "error",
+      {
         "code": 200
       }
     ],

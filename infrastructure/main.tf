@@ -18,7 +18,7 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
 }
 
 module "redis-cache" {
-  source                        = "git@github.com:hmcts/cnp-module-redis?ref=master"
+  source                        = "git@github.com:hmcts/cnp-module-redis?ref=4.x"
   product                       = var.product
   location                      = var.location
   common_tags                   = var.common_tags

@@ -5,7 +5,9 @@ const paths = require('paths');
 describe('TermsAndConditions.js', () => {
   describe('get path()', () => {
     it('returns path /terms-and-conditions', () => {
-      expect(TermsAndConditionsTest.path).to.equal(paths.policy.termsAndConditions);
+      expect(TermsAndConditionsTest.path).to.equal(
+        paths.policy.termsAndConditions
+      );
     });
   });
 });

@@ -2,27 +2,31 @@ const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Representative @batch-10`);
+const { test, expect } = require('@playwright/test');
+const { createTheSession } = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.representative.representative);
-});
+test.describe(`${language.toUpperCase()} - Representative`, { tag: '@batch-10' }, () => {
+  test.beforeEach('Create session', async({ page }) => {
+    await createTheSession(page, language);
+    await page.goto(paths.representative.representative);
+  });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+  test.afterEach('End session', async({ page }) => {
+    await endTheSession(page);
+  });
 
-Scenario(`${language.toUpperCase()} - When I select yes, I am taken to the representative details page`, ({ I }) => {
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-yes');
-  I.seeInCurrentUrl(paths.representative.representativeDetails);
-});
+  test(`${language.toUpperCase()} - When page select yes, page am taken to the representative details page`, async({ page }) => {
+    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative');
+    await page.waitForURL(`**${paths.representative.representativeDetails}`);
+  });
 
-Scenario(`${language.toUpperCase()} - When I select No, I am taken to the reason for appealing page`, ({ I }) => {
-  I.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-no');
-  I.seeInCurrentUrl(paths.reasonsForAppealing.reasonForAppealing);
-});
+  test(`${language.toUpperCase()} - When page select No, page am taken to the reason for appealing page`, async({ page }) => {
+    page.selectDoYouHaveARepresentativeAndContinue(commonContent, '#hasRepresentative-2');
+    await page.waitForURL(`**${paths.reasonsForAppealing.reasonForAppealing}`);
+  });
 
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
+  test(`${language.toUpperCase()} - page have a csrf token`, async({ page }) => {
+    await expect(page.locator('form input[name="_csrf"]').first()).toBeVisible();
+  });
 });

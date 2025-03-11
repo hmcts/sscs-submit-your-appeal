@@ -1,103 +1,96 @@
 /* eslint-disable id-blacklist */
 const { expect } = require('test/util/chai');
-
 const GetCaseData = require('../e2e/page-objects/tribunals-case-api/getCaseData.js');
 
 describe('getCaseData E2E function', () => {
   const ccdCaseID = '1641472310079136';
   let apiResponse = {};
-  let myaCaseResponse = {};
+  let responseObject = {};
+  let request = {};
+  let browserContext = {};
+  let browser = {};
 
-  const I = {
-    getMYACaseData: () => {
-      return myaCaseResponse;
-    },
-    sendGetRequest: () => {
-      return apiResponse;
-    },
-    grabCookie: () => {
-      return '00000000000000000000';
-    }
-  };
+  beforeEach(() => {
+    apiResponse = {};
+    responseObject = {
+      ok: () => true,
+      json: () => apiResponse,
+      status: () => 200
+    };
+
+    request = {
+      get: () => responseObject
+    };
+
+    browserContext = {
+      cookies: () => [{ name: '__auth-token', value: '00000000000000000000' }]
+    };
+    browser = {
+      contexts: () => [browserContext]
+    };
+  });
 
   describe('checkTribunalAPIResponse', () => {
-    it('should return the response\'s data structure is correct', () => {
-      apiResponse = {
-        status: 200,
-        data: {
-          appeal: {}
-        }
-      };
-      expect(GetCaseData.checkTribunalAPIResponse(apiResponse)).to.equal(apiResponse.data);
+    it("should return the response's data structure if response is ok", async() => {
+      apiResponse = { appeal: {} };
+      const result = await GetCaseData.checkTribunalAPIResponse(responseObject);
+      expect(result).to.equal(apiResponse);
     });
-    it('should return a HTTP 404 error if the resource is not found', () => {
-      apiResponse = {
-        status: 404
+
+    it('should throw an error if response is not ok', async() => {
+      responseObject = {
+        json: () => apiResponse,
+        ok: () => false,
+        status: () => 404
       };
-      expect(() => GetCaseData.checkTribunalAPIResponse(apiResponse)).to.throw(`HTTP Error ${apiResponse.status} is invalid`);
+      await expect(
+        GetCaseData.checkTribunalAPIResponse(responseObject)
+      ).to.be.rejectedWith('HTTP Error 404 is invalid');
     });
-    it('should return a HTTP 500 error if there is a internal server error', () => {
-      apiResponse = {
-        status: 500
-      };
-      expect(() => GetCaseData.checkTribunalAPIResponse(apiResponse)).to.throw(`HTTP Error ${apiResponse.status} is invalid`);
-    });
-    it('should return a null error when there is a null response', () => {
-      apiResponse = null;
-      expect(() => GetCaseData.checkTribunalAPIResponse(apiResponse)).to.throw('HTTP Error null is invalid');
-    });
-    it('should return a invalid api response error when there is no data in the response', () => {
-      apiResponse = {
-        status: 200
-      };
-      expect(() => GetCaseData.checkTribunalAPIResponse(apiResponse)).to.throw('Invalid API Response no data returned');
+
+    it('should throw an error if response is null', async() => {
+      await expect(
+        GetCaseData.checkTribunalAPIResponse(null)
+      ).to.be.rejectedWith('HTTP Error null is invalid');
     });
   });
 
   describe('getMYACaseData', () => {
-    it('should generate and return the correct response when the structure is correct', async() => {
-      apiResponse = {
-        status: 200,
-        data: {
-          appeal: {
-            appealNumber: 'bVLwEI7OQY'
-          }
-        }
-      };
-      const resMYACaseData = await GetCaseData.getMYACaseData(I, ccdCaseID);
-      expect(apiResponse.data.appeal).to.equal(resMYACaseData);
+    it('should return the correct response when the structure is correct', async() => {
+      apiResponse = { appeal: { appealNumber: 'bVLwEI7OQY' } };
+      const result = await GetCaseData.getMYACaseData(request, ccdCaseID);
+      expect(result).to.equal(apiResponse.appeal);
     });
 
-    it('should return a invalid api response error when there is no appealNumber in the response', () => {
-      apiResponse = {
-        status: 200,
-        data: {}
+    it('should throw an error if appeal is missing from returned data', async() => {
+      apiResponse = {};
+      responseObject = {
+        json: () => apiResponse,
+        ok: () => true,
+        status: () => 200
       };
-      expect(GetCaseData.getMYACaseData(I, ccdCaseID)).to.be.rejectedWith('Invalid API Response appeal is missing from returned data');
+      await expect(
+        GetCaseData.getMYACaseData(request, ccdCaseID)
+      ).to.be.rejectedWith(
+        'Invalid API Response appeal is missing from returned data'
+      );
     });
   });
+
   describe('getCaseData', () => {
-    it('should generate and return the correct response when the structure is correct', async() => {
-      myaCaseResponse = { appealNumber: 'bVLwEI7OQY' };
+    it('should return the correct response when the structure is correct', async() => {
       apiResponse = {
-        status: 200,
-        data: [
-          {
-            appeal_details: {
-              state: 'validAppeal'
-            }
-          }
-        ]
+        appeal: { state: 'validAppeal', appealNumber: ccdCaseID }
       };
-      const resCaseData = await GetCaseData.getCaseData(I, ccdCaseID);
-      expect(apiResponse.data).to.equal(resCaseData);
+      const result = await GetCaseData.getCaseData(browser, request, ccdCaseID);
+      expect(result).to.equal(apiResponse);
     });
-    it('should return a invalid appeal number error when the getMYACaseData response is empty', () => {
-      myaCaseResponse = null;
-      apiResponse = {
-        status: 200
-      };
-      expect(GetCaseData.getCaseData(I, ccdCaseID)).to.be.rejectedWith('Invalid Appeal Number)');
+
+    it('should throw an error if appeal number is invalid', async() => {
+      apiResponse = { appeal: { state: 'validAppeal', appealNumber: null } };
+      await expect(
+        GetCaseData.getCaseData(browser, request, ccdCaseID)
+      ).to.be.rejectedWith('Invalid Appeal Number');
     });
   });
 });

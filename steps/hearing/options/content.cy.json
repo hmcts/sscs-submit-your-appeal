@@ -1,11 +1,8 @@
 {
   "titleHead": "Eich gwrandawiad",
-  "title": "Dewiswch y math o wrandawiad y byddech yn ei ffafrio.",
-  "titleIba": "Cymryd rhan mewn gwrandawiad",
-  "subtitle": "Y tribiwnlys fydd yn gwneud y penderfyniad terfynol ynghylch y math o wrandawiad a gynhelir.",
-  "subtitleIba": "Bydd y math o wrandawiad y byddwch yn cymryd rhan ynddo yn cael ei benderfynu gan y tribiwnlys. Yn y rhan fwyaf o achosion, bydd wyneb yn wyneb mewn lleoliad tribiwnlys.",
-  "instructions": "Dewiswch yr holl opsiynau a fyddai’n eich galluogi i gymryd rhan yn y gwrandawiad..",
-  "instructionsIba": "Dewiswch bob un sy'n berthnasol",
+  "title": "Cymryd rhan mewn gwrandawiad",
+  "subtitle": "Bydd y math o wrandawiad y byddwch yn cymryd rhan ynddo yn cael ei benderfynu gan y tribiwnlys. Yn y rhan fwyaf o achosion, bydd wyneb yn wyneb mewn lleoliad tribiwnlys.",
+  "instructions": "Dewiswch bob un sy'n berthnasol",
   "tribunalExplained": "Bydd y tribiwnlys yn dweud wrthych sut i gymryd rhan cyn dyddiad eich gwrandawiad.",
   "supportExplained": "Os oes angen cymorth corfforol arnoch i gymryd rhan mewn gwrandawiad, gallwch ddweud wrthym yn ddiweddarach yn y ffurflen apelio hon.",
   "fields": {
@@ -32,11 +29,9 @@
           "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
         }
       },
-      "faceToFace": {
+      "inPerson": {
         "requested": {
-          "label": " Wyneb yn wyneb (byddwch angen teithio i'r gwrandawiad).",
-          "labelIba": "Wyneb yn wyneb (bydd angen i chi deithio i leoliad y gwrandawiad)."
-
+          "label": "Wyneb yn wyneb (bydd angen i chi deithio i leoliad y gwrandawiad)."
         }
       }
     }
@@ -50,7 +45,6 @@
     "notRequired": "Nid yw’n ofynnol",
     "hearingTypeTelephone": "Gwrandawiad dros y ffôn",
     "hearingTypeVideo": "Gwrandawiad drwy fideo",
-    "hearingTypeFaceToFace": "Gwrandawiad wyneb yn wyneb",
-    "hearingTypeInPersonIba": "Gwrandawiad wyneb yn wyneb"
+    "hearingTypeInPerson": "Gwrandawiad wyneb yn wyneb"
   }
 }

@@ -9,7 +9,8 @@ module.exports = {
       dwpIssuingOffice: '#cya-dwpissuingoffice-number-from-mrn-address',
       noMRN: '#cya-nomrn-reason-for-no-mrn',
       overOneMonthLate: '#cya-mrnoveronemonthlate-why-your-appeal-is-late',
-      overThirteenMonthsLate: '#cya-mrnoverthirteenmonthslate-why-your-appeal-is-late'
+      overThirteenMonthsLate:
+        '#cya-mrnoverthirteenmonthslate-why-your-appeal-is-late'
     },
     appellant: {
       appointee: '#cya-appointee-appointee',
@@ -25,14 +26,16 @@ module.exports = {
       email: '#cya-appellantcontactdetails-email'
     },
     textMsgReminders: {
-      receiveTxtMsgReminders: '#cya-textreminders-receive-text-message-reminders',
+      receiveTxtMsgReminders:
+        '#cya-textreminders-receive-text-message-reminders',
       mobileNumber: '#cya-smsconfirmation-mobile-number'
     },
     representative: {
       haveARepresentative: '#cya-representative-have-a-representative',
       firstName: '#cya-representativedetails-first-name',
       lastName: '#cya-representativedetails-last-name',
-      organisation: '#cya-representativedetails-organisation-if-they-work-for-one',
+      organisation:
+        '#cya-representativedetails-organisation-if-they-work-for-one',
       addressLine1: '#cya-representativedetails-address-line-1',
       addressLine2: '#cya-representativedetails-address-line-2',
       townCity: '#cya-representativedetails-towncity',
@@ -47,7 +50,8 @@ module.exports = {
     },
     theHearing: {
       attendingTheHearing: '#cya-thehearing-attending-the-hearing',
-      datesYouCantAttend: '[id="cya-datescantattend-dates-you\'re-not-available"]'
+      datesYouCantAttend:
+        '[id="cya-datescantattend-dates-you\'re-not-available"]'
     },
     hearingArrangements: {
       yourArrangements: '#cya-hearingarrangements-your-hearing-arrangement',
@@ -66,7 +70,8 @@ module.exports = {
       phoneNumber: '#cya-appellantcontactdetails-rhif-ffôn'
     },
     textMsgReminders: {
-      receiveTxtMsgReminders: '#cya-textreminders-cael-negeseuon-testun-atgoffa',
+      receiveTxtMsgReminders:
+        '#cya-textreminders-cael-negeseuon-testun-atgoffa',
       mobileNumber: '#cya-smsconfirmation-rhif-ffôn-symudol'
     },
     theHearing: {

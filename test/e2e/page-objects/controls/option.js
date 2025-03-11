@@ -1,42 +1,38 @@
-function checkOptionAndContinue(commonContent, option) {
-  const I = this;
+const { expect } = require('@playwright/test');
 
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable(commonContent.continue, 3);
-  I.click(commonContent.continue);
+async function checkOptionAndContinue(I, commonContent, option) {
+  await I.locator(option).first().check();
+  await expect(I.getByText(commonContent.continue).first()).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function checkOptionAndContinueAfterSignIn(commonContent, option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable(commonContent.saveAndContinue, 3);
-  I.click(commonContent.saveAndContinue);
+async function checkOptionAndContinueAfterSignIn(I, commonContent, option) {
+  await I.locator(option).first().check();
+  await expect(
+    I.getByText(commonContent.saveAndContinue).first()
+  ).toBeEnabled();
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-
-function checkPCQOptionAndContinue(option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable('Continue', 3);
-  I.click('Continue');
+async function checkPCQOptionAndContinue(I, option) {
+  await I.locator(option).first().check();
+  await expect(
+    I.getByRole('button', { name: 'Continue' }).first()
+  ).toBeEnabled();
+  await I.getByRole('button', { name: 'Continue' }).first().click();
 }
 
-function checkCYPCQOptionAndContinue(option) {
-  const I = this;
-
-  I.wait(10);
-  I.checkOption(option);
-  I.waitForClickable('Parhau', 3);
-  I.click('Parhau');
+async function checkCYPCQOptionAndContinue(I, option) {
+  await I.locator(option).first().check();
+  await expect(I.getByText('Parhau').first()).toBeEnabled();
+  await I.getByText('Parhau').first().click();
 }
 
-
-module.exports = { checkOptionAndContinue,
+module.exports = {
+  checkOptionAndContinue,
   checkOptionAndContinueAfterSignIn,
   checkPCQOptionAndContinue,
-  checkCYPCQOptionAndContinue };
+  checkCYPCQOptionAndContinue
+};

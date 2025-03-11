@@ -9,6 +9,7 @@ const Joi = require('joi');
 const paths = require('paths');
 const titlesList = require('utils/titlesList');
 const { decode } = require('utils/stringUtils');
+const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantName extends SaveToDraftStore {
   static get path() {
@@ -16,7 +17,9 @@ class AppellantName extends SaveToDraftStore {
   }
 
   isAppointee() {
-    return String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes';
+    return (
+      String(get(this, 'journey.req.session.Appointee.isAppointee')) === 'yes'
+    );
   }
 
   contentPrefix() {
@@ -47,47 +50,43 @@ class AppellantName extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
-
-    return form({
-      title: text.joi(
-        fields.title.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.title.error[prefix].invalid,
-        this.titleSchema()
-      ),
-      firstName: text.joi(
-        fields.firstName.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.firstName.error[prefix].invalid,
-        Joi.string().trim().regex(firstName)
-      ),
-      lastName: text.joi(
-        fields.lastName.error[prefix].required,
-        Joi.string().required()
-      ).joi(
-        fields.lastName.error[prefix].invalid,
-        Joi.string().trim().regex(lastName)
-      )
-    });
+    const formArgs = {
+      firstName: text
+        .joi(fields.firstName.error[prefix].required, Joi.string().required())
+        .joi(
+          fields.firstName.error[prefix].invalid,
+          Joi.string().trim().regex(firstName)
+        ),
+      lastName: text
+        .joi(fields.lastName.error[prefix].required, Joi.string().required())
+        .joi(
+          fields.lastName.error[prefix].invalid,
+          Joi.string().trim().regex(lastName)
+        )
+    };
+    if (!isIba(this.req)) {
+      formArgs.title = text
+        .joi(fields.title.error[prefix].required, Joi.string().required())
+        .joi(fields.title.error[prefix].invalid, this.titleSchema());
+    }
+    return form(formArgs);
   }
 
   answers() {
-    const title = this.fields.title.value;
+    const title = isIba(this.req) ? '' : this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
     return [
       answer(this, {
         question: this.content.cya.appellantName.question,
         section: sections.appellantDetails,
-        answer: decode(`${title} ${first} ${last}`)
+        answer: decode(`${title} ${first} ${last}`.trim())
       })
     ];
   }
 
   values() {
-    const title = this.fields.title.value;
+    const title = isIba(this.req) ? '' : this.fields.title.value;
     const first = this.fields.firstName.value;
     const last = this.fields.lastName.value;
     return {

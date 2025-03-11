@@ -1,6 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, formSection, errorClass, errorsFor %}
+{% from "components/fields.njk" import formSection, errorClass, errorsFor %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title | safe %}
 
@@ -10,20 +11,21 @@
         <legend class="govuk-visually-hidden">{{ content.title }}</legend>
 
         {{ errorsFor(fields.name) }}
-
-        {{ textbox(fields.name.title,    content.fields.name.title.title) }}
-        {{ textbox(fields.name.first,    content.fields.name.first.title) }}
-        {{ textbox(fields.name.last,     content.fields.name.last.title) }}
-        {{ textbox(fields.name.organisation, content.fields.name.organisation.title) }}
+        {% if not isIba %}
+            {{ govTextInput(fields.name.title,    content.fields.name.title.title,  hint="") }}
+        {% endif %}
+        {{ govTextInput(fields.name.first,    content.fields.name.first.title,  hint="") }}
+        {{ govTextInput(fields.name.last,    content.fields.name.last.title,  hint="") }}
+        {{ govTextInput(fields.name.organisation,    content.fields.name.organisation.title,  hint="") }}
 
     </div>
     {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
-        {{ textbox(fields.addressLine1, content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
-        {{ textbox(fields.addressLine2, content.fields.addressLine2.title) }}
-        {{ textbox(fields.townCity,     content.fields.townCity.title) }}
-        {{ textbox(fields.county,       content.fields.county.title) }}
-        {{ textbox(fields.postCode,     content.fields.postCode.title) }}
+        {{ govTextInput(fields.addressLine1,    content.fields.addressLine1.title,  hint=content.fields.addressLine1.hint) }}
+        {{ govTextInput(fields.addressLine2,    content.fields.addressLine2.title,  hint="") }}
+        {{ govTextInput(fields.townCity,    content.fields.townCity.title,  hint="") }}
+        {{ govTextInput(fields.county,    content.fields.county.title,  hint="") }}
+        {{ govTextInput(fields.postCode,    content.fields.postCode.title,  hint="") }}
     {% endcall %}
-    {{ textbox(fields.phoneNumber,  content.fields.phoneNumber.title,   hint=content.fields.phoneNumber.hint) }}
-    {{ textbox(fields.emailAddress, content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
+    {{ govTextInput(fields.phoneNumber,    content.fields.phoneNumber.title,  hint=content.fields.phoneNumber.hint) }}
+    {{ govTextInput(fields.emailAddress,    content.fields.emailAddress.title,  hint=content.fields.emailAddress.hint) }}
 {% endblock %}

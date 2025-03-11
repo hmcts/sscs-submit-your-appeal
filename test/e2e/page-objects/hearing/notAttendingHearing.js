@@ -1,15 +1,14 @@
-function continueFromnotAttendingHearing(commonContent) {
-  const I = this;
-
-  I.wait(5);
-  I.click(commonContent.continue);
+async function continueFromnotAttendingHearing(I, commonContent) {
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function continueFromnotAttendingHearingAfterSignIn(commonContent) {
-  const I = this;
-
-  I.wait(5);
-  I.click(commonContent.saveAndContinue);
+async function continueFromnotAttendingHearingAfterSignIn(I, commonContent) {
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-module.exports = { continueFromnotAttendingHearing, continueFromnotAttendingHearingAfterSignIn };
+module.exports = {
+  continueFromnotAttendingHearing,
+  continueFromnotAttendingHearingAfterSignIn
+};

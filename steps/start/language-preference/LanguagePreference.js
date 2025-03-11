@@ -30,13 +30,18 @@ class LanguagePreference extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.languagePreferenceWelsh.question,
       section: sections.benefitType,
-      answer: content.cya.languagePreferenceWelsh[this.fields.languagePreferenceWelsh.value]
+      answer:
+        content.cya.languagePreferenceWelsh[
+          this.fields.languagePreferenceWelsh.value
+        ]
     });
   }
 
   values() {
     return {
-      languagePreferenceWelsh: this.getLanguagePreferenceValue(this.fields.languagePreferenceWelsh.value)
+      languagePreferenceWelsh: this.getLanguagePreferenceValue(
+        this.fields.languagePreferenceWelsh.value
+      )
     };
   }
 
@@ -47,7 +52,10 @@ class LanguagePreference extends SaveToDraftStore {
   }
 
   next() {
-    const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
+    const benefitType = get(
+      this,
+      'journey.req.session.BenefitType.benefitType'
+    );
     if (benefitType === benefitTypes.infectedBloodCompensation) {
       return goTo(this.journey.steps.Independence);
     }

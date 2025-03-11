@@ -6,15 +6,7 @@
   "fields": {
     "name": {
       "error": {
-        "required": "Enter your representative’s name or the organisation they work for",
-        "nameNoTitle": "Enter your representative’s title",
-        "titleNoName": "Enter your representative’s name"
-      },
-      "title": {
-        "title": "Title",
-        "error": {
-          "invalid": "You have entered an invalid title. Check it and enter it again"
-        }
+        "required": "Enter your representative’s name or the organisation they work for"
       },
       "first": {
         "title": "First name",
@@ -86,16 +78,16 @@
     }
   },
   "cya": {
-    "name":{
+    "name": {
       "question": "Name"
     },
-    "organisation":{
+    "organisation": {
       "question": "Organisation"
     },
     "country": {
       "question": "Country of residence for representative"
     },
-    "address":{
+    "address": {
       "question": "Address"
     },
     "phoneNumber": {

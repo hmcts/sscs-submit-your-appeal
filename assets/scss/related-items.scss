@@ -1,13 +1,13 @@
 .govuk-related-items {
   border-top: 10px solid #005ea5;
-  @include govuk-responsive-padding(5, "top");
+  @include govuk-responsive-padding(5, 'top');
 }
 
 .govuk-related-items .help li {
-  @include govuk-responsive-margin(3, "bottom");
+  @include govuk-responsive-margin(3, 'bottom');
   list-style-type: none;
 }
 
 .govuk-related-items .govuk-heading-s {
-  @include govuk-responsive-margin(1, "bottom");
+  @include govuk-responsive-margin(1, 'bottom');
 }

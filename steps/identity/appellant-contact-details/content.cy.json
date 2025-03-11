@@ -16,7 +16,7 @@
           "required": "Rhowch linell gyntaf eich cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         },
-        "withAppointee":{
+        "withAppointee": {
           "required": "Rhowch linell gyntaf eu cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
@@ -28,7 +28,7 @@
         "withoutAppointee": {
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         },
-        "withAppointee":{
+        "withAppointee": {
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eu cyfeiriad a’i nodi eto"
         }
       }
@@ -40,7 +40,7 @@
           "required": "Nodwch y dref neu’r ddinas o’ch cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         },
-        "withAppointee":{
+        "withAppointee": {
           "required": "Nodwch y dref neu’r ddinas o’u cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
@@ -52,9 +52,8 @@
         "withoutAppointee": {
           "required": "Nodwch y sir o’ch cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
-
         },
-        "withAppointee":{
+        "withAppointee": {
           "required": "Nodwch y sir o’u cyfeiriad",
           "invalid": "Rydych wedi defnyddio nod annilys. Gwiriwch eich cyfeiriad a’i nodi eto"
         }
@@ -68,7 +67,7 @@
           "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth.",
           "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales."
         },
-        "withAppointee":{
+        "withAppointee": {
           "required": "Nodwch y cod post o’u cyfeiriad",
           "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth."
         }
@@ -81,7 +80,7 @@
         "withoutAppointee": {
           "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
         },
-        "withAppointee":{
+        "withAppointee": {
           "invalid": "Rydych wedi rhoi rhif ffôn annilys. Gwiriwch ef a’i nodi eto"
         }
       }
@@ -93,7 +92,7 @@
         "withoutAppointee": {
           "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
         },
-        "withAppointee":{
+        "withAppointee": {
           "invalid": "Rydych wedi rhoi cyfeiriad e-bost annilys. Gwiriwch ef a’i nodi eto"
         }
       }

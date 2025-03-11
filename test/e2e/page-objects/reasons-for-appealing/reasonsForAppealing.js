@@ -1,39 +1,58 @@
 const otherReasonForAppealingContentEn = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.en');
 const otherReasonForAppealingContentCy = require('steps/reasons-for-appealing/other-reasons-for-appealing/content.cy');
+const { expect } = require('@playwright/test');
 
-
-function enterAnythingElseAndContinue(language, commonContent, anythingElse) {
-  const I = this;
+async function enterAnythingElseAndContinue(
+  I,
+  language,
+  commonContent,
+  anythingElse
+) {
   const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
 
-  I.waitForText(otherReasonForAppealingContent.title);
-  I.fillField('#otherReasonForAppealing', anythingElse);
-  I.click(commonContent.continue);
+  await expect(
+    I.getByText(otherReasonForAppealingContent.title).first()
+  ).toBeVisible();
+  await I.locator('#otherReasonForAppealing').fill(anythingElse);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterAnythingElseAfterSignIn(language, commonContent, anythingElse) {
-  const I = this;
+async function enterAnythingElseAfterSignIn(
+  I,
+  language,
+  commonContent,
+  anythingElse
+) {
   const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
 
-  I.waitForText(otherReasonForAppealingContent.title);
-  I.fillField('#otherReasonForAppealing', anythingElse);
-  I.click(commonContent.saveAndContinue);
+  await expect(
+    I.getByText(otherReasonForAppealingContent.title).first()
+  ).toBeVisible();
+  await I.locator('#otherReasonForAppealing').fill(anythingElse);
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-function enterReasonForAppealAndContinue(commonContent, reason, link) {
-  const I = this;
-
-  I.click(link);
-  I.fillField('input[name="item.whatYouDisagreeWith"]', reason.whatYouDisagreeWith);
-  I.fillField('textarea[name="item.reasonForAppealing"]', reason.reasonForAppealing);
-  I.click(commonContent.continue);
+async function enterReasonForAppealAndContinue(I, commonContent, reason, link) {
+  await I.getByText(link).first().click();
+  await I.locator('input[name="item.whatYouDisagreeWith"]').fill(
+    reason.whatYouDisagreeWith
+  );
+  await I.locator('textarea[name="item.reasonForAppealing"]').fill(
+    reason.reasonForAppealing
+  );
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function addReasonsForAppealingAndContinue(commonContent, reason, link) {
-  const I = this;
-
-  I.enterReasonForAppealAndContinue(commonContent, reason, link);
-  I.click(commonContent.continue);
+async function addReasonsForAppealingAndContinue(
+  I,
+  commonContent,
+  reason,
+  link
+) {
+  await enterReasonForAppealAndContinue(I, commonContent, reason, link);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = {

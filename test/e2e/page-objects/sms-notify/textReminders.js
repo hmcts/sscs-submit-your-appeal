@@ -1,8 +1,10 @@
-function selectDoYouWantToReceiveTextMessageReminders(commonContent, option) {
-  const I = this;
-
-  I.checkOption(option);
-  I.click(commonContent.continue);
+async function selectDoYouWantToReceiveTextMessageReminders(
+  I,
+  commonContent,
+  option
+) {
+  await I.locator(option).check();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { selectDoYouWantToReceiveTextMessageReminders };

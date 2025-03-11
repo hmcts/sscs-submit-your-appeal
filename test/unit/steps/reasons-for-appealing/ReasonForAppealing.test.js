@@ -15,7 +15,8 @@ describe('ReasonForAppealing.js', () => {
     reasonForAppealing = new ReasonForAppealing({
       journey: {
         steps: {
-          OtherReasonForAppealing: paths.reasonsForAppealing.otherReasonForAppealing
+          OtherReasonForAppealing:
+            paths.reasonsForAppealing.otherReasonForAppealing
         }
       }
     });
@@ -27,21 +28,31 @@ describe('ReasonForAppealing.js', () => {
 
   describe('get path()', () => {
     it('returns path /reason-for-appealing', () => {
-      expect(ReasonForAppealing.path).to.equal(paths.reasonsForAppealing.reasonForAppealing);
+      expect(ReasonForAppealing.path).to.equal(
+        paths.reasonsForAppealing.reasonForAppealing
+      );
     });
   });
 
   describe('isBenefitEnabled()', () => {
     it('returns if benefit is enabled', () => {
-      expect(reasonForAppealing.isBenefitEnabled('allowUC')).to.equal(config.get('features.allowUC.enabled') === 'true');
+      expect(reasonForAppealing.isBenefitEnabled('allowUC')).to.equal(
+        config.get('features.allowUC.enabled') === 'true'
+      );
     });
   });
 
   describe('get benefitType()', () => {
-    const req = { session: { BenefitType: { benefitType: benefitTypes.personalIndependencePayment } } };
+    const req = {
+      session: {
+        BenefitType: { benefitType: benefitTypes.personalIndependencePayment }
+      }
+    };
     it('returns benefitType', () => {
       reasonForAppealing.req = req;
-      expect(reasonForAppealing.benefitType).to.equal(contentBenefitType.benefitTypes.pip);
+      expect(reasonForAppealing.benefitType).to.equal(
+        contentBenefitType.benefitTypes.pip
+      );
     });
 
     it('returns benefitCode', () => {
@@ -58,7 +69,9 @@ describe('ReasonForAppealing.js', () => {
 
     it('returns add link when there are no items in the list', () => {
       reasonForAppealing.fields.items.value = [];
-      expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.add);
+      expect(reasonForAppealing.addAnotherLinkContent).to.equal(
+        content.links.add
+      );
     });
 
     it('returns addAnother link when there are items in the list', () => {
@@ -68,7 +81,9 @@ describe('ReasonForAppealing.js', () => {
           reasonForAppealing: 'because I do'
         }
       ];
-      expect(reasonForAppealing.addAnotherLinkContent).to.equal(content.links.addAnother);
+      expect(reasonForAppealing.addAnotherLinkContent).to.equal(
+        content.links.addAnother
+      );
     });
   });
 
@@ -135,7 +150,6 @@ describe('ReasonForAppealing.js', () => {
       });
     });
   });
-
 
   describe('next()', () => {
     it('returns the next step path /appellant-text-reminders', () => {

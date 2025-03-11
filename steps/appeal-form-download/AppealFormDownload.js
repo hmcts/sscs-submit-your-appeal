@@ -25,10 +25,7 @@ class AppealFormDownload extends SaveToDraftStore {
   }
 
   get middleware() {
-    return [
-      preserveSession,
-      ...super.middleware
-    ];
+    return [preserveSession, ...super.middleware];
   }
 
   get benefitType() {

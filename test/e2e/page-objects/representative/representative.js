@@ -1,9 +1,10 @@
-function selectDoYouHaveARepresentativeAndContinue(commonContent, option) {
-  const I = this;
-
-  I.wait(5);
-  I.checkOption(option);
-  I.click(commonContent.continue);
+async function selectDoYouHaveARepresentativeAndContinue(
+  I,
+  commonContent,
+  option
+) {
+  await I.locator(option).check();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { selectDoYouHaveARepresentativeAndContinue };

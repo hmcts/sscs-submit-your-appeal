@@ -1,57 +1,151 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const appellantContactDetailsContent = require(`steps/identity/appellant-contact-details/content.${language}`);
+const appellantContactDetailsContent = require(
+  `steps/identity/appellant-contact-details/content.${language}`
+);
 const paths = require('paths');
 const config = require('config');
 
 const appellant = require('test/e2e/data.en').appellant;
 
-Feature(`${language.toUpperCase()} - Appellant details form @batch-09`);
+const { test, expect } = require('@playwright/test');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.identity.enterAppellantContactDetails);
-});
+test.describe(
+  `${language.toUpperCase()} - Appellant details form`,
+  { tag: '@batch-09' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.identity.enterAppellantContactDetails);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - When completing the form, clicking Continue, I see url /appellant-text-reminders`, ({ I }) => {
-  I.fillField('addressLine1', appellant.contactDetails.addressLine1);
-  I.fillField('addressLine2', appellant.contactDetails.addressLine2);
-  I.fillField('townCity', appellant.contactDetails.townCity);
-  I.fillField('county', appellant.contactDetails.county);
-  I.fillField('postCode', appellant.contactDetails.postCode);
-  I.fillField('phoneNumber', appellant.contactDetails.phoneNumber);
-  I.fillField('emailAddress', appellant.contactDetails.emailAddress);
-  I.click(commonContent.continue);
-  I.seeCurrentUrlEquals(paths.smsNotify.appellantTextReminders);
-});
+    test(`${language.toUpperCase()} - When completing the form, clicking Continue, page see url /appellant-text-reminders`, async({
+      page
+    }) => {
+      await page
+        .locator('#addressLine1')
+        .first()
+        .fill(appellant.contactDetails.addressLine1);
+      await page
+        .locator('#addressLine2')
+        .first()
+        .fill(appellant.contactDetails.addressLine2);
+      await page
+        .locator('#townCity')
+        .first()
+        .fill(appellant.contactDetails.townCity);
+      await page
+        .locator('#county')
+        .first()
+        .fill(appellant.contactDetails.county);
+      await page
+        .locator('#postCode')
+        .first()
+        .fill(appellant.contactDetails.postCode);
+      await page
+        .locator('#phoneNumber')
+        .first()
+        .fill(appellant.contactDetails.phoneNumber);
+      await page
+        .locator('#emailAddress')
+        .first()
+        .fill(appellant.contactDetails.emailAddress);
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(page).toHaveURL(paths.smsNotify.appellantTextReminders);
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue without completing the form I see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(appellantContactDetailsContent.fields.addressLine1.error.required);
-  I.see(appellantContactDetailsContent.fields.townCity.error.required);
-  I.see(appellantContactDetailsContent.fields.county.error.required);
-  I.see(appellantContactDetailsContent.fields.postCode.error.required);
-});
+    test(`${language.toUpperCase()} - When page click Continue without completing the form page see errors`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(
+            appellantContactDetailsContent.fields.addressLine1.error.required
+          )
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(
+            appellantContactDetailsContent.fields.townCity.error.required
+          )
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(
+            appellantContactDetailsContent.fields.county.error.required
+          )
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(
+            appellantContactDetailsContent.fields.postCode.error.required
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue with a postcode that is not in England or Wales I see error`, ({ I }) => {
-  if (config.get('postcodeChecker.enabled')) {
-    I.fillField('addressLine1', appellant.contactDetails.addressLine1);
-    I.fillField('addressLine2', appellant.contactDetails.addressLine2);
-    I.fillField('townCity', appellant.contactDetails.townCity);
-    I.fillField('county', appellant.contactDetails.county);
-    I.fillField('postCode', 'ZX99 1AB');
-    I.fillField('phoneNumber', appellant.contactDetails.phoneNumber);
-    I.fillField('emailAddress', appellant.contactDetails.emailAddress);
-    I.click(commonContent.continue);
+    test(`${language.toUpperCase()} - When page click Continue with a postcode that is not in England or Wales page see error`, async({
+      page
+    }) => {
+      if (config.get('postcodeChecker.enabled')) {
+        await page
+          .locator('#addressLine1')
+          .first()
+          .fill(appellant.contactDetails.addressLine1);
+        await page
+          .locator('#addressLine2')
+          .first()
+          .fill(appellant.contactDetails.addressLine2);
+        await page
+          .locator('#townCity')
+          .first()
+          .fill(appellant.contactDetails.townCity);
+        await page
+          .locator('#county')
+          .first()
+          .fill(appellant.contactDetails.county);
+        await page.locator('#postCode').first().fill('ZX99 1AB');
+        await page
+          .locator('#phoneNumber')
+          .first()
+          .fill(appellant.contactDetails.phoneNumber);
+        await page
+          .locator('#emailAddress')
+          .first()
+          .fill(appellant.contactDetails.emailAddress);
+        await page
+          .getByRole('button', { name: commonContent.continue })
+          .first()
+          .click();
 
-    I.seeCurrentUrlEquals(paths.smsNotify.appellantTextReminders);
+        await expect(page).toHaveURL(paths.smsNotify.appellantTextReminders);
+      }
+    });
+
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
+      page
+    }) => {
+      await expect(
+        page.locator('form input[name="_csrf"]').first()
+      ).toBeVisible();
+    });
   }
-});
-
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
-});
+);

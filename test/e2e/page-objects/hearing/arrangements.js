@@ -2,26 +2,50 @@ const hearingArrangementsContentEn = require('steps/hearing/arrangements/content
 const hearingArrangementsContentCy = require('steps/hearing/arrangements/content.cy');
 const hearingData = require('test/e2e/data.en').hearing;
 
-function checkAllArrangementsAndContinue(commonContent, language) {
-  const I = this;
+async function checkAllArrangementsAndContinue(I, commonContent, language) {
   const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
 
-  I.click(hearingArrangementsContent.fields.selection.languageInterpreter.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.signLanguage.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.hearingLoop.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested.label);
-  I.click(hearingArrangementsContent.fields.selection.anythingElse.requested.label);
+  await I.getByText(
+    hearingArrangementsContent.fields.selection.languageInterpreter.requested
+      .label
+  )
+    .first()
+    .click();
+  await I.getByText(
+    hearingArrangementsContent.fields.selection.signLanguage.requested.label
+  )
+    .first()
+    .click();
+  await I.getByText(
+    hearingArrangementsContent.fields.selection.hearingLoop.requested.label
+  )
+    .first()
+    .click();
+  await I.getByText(
+    hearingArrangementsContent.fields.selection.accessibleHearingRoom.requested
+      .label
+  )
+    .first()
+    .click();
+  await I.getByText(
+    hearingArrangementsContent.fields.selection.anythingElse.requested.label
+  )
+    .first()
+    .click();
 
-  I.fillField('input[id="selection.interpreterLanguage.language"]',
-    hearingData.interpreterLanguageType);
+  await I.locator('input[id="selection.interpreterLanguage.language"]')
+    .first()
+    .fill(hearingData.interpreterLanguageType);
 
-  I.fillField('input[id="selection.signLanguage.language"]',
-    hearingData.signLanguageType);
+  await I.locator('input[id="selection.signLanguage.language"]')
+    .first()
+    .fill(hearingData.signLanguageType);
 
-  I.fillField('textarea[name="selection.anythingElse.language"]',
-    hearingData.anythingElse);
+  await I.locator('textarea[name="selection.anythingElse.language"]')
+    .first()
+    .fill(hearingData.anythingElse);
 
-  I.click(commonContent.continue);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { checkAllArrangementsAndContinue };

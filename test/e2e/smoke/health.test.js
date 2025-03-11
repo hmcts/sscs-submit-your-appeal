@@ -1,11 +1,13 @@
 const paths = require('paths');
+const { test } = require('@playwright/test');
+const assert = require('assert');
 
-Feature('Health');
-
-Scenario('The API is up, healthy and responding to requests to /health', ({ I }) => {
-  I.amOnPage(paths.health);
-  I.retry({
-    minTimeout: 15000,
-    maxTimeout: 15000
-  }).see('"status":"UP"');
+test.describe('Health', () => {
+  test('The API is up, healthy and responding to requests to /health', async({
+    request
+  }) => {
+    const response = await request.get(paths.health);
+    const res = await response.json();
+    assert(res.status === 'UP');
+  });
 });

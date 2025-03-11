@@ -1,71 +1,152 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const appellantDOBContent = require(`steps/identity/appellant-dob/content.${language}`);
+const appellantDOBContent = require(
+  `steps/identity/appellant-dob/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Appellant DOB form @batch-09`);
+const { test, expect } = require('@playwright/test');
+const {
+  enterAppellantDOBAndContinue
+} = require('../../page-objects/identity/appellantDetails');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.identity.enterAppellantDOB);
-});
+test.describe(
+  `${language.toUpperCase()} - Appellant DOB form`,
+  { tag: '@batch-09' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.identity.enterAppellantDOB);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - When I complete the form and click Continue, I am taken to /enter-appellant-nino`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('21', '03', '1981');
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
-});
+    test(`${language.toUpperCase()} - When page complete the form and click Continue, page am taken to /enter-appellant-nino`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '21', '03', '1981');
+      await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue without filling in the fields I see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(appellantDOBContent.fields.date.error.allRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.allRequired)
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the day field I see errors`, ({ I }) => {
-  I.fillField('input[name*="day"]', '21');
-  I.click(commonContent.continue);
-  I.see(appellantDOBContent.fields.date.error.monthRequired);
-  I.see(appellantDOBContent.fields.date.error.yearRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="day"]').first().fill('21');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.monthRequired)
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.yearRequired)
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the month field I see errors`, ({ I }) => {
-  I.fillField('input[name*="month"]', '12');
-  I.click(commonContent.continue);
-  I.see(appellantDOBContent.fields.date.error.yearRequired);
-  I.see(appellantDOBContent.fields.date.error.dayRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="month"]').first().fill('12');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.yearRequired)
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.dayRequired)
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue when only entering the year field I see errors`, ({ I }) => {
-  I.fillField('input[name*="year"]', '1999');
-  I.click(commonContent.continue);
-  I.see(appellantDOBContent.fields.date.error.monthRequired);
-  I.see(appellantDOBContent.fields.date.error.dayRequired);
-});
+    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async({
+      page
+    }) => {
+      await page.locator('input[name*="year"]').first().fill('1999');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.monthRequired)
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantDOBContent.fields.date.error.dayRequired)
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I enter an invalid date I see errors`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('30', '02', '1981');
-  I.see(appellantDOBContent.fields.date.error.invalid);
-});
+    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '30', '02', '1981');
+      await expect(
+        page.getByText(appellantDOBContent.fields.date.error.invalid).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I enter a date in the future I see errors`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('25', '02', '3400');
-  I.see(appellantDOBContent.fields.date.error.future);
-});
+    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '25', '02', '3400');
+      await expect(
+        page.getByText(appellantDOBContent.fields.date.error.future).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a dob with name of month`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('21', 'March', '1981');
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
-});
+    test(`${language.toUpperCase()} - page enter a dob with name of month`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '21', 'March', '1981');
+      await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a dob with the short name of month`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('21', 'Jul', '1981');
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantNINO);
-});
+    test(`${language.toUpperCase()} - page enter a dob with the short name of month`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '21', 'Jul', '1981');
+      await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a dob with an invalid name of month`, ({ I }) => {
-  I.enterAppellantDOBAndContinue('21', 'invalidMonth', '1981');
-  I.see(appellantDOBContent.fields.date.error.invalid);
-});
+    test(`${language.toUpperCase()} - page enter a dob with an invalid name of month`, async({
+      page
+    }) => {
+      await enterAppellantDOBAndContinue(page, '21', 'invalidMonth', '1981');
+      await expect(
+        page.getByText(appellantDOBContent.fields.date.error.invalid).first()
+      ).toBeVisible();
+    });
+  }
+);

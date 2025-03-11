@@ -9,7 +9,7 @@
         <p class="govuk-body">{{ content["subtitle" + suffix] }}</p>
         <p class="govuk-body">{{ content.additonalInfo }}</p>
 
-        {{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true) }}
+        {{ textarea(fields.otherReasonForAppealing, content.fields.otherReasonForAppealing.label, hideLabel = true, hint=content.fields.otherReasonForAppealing.hint) }}
     {% endcall %}
 {% endblock %}
 

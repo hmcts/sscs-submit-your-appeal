@@ -32,7 +32,9 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('get path()', () => {
     it('returns path /dwp-issuing-office-other', () => {
-      expect(dwpIssuingOfficeEsa.path).to.equal(paths.compliance.dwpIssuingOfficeEsa);
+      expect(dwpIssuingOfficeEsa.path).to.equal(
+        paths.compliance.dwpIssuingOfficeEsa
+      );
     });
   });
 
@@ -99,23 +101,37 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('next()', () => {
     it('returns the next step path /are-you-an-appointee', () => {
-      expect(dwpIssuingOfficeEsa.next()).to.eql({ nextStep: paths.identity.areYouAnAppointee });
+      expect(dwpIssuingOfficeEsa.next()).to.eql({
+        nextStep: paths.identity.areYouAnAppointee
+      });
     });
   });
 
   describe('options', () => {
     it('has options for DLA', () => {
       expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
-      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Disability Benefit Centre 4');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates (Deceased)');
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
+        'Disability Benefit Centre 4'
+      );
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
+        'The Pension Service 11'
+      );
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql(
+        'Recovery from Estates (Deceased)'
+      );
     });
     it('has options for DLA Welsh', () => {
       i18next.changeLanguage('cy');
       expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
-      expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Disability Benefit Centre 4');
-      expect(dwpIssuingOfficeEsa.options[1].label).to.eql('The Pension Service 11');
-      expect(dwpIssuingOfficeEsa.options[2].label).to.eql('Recovery from Estates (Ymadawedig)');
+      expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
+        'Disability Benefit Centre 4'
+      );
+      expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
+        'The Pension Service 11'
+      );
+      expect(dwpIssuingOfficeEsa.options[2].label).to.eql(
+        'Recovery from Estates (Ymadawedig)'
+      );
     });
   });
 });

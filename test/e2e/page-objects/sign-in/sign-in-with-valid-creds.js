@@ -1,45 +1,52 @@
 const paths = require('paths');
+const { expect } = require('@playwright/test');
 
-function signIn(username, password, language) {
-  const I = this;
-  I.wait(5);
-  I.fillField({ id: 'username' }, username);
-  I.fillField({ id: 'password' }, password);
-  I.click({ name: 'save' });
-  // I.wait(5);
-  I.waitForElement(".form-buttons-group [href='/new-appeal']", 20);
+async function signIn(I, username, password, language) {
+  await I.locator('#username').first().fill(username);
+  await I.locator('#password').first().fill(password);
+  await I.locator("[name='save']").first().click();
+  // await I.waitForTimeout(5000);
+  await expect(
+    I.locator(".form-buttons-group [href='/new-appeal']").first()
+  ).toBeVisible();
   if (language === 'en') {
-    I.waitForText('Your draft benefit appeals');
+    await expect(
+      I.getByText('Your draft benefit appeals').first()
+    ).toBeVisible();
   } else {
-    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    await expect(
+      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+    ).toBeVisible();
   }
 }
 
-async function signInVerifylanguage(username, password, language) {
-  const I = this;
-  I.wait(5);
-  I.fillField({ id: 'username' }, username);
-  I.fillField({ id: 'password' }, password);
-  I.click({ name: 'save' });
-  I.waitForElement(".form-buttons-group [href='/new-appeal']", 10);
-  const altLang = await I.grabTextFrom('.language');
-  if ((altLang === 'English' && language === 'en') || (altLang === 'Cymraeg' && language === 'cy')) {
-    I.amOnPage(`${paths.drafts}?lng=${language}`);
-    I.wait(2);
+async function signInVerifylanguage(I, username, password, language) {
+  await I.locator('#username').first().fill(username);
+  await I.locator('#password').first().fill(password);
+  await I.locator("[name='save']").first().click();
+  await expect(
+    I.locator(".form-buttons-group [href='/new-appeal']").first()
+  ).toBeVisible();
+  const altLang = await I.locator('.language').innerText();
+  if (
+    (altLang.trim() === 'English' && language === 'en') || (altLang.trim() === 'Cymraeg' && language === 'cy')
+  ) {
+    await I.goto(`${paths.drafts}?lng=${language}`);
   }
 
   if (language === 'en') {
-    I.waitForText('Your draft benefit appeals');
+    await expect(
+      I.getByText('Your draft benefit appeals').first()
+    ).toBeVisible();
   } else {
-    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    await expect(
+      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+    ).toBeVisible();
   }
 }
 
-function navigateToSignInLink() {
-  const I = this;
-  I.click('Sign back into your appeal');
-  I.wait(2);
+async function navigateToSignInLink(I) {
+  await I.getByText('Sign back into your appeal').first().click();
 }
-
 
 module.exports = { signIn, signInVerifylanguage, navigateToSignInLink };

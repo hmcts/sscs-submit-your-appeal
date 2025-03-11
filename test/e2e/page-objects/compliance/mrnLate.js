@@ -1,8 +1,6 @@
-function enterReasonsForBeingLateAndContinue(commonContent, reason) {
-  const I = this;
-
-  I.fillField('#reasonForBeingLate', reason);
-  I.click(commonContent.continue);
+async function enterReasonsForBeingLateAndContinue(I, commonContent, reason) {
+  await I.locator('#reasonForBeingLate').fill(reason);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 module.exports = { enterReasonsForBeingLateAndContinue };

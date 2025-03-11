@@ -1,33 +1,29 @@
-function enterDWPIssuingOfficeAndContinue(commonContent, id) {
-  const I = this;
+const { expect } = require('@playwright/test');
 
-  I.wait(3);
-  I.selectOption({ id: 'pipNumber' }, id);
-  I.click(commonContent.continue);
+async function enterDWPIssuingOfficeAndContinue(I, commonContent, id) {
+  await I.locator('#pipNumber').first().selectOption(id);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function enterDWPIssuingOfficeAndContinueAfterSignIn(commonContent, id) {
-  const I = this;
-
-  I.wait(3);
-  I.selectOption({ id: 'pipNumber' }, id);
-  I.click(commonContent.saveAndContinue);
+async function enterDWPIssuingOfficeAndContinueAfterSignIn(
+  I,
+  commonContent,
+  id
+) {
+  await I.locator('#pipNumber').selectOption(id);
+  await I.getByRole('button', { name: commonContent.saveAndContinue })
+    .first()
+    .click();
 }
 
-
-function enterDWPIssuingOffice(commonContent, id) {
-  const I = this;
-
-  I.wait(3);
-  I.selectOption({ id: 'dwpIssuingOffice' }, id);
-  I.click(commonContent.continue);
+async function enterDWPIssuingOffice(I, commonContent, id) {
+  await I.locator('#dwpIssuingOffice').selectOption(id);
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
-function seeDWPIssuingOfficeError(url, error) {
-  const I = this;
-
-  I.seeInCurrentUrl(url);
-  I.see(error);
+async function seeDWPIssuingOfficeError(I, url, error) {
+  await I.waitForURL(`**/${url}`);
+  await expect(I.getByText(error).first()).toBeVisible();
 }
 
 module.exports = {

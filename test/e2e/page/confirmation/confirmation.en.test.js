@@ -4,22 +4,41 @@ const confirmationContent = require(`steps/confirmation/content.${language}`);
 const paths = require('paths');
 const urls = require('urls');
 
-Feature(`${language.toUpperCase()} - Confirmation @batch-08`);
+const { test, expect } = require('@playwright/test');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.confirmation);
-});
+test.describe(
+  `${language.toUpperCase()} - Confirmation`,
+  { tag: '@batch-08' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.confirmation);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - When I go to the page I see the header`, ({ I }) => {
-  I.see(confirmationContent.title);
-});
+    test(`${language.toUpperCase()} - When page go to the page page see the header`, async({
+      page
+    }) => {
+      await expect(
+        page.getByText(confirmationContent.title).first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click the Continue button I am taken to the smart survey page`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(urls.surveyLink);
-});
+    test(`${language.toUpperCase()} - When page click the Continue button page am taken to the smart survey page`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await page.waitForURL(`**${urls.surveyLink}`);
+    });
+  }
+);

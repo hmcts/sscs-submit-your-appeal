@@ -1,25 +1,37 @@
 /* eslint-disable no-process-env */
 
+const { test } = require('@playwright/test');
+
 const language = 'cy';
 const commonContent = require('commonContent')[language];
 const paths = require('paths');
+const {
+  confirmDetailsArePresent,
+  enterDetailsFromNoRepresentativeToEnd,
+  enterDetailsFromStartToNINO
+} = require('../page-objects/cya/checkYourAppeal');
+const { skipPcqCY } = require('../page-objects/pcq/pcq');
+const { checkOptionAndContinue } = require('../page-objects/controls/option');
+const { enterAppellantContactDetailsManuallyAndContinue } = require('../page-objects/identity/appellantDetails');
+const { endTheSession } = require('../page-objects/session/endSession');
+const { createTheSession } = require('../page-objects/session/createSession');
 
-Feature(`${language.toUpperCase()} - Postcode lookup test for type Manual @functional`);
+test.describe(`${language.toUpperCase()} - Postcode lookup test for type Manual`, { tag: '@functional' }, () => {
+  test.beforeEach('Create session and user', async({ page }) => {
+    await createTheSession(page, language);
+  });
 
-Before(({ I }) => {
-  I.createTheSession(language);
+  test.afterEach('End session and delete user', async({ page }) => {
+    await endTheSession(page);
+  });
+
+  test(`${language.toUpperCase()} - Appellant enters contact details Manually`, async({ page }) => {
+    await page.goto(paths.session.root);
+    await enterDetailsFromStartToNINO(page, commonContent, language);
+    await enterAppellantContactDetailsManuallyAndContinue(page, commonContent);
+    await checkOptionAndContinue(page, commonContent, '#doYouWantTextMsgReminders-2');
+    await enterDetailsFromNoRepresentativeToEnd(page, language, commonContent);
+    await skipPcqCY(page);
+    await confirmDetailsArePresent(page, language);
+  });
 });
-
-After(({ I }) => {
-  I.endTheSession();
-});
-
-Scenario(`${language.toUpperCase()} - Appellant enters contact details Manually`, ({ I }) => {
-  I.amOnPage(paths.session.root);
-  I.enterDetailsFromStartToNINO(commonContent, language);
-  I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
-  I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
-  I.enterDetailsFromNoRepresentativeToEnd(language, commonContent);
-  I.skipPcqCY();
-  I.confirmDetailsArePresent(language);
-}).retry(10);

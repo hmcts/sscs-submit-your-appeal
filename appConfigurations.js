@@ -88,6 +88,7 @@ const configureViews = app => {
     path.resolve(__dirname, 'cookie-banner/'),
     path.resolve(__dirname, 'policy-pages'),
     path.resolve(__dirname, 'error-pages'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/components/'),
     path.resolve(__dirname, 'views'),
@@ -291,33 +292,6 @@ const configureGlobalVariables = (app, njk) => {
   });
 };
 
-const hiddenSlugs = [];
-const sections = [
-  'start',
-  'compliance',
-  'identity',
-  'appointee',
-  'smsNotify',
-  'representative',
-  'reasonsForAppealing',
-  'hearing',
-  'idam'
-];
-sections.forEach(section => {
-  if (paths[section]) {
-    hiddenSlugs.push(...Object.values(paths[section]));
-  }
-});
-hiddenSlugs.push(
-  paths.pcq,
-  paths.checkYourAppeal,
-  paths.drafts,
-  paths.editDraft,
-  paths.newAppeal,
-  paths.archiveDraft,
-  paths.confirmation
-);
-
 const configureAppRoutes = app => {
   app.get('/appeal');
 
@@ -333,16 +307,6 @@ const configureAppRoutes = app => {
   app.get('/start-an-appeal', (req, res) => {
     res.redirect('/entry');
   });
-
-  if (process.env.INFECTED_BLOOD_COMPENSATION_ENABLED !== 'true') {
-    app.get(new RegExp(`^(${hiddenSlugs.join('|')})`), (req, res, next) => {
-      if (isIba(req)) {
-        res.redirect('/entry');
-      } else {
-        next();
-      }
-    });
-  }
 };
 
 module.exports = {

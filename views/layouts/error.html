@@ -4,62 +4,61 @@
 {% from "components/i18n.njk" import languageSwitch %}
 
 {% block head -%}
-    {{ assets }}
+  {{ assets }}
 {% endblock %}
 
 {% block breadcrumbs %}
-    {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
+  {{ phaseBanner(commonContent[htmlLang], feedbackLink + urlPath) }}
 {% endblock %}
 
 {% block two_thirds -%}
-    {{ header(title, size='xl') }}
-    <p class="govuk-body">
-        {{message}}
-    </p>
+  {{ header(title, size='xl') }}
+  <p class="govuk-body">{{ message }}</p>
 
-    {% if nextSteps %}
-        <p class="govuk-body">
-            You can either:
-        <ul class="govuk-list govuk-list--bullet">
-            {% for option in nextSteps %}
-                <li>{{ option }}</li>
-            {% endfor %}
-        </ul>
-        </p>
-    {% endif %}
+  {% if nextSteps %}
+    <p class="govuk-body">You can either:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for option in nextSteps %}
+        <li>{{ option }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 
-    {% if error %}
-        {% if settings.env == 'development' %}
-            <div class="govuk-form-group--error">
-                <label>
-                    <span class="govuk-label--s">Error Message</span>
-                    <span class="govuk-hint">The error message will only display in development mode</span>
-                    <span>{{ error }}</span>
-                </label>
-            </div>
-        {% endif %}
+  {% if error %}
+    {% if settings.env == 'development' %}
+      <div class="govuk-form-group--error">
+        <label>
+          <span class="govuk-label--s">Error Message</span>
+          <span class="govuk-hint"
+            >The error message will only display in development mode</span
+          >
+          <span>{{ error }}</span>
+        </label>
+      </div>
     {% endif %}
+  {% endif %}
 {% endblock %}
-
-{% set footerLinks = [
-    {
-        href: "https://hmcts-access.service.gov.uk/contact-us",
-        text: commonContent[htmlLang].footer.contactUs | safe
-    },
-    {
-        href: "/accessibility",
-        text: commonContent[htmlLang].footer.accessibility | safe
-    },
-    {
-        href: "/cookie-policy",
-        text: commonContent[htmlLang].footer.cookies | safe
-    },
-    {
-        href: "/terms-and-conditions",
-        text: commonContent[htmlLang].footer.termsAndConditions | safe
-    },
-    {
-        href: "/privacy-policy",
-        text: commonContent[htmlLang].footer.privacyPolicy | safe
-    }
-] %}
+{%
+  set footerLinks = [
+      {
+          href: "https://hmcts-access.service.gov.uk/contact-us",
+          text: commonContent[htmlLang].footer.contactUs | safe
+      },
+      {
+          href: "/accessibility",
+          text: commonContent[htmlLang].footer.accessibility | safe
+      },
+      {
+          href: "/cookie-policy",
+          text: commonContent[htmlLang].footer.cookies | safe
+      },
+      {
+          href: "/terms-and-conditions",
+          text: commonContent[htmlLang].footer.termsAndConditions | safe
+      },
+      {
+          href: "/privacy-policy",
+          text: commonContent[htmlLang].footer.privacyPolicy | safe
+      }
+  ]
+%}

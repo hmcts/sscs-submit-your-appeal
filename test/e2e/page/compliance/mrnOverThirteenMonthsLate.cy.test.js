@@ -1,41 +1,94 @@
 const language = 'cy';
 const commonContent = require('commonContent')[language];
-const mrnOverThirteenMonthsLateContent = require(`steps/compliance/mrn-over-thirteen-months-late/content.${language}`);
+const mrnOverThirteenMonthsLateContent = require(
+  `steps/compliance/mrn-over-thirteen-months-late/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - MRN Over thirteen months late @batch-07`);
+const { test, expect } = require('@playwright/test');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
+const { endTheSession } = require('../../page-objects/session/endSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.compliance.mrnOverThirteenMonthsLate);
-});
+test.describe(
+  `${language.toUpperCase()} - MRN Over thirteen months late`,
+  { tag: '@batch-07' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.compliance.mrnOverThirteenMonthsLate);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a lateness reason, I click continue, I am taken to /enter-appellant-name`, ({ I }) => {
-  I.fillField('#reasonForBeingLate', 'Reason for being late');
-  I.click(commonContent.continue);
-  I.seeInCurrentUrl(paths.identity.enterAppellantName);
-});
+    test(`${language.toUpperCase()} - page enter a lateness reason, page click continue, page am taken to /enter-appellant-name`, async({
+      page
+    }) => {
+      await page.locator('#reasonForBeingLate').fill('Reason for being late');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await page.waitForURL(`**${paths.identity.enterAppellantName}`);
+    });
 
-Scenario(`${language.toUpperCase()} - MRN is over 13 months late, I omit a reason why my appeal is late, I see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.seeCurrentUrlEquals(paths.compliance.mrnOverThirteenMonthsLate);
-  I.see(mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error.required);
-});
+    test(`${language.toUpperCase()} - MRN is over 13 months late, page omit a reason why my appeal is late, page see errors`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(page).toHaveURL(paths.compliance.mrnOverThirteenMonthsLate);
+      await expect(
+        page
+          .getByText(
+            mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error
+              .required
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a reason why my appeal is late, it is less than five chars, I see errors`, ({ I }) => {
-  I.fillField('#reasonForBeingLate', 'n/a');
-  I.click(commonContent.continue);
-  I.seeCurrentUrlEquals(paths.compliance.mrnOverThirteenMonthsLate);
-  I.see(mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error.notEnough);
-});
+    test(`${language.toUpperCase()} - page enter a reason why my appeal is late, it is less than five chars, page see errors`, async({
+      page
+    }) => {
+      await page.locator('#reasonForBeingLate').fill('n/a');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(page).toHaveURL(paths.compliance.mrnOverThirteenMonthsLate);
+      await expect(
+        page
+          .getByText(
+            mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error
+              .notEnough
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I enter a reason why my appeal is late with a special character, I see errors`, ({ I }) => {
-  I.fillField('#reasonForBeingLate', '<Reason for being late>');
-  I.click(commonContent.continue);
-  I.seeCurrentUrlEquals(paths.compliance.mrnOverThirteenMonthsLate);
-  I.see(mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error.invalid);
-});
+    test(`${language.toUpperCase()} - page enter a reason why my appeal is late with a special character, page see errors`, async({
+      page
+    }) => {
+      await page.locator('#reasonForBeingLate').fill('<Reason for being late>');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(page).toHaveURL(paths.compliance.mrnOverThirteenMonthsLate);
+      await expect(
+        page
+          .getByText(
+            mrnOverThirteenMonthsLateContent.fields.reasonForBeingLate.error
+              .invalid
+          )
+          .first()
+      ).toBeVisible();
+    });
+  }
+);

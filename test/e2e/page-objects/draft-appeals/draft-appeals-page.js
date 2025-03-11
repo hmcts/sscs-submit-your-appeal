@@ -1,98 +1,126 @@
 const paths = require('paths');
+const { expect } = require('@playwright/test');
 
-function verifyDraftAppealsAndEditACase(language) {
-  const I = this;
-
-  I.seeElement(".form-buttons-group [href='/new-appeal']");
+async function verifyDraftAppealsAndEditACase(I, language) {
+  await expect(
+    I.locator(".form-buttons-group [href='/new-appeal']").first()
+  ).toBeVisible();
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
-    I.see('Edit');
-    I.see('Archive');
-    I.scrollTo('.govuk-table__cell:nth-child(1)');
-    I.click('Edit');
+    await expect(
+      I.getByText('Your draft benefit appeals').first()
+    ).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
+    await I.getByRole('link', { name: 'Edit' }).first().click();
 
-    I.see('Check your answers');
-    I.see('Your application is incomplete');
-    I.see('There are still some questions to answer.');
-    I.click('Continue your application');
+    await expect(I.getByText('Check your answers').first()).toBeVisible();
+    await expect(
+      I.getByText('Your application is incomplete').first()
+    ).toBeVisible();
+    await expect(
+      I.getByText('There are still some questions to answer.').first()
+    ).toBeVisible();
+    await I.getByText('Continue your application').first().click();
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
-    I.see('Golygu');
-    I.see('Cadw');
-    I.scrollTo('.govuk-table__cell:nth-child(1)');
-    I.click('Golygu');
+    await expect(
+      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+    ).toBeVisible();
+    await expect(I.getByText('Golygu').first()).toBeVisible();
+    await expect(I.getByText('Dileu').first()).toBeVisible();
+    await I.getByText('Golygu').first().click();
 
-    I.see('Gwiriwch eich atebion');
-    I.see('Mae eich cais yn anghyflawn');
-    I.see('Mae yna gwestiynau nad ydych wedi’u hateb.');
-    I.click('Parhau á’ch cais');
+    await expect(I.getByText('Gwiriwch eich atebion').first()).toBeVisible();
+    await expect(
+      I.getByText('Mae eich cais yn anghyflawn').first()
+    ).toBeVisible();
+    await expect(
+      I.getByText('Mae yna gwestiynau nad ydych wedi’u hateb.').first()
+    ).toBeVisible();
+    await I.getByText('Parhau á’ch cais').first().click();
   }
 }
 
-function verifyDraftAppealsAndArchiveACase() {
-  const I = this;
-
-  I.seeElement(".form-buttons-group [href='/new-appeal']");
-  I.see('Your draft benefit appeals');
-  I.see('Edit');
-  I.see('Archive');
-  I.scrollTo('.govuk-table__cell:nth-child(1)');
-  I.click('Archive');
-  I.wait(1);
-  I.see('Are you sure you want to archive your appeal application?');
-  I.click('Yes');
-  I.wait(2);
-  I.refreshPage();
-  I.wait(2);
-  I.dontSee('Edit');
-  I.dontSee('Archive');
+async function verifyDraftAppealsAndDeleteACase(I) {
+  await expect(
+    I.locator(".form-buttons-group [href='/new-appeal']").first()
+  ).toBeVisible();
+  await expect(I.getByText('Your draft benefit appeals').first()).toBeVisible();
+  await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
+  await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
+  await I.getByRole('link', { name: 'Delete' }).first().click();
+  await expect(
+    I.getByText(
+      'Are you sure you want to delete your appeal application?'
+    ).first()
+  ).toBeVisible();
+  await I.getByText('Yes').first().click();
+  await I.reload();
+  await expect(I.locator('Edit').first()).toBeHidden();
+  await expect(I.locator('Delete').first()).toBeHidden();
 }
 
-async function editDraftAppeal(language) {
-  const I = this;
-
-  I.seeElement(`.form-buttons-group [href='${paths.newAppeal}']`);
+async function editDraftAppeal(I, language) {
+  await expect(
+    I.locator(`.form-buttons-group [href='${paths.newAppeal}']`).first()
+  ).toBeVisible();
   if (language === 'en') {
-    I.waitForText('Your draft benefit appeals');
-    I.see('Edit');
-    I.see('Archive');
-    I.scrollTo('.govuk-table__cell:nth-child(1)');
+    await expect(
+      I.getByText('Your draft benefit appeals').first()
+    ).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Edit' }).first()).toBeVisible();
+    await expect(I.getByRole('link', { name: 'Delete' }).first()).toBeVisible();
   } else {
-    I.waitForText('Drafft o’ch apeliadau ynghylch budd-daliadau');
-    I.see('Golygu');
-    I.see('Cadw');
-    I.scrollTo('.govuk-table__cell:nth-child(1)');
+    await expect(
+      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+    ).toBeVisible();
+    await expect(I.getByText('Golygu').first()).toBeVisible();
+    await expect(I.getByText('Dileu').first()).toBeVisible();
   }
 
-  const ccdCaseIDs = await I.grabTextFrom('.govuk-table__cell:nth-child(1)');
+  const ccdCaseIDLocators = await I.locator(
+    '.govuk-table__cell:nth-child(1)'
+  ).all();
+  const ccdCaseIDs = await Promise.all(
+    ccdCaseIDLocators.map(locator => locator.innerText())
+  );
   const ccdCaseID = Array.isArray(ccdCaseIDs) ? ccdCaseIDs[0] : ccdCaseIDs;
 
-  I.click(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`);
-  I.wait(2);
-  const url = await I.grabCurrentUrl();
+  await I.locator(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`)
+    .first()
+    .click();
+  const url = await I.url();
   if (url.includes(paths.drafts)) {
-    I.click(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`);
+    await I.locator(`[href='${paths.editDraft}?caseId=${ccdCaseID}']`)
+      .first()
+      .click();
     if (language === 'en') {
-      I.waitForText('Check your answers', 3);
+      await expect(I.getByText('Check your answers').first()).toBeVisible();
     } else {
-      I.waitForText('Gwiriwch eich atebion', 3);
+      await expect(I.getByText('Gwiriwch eich atebion').first()).toBeVisible();
     }
   }
   return ccdCaseID;
 }
 
-
-function navigateToDrafts(language) {
-  const I = this;
-
-  I.amOnPage(`${paths.drafts}?lng=${language}`);
-  I.waitForElement(`.form-buttons-group [href='${paths.newAppeal}']`, 3);
+async function navigateToDrafts(I, language) {
+  await I.goto(`${paths.drafts}?lng=${language}`);
+  await expect(
+    I.locator(`.form-buttons-group [href='${paths.newAppeal}']`).first()
+  ).toBeVisible();
   if (language === 'en') {
-    I.see('Your draft benefit appeals');
+    await expect(
+      I.getByText('Your draft benefit appeals').first()
+    ).toBeVisible();
   } else {
-    I.see('Drafft o’ch apeliadau ynghylch budd-daliadau');
+    await expect(
+      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+    ).toBeVisible();
   }
-  I.wait(1);
 }
 
-module.exports = { verifyDraftAppealsAndEditACase, verifyDraftAppealsAndArchiveACase, editDraftAppeal, navigateToDrafts };
+module.exports = {
+  verifyDraftAppealsAndEditACase,
+  verifyDraftAppealsAndDeleteACase,
+  editDraftAppeal,
+  navigateToDrafts
+};

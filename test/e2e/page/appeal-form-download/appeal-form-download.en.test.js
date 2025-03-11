@@ -1,7 +1,11 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const benefitTypeContent = require(`steps/start/benefit-type/content.${language}`);
-const appealFormDownloadContent = require(`steps/appeal-form-download/content.${language}`);
+const benefitTypeContent = require(
+  `steps/start/benefit-type/content.${language}`
+);
+const appealFormDownloadContent = require(
+  `steps/appeal-form-download/content.${language}`
+);
 const benefitTypes = require('steps/start/benefit-type/types');
 
 const dynamicContent = (appealContent, formType, benefitType) =>
@@ -9,31 +13,99 @@ const dynamicContent = (appealContent, formType, benefitType) =>
     .replace('{{ formDownload.type }}', formType)
     .replace('{{ benefitType }}', benefitType);
 
-Feature(`${language.toUpperCase()} - Appeal form download page @batch-06`);
+const { test, expect } = require('@playwright/test');
+const {
+  enterBenefitTypeAndContinue
+} = require('../../page-objects/start/benefit-type');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-});
+test.describe(
+  `${language.toUpperCase()} - Appeal form download page`,
+  { tag: '@batch-06' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - I see SSCS1 content when not selecting Carer's Allowance or CBLP`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.disabilityLivingAllowance);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS1', benefitTypeContent.benefitTypes.dla));
-});
+    test(`${language.toUpperCase()} - page see SSCS1 content when not selecting Carer's Allowance or CBLP`, async({
+      page
+    }) => {
+      await enterBenefitTypeAndContinue(
+        page,
+        language,
+        commonContent,
+        benefitTypes.disabilityLivingAllowance
+      );
+      await expect(
+        page
+          .getByText(
+            dynamicContent(
+              appealFormDownloadContent,
+              'SSCS1',
+              benefitTypeContent.benefitTypes.dla
+            )
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I see SSCS5 content when I select CBLP as a benefit type`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.childBenefit);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS5', benefitTypeContent.benefitTypes.cb));
-});
+    test(`${language.toUpperCase()} - page see SSCS5 content when page select CBLP as a benefit type`, async({
+      page
+    }) => {
+      await enterBenefitTypeAndContinue(
+        page,
+        language,
+        commonContent,
+        benefitTypes.childBenefit
+      );
+      await expect(
+        page
+          .getByText(
+            dynamicContent(
+              appealFormDownloadContent,
+              'SSCS5',
+              benefitTypeContent.benefitTypes.cb
+            )
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I see SSCS2 content when I select Child support as a benefit type`, ({ I }) => {
-  I.enterBenefitTypeAndContinue(language, commonContent, benefitTypes.childSupport);
-  I.see(dynamicContent(appealFormDownloadContent, 'SSCS2', benefitTypeContent.benefitTypes.childSupport));
-});
+    test(`${language.toUpperCase()} - page see SSCS2 content when page select Child support as a benefit type`, async({
+      page
+    }) => {
+      await enterBenefitTypeAndContinue(
+        page,
+        language,
+        commonContent,
+        benefitTypes.childSupport
+      );
+      await expect(
+        page
+          .getByText(
+            dynamicContent(
+              appealFormDownloadContent,
+              'SSCS2',
+              benefitTypeContent.benefitTypes.childSupport
+            )
+          )
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - I have a csrf token`, ({ I }) => {
-  I.seeElementInDOM('form input[name="_csrf"]');
-});
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
+      page
+    }) => {
+      await expect(
+        page.locator('form input[name="_csrf"]').first()
+      ).toBeVisible();
+    });
+  }
+);

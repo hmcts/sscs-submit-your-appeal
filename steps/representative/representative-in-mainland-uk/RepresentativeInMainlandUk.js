@@ -61,7 +61,9 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
 
   next() {
     return branch(
-      goTo(this.journey.steps.RepresentativeDetails).if(this.fields.inMainlandUk.value === userAnswer.YES),
+      goTo(this.journey.steps.RepresentativeDetails).if(
+        this.fields.inMainlandUk.value === userAnswer.YES
+      ),
       goTo(this.journey.steps.RepresentativeInternationalDetails)
     );
   }

@@ -14,7 +14,9 @@ const createToken = params => {
   let encrypted = '';
 
   if (tokenKey) {
-    logger.trace(`Using ${tokenKey === 'SERVICE_TOKEN_KEY' ? 'local' : 'Azure KV'} secret for PCQ token key`);
+    logger.trace(
+      `Using ${tokenKey === 'SERVICE_TOKEN_KEY' ? 'local' : 'Azure KV'} secret for PCQ token key`
+    );
     // eslint-disable-next-line no-sync
     const key = crypto.scryptSync(tokenKey, 'salt', keyLen);
     // Convert all params to string before encrypting

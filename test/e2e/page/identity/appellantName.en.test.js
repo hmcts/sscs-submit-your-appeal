@@ -1,38 +1,83 @@
 const language = 'en';
 const commonContent = require('commonContent')[language];
-const appellantNameContent = require(`steps/identity/appellant-name/content.${language}`);
+const appellantNameContent = require(
+  `steps/identity/appellant-name/content.${language}`
+);
 const paths = require('paths');
 
-Feature(`${language.toUpperCase()} - Appellant Name form @batch-09`);
+const { test, expect } = require('@playwright/test');
+const { endTheSession } = require('../../page-objects/session/endSession');
+const {
+  createTheSession
+} = require('../../page-objects/session/createSession');
 
-Before(({ I }) => {
-  I.createTheSession(language);
-  I.amOnPage(paths.identity.enterAppellantName);
-});
+test.describe(
+  `${language.toUpperCase()} - Appellant Name form`,
+  { tag: '@batch-09' },
+  () => {
+    test.beforeEach('Create session', async({ page }) => {
+      await createTheSession(page, language);
+      await page.goto(paths.identity.enterAppellantName);
+    });
 
-After(({ I }) => {
-  I.endTheSession();
-});
+    test.afterEach('End session', async({ page }) => {
+      await endTheSession(page);
+    });
 
-Scenario(`${language.toUpperCase()} - When I fill in the fields and click Continue, I am taken to /enter-appellant-dob`, ({ I }) => {
-  I.fillField('title', 'Mr');
-  I.fillField('firstName', 'Harry');
-  I.fillField('lastName', 'Potter');
-  I.click(commonContent.continue);
-  I.seeCurrentUrlEquals(paths.identity.enterAppellantDOB);
-});
+    test(`${language.toUpperCase()} - When page fill in the fields and click Continue, page am taken to /enter-appellant-dob`, async({
+      page
+    }) => {
+      await page.locator('#title').first().fill('Mr');
+      await page.locator('#firstName').first().fill('Harry');
+      await page.locator('#lastName').first().fill('Potter');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(page).toHaveURL(paths.identity.enterAppellantDOB);
+    });
 
-Scenario(`${language.toUpperCase()} - When I only provide a single character for firstName and lastName I see errors`, ({ I }) => {
-  I.fillField('#firstName', 'H');
-  I.fillField('#lastName', 'P');
-  I.click(commonContent.continue);
-  I.see(appellantNameContent.fields.firstName.error.invalid);
-  I.see(appellantNameContent.fields.lastName.error.invalid);
-});
+    test(`${language.toUpperCase()} - When page only provide a single character for firstName and lastName page see errors`, async({
+      page
+    }) => {
+      await page.locator('#firstName').fill('H');
+      await page.locator('#lastName').fill('P');
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page
+          .getByText(appellantNameContent.fields.firstName.error.invalid)
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantNameContent.fields.lastName.error.invalid)
+          .first()
+      ).toBeVisible();
+    });
 
-Scenario(`${language.toUpperCase()} - When I click Continue without filling in the fields I see errors`, ({ I }) => {
-  I.click(commonContent.continue);
-  I.see(appellantNameContent.fields.title.error.required);
-  I.see(appellantNameContent.fields.firstName.error.required);
-  I.see(appellantNameContent.fields.lastName.error.required);
-});
+    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async({
+      page
+    }) => {
+      await page
+        .getByRole('button', { name: commonContent.continue })
+        .first()
+        .click();
+      await expect(
+        page.getByText(appellantNameContent.fields.title.error.required).first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantNameContent.fields.firstName.error.required)
+          .first()
+      ).toBeVisible();
+      await expect(
+        page
+          .getByText(appellantNameContent.fields.lastName.error.required)
+          .first()
+      ).toBeVisible();
+    });
+  }
+);
