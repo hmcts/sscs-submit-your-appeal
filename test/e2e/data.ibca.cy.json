@@ -1,4 +1,8 @@
 {
+  "sidamCredentials": {
+    "password": "Testing123"
+  },
+  "ibcaRefNum": "A12B34",
   "language": "en-cy",
   "benefitType": {
     "description": "Taliad Annibyniaeth Personol",

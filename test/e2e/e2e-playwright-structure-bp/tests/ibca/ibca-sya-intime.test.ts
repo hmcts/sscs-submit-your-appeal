@@ -11,8 +11,8 @@ async function runAssertions(ibcaPageObject: any) {
 }
 
 [
-  { saveForLater: false },
-  { saveForLater: true }
+  { saveForLater: false, lang: 'en' },
+  { saveForLater: true, lang: 'cy' }
 ].forEach(({ saveForLater }) => {
   test(`IBCA SYA in time - saveForLater option set to ${saveForLater}`, { tag: '@fullFunctional' }, async ({ page }) => {
     // eslint-disable-next-line no-process-env
