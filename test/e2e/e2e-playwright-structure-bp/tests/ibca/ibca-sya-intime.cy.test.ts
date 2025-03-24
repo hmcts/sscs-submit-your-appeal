@@ -14,9 +14,9 @@ async function runAssertions(ibcaPageObject: any) {
   { saveForLater: false },
   { saveForLater: true }
 ].forEach(({ saveForLater }) => {
-  test(`IBCA SYA in time - saveForLater option set to ${saveForLater}`, { tag: '@fullFunctional' }, async ({ page }) => {
+  test(`IBCA SYA in time - saveForLater option set to ${saveForLater}`, { tag: '@ibca-smoke-cy' }, async ({ page }) => {
     // eslint-disable-next-line no-process-env
-    process.env.LANGUAGE_TO_TEST = 'en';
+    process.env.LANGUAGE_TO_TEST = 'cy';
     // eslint-disable-next-line no-process-env
     const testData = await getJsonFromFile(`test/e2e/data.ibca.${process.env.LANGUAGE_TO_TEST}.json`);
     const ibcaPages = await PageFactory.getAllPages(page);
