@@ -1,4 +1,5 @@
 import { BasePage } from './ibca-base.page';
+import {expect} from "@playwright/test";
 
 export class IbcaReferenceLateDatePage extends BasePage {
   defaultPageContent: any = {
@@ -21,8 +22,8 @@ export class IbcaReferenceLateDateReasonPage extends BasePage {
   predatedOneMonthPageContent: any = {
     "heading": "Tell us why your appeal is late",
     "bodyContents": [
-      "Your appeal may be late. Just check you entered the date from the top right of your Review Decision Notice.",
-      "Did you enter the date from the top right of your Review Decision Notice?"
+      "Appeals should be made within one month of the Review Decision Notice being sent.",
+      "Your appeal may still go ahead if there’s a reason why it’s late."
     ]
   };
   predatedThirteenMonthsPageContent: any = {
@@ -36,5 +37,15 @@ export class IbcaReferenceLateDateReasonPage extends BasePage {
   async lateAppealReasons(reasons: string) {
     await this.page.getByRole('textbox', { name: 'Reason for being late' }).fill(reasons);
     await this.submitPage();
+  }
+
+  async checkPageContent(refNumPredatedBy: number) {
+    if (refNumPredatedBy > 12) {
+      await expect(this.page.locator(this.heading).first()).toContainText(this.predatedThirteenMonthsPageContent.heading);
+      await Promise.all(this.predatedThirteenMonthsPageContent.bodyContents.map((bodyContent: string[]) => expect(this.page.locator(this.body)).toContainText(bodyContent)));
+    } else {
+      await expect(this.page.locator(this.heading).first()).toContainText(this.predatedOneMonthPageContent.heading);
+      await Promise.all(this.predatedOneMonthPageContent.bodyContents.map((bodyContent: string[]) => expect(this.page.locator(this.body)).toContainText(bodyContent)));
+    }
   }
 }

@@ -7,7 +7,7 @@ import { getDayMonthYear } from '../../utils/DateUtil';
 
 async function runAssertions(ibcaPageObject: any) {
   await expect(ibcaPageObject.page.locator(ibcaPageObject.heading).first()).toContainText(ibcaPageObject.defaultPageContent.heading);
-  ibcaPageObject.defaultPageContent.bodyContents.forEach((bodyContent: string[]) => expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent));
+  await Promise.all(ibcaPageObject.defaultPageContent.bodyContents.map((bodyContent: string[]) => expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent)));
 }
 
 [
@@ -118,7 +118,7 @@ async function runAssertions(ibcaPageObject: any) {
 
     // Go back to home page
     if (saveForLater) {
-      await ibcaPages.languagePreferencePage.goto();
+      await ibcaPages.draftAppealsPage.goto("draft-appeals");
       await runAssertions(ibcaPages.draftAppealsPage);
 
       // Edit appeal and check if landing page is cya

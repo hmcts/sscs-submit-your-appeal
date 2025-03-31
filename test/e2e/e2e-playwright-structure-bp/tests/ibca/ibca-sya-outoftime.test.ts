@@ -5,13 +5,13 @@ import { getDayMonthYear } from '../../utils/DateUtil';
 
 async function runAssertions(ibcaPageObject: any) {
   await expect(ibcaPageObject.page.locator(ibcaPageObject.heading).first()).toContainText(ibcaPageObject.defaultPageContent.heading);
-  ibcaPageObject.defaultPageContent.bodyContents.forEach((bodyContent: string[]) => expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent));
+  await Promise.all(ibcaPageObject.defaultPageContent.bodyContents.map((bodyContent: string[]) => expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent)));
 }
 
 [
-  { refNumPredatedBy: 1, saveForLater: false },
+  { refNumPredatedBy: 2, saveForLater: false },
   { refNumPredatedBy: 13, saveForLater: false },
-  { refNumPredatedBy: 1, saveForLater: true },
+  { refNumPredatedBy: 2, saveForLater: true },
   { refNumPredatedBy: 13, saveForLater: true },
 ].forEach(({ refNumPredatedBy, saveForLater }) => {
   test(`testing end to end ibca journey for ref. num predated by ${refNumPredatedBy} month(s) and saveForLater set to ${saveForLater} scenario`, { tag: '@fullFunctional' }, async ({ page }) => {
@@ -43,7 +43,6 @@ async function runAssertions(ibcaPageObject: any) {
       await ibcaPages.independencePage.submitPage();
     }
 
-
     // Review decision notice page
     await runAssertions(ibcaPages.reviewDecisionNoticePage);
     await ibcaPages.reviewDecisionNoticePage.reviewDecisionNotice(testData.reviewDecisionNotice);
@@ -58,10 +57,12 @@ async function runAssertions(ibcaPageObject: any) {
     date.setMonth(date.getMonth() - refNumPredatedBy)
     await ibcaPages.ibcaReferenceDatePage.enterDate(...getDayMonthYear(date));
 
-    if (refNumPredatedBy > 0) {
-      await ibcaPages.ibcaReferenceLateDatePage.isDateRight(true);
-      await ibcaPages.ibcaReferenceLateDateReasonPage.lateAppealReasons('test reason');
-    }
+    await runAssertions(ibcaPages.ibcaReferenceLateDatePage);
+    await ibcaPages.ibcaReferenceLateDatePage.isDateRight(true);
+
+    await ibcaPages.ibcaReferenceLateDateReasonPage.checkPageContent(refNumPredatedBy);
+    await ibcaPages.ibcaReferenceLateDateReasonPage.lateAppealReasons('test reason');
+
     // Enter Appellant data
     await runAssertions(ibcaPages.enterAppellantRolePage);
     await ibcaPages.enterAppellantRolePage.appellantRole(testData.appellantRole);
@@ -124,7 +125,7 @@ async function runAssertions(ibcaPageObject: any) {
 
     // Go back to home page
     if (saveForLater) {
-      await ibcaPages.languagePreferencePage.goto();
+      await ibcaPages.draftAppealsPage.goto("draft-appeals");
       await runAssertions(ibcaPages.draftAppealsPage);
 
       // Edit appeal and check if landing page is cya
