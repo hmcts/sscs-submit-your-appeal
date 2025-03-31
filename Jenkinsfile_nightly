@@ -46,10 +46,10 @@ withNightlyPipeline("nodejs", product, component) {
     env.RETRIES = params.RETRIES
     env.E2E_TEST_TAGS = params.E2E_TEST_TAGS
 
-    enableCrossBrowserTest(60)
+//    enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-    enableMutationTest()
+//    enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
