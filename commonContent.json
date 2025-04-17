@@ -135,7 +135,7 @@
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
           "charges": "Find out about call charges",
           "ibca" : {
-            "desc" : "IBC appeals helpline (Scotland)",
+            "desc" : "IBC appeals helpline (Scotland and Northern Ireland)",
             "phone": "Telephone: 0300 790 6234",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",

@@ -1,20 +1,20 @@
 {
   "titleHead": "Representative in UK",
-  "title": "Does your representative live in England, Scotland or Wales?",
-  "question": "Does your representative live in England, Scotland or Wales?",
+  "title": "Does your representative live in England, Scotland, Wales or Northern Ireland?",
+  "question": "Does your representative live in England, Scotland, Wales or Northern Ireland?",
 
   "fields": {
     "inMainlandUk": {
       "yes": "Yes",
       "no": "No",
       "errors": {
-        "required": "Select ‘Yes’ if your representative lives in England, Scotland or Wales."
+        "required": "Select ‘Yes’ if your representative lives in England, Scotland, Wales or Northern Ireland."
       }
     }
   },
   "cya": {
     "inMainlandUk": {
-      "question": "Does your representative live in England, Scotland or Wales?",
+      "question": "Does your representative live in England, Scotland, Wales or Northern Ireland?",
       "yes": "Yes",
       "no": "No"
     }
