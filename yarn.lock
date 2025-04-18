@@ -6615,10 +6615,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"govuk-frontend@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "govuk-frontend@npm:4.7.0"
-  checksum: 10/f97dbe62e77ba74b88f80afa597faaf89453d077c7c97b452107f531a8f2432d9daafdb05895bea1713532a77a1bbe2af7f648df0f6c5a25fb6b86825b55acf0
+"govuk-frontend@npm:^5.0.0":
+  version: 5.9.0
+  resolution: "govuk-frontend@npm:5.9.0"
+  checksum: 10/bc75221e774d7cbedf3a2575cb49238be19b904c7bd2d6f5fa4efa3f3433d99b8366ae677d797f06c496306ab7efa2c14ec509e9e83edc39128f5fc6cc1e1b99
   languageName: node
   linkType: hard
 
@@ -12031,7 +12031,7 @@ __metadata:
     file-loader: "npm:^6.2.0"
     formidable: "npm:^3.5.1"
     fs: "npm:^0.0.1-security"
-    govuk-frontend: "npm:^4.7.0"
+    govuk-frontend: "npm:^5.0.0"
     govuk_template_jinja: "npm:^0.26.0"
     graceful-fs: "npm:^4.2.11"
     gulp: "npm:^5.0.0"
