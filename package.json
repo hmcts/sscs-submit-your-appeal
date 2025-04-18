@@ -112,7 +112,7 @@
   "devDependencies": {
     "@babel/register": "^7.24.6",
     "@hmcts/eslint-config": "^1.4.0",
-    "chai": "^4.1.2",
+    "chai": "^5.0.0",
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "eslint": "^8.48.0",
