@@ -11855,7 +11855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:9":
+"superagent@npm:9, superagent@npm:^9.0.1":
   version: 9.0.2
   resolution: "superagent@npm:9.0.2"
   dependencies:
@@ -11890,7 +11890,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:^8.0.5, superagent@npm:^8.1.2":
+"superagent@npm:^8.1.2":
   version: 8.1.2
   resolution: "superagent@npm:8.1.2"
   dependencies:
@@ -11908,13 +11908,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supertest@npm:^6.3.3":
-  version: 6.3.3
-  resolution: "supertest@npm:6.3.3"
+"supertest@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "supertest@npm:7.1.0"
   dependencies:
     methods: "npm:^1.1.2"
-    superagent: "npm:^8.0.5"
-  checksum: 10/7a7da05bf0f43bc891fd377f6ee192c6fa115f01034f522d4f53c6305ab8866c760a5b0e7aedb3e422224e35be00a75b283613c446651cc1d9e35f80d9b461b3
+    superagent: "npm:^9.0.1"
+  checksum: 10/20069f739a44821dfa4f7f397b9086ef31a358366331138f97945eedb2e231796e7c55b032125d3bd12f9839f089fbb809893dbc0f98edc57e12333b9f42b726
   languageName: node
   linkType: hard
 
@@ -12075,7 +12075,7 @@ __metadata:
     style-loader: "npm:^4.0.0"
     superagent: "npm:^8.1.2"
     superagent-csrf: "npm:^1.0.0"
-    supertest: "npm:^6.3.3"
+    supertest: "npm:^7.0.0"
     terser-webpack-plugin: "npm:^5.3.10"
     uuid: "npm:^9.0.0"
     webpack: "npm:^5.94.0"
