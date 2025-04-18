@@ -116,7 +116,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-jq": "^0.0.9",
     "eslint": "^8.48.0",
-    "eslint-plugin-mocha": "^5.0.0",
+    "eslint-plugin-mocha": "^10.0.0",
     "fs": "^0.0.1-security",
     "gulp": "^5.0.0",
     "gulp-cli": "^3.0.0",
