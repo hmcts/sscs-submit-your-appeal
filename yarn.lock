@@ -1890,13 +1890,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime-corejs2@npm:^7.0.0":
-  version: 7.14.8
-  resolution: "@babel/runtime-corejs2@npm:7.14.8"
+"@babel/runtime-corejs3@npm:^7.0.0":
+  version: 7.27.0
+  resolution: "@babel/runtime-corejs3@npm:7.27.0"
   dependencies:
-    core-js: "npm:^2.6.5"
-    regenerator-runtime: "npm:^0.13.4"
-  checksum: 10/dbe4c417b69ec2ece3865dee548dbd4d03e2ce91f26d7f5c808a2572fe0b2a99822dc1b61e5f26a1589c25a657afb3973493e13778981713b10935e8f6c61955
+    core-js-pure: "npm:^3.30.2"
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10/034628bf1b602729b53022f99fd82baca9347db435843c677b888cd7e71412aa4a3065806d622b8e98971577285b4bd546dfc8b57c14aea43a22934a1a3beca4
   languageName: node
   linkType: hard
 
@@ -4496,10 +4496,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^2.6.5":
-  version: 2.6.12
-  resolution: "core-js@npm:2.6.12"
-  checksum: 10/7c624eb00a59c74c769d5d80f751f3bf1fc6201205b6562f27286ad5e00bbca1483f2f7eb0c2854b86f526ef5c7dc958b45f2ff536f8a31b8e9cb1a13a96efca
+"core-js-pure@npm:^3.30.2":
+  version: 3.41.0
+  resolution: "core-js-pure@npm:3.41.0"
+  checksum: 10/69cc1d966d8a177be3d8ddbb4460c778dbfa5a458f74069b55322428524a54544a787fc15fe905aa84e93e0eab0d6a6501fb7026a885b7a8553c8542b01e79fb
   languageName: node
   linkType: hard
 
@@ -8785,10 +8785,10 @@ __metadata:
   linkType: hard
 
 "mochapack@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "mochapack@npm:2.1.4"
+  version: 2.1.5
+  resolution: "mochapack@npm:2.1.5"
   dependencies:
-    "@babel/runtime-corejs2": "npm:^7.0.0"
+    "@babel/runtime-corejs3": "npm:^7.0.0"
     chalk: "npm:^2.4.2"
     chokidar: "npm:^3.5.2"
     glob-parent: "npm:5.1.2"
@@ -8809,8 +8809,8 @@ __metadata:
     mocha: ">=6"
     webpack: ^4.0.0 || ^5.0.0
   bin:
-    mochapack: ./bin/mochapack
-  checksum: 10/5da95653a233d59b3eaf5376266e671e51c93fecd331c91a73d50099eb8624c794cccd41265d1af7e8b347df94335660a2202c83883f6613c692be572327016b
+    mochapack: bin/mochapack
+  checksum: 10/41334d99bb33fe3c56e74b68bbe17b91cd04ac8951a57e20e1deb3a383e51ca93f3304fcf9983f1d8a7b630a4ac1711a3e8ef66716551d6cd73aeefaa8319dff
   languageName: node
   linkType: hard
 
@@ -10645,13 +10645,6 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 10/dc6c95ae4b3ba6adbd7687cafac260eee4640318c7a95239d5ce847d9b9263979758389e862fe9c93d633b5792ea4ada5708df75885dc5aa05a309fa18140a87
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.13.4":
-  version: 0.13.9
-  resolution: "regenerator-runtime@npm:0.13.9"
-  checksum: 10/efbbcee420cf89b90c634ac4c53e4ac8000c80b4650d6d34560f124185d43b21b824d385ec6147657603a1ec1bed6820fc5dfb78e669f9acc7c1b5d7238b1627
   languageName: node
   linkType: hard
 
