@@ -47,7 +47,7 @@
     },
     "allowCA": {
       "enabled": "ALLOW_CA_ENABLED"
-    },
+    },````
     "allowAA": {
       "enabled": "ALLOW_AA_ENABLED"
     },

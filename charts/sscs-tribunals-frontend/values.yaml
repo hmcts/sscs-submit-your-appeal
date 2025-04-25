@@ -9,7 +9,7 @@ nodejs:
     enabled: false
   environment:
     NODE_ENV: "production"
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    TRIBUNALS_CASE_API_URL: http://xui-sscs-tribunals-api-pr-4671.preview.platform.hmcts.net
     UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     SERVICES_IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
