@@ -333,7 +333,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       draftAppealStoreMiddleware.setFeatureFlag(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(request, res, next);
 
-      expect(request.session.drafts).to.be.empty;
+      expect(request.session.drafts).to.be.undefined;
     });
   });
 
