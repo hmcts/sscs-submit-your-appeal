@@ -1,12 +1,12 @@
 const mrnDate = {
   day: '27',
-  month: '03',
+  month: '3',
   year: '2016'
 };
 
 const rdnDate = {
-  day: '06',
-  month: '01',
+  day: '6',
+  month: '1',
   year: '2025'
 };
 
