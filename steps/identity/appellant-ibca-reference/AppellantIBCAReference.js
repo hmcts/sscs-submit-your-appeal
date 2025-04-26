@@ -23,13 +23,15 @@ class AppellantIBCAReference extends SaveToDraftStore {
 
   get form() {
     return form({
-      ibcaReference: text.joi(
-        this.content.fields.ibcaReference.error.required,
-        Joi.string().required()
-      ).joi(
-        this.content.fields.ibcaReference.error.invalid,
-        Joi.string().trim().regex(ibcaReference)
-      )
+      ibcaReference: text
+        .joi(
+          this.content.fields.ibcaReference.error.required,
+          Joi.string().required()
+        )
+        .joi(
+          this.content.fields.ibcaReference.error.invalid,
+          Joi.string().trim().regex(ibcaReference)
+        )
     });
   }
 

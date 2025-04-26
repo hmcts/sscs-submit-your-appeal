@@ -66,84 +66,132 @@ describe('stringUtils.js', () => {
 });
 
 describe('splitBenefitType()', () => {
-  it('should split \'Attendance Allowance\' into an array', () => {
+  it("should split 'Attendance Allowance' into an array", () => {
     const obj = splitBenefitType(benefitTypes.attendanceAllowance);
-    expect(obj).to.include({ code: 'attendanceAllowance', description: benefitTypes.attendanceAllowance });
+    expect(obj).to.include({
+      code: 'attendanceAllowance',
+      description: benefitTypes.attendanceAllowance
+    });
   });
 
-  it('should split \'Bereavement Benefit\' into an array', () => {
+  it("should split 'Bereavement Benefit' into an array", () => {
     const obj = splitBenefitType(benefitTypes.bereavementBenefit);
-    expect(obj).to.include({ code: 'bereavementBenefit', description: benefitTypes.bereavementBenefit });
+    expect(obj).to.include({
+      code: 'bereavementBenefit',
+      description: benefitTypes.bereavementBenefit
+    });
   });
 
-  it('should split Carer\'s Allowance\' into an array', () => {
+  it("should split Carer's Allowance' into an array", () => {
     const obj = splitBenefitType(benefitTypes.carersAllowance);
-    expect(obj).to.include({ code: 'carersAllowance', description: benefitTypes.carersAllowance });
+    expect(obj).to.include({
+      code: 'carersAllowance',
+      description: benefitTypes.carersAllowance
+    });
   });
 
-  it('should split Attendance Allowance\' into an array', () => {
+  it("should split Attendance Allowance' into an array", () => {
     const obj = splitBenefitType(benefitTypes.attendanceAllowance);
-    expect(obj).to.include({ code: 'attendanceAllowance', description: benefitTypes.attendanceAllowance });
+    expect(obj).to.include({
+      code: 'attendanceAllowance',
+      description: benefitTypes.attendanceAllowance
+    });
   });
 
-  it('should split \'Child Benefit\' into an array', () => {
+  it("should split 'Child Benefit' into an array", () => {
     const obj = splitBenefitType(benefitTypes.childBenefit);
-    expect(obj).to.include({ code: 'childBenefit', description: benefitTypes.childBenefit });
+    expect(obj).to.include({
+      code: 'childBenefit',
+      description: benefitTypes.childBenefit
+    });
   });
 
   it('should split Disability Living Allowance (DLA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.disabilityLivingAllowance);
-    expect(obj).to.include({ code: 'DLA', description: 'Disability Living Allowance' });
+    expect(obj).to.include({
+      code: 'DLA',
+      description: 'Disability Living Allowance'
+    });
   });
 
   it('should split Employment and Support Allowance (ESA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.employmentAndSupportAllowance);
-    expect(obj).to.include({ code: 'ESA', description: 'Employment and Support Allowance' });
+    expect(obj).to.include({
+      code: 'ESA',
+      description: 'Employment and Support Allowance'
+    });
   });
 
-  it('should split \'Home Responsibilities Protection\' into an array', () => {
+  it("should split 'Home Responsibilities Protection' into an array", () => {
     const obj = splitBenefitType(benefitTypes.homeResponsibilitiesProtection);
-    expect(obj).to.include({ code: 'homeResponsibilitiesProtection', description: benefitTypes.homeResponsibilitiesProtection });
+    expect(obj).to.include({
+      code: 'homeResponsibilitiesProtection',
+      description: benefitTypes.homeResponsibilitiesProtection
+    });
   });
 
-  it('should split \'Incapacity Benefit\' into an array', () => {
+  it("should split 'Incapacity Benefit' into an array", () => {
     const obj = splitBenefitType(benefitTypes.incapacityBenefit);
-    expect(obj).to.include({ code: 'incapacityBenefit', description: benefitTypes.incapacityBenefit });
+    expect(obj).to.include({
+      code: 'incapacityBenefit',
+      description: benefitTypes.incapacityBenefit
+    });
   });
 
-  it('should split \'Income Support\' into an array', () => {
+  it("should split 'Income Support' into an array", () => {
     const obj = splitBenefitType(benefitTypes.incomeSupport);
-    expect(obj).to.include({ code: 'incomeSupport', description: benefitTypes.incomeSupport });
+    expect(obj).to.include({
+      code: 'incomeSupport',
+      description: benefitTypes.incomeSupport
+    });
   });
 
-  it('should split \'Industrial Injuries Disablement Benefit\' into an array', () => {
+  it("should split 'Industrial Injuries Disablement Benefit' into an array", () => {
     const obj = splitBenefitType(benefitTypes.industrialInjuriesDisablement);
-    expect(obj).to.include({ code: 'industrialInjuriesDisablement', description: benefitTypes.industrialInjuriesDisablement });
+    expect(obj).to.include({
+      code: 'industrialInjuriesDisablement',
+      description: benefitTypes.industrialInjuriesDisablement
+    });
   });
 
   it('should split Jobseeker’s Allowance (JSA) into an array', () => {
     const obj = splitBenefitType(benefitTypes.jobseekersAllowance);
-    expect(obj).to.include({ code: 'JSA', description: 'Jobseeker’s Allowance' });
+    expect(obj).to.include({
+      code: 'JSA',
+      description: 'Jobseeker’s Allowance'
+    });
   });
 
-  it('should split \'Maternity Allowance\' into an array', () => {
+  it("should split 'Maternity Allowance' into an array", () => {
     const obj = splitBenefitType(benefitTypes.maternityAllowance);
-    expect(obj).to.include({ code: 'maternityAllowance', description: benefitTypes.maternityAllowance });
+    expect(obj).to.include({
+      code: 'maternityAllowance',
+      description: benefitTypes.maternityAllowance
+    });
   });
 
   it('should split Personal Independence Payment (PIP) into an array', () => {
     const obj = splitBenefitType(benefitTypes.personalIndependencePayment);
-    expect(obj).to.include({ code: 'PIP', description: 'Personal Independence Payment' });
+    expect(obj).to.include({
+      code: 'PIP',
+      description: 'Personal Independence Payment'
+    });
   });
 
-  it('should split \'Severe Disablement Allowance\' into an array', () => {
+  it("should split 'Severe Disablement Allowance' into an array", () => {
     const obj = splitBenefitType(benefitTypes.severeDisablementAllowance);
-    expect(obj).to.include({ code: 'severeDisablementAllowance', description: benefitTypes.severeDisablementAllowance });
+    expect(obj).to.include({
+      code: 'severeDisablementAllowance',
+      description: benefitTypes.severeDisablementAllowance
+    });
   });
 
-  it('should split \'Social Fund\' into an array', () => {
+  it("should split 'Social Fund' into an array", () => {
     const obj = splitBenefitType(benefitTypes.socialFund);
-    expect(obj).to.include({ code: 'socialFund', description: benefitTypes.socialFund });
+    expect(obj).to.include({
+      code: 'socialFund',
+      description: benefitTypes.socialFund
+    });
   });
 
   it('should split Universal Credit (UC) into an array', () => {
@@ -217,7 +265,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('Maternity Allowance');
     });
     it('returns the right name for bereavementSupportPaymentScheme', () => {
-      const bcode = getBenefitName(benefitTypes.bereavementSupportPaymentScheme);
+      const bcode = getBenefitName(
+        benefitTypes.bereavementSupportPaymentScheme
+      );
       expect(bcode).to.equal('Bereavement Support Payment Scheme');
     });
     it('returns the right name for industrialDeathBenefit', () => {
@@ -239,7 +289,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge, doctor and disability expert');
     });
     it('returns the right name for esa', () => {
-      const bcode = getTribunalPanel(benefitTypes.employmentAndSupportAllowance);
+      const bcode = getTribunalPanel(
+        benefitTypes.employmentAndSupportAllowance
+      );
       expect(bcode).to.equal('judge and a doctor');
     });
     it('returns the right name for dla', () => {
@@ -275,7 +327,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge');
     });
     it('returns the right name for iidb', () => {
-      const bcode = getTribunalPanel(benefitTypes.industrialInjuriesDisablement);
+      const bcode = getTribunalPanel(
+        benefitTypes.industrialInjuriesDisablement
+      );
       expect(bcode).to.equal('judge and 1 or 2 doctors');
     });
     it('returns the right name for incomeSupport', () => {
@@ -283,7 +337,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('judge');
     });
     it('returns the right name for bereavementSupportPaymentScheme', () => {
-      const bcode = getTribunalPanel(benefitTypes.bereavementSupportPaymentScheme);
+      const bcode = getTribunalPanel(
+        benefitTypes.bereavementSupportPaymentScheme
+      );
       expect(bcode).to.equal('judge');
     });
     it('returns the right name for industrialDeathBenefit', () => {
@@ -301,15 +357,21 @@ describe('the dynamic content utils', () => {
   });
   describe('getTribunalPanel welsh', () => {
     it('returns the right tribunal panel for pip', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.personalIndependencePayment);
+      const bcode = getTribunalPanelWelsh(
+        benefitTypes.personalIndependencePayment
+      );
       expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
     });
     it('returns the right name for esa', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.employmentAndSupportAllowance);
+      const bcode = getTribunalPanelWelsh(
+        benefitTypes.employmentAndSupportAllowance
+      );
       expect(bcode).to.equal('barnwr a meddyg');
     });
     it('returns the right name for dla', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.disabilityLivingAllowance);
+      const bcode = getTribunalPanelWelsh(
+        benefitTypes.disabilityLivingAllowance
+      );
       expect(bcode).to.equal('barnwr, meddyg ac arbenigwr anabledd');
     });
     it('returns the right name for uc', () => {
@@ -341,7 +403,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for iidb', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.industrialInjuriesDisablement);
+      const bcode = getTribunalPanelWelsh(
+        benefitTypes.industrialInjuriesDisablement
+      );
       expect(bcode).to.equal('barnwr ac 1 neu 2 feddyg');
     });
     it('returns the right name for incomeSupport', () => {
@@ -349,7 +413,9 @@ describe('the dynamic content utils', () => {
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for bereavementSupportPaymentScheme', () => {
-      const bcode = getTribunalPanelWelsh(benefitTypes.bereavementSupportPaymentScheme);
+      const bcode = getTribunalPanelWelsh(
+        benefitTypes.bereavementSupportPaymentScheme
+      );
       expect(bcode).to.equal('barnwr');
     });
     it('returns the right name for industrialDeathBenefit', () => {
@@ -367,7 +433,9 @@ describe('the dynamic content utils', () => {
   });
   describe('getBenefitEndText', () => {
     it('returns the word benefit for types with no benefit in the name', () => {
-      const benefitText = getBenefitEndText(benefitTypes.personalIndependencePayment);
+      const benefitText = getBenefitEndText(
+        benefitTypes.personalIndependencePayment
+      );
       expect(benefitText).to.equal(' benefit');
     });
     it('returns empty for types with benefit in the name', () => {
@@ -377,7 +445,9 @@ describe('the dynamic content utils', () => {
   });
   describe('getBenefitEndTextWelsh', () => {
     it('returns the word budd-dal for types with no benefit in the name', () => {
-      const benefitText = getBenefitEndTextWelsh(benefitTypes.personalIndependencePayment);
+      const benefitText = getBenefitEndTextWelsh(
+        benefitTypes.personalIndependencePayment
+      );
       expect(benefitText).to.equal('budd-dal ');
     });
     it('returns empty for types with benefit in the name', () => {

@@ -2,7 +2,12 @@ const hearingSupportContentEn = require('steps/hearing/support/content.en');
 const hearingSupportContentCy = require('steps/hearing/support/content.cy');
 const { expect } = require('@playwright/test');
 
-async function selectDoYouNeedSupportAndContinue(I, language, commonContent, option) {
+async function selectDoYouNeedSupportAndContinue(
+  I,
+  language,
+  commonContent,
+  option
+) {
   const hearingSupportContent = language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
 
   await expect(I.getByText(hearingSupportContent.title).first()).toBeVisible();

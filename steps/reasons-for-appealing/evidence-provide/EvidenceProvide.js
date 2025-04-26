@@ -17,9 +17,13 @@ class EvidenceProvide extends SaveToDraftStore {
 
   get noticeType() {
     if (i18next.language === 'cy') {
-      return isIba(this.req) ? 'Hysbysiad o Benderfyniad Adolygiad' : 'Hysbysiad Gorfodi i Ailystyried (MRN)';
+      return isIba(this.req) ?
+        'Hysbysiad o Benderfyniad Adolygiad' :
+        'Hysbysiad Gorfodi i Ailystyried (MRN)';
     }
-    return isIba(this.req) ? 'Review Decision Notice' : 'Mandatory Reconsideration Notice (MRN)';
+    return isIba(this.req) ?
+      'Review Decision Notice' :
+      'Mandatory Reconsideration Notice (MRN)';
   }
 
   get form() {
@@ -37,13 +41,17 @@ class EvidenceProvide extends SaveToDraftStore {
     return answer(this, {
       question: this.content.cya.evidenceProvide.question,
       section: sections.reasonsForAppealing,
-      answer: titleise(content.cya.evidenceProvide[this.fields.evidenceProvide.value])
+      answer: titleise(
+        content.cya.evidenceProvide[this.fields.evidenceProvide.value]
+      )
     });
   }
 
   values() {
     return {
-      evidenceProvide: this.getEvidenceProvideValue(this.fields.evidenceProvide.value)
+      evidenceProvide: this.getEvidenceProvideValue(
+        this.fields.evidenceProvide.value
+      )
     };
   }
 
@@ -54,7 +62,8 @@ class EvidenceProvide extends SaveToDraftStore {
   }
 
   next() {
-    const evidenceProvide = this.fields.evidenceProvide.value === userAnswer.YES;
+    const evidenceProvide =
+      this.fields.evidenceProvide.value === userAnswer.YES;
     return branch(
       redirectTo(this.journey.steps.EvidenceUpload).if(evidenceProvide),
       goTo(this.journey.steps.TheHearing)

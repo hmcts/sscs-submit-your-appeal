@@ -2,12 +2,17 @@
 /* eslint-disable multiline-ternary */
 /* eslint-disable operator-linebreak */
 
-const { SaveToDraftStoreAddAnother } = require('middleware/draftAppealStoreMiddleware');
+const {
+  SaveToDraftStoreAddAnother
+} = require('middleware/draftAppealStoreMiddleware');
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { text, object } = require('@hmcts/one-per-page/forms');
 const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
-const { isGreaterThanOrEqualToFiveCharacters, getBenefitCode } = require('utils/stringUtils');
+const {
+  isGreaterThanOrEqualToFiveCharacters,
+  getBenefitCode
+} = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const paths = require('paths');
@@ -21,9 +26,13 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(`steps/start/benefit-type/content.${sessionLanguage}`);
+    const benefitTypeContent = require(
+      `steps/start/benefit-type/content.${sessionLanguage}`
+    );
 
-    return benefitTypeContent.benefitTypes[getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()];
+    return benefitTypeContent.benefitTypes[
+      getBenefitCode(this.req.session.BenefitType.benefitType).toLowerCase()
+    ];
   }
 
   get benefitCode() {
@@ -42,13 +51,11 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     const content = require(`./content.${sessionLanguage}`);
 
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0 ? content.links.addAnother : content.links.add;
+      return this.fields.items.value.length > 0
+        ? content.links.addAnother
+        : content.links.add;
     }
     return false;
-  }
-
-  get reviewBody() {
-    return isIba(this.req) ? 'IBCA' : 'DWP';
   }
 
   get field() {
@@ -62,13 +69,20 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     return object({
       whatYouDisagreeWith: text,
       reasonForAppealing: text
-    }).check(
-      errorFor('whatYouDisagreeWith', content.fields.whatYouDisagreeWith.error.notEnough),
-      value => value.whatYouDisagreeWith &&
-        isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith))
+    })
+      .check(
+        errorFor(
+          'whatYouDisagreeWith',
+          content.fields.whatYouDisagreeWith.error.notEnough
+        ),
+        value =>
+          value.whatYouDisagreeWith &&
+          isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
+      )
       .check(
         errorFor('reasonForAppealing', errorReasonForMsgContent),
-        value => value.reasonForAppealing &&
+        value =>
+          value.reasonForAppealing &&
           isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
   }
@@ -95,10 +109,14 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
     const reasons = this.fields.items.value.map(item => {
       return {
-        whatYouDisagreeWith: item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' ' ?
-          decode(item.whatYouDisagreeWith) : content.cya.reasonForAppealing.notProvided,
-        reasonForAppealing: item.reasonForAppealing && item.reasonForAppealing !== ' ' ?
-          decode(item.reasonForAppealing) : content.cya.reasonForAppealing.notProvided
+        whatYouDisagreeWith:
+          item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' '
+            ? decode(item.whatYouDisagreeWith)
+            : content.cya.reasonForAppealing.notProvided,
+        reasonForAppealing:
+          item.reasonForAppealing && item.reasonForAppealing !== ' '
+            ? decode(item.reasonForAppealing)
+            : content.cya.reasonForAppealing.notProvided
       };
     });
 

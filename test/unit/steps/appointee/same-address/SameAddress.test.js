@@ -35,7 +35,6 @@ describe('SameAddress', () => {
     };
   });
 
-
   describe('iba handler()', () => {
     afterEach(() => {
       sinon.restore();
@@ -82,13 +81,13 @@ describe('SameAddress', () => {
   });
 
   describe('English', () => {
-    it('should say \'Yes\' when value is yes (English)', () => {
+    it("should say 'Yes' when value is yes (English)", () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
       const answers = sameAddress.answers();
       expect(answers.answer).to.equal('Yes');
     });
 
-    it('should say \'No\' when value is no (English)', () => {
+    it("should say 'No' when value is no (English)", () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'no';
       const answers = sameAddress.answers();
       expect(answers.answer).to.equal('No');
@@ -104,14 +103,14 @@ describe('SameAddress', () => {
       i18next.changeLanguage('en');
     });
 
-    it('should say \'Ydy\' when value is yes (Welsh)', () => {
+    it("should say 'Ydy' when value is yes (Welsh)", () => {
       sameAddress.content.cya.isAddressSameAsAppointee.yes = 'Ydy';
       sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
       const answers = sameAddress.answers();
       expect(answers.answer).to.equal('Ydy');
     });
 
-    it('should say \'Nac ydy\' when value is no (Welsh)', () => {
+    it("should say 'Nac ydy' when value is no (Welsh)", () => {
       sameAddress.content.cya.isAddressSameAsAppointee.no = 'Nac ydy';
       sameAddress.fields.isAddressSameAsAppointee.value = 'no';
       const answers = sameAddress.answers();
@@ -140,15 +139,16 @@ describe('SameAddress', () => {
   describe('next()', () => {
     it('returns the next step path /appellant-text-reminders for same address', () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'yes';
-      expect(sameAddress.next().step)
-        .to.eql(paths.smsNotify.appellantTextReminders);
+      expect(sameAddress.next().step).to.eql(
+        paths.smsNotify.appellantTextReminders
+      );
     });
-
 
     it('returns the next step path /enter-appellant-contact-details', () => {
       sameAddress.fields.isAddressSameAsAppointee.value = 'no';
-      expect(sameAddress.next().step)
-        .to.eql(paths.identity.enterAppellantContactDetails);
+      expect(sameAddress.next().step).to.eql(
+        paths.identity.enterAppellantContactDetails
+      );
     });
   });
 });

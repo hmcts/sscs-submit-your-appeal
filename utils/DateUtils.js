@@ -5,18 +5,15 @@ const { includes } = require('lodash');
 const moment = require('moment');
 const crypto = require('crypto');
 
-
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
 class DateUtils {
   static isLessThanOrEqualToAMonth(mDate) {
-    return moment().subtract(1, 'month')
-      .isSameOrBefore(mDate, 'day');
+    return moment().subtract(1, 'month').isSameOrBefore(mDate, 'day');
   }
 
   static isLessThanOrEqualToThirteenMonths(mDate) {
-    return moment().subtract(13, 'month')
-      .isSameOrBefore(mDate, 'day');
+    return moment().subtract(13, 'month').isSameOrBefore(mDate, 'day');
   }
 
   static createMoment(day, month, year, language = 'en') {
@@ -29,8 +26,7 @@ class DateUtils {
   }
 
   static oneDayShortOfAMonthAgo() {
-    return moment().subtract(1, 'month')
-      .add(1, 'day');
+    return moment().subtract(1, 'month').add(1, 'day');
   }
 
   static oneMonthAgo(language) {
@@ -47,13 +43,11 @@ class DateUtils {
   static oneMonthAndOneDayAgo(language) {
     moment.locale(language);
 
-    return moment().subtract(1, 'month')
-      .subtract(1, 'day');
+    return moment().subtract(1, 'month').subtract(1, 'day');
   }
 
   static oneDayShortOfThirteenMonthsAgo() {
-    return moment().subtract(13, 'month')
-      .add(1, 'day');
+    return moment().subtract(13, 'month').add(1, 'day');
   }
 
   static thirteenMonthsAgo() {
@@ -63,8 +57,7 @@ class DateUtils {
   static thirteenMonthsAndOneDayAgo(language) {
     moment.locale(language);
 
-    return moment().subtract(13, 'month')
-      .subtract(1, 'day');
+    return moment().subtract(13, 'month').subtract(1, 'day');
   }
 
   static isDateValid(date) {
@@ -77,7 +70,11 @@ class DateUtils {
 
   static mrnDateSameAsImage(date, isIbaDate) {
     const dateObject = isIbaDate ? mrnDateImage.rdnDate : mrnDateImage.mrnDate;
-    const imageDate = this.createMoment(dateObject.day, dateObject.month, dateObject.year);
+    const imageDate = this.createMoment(
+      dateObject.day,
+      dateObject.month,
+      dateObject.year
+    );
     return imageDate.isSame(date);
   }
 
@@ -104,7 +101,11 @@ class DateUtils {
   }
 
   static getRandomInt(min, max) {
-    return Math.floor((crypto.randomBytes(4).readUInt32LE() / 0x100000000) * (max - min + 1)) + min;
+    return (
+      Math.floor(
+        (crypto.randomBytes(4).readUInt32LE() / 0x100000000) * (max - min + 1)
+      ) + min
+    );
   }
 
   static getMonthValue(date, language) {
@@ -116,7 +117,8 @@ class DateUtils {
       const month = date.month.toLowerCase();
 
       if (includes(months, month)) {
-        monthValue = moment(`${date.day} ${month} ${date.year}`, 'DD MMMM YY').month() + 1;
+        monthValue =
+          moment(`${date.day} ${month} ${date.year}`, 'DD MMMM YY').month() + 1;
       } else {
         monthValue = false;
       }

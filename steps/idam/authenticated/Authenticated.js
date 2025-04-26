@@ -1,4 +1,6 @@
-const { AuthAndRestoreAllDraftsState } = require('middleware/draftAppealStoreMiddleware');
+const {
+  AuthAndRestoreAllDraftsState
+} = require('middleware/draftAppealStoreMiddleware');
 const { goTo } = require('@hmcts/one-per-page/flow');
 const paths = require('paths');
 

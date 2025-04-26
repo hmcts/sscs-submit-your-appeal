@@ -60,7 +60,9 @@ class Appointee extends SaveToDraftStore {
   next() {
     const isAppointee = this.fields.isAppointee.value === userAnswer.YES;
     return branch(
-      redirectTo(this.journey.steps.AppointeeName).if(allowAppointee && isAppointee),
+      redirectTo(this.journey.steps.AppointeeName).if(
+        allowAppointee && isAppointee
+      ),
       redirectTo(this.journey.steps.AppealFormDownload).if(isAppointee),
       goTo(this.journey.steps.AppellantName)
     );

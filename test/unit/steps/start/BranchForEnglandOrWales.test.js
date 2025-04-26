@@ -11,30 +11,43 @@ describe('BranchForEnglandOrWales.js', () => {
 
     beforeEach(() => {
       /* eslint-disable max-len */
-      const BranchForEnglandOrWales = proxyquire('steps/start/postcode-checker/BranchForEnglandOrWales', {
-        '@hmcts/one-per-page': {
-          branch: () => {
-            return { redirect: branchRedirectStub };
-          }
-        },
-        '@hmcts/one-per-page/flow': {
-          redirectTo: () => {
-            return { redirect: redirectStub };
+      const BranchForEnglandOrWales = proxyquire(
+        'steps/start/postcode-checker/BranchForEnglandOrWales',
+        {
+          '@hmcts/one-per-page': {
+            branch: () => {
+              return { redirect: branchRedirectStub };
+            }
+          },
+          '@hmcts/one-per-page/flow': {
+            redirectTo: () => {
+              return { redirect: redirectStub };
+            }
           }
         }
-      });
+      );
       /* eslint-disable max-len */
-      branchForEnglandOrWales = new BranchForEnglandOrWales('somePostcode', paths.identity.areYouAnAppointee, paths.start.invalidPostcode, paths.errors.internalServerError);
+      branchForEnglandOrWales = new BranchForEnglandOrWales(
+        'somePostcode',
+        paths.identity.areYouAnAppointee,
+        paths.start.invalidPostcode,
+        paths.errors.internalServerError
+      );
     });
 
     it('next step is /are-you-an-appointee', () => {
-      expect(branchForEnglandOrWales.step).to.eql(paths.identity.areYouAnAppointee);
+      expect(branchForEnglandOrWales.step).to.eql(
+        paths.identity.areYouAnAppointee
+      );
     });
 
     describe('redirect', () => {
       let isEnglandOrWalesStub = null;
       beforeEach(() => {
-        isEnglandOrWalesStub = sinon.stub(branchForEnglandOrWales, 'isEnglandOrWalesPostcode');
+        isEnglandOrWalesStub = sinon.stub(
+          branchForEnglandOrWales,
+          'isEnglandOrWalesPostcode'
+        );
 
         branchRedirectStub.reset();
         redirectStub.reset();
@@ -49,12 +62,12 @@ describe('BranchForEnglandOrWales.js', () => {
 
         const req = {};
         const resp = {};
-        return branchForEnglandOrWales.redirect(req, resp)
-          .then(() => {
-            expect(branchRedirectStub).to.have.been.calledWith(req, resp);
-          });
+        return branchForEnglandOrWales.redirect(req, resp).then(() => {
+          expect(branchRedirectStub).to.have.been.calledWith(req, resp);
+        });
       });
 
+      // prettier-ignore
       it('when postcode check errors goto error page', () => {
         // eslint-disable-next-line prefer-promise-reject-errors
         isEnglandOrWalesStub.returns(new Promise((resolve, reject) => reject('Error')));
@@ -62,11 +75,10 @@ describe('BranchForEnglandOrWales.js', () => {
         const req = {};
         const resp = {};
 
-        return branchForEnglandOrWales.redirect(req, resp)
-          .then(() => {
-            expect(redirectStub).to.have.been.calledWith(req, resp);
-            expect(branchRedirectStub).not.to.have.been.called;
-          });
+        return branchForEnglandOrWales.redirect(req, resp).then(() => {
+          expect(redirectStub).to.have.been.calledWith(req, resp);
+          expect(branchRedirectStub).not.to.have.been.called;
+        });
       });
     });
   });

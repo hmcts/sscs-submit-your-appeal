@@ -4,7 +4,7 @@
   "description": "Yn gryno, disgrifiwch y dystiolaeth yr ydych newydd ei llwytho.",
   "fields": {
     "describeTheEvidence": {
-      "label":  "Disgrifiwch y dystiolaeth",
+      "label": "Disgrifiwch y dystiolaeth",
       "error": {
         "tooShort": "Disgrifiwch y dystiolaeth mewn ychydig mwy o fanylder",
         "noContent": "Yn gryno, disgrifiwch y dystiolaeth yr ydych newydd ei llwytho",

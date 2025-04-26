@@ -44,7 +44,7 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     const randomWeekDay = DateUtils.getRandomWeekDayFromDate(moment().add(5, 'weeks'));
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingToEnd(page, commonContent, language, randomWeekDay);
     await skipPcq(page);
@@ -59,7 +59,7 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     const randomWeekDayIn6Weeks = DateUtils.getRandomWeekDayFromDate(moment().add(13, 'weeks'));
     await enterDetailsFromStartToNINO(page, commonContent, language);
     await enterAppellantContactDetailsAndContinue(page, commonContent, language);
-    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-no');
+    await selectDoYouWantToReceiveTextMessageReminders(page, commonContent, '#doYouWantTextMsgReminders-2');
     await enterDetailsFromNoRepresentativeToUploadingEvidence(page, language, commonContent);
     await enterDetailsFromAttendingTheHearingToEnd(page, commonContent, language, randomWeekDayIn5Weeks);
     await page.getByText(commonContent.continue).click();

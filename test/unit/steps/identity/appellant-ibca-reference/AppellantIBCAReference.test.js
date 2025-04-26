@@ -25,7 +25,9 @@ describe('AppellantIBCAReference.js', () => {
 
   describe('get path()', () => {
     it('returns the path /enter-appellant-ibca-reference', () => {
-      expect(AppellantIBCAReference.path).to.equal(paths.identity.enterAppellantIBCAReference);
+      expect(AppellantIBCAReference.path).to.equal(
+        paths.identity.enterAppellantIBCAReference
+      );
     });
   });
   describe('handler()', () => {
@@ -74,15 +76,20 @@ describe('AppellantIBCAReference.js', () => {
 
   describe('get form()', () => {
     it('should have one field', () => {
-      expect(Object.keys(appellantIbcaReference.form.fields).length).to.equal(1);
+      expect(Object.keys(appellantIbcaReference.form.fields).length).to.equal(
+        1
+      );
     });
 
     it('should have the key to only field "ibcaReference" ', () => {
-      expect(appellantIbcaReference.form.fields).to.have.all.keys('ibcaReference');
+      expect(appellantIbcaReference.form.fields).to.have.all.keys(
+        'ibcaReference'
+      );
     });
 
     it('should have validations', () => {
-      expect(appellantIbcaReference.form.fields.ibcaReference.validations).to.not.be.empty;
+      expect(appellantIbcaReference.form.fields.ibcaReference.validations).to
+        .not.be.empty;
     });
   });
 
@@ -121,7 +128,9 @@ describe('AppellantIBCAReference.js', () => {
 
   describe('next()', () => {
     it('should return the next step path /mrn-date', () => {
-      expect(appellantIbcaReference.next().step).to.eql(paths.compliance.mrnDate);
+      expect(appellantIbcaReference.next().step).to.eql(
+        paths.compliance.mrnDate
+      );
     });
   });
 });

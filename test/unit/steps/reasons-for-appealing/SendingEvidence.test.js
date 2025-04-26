@@ -13,11 +13,14 @@ describe('SendingEvidence.js', () => {
     };
   };
   const createClassInstance = retrieve => {
-    return proxyquire('steps/reasons-for-appealing/sending-evidence/SendingEvidence', {
-      '@hmcts/one-per-page/forms': {
-        form: sinon.stub().returns(retrieve)
+    return proxyquire(
+      'steps/reasons-for-appealing/sending-evidence/SendingEvidence',
+      {
+        '@hmcts/one-per-page/forms': {
+          form: sinon.stub().returns(retrieve)
+        }
       }
-    });
+    );
   };
   const instantiateClass = Class => {
     return new Class({
@@ -30,7 +33,9 @@ describe('SendingEvidence.js', () => {
       }
     });
   };
-  let SendingEvidence = createClassInstance(retrieveValue('harry.potter@wizards.com'));
+  let SendingEvidence = createClassInstance(
+    retrieveValue('harry.potter@wizards.com')
+  );
   let sendingEvidence = null;
 
   before(() => {
@@ -42,7 +47,9 @@ describe('SendingEvidence.js', () => {
 
   describe('get path()', () => {
     it('returns path /sending-evidence', () => {
-      expect(SendingEvidence.path).to.equal(paths.reasonsForAppealing.sendingEvidence);
+      expect(SendingEvidence.path).to.equal(
+        paths.reasonsForAppealing.sendingEvidence
+      );
     });
   });
 

@@ -1,6 +1,7 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import formSection %}
 {% from "postcodeLookup/template.html" import postcodeLookup  %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title | safe %}
 
@@ -9,14 +10,14 @@
         <p class="govuk-body">{{ content.subtitle }}</p>
 
         {% call postcodeLookup(fields, addressSuggestions, postcodeLookupType, postCodeContent) %}
-            {{ textbox(fields.addressLine1,         content.fields.addressLine1.title,          hint="") }}
-            {{ textbox(fields.addressLine2,         content.fields.addressLine2.title,          hint="") }}
-            {{ textbox(fields.townCity,             content.fields.townCity.title,              hint="") }}
-            {{ textbox(fields.county,               content.fields.county.title,                hint="") }}
-            {{ textbox(fields.postCode,             content.fields.postCode.title,              hint="") }}
+            {{ govTextInput(fields.addressLine1,    content.fields.addressLine1.title,  hint="") }}
+            {{ govTextInput(fields.addressLine2,    content.fields.addressLine2.title,  hint="") }}
+            {{ govTextInput(fields.townCity,        content.fields.townCity.title,      hint="") }}
+            {{ govTextInput(fields.county,          content.fields.county.title,        hint="") }}
+            {{ govTextInput(fields.postCode,        content.fields.postCode.title,      hint="") }}
         {% endcall %}
 
-        {{ textbox(fields.phoneNumber,          content.fields.phoneNumber.title,           hint=content.fields.phoneNumber.hint) }}
-        {{ textbox(fields.emailAddress,         content.fields.emailAddress.title,          hint=content.fields.emailAddress.hint) }}
+        {{ govTextInput(fields.phoneNumber,        content.fields.phoneNumber.title,     hint=content.fields.phoneNumber.hint) }}
+        {{ govTextInput(fields.emailAddress,        content.fields.emailAddress.title,     hint=content.fields.emailAddress.hint) }}
     {% endcall %}
 {% endblock %}

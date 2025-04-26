@@ -3,12 +3,10 @@
 }
 
 #date-picker {
-
   .datepicker-inline {
     width: 70%;
-    margin-bottom:1.875em;
+    margin-bottom: 1.875em;
     table {
-
       table-layout: fixed;
       border-collapse: collapse;
       border-spacing: 0;
@@ -31,7 +29,8 @@
             }
           }
 
-          .prev, .next {
+          .prev,
+          .next {
             background-color: govuk-colour('light-grey');
             border-radius: 0;
           }
@@ -40,7 +39,6 @@
             background-color: govuk-colour('light-grey');
             border-radius: 0;
           }
-
         }
       }
 
@@ -68,17 +66,18 @@
             display: table-cell;
             @extend .govuk-body;
             &.active {
-              background-color: #76B2D2;
+              background-color: #76b2d2;
             }
 
-            &.day:hover, &.day.focused {
-                &:not(.disabled) {
-                  background-color: #BBD9E9;
-                }
+            &.day:hover,
+            &.day.focused {
+              &:not(.disabled) {
+                background-color: #bbd9e9;
               }
+            }
 
             &.disabled {
-              background: url("/assets/images/date-disabled.png");
+              background: url('/assets/images/date-disabled.png');
               font-weight: 400;
               .first-of-month {
                 margin-top: 28px;

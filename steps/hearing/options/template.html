@@ -1,59 +1,50 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, textbox, selectionButton, selectionButtons %}
+{% from "components/common/checkbox.njk" import govCheckbox %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
-{% set title = content["title" + suffix] %}
+{% set title = content.title %}
+
+{% set telephoneTextField %}
+{{ govTextInput(fields.selectOptions.telephone.phoneNumber, content.fields.options.telephone.error.required, hideLabel=true) }}
+{% endset -%}
+
+{% set emailTextField %}
+{{ govTextInput(fields.selectOptions.video.email, content.fields.options.video.error.required, hideLabel=true) }}
+{% endset -%}
 
 {% block fields %}
-{% if isIba %}
-    <p class="govuk-body">{{ content.subtitleIba }}</p>
+    <p class="govuk-body">{{ content.subtitle }}</p>
     <p class="govuk-body">{{ content.tribunalExplained }}</p>
     <p class="govuk-body">{{ content.supportExplained }}</p>
-    
-    <p class="govuk-heading-m">{{ content.fields.title }}</p>
-    <p class="govuk-hint">{{ content.instructionsIba }}</p>
 
-{% else %}
-    <p class="govuk-body">{{ content.subtitle }}</p>
-    <p class="govuk-body">{{ content.instructions }}</p>
-{% endif %}
-
-
-
-
-{% call selectionButtons(
-field = fields.selectOptions,
-hideQuestion = true,
-hint = '',
-inline = false,
-type = 'checkbox'
-) %}
-
-{{ selectionButton(
-fields.selectOptions.telephone.requested,
-{ label: content.fields.options.telephone.requested.label, value: 'true', target: 'telephoneTextField' },
-type = 'checkbox')
-}}
-
-<div class="panel js-hidden" id="telephoneTextField">
-    {{ textbox(fields.selectOptions.telephone.phoneNumber, hideLabel=true, value=phoneNumber) }}
-</div>
-
-{{ selectionButton(
-fields.selectOptions.video.requested,
-{ label: content.fields.options.video.requested.label, value: 'true', target: 'emailTextField' },
-type = 'checkbox')
-}}
-<div class="panel js-hidden" id="emailTextField">
-    {{ textbox(fields.selectOptions.video.email, hideLabel=true, value=email) }}
-</div>
-
-{{ selectionButton(
-fields.selectOptions.faceToFace.requested,
-{ label: content.fields.options.faceToFace.requested["label" + suffix], value: 'true' },
-type = 'checkbox')
-}}
-
-{% endcall %}
-
+{{ govCheckbox(
+  field = fields.selectOptions,
+  headerText = content.fields.title,
+  hint = content.instructions,
+  hideQuestion = false,
+  isPageHeading = false,
+  items = [
+    {
+      value: 'true',
+      name: fields.selectOptions.telephone.requested.id,
+      text: content.fields.options.telephone.requested.label,
+      conditional: { html: telephoneTextField },
+      checked: fields.selectOptions.value.telephone.requested
+    },
+    {
+      value: 'true',
+      name: fields.selectOptions.video.requested.id,
+      text: content.fields.options.video.requested.label,
+      conditional: { html: emailTextField },
+      checked: fields.selectOptions.value.video.requested
+    },
+    {
+      value: 'true',
+      name: fields.selectOptions.inPerson.requested.id,
+      text: content.fields.options.inPerson.requested.label,
+      checked: fields.selectOptions.value.video.requested
+    }
+  ]
+) }}
 
 {% endblock %}

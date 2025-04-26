@@ -1,7 +1,8 @@
 {% set config = {'autocomplete': 'off'} %}
 {% extends "components/globals.html" %}
 {% extends "layouts/check_your_answers.html" %}
-{% from "components/fields.njk" import textbox, formSection %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/textInput.njk" import govTextInput %}
 
 {% block head %}
     {{ super() }}
@@ -27,7 +28,7 @@
 {% endblock %}
 
 {% block statement_of_truth_content %}
-    {{ header(content.header, size='m') }}
+    {{ header(content.header, size='m', isPageHeader=false) }}
     <p class="govuk-body">{{ content.information }}</p>
     <p class="govuk-body">{{ content.permission }}</p>
     <p class="govuk-body">{{ content.agreeIbc | safe if isIba else content.agree | safe }}</p>
@@ -38,7 +39,7 @@
         {% if csurfCsrfToken %}
             <input type="hidden" name="_csrf" value="{{csurfCsrfToken}}">
         {% endif %}
-        {{ textbox(fields.signer, content.fields.signer.label, hint=content.fields.signer.hint) }}
+        {{ govTextInput(fields.signer,  content.fields.signer.label,    hint=content.fields.signer.hint) }}
     {% endcall %}
 {%- endblock %}
 

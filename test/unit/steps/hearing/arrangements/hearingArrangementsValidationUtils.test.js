@@ -26,7 +26,7 @@ describe('hearingArrangementsValidationUtils.js', () => {
       expect(languageInList(value)).to.equal(true);
     });
 
-    it('returns false when requested field has been set but language isn\'t in the list', () => {
+    it("returns false when requested field has been set but language isn't in the list", () => {
       value.language = 'My language';
       expect(languageInList(value)).to.equal(false);
     });
@@ -38,7 +38,7 @@ describe('hearingArrangementsValidationUtils.js', () => {
       expect(emptyLanguageFieldValidation(value)).to.equal(true);
     });
 
-    it('returns false when requested field has been set but language field hasn\'t', () => {
+    it("returns false when requested field has been set but language field hasn't", () => {
       expect(emptyLanguageFieldValidation(value)).to.equal(false);
     });
 

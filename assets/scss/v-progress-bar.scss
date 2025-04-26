@@ -1,17 +1,15 @@
 @mixin v-progress-bar {
   @media screen and (max-width: 400px) {
-
     margin: 20px 0;
 
     .appeal-received,
     .dwp-respond,
     .hearing-booked,
     .hearing {
-
       .leg {
         width: 6px;
         height: 30px;
-        border-left: 6px solid govuk-colour("green");
+        border-left: 6px solid govuk-colour('green');
         margin-left: 15px;
       }
 
@@ -20,7 +18,7 @@
         position: relative;
         z-index: 1;
         border-radius: 50%;
-        border: 6px solid govuk-colour("green");
+        border: 6px solid govuk-colour('green');
         width: 24px;
         height: 24px;
       }
@@ -31,7 +29,7 @@
 
       &.active {
         .ring {
-          background-color: govuk-colour("green");
+          background-color: govuk-colour('green');
         }
         .tick {
           top: 3px;

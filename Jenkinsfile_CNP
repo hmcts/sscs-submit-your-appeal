@@ -1,10 +1,16 @@
 #!groovy
-properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
-         pipelineTriggers([[$class: 'GitHubPushTrigger']])]
-)
+properties([
+        [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/submit-your-appeal'],
+        pipelineTriggers([[$class: 'GitHubPushTrigger']]),
+        parameters([
+                string(name: 'NUMBER_RUNNING_PARALLEL', defaultValue: '2', description: 'Number of parallel tests to run'),
+                string(name: 'RETRIES', defaultValue: '10', description: 'Number of retries for failed tests')
+        ])
+])
 
 @Library("Infrastructure")
+
+import uk.gov.hmcts.contino.GithubAPI
 
 def product = "sscs"
 def component = "tribunals-frontend"
@@ -14,7 +20,19 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withPipeline("nodejs", product, component) {
+    def githubApi = new GithubAPI(this)
 
+    env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
+    env.RETRIES = params.RETRIES
+    onPR() {
+        def isRegression = githubApi.getLabelsbyPattern(env.BRANCH_NAME, "test-suite:preview-regression").size() > 0
+        env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+        if (isRegression) {
+            env.E2E_TEST_TAGS = "@functional,@fullFunctional"
+        } else {
+            env.E2E_TEST_TAGS = "@functional"
+        }
+    }
     afterSuccess('build') {
         yarnBuilder.yarn('build')
     }
@@ -44,12 +62,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 
@@ -57,12 +75,12 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/functional-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/functional-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Functional test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/functional-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Functional test report"
         ]
     }
 
@@ -70,25 +88,60 @@ withPipeline("nodejs", product, component) {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/smoke-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Smoke test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/smoke-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Smoke test report"
         ]
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
-
     afterAlways('smoketest:aat') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-output/*/**'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/smoke-report/*/**'
         publishHTML target: [
-                allowMissing : true,
+                allowMissing         : true,
                 alwaysLinkToLastBuild: true,
-                keepAll : true,
-                reportDir : "test/e2e/smoke-report",
-                reportFiles : "index.html",
-                reportName : "SYA E2E Smoke test report"
+                keepAll              : true,
+                reportDir            : "test/e2e/smoke-report",
+                reportFiles          : "index.html",
+                reportName           : "SYA E2E Smoke test report"
         ]
+        stage('Accessibility test') {
+            try {
+                yarnBuilder.yarn('test:accessibility')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "test/e2e/accessibility-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'SYA E2E Accessibility test report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-output/*'
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
+            }
+        }
     }
 }

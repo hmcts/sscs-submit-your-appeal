@@ -21,6 +21,7 @@ rClient.on('error', error => {
   console.error(error);
 });
 
+// prettier-ignore
 const healthOptions = message => {
   return {
     callback: (error, res) => { // eslint-disable-line id-blacklist
@@ -37,13 +38,17 @@ const healthOptions = message => {
 const setup = app => {
   healthcheck.addTo(app, {
     checks: {
-      'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health`,
+      'submit-your-appeal-api': healthcheck.web(
+        `${config.api.url}/health`,
         healthOptions('Health check failed on submit-your-appeal-api:')
       )
     },
     readinessChecks: {
-      redis: healthcheck.raw(() => (rClient.ping() ? healthcheck.up() : healthcheck.down())),
-      'submit-your-appeal-api': healthcheck.web(`${config.api.url}/health/readiness`,
+      redis: healthcheck.raw(() =>
+        (rClient.ping() ? healthcheck.up() : healthcheck.down())
+      ),
+      'submit-your-appeal-api': healthcheck.web(
+        `${config.api.url}/health/readiness`,
         healthOptions('Readiness check failed on submit-your-appeal-api:')
       )
     },
@@ -54,6 +59,5 @@ const setup = app => {
     }
   });
 };
-
 
 module.exports = { setup };
