@@ -3962,13 +3962,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookies@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "cookies@npm:0.8.0"
+"cookies@npm:^0.9.0":
+  version: 0.9.1
+  resolution: "cookies@npm:0.9.1"
   dependencies:
     depd: "npm:~2.0.0"
     keygrip: "npm:~1.1.0"
-  checksum: 10/5da4d72ba81c2740511751ac8ea9506e10e2366b9ad3360333581e4667fd8d063d02c5be0bef16177de3e366b8128ed2b72921e2952c79cbca084d177e529bba
+  checksum: 10/4816461a38d907b20f3fb7a2bc4741fe580e7a195f3e248ef7025cb3be56a07638a0f4e72553a5f535554ca30172c8a3245c63ac72c9737cec034e9a47773392
   languageName: node
   linkType: hard
 
@@ -11549,7 +11549,7 @@ __metadata:
     clean-webpack-plugin: "npm:^4.0.0"
     config: "npm:^3.3.9"
     cookie-parser: "npm:^1.4.6"
-    cookies: "npm:^0.8.0"
+    cookies: "npm:^0.9.0"
     copy-webpack-plugin: "npm:^12.0.2"
     cross-env: "npm:^7.0.3"
     css-loader: "npm:^7.1.2"
