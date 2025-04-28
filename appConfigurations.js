@@ -227,10 +227,10 @@ const configureJourney = (app, commonContent) => {
       }
     },
     timeoutDelay: 2000,
-    apiUrl: `http://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/appeals`,
-    apiDraftUrl: `http://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts`,
-    apiDraftUrlCreate: `http://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts?forceCreate=true`,
-    apiAllDraftUrl: `http://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts/all`,
+    apiUrl: `https://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/appeals`,
+    apiDraftUrl: `https://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts`,
+    apiDraftUrlCreate: `https://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts?forceCreate=true`,
+    apiAllDraftUrl: `https://sscs-tribunals-api-pr-4671.preview.platform.hmcts.net/drafts/all`,
     draftUrl: config.api.draftUrl,
     useCsrfToken: false
   });
