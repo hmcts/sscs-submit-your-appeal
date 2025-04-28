@@ -3,7 +3,7 @@
 {% from "components/toggle_help.njk" import toggleHelp %}
 {% from "details/macro.njk" import govukDetails %}
 
-{% set title = content.title %}
+{% set title = content.titleNI if featureToggles.allowNI else content.title  %}
 
 {% block fields %}
     <div id="appellantInMainlandUk">
