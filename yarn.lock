@@ -5829,18 +5829,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formidable@npm:^2.1.2":
-  version: 2.1.4
-  resolution: "formidable@npm:2.1.4"
-  dependencies:
-    "@paralleldrive/cuid2": "npm:^2.2.2"
-    dezalgo: "npm:^1.0.4"
-    once: "npm:^1.4.0"
-    qs: "npm:^6.11.0"
-  checksum: 10/fda721419d54798b7e92efe14668f418a0dda8eb8c1cc97dd102400e9fb45ba64828eeb51a3bfb1bea89c9679634ae0f9ce67e746dfaeabc4cc533ab1a342ebf
-  languageName: node
-  linkType: hard
-
 "formidable@npm:^3.5.1, formidable@npm:^3.5.2":
   version: 3.5.4
   resolution: "formidable@npm:3.5.4"
@@ -11662,24 +11650,6 @@ __metadata:
     qs: "npm:^6.5.1"
     readable-stream: "npm:^2.3.5"
   checksum: 10/7226a514ebff5aab000d4589367e28ff8e9768a522d84a8da81201a56dfa0d15e713b9508d369a4b6e5aaf814a45ca7b230fffdb6955fd34ba061c4002d61ef8
-  languageName: node
-  linkType: hard
-
-"superagent@npm:^8.1.2":
-  version: 8.1.2
-  resolution: "superagent@npm:8.1.2"
-  dependencies:
-    component-emitter: "npm:^1.3.0"
-    cookiejar: "npm:^2.1.4"
-    debug: "npm:^4.3.4"
-    fast-safe-stringify: "npm:^2.1.1"
-    form-data: "npm:^4.0.0"
-    formidable: "npm:^2.1.2"
-    methods: "npm:^1.1.2"
-    mime: "npm:2.6.0"
-    qs: "npm:^6.11.0"
-    semver: "npm:^7.3.8"
-  checksum: 10/33d0072e051baf91c7d68131c70682a0650dd1bd0b8dfb6f88e5bdfcb02e18cc2b42a66e44b32fd405ac6bcf5fd57c6e267bf80e2a8ce57a18166a9d3a78f57d
   languageName: node
   linkType: hard
 
