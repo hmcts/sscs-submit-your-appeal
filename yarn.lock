@@ -11813,7 +11813,6 @@ __metadata:
     express: "npm:^4.21.2"
     express-nunjucks: "npm:^3.1.2"
     file-loader: "npm:^6.2.0"
-    formidable: "npm:^3.5.1"
     fs: "npm:^0.0.1-security"
     govuk-frontend: "npm:^4.7.0"
     govuk_template_jinja: "npm:^0.26.0"
