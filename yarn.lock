@@ -2639,12 +2639,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accessible-autocomplete@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "accessible-autocomplete@npm:2.0.4"
-  dependencies:
-    preact: "npm:^8.3.1"
-  checksum: 10/a984024952dd504e7f455d188a395d78e447a67679c96ee3f268f02f11ba4b0a5b4ea8ae642a5b85a3f57f1a60e5c95c5083681ce97b583d167ca81d70b7ffa6
+"accessible-autocomplete@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "accessible-autocomplete@npm:3.0.1"
+  peerDependencies:
+    preact: ^8.0.0
+  peerDependenciesMeta:
+    preact:
+      optional: true
+  checksum: 10/240e22c1c1fe68a011c26a6fbe7f54db23e766313d594607f5cbba6d703f70296282d11b4dc110efa00974d6edf1b3165fb6366314acd176f0b470c58c7beed7
   languageName: node
   linkType: hard
 
@@ -9960,13 +9963,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^8.3.1":
-  version: 8.5.3
-  resolution: "preact@npm:8.5.3"
-  checksum: 10/41ee5a12760caeb8735466c7c6711c031d5d26b9ed21d08f4cf40ca54176a4d34e90057a29f66a31a5233cc0dcbd14b3f88b3e379da730bb96514d97cd7f949b
-  languageName: node
-  linkType: hard
-
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -11746,7 +11742,7 @@ __metadata:
     "@hmcts/properties-volume": "npm:^1.1.0"
     "@hmcts/uk-bank-holidays": "npm:^1.0.2"
     "@playwright/test": "npm:^1.50.0"
-    accessible-autocomplete: "npm:^2.0.4"
+    accessible-autocomplete: "npm:^3.0.0"
     applicationinsights: "npm:^2.7.3"
     babel-loader: "npm:^9.1.3"
     body-parser: "npm:^1.20.3"
