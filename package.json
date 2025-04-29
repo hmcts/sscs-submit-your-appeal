@@ -100,7 +100,7 @@
     "sass": "^1.77.8",
     "sass-loader": "^16.0.0",
     "style-loader": "^4.0.0",
-    "superagent": "^8.1.2",
+    "superagent": "^10.0.0",
     "superagent-csrf": "^1.0.0",
     "terser-webpack-plugin": "^5.3.10",
     "uuid": "^9.0.0",
