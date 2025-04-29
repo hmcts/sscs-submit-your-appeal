@@ -151,5 +151,5 @@
     "@babel/runtime": "^7.26.10",
     "cookie": "^1.0.0"
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.9.1"
 }
