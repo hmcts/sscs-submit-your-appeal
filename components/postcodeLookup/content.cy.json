@@ -8,8 +8,8 @@
     "postcodeLookup": {
       "error": {
         "required": "Ni allwn ddod o hyd i gyfeiriad gyda’r cod post hwnnw",
-        "requiredIba" : "Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw",
-        "requiredIbaNI" : "Ni allem ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban na Ogledd Iwerddon gyda'r cod post hwnnw",
+        "requiredIba": "Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw",
+        "requiredIbaNI": "Ni allem ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban na Ogledd Iwerddon gyda'r cod post hwnnw",
         "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad gyda’r cod post hwnnw"
       }
     },
