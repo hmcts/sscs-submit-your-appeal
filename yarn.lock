@@ -3658,13 +3658,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.0.0":
-  version: 5.4.1
-  resolution: "chalk@npm:5.4.1"
-  checksum: 10/29df3ffcdf25656fed6e95962e2ef86d14dfe03cd50e7074b06bad9ffbbf6089adbb40f75c00744d843685c8d008adaf3aed31476780312553caf07fa86e5bc7
-  languageName: node
-  linkType: hard
-
 "check-error@npm:^1.0.2":
   version: 1.0.2
   resolution: "check-error@npm:1.0.2"
@@ -11760,7 +11753,7 @@ __metadata:
     chai: "npm:^4.1.2"
     chai-as-promised: "npm:^7.1.1"
     chai-jq: "npm:^0.0.9"
-    chalk: "npm:^5.0.0"
+    chalk: "npm:^4.1.2"
     clean-webpack-plugin: "npm:^4.0.0"
     config: "npm:^3.3.9"
     cookie-parser: "npm:^1.4.6"
