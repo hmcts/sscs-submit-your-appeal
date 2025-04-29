@@ -53,7 +53,7 @@
     "@cypress/request": "^3.0.0",
     "@cypress/request-promise": "^5.0.0",
     "@hmcts/cookie-manager": "^1.0.0",
-    "@hmcts/div-idam-express-middleware": "^6.6.2",
+    "@hmcts/div-idam-express-middleware": "^7.0.0",
     "@hmcts/nodejs-healthcheck": "^1.8.5",
     "@hmcts/one-per-page": "^5.4.0",
     "@hmcts/properties-volume": "^1.1.0",
