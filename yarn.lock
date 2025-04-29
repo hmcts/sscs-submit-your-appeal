@@ -9214,13 +9214,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-full-name@npm:^1.2.6":
-  version: 1.2.6
-  resolution: "parse-full-name@npm:1.2.6"
-  checksum: 10/00f89cf2cec337b4daf41973c969dc092eb1d3ba4951d1b8c8ff09cd37d61edfab90ce36f63446fa684c2b1f5d3231f82dbf4d7ac39058aab8932781d2e162b2
-  languageName: node
-  linkType: hard
-
 "parse-passwd@npm:^1.0.0":
   version: 1.0.0
   resolution: "parse-passwd@npm:1.0.0"
@@ -11692,7 +11685,6 @@ __metadata:
     nunjucks-loader: "npm:^3.0.0"
     nyc: "npm:^17.0.0"
     optimize-css-assets-webpack-plugin: "npm:^6.0.1"
-    parse-full-name: "npm:^1.2.6"
     playwright: "npm:^1.50.0"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.5.3"
