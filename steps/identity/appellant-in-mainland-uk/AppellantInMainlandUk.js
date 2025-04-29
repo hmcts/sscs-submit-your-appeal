@@ -43,8 +43,9 @@ class AppellantInMainlandUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: allowNI ? this.content.cya.inMainlandUk.questionNI :
-      this.content.cya.inMainlandUk.question,
+      question: allowNI ?
+        this.content.cya.inMainlandUk.questionNI :
+        this.content.cya.inMainlandUk.question,
       section: sections.appellantDetails,
       answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });
