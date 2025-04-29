@@ -5815,7 +5815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formidable@npm:^3.5.1":
+"formidable@npm:^3.5.1, formidable@npm:^3.5.2":
   version: 3.5.4
   resolution: "formidable@npm:3.5.4"
   dependencies:
@@ -11656,6 +11656,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"superagent@npm:^10.0.0":
+  version: 10.2.0
+  resolution: "superagent@npm:10.2.0"
+  dependencies:
+    component-emitter: "npm:^1.3.0"
+    cookiejar: "npm:^2.1.4"
+    debug: "npm:^4.3.4"
+    fast-safe-stringify: "npm:^2.1.1"
+    form-data: "npm:^4.0.0"
+    formidable: "npm:^3.5.2"
+    methods: "npm:^1.1.2"
+    mime: "npm:2.6.0"
+    qs: "npm:^6.11.0"
+  checksum: 10/474fe7a9e44f52e6ceb32c814b51232032088feec0f6fee9acd13373a2e04a12c8490c9530623e34f7bee08b3acd29b6236d7bbe1dee6ed7651a25d2879215a3
+  languageName: node
+  linkType: hard
+
 "superagent@npm:^3.8.2":
   version: 3.8.3
   resolution: "superagent@npm:3.8.3"
@@ -11857,7 +11874,7 @@ __metadata:
     sinon: "npm:^15.2.0"
     sinon-chai: "npm:^3.7.0"
     style-loader: "npm:^4.0.0"
-    superagent: "npm:^8.1.2"
+    superagent: "npm:^10.0.0"
     superagent-csrf: "npm:^1.0.0"
     supertest: "npm:^7.0.0"
     terser-webpack-plugin: "npm:^5.3.10"
