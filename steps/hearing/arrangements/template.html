@@ -1,63 +1,71 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import textbox, textarea, select, selectionButton, selectionButtons %}
+{% from "components/fields.njk" import textarea, select %}
+{% from "components/common/checkbox.njk" import govCheckbox %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% set title = content.title | safe %}
+{% set title = content.title %}
+
+{% set languageInterpreterTextField %}
+  {{ select(
+  fields.selection.interpreterLanguage.language,
+  content.fields.selection.languageInterpreter.language.label,
+  hint = '',
+  options = languagesList
+  ) }}
+{% endset -%}
+
+{% set signLanguageInterpreterTextField %}
+  {{ select(
+  fields.selection.signLanguage.language,
+  content.fields.selection.signLanguage.language.label,
+  hint = content.fields.selection.signLanguage.language.hint,
+  options = signLanguagesList
+  ) }}
+{% endset -%}
+
+{% set anythingElseTextArea %}
+  {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
+{% endset -%}
+
 
 {% block fields %}
-    <p class="govuk-body">{{ content.clickAllArrangements }}</p>
-    <p class="govuk-body">{{ content.you }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
+<p class="govuk-body">{{ content.clickAllArrangements }}</p>
+<p class="govuk-body">{{ content.you }} <strong class="govuk-!-font-size-19 govuk-!-font-weight-bold"> {{ content.cant }}</strong> {{ content.bringYourOwnInterpreter }}</p>
 
-    {% call selectionButtons(
-        field = fields.selection,
-        question = content.fields.selection.label,
-        hideQuestion = true,
-        hint = '',
-        inline = false,
-        type = 'checkbox'
-    ) %}
-        {{ selectionButton(
-            fields.selection.interpreterLanguage.requested,
-            { label: content.fields.selection.languageInterpreter.requested.label, value: 'true', target: 'languageInterpreterTextField' },
-            type = 'checkbox')
-        }}
-        <div class="panel js-hidden" id="languageInterpreterTextField">
-            {{ select(
-                fields.selection.interpreterLanguage.language,
-                content.fields.selection.languageInterpreter.language.label,
-                hint = '',
-                options = languagesList
-            ) }}
-        </div>
-        {{ selectionButton(
-            fields.selection.signLanguage.requested,
-            { label: content.fields.selection.signLanguage.requested.label, value: 'true', target: 'signLanguageInterpreterTextField' },
-            type = 'checkbox')
-        }}
-        <div class="panel js-hidden" id="signLanguageInterpreterTextField">
-            {{ select(
-                fields.selection.signLanguage.language,
-                content.fields.selection.signLanguage.language.label,
-                hint = content.fields.selection.signLanguage.language.hint,
-                options = signLanguagesList
-            ) }}
-        </div>
-        {{ selectionButton(
-            fields.selection.hearingLoop.requested,
-            { label: content.fields.selection.hearingLoop.requested.label, value: 'true' },
-            type = 'checkbox')
-        }}
-        {{ selectionButton(
-            fields.selection.accessibleHearingRoom.requested,
-            { label: content.fields.selection.accessibleHearingRoom.requested.label, value: 'true' },
-            type = 'checkbox')
-        }}
-        {{ selectionButton(
-            fields.selection.anythingElse.requested,
-            { label: content.fields.selection.anythingElse.requested.label, value: 'true', target: 'anythingElseTextArea' },
-            type = 'checkbox')
-        }}
-        <div class="panel js-hidden" id="anythingElseTextArea">
-            {{ textarea(fields.selection.anythingElse.language, content.fields.selection.anythingElse.language.label) }}
-        </div>
-    {% endcall %}
+{{ govCheckbox(field = fields.selection, headerText = content.fields.selection.label, hideQuestion = true, isPageHeading = false,
+  items = [
+    {
+      value: 'true',
+      name: fields.selection.interpreterLanguage.requested.id,
+      text: content.fields.selection.languageInterpreter.requested.label,
+      conditional: { html: languageInterpreterTextField },
+      checked: fields.selection.value.interpreterLanguage.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.signLanguage.requested.id,
+      text: content.fields.selection.signLanguage.requested.label,
+      conditional: { html: signLanguageInterpreterTextField },
+      checked: fields.selection.value.signLanguage.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.hearingLoop.requested.id,
+      text: content.fields.selection.hearingLoop.requested.label,
+      checked: fields.selection.value.hearingLoop.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.accessibleHearingRoom.requested.id,
+      text: content.fields.selection.accessibleHearingRoom.requested.label,
+      checked: fields.selection.value.accessibleHearingRoom.requested
+    },
+    {
+      value: 'true',
+      name: fields.selection.anythingElse.requested.id,
+      text: content.fields.selection.anythingElse.requested.label,
+      conditional: { html: anythingElseTextArea },
+      checked: fields.selection.value.anythingElse.requested
+    }
+]) }}
 {% endblock %}

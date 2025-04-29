@@ -30,7 +30,7 @@ test.describe(
       page.selectHaveYouContactedDWPAndContinue(
         language,
         commonContent,
-        '#haveContactedDWP-yes'
+        '#haveContactedDWP'
       );
       await page.waitForURL(`**${paths.compliance.noMRN}`);
     });
@@ -41,7 +41,7 @@ test.describe(
       page.selectHaveYouGotAMRNAndContinue(
         language,
         commonContent,
-        '#haveContactedDWP-no'
+        '#haveContactedDWP-2'
       );
       await page.waitForURL(`**${paths.compliance.contactDWP}`);
     });

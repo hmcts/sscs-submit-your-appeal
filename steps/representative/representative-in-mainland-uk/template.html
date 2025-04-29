@@ -1,22 +1,17 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons, textarea, textbox, select %}
-{% from "components/toggle_help.njk" import toggleHelp %}
-{% from "details/macro.njk" import govukDetails %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
 {% set title = content.titleNI if featureToggles.allowNI else content.title %}
 
 {% block fields %}
-    <div id="representativeInMainlandUk">
         {% call formSection() %}
-            {{ selectionButtons(
-                fields.inMainlandUk,
-                content.question,
-                hint = '',
-                options = [
-                    { label: content.fields.inMainlandUk.yes, value: "yes" },
-                    { label: content.fields.inMainlandUk.no,  value: "no" }
-                ])
-            }}
+            {{ govRadio(field = fields.inMainlandUk,
+                headerText = content.question,
+                hideQuestion = true,
+                items = [
+                    { value: "yes", text: content.fields.inMainlandUk.yes },
+                    { value: "no", text: content.fields.inMainlandUk.no }
+            ]) }}
         {% endcall %}
-    </div>
 {% endblock %}

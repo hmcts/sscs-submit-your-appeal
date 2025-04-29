@@ -1,20 +1,20 @@
 {% extends "components/form-template.html" %}
-{% from "components/fields.njk" import formSection, selectionButtons %}
+{% from "components/fields.njk" import formSection %}
+{% from "components/common/radio.njk" import govRadio %}
 
-{% set title = content.title | safe %}
+{% set title = content.title %}
 
 {% block fields %}
     <p class="govuk-body">{{ content.subtitle }}</p>
 
     {% call formSection() %}
-        {{ selectionButtons(
-            fields.scheduleHearing,
-            content.fields.scheduleHearing.label,
+        {{ govRadio(
+            field = fields.scheduleHearing,
+            headerText = content.fields.scheduleHearing.label,
             hideQuestion = true,
-            options = [
-                { label: content.fields.scheduleHearing.yes, value: "yes" },
-                { label: content.fields.scheduleHearing.no, value: "no" }
-            ])
-        }}
+            items = [
+                { text: content.fields.scheduleHearing.yes, value: "yes" },
+                { text: content.fields.scheduleHearing.no, value: "no" }
+        ]) }}
     {% endcall %}
 {% endblock %}
