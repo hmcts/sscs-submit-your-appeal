@@ -60,7 +60,7 @@
     "@hmcts/uk-bank-holidays": "^1.0.2",
     "@playwright/test": "^1.50.0",
     "accessible-autocomplete": "^3.0.0",
-    "applicationinsights": "^2.7.3",
+    "applicationinsights": "^2.9.6",
     "babel-loader": "^10.0.0",
     "body-parser": "^1.20.3",
     "chalk": "^4.1.2",
