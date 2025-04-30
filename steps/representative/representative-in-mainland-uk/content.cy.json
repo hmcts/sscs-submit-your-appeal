@@ -1,20 +1,20 @@
 {
   "titleHead": "Cynrychiolydd yn y DU",
-  "title": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr neu'r Alban?",
-  "question": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr neu'r Alban?",
+  "title": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon?",
+  "question": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon?",
 
   "fields": {
     "inMainlandUk": {
       "yes": "Ydw",
       "no": "Nac ydw",
       "errors": {
-        "required": "Dewiswch ‘ydw’ os yw eich cynrychiolydd yn byw yng Nghymru, Lloegr neu’r Alban."
+        "required": "Dewiswch ‘ydw’ os yw eich cynrychiolydd yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon"
       }
     }
   },
   "cya": {
     "inMainlandUk": {
-      "question": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr neu'r Alban?",
+      "question": "A yw eich cynrychiolydd yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon?",
       "yes": "Ydw",
       "no": "Nac ydw"
     }

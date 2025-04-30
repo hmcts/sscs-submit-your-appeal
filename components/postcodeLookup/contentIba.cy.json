@@ -1,5 +1,5 @@
 {
-  "textboxLabel": "Nodwch god post yng Nghymru, Lloegr neu’r Alban",
+  "textboxLabel": "Nodwch god post yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon",
   "addressSelectionLabel": "Dewiswch gyfeiriad",
   "manualEntryLabel": "Ni allaf ddod o hyd i fy nghyfeiriad",
   "dropdownCount": "daethpwyd o hyd i’r cyfeiriad",
@@ -7,8 +7,8 @@
   "fields": {
     "postcodeLookup": {
       "error": {
-        "required": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr na’r Alban gyda’r cod post hwnnw.",
-        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr na’r Alban gyda’r cod post hwnnw"
+        "required": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw.",
+        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
       }
     },
     "postcodeAddress": {
