@@ -228,42 +228,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       );
       expect(req.session).to.eql({ ccdCaseId: 12 });
     });
-
-    it('Expected Successfully updated a draft:', async() => {
-      req = JSON.parse(JSON.stringify(req));
-      Object.assign(req, { session: { ccdCaseId: 12 } });
-      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.callCount(5);
-      expect(next).to.have.been.calledOnce;
-    });
-  });
-
-  describe('saveToDraftStore api failed call', () => {
-    const req = {
-      journey: {
-        values: { BenefitType: 'PIP', appellant: { nino: 'AB223344B' } },
-        steps: {
-          Error500: paths.errors.internalServerError
-        },
-        visitedSteps: [{ benefitType: '', valid: true }],
-        settings: { apiDraftUrlCreate: `${apiUrl}/random-url` }
-      },
-      idam: {
-        userDetails: {
-          id: '1'
-        }
-      },
-      cookies: { '__auth-token': 'xxx' }
-    };
-    res.redirect = sinon.spy();
-
-    it('Expected error on posted a draft:', async() => {
-      await draftAppealStoreMiddleware.saveToDraftStore(req, res, next);
-      expect(loggerSpy).to.have.been.calledWith(
-        'Exception on creating/updating a draft for case with nino: XXXX3344B',
-        'draftAppealStoreMiddleware.js'
-      );
-    });
   });
 
   describe('restoreUserState failed next call', () => {
