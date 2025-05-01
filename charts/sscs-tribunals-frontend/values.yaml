@@ -34,7 +34,7 @@ nodejs:
         - postcode-lookup-token
         - sscs-redis-access-key
         - sscs-redis-connection-string
-        - app-insights-connection-string
+        - AppInsightsInstrumentationKey
         - pcq-token-key
 
 redis:

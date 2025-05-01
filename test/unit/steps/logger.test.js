@@ -14,9 +14,7 @@ describe('logger.js', () => {
   let sandBox = null;
 
   beforeEach(() => {
-    logger.setIkey(
-      'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
-    );
+    logger.setIkey('test-key');
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');

@@ -18,8 +18,8 @@ const setupSecrets = () => {
     );
     setSecret('secrets.sscs.postcode-lookup-token', 'postcodeLookup.token');
     setSecret(
-      'secrets.sscs.app-insights-connection-string',
-      'appInsights.connectionString'
+      'secrets.sscs.AppInsightsInstrumentationKey',
+      'appInsights.instrumentationKey'
     );
     setSecret('secrets.sscs.pcq-token-key', 'services.pcq.tokenKey');
   }
