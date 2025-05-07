@@ -121,7 +121,7 @@
     "gulp": "^5.0.0",
     "gulp-cli": "^3.0.0",
     "jsdom": "^16.5.0",
-    "mocha": "^6.1.4",
+    "mocha": "^11.0.0",
     "mocha-multi": "^1.1.0",
     "mocha-param": "^2.0.0",
     "mochapack": "^2.1.4",
