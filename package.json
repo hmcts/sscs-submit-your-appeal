@@ -54,7 +54,7 @@
     "@hmcts/cookie-manager": "^1.0.0",
     "@hmcts/div-idam-express-middleware": "^7.0.0",
     "@hmcts/nodejs-healthcheck": "^1.8.5",
-    "@hmcts/one-per-page": "^5.4.0",
+    "@hmcts/one-per-page": "^6.0.0",
     "@hmcts/properties-volume": "^1.1.0",
     "@hmcts/uk-bank-holidays": "^1.0.2",
     "accessible-autocomplete": "^3.0.0",
