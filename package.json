@@ -74,7 +74,7 @@
     "express-nunjucks": "^3.1.2",
     "file-loader": "^6.2.0",
     "formidable": "^3.5.1",
-    "govuk-frontend": "^4.7.0",
+    "govuk-frontend": "^5.0.0",
     "govuk_template_jinja": "^0.26.0",
     "graceful-fs": "^4.2.11",
     "helmet": "^8.0.0",
