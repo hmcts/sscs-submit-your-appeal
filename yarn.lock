@@ -9613,7 +9613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.52.0, playwright@npm:^1.50.0":
+"playwright@npm:1.52.0":
   version: 1.52.0
   resolution: "playwright@npm:1.52.0"
   dependencies:
@@ -11818,7 +11818,6 @@ __metadata:
     nyc: "npm:^17.0.0"
     optimize-css-assets-webpack-plugin: "npm:^6.0.1"
     parse-full-name: "npm:^1.2.6"
-    playwright: "npm:^1.50.0"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.5.3"
     prettier-plugin-jinja-template: "npm:^2.0.0"

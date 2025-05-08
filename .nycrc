@@ -4,6 +4,7 @@
     "appConfigurations.js",
     "app-insights.js",
     "server.js",
+    "webpack.config.js",
     "config/**",
     "charts/**",
     "**/healthcheck.js",
@@ -20,8 +21,7 @@
     "webpack/**",
     "components/postcodeLookup/assets/**",
     "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
-    "steps/check-your-appeal/CheckYourAppeal.js",
-    "logger.js"
+    "steps/check-your-appeal/CheckYourAppeal.js"
   ],
   "reporter": [
     "lcov",
