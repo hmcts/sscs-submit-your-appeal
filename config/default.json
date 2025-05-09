@@ -116,10 +116,7 @@
     },
     "webchatOpen8to5": {
       "enabled": "false"
-    },
-    "ibcNiPostcodes": {
-      "enabled": "true"
-    }    
+    }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",

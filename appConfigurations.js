@@ -79,9 +79,8 @@ const configureNunjucks = (app, commonContent) =>
       urls,
       featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
         cookieBanner: () => process.env.ALLOW_COOKIE_BANNER_ENABLED || config.features.cookieBanner.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled,
-        ibcNiPostcodes: () => process.env.IBC_NI_POSTCODES_FEATURE || config.features.ibcNiPostcodes.enabled}
-      }
+        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
+    }
   });
 const configureViews = app => {
   app.set('views', [
