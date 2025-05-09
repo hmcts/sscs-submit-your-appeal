@@ -233,7 +233,7 @@ async function enterAppellantContactDetailsWithMobileAndContinue(
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await expect(
-    I.getByText(postcodeLookupContent.textboxLabel).first()
+    I.getByText(postcodeLookupContent.textboxLabelNI).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
@@ -250,7 +250,7 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await expect(
-    I.getByText(postcodeLookupContent.textboxLabel).first()
+    I.getByText(postcodeLookupContent.textboxLabelNI).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);

@@ -79,7 +79,7 @@
     <div class="{{ "govuk-form-group" if options.length === 0}}" {{ errorClass(field) }}">
         <label class="govuk-label {{ "govuk-visually-hidden" if hideLabel }}"
                for="{{ field.id }}">
-            {{ content.textboxLabel }}
+            {{ content.textboxLabelNI if featureToggles.allowNI else content.textboxLabel }}
             {%- if hint %}
                 <span class="govuk-hint">
                     {{ hint }}
