@@ -187,7 +187,7 @@ class Controller {
     };
 
     await rp(options)
-      .then(body => {
+      .then((body) => {
         if (body.results && body.results.length > 0) {
           page.addressSuggestions = body.results;
         } else {
@@ -217,7 +217,7 @@ class Controller {
       if (selectedUPRN) {
         // eslint-disable-next-line max-len
         selectedAddress = page.addressSuggestions.filter(
-          address => address.DPA.UPRN === selectedUPRN
+          (address) => address.DPA.UPRN === selectedUPRN
         );
       }
     }
@@ -286,10 +286,23 @@ class Controller {
   async init(callBack) {
     const sessionLanguage = i18next.language;
 
+    const featureToggles = this.page.req.app.locals.featureToggles;
+    const isbcNiPostcodes = featureToggles.ibcNiPostcodes();
+
     const req = this.page.req;
-    const content = require(
-      `./content${isIba(req) ? 'Iba' : ''}.${sessionLanguage}`
-    );
+    let contentFile = '';
+
+    if (isIba(req)) {
+      if (isbcNiPostcodes) {
+        contentFile = `contentIbaNi.${sessionLanguage}`;
+      } else {
+        contentFile = `contentIba.${sessionLanguage}`;
+      }
+    } else {
+      contentFile = `content.${sessionLanguage}`;
+    }
+
+    const content = require(`./${contentFile}`);
 
     const page = this.page;
 
