@@ -23,7 +23,7 @@
     "draftUrl": "https://localhost:3000/appeal"
   },
   "appInsights": {
-    "instrumentationKey": "",
+    "connectionString": "",
     "roleName": "sya"
   },
   "e2e": {

@@ -14,7 +14,9 @@ describe('logger.js', () => {
   let sandBox = null;
 
   beforeEach(() => {
-    logger.setIkey('test-key');
+    logger.setIkey(
+      'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
+    );
     logger.startAppInsights();
     sandBox = sinon.createSandbox();
     nativeConsoleSpy = sandBox.stub(console, 'log');
@@ -45,7 +47,9 @@ describe('logger.js', () => {
   });
 
   it('startAppInsights should be called', () => {
-    logger.setIkey('test-key');
+    logger.setIkey(
+      'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
+    );
     logger.startAppInsights();
     expect(applicationInsightsStartSpy).to.have.been.calledOnce;
   });

@@ -19,7 +19,7 @@
     "draftUrl": "DRAFT_API_URL"
   },
   "appInsights": {
-    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY",
+    "connectionString": "APPLICATIONINSIGHTS_CONNECTION_STRING",
     "roleName": "APPINSIGHTS_ROLE_NAME"
   },
   "e2e": {

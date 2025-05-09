@@ -24,7 +24,7 @@ nodejs:
       secrets:
         - idam-sscs-oauth2-client-secret
         - postcode-lookup-token
-        - AppInsightsInstrumentationKey
+        - app-insights-connection-string
         - pcq-token-key
 
 redis:
