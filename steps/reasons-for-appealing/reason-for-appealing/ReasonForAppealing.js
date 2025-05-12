@@ -1,5 +1,5 @@
 /* eslint-disable no-undefined */
-/* eslint-disable multiline-ternary */
+
 /* eslint-disable operator-linebreak */
 
 const {

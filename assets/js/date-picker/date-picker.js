@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable id-blacklist */
 import './bootstrap-datepicker1.9.0.min';
 import * as $ from 'jquery';

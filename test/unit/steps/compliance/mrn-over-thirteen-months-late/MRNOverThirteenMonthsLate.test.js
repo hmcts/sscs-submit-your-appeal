@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 
 const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');

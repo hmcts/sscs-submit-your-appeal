@@ -54,7 +54,7 @@ describe('Pcq.js', () => {
       expect(res.redirect.calledOnce).to.equal(true);
       expect(res.redirect.args[0][0]).to.satisfy(str =>
         str.startsWith(
-          // eslint-disable-next-line max-len
+
           'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=test%2Btest%40test.com&returnUrl=localhost/check-your-appeal&language=en&token='
         )
       );
@@ -82,7 +82,7 @@ describe('Pcq.js', () => {
       expect(res.redirect.calledOnce).to.equal(true);
       expect(res.redirect.args[0][0]).to.satisfy(str =>
         str.startsWith(
-          // eslint-disable-next-line max-len
+
           'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=specificuser%40idam.com&returnUrl=localhost/check-your-appeal&language=en&token='
         )
       );

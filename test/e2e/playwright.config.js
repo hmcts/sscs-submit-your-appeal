@@ -1,6 +1,6 @@
 // playwright.config.js
 /* eslint-disable no-process-env */
-/* eslint-disable no-sync */
+
 import { defineConfig, devices } from '@playwright/test';
 
 const getE2eTestTags = (process.env.E2E_TEST_TAGS || '@functional')
