@@ -350,10 +350,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       const request = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/text'
         })
         .get('/drafts/all')
-        .reply(204, {});
+        .reply(204, "something");
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(
