@@ -21,7 +21,9 @@ class DateUtils {
       require(`moment/locale/${language}`);
     }
     moment.locale(language);
+    // eslint-disable-next-line no-undefined
     let format = day !== undefined && day.toString().startsWith('0') ? 'DD': 'D';
+    // eslint-disable-next-line no-undefined
     format += month !== undefined && month.toString().startsWith('0') ? '-MM-YYYY': '-M-YYYY';
     return moment(`${day}-${month}-${year}`, format, true);
   }
