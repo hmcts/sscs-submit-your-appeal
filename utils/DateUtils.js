@@ -4,6 +4,7 @@ const { long, short } = require('utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
 const crypto = require('crypto');
+const assert = require('assert');
 
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
@@ -21,8 +22,9 @@ class DateUtils {
       require(`moment/locale/${language}`);
     }
     moment.locale(language);
-
-    return moment(`${day}-${month}-${year}`, 'D-M-YYYY', true);
+    let format = day !== undefined && day.toString().startsWith('0') ? 'DD': 'D';
+    format += month !== undefined && month.toString().startsWith('0') ? '-MM-YYYY': '-M-YYYY';
+    return moment(`${day}-${month}-${year}`, format, true);
   }
 
   static oneDayShortOfAMonthAgo() {
