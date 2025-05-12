@@ -120,7 +120,7 @@ describe('CheckYourAppeal.js', () => {
     it('should log a message when successfully making an API call', () => {
       loggerStub.trace = sinon.stub().returns();
       loggerStub.event = sinon.stub();
-      // eslint-disable-next-line max-len
+
       request.post = () => ({
         set: () => ({
           send: sinon.stub().resolves({ status: HttpStatus.CREATED })
@@ -137,7 +137,7 @@ describe('CheckYourAppeal.js', () => {
 
     it('should log an event when missing data from journey values', () => {
       loggerStub.event = sinon.stub();
-      // eslint-disable-next-line max-len
+
       request.post = () => ({
         set: () => ({
           send: sinon.stub().resolves({ status: HttpStatus.CREATED })
@@ -150,7 +150,6 @@ describe('CheckYourAppeal.js', () => {
     });
 
     it('should log error and track in app insights when unsuccessfully making an API call', () => {
-      // eslint-disable-next-line max-len
       request.post = () => ({
         set: () => ({
           send: sinon.stub().rejects({ message: 'Internal server error' })
@@ -167,7 +166,6 @@ describe('CheckYourAppeal.js', () => {
     });
 
     it('should log duplicate conflict error and track in app insights when unsuccessfully making an API call', () => {
-      // eslint-disable-next-line max-len
       request.post = () => ({
         set: () => ({
           send: sinon.stub().rejects({ status: HttpStatus.CONFLICT })

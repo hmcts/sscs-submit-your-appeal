@@ -17,7 +17,7 @@ module.exports = app => {
 
   app.post('/appeal', (req, res) => {
     state.appeal = req.body;
-    // eslint-disable-next-line
+
     console.log('=== state updated', state);
     // eslint-disable-next-line
     res.status(204).send();

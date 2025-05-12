@@ -1,5 +1,5 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-undef */
+
+
 async function clickNextIfDateNotVisible(page, dateElement) {
   try {
     const hasDate = Boolean(await page.$(`[data-date="${dateElement}"]`));

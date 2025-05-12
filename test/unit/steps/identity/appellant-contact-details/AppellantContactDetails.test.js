@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 
 const { expect } = require('test/util/chai');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');

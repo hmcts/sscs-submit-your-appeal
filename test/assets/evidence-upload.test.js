@@ -16,7 +16,7 @@ chai.use(chaiJq);
 /* eslint-disable no-multi-assign */
 /* eslint-disable global-require */
 /* eslint-disable no-empty-function */
-/* eslint-disable func-names */
+
 
 describe('evidence upload', () => {
   let EvidenceUpload;
@@ -34,12 +34,12 @@ describe('evidence upload', () => {
         <label for="uploadEv">Label</label>
         <input type="file" id="uploadEv" name="uploadEv"/>
     </div>`;
+  const jsdom = new JSDOM(`<body>${content}</body>`);
+
+  const { window } = jsdom;
+  const { document } = window;
 
   before(done => {
-    const jsdom = new JSDOM(`<body>${content}</body>`);
-
-    const { window } = jsdom;
-    const { document } = window;
     global.window = window;
     global.document = document;
 
@@ -130,4 +130,3 @@ describe('evidence upload', () => {
 /* eslint-enable no-multi-assign */
 /* eslint-enable global-require */
 /* eslint-enable no-empty-function */
-/* eslint-enable func-names */
