@@ -1,4 +1,4 @@
-/* eslint-disable no-process-env */
+
 
 const { test, expect } = require('@playwright/test');
 

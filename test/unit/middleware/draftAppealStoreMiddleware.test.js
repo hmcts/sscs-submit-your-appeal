@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 const sinon = require('sinon');
 const { expect } = require('test/util/chai');
 const Base64 = require('js-base64').Base64;
@@ -8,7 +8,7 @@ const paths = require('paths');
 const nock = require('nock');
 const i18next = require('i18next');
 
-// eslint-disable-next-line func-names
+
 describe('middleware/draftAppealStoreMiddleware', () => {
   const res = {};
   const next = sinon.spy();
@@ -48,7 +48,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
 
     it('keep initial steps', () => {
       draftAppealStoreMiddleware.removeRevertInvalidSteps(journey, callBack);
-      // eslint-disable-next-line max-len
+
       expect(journey.visitedSteps).to.eql([
         { name: 'step1', valid: true },
         { name: 'step1', valid: false }
@@ -350,10 +350,10 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       const request = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/text'
         })
         .get('/drafts/all')
-        .reply(204, {});
+        .reply(204, "something");
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(
@@ -449,7 +449,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     });
-    // eslint-disable-next-line max-len
+
     class saveToDraftStoreAnotherClass extends draftAppealStoreMiddleware.SaveToDraftStoreAddAnother {
       next() {
         sinon.spy();
@@ -467,7 +467,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       }
     });
 
-    // eslint-disable-next-line max-len
+
     class saveToDraftStoreCYAClass extends draftAppealStoreMiddleware.SaveToDraftStoreCYA {
       next() {
         sinon.spy();

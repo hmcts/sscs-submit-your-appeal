@@ -10,7 +10,6 @@ describe('BranchForEnglandOrWales.js', () => {
     let branchForEnglandOrWales = null;
 
     beforeEach(() => {
-      /* eslint-disable max-len */
       const BranchForEnglandOrWales = proxyquire(
         'steps/start/postcode-checker/BranchForEnglandOrWales',
         {
@@ -26,7 +25,7 @@ describe('BranchForEnglandOrWales.js', () => {
           }
         }
       );
-      /* eslint-disable max-len */
+
       branchForEnglandOrWales = new BranchForEnglandOrWales(
         'somePostcode',
         paths.identity.areYouAnAppointee,
