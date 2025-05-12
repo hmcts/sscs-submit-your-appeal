@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 const chai = require('chai');
 
 const expect = chai.expect;

@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers */
-/* eslint-disable no-console */
+
 
 const applicationInsights = require('applicationinsights');
 const config = require('config');

@@ -94,7 +94,6 @@ const datePickerUtils = {
       content: `<span>${day}</span>`
     };
     if (day === '1') {
-      // eslint-disable-next-line max-len
       const html = `<span>${day}</span><p class="govuk-body first-of-month" aria-label="${fullMonth}">${month}</p>`;
       displayMonth.content = html;
     }

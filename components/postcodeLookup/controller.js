@@ -215,7 +215,6 @@ class Controller {
     ) {
       const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
       if (selectedUPRN) {
-        // eslint-disable-next-line max-len
         selectedAddress = page.addressSuggestions.filter(
           address => address.DPA.UPRN === selectedUPRN
         );

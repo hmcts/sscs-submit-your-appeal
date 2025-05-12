@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, max-len, no-undefined */
+/* eslint-disable no-magic-numbers, no-undefined */
 const { decode } = require('html-entities');
 const benefitTypes = require('steps/start/benefit-type/types');
 
