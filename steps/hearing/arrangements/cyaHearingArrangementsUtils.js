@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-undefined  */
+/* eslint-disable no-undefined  */
 
 const i18next = require('i18next');
 
