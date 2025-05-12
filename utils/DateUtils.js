@@ -4,7 +4,6 @@ const { long, short } = require('utils/months');
 const { includes } = require('lodash');
 const moment = require('moment');
 const crypto = require('crypto');
-const assert = require('assert');
 
 const mrnDateImage = require('steps/compliance/mrn-date/mrnDateOnImage');
 
