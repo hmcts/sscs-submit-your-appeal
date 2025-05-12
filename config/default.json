@@ -116,7 +116,9 @@
     },
     "webchatOpen8to5": {
       "enabled": "false"
-    }
+    },
+    "allowNI" : {
+      "enabled": true
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
@@ -171,4 +173,4 @@
     }
   },
   "languages": ["en", "cy"]
-}
+ }
