@@ -48,6 +48,9 @@ class Controller {
               content.fields.postcodeLookup.error.requiredIbaNI :
               content.fields.postcodeLookup.error.requiredIba,
             allowNI ?
+              content.fields.postcodeLookup.error.invalidPostcodeNI :
+              content.fields.postcodeLookup.error.invalidPostcode,
+            allowNI ?
               Joi.string().trim().required() :
               Joi.string().trim().regex(notNiPostcode).required()
           )
