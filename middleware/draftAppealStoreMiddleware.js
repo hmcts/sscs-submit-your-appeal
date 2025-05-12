@@ -312,8 +312,8 @@ const restoreAllDraftsState = async(req, res, next) => {
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
       .then(result => {
         logger.trace(['Successfully get all drafts', result.status], logPath);
-
-        if (result.body) {
+        // eslint-disable-next-line no-undefined
+        if (result.body !== undefined) {
           const shimmed = {};
           const drafts = result.body;
           const draftObj = {};
