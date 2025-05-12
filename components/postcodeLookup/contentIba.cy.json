@@ -1,6 +1,5 @@
 {
-  "textboxLabel": "Nodwch god post yng Nghymru, Lloegr neu’r Alban",
-  "textboxLabelNI": "Rhowch god post yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon",
+  "textboxLabel": "Rhowch god post yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon",
   "addressSelectionLabel": "Dewiswch gyfeiriad",
   "manualEntryLabel": "Ni allaf ddod o hyd i fy nghyfeiriad",
   "dropdownCount": "daethpwyd o hyd i’r cyfeiriad",
