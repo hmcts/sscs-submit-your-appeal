@@ -1,5 +1,4 @@
 const chai = require('chai');
-const sinon = require('sinon');
 const { JSDOM } = require('jsdom');
 const jQuery = require('jquery');
 
@@ -46,12 +45,16 @@ describe('language-preference.js', () => {
   });
 
   it('should return true for startLanguagePreferenceToggle when pathname is /language-preference', () => {
-    sinon.stub(global.window, 'location').value({ pathname: '/language-preference' });
-    expect(LanguagePreferenceToggle.startLanguagePreferenceToggle()).to.be.true;
+    const { window } = new JSDOM('', { url: 'http://localhost/language-preference' });
+    global.window = window;
+    const result = LanguagePreferenceToggle.startLanguagePreferenceToggle();
+    expect(result).to.be.true;
   });
 
   it('should return false for startLanguagePreferenceToggle when pathname is not /language-preference', () => {
-    sinon.stub(global.window, 'location').value({ pathname: '/other-path' });
-    expect(LanguagePreferenceToggle.startLanguagePreferenceToggle()).to.be.false;
+    const { window } = new JSDOM('', { url: 'http://localhost/other-path' });
+    global.window = window;
+    const result = LanguagePreferenceToggle.startLanguagePreferenceToggle();
+    expect(result).to.be.false;
   });
 });
