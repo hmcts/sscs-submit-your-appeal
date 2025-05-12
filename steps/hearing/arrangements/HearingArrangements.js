@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-undefined, no-confusing-arrow  */
+/* eslint-disable no-undefined, no-confusing-arrow  */
 
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const { form, object, text, bool } = require('@hmcts/one-per-page/forms');

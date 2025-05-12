@@ -15,16 +15,16 @@ describe('inactivity alert', () => {
   let inactivityAlert;
   let navigatedAway;
   let $;
+  const jsdom = new JSDOM(`<body><div id="#timeout-dialog">
+      <div id="expiring-in-message">Session expiring in 02:00 minutes</div>
+      <button id="extend"></button>
+      <button id="destroy"></button>
+      </div></body>`);
+
+  const { window } = jsdom;
+  const { document } = window;
 
   before(done => {
-    const jsdom = new JSDOM(`<body><div id="#timeout-dialog">
-        <div id="expiring-in-message">Session expiring in 02:00 minutes</div>
-        <button id="extend"></button>
-        <button id="destroy"></button>
-        </div></body>`);
-
-    const { window } = jsdom;
-    const { document } = window;
     global.window = window;
     global.document = document;
 

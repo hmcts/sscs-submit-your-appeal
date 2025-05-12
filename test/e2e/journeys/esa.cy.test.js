@@ -19,7 +19,7 @@ const { endTheSession } = require('../page-objects/session/endSession');
 const { createTheSession } = require('../page-objects/session/createSession');
 
 /* eslint-disable global-require */
-/* eslint-disable max-len */
+
 if (require('config').get('features.allowESA.enabled').toString() === 'true') {
   test.describe(`${language.toUpperCase()} - Appellant who chooses ESA @batch-01 @esa`, () => {
     test.beforeEach('Create session and user', async({ page }) => {

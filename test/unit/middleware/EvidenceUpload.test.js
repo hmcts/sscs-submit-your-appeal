@@ -1,7 +1,7 @@
 /* eslint-disable init-declarations */
 /* eslint-disable no-shadow */
-/* eslint-disable max-len */
-/* eslint-disable max-lines */
+
+
 /* eslint-disable no-empty-function */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */

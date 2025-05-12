@@ -16,12 +16,12 @@ describe('PostcodeChecker.js', () => {
       .withArgs('postcodeChecker.endpoint')
       .returns('/regionalcentre');
     configGetStub.withArgs('postcodeChecker.allowedRpcs').returns(allowedRPCs);
-    /* eslint-disable max-len */
+
     postcodeChecker = proxyquire('utils/postcodeChecker', {
       superagent: requireStub,
       config: configStub
     });
-    /* eslint-disable max-len */
+
 
     getStub.returns(requireStub);
   }
