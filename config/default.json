@@ -118,7 +118,7 @@
       "enabled": "false"
     },
     "allowNI" : {
-      "enabled": true
+      "enabled": "true"
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
