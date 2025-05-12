@@ -119,6 +119,7 @@
     },
     "allowNI" : {
       "enabled": "true"
+    }
   },
   "postcodeChecker": {
     "endpoint": "/regionalcentre",
@@ -173,4 +174,4 @@
     }
   },
   "languages": ["en", "cy"]
- }
+}
