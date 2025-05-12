@@ -1,5 +1,4 @@
 const chai = require('chai');
-const sinon = require('sinon');
 const { JSDOM } = require('jsdom');
 const jQuery = require('jquery');
 
