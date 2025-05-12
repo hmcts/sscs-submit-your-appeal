@@ -1,11 +1,11 @@
 const { expect } = require('test/util/chai');
 const sinon = require('sinon');
-const applicationInsights = require('applicationinsights');
-const logger = require('logger');
+const proxyquire = require('proxyquire');
 const chalk = require('chalk');
 
 describe('logger.js', () => {
-  let applicationInsightsStartSpy = null;
+  let applicationInsightsMock = null;
+  let logger = null;
   let applicationInsightsExceptionSpy = null;
   let applicationInsightsTraceSpy = null;
   let applicationInsightsEventSpy = null;
@@ -14,25 +14,31 @@ describe('logger.js', () => {
   let sandBox = null;
 
   beforeEach(() => {
-    logger.setIkey(
-      'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
-    );
-    logger.startAppInsights();
     sandBox = sinon.createSandbox();
+
+    applicationInsightsMock = {
+      start: sinon.stub(),
+      defaultClient: {
+        trackException: sinon.stub(),
+        trackTrace: sinon.stub(),
+        trackEvent: sinon.stub(),
+        context: {
+          keys: {
+            cloudRole: 'ai.cloud.role'
+          },
+          tags: {}
+        }
+      }
+    };
+
+    logger = proxyquire('logger', {
+      applicationinsights: applicationInsightsMock
+    });
+
     nativeConsoleSpy = sandBox.stub(console, 'log');
-    applicationInsightsStartSpy = sandBox.stub(applicationInsights, 'start');
-    applicationInsightsExceptionSpy = sandBox.stub(
-      applicationInsights.defaultClient,
-      'trackException'
-    );
-    applicationInsightsTraceSpy = sandBox.stub(
-      applicationInsights.defaultClient,
-      'trackTrace'
-    );
-    applicationInsightsEventSpy = sandBox.stub(
-      applicationInsights.defaultClient,
-      'trackEvent'
-    );
+    applicationInsightsExceptionSpy = applicationInsightsMock.defaultClient.trackException;
+    applicationInsightsTraceSpy = applicationInsightsMock.defaultClient.trackTrace;
+    applicationInsightsEventSpy = applicationInsightsMock.defaultClient.trackEvent;
     consoleSpy = sandBox.spy(logger, 'console');
   });
 
@@ -43,134 +49,139 @@ describe('logger.js', () => {
   it('startAppInsights should be not called', () => {
     logger.setIkey('');
     logger.startAppInsights();
-    expect(applicationInsightsStartSpy).to.have.not.been.calledOnce;
+    expect(applicationInsightsMock.start).to.have.not.been.calledOnce;
   });
 
-  it('startAppInsights should be called', () => {
-    logger.setIkey(
-      'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
-    );
-    logger.startAppInsights();
-    expect(applicationInsightsStartSpy).to.have.been.calledOnce;
-  });
+  describe('setIkeys', () => {
+    beforeEach(() => {
+      logger.setIkey(
+        'InstrumentationKey=test-key;IngestionEndpoint=https://fake.endpoint'
+      );
+      logger.startAppInsights();
+    });
 
-  it('exception should call  exception tracking', () => {
-    const error = 'Error happened here';
-    const label = 'test.js';
+    it('startAppInsights should be called', () => {
+      expect(applicationInsightsMock.start).to.have.been.calledOnce;
+    });
 
-    logger.exception(error, label);
+    it('exception should call  exception tracking', () => {
+      const error = 'Error happened here';
+      const label = 'test.js';
 
-    const msgBuild = logger.msgBuilder(error, label);
+      logger.exception(error, label);
 
-    expect(applicationInsightsExceptionSpy).to.have.been.calledWith(
-      sinon.match({
-        exception: sinon.match
-          .instanceOf(Error)
-          .and(sinon.match.has('message', msgBuild))
-      })
-    );
+      const msgBuild = logger.msgBuilder(error, label);
 
-    expect(consoleSpy).to.have.been.calledWith(
-      sinon.match.instanceOf(Error).and(sinon.match.has('message', msgBuild)),
-      3
-    );
-  });
+      expect(applicationInsightsExceptionSpy).to.have.been.calledWith(
+        sinon.match({
+          exception: sinon.match
+            .instanceOf(Error)
+            .and(sinon.match.has('message', msgBuild))
+        })
+      );
 
-  it('exception should not call  appinsight tracking', () => {
-    const error = 'Error happened here';
-    const label = 'test.js';
+      expect(consoleSpy).to.have.been.calledWith(
+        sinon.match.instanceOf(Error).and(sinon.match.has('message', msgBuild)),
+        3
+      );
+    });
 
-    logger.exception(error, label, false);
+    it('exception should not call  appinsight tracking', () => {
+      const error = 'Error happened here';
+      const label = 'test.js';
 
-    expect(applicationInsightsExceptionSpy).to.not.have.been.calledOnce;
-    expect(consoleSpy).to.have.been.calledOnce;
-  });
+      logger.exception(error, label, false);
 
-  it('trace should be called with proper args', () => {
-    const error = 'Trace happened here';
-    const label = 'test.js';
+      expect(applicationInsightsExceptionSpy).to.not.have.been.calledOnce;
+      expect(consoleSpy).to.have.been.calledOnce;
+    });
 
-    logger.trace(error, label);
+    it('trace should be called with proper args', () => {
+      const error = 'Trace happened here';
+      const label = 'test.js';
 
-    const msgBuild = logger.msgBuilder(error, label);
+      logger.trace(error, label);
 
-    expect(applicationInsightsTraceSpy).to.have.been.calledOnce;
+      const msgBuild = logger.msgBuilder(error, label);
 
-    expect(consoleSpy).to.have.been.calledWith(msgBuild, 1);
-  });
+      expect(applicationInsightsTraceSpy).to.have.been.calledOnce;
 
-  it('trace should not calling appinsight', () => {
-    const error = 'Trace happened here';
-    const label = 'test.js';
+      expect(consoleSpy).to.have.been.calledWith(msgBuild, 1);
+    });
 
-    logger.trace(error, label, 1, {}, false);
+    it('trace should not calling appinsight', () => {
+      const error = 'Trace happened here';
+      const label = 'test.js';
 
-    expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
-    expect(consoleSpy).to.have.been.calledOnce;
-  });
+      logger.trace(error, label, 1, {}, false);
 
-  it('event should be called with proper args', () => {
-    const event = 'Event Name';
+      expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
+      expect(consoleSpy).to.have.been.calledOnce;
+    });
 
-    logger.event(event);
+    it('event should be called with proper args', () => {
+      const event = 'Event Name';
 
-    expect(applicationInsightsEventSpy).to.have.been.calledOnce;
-  });
+      logger.event(event);
 
-  it('event should not calling appinsight', () => {
-    const eventName = 'Event Name';
+      expect(applicationInsightsEventSpy).to.have.been.calledOnce;
+    });
 
-    logger.event(eventName, false);
+    it('event should not calling appinsight', () => {
+      const eventName = 'Event Name';
 
-    expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
-  });
+      logger.event(eventName, false);
 
-  it('msgBuilder should be return expected msg text', () => {
-    const result = logger.msgBuilder('builder', 'test.js');
-    expect(result).to.equal('[test.js] - builder');
-  });
+      expect(applicationInsightsTraceSpy).to.have.not.been.calledOnce;
+    });
 
-  it('console should return expected text in color', () => {
-    const testProps = { test: '' };
-    logger.console('console logging', 0, testProps);
-    expect(nativeConsoleSpy).to.have.been.calledWith(
-      chalk.white('console logging'),
-      testProps
-    );
+    it('msgBuilder should be return expected msg text', () => {
+      const result = logger.msgBuilder('builder', 'test.js');
+      expect(result).to.equal('[test.js] - builder');
+    });
 
-    logger.console('console logging', 1);
-    expect(nativeConsoleSpy).to.have.been.calledWith(
-      chalk.green('console logging'),
-      ''
-    );
+    it('console should return expected text in color', () => {
+      const testProps = { test: '' };
+      logger.console('console logging', 0, testProps);
+      expect(nativeConsoleSpy).to.have.been.calledWith(
+        chalk.white('console logging'),
+        testProps
+      );
 
-    logger.console('console logging', 2);
-    expect(nativeConsoleSpy).to.have.been.calledWith(
-      chalk.yellow('console logging'),
-      ''
-    );
+      logger.console('console logging', 1);
+      expect(nativeConsoleSpy).to.have.been.calledWith(
+        chalk.green('console logging'),
+        ''
+      );
 
-    logger.console('console logging', 3);
-    expect(nativeConsoleSpy).to.have.been.calledWith(
-      chalk.red('console logging'),
-      ''
-    );
+      logger.console('console logging', 2);
+      expect(nativeConsoleSpy).to.have.been.calledWith(
+        chalk.yellow('console logging'),
+        ''
+      );
 
-    logger.console('console logging', 4);
-    expect(nativeConsoleSpy).to.have.been.calledWith(
-      chalk.bgRed('console logging'),
-      ''
-    );
+      logger.console('console logging', 3);
+      expect(nativeConsoleSpy).to.have.been.calledWith(
+        chalk.red('console logging'),
+        ''
+      );
 
-    logger.console('console logging');
-    expect(nativeConsoleSpy).to.have.been.calledWith('console logging', '');
-  });
+      logger.console('console logging', 4);
+      expect(nativeConsoleSpy).to.have.been.calledWith(
+        chalk.bgRed('console logging'),
+        ''
+      );
 
-  it('isObject should validate correctly', () => {
-    let isObject = logger.isObject({});
-    expect(isObject).to.be.equal(true);
+      logger.console('console logging');
+      expect(nativeConsoleSpy).to.have.been.calledWith('console logging', '');
+    });
 
-    isObject = logger.isObject(null);
-    expect(isObject).to.be.equal(false);
+    it('isObject should validate correctly', () => {
+      let isObject = logger.isObject({});
+      expect(isObject).to.be.equal(true);
+
+      isObject = logger.isObject(null);
+      expect(isObject).to.be.equal(false);
+    });
   });
 });

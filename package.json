@@ -62,7 +62,7 @@
     "@hmcts/properties-volume": "^1.1.0",
     "@hmcts/uk-bank-holidays": "^1.0.2",
     "accessible-autocomplete": "^3.0.0",
-    "applicationinsights": "^2.9.6",
+    "applicationinsights": "^3.0.0",
     "babel-loader": "^10.0.0",
     "body-parser": "^1.20.3",
     "chalk": "^4.1.2",
