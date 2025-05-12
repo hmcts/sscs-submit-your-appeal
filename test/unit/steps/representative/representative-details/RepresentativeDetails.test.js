@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
-/* eslint-disable max-lines */
+
+
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');

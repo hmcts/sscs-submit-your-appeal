@@ -26,7 +26,7 @@ const { skipPcq } = require('../page-objects/pcq/pcq');
 const datesYouCantAttend = selectors[language].theHearing.datesYouCantAttend;
 const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[language].change} > a`;
 
-/* eslint-disable max-len */
+
 test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker`, { tag: '@batch-01' }, () => {
   test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);

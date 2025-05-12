@@ -1,10 +1,9 @@
 /* eslint-disable max-lines */
-/* eslint-disable consistent-return */
+
 /* eslint-disable operator-linebreak */
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
-/* eslint-disable max-nested-callbacks */
-/* eslint-disable max-len */
+
 
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const {

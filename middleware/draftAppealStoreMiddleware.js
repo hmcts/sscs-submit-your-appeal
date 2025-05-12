@@ -91,7 +91,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
       // Revert visitedsteps back to initial state.
       journey.visitedSteps = allVisitedSteps;
     }
-  } catch (error) {
+  } catch {
     logger.trace(
       'removeRevertInvalidSteps invalid steps, or callback function',
       logPath
@@ -318,7 +318,6 @@ const restoreAllDraftsState = async(req, res, next) => {
           const drafts = result.body;
           const draftObj = {};
           if (Array.isArray(drafts) && drafts.length > 0) {
-            // eslint-disable-next-line max-depth
             for (const draft of drafts) {
               draftObj[draft.ccdCaseId] = draft;
             }

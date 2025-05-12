@@ -11,10 +11,10 @@ const app = express();
 /* eslint-disable init-declarations */
 let server;
 
-/* eslint-disable no-console */
+
 /* eslint-disable id-blacklist */
 /* eslint-disable consistent-return */
-/* eslint-disable no-magic-numbers */
+
 
 app.set('port', 8080);
 app.post('/evidence/upload', (req, res) => {
@@ -98,8 +98,7 @@ module.exports = {
   teardown
 };
 
-/* eslint-enable no-console */
+
 /* eslint-enable id-blacklist */
 /* eslint-enable consistent-return */
 /* eslint-enable init-declarations */
-/* eslint-enable no-magic-numbers */
