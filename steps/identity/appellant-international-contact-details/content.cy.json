@@ -37,6 +37,7 @@
     },
     "portOfEntry": {
       "title": "Man mynediad",
+      "hint": "Pe baem yn gofyn i chi fynychu gwrandawiad, ble fyddech chi'n disgwyl glanio yng Nghymru, Lloegr neu’r Alban ar awyren/ long / neu drên. Gallwch newid hyn yn ddiweddarach os oes angen.",
       "error": {
         "required": "Dewiswch eich man mynediad i'r DU"
       }
