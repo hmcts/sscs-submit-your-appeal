@@ -7,6 +7,7 @@ const AppellantInMainlandUk = require('steps/identity/appellant-in-mainland-uk/A
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 
 describe('AppellantInMainlandUk.js', () => {
   let appellantInMainlandUk = null;
@@ -196,11 +197,12 @@ describe('AppellantInMainlandUk.js', () => {
   });
 
   describe('allowNI flag behavior', () => {
-    let configStub;
+    // Initialize the variable when declaring it
+    let configStub = null;
     
     beforeEach(() => {
-      // Create a stub for the config module
-      configStub = sinon.stub(require('config'), 'get');
+      // Use the already imported config module
+      configStub = sinon.stub(config, 'get');
     });
 
     afterEach(() => {
