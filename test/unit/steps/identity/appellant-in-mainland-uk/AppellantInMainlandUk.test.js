@@ -199,7 +199,7 @@ describe('AppellantInMainlandUk.js', () => {
   describe('allowNI flag behavior', () => {
     // Initialize the variable when declaring it
     let configStub = null;
-    
+
     beforeEach(() => {
       // Use the already imported config module
       configStub = sinon.stub(config, 'get');
@@ -212,7 +212,7 @@ describe('AppellantInMainlandUk.js', () => {
     it('should use questionNI when allowNI is true', () => {
       // Setup the config to return true for the allowNI flag
       configStub.withArgs('features.allowNI.enabled').returns(true);
-      
+
       // Create a new instance with the required journey object
       const instance = new AppellantInMainlandUk({
         journey: {
@@ -223,7 +223,7 @@ describe('AppellantInMainlandUk.js', () => {
           }
         }
       });
-      
+
       instance.content = {
         cya: {
           inMainlandUk: {
@@ -235,10 +235,10 @@ describe('AppellantInMainlandUk.js', () => {
         }
       };
       instance.fields = { inMainlandUk: { value: userAnswer.YES } };
-      
+
       // Get the answers
       const answers = instance.answers();
-      
+
       // Verify the correct question was used
       expect(answers.question).to.equal('NI specific question');
     });
