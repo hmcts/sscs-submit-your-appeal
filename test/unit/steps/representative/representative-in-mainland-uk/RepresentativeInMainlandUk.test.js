@@ -8,6 +8,7 @@ const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
+const { text } = require('@hmcts/one-per-page/forms');
 
 describe('RepresentativeInMainlandUk.js', () => {
   let representativeInMainlandUk = null;
@@ -42,14 +43,10 @@ describe('RepresentativeInMainlandUk.js', () => {
       const req = {
         method: 'GET',
         session: {
-          BenefitType: {
-            benefitType: benefitTypes.infectedBloodCompensation
-          }
+          BenefitType: { benefitType: benefitTypes.infectedBloodCompensation }
         }
       };
-      const res = {
-        redirect: sinon.spy()
-      };
+      const res = { redirect: sinon.spy() };
       const next = sinon.spy();
       representativeInMainlandUk.handler(req, res, next);
       expect(res.redirect.called).to.eql(false);
@@ -60,14 +57,10 @@ describe('RepresentativeInMainlandUk.js', () => {
       const req = {
         method: 'GET',
         session: {
-          BenefitType: {
-            benefitType: benefitTypes.nationalInsuranceCredits
-          }
+          BenefitType: { benefitType: benefitTypes.nationalInsuranceCredits }
         }
       };
-      const res = {
-        redirect: sinon.spy()
-      };
+      const res = { redirect: sinon.spy() };
       const next = sinon.spy();
       representativeInMainlandUk.handler(req, res, next);
       expect(res.redirect.called).to.eql(true);
@@ -101,19 +94,10 @@ describe('RepresentativeInMainlandUk.js', () => {
 
     beforeEach(() => {
       representativeInMainlandUk.content = {
-        cya: {
-          inMainlandUk: {
-            question,
-            questionNI,
-            yes: 'Yes',
-            no: 'No'
-          }
-        }
+        cya: { inMainlandUk: { question, questionNI, yes: 'Yes', no: 'No' } }
       };
 
-      representativeInMainlandUk.fields = {
-        inMainlandUk: {}
-      };
+      representativeInMainlandUk.fields = { inMainlandUk: {} };
     });
 
     it('should set the question and section', () => {
@@ -252,7 +236,7 @@ describe('RepresentativeInMainlandUk.js', () => {
     it('should use requiredNI error message when allowNI is true', () => {
       // Setup the config to return true for the allowNI flag
       configStub.withArgs('features.allowNI.enabled').returns(true);
-      
+
       // Instead of mocking require, we'll use direct approach with the actual instance
       const instance = new RepresentativeInMainlandUk({
         journey: {
@@ -263,10 +247,10 @@ describe('RepresentativeInMainlandUk.js', () => {
           }
         }
       });
-      
+
       // Create a spy on the text.joi function that's used in the form getter
-      const formsSpy = sinon.spy(require('@hmcts/one-per-page/forms').text, 'joi');
-      
+      const formsSpy = sinon.spy(text, 'joi');
+
       // Set up the content with our test messages
       instance.content = {
         fields: {
@@ -278,18 +262,14 @@ describe('RepresentativeInMainlandUk.js', () => {
           }
         }
       };
-      
-      // Access the form property which will use our spy
+
       try {
         instance.form;
-      } catch (e) {
+      } catch {
         // Ignore errors that might occur due to our stub
       }
-      
-      // Restore the spy
+
       formsSpy.restore();
-      
-      // Verify that our spy was called with the NI specific message
       expect(formsSpy.calledWith('NI specific error message')).to.equal(true);
     });
   });
