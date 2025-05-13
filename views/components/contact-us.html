@@ -96,7 +96,11 @@
           </p>
           {% endif %}
 
+          {% if featureToggles.allowNI %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.descNI }}</h3>
+          {% else%}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.desc }}</h3>
+          {% endif %}
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.availability }}</p>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.saturdayAvailability }}</p>
@@ -109,7 +113,11 @@
           </p>
           {% endif %}
 
+          {% if featureToggles.allowNI %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.descNI }}</h3>
+          {% else%}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.desc }}</h3>
+          {% endif %}
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.availability }}</p>
           <p class="govuk-body">

@@ -135,7 +135,8 @@
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
           "charges": "Find out about call charges",
           "ibca" : {
-            "desc" : "IBC appeals helpline (Scotland and Northern Ireland)",
+            "desc" : "IBC appeals helpline (Scotland)",
+            "descNI" : "IBC appeals helpline (Scotland and Northern Ireland)",
             "phone": "Telephone: 0300 790 6234",
             "availability": "Monday to Friday, 9am to 4pm",
             "emailText": "Email:",
@@ -280,7 +281,8 @@
           "emailAddress": "SSCSA-Glasgow@justice.gov.uk",
           "charges": "Gwybodaeth am gost galwadau",
           "ibca" : {
-            "desc" : "Llinell gymorth apeliadau IBC (Yr Alban a Gogledd Iwerddon)",
+            "desc" : "Llinell gymorth apeliadau IBC (Yr Alban)",
+            "descNI" : "Llinell gymorth apeliadau IBC (Yr Alban a Gogledd Iwerddon)",
             "phone": "Rhif ffôn: 0300 790 6234",
             "availability": "Dydd Llun i ddydd Gwener, 9am i 4pm",
             "emailText": "E-bost:",

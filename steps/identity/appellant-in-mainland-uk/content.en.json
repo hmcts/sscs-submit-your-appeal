@@ -1,7 +1,9 @@
 {
   "titleHead": "Appellant in UK",
-  "title": "Do you live in England, Scotland, Wales or Northern Ireland?",
-  "question": "Do you live in England, Scotland, Wales or Northern Ireland?",
+  "title": "Do you live in England, Scotland or Wales?",
+  "titleNI": "Do you live in England, Scotland, Wales or Northern Ireland?",
+  "question": "Do you live in England, Scotland or Wales?",
+  "questionNI": "Do you live in England, Scotland, Wales or Northern Ireland?",
 
   "fields": {
     "inMainlandUk": {
@@ -14,7 +16,8 @@
   },
   "cya": {
     "inMainlandUk": {
-      "question": "Do you live in England, Scotland, Wales or Northern Ireland?",
+      "question": "Do you live in England, Scotland or Wales?",
+      "questionNI": "Do you live in England, Scotland, Wales or Northern Ireland?",
       "yes": "Yes",
       "no": "No"
     }

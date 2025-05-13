@@ -13,6 +13,8 @@ const { whitelistNotFirst } = require('utils/regex');
 const { isIba } = require('utils/benefitTypeUtils');
 const { getPortsOfEntry } = require('utils/enumJsonLists');
 const { getCountriesOfResidence } = require('../../../utils/enumJsonLists');
+const config = require('config');
+const allowNI = config.get('features.allowNI.enabled');
 
 class AppellantInternationalContactDetails extends SaveToDraftStore {
   static get path() {
