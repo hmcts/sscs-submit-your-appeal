@@ -1,4 +1,4 @@
-/* eslint-disable global-require, no-process-env */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 const superagent = require('superagent');
@@ -24,7 +24,6 @@ describe('EnumJsonLists util', () => {
 
   describe('fetchPortsOfEntry', () => {
     it('should fetch and set portsOfEntry data correctly', async() => {
-      // eslint-disable-next-line id-blacklist
       const mockResponse = {
         body: [
           { label: 'Entry1', locationCode: 'locationCode1' },
@@ -65,7 +64,6 @@ describe('EnumJsonLists util', () => {
 
   describe('fetchCountriesOfResidence', () => {
     it('should fetch and set countriesOfResidence data correctly', async() => {
-      // eslint-disable-next-line id-blacklist
       const mockResponse = {
         body: [{ label: 'Entry1' }, { label: 'Entry2' }],
         status: 200
@@ -96,7 +94,6 @@ describe('EnumJsonLists util', () => {
 
   describe('fetchAndSetPortsAndCountries', () => {
     it('should fetch and set portsOfEntry and countries of residence data correctly', async() => {
-      // eslint-disable-next-line id-blacklist
       const mockPortsOfEntryResponse = {
         body: [
           { label: 'Entry1', locationCode: 'locationCode1' },
@@ -104,7 +101,7 @@ describe('EnumJsonLists util', () => {
         ],
         status: 200
       };
-      // eslint-disable-next-line id-blacklist
+
       const mockCountriesOfResidenceResponse = {
         body: [{ label: 'Entry1' }, { label: 'Entry2' }],
         status: 200

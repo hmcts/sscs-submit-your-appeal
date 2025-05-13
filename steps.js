@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 const { concat } = require('lodash');
 
 const config = require('config');

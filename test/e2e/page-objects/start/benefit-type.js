@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop,max-depth */
+/* eslint-disable no-await-in-loop */
 const benefitContentEn = require('steps/start/benefit-type/content.en');
 const benefitContentCy = require('steps/start/benefit-type/content.cy');
 const { expect } = require('@playwright/test');

@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -15,7 +15,7 @@ const paths = require('paths');
 const HttpStatus = require('http-status-codes');
 const cookieParser = require('cookie-parser');
 /* eslint max-lines: off */
-/* eslint-disable max-len */
+
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist.js');
 
 const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') === -1);
@@ -90,8 +90,9 @@ const configureViews = app => {
     path.resolve(__dirname, 'policy-pages'),
     path.resolve(__dirname, 'error-pages'),
     path.resolve(__dirname, 'node_modules/govuk-frontend/'),
-    path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),
-    path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/components/'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/dist/'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/dist/govuk/'),
+    path.resolve(__dirname, 'node_modules/govuk-frontend/dist/govuk/components/'),
     path.resolve(__dirname, 'views'),
     path.resolve(__dirname, 'components')
   ]);

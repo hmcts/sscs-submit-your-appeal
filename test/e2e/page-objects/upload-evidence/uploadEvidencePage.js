@@ -8,7 +8,7 @@ async function uploadAPieceOfEvidence(I) {
   await I.getByRole('button', { name: 'Continue' }).first().click();
   try {
     await I.waitForURL('**/evidence-description');
-  } catch (error) {
+  } catch {
     await I.getByRole('button', { name: 'Continue' }).first().click();
   }
 }

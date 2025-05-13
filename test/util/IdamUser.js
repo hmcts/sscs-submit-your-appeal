@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+
 const logger = require('logger');
 const rp = require('@cypress/request-promise');
 const config = require('config');

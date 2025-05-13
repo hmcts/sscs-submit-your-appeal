@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 const { expect } = require('test/util/chai');
 const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const paths = require('paths');
