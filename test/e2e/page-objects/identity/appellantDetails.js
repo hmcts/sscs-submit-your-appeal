@@ -11,7 +11,8 @@ const appellantDOBContentCy = require('steps/identity/appellant-dob/content.cy')
 const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en');
 const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
 
-const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
+const postcodeLookupEnabled =
+  config.get('postcodeLookup.enabled').toString() === 'true';
 const { expect } = require('@playwright/test');
 
 async function enterAppellantNameAndContinue(
@@ -22,7 +23,8 @@ async function enterAppellantNameAndContinue(
   firstName,
   lastName
 ) {
-  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
+  const appellantNameContent =
+    language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
   await expect(
     I.getByText(appellantNameContent.title.withoutAppointee).first()
@@ -41,7 +43,8 @@ async function enterAppellantNameAndContinueAfterSignIn(
   firstName,
   lastName
 ) {
-  const appellantNameContent = language === 'en' ? appellantNameContentEn : appellantNameContentCy;
+  const appellantNameContent =
+    language === 'en' ? appellantNameContentEn : appellantNameContentCy;
 
   await expect(
     I.getByText(appellantNameContent.title.withoutAppointee).first()
@@ -62,7 +65,8 @@ async function enterAppellantDOBAndContinue(
   month,
   year
 ) {
-  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
+  const appellantDOBContent =
+    language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
   await expect(
     I.getByText(appellantDOBContent.title.withoutAppointee).first()
@@ -81,7 +85,8 @@ async function enterAppellantDOBAndContinueAfterSignIn(
   month,
   year
 ) {
-  const appellantDOBContent = language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
+  const appellantDOBContent =
+    language === 'en' ? appellantDOBContentEn : appellantDOBContentCy;
 
   await expect(
     I.getByText(appellantDOBContent.title.withoutAppointee).first()
@@ -95,7 +100,8 @@ async function enterAppellantDOBAndContinueAfterSignIn(
 }
 
 async function enterAppellantNINOAndContinue(I, language, commonContent, nino) {
-  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
+  const appellantNINOContent =
+    language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
   await expect(
     I.getByText(appellantNINOContent.title.withoutAppointee).first()
@@ -110,7 +116,8 @@ async function enterAppellantNINOAndContinueAfterSignIn(
   commonContent,
   nino
 ) {
-  const appellantNINOContent = language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
+  const appellantNINOContent =
+    language === 'en' ? appellantNINOContentEn : appellantNINOContentCy;
 
   await expect(
     I.getByText(appellantNINOContent.title.withoutAppointee).first()
@@ -174,7 +181,8 @@ async function enterAppellantContactDetailsAndContinue(
   commonContent,
   language
 ) {
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent =
+    language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await I.locator('#postcodeLookup').fill('xxxxx');
@@ -196,7 +204,8 @@ async function enterAppellantContactDetailsAndContinueAfterSignIn(
   commonContent,
   language
 ) {
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent =
+    language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   if (postcodeLookupEnabled) {
     await I.locator('#postcodeLookup').fill('xxxxx');
@@ -230,10 +239,11 @@ async function enterAppellantContactDetailsWithMobileAndContinue(
   language,
   mobileNumber = '07466748336'
 ) {
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent =
+    language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await expect(
-    I.getByText(postcodeLookupContent.textboxLabelNI).first()
+    I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
@@ -247,10 +257,11 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   language,
   mobileNumber = '07466748336'
 ) {
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent =
+    language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await expect(
-    I.getByText(postcodeLookupContent.textboxLabelNI).first()
+    I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
@@ -267,7 +278,8 @@ async function enterAppellantContactDetailsWithEmailAndContinue(
   commonContent,
   language
 ) {
-  const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
+  const postcodeLookupContent =
+    language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#emailAddress').fill('harry.potter@wizards.com');
