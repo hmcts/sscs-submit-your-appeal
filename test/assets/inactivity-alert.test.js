@@ -24,7 +24,7 @@ describe('inactivity alert', () => {
   const { window } = jsdom;
   const { document } = window;
 
-  before(done => {
+  beforeEach(done => {
     global.window = window;
     global.document = document;
 
@@ -43,10 +43,15 @@ describe('inactivity alert', () => {
     done();
   });
 
+  afterEach(() => {
+    inactivityAlert.destroy();
+  });
+
   it('#init starts the countdowns on instantiation', () => {
     expect(inactivityAlert.timeoutForModal).not.to.be.null;
     expect(inactivityAlert.timeoutForSession).not.to.be.null;
   });
+
   it('restarts the count on click on extend', function(done) {
     let previousTimeout;
     this.timeout(5000);
@@ -58,6 +63,7 @@ describe('inactivity alert', () => {
       done();
     }, 500);
   });
+
   it('kills the session on clicking on end', function(done) {
     this.timeout(5000);
     navigatedAway = false;
@@ -65,6 +71,7 @@ describe('inactivity alert', () => {
     expect(navigatedAway).to.be.true;
     done();
   });
+
   it('when showing it updates the countdown', function(done) {
     this.timeout(10000);
     inactivityAlert.destroy();
