@@ -194,4 +194,51 @@ describe('AppellantInMainlandUk.js', () => {
       );
     });
   });
+
+  describe('allowNI flag behavior', () => {
+    let configStub;
+    
+    beforeEach(() => {
+      // Create a stub for the config module
+      configStub = sinon.stub(require('config'), 'get');
+    });
+
+    afterEach(() => {
+      configStub.restore();
+    });
+
+    it('should use questionNI when allowNI is true', () => {
+      // Setup the config to return true for the allowNI flag
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+      
+      // Create a new instance with the required journey object
+      const instance = new AppellantInMainlandUk({
+        journey: {
+          steps: {
+            AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+            AppellantInternationalContactDetails:
+              paths.identity.enterAppellantInternationalContactDetails
+          }
+        }
+      });
+      
+      instance.content = {
+        cya: {
+          inMainlandUk: {
+            question: 'Regular question',
+            questionNI: 'NI specific question',
+            yes: 'Yes',
+            no: 'No'
+          }
+        }
+      };
+      instance.fields = { inMainlandUk: { value: userAnswer.YES } };
+      
+      // Get the answers
+      const answers = instance.answers();
+      
+      // Verify the correct question was used
+      expect(answers.question).to.equal('NI specific question');
+    });
+  });
 });
