@@ -1,5 +1,6 @@
 {
-  "textboxLabel": "Enter a postcode in England, Scotland, Wales or Northern Ireland",
+  "textboxLabel": "Enter a postcode in England, Scotland or Wales",
+  "textboxLabelNI": "Enter a postcode in England, Scotland, Wales or Northern Ireland",
 
   "addressSelectionLabel": "Pick an address",
   "manualEntryLabel": "I can't find my address",
@@ -8,8 +9,10 @@
   "fields": {
     "postcodeLookup": {
       "error": {
-        "required": "We cannot find an England, Scotland, Wales or Northern Irelands address with that postcode.",
-        "invalidPostcode": "We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode."
+        "required": "We cannot find an England, Scotland, Wales or Northern Irelands address with that postcode. OLD",
+        "invalidPostcode": "We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode.",
+        "requiredNI": "We cannot find an England, Scotland, Wales or Northern Irelands address with that postcode. NI",
+        "invalidPostcodeNI": "We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode."
       }
     },
     "postcodeAddress": {
