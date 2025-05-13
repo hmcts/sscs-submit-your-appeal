@@ -17,7 +17,6 @@
     "assets/**",
     "dist/**",
     "cookie-banner/**",
-    "mochawesome-report/**",
     "webpack/**",
     "components/postcodeLookup/assets/**",
     "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
