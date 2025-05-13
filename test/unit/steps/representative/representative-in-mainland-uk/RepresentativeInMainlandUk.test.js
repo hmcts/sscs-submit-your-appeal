@@ -7,6 +7,7 @@ const RepresentativeInMainlandUk = require('steps/representative/representative-
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 
 describe('RepresentativeInMainlandUk.js', () => {
   let representativeInMainlandUk = null;
@@ -200,6 +201,96 @@ describe('RepresentativeInMainlandUk.js', () => {
       expect(representativeInMainlandUk.next().step).to.eql(
         paths.representative.representativeInternationalDetails
       );
+    });
+  });
+
+  describe('allowNI flag behavior', () => {
+    let configStub = null;
+
+    beforeEach(() => {
+      configStub = sinon.stub(config, 'get');
+    });
+
+    afterEach(() => {
+      configStub.restore();
+    });
+
+    it('should use questionNI when allowNI is true', () => {
+      // Setup the config to return true for the allowNI flag
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+
+      // Create a new instance with the required journey object
+      const instance = new RepresentativeInMainlandUk({
+        journey: {
+          steps: {
+            RepresentativeDetails: paths.representative.representativeDetails,
+            RepresentativeInternationalDetails:
+              paths.representative.representativeInternationalDetails
+          }
+        }
+      });
+
+      instance.content = {
+        cya: {
+          inMainlandUk: {
+            question: 'Regular question',
+            questionNI: 'NI specific question',
+            yes: 'Yes',
+            no: 'No'
+          }
+        }
+      };
+      instance.fields = { inMainlandUk: { value: userAnswer.YES } };
+
+      // Get the answers
+      const answers = instance.answers();
+
+      // Verify the correct question was used
+      expect(answers.question).to.equal('NI specific question');
+    });
+
+    it('should use requiredNI error message when allowNI is true', () => {
+      // Setup the config to return true for the allowNI flag
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+      
+      // Instead of mocking require, we'll use direct approach with the actual instance
+      const instance = new RepresentativeInMainlandUk({
+        journey: {
+          steps: {
+            RepresentativeDetails: paths.representative.representativeDetails,
+            RepresentativeInternationalDetails:
+              paths.representative.representativeInternationalDetails
+          }
+        }
+      });
+      
+      // Create a spy on the text.joi function that's used in the form getter
+      const formsSpy = sinon.spy(require('@hmcts/one-per-page/forms').text, 'joi');
+      
+      // Set up the content with our test messages
+      instance.content = {
+        fields: {
+          inMainlandUk: {
+            errors: {
+              required: 'Standard error message',
+              requiredNI: 'NI specific error message'
+            }
+          }
+        }
+      };
+      
+      // Access the form property which will use our spy
+      try {
+        instance.form;
+      } catch (e) {
+        // Ignore errors that might occur due to our stub
+      }
+      
+      // Restore the spy
+      formsSpy.restore();
+      
+      // Verify that our spy was called with the NI specific message
+      expect(formsSpy.calledWith('NI specific error message')).to.equal(true);
     });
   });
 });
