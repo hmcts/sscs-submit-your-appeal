@@ -3,6 +3,7 @@ const lanugagePreferenceContentCy = require('steps/start/language-preference/con
 const { expect } = require('@playwright/test');
 
 async function chooseLanguagePreference(I, language, commonContent, option) {
+  // eslint-disable-next-line no-undef
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
@@ -23,6 +24,7 @@ async function chooseLanguagePreferenceAfterSignIn(
   commonContent,
   option
 ) {
+  // eslint-disable-next-line no-undef
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
   const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
