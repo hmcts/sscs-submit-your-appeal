@@ -4,10 +4,7 @@ const { expect } = require('@playwright/test');
 
 async function chooseLanguagePreference(I, language, commonContent, option) {
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
-  const lanugagePreferenceContent =
-    language === 'en'
-      ? lanugagePreferenceContentEn
-      : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
   if (currentLanguage === language) {
     return;
@@ -27,10 +24,7 @@ async function chooseLanguagePreferenceAfterSignIn(
   option
 ) {
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
-  const lanugagePreferenceContent =
-    language === 'en'
-      ? lanugagePreferenceContentEn
-      : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
   if (currentLanguage === language) {
     return;
