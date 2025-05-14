@@ -21,6 +21,7 @@ const { isIba } = require('utils/benefitTypeUtils');
 const i18next = require('i18next');
 
 const allowNI = config.get('features.allowNI.enabled');
+const ibaPostcodeMessage = allowNI ? 'invalidPostcodeIbaNI' : 'invalidPostcodeIba';
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
@@ -79,9 +80,6 @@ class AppellantContactDetails extends SaveToDraftStore {
   get form() {
     const fields = this.content.fields;
     const prefix = this.contentPrefix();
-    const ibaPostcodeMessage = allowNI ?
-      'invalidPostcodeIbaNI' :
-      'invalidPostcodeIba';
 
     return this.pcl.schemaBuilder([
       { name: this.pcl.fieldMap.postcodeLookup },
