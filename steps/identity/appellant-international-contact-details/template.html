@@ -4,7 +4,7 @@
 {% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title %}
-{% set portOfEntryHint = content.fields.portOfEntry.hintNI if featureToggles.allowNI else content.fields.portOfEntry.hint %}
+{% set portOfEntryHint = content.fields.portOfEntry.hintNI if allowNiEnabled else content.fields.portOfEntry.hint %}
 
 {% block fields %}
     {% call formSection() %}
