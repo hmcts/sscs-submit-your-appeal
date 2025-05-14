@@ -4,17 +4,20 @@ const { expect } = require('@playwright/test');
 
 async function chooseLanguagePreference(I, language, commonContent, option) {
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
-  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent =
+    language === 'en'
+      ? lanugagePreferenceContentEn
+      : lanugagePreferenceContentCy;
 
   if (currentLanguage === language) {
     return;
   }
-  
+
   await expect(
     I.getByText(lanugagePreferenceContent.title).first()
   ).toBeVisible();
   await I.locator(option).first().click();
-  await I.getByRole('button', { name: commonContent.continuea }).first().click();
+  await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
 async function chooseLanguagePreferenceAfterSignIn(
@@ -24,12 +27,15 @@ async function chooseLanguagePreferenceAfterSignIn(
   option
 ) {
   const currentLanguage = await I.evaluate(() => document.documentElement.lang);
-  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent =
+    language === 'en'
+      ? lanugagePreferenceContentEn
+      : lanugagePreferenceContentCy;
 
   if (currentLanguage === language) {
     return;
   }
-  
+
   await expect(
     I.getByText(lanugagePreferenceContent.title).first()
   ).toBeVisible();
