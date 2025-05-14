@@ -1,16 +1,7 @@
-const chai = require('chai');
 
-const expect = chai.expect;
+const { expect, sinon } = require('test/util/chai');
 const jQuery = require('jquery');
 const { JSDOM } = require('jsdom');
-const chaiAsPromised = require('chai-as-promised');
-const chaiJq = require('chai-jq');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-
-chai.use(sinonChai);
-chai.use(chaiAsPromised);
-chai.use(chaiJq);
 
 /* eslint-disable init-declarations */
 /* eslint-disable no-multi-assign */
@@ -101,7 +92,7 @@ describe('evidence upload', () => {
     expect($('.govuk-form-group .govuk-error-message').length).to.equal(1);
   });
   it('#hideUnnecessaryMarkup will do just that', () => {
-    expect($('.add-another-add-link')).to.have.$css('display', 'none');
+    expect($('.add-another-add-link').css('display')).to.be.equal('none');
   });
   it('#destroy will remove the additional markup', () => {
     evidenceUpload.destroy();
