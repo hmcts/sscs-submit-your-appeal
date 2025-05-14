@@ -1,5 +1,6 @@
 {
   "textboxLabel": "Enter a UK postcode",
+  "textboxLabelNI": "Enter a postcode in England, Scotland, Wales or Northern Ireland",
   "addressSelectionLabel": "Pick an address",
   "manualEntryLabel": "I can’t enter a UK postcode",
   "dropdownCount": "address found",
