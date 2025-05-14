@@ -2,5 +2,19 @@
   "extends": [
     "local>hmcts/.github:renovate-config",
     "github>hmcts/sscs-common//.github/sscs-renovate.json"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["chai"],
+      "allowedVersions": "4.x"
+    },
+    {
+      "matchPackageNames": ["chai-as-promised"],
+      "allowedVersions": "7.x"
+    },
+    {
+      "matchPackageNames": ["sinon-chai"],
+      "allowedVersions": "3.x"
+    }
   ]
 }
