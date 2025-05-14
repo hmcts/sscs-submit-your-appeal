@@ -9,7 +9,9 @@
     "postcodeLookup": {
       "error": {
         "required": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw.",
-        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
+        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw",
+        "requiredNI": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw.",
+        "invalidPostcodeNI": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
       }
     },
     "postcodeAddress": {
