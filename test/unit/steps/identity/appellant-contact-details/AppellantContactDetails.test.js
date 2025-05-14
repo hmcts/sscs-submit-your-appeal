@@ -440,43 +440,37 @@ describe('AppellantContactDetails.js', () => {
   });
 
   describe('AppellantContactDetails - ibaPostcodeMessage', () => {
-    let AppellantContactDetails;
-  
     it('should use "invalidPostcodeIbaNI" when allowNI is enabled', () => {
       const mockConfig = {
         get: sinon.stub()
       };
       mockConfig.get.withArgs('features.allowNI.enabled').returns(true);
-  
-      AppellantContactDetails = proxyquire(
+
+      proxyquire(
         'steps/identity/appellant-contact-details/AppellantContactDetails',
         { config: mockConfig }
       );
-  
+
       const allowNI = mockConfig.get('features.allowNI.enabled');
-      const ibaPostcodeMessage = allowNI
-        ? 'invalidPostcodeIbaNI'
-        : 'invalidPostcodeIba';
-  
+      const ibaPostcodeMessage = allowNI ? 'invalidPostcodeIbaNI' : 'invalidPostcodeIba';
+
       expect(ibaPostcodeMessage).to.equal('invalidPostcodeIbaNI');
     });
-  
+
     it('should use "invalidPostcodeIba" when allowNI is disabled', () => {
       const mockConfig = {
         get: sinon.stub()
       };
       mockConfig.get.withArgs('features.allowNI.enabled').returns(false);
-  
-      AppellantContactDetails = proxyquire(
+
+      proxyquire(
         'steps/identity/appellant-contact-details/AppellantContactDetails',
         { config: mockConfig }
       );
-  
+
       const allowNI = mockConfig.get('features.allowNI.enabled');
-      const ibaPostcodeMessage = allowNI
-        ? 'invalidPostcodeIbaNI'
-        : 'invalidPostcodeIba';
-  
+      const ibaPostcodeMessage = allowNI ? 'invalidPostcodeIbaNI' : 'invalidPostcodeIba';
+
       expect(ibaPostcodeMessage).to.equal('invalidPostcodeIba');
     });
   });
