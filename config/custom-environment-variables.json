@@ -112,7 +112,7 @@
       "enabled": "WEBCHAT_OPENING_TIME_8_5"
     },
     "allowNI" : {
-      "enabled": "ALLOW_NI_ENABLED"
+      "enabled": "ALLOW_NI_ENABLED2"
     }
   },
   "postcodeChecker": {
