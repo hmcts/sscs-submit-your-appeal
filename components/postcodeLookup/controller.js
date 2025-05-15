@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-const rp = require('@cypress/request-promise');
+const request = require('superagent');
 const { includes } = require('lodash');
 const { form } = require('@hmcts/one-per-page/forms');
 const { buildConcatenatedAddress } = require('./helper');
@@ -180,29 +180,23 @@ class Controller {
     const fieldMap = this.fieldMap;
     const page = this.page;
     const postCode = page.fields[fieldMap.postcodeLookup].value;
-    const options = {
-      json: true,
-      uri: `${this.apiUrl}/postcode?&key=${this.token}&postcode=${postCode}&lr=EN`,
-      method: 'GET'
-    };
 
-    await rp(options)
-      .then(body => {
-        if (body.results && body.results.length > 0) {
-          page.addressSuggestions = body.results;
-        } else {
-          page.fields[fieldMap.postcodeLookup].value = '';
-        }
-        Promise.resolve();
-      })
-      .catch(() => {
+    try {
+      const res = await request
+        .get(`${this.apiUrl}/postcode`)
+        .query({ key: this.token, postcode: postCode, lr: 'EN' });
+
+      if (res.body.results && res.body.results.length > 0) {
+        page.addressSuggestions = res.body.results;
+      } else {
         page.fields[fieldMap.postcodeLookup].value = '';
-        Promise.resolve();
-      });
+      }
+    } catch {
+      page.fields[fieldMap.postcodeLookup].value = '';
+    }
 
     page.store();
   }
-
   handleAddressSelection() {
     let selectedAddress = [];
     const page = this.page;

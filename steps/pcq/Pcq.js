@@ -4,7 +4,7 @@ const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { v4: uuidv4 } = require('uuid');
 const paths = require('paths');
 const config = require('config');
-const request = require('@cypress/request-promise');
+const request = require('superagent');
 const logger = require('logger');
 const Joi = require('joi');
 const createToken = require('./createToken');
@@ -23,25 +23,21 @@ class Pcq extends SaveToDraftStore {
     );
   }
 
-  handler(req, res, next) {
-    // PCQ is enabled and not already called
+  async handler(req, res, next) {
     if (this.isEnabled() && !req.session.Pcq && !isIba(req)) {
-      // Check PCQ Health
       const uri = `${config.services.pcq.url}/health`;
-      request
-        .get({ uri, json: true })
-        .then(json => {
-          if (json.status && json.status === 'UP') {
-            this.invokePcq(req, res);
-          } else {
-            logger.trace('PCQ service is DOWN');
-            this.skipPcq(req, res, next);
-          }
-        })
-        .catch(error => {
-          logger.trace(error.message);
+      try {
+        const response = await request.get(uri).accept('application/json');
+        if (response.body.status && response.body.status === 'UP') {
+          this.invokePcq(req, res);
+        } else {
+          logger.trace('PCQ service is DOWN');
           this.skipPcq(req, res, next);
-        });
+        }
+      } catch (error) {
+        logger.trace(error.message);
+        this.skipPcq(req, res, next);
+      }
     } else {
       this.skipPcq(req, res, next);
     }

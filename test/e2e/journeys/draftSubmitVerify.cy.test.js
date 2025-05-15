@@ -44,12 +44,12 @@ let userEmail = '';
 test.describe(`${language.toUpperCase()} - Verifying data when drafts are submitted to CCD`, () => {
   test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
-    userEmail = testUser.createUser();
+    userEmail = await testUser.createUser();
   });
 
   test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
-    testUser.deleteUser(userEmail);
+    await testUser.deleteUser(userEmail);
   });
 
   test(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD  `, { tag: '@fullFunctional' },

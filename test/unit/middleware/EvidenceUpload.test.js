@@ -1,12 +1,9 @@
 /* eslint-disable init-declarations */
 /* eslint-disable no-shadow */
-
-
 /* eslint-disable no-empty-function */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
-const { expect } = require('test/util/chai');
-const sinon = require('sinon');
+const { expect, sinon } = require('test/util/chai');
 const logger = require('logger');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
@@ -26,19 +23,7 @@ describe('The EvidenceUpload middleware', () => {
   });
   const unlinker = sinon.stub().yields();
   const renamer = sinon.stub().yields();
-  const poster = sinon.stub().yields(
-    null,
-    null,
-    `{
-    "documents": [{
-      "originalDocumentName": "ugo",
-      "_links": {
-        "self": {
-          "href": "www.bigcheese.com"
-        }
-      }
-    }]}`
-  );
+
 
   beforeEach(function() {
     this.timeout(2500);
@@ -46,16 +31,31 @@ describe('The EvidenceUpload middleware', () => {
       formidable: {
         IncomingForm: function() {
           this.parse = parser;
-          this.once = () => {};
-          this.on = () => {};
+          this.once = () => {
+          };
+          this.on = () => {
+          };
         }
       },
-      '@cypress/request': {
-        post: poster
+      superagent: {
+        post: sinon.stub()
+          .returns({ attach: sinon.stub().returns({ field: sinon.stub()
+            .resolves({
+              body: {
+                documents: [
+                  {
+                    originalDocumentName: '__originalDocumentName__',
+                    _links: { self: { href: '__href__' } },
+                    hashToken: '__hashToken__'
+                  }
+                ]
+              }
+            }) }) })
       },
       'graceful-fs': {
         unlink: unlinker,
-        createReadStream: () => {},
+        createReadStream: () => {
+        },
         rename: renamer
       },
       path: {
@@ -75,53 +75,85 @@ describe('The EvidenceUpload middleware', () => {
   afterEach(() => {
     parser.reset();
     unlinker.reset();
-    poster.reset();
     renamer.reset();
     loggerExceptionSpy.restore();
     loggerTraceSpy.restore();
   });
 
-  describe('handlePostResponse', () => {
-    describe("when there isn't a forwarding error", () => {
-      it('should call fs.unlink', () => {
-        const req = {};
+  describe('handleRename', () => {
+    it('should handle successful response and set req.body correctly', async() => {
+      const req = {};
+      const size = 42;
+      const pathToFile = '__path__';
+      const next = sinon.stub();
 
-        const size = 42;
-        const pathToFile = '__path__';
-        const next = sinon.mock();
-        const body = '{"documents":[{"originalDocumentName":"__originalDocumentName__","_links":{"self":{"href":"__href__"}}}]}';
+      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
 
-        const handlePostResponse = EvidenceUpload.handlePostResponse(
-          req,
-          size,
-          pathToFile,
-          next
-        );
-
-        handlePostResponse(undefined, undefined, body);
-        expect(unlinker).to.have.been.called;
+      expect(req.body).to.deep.equal({
+        'item.uploadEv': '__originalDocumentName__',
+        'item.link': '__href__',
+        'item.hashToken': '__hashToken__',
+        'item.size': size
       });
+      expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
-  });
 
-  describe('handlePostResponse', () => {
-    describe("when there isn't a forwarding error but HTTP status is 500 error", () => {
-      it('should call fs.unlink', () => {
-        const req = {};
-        const size = 42;
-        const pathToFile = '__path__';
-        const next = sinon.mock();
-        const body = '{"status": 500,"error": "Internal Server Error","message": "","path": "/evidence/upload"}';
-        const handlePostResponse = EvidenceUpload.handlePostResponse(
-          req,
-          size,
-          pathToFile,
-          next
-        );
+    it('should handle response without hashToken and set req.body correctly', async() => {
+      const req = {};
+      const size = 42;
+      const pathToFile = '__path__';
+      const next = sinon.stub();
 
-        handlePostResponse(undefined, undefined, body);
-        expect(unlinker).to.have.been.called;
+      stubs.superagent.post = sinon.stub()
+        .returns({ attach: sinon.stub().returns({ field: sinon.stub()
+          .resolves({
+            body: {
+              documents: [
+                {
+                  originalDocumentName: '__originalDocumentName__',
+                  _links: { self: { href: '__href__' } }
+                }
+              ]
+            }
+          }) }) });
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
+
+      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
+
+      expect(req.body).to.deep.equal({
+        'item.uploadEv': '__originalDocumentName__',
+        'item.link': '__href__',
+        'item.hashToken': '',
+        'item.size': size
       });
+      expect(unlinker).to.have.been.calledWith(pathToFile, next);
+    });
+
+    it('should handle errors and set req.body with technicalProblemError', async() => {
+      const req = {};
+      const size = 42;
+      const pathToFile = '__path__';
+      const next = sinon.stub();
+      stubs.superagent.post = sinon.stub()
+        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) });
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
+
+      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
+
+      expect(req.body).to.deep.equal({
+        'item.uploadEv': EvidenceUpload.technicalProblemError,
+        'item.link': '',
+        'item.hashToken': '',
+        'item.size': 0
+      });
+      expect(logger.exception).to.have.been.calledWith(sinon.match.instanceOf(Error));
+      expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
   });
 
@@ -343,6 +375,13 @@ describe('The EvidenceUpload middleware', () => {
 
   describe('static handleUpload', () => {
     it("if req.method is NOT post, it doesn't do anything apart from just invoking the callback", done => {
+      const poster = sinon.stub();
+      stubs.superagent.post = poster;
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
+      EvidenceUpload.makeDir = sinon.stub().callsArg(1);
       EvidenceUpload.handleUpload(
         {
           method: 'get'
