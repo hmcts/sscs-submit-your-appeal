@@ -41,7 +41,6 @@ class Controller {
 
     const getPostcodeLookup = () => {
       const allowNI = config.get('features.allowNI.enabled');
-      console.log('allowNI: ', allowNI);
       if (isIbaCase) {
         return text
           .joi(
