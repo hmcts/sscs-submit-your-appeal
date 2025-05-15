@@ -140,10 +140,13 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
+    "express": "^4.21.0",
     "debug": "^4.0.0",
     "json-schema": "^0.4.0",
     "qs": "^6.11.2",
+    "redis": "^4.6.8",
     "micromatch": "^4.0.8",
+    "path-to-regexp": "^0.1.12",
     "@babel/helpers": "^7.26.10",
     "@babel/runtime": "^7.26.10",
     "cookie": "^1.0.0"
