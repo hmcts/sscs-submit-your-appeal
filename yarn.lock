@@ -3808,13 +3808,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai-jq@npm:^0.0.9":
-  version: 0.0.9
-  resolution: "chai-jq@npm:0.0.9"
-  checksum: 10/5a60fc7c85f049dfa43966ff6dff978baa2bfec3fe32e990efb2a822686875d690e01365ccda55d08c6d958e4f26cad789b0c31e73a5620871fc0fcf60a4d5b9
-  languageName: node
-  linkType: hard
-
 "chai@npm:^4.1.2":
   version: 4.5.0
   resolution: "chai@npm:4.5.0"
@@ -3840,14 +3833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"check-error@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "check-error@npm:1.0.2"
-  checksum: 10/011e74b2eac49bd42c5610f15d6949d982e7ec946247da0276278a90e7476e6b88d25d3c605a4115d5e3575312e1f5a11e91c82290c8a47ca275c92f5d0981db
-  languageName: node
-  linkType: hard
-
-"check-error@npm:^1.0.3":
+"check-error@npm:^1.0.2, check-error@npm:^1.0.3":
   version: 1.0.3
   resolution: "check-error@npm:1.0.3"
   dependencies:
@@ -11010,7 +10996,6 @@ __metadata:
     body-parser: "npm:^1.20.3"
     chai: "npm:^4.1.2"
     chai-as-promised: "npm:^7.1.1"
-    chai-jq: "npm:^0.0.9"
     chalk: "npm:^4.1.2"
     clean-webpack-plugin: "npm:^4.0.0"
     config: "npm:^3.3.9"
