@@ -64,7 +64,7 @@
     "accessible-autocomplete": "^3.0.0",
     "applicationinsights": "^2.9.6",
     "babel-loader": "^10.0.0",
-    "body-parser": "^1.20.3",
+    "body-parser": "^2.0.0",
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "config": "^3.3.9",
