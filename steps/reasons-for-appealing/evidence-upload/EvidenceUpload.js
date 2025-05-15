@@ -21,7 +21,7 @@ const formidable = require('formidable');
 const pt = require('path');
 const fs = require('graceful-fs');
 const moment = require('moment');
-const request = require('@cypress/request');
+const request = require('superagent');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
@@ -220,24 +220,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   static handleRename(pathToFile, req, size, next) {
-    return () => {
-      return request.post(
-        {
-          url: uploadEvidenceUrl,
-          formData: {
-            file: fs.createReadStream(pathToFile)
-          }
-        },
-        EvidenceUpload.handlePostResponse(req, size, pathToFile, next)
-      );
-    };
-  }
+    return async() => {
+      try {
+        const response = await request
+          .post(uploadEvidenceUrl)
+          .attach('file', pathToFile)
+          .field('formData', JSON.stringify({ file: fs.createReadStream(pathToFile) }));
 
-  static handlePostResponse(req, size, pathToFile, next) {
-    return (forwardingError, resp, body) => {
-      if (!forwardingError) {
-        logger.trace('No forwarding error, about to save data', logPath);
-        const b = JSON.parse(body);
+        const b = response.body;
         if (b && b.documents) {
           if (b.documents[0].hashToken) {
             req.body = {
@@ -255,16 +245,17 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
             };
           }
         }
-        return fs.unlink(pathToFile, next);
+        fs.unlink(pathToFile, next);
+      } catch (error) {
+        req.body = {
+          'item.uploadEv': technicalProblemError,
+          'item.link': '',
+          'item.hashToken': '',
+          'item.size': 0
+        };
+        logger.exception(error, logPath);
+        fs.unlink(pathToFile, next);
       }
-      req.body = {
-        'item.uploadEv': technicalProblemError,
-        'item.link': '',
-        'item.hashToken': '',
-        'item.size': 0
-      };
-      logger.exception(forwardingError, logPath);
-      return fs.unlink(pathToFile, next);
     };
   }
 
