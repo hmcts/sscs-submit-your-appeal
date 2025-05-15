@@ -191,7 +191,7 @@ class Controller {
       } else {
         page.fields[fieldMap.postcodeLookup].value = '';
       }
-    } catch (error) {
+    } catch {
       page.fields[fieldMap.postcodeLookup].value = '';
     }
 
