@@ -28,12 +28,12 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
 
   test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
-    userEmail = testUser.createUser();
+    userEmail = await testUser.createUser();
   });
 
   test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
-    testUser.deleteUser(userEmail);
+    await testUser.deleteUser(userEmail);
   });
 
   test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @flaky-test`, async({ page }) => {

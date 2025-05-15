@@ -51,8 +51,6 @@
   "dependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
-    "@cypress/request": "^3.0.0",
-    "@cypress/request-promise": "^5.0.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
     "@hmcts/cookie-manager": "^1.0.0",

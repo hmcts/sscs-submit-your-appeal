@@ -2,7 +2,7 @@
 const testUser = require('../util/IdamUser');
 const fileAcceptor = require('test/file_acceptor');
 
-module.exports = () => {
+module.exports = async () => {
   fileAcceptor.teardown();
-  testUser.deleteUser(process.env.USEREMAIL_1);
+  await testUser.deleteUser(process.env.USEREMAIL_1);
 };
