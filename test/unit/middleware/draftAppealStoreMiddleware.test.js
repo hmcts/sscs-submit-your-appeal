@@ -353,7 +353,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
           'Content-Type': 'application/text'
         })
         .get('/drafts/all')
-        .reply(204, "something");
+        .reply(204, 'something');
 
       draftAppealStoreMiddleware.setFeatureFlag(true);
       await draftAppealStoreMiddleware.restoreAllDraftsState(
