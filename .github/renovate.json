@@ -15,6 +15,14 @@
     {
       "matchPackageNames": ["sinon-chai"],
       "allowedVersions": "3.x"
+    },
+    {
+      "matchPackageNames": ["body-parser"],
+      "allowedVersions": "1.x"
+    },
+    {
+      "matchPackageNames": ["express"],
+      "allowedVersions": "4.x"
     }
   ]
 }
