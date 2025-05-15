@@ -8209,7 +8209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha@npm:^11.0.0":
+"mocha@npm:^11.2.2":
   version: 11.2.2
   resolution: "mocha@npm:11.2.2"
   dependencies:
@@ -8972,10 +8972,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:^0.1.10":
+"path-to-regexp@npm:0.1.12":
   version: 0.1.12
   resolution: "path-to-regexp@npm:0.1.12"
   checksum: 10/2e30f6a0144679c1f95c98e166b96e6acd1e72be9417830fefc8de7ac1992147eb9a4c7acaa59119fb1b3c34eec393b2129ef27e24b2054a3906fc4fb0d1398e
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:0.1.7":
+  version: 0.1.7
+  resolution: "path-to-regexp@npm:0.1.7"
+  checksum: 10/701c99e1f08e3400bea4d701cf6f03517474bb1b608da71c78b1eb261415b645c5670dfae49808c89e12cea2dccd113b069f040a80de012da0400191c6dbd1c8
   languageName: node
   linkType: hard
 
@@ -11165,7 +11172,7 @@ __metadata:
     lodash: "npm:^4.17.21"
     lodash-es: "npm:^4.17.21"
     mini-css-extract-plugin: "npm:^2.9.1"
-    mocha: "npm:^11.0.0"
+    mocha: "npm:^11.2.2"
     moment: "npm:^2.30.1"
     nock: "npm:^14.0.0"
     nodemon: "npm:^3.1.7"
