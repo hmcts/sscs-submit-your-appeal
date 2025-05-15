@@ -140,11 +140,9 @@
     "webpack-node-externals": "3.0.0"
   },
   "resolutions": {
-    "express": "^4.21.0",
     "debug": "^4.0.0",
     "json-schema": "^0.4.0",
     "qs": "^6.11.2",
-    "redis": "^3.1.1",
     "micromatch": "^4.0.8",
     "@babel/helpers": "^7.26.10",
     "@babel/runtime": "^7.26.10",
