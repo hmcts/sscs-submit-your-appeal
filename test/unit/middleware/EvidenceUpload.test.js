@@ -26,11 +26,11 @@ describe('The EvidenceUpload middleware', () => {
   const renamer = sinon.stub().yields();
 
 
-  beforeEach(function () {
+  beforeEach(function() {
     this.timeout(2500);
     stubs = {
       formidable: {
-        IncomingForm: function () {
+        IncomingForm: function() {
           this.parse = parser;
           this.once = () => {
           };
@@ -38,21 +38,20 @@ describe('The EvidenceUpload middleware', () => {
           };
         }
       },
-      'superagent': {
+      superagent: {
         post: sinon.stub()
           .returns({ attach: sinon.stub().returns({ field: sinon.stub()
-                .resolves({
-                  body: {
-                    documents: [
-                      {
-                        originalDocumentName: '__originalDocumentName__',
-                        _links: { self: { href: '__href__' } },
-                        hashToken: '__hashToken__'
-                      }
-                    ]
+            .resolves({
+              body: {
+                documents: [
+                  {
+                    originalDocumentName: '__originalDocumentName__',
+                    _links: { self: { href: '__href__' } },
+                    hashToken: '__hashToken__'
                   }
-                })
-          }) })
+                ]
+              }
+            }) }) })
       },
       'graceful-fs': {
         unlink: unlinker,
@@ -83,7 +82,7 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('handleRename', () => {
-    it('should handle successful response and set req.body correctly', async () => {
+    it('should handle successful response and set req.body correctly', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
@@ -100,7 +99,7 @@ describe('The EvidenceUpload middleware', () => {
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
-    it('should handle response without hashToken and set req.body correctly', async () => {
+    it('should handle response without hashToken and set req.body correctly', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
@@ -118,12 +117,12 @@ describe('The EvidenceUpload middleware', () => {
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
-    it('should handle errors and set req.body with technicalProblemError', async () => {
+    it('should handle errors and set req.body with technicalProblemError', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
       const next = sinon.stub();
-      stubs['superagent'].post = sinon.stub().rejects(new Error('Upload failed'));
+      stubs.superagent.post = sinon.stub().rejects(new Error('Upload failed'));
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
@@ -361,7 +360,7 @@ describe('The EvidenceUpload middleware', () => {
   describe('static handleUpload', () => {
     it("if req.method is NOT post, it doesn't do anything apart from just invoking the callback", done => {
       const poster = sinon.stub();
-      stubs['superagent'].post = poster;
+      stubs.superagent.post = poster;
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs

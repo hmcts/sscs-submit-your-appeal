@@ -220,7 +220,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   static handleRename(pathToFile, req, size, next) {
-    return async () => {
+    return async() => {
       try {
         const response = await request
           .post(uploadEvidenceUrl)

@@ -8,7 +8,7 @@ const crypto = require('crypto');
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = config.get('services.idam-aat.apiCallTimeout');
 
-const createUser = async () => {
+const createUser = async() => {
   console.log('Creating Idam test user');
   const password = testDataEn.signIn.password;
   const buf = crypto.randomBytes(1);
@@ -34,7 +34,7 @@ const createUser = async () => {
     console.log(`Created idam user for ${email} with password ${password}`);
     return email;
   } catch (error) {
-    logger.error('Error createUser', error.message);
+    return logger.error('Error createUser', error.message);
   }
 };
 
