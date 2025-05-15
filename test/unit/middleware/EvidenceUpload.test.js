@@ -3,8 +3,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
-const { expect } = require('test/util/chai');
-const sinon = require('sinon');
+const { expect, sinon } = require('test/util/chai');
 const logger = require('logger');
 const proxyquire = require('proxyquire');
 const paths = require('paths');
@@ -105,13 +104,29 @@ describe('The EvidenceUpload middleware', () => {
       const pathToFile = '__path__';
       const next = sinon.stub();
 
+      stubs.superagent.post = sinon.stub()
+        .returns({ attach: sinon.stub().returns({ field: sinon.stub()
+          .resolves({
+            body: {
+              documents: [
+                {
+                  originalDocumentName: '__originalDocumentName__',
+                  _links: { self: { href: '__href__' } }
+                }
+              ]
+            }
+          }) }) });
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
 
       await EvidenceUpload.handleRename(pathToFile, req, size, next)();
 
       expect(req.body).to.deep.equal({
         'item.uploadEv': '__originalDocumentName__',
         'item.link': '__href__',
-        'item.hashToken': '__hashToken__',
+        'item.hashToken': '',
         'item.size': size
       });
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
@@ -122,7 +137,8 @@ describe('The EvidenceUpload middleware', () => {
       const size = 42;
       const pathToFile = '__path__';
       const next = sinon.stub();
-      stubs.superagent.post = sinon.stub().rejects(new Error('Upload failed'));
+      stubs.superagent.post = sinon.stub()
+        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) })
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
