@@ -1,4 +1,3 @@
-const logger = require('logger');
 const request = require('superagent');
 const config = require('config');
 
@@ -34,7 +33,7 @@ const createUser = async() => {
     console.log(`Created idam user for ${email} with password ${password}`);
     return email;
   } catch (error) {
-    return logger.error('Error createUser', error.message);
+    return console.error(`Error createUser: ${error.message}`);
   }
 };
 
@@ -47,7 +46,7 @@ const deleteUser = async email => {
 
     console.log(`Deleted SIDAM user for ${email}`);
   } catch (error) {
-    logger.error('Error deleteUser', error.message);
+    console.error(`Error createUser: ${error.message}`);
   }
 };
 

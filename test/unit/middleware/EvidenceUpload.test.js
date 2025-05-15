@@ -138,7 +138,7 @@ describe('The EvidenceUpload middleware', () => {
       const pathToFile = '__path__';
       const next = sinon.stub();
       stubs.superagent.post = sinon.stub()
-        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) })
+        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) });
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
