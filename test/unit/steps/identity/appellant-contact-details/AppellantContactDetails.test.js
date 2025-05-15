@@ -438,3 +438,4 @@ describe('AppellantContactDetails.js', () => {
       });
     });
   });
+});

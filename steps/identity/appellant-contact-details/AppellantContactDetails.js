@@ -72,8 +72,7 @@ class AppellantContactDetails extends SaveToDraftStore {
 
   get CYAEmailAddress() {
     return (
-      this.fields.emailAddress.value ||
-      userAnswer[i18next.language].NOT_PROVIDED
+      this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED
     );
   }
 
@@ -203,22 +202,14 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
-          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
-            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
-            '',
-          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
-            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
-            '',
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ? decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) : '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ? decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) : '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value ?
-            this.fields.postCode.value.trim() :
-            this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value ?
-            this.fields.phoneNumber.value.trim() :
-            this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
+          phoneNumber: this.fields.phoneNumber.value ? this.fields.phoneNumber.value.trim() : this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }
