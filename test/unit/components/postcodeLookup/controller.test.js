@@ -603,18 +603,15 @@ describe('Components/controller.js', () => {
     });
 
     it('should use the correct validation when allowNI is true', () => {
-      // Create a regex spy that we can track
       const regexSpy = sinon.spy();
       const stringPrototype = Object.getPrototypeOf(Joi.string());
       const originalRegex = stringPrototype.regex;
 
-      // Replace the regex method with our spy
       stringPrototype.regex = function regex(...args) {
         regexSpy(...args);
         return originalRegex.apply(this, args);
       };
 
-      // Create a stub for isIba that returns true
       const isIbaStub = sinon.stub().returns(true);
 
       // Apply stubs to controller using proxyquire
@@ -630,13 +627,10 @@ describe('Components/controller.js', () => {
         'utils/benefitTypeUtils': { isIba: isIbaStub }
       });
 
-      // Create controller instance with our stubbed dependencies
       const pclInstance = new PCLWithStubs(enabled, token, url, page);
 
       // Call the schemaBuilder
       const fields = [{ name: 'postcodeLookup', validator: {} }];
-
-      // Execute the schemaBuilder method
       pclInstance.schemaBuilder(fields);
 
       // If allowNI is true and isIba is true, regex should not be called with notNiPostcode
@@ -647,18 +641,15 @@ describe('Components/controller.js', () => {
     });
 
     it('should use regex validation when allowNI is false', () => {
-      // Create a regex spy that we can track
       const regexSpy = sinon.spy();
       const stringPrototype = Object.getPrototypeOf(Joi.string());
       const originalRegex = stringPrototype.regex;
 
-      // Replace the regex method with our spy
       stringPrototype.regex = function regex(...args) {
         regexSpy(...args);
         return originalRegex.apply(this, args);
       };
 
-      // Apply stubs to controller using proxyquire
       const PCLWithStubs = proxyquire('components/postcodeLookup/controller', {
         config: {
           get: function get(key) {
@@ -672,19 +663,14 @@ describe('Components/controller.js', () => {
         'utils/regex': { notNiPostcode: /^(?!BT)/ }
       });
 
-      // Create controller instance with our stubbed dependencies
       const pclInstance = new PCLWithStubs(enabled, token, url, page);
 
-      // Call the schemaBuilder
       const fields = [{ name: 'postcodeLookup', validator: {} }];
-
-      // Execute the schemaBuilder method
       pclInstance.schemaBuilder(fields);
 
       // If allowNI is false and isIba is true, regex should be called with notNiPostcode
       expect(regexSpy.called).to.be.true;
 
-      // Restore original regex method
       stringPrototype.regex = originalRegex;
     });
   });

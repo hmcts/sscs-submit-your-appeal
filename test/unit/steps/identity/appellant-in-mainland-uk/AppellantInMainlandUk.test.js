@@ -197,11 +197,9 @@ describe('AppellantInMainlandUk.js', () => {
   });
 
   describe('allowNI flag behavior', () => {
-    // Initialize the variable when declaring it
     let configStub = null;
 
     beforeEach(() => {
-      // Use the already imported config module
       configStub = sinon.stub(config, 'get');
     });
 
@@ -236,10 +234,8 @@ describe('AppellantInMainlandUk.js', () => {
       };
       instance.fields = { inMainlandUk: { value: userAnswer.YES } };
 
-      // Get the answers
       const answers = instance.answers();
 
-      // Verify the correct question was used
       expect(answers.question).to.equal('NI specific question');
     });
   });

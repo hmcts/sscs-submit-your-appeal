@@ -200,7 +200,6 @@ describe('RepresentativeInMainlandUk.js', () => {
     });
 
     it('should use questionNI when allowNI is true', () => {
-      // Setup the config to return true for the allowNI flag
       configStub.withArgs('features.allowNI.enabled').returns(true);
 
       // Create a new instance with the required journey object
@@ -226,18 +225,13 @@ describe('RepresentativeInMainlandUk.js', () => {
       };
       instance.fields = { inMainlandUk: { value: userAnswer.YES } };
 
-      // Get the answers
       const answers = instance.answers();
-
-      // Verify the correct question was used
       expect(answers.question).to.equal('NI specific question');
     });
 
     it('should use requiredNI error message when allowNI is true', () => {
-      // Setup the config to return true for the allowNI flag
       configStub.withArgs('features.allowNI.enabled').returns(true);
 
-      // Instead of mocking require, we'll use direct approach with the actual instance
       const instance = new RepresentativeInMainlandUk({
         journey: {
           steps: {
@@ -248,10 +242,8 @@ describe('RepresentativeInMainlandUk.js', () => {
         }
       });
 
-      // Create a spy on the text.joi function that's used in the form getter
       const formsSpy = sinon.spy(text, 'joi');
-
-      // Set up the content with our test messages
+      
       instance.content = {
         fields: {
           inMainlandUk: {
