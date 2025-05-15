@@ -3131,8 +3131,8 @@ __metadata:
   linkType: hard
 
 "applicationinsights@npm:^2.9.6":
-  version: 2.9.6
-  resolution: "applicationinsights@npm:2.9.6"
+  version: 2.9.7
+  resolution: "applicationinsights@npm:2.9.7"
   dependencies:
     "@azure/core-auth": "npm:1.7.2"
     "@azure/core-rest-pipeline": "npm:1.16.3"
@@ -3151,7 +3151,7 @@ __metadata:
   peerDependenciesMeta:
     applicationinsights-native-metrics:
       optional: true
-  checksum: 10/fb0a848262c73b9e0977e37124788f171343180f19643deb7ded5a37bcb7f61b4fdd36130f6ff65d4172f87fe87382e539671b3a837b62923c9cab869f2df2b2
+  checksum: 10/ac06f065fc790633329813488dae6b08a5b1702ba414cb3228e81c4cdb2bd39754bd55fc14e02648165abdc99d661fc50d3311783a17aa1da9acc94663dabab0
   languageName: node
   linkType: hard
 
