@@ -639,5 +639,39 @@ describe('Components/controller.js', () => {
       // Restore original regex method
       stringPrototype.regex = originalRegex;
     });
+
+    it('should use regex validation when allowNI is false', () => {
+      const regexSpy = sinon.spy();
+      const stringPrototype = Object.getPrototypeOf(Joi.string());
+      const originalRegex = stringPrototype.regex;
+
+      stringPrototype.regex = function regex(...args) {
+        regexSpy(...args);
+        return originalRegex.apply(this, args);
+      };
+
+      const PCLWithStubs = proxyquire('components/postcodeLookup/controller', {
+        config: {
+          get: function get(key) {
+            if (key === 'features.allowNI.enabled') {
+              return false;
+            }
+            return false;
+          }
+        },
+        'utils/benefitTypeUtils': { isIba: () => true },
+        'utils/regex': { notNiPostcode: /^(?!BT)/ }
+      });
+
+      const pclInstance = new PCLWithStubs(enabled, token, url, page);
+
+      const fields = [{ name: 'postcodeLookup', validator: {} }];
+      pclInstance.schemaBuilder(fields);
+
+      // If allowNI is false and isIba is true, regex should be called with notNiPostcode
+      expect(regexSpy.called).to.be.true;
+
+      stringPrototype.regex = originalRegex;
+    });
   });
 });
