@@ -4,6 +4,8 @@ const PCL = require('components/postcodeLookup/controller');
 const nock = require('nock');
 const proxyquire = require('proxyquire');
 const Joi = require('joi');
+const i18next = require('i18next');
+const config = require('config');
 
 const enabled = true;
 const url = 'http://mockapi.com/v';
@@ -180,6 +182,123 @@ describe('Components/controller.js', () => {
       pcl = new PCL(enabled, token, url, page);
       pcl.handleGetValidate();
       expect(page.validate.callCount).to.eql(0);
+    });
+
+    let configStub = null;
+
+    beforeEach(() => {
+      configStub = sinon.stub(config, 'get');
+    });
+
+    afterEach(() => {
+      configStub.restore();
+    });
+
+    it('returns the correct English error message for IBCA when allowNI is true', () => {
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode'
+      );
+    });
+
+    it('returns the correct English error message for IBCA when allowNI is false', () => {
+      configStub.withArgs('features.allowNI.enabled').returns(false);
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'We cannot find an England, Scotland or Wales address with that postcode'
+      );
+    });
+
+    it('returns the correct English error message for all other Appeals', () => {
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = { benefitType: '' };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'We cannot find an address with that postcode'
+      );
+    });
+
+    it('returns the correct Welsh error message for IBCA when allowNI is true', () => {
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+      sinon.stub(i18next, 'language').value('cy');
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        "Ni allem ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban na Ogledd Iwerddon gyda'r cod post hwnnw"
+      );
+    });
+
+    it('returns the correct Welsh error message for IBCA when allowNI is false', () => {
+      configStub.withArgs('features.allowNI.enabled').returns(false);
+      sinon.stub(i18next, 'language').value('cy');
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw'
+      );
+    });
+
+    it('returns the correct Welsh error message for all other Appeals', () => {
+      sinon.stub(i18next, 'language').value('cy');
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw'
+      );
     });
   });
 

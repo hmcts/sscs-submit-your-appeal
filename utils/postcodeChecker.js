@@ -4,6 +4,8 @@ const request = require('superagent');
 const { inwardPostcode } = require('utils/regex');
 const logger = require('logger');
 
+const allowNI = config.get('features.allowNI.enabled');
+
 const postcodeCountryLookupUrl =
   config.get('api.url') + config.get('postcodeChecker.endpoint');
 const allowedRegionCentres = config
@@ -14,7 +16,10 @@ const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
 
 const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
-  if (postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart)) {
+  if (
+    postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart) &&
+    !allowNI
+  ) {
     return Promise.resolve(false);
   }
 

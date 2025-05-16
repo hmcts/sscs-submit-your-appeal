@@ -10,14 +10,15 @@
       "yes": "Ydw",
       "no": "Nac ydw",
       "errors": {
-        "required": "Dewiswch ‘ydw’ os ydych yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon."
+        "required": "Dewiswch ‘ydw’ os ydych yn byw yng Nghymru, Lloegr neu’r Alban.",
+        "requiredNI": "Dewiswch ‘ydw’ os ydych yn byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon."
       }
     }
   },
   "cya": {
     "inMainlandUk": {
       "question": "Ydych chi’n byw yng Nghymru, Lloegr neu’r Alban?",
-      "questionNI": "YYdych chi'n byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon?",
+      "questionNI": "Ydych chi'n byw yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon?",
       "yes": "Ydw",
       "no": "Nac ydw"
     }

@@ -1,5 +1,3 @@
-
-
 const { expect } = require('test/util/chai');
 const AppellantContactDetails = require('steps/identity/appellant-contact-details/AppellantContactDetails');
 const paths = require('paths');

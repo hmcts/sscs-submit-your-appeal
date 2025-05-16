@@ -10,7 +10,8 @@
       "yes": "Yes",
       "no": "No",
       "errors": {
-        "required": "Select ‘Yes’ if you live in England, Scotland, Wales or Northern Ireland."
+        "required": "Select ‘Yes’ if you live in England, Scotland or Wales.",
+        "requiredNI": "Select ‘Yes’ if you live in England, Scotland, Wales or Northern Ireland."
       }
     }
   },

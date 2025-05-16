@@ -39,6 +39,7 @@ class Controller {
       this.manualFields();
     }
     const isIbaCase = isIba(this.page.req);
+
     const getPostcodeLookup = () => {
       if (isIbaCase) {
         return text

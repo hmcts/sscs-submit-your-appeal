@@ -94,7 +94,14 @@ describe('RepresentativeInMainlandUk.js', () => {
 
     beforeEach(() => {
       representativeInMainlandUk.content = {
-        cya: { inMainlandUk: { question, questionNI, yes: 'Yes', no: 'No' } }
+        cya: {
+          inMainlandUk: {
+            question,
+            questionNI,
+            yes: 'Yes',
+            no: 'No'
+          }
+        }
       };
 
       representativeInMainlandUk.fields = { inMainlandUk: {} };

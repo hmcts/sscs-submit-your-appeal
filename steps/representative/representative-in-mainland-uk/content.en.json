@@ -17,6 +17,7 @@
   },
   "cya": {
     "inMainlandUk": {
+      "question": "Does your representative live in England, Scotland or Wales?",
       "questionNI": "Does your representative live in England, Scotland, Wales or Northern Ireland?",
       "yes": "Yes",
       "no": "No"
