@@ -11,7 +11,6 @@ const appellantDOBContentCy = require('steps/identity/appellant-dob/content.cy')
 const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en');
 const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
 
-const allowNI = config.get('features.allowNI.enabled');
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
 const { expect } = require('@playwright/test');
 
@@ -232,10 +231,8 @@ async function enterAppellantContactDetailsWithMobileAndContinue(
   mobileNumber = '07466748336'
 ) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
-  const labelToLookFor = allowNI ? postcodeLookupContent.textboxLabelNI : postcodeLookupContent.textboxLabel;
-gi
   await expect(
-    I.getByText(labelToLookFor).first()
+    I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
@@ -250,9 +247,8 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   mobileNumber = '07466748336'
 ) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
-  const labelToLookFor = allowNI ? postcodeLookupContent.textboxLabelNI : postcodeLookupContent.textboxLabel;
   await expect(
-    I.getByText(labelToLookFor).first()
+    I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
