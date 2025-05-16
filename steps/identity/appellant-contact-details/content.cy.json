@@ -65,7 +65,8 @@
         "withoutAppointee": {
           "required": "Nodwch y cod post o’ch cyfeiriad",
           "invalidPostcode": "Nid yw’r gwasanaeth apelio ar-lein ar gael i bobl sy’n byw yn y rhanbarth hwn. Dylai’r cod post hwn gyfateb i’r cod post a roesoch i gael mynediad i’r gwasanaeth.",
-          "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales."
+          "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales.",
+          "invalidPostcodeIbaNI": "This is not a valid postcode in England, Scotland, Wales or Northern Ireland."
         },
         "withAppointee": {
           "required": "Nodwch y cod post o’u cyfeiriad",

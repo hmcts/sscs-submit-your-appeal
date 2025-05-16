@@ -110,6 +110,9 @@
     },
     "webchatOpen8to5" : {
       "enabled": "WEBCHAT_OPENING_TIME_8_5"
+    },
+    "allowNI" : {
+      "enabled": "ALLOW_NI_ENABLED"
     }
   },
   "postcodeChecker": {
