@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop,max-depth */
+const { expect } = require('@playwright/test');
 const appellant = require('test/e2e/data.en').appellant;
 const config = require('config');
 const paths = require('paths');
@@ -12,7 +13,6 @@ const appellantNINOContentEn = require('steps/identity/appellant-nino/content.en
 const appellantNINOContentCy = require('steps/identity/appellant-nino/content.cy');
 
 const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
-const { expect } = require('@playwright/test');
 
 async function enterAppellantNameAndContinue(
   I,
@@ -231,7 +231,6 @@ async function enterAppellantContactDetailsWithMobileAndContinue(
   mobileNumber = '07466748336'
 ) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
-
   await expect(
     I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
@@ -248,7 +247,6 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   mobileNumber = '07466748336'
 ) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
-
   await expect(
     I.getByText(postcodeLookupContent.textboxLabel).first()
   ).toBeVisible();
