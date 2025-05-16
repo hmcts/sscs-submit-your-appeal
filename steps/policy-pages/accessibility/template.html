@@ -6,17 +6,21 @@
 {% set telephoneDetails %}
     <div class="govuk-details__text">
         {% if isIba %}
+            {% if allowNiEnabled %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.England.descNI }}</h3>
+            {% else%}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.England.desc }}</h3>
+            {% endif %}
+            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.iba.England.phone }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.iba.England.availability }}</p>
+            <p class="govuk-body govuk-!-margin-bottom-2">
+                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
+            </p>
+
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.Scotland.desc }}</h3>
             <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.iba.Scotland.phone }}</p>
             <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.iba.Scotland.availability }}</p>
             <p class="govuk-body">
-                <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
-            </p>
-
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.England.desc }}</h3>
-            <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.iba.England.phone }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.iba.England.availability }}</p>
-            <p class="govuk-body govuk-!-margin-bottom-2">
                 <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
             </p>
 
