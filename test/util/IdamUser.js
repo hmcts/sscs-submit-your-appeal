@@ -1,6 +1,4 @@
-
-const logger = require('logger');
-const rp = require('@cypress/request-promise');
+const request = require('superagent');
 const config = require('config');
 
 const testDataEn = require('test/e2e/data.en');
@@ -9,52 +7,47 @@ const crypto = require('crypto');
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = config.get('services.idam-aat.apiCallTimeout');
 
-const createUser = () => {
+const createUser = async() => {
   console.log('Creating Idam test user');
   const password = testDataEn.signIn.password;
   const buf = crypto.randomBytes(1);
   const email = `test${buf[0]}@hmcts.net`;
-  const options = {
-    url: `${sidamApiUrl}/testing-support/accounts`,
-    json: true,
-    body: {
-      email,
-      forename: 'ATestForename',
-      password,
-      surname: 'ATestSurname',
-      roles: [
-        {
-          code: 'citizen'
-        }
-      ]
-    },
-    insecure: true,
-    timeout
-  };
 
   try {
-    rp.post(options);
+    await request
+      .post(`${sidamApiUrl}/testing-support/accounts`)
+      .send({
+        email,
+        forename: 'ATestForename',
+        password,
+        surname: 'ATestSurname',
+        roles: [
+          {
+            code: 'citizen'
+          }
+        ]
+      })
+      .timeout(timeout)
+      .trustLocalhost();
+
     console.log(`Created idam user for ${email} with password ${password}`);
     return email;
   } catch (error) {
-    return logger.error('Error createUser', error.message);
+    return console.error(`Error createUser: ${error.message}`);
   }
 };
 
-const deleteUser = email => {
-  const options = {
-    url: `${sidamApiUrl}/testing-support/accounts/${email}`,
-    insecure: true,
-    timeout
-  };
-
+const deleteUser = async email => {
   try {
-    rp.delete(options);
-  } catch (error) {
-    logger.error('Error deleteUser', error);
-  }
+    await request
+      .delete(`${sidamApiUrl}/testing-support/accounts/${email}`)
+      .timeout(timeout)
+      .trustLocalhost();
 
-  console.log(`Deleted SIDAM user for ${email}`);
+    console.log(`Deleted SIDAM user for ${email}`);
+  } catch (error) {
+    console.error(`Error createUser: ${error.message}`);
+  }
 };
 
 module.exports = { createUser, deleteUser };

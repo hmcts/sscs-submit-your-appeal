@@ -19,7 +19,6 @@
     "cookie-banner/**",
     "webpack/**",
     "components/postcodeLookup/assets/**",
-    "steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js",
     "steps/check-your-appeal/CheckYourAppeal.js"
   ],
   "reporter": [
