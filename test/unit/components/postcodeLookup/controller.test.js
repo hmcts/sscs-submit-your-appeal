@@ -260,7 +260,7 @@ describe('Components/controller.js', () => {
       ]).fields.postcodeLookup.validations[0].message;
 
       expect(errorMessage).to.eql(
-        "Ni allem ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban na Ogledd Iwerddon gyda'r cod post hwnnw"
+        "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
       );
     });
 
