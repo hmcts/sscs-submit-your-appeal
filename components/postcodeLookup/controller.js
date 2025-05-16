@@ -10,8 +10,6 @@ const Joi = require('joi');
 const { isIba } = require('utils/benefitTypeUtils');
 const { notNiPostcode } = require('utils/regex');
 const config = require('config');
-const allowNI = config.get('features.allowNI.enabled');
-
 class Controller {
   constructor(enabled = true, token = '', apiUrl = '', page = {}) {
     this.enabled = enabled;
@@ -42,11 +40,12 @@ class Controller {
 
     const getPostcodeLookup = () => {
       if (isIbaCase) {
+        const allowNI = config.get('features.allowNI.enabled');
         return text
           .joi(
             allowNI ?
                content.fields.postcodeLookup.error.requiredNI :
-               content.fields.postcodeLookup.error.required,
+               content.fields.postcodeLookup.error.required, 
              allowNI ?
                Joi.string().trim().required() :
                Joi.string().trim().regex(notNiPostcode).required()

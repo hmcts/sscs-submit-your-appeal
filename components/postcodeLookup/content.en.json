@@ -8,8 +8,8 @@
   "fields": {
     "postcodeLookup": {
       "error": {
-        "required": "We cannot find an address with that postcode",
-        "invalidPostcode": "We cannot find an address with that postcode",
+        "required": "We cannot find an England, Scotland or Wales address with that postcode",
+        "invalidPostcode": "WWe cannot find an England, Scotland or Wales address with that postcode",
         "requiredNI": "We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode",
         "invalidPostcodeNI": "We cannot find an England, Scotland, Wales or Northern Ireland address with that postcode"
       }

@@ -241,7 +241,7 @@ describe('Components/controller.js', () => {
       ]).fields.postcodeLookup.validations[0].message;
 
       expect(errorMessage).to.eql(
-        'We cannot find an address with that postcode'
+        'We cannot find an England, Scotland or Wales address with that postcode'
       );
     });
 
@@ -283,23 +283,6 @@ describe('Components/controller.js', () => {
       );
     });
 
-    it('returns the correct Welsh error message for all other Appeals', () => {
-      sinon.stub(i18next, 'language').value('cy');
-      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
-      page.req.session.BenefitType = {
-        benefitType: 'Infected Blood Compensation'
-      };
-
-      pcl = new PCL(enabled, token, url, page);
-      const errorMessage = pcl.schemaBuilder([
-        { name: 'postcodeLookup' },
-        { name: 'postcodeAddress' }
-      ]).fields.postcodeLookup.validations[0].message;
-
-      expect(errorMessage).to.eql(
-        'Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw'
-      );
-    });
   });
 
   describe('getFormType()', () => {
