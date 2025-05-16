@@ -2,7 +2,7 @@
 {% from "components/fields.njk" import formSection %}
 {% from "components/common/radio.njk" import govRadio %}
 
-{% set title = content.titleNI if allowNiEnabled else content.title  %}
+{% if allowNiEnabled %}{% set title = content.titleNI %}{% else %}{% set title = content.titleNI %}{% endif %}            
 
 
 {% block fields %}
