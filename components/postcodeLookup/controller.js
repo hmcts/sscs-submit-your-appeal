@@ -9,6 +9,7 @@ const { text } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
 const { isIba } = require('utils/benefitTypeUtils');
 const { notNiPostcode } = require('utils/regex');
+const config = require('config');
 
 class Controller {
   constructor(enabled = true, token = '', apiUrl = '', page = {}) {
@@ -37,12 +38,21 @@ class Controller {
       this.manualFields();
     }
     const isIbaCase = isIba(this.page.req);
+
     const getPostcodeLookup = () => {
+      const allowNI = config.get('features.allowNI.enabled');
       if (isIbaCase) {
         return text
           .joi(
-            content.fields.postcodeLookup.error.requiredIba,
-            Joi.string().trim().regex(notNiPostcode).required()
+            allowNI ?
+              content.fields.postcodeLookup.error.requiredIbaNI :
+              content.fields.postcodeLookup.error.requiredIba,
+            allowNI ?
+              content.fields.postcodeLookup.error.invalidPostcodeNI :
+              content.fields.postcodeLookup.error.invalidPostcode,
+            allowNI ?
+              Joi.string().trim().required() :
+              Joi.string().trim().regex(notNiPostcode).required()
           )
           .joi(
             content.fields.postcodeAddress.error.required,

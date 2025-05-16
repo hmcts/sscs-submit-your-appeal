@@ -96,12 +96,14 @@ describe('RepresentativeInMainlandUk.js', () => {
 
   describe('answers() and values()', () => {
     const question = 'A Question';
+    const questionNI = 'A Question';
 
     beforeEach(() => {
       representativeInMainlandUk.content = {
         cya: {
           inMainlandUk: {
             question,
+            questionNI,
             yes: 'Yes',
             no: 'No'
           }

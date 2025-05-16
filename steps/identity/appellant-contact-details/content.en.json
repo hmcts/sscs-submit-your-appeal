@@ -65,7 +65,8 @@
         "withoutAppointee": {
           "required": "Enter the postcode from your address",
           "invalidPostcode": "The online appeal service is not available to people from this region. This postcode should match the postcode you entered to access the service.",
-          "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales."
+          "invalidPostcodeIba": "This is not a valid postcode in England, Scotland or Wales.",
+          "invalidPostcodeIbaNI": "This is not a valid postcode in England, Scotland, Wales or Northern Ireland."
         },
         "withAppointee": {
           "required": "Enter the postcode from their address",
