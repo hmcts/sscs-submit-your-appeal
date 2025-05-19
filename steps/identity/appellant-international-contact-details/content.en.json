@@ -39,7 +39,7 @@
     "portOfEntry": {
       "title": "Port of entry",
       "hint": "This is where you will expect to enter GB mainland by air/sea/train. You can change this at a later date if needed.",
-      "hintNI": "If we required you to attend a hearing where would you expect to enter England, Scotland or Wales by air/sea/train. You can change this at a later date if needed.!!",
+      "hintNI": "If we required you to attend a hearing where would you expect to enter England, Scotland or Wales by air/sea/train. You can change this at a later date if needed.",
       "error": {
         "required": "Select your port of entry into the UK",
         "invalid": "The port of entry is invalid"
