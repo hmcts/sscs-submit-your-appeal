@@ -40,13 +40,13 @@
     "iba": {
       "England": {
         "desc": "IBC appeals helpline (All other appellants)",
-        "descNI" : "IBC appeals helpline (England and Wales)",
+        "descNI" : "3 IBC appeals helpline (England and Wales)",
         "phone": "Telephone: 0300 131 2850",
         "availability": "Monday to Friday, 9am to 4pm"
       },
       "Scotland": {
         "desc": "IBC appeals helpline (Scotland)",
-        "descNI": "IBC appeals helpline (Scotland and Northern Ireland)",
+        "descNI": "4 IBC appeals helpline (Scotland and Northern Ireland)",
         "phone": "Telephone: 0300 790 6234",
         "availability": "Monday to Friday, 9am to 4pm"
       },
