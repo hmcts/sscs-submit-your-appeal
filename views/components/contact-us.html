@@ -52,7 +52,7 @@
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.descNI }}</h3>
             {% else%}
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc }}</h3>
-            {% endif %}
+          {% endif %}
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.availability }}</p>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.saturdayAvailability }}</p>
@@ -64,7 +64,11 @@
           </p>
           {% endif %}
 
+          {% if allowNiEnabled %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc }}</h3>
+          {% else%}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.descNI }}</h3>
+          {% endif %}
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability }}</p>
           <p class="govuk-body">

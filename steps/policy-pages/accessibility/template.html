@@ -17,7 +17,11 @@
                 <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ content.telephone.charges }}</a>
             </p>
 
+            {% if allowNiEnabled %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.Scotland.descNI }}</h3>
+            {% else%}
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ content.telephone.iba.Scotland.desc }}</h3>
+            {% endif %}
             <p class="govuk-body govuk-!-margin-bottom-0">{{ content.telephone.iba.Scotland.phone }}</p>
             <p class="govuk-body govuk-!-margin-bottom-2">{{ content.telephone.iba.Scotland.availability }}</p>
             <p class="govuk-body">
