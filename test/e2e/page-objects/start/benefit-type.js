@@ -16,7 +16,7 @@ async function handleFlakey(I, language, type, continueText) {
     } catch (error) {
       if (i === 4) throw new Error(error);
       await I.goto(paths.start.benefitType);
-      console.log(`Failed attempt ${i + 1}, trying again.`);
+      console.log(`Failed benefit type selection attempt ${i + 1}, trying again.`);
     }
   }
 }
