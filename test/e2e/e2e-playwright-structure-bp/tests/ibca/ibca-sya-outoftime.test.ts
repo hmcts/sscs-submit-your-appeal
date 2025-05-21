@@ -45,7 +45,7 @@ test.describe(`EN - IBCA out of time`, () => {
         );
         const ibcaPages = await PageFactory.getAllPages(page);
 
-        testData.sidamCredentials.username = userEmail;
+        const creds = { username: userEmail, password: testData.sidamCredentials.password };
 
         await ibcaPages.languagePreferencePage.goto();
 
@@ -61,7 +61,7 @@ test.describe(`EN - IBCA out of time`, () => {
         await runAssertions(ibcaPages.createAccountPage);
         await ibcaPages.createAccountPage.saveForLater(
           saveForLater,
-          testData.sidamCredentials
+          creds
         );
 
         // Agree to independent tribunal - Repeat only if saveForLater set to true

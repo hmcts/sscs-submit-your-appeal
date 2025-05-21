@@ -29,7 +29,7 @@ test.describe(`EN - IBCA in time`, () => {
       const testData = await getJsonFromFile(`test/e2e/data.ibca.${process.env.LANGUAGE_TO_TEST}.json`);
       const ibcaPages = await PageFactory.getAllPages(page);
 
-      testData.sidamCredentials.username = userEmail;
+      const creds = { username: userEmail, password: testData.sidamCredentials.password };
 
       await ibcaPages.languagePreferencePage.goto();
 
@@ -43,7 +43,7 @@ test.describe(`EN - IBCA in time`, () => {
 
       // Create account page
       await runAssertions(ibcaPages.createAccountPage);
-      await ibcaPages.createAccountPage.saveForLater(saveForLater, testData.sidamCredentials);
+      await ibcaPages.createAccountPage.saveForLater(saveForLater, creds);
 
       // Agree to independent tribunal - Repeat only if saveForLater set to true
       if (saveForLater) {
