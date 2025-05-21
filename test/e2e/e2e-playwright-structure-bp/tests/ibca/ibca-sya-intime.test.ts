@@ -11,12 +11,12 @@ async function runAssertions(ibcaPageObject: any) {
 
 let userEmail: string | void = '';
 test.describe(`EN - IBCA in time`, () => {
-  test.beforeEach('Create session and user', () => {
-    userEmail = createUser();
+  test.beforeEach('Create session and user', async ({ page }) => {
+    userEmail = await createUser();
   });
 
-  test.afterEach('End session and delete user', () => {
-    deleteUser(userEmail);
+  test.afterEach('End session and delete user', async ({ page }) => {
+    await deleteUser(userEmail);
   });
   [
     { saveForLater: false },

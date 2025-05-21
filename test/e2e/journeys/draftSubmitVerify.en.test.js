@@ -44,7 +44,7 @@ let userEmail = '';
 test.describe(`${language.toUpperCase()} - Verifying data when drafts are submitted to CCD`, () => {
   test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
-    userEmail = testUser.createUser();
+    userEmail = await testUser.createUser();
   });
 
   test.afterEach('End session and delete user', async({ page }) => {
