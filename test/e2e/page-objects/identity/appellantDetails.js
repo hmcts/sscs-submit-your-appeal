@@ -152,7 +152,7 @@ async function enterAddressDetails(I, postcodeLookupContent) {
       } catch (error) {
         if (i === 4) throw new Error(error);
         await I.goto(paths.identity.enterAppellantContactDetails);
-        console.log(`Failed attempt ${i + 1}, trying again.`);
+        console.log(`Failed address selection attempt ${i + 1}, trying again.`);
       }
     }
   } else {
