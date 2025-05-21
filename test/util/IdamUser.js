@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return,no-await-in-loop */
 const request = require('superagent');
 const config = require('config');
 
@@ -7,7 +8,7 @@ const crypto = require('crypto');
 const sidamApiUrl = config.get('services.idam-aat.apiUrl');
 const timeout = config.get('services.idam-aat.apiCallTimeout');
 
-const createUser = async () => {
+async function createUser() {
   console.log('Creating Idam test user');
   const password = testDataEn.signIn.password;
   for (let i = 0; i < 3; i++) {
@@ -40,7 +41,7 @@ const createUser = async () => {
       console.error(`Error createUser: ${error.message}, retry attempt #${i + 1}`);
     }
   }
-};
+}
 
 const deleteUser = async email => {
   try {
