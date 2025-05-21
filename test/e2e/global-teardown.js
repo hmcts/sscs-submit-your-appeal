@@ -1,5 +1,5 @@
 const fileAcceptor = require('test/file_acceptor');
 
-module.exports = async() => {
+module.exports = () => {
   fileAcceptor.teardown();
 };
