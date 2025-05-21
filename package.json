@@ -114,6 +114,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@babel/register": "^7.27.1",
+    "@cypress/request-promise": "^5.0.0",
     "@hmcts/eslint-config": "^1.4.0",
     "@playwright/test": "^1.52.0",
     "chai": "^4.5.0",

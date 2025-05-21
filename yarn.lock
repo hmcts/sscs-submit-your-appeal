@@ -1788,6 +1788,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cypress/request-promise@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@cypress/request-promise@npm:5.0.0"
+  dependencies:
+    bluebird: "npm:^3.5.0"
+    request-promise-core: "npm:1.1.3"
+    stealthy-require: "npm:^1.1.1"
+    tough-cookie: "npm:^4.1.3"
+  peerDependencies:
+    "@cypress/request": ^3.0.0
+  checksum: 10/9d052758be92ad94081ff3f600f9b6d1128e140f35a0f39d87941ada3dae84e7a4606ed659d8b8ebadb9a84413c25db8ac0e42b77392a877e181fc7299a95478
+  languageName: node
+  linkType: hard
+
 "@discoveryjs/json-ext@npm:^0.6.1":
   version: 0.6.3
   resolution: "@discoveryjs/json-ext@npm:0.6.3"
@@ -3593,6 +3607,13 @@ __metadata:
     inherits: "npm:^2.0.4"
     readable-stream: "npm:^3.4.0"
   checksum: 10/0340d3d70def4213cd9cbcd8592f7c5922d3668e7b231286c354613fac4a8411ad373cff26e06162da7423035bbd5caafce3e140a5f397be72fcd1e9d86f1179
+  languageName: node
+  linkType: hard
+
+"bluebird@npm:^3.5.0":
+  version: 3.7.2
+  resolution: "bluebird@npm:3.7.2"
+  checksum: 10/007c7bad22c5d799c8dd49c85b47d012a1fe3045be57447721e6afbd1d5be43237af1db62e26cb9b0d9ba812d2e4ca3bac82f6d7e016b6b88de06ee25ceb96e7
   languageName: node
   linkType: hard
 
@@ -9560,6 +9581,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"psl@npm:^1.1.33":
+  version: 1.15.0
+  resolution: "psl@npm:1.15.0"
+  dependencies:
+    punycode: "npm:^2.3.1"
+  checksum: 10/5e7467eb5196eb7900d156783d12907d445c0122f76c73203ce96b148a6ccf8c5450cc805887ffada38ff92d634afcf33720c24053cb01d5b6598d1c913c5caf
+  languageName: node
+  linkType: hard
+
 "pstree.remy@npm:^1.1.8":
   version: 1.1.8
   resolution: "pstree.remy@npm:1.1.8"
@@ -9584,7 +9614,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:^2.3.1":
+"punycode@npm:^2.1.1, punycode@npm:^2.3.1":
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
   checksum: 10/febdc4362bead22f9e2608ff0171713230b57aff9dddc1c273aa2a651fbd366f94b7d6a71d78342a7c0819906750351ca7f2edd26ea41b626d87d6a13d1bd059
@@ -9891,6 +9921,17 @@ __metadata:
   version: 2.0.0
   resolution: "replace-homedir@npm:2.0.0"
   checksum: 10/66030e85400b7b4af41aad5595a8a75d1344f768e9a773702a9e16e48bf12e56c006799007e59ea229a74398237b0934aca51795143b071d3578c23309d7e48b
+  languageName: node
+  linkType: hard
+
+"request-promise-core@npm:1.1.3":
+  version: 1.1.3
+  resolution: "request-promise-core@npm:1.1.3"
+  dependencies:
+    lodash: "npm:^4.17.15"
+  peerDependencies:
+    request: ^2.34
+  checksum: 10/6fb8190ff8ee0b71c7b570b3d0c57bc228a1e80b44e16c31ba378788ea049ea94cbc108d2c63d49ddcbde7cbb49281fd4957299a668bda877dada06148c7b468
   languageName: node
   linkType: hard
 
@@ -10705,6 +10746,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stealthy-require@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "stealthy-require@npm:1.1.1"
+  checksum: 10/a408a51f5b6c1fe535e4459732ac0b66d7921583f89fc8289bfdc937a497fe8196219d1e04d234047349b90723ecff1a1cb4a92bef2315e01a3081dc72db8d41
+  languageName: node
+  linkType: hard
+
 "stream-composer@npm:^1.0.2":
   version: 1.0.2
   resolution: "stream-composer@npm:1.0.2"
@@ -10996,6 +11044,7 @@ __metadata:
     "@babel/core": "npm:^7.27.1"
     "@babel/preset-env": "npm:^7.27.2"
     "@babel/register": "npm:^7.27.1"
+    "@cypress/request-promise": "npm:^5.0.0"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.26.0"
     "@hmcts/cookie-manager": "npm:^1.0.0"
@@ -11281,6 +11330,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tough-cookie@npm:^4.1.3":
+  version: 4.1.4
+  resolution: "tough-cookie@npm:4.1.4"
+  dependencies:
+    psl: "npm:^1.1.33"
+    punycode: "npm:^2.1.1"
+    universalify: "npm:^0.2.0"
+    url-parse: "npm:^1.5.3"
+  checksum: 10/75663f4e2cd085f16af0b217e4218772adf0617fb3227171102618a54ce0187a164e505d61f773ed7d65988f8ff8a8f935d381f87da981752c1171b076b4afac
+  languageName: node
+  linkType: hard
+
 "tough-cookie@npm:^5.1.1":
   version: 5.1.2
   resolution: "tough-cookie@npm:5.1.2"
@@ -11511,6 +11572,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"universalify@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "universalify@npm:0.2.0"
+  checksum: 10/e86134cb12919d177c2353196a4cc09981524ee87abf621f7bc8d249dbbbebaec5e7d1314b96061497981350df786e4c5128dbf442eba104d6e765bc260678b5
+  languageName: node
+  linkType: hard
+
 "unpipe@npm:1.0.0, unpipe@npm:~1.0.0":
   version: 1.0.0
   resolution: "unpipe@npm:1.0.0"
@@ -11555,7 +11623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.4.3":
+"url-parse@npm:^1.4.3, url-parse@npm:^1.5.3":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:
