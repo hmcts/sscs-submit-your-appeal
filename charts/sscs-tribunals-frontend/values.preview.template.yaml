@@ -9,7 +9,7 @@ nodejs:
     enabled: false
   environment:
     NODE_ENV: "preview"
-    TRIBUNALS_CASE_API_URL: http://sscs-tribunals-api-pr-4760.preview.platform.hmcts.net/
+    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-4760.preview.platform.hmcts.net
     UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-4760.preview.platform.hmcts.net/evidence/upload
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
