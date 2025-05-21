@@ -30,20 +30,41 @@ module.exports = defineConfig({
   ],
   projects: [
     {
-      name: 'chrome',
+      name: 'Chrome English',
+      testIgnore: /.*cy.test.js/,
       use: { ...devices['Desktop Chrome'], channel: 'chrome' }
+    },
+    {
+      name: 'Chrome Welsh',
+      testMatch: /.*cy.test.js/,
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      dependencies: ['Chrome English']
     },
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' }
     // },
     {
-      name: 'firefox',
+      name: 'Firefox English',
+      testIgnore: /.*cy.test.js/,
       use: { ...devices['Desktop Firefox'] }
     },
     {
-      name: 'webkit',
+      name: 'Firefox Welsh',
+      testMatch: /.*cy.test.js/,
+      use: { ...devices['Desktop Firefox'] },
+      dependencies: ['Firefox English']
+    },
+    {
+      name: 'Webkit English',
+      testIgnore: /.*cy.test.js/,
       use: { ...devices['Desktop Safari'] }
+    },
+    {
+      name: 'Webkit Welsh',
+      testMatch: /.*cy.test.js/,
+      use: { ...devices['Desktop Safari'] },
+      dependencies: ['Webkit English']
     }
   ],
   use: {
