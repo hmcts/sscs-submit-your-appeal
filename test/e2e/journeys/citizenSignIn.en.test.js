@@ -1,5 +1,3 @@
-/* eslint-disable no-process-env */
-
 const { test } = require('@playwright/test');
 
 const language = 'en';
@@ -22,19 +20,24 @@ const {
 const { enterAppellantContactDetailsWithMobileAndContinueAfterSignIn } = require('../page-objects/identity/appellantDetails');
 const { endTheSession } = require('../page-objects/session/endSession');
 const { createTheSession } = require('../page-objects/session/createSession');
+const testUser = require('../../util/IdamUser');
+
+let userEmail = '';
 
 test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
   test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
+    userEmail = await testUser.createUser();
   });
 
   test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
+    await testUser.deleteUser(userEmail);
   });
 
   test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`, { tag: '@functional' }, async({ page }) => {
     await moment().locale(language);
-    await enterDetailsFromStartToDraftAppeals(page, commonContent, language, process.env.USEREMAIL_1);
+    await enterDetailsFromStartToDraftAppeals(page, commonContent, language, userEmail);
     await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222');
     await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-2');
     await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-2');
