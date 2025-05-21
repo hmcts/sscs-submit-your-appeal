@@ -11072,7 +11072,7 @@ __metadata:
     supertest: "npm:^7.1.1"
     terser-webpack-plugin: "npm:^5.3.14"
     uuid: "npm:^11.1.0"
-    webpack: "npm:^5.99.8"
+    webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-middleware: "npm:^7.4.2"
     webpack-merge: "npm:^6.0.1"
@@ -11819,7 +11819,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.99.8":
+"webpack@npm:^5.99.9":
   version: 5.99.9
   resolution: "webpack@npm:5.99.9"
   dependencies:
