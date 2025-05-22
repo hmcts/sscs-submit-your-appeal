@@ -27,6 +27,10 @@
     {
       "matchPackageNames": ["path-to-regexp"],
       "allowedVersions": "0.1.x"
+    },
+    {
+      "matchPackageNames": ["chalk"],
+      "allowedVersions": "4.x"
     }
   ]
 }
