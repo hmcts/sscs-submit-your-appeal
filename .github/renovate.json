@@ -31,6 +31,10 @@
     {
       "matchPackageNames": ["chalk"],
       "allowedVersions": "4.x"
+    },
+    {
+      "matchPackageNames": ["@hmcts/one-per-page"],
+      "allowedVersions": "5.x"
     }
   ]
 }
