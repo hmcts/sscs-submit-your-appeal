@@ -29,6 +29,10 @@ nodejs:
 
 redis:
   enabled: true
+  serviceAccount:
+    create: false
+    name: "sscs"
+    automountServiceAccountToken: true
   architecture: standalone
   auth:
     enabled: false
