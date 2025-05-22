@@ -33,9 +33,6 @@ redis:
     create: false
     name: "sscs"
     automountServiceAccountToken: true
-  architecture: standalone
-  auth:
-    enabled: false
 
 idam-pr:
   enabled: true
