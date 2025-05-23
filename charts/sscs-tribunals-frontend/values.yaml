@@ -10,7 +10,7 @@ nodejs:
   environment:
     NODE_ENV: "production"
     TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-4762.preview.platform.hmcts.net
-     UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-4762.preview.platform.hmcts.net/evidence/upload
+    UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-4762.preview.platform.hmcts.net/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     SERVICES_IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
     # seems to be disabled currently and only enabled locally pointing at AAT
