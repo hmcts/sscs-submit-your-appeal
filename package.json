@@ -13,7 +13,7 @@
     "dev": "./bin/generate-ssl-options.sh && cross-env NODE_ENV=development NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider POSTCODE_LOOKUP_TOKEN=$(sh ./bin/pull_postcode_token.sh) nodemon server.js",
     "debug": "NODE_ENV=development cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider nodemon --inspect server.js",
     "iba:start:dev": "cross-env IS_IBA=true yarn start:dev",
-    "iba:dev": "cross-env IS_IBA=false yarn dev",
+    "iba:dev": "cross-env IS_IBA=true yarn dev",
     "iba:debug": "cross-env IS_IBA=true yarn debug",
     "iba:dev:aat": "cross-env TRIBUNALS_CASE_API_URL=http://sscs-tribunals-api-aat.service.core-compute-aat.internal yarn iba:dev",
     "iba:debug:aat": "cross-env TRIBUNALS_CASE_API_URL=http://sscs-tribunals-api-aat.service.core-compute-aat.internal yarn iba:debug",
