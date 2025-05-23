@@ -2,8 +2,6 @@ const { expect } = require('test/util/chai');
 const sinon = require('sinon');
 const PCL = require('components/postcodeLookup/controller');
 const nock = require('nock');
-const proxyquire = require('proxyquire');
-const Joi = require('joi');
 const i18next = require('i18next');
 const config = require('config');
 
@@ -241,7 +239,7 @@ describe('Components/controller.js', () => {
       ]).fields.postcodeLookup.validations[0].message;
 
       expect(errorMessage).to.eql(
-        'We cannot find an England, Scotland or Wales address with that postcode'
+        'We cannot find an address with that postcode'
       );
     });
 
@@ -260,7 +258,7 @@ describe('Components/controller.js', () => {
       ]).fields.postcodeLookup.validations[0].message;
 
       expect(errorMessage).to.eql(
-        "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
+        "Ni allem ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban na Ogledd Iwerddon gyda'r cod post hwnnw"
       );
     });
 
@@ -283,6 +281,23 @@ describe('Components/controller.js', () => {
       );
     });
 
+    it('returns the correct Welsh error message for all other Appeals', () => {
+      sinon.stub(i18next, 'language').value('cy');
+      page.req.session.AppellantContactDetails = { postcodeLookup: '' };
+      page.req.session.BenefitType = {
+        benefitType: 'Infected Blood Compensation'
+      };
+
+      pcl = new PCL(enabled, token, url, page);
+      const errorMessage = pcl.schemaBuilder([
+        { name: 'postcodeLookup' },
+        { name: 'postcodeAddress' }
+      ]).fields.postcodeLookup.validations[0].message;
+
+      expect(errorMessage).to.eql(
+        'Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw'
+      );
+    });
   });
 
   describe('getFormType()', () => {
@@ -664,116 +679,6 @@ describe('Components/controller.js', () => {
           expect(reason.message).to.eq('Super Callback function is not defined')
         );
       expect(setPageStateSpy).to.have.been.calledOnce;
-    });
-  });
-
-  describe('schemaBuilder with postcode validation', () => {
-    beforeEach(() => {
-      // Mock i18next to avoid dependency issues in test
-      global.i18next = { language: 'en' };
-
-      // Mock the content require
-      const mockContent = {
-        fields: {
-          postcodeLookup: {
-            error: {
-              required: 'Enter a postcode',
-              requiredNI: 'Enter a valid postcode'
-            }
-          },
-          postcodeAddress: {
-            error: {
-              required: 'Select an address'
-            }
-          }
-        }
-      };
-
-      // Mock require for content
-      const originalRequire = require;
-      global.require = function require(path) {
-        if (path.includes('content.en') || path.includes('contentIba.en')) {
-          return mockContent;
-        }
-        return originalRequire(path);
-      };
-    });
-
-    afterEach(() => {
-      global.i18next = undefined;
-      global.require = require;
-    });
-
-    it('should use the correct validation when allowNI is true', () => {
-      const regexSpy = sinon.spy();
-      const stringPrototype = Object.getPrototypeOf(Joi.string());
-      const originalRegex = stringPrototype.regex;
-
-      stringPrototype.regex = function regex(...args) {
-        regexSpy(...args);
-        return originalRegex.apply(this, args);
-      };
-
-      const isIbaStub = sinon.stub().returns(true);
-
-      // Apply stubs to controller using proxyquire
-      const PCLWithStubs = proxyquire('components/postcodeLookup/controller', {
-        config: {
-          get: function get(key) {
-            if (key === 'features.allowNI.enabled') {
-              return true;
-            }
-            return false;
-          }
-        },
-        'utils/benefitTypeUtils': { isIba: isIbaStub }
-      });
-
-      const pclInstance = new PCLWithStubs(enabled, token, url, page);
-
-      // Call the schemaBuilder
-      const fields = [{ name: 'postcodeLookup', validator: {} }];
-      pclInstance.schemaBuilder(fields);
-
-      // If allowNI is true and isIba is true, regex should not be called with notNiPostcode
-      expect(regexSpy.called).to.be.false;
-
-      // Restore original regex method
-      stringPrototype.regex = originalRegex;
-    });
-
-    it('should use regex validation when allowNI is false', () => {
-      const regexSpy = sinon.spy();
-      const stringPrototype = Object.getPrototypeOf(Joi.string());
-      const originalRegex = stringPrototype.regex;
-
-      stringPrototype.regex = function regex(...args) {
-        regexSpy(...args);
-        return originalRegex.apply(this, args);
-      };
-
-      const PCLWithStubs = proxyquire('components/postcodeLookup/controller', {
-        config: {
-          get: function get(key) {
-            if (key === 'features.allowNI.enabled') {
-              return false;
-            }
-            return false;
-          }
-        },
-        'utils/benefitTypeUtils': { isIba: () => true },
-        'utils/regex': { notNiPostcode: /^(?!BT)/ }
-      });
-
-      const pclInstance = new PCLWithStubs(enabled, token, url, page);
-
-      const fields = [{ name: 'postcodeLookup', validator: {} }];
-      pclInstance.schemaBuilder(fields);
-
-      // If allowNI is false and isIba is true, regex should be called with notNiPostcode
-      expect(regexSpy.called).to.be.true;
-
-      stringPrototype.regex = originalRegex;
     });
   });
 });
