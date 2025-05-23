@@ -19,6 +19,7 @@ nodejs:
     WEBCHAT_OPENING_TIME_8_5: true
     FT_WELSH: true
     PCQ_ENABLED: true
+    IBC_NI_POSTCODES_FEATURE: true
   keyVaults:
     sscs:
       secrets:

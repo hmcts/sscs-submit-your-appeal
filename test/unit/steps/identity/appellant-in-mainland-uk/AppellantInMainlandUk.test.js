@@ -7,6 +7,7 @@ const AppellantInMainlandUk = require('steps/identity/appellant-in-mainland-uk/A
 const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
+const config = require('config');
 
 describe('AppellantInMainlandUk.js', () => {
   let appellantInMainlandUk = null;
@@ -77,12 +78,14 @@ describe('AppellantInMainlandUk.js', () => {
 
   describe('answers() and values()', () => {
     const question = 'A Question';
+    const questionNI = 'A Question';
 
     beforeEach(() => {
       appellantInMainlandUk.content = {
         cya: {
           inMainlandUk: {
             question,
+            questionNI,
             yes: 'Yes',
             no: 'No'
           }
@@ -190,6 +193,50 @@ describe('AppellantInMainlandUk.js', () => {
       expect(appellantInMainlandUk.next().step).to.eql(
         paths.identity.enterAppellantInternationalContactDetails
       );
+    });
+  });
+
+  describe('allowNI flag behavior', () => {
+    let configStub = null;
+
+    beforeEach(() => {
+      configStub = sinon.stub(config, 'get');
+    });
+
+    afterEach(() => {
+      configStub.restore();
+    });
+
+    it('should use questionNI when allowNI is true', () => {
+      // Setup the config to return true for the allowNI flag
+      configStub.withArgs('features.allowNI.enabled').returns(true);
+
+      // Create a new instance with the required journey object
+      const instance = new AppellantInMainlandUk({
+        journey: {
+          steps: {
+            AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+            AppellantInternationalContactDetails:
+              paths.identity.enterAppellantInternationalContactDetails
+          }
+        }
+      });
+
+      instance.content = {
+        cya: {
+          inMainlandUk: {
+            question: 'Regular question',
+            questionNI: 'NI specific question',
+            yes: 'Yes',
+            no: 'No'
+          }
+        }
+      };
+      instance.fields = { inMainlandUk: { value: userAnswer.YES } };
+
+      const answers = instance.answers();
+
+      expect(answers.question).to.equal('NI specific question');
     });
   });
 });
