@@ -1,6 +1,5 @@
 {
   "textboxLabel": "Rhowch god post yn y DU",
-  "textboxLabelNI": "Rhowch god post yng Nghymru, Lloegr, Yr Alban neu Ogledd Iwerddon",
   "addressSelectionLabel": "Dewiswch gyfeiriad",
   "manualEntryLabel": "Ni allaf roi cod post yn y DU",
   "dropdownCount": "wedi dod o hyd i’ch cyfeiriad",
@@ -8,10 +7,8 @@
   "fields": {
     "postcodeLookup": {
       "error": {
-        "required": "Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw",
-        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad yn Lloegr, yr Alban neu Gymru gyda’r cod post hwnnw",
-        "requiredNI": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw",
-         "invalidPostcodeNI": "Ni allwn ddod o hyd i gyfeiriad yng Nghymru, Lloegr, yr Alban neu Ogledd Iwerddon gyda’r cod post hwnnw"
+        "required": "Ni allwn ddod o hyd i gyfeiriad gyda’r cod post hwnnw",
+        "invalidPostcode": "Ni allwn ddod o hyd i gyfeiriad gyda’r cod post hwnnw"
       }
     },
     "postcodeAddress": {
