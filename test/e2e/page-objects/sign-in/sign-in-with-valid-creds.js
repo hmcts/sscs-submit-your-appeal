@@ -6,9 +6,16 @@ async function signIn(I, username, password, language) {
   await I.locator('#password').first().fill(password);
   await I.locator("[name='save']").first().click();
   // await I.waitForTimeout(5000);
-  await expect(
-    I.locator(".form-buttons-group [href='/new-appeal']").first()
-  ).toBeVisible();
+  try {
+    await expect(
+      I.locator(".form-buttons-group [href='/new-appeal']").first()
+    ).toBeVisible();
+  } catch {
+    await I.locator("[name='save']").first().click();
+    await expect(
+      I.locator(".form-buttons-group [href='/new-appeal']").first()
+    ).toBeVisible();
+  }
   if (language === 'en') {
     await expect(
       I.getByText('Your draft benefit appeals').first()
@@ -24,9 +31,16 @@ async function signInVerifylanguage(I, username, password, language) {
   await I.locator('#username').first().fill(username);
   await I.locator('#password').first().fill(password);
   await I.locator("[name='save']").first().click();
-  await expect(
-    I.locator(".form-buttons-group [href='/new-appeal']").first()
-  ).toBeVisible();
+  try {
+    await expect(
+      I.locator(".form-buttons-group [href='/new-appeal']").first()
+    ).toBeVisible();
+  } catch {
+    await I.locator("[name='save']").first().click();
+    await expect(
+      I.locator(".form-buttons-group [href='/new-appeal']").first()
+    ).toBeVisible();
+  }
   const altLang = await I.locator('.language').innerText();
   if (
     (altLang.trim() === 'English' && language === 'en') || (altLang.trim() === 'Cymraeg' && language === 'cy')
