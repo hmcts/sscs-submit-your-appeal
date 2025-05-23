@@ -118,7 +118,7 @@
       "enabled": "false"
     },
     "allowNI" : {
-      "enabled": "true"
+      "enabled": "false"
     }
   },
   "postcodeChecker": {
