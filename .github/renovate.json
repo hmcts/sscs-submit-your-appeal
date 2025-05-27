@@ -27,6 +27,10 @@
     {
       "matchPackageNames": ["path-to-regexp"],
       "allowedVersions": "0.1.x"
+    },
+    {
+      "matchPackageNames": ["applicationinsights"],
+      "allowedVersions": "2.x"
     }
   ]
 }
