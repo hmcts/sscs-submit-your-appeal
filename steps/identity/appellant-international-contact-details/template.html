@@ -4,6 +4,7 @@
 {% from "components/common/textInput.njk" import govTextInput %}
 
 {% set title = content.title %}
+{% set portOfEntryHint = content.fields.portOfEntry.hintNI if allowNiEnabled else content.fields.portOfEntry.hint %}
 
 {% block fields %}
     {% call formSection() %}
@@ -12,7 +13,7 @@
         {{ govTextInput(fields.addressLine2,    content.fields.addressLine2.title,      isPageHeading = false) }}
         {{ govTextInput(fields.townCity,        content.fields.townCity.title,          isPageHeading = false) }}
         {{ select(fields.country,               content.fields.country.title,           options=getCountries) }}
-        {{ select(fields.portOfEntry,           content.fields.portOfEntry.title,       hint=content.fields.portOfEntry.hint,  options=getPortOfEntryList)}}
+        {{ select(fields.portOfEntry,           content.fields.portOfEntry.title,       hint=portOfEntryHint,  options=getPortOfEntryList)}}
         {{ govTextInput(fields.phoneNumber,
             content.fields.phoneNumber.title,
             hint=content.fields.phoneNumber.hint,

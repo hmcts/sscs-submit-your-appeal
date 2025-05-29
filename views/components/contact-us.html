@@ -47,18 +47,12 @@
           <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title }}</h2>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc }}</p>
 
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc }}</h3>
-          <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone }}</p>
-          <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability }}</p>
-          <p class="govuk-body">
-              <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.charges }}</a>
-          </p>
-          <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailText }}
-              <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress }}</a>
-          </p>
-
           {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc }}</h3>
+          {% if allowNiEnabled %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.descNI }}</h3>
+            {% else%}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.desc }}</h3>
+          {% endif %}
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.availability }}</p>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.saturdayAvailability }}</p>
@@ -69,6 +63,20 @@
               <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailAddress }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.emailAddress }}</a>
           </p>
           {% endif %}
+
+          {% if allowNiEnabled %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.descNI }}</h3>
+          {% else%}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.desc }}</h3>
+          {% endif %}
+          <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.phone }}</p>
+          <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.availability }}</p>
+          <p class="govuk-body">
+              <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.charges }}</a>
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailText }}
+              <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.Scotland.ibca.emailAddress }}</a>
+          </p>
 
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.desc }}</h3>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.ibca.phone }}</p>
