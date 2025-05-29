@@ -250,7 +250,7 @@ describe('RepresentativeInMainlandUk.js', () => {
       });
 
       const formsSpy = sinon.spy(text, 'joi');
-      
+
       instance.content = {
         fields: {
           inMainlandUk: {

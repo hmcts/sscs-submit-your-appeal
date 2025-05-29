@@ -160,8 +160,7 @@ class AppellantContactDetails extends SaveToDraftStore {
       next();
     } else if (req.method.toLowerCase() === 'post') {
       const postcode = req.body.postCode || '';
-
-      postcodeChecker(postcode, true)
+      postcodeChecker(postcode, true, isIba(req))
         .then(isEnglandOrWalesPostcode => {
           req.session.invalidPostcode = !isEnglandOrWalesPostcode;
           next();
