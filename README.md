@@ -136,6 +136,10 @@ yarn test:smoke
 ```bash
 yarn audit
 ```
+To update suppressions
+```bash
+yarn npm audit --recursive --environment production --json > yarn-audit-known-issues
+```
 
 ## Docker
 
