@@ -11,6 +11,7 @@ const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
 const config = require('config');
+
 const allowNI = config.get('features.allowNI.enabled');
 
 class AppellantInMainlandUk extends SaveToDraftStore {
@@ -42,8 +43,8 @@ class AppellantInMainlandUk extends SaveToDraftStore {
 
     return answer(this, {
       question: allowNI ?
-         this.content.cya.inMainlandUk.questionNI :
-         this.content.cya.inMainlandUk.question,
+        this.content.cya.inMainlandUk.questionNI :
+        this.content.cya.inMainlandUk.question,
       section: sections.appellantDetails,
       answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });

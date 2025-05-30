@@ -15,11 +15,9 @@ const allowedRegionCentres = config
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
 
-const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
-  if (
-    postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart) &&
-    !allowNI
-  ) {
+const postcodeChecker = (postcode, allowUnknownPostcodes = false, isIba = false) => {
+  const isNiPostcode = postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart);
+  if (isNiPostcode && (!allowNI || !isIba)) {
     return Promise.resolve(false);
   }
 
@@ -43,9 +41,12 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false) => {
           resolve(allowUnknownPostcodes);
           return;
         }
-
-        const regionalCentre = resp.body.regionalCentre.toLocaleLowerCase();
-        resolve(allowedRegionCentres.includes(regionalCentre));
+        if (isNiPostcode) {
+          resolve(true);
+        } else {
+          const regionalCentre = resp.body.regionalCentre.toLocaleLowerCase();
+          resolve(allowedRegionCentres.includes(regionalCentre));
+        }
       })
       .catch(error => {
         logger.exception(JSON.stringify(error));

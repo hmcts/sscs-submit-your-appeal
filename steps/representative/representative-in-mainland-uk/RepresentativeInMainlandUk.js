@@ -11,6 +11,7 @@ const { titleise } = require('utils/stringUtils');
 const { branch } = require('@hmcts/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
 const config = require('config');
+
 const allowNI = config.get('features.allowNI.enabled');
 
 class RepresentativeInMainlandUk extends SaveToDraftStore {
@@ -30,8 +31,8 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
     return form({
       inMainlandUk: text.joi(
         allowNI ?
-           this.content.fields.inMainlandUk.errors.requiredNI :
-           this.content.fields.inMainlandUk.errors.required,
+          this.content.fields.inMainlandUk.errors.requiredNI :
+          this.content.fields.inMainlandUk.errors.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -42,8 +43,8 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
 
     return answer(this, {
       question: allowNI ?
-         this.content.cya.inMainlandUk.questionNI :
-         this.content.cya.inMainlandUk.question,
+        this.content.cya.inMainlandUk.questionNI :
+        this.content.cya.inMainlandUk.question,
       section: sections.representative,
       answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });
