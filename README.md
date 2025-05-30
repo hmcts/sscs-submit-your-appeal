@@ -1,187 +1,226 @@
 # SSCS - Submit Your Appeal
 
-## Background:
-Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision.
-The first step is asking the Department for Work and Pensions to look at the decision again.
-This is known as requesting ‘Mandatory Reconsideration’. If they still disagree, they can appeal to the Social Security
-and Child Support tribunal.
+A web application that allows appellants to submit appeals online to the Social Security and Child Support (SSCS) tribunal. The application follows GDS guidelines, presenting a single question per page and guiding users through their appeal journey.
 
-Should an appellant wish to appeal online this node.js web application allows them to do so. The application takes the
-appellant on a journey, presenting a single question per page (GDS guidelines), at the end of their journey we present
-an appeal summary page, allowing the user to edit their answers or sign and submit. 
+## Table of Contents
+- [Background](#background)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start)
+- [Development](#development)
+- [Testing](#testing)
+- [Docker](#docker)
+- [Useful Commands](#useful-commands)
 
-## Dependencies
- - [Docker](https://www.docker.com/)
- - [Redis](https://redis.io/)
+## Background
+
+Anyone who disagrees with a decision about their entitlement to benefits has the right to appeal against that decision. The first step is asking the Department for Work and Pensions to look at the decision again (known as requesting 'Mandatory Reconsideration'). If they still disagree, they can appeal to the Social Security and Child Support tribunal.
+
+This application takes appellants on a journey, presenting a single question per page, and concludes with an appeal summary page where users can review, edit, sign, and submit their appeal.
+
+## Prerequisites
+
+- **Node.js** (>=18.0.0) - [Download here](https://nodejs.org/en)
+- **Yarn** (>=1.22.0) - [Installation guide](https://yarnpkg.com/)
+- **Docker** - For [sscs-tribunals-case-api](https://github.com/hmcts/sscs-tribunals-case-api/)
+- **Redis** - For session storage
+  - Install via package manager: `brew install redis` (macOS) or `apt-get install redis-server` (Ubuntu)
+  - **NOTE**: If you cannot install redis with a package manager see **Install Redis without package manager** at the end of this README.
+  - Or use Docker (see Docker section below)
+
+## Quick Start
+
+1. **Install dependencies:**
+   ```bash
+   yarn install
+   ```
+
+2. **Start Redis:**
+   ```bash
+   redis-server
+   ```
+   Or use Docker: `docker-compose up redis`
+
+3. **Start the application:**
+   - For SYA: `yarn dev`
+   - For IBA appeals: `yarn iba:dev`
+
+4. **View the application:**
+   - URL: `https://localhost:3000`
 
 ## Development
 
-**Config**
+### Configuration
 
+The application requires Redis for session storage and the [sscs-tribunals-case-api](https://github.com/hmcts/sscs-tribunals-case-api/) to be running.
 
-Redis is required to run the application. You can either install it or use a docker image (See docker section below for instructions).
+### Setup Steps
 
-### If Redis is already installed on your system
-You can simply start the application with `yarn start:dev` (`yarn iba:start:dev` for IBA appeals.)
+1. **Install dependencies:**
+   ```bash
+   yarn install
+   ```
 
-### Install Redis: 
-download, extract and build:
+2. **Start Redis:**
+   ```bash
+   redis-server
+   ```
 
-    http://download.redis.io/redis-stable.tar.gz
-    tar xvzf redis-stable.tar.gz
-    cd redis-stable
-    make
+3. **Run the API:**
+   Start [sscs-tribunals-case-api](https://github.com/hmcts/sscs-tribunals-case-api/) - refer to its README for setup instructions.
 
-Sanity check:
+4. **Generate cookie banner content:**
+   ```bash
+   ./node_modules/gulp/bin/gulp.js default
+   ```
 
-    make test
+5. **Start the application:**
+   - **SYA:**
+     ```bash
+     yarn dev
+     ```
+   - **IBA appeals:**
+     ```bash
+     yarn iba:dev
+     ```
+   - **IBA Appeals with AAT Backend:**
+     ```bash
+     yarn iba:dev:aat
+     ```
+     This connects to the Azure Acceptance Testing environment for validation.
 
-Add this to your path:
+6. **Access the application:**
+   - URL: `https://localhost:3000`
 
-    /usr/local/bin
+## Testing
 
-Copy over both the Redis server and the command line interface:
+### Unit Tests
+```bash
+yarn test
+```
 
-    sudo cp src/redis-server /usr/local/bin/
-    sudo cp src/redis-cli /usr/local/bin/
+### Code Coverage
+```bash
+yarn test:coverage
+```
 
-Start redis:
+### End-to-End Testing
 
-    redis-server
+Ensure both SYA and the tribunals case API are running.
 
-Install npm dependencies:
+**Functional tests (entire journeys):**
+```bash
+yarn test:functional
+```
 
-    yarn install
-    
-Generate cookie banner content:
+**Page-specific tests:**
+```bash
+yarn test:e2e-pages
+```
 
-    ./node_modules/gulp/bin/gulp.js default
-
-Bring up SYA in a new terminal window:
-
-    yarn dev
-
-For an IBA appeal, use:
-
-    yarn iba:dev
-
-
-View the application:
-
-    https://localhost:3000
-
-## Docker
-
-If you would like to view the application without having to setup Redis you can do so via Docker.
-
-We use the [Dockerfile] and [docker-compose.yml] to create a container to bring up the app which includes Redis.
-
-Build the node.js Dockerfile containing SYA into a local image:
-
-    docker build -t hmcts/submit-your-appeal:latest .
-
-Bring up the container:
-
-    docker-compose up sya
-
-View the application:
-
-    https://localhost:3000
-
-If you prefer to run the application natively but still use docker for Redis you can do so by running:
-    docker-compose up redis
-
-You would then start the application by running yarn dev (yarn iba:dev for IBA appeal) as above
-
-## End-to-end testing
-
-Ensure both SYA (from one of the methods above) and the [API](https://github.com/hmcts/tribunals-case-api/) are up (including docker dependencies run through CFTLib). At
-present these tests do not run within Docker, therefore, open a new terminal window.
-
-Functional tests:
-We have split our functional tests into two.
-Firstly we have tests for entire journeys through the form:
-
-    yarn test:functional
-
-However, in order to get this command to run properly you currently have to remove ``` --grep @functional ``` tag from
-the ```test:functional``` script in package.json.
-
-Secondly, we have tests for various pages in the form:
-
-    yarn test:e2e-pages
-
-Functional test batches:
-
-To improve reliability running the functional tests locally you can run them in batches using the following command
-
+**Functional test batches (improved reliability):**
 ```bash
 yarn test:functional:batches
 ```
 
-If you wish to increase the speed of the tests, you can decrease the wait time between each action, the default is set
-to 500ms. Override this by setting the env var `E2E_WAIT_FOR_ACTION_VALUE`, I find 50ms works fine.
-Use this together with batching like so:
-
+**Faster test execution:**
 ```bash
 E2E_WAIT_FOR_ACTION_VALUE=50 yarn test:functional:batches
 ```
 
-Smoke tests:
-
-    yarn test:smoke
-
-## Unit tests
-    yarn test
-
-## Code coverage
-    yarn test:coverage
-
-## Security Scan: Run yarn audit locally
-
-You need `jq` installed
-
-Download `yarn-audit-with-suppressions.sh` and `prettyPrintAudit.sh` from https://github.com/hmcts/cnp-jenkins-library
-to project root folder
-
+### Smoke Tests
 ```bash
-curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/yarn-audit-with-suppressions.sh
-curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/prettyPrintAudit.sh
-curl -OL https://raw.githubusercontent.com/hmcts/cnp-jenkins-library/master/resources/uk/gov/hmcts/pipeline/yarn/format-v4-audit.cjs
+yarn test:smoke
 ```
 
-Make the scripts executable
-
+### Security Audit
 ```bash
-chmod +x ./yarn-audit-with-suppressions.sh
-chmod +x ./prettyPrintAudit.sh
+yarn audit
+```
+To update current suppressions:
+```bash
+yarn npm audit --recursive --environment production --json > yarn-audit-known-issues
 ```
 
-Set the environment variable of yarn version
+## Docker
+
+### Full Application with Docker
+
+1. **Build the image:**
+   ```bash
+   docker build -t hmcts/submit-your-appeal:latest .
+   ```
+
+2. **Start the application:**
+   ```bash
+   docker-compose up sya
+   ```
+
+3. **Access the application:**
+   - URL: `https://localhost:3000`
+
+### Redis Only with Docker
+
+If you prefer to run the application natively but use Docker for Redis:
 
 ```bash
-export YARN_VERSION=$(yarn --version | cut -d. -f1)
+docker-compose up redis
 ```
 
-Run `yarn-audit-with-suppressions.sh`
+Then start the application with `yarn dev` or `yarn iba:dev`.
 
+## Useful Commands
+
+### Docker Commands
 ```bash
-./yarn-audit-with-suppressions.sh
+# List images
+docker images
+
+# List containers
+docker ps
+
+# Execute shell on container
+docker exec -it <container_id> sh
 ```
 
-[Dockerfile]:Dockerfile
-[docker-compose.yml]:docker-compose.yml
+### Development Commands
+```bash
+# Install dependencies
+yarn install
 
-## Useful docker commands
+# Start development server
+yarn dev
 
-List images
+# Run tests
+yarn test
 
-    docker images
+# Security audit
+yarn audit
+```
 
-List containers
+## Notes
 
-    docker ps
+- For IBA appeals, use `yarn iba:dev` instead of `yarn dev`
+- Functional tests may require wait time adjustments for better reliability
+- The application follows GDS design principles and accessibility guidelines
 
-Execute an interactive bash shell on the container
+## Support
 
-    docker exec -it <container id> sh
+For issues or questions, please refer to the project's issue tracker or contact the development team.
+
+### Install Redis without package manager: 
+1) Download, extract and build redis:
+    ```bash
+        curl -O http://download.redis.io/redis-stable.tar.gz
+        tar xvzf redis-stable.tar.gz
+        cd redis-stable
+        make
+    ```
+2) Run a Sanity check:
+    ``` bash
+        make test
+    ```
+3) Add Redis to and its cli your path:
+    ```bash
+        sudo cp src/redis-server /usr/local/bin/
+        sudo cp src/redis-cli /usr/local/bin/
+    ```
