@@ -2,7 +2,7 @@ import { BasePage } from './ibca-base.page';
 
 export class AppellantInMainlandUkPage extends BasePage {
   defaultPageContent: any = {
-    "heading": "Do you live in England, Scotland or Wales?",
+    "heading": "Do you live in England, Scotland, Wales or Northern Ireland?",
     "bodyContents": []
   };
 
