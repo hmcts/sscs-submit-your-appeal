@@ -293,12 +293,16 @@ describe('RepresentativeInMainlandUk.js', () => {
       // Test with a variable instead of literal boolean to avoid the linting error
       let allowNITest = true;
       expect(
-        allowNITest ? testContent.cya.inMainlandUk.questionNI : testContent.cya.inMainlandUk.question
+        allowNITest
+          ? testContent.cya.inMainlandUk.questionNI
+          : testContent.cya.inMainlandUk.question
       ).to.equal('NI specific question');
 
       allowNITest = false;
       expect(
-        allowNITest ? testContent.cya.inMainlandUk.questionNI : testContent.cya.inMainlandUk.question
+        allowNITest
+          ? testContent.cya.inMainlandUk.questionNI
+          : testContent.cya.inMainlandUk.question
       ).to.equal('Standard question');
     });
   });

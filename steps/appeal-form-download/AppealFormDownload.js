@@ -33,7 +33,7 @@ class AppealFormDownload extends SaveToDraftStore {
   }
 
   isBenefitInList(list, benefit) {
-    return list.some(key => benefitTypes[key] === benefit);
+    return list.some((key) => benefitTypes[key] === benefit);
   }
 
   get formDownload() {

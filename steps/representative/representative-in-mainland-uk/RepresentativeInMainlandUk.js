@@ -30,9 +30,9 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
   get form() {
     return form({
       inMainlandUk: text.joi(
-        allowNI ?
-          this.content.fields.inMainlandUk.errors.requiredNI :
-          this.content.fields.inMainlandUk.errors.required,
+        allowNI
+          ? this.content.fields.inMainlandUk.errors.requiredNI
+          : this.content.fields.inMainlandUk.errors.required,
         Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
       )
     });
@@ -42,9 +42,9 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
     const content = require(`./content.${i18next.language}`);
 
     return answer(this, {
-      question: allowNI ?
-        this.content.cya.inMainlandUk.questionNI :
-        this.content.cya.inMainlandUk.question,
+      question: allowNI
+        ? this.content.cya.inMainlandUk.questionNI
+        : this.content.cya.inMainlandUk.question,
       section: sections.representative,
       answer: titleise(content.cya.inMainlandUk[this.fields.inMainlandUk.value])
     });

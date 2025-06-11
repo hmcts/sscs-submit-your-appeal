@@ -55,12 +55,14 @@ describe('CheckMRN.js', () => {
 
   describe('get benefitType()', () => {
     it('returns PIP code from benefit type', () => {
-      checkMRN.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
+      checkMRN.journey.req.session.BenefitType.benefitType =
+        'Personal Independence Payment (PIP)';
       expect(checkMRN.benefitType).to.equal('PIP');
     });
 
     it('returns DLA code from benefit type', () => {
-      checkMRN.journey.req.session.BenefitType.benefitType = 'Disability Living Allowance (DLA)';
+      checkMRN.journey.req.session.BenefitType.benefitType =
+        'Disability Living Allowance (DLA)';
       expect(checkMRN.benefitType).to.equal('DLA');
     });
   });
@@ -97,7 +99,7 @@ describe('CheckMRN.js', () => {
   });
 
   describe('next()', () => {
-    const setMRNDate = date => {
+    const setMRNDate = (date) => {
       checkMRN.fields.mrnDate.day.value = date.date();
       checkMRN.fields.mrnDate.month.value = date.month() + 1;
       checkMRN.fields.mrnDate.year.value = date.year();

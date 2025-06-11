@@ -48,9 +48,9 @@ class OtherReasonForAppealing extends SaveToDraftStore {
   }
 
   next() {
-    const followingStep = evidenceUploadEnabled ?
-      'EvidenceProvide' :
-      'SendingEvidence';
+    const followingStep = evidenceUploadEnabled
+      ? 'EvidenceProvide'
+      : 'SendingEvidence';
     return goTo(this.journey.steps[followingStep]);
   }
 }

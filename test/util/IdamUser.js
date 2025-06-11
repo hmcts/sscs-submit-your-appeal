@@ -36,14 +36,18 @@ async function createUser() {
       return email;
     } catch (error) {
       if (i === 2) {
-        throw new Error(`Error createUser: ${error.message}, retry attempts exhausted`);
+        throw new Error(
+          `Error createUser: ${error.message}, retry attempts exhausted`
+        );
       }
-      console.error(`Error createUser: ${error.message}, retry attempt #${i + 1}`);
+      console.error(
+        `Error createUser: ${error.message}, retry attempt #${i + 1}`
+      );
     }
   }
 }
 
-const deleteUser = async email => {
+const deleteUser = async (email) => {
   try {
     await request
       .delete(`${sidamApiUrl}/testing-support/accounts/${email}`)

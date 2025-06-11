@@ -5,9 +5,11 @@ const hearingArrangementsContent = require(
 );
 const paths = require('paths');
 
-const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';
+const languageInterpreterTextField =
+  'input[id="selection.interpreterLanguage.language"]';
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
-const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
+const anythingElseTextField =
+  'textarea[name="selection.anythingElse.language"]';
 
 const { test, expect } = require('@playwright/test');
 const { endTheSession } = require('../../page-objects/session/endSession');
@@ -19,16 +21,16 @@ test.describe(
   `${language.toUpperCase()} - Hearing arrangements`,
   { tag: '@batch-08' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.hearing.hearingArrangements);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page do not select any checkboxes and continue to see errors`, async({
+    test(`${language.toUpperCase()} - page do not select any checkboxes and continue to see errors`, async ({
       page
     }) => {
       await page
@@ -43,7 +45,7 @@ test.describe(
       await page.waitForURL(`**${paths.hearing.hearingArrangements}`);
     });
 
-    test(`${language.toUpperCase()} - page select language interpreter and see the interpreter language type field`, async({
+    test(`${language.toUpperCase()} - page select language interpreter and see the interpreter language type field`, async ({
       page
     }) => {
       await expect(page.locator(languageInterpreterTextField)).toBeHidden();
@@ -59,7 +61,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select sign language interpreter and see the sign language type field`, async({
+    test(`${language.toUpperCase()} - page select sign language interpreter and see the sign language type field`, async ({
       page
     }) => {
       await expect(page.locator(signLanguageTextField)).toBeHidden();
@@ -73,7 +75,7 @@ test.describe(
       await expect(page.locator(signLanguageTextField).first()).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select other and see the anything else field`, async({
+    test(`${language.toUpperCase()} - page select other and see the anything else field`, async ({
       page
     }) => {
       await expect(page.locator(anythingElseTextField)).toBeHidden();
@@ -87,7 +89,7 @@ test.describe(
       await expect(page.locator(anythingElseTextField).first()).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select language interpreter and do not enter any language page see errors`, async({
+    test(`${language.toUpperCase()} - page select language interpreter and do not enter any language page see errors`, async ({
       page
     }) => {
       await page
@@ -111,7 +113,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select a language interpreter, enter a non-existent list language, page see errors`, async({
+    test(`${language.toUpperCase()} - page select a language interpreter, enter a non-existent list language, page see errors`, async ({
       page
     }) => {
       await page
@@ -139,7 +141,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select sign language and do not enter any language page see errors`, async({
+    test(`${language.toUpperCase()} - page select sign language and do not enter any language page see errors`, async ({
       page
     }) => {
       await page
@@ -163,7 +165,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list page see errors`, async({
+    test(`${language.toUpperCase()} - Select sign language and enter a language that is not on the list page see errors`, async ({
       page
     }) => {
       await page
@@ -191,7 +193,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select anything else and don't enter any thing into the field page see errors`, async({
+    test(`${language.toUpperCase()} - page select anything else and don't enter any thing into the field page see errors`, async ({
       page
     }) => {
       await page
@@ -215,7 +217,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page select anything else and enter illegal characters in the field page see errors`, async({
+    test(`${language.toUpperCase()} - page select anything else and enter illegal characters in the field page see errors`, async ({
       page
     }) => {
       await page

@@ -1,6 +1,6 @@
 const benefitTypes = require('steps/start/benefit-type/types');
 
-const isIba = req =>
+const isIba = (req) =>
   req.session?.BenefitType?.benefitType ===
     benefitTypes.infectedBloodCompensation ||
   req.hostname?.includes('iba') ||

@@ -1,4 +1,3 @@
-
 const { expect } = require('chai');
 const sinon = require('sinon');
 const superagent = require('superagent');
@@ -23,7 +22,7 @@ describe('EnumJsonLists util', () => {
   });
 
   describe('fetchPortsOfEntry', () => {
-    it('should fetch and set portsOfEntry data correctly', async() => {
+    it('should fetch and set portsOfEntry data correctly', async () => {
       const mockResponse = {
         body: [
           { label: 'Entry1', locationCode: 'locationCode1' },
@@ -50,7 +49,7 @@ describe('EnumJsonLists util', () => {
       ]);
     });
 
-    it('should handle errors when fetching portsOfEntry data', async() => {
+    it('should handle errors when fetching portsOfEntry data', async () => {
       const consoleStub = sinon.stub(console, 'error');
       superagentGetStub.rejects(new Error('Network error'));
 
@@ -63,7 +62,7 @@ describe('EnumJsonLists util', () => {
   });
 
   describe('fetchCountriesOfResidence', () => {
-    it('should fetch and set countriesOfResidence data correctly', async() => {
+    it('should fetch and set countriesOfResidence data correctly', async () => {
       const mockResponse = {
         body: [{ label: 'Entry1' }, { label: 'Entry2' }],
         status: 200
@@ -79,7 +78,7 @@ describe('EnumJsonLists util', () => {
       ]);
     });
 
-    it('should handle errors when fetching fetchCountriesOfResidence data', async() => {
+    it('should handle errors when fetching fetchCountriesOfResidence data', async () => {
       const consoleStub = sinon.stub(console, 'error');
       superagentGetStub.rejects(new Error('Network error'));
 
@@ -93,7 +92,7 @@ describe('EnumJsonLists util', () => {
   });
 
   describe('fetchAndSetPortsAndCountries', () => {
-    it('should fetch and set portsOfEntry and countries of residence data correctly', async() => {
+    it('should fetch and set portsOfEntry and countries of residence data correctly', async () => {
       const mockPortsOfEntryResponse = {
         body: [
           { label: 'Entry1', locationCode: 'locationCode1' },

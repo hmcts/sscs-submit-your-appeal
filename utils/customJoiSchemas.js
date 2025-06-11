@@ -3,7 +3,7 @@ const { get } = require('lodash');
 const { parsePhoneNumberFromString } = require('libphonenumber-js');
 const { phoneNumber } = require('utils/regex');
 
-const customJoi = Joi.extend(joi => {
+const customJoi = Joi.extend((joi) => {
   return {
     base: joi.string(),
     name: 'string',

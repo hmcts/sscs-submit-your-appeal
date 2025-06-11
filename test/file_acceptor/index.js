@@ -11,10 +11,8 @@ const app = express();
 /* eslint-disable init-declarations */
 let server;
 
-
 /* eslint-disable id-blacklist */
 /* eslint-disable consistent-return */
-
 
 app.set('port', 8080);
 app.post('/evidence/upload', (req, res) => {
@@ -24,7 +22,7 @@ app.post('/evidence/upload', (req, res) => {
     type: 'multipart'
   });
 
-  incoming.once('error', er => {
+  incoming.once('error', (er) => {
     console.log(
       `error while receiving the file from the client ${er}`,
       logPath
@@ -36,7 +34,7 @@ app.post('/evidence/upload', (req, res) => {
     fs.rename(file.path, pathToFile);
   });
 
-  incoming.on('error', error => {
+  incoming.on('error', (error) => {
     console.log(`an error has occured with form upload ${error}`, logPath);
     req.resume();
   });
@@ -97,7 +95,6 @@ module.exports = {
   bootstrap,
   teardown
 };
-
 
 /* eslint-enable id-blacklist */
 /* eslint-enable consistent-return */

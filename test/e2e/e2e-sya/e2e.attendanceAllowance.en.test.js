@@ -14,7 +14,7 @@ test.describe(`${language.toUpperCase()} - Attendance Allowance E2E SYA - Full J
   test(
     `${language.toUpperCase()} - ${benefitCode} E2E SYA Journey`,
     { tag: ['@fullFunctional', '@e2e'] },
-    async({ page }) => {
+    async ({ page }) => {
       await e2eBenefit.e2eBenefit(
         page,
         benefitCode,

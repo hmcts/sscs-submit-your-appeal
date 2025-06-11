@@ -57,7 +57,7 @@ describe('BranchForEnglandOrWales.js', () => {
       });
 
       it('when postcode check returns redirect to expected pages', () => {
-        isEnglandOrWalesStub.returns(new Promise(resolve => resolve(true)));
+        isEnglandOrWalesStub.returns(new Promise((resolve) => resolve(true)));
 
         const req = {};
         const resp = {};

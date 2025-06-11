@@ -27,7 +27,8 @@ describe('MRN date that is <= a calendar month', () => {
 
 describe('MRN date that is <= 13 calendar months', () => {
   it('should return true when the MRN date is one day short of 13 months', () => {
-    const oneDayShortOfThirteenMonthsAgo = DateUtils.oneDayShortOfThirteenMonthsAgo();
+    const oneDayShortOfThirteenMonthsAgo =
+      DateUtils.oneDayShortOfThirteenMonthsAgo();
     expect(
       DateUtils.isLessThanOrEqualToThirteenMonths(
         oneDayShortOfThirteenMonthsAgo

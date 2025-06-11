@@ -36,19 +36,16 @@ class DeleteWarning {
     });
   }
   attachHandlers() {
-    document.querySelectorAll('#delete-link').forEach(link => {
+    document.querySelectorAll('#delete-link').forEach((link) => {
       link.addEventListener('click', this.stopDelete.bind(this));
     });
 
     if (this.deleteButton) {
-      this.deleteButton.addEventListener(
-        'click',
-        this.navigateAway.bind(this)
-      );
+      this.deleteButton.addEventListener('click', this.navigateAway.bind(this));
     }
   }
   detachHandlers() {
-    document.querySelectorAll('#delete-link').forEach(link => {
+    document.querySelectorAll('#delete-link').forEach((link) => {
       link.off('click', this.stopDelete.bind(this));
     });
 

@@ -25,7 +25,7 @@ class AppointeeDOB extends SaveToDraftStore {
     const fields = this.content.fields;
     return form({
       date: convert(
-        d =>
+        (d) =>
           DateUtils.createMoment(
             d.day,
             DateUtils.getMonthValue(d, i18next.language),
@@ -39,10 +39,10 @@ class AppointeeDOB extends SaveToDraftStore {
           yearRequired: fields.date.error.yearRequired
         })
       )
-        .check(fields.date.error.invalid, value =>
+        .check(fields.date.error.invalid, (value) =>
           DateUtils.isDateValid(value)
         )
-        .check(fields.date.error.future, value =>
+        .check(fields.date.error.future, (value) =>
           DateUtils.isDateInPast(value)
         )
     });

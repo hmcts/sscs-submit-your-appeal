@@ -75,13 +75,13 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
           'whatYouDisagreeWith',
           content.fields.whatYouDisagreeWith.error.notEnough
         ),
-        value =>
+        (value) =>
           value.whatYouDisagreeWith &&
           isGreaterThanOrEqualToFiveCharacters(value.whatYouDisagreeWith)
       )
       .check(
         errorFor('reasonForAppealing', errorReasonForMsgContent),
-        value =>
+        (value) =>
           value.reasonForAppealing &&
           isGreaterThanOrEqualToFiveCharacters(value.reasonForAppealing.trim())
       );
@@ -91,7 +91,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
-    return list.check(content.listError, arr => arr.length > 0);
+    return list.check(content.listError, (arr) => arr.length > 0);
   }
 
   answers() {
@@ -107,7 +107,7 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
-    const reasons = this.fields.items.value.map(item => {
+    const reasons = this.fields.items.value.map((item) => {
       return {
         whatYouDisagreeWith:
           item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' '

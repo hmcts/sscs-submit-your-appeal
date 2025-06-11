@@ -11,7 +11,7 @@ test.describe(
   'Crossbrowser - PIP E2E SYA - Full Journey',
   { tag: '@crossbrowser' },
   () => {
-    test('English - PIP E2E SYA Journey', async({ page }) => {
+    test('English - PIP E2E SYA Journey', async ({ page }) => {
       const commonContent = content.en;
       const language = 'en';
 
@@ -20,7 +20,7 @@ test.describe(
       await endTheSession(page);
     });
 
-    test('Welsh - PIP E2E SYA Journey', async({ page }) => {
+    test('Welsh - PIP E2E SYA Journey', async ({ page }) => {
       const commonContent = content.cy;
       const language = 'cy';
 

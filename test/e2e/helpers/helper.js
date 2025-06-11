@@ -1,5 +1,3 @@
-
-
 async function clickNextIfDateNotVisible(page, dateElement) {
   try {
     const hasDate = Boolean(await page.$(`[data-date="${dateElement}"]`));

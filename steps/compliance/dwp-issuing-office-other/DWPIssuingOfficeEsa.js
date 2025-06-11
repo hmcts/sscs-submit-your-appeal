@@ -26,7 +26,7 @@ class DWPIssuingOfficeEsa extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
-    return ar.map(el => {
+    return ar.map((el) => {
       if (el === 'Recovery from Estates') {
         return { label: content.cya.dwpIssuingOffice.rfe, value: el };
       }

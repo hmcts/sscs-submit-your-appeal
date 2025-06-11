@@ -51,9 +51,9 @@ class RepresentativeDetails extends SaveToDraftStore {
     const repTitle = this.fields.name.title.value || '';
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    return first === '' && last === '' ?
-      userAnswer[i18next.language].NOT_PROVIDED :
-      `${repTitle} ${first} ${last}`.trim();
+    return first === '' && last === ''
+      ? userAnswer[i18next.language].NOT_PROVIDED
+      : `${repTitle} ${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -113,11 +113,11 @@ class RepresentativeDetails extends SaveToDraftStore {
           organisation: text
         })
           .check(fields.name.error.required, this.nameRequiredValidation)
-          .check(fields.name.error.nameNoTitle, value =>
+          .check(fields.name.error.nameNoTitle, (value) =>
             this.nameNoTitleValidation(value, this.req)
           )
           .check(fields.name.error.titleNoName, this.titleNoNameValidation)
-          .check(errorFor('title', fields.name.title.error.invalid), value =>
+          .check(errorFor('title', fields.name.title.error.invalid), (value) =>
             this.titleValidation(value, this.req)
           )
           .check(
@@ -218,22 +218,22 @@ class RepresentativeDetails extends SaveToDraftStore {
         lastName: decode(last),
         organisation: decode(this.fields.name.organisation.value),
         contactDetails: {
-          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
-            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
-            '',
-          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
-            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
-            '',
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup]
+            ? decode(this.fields[this.pcl.fieldMap.postcodeLookup].value)
+            : '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress]
+            ? decode(this.fields[this.pcl.fieldMap.postcodeAddress].value)
+            : '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value ?
-            this.fields.postCode.value.trim() :
-            this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value ?
-            this.fields.phoneNumber.value.trim() :
-            this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value
+            ? this.fields.postCode.value.trim()
+            : this.fields.postCode.value,
+          phoneNumber: this.fields.phoneNumber.value
+            ? this.fields.phoneNumber.value.trim()
+            : this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

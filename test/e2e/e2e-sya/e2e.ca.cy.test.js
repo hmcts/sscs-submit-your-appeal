@@ -15,7 +15,7 @@ test.describe(`${language.toUpperCase()} - Carer's Allowance E2E SYA - Full Jour
   test(
     `${language.toUpperCase()} - Carer's Allowance ${benefitCode} E2E SYA Journey`,
     { tag: ['@fullFunctional', '@e2e'] },
-    async({ page }) => {
+    async ({ page }) => {
       await e2eBenefit.e2eBenefit(
         page,
         benefitSearchName,

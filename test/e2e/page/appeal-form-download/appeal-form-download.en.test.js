@@ -26,15 +26,15 @@ test.describe(
   `${language.toUpperCase()} - Appeal form download page`,
   { tag: '@batch-06' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page see SSCS1 content when not selecting Carer's Allowance or CBLP`, async({
+    test(`${language.toUpperCase()} - page see SSCS1 content when not selecting Carer's Allowance or CBLP`, async ({
       page
     }) => {
       await enterBenefitTypeAndContinue(
@@ -56,7 +56,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page see SSCS5 content when page select CBLP as a benefit type`, async({
+    test(`${language.toUpperCase()} - page see SSCS5 content when page select CBLP as a benefit type`, async ({
       page
     }) => {
       await enterBenefitTypeAndContinue(
@@ -78,7 +78,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page see SSCS2 content when page select Child support as a benefit type`, async({
+    test(`${language.toUpperCase()} - page see SSCS2 content when page select Child support as a benefit type`, async ({
       page
     }) => {
       await enterBenefitTypeAndContinue(
@@ -100,7 +100,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async({
+    test(`${language.toUpperCase()} - page have a csrf token`, async ({
       page
     }) => {
       await expect(

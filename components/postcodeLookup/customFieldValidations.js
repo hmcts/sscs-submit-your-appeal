@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const postcodeLookupJoi = Joi.extend(joi => {
+const postcodeLookupJoi = Joi.extend((joi) => {
   return {
     base: joi.string(),
     name: 'string',

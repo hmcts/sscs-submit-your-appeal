@@ -32,9 +32,9 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
   get CYAName() {
     const first = this.fields.name.first.value || '';
     const last = this.fields.name.last.value || '';
-    return first === '' && last === '' ?
-      userAnswer.NOT_PROVIDED :
-      `${first} ${last}`.trim();
+    return first === '' && last === ''
+      ? userAnswer.NOT_PROVIDED
+      : `${first} ${last}`.trim();
   }
 
   get CYAOrganisation() {
@@ -51,7 +51,7 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
 
   validCountrySchema() {
     const validCountries = getCountriesOfResidence().map(
-      country => country.value
+      (country) => country.value
     );
     return Joi.string().valid(validCountries);
   }
@@ -71,17 +71,17 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
       })
         .check(
           fields.name.error.required,
-          value => Object.keys(value).length > 0
+          (value) => Object.keys(value).length > 0
         )
-        .check(errorFor('first', fields.name.first.error.invalid), value =>
+        .check(errorFor('first', fields.name.first.error.invalid), (value) =>
           joiValidation(value.first, Joi.string().trim().regex(firstName))
         )
-        .check(errorFor('last', fields.name.last.error.invalid), value =>
+        .check(errorFor('last', fields.name.last.error.invalid), (value) =>
           joiValidation(value.last, Joi.string().trim().regex(lastName))
         )
         .check(
           errorFor('organisation', fields.name.organisation.error.invalid),
-          value =>
+          (value) =>
             joiValidation(value.organisation, Joi.string().regex(whitelist))
         ),
       addressLine1: text
@@ -140,13 +140,13 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
-          postCode: this.fields.postCode.value ?
-            this.fields.postCode.value.trim() :
-            this.fields.postCode.value,
+          postCode: this.fields.postCode.value
+            ? this.fields.postCode.value.trim()
+            : this.fields.postCode.value,
           country: decode(this.fields.country.value),
-          phoneNumber: this.fields.phoneNumber.value ?
-            this.fields.phoneNumber.value.trim() :
-            this.fields.phoneNumber.value,
+          phoneNumber: this.fields.phoneNumber.value
+            ? this.fields.phoneNumber.value.trim()
+            : this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

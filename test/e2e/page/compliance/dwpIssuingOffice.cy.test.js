@@ -18,23 +18,23 @@ test.describe(
   `${language.toUpperCase()} - DWP Issuing Office`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.dwpIssuingOffice);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page enter a valid issuing office, page am taken to the mrn date page`, async({
+    test(`${language.toUpperCase()} - When page enter a valid issuing office, page am taken to the mrn date page`, async ({
       page
     }) => {
       await enterDWPIssuingOfficeAndContinue(page, commonContent, '1');
       await page.waitForURL(`**${paths.compliance.mrnDate}`);
     });
 
-    test(`${language.toUpperCase()} - When page click continue without adding a dwp issuing office page see an error`, async({
+    test(`${language.toUpperCase()} - When page click continue without adding a dwp issuing office page see an error`, async ({
       page
     }) => {
       await page

@@ -44,12 +44,12 @@ class Controller {
       if (isIbaCase) {
         return text
           .joi(
-            allowNI ?
-              content.fields.postcodeLookup.error.requiredIbaNI :
-              content.fields.postcodeLookup.error.requiredIba,
-            allowNI ?
-              Joi.string().trim().required() :
-              Joi.string().trim().regex(notNiPostcode).required()
+            allowNI
+              ? content.fields.postcodeLookup.error.requiredIbaNI
+              : content.fields.postcodeLookup.error.requiredIba,
+            allowNI
+              ? Joi.string().trim().required()
+              : Joi.string().trim().regex(notNiPostcode).required()
           )
           .joi(
             content.fields.postcodeAddress.error.required,
@@ -217,7 +217,7 @@ class Controller {
       const selectedUPRN = page.fields[fieldMap.postcodeAddress].value;
       if (selectedUPRN) {
         selectedAddress = page.addressSuggestions.filter(
-          address => address.DPA.UPRN === selectedUPRN
+          (address) => address.DPA.UPRN === selectedUPRN
         );
       }
     }

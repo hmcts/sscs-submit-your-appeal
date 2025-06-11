@@ -93,8 +93,8 @@ class BenefitType extends SaveToDraftStore {
 
     allowedTypes.push(
       ...featureFlags
-        .filter(f => isFeatureFlagEnabled(f.flag))
-        .map(f => f.benefit)
+        .filter((f) => isFeatureFlagEnabled(f.flag))
+        .map((f) => f.benefit)
     );
 
     return allowedTypes;

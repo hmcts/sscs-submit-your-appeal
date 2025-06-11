@@ -3,7 +3,8 @@ const postCodeContentCy = require('steps/start/postcode-checker/content.cy');
 const { expect } = require('@playwright/test');
 
 async function enterPostcodeAndContinue(I, language, commonContent, postcode) {
-  const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
+  const postCodeContent =
+    language === 'en' ? postCodeContentEn : postCodeContentCy;
 
   await expect(I.getByText(postCodeContent.title).first()).toBeVisible();
   await I.locator('#postcode').first().fill(postcode);
@@ -16,7 +17,8 @@ async function enterPostcodeAndContinueAfterSignIn(
   commonContent,
   postcode
 ) {
-  const postCodeContent = language === 'en' ? postCodeContentEn : postCodeContentCy;
+  const postCodeContent =
+    language === 'en' ? postCodeContentEn : postCodeContentCy;
 
   await expect(I.getByText(postCodeContent.title).first()).toBeVisible();
   await I.locator('#postcode').first().fill(postcode);

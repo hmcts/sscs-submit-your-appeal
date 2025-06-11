@@ -18,16 +18,16 @@ test.describe(
   `${language.toUpperCase()} - Representative Details`,
   { tag: '@batch-10' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.representative.representativeDetails);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - After completing the form page am taken to the /reasons-for-appealing page`, async({
+    test(`${language.toUpperCase()} - After completing the form page am taken to the /reasons-for-appealing page`, async ({
       page
     }) => {
       await enterRequiredRepresentativeDetails(page);
@@ -40,7 +40,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - When page only provide a single character for firstName and lastName page see errors`, async({
+    test(`${language.toUpperCase()} - When page only provide a single character for firstName and lastName page see errors`, async ({
       page
     }) => {
       await page.locator('input[name="name.first"]').first().fill('H');
@@ -65,7 +65,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click continue without filling in the fields page see errors`, async({
+    test(`${language.toUpperCase()} - When page click continue without filling in the fields page see errors`, async ({
       page
     }) => {
       await page
@@ -105,7 +105,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click continue without entering a name or organisation, page see errors`, async({
+    test(`${language.toUpperCase()} - When page click continue without entering a name or organisation, page see errors`, async ({
       page
     }) => {
       await page
@@ -119,7 +119,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a name and continue, page do not see errors`, async({
+    test(`${language.toUpperCase()} - When page enter a name and continue, page do not see errors`, async ({
       page
     }) => {
       await page.locator('input[name="name.first"]').first().fill('Harry');
@@ -134,7 +134,7 @@ test.describe(
       ).toBeHidden();
     });
 
-    test(`${language.toUpperCase()} - When page enter a name with special characters and continue, page do not see errors`, async({
+    test(`${language.toUpperCase()} - When page enter a name with special characters and continue, page do not see errors`, async ({
       page
     }) => {
       await page.locator('input[name="name.first"]').first().fill('André-Ottö');
@@ -149,7 +149,7 @@ test.describe(
       ).toBeHidden();
     });
 
-    test(`${language.toUpperCase()} - When page enter an organisation and continue, page do not see errors`, async({
+    test(`${language.toUpperCase()} - When page enter an organisation and continue, page do not see errors`, async ({
       page
     }) => {
       await page

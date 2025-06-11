@@ -3,7 +3,7 @@ const proxyquire = require('proxyquire');
 const paths = require('paths');
 
 describe('SendingEvidence.js', () => {
-  const retrieveValue = value => {
+  const retrieveValue = (value) => {
     return {
       retrieve: sinon.stub().returns({
         emailAddress: {
@@ -12,7 +12,7 @@ describe('SendingEvidence.js', () => {
       })
     };
   };
-  const createClassInstance = retrieve => {
+  const createClassInstance = (retrieve) => {
     return proxyquire(
       'steps/reasons-for-appealing/sending-evidence/SendingEvidence',
       {
@@ -22,7 +22,7 @@ describe('SendingEvidence.js', () => {
       }
     );
   };
-  const instantiateClass = Class => {
+  const instantiateClass = (Class) => {
     return new Class({
       journey: {
         steps: {

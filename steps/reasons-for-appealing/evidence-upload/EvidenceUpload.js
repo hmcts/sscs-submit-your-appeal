@@ -4,7 +4,6 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const {
   SaveToDraftStoreAddAnother
@@ -52,12 +51,12 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   static isCorrectFileType(mimetype, filename) {
     const hasCorrectMT = Boolean(
-      fileTypeWhitelist.find(el => el === mimetype)
+      fileTypeWhitelist.find((el) => el === mimetype)
     );
     return (
       hasCorrectMT &&
       filename &&
-      fileTypeWhitelist.find(el => el === `.${filename.split('.').pop()}`)
+      fileTypeWhitelist.find((el) => el === `.${filename.split('.').pop()}`)
     );
   }
 
@@ -138,7 +137,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   static handleMakeDir(next, pathToUploadFolder, req) {
-    return mkdirError => {
+    return (mkdirError) => {
       const logValue = `${pathToUploadFolder}, ${req.originalUrl}`;
       logger.trace(`Makedir:  ${logValue}`, logPath);
       if (mkdirError) {
@@ -179,7 +178,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         files['item.uploadEv'] &&
         files['item.uploadEv'][0].filepath &&
         !fileTypeWhitelist.find(
-          el => el === files['item.uploadEv'][0].mimetype
+          (el) => el === files['item.uploadEv'][0].mimetype
         )
       ) {
         req.body = {
@@ -220,12 +219,15 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   static handleRename(pathToFile, req, size, next) {
-    return async() => {
+    return async () => {
       try {
         const response = await request
           .post(uploadEvidenceUrl)
           .attach('file', pathToFile)
-          .field('formData', JSON.stringify({ file: fs.createReadStream(pathToFile) }));
+          .field(
+            'formData',
+            JSON.stringify({ file: fs.createReadStream(pathToFile) })
+          );
 
         const b = response.body;
         if (b && b.documents) {
@@ -316,12 +318,12 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   answers() {
     return answer(this, {
       section: sections.reasonsForAppealing,
-      answer: this.fields.items.value.map(file => file.uploadEv)
+      answer: this.fields.items.value.map((file) => file.uploadEv)
     });
   }
 
   values() {
-    const evidences = this.fields.items.value.map(file => {
+    const evidences = this.fields.items.value.map((file) => {
       if (file.hashToken) {
         return {
           url: file.link,
@@ -347,7 +349,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
-    return list.check(content.noItemsError, arr => arr.length > 0);
+    return list.check(content.noItemsError, (arr) => arr.length > 0);
   }
 
   next() {

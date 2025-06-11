@@ -6,25 +6,25 @@ const signLanguages = require('steps/hearing/arrangements/signLanguages');
 
 const Joi = require('joi');
 
-const optionSelected = options => {
+const optionSelected = (options) => {
   const optionValues = Object.values(options);
   let valueSet = false;
 
-  optionValues.forEach(arrangement => {
+  optionValues.forEach((arrangement) => {
     valueSet = valueSet ? valueSet : arrangement.requested;
   });
 
   return valueSet;
 };
 
-const languageInList = value =>
+const languageInList = (value) =>
   value.requested ? languages.includes(value.language) : true;
-const signLanguageInList = value =>
+const signLanguageInList = (value) =>
   value.requested ? signLanguages.includes(value.language) : true;
-const emptyLanguageFieldValidation = value =>
+const emptyLanguageFieldValidation = (value) =>
   value.requested && !value.language ? false : true;
 
-const validCharacters = value => {
+const validCharacters = (value) => {
   let validated = null;
 
   if (value.requested) {

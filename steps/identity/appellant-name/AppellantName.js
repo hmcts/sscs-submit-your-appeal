@@ -39,7 +39,7 @@ class AppellantName extends SaveToDraftStore {
   }
 
   decodedTitlesList() {
-    return titlesList.map(title => decode(title.value));
+    return titlesList.map((title) => decode(title.value));
   }
 
   titleSchema() {

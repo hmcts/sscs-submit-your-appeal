@@ -125,7 +125,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       .post(this.journey.settings.apiUrl)
       .set(headers)
       .send(values)
-      .then(result => {
+      .then((result) => {
         logger.trace(
           [
             'Successfully submitted application for session id',
@@ -147,7 +147,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         );
         logger.event('SYA-SendToApi-Success');
       })
-      .catch(error => {
+      .catch((error) => {
         const errMsg = `${error.message} status:${error.status || HttpStatus.INTERNAL_SERVER_ERROR}`;
 
         logger.exception(
@@ -166,9 +166,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
         );
 
         const metricEvent =
-          error.status === HttpStatus.CONFLICT ?
-            'SYA-SendToApi-Duplicate' :
-            'SYA-SendToApi-Failed';
+          error.status === HttpStatus.CONFLICT
+            ? 'SYA-SendToApi-Duplicate'
+            : 'SYA-SendToApi-Failed';
         logger.event(metricEvent);
         return Promise.reject(error);
       });
@@ -177,9 +177,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
   sections() {
     return [
       section(sections.benefitType, {
-        title: isIba(this.req) ?
-          this.content.benefitTypeIbc :
-          this.content.benefitType
+        title: isIba(this.req)
+          ? this.content.benefitTypeIbc
+          : this.content.benefitType
       }),
       section(sections.mrnDate, {
         title: this.content.compliance[isIba(this.req) ? 'rdnDate' : 'mrnDate']

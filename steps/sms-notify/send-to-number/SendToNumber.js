@@ -12,9 +12,9 @@ class SendToNumber extends SaveToDraftStore {
   }
 
   get phoneNumber() {
-    return this.fields.inMainlandUk.value === 'no' ?
-      this.fields.internationalPhoneNumber.value :
-      this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
+    return this.fields.inMainlandUk.value === 'no'
+      ? this.fields.internationalPhoneNumber.value
+      : this.fields.phoneNumber.value || this.fields.appointeePhoneNumber.value;
   }
 
   get form() {

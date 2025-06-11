@@ -111,8 +111,8 @@ describe('DatesCantAttend.js', () => {
   describe('answers() and values()', () => {
     const question = 'A Question';
     const value = [moment().add(5, 'weeks'), moment().add(6, 'weeks')];
-    const answersMappedValue = value.map(d => d.format('DD MMMM YYYY'));
-    const valuesMappedValue = value.map(d => d.format('DD-MM-YYYY'));
+    const answersMappedValue = value.map((d) => d.format('DD MMMM YYYY'));
+    const valuesMappedValue = value.map((d) => d.format('DD-MM-YYYY'));
 
     beforeEach(() => {
       datesCantAttend.content = {

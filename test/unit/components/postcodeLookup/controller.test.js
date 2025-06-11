@@ -399,7 +399,7 @@ describe('Components/controller.js', () => {
       pcl.handlePostCodeLookup.restore();
     });
 
-    it('setPageState not restore suggestions', async() => {
+    it('setPageState not restore suggestions', async () => {
       page.fields = { postcodeLookup: { value: '', validate: () => false } };
       pcl = new PCL(enabled, token, url, page);
       const handlePostCodeLookupSpy = sinon.spy(pcl, 'handlePostCodeLookup');
@@ -408,7 +408,7 @@ describe('Components/controller.js', () => {
       pcl.handlePostCodeLookup.restore();
     });
 
-    it('setPageState auto all fields', async() => {
+    it('setPageState auto all fields', async () => {
       page.fields = {
         postcodeLookup: { value: 'n29ed', validate: () => true },
         postcodeAddress: { value: '2000', validate: () => true }
@@ -421,7 +421,7 @@ describe('Components/controller.js', () => {
       pcl.alldFields.restore();
     });
 
-    it('setPageState auto postcodeAddressFields', async() => {
+    it('setPageState auto postcodeAddressFields', async () => {
       page.fields = {
         postcodeLookup: { value: 'n29ed', validate: () => true }
       };
@@ -433,7 +433,7 @@ describe('Components/controller.js', () => {
       pcl.postcodeAddressFields.restore();
     });
 
-    it('setPageState auto postcodeLookupFields', async() => {
+    it('setPageState auto postcodeLookupFields', async () => {
       page.fields = { postcodeLookup: { value: '', validate: () => false } };
       pcl = new PCL(enabled, token, url, page);
       const postcodeLookupFieldsSpy = sinon.spy(pcl, 'postcodeLookupFields');
@@ -442,7 +442,7 @@ describe('Components/controller.js', () => {
       pcl.postcodeLookupFields.restore();
     });
 
-    it('setPageState manual', async() => {
+    it('setPageState manual', async () => {
       pcl = new PCL(false, token, url, page);
       const manualFieldsSpy = sinon.spy(pcl, 'manualFields');
       const restoreValuesSpy = sinon.spy(pcl, 'restoreValues');
@@ -455,7 +455,7 @@ describe('Components/controller.js', () => {
   });
 
   describe('handlePostCodeLookup()', () => {
-    it('handlePostCodeLookup adress options found', async() => {
+    it('handlePostCodeLookup adress options found', async () => {
       page.fields = {
         postcodeLookup: { value: 'n29ed', validate: () => true }
       };
@@ -464,7 +464,7 @@ describe('Components/controller.js', () => {
       expect(page.addressSuggestions.length).to.eql(2);
     });
 
-    it('handlePostCodeLookup adress options found', async() => {
+    it('handlePostCodeLookup adress options found', async () => {
       page.fields = {
         postcodeLookup: { value: 'non valid', validate: () => true }
       };
@@ -473,7 +473,7 @@ describe('Components/controller.js', () => {
       expect(page.fields.postcodeLookup.value).to.eql('');
     });
 
-    it('handlePostCodeLookup server not available', async() => {
+    it('handlePostCodeLookup server not available', async () => {
       page.fields = {
         postcodeLookup: { value: 'n29ed', validate: () => true }
       };
@@ -482,7 +482,7 @@ describe('Components/controller.js', () => {
       expect(page.fields.postcodeLookup.value).to.eql('');
     });
 
-    it('handlePostCodeLookup server not valid token', async() => {
+    it('handlePostCodeLookup server not valid token', async () => {
       page.fields = {
         postcodeLookup: { value: 'n29ed', validate: () => true }
       };
@@ -567,7 +567,7 @@ describe('Components/controller.js', () => {
       page.fields = {};
     });
 
-    it('init lookup post ', async() => {
+    it('init lookup post ', async () => {
       page.req.body = { submitType: 'lookup' };
       pcl = new PCL(enabled, token, url, page);
       const resetSuggestionsSpy = sinon.spy(pcl, 'resetSuggestions');
@@ -582,7 +582,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('controller addressSelection', async() => {
+    it('controller addressSelection', async () => {
       page.req.body = { submitType: 'addressSelection' };
       pcl = new PCL(enabled, token, url, page);
       const handleAddressSelectionSpy = sinon.spy(
@@ -600,7 +600,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('controller manual', async() => {
+    it('controller manual', async () => {
       page.req.body = { submitType: 'manual' };
       pcl = new PCL(enabled, token, url, page);
       const manualFieldsSpy = sinon.spy(pcl, 'manualFields');
@@ -615,7 +615,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('controller GET and Validate', async() => {
+    it('controller GET and Validate', async () => {
       page.req.method = 'GET';
       page.req.query = { validate: true };
       pcl = new PCL(enabled, token, url, page);
@@ -632,7 +632,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('controller GET and any Type', async() => {
+    it('controller GET and any Type', async () => {
       page.req.method = 'GET';
       page.req.query = { type: true };
       pcl = new PCL(enabled, token, url, page);
@@ -646,7 +646,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('manual and not valid', async() => {
+    it('manual and not valid', async () => {
       page.req.method = 'POST';
       page.req.body = {};
       page.valid = false;
@@ -661,7 +661,7 @@ describe('Components/controller.js', () => {
       pcl.setPageState.restore();
     });
 
-    it('controller default super call', async() => {
+    it('controller default super call', async () => {
       pcl = new PCL(enabled, token, url, page);
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
       await pcl.init(superCallback);
@@ -675,7 +675,7 @@ describe('Components/controller.js', () => {
       const setPageStateSpy = sinon.spy(pcl, 'setPageState');
       pcl
         .init('')
-        .catch(reason =>
+        .catch((reason) =>
           expect(reason.message).to.eq('Super Callback function is not defined')
         );
       expect(setPageStateSpy).to.have.been.calledOnce;

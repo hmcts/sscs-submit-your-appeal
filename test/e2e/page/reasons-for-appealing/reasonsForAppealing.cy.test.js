@@ -16,17 +16,17 @@ test.describe(
   `${language.toUpperCase()} - Reason For Appealing`,
   { tag: '@batch-10' },
   () => {
-    test.beforeEach(async({ page }) => {
+    test.beforeEach(async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.reasonsForAppealing.reasonForAppealing);
       await page.turnOffJsAndReloadThePage();
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page do not add enough what you disagree with it, page see errors`, async({
+    test(`${language.toUpperCase()} - When page do not add enough what you disagree with it, page see errors`, async ({
       page
     }) => {
       await page
@@ -55,7 +55,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page do not add enough reason for appealing, page see errors`, async({
+    test(`${language.toUpperCase()} - When page do not add enough reason for appealing, page see errors`, async ({
       page
     }) => {
       await page
@@ -83,7 +83,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page use whitespace to pad out what you disagree with it, page see errors`, async({
+    test(`${language.toUpperCase()} - When page use whitespace to pad out what you disagree with it, page see errors`, async ({
       page
     }) => {
       await page
@@ -112,7 +112,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page use whitespace to pad out reason for appealing, page see errors`, async({
+    test(`${language.toUpperCase()} - When page use whitespace to pad out reason for appealing, page see errors`, async ({
       page
     }) => {
       await page
@@ -140,7 +140,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async({
+    test(`${language.toUpperCase()} - page have a csrf token`, async ({
       page
     }) => {
       await expect(
