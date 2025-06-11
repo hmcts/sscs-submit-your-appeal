@@ -11,12 +11,12 @@ const {
 } = require('../../page-objects/session/createSession');
 
 test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
-  test.beforeEach('Create session', async ({ page }) => {
+  test.beforeEach('Create session', async({ page }) => {
     await createTheSession(page, language);
     await page.goto(paths.start.postcodeCheck);
   });
 
-  test(`${language.toUpperCase()} - When page go to the enter postcode page page see the page heading`, async ({
+  test(`${language.toUpperCase()} - When page go to the enter postcode page page see the page heading`, async({
     page
   }) => {
     await expect(
@@ -24,7 +24,7 @@ test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When entering a postcode in England, page go to the /are-you-an-appointee page`, async ({
+  test(`${language.toUpperCase()} - When entering a postcode in England, page go to the /are-you-an-appointee page`, async({
     page
   }) => {
     await page.locator('#postcode').fill('WV11 2HE');
@@ -35,7 +35,7 @@ test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
     await page.waitForURL(`**${paths.identity.areYouAnAppointee}`);
   });
 
-  test(`${language.toUpperCase()} - When page enter a postcode in Scotland, page go to the /invalid postcode page`, async ({
+  test(`${language.toUpperCase()} - When page enter a postcode in Scotland, page go to the /invalid postcode page`, async({
     page
   }) => {
     await page.locator('#postcode').fill('EH8 8DX');
@@ -46,7 +46,7 @@ test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
     await page.waitForURL(`**${paths.start.invalidPostcode}`);
   });
 
-  test(`${language.toUpperCase()} - When page enter an invalid postcode page see an error`, async ({
+  test(`${language.toUpperCase()} - When page enter an invalid postcode page see an error`, async({
     page
   }) => {
     await page.locator('#postcode').fill('INVALID POSTCODE');
@@ -62,7 +62,7 @@ test.describe(`${language.toUpperCase()} - Enter postcode`, () => {
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - When page leave the postcode field empty and continue, page see an error`, async ({
+  test(`${language.toUpperCase()} - When page leave the postcode field empty and continue, page see an error`, async({
     page
   }) => {
     await page.locator('#postcode').fill('');

@@ -59,15 +59,15 @@ const reasonForAppealing = selectors[language].reasonsForAppealing.reasons;
 const reasonForAppealingChange = `${reasonForAppealing}-1 ${selectors.change}`;
 
 test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with reasons for appealing one page form`, () => {
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, async ({
+  test(`${language.toUpperCase()} - Adds reasons for appealing and sees them in check your answers`, async({
     page
   }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
@@ -145,7 +145,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
     }
   });
 
-  test(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, async ({
+  test(`${language.toUpperCase()} - Enters a reason for appealing, then edits the reason`, async({
     page
   }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);
@@ -251,7 +251,7 @@ test.describe(`${language.toUpperCase()} - Appellant PIP, one month ago, attends
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, async ({
+  test(`${language.toUpperCase()} - Enters a reason for appealing, then removes the reason and sees errors`, async({
     page
   }) => {
     await enterDetailsFromStartToNINO(page, commonContent, language);

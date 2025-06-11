@@ -43,8 +43,7 @@ async function signInVerifylanguage(I, username, password, language) {
   }
   const altLang = await I.locator('.language').innerText();
   if (
-    (altLang.trim() === 'English' && language === 'en') ||
-    (altLang.trim() === 'Cymraeg' && language === 'cy')
+    (altLang.trim() === 'English' && language === 'en') || (altLang.trim() === 'Cymraeg' && language === 'cy')
   ) {
     await I.goto(`${paths.drafts}?lng=${language}`);
   }

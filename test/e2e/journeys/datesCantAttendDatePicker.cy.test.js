@@ -33,15 +33,15 @@ test.describe(
   `${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with dates cannot attend using date-picker`,
   { tag: '@batch-01' },
   () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async ({
+    test(`${language.toUpperCase()} - Selects date of when they cannot attend the hearing`, async({
       page
     }) => {
       moment().locale(language);
@@ -84,7 +84,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async ({
+    test(`${language.toUpperCase()} - Selects a date when they cannot attend the hearing, then edits the date`, async({
       page
     }) => {
       moment().locale(language);

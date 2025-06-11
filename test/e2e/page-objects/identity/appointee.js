@@ -8,8 +8,7 @@ async function selectAreYouAnAppointeeAndContinue(
   commonContent,
   option
 ) {
-  const appointeeContent =
-    language === 'en' ? appointeeContentEn : appointeeContentCy;
+  const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
   await expect(
     I.getByText(
@@ -26,8 +25,7 @@ async function selectAreYouAnAppointeeAndContinueAfterSignIn(
   commonContent,
   option
 ) {
-  const appointeeContent =
-    language === 'en' ? appointeeContentEn : appointeeContentCy;
+  const appointeeContent = language === 'en' ? appointeeContentEn : appointeeContentCy;
 
   await expect(
     I.getByText(

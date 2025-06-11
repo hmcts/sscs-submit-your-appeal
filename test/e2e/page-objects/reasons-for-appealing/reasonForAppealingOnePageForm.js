@@ -16,10 +16,7 @@ async function addAReasonForAppealing(
   reasonForAppealingField,
   reason
 ) {
-  const reasonForAppealingContent =
-    language === 'en'
-      ? reasonForAppealingContentEn
-      : reasonForAppealingContentCy;
+  const reasonForAppealingContent = language === 'en' ? reasonForAppealingContentEn : reasonForAppealingContentCy;
 
   await expect(
     I.getByText(reasonForAppealingContent.title).first()

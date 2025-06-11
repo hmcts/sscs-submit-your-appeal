@@ -34,7 +34,7 @@ test.describe('EN - PIP E2E SYA - Full Journey', () => {
   test(
     'EN - PIP E2E SYA Journey',
     { tag: ['@functional', '@e2e'] },
-    async ({ page }) => {
+    async({ page }) => {
       const commonContent = content.en;
       const language = 'en';
 

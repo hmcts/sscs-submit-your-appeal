@@ -11,7 +11,7 @@ const { JSDOM } = require('jsdom');
 describe('postcode lookup', () => {
   let PostCodeLookup;
   let $;
-  before((done) => {
+  before(done => {
     const jsdom = new JSDOM(`<div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
     Enter your contact details

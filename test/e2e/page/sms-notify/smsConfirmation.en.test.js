@@ -22,16 +22,16 @@ test.describe(
   `${language.toUpperCase()} - SMS Confirmation - appellant contact details`,
   { tag: '@batch-11' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantContactDetails);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page click Continue, page am taken to the Representative page`, async ({
+    test(`${language.toUpperCase()} - When page click Continue, page am taken to the Representative page`, async({
       page
     }) => {
       await enterAppellantContactDetailsWithMobileAndContinue(
@@ -56,7 +56,7 @@ test.describe(
       await page.waitForURL(`**${paths.representative.representative}`);
     });
 
-    test(`${language.toUpperCase()} - Enter a mobile and click use same number, page see the number in SMS confirmation`, async ({
+    test(`${language.toUpperCase()} - Enter a mobile and click use same number, page see the number in SMS confirmation`, async({
       page
     }) => {
       await enterAppellantContactDetailsWithMobileAndContinue(
@@ -82,7 +82,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Enter a mobile, click use different number, page see enter mobile number`, async ({
+    test(`${language.toUpperCase()} - Enter a mobile, click use different number, page see enter mobile number`, async({
       page
     }) => {
       await enterAppellantContactDetailsWithMobileAndContinue(
@@ -114,7 +114,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Do not enter a mobile, page see the mobile number page provided for enter mobile`, async ({
+    test(`${language.toUpperCase()} - Do not enter a mobile, page see the mobile number page provided for enter mobile`, async({
       page
     }) => {
       await enterAppellantContactDetailsAndContinue(

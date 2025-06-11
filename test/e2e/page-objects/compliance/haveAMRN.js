@@ -8,8 +8,7 @@ async function selectHaveYouGotAMRNAndContinue(
   commonContent,
   option
 ) {
-  const haveMRNContent =
-    language === 'en' ? haveMRNContentEn : haveMRNContentCy;
+  const haveMRNContent = language === 'en' ? haveMRNContentEn : haveMRNContentCy;
 
   await expect(I.getByText(haveMRNContent.title).first()).toBeVisible();
   await I.locator(option).first().check();
@@ -22,8 +21,7 @@ async function selectHaveYouGotAMRNAndContinueAfterSignIn(
   commonContent,
   option
 ) {
-  const haveMRNContent =
-    language === 'en' ? haveMRNContentEn : haveMRNContentCy;
+  const haveMRNContent = language === 'en' ? haveMRNContentEn : haveMRNContentCy;
 
   await expect(I.getByText(haveMRNContent.title).first()).toBeVisible();
   await I.locator(option).check();

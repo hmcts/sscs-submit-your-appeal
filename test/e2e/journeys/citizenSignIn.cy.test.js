@@ -40,17 +40,17 @@ const { endTheSession } = require('../page-objects/session/endSession');
 test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
   let userEmail;
 
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
     userEmail = await testUser.createUser();
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
     await testUser.deleteUser(userEmail);
   });
 
-  test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @flaky-test`, async ({
+  test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @flaky-test`, async({
     page
   }) => {
     await moment().locale(language);

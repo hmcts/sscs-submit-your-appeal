@@ -15,16 +15,16 @@ test.describe(
   `${language.toUpperCase()} - Appellant NINO form`,
   { tag: '@batch-09' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantNINO);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page see the correct information is displayed`, async ({
+    test(`${language.toUpperCase()} - page see the correct information is displayed`, async({
       page
     }) => {
       await expect(
@@ -35,7 +35,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - The user has entered a NINO in the correct format (e.g. AA123456A) and continued`, async ({
+    test(`${language.toUpperCase()} - The user has entered a NINO in the correct format (e.g. AA123456A) and continued`, async({
       page
     }) => {
       await page.locator('#nino').fill('AA123456A');
@@ -46,7 +46,7 @@ test.describe(
       await page.waitForURL(`**${paths.identity.enterAppellantContactDetails}`);
     });
 
-    test(`${language.toUpperCase()} - The user has entered a NINO in the wrong format (e.g.AA1234) and continued`, async ({
+    test(`${language.toUpperCase()} - The user has entered a NINO in the wrong format (e.g.AA1234) and continued`, async({
       page
     }) => {
       await page.locator('#nino').fill('AA1234');

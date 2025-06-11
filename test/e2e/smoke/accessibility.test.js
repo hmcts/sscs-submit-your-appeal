@@ -33,7 +33,7 @@ const ibcSteps = [
 const loggedInSteps = ['/draft-appeals'];
 
 function accessibilityCheck(url, language) {
-  test(`Page ${url} - ${language} should have no accessibility errors`, async ({
+  test(`Page ${url} - ${language} should have no accessibility errors`, async({
     page
   }) => {
     for (let i = 1; i < 5; i++) {
@@ -63,16 +63,14 @@ function accessibilityCheck(url, language) {
 test.describe('Accessibility tests', { tag: '@accessibility' }, () => {
   const filteredSteps = steps
     .filter(
-      (step) =>
-        !excludeSteps.includes(step.path) &&
-        !ibcSteps.includes(step.path) &&
-        !loggedInSteps.includes(step.path)
+      step =>
+        !excludeSteps.includes(step.path) && !ibcSteps.includes(step.path) && !loggedInSteps.includes(step.path)
     )
-    .map((steps) => steps.path);
+    .map(steps => steps.path);
   const urls = [...new Set(filteredSteps)];
   const languages = ['en', 'cy'];
-  languages.forEach((language) => {
-    urls.forEach((url) => {
+  languages.forEach(language => {
+    urls.forEach(url => {
       accessibilityCheck(url, language);
     });
   });

@@ -31,7 +31,7 @@ async function getCaseData(browser, request, ccdCaseID) {
   const tyaID = myaCaseData.appealNumber;
   const cookies = await browser.contexts()[0].cookies();
   const authTokenCookie = (cookies.filter(
-    (cookie) => cookie.name === authCookie
+    cookie => cookie.name === authCookie
   ) || [''])[0];
   const headers = { Authorization: `Bearer ${authTokenCookie.value}` };
   const response = await request.get(

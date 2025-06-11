@@ -25,16 +25,16 @@ test.describe(
   `${language.toUpperCase()} - User has an MRN`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.mrnDate);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated one day short of a month ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated one day short of a month ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -44,14 +44,14 @@ test.describe(
       await expect(page).toHaveURL(paths.identity.enterAppellantName);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated as the current date`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated as the current date`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(page, commonContent, moment());
       await expect(page).toHaveURL(paths.identity.enterAppellantName);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated one month ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated one month ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -61,7 +61,7 @@ test.describe(
       await expect(page).toHaveURL(paths.identity.enterAppellantName);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated one month and one day ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated one month and one day ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -71,7 +71,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated one day short of 13 months ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated one day short of 13 months ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -81,7 +81,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated 13 months ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated 13 months ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -91,7 +91,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page have an MRN dated 13 months and one day ago`, async ({
+    test(`${language.toUpperCase()} - page have an MRN dated 13 months and one day ago`, async({
       page
     }) => {
       await enterAnMRNDateAndContinue(
@@ -101,7 +101,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page have a MRN but page do not enter the day, month or the year`, async ({
+    test(`${language.toUpperCase()} - page have a MRN but page do not enter the day, month or the year`, async({
       page
     }) => {
       await page
@@ -113,7 +113,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="day"]').first().fill('21');
@@ -129,7 +129,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="month"]').first().fill('12');
@@ -145,7 +145,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="year"]').first().fill('1999');
@@ -161,7 +161,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async({
       page
     }) => {
       await enterADateAndContinue(page, commonContent, '30', '02', '1981');
@@ -170,7 +170,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async({
       page
     }) => {
       await enterADateAndContinue(page, commonContent, '25', '02', '3400');
@@ -179,7 +179,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a date that is the same as the date on the image page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter a date that is the same as the date on the image page see errors`, async({
       page
     }) => {
       await enterADateAndContinue(
@@ -194,7 +194,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page enter a MRN date with name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a MRN date with name of month`, async({
       page
     }) => {
       date.month = 'ocToBer';
@@ -208,7 +208,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page enter a MRN date with the short name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a MRN date with the short name of month`, async({
       page
     }) => {
       date.month = 'aUg';
@@ -222,7 +222,7 @@ test.describe(
       await expect(page).toHaveURL(paths.compliance.checkMRNDate);
     });
 
-    test(`${language.toUpperCase()} - page enter a MRN date with an invalid name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a MRN date with an invalid name of month`, async({
       page
     }) => {
       date.month = 'invalidMonth';
@@ -238,7 +238,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async ({
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
       page
     }) => {
       await expect(

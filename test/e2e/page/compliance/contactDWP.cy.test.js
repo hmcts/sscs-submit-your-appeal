@@ -14,16 +14,16 @@ test.describe(
   `${language.toUpperCase()} - Contact DWP`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.contactDWP);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page exit the service after being told page need to contact DWP`, async ({
+    test(`${language.toUpperCase()} - page exit the service after being told page need to contact DWP`, async({
       page
     }) => {
       await page.getByText(contactDwpContent.govuk).first().click();

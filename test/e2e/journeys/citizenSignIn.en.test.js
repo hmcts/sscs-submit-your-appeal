@@ -39,12 +39,12 @@ const testUser = require('../../util/IdamUser');
 let userEmail = '';
 
 test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
     userEmail = await testUser.createUser();
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
     await testUser.deleteUser(userEmail);
   });
@@ -52,7 +52,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
   test(
     `${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`,
     { tag: '@functional' },
-    async ({ page }) => {
+    async({ page }) => {
       await moment().locale(language);
       await enterDetailsFromStartToDraftAppeals(
         page,

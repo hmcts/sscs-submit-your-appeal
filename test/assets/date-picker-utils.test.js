@@ -1,8 +1,7 @@
 const chai = require('chai');
 
 const expect = chai.expect;
-const datePickerUtils =
-  require('assets/js/date-picker/date-picker-utils').default;
+const datePickerUtils = require('assets/js/date-picker/date-picker-utils').default;
 
 describe('date-picker-utils.js', () => {
   describe('buildDatesArray()', () => {

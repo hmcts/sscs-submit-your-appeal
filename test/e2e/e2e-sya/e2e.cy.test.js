@@ -36,7 +36,7 @@ test.describe(`${language.toUpperCase()} - PIP E2E SYA - Full Journey`, () => {
   test(
     `${language.toUpperCase()} - PIP E2E SYA Journey`,
     { tag: ['@functional', '@e2e'] },
-    async ({ page }) => {
+    async({ page }) => {
       const commonContent = content[language];
 
       await createTheSession(page, language);

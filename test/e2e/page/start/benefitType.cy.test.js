@@ -55,15 +55,15 @@ test.describe(
   `${language.toUpperCase()} - Benefit Type`,
   { tag: '@batch-12' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page enter PIP, page am taken to the postcode-check page`, async ({
+    test(`${language.toUpperCase()} - When page enter PIP, page am taken to the postcode-check page`, async({
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'pip');
@@ -72,9 +72,9 @@ test.describe(
 
     /* eslint-disable init-declarations */
     /* eslint-disable no-negated-condition */
-    benefitTypesArr.forEach((benefitTypeKey) => {
+    benefitTypesArr.forEach(benefitTypeKey => {
       if (benefitTypeKey !== 'personalIndependencePayment') {
-        test(`${language.toUpperCase()} - When page enter ${benefitTypesObj[benefitTypeKey]} page go to download page`, async ({
+        test(`${language.toUpperCase()} - When page enter ${benefitTypesObj[benefitTypeKey]} page go to download page`, async({
           page
         }) => {
           let benefitForm;

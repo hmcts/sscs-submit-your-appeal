@@ -19,16 +19,16 @@ test.describe(
   `${language.toUpperCase()} - Text Reminders - appellant contact details`,
   { tag: '@batch-11' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantContactDetails);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Enter mobile and click Sign up, page am taken to the send to number page`, async ({
+    test(`${language.toUpperCase()} - Enter mobile and click Sign up, page am taken to the send to number page`, async({
       page
     }) => {
       await enterAppellantContactDetailsWithMobileAndContinue(
@@ -47,7 +47,7 @@ test.describe(
       await page.waitForURL(`**${paths.smsNotify.sendToNumber}`);
     });
 
-    test(`${language.toUpperCase()} - Enter mobile and click do not sign up, page am taken to the representative page`, async ({
+    test(`${language.toUpperCase()} - Enter mobile and click do not sign up, page am taken to the representative page`, async({
       page
     }) => {
       await enterAppellantContactDetailsWithMobileAndContinue(
@@ -66,7 +66,7 @@ test.describe(
       await page.waitForURL(`**${paths.representative.representative}`);
     });
 
-    test(`${language.toUpperCase()} - Do not enter mobile and click Sign up, page am taken to the enter mobile page`, async ({
+    test(`${language.toUpperCase()} - Do not enter mobile and click Sign up, page am taken to the enter mobile page`, async({
       page
     }) => {
       await enterAppellantContactDetailsAndContinue(

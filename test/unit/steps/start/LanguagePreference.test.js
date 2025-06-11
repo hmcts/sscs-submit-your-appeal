@@ -60,8 +60,7 @@ describe('LanguagePreference.js', () => {
       });
 
       it("should return the correct answer 'English and Welsh' for CYA (English)", () => {
-        languagePreference.fields.languagePreferenceWelsh.value =
-          userAnswer.YES;
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
         const answers = languagePreference.answers();
         expect(answers.answer).to.equal('English and Welsh');
       });
@@ -85,8 +84,7 @@ describe('LanguagePreference.js', () => {
 
       it("should return the correct answer 'Cymraeg a Saesneg' for CYA (Welsh)", () => {
         languagePreference.content.cya.languagePreferenceWelsh.yes = 'Ydw';
-        languagePreference.fields.languagePreferenceWelsh.value =
-          userAnswer.YES;
+        languagePreference.fields.languagePreferenceWelsh.value = userAnswer.YES;
         const answers = languagePreference.answers();
         expect(answers.answer).to.equal('Cymraeg a Saesneg');
       });

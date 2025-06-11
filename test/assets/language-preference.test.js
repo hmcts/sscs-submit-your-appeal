@@ -14,7 +14,7 @@ describe('language-preference.js', () => {
   let languagePreferenceToggle;
   let $;
 
-  before((done) => {
+  before(done => {
     const jsdom = new JSDOM(`
       <html>
         <body>
@@ -29,8 +29,7 @@ describe('language-preference.js', () => {
     global.window = window;
     global.document = document;
     $ = global.jQuery = jQuery(window);
-    LanguagePreferenceToggle =
-      require('../../assets/js/language-preference').default;
+    LanguagePreferenceToggle = require('../../assets/js/language-preference').default;
     languagePreferenceToggle = new LanguagePreferenceToggle();
     done();
   });

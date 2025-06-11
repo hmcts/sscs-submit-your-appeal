@@ -35,7 +35,7 @@ describe('PostcodeChecker.js', () => {
       get: getStub,
       retry: () => requireStub,
       ok: () => requireStub,
-      then: (handleResponse) => {
+      then: handleResponse => {
         handleResponse(response);
         return requireStub;
       },
@@ -60,11 +60,11 @@ describe('PostcodeChecker.js', () => {
       setRegionalCenterTo('London');
 
       return postcodeChecker('AB1 2CD')
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -74,11 +74,11 @@ describe('PostcodeChecker.js', () => {
       setRegionalCenterTo('London');
 
       return postcodeChecker('AB1 2CD')
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -93,11 +93,11 @@ describe('PostcodeChecker.js', () => {
       setRegionalCenterTo('London');
 
       return postcodeChecker('AB1 2CD')
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -106,17 +106,17 @@ describe('PostcodeChecker.js', () => {
       setRegionalCenterTo('Glasgow');
 
       return postcodeChecker('AB1 2CD')
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
 
     it('postcode starts with BT so is in Northern Island', () => {
-      return postcodeChecker('BT1 2AB').then((isEnglandOrWalesPostcode) => {
+      return postcodeChecker('BT1 2AB').then(isEnglandOrWalesPostcode => {
         expect(isEnglandOrWalesPostcode).to.equal(false);
         expect(getStub).not.to.have.been.called;
       });
@@ -126,11 +126,11 @@ describe('PostcodeChecker.js', () => {
       setResponse({ status: 404 });
 
       return postcodeChecker('AB1 2CD', true)
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(true);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -139,22 +139,22 @@ describe('PostcodeChecker.js', () => {
       setResponse({ status: 404 });
 
       return postcodeChecker('AB1 2CD', false)
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).to.have.been.calledWith(buildExpectedUrl('AB1'));
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
 
     it('do not blank postcodes', () => {
       return postcodeChecker('')
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           expect(isEnglandOrWalesPostcode).to.equal(false);
           expect(getStub).not.to.have.been.called;
         })
-        .catch((error) => {
+        .catch(error => {
           expect.fail(error);
         });
     });
@@ -167,12 +167,12 @@ describe('PostcodeChecker.js', () => {
         set: () => requireStub,
         retry: () => requireStub,
         then: () => requireStub,
-        catch: (handleError) => {
+        catch: handleError => {
           handleError(expectedError);
         }
       });
 
-      return postcodeChecker('AB1 2CD').catch((error) => {
+      return postcodeChecker('AB1 2CD').catch(error => {
         expect(error).to.equal(expectedError);
       });
     });

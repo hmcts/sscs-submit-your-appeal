@@ -23,25 +23,23 @@ const { endTheSession } = require('../page-objects/session/endSession');
 const { createTheSession } = require('../page-objects/session/createSession');
 const { skipPcq } = require('../page-objects/pcq/pcq');
 
-const languageInterpreterTextField =
-  'input[id="selection.interpreterLanguage.language"]';
+const languageInterpreterTextField = 'input[id="selection.interpreterLanguage.language"]';
 const signLanguageTextField = 'input[id="selection.signLanguage.language"]';
-const anythingElseTextField =
-  'textarea[name="selection.anythingElse.language"]';
+const anythingElseTextField = 'textarea[name="selection.anythingElse.language"]';
 
 test.describe(
   `${language.toUpperCase()} - Appellant PIP, one month ago, attends hearing with support`,
   { tag: '@batch-02' },
   () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, async ({
+    test(`${language.toUpperCase()} - Selects sign language interpreter and enters a language`, async({
       page
     }) => {
       await enterDetailsFromStartToNINO(page, commonContent, language);
@@ -82,7 +80,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, async ({
+    test(`${language.toUpperCase()} - Selects sign language interpreter and other, enters a language`, async({
       page
     }) => {
       await enterDetailsFromStartToNINO(page, commonContent, language);
@@ -129,7 +127,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, async ({
+    test(`${language.toUpperCase()} - Selects sign language interpreter, language interpreter, other, enters a language`, async({
       page
     }) => {
       await enterDetailsFromStartToNINO(page, commonContent, language);

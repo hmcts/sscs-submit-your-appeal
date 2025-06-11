@@ -71,12 +71,12 @@ const appellant = testData.appellant;
 let userEmail = '';
 
 test.describe(`${language.toUpperCase()} - Verifying data when drafts are submitted to CCD`, () => {
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
     userEmail = await testUser.createUser();
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
     await testUser.deleteUser(userEmail);
   });
@@ -84,7 +84,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
   test(
     `${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD`,
     { tag: '@fullFunctional' },
-    async ({ page, request, browser }) => {
+    async({ page, request, browser }) => {
       await moment().locale(language);
       await enterDetailsFromStartToDraft(
         page,
@@ -189,7 +189,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
         testData.signAndSubmit.signer
       );
       await appealSubmitConfirmation(page, language);
-      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
       let ccdCaseData = await getCaseData(browser, request, ccdCaseID);
       for (let count = 0; count < 5; count++) {
         ccdCaseData = await getCaseData(browser, request, ccdCaseID);

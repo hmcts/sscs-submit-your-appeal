@@ -8,8 +8,7 @@ async function selectDoYouNeedSupportAndContinue(
   commonContent,
   option
 ) {
-  const hearingSupportContent =
-    language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
+  const hearingSupportContent = language === 'en' ? hearingSupportContentEn : hearingSupportContentCy;
 
   await expect(I.getByText(hearingSupportContent.title).first()).toBeVisible();
   if (option[0] === '#' || option[0] === '.') {

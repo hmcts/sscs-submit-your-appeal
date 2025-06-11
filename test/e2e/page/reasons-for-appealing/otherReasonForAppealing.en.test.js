@@ -9,17 +9,17 @@ const {
 const { endTheSession } = require('../../page-objects/session/endSession');
 
 test.describe(`${language.toUpperCase()} - Other Reasons For Appealing`, () => {
-  test.beforeEach('Create session', async ({ page }) => {
+  test.beforeEach('Create session', async({ page }) => {
     await createTheSession(page, language);
     await page.goto(paths.reasonsForAppealing.otherReasonForAppealing);
     page.waitForElement('#otherReasonForAppealing');
   });
 
-  test.afterEach('End session', async ({ page }) => {
+  test.afterEach('End session', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When page enter special chars then page see no errors`, async ({
+  test(`${language.toUpperCase()} - When page enter special chars then page see no errors`, async({
     page
   }) => {
     await page

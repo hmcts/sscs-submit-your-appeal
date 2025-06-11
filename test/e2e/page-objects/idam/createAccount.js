@@ -8,8 +8,7 @@ async function selectIfYouWantToCreateAccount(
   commonContent,
   option
 ) {
-  const createAccountContent =
-    language === 'en' ? createAccountContentEn : createAccountContentCy;
+  const createAccountContent = language === 'en' ? createAccountContentEn : createAccountContentCy;
 
   await expect(I.getByText(createAccountContent.title).first()).toBeVisible();
   await I.locator(option).first().check();

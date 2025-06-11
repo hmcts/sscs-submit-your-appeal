@@ -24,7 +24,7 @@ test.describe(
   { tag: '@batch-10' },
   () => {
     if (evidenceUploadEnabled) {
-      test.beforeEach('Create session', async ({ page }) => {
+      test.beforeEach('Create session', async({ page }) => {
         await createTheSession(page, language);
         await page.goto(paths.reasonsForAppealing.evidenceProvide);
         await selectAreYouProvidingEvidenceAndContinue(
@@ -33,14 +33,14 @@ test.describe(
         );
       });
 
-      test(`${language.toUpperCase()} - page can upload correctly a file`, async ({
+      test(`${language.toUpperCase()} - page can upload correctly a file`, async({
         page
       }) => {
         await page.locator('#uploadEv').setInputFiles('evidence.txt');
         await expect(page.locator('.govuk-error-summary')).toBeHidden();
       });
 
-      test(`${language.toUpperCase()} - page cannot upload the wrong type of file`, async ({
+      test(`${language.toUpperCase()} - page cannot upload the wrong type of file`, async({
         page
       }) => {
         await page.locator('#uploadEv').setInputFiles('evidence.zip');
@@ -56,7 +56,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - page cannot upload a very large file`, async ({
+      test(`${language.toUpperCase()} - page cannot upload a very large file`, async({
         page
       }) => {
         await page.locator('#uploadEv').setInputFiles('largefile.txt');
@@ -72,7 +72,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - page cannot upload more than the total amount of bytes`, async ({
+      test(`${language.toUpperCase()} - page cannot upload more than the total amount of bytes`, async({
         page
       }) => {
         await page.locator('#uploadEv').setInputFiles('largeimage.jpg');
@@ -91,7 +91,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - page see an error if page submit the form without uploading a file`, async ({
+      test(`${language.toUpperCase()} - page see an error if page submit the form without uploading a file`, async({
         page
       }) => {
         await page.locator('.govuk-button').first().click();
@@ -103,7 +103,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - SSCS-3768 bug`, async ({ page }) => {
+      test(`${language.toUpperCase()} - SSCS-3768 bug`, async({ page }) => {
         await page.locator('.govuk-button').first().click();
         await expect(
           page.locator('.govuk-error-summary').first()

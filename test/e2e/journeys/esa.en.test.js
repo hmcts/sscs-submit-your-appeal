@@ -22,15 +22,15 @@ const { createTheSession } = require('../page-objects/session/createSession');
 
 if (require('config').get('features.allowESA.enabled').toString() === 'true') {
   test.describe(`${language.toUpperCase()} - Appellant who chooses ESA @batch-01 @esa`, () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, async ({
+    test(`${language.toUpperCase()} - Sees an appropriate message on haveAMRN`, async({
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
@@ -41,7 +41,7 @@ if (require('config').get('features.allowESA.enabled').toString() === 'true') {
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, async ({
+    test(`${language.toUpperCase()} - Sees an appropriate message on reason for appealing`, async({
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');
@@ -52,7 +52,7 @@ if (require('config').get('features.allowESA.enabled').toString() === 'true') {
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - Sees an appropriate message on independence`, async ({
+    test(`${language.toUpperCase()} - Sees an appropriate message on independence`, async({
       page
     }) => {
       await enterBenefitTypeAndContinue(page, language, commonContent, 'ESA');

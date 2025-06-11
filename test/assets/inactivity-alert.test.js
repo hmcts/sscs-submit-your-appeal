@@ -24,13 +24,13 @@ describe('inactivity alert', () => {
   const { window } = jsdom;
   const { document } = window;
 
-  beforeEach((done) => {
+  beforeEach(done => {
     global.window = window;
     global.document = document;
 
     $ = global.jQuery = jQuery(window);
 
-    const mod = function () {};
+    const mod = function() {};
     mod.close = () => {};
 
     $.modal = $.fn.modal = $('#timeout-dialog').modal = mod;
@@ -52,7 +52,7 @@ describe('inactivity alert', () => {
     expect(inactivityAlert.timeoutForSession).not.to.be.null;
   });
 
-  it('restarts the count on click on extend', function (done) {
+  it('restarts the count on click on extend', function(done) {
     let previousTimeout;
     this.timeout(5000);
     // make it wait a bit
@@ -64,7 +64,7 @@ describe('inactivity alert', () => {
     }, 500);
   });
 
-  it('kills the session on clicking on end', function (done) {
+  it('kills the session on clicking on end', function(done) {
     this.timeout(5000);
     navigatedAway = false;
     $('#destroy').trigger('click');
@@ -72,7 +72,7 @@ describe('inactivity alert', () => {
     done();
   });
 
-  it('when showing it updates the countdown', function (done) {
+  it('when showing it updates the countdown', function(done) {
     this.timeout(10000);
     inactivityAlert.destroy();
     inactivityAlert = new InactivityAlert(3, 1);

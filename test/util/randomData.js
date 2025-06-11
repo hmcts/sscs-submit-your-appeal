@@ -3,8 +3,7 @@ const generateValidNINumber = () => {
   // but for simplicity, we will just allow any two letters)
   const firstLetters = ['AB'];
 
-  const firstPart =
-    firstLetters[Math.floor(Math.random() * firstLetters.length)];
+  const firstPart = firstLetters[Math.floor(Math.random() * firstLetters.length)];
 
   const digits = Math.floor(Math.random() * 1000000)
     .toString()
@@ -12,8 +11,7 @@ const generateValidNINumber = () => {
 
   const validLastLetters = ['A', 'B', 'C', 'D'];
 
-  const lastLetter =
-    validLastLetters[Math.floor(Math.random() * validLastLetters.length)];
+  const lastLetter = validLastLetters[Math.floor(Math.random() * validLastLetters.length)];
 
   // Combine parts into a valid NI number
   return `${firstPart}${digits}${lastLetter}`;

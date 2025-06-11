@@ -24,16 +24,16 @@ test.describe(
   { tag: '@batch-10' },
   () => {
     if (!evidenceUploadEnabled) {
-      test.beforeEach('Create session', async ({ page }) => {
+      test.beforeEach('Create session', async({ page }) => {
         await createTheSession(page, language);
         await page.goto(paths.identity.enterAppellantContactDetails);
       });
 
-      test.afterEach('End session', async ({ page }) => {
+      test.afterEach('End session', async({ page }) => {
         await endTheSession(page);
       });
 
-      test(`${language.toUpperCase()} - When page omit my email address page see the correct content on /sending-evidence`, async ({
+      test(`${language.toUpperCase()} - When page omit my email address page see the correct content on /sending-evidence`, async({
         page
       }) => {
         await enterAppellantContactDetailsAndContinue(
@@ -47,7 +47,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When page add my email address page should see the correct content on /sending-evidence`, async ({
+      test(`${language.toUpperCase()} - When page add my email address page should see the correct content on /sending-evidence`, async({
         page
       }) => {
         await enterAppellantContactDetailsWithEmailAndContinue(page);
@@ -57,7 +57,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When page go to the /sending-evidence page page see the title`, async ({
+      test(`${language.toUpperCase()} - When page go to the /sending-evidence page page see the title`, async({
         page
       }) => {
         await enterAppellantContactDetailsAndContinue(
@@ -71,7 +71,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When clicking continue page see the correct path`, async ({
+      test(`${language.toUpperCase()} - When clicking continue page see the correct path`, async({
         page
       }) => {
         await enterAppellantContactDetailsAndContinue(

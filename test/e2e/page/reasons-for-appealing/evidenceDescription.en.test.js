@@ -26,16 +26,16 @@ test.describe(
   { tag: '@batch-10' },
   () => {
     if (evidenceUploadEnabled) {
-      test.beforeEach('Create session', async ({ page }) => {
+      test.beforeEach('Create session', async({ page }) => {
         await createTheSession(page, language);
         await page.goto(paths.reasonsForAppealing.evidenceDescription);
       });
 
-      test.afterEach('End session', async ({ page }) => {
+      test.afterEach('End session', async({ page }) => {
         await endTheSession(page);
       });
 
-      test(`${language.toUpperCase()} - When page select continue, page am taken to the hearing page`, async ({
+      test(`${language.toUpperCase()} - When page select continue, page am taken to the hearing page`, async({
         page
       }) => {
         await page
@@ -48,7 +48,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When page enter special characters and select continue, page see errors`, async ({
+      test(`${language.toUpperCase()} - When page enter special characters and select continue, page see errors`, async({
         page
       }) => {
         await enterDescription(page, 'Description with special characters |');
@@ -68,7 +68,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When page enter too sort description and select continue, page see errors`, async ({
+      test(`${language.toUpperCase()} - When page enter too sort description and select continue, page see errors`, async({
         page
       }) => {
         await enterDescription(page, 'one');
@@ -88,7 +88,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - page have a csrf token`, async ({
+      test(`${language.toUpperCase()} - page have a csrf token`, async({
         page
       }) => {
         await expect(

@@ -18,16 +18,16 @@ test.describe(
   `${language.toUpperCase()} - Check MRN`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.mrnDate);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page select YES to MRN date is >1 month and <=13 months, page see /mrn-over-month-late`, async ({
+    test(`${language.toUpperCase()} - page select YES to MRN date is >1 month and <=13 months, page see /mrn-over-month-late`, async({
       page
     }) => {
       moment().locale(language);
@@ -42,7 +42,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - page select YES to MRN date is >13 months, page asee url /mrn-over-thirteen-months-late`, async ({
+    test(`${language.toUpperCase()} - page select YES to MRN date is >13 months, page asee url /mrn-over-thirteen-months-late`, async({
       page
     }) => {
       moment().locale(language);
@@ -57,7 +57,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - page select NO, page am taken to /mrn-date`, async ({
+    test(`${language.toUpperCase()} - page select NO, page am taken to /mrn-date`, async({
       page
     }) => {
       moment().locale(language);

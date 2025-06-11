@@ -43,8 +43,7 @@ describe('MRNDate.js', () => {
 
   describe('get benefitType()', () => {
     it('returns PIP code from benefit type', () => {
-      mrnDate.journey.req.session.BenefitType.benefitType =
-        'Personal Independence Payment (PIP)';
+      mrnDate.journey.req.session.BenefitType.benefitType = 'Personal Independence Payment (PIP)';
       expect(mrnDate.benefitType).to.equal('PIP');
     });
   });
@@ -126,11 +125,11 @@ describe('MRNDate.js', () => {
   });
 
   describe('next()', () => {
-    const setMRNDate = (date) => {
+    const setMRNDate = date => {
       mrnDate.fields.mrnDate.value = date;
     };
 
-    const setBenefitType = (benefitType) => {
+    const setBenefitType = benefitType => {
       mrnDate.req.journey.req.session.BenefitType.benefitType = benefitType;
     };
 
