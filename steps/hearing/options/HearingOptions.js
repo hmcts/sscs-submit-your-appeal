@@ -32,14 +32,14 @@ class HearingOptions extends SaveToDraftStore {
               'phoneNumber',
               this.content.fields.options.telephone.error.required
             ),
-            (value) => emptyTelephoneValidation(value)
+            value => emptyTelephoneValidation(value)
           )
           .check(
             errorFor(
               'phoneNumber',
               this.content.fields.options.telephone.error.invalid
             ),
-            (value) => invalidTelephoneValidation(value)
+            value => invalidTelephoneValidation(value)
           ),
         video: object({
           requested: bool.default(false),
@@ -47,16 +47,16 @@ class HearingOptions extends SaveToDraftStore {
         })
           .check(
             errorFor('email', this.content.fields.options.video.error.required),
-            (value) => emptyEmailValidation(value)
+            value => emptyEmailValidation(value)
           )
           .check(
             errorFor('email', this.content.fields.options.video.error.invalid),
-            (value) => invalidEmailValidation(value)
+            value => invalidEmailValidation(value)
           ),
         inPerson: object({
           requested: bool.default(false)
         })
-      }).check(this.content.fields.options.error.required, (value) =>
+      }).check(this.content.fields.options.error.required, value =>
         optionSelected(value)
       )
     });
@@ -92,9 +92,9 @@ class HearingOptions extends SaveToDraftStore {
     const telephoneSelected = Boolean(selectOptions.telephone.requested.value);
     const videoSelected = Boolean(selectOptions.video.requested.value);
     const inPersonSelected = Boolean(selectOptions.inPerson.requested.value);
-    const telephone = telephoneSelected
-      ? selectOptions.telephone.phoneNumber.value
-      : null;
+    const telephone = telephoneSelected ?
+      selectOptions.telephone.phoneNumber.value :
+      null;
     const email = videoSelected ? selectOptions.video.email.value : null;
     return {
       hearing: {
@@ -114,8 +114,8 @@ class HearingOptions extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequestedOrNotRequested = (value) =>
-      value ? cyaContent.requested : cyaContent.notRequested;
+    const setRequestedOrNotRequested = value =>
+      (value ? cyaContent.requested : cyaContent.notRequested);
 
     const arrangementsAnswer = {
       hearingTypeTelephone: setRequestedOrNotRequested(

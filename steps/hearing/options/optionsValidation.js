@@ -2,21 +2,21 @@ const customJoi = require('utils/customJoiSchemas');
 const Joi = require('joi');
 const emailOptions = require('utils/emailOptions');
 
-const emptyTelephoneValidation = (value) =>
+const emptyTelephoneValidation = value =>
   !(value.requested && !value.phoneNumber);
-const emptyEmailValidation = (value) => !(value.requested && !value.email);
-const optionSelected = (options) => {
+const emptyEmailValidation = value => !(value.requested && !value.email);
+const optionSelected = options => {
   const optionValues = Object.values(options);
   let valueSet = false;
 
-  optionValues.forEach((option) => {
+  optionValues.forEach(option => {
     valueSet = valueSet ? valueSet : option.requested;
   });
 
   return valueSet;
 };
 
-const invalidTelephoneValidation = (value) => {
+const invalidTelephoneValidation = value => {
   const { error } = Joi.validate(
     value.phoneNumber,
     customJoi.string().trim().validatePhone()
@@ -24,7 +24,7 @@ const invalidTelephoneValidation = (value) => {
   return !value.requested || !error;
 };
 
-const invalidEmailValidation = (value) => {
+const invalidEmailValidation = value => {
   const { error } = Joi.validate(
     value.email,
     Joi.string().trim().email(emailOptions).allow('')

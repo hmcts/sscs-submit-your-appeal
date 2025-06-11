@@ -37,9 +37,9 @@ class InactivityAlert {
       /* eslint-disable no-magic-numbers */
       let startTime = 120000;
       /* eslint-enable no-magic-numbers */
-      const splitMessage = this.elMessage.length
-        ? this.elMessage.html().split(/ [0-9:]+ /)
-        : '';
+      const splitMessage = this.elMessage.length ?
+        this.elMessage.html().split(/ [0-9:]+ /) :
+        '';
 
       this.detachHandlers();
 

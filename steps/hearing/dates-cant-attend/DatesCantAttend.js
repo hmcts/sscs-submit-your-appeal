@@ -33,9 +33,9 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
     const content = require(`./content.${sessionLanguage}`);
 
     if (this.fields.items !== undefined) {
-      return this.fields.items.value.length > 0
-        ? content.links.addAnother
-        : content.links.add;
+      return this.fields.items.value.length > 0 ?
+        content.links.addAnother :
+        content.links.add;
     }
     return false;
   }
@@ -43,7 +43,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   get field() {
     const fields = this.content.fields;
     return convert(
-      (d) =>
+      d =>
         DateUtils.createMoment(
           d.day,
           DateUtils.getMonthValue(d, i18next.language),
@@ -57,22 +57,22 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
         yearRequired: fields.cantAttendDate.error.yearRequired
       })
     )
-      .check(fields.cantAttendDate.error.invalid, (value) =>
+      .check(fields.cantAttendDate.error.invalid, value =>
         DateUtils.isDateValid(value)
       )
-      .check(fields.cantAttendDate.error.underFourWeeks, (value) =>
+      .check(fields.cantAttendDate.error.underFourWeeks, value =>
         DateUtils.isGreaterThanOrEqualToFourWeeks(value)
       )
-      .check(fields.cantAttendDate.error.overTwentyTwoWeeks, (value) =>
+      .check(fields.cantAttendDate.error.overTwentyTwoWeeks, value =>
         DateUtils.isLessThanOrEqualToTwentyTwoWeeks(value)
       )
       .check(
         fields.cantAttendDate.error.weekend,
-        (value) => !DateUtils.isDateOnTheWeekend(value, i18next.language)
+        value => !DateUtils.isDateOnTheWeekend(value, i18next.language)
       )
       .check(
         fields.cantAttendDate.error.bankHoliday,
-        (value) => !this.ukBankHolidays.isDateABankHoliday(value)
+        value => !this.ukBankHolidays.isDateABankHoliday(value)
       );
   }
 
@@ -80,7 +80,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
     const sessionLanguage = i18next.language;
     const content = require(`./content.${sessionLanguage}`);
 
-    return list.check(content.listError, (arr) => arr.length > 0);
+    return list.check(content.listError, arr => arr.length > 0);
   }
 
   answers() {
@@ -89,7 +89,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
       answer(this, {
         question: this.content.cya.dateYouCantAttend.question,
         section: sections.theHearing,
-        answer: orderedItems.map((d) =>
+        answer: orderedItems.map(d =>
           DateUtils.formatDate(d, 'DD MMMM YYYY')
         ),
         url: paths.hearing.hearingAvailability
@@ -98,7 +98,7 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    const datesCantAttend = this.fields.items.value.map((d) =>
+    const datesCantAttend = this.fields.items.value.map(d =>
       d.format('DD-MM-YYYY')
     );
     if (datesCantAttend.length === 0) {

@@ -27,7 +27,7 @@ if (isDevMode && useMockIdam) {
   middleware = idamExpressMiddlewareMock;
 }
 
-const setArgsFromRequest = (req) => {
+const setArgsFromRequest = req => {
   const sessionLanguage = i18next.language;
   // clone args so we don't modify the global idamArgs
   const args = Object.assign({}, idamArgs);

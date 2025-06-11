@@ -62,11 +62,11 @@ class AddReason {
     return $.ajax({
       type: 'GET',
       url: '/reason-for-appealing',
-      success: (response) => {
+      success: response => {
         const fieldValues = this.getFieldValues(response.items.fields);
         if (fieldValues.length > 0) {
           // eslint-disable-next-line arrow-body-style
-          this.items = fieldValues.map((value) => ({
+          this.items = fieldValues.map(value => ({
             'item.whatYouDisagreeWith': value.fields.whatYouDisagreeWith.value,
             'item.reasonForAppealing': value.fields.reasonForAppealing.value
           }));
@@ -133,9 +133,9 @@ class AddReason {
 
   buildWhatYouDisagreeWithField(errors, value) {
     const whatYouDisagreeWith =
-      this.language === 'cy'
-        ? "Beth rydych chi'n anghytuno ag ef"
-        : 'What you disagree with';
+      this.language === 'cy' ?
+        "Beth rydych chi'n anghytuno ag ef" :
+        'What you disagree with';
 
     return this.textboxField(
       {
@@ -149,13 +149,13 @@ class AddReason {
 
   buildReasonForAppealingField(errors, value) {
     const whyYouDisagreeWithIt =
-      this.language === 'cy'
-        ? "Pam rydych chi'n anghytuno ag ef"
-        : 'Why you disagree with it';
+      this.language === 'cy' ?
+        "Pam rydych chi'n anghytuno ag ef" :
+        'Why you disagree with it';
     const youCanWriteAsMuchAsYouWant =
-      this.language === 'cy'
-        ? 'Gallwch chi ysgrifennu cymaint ag y dymunwch'
-        : 'You can write as much as you want';
+      this.language === 'cy' ?
+        'Gallwch chi ysgrifennu cymaint ag y dymunwch' :
+        'You can write as much as you want';
 
     return this.textareaField(
       {
@@ -178,7 +178,7 @@ class AddReason {
   onSubmit() {
     const self = this;
 
-    $('form').submit(function (event) {
+    $('form').submit(function(event) {
       event.preventDefault();
       const containers = $('.items-container');
       const answers = [];
@@ -187,7 +187,7 @@ class AddReason {
       let deleteItems = [];
 
       // Creates an array of answers to post
-      $.each(containers, (index) => {
+      $.each(containers, index => {
         answers.push(self.buildAnswers(index));
       });
 
@@ -201,7 +201,7 @@ class AddReason {
         });
 
         deleteItems = itemsToDelete.map(
-          (itemIndex) => () =>
+          itemIndex => () =>
             $.ajax({
               type: 'GET',
               url: `/reason-for-appealing/item-${itemIndex}/delete`
@@ -219,7 +219,7 @@ class AddReason {
             headers: {
               'CSRF-Token': AddReason.readToken()
             },
-            error: (errorResponse) => {
+            error: errorResponse => {
               const resJson = errorResponse.responseJSON;
               $('.govuk-button').attr('disabled', false);
               if (resJson.validationErrors.length > 0) {
@@ -244,10 +244,10 @@ class AddReason {
           })
       );
       // Puts the promises in sequence rather than parellel
-      const promiseSequence = (funcs) =>
+      const promiseSequence = funcs =>
         funcs.reduce(
           (promise, func) =>
-            promise.then((result) =>
+            promise.then(result =>
               func().then(Array.prototype.concat.bind(result))
             ),
           Promise.resolve([])
@@ -255,12 +255,12 @@ class AddReason {
 
       // Call the ajax promises, deleting the items first and then posting
       return promiseSequence([...deleteItems, ...postItems]).then(
-        (responses) => {
+        responses => {
           const validationErrors = responses.filter(
-            (response) => response.validationErrors
+            response => response.validationErrors
           );
           const actualErrors = validationErrors.filter(
-            (error) => error.validationErrors.length > 0
+            error => error.validationErrors.length > 0
           );
           if (actualErrors.length === 0 || (firstItemValid && !otherErrors)) {
             $('.govuk-error-summary').remove();
@@ -290,9 +290,9 @@ class AddReason {
   }
 
   isMinCharacterError(validationErrors) {
-    const errors = validationErrors.map((error) => error.errors[0]);
+    const errors = validationErrors.map(error => error.errors[0]);
     const contentErrors = Object.values(this.content.fields).map(
-      (field) => field.error.notEnough
+      field => field.error.notEnough
     );
     let hasError = false;
     $.each(errors, (index, error) => {
@@ -305,7 +305,7 @@ class AddReason {
   handleErrorSummary(fieldErrors) {
     const errorSummaryList = fieldErrors.map((fieldError, index) =>
       // eslint-disable-next-line arrow-body-style
-      fieldError.validationErrors.map((validationError) => ({
+      fieldError.validationErrors.map(validationError => ({
         id: `items-${index}`,
         message: validationError.errors[0]
       }))
@@ -346,7 +346,7 @@ class AddReason {
   }
 
   addAnother() {
-    $('.add-another-add-link').click((event) => {
+    $('.add-another-add-link').click(event => {
       event.preventDefault();
       this.counter += 1;
       this.addFields();

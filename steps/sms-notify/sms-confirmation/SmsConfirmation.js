@@ -15,9 +15,9 @@ class SmsConfirmation extends SaveToDraftStore {
 
   get mobileNumber() {
     const contactPhoneNumber =
-      this.fields.inMainlandUk.value === 'no'
-        ? this.fields.internationalPhoneNumber.value
-        : this.fields.phoneNumber.value ||
+      this.fields.inMainlandUk.value === 'no' ?
+        this.fields.internationalPhoneNumber.value :
+        this.fields.phoneNumber.value ||
           this.fields.appointeePhoneNumber.value;
     const isMobile = regex.internationalMobileNumber.test(contactPhoneNumber);
     let number = null;
@@ -66,9 +66,9 @@ class SmsConfirmation extends SaveToDraftStore {
         answer: this.mobileNumber,
         url:
           get(this, 'journey.req.session.SendToNumber.useSameNumber', 'no') ===
-          'yes'
-            ? paths.smsNotify.sendToNumber
-            : paths.smsNotify.enterMobile
+          'yes' ?
+            paths.smsNotify.sendToNumber :
+            paths.smsNotify.enterMobile
       })
     ];
   }

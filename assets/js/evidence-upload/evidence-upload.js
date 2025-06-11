@@ -25,7 +25,7 @@ class EvidenceUpload {
   getNumberForNextItem() {
     const nodes = $(`${this.listToRead} dd.govuk-summary-list__value`)
       .toArray()
-      .map((item) => parseInt(item.id.split('-').pop(), 10))
+      .map(item => parseInt(item.id.split('-').pop(), 10))
       .sort();
     let num = 0;
     while (nodes.indexOf(num) !== -1) {
@@ -51,7 +51,7 @@ class EvidenceUpload {
             errors: this.errors
           },
           chooseFile,
-          fileTypeWhiteList.filter((item) => item.indexOf('/') === -1)
+          fileTypeWhiteList.filter(item => item.indexOf('/') === -1)
         );
         this.appendForm();
       }
@@ -77,7 +77,7 @@ class EvidenceUpload {
     });
   }
   handleErrorSummary(fieldErrors) {
-    const errorSummaryList = fieldErrors.map((validationError) => {
+    const errorSummaryList = fieldErrors.map(validationError => {
       return {
         id: validationError.field,
         message: validationError.errors[0]
@@ -149,22 +149,20 @@ class EvidenceUpload {
       success: () => {
         window.location.reload();
       },
-      error: (error) => {
+      error: error => {
         if (error) {
           $('.govuk-error-message').remove();
           $(`#${this.elId}`).val('');
 
           const pageErrors =
-            error.responseJSON && error.responseJSON.validationErrors
-              ? error.responseJSON.validationErrors
-              : [
-                  {
-                    field: 'uploadEv',
-                    errors: [
-                      'Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.'
-                    ]
-                  }
-                ];
+            error.responseJSON && error.responseJSON.validationErrors ?
+              error.responseJSON.validationErrors :
+              [
+                {
+                  field: 'uploadEv',
+                  errors: ['Uploading is currently unavailable. There will be details on how you can submit evidence, in the first letter we send to you.']
+                }
+              ];
 
           this.handleErrorSummary(pageErrors);
           this.handleInlineError(pageErrors);

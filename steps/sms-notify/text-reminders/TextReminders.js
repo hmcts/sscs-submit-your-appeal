@@ -61,10 +61,8 @@ class TextReminders extends SaveToDraftStore {
   }
 
   getSmsNotifyValue() {
-    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.YES)
-      return true;
-    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.NO)
-      return false;
+    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.YES) return true;
+    if (this.fields.doYouWantTextMsgReminders.value === userAnswer.NO) return false;
     return null;
   }
 

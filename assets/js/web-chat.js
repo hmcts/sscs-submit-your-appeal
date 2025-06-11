@@ -21,7 +21,7 @@ export class WebChat {
         webChat.classList.add('hidden');
       });
 
-      webChat.addEventListener('metrics', (metrics) => {
+      webChat.addEventListener('metrics', metrics => {
         const metricsDetail = metrics.detail;
         const ewt = metricsDetail.ewt;
         const ccState = metricsDetail.contactCenterState;

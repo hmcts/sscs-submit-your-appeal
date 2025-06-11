@@ -11,7 +11,7 @@ const postcodeCountryLookupUrl =
 const allowedRegionCentres = config
   .get('postcodeChecker.allowedRpcs')
   .split(',')
-  .map((rpc) => rpc.trim().toLocaleLowerCase());
+  .map(rpc => rpc.trim().toLocaleLowerCase());
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
 
@@ -41,8 +41,8 @@ const postcodeChecker = (
     request
       .get(`${postcodeCountryLookupUrl}/${outcode}`)
       .retry(httpRetries)
-      .ok((res) => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
-      .then((resp) => {
+      .ok(res => res.status < HttpStatus.INTERNAL_SERVER_ERROR)
+      .then(resp => {
         if (resp.status !== HttpStatus.OK) {
           resolve(allowUnknownPostcodes);
           return;
@@ -54,7 +54,7 @@ const postcodeChecker = (
           resolve(allowedRegionCentres.includes(regionalCentre));
         }
       })
-      .catch((error) => {
+      .catch(error => {
         logger.exception(JSON.stringify(error));
         reject(error);
       });

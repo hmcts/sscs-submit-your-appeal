@@ -1,6 +1,6 @@
 import cookieManager from '@hmcts/cookie-manager';
 
-cookieManager.on('UserPreferencesLoaded', (preferences) => {
+cookieManager.on('UserPreferencesLoaded', preferences => {
   console.debug(
     `Received UserPreferencesLoaded, pushing cookie preferences: ${JSON.stringify(preferences)}`
   );
@@ -11,7 +11,7 @@ cookieManager.on('UserPreferencesLoaded', (preferences) => {
   });
 });
 
-cookieManager.on('UserPreferencesSaved', (preferences) => {
+cookieManager.on('UserPreferencesSaved', preferences => {
   console.debug(
     `Received UserPreferencesSaved, Pushing cookie preferences: ${JSON.stringify(preferences)}`
   );

@@ -34,7 +34,7 @@ class AppellantDOB extends SaveToDraftStore {
     const error = fields.date.error[this.contentPrefix()];
     return form({
       date: convert(
-        (d) =>
+        d =>
           DateUtils.createMoment(
             d.day,
             DateUtils.getMonthValue(d, i18next.language),
@@ -48,8 +48,8 @@ class AppellantDOB extends SaveToDraftStore {
           yearRequired: error.yearRequired
         })
       )
-        .check(error.invalid, (value) => DateUtils.isDateValid(value))
-        .check(error.future, (value) => DateUtils.isDateInPast(value))
+        .check(error.invalid, value => DateUtils.isDateValid(value))
+        .check(error.future, value => DateUtils.isDateInPast(value))
     });
   }
 

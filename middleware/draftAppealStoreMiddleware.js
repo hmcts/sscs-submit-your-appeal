@@ -24,11 +24,11 @@ const {
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
-const setFeatureFlag = (value) => {
+const setFeatureFlag = value => {
   allowSaveAndReturn = value;
 };
 
-const resetJourney = (req) => {
+const resetJourney = req => {
   // One Per Page doesn't natively support multiple journeys or reseting just journey data
   // within session so roll our own. Below should withstand future changes to the journey
   // as we are only preserving the meta data, drafts and cookie. Anything else is journey data.
@@ -46,7 +46,7 @@ const resetJourney = (req) => {
   ];
 
   const allKeys = Object.keys(req.session);
-  const keysToDelete = allKeys.filter((key) => !keysToKeep.includes(key));
+  const keysToDelete = allKeys.filter(key => !keysToKeep.includes(key));
 
   for (const keyToDelete of keysToDelete) {
     delete req.session[keyToDelete];
@@ -57,7 +57,7 @@ const resetJourney = (req) => {
   req.session.save();
 };
 
-const parseErrorResponse = (error) => {
+const parseErrorResponse = error => {
   const parsedErrorObj = error;
   const dataToRemove = '_data';
   const headerToRemove = '_header';
@@ -83,7 +83,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
     if (journey.values) {
       const allVisitedSteps = [...journey.visitedSteps];
       // filter valid visitedsteps.
-      journey.visitedSteps = journey.visitedSteps.filter((step) => step.valid);
+      journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
       // use only valid steps.
       if (typeof callBack === 'function') {
         callBack();
@@ -113,7 +113,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
   }
 };
 
-const deleteDraft = async (req, caseId) => {
+const deleteDraft = async(req, caseId) => {
   let values = null;
 
   if (allowSaveAndReturn) {
@@ -132,7 +132,7 @@ const deleteDraft = async (req, caseId) => {
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-    .then((result) => {
+    .then(result => {
       logger.trace(
         [
           `Successfully deleted a draft for case with caseId: ${caseId}`,
@@ -149,7 +149,7 @@ const deleteDraft = async (req, caseId) => {
       delete req.session.drafts[caseId];
       req.session.save();
     })
-    .catch((error) => {
+    .catch(error => {
       logger.trace(
         `Exception on archiving a draft for case with caseId: ${caseId}`,
         logPath
@@ -158,7 +158,7 @@ const deleteDraft = async (req, caseId) => {
     });
 };
 
-const updateDraftInDraftStore = async (req, res, next, values) => {
+const updateDraftInDraftStore = async(req, res, next, values) => {
   values.ccdCaseId = req.session.ccdCaseId;
 
   logger.trace(
@@ -169,7 +169,7 @@ const updateDraftInDraftStore = async (req, res, next, values) => {
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-    .then((result) => {
+    .then(result => {
       logger.trace(
         [
           'Successfully updated a draft for case with nino: ' +
@@ -186,12 +186,12 @@ const updateDraftInDraftStore = async (req, res, next, values) => {
 
       next();
     })
-    .catch((error) => {
+    .catch(error => {
       handleDraftCreateUpdateFail(error, req, res, next, values);
     });
 };
 
-const createDraftInDraftStore = async (req, res, next, values) => {
+const createDraftInDraftStore = async(req, res, next, values) => {
   logger.trace(
     `createDraftInDraftStore - Benefit Type ${values && values.benefitType ? values.benefitType.code : 'null'}`
   );
@@ -200,7 +200,7 @@ const createDraftInDraftStore = async (req, res, next, values) => {
     .send(values)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-    .then((result) => {
+    .then(result => {
       logger.trace(
         [
           'Successfully created a draft for case with nino: ' +
@@ -219,7 +219,7 @@ const createDraftInDraftStore = async (req, res, next, values) => {
 
       next();
     })
-    .catch((error) => {
+    .catch(error => {
       handleDraftCreateUpdateFail(error, req, res, next, values);
     });
 };
@@ -254,7 +254,7 @@ const saveToDraftStore = async (req, res, next) => {
   }
 };
 
-const restoreUserState = async (req, res, next) => {
+const restoreUserState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
     Object.assign(req.session, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
@@ -267,7 +267,7 @@ const restoreUserState = async (req, res, next) => {
       .get(req.journey.settings.apiDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-      .then((result) => {
+      .then(result => {
         logger.trace(['Successfully get a draft', result.status], logPath);
 
         logger.trace(
@@ -285,7 +285,7 @@ const restoreUserState = async (req, res, next) => {
         );
         next();
       })
-      .catch((error) => {
+      .catch(error => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });
@@ -297,7 +297,7 @@ const restoreUserState = async (req, res, next) => {
   }
 };
 
-const restoreAllDraftsState = async (req, res, next) => {
+const restoreAllDraftsState = async(req, res, next) => {
   if (allowSaveAndReturn && req.idam) {
     Object.assign(req.session, { isUserSessionRestored: false });
     // First try to restore from idam state parameter
@@ -310,7 +310,7 @@ const restoreAllDraftsState = async (req, res, next) => {
       .get(req.journey.settings.apiAllDraftUrl)
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${req.cookies[authTokenString]}`)
-      .then((result) => {
+      .then(result => {
         logger.trace(['Successfully get all drafts', result.status], logPath);
 
         if (result.body) {
@@ -332,7 +332,7 @@ const restoreAllDraftsState = async (req, res, next) => {
         );
         next();
       })
-      .catch((error) => {
+      .catch(error => {
         Object.assign(req.session, {
           entryPoint: 'Entry'
         });

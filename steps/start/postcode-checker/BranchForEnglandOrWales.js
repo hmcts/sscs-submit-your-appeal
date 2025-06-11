@@ -18,13 +18,13 @@ class BranchForEnglandOrWales {
 
   redirect(req, res) {
     return this.isEnglandOrWalesPostcode()
-      .then((isEnglandOrWalesPostcode) => {
+      .then(isEnglandOrWalesPostcode => {
         branch(
           goTo(this.englandOrWalesStep).if(isEnglandOrWalesPostcode),
           goTo(this.otherStep)
         ).redirect(req, res);
       })
-      .catch((error) => {
+      .catch(error => {
         logger.trace(error, logPath);
         redirectTo(this.errorStep).redirect(req, res);
       });

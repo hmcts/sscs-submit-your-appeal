@@ -9,19 +9,19 @@ import datePickerUtils from './date-picker-utils';
 const eight = 8;
 
 const datePicker = {
-  init: (language) => {
-    datePicker.getBankHolidays((bankholidays) => {
+  init: language => {
+    datePicker.getBankHolidays(bankholidays => {
       datePicker.buildDatePicker(bankholidays, language);
     });
   },
 
-  getBankHolidays: (callback) => {
+  getBankHolidays: callback => {
     $.ajax({
       type: 'GET',
       url: 'https://www.gov.uk/bank-holidays.json',
-      success: (res) => {
+      success: res => {
         const events = res['england-and-wales'].events;
-        const dates = events.map((event) =>
+        const dates = events.map(event =>
           moment(event.date).format('MM-D-YYYY')
         );
         callback(dates);
@@ -43,7 +43,7 @@ const datePicker = {
     /* eslint-enable no-invalid-this */
   },
 
-  addAriaAttributes: (language) => {
+  addAriaAttributes: language => {
     let daysOfTheWeekArray = [
       'Monday',
       'Tuesday',
@@ -92,7 +92,7 @@ const datePicker = {
     /* eslint-enable no-invalid-this */
   },
 
-  addAccessibilityFeatures: (language) => {
+  addAccessibilityFeatures: language => {
     datePicker.hijackTabIndex();
     datePicker.addAriaAttributes(language);
   },
@@ -104,43 +104,43 @@ const datePicker = {
     const rightArrowKey = 39;
     const downArrowKey = 40;
     /* eslint-disable consistent-return */
-    datePicker.selector().on('keydown', (event) => {
+    datePicker.selector().on('keydown', event => {
       const index = $(document.activeElement)
         .closest('tr')
         .children()
         .index($(document.activeElement));
       switch (event.keyCode) {
-        case enterKey:
-          // Why this? Because the synthetic event triggered by
-          // datePicker.selector().datepicker('setDate',
-          // document.activeElement.getAttribute('data-date'));
-          // doesn't contain the same set of information contained in the dom-generated event.
-          $(document.activeElement).trigger('click');
-          break;
-        case leftArrowKey:
-          $(document.activeElement).prev('td').focus();
-          break;
-        case rightArrowKey:
-          $(document.activeElement).next('td').focus();
-          break;
-        case upArrowKey:
-          event.preventDefault();
-          $(document.activeElement)
-            .closest('tr')
-            .prev()
-            .find(`td:eq(${index})`)
-            .focus();
-          break;
-        case downArrowKey:
-          event.preventDefault();
-          $(document.activeElement)
-            .closest('tr')
-            .next()
-            .find(`td:eq(${index})`)
-            .focus();
-          break;
-        default:
-          return true;
+      case enterKey:
+        // Why this? Because the synthetic event triggered by
+        // datePicker.selector().datepicker('setDate',
+        // document.activeElement.getAttribute('data-date'));
+        // doesn't contain the same set of information contained in the dom-generated event.
+        $(document.activeElement).trigger('click');
+        break;
+      case leftArrowKey:
+        $(document.activeElement).prev('td').focus();
+        break;
+      case rightArrowKey:
+        $(document.activeElement).next('td').focus();
+        break;
+      case upArrowKey:
+        event.preventDefault();
+        $(document.activeElement)
+          .closest('tr')
+          .prev()
+          .find(`td:eq(${index})`)
+          .focus();
+        break;
+      case downArrowKey:
+        event.preventDefault();
+        $(document.activeElement)
+          .closest('tr')
+          .next()
+          .find(`td:eq(${index})`)
+          .focus();
+        break;
+      default:
+        return true;
       }
     });
     /* eslint-enable consistent-return */
@@ -172,21 +172,21 @@ const datePicker = {
           leftArrow: datePicker.toggleArrows(previousImgString, previousString),
           rightArrow: datePicker.toggleArrows(nextImgString, nextString)
         },
-        beforeShowDay: (date) =>
+        beforeShowDay: date =>
           datePickerUtils.displayFirstOfMonth(date, language)
       })
-      .on('changeDate', (event) =>
+      .on('changeDate', event =>
         datePicker.changeDateHandler(event, language)
       );
     datePicker.setUpDOWHeading(language);
     // Update the date-picker with dates that have already been added.
     datePicker.selector().datepicker(
       'setDates',
-      datePicker.getData().map((date) => date.value)
+      datePicker.getData().map(date => date.value)
     );
     datePicker.selector().off('keydown');
     datePicker.enableKeyActions();
-    $('.prev, .next').on('click', (event) => {
+    $('.prev, .next').on('click', event => {
       if (
         $(event.target).hasClass('prev') ||
         $(event.target).hasClass('next')
@@ -204,7 +204,7 @@ const datePicker = {
     return `<img src="${assetPath}images/${nextOrPrevImgArrow}_arrow.png" alt="${nextOrPrevArrow}">`;
   },
 
-  setUpDOWHeading: (language) => {
+  setUpDOWHeading: language => {
     let days = [];
 
     if (language === 'cy') {
@@ -219,7 +219,7 @@ const datePicker = {
     });
   },
 
-  updateAriaAttributesOnSelect: (cell) => {
+  updateAriaAttributesOnSelect: cell => {
     window.setTimeout(() => {
       cell.focus();
     }, 0);
@@ -237,7 +237,7 @@ const datePicker = {
       return datePicker.postDate(dates, language);
     } else if (removed) {
       const deselected = differenceWith(
-        currentDates.map((value) => value.value),
+        currentDates.map(value => value.value),
         dates,
         isEqual
       );
@@ -308,7 +308,7 @@ const datePicker = {
 
   removeDate: (dates, language) => {
     const data = datePicker.getData();
-    const oldDates = data.map((date) => date.value);
+    const oldDates = data.map(date => date.value);
     const newDates = dates;
     const dateToRemove = differenceWith(oldDates, newDates, isEqual).toString();
     const index = datePickerUtils.getIndexFromDate(data, dateToRemove);
@@ -324,7 +324,7 @@ const datePicker = {
     const list = $(
       '.govuk-summary-list .govuk-summary-list__value > span.govuk-visually-hidden'
     ).toArray();
-    return list.map((item) =>
+    return list.map(item =>
       datePickerUtils.buildDatesArray(
         datePickerUtils.getIndexOfDate(item),
         datePickerUtils.getValueOfDate(item)

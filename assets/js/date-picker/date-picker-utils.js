@@ -44,9 +44,9 @@ const datePickerUtils = {
   getIndexFromDate: (dateList, date) =>
     find(dateList, { value: new Date(date) }).index,
 
-  getIndexOfDate: (element) => $(element).data('index').split('-').pop(),
+  getIndexOfDate: element => $(element).data('index').split('-').pop(),
 
-  getValueOfDate: (element) => new Date($(element).text()),
+  getValueOfDate: element => new Date($(element).text()),
 
   buildDatesArray: (index, value) => {
     return {
@@ -72,7 +72,7 @@ const datePickerUtils = {
   isDateRemoved: (currentDateList, newDateList) =>
     currentDateList.length > newDateList.length,
 
-  sortDates: (dates) =>
+  sortDates: dates =>
     dates.sort((date1, date2) => {
       if (date1.value > date2.value) return 1;
       if (date1.value < date2.value) return -1;
@@ -100,12 +100,12 @@ const datePickerUtils = {
     return displayMonth;
   },
 
-  findCellByTimestamp: (date) => {
+  findCellByTimestamp: date => {
     const timestamp = parseInt(moment.utc(date).format('x'));
     const bstOffset = 3600000;
-    return $(`td[data-date="${timestamp}"]`).length
-      ? $(`td[data-date="${timestamp}"]`)
-      : $(`td[data-date="${timestamp + bstOffset}"]`);
+    return $(`td[data-date="${timestamp}"]`).length ?
+      $(`td[data-date="${timestamp}"]`) :
+      $(`td[data-date="${timestamp + bstOffset}"]`);
   }
 };
 

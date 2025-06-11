@@ -21,9 +21,9 @@ const { isIba } = require('utils/benefitTypeUtils');
 const i18next = require('i18next');
 
 const allowNI = config.get('features.allowNI.enabled');
-const ibaPostcodeMessage = allowNI
-  ? 'invalidPostcodeIbaNI'
-  : 'invalidPostcodeIba';
+const ibaPostcodeMessage = allowNI ?
+  'invalidPostcodeIbaNI' :
+  'invalidPostcodeIba';
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
@@ -164,11 +164,11 @@ class AppellantContactDetails extends SaveToDraftStore {
     } else if (req.method.toLowerCase() === 'post') {
       const postcode = req.body.postCode || '';
       postcodeChecker(postcode, true, isIba(req))
-        .then((isEnglandOrWalesPostcode) => {
+        .then(isEnglandOrWalesPostcode => {
           req.session.invalidPostcode = !isEnglandOrWalesPostcode;
           next();
         })
-        .catch((error) => {
+        .catch(error => {
           logger.exception(error, logPath);
           req.session.invalidPostcode = true;
           next(error);
@@ -204,22 +204,22 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
-          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup]
-            ? decode(this.fields[this.pcl.fieldMap.postcodeLookup].value)
-            : '',
-          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress]
-            ? decode(this.fields[this.pcl.fieldMap.postcodeAddress].value)
-            : '',
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
+            '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
+            '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value
-            ? this.fields.postCode.value.trim()
-            : this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value
-            ? this.fields.phoneNumber.value.trim()
-            : this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value ?
+            this.fields.postCode.value.trim() :
+            this.fields.postCode.value,
+          phoneNumber: this.fields.phoneNumber.value ?
+            this.fields.phoneNumber.value.trim() :
+            this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

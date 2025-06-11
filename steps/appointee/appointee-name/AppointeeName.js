@@ -29,7 +29,7 @@ class AppointeeName extends SaveToDraftStore {
 
   get form() {
     const fields = this.content.fields;
-    const validTitles = titlesList.map((title) => title.value);
+    const validTitles = titlesList.map(title => title.value);
     return form({
       title: text
         .joi(fields.title.error.required, Joi.string().required())

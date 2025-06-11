@@ -64,7 +64,7 @@ class Pcq extends SaveToDraftStore {
     params.partyId = encodeURIComponent(params.partyId);
 
     const qs = Object.keys(params)
-      .map((key) => `${key}=${params[key]}`)
+      .map(key => `${key}=${params[key]}`)
       .join('&');
 
     const pcqForm = {

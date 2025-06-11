@@ -9,7 +9,7 @@ const bufferSize = 16;
 const iv = Buffer.alloc(bufferSize, 0);
 const keyLen = 32;
 
-const createToken = (params) => {
+const createToken = params => {
   const tokenKey = CONF.services.pcq.tokenKey;
   let encrypted = '';
 
@@ -20,7 +20,7 @@ const createToken = (params) => {
     // eslint-disable-next-line no-sync
     const key = crypto.scryptSync(tokenKey, 'salt', keyLen);
     // Convert all params to string before encrypting
-    Object.keys(params).forEach((p) => {
+    Object.keys(params).forEach(p => {
       params[p] = String(params[p]);
     });
     const strParams = JSON.stringify(params);

@@ -36,7 +36,7 @@ class DeleteWarning {
     });
   }
   attachHandlers() {
-    document.querySelectorAll('#delete-link').forEach((link) => {
+    document.querySelectorAll('#delete-link').forEach(link => {
       link.addEventListener('click', this.stopDelete.bind(this));
     });
 
@@ -45,7 +45,7 @@ class DeleteWarning {
     }
   }
   detachHandlers() {
-    document.querySelectorAll('#delete-link').forEach((link) => {
+    document.querySelectorAll('#delete-link').forEach(link => {
       link.off('click', this.stopDelete.bind(this));
     });
 

@@ -17,7 +17,7 @@ const rClient = redis.createClient({
   }
 });
 
-rClient.on('error', (error) => {
+rClient.on('error', error => {
   console.error(error);
 });
 
@@ -35,7 +35,7 @@ const healthOptions = message => {
   };
 };
 
-const setup = (app) => {
+const setup = app => {
   healthcheck.addTo(app, {
     checks: {
       'submit-your-appeal-api': healthcheck.web(
@@ -45,7 +45,7 @@ const setup = (app) => {
     },
     readinessChecks: {
       redis: healthcheck.raw(() =>
-        rClient.ping() ? healthcheck.up() : healthcheck.down()
+        (rClient.ping() ? healthcheck.up() : healthcheck.down())
       ),
       'submit-your-appeal-api': healthcheck.web(
         `${config.api.url}/health/readiness`,

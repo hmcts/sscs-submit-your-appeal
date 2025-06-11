@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable complexity */
 
-const cleanLine = function (line) {
+const cleanLine = function(line) {
   return line
     .replace(' null', ' ')
     .replace('null ', ' ')
@@ -11,7 +11,7 @@ const cleanLine = function (line) {
     .replace(/^,/g, '');
 };
 
-const buildConcatenatedAddress = function (address) {
+const buildConcatenatedAddress = function(address) {
   let firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.PO_BOX_NUMBER} ${address.DPA.SUB_BUILDING_NAME}  ${address.DPA.BUILDING_NUMBER}, ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.BUILDING_NAME}`;
   let secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY}  ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
 

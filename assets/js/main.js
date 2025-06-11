@@ -76,12 +76,12 @@ function initAutocomplete() {
             return null;
           }
 
-          const options = Array.from(select.options).map((opt) => opt.label);
+          const options = Array.from(select.options).map(opt => opt.label);
 
-          const startingWithLetter = remove(options, (opt) =>
+          const startingWithLetter = remove(options, opt =>
             opt.match(new RegExp(`^${query}.+`, 'i'))
           );
-          const containingLetter = remove(options, (opt) =>
+          const containingLetter = remove(options, opt =>
             opt.match(new RegExp(`${query}`, 'i'))
           );
           return populateResults([...startingWithLetter, ...containingLetter]);
@@ -111,7 +111,7 @@ function hasMetaRefresh() {
   // document.querySelectorAll('noscript meta') doesn't work! :-o
   const noscripts = document.querySelectorAll('noscript');
   return Array.from(noscripts).some(
-    (el) => el.innerHTML.indexOf('refresh') !== -1
+    el => el.innerHTML.indexOf('refresh') !== -1
   );
 }
 
@@ -165,8 +165,7 @@ function initBackButton() {
 }
 
 function initLanguagePreferenceToggle() {
-  if (LanguagePreferenceToggle.startLanguagePreferenceToggle())
-    new LanguagePreferenceToggle();
+  if (LanguagePreferenceToggle.startLanguagePreferenceToggle()) new LanguagePreferenceToggle();
 }
 
 function initGovUkComponentJavascript() {

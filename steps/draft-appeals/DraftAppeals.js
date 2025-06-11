@@ -19,15 +19,15 @@ class DraftAppeals extends RestoreAllDraftsState {
   }
 
   get tableHeadingTwo() {
-    return isIba(this.req)
-      ? this.content.tableHeadings.appeal
-      : this.content.tableHeadings.benefit;
+    return isIba(this.req) ?
+      this.content.tableHeadings.appeal :
+      this.content.tableHeadings.benefit;
   }
 
   get tableHeadingThree() {
-    return isIba(this.req)
-      ? this.content.tableHeadings.rdnDate
-      : this.content.tableHeadings.mrnDate;
+    return isIba(this.req) ?
+      this.content.tableHeadings.rdnDate :
+      this.content.tableHeadings.mrnDate;
   }
 
   handler(req, res, next) {
@@ -56,9 +56,9 @@ class DraftAppeals extends RestoreAllDraftsState {
       // eslint-disable-next-line no-unused-vars
       Object.entries(draftCases).filter(([key, caseData]) => {
         const { benefitType } = caseData.BenefitType || {};
-        return ibaCase
-          ? benefitType === benefitTypes.infectedBloodCompensation
-          : benefitType !== benefitTypes.infectedBloodCompensation;
+        return ibaCase ?
+          benefitType === benefitTypes.infectedBloodCompensation :
+          benefitType !== benefitTypes.infectedBloodCompensation;
       })
     );
   }

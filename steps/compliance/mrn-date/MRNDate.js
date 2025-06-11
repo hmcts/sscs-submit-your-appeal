@@ -29,7 +29,7 @@ class MRNDate extends SaveToDraftStore {
 
     return form({
       mrnDate: convert(
-        (d) =>
+        d =>
           DateUtils.createMoment(
             d.day,
             DateUtils.getMonthValue(d, i18next.language),
@@ -43,15 +43,15 @@ class MRNDate extends SaveToDraftStore {
           yearRequired: fields.date.error.yearRequired
         })
       )
-        .check(fields.date.error[`invalid${this.suffix}`], (value) =>
+        .check(fields.date.error[`invalid${this.suffix}`], value =>
           DateUtils.isDateValid(value)
         )
-        .check(fields.date.error[`future${this.suffix}`], (value) =>
+        .check(fields.date.error[`future${this.suffix}`], value =>
           DateUtils.isDateInPast(value)
         )
         .check(
           fields.date.error[`dateSameAsImage${this.suffix}`],
-          (value) => !DateUtils.mrnDateSameAsImage(value, isIba(this.req))
+          value => !DateUtils.mrnDateSameAsImage(value, isIba(this.req))
         )
     });
   }

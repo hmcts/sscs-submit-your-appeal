@@ -37,13 +37,13 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
 
   validCountrySchema() {
     const validCountries = getCountriesOfResidence().map(
-      (country) => country.value
+      country => country.value
     );
     return Joi.string().valid(validCountries);
   }
 
   validPortSchema() {
-    const validPorts = getPortsOfEntry().map((port) => port.value);
+    const validPorts = getPortsOfEntry().map(port => port.value);
     return Joi.string().valid(validPorts);
   }
 
@@ -97,8 +97,8 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
 
   get getPortOfEntryFromCode() {
     return getPortsOfEntry()
-      .filter((port) => port.value === this.fields.portOfEntry.value)
-      .map((port) => port.label)[0];
+      .filter(port => port.value === this.fields.portOfEntry.value)
+      .map(port => port.label)[0];
   }
 
   answers() {
@@ -117,14 +117,14 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
-          postCode: this.fields.postCode.value
-            ? this.fields.postCode.value.trim()
-            : this.fields.postCode.value,
+          postCode: this.fields.postCode.value ?
+            this.fields.postCode.value.trim() :
+            this.fields.postCode.value,
           country: decode(this.fields.country.value),
           portOfEntry: decode(this.fields.portOfEntry.value),
-          phoneNumber: this.fields.phoneNumber.value
-            ? this.fields.phoneNumber.value.trim()
-            : this.fields.phoneNumber.value,
+          phoneNumber: this.fields.phoneNumber.value ?
+            this.fields.phoneNumber.value.trim() :
+            this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

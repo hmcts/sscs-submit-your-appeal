@@ -35,7 +35,7 @@ class HearingArrangements extends SaveToDraftStore {
   }
 
   static selectify(ar) {
-    return ar.map((el) => {
+    return ar.map(el => {
       return { label: el, value: el };
     });
   }
@@ -45,7 +45,7 @@ class HearingArrangements extends SaveToDraftStore {
     const sessionLanguage = i18next.language;
     const cyaContent = require(`./content.${sessionLanguage}`).cya;
 
-    const setRequiredOrNotRequired = (value) =>
+    const setRequiredOrNotRequired = value =>
       value ? cyaContent.required : cyaContent.notRequired;
 
     const arrangementsAnswer = {
@@ -97,14 +97,14 @@ class HearingArrangements extends SaveToDraftStore {
               'language',
               selectionField.languageInterpreter.language.error.required
             ),
-            (value) => emptyLanguageFieldValidation(value)
+            value => emptyLanguageFieldValidation(value)
           )
           .check(
             errorFor(
               'language',
               selectionField.languageInterpreter.language.error.invalid
             ),
-            (value) => languageInList(value)
+            value => languageInList(value)
           ),
 
         signLanguage: object({
@@ -116,14 +116,14 @@ class HearingArrangements extends SaveToDraftStore {
               'language',
               selectionField.signLanguage.language.error.required
             ),
-            (value) => emptyLanguageFieldValidation(value)
+            value => emptyLanguageFieldValidation(value)
           )
           .check(
             errorFor(
               'language',
               selectionField.signLanguage.language.error.invalid
             ),
-            (value) => signLanguageInList(value)
+            value => signLanguageInList(value)
           ),
 
         anythingElse: object({
@@ -134,7 +134,7 @@ class HearingArrangements extends SaveToDraftStore {
             'language',
             selectionField.anythingElse.language.error.required
           ),
-          (value) => emptyLanguageFieldValidation(value)
+          value => emptyLanguageFieldValidation(value)
         ),
 
         hearingLoop: object({
@@ -144,7 +144,7 @@ class HearingArrangements extends SaveToDraftStore {
         accessibleHearingRoom: object({
           requested: bool.default(false)
         })
-      }).check(selectionField.error.required, (value) => optionSelected(value))
+      }).check(selectionField.error.required, value => optionSelected(value))
     });
   }
 
@@ -168,15 +168,15 @@ class HearingArrangements extends SaveToDraftStore {
           accessibleHearingRoom: fieldValues.accessibleHearingRoom.requested,
           other: fieldValues.anythingElse.requested
         },
-        interpreterLanguageType: fieldValues.interpreterLanguage.requested
-          ? fieldValues.interpreterLanguage.language
-          : undefined,
-        signLanguageType: fieldValues.signLanguage.requested
-          ? fieldValues.signLanguage.language
-          : undefined,
-        anythingElse: fieldValues.anythingElse.requested
-          ? decode(fieldValues.anythingElse.language)
-          : undefined
+        interpreterLanguageType: fieldValues.interpreterLanguage.requested ?
+          fieldValues.interpreterLanguage.language :
+          undefined,
+        signLanguageType: fieldValues.signLanguage.requested ?
+          fieldValues.signLanguage.language :
+          undefined,
+        anythingElse: fieldValues.anythingElse.requested ?
+          decode(fieldValues.anythingElse.language) :
+          undefined
       }
     };
     return values;
