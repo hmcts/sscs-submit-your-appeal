@@ -15,8 +15,14 @@ const allowedRegionCentres = config
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
 
-const postcodeChecker = (postcode, allowUnknownPostcodes = false, isIba = false) => {
-  const isNiPostcode = postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart);
+const postcodeChecker = (
+  postcode,
+  allowUnknownPostcodes = false,
+  isIba = false
+) => {
+  const isNiPostcode = postcode
+    .toLocaleLowerCase()
+    .startsWith(northernIrelandPostcodeStart);
   if (isNiPostcode && (!allowNI || !isIba)) {
     return Promise.resolve(false);
   }

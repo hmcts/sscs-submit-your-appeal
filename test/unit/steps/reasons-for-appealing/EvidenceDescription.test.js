@@ -1,4 +1,3 @@
-
 const EvidenceDescription = require('steps/reasons-for-appealing/evidence-description/EvidenceDescription.js');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
