@@ -41,10 +41,7 @@ class DeleteWarning {
     });
 
     if (this.deleteButton) {
-      this.deleteButton.addEventListener(
-        'click',
-        this.navigateAway.bind(this)
-      );
+      this.deleteButton.addEventListener('click', this.navigateAway.bind(this));
     }
   }
   detachHandlers() {

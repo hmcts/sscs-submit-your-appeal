@@ -4,7 +4,6 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const {
   SaveToDraftStoreAddAnother
@@ -225,7 +224,10 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         const response = await request
           .post(uploadEvidenceUrl)
           .attach('file', pathToFile)
-          .field('formData', JSON.stringify({ file: fs.createReadStream(pathToFile) }));
+          .field(
+            'formData',
+            JSON.stringify({ file: fs.createReadStream(pathToFile) })
+          );
 
         const b = response.body;
         if (b && b.documents) {

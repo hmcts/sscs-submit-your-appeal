@@ -24,23 +24,20 @@ describe('The EvidenceUpload middleware', () => {
   const unlinker = sinon.stub().yields();
   const renamer = sinon.stub().yields();
 
-
   beforeEach(function() {
     this.timeout(2500);
     stubs = {
       formidable: {
         IncomingForm: function() {
           this.parse = parser;
-          this.once = () => {
-          };
-          this.on = () => {
-          };
+          this.once = () => {};
+          this.on = () => {};
         }
       },
       superagent: {
-        post: sinon.stub()
-          .returns({ attach: sinon.stub().returns({ field: sinon.stub()
-            .resolves({
+        post: sinon.stub().returns({
+          attach: sinon.stub().returns({
+            field: sinon.stub().resolves({
               body: {
                 documents: [
                   {
@@ -50,12 +47,13 @@ describe('The EvidenceUpload middleware', () => {
                   }
                 ]
               }
-            }) }) })
+            })
+          })
+        })
       },
       'graceful-fs': {
         unlink: unlinker,
-        createReadStream: () => {
-        },
+        createReadStream: () => {},
         rename: renamer
       },
       path: {
@@ -104,9 +102,9 @@ describe('The EvidenceUpload middleware', () => {
       const pathToFile = '__path__';
       const next = sinon.stub();
 
-      stubs.superagent.post = sinon.stub()
-        .returns({ attach: sinon.stub().returns({ field: sinon.stub()
-          .resolves({
+      stubs.superagent.post = sinon.stub().returns({
+        attach: sinon.stub().returns({
+          field: sinon.stub().resolves({
             body: {
               documents: [
                 {
@@ -115,7 +113,9 @@ describe('The EvidenceUpload middleware', () => {
                 }
               ]
             }
-          }) }) });
+          })
+        })
+      });
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
@@ -137,8 +137,11 @@ describe('The EvidenceUpload middleware', () => {
       const size = 42;
       const pathToFile = '__path__';
       const next = sinon.stub();
-      stubs.superagent.post = sinon.stub()
-        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) });
+      stubs.superagent.post = sinon.stub().returns({
+        attach: sinon.stub().returns({
+          field: sinon.stub().rejects(new Error('Upload failed'))
+        })
+      });
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
@@ -152,7 +155,9 @@ describe('The EvidenceUpload middleware', () => {
         'item.hashToken': '',
         'item.size': 0
       });
-      expect(logger.exception).to.have.been.calledWith(sinon.match.instanceOf(Error));
+      expect(logger.exception).to.have.been.calledWith(
+        sinon.match.instanceOf(Error)
+      );
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
   });
