@@ -4216,12 +4216,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"config@npm:^3.3.12":
-  version: 3.3.12
-  resolution: "config@npm:3.3.12"
+"config@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "config@npm:4.0.0"
   dependencies:
     json5: "npm:^2.2.3"
-  checksum: 10/f7973d1192c98d9b8d49e273bef816b4c74a6bab6e7c500792d3fe239e87fa3a80fac89ee552b7da7e2c3d9f6f8f3568e856f08ebd9861917cf47a655cee3e6a
+  checksum: 10/a430adc25a8f6d448edf10dba331710db2e327b4b5d62dedb7ceb9a6800d0ca593373169912ad405e8acb96efb641db84db24ff59e0cdc3e16a162996f22be3c
   languageName: node
   linkType: hard
 
@@ -10928,7 +10928,7 @@ __metadata:
     chai-as-promised: "npm:^7.1.2"
     chalk: "npm:^4.1.2"
     clean-webpack-plugin: "npm:^4.0.0"
-    config: "npm:^3.3.12"
+    config: "npm:^4.0.0"
     cookie-parser: "npm:^1.4.7"
     cookies: "npm:^0.9.1"
     copy-webpack-plugin: "npm:^13.0.0"
