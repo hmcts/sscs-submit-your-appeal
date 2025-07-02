@@ -9991,12 +9991,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rewire@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "rewire@npm:7.0.0"
+"rewire@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "rewire@npm:8.0.0"
   dependencies:
     eslint: "npm:^8.47.0"
-  checksum: 10/08f75864e500c7da950f3dc697af4432b1fcd7053352f69bdcf32306470efa80b8a61c5c4ed2635253f0f82115eacb6f7d10cb4610de37dd36a4d7e18a4c7c99
+  checksum: 10/f817b68ab23b52503a7407fbefd4f0f98347cf88fa7cdf49ceaf499fb4283fc24632a490942eb7a487db1b5c9f0d0bedd6c5322f7953125756c41733a56ce9d8
   languageName: node
   linkType: hard
 
@@ -10975,7 +10975,7 @@ __metadata:
     proxyquire: "npm:^2.1.3"
     redis: "npm:^4.7.1"
     require-directory: "npm:^2.1.1"
-    rewire: "npm:^7.0.0"
+    rewire: "npm:^8.0.0"
     sass: "npm:^1.88.0"
     sass-loader: "npm:^16.0.5"
     sinon: "npm:^20.0.0"
