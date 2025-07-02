@@ -2620,6 +2620,51 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redis/bloom@npm:5.5.6":
+  version: 5.5.6
+  resolution: "@redis/bloom@npm:5.5.6"
+  peerDependencies:
+    "@redis/client": ^5.5.6
+  checksum: 10/229f06d5a5f87d8e3628e8266cc007436c620b0a4704637b0c4061ac4cd2c7916874fa5c3049d8a6a4e2c3659593b6c74136165cbe69bec023ec31e179137726
+  languageName: node
+  linkType: hard
+
+"@redis/client@npm:5.5.6":
+  version: 5.5.6
+  resolution: "@redis/client@npm:5.5.6"
+  dependencies:
+    cluster-key-slot: "npm:1.1.2"
+  checksum: 10/b0561a107d56d6ba8637780d8cfcd90780e4fe1485e3931be2088bd36bddaa92d6428a84cacf75fb9c794cc8957691979660f9abf2805135c8ac833ec26235bc
+  languageName: node
+  linkType: hard
+
+"@redis/json@npm:5.5.6":
+  version: 5.5.6
+  resolution: "@redis/json@npm:5.5.6"
+  peerDependencies:
+    "@redis/client": ^5.5.6
+  checksum: 10/dd52ddde392c8977fcb6e5a6e423701ca7f8e3cc5913e89747fd8a4908589809ca125b87eda43e10147d7a846666492a7c9f75f74a5312d4dfa9e0eb29c0bc1c
+  languageName: node
+  linkType: hard
+
+"@redis/search@npm:5.5.6":
+  version: 5.5.6
+  resolution: "@redis/search@npm:5.5.6"
+  peerDependencies:
+    "@redis/client": ^5.5.6
+  checksum: 10/9cbd28df295dc75ab43e7977c16cd163b1375900e596658e8b75e6c18ac1a596d9e226e23c5de98394b24df5a05fcdebac114a67af5047c60af2fa361e78f52c
+  languageName: node
+  linkType: hard
+
+"@redis/time-series@npm:5.5.6":
+  version: 5.5.6
+  resolution: "@redis/time-series@npm:5.5.6"
+  peerDependencies:
+    "@redis/client": ^5.5.6
+  checksum: 10/0f9e80e30031105fae886729d5da651bfe8b093dfb42986e11357038b3071edd22dc8c8c9210131b75b8ceb73d4f538bce6828c335021f9d36f7189250b329c7
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^4.0.0":
   version: 4.6.0
   resolution: "@sindresorhus/is@npm:4.6.0"
@@ -4077,6 +4122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cluster-key-slot@npm:1.1.2":
+  version: 1.1.2
+  resolution: "cluster-key-slot@npm:1.1.2"
+  checksum: 10/516ed8b5e1a14d9c3a9c96c72ef6de2d70dfcdbaa0ec3a90bc7b9216c5457e39c09a5775750c272369070308542e671146120153062ab5f2f481bed5de2c925f
+  languageName: node
+  linkType: hard
+
 "co@npm:4.6.0":
   version: 4.6.0
   resolution: "co@npm:4.6.0"
@@ -4783,13 +4835,6 @@ __metadata:
   version: 1.0.0
   resolution: "delegates@npm:1.0.0"
   checksum: 10/a51744d9b53c164ba9c0492471a1a2ffa0b6727451bdc89e31627fdf4adda9d51277cfcbfb20f0a6f08ccb3c436f341df3e92631a3440226d93a8971724771fd
-  languageName: node
-  linkType: hard
-
-"denque@npm:^1.5.0":
-  version: 1.5.1
-  resolution: "denque@npm:1.5.1"
-  checksum: 10/dbde01a987d95205f7563c67411e0964073a6b38e4cf2ff190cf91f71e2ce3f51c40bacd31f2a5497e0ff82366bcfd8231d3659cb03f987279130058d512aa29
   languageName: node
   linkType: hard
 
@@ -9661,38 +9706,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redis-commands@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "redis-commands@npm:1.7.0"
-  checksum: 10/c3c86ecefb7552d4333024dba8e0f1f6516568c2a74fd41643768781fb909524c7a581027d75e2456be1f0b7f08505c4c2252c6234abe044626455ef645c9459
-  languageName: node
-  linkType: hard
-
-"redis-errors@npm:^1.0.0, redis-errors@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "redis-errors@npm:1.2.0"
-  checksum: 10/001c11f63ddd52d7c80eb4f4ede3a9433d29a458a7eea06b9154cb37c9802a218d93b7988247aa8c958d4b5d274b18354e8853c148f1096fda87c6e675cfd3ee
-  languageName: node
-  linkType: hard
-
-"redis-parser@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "redis-parser@npm:3.0.0"
+"redis@npm:^5.0.0":
+  version: 5.5.6
+  resolution: "redis@npm:5.5.6"
   dependencies:
-    redis-errors: "npm:^1.0.0"
-  checksum: 10/b10846844b4267f19ce1a6529465819c3d78c3e89db7eb0c3bb4eb19f83784797ec411274d15a77dbe08038b48f95f76014b83ca366dc955a016a3a0a0234650
-  languageName: node
-  linkType: hard
-
-"redis@npm:^3.1.1":
-  version: 3.1.2
-  resolution: "redis@npm:3.1.2"
-  dependencies:
-    denque: "npm:^1.5.0"
-    redis-commands: "npm:^1.7.0"
-    redis-errors: "npm:^1.2.0"
-    redis-parser: "npm:^3.0.0"
-  checksum: 10/a8a2973bbfe98b4fd295f4e560d212106887e7adecfa23f9ee3207cefac080f261a06027a867293f8ed78ebc18e2541e132eea8642af7283e75ef7aa61c2a83a
+    "@redis/bloom": "npm:5.5.6"
+    "@redis/client": "npm:5.5.6"
+    "@redis/json": "npm:5.5.6"
+    "@redis/search": "npm:5.5.6"
+    "@redis/time-series": "npm:5.5.6"
+  checksum: 10/de9005ed226df88860508e5161acd9781b717b25c7abd7dc16d5bdc9107205f4949ceda9f48bc261138f17a5257ec1e95dadc2e8b364807dc435790a3fc946fe
   languageName: node
   linkType: hard
 
@@ -10973,7 +10996,7 @@ __metadata:
     prettier: "npm:3.6.2"
     prettier-plugin-jinja-template: "npm:^2.1.0"
     proxyquire: "npm:^2.1.3"
-    redis: "npm:^4.7.1"
+    redis: "npm:^5.0.0"
     require-directory: "npm:^2.1.1"
     rewire: "npm:^7.0.0"
     sass: "npm:^1.88.0"
