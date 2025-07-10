@@ -3,7 +3,7 @@ name: sscs-tribunals-frontend
 home: https://github.com/hmcts/sscs-submit-your-appeal
 apiVersion: v2
 appVersion: "1.0"
-version: 0.2.62
+version: 0.2.63
 maintainers:
   - name: HMCTS SSCS Team
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
     version: 3.2.0
     repository: 'oci://hmctspublic.azurecr.io/helm'
   - name: redis
-    version: 21.2.7
+    version: 21.2.9
     repository: "oci://registry-1.docker.io/bitnamicharts"
     condition: redis.enabled
   - name: idam-pr
