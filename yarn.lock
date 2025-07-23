@@ -4261,11 +4261,11 @@ __metadata:
   linkType: hard
 
 "config@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "config@npm:4.0.0"
+  version: 4.0.1
+  resolution: "config@npm:4.0.1"
   dependencies:
     json5: "npm:^2.2.3"
-  checksum: 10/a430adc25a8f6d448edf10dba331710db2e327b4b5d62dedb7ceb9a6800d0ca593373169912ad405e8acb96efb641db84db24ff59e0cdc3e16a162996f22be3c
+  checksum: 10/ff3779d92cfe29c6ec0c5b37382bef8d5a301058884c4a5c5954f61abf058820b5c60403c4525e5040b1027bb108df379e27c7e6ec566c67e0baec32599f2703
   languageName: node
   linkType: hard
 
