@@ -18,11 +18,11 @@ async function signIn(I, username, password, language) {
   }
   if (language === 'en') {
     await expect(
-      I.getByText('Your draft benefit appeals').first()
+      I.getByText('Check your answers').first()
     ).toBeVisible();
   } else {
     await expect(
-      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+      I.getByText('Gwiriwch eich atebion').first()
     ).toBeVisible();
   }
 }
@@ -50,11 +50,11 @@ async function signInVerifylanguage(I, username, password, language) {
 
   if (language === 'en') {
     await expect(
-      I.getByText('Your draft benefit appeals').first()
+      I.getByText('Check your answers').first()
     ).toBeVisible();
   } else {
     await expect(
-      I.getByText('Drafft o’ch apeliadau ynghylch budd-daliadau').first()
+      I.getByText('Gwiriwch eich atebion').first()
     ).toBeVisible();
   }
 }
