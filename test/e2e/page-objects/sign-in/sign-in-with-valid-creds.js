@@ -7,24 +7,19 @@ async function signIn(I, username, password, language) {
   await I.locator("[name='save']").first().click();
   // await I.waitForTimeout(5000);
   try {
+    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
     await expect(
-      I.locator(".form-buttons-group [href='/new-appeal']").first()
+      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
     ).toBeVisible();
   } catch {
     await I.locator("[name='save']").first().click();
+    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
     await expect(
-      I.locator(".form-buttons-group [href='/new-appeal']").first()
+      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
     ).toBeVisible();
   }
-  if (language === 'en') {
-    await expect(
-      I.getByText('Check your answers').first()
-    ).toBeVisible();
-  } else {
-    await expect(
-      I.getByText('Gwiriwch eich atebion').first()
-    ).toBeVisible();
-  }
+  const titleText = language === 'en' ? 'Check your answers' : 'Gwiriwch eich atebion';
+  await expect(I.getByText(titleText).first()).toBeVisible();
 }
 
 async function signInVerifylanguage(I, username, password, language) {
@@ -32,13 +27,15 @@ async function signInVerifylanguage(I, username, password, language) {
   await I.locator('#password').first().fill(password);
   await I.locator("[name='save']").first().click();
   try {
+    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
     await expect(
-      I.locator(".form-buttons-group [href='/new-appeal']").first()
+      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
     ).toBeVisible();
   } catch {
     await I.locator("[name='save']").first().click();
+    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
     await expect(
-      I.locator(".form-buttons-group [href='/new-appeal']").first()
+      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
     ).toBeVisible();
   }
   const altLang = await I.locator('.language').innerText();
@@ -48,15 +45,8 @@ async function signInVerifylanguage(I, username, password, language) {
     await I.goto(`${paths.drafts}?lng=${language}`);
   }
 
-  if (language === 'en') {
-    await expect(
-      I.getByText('Check your answers').first()
-    ).toBeVisible();
-  } else {
-    await expect(
-      I.getByText('Gwiriwch eich atebion').first()
-    ).toBeVisible();
-  }
+  const titleText = language === 'en' ? 'Check your answers' : 'Gwiriwch eich atebion';
+  await expect(I.getByText(titleText).first()).toBeVisible();
 }
 
 async function navigateToSignInLink(I) {
