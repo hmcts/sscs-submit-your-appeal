@@ -16,9 +16,10 @@ export class CreateAccountPage extends BasePage {
       await this.page.getByRole('textbox', { name: 'Email address' }).fill(credentials.username);
       await this.page.getByRole('textbox', { name: 'Password' }).fill(credentials.password);
       await this.submitPage('Sign in');
-      
-      await this.page.getByRole('link', { name: 'Create new application' }).click();
-      await this.submitPage('Save and continue');        
+
+      await this.page.locator('.govuk-button:has-text("Continue your application")').isVisible();
+      await this.page.locator('.govuk-button:has-text("Continue your application")').click();
+      await this.submitPage('Save and continue');
     } else {
       await this.page.getByText('I do not want to be able to save this appeal later').click();
       await this.submitPage();

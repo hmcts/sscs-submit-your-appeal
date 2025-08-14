@@ -8,15 +8,11 @@ async function signIn(I, username, password, language) {
   // await I.waitForTimeout(5000);
   try {
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(
-      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
-    ).toBeVisible();
+    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
   } catch {
     await I.locator("[name='save']").first().click();
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(
-      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
-    ).toBeVisible();
+    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
   }
   const titleText = language === 'en' ? 'Check your answers' : 'Gwiriwch eich atebion';
   await expect(I.getByText(titleText).first()).toBeVisible();
@@ -28,15 +24,11 @@ async function signInVerifylanguage(I, username, password, language) {
   await I.locator("[name='save']").first().click();
   try {
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(
-      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
-    ).toBeVisible();
+    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
   } catch {
     await I.locator("[name='save']").first().click();
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(
-      I.locator(`.govuk-button:has-text('${buttonText}')`).first()
-    ).toBeVisible();
+    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
   }
   const altLang = await I.locator('.language').innerText();
   if (
