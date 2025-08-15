@@ -1,6 +1,8 @@
+const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function createNewApplication(I, language) {
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await expect(
     I.locator(".form-buttons-group [href='/new-appeal']").first()
   ).toBeVisible();

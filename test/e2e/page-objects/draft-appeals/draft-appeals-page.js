@@ -2,6 +2,7 @@ const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function verifyDraftAppealsAndEditACase(I, language) {
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await expect(
     I.locator(".form-buttons-group [href='/new-appeal']").first()
   ).toBeVisible();
@@ -40,7 +41,8 @@ async function verifyDraftAppealsAndEditACase(I, language) {
   }
 }
 
-async function verifyDraftAppealsAndDeleteACase(I) {
+async function verifyDraftAppealsAndDeleteACase(I, language) {
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await expect(
     I.locator(".form-buttons-group [href='/new-appeal']").first()
   ).toBeVisible();
