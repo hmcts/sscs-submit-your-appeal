@@ -22,7 +22,7 @@ test.describe(`EN - IBCA in time`, () => {
     { saveForLater: false },
     { saveForLater: true }
   ].forEach(({ saveForLater }) => {
-    test(`IBCA SYA in time - saveForLater option set to ${saveForLater}`, { tag: '@fullFunctional' }, async ({ page }) => {
+    test(`IBCA SYA in time - saveForLater option set to ${saveForLater}`, { tag: '@localDebug' }, async ({ page }) => {
       // eslint-disable-next-line no-process-env
       process.env.LANGUAGE_TO_TEST = 'en';
       // eslint-disable-next-line no-process-env
