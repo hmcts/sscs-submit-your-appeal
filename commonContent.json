@@ -90,7 +90,10 @@
         "language": "English",
         "chatTitle": "HMCTS Web Chat",
         "pageName": "Appeal a benefit decision",
-        "jsFile": "1"
+        "jsFile": "1",
+        "helpChatCheckingAvail": "Checking availability…",
+        "helpChatNeedsJavascript": "Webchat needs javascript enabling.",
+        "helpChatNeedsPopups": "Popup blocked. Please allow pop-ups for this site."
       },
       "telephone" : {
         "title": "Telephone",
@@ -237,7 +240,10 @@
         "language": "Welsh",
         "chatTitle": "Sgwrsio dros y we GLlTEF",
         "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
-        "jsFile": "welsh"
+        "jsFile": "welsh",
+        "helpChatCheckingAvail": "WIP (not translated) Checking availability… WIP",
+        "helpChatNeedsJavascript": "WIP (not translated) Webchat needs javascript enabling WIP",
+        "helpChatNeedsPopups": "WIP (not translated) Popup blocked. Please allow pop-ups for this site. WIP"
       },
       "telephone" : {
         "title": "Ffoniwch ni",

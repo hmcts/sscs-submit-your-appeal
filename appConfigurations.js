@@ -71,10 +71,21 @@ const configureNunjucks = (app, commonContent) =>
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
       welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
+      kervWebchatEnabled: config.get('features.kervWebchatEnabled') === 'true',
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatClientUrl: webChatClientBaseUrl,
       webChatUrl: webChatBaseUrl,
+      kerv: {
+        deploymentId: {
+            en: config.webchat.kerv.deploymentId.en,
+            cy: config.webchat.kerv.deploymentId.cy,
+        },
+        genesysBaseUrl: config.webchat.kerv.genesysBaseUrl,
+        environment: config.webchat.kerv.environment,
+        kervBaseUrl: config.webchat.kerv.kervBaseUrl,
+        apiKey: config.webchat.kerv.apiKey,
+      },
       paths,
       urls,
       allowNiEnabled: config.get('features.allowNI.enabled') === 'true',
@@ -135,7 +146,8 @@ const configureHelmet = app => {
         'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
         'https://js-cdn.dynatrace.com',
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js'
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js',
+        config.webchat.kerv.genesysBaseUrl,
       ],
       connectSrc: [
         '\'self\'',
@@ -152,14 +164,20 @@ const configureHelmet = app => {
         'https://webchat.ctsc.hmcts.net',
         'stats.g.doubleclick.net',
         'cloud8-cc-geo.8x8.com',
-        'vcc-eu4-cf.8x8.com'
+        'vcc-eu4-cf.8x8.com',
+        config.webchat.kerv.kervBaseUrl,
+        'https://api.euw2.pure.cloud',
+        'https://api-cdn.euw2.pure.cloud',
+        'wss://webmessaging.euw2.pure.cloud',
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         '*.googletagmanager.com',
-        'vcc-eu4-cf.8x8.com'
+        'vcc-eu4-cf.8x8.com',
+        '\'self\'',
+        config.webchat.kerv.genesysBaseUrl,
       ],
       imgSrc: [
         '\'self\'',

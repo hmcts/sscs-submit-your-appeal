@@ -117,6 +117,7 @@
     "webchatOpen8to5": {
       "enabled": "false"
     },
+    "kervWebchatEnabled": "false",
     "allowNI" : {
       "enabled": "false"
     }
@@ -164,6 +165,16 @@
     "webchat": {
       "url": "webchat.pp.ctsc.hmcts.net",
       "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
+    },
+    "kerv": {
+      "deploymentId": {
+        "en": "kerv-deployment-en",
+        "cy": "kerv-deployment-cy"
+      },
+      "genesysBaseUrl": "kerv-genesys-base-url",
+      "environment": "kerv-environment",
+      "kervBaseUrl": "kerv-kerv-base-url",
+      "apiKey": "kerv-api-key"
     },
     "pcq": {
       "name": "Equality and Diversity Service",
