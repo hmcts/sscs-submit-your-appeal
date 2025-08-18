@@ -35,7 +35,7 @@ test.describe(`EN - IBCA out of time`, () => {
   ].forEach(({ refNumPredatedBy, saveForLater }) => {
     test(
       `testing end to end ibca journey for ref. num predated by ${refNumPredatedBy} month(s) and saveForLater set to ${saveForLater} scenario`,
-      { tag: '@localDebug' },
+      { tag: '@fullFunctional' },
       async ({ page }) => {
         // eslint-disable-next-line no-process-env
         process.env.LANGUAGE_TO_TEST = 'en';
