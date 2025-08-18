@@ -8,7 +8,7 @@ export class BasePage {
   ibcaBaseURL: string;
   constructor(protected page: Page) {
     this.page = page;
-    this.ibcaBaseURL = process.env.IBCA_TEST_URL || 'https://infected-blood-appeal.aat.platform.hmcts.net';
+    this.ibcaBaseURL = 'https://iba-sscs-tribunals-frontend-pr-1825.preview.platform.hmcts.net';
   }
   async goto(relativeUrl: string = "") {
     let sscsUrl = `${this.ibcaBaseURL}/${relativeUrl}?lng=${this.language}`;
