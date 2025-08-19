@@ -38,7 +38,7 @@
     "test:coverage": "cross-env NODE_PATH=. NODE_ENV=test nyc mocha 'test/unit/**/*.test.js'",
     "test:crossbrowser": "E2E_TEST_TAGS=\"@crossbrowser\" E2E_OUTPUT_DIR=\"./crossbrowser-output\" E2E_REPORT_DIR=\"./crossbrowser-report\" E2E_TEST_DIR=\"./\" yarn test:playwright",
     "test:a11y": "echo \"a11y replaced with axe in separate stage.\"",
-    "test:accessibility": "E2E_TEST_TAGS=\"@accessibility\" CHUNKS=2 RETRIES=5 E2E_OUTPUT_DIR=\"./accessibility-output\" E2E_REPORT_DIR=\"./accessibility-report\"",
+    "test:accessibility": "E2E_TEST_TAGS=\"@accessibility\" CHUNKS=2 RETRIES=5 E2E_OUTPUT_DIR=\"./accessibility-output\" E2E_REPORT_DIR=\"./accessibility-report\" yarn test:playwright --project=\"Chrome English\" --project=\"Chrome Welsh\"",
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
     "mock-ccd": "node mocks/ccd/server.js",
