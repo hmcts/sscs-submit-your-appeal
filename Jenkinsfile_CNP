@@ -25,6 +25,7 @@ withPipeline("nodejs", product, component) {
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
     env.RETRIES = params.RETRIES
     onPR() {
+        env.IBCA_TEST_URL = env.TEST_URL.replace("sscs-tribunals-frontend", "iba-sscs-tribunals-frontend")
         def isRegression = githubApi.getLabelsbyPattern(env.BRANCH_NAME, "test-suite:preview-regression").size() > 0
         env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
         if (isRegression) {
