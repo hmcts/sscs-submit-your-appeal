@@ -1,5 +1,5 @@
 <div id="chatContent" class="govuk-body">
-    <p>{{ commonContent[htmlLang].contactUs.webchat.helpChatNeedsJavascript }}</p>
+    <p>{{ commonContent[htmlLang].contactUs.webchat.textChatNeedsJavascript }}</p>
 </div>
 
 <script nonce="{{ globals.nonce }}">
@@ -31,7 +31,7 @@
             e.preventDefault();
             const popup = window.open('', 'GenesysChatWindow', 'width=420,height=600');
             if (!popup) {
-                alert('{{ commonContent[htmlLang].contactUs.webchat.helpChatNeedsPopups }}');
+                alert('{{ commonContent[htmlLang].contactUs.webchat.textChatNeedsPopups }}');
                 return;
             }
 
@@ -197,7 +197,7 @@
     --------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', async () => {
         const chatContent = document.getElementById('chatContent');
-        chatContent.innerHTML = '<p><span class="spinner"></span>{{ commonContent[htmlLang].contactUs.webchat.helpChatCheckingAvail }}</p>';
+        chatContent.innerHTML = '<p><span class="spinner"></span>{{ commonContent[htmlLang].contactUs.webchat.textChatCheckingAvail }}</p>';
 
         try {
             const status = await checkChatAvailability();

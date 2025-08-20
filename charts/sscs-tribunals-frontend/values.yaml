@@ -26,7 +26,7 @@ nodejs:
     WELSH_WEBCHAT_ENABLED: false
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
-    KERV_WEBCHAT_ENABLED: true
+    KERV_WEBCHAT_ENABLED: false
 
   keyVaults:
     sscs:
