@@ -58,11 +58,11 @@ describe('Authenticated.js', () => {
     const next = sinon.spy();
 
     describe('when method is GET', () => {
-      const req = { method: 'GET' };
+      const req = { method: 'GET', session: {} };
       const redirect = sinon.spy();
       const res = { redirect };
 
-      it('should redirect to checkyour appeal', () => {
+      it('should redirect to check your appeal', () => {
         entry.handler(req, res, next);
         expect(redirect.calledOnce).to.eql(true);
       });
