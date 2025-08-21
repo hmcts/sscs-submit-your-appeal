@@ -174,14 +174,6 @@ test.describe(`EN - IBCA out of time`, () => {
           testData.hearing.wantsToAttend
         );
 
-        // CYA page
-        await ibcaPages.checkYourAppealPage.signAndSubmitYourAppeal(
-          testData.signAndSubmit.signer
-        );
-
-        //  Confirmation page
-        await runAssertions(ibcaPages.confirmationPage);
-
         // Go back to home page
         if (saveForLater) {
           await ibcaPages.draftAppealsPage.goto('draft-appeals');
@@ -191,6 +183,14 @@ test.describe(`EN - IBCA out of time`, () => {
           await ibcaPages.draftAppealsPage.editAppeal();
           await runAssertions(ibcaPages.checkYourAppealPage);
         }
+
+        // CYA page
+        await ibcaPages.checkYourAppealPage.signAndSubmitYourAppeal(
+          testData.signAndSubmit.signer
+        );
+
+        //  Confirmation page
+        await runAssertions(ibcaPages.confirmationPage);
       }
     );
   });
