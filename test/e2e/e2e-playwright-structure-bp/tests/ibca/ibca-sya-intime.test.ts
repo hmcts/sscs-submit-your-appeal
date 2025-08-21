@@ -5,8 +5,11 @@ import { getDayMonthYear } from '../../utils/DateUtil';
 import { createUser, deleteUser } from '../../../../util/IdamUser';
 
 async function runAssertions(ibcaPageObject: any) {
-  await expect(ibcaPageObject.page.locator(ibcaPageObject.heading).first()).toContainText(ibcaPageObject.defaultPageContent.heading);
-  await Promise.all(ibcaPageObject.defaultPageContent.bodyContents.map((bodyContent: string[]) => expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent)));
+  await expect(ibcaPageObject.page.locator(ibcaPageObject.heading).first())
+    .toContainText(ibcaPageObject.defaultPageContent.heading);
+  await Promise.all(ibcaPageObject.defaultPageContent.bodyContents
+    .map((bodyContent: string[]) =>
+      expect(ibcaPageObject.page.locator(ibcaPageObject.body)).toContainText(bodyContent)));
 }
 
 let userEmail: string | void = '';
@@ -118,12 +121,6 @@ test.describe(`EN - IBCA in time`, () => {
       await runAssertions(ibcaPages.theHearingPage);
       await ibcaPages.theHearingPage.preferHearing(testData.hearing.wantsToAttend);
 
-      // CYA page
-      await ibcaPages.checkYourAppealPage.signAndSubmitYourAppeal(testData.signAndSubmit.signer);
-
-      //  Confirmation page
-      await runAssertions(ibcaPages.confirmationPage);
-
       // Go back to home page
       if (saveForLater) {
         await ibcaPages.draftAppealsPage.goto("draft-appeals");
@@ -133,6 +130,12 @@ test.describe(`EN - IBCA in time`, () => {
         await ibcaPages.draftAppealsPage.editAppeal();
         await runAssertions(ibcaPages.checkYourAppealPage);
       }
+
+      // CYA page
+      await ibcaPages.checkYourAppealPage.signAndSubmitYourAppeal(testData.signAndSubmit.signer);
+
+      //  Confirmation page
+      await runAssertions(ibcaPages.confirmationPage);
     });
   });
 });
