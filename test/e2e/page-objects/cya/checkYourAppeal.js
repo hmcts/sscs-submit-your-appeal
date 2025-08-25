@@ -81,7 +81,7 @@ const {
 } = require('../start/language-preference');
 const { enterDateCantAttendAndContinue, selectDates } = require('../hearing/datesCantAttend');
 const { continueFromIndependance } = require('../start/independence');
-const { signIn, navigateToSignInLink, signInVerifylanguage } = require('../sign-in/sign-in-with-valid-creds');
+const { signIn, signBackIn, navigateToSignInLink, signInVerifylanguage } = require('../sign-in/sign-in-with-valid-creds');
 const { createNewApplication } = require('../draft-appeals/create-new-application');
 const { signOut } = require('../sign-out/sign-out');
 const { createTheSession } = require('../session/createSession');
@@ -139,6 +139,7 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, newUserEmail, testDataEn.signIn.password, language);
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
   await signOut(I, language);
@@ -169,6 +170,7 @@ async function enterDetailsFromStartToDraft(I, commonContent, language, newUserE
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signInVerifylanguage(I, newUserEmail, testDataEn.signIn.password, language);
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
@@ -183,6 +185,7 @@ async function enterDetailsForNewApplication(I, commonContent, language, userEma
   await continueFromIndependance(I, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, userEmail, testDataEn.signIn.password, language);
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await createNewApplication(I, language);
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
@@ -201,7 +204,7 @@ async function enterDetailsToDeleteACase(
 ) {
   await I.goto('/sign-out');
   await navigateToSignInLink(I);
-  await signIn(I, userEmail, testDataEn.signIn.password, language);
+  await signBackIn(I, userEmail, testDataEn.signIn.password, language);
   await verifyDraftAppealsAndDeleteACase(I, language);
 }
 
