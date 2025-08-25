@@ -18,6 +18,21 @@ async function signIn(I, username, password, language) {
   await expect(I.getByText(titleText).first()).toBeVisible();
 }
 
+async function signBackIn(I, username, password, language) {
+  await I.locator('#username').first().fill(username);
+  await I.locator('#password').first().fill(password);
+  await I.locator("[name='save']").first().click();
+  // await I.waitForTimeout(5000);
+  try {
+    await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
+  } catch {
+    await I.locator("[name='save']").first().click();
+    await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
+  }
+  const titleText = language === 'en' ? 'Your draft benefit appeals' : 'Drafft o’ch apeliadau ynghylch budd-daliadau';
+  await expect(I.getByText(titleText).first()).toBeVisible();
+}
+
 async function signInVerifylanguage(I, username, password, language) {
   await I.locator('#username').first().fill(username);
   await I.locator('#password').first().fill(password);
@@ -45,4 +60,4 @@ async function navigateToSignInLink(I) {
   await I.getByText('Sign back into your appeal').first().click();
 }
 
-module.exports = { signIn, signInVerifylanguage, navigateToSignInLink };
+module.exports = { signIn, signBackIn, signInVerifylanguage, navigateToSignInLink };
