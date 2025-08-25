@@ -1,4 +1,3 @@
-const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function createNewApplication(I, language) {
