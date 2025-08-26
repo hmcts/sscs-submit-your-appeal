@@ -13,7 +13,7 @@
           <div id="antenna-web-chat" >
               <div id="antenna-web-chat-link">
                   <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc }}</p>
-                  {% if kervWebchatEnabled and htmlLang == "en" %}
+                  {% if kervWebchatEnabled %}
                     {% include "components/kerv-webchat.html" %}
                   {% else %}
                     <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent }}</a>
