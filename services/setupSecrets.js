@@ -16,12 +16,12 @@ const setupSecrets = () => {
     setSecret('secrets.sscs.postcode-lookup-token', 'postcodeLookup.token');
     setSecret('secrets.sscs.app-insights-connection-string', 'appInsights.connectionString');
     setSecret('secrets.sscs.pcq-token-key', 'services.pcq.tokenKey');
-    setSecret('secrets.sscs.webchat-kerv-deployment-en', 'webchat.kerv.deploymentId.en');
-    setSecret('secrets.sscs.webchat-kerv-deployment-cy', 'webchat.kerv.deploymentId.cy');
-    setSecret('secrets.sscs.webchat-kerv-genesys-base-url', 'webchat.kerv.genesysBaseUrl');
-    setSecret('secrets.sscs.webchat-kerv-environment', 'webchat.kerv.environment');
-    setSecret('secrets.sscs.webchat-kerv-kerv-base-url', 'webchat.kerv.kervBaseUrl');
-    setSecret('secrets.sscs.webchat-kerv-api-key', 'webchat.kerv.apiKey');
+    setSecret('secrets.sscs.webchat-kerv-deployment-en', 'services.kerv.deploymentId.en');
+    setSecret('secrets.sscs.webchat-kerv-deployment-cy', 'services.kerv.deploymentId.cy');
+    setSecret('secrets.sscs.webchat-kerv-genesys-base-url', 'services.kerv.genesysBaseUrl');
+    setSecret('secrets.sscs.webchat-kerv-environment', 'services.kerv.environment');
+    setSecret('secrets.sscs.webchat-kerv-kerv-base-url', 'services.kerv.kervBaseUrl');
+    setSecret('secrets.sscs.webchat-kerv-api-key', 'services.kerv.apiKey');
   }
 };
 

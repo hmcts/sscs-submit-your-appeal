@@ -164,17 +164,17 @@
     },
     "webchat": {
       "url": "webchat.pp.ctsc.hmcts.net",
-      "clientUrl": "webchat-client.pp.ctsc.hmcts.net",
-      "kerv": {
-        "deploymentId": {
-          "en": "KERV_DEPLOYMENT_ID_EN",
-          "cy": "KERV_DEPLOYMENT_ID_CY"
-        },
-        "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
-        "environment": "KERV_ENVIRONMENT",
-        "kervBaseUrl": "KERV_BASE_URL",
-        "apiKey": "KERV_API_KEY"
-      }
+      "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
+    },
+    "kerv": {
+      "deploymentId": {
+        "en": "KERV_DEPLOYMENT_ID_EN",
+        "cy": "KERV_DEPLOYMENT_ID_CY"
+      },
+      "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
+      "environment": "KERV_ENVIRONMENT",
+      "kervBaseUrl": "KERV_BASE_URL",
+      "apiKey": "KERV_API_KEY"
     },
     "pcq": {
       "name": "Equality and Diversity Service",
