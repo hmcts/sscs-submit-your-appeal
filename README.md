@@ -1,4 +1,4 @@
-# SSCS - Submit Your Appeal
+# SSCS - Submit Your Appeal.
 
 A web application that allows appellants to submit appeals online to the Social Security and Child Support (SSCS) tribunal. The application follows GDS guidelines, presenting a single question per page and guiding users through their appeal journey.
 
