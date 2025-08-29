@@ -26,6 +26,7 @@ nodejs:
     WELSH_WEBCHAT_ENABLED: false
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
+    KERV_WEBCHAT_ENABLED: false
 
   keyVaults:
     sscs:
@@ -36,6 +37,12 @@ nodejs:
         - sscs-redis-connection-string
         - app-insights-connection-string
         - pcq-token-key
+        - webchat-kerv-deployment-en
+        - webchat-kerv-deployment-cy
+        - webchat-kerv-genesys-base-url
+        - webchat-kerv-environment
+        - webchat-kerv-kerv-base-url
+        - webchat-kerv-api-key
 
 redis:
   enabled: false
