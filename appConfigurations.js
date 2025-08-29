@@ -76,15 +76,17 @@ const configureNunjucks = (app, commonContent) =>
       webFormUrl: config.get('services.webForm.url'),
       webChatClientUrl: webChatClientBaseUrl,
       webChatUrl: webChatBaseUrl,
-      kerv: {
-        deploymentId: {
-            en: config.get('services.kerv.deploymentId.en'),
-            cy: config.get('services.kerv.deploymentId.cy'),
-        },
-        genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
-        environment: config.get('services.kerv.environment'),
-        kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
-        apiKey: config.get('services.kerv.apiKey'),
+      webchat: {
+        kerv: {
+              deploymentId: {
+                  en: config.get('services.kerv.deploymentId.en'),
+                  cy: config.get('services.kerv.deploymentId.cy'),
+              },
+              genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
+              environment: config.get('services.kerv.environment'),
+              kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
+              apiKey: config.get('services.kerv.apiKey'),
+            }
       },
       paths,
       urls,

@@ -27,7 +27,6 @@ nodejs:
     WEBCHAT_URL: "webchat.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
     KERV_WEBCHAT_ENABLED: false
-    KERV_BASE_URL: {{webchat.kerv.kervBaseUrl}}
 
   keyVaults:
     sscs:
