@@ -86,7 +86,7 @@ const configureNunjucks = (app, commonContent) =>
               environment: config.get('services.kerv.environment'),
               kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
               apiKey: config.get('services.kerv.apiKey'),
-            }
+        }
       },
       paths,
       urls,
