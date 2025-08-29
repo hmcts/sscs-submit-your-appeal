@@ -168,13 +168,13 @@
     },
     "kerv": {
       "deploymentId": {
-        "en": "kerv-deployment-en",
-        "cy": "kerv-deployment-cy"
+        "en": "webchat-kerv-deployment-en",
+        "cy": "webchat-kerv-deployment-cy"
       },
-      "genesysBaseUrl": "kerv-genesys-base-url",
-      "environment": "kerv-environment",
-      "kervBaseUrl": "kerv-kerv-base-url",
-      "apiKey": "kerv-api-key"
+      "genesysBaseUrl": "webchat-kerv-genesys-base-url",
+      "environment": "webchat-kerv-environment",
+      "kervBaseUrl": "webchat-kerv-kerv-base-url",
+      "apiKey": "webchat-kerv-api-key"
     },
     "pcq": {
       "name": "Equality and Diversity Service",
