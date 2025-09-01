@@ -149,7 +149,7 @@ const configureHelmet = app => {
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
         'https://js-cdn.dynatrace.com',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js',
-        `${config.get(services.kerv.genesysBaseUrl)}`,
+        'https://apps.euw2.pure.cloud',
       ],
       connectSrc: [
         '\'self\'',
@@ -167,7 +167,7 @@ const configureHelmet = app => {
         'stats.g.doubleclick.net',
         'cloud8-cc-geo.8x8.com',
         'vcc-eu4-cf.8x8.com',
-        `${config.get(services.kerv.kervBaseUrl)}`,
+        'https://api.hmcts.hs-cx.com',
         'https://api.euw2.pure.cloud',
         'https://api-cdn.euw2.pure.cloud',
         'wss://webmessaging.euw2.pure.cloud',
@@ -179,7 +179,7 @@ const configureHelmet = app => {
         '*.googletagmanager.com/*',
         'vcc-eu4-cf.8x8.com',
         '\'self\'',
-        `${config.get(services.kerv.genesysBaseUrl)}`,
+        'https://apps.euw2.pure.cloud',
       ],
       imgSrc: [
         '\'self\'',
