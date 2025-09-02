@@ -17,7 +17,7 @@ const setupSecrets = () => {
     setSecret('secrets.sscs.app-insights-connection-string', 'appInsights.connectionString');
     setSecret('secrets.sscs.pcq-token-key', 'services.pcq.tokenKey');
     setSecret('secrets.sscs.webchat-kerv-deployment-en', 'services.kerv.deploymentId.en');
-    setSecret('secrets.sscs.webchat-kerv-deployment-cy', 'services.kerv.deploymentId.cy');
+    setSecret('secrets.sscs.webchat-kerv-deployment-cy', 'kervDeploymentCY');
     setSecret('secrets.sscs.webchat-kerv-genesys-base-url', 'services.kerv.genesysBaseUrl');
     setSecret('secrets.sscs.webchat-kerv-environment', 'services.kerv.environment');
     setSecret('secrets.sscs.webchat-kerv-kerv-base-url', 'services.kerv.kervBaseUrl');

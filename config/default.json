@@ -143,6 +143,7 @@
     "authenticated": "/authenticated",
     "index": "/authenticated"
   },
+  "kervDeploymentCY" : "testing",
   "services": {
     "SSCS": {
       "caseTypes": "SSCS",
