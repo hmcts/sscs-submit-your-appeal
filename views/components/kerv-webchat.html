@@ -10,10 +10,10 @@
     const REFERRER_PAGE    = 'SSCS Site';
     {% if htmlLang == "en" %}
     <!-- english deployment id -->
-    const DEPLOYMENT_ID    = 'testing1234';
+    const DEPLOYMENT_ID    = 'testing12345';
     {% else %}
     <!-- welsh deployment id -->
-    const DEPLOYMENT_ID    = '{{ globals.kerv.deploymentId.cy }}';
+    const DEPLOYMENT_ID    = '{{ kerv.deploymentId.cy }}';
     {% endif %}
     const GENESYS_BASE_URL = '{{ globals.kerv.genesysBaseUrl }}';
     const ENVIRONMENT     = '{{ globals.kerv.environment }}';

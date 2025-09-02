@@ -78,8 +78,8 @@ const configureNunjucks = (app, commonContent) =>
       webChatUrl: webChatBaseUrl,
       kerv: {
         deploymentId: {
-            en: 'testing123',
-            cy: config.get('services.kerv.deploymentId.cy'),
+            en: config.get('services.kerv.deploymentId.en'),
+            cy: 'testing123',
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
         environment: config.get('services.kerv.environment'),
