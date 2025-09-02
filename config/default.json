@@ -143,7 +143,6 @@
     "authenticated": "/authenticated",
     "index": "/authenticated"
   },
-  "kervDeploymentCY" : "testing",
   "services": {
     "SSCS": {
       "caseTypes": "SSCS",
@@ -169,8 +168,8 @@
     },
     "kerv": {
       "deploymentId": {
-        "en": "kerv-deployment-en",
-        "cy": "kerv-deployment-cy"
+        "en": "KERV_DEPLOYMENT_ID_EN",
+        "cy": "KERV_DEPLOYMENT_ID_CY"
       },
       "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
       "environment": "KERV_ENVIRONMENT",
