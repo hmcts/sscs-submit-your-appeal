@@ -169,7 +169,7 @@
     "kerv": {
       "deploymentId": {
         "en": "KERV_DEPLOYMENT_ID_EN",
-        "cy": "KERV_DEPLOYMENT_ID_CY"
+        "cy": "testing"
       },
       "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
       "environment": "KERV_ENVIRONMENT",
