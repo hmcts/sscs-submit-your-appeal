@@ -5,7 +5,9 @@ const setSecret = (secretPath, configPath) => {
   // Only overwrite the value if the secretPath is defined
   if (config.has(secretPath)) {
     set(config, configPath, get(config, secretPath));
-  }
+  } else {
+    logger.warn('Cannot find secret with path: ' + secretPath);
+        }
 };
 
 const setupSecrets = () => {
