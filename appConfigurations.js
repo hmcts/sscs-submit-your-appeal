@@ -79,7 +79,7 @@ const configureNunjucks = (app, commonContent) =>
       kerv: {
         deploymentId: {
             en: config.get('services.kerv.deploymentId.en'),
-            cy: config.services.kerv.deploymentId.cy
+            cy: config.kervDeploymentCY
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
         environment: config.get('services.kerv.environment'),
