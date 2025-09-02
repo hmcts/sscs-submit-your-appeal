@@ -10,15 +10,15 @@
     const REFERRER_PAGE    = 'SSCS Site';
     {% if htmlLang === 'en' %}
     <!-- english deployment id -->
-    const DEPLOYMENT_ID    = '{{ config.get('services.kerv.deploymentId.en') }}';
+    const DEPLOYMENT_ID    = '{{ globals.kerv.deploymentId.en }}';
     {% else %}
     <!-- welsh deployment id -->
-    const DEPLOYMENT_ID    = '{{ config.get('services.deploymentId.cy') }}';
+    const DEPLOYMENT_ID    = '{{ globals.kerv.deploymentId.cy }}';
     {% endif %}
-    const GENESYS_BASE_URL = '{{ config.get('services.genesysBaseUrl') }}';
-    const ENVIRONMENT     = '{{ config.get('services.environment') }}';
-    const KERV_BASE_URL    = '{{ config.get('services.kervBaseUrl') }}';
-    const API_KEY          = '{{ config.get('services.apiKey') }}';
+    const GENESYS_BASE_URL = '{{ globals.kerv.genesysBaseUrl }}';
+    const ENVIRONMENT     = '{{ globals.kerv.environment }}';
+    const KERV_BASE_URL    = '{{ globals.kerv.kervBaseUrl }}';
+    const API_KEY          = '{{ globals.kerv.apiKey }}';
 
     /* ---------------------------------------------------------------
        Open‑chat popup
