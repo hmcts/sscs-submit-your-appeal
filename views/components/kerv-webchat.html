@@ -13,12 +13,12 @@
     const DEPLOYMENT_ID    = '{{ config.services.kerv.deploymentId.en }}';
     {% else %}
     <!-- welsh deployment id -->
-    const DEPLOYMENT_ID    = '{{ kerv.deploymentId.cy }}';
+    const DEPLOYMENT_ID    = '{{ config.services.deploymentId.cy }}';
     {% endif %}
-    const GENESYS_BASE_URL = '{{ kerv.genesysBaseUrl }}';
-    const ENVIRONMENT     = '{{ kerv.environment}}';
-    const KERV_BASE_URL    = '{{ kerv.kervBaseUrl }}';
-    const API_KEY          = '{{ kerv.apiKey }}';
+    const GENESYS_BASE_URL = '{{ config.services.genesysBaseUrl }}';
+    const ENVIRONMENT     = '{{ config.services.environment}}';
+    const KERV_BASE_URL    = '{{ config.services.kervBaseUrl }}';
+    const API_KEY          = '{{ config.services.apiKey }}';
 
     /* ---------------------------------------------------------------
        Open‑chat popup
