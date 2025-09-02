@@ -10,7 +10,7 @@
     const REFERRER_PAGE    = 'SSCS Site';
     {% if htmlLang === 'en' %}
     <!-- english deployment id -->
-    const DEPLOYMENT_ID    = '{{ kerv.deploymentId.en }}';
+    const DEPLOYMENT_ID    = '{{ config.services.kerv.deploymentId.en }}';
     {% else %}
     <!-- welsh deployment id -->
     const DEPLOYMENT_ID    = '{{ kerv.deploymentId.cy }}';
