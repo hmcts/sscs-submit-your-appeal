@@ -169,6 +169,7 @@ const configureHelmet = app => {
         'https://api.euw2.pure.cloud/',
         'https://api-cdn.euw2.pure.cloud/',
         'wss://webmessaging.euw2.pure.cloud/',
+        'https://apps.euw2.pure.cloud/'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [
