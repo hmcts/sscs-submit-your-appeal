@@ -35,7 +35,6 @@ nodejs:
         - webchat-kerv-kerv-base-url
         - webchat-kerv-api-key
 
-
 redis:
   enabled: true
   architecture: standalone
