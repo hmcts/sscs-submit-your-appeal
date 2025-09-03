@@ -12,4 +12,5 @@ nodejs:
     PCQ_ENABLED: true
     WEBCHAT_OPENING_TIME_8_5: true
     IBC_NI_POSTCODES_FEATURE: true
+    KERV_WEBCHAT_ENABLED: false
 

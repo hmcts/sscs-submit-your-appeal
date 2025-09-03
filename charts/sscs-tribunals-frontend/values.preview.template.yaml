@@ -17,6 +17,7 @@ nodejs:
     WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
     ALLOW_COOKIE_BANNER_ENABLED: true
     WEBCHAT_OPENING_TIME_8_5: true
+    KERV_WEBCHAT_ENABLED: false
     FT_WELSH: true
     PCQ_ENABLED: true
     IBC_NI_POSTCODES_FEATURE: true
@@ -27,6 +28,12 @@ nodejs:
         - postcode-lookup-token
         - app-insights-connection-string
         - pcq-token-key
+        - webchat-kerv-deployment-en
+        - webchat-kerv-deployment-cy
+        - webchat-kerv-genesys-base-url
+        - webchat-kerv-environment
+        - webchat-kerv-kerv-base-url
+        - webchat-kerv-api-key
 
 redis:
   enabled: true
