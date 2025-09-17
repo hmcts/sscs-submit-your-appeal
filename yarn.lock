@@ -7656,9 +7656,9 @@ __metadata:
   linkType: hard
 
 "libphonenumber-js@npm:^1.12.8":
-  version: 1.12.15
-  resolution: "libphonenumber-js@npm:1.12.15"
-  checksum: 10/0641a7534015352dfb7c898b4b5ae1527791220d5603bb51055ac8506a739fb19e5d2c724ce4aaaaecac1fa19a673f90655a44215c0271700f1b710475952f06
+  version: 1.12.17
+  resolution: "libphonenumber-js@npm:1.12.17"
+  checksum: 10/4931cd769e90b1f40d84259578a2d4ef07bbfc500cab7029150bec418c262785e1534eaf2d5f3c94c9ffcd164e0f540a129dcd80da72d7483019cf8959902d2e
   languageName: node
   linkType: hard
 
