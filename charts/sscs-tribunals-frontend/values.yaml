@@ -49,7 +49,7 @@ redis:
   cluster:
     enabled: false
     slaveCount: 0
-    usePassword: false
+  usePassword: false
   architecture: standalone
   image:
     registry: hmctspublic.azurecr.io
