@@ -46,13 +46,15 @@ nodejs:
 
 redis:
   enabled: false
-  cluster:
-    enabled: false
-    slaveCount: 0
-  usePassword: false
+  architecture: standalone
+  image:
+    registry: hmctspublic.azurecr.io
+    repository: imported/bitnami/redis
   master:
     persistence:
       enabled: false
+  auth:
+    enabled: false
 
 idam-pr:
   enabled: false
