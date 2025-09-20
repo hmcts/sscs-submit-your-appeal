@@ -47,3 +47,7 @@ idam-pr:
     SSCS:
       - https://${SERVICE_FQDN}/authenticated # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
       - https://iba-${SERVICE_FQDN}/authenticated
+
+global:
+  security:
+    allowInsecureImages: true

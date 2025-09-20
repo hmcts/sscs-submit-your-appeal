@@ -1,8 +1,8 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>hmcts/.github:renovate-config",
-    "github>hmcts/.github//renovate/automerge-all",
-    "github>hmcts/sscs-common//.github/sscs-renovate.json"
+    "github>hmcts/.github//renovate/automerge-all"
   ],
 
   "packageRules": [
