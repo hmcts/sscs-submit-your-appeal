@@ -63,10 +63,27 @@
     })(window, 'Genesys',
        '${GENESYS_BASE_URL}/genesys-bootstrap/genesys.min.js',
        { environment: '${ENVIRONMENT}', deploymentId: '${DEPLOYMENT_ID}' });
-    Genesys("command", "Database.set", {
-      messaging: { customAttributes: { webReferrerPage: '${REFERRER_PAGE}'}}
-          },
-      function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ }
+    Genesys(
+        "subscribe",
+        "Messenger.ready",
+        function () {
+            Genesys("command", "Database.set",
+                { messaging: { customAttributes: { webReferrerPage: '${REFERRER_PAGE}' } } },
+                () => { console.log("database set"); },
+                (error) => { console.log("Couldn't set database.", error); }
+            )
+        }
+    );
+    Genesys(
+        "subscribe",
+        "MessagingService.conversationCleared",
+        function () {
+            Genesys("command", "Database.set",
+                { messaging: { customAttributes: { webReferrerPage: '${REFERRER_PAGE}' } } },
+                () => { console.log("database set"); },
+                (error) => { console.log("Couldn't set database.", error); }
+            )
+        }
     );
     window.addEventListener('load', function () {
       Genesys('subscribe', 'Messenger.ready', function () {
