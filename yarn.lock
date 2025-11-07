@@ -5364,14 +5364,14 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-mocha@npm:^11.0.0":
-  version: 11.1.0
-  resolution: "eslint-plugin-mocha@npm:11.1.0"
+  version: 11.2.0
+  resolution: "eslint-plugin-mocha@npm:11.2.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.1"
     globals: "npm:^15.14.0"
   peerDependencies:
     eslint: ">=9.0.0"
-  checksum: 10/75c35ad70b35414bb2a1e2efe4cc3d8188f4aadafd5d39f0e328c6899ebb286ef04f253b9b6caed44402602667e30d7b816d38c500d5ed817b5ea1b0e8050728
+  checksum: 10/7aebf15ed6c78a13167dd9ce3ab36a7cd5e964f167c88121ef64c86a2e2cc41bb37761bf88a66265cc252d0865f727cff4e7bf4106145850e403855b55a7fb71
   languageName: node
   linkType: hard
 
