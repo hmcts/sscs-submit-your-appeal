@@ -22,7 +22,7 @@
   },
   "howAccessible": {
     "title": "Pa mor hygyrch yw'r wefan hon",
-    "para1": "Mae'r wefan wedi'i phrofi gan y Ganolfan Hygyrchedd Digidol (DAC) ac mae'n bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe F2.1, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Ac eithrio lle y nodir isod, mae'r holl faterion ac argymhellion gan y DAC wedi'u rhoi ar waith.",
+    "para1": "Nid yw rhai rhannau o'r wefan hon yn gwbl gydymffurfio. Caiff y wefan hon ei phrofi'n rheolaidd o ran hygyrchedd gan y Ganolfan Hygyrchedd Digidol (DAC), i sicrhau ei bod yn bodloni'r lefel ofynnol o hygyrchedd ar gyfer cydymffurfio â Chanllawiau Hygyrchedd Cynnwys Gwe, gan ddefnyddio cyfuniad o archwilio technegol ac adborth gan ddefnyddwyr ag anghenion hygyrchedd. Mae'r archwiliad hygyrchedd diweddaraf, a gynhaliwyd gan y DAC, wedi nodi rhannau o'r wefan hon nad ydynt yn gwbl gydymffurfio. Mae pob mater ac argymhelliad yn adroddiad y DAC yn cael sylw ar hyn o bryd.",
     "para1Iba": "Rydym yn gwybod nad yw rhai rhannau o'r gwasanaeth hwn yn hygyrch, ac mae'r materion wedi'u rhestru o dan yr adran diffyg cydymffurfiaeth. Rydym yn bwriadu cynnal profion pellach a mynd i'r afael â'r materion cyn gynted ag y gallwn."
   },
   "telephone": {
@@ -80,7 +80,7 @@
   },
   "compliance": {
     "title": "Statws cydymffurfiaeth",
-    "para1": "Mae'r wefan hon yn cydymffurfio'n llawn â'r <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'>Canllawiau Hygyrchedd Cynnwys Gwe fersiwn 2.1 safon AA.</a>",
+    "para1": "Mae'r wefan hon yn cydymffurfio'n rhannol â'r <a class='govuk-link' href='https://www.w3.org/TR/WCAG21/' target='_blank'>Canllawiau Hygyrchedd Cynnwys Gwe fersiwn 2.1 safon AA.</a>",
     "para1Iba": "Mae'r wefan yn cydymffurfio'n rhannol â safon <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG22/\" target=\"_blank\">Canllawiau Hygyrchedd Cynnwys y We fersiwn 2.2 AA</a>."
   },
   "nonAccessible": {
@@ -105,15 +105,15 @@
   },
   "toImprove": {
     "title": "Beth rydym yn ei wneud i wella hygyrchedd",
-    "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi.",
+    "para1": "Mae'r wefan yn cael ei phrofi'n barhaus gan ddefnyddio meddalwedd hygyrchedd mewnol ac allanol. Bydd unrhyw nodweddion newydd a gyflwynir hefyd yn cael eu profi. Yn dilyn yr archwiliad a gynhaliwyd gan y DAC ym mis Medi 2023, rydym yn trwsio ar frys y cynnwys sy'n methu bodloni safon AA Canllawiau Hygyrchedd Cynnwys y We.",
     "para1Iba": "Rydym yn bwriadu datrys y materion a restrir o dan yr adran diffyg cydymffurfio erbyn 21 Mawrth 2025.",
     "para2Iba": "Rydym hefyd yn bwriadu gweithio gyda thîm profi hygyrchedd mewnol GLlTEF i drefnu archwiliad WCAG 2.2 llawn sy'n cwmpasu ystod ehangach o dechnolegau cynorthwyol ym mis Chwefror 2025."
   },
   "preperation": {
     "title": "Paratoi'r datganiad hygyrchedd hwn",
-    "para1": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i adolygwyd ddiwethaf ar 21 Mawrth 2022",
+    "para1": "Paratowyd y datganiad hwn yn wreiddiol ar 30 Medi 2020. Fe'i hadolygwyd ddiwethaf ar 4 Rhagfyr 2025.",
     "para1Iba": "Paratowyd y datganiad hwn ar 30 Medi 2020 ac fe'i hadolygwyd ddiwethaf ar 21 Ionawr 2025.",
-    "para2": "Profwyd y wefan hon ddiwethaf ar 28 Tachwedd 2019. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol (DAC). Cafodd y materion a godwyd gan y DAC eu datrys ym mis Mawrth 2021.",
+    "para2": "Profwyd y wefan hon ddiwethaf ar 29 Awst 2023. Cynhaliwyd y prawf gan y Ganolfan Hygyrchedd Digidol (DAC). Mae'r materion yn cael eu datrys ar hyn o bryd, ac wedi hynny caiff y datganiad hwn ei adolygu.",
     "para2Iba": "Profwyd y wefan hon ddiwethaf ar 19 Rhagfyr 2024. Cynhaliwyd y profion gan dîm profi hygyrchedd mewnol GLlTEF, a gynhaliodd adolygiad lefel uwch gan ddefnyddio Wave, Keyboard a Google Lighthouse."
   }
 }
