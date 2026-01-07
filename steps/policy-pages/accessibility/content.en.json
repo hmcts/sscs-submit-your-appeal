@@ -22,7 +22,7 @@
   },
   "howAccessible": {
     "title": "How accessible this website is",
-    "para1": "The website has been tested by the Digital Accessibility Centre (DAC) and it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines V2.1, using a combination of technical auditing and feedback from users with accessibility needs. Except where stated below, all issues and recommendations from DAC have been implemented.",
+    "para1": "Parts of this website are not fully compliant. This website is periodically tested for accessibility by the Digital Accessibility Centre (DAC), to ensure it meets the required level of accessibility for compliance with the Web Content Accessibility Guidelines, using a combination of technical auditing and feedback from users with accessibility needs. The latest accessibility audit, undertaken by the DAC, has identified parts of this website which are not fully compliant. All issues and recommendations within the DAC report are being addressed.",
     "para1Iba": "We know some parts of this service are not accessible, and the issues are listed under Non-compliances. We plan to carry out further testing and address the issues as soon as we can."
   },
   "telephone": {
@@ -82,7 +82,7 @@
   },
   "compliance": {
     "title": "Compliance status",
-    "para1": "The website is fully compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>.",
+    "para1": "This website is partially compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG21/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.1 AA standard</a>.",
     "para1Iba": "The website is partially compliant with the <a class=\"govuk-link\" href=\"https://www.w3.org/TR/WCAG22/\" target=\"_blank\">Web Content Accessibility Guidelines version 2.2 AA standard</a>."
   },
   "nonAccessible": {
@@ -107,15 +107,15 @@
   },
   "toImprove": {
     "title": "What we’re doing to improve accessibility",
-    "para1": "This website is continually tested using accessibility software internally and externally. Any new features which are introduced are also tested.",
+    "para1": "This website is continually tested using accessibility software internally and externally. Any new features which are introduced are also tested. Following the audit conducted by the DAC in September 2023, we are urgently fixing content which fails to meet the Web Content Accessibility Guidelines AA standard.",
     "para1Iba": "We plan to fix the issues listed under non-compliances by 21 March 2025.",
     "para2Iba": "We also plan to work with the internal HMCTS accessibility testing team to arrange a full WCAG 2.2 audit covering a wider range of assistive technologies in February 2025."
   },
   "preperation": {
     "title": "Preparation of this accessibility statement",
-    "para1": "This statement was prepared on 30th September 2020 it was last reviewed 21st March 2022.",
-    "para1Iba": "This statement was prepared on 30th September 2020 and it was last reviewed on 21 January 2025.",
-    "para2": "This website was last tested on 28th November 2019. The test was carried out by the Digital Accessibility Centre (DAC) Issues raised by the DAC were resolved in March 2021.",
+    "para1": "This statement was originally prepared on 30th September 2020. It was last reviewed 5th December 2025.",
+    "para1Iba": "This statement was prepared on 30th September 2020 and it was last reviewed on 5th December 2025.",
+    "para2": "This website was last tested on 15th August 2025. The test was carried out by the Digital Accessibility Centre (DAC). Issues are currently being resolved, after which this statement will be revised.",
     "para2Iba": "This website was last tested on 19th December 2024. The testing was carried out by the internal HMCTS accessibility testing team, who carried out a high-level review using Wave, Keyboard and Google Lighthouse."
   }
 }

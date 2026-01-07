@@ -94,7 +94,7 @@
     "info4": "sut rydym yn sicrhau bod yr wybodaeth sydd gennym yn gywir ac yn gyfredol",
     "contactOfficer": "Gallwch gysylltu â swyddog diogelu data’r MoJ drwy:",
     "contact1": "ysgrifennu atom yn: Post point 10.38, 102 Petty France, Llundain SW1H 9AJ",
-    "contact2": "anfon neges e-bost i: privacy@justice.gov.uk"
+    "contact2": "anfon neges e-bost i: DataProtection@justice.gov.uk"
   },
   "complain": {
     "title": "Sut i wneud cwyn",
@@ -104,7 +104,7 @@
       "personalData": "os ydych eisiau cwyno am sut rydym wedi trin eich data personol."
     },
     "write": "Ysgrifennwch i: Post point 10.38, 102 Petty France, Llundain SW1H 9AJ",
-    "email": "Anfonwch neges e-bost i: privacy@justice.gov.uk",
+    "email": "Anfonwch neges e-bost i: DataProtection@justice.gov.uk",
     "commissioner": {
       "canAlso": "Gallwch hefyd gyflwyno cwyn i",
       "link": "Swyddfa’r Comisiynydd Gwybodaeth",
