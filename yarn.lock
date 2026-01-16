@@ -6409,13 +6409,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"govuk_template_jinja@npm:^0.26.0":
-  version: 0.26.0
-  resolution: "govuk_template_jinja@npm:0.26.0"
-  checksum: 10/8d32fe5149f8eff6c64ee2608e04257f7de646f93c2b818a87a672072418e4c67574d7a2fc1c639325007a8cf50cb21d1c096a100e9ecbd422c92f0906e32906
-  languageName: node
-  linkType: hard
-
 "graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2":
   version: 4.2.6
   resolution: "graceful-fs@npm:4.2.6"
@@ -11058,7 +11051,6 @@ __metadata:
     fs: "npm:^0.0.1-security"
     globals: "npm:^16.1.0"
     govuk-frontend: "npm:^5.10.1"
-    govuk_template_jinja: "npm:^0.26.0"
     graceful-fs: "npm:^4.2.11"
     gulp: "npm:^5.0.0"
     gulp-cli: "npm:^3.0.0"

@@ -77,7 +77,6 @@
     "formidable": "^3.5.4",
     "globals": "^16.1.0",
     "govuk-frontend": "^5.10.1",
-    "govuk_template_jinja": "^0.26.0",
     "graceful-fs": "^4.2.11",
     "helmet": "^8.1.0",
     "html-entities": "^2.6.0",
