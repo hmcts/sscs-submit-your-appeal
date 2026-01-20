@@ -2245,6 +2245,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@isaacs/fs-minipass@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "@isaacs/fs-minipass@npm:4.0.1"
+  dependencies:
+    minipass: "npm:^7.0.4"
+  checksum: 10/4412e9e6713c89c1e66d80bb0bb5a2a93192f10477623a27d08f228ba0316bb880affabc5bfe7f838f58a34d26c2c190da726e576cdfc18c49a72e89adabdcf5
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -2830,23 +2839,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sinonjs/fake-timers@npm:^13.0.5":
-  version: 13.0.5
-  resolution: "@sinonjs/fake-timers@npm:13.0.5"
+"@sinonjs/fake-timers@npm:^15.1.0":
+  version: 15.1.0
+  resolution: "@sinonjs/fake-timers@npm:15.1.0"
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
-  checksum: 10/11ee417968fc4dce1896ab332ac13f353866075a9d2a88ed1f6258f17cc4f7d93e66031b51fcddb8c203aa4d53fd980b0ae18aba06269f4682164878a992ec3f
+  checksum: 10/f675a7c8d5f48aba52de57e3ddccb3c0b9346d11e15e8994f6293942c7ea54a7182b485f7c3078106fef0feef1e5b289d00aa00ef0dddadf3f91e9c8f338e8e8
   languageName: node
   linkType: hard
 
-"@sinonjs/samsam@npm:^8.0.1":
-  version: 8.0.2
-  resolution: "@sinonjs/samsam@npm:8.0.2"
+"@sinonjs/samsam@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "@sinonjs/samsam@npm:8.0.3"
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
-    lodash.get: "npm:^4.4.2"
     type-detect: "npm:^4.1.0"
-  checksum: 10/58ca9752e8e835a09ed275f8edf8da2720fe95c0c02f6bcb90ad7f86fdceb393f35f744194b705dd94216228646ec0aedbb814e245eb869b940dcf1266b7a533
+  checksum: 10/af95fba2bcc4502ec2fd60cca568b89f0a4c21ef78c256fdf38bc2ce248f28f9001c63ce6e0aacdfcac8c6239ca8714b050560878a491af7b4836dce2451ff81
   languageName: node
   linkType: hard
 
@@ -4166,6 +4174,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chownr@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "chownr@npm:3.0.0"
+  checksum: 10/b63cb1f73d171d140a2ed8154ee6566c8ab775d3196b0e03a2a94b5f6a0ce7777ee5685ca56849403c8d17bd457a6540672f9a60696a6137c7a409097495b82c
+  languageName: node
+  linkType: hard
+
 "chrome-trace-event@npm:^1.0.2":
   version: 1.0.3
   resolution: "chrome-trace-event@npm:1.0.3"
@@ -5075,6 +5090,13 @@ __metadata:
   version: 7.0.0
   resolution: "diff@npm:7.0.0"
   checksum: 10/e9b8e48d054c9c0c093c65ce8e2637af94b35f2427001607b14e5e0589e534ea3413a7f91ebe6d7c5a1494ace49cb7c7c3972f442ddd96a4767ff091999a082e
+  languageName: node
+  linkType: hard
+
+"diff@npm:^8.0.2":
+  version: 8.0.3
+  resolution: "diff@npm:8.0.3"
+  checksum: 10/52f957e1fa53db4616ff5f4811b92b22b97a160c12a2f86f22debd4181227b0f6751aa8fd711d6a8fcf4618acb13b86bc702e6d9d6d6ed82acfd00c9cb26ace2
   languageName: node
   linkType: hard
 
@@ -6019,7 +6041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-minipass@npm:^2.0.0, fs-minipass@npm:^2.1.0":
+"fs-minipass@npm:^2.1.0":
   version: 2.1.0
   resolution: "fs-minipass@npm:2.1.0"
   dependencies:
@@ -7700,13 +7722,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.get@npm:^4.4.2":
-  version: 4.4.2
-  resolution: "lodash.get@npm:4.4.2"
-  checksum: 10/2a4925f6e89bc2c010a77a802d1ba357e17ed1ea03c2ddf6a146429f2856a216663e694a6aa3549a318cbbba3fd8b7decb392db457e6ac0b83dc745ed0a17380
-  languageName: node
-  linkType: hard
-
 "lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -8163,21 +8178,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipass@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "minipass@npm:5.0.0"
-  checksum: 10/61682162d29f45d3152b78b08bab7fb32ca10899bc5991ffe98afc18c9e9543bd1e3be94f8b8373ba6262497db63607079dc242ea62e43e7b2270837b7347c93
-  languageName: node
-  linkType: hard
-
-"minipass@npm:^5.0.0 || ^6.0.2 || ^7.0.0, minipass@npm:^7.1.2":
+"minipass@npm:^5.0.0 || ^6.0.2 || ^7.0.0, minipass@npm:^7.0.4, minipass@npm:^7.1.2":
   version: 7.1.2
   resolution: "minipass@npm:7.1.2"
   checksum: 10/c25f0ee8196d8e6036661104bacd743785b2599a21de5c516b32b3fa2b83113ac89a2358465bc04956baab37ffb956ae43be679b2262bf7be15fce467ccd7950
   languageName: node
   linkType: hard
 
-"minizlib@npm:^2.1.1, minizlib@npm:^2.1.2":
+"minizlib@npm:^2.1.2":
   version: 2.1.2
   resolution: "minizlib@npm:2.1.2"
   dependencies:
@@ -8187,7 +8195,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:^1.0.3, mkdirp@npm:^1.0.4":
+"minizlib@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "minizlib@npm:3.1.0"
+  dependencies:
+    minipass: "npm:^7.1.2"
+  checksum: 10/f47365cc2cb7f078cbe7e046eb52655e2e7e97f8c0a9a674f4da60d94fb0624edfcec9b5db32e8ba5a99a5f036f595680ae6fe02a262beaa73026e505cc52f99
+  languageName: node
+  linkType: hard
+
+"mkdirp@npm:^1.0.4":
   version: 1.0.4
   resolution: "mkdirp@npm:1.0.4"
   bin:
@@ -10590,15 +10607,15 @@ __metadata:
   linkType: hard
 
 "sinon@npm:^21.0.0":
-  version: 21.0.0
-  resolution: "sinon@npm:21.0.0"
+  version: 21.0.1
+  resolution: "sinon@npm:21.0.1"
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
-    "@sinonjs/fake-timers": "npm:^13.0.5"
-    "@sinonjs/samsam": "npm:^8.0.1"
-    diff: "npm:^7.0.0"
+    "@sinonjs/fake-timers": "npm:^15.1.0"
+    "@sinonjs/samsam": "npm:^8.0.3"
+    diff: "npm:^8.0.2"
     supports-color: "npm:^7.2.0"
-  checksum: 10/b460e1cde56fa34ecbebc216522667fa3985444020dc70508177f85d127e6b9a27184c4b3146c575b30ec3091bde508b1373fad306b1e808037a37035e62065d
+  checksum: 10/b7cc06de384a964636ccdfca56ec0d3d7288608c41ffe1654222ac6de9a40f87df1ddc546abff8684e998d0bf0b152ac1f600fe8d99b31a351725ac37ca5b9a0
   languageName: node
   linkType: hard
 
@@ -11114,17 +11131,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^6.1.11, tar@npm:^6.1.2":
-  version: 6.2.1
-  resolution: "tar@npm:6.2.1"
+"tar@npm:^7.5.3":
+  version: 7.5.4
+  resolution: "tar@npm:7.5.4"
   dependencies:
-    chownr: "npm:^2.0.0"
-    fs-minipass: "npm:^2.0.0"
-    minipass: "npm:^5.0.0"
-    minizlib: "npm:^2.1.1"
-    mkdirp: "npm:^1.0.3"
-    yallist: "npm:^4.0.0"
-  checksum: 10/bfbfbb2861888077fc1130b84029cdc2721efb93d1d1fb80f22a7ac3a98ec6f8972f29e564103bbebf5e97be67ebc356d37fa48dbc4960600a1eb7230fbd1ea0
+    "@isaacs/fs-minipass": "npm:^4.0.0"
+    chownr: "npm:^3.0.0"
+    minipass: "npm:^7.1.2"
+    minizlib: "npm:^3.1.0"
+    yallist: "npm:^5.0.0"
+  checksum: 10/c6a2b93a1417220de5ac613eb87b46a75e85817952b8198b5b98b26158276134267a348d9d579332cc59188e5131215fc3831022e5b06d43ccbbf10eef5daee3
   languageName: node
   linkType: hard
 
@@ -12098,6 +12114,13 @@ __metadata:
   version: 4.0.0
   resolution: "yallist@npm:4.0.0"
   checksum: 10/4cb02b42b8a93b5cf50caf5d8e9beb409400a8a4d85e83bb0685c1457e9ac0b7a00819e9f5991ac25ffabb56a78e2f017c1acc010b3a1babfe6de690ba531abd
+  languageName: node
+  linkType: hard
+
+"yallist@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "yallist@npm:5.0.0"
+  checksum: 10/1884d272d485845ad04759a255c71775db0fac56308764b4c77ea56a20d56679fad340213054c8c9c9c26fcfd4c4b2a90df993b7e0aaf3cdb73c618d1d1a802a
   languageName: node
   linkType: hard
 
