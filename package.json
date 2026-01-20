@@ -151,7 +151,8 @@
     "superagent": "^10.3.0",
     "express-session": "^1.18.2",
     "form-data": "^4.0.4",
-    "js-yaml": "^4.1.1"
+    "js-yaml": "^4.1.1",
+    "tar": "^7.5.3"
   },
   "packageManager": "yarn@4.10.0"
 }
