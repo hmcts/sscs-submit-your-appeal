@@ -16,10 +16,7 @@
     {% if content.phaseBar.phase !== 'LIVE' %}
         {% set html %}
             {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) | safe }}
-
-            {% if featureToggles.welsh() == "true" %}
-                {{ content.phaseBar.languageToggle | safe }}
-            {% endif %}
+            <a href="{{ content.phaseBar.languageToggle.link }}" class="govuk-link language">{{ content.phaseBar.languageToggle.text }}</a>
         {% endset %}
 
         {{ govukPhaseBanner({
