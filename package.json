@@ -97,7 +97,7 @@
     "prettier-plugin-jinja-template": "^2.1.0",
     "redis": "^4.7.1",
     "require-directory": "^2.1.1",
-    "sass": "^1.88.0",
+    "sass": "^1.93.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "superagent": "^10.3.0",
