@@ -76,7 +76,7 @@
     "express-nunjucks": "^3.1.2",
     "formidable": "^3.5.4",
     "globals": "^16.1.0",
-    "govuk-frontend": "^5.10.1",
+    "govuk-frontend": "^5.14.0",
     "graceful-fs": "^4.2.11",
     "helmet": "^8.1.0",
     "html-entities": "^2.6.0",
@@ -104,9 +104,9 @@
     "superagent-csrf": "^1.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "uuid": "^11.1.0",
-    "webpack": "^5.99.9",
+    "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-middleware": "^7.4.2",
+    "webpack-dev-middleware": "^7.4.5",
     "webpack-merge": "^6.0.1"
   },
   "devDependencies": {
