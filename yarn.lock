@@ -10215,7 +10215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:^16.0.5":
+"sass-loader@npm:^16.0.6":
   version: 16.0.6
   resolution: "sass-loader@npm:16.0.6"
   dependencies:
@@ -10241,9 +10241,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.88.0":
-  version: 1.92.1
-  resolution: "sass@npm:1.92.1"
+"sass@npm:^1.93.2":
+  version: 1.97.3
+  resolution: "sass@npm:1.97.3"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
@@ -10254,7 +10254,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/ded47fd238d20a826bf3c5d129b4849100abae6fafe525a082d936b5793d7fd59a914134a302f0a6780efb5b26fdc2d1f1bfa37d8a9302ba632cad5e67675eec
+  checksum: 10/707ef8e525ed32d375e737346140d4b675f44de208df996c2df3407f5e62f3f38226ea1faf41a9fd4b068201e67b3a7e152b9e9c3b098daa847dd480c735f038
   languageName: node
   linkType: hard
 
@@ -11042,8 +11042,8 @@ __metadata:
     redis: "npm:^4.7.1"
     require-directory: "npm:^2.1.1"
     rewire: "npm:^9.0.0"
-    sass: "npm:^1.88.0"
-    sass-loader: "npm:^16.0.5"
+    sass: "npm:^1.93.2"
+    sass-loader: "npm:^16.0.6"
     sinon: "npm:^21.0.0"
     sinon-chai: "npm:^3.7.0"
     style-loader: "npm:^4.0.0"
