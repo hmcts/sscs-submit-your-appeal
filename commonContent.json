@@ -18,7 +18,10 @@
     "phaseBar": {
       "phase": "Beta",
       "feedback": "This is a new service – your <a aria-label=\"Feedback: This link will open in a new tab. You&rsquo;ll need to return to this tab to continue with your application.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">feedback</a> will help us to improve it.",
-      "languageToggle": "<a href=\"?lng=cy\" class=\"govuk-link language\">Cymraeg</a>"
+      "languageToggle": {
+        "text": "Cymraeg",
+        "link": "?lng=cy"
+      }
     },
     "footer": {
       "contactUs": "Contact us",
@@ -170,7 +173,10 @@
     "phaseBar": {
       "phase": "Beta",
       "feedback": "Mae hwn yn wasanaeth newydd - bydd eich <a aria-label=\"Adborth: Bydd y ddolen hon yn agor mewn ffenestr newydd. Bydd angen ichi ddychwelyd i&rsquo;r ffenestr hon i barhau gyda&rsquo;ch cais.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">adborth</a> yn ein helpu ni i&rsquo;w wella.",
-      "languageToggle": "<a href=\"?lng=en\" class=\"govuk-link language\">English</a>"
+      "languageToggle": {
+        "text": "English",
+        "link": "?lng=en"
+      }
     },
     "footer": {
       "contactUs": "Cysylltu &acirc; ni",
