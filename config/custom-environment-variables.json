@@ -105,9 +105,6 @@
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
     },
-    "cookieBanner": {
-      "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
-    },
     "webchatOpen8to5" : {
       "enabled": "WEBCHAT_OPENING_TIME_8_5"
     },
