@@ -42,7 +42,8 @@
     "fortifyScan": "./test/java/gradlew -p test/java fortifyScan",
     "mock-uploader": "node test/file_acceptor/evidence_uploader.js",
     "mock-ccd": "node mocks/ccd/server.js",
-    "format-code": "prettier --write ."
+    "format-code": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@babel/core": "^7.27.1",
@@ -119,6 +120,7 @@
     "fs": "^0.0.1-security",
     "gulp": "^5.0.0",
     "gulp-cli": "^3.0.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "mocha": "^11.4.0",
     "nock": "^14.0.4",
