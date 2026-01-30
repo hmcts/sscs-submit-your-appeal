@@ -45,6 +45,19 @@
     "format-code": "prettier --write .",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "test/**/*.{js,ts,jsx,tsx}": [
+      "prettier --write",
+      "cross-env NODE_PATH=. eslint --fix -c test/eslint.config.mjs"
+    ],
+    "!(test)/**/*.{js,ts,jsx,tsx}": [
+      "prettier --write",
+      "cross-env NODE_PATH=. eslint --fix"
+    ],
+    "*.{json,md,yml,css,scss}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.27.2",
@@ -122,6 +135,7 @@
     "gulp-cli": "^3.0.0",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.2.7",
     "mocha": "^11.4.0",
     "nock": "^14.0.4",
     "nodemon": "^3.1.10",
