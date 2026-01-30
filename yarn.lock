@@ -4523,11 +4523,11 @@ __metadata:
   linkType: hard
 
 "config@npm:^4.0.0":
-  version: 4.1.1
-  resolution: "config@npm:4.1.1"
+  version: 4.2.0
+  resolution: "config@npm:4.2.0"
   dependencies:
     json5: "npm:^2.2.3"
-  checksum: 10/46bbe8cf10c063b0971383f6d8472fca5790a9a296252a75503cefba018011b7b36b2f1d1289e9b027963caee80db3bf26790e803fb29f24f1118e257cdf1c3a
+  checksum: 10/54cff89fd343d34dd4e59b0fc9163bffb13687d0ab7537b8d8c60e4466fd21ed6e9bd10c0b290f68fa52a1230747d3382600cdc930ac99f16b566b647fc89212
   languageName: node
   linkType: hard
 
