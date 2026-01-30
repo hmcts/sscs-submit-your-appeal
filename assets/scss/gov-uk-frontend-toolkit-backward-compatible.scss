@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 /* Hide for both screenreaders and browsers */
 .hidden,
 .js-enabled .js-hidden {

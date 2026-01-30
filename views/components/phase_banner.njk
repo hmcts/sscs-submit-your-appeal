@@ -18,7 +18,7 @@
             {{ content.phaseBar.feedback | replace('{{smartSurveyFeedbackUrl}}', urlPath) | safe }}
 
             {% if featureToggles.welsh() == "true" %}
-                {{ content.phaseBar.languageToggle | safe }}
+                <a href="{{ content.phaseBar.languageToggle.link }}" class="govuk-link language">{{ content.phaseBar.languageToggle.text }}</a>
             {% endif %}
         {% endset %}
 

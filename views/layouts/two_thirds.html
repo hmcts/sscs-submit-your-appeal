@@ -15,13 +15,9 @@
 
 {% block header %}
 
-{% if featureToggles.cookieBanner() == "true" %}
-  <div>
-    {% include "../../cookie-banner/cookie-banner.njk" %}
-  </div>
-{% else %}
-  {% include "components/cookie-banner.html" %}
-{% endif %}
+<div>
+  {% include "../../cookie-banner/cookie-banner.njk" %}
+</div>
 
 {% include "components/navigation.html" %}
 {% endblock %}

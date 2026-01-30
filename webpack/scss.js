@@ -16,7 +16,7 @@ module.exports = {
         {
           loader: MiniCssExtractPlugin.loader,
           options: {
-            esModule: true
+            esModule: false
           }
         },
         {
@@ -28,6 +28,7 @@ module.exports = {
         {
           loader: 'sass-loader',
           options: {
+            implementation: require('sass'),
             sassOptions: {
               quietDeps: true
             }

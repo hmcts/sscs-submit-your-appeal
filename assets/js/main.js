@@ -2,7 +2,7 @@ import * as $ from 'jquery';
 import './polyfill/array-from';
 import { remove } from 'lodash-es';
 import './cookie';
-import { frontend, redis } from '../../config/default';
+import config from '../../config/default';
 import { ShowHideContent } from './show-hide-content';
 import InactivityAlert from './inactivity-alert';
 import accessibleAutocomplete from 'accessible-autocomplete';
@@ -178,7 +178,7 @@ $(document).ready(() => {
   const language = $('html').attr('lang');
   initShowHideContent();
   initAutocomplete();
-  initTM(redis.timeout, frontend.inactivityAlert);
+  initTM(config.redis.timeout, config.frontend.inactivityAlert);
   initDatePicker(language);
   initEvidenceUpload();
   initAddReason();
