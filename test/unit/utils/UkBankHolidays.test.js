@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const moment = require('moment');
 const UkBankHolidays = require('utils/UkBankHolidays');
+const config = require('config');
 
 describe('UkBankHolidays Utility', () => {
   let ukBankHolidays = null;
@@ -57,8 +58,7 @@ describe('UkBankHolidays Utility', () => {
     await ukBankHolidays.load();
 
     expect(fetchStub.calledOnce).to.be.true;
-    expect(fetchStub.calledWith('https://www.gov.uk/bank-holidays.json')).to.be
-      .true;
+    expect(fetchStub.calledWith(config.get('api.bankHolidaysUrl'))).to.be.true;
   });
 
   it('should correctly identify a bank holiday from a DD-MM-YYYY string', async() => {

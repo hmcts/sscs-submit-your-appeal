@@ -1,11 +1,12 @@
 const moment = require('moment');
 const logger = require('logger');
+const config = require('config');
 
 let bankHolidaysCache = null;
 let lastFetchTime = 0;
 /* eslint-disable no-magic-numbers */
 const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
-const GOV_UK_URL = 'https://www.gov.uk/bank-holidays.json';
+const GOV_UK_URL = config.get('api.bankHolidaysUrl');
 
 class UkBankHolidays {
   constructor(divisions) {
