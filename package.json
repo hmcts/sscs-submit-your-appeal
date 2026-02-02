@@ -164,7 +164,8 @@
     "js-yaml": "^4.1.1",
     "tar": "^7.5.7",
     "lodash": "^4.17.23",
-    "body-parser": "^1.20.4"
+    "body-parser": "^1.20.4",
+    "cross-spawn": "^7.0.6"
   },
   "packageManager": "yarn@4.10.0"
 }
