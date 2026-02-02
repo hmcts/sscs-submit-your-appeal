@@ -68,7 +68,6 @@
     "@hmcts/nodejs-healthcheck": "^1.8.6",
     "@hmcts/one-per-page": "^5.4.0",
     "@hmcts/properties-volume": "^1.2.0",
-    "@hmcts/uk-bank-holidays": "^1.0.2",
     "accessible-autocomplete": "^3.0.1",
     "applicationinsights": "^2.9.7",
     "babel-loader": "^10.0.0",
