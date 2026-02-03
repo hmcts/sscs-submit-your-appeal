@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 #date-picker-content {
   display: none;
 }
@@ -17,7 +19,7 @@
           th {
             text-align: center;
             padding: 0.63158em 1.05263em 0.47368em 0;
-            @extend .govuk-body;
+            @extend %govuk-body-m;
             @extend .govuk-\!-font-weight-bold;
             &.dow {
               padding-right: 0;
