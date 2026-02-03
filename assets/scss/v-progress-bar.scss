@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 @mixin v-progress-bar {
   @media screen and (max-width: 400px) {
     margin: 20px 0;
