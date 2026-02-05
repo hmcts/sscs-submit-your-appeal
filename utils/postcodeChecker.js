@@ -15,8 +15,14 @@ const allowedRegionCentres = config
 const northernIrelandPostcodeStart = 'bt';
 const httpRetries = 3;
 
-const postcodeChecker = (postcode, allowUnknownPostcodes = false, isIba = false) => {
-  const isNiPostcode = postcode.toLocaleLowerCase().startsWith(northernIrelandPostcodeStart);
+const postcodeChecker = (
+  postcode,
+  allowUnknownPostcodes = false,
+  isIba = false
+) => {
+  const isNiPostcode = postcode
+    .toLocaleLowerCase()
+    .startsWith(northernIrelandPostcodeStart);
   if (isNiPostcode && (!allowNI || !isIba)) {
     return Promise.resolve(false);
   }
@@ -49,6 +55,22 @@ const postcodeChecker = (postcode, allowUnknownPostcodes = false, isIba = false)
         }
       })
       .catch(error => {
+        // If the postcode country lookup service is unreachable (e.g. ECONNREFUSED)
+        // treat it as a soft failure and resolve to the configured fallback
+        // (allowUnknownPostcodes). This avoids bubbling connection errors as a
+        // 500 to users when an external service is down.
+        try {
+          const errCode = error && (error.code || error.errno);
+          if (errCode === 'ECONNREFUSED' || errCode === -61) {
+            logger.trace(
+              `PostcodeChecker: service unreachable (${JSON.stringify(error)}). Falling back to allowUnknownPostcodes=${allowUnknownPostcodes}`
+            );
+            resolve(allowUnknownPostcodes);
+            return;
+          }
+        } catch (e) {
+          // ignore logging errors
+        }
         logger.exception(JSON.stringify(error));
         reject(error);
       });

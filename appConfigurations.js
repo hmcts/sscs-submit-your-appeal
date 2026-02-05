@@ -78,8 +78,8 @@ const configureNunjucks = (app, commonContent) =>
       webChatUrl: webChatBaseUrl,
       kerv: {
         deploymentId: {
-            en: config.get('services.kerv.deploymentId.en'),
-            cy: config.get('services.kerv.deploymentId.cy')
+          en: config.get('services.kerv.deploymentId.en'),
+          cy: config.get('services.kerv.deploymentId.cy')
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
         environment: config.get('services.kerv.environment'),
@@ -147,7 +147,7 @@ const configureHelmet = app => {
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
         'https://js-cdn.dynatrace.com',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js',
-        'https://apps.euw2.pure.cloud/',
+        'https://apps.euw2.pure.cloud/'
       ],
       connectSrc: [
         '\'self\'',

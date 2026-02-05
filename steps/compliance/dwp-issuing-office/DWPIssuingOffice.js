@@ -27,8 +27,14 @@ class DWPIssuingOffice extends SaveToDraftStore {
   }
 
   static selectify(ar) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return ar.map(el => {
       if (el === 'Recovery from Estates') {

@@ -14,7 +14,7 @@ describe('language-preference.js', () => {
   let languagePreferenceToggle;
   let $;
 
-  before(done => {
+  before((done) => {
     const jsdom = new JSDOM(`
       <html>
         <body>
@@ -29,7 +29,8 @@ describe('language-preference.js', () => {
     global.window = window;
     global.document = document;
     $ = global.jQuery = jQuery(window);
-    LanguagePreferenceToggle = require('../../assets/js/language-preference').default;
+    LanguagePreferenceToggle =
+      require('../../assets/js/language-preference').default;
     languagePreferenceToggle = new LanguagePreferenceToggle();
     done();
   });
@@ -45,7 +46,9 @@ describe('language-preference.js', () => {
   });
 
   it('should return true for startLanguagePreferenceToggle when pathname is /language-preference', () => {
-    const { window } = new JSDOM('', { url: 'http://localhost/language-preference' });
+    const { window } = new JSDOM('', {
+      url: 'http://localhost/language-preference'
+    });
     global.window = window;
     const result = LanguagePreferenceToggle.startLanguagePreferenceToggle();
     expect(result).to.be.true;

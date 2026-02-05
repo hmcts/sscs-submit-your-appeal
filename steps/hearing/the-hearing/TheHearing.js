@@ -19,7 +19,9 @@ class TheHearing extends SaveToDraftStore {
     return form({
       attendHearing: text.joi(
         this.content.fields.attendHearing.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

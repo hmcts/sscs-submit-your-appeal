@@ -29,8 +29,13 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   get addAnotherLinkContent() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0 ?
@@ -77,8 +82,13 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   validateList(list) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return list.check(content.listError, arr => arr.length > 0);
   }

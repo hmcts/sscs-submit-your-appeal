@@ -31,8 +31,14 @@ class Controller {
   }
 
   schemaBuilder(fields) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    // Ensure we always have a sensible language value and use the safe helper
+    const sessionLanguage = i18next.language || 'en';
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     if (this.isManualSession()) {
       this.manualFields();
@@ -284,11 +290,16 @@ class Controller {
 
   // eslint-disable-next-line complexity
   async init(callBack) {
-    const sessionLanguage = i18next.language;
+    const sessionLanguage = i18next.language || 'en';
 
     const req = this.page.req;
-    const content = require(
-      `./content${isIba(req) ? 'Iba' : ''}.${sessionLanguage}`
+
+    const requireContent = require('utils/requireContent');
+
+    // load the base content (will fall back to en if necessary)
+    const content = requireContent.requireLocalized(
+      `./content${isIba(req) ? 'Iba' : ''}`,
+      sessionLanguage
     );
 
     const page = this.page;

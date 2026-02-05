@@ -111,8 +111,14 @@ class HearingOptions extends SaveToDraftStore {
 
   get cyaOptions() {
     const selectOptions = this.fields.selectOptions.value;
-    const sessionLanguage = i18next.language;
-    const cyaContent = require(`./content.${sessionLanguage}`).cya;
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const cyaContent = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    ).cya;
 
     const setRequestedOrNotRequested = value =>
       (value ? cyaContent.requested : cyaContent.notRequested);

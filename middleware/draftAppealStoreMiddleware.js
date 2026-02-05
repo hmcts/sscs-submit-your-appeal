@@ -80,18 +80,38 @@ const parseErrorResponse = error => {
 
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
-    if (journey.values) {
+    // If `values` is explicitly present and set to null, do nothing.
+    if (
+      Object.prototype.hasOwnProperty.call(journey, 'values') &&
+      journey.values === null
+    ) {
+      return;
+    }
+    // Read journey.values in a try/catch — if it throws, we log and do nothing.
+    const vals = journey.values;
+    // Only proceed if values is truthy (non-null / non-undefined)
+    if (vals) {
       const allVisitedSteps = [...journey.visitedSteps];
       // filter valid visitedsteps.
       journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-      // use only valid steps.
+      // use only valid steps. Call the provided callback in a guarded try/catch to
+      // ensure any errors inside it don't escape this function.
       if (typeof callBack === 'function') {
-        callBack();
+        try {
+          callBack();
+        } catch (cbErr) {
+          logger.trace(
+            `removeRevertInvalidSteps callback threw: ${
+              cbErr && cbErr.message
+            }`,
+            logPath
+          );
+        }
       }
       // Revert visitedsteps back to initial state.
       journey.visitedSteps = allVisitedSteps;
     }
-  } catch {
+  } catch (e) {
     logger.trace(
       'removeRevertInvalidSteps invalid steps, or callback function',
       logPath
@@ -105,6 +125,22 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
       `${maskNino(get(values, 'appellant.nino'))}`,
     logPath
   );
+  try {
+    // If the backend is unreachable (connection refused), prefer to log and
+    // continue the user's journey rather than presenting a 500 page.
+    const errCode = error && (error.code || error.errno);
+    if (errCode === 'ECONNREFUSED' || errCode === -61) {
+      logger.trace(
+        `Draft store unreachable (${JSON.stringify(error)}). Continuing without failing the user.`,
+        logPath
+      );
+      next();
+      return;
+    }
+  } catch (e) {
+    // ignore errors while inspecting the error
+  }
+
   logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);

@@ -19,7 +19,9 @@ class LanguagePreference extends SaveToDraftStore {
     return form({
       languagePreferenceWelsh: text.joi(
         this.content.fields.languagePreferenceWelsh.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

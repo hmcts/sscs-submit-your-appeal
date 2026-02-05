@@ -8,7 +8,8 @@ async function selectAreYouProvidingEvidenceAndContinue(
   commonContent,
   option
 ) {
-  const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
+  const evidenceUploadContent =
+    language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
   await expect(I.getByText(evidenceUploadContent.title).first()).toBeVisible();
   await I.locator(option).check();
@@ -21,7 +22,8 @@ async function selectAreYouProvidingEvidenceAfterSignIn(
   commonContent,
   option
 ) {
-  const evidenceUploadContent = language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
+  const evidenceUploadContent =
+    language === 'en' ? evidenceUploadContentEn : evidenceUploadContentCy;
 
   await expect(I.getByText(evidenceUploadContent.title).first()).toBeVisible();
   await I.locator(option).check();

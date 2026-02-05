@@ -33,7 +33,9 @@ class RepresentativeInMainlandUk extends SaveToDraftStore {
         allowNI ?
           this.content.fields.inMainlandUk.errors.requiredNI :
           this.content.fields.inMainlandUk.errors.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

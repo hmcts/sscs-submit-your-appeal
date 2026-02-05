@@ -8,7 +8,10 @@ async function enterAnythingElseAndContinue(
   commonContent,
   anythingElse
 ) {
-  const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
+  const otherReasonForAppealingContent =
+    language === 'en'
+      ? otherReasonForAppealingContentEn
+      : otherReasonForAppealingContentCy;
 
   await expect(
     I.getByText(otherReasonForAppealingContent.title).first()
@@ -23,7 +26,10 @@ async function enterAnythingElseAfterSignIn(
   commonContent,
   anythingElse
 ) {
-  const otherReasonForAppealingContent = language === 'en' ? otherReasonForAppealingContentEn : otherReasonForAppealingContentCy;
+  const otherReasonForAppealingContent =
+    language === 'en'
+      ? otherReasonForAppealingContentEn
+      : otherReasonForAppealingContentCy;
 
   await expect(
     I.getByText(otherReasonForAppealingContent.title).first()

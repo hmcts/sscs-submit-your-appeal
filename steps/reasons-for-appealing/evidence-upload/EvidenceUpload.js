@@ -4,7 +4,6 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const {
   SaveToDraftStoreAddAnother
@@ -225,7 +224,10 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         const response = await request
           .post(uploadEvidenceUrl)
           .attach('file', pathToFile)
-          .field('formData', JSON.stringify({ file: fs.createReadStream(pathToFile) }));
+          .field(
+            'formData',
+            JSON.stringify({ file: fs.createReadStream(pathToFile) })
+          );
 
         const b = response.body;
         if (b && b.documents) {
@@ -281,8 +283,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   get field() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return object({
       uploadEv: text
@@ -344,8 +352,14 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   validateList(list) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return list.check(content.noItemsError, arr => arr.length > 0);
   }

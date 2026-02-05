@@ -5,31 +5,34 @@ const Joi = require('joi');
 
 function string() {
   return {
-    validateAddressList: page => Joi.string().custom((value, helpers) => {
-      try {
-        const req = page.req;
-        const requestType =
+    /* eslint-disable complexity */
+    validateAddressList: page =>
+      Joi.string().custom((value, helpers) => {
+        try {
+          const req = page.req;
+          const requestType =
             req && req.body && req.body.submitType ? req.body.submitType : '';
-        const method = req && req.method;
+          const method = req && req.method;
 
-        // If any of the allowed conditions are true, accept the value
-        if (
-          requestType === 'lookup' ||
+          // If any of the allowed conditions are true, accept the value
+          if (
+            requestType === 'lookup' ||
             requestType === 'addressSelection' ||
             method === 'GET' ||
             (page.fields &&
               page.fields.postcodeAddress &&
               page.fields.postcodeAddress.validate())
-        ) {
-          return value;
-        }
+          ) {
+            return value;
+          }
 
-        // Return an error (use generic invalid key)
-        return helpers.error('any.invalid');
-      } catch (err) {
-        return helpers.error('any.invalid');
-      }
-    })
+          // Return an error (use generic invalid key)
+          return helpers.error('any.invalid');
+        } catch (err) {
+          return helpers.error('any.invalid');
+        }
+      })
+    /* eslint-enable complexity */
   };
 }
 

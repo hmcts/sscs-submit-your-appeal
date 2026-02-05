@@ -3,10 +3,16 @@
 const i18next = require('i18next');
 
 const setCYAValue = (arrangementValue, hiddenFieldValue) => {
-  const sessionLanguage = i18next.language;
-  const cyaContent = require(`./content.${sessionLanguage}`).cya;
+  const sessionLanguage = i18next.language || 'en';
 
-  let cyaValue = null;
+  const requireContent = require('utils/requireContent');
+
+  const cyaContent = requireContent.requireLocalized(
+    './content',
+    sessionLanguage
+  ).cya;
+
+  let cyaValue;
 
   if (
     arrangementValue === cyaContent.requested &&

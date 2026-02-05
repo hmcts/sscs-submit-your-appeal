@@ -1,5 +1,3 @@
-
-
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');
@@ -97,7 +95,8 @@ describe('OtherReasonForAppealing.js', () => {
       });
 
       it("should set the answer index as Not Required when it hasn't been set", () => {
-        otherReasonForAppealing.fields.otherReasonForAppealing.value = undefined;
+        otherReasonForAppealing.fields.otherReasonForAppealing.value =
+          undefined;
         const answers = otherReasonForAppealing.answers();
         expect(answers[0].answer).to.equal(userAnswer.NOT_REQUIRED);
       });
@@ -122,8 +121,12 @@ describe('OtherReasonForAppealing.js', () => {
   });
 
   describe('next()', () => {
-    const expectedPath = evidenceUploadEnabled ? 'evidence-provide' : 'sending-evidence';
-    const pathObjectName = evidenceUploadEnabled ? 'evidenceProvide' : 'sendingEvidence';
+    const expectedPath = evidenceUploadEnabled
+      ? 'evidence-provide'
+      : 'sending-evidence';
+    const pathObjectName = evidenceUploadEnabled
+      ? 'evidenceProvide'
+      : 'sendingEvidence';
     it(`returns the next step path /${expectedPath}`, () => {
       expect(otherReasonForAppealing.next().step).to.eq(
         paths.reasonsForAppealing[pathObjectName]

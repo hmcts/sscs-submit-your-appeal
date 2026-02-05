@@ -21,8 +21,11 @@ class HaveAMRN extends SaveToDraftStore {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(
-      `steps/start/benefit-type/content.${sessionLanguage}`
+    const requireContent = require('utils/requireContent');
+
+    const benefitTypeContent = requireContent.requireLocalized(
+      'steps/start/benefit-type/content',
+      sessionLanguage
     );
 
     const benefitShortCode = getBenefitCode(
@@ -60,7 +63,9 @@ class HaveAMRN extends SaveToDraftStore {
     return form({
       haveAMRN: text.joi(
         this.content.fields.haveAMRN.error[`required${this.suffix}`],
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

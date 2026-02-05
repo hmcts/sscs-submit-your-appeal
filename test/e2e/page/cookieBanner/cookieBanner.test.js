@@ -11,16 +11,16 @@ const {
 const { endTheSession } = require('../../page-objects/session/endSession');
 
 test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctional`, () => {
-  test.beforeEach('Create session', async({ page }) => {
+  test.beforeEach('Create session', async ({ page }) => {
     await createTheSession(page, language);
     await page.goto(paths.start.benefitType);
   });
 
-  test.afterEach('End session', async({ page }) => {
+  test.afterEach('End session', async ({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - PIP verify cookies banner Element`, async({
+  test(`${language.toUpperCase()} - PIP verify cookies banner Element`, async ({
     page
   }) => {
     await expect(
@@ -44,7 +44,7 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - PIP accept additional cookies`, async({
+  test(`${language.toUpperCase()} - PIP accept additional cookies`, async ({
     page,
     browser
   }) => {
@@ -57,13 +57,13 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     ).toBeVisible();
     await page.reload();
     const cookies = await browser.contexts()[0].cookies();
-    const cookieNames = cookies.map(cookie => cookie.name);
+    const cookieNames = cookies.map((cookie) => cookie.name);
     assert(cookieNames.includes('_ga'));
     assert(!cookieNames.includes('_gid'));
     assert(!cookieNames.includes('_gat_UA-91309785-5'));
   });
 
-  test(`${language.toUpperCase()} - PIP reject additional cookies`, async({
+  test(`${language.toUpperCase()} - PIP reject additional cookies`, async ({
     page
   }) => {
     await page.getByText(cookieContent.rejectCookie).first().click();
@@ -75,7 +75,7 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, async({
+  test(`${language.toUpperCase()} - PIP accept cookies using the new cookie policy page`, async ({
     page,
     browser
   }) => {
@@ -89,7 +89,7 @@ test.describe(`${language.toUpperCase()} - Cookie banner UI tests @fullFunctiona
     await page.reload();
 
     const cookies = await browser.contexts()[0].cookies();
-    const cookieNames = cookies.map(cookie => cookie.name);
+    const cookieNames = cookies.map((cookie) => cookie.name);
     assert(cookieNames.includes('_ga'));
     assert(!cookieNames.includes('_gid'));
     assert(!cookieNames.includes('_gat_UA-91309785-5'));

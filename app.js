@@ -1,3 +1,51 @@
+// Register module-alias early so internal requires to '@hmcts/one-per-page' resolve to our vendored code
+require('module-alias/register');
+
+// Normalize the global i18next language early so dynamic requires that use
+// `i18next.language` will resolve to files like `content.en.json` instead of
+// trying to load `content.en-GB` which doesn't exist in the repo.
+const _i18next = (() => {
+  try {
+    const i18next = require('i18next');
+
+    // Store any existing value
+    i18next._language = i18next.language || 'en';
+
+    // Define an accessor so reads always get the primary subtag and writes
+    // record the raw value on _language. This prevents later code from setting
+    // 'en-GB' and breaking dynamic requires.
+    Object.defineProperty(i18next, 'language', {
+      configurable: true,
+      enumerable: true,
+      get() {
+        const raw = this._language || 'en';
+        return (typeof raw === 'string' && raw.length > 0) ? raw.split('-')[0] : 'en';
+      },
+      set(val) {
+        this._language = val;
+      }
+    });
+
+    // Make changeLanguage normalize values too and update _language
+    const origChange = i18next.changeLanguage;
+    i18next.changeLanguage = function(lng, cb) {
+      const normalized = (typeof lng === 'string' && lng.length > 0) ? lng.split('-')[0] : 'en';
+      this._language = typeof lng === 'string' ? lng : this._language || 'en';
+      if (typeof origChange === 'function') {
+        return origChange.call(i18next, normalized, cb);
+      }
+      if (typeof cb === 'function') cb();
+      return Promise.resolve();
+    };
+
+    return i18next;
+  } catch (e) {
+    // If i18next isn't available for any reason, ignore — vendored code will
+    // continue to use its own instance.
+    return null;
+  }
+})();
+
 require('logger').startAppInsights();
 
 const config = require('config');

@@ -30,7 +30,9 @@ class Appointee extends SaveToDraftStore {
     return form({
       isAppointee: text.joi(
         this.content.fields.isAppointee.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

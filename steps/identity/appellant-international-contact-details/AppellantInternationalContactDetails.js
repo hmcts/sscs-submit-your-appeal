@@ -39,12 +39,12 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     const validCountries = getCountriesOfResidence().map(
       country => country.value
     );
-    return Joi.string().valid(validCountries);
+    return Joi.string().valid(...validCountries);
   }
 
   validPortSchema() {
     const validPorts = getPortsOfEntry().map(port => port.value);
-    return Joi.string().valid(validPorts);
+    return Joi.string().valid(...validPorts);
   }
 
   get form() {

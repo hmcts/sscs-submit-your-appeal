@@ -129,7 +129,8 @@ describe('HearingOptions.js', () => {
   describe('value()', () => {
     it('returns the hearing type telephone value', () => {
       hearingOptions.fields.selectOptions.telephone.requested.value = true;
-      hearingOptions.fields.selectOptions.telephone.phoneNumber.value = '07325561123';
+      hearingOptions.fields.selectOptions.telephone.phoneNumber.value =
+        '07325561123';
 
       const values = hearingOptions.values();
       expect(values).to.eql({

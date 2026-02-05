@@ -1,8 +1,14 @@
 const Joi = require('joi');
 
 const joiValidation = (value, joiSchema) => {
-  const valid = Joi.validate(value, joiSchema);
-  return valid.error === null;
+  let res;
+  if (joiSchema && typeof joiSchema.validate === 'function') {
+    res = joiSchema.validate(value);
+  } else {
+    const compiled = Joi.compile(joiSchema);
+    res = compiled.validate(value);
+  }
+  return !res.error;
 };
 
 const hasNameButNoTitleValidation = value =>

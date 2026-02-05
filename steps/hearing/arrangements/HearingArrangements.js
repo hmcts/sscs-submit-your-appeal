@@ -42,8 +42,14 @@ class HearingArrangements extends SaveToDraftStore {
 
   get cyaArrangements() {
     const selectionValues = this.fields.selection.value;
-    const sessionLanguage = i18next.language;
-    const cyaContent = require(`./content.${sessionLanguage}`).cya;
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const cyaContent = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    ).cya;
 
     const setRequiredOrNotRequired = value =>
       value ? cyaContent.required : cyaContent.notRequired;
@@ -159,7 +165,7 @@ class HearingArrangements extends SaveToDraftStore {
 
   values() {
     const fieldValues = this.fields.selection.value;
-    const values = {
+    return {
       hearing: {
         arrangements: {
           languageInterpreter: fieldValues.interpreterLanguage.requested,
@@ -179,7 +185,6 @@ class HearingArrangements extends SaveToDraftStore {
           undefined
       }
     };
-    return values;
   }
 
   next() {

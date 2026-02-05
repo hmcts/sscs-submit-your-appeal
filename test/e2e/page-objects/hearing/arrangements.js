@@ -3,7 +3,10 @@ const hearingArrangementsContentCy = require('steps/hearing/arrangements/content
 const hearingData = require('test/e2e/data.en').hearing;
 
 async function checkAllArrangementsAndContinue(I, commonContent, language) {
-  const hearingArrangementsContent = language === 'en' ? hearingArrangementsContentEn : hearingArrangementsContentCy;
+  const hearingArrangementsContent =
+    language === 'en'
+      ? hearingArrangementsContentEn
+      : hearingArrangementsContentCy;
 
   await I.getByText(
     hearingArrangementsContent.fields.selection.languageInterpreter.requested

@@ -49,7 +49,8 @@ describe('Independence.js', () => {
             }
           }
         });
-        const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
+        const lastWord =
+          benefitType.split(' ')[benefitType.split(' ').length - 1];
         if (['Benefit', 'benefit'].includes(lastWord.trim())) {
           expect(independence.benefitEndText).to.equal('');
         } else {
@@ -76,7 +77,8 @@ describe('Independence.js', () => {
             }
           }
         });
-        const lastWord = benefitType.split(' ')[benefitType.split(' ').length - 1];
+        const lastWord =
+          benefitType.split(' ')[benefitType.split(' ').length - 1];
         if (['Benefit', 'benefit'].includes(lastWord.trim())) {
           expect(independence.benefitEndText).to.equal('');
         } else {

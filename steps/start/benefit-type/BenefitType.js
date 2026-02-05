@@ -33,15 +33,20 @@ class BenefitType extends SaveToDraftStore {
     return form({
       benefitType: text.joi(
         this.content.fields.benefitType.error.required,
-        Joi.string().valid(types).required()
+        Joi.string()
+          .valid(...types)
+          .required()
       )
     });
   }
 
   answers() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(
-      `steps/start/benefit-type/content.${sessionLanguage}`
+    const requireContent = require('utils/requireContent');
+
+    const benefitTypeContent = requireContent.requireLocalized(
+      'steps/start/benefit-type/content',
+      sessionLanguage
     );
 
     const benTypeKey = getBenefitCode(

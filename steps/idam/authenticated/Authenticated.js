@@ -15,7 +15,9 @@ class Authenticated extends AuthAndRestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      res.redirect(req.session.ccdCaseId ? paths.checkYourAppeal : paths.drafts);
+      res.redirect(
+        req.session.ccdCaseId ? paths.checkYourAppeal : paths.drafts
+      );
     } else {
       super.handler(req, res, next);
     }

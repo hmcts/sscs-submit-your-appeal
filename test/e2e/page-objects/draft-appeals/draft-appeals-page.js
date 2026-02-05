@@ -3,7 +3,9 @@ const { expect } = require('@playwright/test');
 
 async function verifyDraftAppealsAndEditACase(I, language) {
   await I.goto(`${paths.drafts}?lng=${language}`);
-  await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
+  await expect(
+    I.locator(".form-buttons-group [href='/new-appeal']").first()
+  ).toBeVisible();
   if (language === 'en') {
     await expect(
       I.getByText('Your draft benefit appeals').first()
@@ -81,7 +83,7 @@ async function editDraftAppeal(I, language) {
     '.govuk-table__cell:nth-child(1)'
   ).all();
   const ccdCaseIDs = await Promise.all(
-    ccdCaseIDLocators.map(locator => locator.innerText())
+    ccdCaseIDLocators.map((locator) => locator.innerText())
   );
   const ccdCaseID = Array.isArray(ccdCaseIDs) ? ccdCaseIDs[0] : ccdCaseIDs;
 

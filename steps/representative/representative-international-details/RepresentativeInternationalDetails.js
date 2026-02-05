@@ -53,7 +53,8 @@ class RepresentativeInternationalDetails extends SaveToDraftStore {
     const validCountries = getCountriesOfResidence().map(
       country => country.value
     );
-    return Joi.string().valid(validCountries);
+    // Spread the array to pass variadic args to .valid()
+    return Joi.string().valid(...validCountries);
   }
 
   get getCountries() {

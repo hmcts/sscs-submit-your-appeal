@@ -8,7 +8,8 @@ async function enterDoYouWantToAttendTheHearing(
   commonContent,
   option
 ) {
-  const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
+  const hearingAttendanceContent =
+    language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
 
   await expect(
     I.getByText(hearingAttendanceContent.title).first()
@@ -23,7 +24,8 @@ async function enterDoYouWantToAttendTheHearingAfterSignIn(
   commonContent,
   option
 ) {
-  const hearingAttendanceContent = language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
+  const hearingAttendanceContent =
+    language === 'en' ? hearingAttendanceContentEn : hearingAttendanceContentCy;
 
   await expect(
     I.getByText(hearingAttendanceContent.title).first()

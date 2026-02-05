@@ -1,5 +1,3 @@
-
-
 const { expect } = require('test/util/chai');
 const RepresentativeDetails = require('steps/representative/representative-details/RepresentativeDetails');
 const paths = require('paths');
@@ -168,7 +166,8 @@ describe('RepresentativeDetails.js', () => {
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
-      representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.emailAddress.value =
+        'myemailaddress@sscs.com';
       expect(representativeDetails.CYAEmailAddress).to.equal(
         representativeDetails.fields.emailAddress.value
       );
@@ -527,13 +526,16 @@ describe('RepresentativeDetails.js', () => {
       representativeDetails.fields.name.first.value = repName.split(',')[1];
       representativeDetails.fields.name.last.value = repName.split(',')[2];
       representativeDetails.fields.name.organisation.value = 'Organisation';
-      representativeDetails.fields.addressLine1.value = 'First line of my address';
-      representativeDetails.fields.addressLine2.value = 'Second line of my address';
+      representativeDetails.fields.addressLine1.value =
+        'First line of my address';
+      representativeDetails.fields.addressLine2.value =
+        'Second line of my address';
       representativeDetails.fields.townCity.value = 'Town or City';
       representativeDetails.fields.county.value = 'County';
       representativeDetails.fields.postCode.value = 'Postcode';
       representativeDetails.fields.phoneNumber.value = '0800109756';
-      representativeDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
+      representativeDetails.fields.emailAddress.value =
+        'myemailaddress@sscs.com';
       representativeDetails.fields.postcodeLookup.value = 'n29ed';
       representativeDetails.fields.postcodeAddress.value = '200000';
       const values = representativeDetails.values();
@@ -613,15 +615,17 @@ describe('RepresentativeDetails.js', () => {
 
     it('removes whitespace from before and after the postcode string', () => {
       representativeDetails.fields.postCode.value = ' Post code ';
-      const postcode = representativeDetails.values().representative.contactDetails.postCode;
+      const postcode =
+        representativeDetails.values().representative.contactDetails.postCode;
       expect(postcode).to.not.equal(' Post code ');
       expect(postcode).to.equal('Post code');
     });
 
     it('removes whitespace from before and after the phone number string', () => {
       representativeDetails.fields.phoneNumber.value = ' 0800109756 ';
-      const phoneNumber = representativeDetails.values().representative.contactDetails
-        .phoneNumber;
+      const phoneNumber =
+        representativeDetails.values().representative.contactDetails
+          .phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
