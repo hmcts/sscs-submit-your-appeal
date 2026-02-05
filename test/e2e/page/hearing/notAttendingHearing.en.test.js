@@ -12,16 +12,16 @@ test.describe(
   `${language.toUpperCase()} - Not Attending Hearing`,
   { tag: '@batch-08' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.hearing.notAttendingHearing);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page click Continue, page am taken to the check your appeal page`, async({
+    test(`${language.toUpperCase()} - When page click Continue, page am taken to the check your appeal page`, async ({
       page
     }) => {
       page.continueFromnotAttendingHearing(commonContent);

@@ -12,16 +12,16 @@ test.describe(
   `${language.toUpperCase()} - Enter Mobile`,
   { tag: '@batch-11' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.smsNotify.enterMobile);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page enter a valid mobile number, page am taken to the sms-confirmation page`, async({
+    test(`${language.toUpperCase()} - When page enter a valid mobile number, page am taken to the sms-confirmation page`, async ({
       page
     }) => {
       await page.locator('#enterMobile').fill('07223344556');

@@ -20,16 +20,16 @@ test.describe(
   `${language.toUpperCase()} - Appointee form`,
   { tag: '@batch-09' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.areYouAnAppointee);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page select Yes, page am taken to the download appointee form page`, async({
+    test(`${language.toUpperCase()} - When page select Yes, page am taken to the download appointee form page`, async ({
       page
     }) => {
       page.selectAreYouAnAppointeeAndContinue(
@@ -42,7 +42,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page select No, page am taken to the independence page`, async({
+    test(`${language.toUpperCase()} - When page select No, page am taken to the independence page`, async ({
       page
     }) => {
       page.selectAreYouAnAppointeeAndContinue(

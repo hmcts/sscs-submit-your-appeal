@@ -10,7 +10,7 @@ test.describe(`${language.toUpperCase()} - Full Journey`, () => {
   test(
     `${language.toUpperCase()} - Appellant full journey from /start-an-appeal to the /check-your-appeal page`,
     { tag: '@smoke' },
-    async({ page }) => {
+    async ({ page }) => {
       await page.goto(`/?lng=${language}`);
       await enterDetailsFromStartToNINO(page, commonContent, language);
     }

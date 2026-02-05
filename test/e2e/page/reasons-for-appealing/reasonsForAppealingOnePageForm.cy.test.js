@@ -26,17 +26,17 @@ test.describe(
   `${language.toUpperCase()} - Reason For Appealing One Page Form`,
   { tag: '@batch-10' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.reasonsForAppealing.reasonForAppealing);
       await expect(page.locator('#items-0')).toBeVisible();
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page go to the page page see two input fields`, async({
+    test(`${language.toUpperCase()} - When page go to the page page see two input fields`, async ({
       page
     }) => {
       await expect(
@@ -47,7 +47,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without adding a reason, page see errors`, async({
+    test(`${language.toUpperCase()} - When page click Continue without adding a reason, page see errors`, async ({
       page
     }) => {
       await page
@@ -59,7 +59,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click add Another page see new fields`, async({
+    test(`${language.toUpperCase()} - When page click add Another page see new fields`, async ({
       page
     }) => {
       await page.getByText('Add reason').first().click();
@@ -71,7 +71,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter one character in each field and click Continue, page see errors`, async({
+    test(`${language.toUpperCase()} - When page enter one character in each field and click Continue, page see errors`, async ({
       page
     }) => {
       await addAReasonForAppealing(
@@ -104,7 +104,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter special chars then page see no errors`, async({
+    test(`${language.toUpperCase()} - When page enter special chars then page see no errors`, async ({
       page
     }) => {
       await addAReasonForAppealing(
@@ -126,7 +126,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - When page add multiple reasons and click Continue page am taken to /other-reason-for-appealing`, async({
+    test(`${language.toUpperCase()} - When page add multiple reasons and click Continue page am taken to /other-reason-for-appealing`, async ({
       page
     }) => {
       await addAReasonForAppealingAndThenClickAddAnother(
@@ -157,7 +157,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - When page go to add another reason and then click Continue without entering any data, page see no errors and am taken to /other-reason-for-appealing`, async({
+    test(`${language.toUpperCase()} - When page go to add another reason and then click Continue without entering any data, page see no errors and am taken to /other-reason-for-appealing`, async ({
       page
     }) => {
       await addAReasonForAppealing(
@@ -177,7 +177,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - When page click add Reason multiple times and click Continue without entering any data, page see an error in the error summary`, async({
+    test(`${language.toUpperCase()} - When page click add Reason multiple times and click Continue without entering any data, page see an error in the error summary`, async ({
       page
     }) => {
       for (let count = 1; count < 5; count++) {
@@ -198,7 +198,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page add a reasons then click the add another reason button and enter the least amount of data, page see error`, async({
+    test(`${language.toUpperCase()} - When page add a reasons then click the add another reason button and enter the least amount of data, page see error`, async ({
       page
     }) => {
       await addAReasonForAppealing(

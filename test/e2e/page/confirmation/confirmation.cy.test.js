@@ -14,16 +14,16 @@ test.describe(
   `${language.toUpperCase()} - Confirmation`,
   { tag: '@batch-08' },
   () => {
-    test.beforeEach('Create session', async({ page }) => {
+    test.beforeEach('Create session', async ({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.confirmation);
     });
 
-    test.afterEach('End session', async({ page }) => {
+    test.afterEach('End session', async ({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page go to the page page see the header`, async({
+    test(`${language.toUpperCase()} - When page go to the page page see the header`, async ({
       page
     }) => {
       await expect(
@@ -31,7 +31,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click the Continue button page am taken to the smart survey page`, async({
+    test(`${language.toUpperCase()} - When page click the Continue button page am taken to the smart survey page`, async ({
       page
     }) => {
       await page
