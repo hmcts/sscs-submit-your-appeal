@@ -8764,13 +8764,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"module-alias@npm:^2.2.2":
-  version: 2.2.3
-  resolution: "module-alias@npm:2.2.3"
-  checksum: 10/43bdf125f30a6967dedd97005693fd73b9535c6770e46c890b1a87b791df358b2d5b28951b3ebaf47092b645575eeee10388735d9f6866873cb8e87c153d1fa2
-  languageName: node
-  linkType: hard
-
 "module-details-from-path@npm:^1.0.3":
   version: 1.0.3
   resolution: "module-details-from-path@npm:1.0.3"
@@ -11783,7 +11776,6 @@ __metadata:
     lodash-es: "npm:^4.17.23"
     mini-css-extract-plugin: "npm:^2.9.2"
     mocha: "npm:^11.4.0"
-    module-alias: "npm:^2.2.2"
     moment: "npm:^2.30.1"
     nock: "npm:^14.0.4"
     node-emoji: "npm:^2.2.0"

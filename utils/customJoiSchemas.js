@@ -6,9 +6,7 @@ const { phoneNumber } = require('utils/regex');
 const customJoi = Joi.extend(joi => {
   return {
     base: joi.string(),
-    // Joi v17+ expects `type` instead of `name` for extensions
     type: 'string',
-    // Define rules as an object per Joi v17+ API
     rules: {
       validatePostcode: {
         method(invalidPostcode) {
@@ -17,7 +15,7 @@ const customJoi = Joi.extend(joi => {
             args: { invalidPostcode }
           });
         },
-        validate(value, helpers, args, options) {
+        validate(value, helpers, args) {
           if (args && args.invalidPostcode) {
             return helpers.error('string.validatePostcode', { v: value });
           }
@@ -28,7 +26,7 @@ const customJoi = Joi.extend(joi => {
         method(options) {
           return this.$_addRule({ name: 'validatePhone', args: { options } });
         },
-        validate(value, helpers, args, options) {
+        validate(value, helpers, args) {
           const parsedPhoneNumber = parsePhoneNumberFromString(value, 'GB');
           const phoneType = get(args, 'options.phoneType');
           let isValidPhone = false;
@@ -55,20 +53,5 @@ const customJoi = Joi.extend(joi => {
     }
   };
 });
-
-// Backwards-compatible helper: customJoi.validate(value, schema)
-customJoi.validate = function(value, schema, options) {
-  if (schema && typeof schema.validate === 'function') {
-    const res = schema.validate(value, options);
-    return { error: res.error || null, value: res.value };
-  }
-  try {
-    const compiled = customJoi.compile(schema);
-    const res = compiled.validate(value, options);
-    return { error: res.error || null, value: res.value };
-  } catch (err) {
-    return { error: err };
-  }
-};
 
 module.exports = customJoi;

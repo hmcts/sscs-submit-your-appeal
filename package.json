@@ -95,7 +95,6 @@
     "lodash": "^4.17.23",
     "lodash-es": "^4.17.23",
     "mini-css-extract-plugin": "^2.9.2",
-    "module-alias": "^2.2.2",
     "moment": "^2.30.1",
     "node-emoji": "^2.2.0",
     "nunjucks": "^3.2.4",

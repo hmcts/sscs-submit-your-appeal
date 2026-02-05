@@ -1,6 +1,3 @@
-// Add module-alias register so our local aliases in package.json resolve
-require('module-alias/register');
-
 const config = require('@hmcts/properties-volume').addTo(require('config'));
 const setupSecrets = require('services/setupSecrets');
 
