@@ -1,5 +1,5 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { goTo } = require('@hmcts/one-per-page/flow');
+const { goTo } = require('lib/vendor/one-per-page/flow');
 const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');

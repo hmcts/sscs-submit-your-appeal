@@ -1,4 +1,4 @@
-const { Page } = require('@hmcts/one-per-page');
+const { Page } = require('lib/vendor/one-per-page');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
 

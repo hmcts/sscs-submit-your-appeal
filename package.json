@@ -19,7 +19,7 @@
     "iba:debug:aat": "cross-env TRIBUNALS_CASE_API_URL=http://sscs-tribunals-api-aat.service.core-compute-aat.internal yarn iba:debug",
     "setup": "exit 0",
     "mock": "yarn mock-uploader & yarn debug",
-    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --require module-alias/register --require test/setup/i18next-polyfill --exit 'test/unit/**/*.test.js'",
+    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --require test/setup/i18next-polyfill --exit 'test/unit/**/*.test.js'",
     "test:assets": "cross-env NODE_PATH=. NODE_ENV=test NODE_OPTIONS=--openssl-legacy-provider instant-mocha 'test/assets/**/*.test.js' --webpack-config test/webpack.config.js --require @babel/register",
     "test": "yarn test:unit && yarn test:assets",
     "test:all": "cross-env NODE_PATH=. NODE_ENV=test yarn test && yarn test:assets && yarn test:smoke",
@@ -166,11 +166,6 @@
     "tar": "^7.5.7",
     "lodash": "^4.17.23",
     "body-parser": "^1.20.4"
-  },
-  "_moduleAliases": {
-    "@hmcts/one-per-page": "lib/vendor/one-per-page",
-    "@hmcts/one-per-page/src": "lib/vendor/one-per-page/src",
-    "test": "test"
   },
   "packageManager": "yarn@4.10.0"
 }

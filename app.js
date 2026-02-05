@@ -1,5 +1,3 @@
-// Register module-alias early so internal requires to '@hmcts/one-per-page' resolve to our vendored code
-require('module-alias/register');
 
 // Normalize the global i18next language early so dynamic requires that use
 // `i18next.language` will resolve to files like `content.en.json` instead of

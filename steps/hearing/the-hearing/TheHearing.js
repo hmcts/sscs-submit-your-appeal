@@ -1,7 +1,7 @@
-const { branch } = require('@hmcts/one-per-page');
-const { goTo, redirectTo } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { branch } = require('lib/vendor/one-per-page');
+const { goTo, redirectTo } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { titleise } = require('utils/stringUtils');
 const Joi = require('joi');

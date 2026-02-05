@@ -3,9 +3,9 @@
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { date, convert } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { date, convert } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');

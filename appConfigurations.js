@@ -1,4 +1,3 @@
-
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -8,7 +7,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const bodyParser = require('body-parser');
 const os = require('os');
 const path = require('path');
-const { journey } = require('@hmcts/one-per-page');
+const { journey } = require('lib/vendor/one-per-page');
 const steps = require('steps');
 const idam = require('middleware/idam');
 const paths = require('paths');

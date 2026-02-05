@@ -5,10 +5,10 @@
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { text, object } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
+const { errorFor } = require('lib/vendor/one-per-page/src/forms/validator');
 const {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode

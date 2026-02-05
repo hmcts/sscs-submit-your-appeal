@@ -1,5 +1,5 @@
-const { Interstitial } = require('@hmcts/one-per-page/steps');
-const { goTo, branch } = require('@hmcts/one-per-page/flow');
+const { Interstitial } = require('lib/vendor/one-per-page/steps');
+const { goTo, branch } = require('lib/vendor/one-per-page/flow');
 const {
   getBenefitCode,
   getTribunalPanel,

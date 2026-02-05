@@ -1,11 +1,11 @@
 /* eslint-disable max-lines */
 const request = require('superagent');
 const { includes } = require('lodash');
-const { form } = require('@hmcts/one-per-page/forms');
+const { form } = require('lib/vendor/one-per-page/forms');
 const { buildConcatenatedAddress } = require('./helper');
 const i18next = require('i18next');
 const customFieldValidations = require('./customFieldValidations.js');
-const { text } = require('@hmcts/one-per-page/forms');
+const { text } = require('lib/vendor/one-per-page/forms');
 const Joi = require('joi');
 const { isIba } = require('utils/benefitTypeUtils');
 const { notNiPostcode } = require('utils/regex');

@@ -1,14 +1,14 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { goTo } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const userAnswer = require('utils/answer');
 const i18next = require('i18next');
 const { titleise } = require('utils/stringUtils');
-const { branch } = require('@hmcts/one-per-page');
+const { branch } = require('lib/vendor/one-per-page');
 const { isIba } = require('utils/benefitTypeUtils');
 const config = require('config');
 

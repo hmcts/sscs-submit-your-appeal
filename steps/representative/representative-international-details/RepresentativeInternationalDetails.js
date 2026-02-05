@@ -1,7 +1,7 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { text, object, form } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { goTo } = require('lib/vendor/one-per-page');
+const { text, object, form } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
+const { errorFor } = require('lib/vendor/one-per-page/src/forms/validator');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const customJoi = require('utils/customJoiSchemas');
 const { firstName, lastName, whitelist } = require('utils/regex');
