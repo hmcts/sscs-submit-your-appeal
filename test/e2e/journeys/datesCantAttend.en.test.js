@@ -30,15 +30,15 @@ const datesYouCantAttendHearingChange = `${datesYouCantAttend} ${selectors[langu
 
 // Deprecated functionality - replaced by date picker
 test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attends hearing with dates cannot attend`, () => {
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async ({
+  test(`${language.toUpperCase()} - Provides date of when they cannot attend the hearing`, async({
     page
   }) => {
     moment().locale(language);
@@ -77,7 +77,7 @@ test.describe(`DEPRECATED ${language.toUpperCase()} - PIP, one month ago, attend
     ).toBeVisible();
   });
 
-  test(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @local`, async ({
+  test(`${language.toUpperCase()} - Provides a date when they cannot attend the hearing then edits the date @local`, async({
     page
   }) => {
     moment().locale(language);

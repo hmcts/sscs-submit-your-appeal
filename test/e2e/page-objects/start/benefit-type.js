@@ -5,8 +5,7 @@ const { expect } = require('@playwright/test');
 const paths = require('paths');
 
 async function handleFlakey(I, language, type, continueText) {
-  const benefitContent =
-    language === 'en' ? benefitContentEn : benefitContentCy;
+  const benefitContent = language === 'en' ? benefitContentEn : benefitContentCy;
   for (let i = 0; i < 5; i++) {
     await expect(I.getByText(benefitContent.title).first()).toBeVisible();
     try {

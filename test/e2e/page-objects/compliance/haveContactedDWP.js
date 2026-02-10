@@ -8,8 +8,7 @@ async function selectHaveYouContactedDWPAndContinue(
   commonContent,
   option
 ) {
-  const dwpContactContent =
-    language === 'en' ? dwpContactContentEn : dwpContactContentCy;
+  const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
   await expect(I.getByText(dwpContactContent.title).first()).toBeVisible();
   await I.locator(option).first().check();
@@ -22,8 +21,7 @@ async function selectHaveYouContactedDWPAndContinueAfterSignIn(
   commonContent,
   option
 ) {
-  const dwpContactContent =
-    language === 'en' ? dwpContactContentEn : dwpContactContentCy;
+  const dwpContactContent = language === 'en' ? dwpContactContentEn : dwpContactContentCy;
 
   await expect(I.getByText(dwpContactContent.title).first()).toBeVisible();
   await I.locator(option).first().check();

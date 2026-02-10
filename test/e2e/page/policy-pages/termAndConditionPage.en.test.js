@@ -13,11 +13,11 @@ test.describe(
   `${language.toUpperCase()} - Terms and Conditions Page`,
   { tag: '@batch-10' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await page.goto(paths.policy.termsAndConditions);
     });
 
-    test(`${language.toUpperCase()} - page see the page title text`, async ({
+    test(`${language.toUpperCase()} - page see the page title text`, async({
       page
     }) => {
       await expect(
@@ -25,7 +25,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page see expected links and go to expected urls`, async ({
+    test(`${language.toUpperCase()} - page see expected links and go to expected urls`, async({
       page
     }) => {
       await seeAndGoToGivenLink(

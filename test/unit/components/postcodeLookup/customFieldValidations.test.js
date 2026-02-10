@@ -1,5 +1,6 @@
 const { expect } = require('test/util/chai');
 const customValidations = require('components/postcodeLookup/customFieldValidations');
+/* eslint-disable no-unused-vars */
 const Joi = require('joi');
 
 describe('components/customFieldValidations.js', () => {
@@ -21,7 +22,7 @@ describe('components/customFieldValidations.js', () => {
     const schema = customValidations.string().validateAddressList(page);
     const res = schema.validate(value);
     // Joi may return `error` as null or undefined depending on version; accept both
-    expect(res.error == null).to.be.true;
+    expect(res.error === null || res.error === undefined).to.be.true;
   });
 
   it('expect submit type addressSelection to be valid', () => {
@@ -29,7 +30,7 @@ describe('components/customFieldValidations.js', () => {
     const value = 'n29ed';
     const schema = customValidations.string().validateAddressList(page);
     const res = schema.validate(value);
-    expect(res.error == null).to.be.true;
+    expect(res.error === null || res.error === undefined).to.be.true;
   });
 
   it('expect request type Get to be valid', () => {
@@ -37,7 +38,7 @@ describe('components/customFieldValidations.js', () => {
     const value = 'n29ed';
     const schema = customValidations.string().validateAddressList(page);
     const res = schema.validate(value);
-    expect(res.error == null).to.be.true;
+    expect(res.error === null || res.error === undefined).to.be.true;
   });
 
   it('expect postcode valid address field  to be valid', () => {
@@ -46,7 +47,7 @@ describe('components/customFieldValidations.js', () => {
     const value = 'n29ed';
     const schema = customValidations.string().validateAddressList(page);
     const res = schema.validate(value);
-    expect(res.error == null).to.be.true;
+    expect(res.error === null || res.error === undefined).to.be.true;
   });
 
   it('expect postcode  non valid address field valid to be not valid', () => {
@@ -55,6 +56,6 @@ describe('components/customFieldValidations.js', () => {
     const value = 'n29ed';
     const schema = customValidations.string().validateAddressList(page);
     const res = schema.validate(value);
-    expect(res.error != null).to.be.true;
+    expect(res.error !== null && res.error !== undefined).to.be.true;
   });
 });

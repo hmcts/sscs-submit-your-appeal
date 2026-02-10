@@ -7,8 +7,7 @@ async function selectTelephoneHearingOptionsAndContinue(
   language,
   commonContent
 ) {
-  const telHearingContent =
-    language === 'en' ? telHearingContentEn : telHearingContentCy;
+  const telHearingContent = language === 'en' ? telHearingContentEn : telHearingContentCy;
 
   await expect(I.getByText(telHearingContent.title).first()).toBeVisible();
   await expect(I.locator('#selectOptions').first()).toBeVisible();

@@ -170,8 +170,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for JSA', () => {
     it('has options for JSA', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.jobseekersAllowance;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
@@ -185,8 +184,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
     it('has options for JSA Welsh', () => {
       i18next.changeLanguage('cy');
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.jobseekersAllowance;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.jobseekersAllowance;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
@@ -202,8 +200,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for Social Fund', () => {
     it('has options for Social', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.socialFund;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.socialFund;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(3);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
         'St Helens Sure Start Maternity Grant'
@@ -219,8 +216,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for UC', () => {
     it('has options for UC', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.universalCredit;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
@@ -229,8 +225,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
     it('has options for UC Welsh', () => {
       i18next.changeLanguage('cy');
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.universalCredit;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.universalCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Universal Credit');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
@@ -241,8 +236,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for Income Support', () => {
     it('has options for Income Support', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.incomeSupport;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
@@ -253,8 +247,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
     it('has options for Income Support Welsh', () => {
       i18next.changeLanguage('cy');
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.incomeSupport;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.incomeSupport;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(4);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Worthing DRT');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql('Birkenhead DRT');
@@ -267,8 +260,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for Industrial Death Benefit', () => {
     it('has options for Industrial Death Benefit', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.industrialDeathBenefit;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.industrialDeathBenefit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql('Barrow IIDB Centre');
       expect(dwpIssuingOfficeEsa.options[1].label).to.eql(
@@ -279,8 +271,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for Pension Credit', () => {
     it('has options for Pension Credit', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.pensionCredit;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
         'Pensions Dispute Resolution Team'
@@ -291,8 +282,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
     it('has options for Pension Credit Welsh', () => {
       i18next.changeLanguage('cy');
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.pensionCredit;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.pensionCredit;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
         'Pensions Dispute Resolution Team'
@@ -305,8 +295,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
 
   describe('options for Retirement Pension', () => {
     it('has options for Retirement Pension', () => {
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.retirementPension;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
         'Pensions Dispute Resolution Team'
@@ -320,8 +309,7 @@ describe('DWPIssuingOfficeEsa.js', () => {
     });
     it('has options for Retirement Pension Welsh', () => {
       i18next.changeLanguage('cy');
-      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType =
-        benefitTypes.retirementPension;
+      dwpIssuingOfficeEsa.journey.req.session.BenefitType.benefitType = benefitTypes.retirementPension;
       expect(dwpIssuingOfficeEsa.options.length).to.eql(2);
       expect(dwpIssuingOfficeEsa.options[0].label).to.eql(
         'Pensions Dispute Resolution Team'

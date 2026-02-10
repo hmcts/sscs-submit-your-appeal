@@ -15,7 +15,7 @@ describe('RepresentativeInternationalDetails.js', () => {
   let representativeInternationalDetails = null;
   let res = null;
   let superagentGetStub = null;
-  beforeEach(async () => {
+  beforeEach(async() => {
     res = { send: sinon.spy(), redirect: sinon.spy() };
     representativeInternationalDetails = new RepresentativeInternationalDetails(
       {
@@ -111,10 +111,8 @@ describe('RepresentativeInternationalDetails.js', () => {
 
     beforeEach(() => {
       it('should normalise reps full name with hyphen and apostrophe', () => {
-        representativeInternationalDetails.fields.name.first.value =
-          NAME.split(',')[0];
-        representativeInternationalDetails.fields.name.last.value =
-          NAME.split(',')[1];
+        representativeInternationalDetails.fields.name.first.value = NAME.split(',')[0];
+        representativeInternationalDetails.fields.name.last.value = NAME.split(',')[1];
         expect(representativeInternationalDetails.CYAName).to.equal(
           'HARRY-Kane O`Brian'
         );
@@ -146,18 +144,15 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should return the full name without whitespace before or after the name', () => {
-      representativeInternationalDetails.fields.name.first.value =
-        '    FirstName';
-      representativeInternationalDetails.fields.name.last.value =
-        'LastName    ';
+      representativeInternationalDetails.fields.name.first.value = '    FirstName';
+      representativeInternationalDetails.fields.name.last.value = 'LastName    ';
       expect(representativeInternationalDetails.CYAName).to.equal(
         'FirstName LastName'
       );
     });
 
     it('should return the first name without whitespace before or after the name', () => {
-      representativeInternationalDetails.fields.name.first.value =
-        ' Firstname ';
+      representativeInternationalDetails.fields.name.first.value = ' Firstname ';
       expect(representativeInternationalDetails.CYAName).to.equal('Firstname');
     });
 
@@ -183,8 +178,7 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should return the organisation if an organisation value has been set', () => {
-      representativeInternationalDetails.fields.name.organisation.value =
-        'Organisation';
+      representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
       expect(representativeInternationalDetails.CYAOrganisation).to.equal(
         representativeInternationalDetails.fields.name.organisation.value
       );
@@ -199,8 +193,7 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should return the phone number if a phoneNumber value has been set', () => {
-      representativeInternationalDetails.fields.phoneNumber.value =
-        '0800109756';
+      representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
       expect(representativeInternationalDetails.CYAPhoneNumber).to.equal(
         representativeInternationalDetails.fields.phoneNumber.value
       );
@@ -215,8 +208,7 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
-      representativeInternationalDetails.fields.emailAddress.value =
-        'myemailaddress@sscs.com';
+      representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       expect(representativeInternationalDetails.CYAEmailAddress).to.equal(
         representativeInternationalDetails.fields.emailAddress.value
       );
@@ -378,12 +370,9 @@ describe('RepresentativeInternationalDetails.js', () => {
   describe('values()', () => {
     const repName = 'HARRY,POTTER';
     it('should contain a value object with full name in caps', () => {
-      representativeInternationalDetails.fields.name.first.value =
-        repName.split(',')[0];
-      representativeInternationalDetails.fields.name.last.value =
-        repName.split(',')[1];
-      representativeInternationalDetails.fields.name.organisation.value =
-        'Organisation';
+      representativeInternationalDetails.fields.name.first.value = repName.split(',')[0];
+      representativeInternationalDetails.fields.name.last.value = repName.split(',')[1];
+      representativeInternationalDetails.fields.name.organisation.value = 'Organisation';
       representativeInternationalDetails.fields.addressLine1 = {
         value: 'Some address line 1'
       };
@@ -394,12 +383,9 @@ describe('RepresentativeInternationalDetails.js', () => {
         value: 'Some Town or City'
       };
       representativeInternationalDetails.fields.country.value = 'Iceland';
-      representativeInternationalDetails.fields.postCode.value =
-        'some-international postCode';
-      representativeInternationalDetails.fields.phoneNumber.value =
-        '0800109756';
-      representativeInternationalDetails.fields.emailAddress.value =
-        'myemailaddress@sscs.com';
+      representativeInternationalDetails.fields.postCode.value = 'some-international postCode';
+      representativeInternationalDetails.fields.phoneNumber.value = '0800109756';
+      representativeInternationalDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       const values = representativeInternationalDetails.values();
       expect(values).to.eql({
         representative: {
@@ -442,21 +428,17 @@ describe('RepresentativeInternationalDetails.js', () => {
     });
 
     it('removes whitespace from before and after the phone number string', () => {
-      representativeInternationalDetails.fields.phoneNumber.value =
-        ' 0800109756 ';
-      const phoneNumber =
-        representativeInternationalDetails.values().representative
-          .contactDetails.phoneNumber;
+      representativeInternationalDetails.fields.phoneNumber.value = ' 0800109756 ';
+      const phoneNumber = representativeInternationalDetails.values().representative
+        .contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });
 
     it('removes whitespace from before and after the postCode string', () => {
-      representativeInternationalDetails.fields.postCode.value =
-        ' some-postCode ';
-      const postCode =
-        representativeInternationalDetails.values().representative
-          .contactDetails.postCode;
+      representativeInternationalDetails.fields.postCode.value = ' some-postCode ';
+      const postCode = representativeInternationalDetails.values().representative
+        .contactDetails.postCode;
       expect(postCode).to.not.equal(' some-postCode ');
       expect(postCode).to.equal('some-postCode');
     });

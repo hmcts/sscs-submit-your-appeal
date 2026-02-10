@@ -98,9 +98,8 @@ describe('MRNOverThirteenMonthsLate.js', () => {
   });
 
   describe('next()', () => {
-    const setBenefitType = (benefitType) => {
-      mrnOverThirteenMonthsLate.req.journey.req.session.BenefitType.benefitType =
-        benefitType;
+    const setBenefitType = benefitType => {
+      mrnOverThirteenMonthsLate.req.journey.req.session.BenefitType.benefitType = benefitType;
     };
 
     it('returns the next step path /dwp-issuing-office', () => {

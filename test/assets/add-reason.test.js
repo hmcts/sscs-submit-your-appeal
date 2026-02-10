@@ -13,7 +13,7 @@ describe('add reason', () => {
   let addReason;
   let $;
 
-  before((done) => {
+  before(done => {
     const jsdom = new JSDOM(`<body><div id="dynamic-form">
             <ul class="govuk-list"></ul>form goes here</div></body>`);
 

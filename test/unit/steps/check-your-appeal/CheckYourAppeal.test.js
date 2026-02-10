@@ -5,8 +5,7 @@ const proxyquire = require('proxyquire');
 const paths = require('paths');
 const config = require('config');
 
-const allowSaveAndReturn =
-  config.get('features.allowSaveAndReturn.enabled') === 'true';
+const allowSaveAndReturn = config.get('features.allowSaveAndReturn.enabled') === 'true';
 
 describe('CheckYourAppeal.js', () => {
   let CheckYourAppeal = null;

@@ -116,7 +116,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     };
-    it('Expected Successfully Delete a draft:', async () => {
+    it('Expected Successfully Delete a draft:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
@@ -132,7 +132,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(req.session.drafts).to.be.empty;
     });
 
-    it('Expected Successfully Delete a draft after first request failed:', async () => {
+    it('Expected Successfully Delete a draft after first request failed:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
@@ -152,7 +152,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       );
     });
 
-    it('Handles Delete a draft fail:', async () => {
+    it('Handles Delete a draft fail:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
@@ -208,7 +208,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       cookies: { '__auth-token': 'xxx' },
       session: {}
     };
-    it('Expected Successfully create a draft:', async () => {
+    it('Expected Successfully create a draft:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
@@ -236,7 +236,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {}
     };
 
-    it('should not restore not logged in user session from state', async () => {
+    it('should not restore not logged in user session from state', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(req.session.drafts).to.be.undefined;
     });
@@ -251,7 +251,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       session: {}
     };
 
-    it('should not restore not logged in user session from state ', async () => {
+    it('should not restore not logged in user session from state ', async() => {
       await draftAppealStoreMiddleware.restoreUserState(req, res, next);
       expect(req.session.drafts).to.be.undefined;
     });
@@ -269,7 +269,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       query: {}
     };
 
-    it('Expected Successfully get a draft:', async () => {
+    it('Expected Successfully get a draft:', async() => {
       req = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({
@@ -304,7 +304,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       query: {}
     };
 
-    it('Expected Successfully get all drafts:', async () => {
+    it('Expected Successfully get all drafts:', async() => {
       const request = JSON.parse(JSON.stringify(req));
       const draf1 = { ccdCaseId: 'draft1', key1: 'value1' };
       const draf2 = { ccdCaseId: 'draft2', key2: 'value2' };
@@ -324,7 +324,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(request.session.drafts.draft2).to.eql(draf2);
     });
 
-    it('Expected no drafts saved when save and return disabled:', async () => {
+    it('Expected no drafts saved when save and return disabled:', async() => {
       const request = { session: {} };
       nock(apiUrl)
         .defaultReplyHeaders({ 'Content-Type': 'application/json' })
@@ -344,7 +344,7 @@ describe('middleware/draftAppealStoreMiddleware', () => {
       expect(request.session.drafts).to.be.undefined;
     });
 
-    it('Handles 204 no content for all drafts:', async () => {
+    it('Handles 204 no content for all drafts:', async() => {
       const request = JSON.parse(JSON.stringify(req));
       nock(apiUrl)
         .defaultReplyHeaders({

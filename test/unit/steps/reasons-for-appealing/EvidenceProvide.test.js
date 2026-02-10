@@ -39,14 +39,12 @@ describe('EvidenceProvide.js', () => {
 
   describe('noticeType()', () => {
     it('should return "Review Decision Notice" when in IBA journey', () => {
-      evidenceProvide.req.session.BenefitType.benefitType =
-        benefitTypes.infectedBloodCompensation;
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.infectedBloodCompensation;
       expect(evidenceProvide.noticeType).to.equal('Review Decision Notice');
     });
 
     it('should return "Mandatory Reconsideration Notice (MRN)"', () => {
-      evidenceProvide.req.session.BenefitType.benefitType =
-        benefitTypes.personalIndependencePayment;
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
       expect(evidenceProvide.noticeType).to.equal(
         'Mandatory Reconsideration Notice (MRN)'
       );
@@ -54,8 +52,7 @@ describe('EvidenceProvide.js', () => {
 
     it('should return "Mandatory Reconsideration Notice (MRN)" in welsh', () => {
       i18next.changeLanguage('cy');
-      evidenceProvide.req.session.BenefitType.benefitType =
-        benefitTypes.personalIndependencePayment;
+      evidenceProvide.req.session.BenefitType.benefitType = benefitTypes.personalIndependencePayment;
       expect(evidenceProvide.noticeType).to.equal(
         'Hysbysiad Gorfodi i Ailystyried (MRN)'
       );

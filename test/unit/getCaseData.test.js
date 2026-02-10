@@ -30,13 +30,13 @@ describe('getCaseData E2E function', () => {
   });
 
   describe('checkTribunalAPIResponse', () => {
-    it("should return the response's data structure if response is ok", async () => {
+    it("should return the response's data structure if response is ok", async() => {
       apiResponse = { appeal: {} };
       const result = await GetCaseData.checkTribunalAPIResponse(responseObject);
       expect(result).to.equal(apiResponse);
     });
 
-    it('should throw an error if response is not ok', async () => {
+    it('should throw an error if response is not ok', async() => {
       responseObject = {
         json: () => apiResponse,
         ok: () => false,
@@ -47,7 +47,7 @@ describe('getCaseData E2E function', () => {
       ).to.be.rejectedWith('HTTP Error 404 is invalid');
     });
 
-    it('should throw an error if response is null', async () => {
+    it('should throw an error if response is null', async() => {
       await expect(
         GetCaseData.checkTribunalAPIResponse(null)
       ).to.be.rejectedWith('HTTP Error null is invalid');
@@ -55,13 +55,13 @@ describe('getCaseData E2E function', () => {
   });
 
   describe('getMYACaseData', () => {
-    it('should return the correct response when the structure is correct', async () => {
+    it('should return the correct response when the structure is correct', async() => {
       apiResponse = { appeal: { appealNumber: 'bVLwEI7OQY' } };
       const result = await GetCaseData.getMYACaseData(request, ccdCaseID);
       expect(result).to.equal(apiResponse.appeal);
     });
 
-    it('should throw an error if appeal is missing from returned data', async () => {
+    it('should throw an error if appeal is missing from returned data', async() => {
       apiResponse = {};
       responseObject = {
         json: () => apiResponse,
@@ -77,7 +77,7 @@ describe('getCaseData E2E function', () => {
   });
 
   describe('getCaseData', () => {
-    it('should return the correct response when the structure is correct', async () => {
+    it('should return the correct response when the structure is correct', async() => {
       apiResponse = {
         appeal: { state: 'validAppeal', appealNumber: ccdCaseID }
       };
@@ -85,7 +85,7 @@ describe('getCaseData E2E function', () => {
       expect(result).to.equal(apiResponse);
     });
 
-    it('should throw an error if appeal number is invalid', async () => {
+    it('should throw an error if appeal number is invalid', async() => {
       apiResponse = { appeal: { state: 'validAppeal', appealNumber: null } };
       await expect(
         GetCaseData.getCaseData(browser, request, ccdCaseID)

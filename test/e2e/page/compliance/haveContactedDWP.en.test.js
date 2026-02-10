@@ -15,16 +15,16 @@ test.describe(
   `${language.toUpperCase()} - Have Contacted DWP`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.haveContactedDWP);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page select yes page am taken to the No MRN page`, async ({
+    test(`${language.toUpperCase()} - When page select yes page am taken to the No MRN page`, async({
       page
     }) => {
       page.selectHaveYouContactedDWPAndContinue(
@@ -35,7 +35,7 @@ test.describe(
       await page.waitForURL(`**${paths.compliance.noMRN}`);
     });
 
-    test(`${language.toUpperCase()} - When page select no page am taken to the contact DWP page`, async ({
+    test(`${language.toUpperCase()} - When page select no page am taken to the contact DWP page`, async({
       page
     }) => {
       page.selectHaveYouGotAMRNAndContinue(
@@ -46,7 +46,7 @@ test.describe(
       await page.waitForURL(`**${paths.compliance.contactDWP}`);
     });
 
-    test(`${language.toUpperCase()} - When page click continue without selecting an option, page see an error`, async ({
+    test(`${language.toUpperCase()} - When page click continue without selecting an option, page see an error`, async({
       page
     }) => {
       await page

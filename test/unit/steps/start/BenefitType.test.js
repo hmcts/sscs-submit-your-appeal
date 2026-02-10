@@ -168,8 +168,7 @@ describe('BenefitType.js', () => {
     });
 
     it('returns /postcode-check with benefit type value is PIP', () => {
-      benefitType.fields.benefitType.value =
-        'Personal Independence Payment (PIP)';
+      benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
       expect(benefitType.next().step).to.eql(paths.start.postcodeCheck);
     });
 
@@ -313,8 +312,7 @@ describe('BenefitType.js', () => {
       // eslint-disable-next-line no-process-env
       process.env.FT_WELSH = 'true';
 
-      benefitType.fields.benefitType.value =
-        'Personal Independence Payment (PIP)';
+      benefitType.fields.benefitType.value = 'Personal Independence Payment (PIP)';
       expect(benefitType.next().step).to.eql(paths.start.languagePreference);
 
       // eslint-disable-next-line no-process-env
@@ -333,8 +331,7 @@ describe('BenefitType.js', () => {
     });
 
     it('returns /independence when benefit type is IBA when Welsh feature toggle is off', () => {
-      benefitType.fields.benefitType.value =
-        benefitTypes.infectedBloodCompensation;
+      benefitType.fields.benefitType.value = benefitTypes.infectedBloodCompensation;
       const test = benefitType.next();
       expect(test.step).to.eql(paths.start.independence);
     });

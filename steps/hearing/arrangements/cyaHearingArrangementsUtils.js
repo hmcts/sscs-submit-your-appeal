@@ -12,7 +12,7 @@ const setCYAValue = (arrangementValue, hiddenFieldValue) => {
     sessionLanguage
   ).cya;
 
-  let cyaValue;
+  let cyaValue = null;
 
   if (
     arrangementValue === cyaContent.required &&

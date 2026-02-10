@@ -15,16 +15,16 @@ test.describe(
   `${language.toUpperCase()} - Appellant Name form`,
   { tag: '@batch-09' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantName);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page fill in the fields and click Continue, page am taken to /enter-appellant-dob`, async ({
+    test(`${language.toUpperCase()} - When page fill in the fields and click Continue, page am taken to /enter-appellant-dob`, async({
       page
     }) => {
       await page.locator('#title').first().fill('Mr');
@@ -37,7 +37,7 @@ test.describe(
       await expect(page).toHaveURL(paths.identity.enterAppellantDOB);
     });
 
-    test(`${language.toUpperCase()} - When page only provide a single character for firstName and lastName page see errors`, async ({
+    test(`${language.toUpperCase()} - When page only provide a single character for firstName and lastName page see errors`, async({
       page
     }) => {
       await page.locator('#firstName').fill('H');
@@ -58,7 +58,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async({
       page
     }) => {
       await page

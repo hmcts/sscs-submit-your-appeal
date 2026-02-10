@@ -1,8 +1,8 @@
-
 // Normalize the global i18next language early so dynamic requires that use
 // `i18next.language` will resolve to files like `content.en.json` instead of
 // trying to load `content.en-GB` which doesn't exist in the repo.
-const _i18next = (() => {
+/* eslint-disable func-names */
+(() => {
   try {
     const i18next = require('i18next');
 
@@ -26,18 +26,19 @@ const _i18next = (() => {
 
     // Make changeLanguage normalize values too and update _language
     const origChange = i18next.changeLanguage;
-    i18next.changeLanguage = function(lng, cb) {
+
+    i18next.changeLanguage = function(lng, normalizeLanguage) {
       const normalized = (typeof lng === 'string' && lng.length > 0) ? lng.split('-')[0] : 'en';
       this._language = typeof lng === 'string' ? lng : this._language || 'en';
       if (typeof origChange === 'function') {
-        return origChange.call(i18next, normalized, cb);
+        return origChange.call(i18next, normalized, normalizeLanguage);
       }
-      if (typeof cb === 'function') cb();
+      if (typeof normalizeLanguage === 'function') normalizeLanguage();
       return Promise.resolve();
     };
 
     return i18next;
-  } catch (e) {
+  } catch {
     // If i18next isn't available for any reason, ignore — vendored code will
     // continue to use its own instance.
     return null;

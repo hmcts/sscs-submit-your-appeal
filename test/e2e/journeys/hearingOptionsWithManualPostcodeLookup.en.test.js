@@ -33,15 +33,15 @@ test.describe(
   `${language.toUpperCase()} - Hearing options test for type Telephone`,
   { tag: '@functional' },
   () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Appellant enters telephone hearing option`, async ({
+    test(`${language.toUpperCase()} - Appellant enters telephone hearing option`, async({
       page
     }) => {
       await page.goto(paths.session.root);

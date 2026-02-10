@@ -40,7 +40,7 @@ describe('Pcq.js', () => {
     nock.cleanAll();
   });
 
-  it('redirects to PCQ with the correct parameters', (done) => {
+  it('redirects to PCQ with the correct parameters', done => {
     nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
 
     const revert = Pcq.__set__('uuidv4', () => {
@@ -52,7 +52,7 @@ describe('Pcq.js', () => {
 
     setTimeout(() => {
       expect(res.redirect.calledOnce).to.equal(true);
-      expect(res.redirect.args[0][0]).to.satisfy((str) =>
+      expect(res.redirect.args[0][0]).to.satisfy(str =>
         str.startsWith(
           'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=test%2Btest%40test.com&returnUrl=localhost/check-your-appeal&language=en&token='
         )
@@ -62,7 +62,7 @@ describe('Pcq.js', () => {
     }, 100);
   });
 
-  it('redirects to PCQ with the correct parameters with idam user', (done) => {
+  it('redirects to PCQ with the correct parameters with idam user', done => {
     req.idam = {
       userDetails: {
         email: 'specificuser@idam.com'
@@ -79,7 +79,7 @@ describe('Pcq.js', () => {
 
     setTimeout(() => {
       expect(res.redirect.calledOnce).to.equal(true);
-      expect(res.redirect.args[0][0]).to.satisfy((str) =>
+      expect(res.redirect.args[0][0]).to.satisfy(str =>
         str.startsWith(
           'http://localhost:4000/service-endpoint?serviceId=SSCS&actor=APPELLANT&pcqId=r123&partyId=specificuser%40idam.com&returnUrl=localhost/check-your-appeal&language=en&token='
         )
@@ -89,7 +89,7 @@ describe('Pcq.js', () => {
     }, 100);
   });
 
-  it('values() returns the correct pcqId if present', (done) => {
+  it('values() returns the correct pcqId if present', done => {
     nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
 
     const revert = Pcq.__set__('uuidv4', () => {
@@ -119,7 +119,7 @@ describe('Pcq.js', () => {
   });
 
   describe('skips PCQ', () => {
-    it('if it is unhealthy', (done) => {
+    it('if it is unhealthy', done => {
       nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'DOWN' });
 
       const step = new Pcq(req, res);
@@ -132,7 +132,7 @@ describe('Pcq.js', () => {
       }, 100);
     });
 
-    it('if there is an error retrieving the PCQ health', (done) => {
+    it('if there is an error retrieving the PCQ health', done => {
       const step = new Pcq(req, res);
       step.handler(req, res);
 
@@ -168,7 +168,7 @@ describe('Pcq.js', () => {
       testConfig.features.pcq.enabled = 'true';
     });
 
-    it('if PCQ already called', (done) => {
+    it('if PCQ already called', done => {
       req.session.Pcq = 'some-id';
       nock(pcqHost).get('/health').reply(httpStatus.OK, { status: 'UP' });
       const step = new Pcq(req, res);

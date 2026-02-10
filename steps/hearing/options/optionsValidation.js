@@ -17,7 +17,7 @@ const optionSelected = options => {
 };
 
 const invalidTelephoneValidation = value => {
-  let res;
+  let res = null;
   const schema = customJoi.string().trim().validatePhone();
   if (schema && typeof schema.validate === 'function') {
     res = schema.validate(value.phoneNumber);

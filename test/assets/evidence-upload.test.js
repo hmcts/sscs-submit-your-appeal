@@ -28,19 +28,18 @@ describe('evidence upload', () => {
   const { window } = jsdom;
   const { document } = window;
 
-  before((done) => {
+  before(done => {
     global.window = window;
     global.document = document;
 
     $ = global.jQuery = jQuery(window);
 
-    EvidenceUpload =
-      require('assets/js/evidence-upload/evidence-upload').default;
+    EvidenceUpload = require('assets/js/evidence-upload/evidence-upload').default;
     EvidenceUpload.prototype.doTheUpload = sinon.stub().resolves(true);
     window.setTimeout(done, 10);
   });
 
-  beforeEach((done) => {
+  beforeEach(done => {
     $('body').empty();
     $('body').append(content);
     evidenceUpload = new EvidenceUpload('#evidence-upload');

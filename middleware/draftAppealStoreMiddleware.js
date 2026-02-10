@@ -101,6 +101,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
       journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
       // use only valid steps. Call the provided callback in a guarded try/catch to
       // ensure any errors inside it don't escape this function.
+      /* eslint-disable max-depth */
       if (typeof callBack === 'function') {
         try {
           callBack();
@@ -116,7 +117,7 @@ const removeRevertInvalidSteps = (journey, callBack) => {
       // Revert visitedsteps back to initial state.
       journey.visitedSteps = allVisitedSteps;
     }
-  } catch (e) {
+  } catch {
     logger.trace(
       'removeRevertInvalidSteps invalid steps, or callback function',
       logPath
@@ -134,6 +135,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
     // If the backend is unreachable (connection refused), prefer to log and
     // continue the user's journey rather than presenting a 500 page.
     const errCode = error && (error.code || error.errno);
+    /* eslint-disable no-magic-numbers */
     if (errCode === 'ECONNREFUSED' || errCode === -61) {
       logger.trace(
         `Draft store unreachable (${JSON.stringify(error)}). Continuing without failing the user.`,
@@ -142,7 +144,7 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
       next();
       return;
     }
-  } catch (e) {
+  } catch {
     // ignore errors while inspecting the error
   }
 

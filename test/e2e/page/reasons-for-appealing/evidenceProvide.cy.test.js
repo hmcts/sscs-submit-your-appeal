@@ -25,16 +25,16 @@ test.describe(
   { tag: '@batch-10' },
   () => {
     if (evidenceUploadEnabled) {
-      test.beforeEach('Create session', async ({ page }) => {
+      test.beforeEach('Create session', async({ page }) => {
         await createTheSession(page, language);
         await page.goto(paths.reasonsForAppealing.evidenceProvide);
       });
 
-      test.afterEach('End session', async ({ page }) => {
+      test.afterEach('End session', async({ page }) => {
         await endTheSession(page);
       });
 
-      test(`${language.toUpperCase()} - When page select Yes, page am taken to the evidence upload page`, async ({
+      test(`${language.toUpperCase()} - When page select Yes, page am taken to the evidence upload page`, async({
         page
       }) => {
         page.selectAreYouProvidingEvidenceAndContinue(
@@ -47,7 +47,7 @@ test.describe(
         ).toBeVisible();
       });
 
-      test(`${language.toUpperCase()} - When page select No, page am taken to the hearing page`, async ({
+      test(`${language.toUpperCase()} - When page select No, page am taken to the hearing page`, async({
         page
       }) => {
         page.selectAreYouProvidingEvidenceAndContinue(

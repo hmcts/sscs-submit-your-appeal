@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const joiValidation = (value, joiSchema) => {
-  let res;
+  let res = null;
   if (joiSchema && typeof joiSchema.validate === 'function') {
     res = joiSchema.validate(value);
   } else {

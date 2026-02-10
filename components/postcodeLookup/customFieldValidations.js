@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const logger = require('logger');
 
 // Provide a small compatibility layer that matches the old API used by the app:
 // customFieldValidations.string().validateAddressList(page) -> returns a Joi schema
@@ -28,7 +29,8 @@ function string() {
 
           // Return an error (use generic invalid key)
           return helpers.error('any.invalid');
-        } catch (err) {
+        } catch (error) {
+          logger.error(`Error during custom filed validation: ${error}`);
           return helpers.error('any.invalid');
         }
       })

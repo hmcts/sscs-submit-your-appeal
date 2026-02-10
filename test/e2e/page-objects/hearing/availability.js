@@ -8,10 +8,7 @@ async function selectHearingAvailabilityAndContinue(
   commonContent,
   option
 ) {
-  const hearingAvailabilityContent =
-    language === 'en'
-      ? hearingAvailabilityContentEn
-      : hearingAvailabilityContentCy;
+  const hearingAvailabilityContent = language === 'en' ? hearingAvailabilityContentEn : hearingAvailabilityContentCy;
 
   await expect(
     I.getByText(hearingAvailabilityContent.title).first()

@@ -47,7 +47,7 @@ async function createUser() {
   }
 }
 
-const deleteUser = async (email) => {
+const deleteUser = async email => {
   try {
     await request
       .delete(`${sidamApiUrl}/testing-support/accounts/${email}`)

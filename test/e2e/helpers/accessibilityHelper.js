@@ -14,8 +14,8 @@ async function axeTest(page) {
     ])
     .analyze();
   if (accessibilityScanResults.violations.length > 0) {
-    accessibilityScanResults.violations.forEach((violationType) => {
-      const instances = violationType.nodes.map((violationInstance) => {
+    accessibilityScanResults.violations.forEach(violationType => {
+      const instances = violationType.nodes.map(violationInstance => {
         return {
           issue: violationType.help,
           impact: violationType.impact,

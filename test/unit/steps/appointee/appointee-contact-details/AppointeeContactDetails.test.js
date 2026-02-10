@@ -69,7 +69,7 @@ describe('Appointee-contact-details.js', () => {
       expect(pclSpy).to.have.been.calledOnce;
     });
 
-    it('redirect to /does-not-exist called for iba', async () => {
+    it('redirect to /does-not-exist called for iba', async() => {
       const superStub = sinon.stub(SaveToDraftStore.prototype, 'handler');
       req.session = {
         BenefitType: {
@@ -105,8 +105,7 @@ describe('Appointee-contact-details.js', () => {
       });
 
       it('should return the email address if an emailaddress value has been set', () => {
-        appointeeContactDetails.fields.emailAddress.value =
-          'myemailaddress@sscs.com';
+        appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
         expect(appointeeContactDetails.CYAEmailAddress).to.equal(
           appointeeContactDetails.fields.emailAddress.value
         );
@@ -162,7 +161,7 @@ describe('Appointee-contact-details.js', () => {
         );
       });
 
-      it('checks postcode and it is valid', (done) => {
+      it('checks postcode and it is valid', done => {
         responseFromPostcodeChecker = Promise.resolve(true);
 
         appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -175,7 +174,7 @@ describe('Appointee-contact-details.js', () => {
         );
       });
 
-      it('checks postcode and it is invalid', (done) => {
+      it('checks postcode and it is invalid', done => {
         responseFromPostcodeChecker = Promise.resolve(false);
 
         appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -188,7 +187,7 @@ describe('Appointee-contact-details.js', () => {
         );
       });
 
-      it('error checking postcode', (done) => {
+      it('error checking postcode', done => {
         responseFromPostcodeChecker = Promise.reject(new Error());
 
         appointeeContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -373,16 +372,13 @@ describe('Appointee-contact-details.js', () => {
 
   describe('values()', () => {
     it('should contain a value object', () => {
-      appointeeContactDetails.fields.addressLine1.value =
-        'First line of my address';
-      appointeeContactDetails.fields.addressLine2.value =
-        'Second line of my address';
+      appointeeContactDetails.fields.addressLine1.value = 'First line of my address';
+      appointeeContactDetails.fields.addressLine2.value = 'Second line of my address';
       appointeeContactDetails.fields.townCity.value = 'Town or City';
       appointeeContactDetails.fields.county.value = 'County';
       appointeeContactDetails.fields.postCode.value = 'Postcode';
       appointeeContactDetails.fields.phoneNumber.value = '0800109756';
-      appointeeContactDetails.fields.emailAddress.value =
-        'myemailaddress@sscs.com';
+      appointeeContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       appointeeContactDetails.fields.postcodeLookup.value = 'n29ed';
       appointeeContactDetails.fields.postcodeAddress.value = '200000';
 
@@ -427,16 +423,14 @@ describe('Appointee-contact-details.js', () => {
 
     it('removes whitespace from before and after the postcode string', () => {
       appointeeContactDetails.fields.postCode.value = ' Post code ';
-      const postcode =
-        appointeeContactDetails.values().appointee.contactDetails.postCode;
+      const postcode = appointeeContactDetails.values().appointee.contactDetails.postCode;
       expect(postcode).to.not.equal(' Post code ');
       expect(postcode).to.equal('Post code');
     });
 
     it('removes whitespace from before and after the phone number string', () => {
       appointeeContactDetails.fields.phoneNumber.value = ' 0800109756 ';
-      const phoneNumber =
-        appointeeContactDetails.values().appointee.contactDetails.phoneNumber;
+      const phoneNumber = appointeeContactDetails.values().appointee.contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });

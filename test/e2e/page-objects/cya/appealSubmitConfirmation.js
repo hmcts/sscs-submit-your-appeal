@@ -4,8 +4,7 @@ const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function appealSubmitConfirmation(I, language) {
-  const cyaContent =
-    language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+  const cyaContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
   await I.waitForURL(paths.confirmation);
   await expect(I.getByText(cyaContent.confirmation)).toBeVisible();
 }

@@ -8,14 +8,13 @@ const DEFAULT_LANG = 'en';
 
 function tryRequire(modulePath) {
   try {
-    // eslint-disable-next-line import/no-dynamic-require
     return require(modulePath);
-  } catch (err) {
+  } catch (error) {
     // Only swallow MODULE_NOT_FOUND to try alternatives — rethrow other errors.
-    if (err && err.code === 'MODULE_NOT_FOUND') {
+    if (error && error.code === 'MODULE_NOT_FOUND') {
       return null;
     }
-    throw err;
+    throw error;
   }
 }
 
@@ -23,9 +22,9 @@ function getCallerDir() {
   // Capture stack and find the first file path outside this module
   const orig = Error.prepareStackTrace;
   try {
-    const err = new Error();
+    const error = new Error();
     Error.prepareStackTrace = (errObj, stackTraces) => stackTraces;
-    const stack = err.stack;
+    const stack = error.stack;
     Error.prepareStackTrace = orig;
     for (let i = 0; i < stack.length; i++) {
       const fileName = stack[i].getFileName && stack[i].getFileName();
@@ -36,7 +35,7 @@ function getCallerDir() {
         return path.dirname(fileName);
       }
     }
-  } catch (e) {
+  } catch {
     // fall through
   } finally {
     Error.prepareStackTrace = orig;
@@ -75,11 +74,11 @@ function requireLocalized(basePath, lang) {
   const mod = tryRequire(baseResolved);
   if (mod) return mod;
 
-  const err = new Error(
+  const error = new Error(
     `Could not load content for ${basePath}. Tried: ${tried.join(', ')}`
   );
-  err.code = 'CONTENT_NOT_FOUND';
-  throw err;
+  error.code = 'CONTENT_NOT_FOUND';
+  throw error;
 }
 
 module.exports = { requireLocalized };

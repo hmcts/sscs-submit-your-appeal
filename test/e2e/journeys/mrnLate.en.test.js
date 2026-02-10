@@ -52,16 +52,16 @@ test.describe(
   `${language.toUpperCase()} - Appellant has a dated MRN`,
   { tag: '@batch-03' },
   () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach((obj) => {
-      test(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, async ({
+    [oneMonthAndOneDayLate, thirteenMonthsAndOneDayLate].forEach(obj => {
+      test(`${language.toUpperCase()} - Appellant has a MRN that is over ${obj.label}`, async({
         page
       }) => {
         await enterBenefitTypeAndContinue(

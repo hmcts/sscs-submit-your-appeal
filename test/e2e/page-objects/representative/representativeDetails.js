@@ -1,8 +1,7 @@
 const config = require('config');
 const { expect } = require('@playwright/test');
 
-const postcodeLookupEnabled =
-  config.get('postcodeLookup.enabled').toString() === 'true';
+const postcodeLookupEnabled = config.get('postcodeLookup.enabled').toString() === 'true';
 
 async function enterRequiredRepresentativeDetailsManual(I) {
   await I.locator('input[name="name.title"]').fill('Mr');

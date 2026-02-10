@@ -18,16 +18,16 @@ test.describe(
   `${language.toUpperCase()} - Appellant details form`,
   { tag: '@batch-09' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantContactDetails);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When completing the form, clicking Continue, page see url /appellant-text-reminders`, async ({
+    test(`${language.toUpperCase()} - When completing the form, clicking Continue, page see url /appellant-text-reminders`, async({
       page
     }) => {
       await page
@@ -65,7 +65,7 @@ test.describe(
       await expect(page).toHaveURL(paths.smsNotify.appellantTextReminders);
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without completing the form page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue without completing the form page see errors`, async({
       page
     }) => {
       await page
@@ -102,7 +102,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue with a postcode that is not in England or Wales page see error`, async ({
+    test(`${language.toUpperCase()} - When page click Continue with a postcode that is not in England or Wales page see error`, async({
       page
     }) => {
       if (config.get('postcodeChecker.enabled')) {
@@ -140,7 +140,7 @@ test.describe(
       }
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async ({
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
       page
     }) => {
       await expect(

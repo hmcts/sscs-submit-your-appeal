@@ -3,10 +3,7 @@ const lanugagePreferenceContentCy = require('steps/start/language-preference/con
 const { expect } = require('@playwright/test');
 
 async function chooseLanguagePreference(I, language, commonContent, option) {
-  const lanugagePreferenceContent =
-    language === 'en'
-      ? lanugagePreferenceContentEn
-      : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
   await expect(
     I.getByText(lanugagePreferenceContent.title).first()
@@ -21,10 +18,7 @@ async function chooseLanguagePreferenceAfterSignIn(
   commonContent,
   option
 ) {
-  const lanugagePreferenceContent =
-    language === 'en'
-      ? lanugagePreferenceContentEn
-      : lanugagePreferenceContentCy;
+  const lanugagePreferenceContent = language === 'en' ? lanugagePreferenceContentEn : lanugagePreferenceContentCy;
 
   await expect(
     I.getByText(lanugagePreferenceContent.title).first()

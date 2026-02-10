@@ -10,8 +10,7 @@ const testNIData = require('../../../util/randomData');
 const { expect } = require('@playwright/test');
 
 const evidenceUploadEnabled = config.get('features.evidenceUpload.enabled');
-const allowSaveAndReturnEnabled =
-  config.get('features.allowSaveAndReturn.enabled').toString() === 'true';
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled').toString() === 'true';
 
 const selectors = require('steps/check-your-appeal/selectors');
 const paths = require('paths');
@@ -637,8 +636,7 @@ async function enterDetailsFromAttendingTheHearingToEnd(
   language,
   date
 ) {
-  const datesCantAttendContent =
-    language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
+  const datesCantAttendContent = language === 'en' ? datesCantAttendContentEn : datesCantAttendContentCy;
 
   await enterDoYouWantToAttendTheHearing(
     I,
@@ -676,8 +674,7 @@ async function enterDetailsFromAttendingTheHearingDatePickerToEnd(
   language,
   date
 ) {
-  const supportContent =
-    language === 'en' ? supportContentEn : supportContentCy;
+  const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   await enterDoYouWantToAttendTheHearing(
     I,
@@ -710,8 +707,7 @@ async function enterDetailsFromAttendingTheHearingWithSupportToEnd(
   options,
   fields = []
 ) {
-  const supportContent =
-    language === 'en' ? supportContentEn : supportContentCy;
+  const supportContent = language === 'en' ? supportContentEn : supportContentCy;
 
   await enterDoYouWantToAttendTheHearing(
     I,
@@ -727,10 +723,10 @@ async function enterDetailsFromAttendingTheHearingWithSupportToEnd(
     supportContent.fields.arrangements.yes
   );
   await Promise.all(
-    options.map((option) => I.getByText(option).first().click())
+    options.map(option => I.getByText(option).first().click())
   );
   await Promise.all(
-    fields.map((field) => I.locator(`#${field.id}`).first().fill(field.content))
+    fields.map(field => I.locator(`#${field.id}`).first().fill(field.content))
   );
   await I.getByRole('button', { name: commonContent.continue }).first().click();
   await selectHearingAvailabilityAndContinue(
@@ -743,8 +739,7 @@ async function enterDetailsFromAttendingTheHearingWithSupportToEnd(
 
 async function confirmDetailsArePresent(I, language, hasMRN = true, mrnDate) {
   const testData = language === 'en' ? testDataEn : testDataCy;
-  const checkYourAppealContent =
-    language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
+  const checkYourAppealContent = language === 'en' ? checkYourAppealContentEn : checkYourAppealContentCy;
   const oneMonthAgo = DateUtils.oneMonthAgo(language);
   let mrnDateToCheck = mrnDate;
 

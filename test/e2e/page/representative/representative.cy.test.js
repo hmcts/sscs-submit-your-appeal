@@ -12,16 +12,16 @@ test.describe(
   `${language.toUpperCase()} - Representative`,
   { tag: '@batch-10' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.representative.representative);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page select yes, page am taken to the representative details page`, async ({
+    test(`${language.toUpperCase()} - When page select yes, page am taken to the representative details page`, async({
       page
     }) => {
       page.selectDoYouHaveARepresentativeAndContinue(
@@ -31,7 +31,7 @@ test.describe(
       await page.waitForURL(`**${paths.representative.representativeDetails}`);
     });
 
-    test(`${language.toUpperCase()} - When page select No, page am taken to the reason for appealing page`, async ({
+    test(`${language.toUpperCase()} - When page select No, page am taken to the reason for appealing page`, async({
       page
     }) => {
       page.selectDoYouHaveARepresentativeAndContinue(
@@ -43,7 +43,7 @@ test.describe(
       );
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async ({
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
       page
     }) => {
       await expect(

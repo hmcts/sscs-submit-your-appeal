@@ -49,8 +49,7 @@ const {
 const { endTheSession } = require('../page-objects/session/endSession');
 const { createTheSession } = require('../page-objects/session/createSession');
 
-const allowSaveAndReturnEnabled =
-  config.get('features.allowSaveAndReturn.enabled').toString() === 'true';
+const allowSaveAndReturnEnabled = config.get('features.allowSaveAndReturn.enabled').toString() === 'true';
 
 const appellant = testData.appellant;
 
@@ -58,15 +57,15 @@ test.describe(
   `${language.toUpperCase()} - Appellant does not have a MRN`,
   { tag: '@batch-04' },
   () => {
-    test.beforeEach('Create session and user', async ({ page }) => {
+    test.beforeEach('Create session and user', async({ page }) => {
       await createTheSession(page, language);
     });
 
-    test.afterEach('End session and delete user', async ({ page }) => {
+    test.afterEach('End session and delete user', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - Appellant has contacted DWP`, async ({
+    test(`${language.toUpperCase()} - Appellant has contacted DWP`, async({
       page
     }) => {
       const randomWeekDay = DateUtils.getDateInMilliseconds(
@@ -146,7 +145,7 @@ test.describe(
       await confirmDetailsArePresent(page, language, hasMRN);
     });
 
-    test(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, async ({
+    test(`${language.toUpperCase()} - Appellant has not contacted DWP and exits the service`, async({
       page
     }) => {
       await enterBenefitTypeAndContinue(

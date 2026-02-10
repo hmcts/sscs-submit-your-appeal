@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 const getE2eTestTags = (process.env.E2E_TEST_TAGS || '@functional')
   .split(',')
-  .map((tag) => new RegExp(tag.trim()));
+  .map(tag => new RegExp(tag.trim()));
 
 module.exports = defineConfig({
   testDir: process.env.E2E_TEST_DIR || './',

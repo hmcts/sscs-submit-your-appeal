@@ -18,23 +18,23 @@ test.describe(
   `${language.toUpperCase()} - Appellant DOB form`,
   { tag: '@batch-09' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.identity.enterAppellantDOB);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page complete the form and click Continue, page am taken to /enter-appellant-nino`, async ({
+    test(`${language.toUpperCase()} - When page complete the form and click Continue, page am taken to /enter-appellant-nino`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '21', '03', '1981');
       await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue without filling in the fields page see errors`, async({
       page
     }) => {
       await page
@@ -48,7 +48,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the day field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="day"]').first().fill('21');
@@ -68,7 +68,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the month field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="month"]').first().fill('12');
@@ -88,7 +88,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the year field page see errors`, async({
       page
     }) => {
       await page.locator('input[name*="year"]').first().fill('1999');
@@ -108,7 +108,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter an invalid date page see errors`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '30', '02', '1981');
@@ -117,7 +117,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter a date in the future page see errors`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '25', '02', '3400');
@@ -126,21 +126,21 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page enter a dob with name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a dob with name of month`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '21', 'March', '1981');
       await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
     });
 
-    test(`${language.toUpperCase()} - page enter a dob with the short name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a dob with the short name of month`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '21', 'Jul', '1981');
       await expect(page).toHaveURL(paths.identity.enterAppellantNINO);
     });
 
-    test(`${language.toUpperCase()} - page enter a dob with an invalid name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a dob with an invalid name of month`, async({
       page
     }) => {
       await enterAppellantDOBAndContinue(page, '21', 'invalidMonth', '1981');

@@ -61,6 +61,7 @@ const postcodeChecker = (
         // 500 to users when an external service is down.
         try {
           const errCode = error && (error.code || error.errno);
+          /* eslint-disable no-magic-numbers */
           if (errCode === 'ECONNREFUSED' || errCode === -61) {
             logger.trace(
               `PostcodeChecker: service unreachable (${JSON.stringify(error)}). Falling back to allowUnknownPostcodes=${allowUnknownPostcodes}`
@@ -68,7 +69,7 @@ const postcodeChecker = (
             resolve(allowUnknownPostcodes);
             return;
           }
-        } catch (e) {
+        } catch {
           // ignore logging errors
         }
         logger.exception(JSON.stringify(error));

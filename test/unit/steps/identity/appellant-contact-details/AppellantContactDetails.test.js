@@ -67,7 +67,7 @@ describe('AppellantContactDetails.js', () => {
       appellantContactDetails.pcl.init.restore();
     });
 
-    it('call pcl controller once', async () => {
+    it('call pcl controller once', async() => {
       appellantContactDetails.req = req;
       await appellantContactDetails.handler(req, res, next);
       expect(pclSpy).to.have.been.calledOnce;
@@ -97,8 +97,7 @@ describe('AppellantContactDetails.js', () => {
     });
 
     it('should return the email address if an emailaddress value has been set', () => {
-      appellantContactDetails.fields.emailAddress.value =
-        'myemailaddress@sscs.com';
+      appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       expect(appellantContactDetails.CYAEmailAddress).to.equal(
         appellantContactDetails.fields.emailAddress.value
       );
@@ -153,7 +152,7 @@ describe('AppellantContactDetails.js', () => {
         );
       });
 
-      it('checks postcode and it is valid', (done) => {
+      it('checks postcode and it is valid', done => {
         responseFromPostcodeChecker = Promise.resolve(true);
 
         appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -166,7 +165,7 @@ describe('AppellantContactDetails.js', () => {
         );
       });
 
-      it('checks postcode and it is invalid', (done) => {
+      it('checks postcode and it is invalid', done => {
         responseFromPostcodeChecker = Promise.resolve(false);
 
         appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -179,7 +178,7 @@ describe('AppellantContactDetails.js', () => {
         );
       });
 
-      it('error checking postcode', (done) => {
+      it('error checking postcode', done => {
         responseFromPostcodeChecker = Promise.reject(new Error());
 
         appellantContactDetailsWithoutPostcodeChecker.isEnglandOrWalesPostcode(
@@ -368,16 +367,13 @@ describe('AppellantContactDetails.js', () => {
 
   describe('values()', () => {
     it('should contain a value object', () => {
-      appellantContactDetails.fields.addressLine1.value =
-        'First line of my address';
-      appellantContactDetails.fields.addressLine2.value =
-        'Second line of my address';
+      appellantContactDetails.fields.addressLine1.value = 'First line of my address';
+      appellantContactDetails.fields.addressLine2.value = 'Second line of my address';
       appellantContactDetails.fields.townCity.value = 'Town or City';
       appellantContactDetails.fields.county.value = 'County';
       appellantContactDetails.fields.postCode.value = 'Postcode';
       appellantContactDetails.fields.phoneNumber.value = '0800109756';
-      appellantContactDetails.fields.emailAddress.value =
-        'myemailaddress@sscs.com';
+      appellantContactDetails.fields.emailAddress.value = 'myemailaddress@sscs.com';
       appellantContactDetails.fields.postcodeLookup.value = 'n29ed';
       appellantContactDetails.fields.postcodeAddress.value = '200000';
       const values = appellantContactDetails.values();
@@ -422,16 +418,14 @@ describe('AppellantContactDetails.js', () => {
 
     it('removes whitespace from before and after the postcode string', () => {
       appellantContactDetails.fields.postCode.value = ' Post code ';
-      const postcode =
-        appellantContactDetails.values().appellant.contactDetails.postCode;
+      const postcode = appellantContactDetails.values().appellant.contactDetails.postCode;
       expect(postcode).to.not.equal(' Post code ');
       expect(postcode).to.equal('Post code');
     });
 
     it('removes whitespace from before and after the phone number string', () => {
       appellantContactDetails.fields.phoneNumber.value = ' 0800109756 ';
-      const phoneNumber =
-        appellantContactDetails.values().appellant.contactDetails.phoneNumber;
+      const phoneNumber = appellantContactDetails.values().appellant.contactDetails.phoneNumber;
       expect(phoneNumber).to.not.equal(' 0800109756 ');
       expect(phoneNumber).to.equal('0800109756');
     });

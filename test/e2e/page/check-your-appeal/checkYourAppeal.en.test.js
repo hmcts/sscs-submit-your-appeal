@@ -15,15 +15,15 @@ const {
 } = require('../../page-objects/session/createSession');
 
 test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () => {
-  test.beforeEach('Create session', async ({ page }) => {
+  test.beforeEach('Create session', async({ page }) => {
     await createTheSession(page, language);
   });
 
-  test.afterEach('End session', async ({ page }) => {
+  test.afterEach('End session', async({ page }) => {
     await endTheSession(page);
   });
 
-  test(`${language.toUpperCase()} - When the appeal is incomplete, page am taken to the next step that needs completing`, async ({
+  test(`${language.toUpperCase()} - When the appeal is incomplete, page am taken to the next step that needs completing`, async({
     page
   }) => {
     await page.goto(paths.checkYourAppeal);
@@ -38,7 +38,7 @@ test.describe(`${language.toUpperCase()} - Check-your-appeal @functional`, () =>
     await expect(page).toHaveURL('/benefit-type');
   });
 
-  test(`${language.toUpperCase()} - When page go to the check your appeal page, page don't see the Sign and submit section`, async ({
+  test(`${language.toUpperCase()} - When page go to the check your appeal page, page don't see the Sign and submit section`, async({
     page
   }) => {
     await enterBenefitTypeAndContinue(page, language, commonContent, 'pip');

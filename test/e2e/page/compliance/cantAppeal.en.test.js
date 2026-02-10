@@ -14,23 +14,23 @@ test.describe(
   `${language.toUpperCase()} - Cannot appeal`,
   { tag: '@batch-07' },
   () => {
-    test.beforeEach('Create session', async ({ page }) => {
+    test.beforeEach('Create session', async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.compliance.cantAppeal);
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - page exit the service after being told page cannot appeal`, async ({
+    test(`${language.toUpperCase()} - page exit the service after being told page cannot appeal`, async({
       page
     }) => {
       await page.getByText(cantAppealContent.govuk).first().click();
       await page.goto('https://www.gov.uk');
     });
 
-    test(`${language.toUpperCase()} - page have a csrf token`, async ({
+    test(`${language.toUpperCase()} - page have a csrf token`, async({
       page
     }) => {
       await expect(

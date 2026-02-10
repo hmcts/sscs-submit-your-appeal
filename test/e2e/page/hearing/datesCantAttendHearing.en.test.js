@@ -29,17 +29,17 @@ test.describe(
   `${language.toUpperCase()} - Dates can't attend`,
   { tag: '@batch-08' },
   () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async({ page }) => {
       await createTheSession(page, language);
       await page.goto(paths.hearing.datesCantAttend);
       await page.turnOffJsAndReloadThePage();
     });
 
-    test.afterEach('End session', async ({ page }) => {
+    test.afterEach('End session', async({ page }) => {
       await endTheSession(page);
     });
 
-    test(`${language.toUpperCase()} - When page go to the page and there are no dates page see the Add date link`, async ({
+    test(`${language.toUpperCase()} - When page go to the page and there are no dates page see the Add date link`, async({
       page
     }) => {
       await expect(
@@ -50,7 +50,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click the Add date link, page go to the page where page can enter dates`, async ({
+    test(`${language.toUpperCase()} - When page click the Add date link, page go to the page where page can enter dates`, async({
       page
     }) => {
       await expect(
@@ -67,7 +67,7 @@ test.describe(
       await expect(page.locator('input[name*="year"]').first()).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page add a date page see the date in the list`, async ({
+    test(`${language.toUpperCase()} - When page add a date page see the date in the list`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -79,7 +79,7 @@ test.describe(
       await seeFormattedDate(page, validDate);
     });
 
-    test(`${language.toUpperCase()} - When page add a date page see the add another date link`, async ({
+    test(`${language.toUpperCase()} - When page add a date page see the add another date link`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -93,7 +93,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page add multiple dates, page see them in the list`, async ({
+    test(`${language.toUpperCase()} - When page add multiple dates, page see them in the list`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -112,7 +112,7 @@ test.describe(
       await seeFormattedDate(page, additionalValidDate);
     });
 
-    test(`${language.toUpperCase()} - When page add a date and click the delete link, the date is removed`, async ({
+    test(`${language.toUpperCase()} - When page add a date and click the delete link, the date is removed`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -126,7 +126,7 @@ test.describe(
       await dontSeeFormattedDate(page, validDate);
     });
 
-    test(`${language.toUpperCase()} - page add a single date, page remove it, page see Add date`, async ({
+    test(`${language.toUpperCase()} - page add a single date, page remove it, page see Add date`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -147,7 +147,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without add a date, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue without add a date, page see errors`, async({
       page
     }) => {
       await page
@@ -159,7 +159,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page add a date and the edit it, page see the new date`, async ({
+    test(`${language.toUpperCase()} - When page add a date and the edit it, page see the new date`, async({
       page
     }) => {
       await enterDateCantAttendAndContinue(
@@ -179,7 +179,7 @@ test.describe(
       await seeFormattedDate(page, additionalValidDate);
     });
 
-    test(`${language.toUpperCase()} - When page click Continue without filling in the date fields, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue without filling in the date fields, page see errors`, async({
       page
     }) => {
       await page.getByText(datesCantAttendContent.links.add).first().click();
@@ -196,7 +196,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the day field, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the day field, page see errors`, async({
       page
     }) => {
       await page.getByText(datesCantAttendContent.links.add).first().click();
@@ -224,7 +224,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the month field, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the month field, page see errors`, async({
       page
     }) => {
       await page.getByText(datesCantAttendContent.links.add).first().click();
@@ -252,7 +252,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page click Continue when only entering the year field, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page click Continue when only entering the year field, page see errors`, async({
       page
     }) => {
       await page.getByText(datesCantAttendContent.links.add).first().click();
@@ -280,7 +280,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a date that is under four weeks from now, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter a date that is under four weeks from now, page see errors`, async({
       page
     }) => {
       const dateUnderFourWeeks = moment();
@@ -299,7 +299,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - When page enter a date that is over twenty two weeks from now, page see errors`, async ({
+    test(`${language.toUpperCase()} - When page enter a date that is over twenty two weeks from now, page see errors`, async({
       page
     }) => {
       const dateOverTwentyTwoWeeks = moment().add(23, 'weeks');
@@ -319,7 +319,7 @@ test.describe(
       ).toBeVisible();
     });
 
-    test(`${language.toUpperCase()} - page enter a date page cant attend with the long name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a date page cant attend with the long name of month`, async({
       page
     }) => {
       const month = DateUtils.formatDate(validDate, 'MMMM');
@@ -336,7 +336,7 @@ test.describe(
       await expect(page).toHaveURL(paths.checkYourAppeal);
     });
 
-    test(`${language.toUpperCase()} - page enter a date page cant attend with the short name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a date page cant attend with the short name of month`, async({
       page
     }) => {
       const month = DateUtils.formatDate(validDate, 'MMM');
@@ -353,7 +353,7 @@ test.describe(
       await expect(page).toHaveURL(paths.checkYourAppeal);
     });
 
-    test(`${language.toUpperCase()} - page enter a date page cant attend with an invalid name of month`, async ({
+    test(`${language.toUpperCase()} - page enter a date page cant attend with an invalid name of month`, async({
       page
     }) => {
       await page.getByText(datesCantAttendContent.links.add).first().click();

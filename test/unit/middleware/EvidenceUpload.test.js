@@ -24,11 +24,11 @@ describe('The EvidenceUpload middleware', () => {
   const unlinker = sinon.stub().yields();
   const renamer = sinon.stub().yields();
 
-  beforeEach(function () {
+  beforeEach(function() {
     this.timeout(2500);
     stubs = {
       formidable: {
-        IncomingForm: function () {
+        IncomingForm: function() {
           this.parse = parser;
           this.once = () => {};
           this.on = () => {};
@@ -79,7 +79,7 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('handleRename', () => {
-    it('should handle successful response and set req.body correctly', async () => {
+    it('should handle successful response and set req.body correctly', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
@@ -96,7 +96,7 @@ describe('The EvidenceUpload middleware', () => {
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
-    it('should handle response without hashToken and set req.body correctly', async () => {
+    it('should handle response without hashToken and set req.body correctly', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
@@ -132,7 +132,7 @@ describe('The EvidenceUpload middleware', () => {
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
-    it('should handle errors and set req.body with technicalProblemError', async () => {
+    it('should handle errors and set req.body with technicalProblemError', async() => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
@@ -379,7 +379,7 @@ describe('The EvidenceUpload middleware', () => {
   });
 
   describe('static handleUpload', () => {
-    it("if req.method is NOT post, it doesn't do anything apart from just invoking the callback", (done) => {
+    it("if req.method is NOT post, it doesn't do anything apart from just invoking the callback", done => {
       const poster = sinon.stub();
       stubs.superagent.post = poster;
       EvidenceUpload = proxyquire(
@@ -392,7 +392,7 @@ describe('The EvidenceUpload middleware', () => {
           method: 'get'
         },
         {},
-        (error) => {
+        error => {
           expect(EvidenceUpload.makeDir).not.to.have.been.called;
           expect(parser).not.to.have.been.called;
           expect(poster).not.to.have.been.called;
@@ -490,7 +490,7 @@ describe('The EvidenceUpload middleware', () => {
 });
 
 describe('static makeDir', () => {
-  const getStubs = (isDirectory) => ({
+  const getStubs = isDirectory => ({
     'graceful-fs': {
       stat: (path, cback) => {
         cback(false, {

@@ -15,12 +15,12 @@ const {
 test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, () => {
   let userEmail;
 
-  test.beforeEach('Create session and user', async ({ page }) => {
+  test.beforeEach('Create session and user', async({ page }) => {
     await createTheSession(page, language);
     userEmail = await testUser.createUser();
   });
 
-  test.afterEach('End session and delete user', async ({ page }) => {
+  test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
     await testUser.deleteUser(userEmail);
   });
@@ -28,7 +28,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
   test(
     `${language.toUpperCase()} - Sign in as a new user and create a new application `,
     { tag: '@fullFunctional' },
-    async ({ page }) => {
+    async({ page }) => {
       await moment().locale(language);
       await enterDetailsForNewApplication(
         page,
