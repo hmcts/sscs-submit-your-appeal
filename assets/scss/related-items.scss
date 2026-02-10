@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 .govuk-related-items {
   border-top: 10px solid #005ea5;
   @include govuk-responsive-padding(5, 'top');

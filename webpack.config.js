@@ -43,7 +43,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/i,
-        loader: 'file-loader'
+        loader: 'asset/resource'
       },
       {
         test: /\.(njk|nunjucks)$/,
