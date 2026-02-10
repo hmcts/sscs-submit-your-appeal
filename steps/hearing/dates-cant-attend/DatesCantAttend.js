@@ -6,7 +6,7 @@ const {
 const { redirectTo } = require('lib/vendor/one-per-page/flow');
 const { date, convert } = require('lib/vendor/one-per-page/forms');
 const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
-const UKBankHolidays = require('@hmcts/uk-bank-holidays');
+const UKBankHolidays = require('utils/UkBankHolidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
