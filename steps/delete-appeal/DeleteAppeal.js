@@ -3,7 +3,7 @@ const {
   deleteDraft,
   LoadJourneyAndRedirect
 } = require('middleware/draftAppealStoreMiddleware');
-const { goTo } = require('@hmcts/one-per-page/flow');
+const { goTo } = require('lib/vendor/one-per-page/flow');
 
 class DeleteAppeal extends LoadJourneyAndRedirect {
   static get path() {

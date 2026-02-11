@@ -1,7 +1,7 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { branch, goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { branch, goTo } = require('lib/vendor/one-per-page');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { postCode, inwardPostcode } = require('utils/regex');
 const postcodeList = require('steps/start/postcode-checker/validPostcodeList');
 const Joi = require('joi');

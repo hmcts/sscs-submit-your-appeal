@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { form, text, ref } = require('@hmcts/one-per-page/forms');
-const { Interstitial } = require('@hmcts/one-per-page/steps');
+const { goTo } = require('lib/vendor/one-per-page');
+const { form, text, ref } = require('lib/vendor/one-per-page/forms');
+const { Interstitial } = require('lib/vendor/one-per-page/steps');
 const paths = require('paths');
 
 class SendingEvidence extends Interstitial {
