@@ -17,6 +17,7 @@
 !views/**
 !webpack/**
 !cookie-banner/**
+!lib/**
 
 !app.js
 !appConfigurations.js
