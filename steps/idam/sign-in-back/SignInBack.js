@@ -1,6 +1,6 @@
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
 const paths = require('paths');
-const { EntryPoint } = require('@hmcts/one-per-page');
+const { EntryPoint } = require('lib/vendor/one-per-page');
 
 class SignInBack extends EntryPoint {
   static get path() {

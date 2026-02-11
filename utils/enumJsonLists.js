@@ -2,8 +2,8 @@
 const config = require('config');
 const request = require('superagent');
 
-let portsOfEntry = null;
-let countriesOfResidence = null;
+let portsOfEntry = [];
+let countriesOfResidence = [];
 
 async function fetchPortsOfEntry() {
   await request
@@ -16,6 +16,8 @@ async function fetchPortsOfEntry() {
     })
     .catch(error => {
       console.error('Error fetching portOfEntry data: ', error);
+      // Ensure callers receive an array (not null) even on error
+      portsOfEntry = [];
     });
 }
 
@@ -34,6 +36,8 @@ async function fetchCountriesOfResidence() {
     })
     .catch(error => {
       console.error('Error fetching countriesOfResidence data: ', error);
+      // Ensure callers receive an array (not null) even on error
+      countriesOfResidence = [];
     });
 }
 

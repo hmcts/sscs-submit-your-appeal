@@ -1,0 +1,20 @@
+{
+  "en": {
+    "notFound": {
+      "template": "look-and-feel/layouts/error.html",
+      "title": "Page not found",
+      "message": "This could be because you've followed a broken or outdated link, or there's an error on our site.",
+      "nextSteps": [
+        "go to the previous page",
+        "<a href='/'>go home</a>"
+      ],
+      "assets": "<link href='{{path}}' media='screen' rel='stylesheet' />"
+    },
+    "serverError": {
+      "template": "look-and-feel/layouts/error.html",
+      "title": "Sorry, we're having technical problems",
+      "message": "Please try again in a few minutes.",
+      "assets": "<link href='{{path}}' media='screen' rel='stylesheet' />"
+    }
+  }
+}

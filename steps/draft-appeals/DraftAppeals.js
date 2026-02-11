@@ -5,7 +5,7 @@ const {
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 const DateUtils = require('utils/DateUtils');
 const moment = require('moment');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
 const { isIba } = require('utils/benefitTypeUtils');
 const benefitTypes = require('steps/start/benefit-type/types');
 

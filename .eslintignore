@@ -1,0 +1,2 @@
+# Ignore vendored upstream code
+lib/vendor/one-per-page/

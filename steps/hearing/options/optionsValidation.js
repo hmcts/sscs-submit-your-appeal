@@ -17,19 +17,20 @@ const optionSelected = options => {
 };
 
 const invalidTelephoneValidation = value => {
-  const { error } = Joi.validate(
-    value.phoneNumber,
-    customJoi.string().trim().validatePhone()
-  );
-  return !value.requested || !error;
+  let res = null;
+  const schema = customJoi.string().trim().validatePhone();
+  if (schema && typeof schema.validate === 'function') {
+    res = schema.validate(value.phoneNumber);
+  } else {
+    res = Joi.compile(schema).validate(value.phoneNumber);
+  }
+  return !value.requested || !res.error;
 };
 
 const invalidEmailValidation = value => {
-  const { error } = Joi.validate(
-    value.email,
-    Joi.string().trim().email(emailOptions).allow('')
-  );
-  return !value.requested || !error;
+  const schema = Joi.string().trim().email(emailOptions).allow('');
+  const res = schema.validate(value.email);
+  return !value.requested || !res.error;
 };
 
 module.exports = {

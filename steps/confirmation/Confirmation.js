@@ -1,4 +1,4 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('lib/vendor/one-per-page');
 const { get } = require('lodash');
 const paths = require('paths');
 const urls = require('urls');

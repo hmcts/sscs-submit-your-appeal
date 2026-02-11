@@ -28,11 +28,9 @@ const validCharacters = value => {
   let validated = null;
 
   if (value.requested) {
-    const validString = Joi.validate(
-      value.language,
-      Joi.string().regex(whitelist)
-    );
-    validated = validString.error === null;
+    const schema = Joi.string().regex(whitelist);
+    const res = schema.validate(value.language);
+    validated = !res.error;
   } else {
     validated = true;
   }

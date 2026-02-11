@@ -1,5 +1,5 @@
-const { branch, goTo } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { branch, goTo } = require('lib/vendor/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
 const logger = require('logger');
 const postcodeChecker = require('utils/postcodeChecker');
 

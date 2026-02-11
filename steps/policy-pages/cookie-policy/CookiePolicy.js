@@ -1,4 +1,4 @@
-const { Page } = require('@hmcts/one-per-page');
+const { Page } = require('lib/vendor/one-per-page');
 const paths = require('paths');
 
 class CookiePolicy extends Page {

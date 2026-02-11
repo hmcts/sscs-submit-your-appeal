@@ -3,9 +3,9 @@
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { date, convert } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { date, convert } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const UKBankHolidays = require('@hmcts/uk-bank-holidays');
 const sections = require('steps/check-your-appeal/sections');
 const DateUtils = require('utils/DateUtils');
@@ -29,8 +29,13 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   get addAnotherLinkContent() {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0 ?
@@ -77,8 +82,13 @@ class DatesCantAttend extends SaveToDraftStoreAddAnother {
   }
 
   validateList(list) {
-    const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const sessionLanguage = i18next.language || 'en';
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return list.check(content.listError, arr => arr.length > 0);
   }

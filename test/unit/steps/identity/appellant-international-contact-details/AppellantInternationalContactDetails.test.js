@@ -146,14 +146,15 @@ describe('AppellantInternationalContactDetails.js', () => {
         const schema = appellantInternationalContactDetails.validCountrySchema();
         for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
-          expect(result.error).to.eq(null);
+          // Joi v18 returns `undefined` for no error; accept `null` or `undefined`.
+          expect([null, undefined]).to.include(result.error);
         }
       });
 
       it('rejects non valid countries', () => {
         const schema = appellantInternationalContactDetails.validCountrySchema();
         const result = schema.validate(decode('Rt Hon'));
-        expect(result.error).not.to.eq(null);
+        expect(result.error).not.to.be.oneOf([null, undefined]);
       });
     });
 
@@ -216,14 +217,14 @@ describe('AppellantInternationalContactDetails.js', () => {
         const schema = appellantInternationalContactDetails.validPortSchema();
         for (const testPort of getPortsOfEntry()) {
           const result = schema.validate(decode(testPort.value));
-          expect(result.error).to.eq(null);
+          expect([null, undefined]).to.include(result.error);
         }
       });
 
       it('rejects non valid ports of entry', () => {
         const schema = appellantInternationalContactDetails.validPortSchema();
         const result = schema.validate(decode('Rt Hon'));
-        expect(result.error).not.to.eq(null);
+        expect(result.error).not.to.be.oneOf([null, undefined]);
       });
     });
 

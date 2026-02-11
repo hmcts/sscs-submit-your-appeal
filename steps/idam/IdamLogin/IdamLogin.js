@@ -1,6 +1,6 @@
-const { Question } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/src/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { Question } = require('lib/vendor/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
 const Joi = require('joi');
 const paths = require('paths');
 
