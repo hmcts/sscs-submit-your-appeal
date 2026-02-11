@@ -71,13 +71,6 @@ module.exports = {
     minimizer: [ devMode ? false : (new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()) ]
   },
   externals: [{ window: 'window' }],
-  resolve: {
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'lib/vendor'),
-      'node_modules'
-    ],
-  },
   performance: { hints: devMode ? 'error' : false },
   devtool: devMode ? 'inline-source-map' : false
 };
