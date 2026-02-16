@@ -1,5 +1,3 @@
-
-const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
 const config = require('config');
@@ -8,7 +6,7 @@ const healthcheck = require('@hmcts/nodejs-healthcheck');
 const bodyParser = require('body-parser');
 const os = require('os');
 const path = require('path');
-const { journey } = require('@hmcts/one-per-page');
+const { journey } = require('lib/vendor/one-per-page');
 const steps = require('steps');
 const idam = require('middleware/idam');
 const paths = require('paths');
@@ -26,73 +24,76 @@ const webChatBaseUrl = config.get('services.webchat.url');
 const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
 const { isIba } = require('./utils/benefitTypeUtils');
 
-const configureNunjucks = (app, commonContent) =>
+const configureNunjucks = (app, commonContent) => {
   // because of a bug with iphone, we need to remove the mime types from accept
-  expressNunjucks(app, {
+  const env = nunjucks.configure(app.get('views'), {
+    autoescape: true,
     watch: isDev(),
     noCache: isDev(),
-    throwOnUndefined: false,
-    // see https://git.io/fh9yw
-    loader: nunjucks.FileSystemLoader,
-    globals: {
-      isArray(value) {
-        return Array.isArray(value);
-      },
-      parseBool(value) {
-        if (truthies.includes(value)) {
-          return true;
-        }
-        if (falsies.includes(value)) {
-          return false;
-        }
-        return value;
-      },
-      isBoolean(value) {
-        return typeof value === 'boolean';
-      },
-      safeId(...strings) {
-        return strings
-          .map(str => str.toString())
-          .join('-')
-          .toLowerCase()
-          // replace foo[1] to foo-1
-          .replace(/\[(\d{1,})\]/, '-$1')
-          // replace 'foo bar' to 'foo-bar'
-          .replace(/\s/g, '-');
-      },
-      phase: 'BETA',
-      feedbackLink: urls.phaseBanner,
-      environment: process.env.NODE_ENV,
-      commonContent,
-      // because of a bug with iphone, we need to remove the mime types from accept
-      accept: filteredWhitelist,
-      timeOut: config.get('redis.timeout'),
-      allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
-      contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
-      contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
-      welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
-      kervWebchatEnabled: config.get('features.kervWebchatEnabled') === 'true',
-      mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
-      webFormUrl: config.get('services.webForm.url'),
-      webChatClientUrl: webChatClientBaseUrl,
-      webChatUrl: webChatBaseUrl,
-      kerv: {
-        deploymentId: {
-            en: config.get('services.kerv.deploymentId.en'),
-            cy: config.get('services.kerv.deploymentId.cy')
-        },
-        genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
-        environment: config.get('services.kerv.environment'),
-        kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
-        apiKey: config.get('services.kerv.apiKey')
-      },
-      paths,
-      urls,
-      allowNiEnabled: config.get('features.allowNI.enabled') === 'true',
-      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
-    }
+    throwOnUndefined: false
   });
+
+  app.engine('njk', env.render.bind(env));
+  app.engine('html', env.render.bind(env));
+  app.set('view engine', 'html');
+
+  env.addGlobal('isArray', value => Array.isArray(value));
+  env.addGlobal('parseBool', value => {
+    if (truthies.includes(value)) {
+      return true;
+    }
+    if (falsies.includes(value)) {
+      return false;
+    }
+    return value;
+  });
+  env.addGlobal('isBoolean', value => typeof value === 'boolean');
+  env.addGlobal('safeId', (...strings) =>
+    strings
+      .map(str => str.toString())
+      .join('-')
+      .toLowerCase()
+      // replace foo[1] to foo-1
+      .replace(/\[(\d{1,})\]/, '-$1')
+      // replace 'foo bar' to 'foo-bar'
+      .replace(/\s/g, '-')
+  );
+  env.addGlobal('phase', 'BETA');
+  env.addGlobal('feedbackLink', urls.phaseBanner);
+  env.addGlobal('environment', process.env.NODE_ENV);
+  env.addGlobal('commonContent', commonContent);
+  env.addGlobal('accept', filteredWhitelist);
+  env.addGlobal('timeOut', config.get('redis.timeout'));
+  env.addGlobal('allowContactUs', config.get('features.allowContactUs.enabled') === 'true');
+  env.addGlobal('contactUsWebFormEnabled', config.get('features.allowContactUs.webFormEnabled') === 'true');
+  env.addGlobal('contactUsTelephoneEnabled', config.get('features.allowContactUs.telephoneEnabled') === 'true');
+  env.addGlobal('welshWebchatEnabled', config.get('features.allowContactUs.welshWebchatEnabled') === 'true');
+  env.addGlobal('kervWebchatEnabled', config.get('features.kervWebchatEnabled') === 'true');
+  env.addGlobal('mediaFilesAllowed', config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true');
+  env.addGlobal('webFormUrl', config.get('services.webForm.url'));
+  env.addGlobal('webChatClientUrl', webChatClientBaseUrl);
+  env.addGlobal('webChatUrl', webChatBaseUrl);
+  env.addGlobal('kerv', {
+    deploymentId: {
+      en: config.get('services.kerv.deploymentId.en'),
+      cy: config.get('services.kerv.deploymentId.cy')
+    },
+    genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
+    environment: config.get('services.kerv.environment'),
+    kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
+    apiKey: config.get('services.kerv.apiKey')
+  });
+  env.addGlobal('paths', paths);
+  env.addGlobal('urls', urls);
+  env.addGlobal('allowNiEnabled', config.get('features.allowNI.enabled') === 'true');
+  env.addGlobal('featureToggles', {
+    welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
+    webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled
+  });
+
+  return env;
+ };
+
 const configureViews = app => {
   app.set('views', [
     path.resolve(__dirname, 'steps'),
@@ -146,7 +147,7 @@ const configureHelmet = app => {
         'https://webchat-client.ctsc.hmcts.net/chat-client/',
         'https://js-cdn.dynatrace.com',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js',
-        'https://apps.euw2.pure.cloud/',
+        'https://apps.euw2.pure.cloud/'
       ],
       connectSrc: [
         '\'self\'',
@@ -299,14 +300,14 @@ const configureMiddleWares = (app, express) => {
   }));
 };
 
-const configureGlobalVariables = (app, njk) => {
+const configureGlobalVariables = (app, env) => {
   app.use((req, res, next) => {
     if (isIba(req)) {
-      njk.env.addGlobal('isIba', true);
-      njk.env.addGlobal('gtmAccountId', 'GTM-KZ33DQ42');
+      env.addGlobal('isIba', true);
+      env.addGlobal('gtmAccountId', 'GTM-KZ33DQ42');
     } else {
-      njk.env.addGlobal('isIba', false);
-      njk.env.addGlobal('gtmAccountId', 'GTM-T56C5T7');
+      env.addGlobal('isIba', false);
+      env.addGlobal('gtmAccountId', 'GTM-T56C5T7');
     }
     next();
   });

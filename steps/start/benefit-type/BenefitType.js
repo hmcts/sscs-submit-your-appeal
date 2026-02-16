@@ -1,7 +1,7 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo, goTo, branch } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const {
   splitBenefitType,
   getBenefitCode,
@@ -33,15 +33,20 @@ class BenefitType extends SaveToDraftStore {
     return form({
       benefitType: text.joi(
         this.content.fields.benefitType.error.required,
-        Joi.string().valid(types).required()
+        Joi.string()
+          .valid(...types)
+          .required()
       )
     });
   }
 
   answers() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(
-      `steps/start/benefit-type/content.${sessionLanguage}`
+    const requireContent = require('utils/requireContent');
+
+    const benefitTypeContent = requireContent.requireLocalized(
+      'steps/start/benefit-type/content',
+      sessionLanguage
     );
 
     const benTypeKey = getBenefitCode(

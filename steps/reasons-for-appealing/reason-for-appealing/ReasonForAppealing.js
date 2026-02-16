@@ -5,10 +5,10 @@
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { text, object } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
+const { errorFor } = require('lib/vendor/one-per-page/src/forms/validator');
 const {
   isGreaterThanOrEqualToFiveCharacters,
   getBenefitCode
@@ -26,8 +26,11 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(
-      `steps/start/benefit-type/content.${sessionLanguage}`
+    const requireContent = require('utils/requireContent');
+
+    const benefitTypeContent = requireContent.requireLocalized(
+      'steps/start/benefit-type/content',
+      sessionLanguage
     );
 
     return benefitTypeContent.benefitTypes[
@@ -48,7 +51,12 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   get addAnotherLinkContent() {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     if (this.fields.items !== undefined) {
       return this.fields.items.value.length > 0
@@ -60,7 +68,12 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   get field() {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     const errorReasonForMsgContent = isIba(this.req)
       ? content.fields.reasonForAppealing.error.ibaNotEnough
@@ -89,7 +102,12 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   validateList(list) {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     return list.check(content.listError, arr => arr.length > 0);
   }
@@ -105,7 +123,12 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
 
   values() {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const requireContent = require('utils/requireContent');
+
+    const content = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    );
 
     const reasons = this.fields.items.value.map(item => {
       return {

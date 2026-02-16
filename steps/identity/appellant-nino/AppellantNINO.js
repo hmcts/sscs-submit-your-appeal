@@ -1,6 +1,6 @@
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo, redirectTo } = require('@hmcts/one-per-page/flow');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { goTo, redirectTo } = require('lib/vendor/one-per-page/flow');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { niNumber } = require('utils/regex');
 const { get } = require('lodash');

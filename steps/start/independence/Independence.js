@@ -1,5 +1,5 @@
-const { Interstitial } = require('@hmcts/one-per-page/steps');
-const { goTo, branch } = require('@hmcts/one-per-page/flow');
+const { Interstitial } = require('lib/vendor/one-per-page/steps');
+const { goTo, branch } = require('lib/vendor/one-per-page/flow');
 const {
   getBenefitCode,
   getTribunalPanel,
@@ -36,8 +36,11 @@ class Independence extends Interstitial {
 
   get benefitType() {
     const sessionLanguage = i18next.language;
-    const benefitTypeContent = require(
-      `steps/start/benefit-type/content.${sessionLanguage}`
+    const requireContent = require('utils/requireContent');
+
+    const benefitTypeContent = requireContent.requireLocalized(
+      'steps/start/benefit-type/content',
+      sessionLanguage
     );
 
     if (this.req.session.BenefitType) {

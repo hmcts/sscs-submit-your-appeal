@@ -1,28 +1,18 @@
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
+const sinon = require('sinon');
 const content = require('steps/hearing/dates-cant-attend/content.en');
 const sections = require('steps/check-your-appeal/sections');
-const proxyquire = require('proxyquire');
+const DatesCantAttend = require('steps/hearing/dates-cant-attend/DatesCantAttend');
+const UkBankHolidays = require('utils/UkBankHolidays');
 const moment = require('moment');
 const paths = require('paths');
 
 describe('DatesCantAttend.js', () => {
   let datesCantAttend = null;
-
-  class UKBankHolidays {
-    constructor(countries) {
-      this.countries = countries;
-      this.load = sinon.stub();
-    }
-  }
-
-  const DatesCantAttend = proxyquire(
-    'steps/hearing/dates-cant-attend/DatesCantAttend',
-    {
-      '@hmcts/uk-bank-holidays': UKBankHolidays
-    }
-  );
+  let loadStub = null;
 
   beforeEach(() => {
+    loadStub = sinon.stub(UkBankHolidays.prototype, 'load').resolves();
     datesCantAttend = new DatesCantAttend({
       journey: {
         steps: {
@@ -42,10 +32,17 @@ describe('DatesCantAttend.js', () => {
     };
   });
 
+  afterEach(() => {
+    loadStub.restore();
+  });
+
   describe('constructor', () => {
-    it('should call the loadBankHolidayDates() function', () => {
-      expect(datesCantAttend).to.have.a.property('ukBankHolidays');
-      expect(datesCantAttend.ukBankHolidays.load).to.be.called;
+    it('should call the load() function on UkBankHolidays', () => {
+      expect(loadStub).to.have.been.called;
+    });
+
+    it('should have the ukBankHolidays property', () => {
+      expect(datesCantAttend).to.have.property('ukBankHolidays');
     });
   });
 

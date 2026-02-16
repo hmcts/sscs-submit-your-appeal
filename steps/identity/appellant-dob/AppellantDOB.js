@@ -1,13 +1,13 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { form, date, convert } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { form, date, convert } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
+const { branch } = require('lib/vendor/one-per-page/flow');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');
 const paths = require('paths');
 const DateUtils = require('utils/DateUtils');
 const i18next = require('i18next');
-const { branch } = require('@hmcts/one-per-page/flow');
 const { isIba } = require('utils/benefitTypeUtils');
 
 class AppellantDOB extends SaveToDraftStore {
