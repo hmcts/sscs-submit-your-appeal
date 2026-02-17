@@ -1,3 +1,7 @@
+@use 'govuk-frontend' as *;
+@use "sass:map";
+@use "sass:math";
+
 .l-i18n-language-switch {
   float: right;
   @include govuk-font(16);
@@ -6,25 +10,25 @@
   margin-bottom: $govuk-gutter-half;
 
   li {
-    color: map-get($govuk-colours, 'black');
+    color: map.get($govuk-colours, 'black');
 
     a {
       text-decoration: none;
-      border-bottom: 1px solid map-get($govuk-colours, 'black');
+      border-bottom: 1px solid map.get($govuk-colours, 'black');
 
       &:link,
       &:visited,
       &:hover,
       a#{&}:focus,
       &:active {
-        color: map-get($govuk-colours, 'black');
+        color: map.get($govuk-colours, 'black');
       }
     }
 
     &:after {
-      margin-right: $govuk-gutter-half / 2;
-      margin-left: $govuk-gutter-half / 2;
-      border-left: 1px solid map-get($govuk-colours, 'black');
+      margin-right: math.div($govuk-gutter-half, 2);
+            margin-left: math.div($govuk-gutter-half, 2);
+            border-left: 1px solid map.get($govuk-colours, 'black');
       content: '';
     }
 

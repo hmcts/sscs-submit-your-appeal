@@ -13,9 +13,13 @@
           <div id="antenna-web-chat" >
               <div id="antenna-web-chat-link">
                   <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc }}</p>
-                  <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent }}</a>
+                  {% if kervWebchatEnabled %}
+                    {% include "components/kerv-webchat.html" %}
+                  {% else %}
+                    <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent }}</a>
+                    {% include "components/web-chat.html" %}
+                  {% endif %}
               </div>
-              {% include "components/web-chat.html" %}
               <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed }}</div>
               <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy }}</div>
               <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable }}</div>

@@ -18,7 +18,10 @@
     "phaseBar": {
       "phase": "Beta",
       "feedback": "This is a new service – your <a aria-label=\"Feedback: This link will open in a new tab. You&rsquo;ll need to return to this tab to continue with your application.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">feedback</a> will help us to improve it.",
-      "languageToggle": "<a href=\"?lng=cy\" class=\"govuk-link language\">Cymraeg</a>"
+      "languageToggle": {
+        "text": "Cymraeg",
+        "link": "?lng=cy"
+      }
     },
     "footer": {
       "contactUs": "Contact us",
@@ -87,6 +90,9 @@
         "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 9am to 4pm. Or contact us using one of the ways below.",
         "textChatAlreadyOpen": "A web chat window is already open.",
         "textAdditional": "Monday to Friday, 9am to 4pm. \n Saturday, 8am to 2pm",
+        "textChatCheckingAvail": "Checking availability…",
+        "textChatNeedsJavascript": "Webchat needs javascript enabling.",
+        "textChatNeedsPopups": "Popup blocked. Please allow pop-ups for this site.",
         "language": "English",
         "chatTitle": "HMCTS Web Chat",
         "pageName": "Appeal a benefit decision",
@@ -167,7 +173,10 @@
     "phaseBar": {
       "phase": "Beta",
       "feedback": "Mae hwn yn wasanaeth newydd - bydd eich <a aria-label=\"Adborth: Bydd y ddolen hon yn agor mewn ffenestr newydd. Bydd angen ichi ddychwelyd i&rsquo;r ffenestr hon i barhau gyda&rsquo;ch cais.\" href=\"{{smartSurveyFeedbackUrl}}\" class=\"govuk-link\" target=\"_blank\" rel=\"external noopener noreferrer\">adborth</a> yn ein helpu ni i&rsquo;w wella.",
-      "languageToggle": "<a href=\"?lng=en\" class=\"govuk-link language\">English</a>"
+      "languageToggle": {
+        "text": "English",
+        "link": "?lng=en"
+      }
     },
     "footer": {
       "contactUs": "Cysylltu &acirc; ni",
@@ -234,6 +243,9 @@
         "textChatClosed" : "Mae ein gwasanaeth cyngor ar-lein ar gau ar hyn o bryd.",
         "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
         "textAdditional": "Dydd Llun i ddydd Gwener, 9am – 4pm",
+        "textChatCheckingAvail": "WIP (not translated) Checking availability… WIP",
+        "textChatNeedsJavascript": "WIP (not translated) Webchat needs javascript enabling WIP",
+        "textChatNeedsPopups": "WIP (not translated) Popup blocked. Please allow pop-ups for this site. WIP",
         "language": "Welsh",
         "chatTitle": "Sgwrsio dros y we GLlTEF",
         "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",

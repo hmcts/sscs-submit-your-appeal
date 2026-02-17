@@ -32,7 +32,7 @@
     "outputDir": "./functional-output",
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "http://localhost:3000",
-    "retry": 8
+    "retry": 4
   },
   "features": {
     "evidenceUpload": {
@@ -111,12 +111,10 @@
     "multipleDraftsEnabled": {
       "enabled": "false"
     },
-    "cookieBanner": {
-      "enabled": "false"
-    },
     "webchatOpen8to5": {
       "enabled": "false"
     },
+    "kervWebchatEnabled": "false",
     "allowNI" : {
       "enabled": "false"
     }
@@ -164,6 +162,16 @@
     "webchat": {
       "url": "webchat.pp.ctsc.hmcts.net",
       "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
+    },
+    "kerv": {
+      "deploymentId": {
+        "en": "KERV_DEPLOYMENT_ID_EN",
+        "cy": "KERV_DEPLOYMENT_ID_CY"
+      },
+      "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
+      "environment": "KERV_ENVIRONMENT",
+      "kervBaseUrl": "KERV_BASE_URL",
+      "apiKey": "KERV_API_KEY"
     },
     "pcq": {
       "name": "Equality and Diversity Service",

@@ -203,20 +203,16 @@ const createDraftInDraftStore = async(req, res, next, values) => {
     .then(result => {
       logger.trace(
         [
-          'Successfully created a draft for case with nino: ' +
-            `${maskNino(get(values, 'appellant.nino'))}`,
+          `Successfully created a draft for case with nino: ${maskNino(get(values, 'appellant.nino'))}`,
           result.status
         ],
         logPath
       );
-
       logger.trace(
         `PUT api:${req.journey.settings.apiDraftUrlCreate} status:${result.status}`,
         logPath
       );
-
       Object.assign(req.session, { ccdCaseId: result.body.id });
-
       next();
     })
     .catch(error => {
@@ -238,7 +234,7 @@ const saveToDraftStore = async (req, res, next) => {
 
   if (allowSaveAndReturn && req.idam && values) {
     logger.trace(
-      `Create/Post draft for CCD Id ${values && values.id ? values.id : null} , IDAM id: ${req.idam.userDetails.id} on page ${req.path}`
+      `Create/Post draft for CCD Id ${values && values.id ? values.id : null}, IDAM id: ${req.idam.userDetails.id} on page ${req.path}`
     );
     if (req.session && req.session.ccdCaseId) {
       logger.trace(

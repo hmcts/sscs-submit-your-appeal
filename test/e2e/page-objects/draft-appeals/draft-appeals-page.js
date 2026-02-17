@@ -2,9 +2,8 @@ const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function verifyDraftAppealsAndEditACase(I, language) {
-  await expect(
-    I.locator(".form-buttons-group [href='/new-appeal']").first()
-  ).toBeVisible();
+  await I.goto(`${paths.drafts}?lng=${language}`);
+  await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
   if (language === 'en') {
     await expect(
       I.getByText('Your draft benefit appeals').first()
@@ -40,7 +39,8 @@ async function verifyDraftAppealsAndEditACase(I, language) {
   }
 }
 
-async function verifyDraftAppealsAndDeleteACase(I) {
+async function verifyDraftAppealsAndDeleteACase(I, language) {
+  await I.goto(`${paths.drafts}?lng=${language}`);
   await expect(
     I.locator(".form-buttons-group [href='/new-appeal']").first()
   ).toBeVisible();

@@ -105,12 +105,10 @@
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
     },
-    "cookieBanner": {
-      "enabled": "ALLOW_COOKIE_BANNER_ENABLED"
-    },
     "webchatOpen8to5" : {
       "enabled": "WEBCHAT_OPENING_TIME_8_5"
     },
+    "kervWebchatEnabled": "KERV_WEBCHAT_ENABLED",
     "allowNI" : {
       "enabled": "IBC_NI_POSTCODES_FEATURE"
     }
@@ -142,6 +140,16 @@
     "webchat": {
       "url": "WEBCHAT_URL",
       "clientUrl": "WEBCHAT_CLIENT_URL"
+    },
+    "kerv": {
+      "deploymentId" : {
+        "en": "KERV_DEPLOYMENT_ID_EN",
+        "cy": "KERV_DEPLOYMENT_ID_CY"
+      },
+      "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
+      "environment": "KERV_ENVIRONMENT",
+      "kervBaseUrl": "KERV_BASE_URL",
+      "apiKey": "KERV_API_KEY"
     },
     "pcq": {
       "url": "PCQ_URL",
