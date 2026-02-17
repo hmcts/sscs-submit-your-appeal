@@ -1,6 +1,11 @@
-const { Question, EntryPoint, Redirect, Page } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { AddAnother } = require('@hmcts/one-per-page/steps');
+const {
+  Question,
+  EntryPoint,
+  Redirect,
+  Page
+} = require('lib/vendor/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { AddAnother } = require('lib/vendor/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
@@ -10,7 +15,7 @@ const { maskNino } = require('utils/stringUtils');
 /* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
-} = require('@hmcts/one-per-page/checkYourAnswers');
+} = require('lib/vendor/one-per-page/checkYourAnswers');
 
 let allowSaveAndReturn =
   config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -20,7 +25,7 @@ const idam = require('middleware/idam');
 const logger = require('logger');
 const {
   activeProperty
-} = require('@hmcts/one-per-page/src/session/sessionShims');
+} = require('lib/vendor/one-per-page/src/session/sessionShims');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 
@@ -80,13 +85,34 @@ const parseErrorResponse = error => {
 
 const removeRevertInvalidSteps = (journey, callBack) => {
   try {
-    if (journey.values) {
+    // If `values` is explicitly present and set to null, do nothing.
+    if (
+      Object.prototype.hasOwnProperty.call(journey, 'values') &&
+      journey.values === null
+    ) {
+      return;
+    }
+    // Read journey.values in a try/catch — if it throws, we log and do nothing.
+    const vals = journey.values;
+    // Only proceed if values is truthy (non-null / non-undefined)
+    if (vals) {
       const allVisitedSteps = [...journey.visitedSteps];
       // filter valid visitedsteps.
       journey.visitedSteps = journey.visitedSteps.filter(step => step.valid);
-      // use only valid steps.
+      // use only valid steps. Call the provided callback in a guarded try/catch to
+      // ensure any errors inside it don't escape this function.
+      /* eslint-disable max-depth */
       if (typeof callBack === 'function') {
-        callBack();
+        try {
+          callBack();
+        } catch (cbErr) {
+          logger.trace(
+            `removeRevertInvalidSteps callback threw: ${
+              cbErr && cbErr.message
+            }`,
+            logPath
+          );
+        }
       }
       // Revert visitedsteps back to initial state.
       journey.visitedSteps = allVisitedSteps;
@@ -105,6 +131,23 @@ const handleDraftCreateUpdateFail = (error, req, res, next, values) => {
       `${maskNino(get(values, 'appellant.nino'))}`,
     logPath
   );
+  try {
+    // If the backend is unreachable (connection refused), prefer to log and
+    // continue the user's journey rather than presenting a 500 page.
+    const errCode = error && (error.code || error.errno);
+    /* eslint-disable no-magic-numbers */
+    if (errCode === 'ECONNREFUSED' || errCode === -61) {
+      logger.trace(
+        `Draft store unreachable (${JSON.stringify(error)}). Continuing without failing the user.`,
+        logPath
+      );
+      next();
+      return;
+    }
+  } catch {
+    // ignore errors while inspecting the error
+  }
+
   logger.exception(parseErrorResponse(error), logPath);
   if (req && req.journey && req.journey.steps) {
     redirectTo(req.journey.steps.Error500).redirect(req, res, next);

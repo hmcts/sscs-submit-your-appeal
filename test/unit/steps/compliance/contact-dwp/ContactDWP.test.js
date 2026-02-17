@@ -3,7 +3,7 @@ const ContactDWP = require('steps/compliance/contact-dwp/ContactDWP');
 const paths = require('paths');
 const sinon = require('sinon');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('lib/vendor/one-per-page');
 
 describe('ContactDWP.js', () => {
   let contactDWP = null;

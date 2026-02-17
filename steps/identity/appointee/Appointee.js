@@ -1,6 +1,6 @@
-const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo, goTo, branch } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { titleise } = require('utils/stringUtils');
 const sections = require('steps/check-your-appeal/sections');
@@ -30,7 +30,9 @@ class Appointee extends SaveToDraftStore {
     return form({
       isAppointee: text.joi(
         this.content.fields.isAppointee.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

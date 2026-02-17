@@ -1,4 +1,3 @@
-
 const { expect } = require('test/util/chai');
 const RepresentativeInternationalDetails = require('steps/representative/representative-international-details/RepresentativeInternationalDetails');
 const paths = require('paths');
@@ -270,14 +269,14 @@ describe('RepresentativeInternationalDetails.js', () => {
         const schema = representativeInternationalDetails.validCountrySchema();
         for (const testCountry of getCountriesOfResidence()) {
           const result = schema.validate(decode(testCountry.value));
-          expect(result.error).to.eq(null);
+          expect([null, undefined]).to.include(result.error);
         }
       });
 
       it('rejects non valid countries', () => {
         const schema = representativeInternationalDetails.validCountrySchema();
         const result = schema.validate(decode('Rt Hon'));
-        expect(result.error).not.to.eq(null);
+        expect(result.error).not.to.be.oneOf([null, undefined]);
       });
     });
 

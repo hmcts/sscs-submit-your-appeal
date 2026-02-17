@@ -1,4 +1,3 @@
-
 const sinon = require('sinon');
 const { expect } = require('test/util/chai');
 const Base64 = require('js-base64').Base64;
@@ -7,7 +6,6 @@ const logger = require('logger');
 const paths = require('paths');
 const nock = require('nock');
 const i18next = require('i18next');
-
 
 describe('middleware/draftAppealStoreMiddleware', () => {
   const res = {};
@@ -466,7 +464,6 @@ describe('middleware/draftAppealStoreMiddleware', () => {
         }
       }
     });
-
 
     class saveToDraftStoreCYAClass extends draftAppealStoreMiddleware.SaveToDraftStoreCYA {
       next() {

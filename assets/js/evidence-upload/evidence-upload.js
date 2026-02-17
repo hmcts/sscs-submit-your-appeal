@@ -110,7 +110,6 @@ class EvidenceUpload {
         });
       }
 
-
       $('label').after(
         `<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`
       );
