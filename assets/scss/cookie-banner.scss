@@ -1,6 +1,8 @@
+@use 'govuk-frontend' as *;
+
 #app-cookie-banner {
   display: none;
-  @extend .govuk-body;
+  @extend %govuk-body-m;
   @extend .govuk-\!-font-size-16;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

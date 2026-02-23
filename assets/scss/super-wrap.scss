@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 @mixin wrap() {
   overflow-wrap: break-word;
   word-wrap: break-word;

@@ -20,7 +20,8 @@
   "api": {
     "url": "http://localhost:8008",
     "uploadEvidenceUrl": "http://localhost:8008/evidence/upload",
-    "draftUrl": "https://localhost:3000/appeal"
+    "draftUrl": "https://localhost:3000/appeal",
+    "bankHolidaysUrl": "https://www.gov.uk/bank-holidays.json"
   },
   "appInsights": {
     "connectionString": "",
@@ -109,9 +110,6 @@
       "enabled": "false"
     },
     "multipleDraftsEnabled": {
-      "enabled": "false"
-    },
-    "cookieBanner": {
       "enabled": "false"
     },
     "webchatOpen8to5": {

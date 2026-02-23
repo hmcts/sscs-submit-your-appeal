@@ -1,19 +1,19 @@
-@import '~govuk-frontend/dist/govuk/all';
-@import 'language-switch';
-@import 'cookie-banner';
-@import 'text-reference';
-@import 'progress-list';
-@import 'document-list';
-@import '~accessible-autocomplete/src/autocomplete.css';
-@import '~jquery-modal/jquery.modal.css';
-@import 'bootstrap-datepicker1.8.0.min';
-@import 'date-picker';
-@import 'h-progress-bar';
-@import 'v-progress-bar';
-@import 'super-wrap';
-@import 'phase-banner';
-@import 'web-chat';
-@import '../../components/postcodeLookup/assets/main';
+@use 'govuk-frontend' as *;
+@use './language-switch';
+@use './cookie-banner';
+@use './text-reference';
+@use './progress-list';
+@use './document-list';
+@use 'accessible-autocomplete' as *;
+@use 'jquery-modal' as *;
+@use 'bootstrap-datepicker1.8.0.min';
+@use './date-picker';
+@use './h-progress-bar' as *;
+@use './v-progress-bar' as *;
+@use './super-wrap' as *;
+@use './phase-banner';
+@use './web-chat';
+@use '../../components/postcodeLookup/assets/main';
 
 p.contact-us::first-line {
   font-weight: bold;
@@ -42,7 +42,7 @@ label.form-label[for='signer'] {
 
 .autocomplete__input,
 .autocomplete__option {
-  @extend .govuk-body;
+  @extend %govuk-body-m;
   margin: 0;
 }
 
@@ -53,7 +53,7 @@ label.form-label[for='signer'] {
 .after-form {
   &.time-out-message {
     color: $govuk-secondary-text-colour;
-    @extend .govuk-body;
+    @extend %govuk-body-m;
     font-size: 16px;
   }
 
@@ -184,7 +184,7 @@ label.form-label[for='signer'] {
   }
 }
 .modal {
-  @extend .govuk-body;
+  @extend %govuk-body-m;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -o-border-radius: 0;
@@ -355,7 +355,7 @@ label.form-label[for='signer'] {
 }
 
 .hint-text {
-  @extend .govuk-body;
+  @extend %govuk-body-m;
   @extend .govuk-\!-font-size-16;
   color: $govuk-secondary-text-colour;
   display: block;
@@ -437,5 +437,7 @@ label.form-label[for='signer'] {
   vertical-align: middle;
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }

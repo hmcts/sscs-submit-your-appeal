@@ -1,3 +1,5 @@
+@use 'govuk-frontend' as *;
+
 .post-code-lookup {
   @extend .govuk-\!-width-one-quarter;
   @extend .govuk-\!-margin-bottom-4;
