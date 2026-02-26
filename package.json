@@ -112,7 +112,7 @@
     "superagent": "^10.3.0",
     "superagent-csrf": "^1.0.0",
     "terser-webpack-plugin": "^5.3.16",
-    "uuid": "^11.1.0",
+    "uuid": "^13.0.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-middleware": "^7.4.5",
