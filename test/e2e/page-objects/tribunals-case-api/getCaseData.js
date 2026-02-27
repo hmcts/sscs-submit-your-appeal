@@ -18,9 +18,15 @@ async function getMYACaseData(request, ccdCaseID) {
   if (serviceAuthToken === '') {
     console.error('No s2s token found');
   }
-  const response = await request
-    .get(`${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`)
-    .header('ServiceAuthorization', `Bearer ${serviceAuthToken}`);
+  const response = await request.get(
+    `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`,
+    {
+      headers: {
+        ServiceAuthorization: `Bearer ${serviceAuthToken}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  );
   const caseData = await checkTribunalAPIResponse(response);
   if (caseData.appeal) {
     return caseData.appeal;
