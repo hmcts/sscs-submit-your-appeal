@@ -1,5 +1,6 @@
 /* eslint-disable no-return-await */
 const config = require('config');
+const { generateToken } = require('../../../util/s2s');
 
 const tribunalsApiUrl = config.get('api.url');
 const authCookie = '__auth-token';
@@ -13,8 +14,18 @@ async function checkTribunalAPIResponse(response) {
 }
 
 async function getMYACaseData(request, ccdCaseID) {
+  const serviceAuthToken = await generateToken();
+  if (serviceAuthToken === '') {
+    console.error('No s2s token found');
+  }
   const response = await request.get(
-    `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`
+    `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`,
+    {
+      headers: {
+        ServiceAuthorization: `Bearer ${serviceAuthToken}`,
+        'Content-Type': 'application/json'
+      }
+    }
   );
   const caseData = await checkTribunalAPIResponse(response);
   if (caseData.appeal) {
