@@ -2706,6 +2706,54 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@otplib/core@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@otplib/core@npm:12.0.1"
+  checksum: 10/d6edc1ed5fd744cd7be5fd0886e627f42f5e25f9593c7c6f4cac6a64a078eeaf1f70a190f1bb7f366f4eafdabe445c272e699292daa84da266e43b89bb40a6c0
+  languageName: node
+  linkType: hard
+
+"@otplib/plugin-crypto@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@otplib/plugin-crypto@npm:12.0.1"
+  dependencies:
+    "@otplib/core": "npm:^12.0.1"
+  checksum: 10/6867c74ee8aca6c2db9670362cf51e44f3648602c39318bf537421242e33f0012a172acd43bbed9a21d706e535dc4c66aff965380673391e9fd74cf685b5b13a
+  languageName: node
+  linkType: hard
+
+"@otplib/plugin-thirty-two@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@otplib/plugin-thirty-two@npm:12.0.1"
+  dependencies:
+    "@otplib/core": "npm:^12.0.1"
+    thirty-two: "npm:^1.0.2"
+  checksum: 10/920099e40d3e8c2941291c84c70064c2d86d0d1ed17230d650445d5463340e406bc413ddf2e40c374ddc4ee988ef1e3facacab9b5248b1ff361fd13df52bf88f
+  languageName: node
+  linkType: hard
+
+"@otplib/preset-default@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@otplib/preset-default@npm:12.0.1"
+  dependencies:
+    "@otplib/core": "npm:^12.0.1"
+    "@otplib/plugin-crypto": "npm:^12.0.1"
+    "@otplib/plugin-thirty-two": "npm:^12.0.1"
+  checksum: 10/8133231384f6277f77eb8e42ef83bc32a8b01059bef147d1c358d9e9bfd292e1c239f581fe008367a48489dd68952b7ac0948e6c41412fc06079da2c91b71d16
+  languageName: node
+  linkType: hard
+
+"@otplib/preset-v11@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "@otplib/preset-v11@npm:12.0.1"
+  dependencies:
+    "@otplib/core": "npm:^12.0.1"
+    "@otplib/plugin-crypto": "npm:^12.0.1"
+    "@otplib/plugin-thirty-two": "npm:^12.0.1"
+  checksum: 10/367cb09397e617c21ec748d54e920ab43f1c5dfba70cbfd88edf73aecca399cf0c09fefe32518f79c7ee8a06e7058d14b200da378cc7d46af3cac4e22a153e2f
+  languageName: node
+  linkType: hard
+
 "@paralleldrive/cuid2@npm:^2.2.2":
   version: 2.2.2
   resolution: "@paralleldrive/cuid2@npm:2.2.2"
@@ -8778,6 +8826,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"otplib@npm:12":
+  version: 12.0.1
+  resolution: "otplib@npm:12.0.1"
+  dependencies:
+    "@otplib/core": "npm:^12.0.1"
+    "@otplib/preset-default": "npm:^12.0.1"
+    "@otplib/preset-v11": "npm:^12.0.1"
+  checksum: 10/37415ce3706b9e186c1bdcef3e975d96f24bdd97d66dff6148d31a523d4e84009154f7ad1d491afc326d85f7adf0afcd2daf3750b6e6cfc4151d3deec8c0dcc3
+  languageName: node
+  linkType: hard
+
 "outvariant@npm:^1.4.0, outvariant@npm:^1.4.3":
   version: 1.4.3
   resolution: "outvariant@npm:1.4.3"
@@ -11130,6 +11189,7 @@ __metadata:
     nunjucks-loader: "npm:^3.0.0"
     nyc: "npm:^17.1.0"
     optimize-css-assets-webpack-plugin: "npm:^6.0.1"
+    otplib: "npm:12"
     parse-full-name: "npm:^1.2.6"
     prettier: "npm:3.8.1"
     prettier-plugin-jinja-template: "npm:^2.1.0"
@@ -11260,6 +11320,13 @@ __metadata:
   peerDependencies:
     tslib: ^2
   checksum: 10/b8b028a474aab798ff12ad5a5648306059976d3e23870327ae4ef640012953314b1d7f208dd5a8e9ebaeee6dd1cdb05503bb829699ee8f36514c37f771f2f035
+  languageName: node
+  linkType: hard
+
+"thirty-two@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "thirty-two@npm:1.0.2"
+  checksum: 10/f6700b31d16ef942fdc0d14daed8a2f69ea8b60b0e85db8b83adf58d84bbeafe95a17d343ab55efaae571bb5148b62fc0ee12b04781323bf7af7d7e9693eec76
   languageName: node
   linkType: hard
 

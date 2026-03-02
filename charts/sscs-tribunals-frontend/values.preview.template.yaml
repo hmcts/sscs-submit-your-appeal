@@ -35,6 +35,7 @@ nodejs:
         - webchat-kerv-environment
         - webchat-kerv-kerv-base-url
         - webchat-kerv-api-key
+        - sscs-s2s-secret
 
 redis:
   enabled: true
