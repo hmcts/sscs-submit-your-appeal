@@ -155,5 +155,9 @@
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
     }
+  },
+  "s2s": {
+    "secret": "S2S_SECRET",
+    "url": "S2S_URL"
   }
 }
