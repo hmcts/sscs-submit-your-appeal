@@ -8826,7 +8826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"otplib@npm:12":
+"otplib@npm:12.0.1":
   version: 12.0.1
   resolution: "otplib@npm:12.0.1"
   dependencies:
@@ -11189,7 +11189,7 @@ __metadata:
     nunjucks-loader: "npm:^3.0.0"
     nyc: "npm:^17.1.0"
     optimize-css-assets-webpack-plugin: "npm:^6.0.1"
-    otplib: "npm:12"
+    otplib: "npm:12.0.1"
     parse-full-name: "npm:^1.2.6"
     prettier: "npm:3.8.1"
     prettier-plugin-jinja-template: "npm:^2.1.0"
