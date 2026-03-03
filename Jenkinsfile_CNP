@@ -18,30 +18,12 @@ def component = "tribunals-frontend"
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
-
-def s2sUrlAat = "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
-
-def secrets = [
-        'sscs-${env}': [ secret('sscs-s2s-secret', 'S2S_SECRET') ]
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-    [ $class: 'AzureKeyVaultSecret',
-      secretType: 'Secret',
-      name: secretName,
-      version: '',
-      envVariable: envVar
-    ]
-}
-
 withPipeline("nodejs", product, component) {
-    loadVaultSecrets(secrets)
     def githubApi = new GithubAPI(this)
 
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
     env.RETRIES = params.RETRIES
     onPR() {
-        env.S2S_URL = s2sUrlAat
         if (env.TEST_URL) {
             env.IBCA_TEST_URL = env.TEST_URL.replace("sscs-tribunals-frontend", "iba-sscs-tribunals-frontend")
         }
