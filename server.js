@@ -1,10 +1,10 @@
 const config = require('@hmcts/properties-volume').addTo(require('config'));
 const setupSecrets = require('services/setupSecrets');
-const { initTokenRefresh } = require('./services/s2s');
+const s2s = require('./services/s2s');
 
 // Setup secrets before loading the app
 setupSecrets();
-initTokenRefresh();
+s2s.initTokenRefresh();
 
 const app = require('app.js');
 const logger = require('logger');
