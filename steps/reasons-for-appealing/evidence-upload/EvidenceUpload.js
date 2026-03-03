@@ -25,7 +25,7 @@ const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
 const sections = require('steps/check-your-appeal/sections');
-const { generateToken } = require('../../../services/s2s');
+const { getServiceAuthToken } = require('../../../services/s2s');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
@@ -221,7 +221,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   static handleRename(pathToFile, req, size, next) {
     return async() => {
-      const serviceAuthToken = await generateToken();
+      const serviceAuthToken = await getServiceAuthToken();
       try {
         const response = await request
           .post(uploadEvidenceUrl)

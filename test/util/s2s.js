@@ -6,7 +6,13 @@ const microservice = config.get('s2s.microservice');
 const s2sUrl = config.get('s2s.url');
 const timeout = config.get('s2s.timeout');
 
+let token = '';
+
 async function generateToken() {
+  if (token) {
+    return token;
+  }
+
   try {
     const response = await request
       .post(`${s2sUrl}/testing-support/lease`)
@@ -14,11 +20,25 @@ async function generateToken() {
       .send({ microservice })
       .timeout(timeout);
 
-    return response.text;
+    if (response && response.text) {
+      token = response.text;
+      return token;
+    }
+
+    logger.trace('S2S generateToken returned empty response');
+    return '';
   } catch (error) {
     logger.trace('Error generateToken', error);
     return '';
   }
 }
 
-module.exports = { generateToken };
+function getCachedToken() {
+  return token;
+}
+
+function clearTokenCache() {
+  token = '';
+}
+
+module.exports = { generateToken, getCachedToken, clearTokenCache };
