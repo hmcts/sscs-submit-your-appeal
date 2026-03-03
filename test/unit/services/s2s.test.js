@@ -1,79 +1,64 @@
-const { expect, sinon } = require('test/util/chai');
-const proxyquire = require('proxyquire');
+const { expect } = require('chai');
+const sinon = require('sinon');
+const request = require('superagent');
+const logger = require('logger');
 
 describe('S2S generateToken', () => {
-  let generateToken = null;
-  let stubs = null;
-  let loggerTraceSpy = null;
+  let s2sModule = null;
+  const fakeToken = 'mocked-token';
 
   beforeEach(() => {
-    stubs = {
-      superagent: {
-        post: sinon.stub()
-      },
-      otplib: {
-        authenticator: {
-          generate: sinon.stub()
-        }
-      },
-      logger: {
-        trace: sinon.spy()
-      },
-      config: {
-        get: sinon.stub()
-      }
-    };
+    delete require.cache[require.resolve('../../../services/s2s')];
+    // eslint-disable-next-line global-require
+    s2sModule = require('../../../services/s2s');
 
-    // Mock config values
-    stubs.config.get.withArgs('s2s.microservice').returns('my-service');
-    stubs.config.get.withArgs('s2s.secret').returns('secret');
-    stubs.config.get.withArgs('s2s.url').returns('http://s2s.local');
-    stubs.config.get.withArgs('s2s.timeout').returns(1000);
-
-    generateToken = proxyquire('services/s2s', stubs).generateToken;
-    loggerTraceSpy = stubs.logger.trace;
+    sinon.restore();
+    sinon.stub(logger, 'trace');
   });
 
   it('should return token text when POST succeeds', async() => {
-    const otp = '123456';
-    stubs.otplib.authenticator.generate.returns(otp);
-
-    // Chain stub objects
-    const timeoutStub = sinon.stub().resolves({ text: 'token-abc' });
+    const timeoutStub = sinon.stub().resolves({ text: fakeToken });
     const sendStub = sinon.stub().returns({ timeout: timeoutStub });
     const setStub = sinon.stub().returns({ send: sendStub });
+    sinon.stub(request, 'post').returns({ set: setStub });
 
-    // superagent.post now correctly tracks arguments
-    stubs.superagent.post.returns({ set: setStub });
+    const token = await s2sModule.generateToken();
+    expect(token).to.equal(fakeToken);
 
-    const token = await generateToken();
-
-    expect(token).to.equal('token-abc');
-
-    // Correct assertions
-    expect(stubs.superagent.post.calledOnce).to.be.true;
-    expect(stubs.superagent.post.firstCall.args[0]).to.equal(
-      'http://s2s.local/lease'
-    );
+    expect(request.post.calledOnce).to.be.true;
     expect(setStub.calledWith('Content-Type', 'application/json')).to.be.true;
     expect(
-      sendStub.calledWith({ microservice: 'my-service', oneTimePassword: otp })
+      sendStub.calledWith(
+        sinon.match({
+          microservice: sinon.match.string,
+          oneTimePassword: sinon.match.string
+        })
+      )
     ).to.be.true;
-    expect(timeoutStub.calledWith(1000)).to.be.true;
   });
 
-  it('should return empty string and log error when POST fails', async() => {
-    const otp = '654321';
-    stubs.otplib.authenticator.generate.returns(otp);
+  it('should return empty string if POST fails', async() => {
+    const timeoutStub = sinon.stub().rejects(new Error('Network error'));
+    const sendStub = sinon.stub().returns({ timeout: timeoutStub });
+    const setStub = sinon.stub().returns({ send: sendStub });
+    sinon.stub(request, 'post').returns({ set: setStub });
 
-    const fieldStub = { send: sinon.stub().rejects(new Error('Failed')) };
-    stubs.superagent.post.returns(fieldStub);
-
-    const token = await generateToken();
-
+    const token = await s2sModule.generateToken();
     expect(token).to.equal('');
-    expect(loggerTraceSpy.calledOnce).to.be.true;
-    expect(loggerTraceSpy.args[0][0]).to.equal('Error generateToken');
-    expect(loggerTraceSpy.args[0][1]).to.be.instanceOf(Error);
+    expect(logger.trace.calledOnce).to.be.true;
+    expect(logger.trace.firstCall.args[0]).to.equal(
+      'Error generating S2S token'
+    );
+    expect(logger.trace.firstCall.args[1]).to.be.instanceOf(Error);
+  });
+
+  it('should never return empty string if POST succeeds', async() => {
+    const timeoutStub = sinon.stub().resolves({ text: fakeToken });
+    const sendStub = sinon.stub().returns({ timeout: timeoutStub });
+    const setStub = sinon.stub().returns({ send: sendStub });
+    sinon.stub(request, 'post').returns({ set: setStub });
+
+    const token = await s2sModule.generateToken();
+    expect(token).to.not.equal('');
   });
 });

@@ -15,13 +15,15 @@ describe('CheckYourAppeal.js', () => {
 
   const request = {};
   const loggerStub = {};
-  const generateTokenStub = sinon.stub().resolves('mock-s2s-token');
+  const s2sModuleStub = {
+    getServiceAuthToken: sinon.stub().returns('mock-s2s-token')
+  };
 
   before(() => {
     CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
       superagent: request,
       logger: loggerStub,
-      '../../services/s2s': { generateToken: generateTokenStub }
+      '../../services/s2s': s2sModuleStub
     });
 
     cya = new CheckYourAppeal({

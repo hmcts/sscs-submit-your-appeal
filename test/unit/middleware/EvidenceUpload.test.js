@@ -60,7 +60,7 @@ describe('The EvidenceUpload middleware', () => {
         resolve: () => 'a string'
       },
       '../../../services/s2s': {
-        generateToken: sinon.stub().resolves('mock-token')
+        getServiceAuthToken: sinon.stub().resolves('mock-token')
       }
     };
 
@@ -160,15 +160,11 @@ describe('The EvidenceUpload middleware', () => {
       const size = 42;
       const pathToFile = '__path__';
       const next = sinon.stub();
-      stubs.superagent.post = sinon
-        .stub()
-        .returns({
-          attach: sinon
-            .stub()
-            .returns({
-              field: sinon.stub().rejects(new Error('Upload failed'))
-            })
-        });
+      stubs.superagent.post = sinon.stub().returns({
+        attach: sinon.stub().returns({
+          field: sinon.stub().rejects(new Error('Upload failed'))
+        })
+      });
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
