@@ -222,7 +222,6 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static handleRename(pathToFile, req, size, next) {
     return async() => {
       const serviceAuthToken = await generateToken();
-      console.info('serviceAuthToken = ', serviceAuthToken);
       try {
         const response = await request
           .post(uploadEvidenceUrl)
