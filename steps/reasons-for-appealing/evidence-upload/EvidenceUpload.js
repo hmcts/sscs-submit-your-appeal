@@ -223,9 +223,6 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
     return async() => {
       const serviceAuthToken = await generateToken();
       console.info('serviceAuthToken = ', serviceAuthToken);
-      if (!serviceAuthToken) {
-        console.info('s2s token was not generated');
-      }
       try {
         const response = await request
           .post(uploadEvidenceUrl)
