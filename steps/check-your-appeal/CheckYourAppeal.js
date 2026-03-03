@@ -26,7 +26,7 @@ const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
-const { getServiceAuthToken } = require('../../services/s2s');
+const s2s = require('../../services/s2s');
 
 const allowSaveAndReturn =
   config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -75,7 +75,7 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
       header.Authorization = `Bearer ${req.cookies[authTokenString]}`;
     }
 
-    const serviceAuthToken = await getServiceAuthToken();
+    const serviceAuthToken = await s2s.getServiceAuthToken();
     header.ServiceAuthorization = `Bearer ${serviceAuthToken}`;
     return header;
   }
