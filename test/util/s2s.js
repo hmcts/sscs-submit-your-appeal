@@ -14,7 +14,7 @@ async function generateToken() {
       .send({ microservice })
       .timeout(timeout);
 
-    return response.body;
+    return response.text;
   } catch (error) {
     logger.trace('Error generateToken', error);
     return '';
