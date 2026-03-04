@@ -29,7 +29,7 @@ withPipeline("nodejs", product, component) {
             env.IBCA_TEST_URL = env.TEST_URL.replace("sscs-tribunals-frontend", "iba-sscs-tribunals-frontend")
         }
         def isRegression = githubApi.getLabelsbyPattern(env.BRANCH_NAME, "test-suite:preview-regression").size() > 0
-        env.TRIBUNALS_CASE_API_URL = "http://sscs-tribunals-api-aat.service.core-compute-aat.internal"
+        env.TRIBUNALS_CASE_API_URL = 'https://sscs-tribunals-api-pr-5077.preview.platform.hmcts.net'
         if (isRegression) {
             env.E2E_TEST_TAGS = "@functional,@fullFunctional"
         } else {
