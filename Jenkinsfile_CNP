@@ -15,11 +15,27 @@ import uk.gov.hmcts.contino.GithubAPI
 def product = "sscs"
 def component = "tribunals-frontend"
 
+def secrets = [
+        'sscs-${env}': [
+                secret('sscs-s2s-secret', 'S2S_SECRET')
+        ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [ $class: 'AzureKeyVaultSecret',
+      secretType: 'Secret',
+      name: secretName,
+      version: '',
+      envVariable: envVar
+    ]
+}
+
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
 withPipeline("nodejs", product, component) {
     def githubApi = new GithubAPI(this)
+    loadVaultSecrets(secrets)
 
     env.CHUNKS = params.NUMBER_RUNNING_PARALLEL
     env.RETRIES = params.RETRIES
