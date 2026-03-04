@@ -37,7 +37,7 @@
   },
   "s2s": {
     "microservice": "sscs",
-    "secret": "AAAAAAAAAAAAAAAC",
+    "secret": "S2S_SECRET",
     "url": "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal",
     "timeout" : 40000
   },
