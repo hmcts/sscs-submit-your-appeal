@@ -25,7 +25,7 @@ const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
 const sections = require('steps/check-your-appeal/sections');
-const s2s = require('../../../services/s2s');
+const s2s = require('services/s2s');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
