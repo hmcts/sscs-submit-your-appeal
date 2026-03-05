@@ -78,8 +78,8 @@ const configureNunjucks = (app, commonContent) =>
       webChatUrl: webChatBaseUrl,
       kerv: {
         deploymentId: {
-            en: config.get('services.kerv.deploymentId.en'),
-            cy: config.get('services.kerv.deploymentId.cy')
+          en: config.get('services.kerv.deploymentId.en'),
+          cy: config.get('services.kerv.deploymentId.cy')
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
         environment: config.get('services.kerv.environment'),
@@ -90,7 +90,10 @@ const configureNunjucks = (app, commonContent) =>
       urls,
       allowNiEnabled: config.get('features.allowNI.enabled') === 'true',
       featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
+        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled },
+      s2s: {
+        secret: config.get('s2s.secret')
+      }
     }
   });
 const configureViews = app => {
