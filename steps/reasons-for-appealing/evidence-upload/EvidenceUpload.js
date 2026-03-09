@@ -4,7 +4,6 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-
 const { redirectTo } = require('@hmcts/one-per-page/flow');
 const {
   SaveToDraftStoreAddAnother
@@ -26,6 +25,7 @@ const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
 const sections = require('steps/check-your-appeal/sections');
+const s2s = require('services/s2s');
 
 const uploadEvidenceUrl = config.get('api.uploadEvidenceUrl');
 const maxFileSize = config.get('features.evidenceUpload.maxFileSize');
@@ -221,11 +221,16 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   static handleRename(pathToFile, req, size, next) {
     return async() => {
+      const serviceAuthToken = await s2s.getServiceAuthToken();
       try {
         const response = await request
           .post(uploadEvidenceUrl)
+          .set('ServiceAuthorization', `Bearer ${serviceAuthToken}`)
           .attach('file', pathToFile)
-          .field('formData', JSON.stringify({ file: fs.createReadStream(pathToFile) }));
+          .field(
+            'formData',
+            JSON.stringify({ file: fs.createReadStream(pathToFile) })
+          );
 
         const b = response.body;
         if (b && b.documents) {
