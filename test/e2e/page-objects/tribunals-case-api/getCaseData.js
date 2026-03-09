@@ -15,6 +15,7 @@ async function checkTribunalAPIResponse(response) {
 
 async function getMYACaseData(request, ccdCaseID) {
   const serviceAuthToken = getCachedToken();
+  console.log('Service auth token ########## ', serviceAuthToken);
   const response = await request.get(
     `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`,
     {
@@ -33,6 +34,7 @@ async function getMYACaseData(request, ccdCaseID) {
 
 async function getCaseData(browser, request, ccdCaseID) {
   const myaCaseData = await getMYACaseData(request, ccdCaseID);
+  console.log('MYA Case Data ########## ', myaCaseData);
   if (!myaCaseData || !myaCaseData.appealNumber) {
     throw Error('Invalid Appeal Number)');
   }

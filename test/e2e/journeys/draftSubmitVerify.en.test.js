@@ -52,7 +52,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
     await testUser.deleteUser(userEmail);
   });
 
-  test(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD`, { tag: '@fullFunctional' },
+  test(`${language.toUpperCase()} - Sign in and submit draft appeal and verify the submitted CCD`, { tag: '@fullFunctional-01' },
     async({ page, request, browser }) => {
       await moment().locale(language);
       await enterDetailsFromStartToDraft(page, commonContent, language, userEmail);
