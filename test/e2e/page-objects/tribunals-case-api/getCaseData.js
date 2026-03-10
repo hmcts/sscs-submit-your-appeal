@@ -14,7 +14,7 @@ async function checkTribunalAPIResponse(response) {
 }
 
 async function getMYACaseData(request, ccdCaseID) {
-  const serviceAuthToken = generateToken();
+  const serviceAuthToken = await generateToken();
   console.log('Service auth token ########## ', serviceAuthToken);
   const response = await request.get(
     `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`,
