@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await */
 const config = require('config');
-const { getCachedToken } = require('../../../util/s2s');
+const { generateToken } = require('test/util/s2s');
 
 const tribunalsApiUrl = config.get('api.url');
 const authCookie = '__auth-token';
@@ -14,7 +14,7 @@ async function checkTribunalAPIResponse(response) {
 }
 
 async function getMYACaseData(request, ccdCaseID) {
-  const serviceAuthToken = getCachedToken();
+  const serviceAuthToken = generateToken();
   console.log('Service auth token ########## ', serviceAuthToken);
   const response = await request.get(
     `${tribunalsApiUrl}/appeals?caseId=${ccdCaseID}`,
