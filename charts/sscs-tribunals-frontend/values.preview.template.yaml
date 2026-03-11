@@ -11,7 +11,9 @@ nodejs:
     NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
+    ALLOW_CONFIG_MUTATIONS: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
+    S2S_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
     WELSH_WEBCHAT_ENABLED: true
     WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"
     WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
@@ -33,6 +35,7 @@ nodejs:
         - webchat-kerv-environment
         - webchat-kerv-kerv-base-url
         - webchat-kerv-api-key
+        - sscs-s2s-secret
 
 redis:
   enabled: true

@@ -24,23 +24,20 @@ describe('The EvidenceUpload middleware', () => {
   const unlinker = sinon.stub().yields();
   const renamer = sinon.stub().yields();
 
-
   beforeEach(function() {
     this.timeout(2500);
     stubs = {
       formidable: {
         IncomingForm: function() {
           this.parse = parser;
-          this.once = () => {
-          };
-          this.on = () => {
-          };
+          this.once = () => {};
+          this.on = () => {};
         }
       },
       superagent: {
-        post: sinon.stub()
-          .returns({ attach: sinon.stub().returns({ field: sinon.stub()
-            .resolves({
+        post: sinon.stub().returns({
+          attach: sinon.stub().returns({
+            field: sinon.stub().resolves({
               body: {
                 documents: [
                   {
@@ -50,16 +47,20 @@ describe('The EvidenceUpload middleware', () => {
                   }
                 ]
               }
-            }) }) })
+            })
+          })
+        })
       },
       'graceful-fs': {
         unlink: unlinker,
-        createReadStream: () => {
-        },
+        createReadStream: () => {},
         rename: renamer
       },
       path: {
         resolve: () => 'a string'
+      },
+      'services/s2s': {
+        getServiceAuthToken: sinon.stub().resolves('mock-token')
       }
     };
 
@@ -87,6 +88,26 @@ describe('The EvidenceUpload middleware', () => {
       const pathToFile = '__path__';
       const next = sinon.stub();
 
+      const fieldStub = sinon.stub().resolves({
+        body: {
+          documents: [
+            {
+              originalDocumentName: '__originalDocumentName__',
+              _links: { self: { href: '__href__' } },
+              hashToken: '__hashToken__'
+            }
+          ]
+        }
+      });
+      const attachStub = sinon.stub().returns({ field: fieldStub });
+      const setStub = sinon.stub().returns({ attach: attachStub });
+      stubs.superagent.post = sinon.stub().returns({ set: setStub });
+
+      EvidenceUpload = proxyquire(
+        'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+        stubs
+      );
+
       await EvidenceUpload.handleRename(pathToFile, req, size, next)();
 
       expect(req.body).to.deep.equal({
@@ -104,18 +125,20 @@ describe('The EvidenceUpload middleware', () => {
       const pathToFile = '__path__';
       const next = sinon.stub();
 
-      stubs.superagent.post = sinon.stub()
-        .returns({ attach: sinon.stub().returns({ field: sinon.stub()
-          .resolves({
-            body: {
-              documents: [
-                {
-                  originalDocumentName: '__originalDocumentName__',
-                  _links: { self: { href: '__href__' } }
-                }
-              ]
+      const fieldStub = sinon.stub().resolves({
+        body: {
+          documents: [
+            {
+              originalDocumentName: '__originalDocumentName__',
+              _links: { self: { href: '__href__' } }
             }
-          }) }) });
+          ]
+        }
+      });
+      const attachStub = sinon.stub().returns({ field: fieldStub });
+      const setStub = sinon.stub().returns({ attach: attachStub });
+      stubs.superagent.post = sinon.stub().returns({ set: setStub });
+
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
@@ -137,8 +160,11 @@ describe('The EvidenceUpload middleware', () => {
       const size = 42;
       const pathToFile = '__path__';
       const next = sinon.stub();
-      stubs.superagent.post = sinon.stub()
-        .returns({ attach: sinon.stub().returns({ field: sinon.stub().rejects(new Error('Upload failed')) }) });
+      stubs.superagent.post = sinon.stub().returns({
+        attach: sinon.stub().returns({
+          field: sinon.stub().rejects(new Error('Upload failed'))
+        })
+      });
       EvidenceUpload = proxyquire(
         'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
         stubs
@@ -152,7 +178,9 @@ describe('The EvidenceUpload middleware', () => {
         'item.hashToken': '',
         'item.size': 0
       });
-      expect(logger.exception).to.have.been.calledWith(sinon.match.instanceOf(Error));
+      expect(logger.exception).to.have.been.calledWith(
+        sinon.match.instanceOf(Error)
+      );
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
   });

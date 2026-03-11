@@ -35,6 +35,12 @@
     "frontendUrl": "http://localhost:3000",
     "retry": 4
   },
+  "s2s": {
+    "microservice": "sscs",
+    "secret": "S2S_SECRET",
+    "url": "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal",
+    "timeout" : 40000
+  },
   "features": {
     "evidenceUpload": {
       "enabled": true,
