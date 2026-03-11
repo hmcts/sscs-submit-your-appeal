@@ -23,7 +23,7 @@ describe('CheckYourAppeal.js', () => {
     CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
       superagent: request,
       logger: loggerStub,
-      '../../services/s2s': s2sModuleStub
+      'services/s2s': s2sModuleStub
     });
 
     cya = new CheckYourAppeal({
