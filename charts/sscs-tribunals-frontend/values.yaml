@@ -21,6 +21,7 @@ nodejs:
     MEDIA_FILES_ALLOWED_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
+    ALLOW_CONFIG_MUTATIONS: true
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
     #Added for new Webchat with Agent
