@@ -22,6 +22,7 @@ async function generateToken() {
 
     if (response && response.text) {
       token = response.text;
+      logger.trace('Test S2S token generated');
       return token;
     }
 
