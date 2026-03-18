@@ -93,9 +93,9 @@ class CheckYourAppeal extends SaveToDraftStoreCYA {
     }
   }
 
-  sendToAPI() {
+  async sendToAPI() {
     this.validateJourneyValues();
-    const headers = this.tokenHeader(this.req);
+    const headers = await this.tokenHeader(this.req);
 
     const values = this.journey.values;
     const isIbaCase = isIba(this.req);
