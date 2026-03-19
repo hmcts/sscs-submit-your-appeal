@@ -170,5 +170,5 @@
     "cssnano": "^5.1.15",
     "ip": "^2.0.1"
   },
-  "packageManager": "yarn@4.10.0"
+  "packageManager": "yarn@4.13.0"
 }
