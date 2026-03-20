@@ -1,5 +1,5 @@
 nodejs:
-  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
+  image: 'hmctsprod.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
@@ -47,18 +47,8 @@ nodejs:
         - webchat-kerv-api-key
         - sscs-s2s-secret
 
-redis:
+hmcts-redis:
   enabled: false
-  cluster:
-    enabled: false
-    slaveCount: 0
-  usePassword: false
-  image:
-    registry: hmctspublic.azurecr.io
-    repository: imported/bitnami/redis
-  master:
-    persistence:
-      enabled: false
 
 idam-pr:
   enabled: false
