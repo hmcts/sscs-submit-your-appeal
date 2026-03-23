@@ -2,7 +2,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 
 const expect = chai.expect;
-const S2SService = require('../../../services/s2sService');
+const S2SService = require('services/s2sService');
 
 describe('S2SService', () => {
   let service = null;

@@ -26,7 +26,7 @@ const csurf = require('csurf');
 
 const csrfProtection = csurf({ cookie: false });
 const config = require('config');
-const s2s = require('../../services/s2s');
+const s2s = require('services/s2s');
 
 const allowSaveAndReturn =
   config.get('features.allowSaveAndReturn.enabled') === 'true';
