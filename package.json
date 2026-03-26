@@ -168,7 +168,9 @@
     "serialize-javascript": "^7.0.3",
     "immutable": "^5.1.5",
     "cssnano": "^5.1.15",
-    "ip": "^2.0.1"
+    "ip": "^2.0.1",
+    "picomatch": "^4.0.4",
+    "yaml": "^2.8.3"
   },
   "packageManager": "yarn@4.10.0"
 }
