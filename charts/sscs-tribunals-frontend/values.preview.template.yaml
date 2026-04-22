@@ -22,7 +22,6 @@ nodejs:
     FT_WELSH: true
     PCQ_ENABLED: true
     IBC_NI_POSTCODES_FEATURE: true
-    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-5236.preview.platform.hmcts.net
   keyVaults:
     sscs:
       secrets:
