@@ -8946,9 +8946,9 @@ __metadata:
   linkType: hard
 
 "parse-full-name@npm:^1.2.6":
-  version: 1.2.6
-  resolution: "parse-full-name@npm:1.2.6"
-  checksum: 10/00f89cf2cec337b4daf41973c969dc092eb1d3ba4951d1b8c8ff09cd37d61edfab90ce36f63446fa684c2b1f5d3231f82dbf4d7ac39058aab8932781d2e162b2
+  version: 1.2.7
+  resolution: "parse-full-name@npm:1.2.7"
+  checksum: 10/19899ea65fc3dd1d21a665f4145e239b72e94693711546f5e3b80267faf5d020c3979254761dc539ee28c300deb1341f70fc07c9d672aacfc42f2967b5c7f81c
   languageName: node
   linkType: hard
 
