@@ -903,12 +903,12 @@ __metadata:
   linkType: hard
 
 "@babel/helpers@npm:^7.26.10":
-  version: 7.28.6
-  resolution: "@babel/helpers@npm:7.28.6"
+  version: 7.29.2
+  resolution: "@babel/helpers@npm:7.29.2"
   dependencies:
     "@babel/template": "npm:^7.28.6"
-    "@babel/types": "npm:^7.28.6"
-  checksum: 10/213485cdfffc4deb81fc1bf2cefed61bc825049322590ef69690e223faa300a2a4d1e7d806c723bb1f1f538226b9b1b6c356ca94eb47fa7c6d9e9f251ee425e6
+    "@babel/types": "npm:^7.29.0"
+  checksum: 10/ad77706f3f917bd224e037fd0fbc67c45b240d2a45981321b093f70b7c535bee9bbddb0a19e34c362cb000ae21cdd8638f8a87a5f305a5bd7547e93fdcc524fe
   languageName: node
   linkType: hard
 
@@ -1789,8 +1789,8 @@ __metadata:
   linkType: hard
 
 "@babel/register@npm:^7.27.1":
-  version: 7.28.6
-  resolution: "@babel/register@npm:7.28.6"
+  version: 7.29.3
+  resolution: "@babel/register@npm:7.29.3"
   dependencies:
     clone-deep: "npm:^4.0.1"
     find-cache-dir: "npm:^2.0.0"
@@ -1799,7 +1799,7 @@ __metadata:
     source-map-support: "npm:^0.5.16"
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 10/fdbdcb97f35222c175af004221108d85444cb94c7a68a592b07f5de97b9d32e673044dd45a825624679dfd51e726db78bc85278bc2a9c7a619d37412e52c53e1
+  checksum: 10/1008dbadf1733d073e5f21cb53c66d730c5dfe9dcd9cea772fe1a7a774563a7deac92d941e3146917d66469859c8c4ab37e7b10a361a27adf17d2f77a95b9fd1
   languageName: node
   linkType: hard
 
