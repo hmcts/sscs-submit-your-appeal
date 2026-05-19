@@ -4549,7 +4549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^14.0.2":
+"commander@npm:^14.0.3":
   version: 14.0.3
   resolution: "commander@npm:14.0.3"
   checksum: 10/dfa9ebe2a433d277de5cb0252d23b10a543d245d892db858d23b516336a835c50fd4f52bee4cd13c705cc8acb6f03dc632c73dd806f7d06d3353eb09953dd17a
@@ -7732,19 +7732,18 @@ __metadata:
   linkType: hard
 
 "lint-staged@npm:^16.2.7":
-  version: 16.2.7
-  resolution: "lint-staged@npm:16.2.7"
+  version: 16.4.0
+  resolution: "lint-staged@npm:16.4.0"
   dependencies:
-    commander: "npm:^14.0.2"
+    commander: "npm:^14.0.3"
     listr2: "npm:^9.0.5"
-    micromatch: "npm:^4.0.8"
-    nano-spawn: "npm:^2.0.0"
-    pidtree: "npm:^0.6.0"
+    picomatch: "npm:^4.0.3"
     string-argv: "npm:^0.3.2"
-    yaml: "npm:^2.8.1"
+    tinyexec: "npm:^1.0.4"
+    yaml: "npm:^2.8.2"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/c1fd7685300800ea6d3f073cb450f9e3d2a83966e7c6785ea9608a08e77e1e8e5f1958f77b98ccd7d423daa53bb36016d6fd96a98d22234d0f7f56d7b3f360f2
+  checksum: 10/eb7aa0d43e321bbf282ce0c693a3db762aa9b8e5bf29419a49c8877a247cd3a14cf8d519f914f8c8dcd2aea73ac83c0bb44fadb97a30004219e060a780dda74e
   languageName: node
   linkType: hard
 
@@ -8427,13 +8426,6 @@ __metadata:
   version: 2.0.0
   resolution: "mute-stdout@npm:2.0.0"
   checksum: 10/5324d58cc6b0df0173cb671f40c8bc3a843ab3804db925fdf561b734ca509d3ad8546744e211ac933d384e7e699092f43fc5712b38d5ddf29ecf9c963358d67c
-  languageName: node
-  linkType: hard
-
-"nano-spawn@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "nano-spawn@npm:2.0.0"
-  checksum: 10/117d35d7bd85b146908de5d3d1177d2b2ee3174e5d884d6bc9555583bf6e50a265f4038b5c134b7cdd768a10d53598ccde5c00d6f55e25e7eed31b86b8d29646
   languageName: node
   linkType: hard
 
@@ -9165,15 +9157,6 @@ __metadata:
   version: 4.0.4
   resolution: "picomatch@npm:4.0.4"
   checksum: 10/f6ef80a3590827ce20378ae110ac78209cc4f74d39236370f1780f957b7ee41c12acde0e4651b90f39983506fd2f5e449994716f516db2e9752924aff8de93ce
-  languageName: node
-  linkType: hard
-
-"pidtree@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "pidtree@npm:0.6.0"
-  bin:
-    pidtree: bin/pidtree.js
-  checksum: 10/ea67fb3159e170fd069020e0108ba7712df9f0fd13c8db9b2286762856ddce414fb33932e08df4bfe36e91fe860b51852aee49a6f56eb4714b69634343add5df
   languageName: node
   linkType: hard
 
@@ -11368,6 +11351,13 @@ __metadata:
   version: 1.0.2
   resolution: "thirty-two@npm:1.0.2"
   checksum: 10/f6700b31d16ef942fdc0d14daed8a2f69ea8b60b0e85db8b83adf58d84bbeafe95a17d343ab55efaae571bb5148b62fc0ee12b04781323bf7af7d7e9693eec76
+  languageName: node
+  linkType: hard
+
+"tinyexec@npm:^1.0.4":
+  version: 1.1.2
+  resolution: "tinyexec@npm:1.1.2"
+  checksum: 10/2bbe37f9001c6f5723ab39eb8dc1e88f77e830d7cf2e8f34bb75019eb505fcfe3b061b4799c502ff31fa63aa1a9adc649add5ff1e17b7fbd8c16e1afb75d0b9e
   languageName: node
   linkType: hard
 
