@@ -9648,11 +9648,11 @@ __metadata:
   linkType: hard
 
 "prettier-plugin-jinja-template@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "prettier-plugin-jinja-template@npm:2.1.0"
+  version: 2.2.0
+  resolution: "prettier-plugin-jinja-template@npm:2.2.0"
   peerDependencies:
     prettier: ^3.0.0
-  checksum: 10/c041b081da77e2898a4ef0d1bd362fc65b90734f18dc7a21e8be2e73208068408614573116dee0de2e5b9c1202ef3a329b4d5661ced3cc80b4558f40bb0a8b36
+  checksum: 10/c8c5b83abf543bbb6cac4096bef924c9c6490218ae49f47d594ded40599fa8072ed6b1be5bbfb16ad03769fdbc32471f4d257c3dd1b5b0e472babaaf0948a20b
   languageName: node
   linkType: hard
 
