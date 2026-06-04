@@ -208,6 +208,12 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.not.equal(null);
   });
 
+  it('should validate a correct IBCA reference in all uppercase letters for England', () => {
+    const reference = 'EPDMAS';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
   it('should validate a correct IBCA reference for Scotland', () => {
     const reference = 'S35B67';
     const result = reference.match(ibcaReference);
