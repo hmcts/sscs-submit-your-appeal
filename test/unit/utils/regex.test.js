@@ -274,4 +274,10 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.equal(null);
   });
 
+  it('should not validate a reference with non-alphanumeric characters', () => {
+    const reference = 'E24A-56';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
 });
