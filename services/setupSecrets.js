@@ -38,11 +38,6 @@ const setupSecrets = () => {
       'secrets.sscs.webchat-kerv-environment',
       'services.kerv.environment'
     );
-    setSecret(
-      'secrets.sscs.webchat-kerv-kerv-base-url',
-      'services.kerv.kervBaseUrl'
-    );
-    setSecret('secrets.sscs.webchat-kerv-api-key', 'services.kerv.apiKey');
     setSecret('secrets.sscs.sscs-s2s-secret', 's2s.secret');
   }
 };

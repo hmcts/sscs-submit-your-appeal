@@ -138,9 +138,7 @@
         "cy": "KERV_DEPLOYMENT_ID_CY"
       },
       "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
-      "environment": "KERV_ENVIRONMENT",
-      "kervBaseUrl": "KERV_BASE_URL",
-      "apiKey": "KERV_API_KEY"
+      "environment": "KERV_ENVIRONMENT"
     },
     "pcq": {
       "url": "PCQ_URL",
