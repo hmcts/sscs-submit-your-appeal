@@ -61,8 +61,7 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true",
-      "welshWebchatEnabled": "true"
+      "webFormEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -118,10 +117,6 @@
     "multipleDraftsEnabled": {
       "enabled": "false"
     },
-    "webchatOpen8to5": {
-      "enabled": "false"
-    },
-    "kervWebchatEnabled": "false",
     "allowNI" : {
       "enabled": "false"
     }

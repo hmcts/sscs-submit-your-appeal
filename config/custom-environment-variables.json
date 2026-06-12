@@ -93,8 +93,7 @@
     "allowContactUs": {
       "enabled": "ALLOW_CONTACT_US",
       "telephoneEnabled": "CONTACT_US_TELEPHONE_ENABLED",
-      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED",
-      "welshWebchatEnabled": "WELSH_WEBCHAT_ENABLED"
+      "webFormEnabled": "CONTACT_US_WEB_FORM_ENABLED"
     },
     "welsh": {
       "enabled": "FT_WELSH"
@@ -105,10 +104,6 @@
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"
     },
-    "webchatOpen8to5" : {
-      "enabled": "WEBCHAT_OPENING_TIME_8_5"
-    },
-    "kervWebchatEnabled": "KERV_WEBCHAT_ENABLED",
     "allowNI" : {
       "enabled": "IBC_NI_POSTCODES_FEATURE"
     }

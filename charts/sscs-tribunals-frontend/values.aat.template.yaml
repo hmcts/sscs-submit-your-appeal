@@ -3,12 +3,8 @@ nodejs:
   ingressHost: ${SERVICE_FQDN}
   environment:
     NODE_ENV: "aat"
-    #Added for new Webchat with Agent
-    WELSH_WEBCHAT_ENABLED: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     FT_WELSH: true
     PCQ_ENABLED: true
-    WEBCHAT_OPENING_TIME_8_5: true
     IBC_NI_POSTCODES_FEATURE: true
-    KERV_WEBCHAT_ENABLED: false
 
