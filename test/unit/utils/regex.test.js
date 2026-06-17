@@ -202,6 +202,18 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.not.equal(null);
   });
 
+  it('should validate a correct IBCA reference in all lowercase letters for England', () => {
+    const reference = 'epdmas';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in all uppercase letters for England', () => {
+    const reference = 'EPDMAS';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
   it('should validate a correct IBCA reference for Scotland', () => {
     const reference = 'S35B67';
     const result = reference.match(ibcaReference);
@@ -238,6 +250,12 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.not.equal(null);
   });
 
+  it('should validate a correct IBCA reference in all numbers', () => {
+    const reference = '124589';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
   it('should not validate a reference with an invalid year', () => {
     const reference = 'E2A45';
     const result = reference.match(ibcaReference);
@@ -252,6 +270,12 @@ describe('IBCA Reference Regex', () => {
 
   it('should not validate a reference with extra characters', () => {
     const reference = 'E24A456';
+    const result = reference.match(ibcaReference);
+    expect(result).to.equal(null);
+  });
+
+  it('should not validate a reference with non-alphanumeric characters', () => {
+    const reference = 'E24A-56';
     const result = reference.match(ibcaReference);
     expect(result).to.equal(null);
   });
