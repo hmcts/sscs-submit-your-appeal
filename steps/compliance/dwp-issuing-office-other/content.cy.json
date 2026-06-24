@@ -2,7 +2,7 @@
   "titleHead": "Rhif swyddfa DWP",
   "title": "Mae cyfeiriad DWP yng nghornel dde uchaf eich Hysbysiad Gorfodi i Ailystyried (MRN)",
   "noMRN": "Nid oes gennyf Hysbysiad Gorfodi i Ailystyried ",
-  "imageAlt": "Rhif swyddfa cyflwyno DWP",
+  "imageAlt": "Enghraifft o lythyr Hysbysiad Gorfodi i Ailystyried yn dangos enw swyddfa DWP ar linell gyntaf y cyfeiriad yng nghornel dde uchaf",
   "fields": {
     "dwpIssuingOffice": {
       "header": "Dewiswch y swyddfa a ddangosir yn llinell gyntaf cyfeiriad DWP",

@@ -3,11 +3,11 @@
   "title": "Double check the date you entered",
   "subtitle": "Your appeal may be late. Just check you entered the date from the top right of your Mandatory Reconsideration Notice.",
   "question": "Did you enter the date from the top right of your MRN?",
-  "imageAlt": "A copy of your MRN",
+  "imageAlt": "Example Mandatory Reconsideration Notice letter showing the date in the top right corner",
   "titleHeadIba": "Double check Review Decision Notice date",
   "subtitleIba": "Your appeal may be late. Just check you entered the date from the top right of your Review Decision Notice.",
   "questionIba": "Did you enter the date from the top right of your Review Decision Notice?",
-  "imageAltIba": "A copy of your Review Decision Notice",
+  "imageAltIba": "Example Review Decision Notice letter showing the date in the top right corner",
   "fields": {
     "checkedMRN": {
       "yes": "Yes, I entered the date from the top right of my MRN",

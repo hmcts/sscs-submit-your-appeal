@@ -5,7 +5,7 @@
 
 {% block fields %}
     {% if (benefitCode == 'PIP') %}
-      <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-number.png" alt="{{ content.imageAlt }}">
+      <img class="mrn-image issuing-office" src="{{ asset_path }}images/dwp-office-number.png" alt="{{ content.imageAltPip }}">
       <p class="govuk-body"><h2 class="govuk-heading-s">{{ content.fields.pipNumber.header }}</h2></p>
       {{ select(fields.pipNumber, content.fields.pipNumber.label, '', false, options) }}
     {% elif (benefitCode == 'ESA') or (benefitCode == 'DLA') or (benefitCode == 'attendanceAllowance') or (benefitCode == 'industrialInjuriesDisablement') or (benefitCode == 'JSA') or (benefitCode == 'socialFund') or (benefitCode == 'incomeSupport') or (benefitCode == 'UC') or (benefitCode == 'industrialDeathBenefit') or (benefitCode == 'pensionCredit') or (benefitCode == 'retirementPension') %}

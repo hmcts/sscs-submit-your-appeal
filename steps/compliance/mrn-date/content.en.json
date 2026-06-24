@@ -3,12 +3,12 @@
   "title": "When is your Mandatory Reconsideration Notice (MRN) dated?",
   "dateLegend": "Enter the date from the top right of your MRN letter",
   "dateHint": "For example, 31 3 2017",
-  "imageAlt": "A copy of your MRN",
+  "imageAlt": "Example Mandatory Reconsideration Notice letter showing the date in the top right corner",
   "titleHeadIba": "Review Decision Notice dated",
   "titleIba": "When is your Review Decision Notice dated?",
   "dateLegendIba": "Enter the date from the top right of your Review Decision Notice",
   "dateHintIba": "For example, 26 1 2024",
-  "imageAltIba": "A copy of your Review Decision Notice",
+  "imageAltIba": "Example Review Decision Notice letter showing the date in the top right corner",
   "fields": {
     "date": {
       "day": "Day",

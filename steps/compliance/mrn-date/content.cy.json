@@ -3,12 +3,12 @@
   "title": "Pa ddyddiad sydd ar eich Hysbysiad Gorfodi i Ailystyried (MRN)?",
   "dateLegend": "Nodwch y dyddiad sydd yng nghornel dde uchaf eich llythyr MRN",
   "dateHint": "Er enghraifft, 31 3 2017",
-  "imageAlt": "Copi o’ch MRN",
+  "imageAlt": "Enghraifft o lythyr Hysbysiad Gorfodi i Ailystyried yn dangos y dyddiad yng nghornel dde uchaf",
   "titleHeadIba": "Hysbysiad o Benderfyniad Adolygiad dyddiedig",
   "titleIba": "Beth yw dyddiad eich Hysbysiad o Benderfyniad Adolygiad?",
   "dateLegendIba": "Rhowch y dyddiad sydd yng nghornel dde uchaf eich Hysbysiad o Benderfyniad Adolygiad",
   "dateHintIba": "Er enghraifft, 26 1 2024",
-  "imageAltIba": "Copi o’ch Hysbysiad o Benderfyniad Adolygiad",
+  "imageAltIba": "Enghraifft o lythyr Hysbysiad o Benderfyniad Adolygiad yn dangos y dyddiad yng nghornel dde uchaf",
   "fields": {
     "date": {
       "day": "Diwrnod",
