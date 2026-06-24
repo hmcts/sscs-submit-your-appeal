@@ -28,7 +28,7 @@
     {% block listItems %}
       {% call formSection() %}
         {% if not defaultContent.hideItemsListLabel %}
-          {{ header(defaultContent.itemsListLabel, size='m') }}
+          {{ header(defaultContent.itemsListLabel, size='m', isPageHeader=false) }}
         {% endif %}
 
         <dl class="govuk-summary-list">
