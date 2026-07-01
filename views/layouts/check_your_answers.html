@@ -56,7 +56,7 @@
 
   {% if incomplete %}
     {% block continue_application %}
-      {{ header(pageContent.incompleteHeader | default(defaultContent.incompleteHeader), size='m') }}
+      {{ header(pageContent.incompleteHeader | default(defaultContent.incompleteHeader), size='m', isPageHeader=false) }}
       <p class="govuk-body">{{ pageContent.incompleteMessage | default(defaultContent.incompleteMessage) }}</p>
       <a href="{{ continueUrl }}" class="govuk-button">{{ pageContent.continue | default(defaultContent.continue) }}</a>
     {% endblock %}
