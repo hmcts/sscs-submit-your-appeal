@@ -137,10 +137,6 @@
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
     },
-    "webchat": {
-      "url": "WEBCHAT_URL",
-      "clientUrl": "WEBCHAT_CLIENT_URL"
-    },
     "kerv": {
       "deploymentId" : {
         "en": "KERV_DEPLOYMENT_ID_EN",
