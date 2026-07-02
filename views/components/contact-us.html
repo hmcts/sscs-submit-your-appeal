@@ -1,4 +1,4 @@
-{% if welshWebchatEnabled and not isIba  %}
+{% if not isIba  %}
 <details class="govuk-details" open>
 {% else %}
 <details class="govuk-details">
@@ -6,24 +6,12 @@
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">{{ commonContent[htmlLang].contactUs.title }}</span>
     </summary>
-    {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
+    {% if ((htmlLang == "en") or (htmlLang == "cy"))  %}
       {% if not isIba %}
         <div class="govuk-details__text">
           <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.title }}</h2>
-          <div id="antenna-web-chat" >
-              <div id="antenna-web-chat-link">
-                  <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc }}</p>
-                  {% if kervWebchatEnabled %}
-                    {% include "components/kerv-webchat.html" %}
-                  {% else %}
-                    <a id="antenna-web-chat-button" href="#">{{ commonContent[htmlLang].contactUs.webchat.textChatWithAnAgent }}</a>
-                    {% include "components/web-chat.html" %}
-                  {% endif %}
-              </div>
-              <div id="antenna-web-chat-closed" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textChatClosed }}</div>
-              <div id="antenna-web-chat-busy" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textAllAgentsBusy }}</div>
-              <div id="antenna-web-chat-no-agents" style="display: none;">{{ commonContent[htmlLang].contactUs.webchat.textNoAgentsAvailable }}</div>
-          </div>
+          <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.webchat.desc }}</p>
+          {% include "components/kerv-webchat.html" %}
         </div>
         <div class="govuk-details__text">
           <div id="web-chat-scotland" >
@@ -51,7 +39,7 @@
           <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title }}</h2>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc }}</p>
 
-          {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
+          {% if ((htmlLang == "en") or (htmlLang == "cy"))  %}
           {% if allowNiEnabled %}
             <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.ibca.descNI }}</h3>
             {% else%}
@@ -95,7 +83,7 @@
           <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.title }}</h2>
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.desc }}</p>
 
-          {% if ((htmlLang == "en") or (htmlLang == "cy" and welshWebchatEnabled))  %}
+          {% if ((htmlLang == "en") or (htmlLang == "cy"))  %}
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.desc }}</h3>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.phone }}</p>
           <p class="govuk-body govuk-!-margin-bottom-0">{{ commonContent[htmlLang].contactUs.telephone.England.availability }}</p>
@@ -115,7 +103,7 @@
           <p class="govuk-body govuk-!-margin-bottom-2">
               <a rel="noopener noreferrer" class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.charges }}</a>
           </p>
-          {% if ((htmlLang == "cy") or (htmlLang == "en" and welshWebchatEnabled))  %}
+          {% if ((htmlLang == "cy") or (htmlLang == "en"))  %}
           <p class="govuk-body govuk-!-margin-bottom-2">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailText }}
               <a href="mailto:{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailAddress }}" class="govuk-link">{{ commonContent[htmlLang].contactUs.telephone.WelshSpeakers.emailAddress }}</a>
           </p>

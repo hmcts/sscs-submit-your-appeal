@@ -70,8 +70,6 @@ const configureNunjucks = (app, commonContent) =>
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
-      welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
-      kervWebchatEnabled: config.get('features.kervWebchatEnabled') === 'true',
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
       webChatClientUrl: webChatClientBaseUrl,
@@ -82,15 +80,12 @@ const configureNunjucks = (app, commonContent) =>
           cy: config.get('services.kerv.deploymentId.cy')
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
-        environment: config.get('services.kerv.environment'),
-        kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
-        apiKey: config.get('services.kerv.apiKey')
+        environment: config.get('services.kerv.environment')
       },
       paths,
       urls,
       allowNiEnabled: config.get('features.allowNI.enabled') === 'true',
-      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled }
     }
   });
 const configureViews = app => {

@@ -79,24 +79,12 @@
         "link" : "Send message (opens in a new window)"
       },
       "webchat": {
-        "loading": "Loading",
         "title": "Web chat (England and Wales)",
         "titleScotland": "Web chat (Scotland only)",
         "desc": "Get some help by messaging an agent online.",
-        "textChatDown": "Web chat is currently unavailable.\n Please try again later or call us on the number below if your enquiry is urgent.",
         "textChatWithAnAgent": "Start web chat (opens in a new window)",
-        "textNoAgentsAvailable": "No agents are available, please try again later.",
-        "textAllAgentsBusy": "All our web chat agents are busy helping other people.\n Please try again later or contact us using one of the ways below.",
-        "textChatClosed" : "Web chat is now closed. \n Come back Monday to Friday, 9am to 4pm. Or contact us using one of the ways below.",
-        "textChatAlreadyOpen": "A web chat window is already open.",
-        "textAdditional": "Monday to Friday, 9am to 4pm. \n Saturday, 8am to 2pm",
-        "textChatCheckingAvail": "Checking availability…",
         "textChatNeedsJavascript": "Webchat needs javascript enabling.",
-        "textChatNeedsPopups": "Popup blocked. Please allow pop-ups for this site.",
-        "language": "English",
-        "chatTitle": "HMCTS Web Chat",
-        "pageName": "Appeal a benefit decision",
-        "jsFile": "1"
+        "textChatNeedsPopups": "Popup blocked. Please allow pop-ups for this site."
       },
       "telephone" : {
         "title": "Telephone",
@@ -236,20 +224,9 @@
       "webchat": {
         "title": "Sgwrsio dros y we",
         "desc": "",
-        "textChatDown": "Nid yw’r adnodd sgwrsio dros y we ar gael ar hyn o bryd.\n Rhowch gynnig arall arni yn hwyrach ymlaen neu ffoniwch ni ar y rhif isod os yw’ch ymholiad yn un brys.",
         "textChatWithAnAgent": "Siarad â chynghorydd ar-lein (agor mewn ffenestr newydd)",
-        "textNoAgentsAvailable": "Mae ein cynghorwyr i gyd yn brysur. Rhowch gynnig arall arni ymhen ychydig funudau.",
-        "textAllAgentsBusy": "Mae ein cynghorwyr i gyd yn brysur. Rhowch gynnig arall arni ymhen ychydig funudau.",
-        "textChatClosed" : "Mae ein gwasanaeth cyngor ar-lein ar gau ar hyn o bryd.",
-        "textChatAlreadyOpen": "Mae ffenestr sgwrsio dros y we ar agor yn barod.",
-        "textAdditional": "Dydd Llun i ddydd Gwener, 9am – 4pm",
-        "textChatCheckingAvail": "WIP (not translated) Checking availability… WIP",
         "textChatNeedsJavascript": "WIP (not translated) Webchat needs javascript enabling WIP",
-        "textChatNeedsPopups": "WIP (not translated) Popup blocked. Please allow pop-ups for this site. WIP",
-        "language": "Welsh",
-        "chatTitle": "Sgwrsio dros y we GLlTEF",
-        "pageName": "Apelio yn erbyn penderfyniad ynghylch budd-dal",
-        "jsFile": "welsh"
+        "textChatNeedsPopups": "WIP (not translated) Popup blocked. Please allow pop-ups for this site. WIP"
       },
       "telephone" : {
         "title": "Ffoniwch ni",

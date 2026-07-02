@@ -24,11 +24,6 @@ nodejs:
     ALLOW_CONFIG_MUTATIONS: true
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
-    #Added for new Webchat with Agent
-    WELSH_WEBCHAT_ENABLED: false
-    WEBCHAT_URL: "webchat.ctsc.hmcts.net"
-    WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
-    KERV_WEBCHAT_ENABLED: false
 
   keyVaults:
     sscs:
@@ -43,8 +38,6 @@ nodejs:
         - webchat-kerv-deployment-cy
         - webchat-kerv-genesys-base-url
         - webchat-kerv-environment
-        - webchat-kerv-kerv-base-url
-        - webchat-kerv-api-key
         - sscs-s2s-secret
 
 hmcts-redis:
