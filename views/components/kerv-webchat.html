@@ -17,7 +17,6 @@
     {% endif %}
     const GENESYS_BASE_URL = '{{ kerv.genesysBaseUrl }}';
     const ENVIRONMENT     = '{{ kerv.environment }}';
-
     /* ---------------------------------------------------------------
     Widget template — always show the launch link
  --------------------------------------------------------------- */
@@ -112,11 +111,12 @@
     }
 
     /* ---------------------------------------------------------------
-     Bootstrap on DOM ready - no availability pre-check here
+       Bootstrap on DOM ready - no availability pre-check here
     --------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', () => {
         const chatContent = document.getElementById('chatContent');
         chatContent.innerHTML = renderOpenWidget();
         attachStartChatHandler();
     });
+
 </script>
