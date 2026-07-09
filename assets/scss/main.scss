@@ -12,7 +12,6 @@
 @use './v-progress-bar' as *;
 @use './super-wrap' as *;
 @use './phase-banner';
-@use './web-chat';
 @use '../../components/postcodeLookup/assets/main';
 
 p.contact-us::first-line {
@@ -386,15 +385,6 @@ label.form-label[for='signer'] {
     }
   }
 }
-#ctsc-web-chat {
-  p {
-    margin-bottom: 0;
-  }
-  a {
-    @extend .govuk-link;
-  }
-}
-
 .text-center {
   text-align: center;
 }
@@ -413,12 +403,6 @@ label.form-label[for='signer'] {
 
 .nowrap {
   white-space: nowrap;
-}
-
-.web-chat-link {
-  a {
-    @extend .govuk-link;
-  }
 }
 
 .delete-warning-button {

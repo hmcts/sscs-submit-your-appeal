@@ -11,7 +11,6 @@ import AddReason from './add-reason';
 import EvidenceUpload from './evidence-upload/evidence-upload';
 import CheckCookies from './check-cookies';
 import PostCodeLookup from '../../components/postcodeLookup/assets/main';
-import { WebChat } from './web-chat';
 import { WebChatScotland } from './web-chat-scotland';
 import DeleteWarning from './delete-warning';
 import LanguagePreferenceToggle from './language-preference';
@@ -40,16 +39,6 @@ function isNonEhanceableSelect(select) {
 function initShowHideContent() {
   const showHideContent = new ShowHideContent();
   showHideContent.init();
-}
-
-function initWebChat(language) {
-  if (document.welshWebchatFlag) {
-    const webChat = new WebChat();
-    webChat.init();
-  } else if (language === 'en' && $('#antenna-web-chat').length) {
-    const webChat = new WebChat();
-    webChat.init();
-  }
 }
 
 function initWebChatScotland() {
@@ -184,7 +173,6 @@ $(document).ready(() => {
   initAddReason();
   initDoNotSubmitTwice();
   initBackButton();
-  initWebChat(language);
   initDeleteWarning();
   PostCodeLookup.init();
   initCookieBanner();
