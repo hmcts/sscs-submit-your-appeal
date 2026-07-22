@@ -175,7 +175,9 @@
     "@azure/identity": "^4.13.1",
     "@opentelemetry/core": "^2.8.0",
     "@tootallnate/once": "^2.0.1",
-    "uuid": "^11.1.1"
+    "uuid": "^11.1.1",
+    "minimatch": "^10.0.1",
+    "brace-expansion": "^5.0.7"
   },
   "packageManager": "yarn@4.14.1"
 }
