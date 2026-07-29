@@ -16,7 +16,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure")
+@Library("Infrastructure@2.4.4")
 
 def product = "sscs-tribunals"
 def component = "frontend"
