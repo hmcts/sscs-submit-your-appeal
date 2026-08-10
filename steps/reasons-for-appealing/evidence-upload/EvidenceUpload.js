@@ -25,6 +25,12 @@ const request = require('superagent');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
+
+const content = {
+  en: require('./content.en.json'),
+  cy: require('./content.cy.json')
+};
+
 const sections = require('steps/check-your-appeal/sections');
 const s2s = require('services/s2s');
 
