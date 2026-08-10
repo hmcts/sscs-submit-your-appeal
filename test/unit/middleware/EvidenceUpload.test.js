@@ -57,7 +57,8 @@ describe('The EvidenceUpload middleware', () => {
         rename: renamer
       },
       path: {
-        resolve: () => 'a string'
+        resolve: (...args) => args.filter(arg => typeof arg === 'string').join('/'),
+        sep: '/'
       },
       'services/s2s': {
         getServiceAuthToken: sinon.stub().resolves('mock-token')
