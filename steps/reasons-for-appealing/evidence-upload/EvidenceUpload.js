@@ -304,28 +304,27 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   get field() {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
+    const languageContent = content[sessionLanguage] || content.en;
     return object({
       uploadEv: text
         .joi(
-          content.fields.uploadEv.error.required,
+          languageContent.fields.uploadEv.error.required,
           Joi.string().disallow(fileMissingError)
         )
         .joi(
-          content.fields.uploadEv.error.wrongFileType,
+          languageContent.fields.uploadEv.error.wrongFileType,
           Joi.string().disallow(wrongFileTypeError)
         )
         .joi(
-          content.fields.uploadEv.error.maxFileSizeExceeded,
+          languageContent.fields.uploadEv.error.maxFileSizeExceeded,
           Joi.string().disallow(maxFileSizeExceededError)
         )
         .joi(
-          content.fields.uploadEv.error.technical,
+          languageContent.fields.uploadEv.error.technical,
           Joi.string().disallow(technicalProblemError)
         )
         .joi(
-          content.fields.uploadEv.error.totalFileSizeExceeded,
+          languageContent.fields.uploadEv.error.totalFileSizeExceeded,
           Joi.string().disallow(totalFileSizeExceededError)
         ),
       link: text.joi('', Joi.string().optional()),
@@ -367,9 +366,9 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   validateList(list) {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const languageContent = content[sessionLanguage] || content.en;
 
-    return list.check(content.noItemsError, arr => arr.length > 0);
+    return list.check(languageContent.noItemsError, arr => arr.length > 0);
   }
 
   next() {
