@@ -433,6 +433,46 @@ describe('The EvidenceUpload middleware', () => {
         expect(renamer).to.have.been.called;
       });
     });
+
+    describe('when the path is invalid', () => {
+      it('should call next with an error', () => {
+        const req = {
+          body: {
+            'item.uploadEv': [
+              {
+                filepath: '__path__'
+              }
+            ]
+          }
+        };
+        const next = sinon.stub();
+
+        stubs.path.resolve = sinon.stub();
+        stubs.path.resolve.onFirstCall().returns('/upload/dir');
+        stubs.path.resolve.onSecondCall().returns('/invalid/path');
+
+        EvidenceUpload = proxyquire(
+          'steps/reasons-for-appealing/evidence-upload/EvidenceUpload.js',
+          stubs
+        );
+
+        const handleIcomingParse = EvidenceUpload.handleIcomingParse(req, next);
+        const files = {
+          'item.uploadEv': [
+            {
+              filepath: '__path__',
+              mimetype: 'image/jpeg',
+              originalFilename: 'foo.jpg'
+            }
+          ]
+        };
+
+        handleIcomingParse(undefined, undefined, files);
+        expect(next).to.have.been.calledWith(
+          sinon.match.instanceOf(Error).and(sinon.match.has('message', 'Invalid upload path'))
+        );
+      });
+    });
   });
 
   describe('static handleUpload', () => {
