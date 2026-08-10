@@ -87,6 +87,7 @@ describe('The EvidenceUpload middleware', () => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
+      const originalFilename = '__originalFilename__';
       const next = sinon.stub();
 
       const fieldStub = sinon.stub().resolves({
@@ -109,7 +110,13 @@ describe('The EvidenceUpload middleware', () => {
         stubs
       );
 
-      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
+      await EvidenceUpload.handleRename(
+        pathToFile,
+        originalFilename,
+        req,
+        size,
+        next
+      )();
 
       expect(req.body).to.deep.equal({
         'item.uploadEv': '__originalDocumentName__',
@@ -117,6 +124,11 @@ describe('The EvidenceUpload middleware', () => {
         'item.hashToken': '__hashToken__',
         'item.size': size
       });
+      expect(attachStub).to.have.been.calledWith(
+        'file',
+        pathToFile,
+        originalFilename
+      );
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
@@ -124,6 +136,7 @@ describe('The EvidenceUpload middleware', () => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
+      const originalFilename = '__originalFilename__';
       const next = sinon.stub();
 
       const fieldStub = sinon.stub().resolves({
@@ -145,7 +158,13 @@ describe('The EvidenceUpload middleware', () => {
         stubs
       );
 
-      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
+      await EvidenceUpload.handleRename(
+        pathToFile,
+        originalFilename,
+        req,
+        size,
+        next
+      )();
 
       expect(req.body).to.deep.equal({
         'item.uploadEv': '__originalDocumentName__',
@@ -153,6 +172,11 @@ describe('The EvidenceUpload middleware', () => {
         'item.hashToken': '',
         'item.size': size
       });
+      expect(attachStub).to.have.been.calledWith(
+        'file',
+        pathToFile,
+        originalFilename
+      );
       expect(unlinker).to.have.been.calledWith(pathToFile, next);
     });
 
@@ -160,10 +184,13 @@ describe('The EvidenceUpload middleware', () => {
       const req = {};
       const size = 42;
       const pathToFile = '__path__';
+      const originalFilename = '__originalFilename__';
       const next = sinon.stub();
       stubs.superagent.post = sinon.stub().returns({
-        attach: sinon.stub().returns({
-          field: sinon.stub().rejects(new Error('Upload failed'))
+        set: sinon.stub().returns({
+          attach: sinon.stub().returns({
+            field: sinon.stub().rejects(new Error('Upload failed'))
+          })
         })
       });
       EvidenceUpload = proxyquire(
@@ -171,7 +198,13 @@ describe('The EvidenceUpload middleware', () => {
         stubs
       );
 
-      await EvidenceUpload.handleRename(pathToFile, req, size, next)();
+      await EvidenceUpload.handleRename(
+        pathToFile,
+        originalFilename,
+        req,
+        size,
+        next
+      )();
 
       expect(req.body).to.deep.equal({
         'item.uploadEv': EvidenceUpload.technicalProblemError,

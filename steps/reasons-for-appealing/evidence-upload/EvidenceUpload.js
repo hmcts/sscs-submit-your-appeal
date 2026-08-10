@@ -225,19 +225,25 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       return fs.rename(
         uploadedFile.filepath,
         pathToFile,
-        EvidenceUpload.handleRename(pathToFile, req, size, next)
+        EvidenceUpload.handleRename(
+          pathToFile,
+          uploadedFile.originalFilename,
+          req,
+          size,
+          next
+        )
       );
     };
   }
 
-  static handleRename(pathToFile, req, size, next) {
+  static handleRename(pathToFile, originalFilename, req, size, next) {
     return async() => {
       const serviceAuthToken = await s2s.getServiceAuthToken();
       try {
         const response = await request
           .post(uploadEvidenceUrl)
           .set('ServiceAuthorization', `Bearer ${serviceAuthToken}`)
-          .attach('file', pathToFile)
+          .attach('file', pathToFile, originalFilename)
           .field(
             'formData',
             JSON.stringify({ file: fs.createReadStream(pathToFile) })
