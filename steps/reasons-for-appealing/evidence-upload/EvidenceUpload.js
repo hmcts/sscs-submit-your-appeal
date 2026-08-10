@@ -19,6 +19,7 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('graceful-fs');
+const crypto = require('crypto');
 const moment = require('moment');
 const request = require('superagent');
 const { get } = require('lodash');
@@ -208,11 +209,20 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return next();
       }
 
-      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
+      const uploadedFile = files['item.uploadEv'][0];
+      const uploadDir = pt.resolve(__dirname, pathToUploadFolder);
+
+      const serverFilename = crypto.randomBytes(32).toString('hex');
+      const pathToFile = pt.resolve(uploadDir, serverFilename);
+
+      if (!pathToFile.startsWith(`${uploadDir}${pt.sep}`)) {
+        return next(new Error('Invalid upload path'));
+      }
+
       const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
       return fs.rename(
-        files['item.uploadEv'][0].filepath,
+        uploadedFile.filepath,
         pathToFile,
         EvidenceUpload.handleRename(pathToFile, req, size, next)
       );
