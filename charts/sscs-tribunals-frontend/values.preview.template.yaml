@@ -14,6 +14,8 @@ nodejs:
     ALLOW_CONFIG_MUTATIONS: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
     S2S_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
+    TRIBUNALS_CASE_API_URL: https://sscs-tribunals-api-pr-5411.preview.platform.hmcts.net
+    UPLOAD_EVIDENCE_URL: https://sscs-tribunals-api-pr-5411.preview.platform.hmcts.net/evidence/upload
     FT_WELSH: true
     PCQ_ENABLED: true
     IBC_NI_POSTCODES_FEATURE: true
