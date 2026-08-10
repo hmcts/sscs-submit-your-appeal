@@ -36,6 +36,7 @@ const totalFileSizeExceededError = 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
+const generatedFileNameSize = 32;
 
 class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -212,7 +213,7 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
       const uploadedFile = files['item.uploadEv'][0];
       const uploadDir = pt.resolve(__dirname, pathToUploadFolder);
 
-      const serverFilename = crypto.randomBytes(32).toString('hex');
+      const serverFilename = crypto.randomBytes(generatedFileNameSize).toString('hex');
       const pathToFile = pt.resolve(uploadDir, serverFilename);
 
       if (!pathToFile.startsWith(`${uploadDir}${pt.sep}`)) {
