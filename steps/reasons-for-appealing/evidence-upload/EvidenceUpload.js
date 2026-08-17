@@ -19,11 +19,18 @@ const paths = require('paths');
 const formidable = require('formidable');
 const pt = require('path');
 const fs = require('graceful-fs');
+const crypto = require('crypto');
 const moment = require('moment');
 const request = require('superagent');
 const { get } = require('lodash');
 const fileTypeWhitelist = require('steps/reasons-for-appealing/evidence-upload/fileTypeWhitelist');
 const i18next = require('i18next');
+
+const content = {
+  en: require('./content.en.json'),
+  cy: require('./content.cy.json')
+};
+
 const sections = require('steps/check-your-appeal/sections');
 const s2s = require('services/s2s');
 
@@ -35,6 +42,7 @@ const totalFileSizeExceededError = 'MAX_TOTAL_FILESIZE_EXCEEDED_ERROR';
 const wrongFileTypeError = 'WRONG_FILE_TYPE_ERROR';
 const fileMissingError = 'FILE_MISSING_ERROR';
 const technicalProblemError = 'TECHNICAL_PROBLEM_ERROR';
+const generatedFileNameSize = 32;
 
 class EvidenceUpload extends SaveToDraftStoreAddAnother {
   static get path() {
@@ -208,25 +216,40 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
         return next();
       }
 
-      const pathToFile = `${pt.resolve(__dirname, pathToUploadFolder)}/${files['item.uploadEv'][0].originalFilename}`;
+      const uploadedFile = files['item.uploadEv'][0];
+      const uploadDir = pt.resolve(__dirname, pathToUploadFolder);
+
+      const serverFilename = crypto.randomBytes(generatedFileNameSize).toString('hex');
+      const pathToFile = pt.resolve(uploadDir, serverFilename);
+
+      if (!pathToFile.startsWith(`${uploadDir}${pt.sep}`)) {
+        return next(new Error('Invalid upload path'));
+      }
+
       const size = files['item.uploadEv'][0].size;
       logger.trace(`File size: ${size}`);
       return fs.rename(
-        files['item.uploadEv'][0].filepath,
+        uploadedFile.filepath,
         pathToFile,
-        EvidenceUpload.handleRename(pathToFile, req, size, next)
+        EvidenceUpload.handleRename(
+          pathToFile,
+          uploadedFile.originalFilename,
+          req,
+          size,
+          next
+        )
       );
     };
   }
 
-  static handleRename(pathToFile, req, size, next) {
+  static handleRename(pathToFile, originalFilename, req, size, next) {
     return async() => {
       const serviceAuthToken = await s2s.getServiceAuthToken();
       try {
         const response = await request
           .post(uploadEvidenceUrl)
           .set('ServiceAuthorization', `Bearer ${serviceAuthToken}`)
-          .attach('file', pathToFile)
+          .attach('file', pathToFile, originalFilename)
           .field(
             'formData',
             JSON.stringify({ file: fs.createReadStream(pathToFile) })
@@ -287,28 +310,27 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   get field() {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
-
+    const languageContent = content[sessionLanguage] || content.en;
     return object({
       uploadEv: text
         .joi(
-          content.fields.uploadEv.error.required,
+          languageContent.fields.uploadEv.error.required,
           Joi.string().disallow(fileMissingError)
         )
         .joi(
-          content.fields.uploadEv.error.wrongFileType,
+          languageContent.fields.uploadEv.error.wrongFileType,
           Joi.string().disallow(wrongFileTypeError)
         )
         .joi(
-          content.fields.uploadEv.error.maxFileSizeExceeded,
+          languageContent.fields.uploadEv.error.maxFileSizeExceeded,
           Joi.string().disallow(maxFileSizeExceededError)
         )
         .joi(
-          content.fields.uploadEv.error.technical,
+          languageContent.fields.uploadEv.error.technical,
           Joi.string().disallow(technicalProblemError)
         )
         .joi(
-          content.fields.uploadEv.error.totalFileSizeExceeded,
+          languageContent.fields.uploadEv.error.totalFileSizeExceeded,
           Joi.string().disallow(totalFileSizeExceededError)
         ),
       link: text.joi('', Joi.string().optional()),
@@ -350,9 +372,9 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
 
   validateList(list) {
     const sessionLanguage = i18next.language;
-    const content = require(`./content.${sessionLanguage}`);
+    const languageContent = content[sessionLanguage] || content.en;
 
-    return list.check(content.noItemsError, arr => arr.length > 0);
+    return list.check(languageContent.noItemsError, arr => arr.length > 0);
   }
 
   next() {
