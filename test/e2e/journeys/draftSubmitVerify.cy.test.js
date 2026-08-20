@@ -59,7 +59,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await navigateToDrafts(page, language);
       const ccdCaseID = await editDraftAppeal(page, language);
       await continueIncompleteAppeal(page, language);
-      await continueFromIndependance(page, commonContent);
+      await continueFromIndependance(page, language, commonContent);
       await selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-2');
       await selectHaveYouContactedDWPAndContinueAfterSignIn(page, language, commonContent, '#haveContactedDWP');
       await enterReasonForNoMRNAndContinueAfterSignIn(page, language, commonContent, testData.mrn.reasonForNoMRN);
@@ -68,7 +68,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await enterAppellantNameAndContinueAfterSignIn(page, language, commonContent, appellant.title, appellant.firstName, appellant.lastName);
       await enterAppellantDOBAndContinueAfterSignIn(page, language, commonContent, appellant.dob.day, appellant.dob.month, appellant.dob.year);
       await enterAppellantNINOAndContinueAfterSignIn(page, language, commonContent, appellant.nino);
-      await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language);
+      await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, undefined, userEmail);
       await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-2');
       await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-2');
       await addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.reasons[0]);
