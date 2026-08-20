@@ -254,6 +254,7 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
+  await I.locator('#emailAddress').fill('harry.potter@wizards.com');
   await expect(
     I.getByText(commonContent.saveAndContinue).first()
   ).toBeEnabled();
