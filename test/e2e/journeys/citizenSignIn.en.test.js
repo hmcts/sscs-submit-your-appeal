@@ -38,7 +38,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
   test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`, { tag: '@functional' }, async({ page }) => {
     await moment().locale(language);
     await enterDetailsFromStartToDraftAppeals(page, commonContent, language, userEmail);
-    await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222');
+    await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222', userEmail);
     await checkOptionAndContinueAfterSignIn(page, commonContent, '#doYouWantTextMsgReminders-2');
     await checkOptionAndContinueAfterSignIn(page, commonContent, '#hasRepresentative-2');
     await addReasonForAppealingUsingTheOnePageFormAfterSignIn(page, language, commonContent, testData.reasonsForAppealing.reasons[0]);
