@@ -245,7 +245,8 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   I,
   commonContent,
   language,
-  mobileNumber = '07466748336'
+  mobileNumber = '07466748336',
+  userEmail
 ) {
   const postcodeLookupContent = language === 'en' ? postcodeLookupContentEn : postcodeLookupContentCy;
 
@@ -254,7 +255,7 @@ async function enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(
   ).toBeVisible();
   await enterAddressDetails(I, postcodeLookupContent);
   await I.locator('#phoneNumber').fill(mobileNumber);
-  await I.locator('#emailAddress').fill('harry.potter@wizards.com');
+  await I.locator('#emailAddress').fill(userEmail);
   await expect(
     I.getByText(commonContent.saveAndContinue).first()
   ).toBeEnabled();
