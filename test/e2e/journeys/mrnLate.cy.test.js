@@ -51,7 +51,7 @@ test.describe(`${language.toUpperCase()} - Appellant has a dated MRN`, { tag: '@
       await enterBenefitTypeAndContinue(page, language, commonContent, testData.benefitType.code);
       await enterPostcodeAndContinue(page, language, commonContent, testData.appellant.contactDetails.postCode);
       await checkOptionAndContinue(page, commonContent, '#isAppointee');
-      await continueFromIndependance(page, commonContent);
+      await continueFromIndependance(page, language, commonContent);
       await checkOptionAndContinue(page, commonContent, '#haveAMRN');
       await enterDWPIssuingOfficeAndContinue(page, commonContent, testData.mrn.dwpIssuingOffice);
       await enterAnMRNDateAndContinue(page, commonContent, obj.mrnDate);

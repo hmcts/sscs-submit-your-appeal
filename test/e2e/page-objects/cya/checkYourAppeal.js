@@ -97,7 +97,7 @@ async function enterDetailsFromStartToNINO(I, commonContent, language, benefitTy
   await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   //  if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   if (allowSaveAndReturnEnabled) {
     await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
   }
@@ -115,7 +115,7 @@ async function enterCaseDetailsFromStartToNINO(I, commonContent, language, benef
   await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   // if (actUrl === aatUrl) await chooseLanguagePreference(I, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   if (allowSaveAndReturnEnabled) {
     await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount-2');
   }
@@ -136,7 +136,7 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, newUserEmail, testDataEn.signIn.password, language);
   await I.goto(`${paths.drafts}?lng=${language}`);
@@ -149,11 +149,11 @@ async function enterDetailsFromStartToDraftAppeals(I, commonContent, language, n
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signIn(I, newUserEmail, testDataEn.signIn.password, language);
   await verifyDraftAppealsAndEditACase(I, language);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   await selectHaveYouGotAMRNAndContinueAfterSignIn(I, language, commonContent, '#haveAMRN');
   await enterAnMRNDateAndContinueAfterSignIn(I, commonContent, DateUtils.oneMonthAgo(language));
   await enterDWPIssuingOfficeAndContinueAfterSignIn(I, commonContent, testDataEn.mrn.dwpIssuingOffice);
@@ -167,7 +167,7 @@ async function enterDetailsFromStartToDraft(I, commonContent, language, newUserE
   await enterBenefitTypeAndContinue(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreference(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinue(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
   await selectIfYouWantToCreateAccount(I, language, commonContent, '#createAccount');
   await signInVerifylanguage(I, newUserEmail, testDataEn.signIn.password, language);
   await I.goto(`${paths.drafts}?lng=${language}`);
@@ -175,7 +175,7 @@ async function enterDetailsFromStartToDraft(I, commonContent, language, newUserE
   await enterBenefitTypeAfterSignIn(I, language, commonContent, benefitTypeCode);
   await chooseLanguagePreferenceAfterSignIn(I, language, commonContent, '#languagePreferenceWelsh');
   await enterPostcodeAndContinueAfterSignIn(I, language, commonContent, appellant.contactDetails.postCode);
-  await continueFromIndependance(I, commonContent);
+  await continueFromIndependance(I, language, commonContent);
 }
 
 async function enterDetailsForNewApplication(I, commonContent, language, userEmail, benefitTypeCode = testDataEn.benefitType.code) {
