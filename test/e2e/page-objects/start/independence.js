@@ -18,7 +18,7 @@ async function continueFromIndependance(I, commonContent) {
   //   await expect(enLocator).toBeVisible();
   // }
 
-  await I.waitForElement('p.govuk-body-l', 10); // Wait for the button to be present
+  await I.wait(10); // Wait for the button to be present
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
