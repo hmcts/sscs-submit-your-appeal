@@ -1,9 +1,8 @@
-const { expect } = require('@playwright/test');
-const independenceContentEn = require('steps/start/independence/content.en');
-const independenceContentCy = require('steps/start/independence/content.cy');
+// const { expect } = require('@playwright/test');
+// const independenceContentEn = require('steps/start/independence/content.en');
+// const independenceContentCy = require('steps/start/independence/content.cy');
 
 async function continueFromIndependance(I, commonContent) {
-
   // const enText = independenceContentEn.separate;
   // const cyText = independenceContentCy.separate;
 
