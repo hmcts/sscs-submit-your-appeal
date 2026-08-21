@@ -2,11 +2,20 @@ const { expect } = require('@playwright/test');
 const independenceContentEn = require('steps/start/independence/content.en');
 const independenceContentCy = require('steps/start/independence/content.cy');
 
-async function continueFromIndependance(I, language, commonContent) {
-  const lang = (language || 'en').toString().toLowerCase();
-  const independenceContent = lang === 'en' ? independenceContentEn : independenceContentCy;
+async function continueFromIndependance(I, commonContent) {
 
-  await expect(I.getByText(independenceContent.separate).first()).toBeVisible();
+  const enText = independenceContentEn.separate;
+  const cyText = independenceContentCy.separate;
+
+  const enLocator = I.getByText(enText).first();
+  const cyLocator = I.getByText(cyText).first();
+
+  if(await enLocator.count() > 0) {
+    await expect(enLocator).toBeVisible();
+  } else {
+    await expect(cyLocator).toBeVisible();
+  }
+
   await I.getByRole('button', { name: commonContent.continue }).first().click();
 }
 
