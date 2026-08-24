@@ -59,7 +59,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
       await navigateToDrafts(page, language);
       const ccdCaseID = await editDraftAppeal(page, language);
       await continueIncompleteAppeal(page, language);
-      await continueFromIndependance(page, language, commonContent);
+      await continueFromIndependance(page, commonContent);
       await selectHaveYouGotAMRNAndContinueAfterSignIn(page, language, commonContent, '#haveAMRN-2');
       await selectHaveYouContactedDWPAndContinueAfterSignIn(page, language, commonContent, '#haveContactedDWP');
       await enterReasonForNoMRNAndContinueAfterSignIn(page, language, commonContent, testData.mrn.reasonForNoMRN);
