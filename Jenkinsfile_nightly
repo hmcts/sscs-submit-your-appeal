@@ -50,32 +50,35 @@ withNightlyPipeline("nodejs", product, component) {
 
 //    enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
-    // enableFullFunctionalTest(120)
-    // enableMutationTest()
+    enableFullFunctionalTest(120)
+    enableMutationTest()
 
 //     afterSuccess('fortify-scan') {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
 //     }
 
-    stage('Playwright - Cross browser test') {
-            try {
-                yarnBuilder.yarn('test:crossbrowser')
-            } catch (Error) {
-                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-            } finally {
-                publishHTML([
-                        allowMissing         : true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll              : true,
-                        reportDir            : "test/e2e/crossbrowser-report",
-                        reportFiles          : 'index.html',
-                        reportName           : 'SYA E2E Crossbrowser test report'
-                ])
-                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/*'
-                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*'
-            }
+    afterAlways('DependencyCheckNightly') {
+        stage('Playwright - Cross browser test') {
+                try {
+                    yarnBuilder.yarn('test:crossbrowser')
+                } catch (Error) {
+                    unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+                } finally {
+                    publishHTML([
+                            allowMissing         : true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll              : true,
+                            reportDir            : "test/e2e/crossbrowser-report",
+                            reportFiles          : 'index.html',
+                            reportName           : 'SYA E2E Crossbrowser test report'
+                    ])
+                    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/*'
+                    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*'
+                }
+        }
     }
 
+   
     afterAlways('Playwright - Cross browser test') {
         stage('Accessibility test') {
             try {
