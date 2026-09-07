@@ -48,7 +48,6 @@ withNightlyPipeline("nodejs", product, component) {
     env.E2E_TEST_TAGS = params.E2E_TEST_TAGS
     env.IBCA_TEST_URL = params.IBCA_TEST_URL
 
-    enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
     enableMutationTest()
@@ -57,9 +56,29 @@ withNightlyPipeline("nodejs", product, component) {
 //         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
 //     }
 
-    afterAlways('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/**/*'
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*/**'
+    afterAlways('DependencyCheckNightly') {
+        stage('Playwright - Cross browser test') {
+                try {
+                    yarnBuilder.yarn('test:crossbrowser')
+                } catch (Error) {
+                    unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+                } finally {
+                    publishHTML([
+                            allowMissing         : true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll              : true,
+                            reportDir            : "test/e2e/crossbrowser-report",
+                            reportFiles          : 'index.html',
+                            reportName           : 'SYA E2E Crossbrowser test report'
+                    ])
+                    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-output/*'
+                    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*'
+                }
+        }
+    }
+
+   
+    afterAlways('Playwright - Cross browser test') {
         stage('Accessibility test') {
             try {
                 yarnBuilder.yarn('test:accessibility')
@@ -78,18 +97,6 @@ withNightlyPipeline("nodejs", product, component) {
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/accessibility-report/*'
             }
         }
-    }
-
-    afterSuccess('crossBrowserTest') {
-        publishHTML target: [
-                allowMissing         : true,
-                alwaysLinkToLastBuild: true,
-                keepAll              : true,
-                reportDir            : "test/e2e/crossbrowser-report",
-                reportFiles          : "index.html",
-                reportName           : "SYA E2E Crossbrowser test report"
-        ]
-        enableSlackNotifications('#sscs-tech')
     }
 
     afterAlways('mutationTest') {
