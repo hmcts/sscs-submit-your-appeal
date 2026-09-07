@@ -48,7 +48,6 @@ withNightlyPipeline("nodejs", product, component) {
     env.E2E_TEST_TAGS = params.E2E_TEST_TAGS
     env.IBCA_TEST_URL = params.IBCA_TEST_URL
 
-//    enableCrossBrowserTest(60)
 //     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
     enableMutationTest()
@@ -99,18 +98,6 @@ withNightlyPipeline("nodejs", product, component) {
             }
         }
     }
-
-    // afterSuccess('crossBrowserTest') {
-    //     publishHTML target: [
-    //             allowMissing         : true,
-    //             alwaysLinkToLastBuild: true,
-    //             keepAll              : true,
-    //             reportDir            : "test/e2e/crossbrowser-report",
-    //             reportFiles          : "index.html",
-    //             reportName           : "SYA E2E Crossbrowser test report"
-    //     ]
-    //     enableSlackNotifications('#sscs-tech')
-    // }
 
     afterAlways('mutationTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/mutation-output/*/**'
