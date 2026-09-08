@@ -75,10 +75,6 @@ withNightlyPipeline("nodejs", product, component) {
                     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test/e2e/crossbrowser-report/*'
                 }
         }
-    }
-
-   
-    afterAlways('Playwright - Cross browser test') {
         stage('Accessibility test') {
             try {
                 yarnBuilder.yarn('test:accessibility')
