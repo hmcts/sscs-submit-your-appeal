@@ -60,12 +60,8 @@ class BenefitType extends SaveToDraftStore {
     };
   }
 
-  getAllowedTypes() {
-    return getAllowedBenefitTypes();
-  }
-
   next() {
-    const allowedTypes = this.getAllowedTypes();
+    const allowedTypes = getAllowedBenefitTypes();
     const isAllowedBenefit = () =>
       allowedTypes.includes(this.fields.benefitType.value);
     if (
