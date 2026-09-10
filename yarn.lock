@@ -4367,12 +4367,12 @@ __metadata:
   linkType: hard
 
 "cookies@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "cookies@npm:0.9.1"
+  version: 0.9.2
+  resolution: "cookies@npm:0.9.2"
   dependencies:
     depd: "npm:~2.0.0"
     keygrip: "npm:~1.1.0"
-  checksum: 10/4816461a38d907b20f3fb7a2bc4741fe580e7a195f3e248ef7025cb3be56a07638a0f4e72553a5f535554ca30172c8a3245c63ac72c9737cec034e9a47773392
+  checksum: 10/09ef2341505c24fd31269a945eb3f42d125a7b785468b2defbeba3ef609f9368314acf008d069326b58c76d363b7180a928a953fc891dcabca010d8350480424
   languageName: node
   linkType: hard
 
