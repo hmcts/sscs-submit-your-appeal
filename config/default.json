@@ -150,7 +150,7 @@
     "idam": {
       "apiUrl": "http://localhost:5062",
       "secret": "QM5RQQ53LZFOSIXJ",
-      "loginUrl": "http://localhost:5062/login",
+      "loginUrl": "http://localhost:5062/o/authorize",
       "clientId": "sscs",
       "useMock": "false"
     },
