@@ -65,7 +65,7 @@ module "managed_redis" {
 
 resource "azurerm_key_vault_secret" "managed_redis_access_key" {
   name         = "${var.product}-managed-redis-access-key"
-  value        = module.managed_redis.primary_access_key
+  value        = module.managed_redis.access_key
   key_vault_id = data.azurerm_key_vault.sscs_key_vault.id
 }
 
