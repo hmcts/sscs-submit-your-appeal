@@ -11,9 +11,7 @@ const { OK } = require('http-status-codes');
 const logger = require('logger');
 
 const hmctsAccessHealthBaseUrl =
-    config.get('health.idam.url.hmctsAccess') ?
-      config.get('health.idam.url.hmctsAccess') :
-      config.get('services.idam.url.hmctsAccess');
+    config.get('health.idam.url.hmctsAccess') || config.get('services.idam.url.hmctsAccess');
 
 const rClient = redis.createClient({
   url: config.redis.url,

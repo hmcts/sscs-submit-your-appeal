@@ -12,7 +12,12 @@
   },
   "health": {
     "timeout": 5000,
-    "deadline": 15000
+    "deadline": 15000,
+    "idam": {
+      "url": {
+        "hmctsAccess": ""
+      }
+    }
   },
   "frontend": {
     "inactivityAlert": 1080
