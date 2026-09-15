@@ -57,3 +57,9 @@ variable "managed_redis_high_availability_enabled" {
   type        = bool
   default     = false
 }
+
+variable "managed_redis_persistence_rdb_backup_frequency" {
+  description = "Managed Redis persistence RDB backup frequency. Override per environment in <env>.tfvars."
+  type        = string
+  default     = null
+}
