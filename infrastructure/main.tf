@@ -59,7 +59,8 @@ module "managed_redis" {
   private_dns_zone_ids    = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
 
   access_keys_authentication_enabled = true
-  persistence_rdb_backup_frequency   = "6h"
+  persistence_rdb_backup_frequency   = var.managed_redis_persistence_rdb_backup_frequency
+
 }
 
 
