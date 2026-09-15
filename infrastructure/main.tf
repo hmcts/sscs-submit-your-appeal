@@ -77,7 +77,7 @@ resource "azurerm_key_vault_secret" "managed_redis_connection_string" {
 
   name = "${var.product}-managed-redis-connection-string"
 
-  value = "rediss://:${urlencode(module.managed_redis[each.value].primary_access_key)}@${module.managed_redis[each.value].hostname}:${module.managed_redis[each.value].port}?tls=true"
+  value = "rediss://:${urlencode(module.managed_redis[each.value].primary_access_key)}@${module.managed_redis[each.value].hostname}:${module.managed_redis[each.value].port}"
 
   key_vault_id = data.azurerm_key_vault.sscs_key_vault.id
 }
