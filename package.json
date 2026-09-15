@@ -91,7 +91,7 @@
     "html-entities": "^2.6.0",
     "http-status-codes": "^2.3.0",
     "instant-mocha": "^1.5.3",
-    "jquery": "^3.7.1",
+    "jquery": "^4.0.0",
     "jquery-modal": "^0.9.2",
     "js-base64": "^3.7.7",
     "libphonenumber-js": "^1.12.8",
