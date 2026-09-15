@@ -152,7 +152,8 @@
       "secret": "QM5RQQ53LZFOSIXJ",
       "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
-      "useMock": "false"
+      "useMock": "false",
+      "hmctsAccess": "https://hmcts-access.aat.platform.hmcts.net"
     },
     "idam-aat": {
       "apiUrl": "https://idam-api.aat.platform.hmcts.net",

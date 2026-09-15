@@ -127,7 +127,8 @@
       "secret": "SERVICES_IDAM_SECRET",
       "loginUrl": "SERVICES_IDAM_LOGIN_URL",
       "clientId": "SERVICES_IDAM_CLIENTID",
-      "useMock": "SERVICES_IDAM_USE_MOCK"
+      "useMock": "SERVICES_IDAM_USE_MOCK",
+      "hmctsAccess": "HMCTS_ACCESS_URL"
     },
     "webForm" : {
       "url": "SERVICES_WEB_FORM"
@@ -143,6 +144,13 @@
     "pcq": {
       "url": "PCQ_URL",
       "tokenKey": "SERVICE_TOKEN_KEY"
+    }
+  },
+  "health": {
+    "idam": {
+      "url": {
+        "hmctsAccess": "HEALTH_HMCTS_ACCESS_URL"
+      }
     }
   },
   "s2s": {
