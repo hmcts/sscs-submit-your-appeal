@@ -5374,8 +5374,8 @@ __metadata:
   linkType: hard
 
 "express@npm:^4.22.1":
-  version: 4.22.2
-  resolution: "express@npm:4.22.2"
+  version: 4.22.3
+  resolution: "express@npm:4.22.3"
   dependencies:
     accepts: "npm:~1.3.8"
     array-flatten: "npm:1.1.1"
@@ -5396,9 +5396,9 @@ __metadata:
     methods: "npm:~1.1.2"
     on-finished: "npm:~2.4.1"
     parseurl: "npm:~1.3.3"
-    path-to-regexp: "npm:~0.1.12"
+    path-to-regexp: "npm:~0.1.13"
     proxy-addr: "npm:~2.0.7"
-    qs: "npm:~6.15.1"
+    qs: "npm:~6.16.0"
     range-parser: "npm:~1.2.1"
     safe-buffer: "npm:5.2.1"
     send: "npm:~0.19.0"
@@ -5408,7 +5408,7 @@ __metadata:
     type-is: "npm:~1.6.18"
     utils-merge: "npm:1.0.1"
     vary: "npm:~1.1.2"
-  checksum: 10/defeef5f1cda5bf5ee4a6b35252563552d8d97fab1d29f502e45ef64316f5d02f49739d7c8a79e425613af3a542d0e3cd8cf7e85671ce2ddd592197abcf5acc3
+  checksum: 10/375bf466abbaa07b59001b532dba409723aacc621006e8c37c7e998e029a704a2129601bfdf26cb9d83c8b477177ea49324d79debdd8b209f77129a4cb2c2cf8
   languageName: node
   linkType: hard
 
@@ -7322,9 +7322,9 @@ __metadata:
   linkType: hard
 
 "libphonenumber-js@npm:^1.12.8":
-  version: 1.13.12
-  resolution: "libphonenumber-js@npm:1.13.12"
-  checksum: 10/099de991b482cf0af4776d54dbbfa2bc6461178344374ffb245eb29ee2f0b6a2939b7891ec72ae3ecafa72190b5d082e95db23f0241a60ac0dcf9075dbab6d5e
+  version: 1.13.13
+  resolution: "libphonenumber-js@npm:1.13.13"
+  checksum: 10/740b9a30a0ef1c4951a324ba9c603303ddd75c5cf6fbfc305897fd14503692ea983da90ca12b6a0bf55dce9b8152576f514c0049b633807c7f9472a82ab07484
   languageName: node
   linkType: hard
 
@@ -8048,12 +8048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.17":
-  version: 3.3.18
-  resolution: "nanoid@npm:3.3.18"
+"nanoid@npm:^3.3.18":
+  version: 3.3.19
+  resolution: "nanoid@npm:3.3.19"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 10/1b3b4fdac831b92b56d1dbe8b1e63a372432faf86ea383134e3b53141ef8108a60b7f84343b5cefecac9550bb74edf8164da93ea07d1c4f757039bc75d8a5d9e
+  checksum: 10/a330adb28dad63eccb0a0c95a2a61353e84b7e067061fff94167803d94be8eef0f7b75cf2da1bece06e8b7afb892abbe52cf0ec33298c817a083eedccd7656e4
   languageName: node
   linkType: hard
 
@@ -9225,13 +9225,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.5.10":
-  version: 8.5.26
-  resolution: "postcss@npm:8.5.26"
+  version: 8.5.28
+  resolution: "postcss@npm:8.5.28"
   dependencies:
-    nanoid: "npm:^3.3.17"
+    nanoid: "npm:^3.3.18"
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
-  checksum: 10/842a624f822f77cb37264cc24f0cf97c0a69dd8d6f7b4a6d76b5a8dc95355899dd044f33a2d4e890da858293de570fce18dff453f3b629ff14cac67a3591895a
+  checksum: 10/c34814c1da499f370cd3b02a085a2d866989a966629b7bd4025f4a2a10d538a2ec83dc3181e1008550edb4cf44e49a0c40ec82332b08d9600877e6841240ad05
   languageName: node
   linkType: hard
 
