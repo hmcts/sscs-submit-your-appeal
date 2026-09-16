@@ -10,9 +10,6 @@ const outputs = require('@hmcts/nodejs-healthcheck/healthcheck/outputs');
 const { OK } = require('http-status-codes');
 const logger = require('logger');
 
-const hmctsAccessHealthBaseUrl =
-    config.get('health.idam.url.hmctsAccess') || config.get('services.idam.url.hmctsAccess');
-
 const rClient = redis.createClient({
   url: config.redis.url,
   socket: {
@@ -53,15 +50,6 @@ const setup = app => {
       'submit-your-appeal-api': healthcheck.web(
         `${config.api.url}/health/readiness`,
         healthOptions('Readiness check failed on submit-your-appeal-api:')
-      )
-    },
-    hmctsAccessChecks: {
-      redis: healthcheck.raw(() =>
-        (rClient.ping() ? healthcheck.up() : healthcheck.down())
-      ),
-      'submit-your-appeal-api': healthcheck.web(
-        hmctsAccessHealthBaseUrl,
-        healthOptions('hmcts access check failed on submit-your-appeal-api:')
       )
     },
     buildInfo: {

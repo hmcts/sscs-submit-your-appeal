@@ -12,12 +12,7 @@
   },
   "health": {
     "timeout": 5000,
-    "deadline": 15000,
-    "idam": {
-      "url": {
-        "hmctsAccess": ""
-      }
-    }
+    "deadline": 15000
   },
   "frontend": {
     "inactivityAlert": 1080
@@ -157,8 +152,7 @@
       "secret": "QM5RQQ53LZFOSIXJ",
       "loginUrl": "http://localhost:5062/login",
       "clientId": "sscs",
-      "useMock": "false",
-      "hmctsAccess": "https://hmcts-access.aat.platform.hmcts.net"
+      "useMock": "false"
     },
     "idam-aat": {
       "apiUrl": "https://idam-api.aat.platform.hmcts.net",
