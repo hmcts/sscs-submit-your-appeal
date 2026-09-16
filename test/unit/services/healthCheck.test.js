@@ -11,7 +11,7 @@ describe('services/healthcheck', () => {
   const configGetStub = sinon.stub();
   const createClientStub = sinon.stub();
   const loggerStub = { trace: sinon.stub() };
-  let setup = proxyquire('../../../../services/healthcheck', {
+  let setup = proxyquire('../../../../services/healthcheck.js', {
     '@hmcts/nodejs-healthcheck': {
       addTo: addToStub,
       web: webStub,
@@ -56,7 +56,7 @@ describe('services/healthcheck', () => {
       ping: sinon.stub().returns(true)
     });
 
-    setup = proxyquire('../../../../services/healthcheck', {
+    setup = proxyquire('../../../../services/healthcheck.js', {
       '@hmcts/nodejs-healthcheck': {
         addTo: addToStub,
         web: webStub,
