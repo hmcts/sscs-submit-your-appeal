@@ -4,10 +4,12 @@ const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
 const i18next = require('i18next');
+const { URL } = require('url');
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
 const useMockIdam = config.get('services.idam.useMock') === 'true';
+const useMock = isDevMode && useMockIdam;
 
 const idamArgs = {
   redirectUri,
@@ -24,7 +26,7 @@ const protocol = config.get('node.protocol');
 
 // eslint-disable-next-line no-warning-comments
 // TODO fix mock middleware to enable this condition
-if (isDevMode && useMockIdam) {
+if (useMock) {
   middleware = idamExpressMiddlewareMock;
 }
 
@@ -47,19 +49,35 @@ const setArgsFromRequest = req => {
   return args;
 };
 
+const buildIdamLoginUrl = args => {
+  const idamUrl = new URL(args.idamLoginUrl);
+  idamUrl.searchParams.append('client_id', args.idamClientID);
+  idamUrl.searchParams.append('redirect_uri', args.redirectUri);
+  idamUrl.searchParams.append('response_type', 'code');
+  idamUrl.searchParams.append('ui_locales', args.language);
+  idamUrl.searchParams.append('scope', args.scope);
+  idamUrl.searchParams.append('state', args.state());
+  return idamUrl.href;
+};
+
+const redirectToIdam = (req, res, next) => {
+  const args = setArgsFromRequest(req);
+  if (useMock) {
+    return middleware.authenticate(args)(req, res, next);
+  }
+  return res.redirect(buildIdamLoginUrl(args));
+};
+
 const methods = {
   getIdamArgs: () => idamArgs,
-  authenticate: (req, res, next) => {
-    const args = setArgsFromRequest(req);
-    middleware.authenticate(args)(req, res, next);
-  },
+  authenticate: redirectToIdam,
   landingPage: (req, res, next) => {
     const args = setArgsFromRequest(req);
 
     if (req.query.code) {
       middleware.landingPage(args)(req, res, next);
     } else {
-      middleware.authenticate(args)(req, res, next);
+      redirectToIdam(req, res, next);
     }
   },
   protect: (...args) => middleware.protect(idamArgs, ...args),
