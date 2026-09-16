@@ -15,7 +15,8 @@ const idamArgs = {
   idamApiUrl: config.services.idam.apiUrl,
   idamLoginUrl: config.services.idam.loginUrl,
   idamSecret: config.services.idam.secret,
-  idamClientID: config.services.idam.clientId
+  idamClientID: config.services.idam.clientId,
+  scope: 'openid profile roles'
 };
 
 let middleware = idamExpressMiddleware;
