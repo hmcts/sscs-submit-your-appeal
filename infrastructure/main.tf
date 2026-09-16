@@ -40,7 +40,7 @@ module "redis-cache" {
 
 module "managed_redis" {
   # foreach conditional allows selective deployment to desired environments
-  for_each = toset(contains(["ithc"], var.env) ? [var.env] : [])
+  for_each = toset(contains(["ithc", "aat", "perftest", "demo"], var.env) ? [var.env] : [])
   source   = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
   product     = var.product
