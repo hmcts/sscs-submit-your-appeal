@@ -32,6 +32,8 @@ nodejs:
         - postcode-lookup-token
         - sscs-redis-access-key
         - sscs-redis-connection-string
+        - sscs-managed-redis-access-key
+        - sscs-managed-redis-connection-string
         - app-insights-connection-string
         - pcq-token-key
         - webchat-kerv-deployment-en
