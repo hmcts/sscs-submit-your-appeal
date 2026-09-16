@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 async function waitForIdamRedirect(I) {
   const { host: appHost } = new URL(test.info().project.use.baseURL);
-  await I.waitForURL(url => url.host !== appHost, { timeout: 15000 });
+  await I.waitForURL(url => url.host !== appHost, { timeout: 15000, waitUntil: 'commit' });
 }
 
 async function signIn(I, username, password, language) {
