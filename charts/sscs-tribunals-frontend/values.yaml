@@ -30,8 +30,8 @@ nodejs:
       secrets:
         - idam-sscs-oauth2-client-secret
         - postcode-lookup-token
-        - sscs-managed-redis-access-key
-        - sscs-managed-redis-connection-string
+        - sscs-redis-access-key
+        - sscs-redis-connection-string
         - app-insights-connection-string
         - pcq-token-key
         - webchat-kerv-deployment-en
