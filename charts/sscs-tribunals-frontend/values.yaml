@@ -42,6 +42,3 @@ nodejs:
 
 hmcts-redis:
   enabled: false
-
-idam-pr:
-  enabled: false
