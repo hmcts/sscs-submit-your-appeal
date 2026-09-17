@@ -1,4 +1,6 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
+const idamWrapper = require('@hmcts/div-idam-express-middleware/wrapper');
+const { tokenCookieName } = require('@hmcts/div-idam-express-middleware/config');
 const { expect, sinon } = require('test/util/chai');
 const idam = require('middleware/idam');
 const { URL } = require('url');
@@ -17,6 +19,7 @@ describe('middleware/idam', () => {
     sandbox = sinon.createSandbox();
     next = sandbox.stub();
     req.get = sandbox.stub().withArgs('host').returns('host');
+    req.cookies = {};
   });
 
   afterEach(() => {
@@ -52,6 +55,34 @@ describe('middleware/idam', () => {
       expect(redirectUrl.searchParams.get('client_id')).to.equal(idam.getIdamArgs().idamClientID);
       expect(redirectUrl.searchParams.get('response_type')).to.equal('code');
       expect(redirectUrl.searchParams.has('state')).to.be.true;
+      expect(next).to.not.have.been.called;
+    });
+
+    it('should call next and set req.idam when a valid auth token cookie is present', async () => {
+      const redirect = sandbox.stub();
+      const userDetails = { id: 'user-1' };
+      sandbox.stub(idamWrapper, 'setup').returns({
+        getUserDetails: sandbox.stub().resolves(userDetails)
+      });
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.authenticate(reqWithToken, { redirect }, next);
+
+      expect(next).to.have.been.calledOnce;
+      expect(reqWithToken.idam).to.deep.equal({ userDetails });
+      expect(redirect).to.not.have.been.called;
+    });
+
+    it('should redirect to the idam login url when the auth token cookie is invalid', async () => {
+      const redirect = sandbox.stub();
+      sandbox.stub(idamWrapper, 'setup').returns({
+        getUserDetails: sandbox.stub().rejects(new Error('invalid token'))
+      });
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.authenticate(reqWithToken, { redirect }, next);
+
+      expect(redirect).to.have.been.calledOnce;
       expect(next).to.not.have.been.called;
     });
   });

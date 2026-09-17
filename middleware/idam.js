@@ -1,5 +1,7 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const idamExpressMiddlewareMock = require('mocks/services/idam');
+const idamWrapper = require('@hmcts/div-idam-express-middleware/wrapper');
+const { tokenCookieName } = require('@hmcts/div-idam-express-middleware/config');
 const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
@@ -60,12 +62,25 @@ const buildIdamLoginUrl = args => {
   return idamUrl.href;
 };
 
+const redirectToIdamLogin = (args, res) => res.redirect(buildIdamLoginUrl(args));
+
 const redirectToIdam = (req, res, next) => {
   const args = setArgsFromRequest(req);
   if (useMock) {
     return middleware.authenticate(args)(req, res, next);
   }
-  return res.redirect(buildIdamLoginUrl(args));
+
+  const authToken = req.cookies && req.cookies[tokenCookieName];
+  if (authToken) {
+    return idamWrapper.setup(args).getUserDetails(authToken)
+      .then(userDetails => {
+        req.idam = { userDetails };
+        next();
+      })
+      .catch(() => redirectToIdamLogin(args, res));
+  }
+
+  return redirectToIdamLogin(args, res);
 };
 
 const methods = {
