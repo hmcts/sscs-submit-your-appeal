@@ -1,12 +1,13 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const idamExpressMiddlewareMock = require('mocks/services/idam');
 const idamWrapper = require('@hmcts/div-idam-express-middleware/wrapper');
-const { tokenCookieName } = require('@hmcts/div-idam-express-middleware/config');
+const idamCookies = require('@hmcts/div-idam-express-middleware/utilities/cookies');
+const { tokenCookieName, stateCookieName } = require('@hmcts/div-idam-express-middleware/config');
 const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
 const i18next = require('i18next');
-const { URL } = require('url');
+const logger = require('logger');
 
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
@@ -51,23 +52,21 @@ const setArgsFromRequest = req => {
   return args;
 };
 
-const buildIdamLoginUrl = args => {
-  const idamUrl = new URL(args.idamLoginUrl);
-  idamUrl.searchParams.append('client_id', args.idamClientID);
-  idamUrl.searchParams.append('redirect_uri', args.redirectUri);
-  idamUrl.searchParams.append('response_type', 'code');
-  idamUrl.searchParams.append('ui_locales', args.language);
-  idamUrl.searchParams.append('scope', args.scope);
-  idamUrl.searchParams.append('state', args.state());
-  return idamUrl.href;
+const redirectToIdamLogin = (args, res) => {
+  const state = args.state();
+  idamCookies.set(res, stateCookieName, state, args.hostName);
+  const idamLoginUrl = idamWrapper.setup(args).getIdamLoginUrl({ state, scope: args.scope });
+  res.redirect(idamLoginUrl);
 };
-
-const redirectToIdamLogin = (args, res) => res.redirect(buildIdamLoginUrl(args));
 
 const redirectToIdam = (req, res, next) => {
   const args = setArgsFromRequest(req);
   if (useMock) {
     return middleware.authenticate(args)(req, res, next);
+  }
+
+  if (idamCookies.get(req, stateCookieName)) {
+    idamCookies.remove(res, stateCookieName);
   }
 
   const authToken = req.cookies && req.cookies[tokenCookieName];
@@ -77,7 +76,10 @@ const redirectToIdam = (req, res, next) => {
         req.idam = { userDetails };
         next();
       })
-      .catch(() => redirectToIdamLogin(args, res));
+      .catch(error => {
+        logger.exception(error, 'middleware/idam');
+        redirectToIdamLogin(args, res);
+      });
   }
 
   return redirectToIdamLogin(args, res);
