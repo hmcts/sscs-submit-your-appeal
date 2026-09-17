@@ -70,12 +70,8 @@ resource "azurerm_key_vault_secret" "managed_redis_access_key" {
 }
 
 resource "azurerm_key_vault_secret" "managed_redis_connection_string" {
-  for_each = contains(["ithc", "aat", "perftest", "demo"], var.env) ? toset([var.env]) : toset([])
-
   name = "${var.product}-managed-redis-connection-string"
-
   value = "rediss://:${urlencode(module.managed_redis.primary_access_key)}@${module.managed_redis.hostname}:${module.managed_redis.port}"
-
   key_vault_id = data.azurerm_key_vault.sscs_key_vault.id
 }
 
