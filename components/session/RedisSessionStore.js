@@ -29,8 +29,7 @@ class RedisSessionStore extends session.Store {
           }
         ],
         defaults: {
-          username: redisUrl.username,
-          password: redisUrl.password,
+          password: decodeURIComponent(redisUrl.password),
           socket: {
             tls: redisUrl.protocol === 'rediss:'
           }
