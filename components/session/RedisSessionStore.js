@@ -29,8 +29,8 @@ class RedisSessionStore extends session.Store {
           }
         ],
         defaults: {
-          username: redisUrl.username || undefined,
-          password: redisUrl.password || undefined,
+          username: redisUrl.username,
+          password: redisUrl.password,
           socket: {
             tls: redisUrl.protocol === 'rediss:'
           }
