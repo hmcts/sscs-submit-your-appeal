@@ -63,6 +63,15 @@ describe('middleware/idam', () => {
       expect(clearCookie).to.have.been.calledWith(tokenCookieName, { domain: 'host' });
       expect(localNext).to.have.been.calledOnce;
     });
+
+    it('should call next without contacting idam when there is no auth token cookie', () => {
+      const middleWareStub = sandbox.stub(idamExpressMiddleware, 'logout');
+
+      idam.logout(req, { clearCookie: sandbox.stub() }, next);
+
+      expect(middleWareStub).to.not.have.been.called;
+      expect(next).to.have.been.calledOnce;
+    });
   });
 
   describe('authenticate', () => {

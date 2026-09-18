@@ -148,7 +148,10 @@ const methods = {
   protect: (...args) => middleware.protect(idamArgs, ...args),
   logout: (req, res, next) => {
     const args = setArgsFromRequest(req);
-    middleware.logout(args)(req, res, () => {
+    if (!(req.cookies && req.cookies[tokenCookieName])) {
+      return next();
+    }
+    return middleware.logout(args)(req, res, () => {
       res.clearCookie(tokenCookieName, { domain: args.hostName });
       next();
     });
