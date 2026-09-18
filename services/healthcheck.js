@@ -1,6 +1,5 @@
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 const os = require('os');
-// if using node-redis package
 const redis = require('redis');
 
 const config = require('config');
@@ -13,13 +12,15 @@ const logger = require('logger');
 const rClient = redis.createClient({
   url: config.redis.url,
   socket: {
-    tls: true
+    tls: new URL(config.redis.url).protocol === 'rediss:'
   }
 });
 
 rClient.on('error', error => {
   console.error(error);
 });
+
+const redisReady = rClient.connect();
 
 // prettier-ignore
 const healthOptions = message => {
@@ -39,17 +40,23 @@ const setup = app => {
   healthcheck.addTo(app, {
     checks: {
       'submit-your-appeal-api': healthcheck.web(
-        `${config.api.url}/health`,
-        healthOptions('Health check failed on submit-your-appeal-api:')
+          `${config.api.url}/health`,
+          healthOptions('Health check failed on submit-your-appeal-api:')
       )
     },
     readinessChecks: {
-      redis: healthcheck.raw(() =>
-        (rClient.ping() ? healthcheck.up() : healthcheck.down())
-      ),
+      redis: healthcheck.raw(async () => {
+        try {
+          await redisReady;
+          await rClient.ping();
+          return healthcheck.up();
+        } catch (error) {
+          return healthcheck.down(error);
+        }
+      }),
       'submit-your-appeal-api': healthcheck.web(
-        `${config.api.url}/health/readiness`,
-        healthOptions('Readiness check failed on submit-your-appeal-api:')
+          `${config.api.url}/health/readiness`,
+          healthOptions('Readiness check failed on submit-your-appeal-api:')
       )
     },
     buildInfo: {
