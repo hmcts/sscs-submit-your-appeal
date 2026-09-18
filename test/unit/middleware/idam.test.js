@@ -12,7 +12,6 @@ describe('middleware/idam', () => {
     get: null,
     session: {}
   };
-  const res = {};
   let next = null;
   let sandbox = null;
   beforeEach(() => {
@@ -40,8 +39,28 @@ describe('middleware/idam', () => {
   it('logout should call logout middleware if there is a session', () => {
     req.cookies['__auth-token'] = 'aToken';
     const middleWareStub = sandbox.spy(idamExpressMiddleware, 'logout');
-    idam.logout(req, res, next);
+    idam.logout(req, { clearCookie: sandbox.stub() }, next);
     expect(middleWareStub).to.have.been.called;
+  });
+
+  it('logout should clear the auth token cookie with the domain it was set on, regardless of the idam session delete outcome', async() => {
+    const clearCookie = sandbox.stub();
+    const localRes = { clearCookie };
+    const localNext = sandbox.stub();
+    const reqWithToken = Object.assign({}, req, {
+      cookies: { [tokenCookieName]: 'aToken' },
+      hostname: 'host'
+    });
+
+    await new Promise(resolve => {
+      idam.logout(reqWithToken, localRes, () => {
+        localNext();
+        resolve();
+      });
+    });
+
+    expect(clearCookie).to.have.been.calledWith(tokenCookieName, { domain: 'host' });
+    expect(localNext).to.have.been.calledOnce;
   });
 
   describe('authenticate', () => {
