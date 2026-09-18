@@ -10,6 +10,7 @@ nodejs:
   environment:
     NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-hmcts-redis-master
+    REDIS_CLUSTER: "false"
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     ALLOW_CONFIG_MUTATIONS: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
