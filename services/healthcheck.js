@@ -40,12 +40,12 @@ const setup = app => {
   healthcheck.addTo(app, {
     checks: {
       'submit-your-appeal-api': healthcheck.web(
-          `${config.api.url}/health`,
-          healthOptions('Health check failed on submit-your-appeal-api:')
+        `${config.api.url}/health`,
+        healthOptions('Health check failed on submit-your-appeal-api:')
       )
     },
     readinessChecks: {
-      redis: healthcheck.raw(async () => {
+      redis: healthcheck.raw(async() => {
         try {
           await redisReady;
           await rClient.ping();
@@ -55,8 +55,8 @@ const setup = app => {
         }
       }),
       'submit-your-appeal-api': healthcheck.web(
-          `${config.api.url}/health/readiness`,
-          healthOptions('Readiness check failed on submit-your-appeal-api:')
+        `${config.api.url}/health/readiness`,
+        healthOptions('Readiness check failed on submit-your-appeal-api:')
       )
     },
     buildInfo: {

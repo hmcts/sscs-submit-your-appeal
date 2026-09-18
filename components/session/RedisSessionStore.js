@@ -82,12 +82,16 @@ class RedisSessionStore extends session.Store {
 
       const sessionJson = await this.client.get(this.getKey(sid));
 
-      done(
-        null,
-        sessionJson ? JSON.parse(sessionJson) : null
-      );
+      if (done) {
+        done(
+          null,
+          sessionJson ? JSON.parse(sessionJson) : null
+        );
+      }
     } catch (error) {
-      done(error);
+      if (done) {
+        done(error);
+      }
     }
   }
 
@@ -103,9 +107,13 @@ class RedisSessionStore extends session.Store {
         }
       );
 
-      done(null);
+      if (done) {
+        done(null);
+      }
     } catch (error) {
-      done(error);
+      if (done) {
+        done(error);
+      }
     }
   }
 
@@ -115,9 +123,13 @@ class RedisSessionStore extends session.Store {
 
       await this.client.del(this.getKey(sid));
 
-      done(null);
+      if (done) {
+        done(null);
+      }
     } catch (error) {
-      done(error);
+      if (done) {
+        done(error);
+      }
     }
   }
 
@@ -130,9 +142,13 @@ class RedisSessionStore extends session.Store {
         this.getTTL(sessionData)
       );
 
-      done(null);
+      if (done) {
+        done(null);
+      }
     } catch (error) {
-      done(error);
+      if (done) {
+        done(error);
+      }
     }
   }
 
@@ -154,9 +170,13 @@ class RedisSessionStore extends session.Store {
         }
       }
 
-      done(null, sessions);
+      if (done) {
+        done(null, sessions);
+      }
     } catch (error) {
-      done(error);
+      if (done) {
+        done(error);
+      }
     }
   }
 }

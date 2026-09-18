@@ -426,6 +426,18 @@ describe('RedisSessionStore', () => {
   });
 
   describe('destroy', () => {
+    it('should not fail when no callback is provided', async() => {
+      const store = new RedisSessionStore({
+        url: 'redis://localhost:6379'
+      });
+
+      await store.destroy('session-1');
+
+      expect(
+        redisClient.del.calledOnceWith('sess:session-1')
+      ).to.equal(true);
+    });
+
     it('should delete the session', async() => {
       const store = new RedisSessionStore({
         url: 'redis://localhost:6379'
