@@ -36,31 +36,31 @@ describe('middleware/idam', () => {
     );
   });
 
-  it('logout should call logout middleware if there is a session', () => {
-    req.cookies['__auth-token'] = 'aToken';
-    const middleWareStub = sandbox.spy(idamExpressMiddleware, 'logout');
-    idam.logout(req, { clearCookie: sandbox.stub() }, next);
-    expect(middleWareStub).to.have.been.called;
-  });
+  describe('logout', () => {
+    it('should call the logout middleware if there is a session', () => {
+      const middleWareStub = sandbox.stub(idamExpressMiddleware, 'logout')
+        .returns((logoutReq, logoutRes, done) => done());
+      req.cookies['__auth-token'] = 'aToken';
 
-  it('logout should clear the auth token cookie with the domain it was set on, regardless of the idam session delete outcome', async() => {
-    const clearCookie = sandbox.stub();
-    const localRes = { clearCookie };
-    const localNext = sandbox.stub();
-    const reqWithToken = Object.assign({}, req, {
-      cookies: { [tokenCookieName]: 'aToken' },
-      hostname: 'host'
+      idam.logout(req, { clearCookie: sandbox.stub() }, next);
+
+      expect(middleWareStub).to.have.been.called;
     });
 
-    await new Promise(resolve => {
-      idam.logout(reqWithToken, localRes, () => {
-        localNext();
-        resolve();
+    it('should clear the auth token cookie with the domain it was set on, regardless of the idam session delete outcome', () => {
+      sandbox.stub(idamExpressMiddleware, 'logout').returns((logoutReq, logoutRes, done) => done());
+      const clearCookie = sandbox.stub();
+      const localNext = sandbox.stub();
+      const reqWithToken = Object.assign({}, req, {
+        cookies: { [tokenCookieName]: 'aToken' },
+        hostname: 'host'
       });
-    });
 
-    expect(clearCookie).to.have.been.calledWith(tokenCookieName, { domain: 'host' });
-    expect(localNext).to.have.been.calledOnce;
+      idam.logout(reqWithToken, { clearCookie }, localNext);
+
+      expect(clearCookie).to.have.been.calledWith(tokenCookieName, { domain: 'host' });
+      expect(localNext).to.have.been.calledOnce;
+    });
   });
 
   describe('authenticate', () => {
