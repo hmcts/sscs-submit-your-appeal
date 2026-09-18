@@ -31,19 +31,10 @@ class RedisSessionStore extends session.Store {
         defaults: {
           password: decodeURIComponent(redisUrl.password),
           socket: {
-            tls: redisUrl.protocol === 'rediss:'
+            tls: redisUrl.protocol === 'rediss:',
+            servername: redisUrl.hostname
           }
         },
-        nodeAddressMap: address => {
-          console.log(
-            `${new Date().toISOString()} Redis cluster node address mapping: ${address} -> ${redisUrl.hostname}:${redisUrl.port}`
-          );
-
-          return {
-            host: redisUrl.hostname,
-            port: Number(redisUrl.port || DEFAULT_REDIS_PORT)
-          };
-        }
       });
     } else {
       this.client = createClient({
