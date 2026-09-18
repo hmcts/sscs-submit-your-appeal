@@ -198,7 +198,7 @@ describe('middleware/idam', () => {
       expect(endSessionUrl.origin).to.equal(new URL(idam.getIdamArgs().idamLoginUrl).origin);
       expect(endSessionUrl.pathname).to.equal('/o/endSession');
       expect(endSessionUrl.searchParams.get('id_token_hint')).to.equal('anIdToken');
-      expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/');
+      expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/authenticated');
     });
 
     it('omits id_token_hint when there is no id token cookie', () => {

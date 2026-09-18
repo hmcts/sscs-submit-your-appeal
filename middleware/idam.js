@@ -122,7 +122,7 @@ const buildEndSessionUrl = req => {
   const idToken = req.cookies && req.cookies[idTokenCookieName];
 
   const endSessionUrl = new URL('/o/endSession', args.idamLoginUrl);
-  endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${paths.session.root}`);
+  endSessionUrl.searchParams.append('post_logout_redirect_uri', args.redirectUri);
   if (idToken) {
     endSessionUrl.searchParams.append('id_token_hint', idToken);
   }
