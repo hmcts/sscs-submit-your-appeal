@@ -31,6 +31,16 @@ class RedisSessionStore extends session.Store {
           socket: {
             tls: redisUrl.protocol === 'rediss:'
           }
+        },
+        nodeAddressMap: address => {
+          console.log(
+              `${new Date().toISOString()} Redis cluster node address mapping: ${address} -> ${redisUrl.hostname}:${redisUrl.port}`
+          );
+
+          return {
+            host: redisUrl.hostname,
+            port: Number(redisUrl.port || 6379)
+          };
         }
       });
     } else {
