@@ -3,6 +3,7 @@ const { createClient, createCluster } = require('redis');
 
 const DEFAULT_TTL_SECONDS = 86400;
 const MILLISECONDS_PER_SECOND = 1000;
+const DEFAULT_REDIS_PORT = 6379;
 
 const isClusterEnabled = value => value === true || value === 'true';
 
@@ -34,12 +35,12 @@ class RedisSessionStore extends session.Store {
         },
         nodeAddressMap: address => {
           console.log(
-              `${new Date().toISOString()} Redis cluster node address mapping: ${address} -> ${redisUrl.hostname}:${redisUrl.port}`
+            `${new Date().toISOString()} Redis cluster node address mapping: ${address} -> ${redisUrl.hostname}:${redisUrl.port}`
           );
 
           return {
             host: redisUrl.hostname,
-            port: Number(redisUrl.port || 6379)
+            port: Number(redisUrl.port || DEFAULT_REDIS_PORT)
           };
         }
       });
