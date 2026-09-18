@@ -1,11 +1,12 @@
-
 const session = require('express-session');
-const { createCluster } = require('redis');
+const { createClient, createCluster } = require('redis');
 
 const DEFAULT_TTL_SECONDS = 86400;
 const MILLISECONDS_PER_SECOND = 1000;
 
-class RedisClusterSessionStore extends session.Store {
+const isClusterEnabled = value => value === true || value === 'true';
+
+class RedisSessionStore extends session.Store {
   constructor(options = {}) {
     super();
 
@@ -17,23 +18,33 @@ class RedisClusterSessionStore extends session.Store {
     }
 
     const redisUrl = new URL(options.url);
+    const cluster = isClusterEnabled(options.cluster);
 
-    this.client = createCluster({
-      rootNodes: [
-        {
-          url: options.url
+    if (cluster) {
+      this.client = createCluster({
+        rootNodes: [
+          {
+            url: options.url
+          }
+        ],
+        defaults: {
+          socket: {
+            tls: redisUrl.protocol === 'rediss:'
+          }
         }
-      ],
-      defaults: {
+      });
+    } else {
+      this.client = createClient({
+        url: options.url,
         socket: {
           tls: redisUrl.protocol === 'rediss:'
         }
-      }
-    });
+      });
+    }
 
     this.client.on('error', error => {
       console.error(
-        `${new Date().toISOString()} Redis cluster error: ${error.message}`
+        `${new Date().toISOString()} Redis ${cluster ? 'cluster ' : ''}error: ${error.message}`
       );
     });
 
@@ -54,7 +65,7 @@ class RedisClusterSessionStore extends session.Store {
     if (sessionData?.cookie?.expires) {
       const ttl = Math.ceil(
         (new Date(sessionData.cookie.expires).getTime() - Date.now()) /
-        MILLISECONDS_PER_SECOND
+          MILLISECONDS_PER_SECOND
       );
 
       if (ttl > 0) {
@@ -150,4 +161,4 @@ class RedisClusterSessionStore extends session.Store {
   }
 }
 
-module.exports = RedisClusterSessionStore;
+module.exports = RedisSessionStore;

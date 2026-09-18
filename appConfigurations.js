@@ -1,5 +1,5 @@
 
-const RedisClusterSessionStore = require('./components/session/RedisClusterSessionStore');
+const RedisSessionStore = require('./components/session/RedisSessionStore');
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -183,15 +183,12 @@ const configureHelmet = app => {
 };
 /*eslint-disable */
 const configureJourney = (app, commonContent) => {
-  const redisSessionStore = new RedisClusterSessionStore({
-    url: config.redis.url
-  });
-
   journey(app, {
     steps,
     session: {
-      store: new RedisClusterSessionStore({
-        url: config.redis.url
+      store: new RedisSessionStore({
+        url: config.redis.url,
+        cluster: config.redis.cluster
       }),
       cookie: {
         secure: config.get('node.protocol') === 'https',
