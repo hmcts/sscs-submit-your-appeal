@@ -3,7 +3,6 @@ const { createClient, createCluster } = require('redis');
 
 const DEFAULT_TTL_SECONDS = 86400;
 const MILLISECONDS_PER_SECOND = 1000;
-const DEFAULT_REDIS_PORT = 6379;
 
 const isClusterEnabled = value => value === true || value === 'true';
 
@@ -34,7 +33,7 @@ class RedisSessionStore extends session.Store {
             tls: redisUrl.protocol === 'rediss:',
             servername: redisUrl.hostname
           }
-        },
+        }
       });
     } else {
       this.client = createClient({
