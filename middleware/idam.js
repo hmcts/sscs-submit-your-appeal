@@ -117,12 +117,12 @@ const exchangeCodeForSession = (req, res, next, args) => {
     });
 };
 
-const buildEndSessionUrl = req => {
+const buildEndSessionUrl = (req, postLogoutRedirectPath) => {
   const args = setArgsFromRequest(req);
   const idToken = req.cookies && req.cookies[idTokenCookieName];
 
   const endSessionUrl = new URL('/o/endSession', args.idamLoginUrl);
-  endSessionUrl.searchParams.append('post_logout_redirect_uri', args.redirectUri);
+  endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${postLogoutRedirectPath}`);
   if (idToken) {
     endSessionUrl.searchParams.append('id_token_hint', idToken);
   }

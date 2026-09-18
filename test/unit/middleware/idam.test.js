@@ -193,16 +193,16 @@ describe('middleware/idam', () => {
     it('builds the idam end-session url with the post_logout_redirect_uri and id_token_hint', () => {
       const reqWithIdToken = Object.assign({}, req, { cookies: { [idam.idTokenCookieName]: 'anIdToken' } });
 
-      const endSessionUrl = new URL(idam.buildEndSessionUrl(reqWithIdToken));
+      const endSessionUrl = new URL(idam.buildEndSessionUrl(reqWithIdToken, '/sign-out'));
 
       expect(endSessionUrl.origin).to.equal(new URL(idam.getIdamArgs().idamLoginUrl).origin);
       expect(endSessionUrl.pathname).to.equal('/o/endSession');
       expect(endSessionUrl.searchParams.get('id_token_hint')).to.equal('anIdToken');
-      expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/authenticated');
+      expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/sign-out');
     });
 
     it('omits id_token_hint when there is no id token cookie', () => {
-      const endSessionUrl = new URL(idam.buildEndSessionUrl(req));
+      const endSessionUrl = new URL(idam.buildEndSessionUrl(req, '/sign-out'));
 
       expect(endSessionUrl.searchParams.has('id_token_hint')).to.be.false;
     });

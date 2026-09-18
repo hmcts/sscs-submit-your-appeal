@@ -29,12 +29,16 @@ class SignOut extends ExitPoint {
     next();
   }
 
-  static redirectToIdamEndSession(req, res) {
-    res.redirect(idam.buildEndSessionUrl(req));
+  static redirectToIdamEndSessionIfSignedIn(req, res, next) {
+    const wasSignedIn = Boolean(req.cookies && req.cookies['__auth-token']);
+    if (!wasSignedIn) {
+      return next();
+    }
+    return res.redirect(idam.buildEndSessionUrl(req, paths.idam.signOut));
   }
 
   get middleware() {
-    return [idam.logout, ...super.middleware, SignOut.clearCookies, SignOut.redirectToIdamEndSession];
+    return [idam.logout, ...super.middleware, SignOut.clearCookies, SignOut.redirectToIdamEndSessionIfSignedIn];
   }
 }
 

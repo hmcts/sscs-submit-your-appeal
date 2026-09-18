@@ -66,15 +66,30 @@ describe('SignOut.js', () => {
     });
   });
 
-  describe('redirectToIdamEndSession()', () => {
-    it('redirects to the idam end-session url built for the request', () => {
-      const req = { hostname: 'hmcts.net' };
+  describe('redirectToIdamEndSessionIfSignedIn()', () => {
+    it('redirects to the idam end-session url when the auth token cookie was present', () => {
+      const req = { cookies: { '__auth-token': 'aToken' } };
       const redirect = sandbox.stub();
-      sandbox.stub(idam, 'buildEndSessionUrl').withArgs(req).returns('https://idam-web-public/o/endSession?a=b');
+      const next = sandbox.stub();
+      sandbox.stub(idam, 'buildEndSessionUrl')
+        .withArgs(req, paths.idam.signOut)
+        .returns('https://idam-web-public/o/endSession?a=b');
 
-      SignOut.redirectToIdamEndSession(req, { redirect });
+      SignOut.redirectToIdamEndSessionIfSignedIn(req, { redirect }, next);
 
       expect(redirect).to.have.been.calledOnceWith('https://idam-web-public/o/endSession?a=b');
+      expect(next).to.not.have.been.called;
+    });
+
+    it('calls next without redirecting when there was no auth token cookie', () => {
+      const req = { cookies: {} };
+      const redirect = sandbox.stub();
+      const next = sandbox.stub();
+
+      SignOut.redirectToIdamEndSessionIfSignedIn(req, { redirect }, next);
+
+      expect(redirect).to.not.have.been.called;
+      expect(next).to.have.been.calledOnce;
     });
   });
 });
