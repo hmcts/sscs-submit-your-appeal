@@ -20,11 +20,21 @@ class SignOut extends ExitPoint {
       httpOnly: true,
       secure: true
     });
+    res.clearCookie(idam.idTokenCookieName, {
+      path: '/',
+      domain: req.hostname,
+      httpOnly: true,
+      secure: true
+    });
     next();
   }
 
+  static redirectToIdamEndSession(req, res) {
+    res.redirect(idam.buildEndSessionUrl(req));
+  }
+
   get middleware() {
-    return [idam.logout, ...super.middleware, SignOut.clearCookies];
+    return [idam.logout, ...super.middleware, SignOut.clearCookies, SignOut.redirectToIdamEndSession];
   }
 }
 

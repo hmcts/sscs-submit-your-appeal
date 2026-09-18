@@ -28,7 +28,9 @@ describe('middleware/idam', () => {
   it('should contain all keys', () => {
     expect(idam).to.have.all.keys(
       'getIdamArgs',
+      'idTokenCookieName',
       'authenticate',
+      'buildEndSessionUrl',
       'landingPage',
       'protect',
       'logout',
@@ -140,12 +142,69 @@ describe('middleware/idam', () => {
       expect(redirectUrl.searchParams.get('scope')).to.equal('openid profile roles');
     });
 
-    it('should call the idam landingPage middleware when there is a code on the query string', () => {
-      const reqWithCode = Object.assign({}, req, { query: { code: 'aCode' } });
+    it('should exchange the code for a session and store the auth token and id token cookies', async() => {
       const redirect = sandbox.stub();
-      const middleWareStub = sandbox.spy(idamExpressMiddleware, 'landingPage');
-      idam.landingPage(reqWithCode, { redirect }, next);
-      expect(middleWareStub).to.have.been.called;
+      const cookie = sandbox.stub();
+      const clearCookie = sandbox.stub();
+      const userDetails = { id: 'user-1' };
+      const getAccessToken = sandbox.stub().resolves({ access_token: 'anAccessToken', id_token: 'anIdToken' });
+      const getUserDetails = sandbox.stub().resolves(userDetails);
+      sandbox.stub(idamWrapper, 'setup').returns({ getAccessToken, getUserDetails });
+      const reqWithCode = Object.assign({}, req, { query: { code: 'aCode', state: 'aState' } });
+
+      await idam.landingPage(reqWithCode, { redirect, cookie, clearCookie }, next);
+
+      expect(getAccessToken).to.have.been.calledWith(sinon.match({ code: 'aCode', state: 'aState' }));
+      expect(cookie).to.have.been.calledWith(tokenCookieName, 'anAccessToken');
+      expect(cookie).to.have.been.calledWith(idam.idTokenCookieName, 'anIdToken');
+      expect(clearCookie).to.have.been.calledWith(stateCookieName);
+      expect(getUserDetails).to.have.been.calledWith('anAccessToken');
+      expect(reqWithCode.idam).to.deep.equal({ userDetails });
+      expect(next).to.have.been.calledOnce;
+      expect(redirect).to.not.have.been.called;
+    });
+
+    it('should redirect to the index page when there is no state to verify the callback against', async() => {
+      const redirect = sandbox.stub();
+      const reqWithCode = Object.assign({}, req, { query: { code: 'aCode' } });
+
+      await idam.landingPage(reqWithCode, { redirect }, next);
+
+      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
+      expect(next).to.not.have.been.called;
+    });
+
+    it('should redirect to the index page when the code exchange fails', async() => {
+      const redirect = sandbox.stub();
+      const clearCookie = sandbox.stub();
+      sandbox.stub(idamWrapper, 'setup').returns({
+        getAccessToken: sandbox.stub().rejects(new Error('exchange failed'))
+      });
+      const reqWithCode = Object.assign({}, req, { query: { code: 'aCode', state: 'aState' } });
+
+      await idam.landingPage(reqWithCode, { redirect, clearCookie }, next);
+
+      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
+      expect(next).to.not.have.been.called;
+    });
+  });
+
+  describe('buildEndSessionUrl', () => {
+    it('builds the idam end-session url with the post_logout_redirect_uri and id_token_hint', () => {
+      const reqWithIdToken = Object.assign({}, req, { cookies: { [idam.idTokenCookieName]: 'anIdToken' } });
+
+      const endSessionUrl = new URL(idam.buildEndSessionUrl(reqWithIdToken));
+
+      expect(endSessionUrl.origin).to.equal(new URL(idam.getIdamArgs().idamLoginUrl).origin);
+      expect(endSessionUrl.pathname).to.equal('/o/endSession');
+      expect(endSessionUrl.searchParams.get('id_token_hint')).to.equal('anIdToken');
+      expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/');
+    });
+
+    it('omits id_token_hint when there is no id token cookie', () => {
+      const endSessionUrl = new URL(idam.buildEndSessionUrl(req));
+
+      expect(endSessionUrl.searchParams.has('id_token_hint')).to.be.false;
     });
   });
 });
