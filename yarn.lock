@@ -3581,12 +3581,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.11.20":
-  version: 2.11.21
-  resolution: "baseline-browser-mapping@npm:2.11.21"
+"baseline-browser-mapping@npm:^2.11.23":
+  version: 2.11.25
+  resolution: "baseline-browser-mapping@npm:2.11.25"
   bin:
     baseline-browser-mapping: dist/cli.cjs
-  checksum: 10/b4d223df8dbb8deeaa3dae3b9b60ad48b24c57a5473827b5a6ee1c21917e7c37af2185224c5366f2932654ec5fb1a9fee4f95fe7213cc29f4347550f25e4234b
+  checksum: 10/3f59955a3e836bae87e9a78c4823d83cd0928a2c054904c60aaa5f25b617faa89aa45bd91035b7171d11637efeb43b82bc5206f474c580aca701968427571688
   languageName: node
   linkType: hard
 
@@ -3668,17 +3668,17 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.28.8":
-  version: 4.28.9
-  resolution: "browserslist@npm:4.28.9"
+  version: 4.29.0
+  resolution: "browserslist@npm:4.29.0"
   dependencies:
-    baseline-browser-mapping: "npm:^2.11.20"
+    baseline-browser-mapping: "npm:^2.11.23"
     caniuse-lite: "npm:^1.0.30001810"
-    electron-to-chromium: "npm:^1.5.420"
-    node-releases: "npm:^2.0.54"
-    update-browserslist-db: "npm:^1.3.2"
+    electron-to-chromium: "npm:^1.5.427"
+    node-releases: "npm:^2.0.55"
+    update-browserslist-db: "npm:^1.3.3"
   bin:
     browserslist: cli.js
-  checksum: 10/493e5e3c11d4bdd34ce8cb7ed5edc98bc5948457e6a3cc1268b253d0ff9a616033b10980515e0e6faeddae745fb9c330cd4510189d681ad86f9ce0b2da3c840e
+  checksum: 10/d912cb1138a9828ab7865c4060e972b9682effd4972ef75935a9d2d926f5fe286ecf6b2819ffa780d230d9b91b12a747b8f272557bb4c277c117acf54cc06a37
   languageName: node
   linkType: hard
 
@@ -4935,10 +4935,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.5.420":
-  version: 1.5.423
-  resolution: "electron-to-chromium@npm:1.5.423"
-  checksum: 10/8b5ab0885e043479de00e4b9798d265d5c51e30e6270980c4b649e7dea442b83636d9681a81d7dd1275c8515da762a1213076f3814c88bfd64452649ab56bae8
+"electron-to-chromium@npm:^1.5.427":
+  version: 1.5.431
+  resolution: "electron-to-chromium@npm:1.5.431"
+  checksum: 10/e346ea11997dd3190e059a0884e33dff9e39d1859cd042fcb11c42d45d86ca6071e8de77b5537f432b17aa14859b8132db33819ad6b470f179e03422378bc5a3
   languageName: node
   linkType: hard
 
@@ -6090,9 +6090,9 @@ __metadata:
   linkType: hard
 
 "globals@npm:^17.0.0":
-  version: 17.11.0
-  resolution: "globals@npm:17.11.0"
-  checksum: 10/9cff5b8099b585862ab0d31e8b93dc1c3e7b59239dc58b59447a38709715751df8794ee0d28f434f8e421b01aee3cc10051e2455b5c967d960e79f882e68aa0f
+  version: 17.12.0
+  resolution: "globals@npm:17.12.0"
+  checksum: 10/833291560517dbb510c6d12359ba87eb8b8f282e9775b0474c6e19e0bea043b61f6b52732d4b1bb275888d1813564e40653e0d5faccef3083dc603cfbf0a3271
   languageName: node
   linkType: hard
 
@@ -7076,9 +7076,9 @@ __metadata:
   linkType: hard
 
 "js-base64@npm:^3.7.7":
-  version: 3.9.3
-  resolution: "js-base64@npm:3.9.3"
-  checksum: 10/ce8706664209a7424e504418faf84f39ff3005245b664cb1444f2cfdbd6101cfebcbfdb4acb717798692a733ebbf35cf8cb9e2b506687afcf4552f679f3bcd03
+  version: 3.9.4
+  resolution: "js-base64@npm:3.9.4"
+  checksum: 10/7ae007f4536a4738024f09f34cbc146090fb5e231a48e71a94268a29ba290ff93c56b591c308556dc7dabaf5c04d38483a26adbc2a833cfad17ae618b8557b8b
   languageName: node
   linkType: hard
 
@@ -8154,10 +8154,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-releases@npm:^2.0.54":
-  version: 2.0.54
-  resolution: "node-releases@npm:2.0.54"
-  checksum: 10/36380abbe4ce6f5bfec7dab13fa8174e67d2c316a9cbedcd01196bd37dbec99ca7214caf7a91f05d27ae17657d5cb55f39c53db216a7992fd9a2e29966ebd2ba
+"node-releases@npm:^2.0.55":
+  version: 2.0.56
+  resolution: "node-releases@npm:2.0.56"
+  checksum: 10/5a67cf6b1277376a475d318fb0b821bbaf9609c375dd4f74656ca09c26e75e8ab745695a0f3db5703937f1550a8feedb8c05be44606cf3024b13de16a452e08e
   languageName: node
   linkType: hard
 
@@ -9251,12 +9251,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.9.7":
-  version: 3.9.7
-  resolution: "prettier@npm:3.9.7"
+"prettier@npm:3.9.8":
+  version: 3.9.8
+  resolution: "prettier@npm:3.9.8"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/f719bab860078a9d2472de9901529ffd1e3190963aeb246dee40de8d2fc60d66ec850c3bfc182475d63b9fd339bba8daa1ad500db8771ab4f5823a8da3f4546a
+  checksum: 10/4ac262aaf9a5e221b02cc17447ebe7aa9689be59b85ab9de8152cd7422fb363ed3e09da6df585fa19ab1fc6cffebdc3ea34db1a75c978536aeba3f87bfd06ab3
   languageName: node
   linkType: hard
 
@@ -10783,7 +10783,7 @@ __metadata:
     optimize-css-assets-webpack-plugin: "npm:^6.0.1"
     otplib: "npm:12.0.1"
     parse-full-name: "npm:^1.2.6"
-    prettier: "npm:3.9.7"
+    prettier: "npm:3.9.8"
     prettier-plugin-jinja-template: "npm:^2.1.0"
     proxyquire: "npm:^2.1.3"
     redis: "npm:^4.7.1"
@@ -11237,9 +11237,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-browserslist-db@npm:^1.3.2":
-  version: 1.3.2
-  resolution: "update-browserslist-db@npm:1.3.2"
+"update-browserslist-db@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "update-browserslist-db@npm:1.3.3"
   dependencies:
     escalade: "npm:^3.2.0"
     picocolors: "npm:^1.1.1"
@@ -11247,7 +11247,7 @@ __metadata:
     browserslist: ">= 4.21.0"
   bin:
     update-browserslist-db: cli.js
-  checksum: 10/ca883e9d0fca1b5bfb9d5e7d9468c5ddd1d66ea827566f474875171381ad33b84aa555c138094fb2c6297c680e06482ad8b4c1ad931e8bfab9a4cf36ea9cf006
+  checksum: 10/c60c18c53ba53915b377830db55049cd3ee31129633b4e386d2e48f9a1a15ade7503a80a57dd11d66cbac583a8ad3f2d61e938895b1c2155323fd4367530f5b2
   languageName: node
   linkType: hard
 
