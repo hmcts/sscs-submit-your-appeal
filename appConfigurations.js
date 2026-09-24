@@ -1,4 +1,5 @@
 
+const RedisSessionStore = require('./components/session/RedisSessionStore');
 const { expressNunjucks } = require('express-nunjucks');
 const nunjucks = require('nunjucks');
 const urls = require('urls');
@@ -185,29 +186,10 @@ const configureJourney = (app, commonContent) => {
   journey(app, {
     steps,
     session: {
-      redis: {
+      store: new RedisSessionStore({
         url: config.redis.url,
-        retry_strategy(options) {
-          const { error, total_retry_time, attempt } = options;
-          if (error) {
-            console.log(`Redis connection failed with ${error.code}`);
-          }
-          if (options.error && options.error.code === "ECONNREFUSED"){
-            return new Error("redis server refused connection");
-          }
-          if(total_retry_time > 1000 * 60 * 60){
-            return new Error("Retry time exhausted");
-          }
-          if (options.attempt > 10 ) {
-            return undefined;
-          }
-          console.log(`Redis retrying connection attempt ${attempt} total retry time ${total_retry_time} ms`);
-          const minRetryFactor = 500;
-          const retryTime = attempt * minRetryFactor;
-          const maxRetryWait = 36000;
-          return Math.min(retryTime, maxRetryWait);
-        }
-      },
+        cluster: config.redis.cluster
+      }),
       cookie: {
         secure: config.get('node.protocol') === 'https',
         sameSite: 'lax' // required for the oauth2 redirect
