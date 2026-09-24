@@ -125,7 +125,7 @@
     "idam": {
       "apiUrl": "SERVICES_IDAM_API_URL",
       "secret": "SERVICES_IDAM_SECRET",
-      "loginUrl": "SERVICES_IDAM_LOGIN_URL",
+      "loginUrl": "SERVICES_IDAM_AUTHORIZE_URL",
       "clientId": "SERVICES_IDAM_CLIENTID",
       "useMock": "SERVICES_IDAM_USE_MOCK"
     },
