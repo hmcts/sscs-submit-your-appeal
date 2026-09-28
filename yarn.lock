@@ -3118,14 +3118,14 @@ __metadata:
   linkType: hard
 
 "accessible-autocomplete@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "accessible-autocomplete@npm:3.0.1"
+  version: 3.0.2
+  resolution: "accessible-autocomplete@npm:3.0.2"
   peerDependencies:
     preact: ^8.0.0
   peerDependenciesMeta:
     preact:
       optional: true
-  checksum: 10/240e22c1c1fe68a011c26a6fbe7f54db23e766313d594607f5cbba6d703f70296282d11b4dc110efa00974d6edf1b3165fb6366314acd176f0b470c58c7beed7
+  checksum: 10/9330e866b0937b18c864c3877f996690e441c919bddf00b5ac5e5e2580440f85985bb91fa19ae9e999e6f3dcfa937e1120ce6909e705254a6d5cb837d7fff509
   languageName: node
   linkType: hard
 
