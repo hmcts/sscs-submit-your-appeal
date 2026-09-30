@@ -9,13 +9,15 @@ async function newSignInFlow(I, username, password) {
 
   await I.locator("//a[@href='/enter-email']").first().click();
   await newUsername.fill(username);
+  console.log('newSignInFlow: username=', username);
   await continueButton.click();
   await expect(newPassword).toBeVisible({ timeout: 5000 });
   await newPassword.fill(password);
+  console.log('newSignInFlow: password=', password);
   await continueButton.click();
 }
 
-async function oldSignFlow(I, username, password) {
+async function oldSignInFlow(I, username, password) {
   await I.locator('#username').first().fill(username);
   await I.locator('#password').first().fill(password);
   await I.locator("[name='save']").first().click();
@@ -35,7 +37,7 @@ async function signIn(I, username, password, language) {
 
   newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
-  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
   await loginFlow(I, username, password);
 
   const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
@@ -55,7 +57,7 @@ async function signBackIn(I, username, password, language) {
   let newLoginPresent = false;
   newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
-  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
   await loginFlow(I, username, password);
 
   // await I.waitForTimeout(5000);
@@ -73,7 +75,7 @@ async function signInVerifylanguage(I, username, password, language) {
   let newLoginPresent = false;
   newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
-  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
   await loginFlow(I, username, password);
 
   try {
