@@ -3,45 +3,40 @@ const { expect } = require('@playwright/test');
 
 
 async function newSignInFlow(I, username, password) {
+  const newUsername = I.locator('#email').first();
+  const newPassword = I.locator('#password').first();
 
-    const newUsername = I.locator("#email").first();
-    const newPassword = I.locator("#password").first();
-    const newContinue = I.getByRole('button', { name: /continue/i }).first();
+  await I.click('Sign in');
+  await newUsername.fill(username);
+  await I.click('Continue');
 
-    await I.click('Sign in');
-    await newUsername.fill(username);
-    await expect(newContinue).toBeVisible();
-    await expect(newContinue).toBeEnabled();
-    await I.click('Continue');
-
-    await expect(newPassword).toBeVisible({ timeout: 5000 });
-    await newPassword.fill(password);
-    await expect(newContinue).toBeEnabled();
-    await I.click('Continue');
-
+  await expect(newPassword).toBeVisible({ timeout: 5000 });
+  await newPassword.fill(password);
+  await I.click('Continue');
 }
 
 async function oldSignFlow(I, username, password) {
-    await I.locator('#username').first().fill(username);
-    await I.locator('#password').first().fill(password);
-    await I.locator("[name='save']").first().click();
+  await I.locator('#username').first().fill(username);
+  await I.locator('#password').first().fill(password);
+  await I.locator("[name='save']").first().click();
+}
+
+async function isNewLoginPresent(I) {
+  try {
+    await expect(I.getByText('Sign in or create an account').first()).toBeVisible({ timeout: 5000 });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function signIn(I, username, password, language) {
-
   let newLoginPresent = false;
-  try {
-    await expect(I.getByText("Sign in or create an account").first()).toBeVisible({ timeout: 5000 });
-    newLoginPresent = true;
-  } catch {
-    newLoginPresent = false;
-  }
-  console.log('signIn: newLoginPresent=', newLoginPresent);
 
-  await(newLoginPresent
-      ? newSignInFlow(I, username, password)
-      : oldSignFlow(I, username, password)
-  );
+  newLoginPresent = await isNewLoginPresent(I);
+  console.log('signIn: newLoginPresent=', newLoginPresent);
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  await loginFlow(I, username, password);
 
   const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
   const continueApplication = I.locator(`.govuk-button:has-text('${buttonText}')`).first();
@@ -58,18 +53,11 @@ async function signIn(I, username, password, language) {
 
 async function signBackIn(I, username, password, language) {
   let newLoginPresent = false;
-  try {
-    await expect(I.getByText("Sign in or create an account").first()).toBeVisible({ timeout: 5000 });
-    newLoginPresent = true;
-  } catch {
-    newLoginPresent = false;
-  }
+  newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  await loginFlow(I, username, password);
 
-  await(newLoginPresent
-      ? newSignInFlow(I, username, password)
-      : oldSignFlow(I, username, password)
-  );
   // await I.waitForTimeout(5000);
   try {
     await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
@@ -83,18 +71,10 @@ async function signBackIn(I, username, password, language) {
 
 async function signInVerifylanguage(I, username, password, language) {
   let newLoginPresent = false;
-  try {
-    await expect(I.getByText("Sign in or create an account").first()).toBeVisible({ timeout: 5000 });
-    newLoginPresent = true;
-  } catch {
-    newLoginPresent = false;
-  }
+  newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
-
-  await(newLoginPresent
-      ? newSignInFlow(I, username, password)
-      : oldSignFlow(I, username, password)
-  );
+  const loginFlow = newLoginPresent ? newSignInFlow : oldSignFlow;
+  await loginFlow(I, username, password);
 
   try {
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
