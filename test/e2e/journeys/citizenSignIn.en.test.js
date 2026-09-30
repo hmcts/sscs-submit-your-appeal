@@ -35,7 +35,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
     await testUser.deleteUser(userEmail);
   });
 
-  test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`, { tag: '@functional' }, async({ page }) => {
+  test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`, { tag: '@functional-wip-new-login-flow' }, async({ page }) => {
     await moment().locale(language);
     await enterDetailsFromStartToDraftAppeals(page, commonContent, language, userEmail);
     await enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(page, commonContent, language, '07411222222', userEmail);
