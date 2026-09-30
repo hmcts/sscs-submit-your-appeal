@@ -5,14 +5,14 @@ const { expect } = require('@playwright/test');
 async function newSignInFlow(I, username, password) {
   const newUsername = I.locator('#email').first();
   const newPassword = I.locator('#password').first();
+  const continueButton = I.locator("//*[@id='main-content']/div/div/form/div[@class='govuk-button-group']/button").first();
 
-  await I.click('Sign in');
+  await I.locator("//a[@href='/enter-email']").first().click();
   await newUsername.fill(username);
-  await I.click('Continue');
-
+  await continueButton.click();
   await expect(newPassword).toBeVisible({ timeout: 5000 });
   await newPassword.fill(password);
-  await I.click('Continue');
+  await continueButton.click();
 }
 
 async function oldSignFlow(I, username, password) {
