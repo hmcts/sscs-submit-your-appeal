@@ -185,16 +185,16 @@ describe('IBCA Reference Regex', () => {
   });
 
   it('should validate a correct IBCA reference with fourth character as letter for England', () => {
-      const reference = 'E24A45';
-      const result = reference.match(ibcaReference);
-      expect(result).to.not.equal(null);
-    });
+    const reference = 'E24A45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
 
   it('should validate a correct IBCA reference with fourth character as number for England', () => {
-       const reference = 'E24645';
-       const result = reference.match(ibcaReference);
-       expect(result).to.not.equal(null);
-     });
+    const reference = 'E24645';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
 
   it('should validate a correct IBCA reference in lowercase for England', () => {
     const reference = 'e24a45';
@@ -279,5 +279,4 @@ describe('IBCA Reference Regex', () => {
     const result = reference.match(ibcaReference);
     expect(result).to.equal(null);
   });
-
 });
