@@ -18,7 +18,6 @@
 !webpack/**
 !cookie-banner/**
 
-!app
 !app.js
 !appConfigurations.js
 !commonContent.json
@@ -26,13 +25,11 @@
 !content.en.json
 !logger.js
 !paths.js
-!public
 !server.js
 !steps.js
 !urls.js
 !webpack.config.js
 
-!.yarn
 !.yarn/**
 !.yarnrc.yml
 .yarn/cache
