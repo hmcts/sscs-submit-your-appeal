@@ -24,13 +24,13 @@ async function oldSignInFlow(I, username, password) {
 }
 
 async function isNewLoginPresent(I, language) {
-  try {
-    const loginHeaderTxt = language === 'en' ? 'Sign in or create an account' : 'Mewngofnodi neu greu cyfrif';
-    await expect(I.getByText(loginHeaderTxt).first()).toBeVisible({ timeout: 5000 });
-    return true;
-  } catch {
-    return false;
-  }
+  const loginHeaderTxt = language === 'en' ? 'Sign in or create an account' : 'Mewngofnodi neu greu cyfrif';
+  const loginHeader = I.getByText(loginHeaderTxt).first();
+
+  return loginHeader
+    .waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => true)
+    .catch(() => false);
 }
 
 async function loginJourney(I, username, password, language) {
