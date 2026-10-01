@@ -9,11 +9,11 @@ async function newSignInFlow(I, username, password) {
 
   await I.locator("//a[@href='/enter-email']").first().click();
   await newUsername.fill(username);
-  console.log('newSignInFlow: username=',username);
+  console.log('newSignInFlow: username=', username);
   await continueButton.click();
   await expect(newPassword).toBeVisible({ timeout: 5000 });
   await newPassword.fill(password);
-  console.log('newSignInFlow: password=',password);
+  console.log('newSignInFlow: password=', password);
   await continueButton.click();
 }
 
@@ -23,7 +23,7 @@ async function oldSignInFlow(I, username, password) {
   await I.locator("[name='save']").first().click();
 }
 
-async function isNewLoginPresent(I, language) {
+function isNewLoginPresent(I, language) {
   const loginHeaderTxt = language === 'en' ? 'Sign in or create an account' : 'Mewngofnodi neu greu cyfrif';
   const loginHeader = I.getByText(loginHeaderTxt).first();
 
@@ -43,7 +43,6 @@ async function loginJourney(I, username, password, language) {
 }
 
 async function signIn(I, username, password, language) {
-  
   await loginJourney(I, username, password, language);
   const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
   const continueApplication = I.locator(`.govuk-button:has-text('${buttonText}')`).first();
@@ -59,7 +58,6 @@ async function signIn(I, username, password, language) {
 }
 
 async function signBackIn(I, username, password, language) {
-
   await loginJourney(I, username, password, language);
   // await I.waitForTimeout(5000);
   try {
@@ -73,7 +71,6 @@ async function signBackIn(I, username, password, language) {
 }
 
 async function signInVerifylanguage(I, username, password, language) {
-  
   await loginJourney(I, username, password, language);
   try {
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
