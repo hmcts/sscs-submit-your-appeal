@@ -3,22 +3,35 @@
 !package.json
 !yarn.lock
 
+!assets
 !assets/**
+!components
 !components/**
+!config
 !config/**
+!core
 !core/**
+!keys
 !keys/**
+!middleware
 !middleware/**
+!mocks
 !mocks/**
+!policy-pages
 !policy-pages/**
+!services
 !services/**
+!steps
 !steps/**
+!utils
 !utils/**
+!views
 !views/**
+!webpack
 !webpack/**
+!cookie-banner
 !cookie-banner/**
 
-!app
 !app.js
 !appConfigurations.js
 !commonContent.json
@@ -26,7 +39,6 @@
 !content.en.json
 !logger.js
 !paths.js
-!public
 !server.js
 !steps.js
 !urls.js
