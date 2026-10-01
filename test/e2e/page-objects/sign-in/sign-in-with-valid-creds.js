@@ -32,14 +32,18 @@ async function isNewLoginPresent(I) {
   }
 }
 
-async function signIn(I, username, password, language) {
+async function loginJourney(I, username, password) {
   let newLoginPresent = false;
 
   newLoginPresent = await isNewLoginPresent(I);
   console.log('signIn: newLoginPresent=', newLoginPresent);
   const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
   await loginFlow(I, username, password);
+}
 
+async function signIn(I, username, password, language) {
+  
+  await loginJourney(I, username, password);
   const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
   const continueApplication = I.locator(`.govuk-button:has-text('${buttonText}')`).first();
   try {
@@ -54,12 +58,8 @@ async function signIn(I, username, password, language) {
 }
 
 async function signBackIn(I, username, password, language) {
-  let newLoginPresent = false;
-  newLoginPresent = await isNewLoginPresent(I);
-  console.log('signIn: newLoginPresent=', newLoginPresent);
-  const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
-  await loginFlow(I, username, password);
 
+  await loginJourney(I, username, password);
   // await I.waitForTimeout(5000);
   try {
     await expect(I.locator(".form-buttons-group [href='/new-appeal']").first()).toBeVisible();
@@ -72,12 +72,8 @@ async function signBackIn(I, username, password, language) {
 }
 
 async function signInVerifylanguage(I, username, password, language) {
-  let newLoginPresent = false;
-  newLoginPresent = await isNewLoginPresent(I);
-  console.log('signIn: newLoginPresent=', newLoginPresent);
-  const loginFlow = newLoginPresent ? newSignInFlow : oldSignInFlow;
-  await loginFlow(I, username, password);
-
+  
+  await loginJourney(I, username, password);
   try {
     const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
     await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
