@@ -9,11 +9,11 @@ async function newSignInFlow(I, username, password) {
 
   await I.locator("//a[@href='/enter-email']").first().click();
   await newUsername.fill(username);
-  console.log('newSignInFlow: username=', username);
+  console.log('newSignInFlow: username=',username);
   await continueButton.click();
   await expect(newPassword).toBeVisible({ timeout: 5000 });
   await newPassword.fill(password);
-  console.log('newSignInFlow: password=', password);
+  console.log('newSignInFlow: password=',password);
   await continueButton.click();
 }
 
