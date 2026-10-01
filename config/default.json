@@ -156,7 +156,7 @@
       "useMock": "false"
     },
     "idam-aat": {
-      "apiUrl": "https://idam-api.aat.platform.hmcts.net",
+      "apiUrl": "https://idam-api.demo.platform.hmcts.net",
       "apiCallTimeout" : 40000
     },
     "webForm": {

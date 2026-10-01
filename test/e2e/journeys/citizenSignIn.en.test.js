@@ -32,7 +32,7 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
 
   test.afterEach('End session and delete user', async({ page }) => {
     await endTheSession(page);
-    // await testUser.deleteUser(userEmail);
+    //await testUser.deleteUser(userEmail);
   });
 
   test(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page`, { tag: '@functional-wip-new-login-flow' }, async({ page }) => {
