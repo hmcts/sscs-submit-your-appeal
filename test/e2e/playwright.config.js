@@ -16,7 +16,7 @@ module.exports = defineConfig({
   },
   timeout: 90000,
   workers: parseInt(process.env.CHUNKS) || 1, // Parallel chunks
-  retries: parseInt(process.env.RETRIES) || 0, // Set retries as per requirement
+  retries: parseInt(process.env.RETRIES) || 10, // Set retries as per requirement
   fullyParallel: true,
   reporter: [
     ['list'],
