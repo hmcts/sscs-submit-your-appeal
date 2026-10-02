@@ -3,19 +3,33 @@
 !package.json
 !yarn.lock
 
+!assets
 !assets/**
+!components
 !components/**
+!config
 !config/**
+!core
 !core/**
+!keys
 !keys/**
+!middleware
 !middleware/**
+!mocks
 !mocks/**
+!policy-pages
 !policy-pages/**
+!services
 !services/**
+!steps
 !steps/**
+!utils
 !utils/**
+!views
 !views/**
+!webpack
 !webpack/**
+!cookie-banner
 !cookie-banner/**
 
 !app.js
@@ -30,8 +44,8 @@
 !urls.js
 !webpack.config.js
 
+!.yarn
 !.yarn/**
 !.yarnrc.yml
 .yarn/cache
 .yarn/install-state.gz
-
