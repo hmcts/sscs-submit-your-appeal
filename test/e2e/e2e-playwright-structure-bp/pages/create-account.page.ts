@@ -112,7 +112,7 @@ export class CreateAccountPage extends BasePage {
 
   async isNewLoginPresent(): Promise<boolean> {
     try {
-      await expect(this.page.getByText('Sign in or create an account').first()).toBeVisible({ timeout: 5000 });
+      await expect(this.page.getByText('You may already have an account if you have used an HMCTS service before').first()).toBeVisible({ timeout: 5000 });
       return true;
     } catch {
       return false;
@@ -133,9 +133,6 @@ export class CreateAccountPage extends BasePage {
       await this.page.getByText('I want to be able to save this appeal later', { exact: true }).click();
       await this.submitPage();
       
-      // await this.page.getByRole('textbox', { name: 'Email address' }).fill(credentials.username);
-      // await this.page.getByRole('textbox', { name: 'Password' }).fill(credentials.password);
-      // await this.submitPage('Sign in');
       await this.loginJourney(credentials.username, credentials.password);
 
       await this.page.locator('.govuk-button:has-text("Continue your application")').isVisible();
