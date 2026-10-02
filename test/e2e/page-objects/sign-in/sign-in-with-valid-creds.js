@@ -24,7 +24,7 @@ async function oldSignInFlow(I, username, password) {
 }
 
 function isNewLoginPresent(I, language) {
-  const loginHeaderTxt = language === 'en' ? 'Sign in or create an account' : 'Mewngofnodi neu greu cyfrif';
+  const loginHeaderTxt = language === 'en' ? 'You may already have an account if you have used an HMCTS service before' : 'Efallai bod gennych gyfrif yn barod os ydych wedi defnyddio gwasanaeth';
   const loginHeader = I.getByText(loginHeaderTxt).first();
 
   return loginHeader
