@@ -2,18 +2,26 @@ const paths = require('paths');
 const { expect } = require('@playwright/test');
 
 async function signIn(I, username, password, language) {
-  await I.locator('#username').first().fill(username);
-  await I.locator('#password').first().fill(password);
-  await I.locator("[name='save']").first().click();
-  // await I.waitForTimeout(5000);
-  try {
-    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
-  } catch {
+  const usernameField = I.locator('#username').first();
+  const loginFormShown = await usernameField
+    .waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => true)
+    .catch(() => false);
+
+  if (loginFormShown) {
+    await usernameField.fill(username);
+    await I.locator('#password').first().fill(password);
     await I.locator("[name='save']").first().click();
-    const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
-    await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
+    try {
+      const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
+      await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
+    } catch {
+      await I.locator("[name='save']").first().click();
+      const buttonText = language === 'en' ? 'Continue your application' : 'Parhau á’ch cais';
+      await expect(I.locator(`.govuk-button:has-text('${buttonText}')`).first()).toBeVisible();
+    }
   }
+
   const titleText = language === 'en' ? 'Check your answers' : 'Gwiriwch eich atebion';
   await expect(I.getByText(titleText).first()).toBeVisible();
 }
