@@ -73,6 +73,8 @@ const getUserDetails = authToken => got.get(`${idamArgs.idamApiUrl}/o/userinfo`,
     };
   });
 
+const clearIdamCookie = (req, res, cookieName) => res.clearCookie(cookieName, { domain: req.hostname });
+
 const redirectToIdamLogin = (args, res) => {
   const state = args.state();
   idamCookies.set(res, stateCookieName, state, args.hostName);
@@ -87,7 +89,7 @@ const redirectToIdam = (req, res, next) => {
   }
 
   if (idamCookies.get(req, stateCookieName)) {
-    idamCookies.remove(res, stateCookieName);
+    clearIdamCookie(req, res, stateCookieName);
   }
 
   const authToken = req.cookies && req.cookies[tokenCookieName];
@@ -110,10 +112,10 @@ const getAccessToken = (code, args) => got.post(`${args.idamApiUrl}/o/token`, {
   form: {
     grant_type: 'authorization_code',
     code,
-    redirect_uri: args.redirectUri
+    redirect_uri: args.redirectUri,
+    client_id: args.idamClientID,
+    client_secret: args.idamSecret
   },
-  username: args.idamClientID,
-  password: args.idamSecret,
   headers: { Accept: 'application/json' }
 }).json();
 
@@ -123,7 +125,7 @@ const exchangeCodeForSession = (req, res, next, args) => {
     logger.exception(new Error('State cookie does not exist'), 'middleware/idam');
     return res.redirect(args.indexUrl);
   }
-  idamCookies.remove(res, stateCookieName);
+  clearIdamCookie(req, res, stateCookieName);
 
   return getAccessToken(req.query.code, args)
     .then(response => {
@@ -168,7 +170,7 @@ const protect = () => (req, res, next) => {
     })
     .catch(error => {
       logger.exception(error, 'middleware/idam');
-      idamCookies.remove(res, tokenCookieName);
+      clearIdamCookie(req, res, tokenCookieName);
       res.redirect(idamArgs.indexUrl);
     });
 };
@@ -185,7 +187,7 @@ const loadUserDetails = () => (req, res, next) => {
     })
     .catch(error => {
       logger.exception(error, 'middleware/idam');
-      idamCookies.remove(res, tokenCookieName);
+      clearIdamCookie(req, res, tokenCookieName);
       next();
     });
 };

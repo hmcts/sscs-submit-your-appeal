@@ -135,15 +135,15 @@ describe('middleware/idam', () => {
       expect(next).to.not.have.been.called;
     });
 
-    it('should clear a stale state cookie before redirecting', () => {
+    it('should clear a stale state cookie on the domain it was set on before redirecting', () => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
       const clearCookie = sandbox.stub();
-      const reqWithStateCookie = Object.assign({}, req, { cookies: { [stateCookieName]: 'stale-state' } });
+      const reqWithStateCookie = Object.assign({}, req, { cookies: { [stateCookieName]: 'stale-state' }, hostname: 'host' });
 
       idam.authenticate(reqWithStateCookie, { redirect, cookie, clearCookie }, next);
 
-      expect(clearCookie).to.have.been.calledOnceWith(stateCookieName);
+      expect(clearCookie).to.have.been.calledOnceWith(stateCookieName, { domain: 'host' });
     });
   });
 
@@ -176,10 +176,11 @@ describe('middleware/idam', () => {
       expect(tokenOptions.form).to.deep.equal({
         grant_type: 'authorization_code',
         code: 'aCode',
-        redirect_uri: 'https://host/authenticated'
+        redirect_uri: 'https://host/authenticated',
+        client_id: idam.getIdamArgs().idamClientID,
+        client_secret: idam.getIdamArgs().idamSecret
       });
-      expect(tokenOptions.username).to.equal(idam.getIdamArgs().idamClientID);
-      expect(tokenOptions.password).to.equal(idam.getIdamArgs().idamSecret);
+      expect(tokenOptions).to.not.have.any.keys('username', 'password');
       expect(cookie).to.have.been.calledWith(tokenCookieName, 'anAccessToken');
       expect(cookie).to.have.been.calledWith(idam.idTokenCookieName, 'anIdToken');
       expect(clearCookie).to.have.been.calledWith(stateCookieName);
