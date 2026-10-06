@@ -1,9 +1,9 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
-const idamWrapper = require('@hmcts/div-idam-express-middleware/wrapper');
 const { tokenCookieName, stateCookieName } = require('@hmcts/div-idam-express-middleware/config');
 const { expect, sinon } = require('test/util/chai');
 const idam = require('middleware/idam');
 const { URL } = require('url');
+const got = require('got');
 
 describe('middleware/idam', () => {
   const req = {
@@ -14,6 +14,23 @@ describe('middleware/idam', () => {
   };
   let next = null;
   let sandbox = null;
+  const userInfo = {
+    uid: 'user-1',
+    sub: 'jane.doe@test.local',
+    given_name: 'Jane',
+    family_name: 'Doe',
+    name: 'Jane Doe',
+    roles: ['citizen']
+  };
+  const userDetails = {
+    id: 'user-1',
+    email: 'jane.doe@test.local',
+    forename: 'Jane',
+    surname: 'Doe',
+    roles: ['citizen']
+  };
+  const stubUserInfo = () => sandbox.stub(got, 'get').returns({ json: sandbox.stub().resolves(userInfo) });
+  const stubUserInfoFailure = () => sandbox.stub(got, 'get').returns({ json: sandbox.stub().rejects(new Error('invalid token')) });
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     next = sandbox.stub();
@@ -97,14 +114,14 @@ describe('middleware/idam', () => {
     it('should call next and set req.idam when a valid auth token cookie is present', async() => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
-      const userDetails = { id: 'user-1' };
-      sandbox.stub(idamWrapper, 'setup').returns({
-        getUserDetails: sandbox.stub().resolves(userDetails)
-      });
+      const getStub = stubUserInfo();
       const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
 
       await idam.authenticate(reqWithToken, { redirect, cookie }, next);
 
+      const [userInfoUrl, userInfoOptions] = getStub.firstCall.args;
+      expect(userInfoUrl).to.equal(`${idam.getIdamArgs().idamApiUrl}/o/userinfo`);
+      expect(userInfoOptions.headers.Authorization).to.equal('Bearer aToken');
       expect(next).to.have.been.calledOnce;
       expect(reqWithToken.idam).to.deep.equal({ userDetails });
       expect(redirect).to.not.have.been.called;
@@ -114,10 +131,7 @@ describe('middleware/idam', () => {
     it('should redirect to the idam login url when the auth token cookie is invalid', async() => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
-      sandbox.stub(idamWrapper, 'setup').returns({
-        getUserDetails: sandbox.stub().rejects(new Error('invalid token')),
-        getIdamLoginUrl: sandbox.stub().returns('http://localhost:5062/o/authorize?state=abc')
-      });
+      stubUserInfoFailure();
       const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
 
       await idam.authenticate(reqWithToken, { redirect, cookie }, next);
@@ -155,19 +169,27 @@ describe('middleware/idam', () => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
       const clearCookie = sandbox.stub();
-      const userDetails = { id: 'user-1' };
-      const getAccessToken = sandbox.stub().resolves({ access_token: 'anAccessToken', id_token: 'anIdToken' });
-      const getUserDetails = sandbox.stub().resolves(userDetails);
-      sandbox.stub(idamWrapper, 'setup').returns({ getAccessToken, getUserDetails });
+      const postStub = sandbox.stub(got, 'post').returns({
+        json: sandbox.stub().resolves({ access_token: 'anAccessToken', id_token: 'anIdToken' })
+      });
+      const getStub = stubUserInfo();
       const reqWithCode = Object.assign({}, req, { query: { code: 'aCode', state: 'aState' } });
 
       await idam.landingPage(reqWithCode, { redirect, cookie, clearCookie }, next);
 
-      expect(getAccessToken).to.have.been.calledWith(sinon.match({ code: 'aCode', state: 'aState' }));
+      const [tokenUrl, tokenOptions] = postStub.firstCall.args;
+      expect(tokenUrl).to.equal(`${idam.getIdamArgs().idamApiUrl}/o/token`);
+      expect(tokenOptions.form).to.deep.equal({
+        grant_type: 'authorization_code',
+        code: 'aCode',
+        redirect_uri: 'https://host/authenticated',
+        client_id: idam.getIdamArgs().idamClientID,
+        client_secret: idam.getIdamArgs().idamSecret
+      });
       expect(cookie).to.have.been.calledWith(tokenCookieName, 'anAccessToken');
       expect(cookie).to.have.been.calledWith(idam.idTokenCookieName, 'anIdToken');
       expect(clearCookie).to.have.been.calledWith(stateCookieName);
-      expect(getUserDetails).to.have.been.calledWith('anAccessToken');
+      expect(getStub.firstCall.args[1].headers.Authorization).to.equal('Bearer anAccessToken');
       expect(reqWithCode.idam).to.deep.equal({ userDetails });
       expect(next).to.have.been.calledOnce;
       expect(redirect).to.not.have.been.called;
@@ -186,13 +208,91 @@ describe('middleware/idam', () => {
     it('should redirect to the index page when the code exchange fails', async() => {
       const redirect = sandbox.stub();
       const clearCookie = sandbox.stub();
-      sandbox.stub(idamWrapper, 'setup').returns({
-        getAccessToken: sandbox.stub().rejects(new Error('exchange failed'))
+      sandbox.stub(got, 'post').returns({
+        json: sandbox.stub().rejects(new Error('exchange failed'))
       });
       const reqWithCode = Object.assign({}, req, { query: { code: 'aCode', state: 'aState' } });
 
       await idam.landingPage(reqWithCode, { redirect, clearCookie }, next);
 
+      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
+      expect(next).to.not.have.been.called;
+    });
+  });
+
+  describe('userDetails', () => {
+    it('should map the /o/userinfo response onto req.idam.userDetails', async() => {
+      stubUserInfo();
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.userDetails()(reqWithToken, {}, next);
+
+      expect(reqWithToken.idam).to.deep.equal({ userDetails });
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('should prefer the email claim over sub when present', async() => {
+      sandbox.stub(got, 'get').returns({
+        json: sandbox.stub().resolves(Object.assign({}, userInfo, { sub: 'subject', email: 'jane@test.local' }))
+      });
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.userDetails()(reqWithToken, {}, next);
+
+      expect(reqWithToken.idam.userDetails.email).to.equal('jane@test.local');
+    });
+
+    it('should call next without contacting idam when there is no auth token cookie', async() => {
+      const getStub = sandbox.stub(got, 'get');
+
+      await idam.userDetails()(req, {}, next);
+
+      expect(getStub).to.not.have.been.called;
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('should clear the auth token cookie and call next when the token is invalid', async() => {
+      stubUserInfoFailure();
+      const clearCookie = sandbox.stub();
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.userDetails()(reqWithToken, { clearCookie }, next);
+
+      expect(clearCookie).to.have.been.calledOnceWith(tokenCookieName);
+      expect(reqWithToken.idam).to.be.undefined;
+      expect(next).to.have.been.calledOnce;
+    });
+  });
+
+  describe('protect', () => {
+    it('should set req.idam and call next when the auth token is valid', async() => {
+      stubUserInfo();
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.protect()(reqWithToken, {}, next);
+
+      expect(reqWithToken.idam).to.deep.equal({ userDetails });
+      expect(next).to.have.been.calledOnce;
+    });
+
+    it('should redirect to the index page when there is no auth token cookie', async() => {
+      const redirect = sandbox.stub();
+
+      await idam.protect()(req, { redirect }, next);
+
+      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
+      expect(next).to.not.have.been.called;
+    });
+
+    it('should clear the auth token cookie and redirect to the index page when the token is invalid', async() => {
+      stubUserInfoFailure();
+      const redirect = sandbox.stub();
+      const clearCookie = sandbox.stub();
+      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
+
+      await idam.protect()(reqWithToken, { redirect, clearCookie }, next);
+
+      expect(clearCookie).to.have.been.calledOnceWith(tokenCookieName);
       expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
       expect(next).to.not.have.been.called;
     });
