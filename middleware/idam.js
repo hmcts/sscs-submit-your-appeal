@@ -17,12 +17,13 @@ const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
 const useMockIdam = config.get('services.idam.useMock') === 'true';
 const useMock = isDevMode && useMockIdam;
+const idamWebUrl = config.services.idam.loginUrl;
 
 const idamArgs = {
   redirectUri,
   indexUrl: paths.session.root,
   idamApiUrl: config.services.idam.apiUrl,
-  idamLoginUrl: config.services.idam.loginUrl,
+  idamLoginUrl: new URL('/o/authorize', idamWebUrl).href,
   idamSecret: config.services.idam.secret,
   idamClientID: config.services.idam.clientId,
   scope: 'openid profile roles'
@@ -145,10 +146,9 @@ const exchangeCodeForSession = (req, res, next, args) => {
 };
 
 const buildEndSessionUrl = (req, postLogoutRedirectPath) => {
-  const args = setArgsFromRequest(req);
   const idToken = req.cookies && req.cookies[idTokenCookieName];
 
-  const endSessionUrl = new URL('/o/endSession', args.idamLoginUrl);
+  const endSessionUrl = new URL('/o/endSession', idamWebUrl);
   endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${postLogoutRedirectPath}`);
   if (idToken) {
     endSessionUrl.searchParams.append('id_token_hint', idToken);
@@ -212,10 +212,11 @@ const methods = {
     if (!(req.cookies && req.cookies[tokenCookieName])) {
       return next();
     }
-    return middleware.logout(args)(req, res, () => {
-      res.clearCookie(tokenCookieName, { domain: args.hostName });
-      next();
-    });
+    res.clearCookie(tokenCookieName, { domain: args.hostName });
+    if (useMock) {
+      return middleware.logout(args)(req, res, next);
+    }
+    return next();
   },
   userDetails: () => (useMock ? middleware.userDetails(idamArgs) : loadUserDetails())
 };

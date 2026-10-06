@@ -56,37 +56,29 @@ describe('middleware/idam', () => {
   });
 
   describe('logout', () => {
-    it('should call the logout middleware if there is a session', () => {
-      const middleWareStub = sandbox.stub(idamExpressMiddleware, 'logout')
-        .returns((logoutReq, logoutRes, done) => done());
-      req.cookies['__auth-token'] = 'aToken';
-
-      idam.logout(req, { clearCookie: sandbox.stub() }, next);
-
-      expect(middleWareStub).to.have.been.called;
-    });
-
-    it('should clear the auth token cookie with the domain it was set on, regardless of the idam session delete outcome', () => {
-      sandbox.stub(idamExpressMiddleware, 'logout').returns((logoutReq, logoutRes, done) => done());
+    it('should clear the auth token cookie with the domain it was set on without contacting idam', () => {
+      const deleteStub = sandbox.stub(got, 'delete');
+      const middleWareStub = sandbox.stub(idamExpressMiddleware, 'logout');
       const clearCookie = sandbox.stub();
-      const localNext = sandbox.stub();
       const reqWithToken = Object.assign({}, req, {
         cookies: { [tokenCookieName]: 'aToken' },
         hostname: 'host'
       });
 
-      idam.logout(reqWithToken, { clearCookie }, localNext);
+      idam.logout(reqWithToken, { clearCookie }, next);
 
-      expect(clearCookie).to.have.been.calledWith(tokenCookieName, { domain: 'host' });
-      expect(localNext).to.have.been.calledOnce;
+      expect(clearCookie).to.have.been.calledOnceWith(tokenCookieName, { domain: 'host' });
+      expect(deleteStub).to.not.have.been.called;
+      expect(middleWareStub).to.not.have.been.called;
+      expect(next).to.have.been.calledOnce;
     });
 
-    it('should call next without contacting idam when there is no auth token cookie', () => {
-      const middleWareStub = sandbox.stub(idamExpressMiddleware, 'logout');
+    it('should call next without clearing cookies when there is no auth token cookie', () => {
+      const clearCookie = sandbox.stub();
 
-      idam.logout(req, { clearCookie: sandbox.stub() }, next);
+      idam.logout(req, { clearCookie }, next);
 
-      expect(middleWareStub).to.not.have.been.called;
+      expect(clearCookie).to.not.have.been.called;
       expect(next).to.have.been.calledOnce;
     });
   });
@@ -99,6 +91,8 @@ describe('middleware/idam', () => {
 
       expect(redirect).to.have.been.calledOnce;
       const redirectUrl = new URL(redirect.firstCall.args[0]);
+      expect(redirectUrl.origin).to.equal('http://localhost:5062');
+      expect(redirectUrl.pathname).to.equal('/o/authorize');
       expect(redirectUrl.searchParams.get('scope')).to.equal('openid profile roles');
       expect(redirectUrl.searchParams.get('client_id')).to.equal(idam.getIdamArgs().idamClientID);
       expect(redirectUrl.searchParams.get('response_type')).to.equal('code');
@@ -304,7 +298,7 @@ describe('middleware/idam', () => {
 
       const endSessionUrl = new URL(idam.buildEndSessionUrl(reqWithIdToken, '/sign-out'));
 
-      expect(endSessionUrl.origin).to.equal(new URL(idam.getIdamArgs().idamLoginUrl).origin);
+      expect(endSessionUrl.origin).to.equal('http://localhost:5062');
       expect(endSessionUrl.pathname).to.equal('/o/endSession');
       expect(endSessionUrl.searchParams.get('id_token_hint')).to.equal('anIdToken');
       expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/sign-out');
