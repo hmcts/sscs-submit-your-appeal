@@ -49,7 +49,6 @@ describe('middleware/idam', () => {
       'authenticate',
       'buildEndSessionUrl',
       'landingPage',
-      'protect',
       'logout',
       'userDetails'
     );
@@ -135,15 +134,15 @@ describe('middleware/idam', () => {
       expect(next).to.not.have.been.called;
     });
 
-    it('should clear a stale state cookie on the domain it was set on before redirecting', () => {
+    it('should clear a stale state cookie before redirecting', () => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
       const clearCookie = sandbox.stub();
-      const reqWithStateCookie = Object.assign({}, req, { cookies: { [stateCookieName]: 'stale-state' }, hostname: 'host' });
+      const reqWithStateCookie = Object.assign({}, req, { cookies: { [stateCookieName]: 'stale-state' } });
 
       idam.authenticate(reqWithStateCookie, { redirect, cookie, clearCookie }, next);
 
-      expect(clearCookie).to.have.been.calledOnceWith(stateCookieName, { domain: 'host' });
+      expect(clearCookie).to.have.been.calledOnceWith(stateCookieName);
     });
   });
 
@@ -256,40 +255,6 @@ describe('middleware/idam', () => {
       expect(clearCookie).to.have.been.calledOnceWith(tokenCookieName);
       expect(reqWithToken.idam).to.be.undefined;
       expect(next).to.have.been.calledOnce;
-    });
-  });
-
-  describe('protect', () => {
-    it('should set req.idam and call next when the auth token is valid', async() => {
-      stubUserInfo();
-      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
-
-      await idam.protect()(reqWithToken, {}, next);
-
-      expect(reqWithToken.idam).to.deep.equal({ userDetails });
-      expect(next).to.have.been.calledOnce;
-    });
-
-    it('should redirect to the index page when there is no auth token cookie', async() => {
-      const redirect = sandbox.stub();
-
-      await idam.protect()(req, { redirect }, next);
-
-      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
-      expect(next).to.not.have.been.called;
-    });
-
-    it('should clear the auth token cookie and redirect to the index page when the token is invalid', async() => {
-      stubUserInfoFailure();
-      const redirect = sandbox.stub();
-      const clearCookie = sandbox.stub();
-      const reqWithToken = Object.assign({}, req, { cookies: { [tokenCookieName]: 'aToken' } });
-
-      await idam.protect()(reqWithToken, { redirect, clearCookie }, next);
-
-      expect(clearCookie).to.have.been.calledOnceWith(tokenCookieName);
-      expect(redirect).to.have.been.calledOnceWith(idam.getIdamArgs().indexUrl);
-      expect(next).to.not.have.been.called;
     });
   });
 

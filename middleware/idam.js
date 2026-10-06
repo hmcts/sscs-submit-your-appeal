@@ -17,13 +17,12 @@ const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
 const useMockIdam = config.get('services.idam.useMock') === 'true';
 const useMock = isDevMode && useMockIdam;
-const idamAuthorizeUrl = config.services.idam.loginUrl;
 
 const idamArgs = {
   redirectUri,
   indexUrl: paths.session.root,
   idamApiUrl: config.services.idam.apiUrl,
-  idamLoginUrl: new URL('/o/authorize', idamAuthorizeUrl).href,
+  idamLoginUrl: config.services.idam.loginUrl,
   idamSecret: config.services.idam.secret,
   idamClientID: config.services.idam.clientId,
   scope: 'openid profile roles'
@@ -73,8 +72,6 @@ const getUserDetails = authToken => got.get(`${idamArgs.idamApiUrl}/o/userinfo`,
     };
   });
 
-const clearIdamCookie = (req, res, cookieName) => res.clearCookie(cookieName, { domain: req.hostname });
-
 const redirectToIdamLogin = (args, res) => {
   const state = args.state();
   idamCookies.set(res, stateCookieName, state, args.hostName);
@@ -89,7 +86,7 @@ const redirectToIdam = (req, res, next) => {
   }
 
   if (idamCookies.get(req, stateCookieName)) {
-    clearIdamCookie(req, res, stateCookieName);
+    idamCookies.remove(res, stateCookieName);
   }
 
   const authToken = req.cookies && req.cookies[tokenCookieName];
@@ -125,7 +122,7 @@ const exchangeCodeForSession = (req, res, next, args) => {
     logger.exception(new Error('State cookie does not exist'), 'middleware/idam');
     return res.redirect(args.indexUrl);
   }
-  clearIdamCookie(req, res, stateCookieName);
+  idamCookies.remove(res, stateCookieName);
 
   return getAccessToken(req.query.code, args)
     .then(response => {
@@ -150,29 +147,12 @@ const exchangeCodeForSession = (req, res, next, args) => {
 const buildEndSessionUrl = (req, postLogoutRedirectPath) => {
   const idToken = req.cookies && req.cookies[idTokenCookieName];
 
-  const endSessionUrl = new URL('/o/endSession', idamAuthorizeUrl);
+  const endSessionUrl = new URL('/o/endSession', idamArgs.idamLoginUrl);
   endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${postLogoutRedirectPath}`);
   if (idToken) {
     endSessionUrl.searchParams.append('id_token_hint', idToken);
   }
   return endSessionUrl.href;
-};
-
-const protect = () => (req, res, next) => {
-  const authToken = idamCookies.get(req, tokenCookieName);
-  if (!authToken) {
-    return res.redirect(idamArgs.indexUrl);
-  }
-  return getUserDetails(authToken)
-    .then(userDetails => {
-      req.idam = { userDetails };
-      next();
-    })
-    .catch(error => {
-      logger.exception(error, 'middleware/idam');
-      clearIdamCookie(req, res, tokenCookieName);
-      res.redirect(idamArgs.indexUrl);
-    });
 };
 
 const loadUserDetails = () => (req, res, next) => {
@@ -187,7 +167,7 @@ const loadUserDetails = () => (req, res, next) => {
     })
     .catch(error => {
       logger.exception(error, 'middleware/idam');
-      clearIdamCookie(req, res, tokenCookieName);
+      idamCookies.remove(res, tokenCookieName);
       next();
     });
 };
@@ -208,7 +188,6 @@ const methods = {
     }
     return exchangeCodeForSession(req, res, next, args);
   },
-  protect: () => (useMock ? middleware.protect(idamArgs) : protect()),
   logout: (req, res, next) => {
     const args = setArgsFromRequest(req);
     if (!(req.cookies && req.cookies[tokenCookieName])) {
