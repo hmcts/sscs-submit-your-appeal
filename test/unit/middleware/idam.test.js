@@ -182,10 +182,10 @@ describe('middleware/idam', () => {
       expect(tokenOptions.form).to.deep.equal({
         grant_type: 'authorization_code',
         code: 'aCode',
-        redirect_uri: 'https://host/authenticated',
-        client_id: idam.getIdamArgs().idamClientID,
-        client_secret: idam.getIdamArgs().idamSecret
+        redirect_uri: 'https://host/authenticated'
       });
+      expect(tokenOptions.username).to.equal(idam.getIdamArgs().idamClientID);
+      expect(tokenOptions.password).to.equal(idam.getIdamArgs().idamSecret);
       expect(cookie).to.have.been.calledWith(tokenCookieName, 'anAccessToken');
       expect(cookie).to.have.been.calledWith(idam.idTokenCookieName, 'anIdToken');
       expect(clearCookie).to.have.been.calledWith(stateCookieName);

@@ -109,10 +109,10 @@ const getAccessToken = (code, args) => got.post(`${args.idamApiUrl}/o/token`, {
   form: {
     grant_type: 'authorization_code',
     code,
-    redirect_uri: args.redirectUri,
-    client_id: args.idamClientID,
-    client_secret: args.idamSecret
+    redirect_uri: args.redirectUri
   },
+  username: args.idamClientID,
+  password: args.idamSecret,
   headers: { Accept: 'application/json' }
 }).json();
 
