@@ -48,12 +48,6 @@ describe('SignOut.js', () => {
         httpOnly: true,
         secure: true
       });
-      resMock.expects('clearCookie').once().withArgs(idam.idTokenCookieName, {
-        path: '/',
-        domain: 'hmcts.net',
-        httpOnly: true,
-        secure: true
-      });
 
       const next = sinon.spy();
 

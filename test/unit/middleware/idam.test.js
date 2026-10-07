@@ -45,7 +45,6 @@ describe('middleware/idam', () => {
   it('should contain all keys', () => {
     expect(idam).to.have.all.keys(
       'getIdamArgs',
-      'idTokenCookieName',
       'authenticate',
       'buildEndSessionUrl',
       'landingPage',
@@ -158,7 +157,7 @@ describe('middleware/idam', () => {
       expect(redirectUrl.searchParams.get('scope')).to.equal('openid profile roles');
     });
 
-    it('should exchange the code for a session and store the auth token and id token cookies', async() => {
+    it('should exchange the code for a session and store only the auth token cookie', async() => {
       const redirect = sandbox.stub();
       const cookie = sandbox.stub();
       const clearCookie = sandbox.stub();
@@ -180,8 +179,7 @@ describe('middleware/idam', () => {
         client_secret: idam.getIdamArgs().idamSecret
       });
       expect(tokenOptions).to.not.have.any.keys('username', 'password');
-      expect(cookie).to.have.been.calledWith(tokenCookieName, 'anAccessToken');
-      expect(cookie).to.have.been.calledWith(idam.idTokenCookieName, 'anIdToken');
+      expect(cookie).to.have.been.calledOnceWith(tokenCookieName, 'anAccessToken');
       expect(clearCookie).to.have.been.calledWith(stateCookieName);
       expect(getStub.firstCall.args[1].headers.Authorization).to.equal('Bearer anAccessToken');
       expect(reqWithCode.idam).to.deep.equal({ userDetails });
@@ -259,20 +257,12 @@ describe('middleware/idam', () => {
   });
 
   describe('buildEndSessionUrl', () => {
-    it('builds the idam end-session url with the post_logout_redirect_uri and id_token_hint', () => {
-      const reqWithIdToken = Object.assign({}, req, { cookies: { [idam.idTokenCookieName]: 'anIdToken' } });
-
-      const endSessionUrl = new URL(idam.buildEndSessionUrl(reqWithIdToken, '/sign-out'));
+    it('builds the idam end-session url with the post_logout_redirect_uri and no id_token_hint', () => {
+      const endSessionUrl = new URL(idam.buildEndSessionUrl(req, '/sign-out'));
 
       expect(endSessionUrl.origin).to.equal('http://localhost:5062');
       expect(endSessionUrl.pathname).to.equal('/o/endSession');
-      expect(endSessionUrl.searchParams.get('id_token_hint')).to.equal('anIdToken');
       expect(endSessionUrl.searchParams.get('post_logout_redirect_uri')).to.equal('https://host/sign-out');
-    });
-
-    it('omits id_token_hint when there is no id token cookie', () => {
-      const endSessionUrl = new URL(idam.buildEndSessionUrl(req, '/sign-out'));
-
       expect(endSessionUrl.searchParams.has('id_token_hint')).to.be.false;
     });
   });

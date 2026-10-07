@@ -11,8 +11,6 @@ const logger = require('logger');
 const { URL } = require('url');
 const got = require('got');
 
-const idTokenCookieName = '__id-token';
-
 const redirectUri = `${config.node.baseUrl}${paths.idam.authenticated}`;
 const isDevMode = ['development'].includes(process.env.NODE_ENV);
 const useMockIdam = config.get('services.idam.useMock') === 'true';
@@ -127,9 +125,6 @@ const exchangeCodeForSession = (req, res, next, args) => {
   return getAccessToken(req.query.code, args)
     .then(response => {
       idamCookies.set(res, tokenCookieName, response.access_token, args.hostName);
-      if (response.id_token) {
-        idamCookies.set(res, idTokenCookieName, response.id_token, args.hostName);
-      }
       req.cookies = req.cookies || {};
       req.cookies[tokenCookieName] = response.access_token;
       return getUserDetails(response.access_token);
@@ -145,13 +140,8 @@ const exchangeCodeForSession = (req, res, next, args) => {
 };
 
 const buildEndSessionUrl = (req, postLogoutRedirectPath) => {
-  const idToken = req.cookies && req.cookies[idTokenCookieName];
-
   const endSessionUrl = new URL('/o/endSession', idamArgs.idamLoginUrl);
   endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${postLogoutRedirectPath}`);
-  if (idToken) {
-    endSessionUrl.searchParams.append('id_token_hint', idToken);
-  }
   return endSessionUrl.href;
 };
 
@@ -174,7 +164,6 @@ const loadUserDetails = () => (req, res, next) => {
 
 const methods = {
   getIdamArgs: () => idamArgs,
-  idTokenCookieName,
   authenticate: redirectToIdam,
   buildEndSessionUrl,
   landingPage: (req, res, next) => {

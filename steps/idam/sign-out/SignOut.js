@@ -20,12 +20,6 @@ class SignOut extends ExitPoint {
       httpOnly: true,
       secure: true
     });
-    res.clearCookie(idam.idTokenCookieName, {
-      path: '/',
-      domain: req.hostname,
-      httpOnly: true,
-      secure: true
-    });
     next();
   }
 
