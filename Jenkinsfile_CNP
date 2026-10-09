@@ -8,7 +8,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure@2.12.0")
+@Library("Infrastructure@2.12.2")
 
 import uk.gov.hmcts.contino.GithubAPI
 
