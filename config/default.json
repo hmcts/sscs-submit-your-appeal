@@ -20,7 +20,8 @@
   "api": {
     "url": "http://localhost:8008",
     "uploadEvidenceUrl": "http://localhost:8008/evidence/upload",
-    "draftUrl": "https://localhost:3000/appeal"
+    "draftUrl": "https://localhost:3000/appeal",
+    "bankHolidaysUrl": "https://www.gov.uk/bank-holidays.json"
   },
   "appInsights": {
     "connectionString": "",
@@ -33,6 +34,12 @@
     "smokeOutputDir": "./smoke-output",
     "frontendUrl": "http://localhost:3000",
     "retry": 4
+  },
+  "s2s": {
+    "microservice": "sscs",
+    "secret": "S2S_SECRET",
+    "url": "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal",
+    "timeout" : 40000
   },
   "features": {
     "evidenceUpload": {
@@ -54,8 +61,7 @@
     "allowContactUs": {
       "enabled": "true",
       "telephoneEnabled": "true",
-      "webFormEnabled": "true",
-      "welshWebchatEnabled": "true"
+      "webFormEnabled": "true"
     },
     "allowUC": {
       "enabled": "true"
@@ -111,10 +117,6 @@
     "multipleDraftsEnabled": {
       "enabled": "false"
     },
-    "webchatOpen8to5": {
-      "enabled": "false"
-    },
-    "kervWebchatEnabled": "false",
     "allowNI" : {
       "enabled": "false"
     }
@@ -159,19 +161,13 @@
     "webForm": {
       "url": "https://ctsc-web-forms-ui-aat.service.core-compute-aat.internal/"
     },
-    "webchat": {
-      "url": "webchat.pp.ctsc.hmcts.net",
-      "clientUrl": "webchat-client.pp.ctsc.hmcts.net"
-    },
     "kerv": {
       "deploymentId": {
         "en": "KERV_DEPLOYMENT_ID_EN",
         "cy": "KERV_DEPLOYMENT_ID_CY"
       },
       "genesysBaseUrl": "KERV_GENESYS_BASE_URL",
-      "environment": "KERV_ENVIRONMENT",
-      "kervBaseUrl": "KERV_BASE_URL",
-      "apiKey": "KERV_API_KEY"
+      "environment": "KERV_ENVIRONMENT"
     },
     "pcq": {
       "name": "Equality and Diversity Service",

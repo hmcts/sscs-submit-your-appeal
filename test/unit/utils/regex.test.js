@@ -184,8 +184,32 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.not.equal(null);
   });
 
+  it('should validate a correct IBCA reference with fourth character as letter for England', () => {
+      const reference = 'E24A45';
+      const result = reference.match(ibcaReference);
+      expect(result).to.not.equal(null);
+    });
+
+  it('should validate a correct IBCA reference with fourth character as number for England', () => {
+       const reference = 'E24645';
+       const result = reference.match(ibcaReference);
+       expect(result).to.not.equal(null);
+     });
+
   it('should validate a correct IBCA reference in lowercase for England', () => {
     const reference = 'e24a45';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in all lowercase letters for England', () => {
+    const reference = 'epdmas';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
+  it('should validate a correct IBCA reference in all uppercase letters for England', () => {
+    const reference = 'EPDMAS';
     const result = reference.match(ibcaReference);
     expect(result).to.not.equal(null);
   });
@@ -226,6 +250,12 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.not.equal(null);
   });
 
+  it('should validate a correct IBCA reference in all numbers', () => {
+    const reference = '124589';
+    const result = reference.match(ibcaReference);
+    expect(result).to.not.equal(null);
+  });
+
   it('should not validate a reference with an invalid year', () => {
     const reference = 'E2A45';
     const result = reference.match(ibcaReference);
@@ -244,21 +274,10 @@ describe('IBCA Reference Regex', () => {
     expect(result).to.equal(null);
   });
 
-  it('should not validate a reference with an invalid letter "i" ', () => {
-    const reference = 'E24I45';
+  it('should not validate a reference with non-alphanumeric characters', () => {
+    const reference = 'E24A-56';
     const result = reference.match(ibcaReference);
     expect(result).to.equal(null);
   });
 
-  it('should not validate a reference with an invalid letter "o" ', () => {
-    const reference = 'E24O45';
-    const result = reference.match(ibcaReference);
-    expect(result).to.equal(null);
-  });
-
-  it('should not validate a reference with an invalid letter "l" ', () => {
-    const reference = 'E24L45';
-    const result = reference.match(ibcaReference);
-    expect(result).to.equal(null);
-  });
 });

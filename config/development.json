@@ -1,0 +1,6 @@
+{
+  "s2s": {
+    "secret": "AAAAAAAAAAAAAAAC",
+    "url": "http://localhost:4502"
+  }
+}

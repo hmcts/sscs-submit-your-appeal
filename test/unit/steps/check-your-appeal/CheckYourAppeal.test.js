@@ -15,11 +15,15 @@ describe('CheckYourAppeal.js', () => {
 
   const request = {};
   const loggerStub = {};
+  const s2sModuleStub = {
+    getServiceAuthToken: sinon.stub().returns('mock-s2s-token')
+  };
 
   before(() => {
     CheckYourAppeal = proxyquire('steps/check-your-appeal/CheckYourAppeal', {
       superagent: request,
-      logger: loggerStub
+      logger: loggerStub,
+      'services/s2s': s2sModuleStub
     });
 
     cya = new CheckYourAppeal({
@@ -236,14 +240,19 @@ describe('CheckYourAppeal.js', () => {
   });
 
   describe('tokenHeader()', () => {
-    it('should return valid user token', () => {
+    it('should return valid user token', async() => {
       const req = { cookies: { '__auth-token': 'xxx' } };
-      expect(cya.tokenHeader(req).Authorization).to.equal('Bearer xxx');
+      const headers = await cya.tokenHeader(req);
+      expect(headers.Authorization).to.equal('Bearer xxx');
+      expect(headers.ServiceAuthorization).to.equal('Bearer mock-s2s-token');
     });
 
-    it('should not return token', () => {
+    it('should not return token', async() => {
       const req = { cookies: {} };
-      expect(cya.tokenHeader(req)).to.be.empty;
+      const headers = await cya.tokenHeader(req);
+      expect(headers).to.be.an('object').that.is.not.undefined;
+      expect(headers.Authorization).to.be.undefined;
+      expect(headers.ServiceAuthorization).to.equal('Bearer mock-s2s-token');
     });
   });
 });

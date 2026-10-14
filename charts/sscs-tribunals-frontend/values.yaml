@@ -1,5 +1,5 @@
 nodejs:
-  image: 'hmctspublic.azurecr.io/sscs/tribunals-frontend:latest'
+  image: 'hmctsprod.azurecr.io/sscs/tribunals-frontend:latest'
   applicationPort: 3000
   aadIdentityName: sscs
   livenessPath: /health/readiness
@@ -13,6 +13,7 @@ nodejs:
     UPLOAD_EVIDENCE_URL: http://sscs-tribunals-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/evidence/upload
     SERVICES_IDAM_LOGIN_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     SERVICES_IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+    S2S_URL: 'http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal'
     # seems to be disabled currently and only enabled locally pointing at AAT
     # SERVICES_WEB_FORM:
     # This is currently disabled in prod, enabled all other environments
@@ -20,13 +21,9 @@ nodejs:
     MEDIA_FILES_ALLOWED_ENABLED: true
     POSTCODE_CHECKER_ALLOWED_RPCS: "birmingham,liverpool,sutton,leeds,newcastle,cardiff,glasgow,bradford"
     UV_THREADPOOL_SIZE: 64
+    ALLOW_CONFIG_MUTATIONS: true
     FT_WELSH: true
     ALLOW_DLA_ENABLED: true
-    #Added for new Webchat with Agent
-    WELSH_WEBCHAT_ENABLED: false
-    WEBCHAT_URL: "webchat.ctsc.hmcts.net"
-    WEBCHAT_CLIENT_URL: "webchat-client.ctsc.hmcts.net"
-    KERV_WEBCHAT_ENABLED: false
 
   keyVaults:
     sscs:
@@ -41,21 +38,10 @@ nodejs:
         - webchat-kerv-deployment-cy
         - webchat-kerv-genesys-base-url
         - webchat-kerv-environment
-        - webchat-kerv-kerv-base-url
-        - webchat-kerv-api-key
+        - sscs-s2s-secret
 
-redis:
+hmcts-redis:
   enabled: false
-  cluster:
-    enabled: false
-    slaveCount: 0
-  usePassword: false
-  image:
-    registry: hmctspublic.azurecr.io
-    repository: imported/bitnami/redis
-  master:
-    persistence:
-      enabled: false
 
 idam-pr:
   enabled: false

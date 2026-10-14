@@ -9,14 +9,11 @@ nodejs:
     enabled: false
   environment:
     NODE_ENV: "preview"
-    REDIS_URL: redis://${SERVICE_NAME}-redis-master
+    REDIS_URL: redis://${SERVICE_NAME}-hmcts-redis-master
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
+    ALLOW_CONFIG_MUTATIONS: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
-    WELSH_WEBCHAT_ENABLED: true
-    WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"
-    WEBCHAT_CLIENT_URL: "webchat-client.pp.ctsc.hmcts.net"
-    WEBCHAT_OPENING_TIME_8_5: true
-    KERV_WEBCHAT_ENABLED: true
+    S2S_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
     FT_WELSH: true
     PCQ_ENABLED: true
     IBC_NI_POSTCODES_FEATURE: true
@@ -31,15 +28,22 @@ nodejs:
         - webchat-kerv-deployment-cy
         - webchat-kerv-genesys-base-url
         - webchat-kerv-environment
-        - webchat-kerv-kerv-base-url
-        - webchat-kerv-api-key
+        - sscs-s2s-secret
 
-redis:
+hmcts-redis:
   enabled: true
   architecture: standalone
   auth:
     enabled: false
-
+    sentinel: false
+  image:
+    registry: hmctsprod.azurecr.io
+    repository: imported/redis
+    tag: 8.2.1
+  sentinel:
+    enabled: false
+  metrics:
+    enabled: false
 idam-pr:
   enabled: true
   redirect_uris:

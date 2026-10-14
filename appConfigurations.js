@@ -21,8 +21,6 @@ const filteredWhitelist = fileTypeWhitelist.filter(item => item.indexOf('/') ===
 const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
 const falsies = ['false', 'False', 'FALSE', '0', 'no', 'No', 'NO', 'n', 'N'];
 const isDev = () => process.env.NODE_ENV === 'development';
-const webChatBaseUrl = config.get('services.webchat.url');
-const webChatClientBaseUrl = config.get('services.webchat.clientUrl');
 const { isIba } = require('./utils/benefitTypeUtils');
 
 const configureNunjucks = (app, commonContent) =>
@@ -69,27 +67,20 @@ const configureNunjucks = (app, commonContent) =>
       allowContactUs: config.get('features.allowContactUs.enabled') === 'true',
       contactUsWebFormEnabled: config.get('features.allowContactUs.webFormEnabled') === 'true',
       contactUsTelephoneEnabled: config.get('features.allowContactUs.telephoneEnabled') === 'true',
-      welshWebchatEnabled: config.get('features.allowContactUs.welshWebchatEnabled') === 'true',
-      kervWebchatEnabled: config.get('features.kervWebchatEnabled') === 'true',
       mediaFilesAllowed: config.get('features.evidenceUpload.mediaFilesAllowed.enabled') === 'true',
       webFormUrl: config.get('services.webForm.url'),
-      webChatClientUrl: webChatClientBaseUrl,
-      webChatUrl: webChatBaseUrl,
       kerv: {
         deploymentId: {
           en: config.get('services.kerv.deploymentId.en'),
           cy: config.get('services.kerv.deploymentId.cy')
         },
         genesysBaseUrl: config.get('services.kerv.genesysBaseUrl'),
-        environment: config.get('services.kerv.environment'),
-        kervBaseUrl: config.get('services.kerv.kervBaseUrl'),
-        apiKey: config.get('services.kerv.apiKey')
+        environment: config.get('services.kerv.environment')
       },
       paths,
       urls,
       allowNiEnabled: config.get('features.allowNI.enabled') === 'true',
-      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled,
-        webchatOpen8to5: () => process.env.WEBCHAT_OPENING_TIME_8_5 || config.features.webchatOpen8to5.enabled }
+      featureToggles: { welsh: () => process.env.FT_WELSH || config.features.welsh.enabled }
     }
   });
 const configureViews = app => {
@@ -123,8 +114,6 @@ const configureHelmet = app => {
       formAction: [`'self' ${config.get('services.idam.loginUrl')} ${config.get('services.pcq.url')}`],
       styleSrc: [
         '\'self\'',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/',
         '\'unsafe-inline\'',
         'vcc-eu4-cf.8x8.com'
       ],
@@ -141,8 +130,6 @@ const configureHelmet = app => {
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'vcc-eu4-cf.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/',
         'https://js-cdn.dynatrace.com',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js',
         'https://apps.euw2.pure.cloud/'
@@ -156,10 +143,6 @@ const configureHelmet = app => {
         'http://maxcdn.bootstrapcdn.com',
         'www.maxcdn.bootstrapcdn.com',
         'code.jquery.com',
-        'wss://webchat.pp.ctsc.hmcts.net',
-        'wss://webchat.ctsc.hmcts.net',
-        'https://webchat.pp.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net',
         'stats.g.doubleclick.net',
         'cloud8-cc-geo.8x8.com',
         'vcc-eu4-cf.8x8.com',
@@ -191,9 +174,7 @@ const configureHelmet = app => {
         '*.googletagmanager.com',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
-        'vcc-eu4-cf.8x8.com',
-        'https://webchat-client.pp.ctsc.hmcts.net/chat-client/',
-        'https://webchat-client.ctsc.hmcts.net/chat-client/'
+        'vcc-eu4-cf.8x8.com'
       ]
     }
   }));
