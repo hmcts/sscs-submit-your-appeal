@@ -17,7 +17,7 @@ describe(modulePath, () => {
       mockConfig.secrets = {
         sscs: {
           'session-secret': 'sessionValue',
-          'sscs-redis-access-key': 'redisValue',
+          'sscs-managed-redis-access-key': 'redisValue',
           'idam-sscs-oauth2-client-secret': 'idamValue',
           'postcode-lookup-token': 'osPlacesValue'
         }
@@ -28,7 +28,7 @@ describe(modulePath, () => {
       setupSecrets();
 
       expect(mockConfig.redis.secret).to.equal(
-        mockConfig.secrets.sscs['sscs-redis-access-key']
+        mockConfig.secrets.sscs['sscs-managed-redis-access-key']
       );
       expect(mockConfig.services.idam.secret).to.equal(
         mockConfig.secrets.sscs['idam-sscs-oauth2-client-secret']

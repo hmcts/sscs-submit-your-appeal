@@ -10,6 +10,7 @@ nodejs:
   environment:
     NODE_ENV: "preview"
     REDIS_URL: redis://${SERVICE_NAME}-hmcts-redis-master
+    REDIS_CLUSTER: "false"
     APPINSIGHTS_ROLE_NAME: ${SERVICE_NAME}
     ALLOW_CONFIG_MUTATIONS: true
     PCQ_URL: "https://pcq.aat.platform.hmcts.net"
@@ -44,13 +45,6 @@ hmcts-redis:
     enabled: false
   metrics:
     enabled: false
-idam-pr:
-  enabled: true
-  redirect_uris:
-    SSCS:
-      - https://${SERVICE_FQDN}/authenticated # this is the application callback URL where IDAM will send back the authentication code. SERVICE_FQDN is injected by Jenkins.
-      - https://iba-${SERVICE_FQDN}/authenticated
-
 global:
   security:
     allowInsecureImages: true
