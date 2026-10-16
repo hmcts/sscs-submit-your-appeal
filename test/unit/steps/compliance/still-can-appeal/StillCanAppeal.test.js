@@ -3,7 +3,7 @@ const paths = require('paths');
 const StillCanAppeal = require('steps/compliance/still-can-appeal/StillCanAppeal');
 const sinon = require('sinon');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { Interstitial } = require('@hmcts/one-per-page/src/steps');
+const { Interstitial } = require('lib/vendor/one-per-page/src/steps');
 
 describe('StillCanAppeal', () => {
   let stillCanAppeal = null;

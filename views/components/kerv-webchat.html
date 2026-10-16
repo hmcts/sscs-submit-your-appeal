@@ -57,9 +57,9 @@
     }
   </style>
   <script type="text/javascript">
-    (function (g, e, n, es) {
+    (function(g, e, n, es) {
       g._genesysJs = e;
-      g[e] = g[e] || function () { (g[e].q = g[e].q || []).push(arguments); };
+      g[e] = g[e] || function() { (g[e].q = g[e].q || []).push(arguments); };
       g[e].t = Date.now();
       g[e].c = es;
       /* inject the Genesys bootstrap script */
@@ -73,7 +73,7 @@
     Genesys(
         "subscribe",
         "Messenger.ready",
-        function () {
+        function() {
             Genesys("command", "Database.set",
                 { messaging: { customAttributes: { webReferrerPage: '${REFERRER_PAGE}' } } },
                 () => { console.log("database set"); },
@@ -84,7 +84,7 @@
     Genesys(
         "subscribe",
         "MessagingService.conversationCleared",
-        function () {
+        function() {
             Genesys("command", "Database.set",
                 { messaging: { customAttributes: { webReferrerPage: '${REFERRER_PAGE}' } } },
                 () => { console.log("database set"); },
@@ -92,8 +92,8 @@
             )
         }
     );
-    window.addEventListener('load', function () {
-      Genesys('subscribe', 'Messenger.ready', function () {
+    window.addEventListener('load', function() {
+      Genesys('subscribe', 'Messenger.ready', function() {
         Genesys('command', 'Messenger.open');
       });
     });

@@ -45,13 +45,18 @@ test.describe(`EN - IBCA out of time`, () => {
         );
         const ibcaPages = await PageFactory.getAllPages(page);
 
-        const creds = { username: userEmail, password: testData.sidamCredentials.password };
+        const creds = {
+          username: userEmail,
+          password: testData.sidamCredentials.password
+        };
 
         await ibcaPages.languagePreferencePage.goto();
 
         // Choose Language
         await runAssertions(ibcaPages.languagePreferencePage);
-        await ibcaPages.languagePreferencePage.chooseLanguage(testData.language);
+        await ibcaPages.languagePreferencePage.chooseLanguage(
+          testData.language
+        );
 
         // Agree to independent tribunal
         await runAssertions(ibcaPages.independencePage);
@@ -59,10 +64,7 @@ test.describe(`EN - IBCA out of time`, () => {
 
         // Create account page
         await runAssertions(ibcaPages.createAccountPage);
-        await ibcaPages.createAccountPage.saveForLater(
-          saveForLater,
-          creds
-        );
+        await ibcaPages.createAccountPage.saveForLater(saveForLater, creds);
 
         // Agree to independent tribunal - Repeat only if saveForLater set to true
         if (saveForLater) {
@@ -78,14 +80,18 @@ test.describe(`EN - IBCA out of time`, () => {
 
         // Enter RefNum
         await runAssertions(ibcaPages.ibcaRefNumPage);
-        await ibcaPages.ibcaRefNumPage.enterReferenceNumber(testData.ibcaRefNum);
+        await ibcaPages.ibcaRefNumPage.enterReferenceNumber(
+          testData.ibcaRefNum
+        );
 
         // Enter RefDate
         await runAssertions(ibcaPages.ibcaReferenceDatePage);
         const date = new Date();
         date.setMonth(date.getMonth() - refNumPredatedBy);
         date.setDate(15);
-        await ibcaPages.ibcaReferenceDatePage.enterDate(...getDayMonthYear(date));
+        await ibcaPages.ibcaReferenceDatePage.enterDate(
+          ...getDayMonthYear(date)
+        );
 
         await runAssertions(ibcaPages.ibcaReferenceLateDatePage);
         await ibcaPages.ibcaReferenceLateDatePage.isDateRight(true);

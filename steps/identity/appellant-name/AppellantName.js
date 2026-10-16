@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const { firstName, lastName } = require('utils/regex');
@@ -43,8 +43,24 @@ class AppellantName extends SaveToDraftStore {
   }
 
   titleSchema() {
-    const decodedTitles = this.decodedTitlesList();
-    return Joi.string().valid(decodedTitles);
+    // Some tests instantiate this class without `this.content` populated.
+    // Safely obtain the list of title values from content if present,
+    // otherwise fall back to the static `titlesList`.
+    let sourceOptions = null;
+    if (
+      this.content &&
+      this.content.fields &&
+      this.content.fields.title &&
+      Array.isArray(this.content.fields.title.options)
+    ) {
+      sourceOptions = this.content.fields.title.options.map(o =>
+        decode(o.value)
+      );
+    } else {
+      sourceOptions = titlesList.map(t => decode(t.value));
+    }
+    // Joi v17+ does not accept an array argument for .valid(), spread the array
+    return Joi.string().valid(...(sourceOptions || []));
   }
 
   get form() {

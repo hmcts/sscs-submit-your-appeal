@@ -1,5 +1,3 @@
-
-
 const NoRepresentativeDetails = require('steps/representative/no-representative-details/NoRepresentativeDetails');
 const { expect } = require('test/util/chai');
 const paths = require('paths');

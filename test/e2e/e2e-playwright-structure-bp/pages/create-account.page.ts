@@ -41,7 +41,7 @@ export class CreateAccountPage extends BasePage {
       return false;
     }
   }
-  
+
   async loginJourney(username: string, password: string): Promise<void> {
     const newLoginPresent = await this.isNewLoginPresent();
     console.log('signIn: newLoginPresent=', newLoginPresent);
@@ -49,7 +49,7 @@ export class CreateAccountPage extends BasePage {
     const loginFlow = newLoginPresent ? this.newSignInFlow : this.oldSignInFlow;
     await loginFlow.call(this, username, password);
   }
-    
+
 
   async saveForLater(saveOption: boolean, credentials: any = {}) {
     if (saveOption) {
