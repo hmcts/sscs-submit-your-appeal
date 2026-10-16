@@ -2,7 +2,10 @@ const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const idamExpressMiddlewareMock = require('mocks/services/idam');
 const idamWrapper = require('@hmcts/div-idam-express-middleware/wrapper');
 const idamCookies = require('@hmcts/div-idam-express-middleware/utilities/cookies');
-const { tokenCookieName, stateCookieName } = require('@hmcts/div-idam-express-middleware/config');
+const {
+  tokenCookieName,
+  stateCookieName
+} = require('@hmcts/div-idam-express-middleware/config');
 const config = require('config');
 const paths = require('paths');
 const Base64 = require('js-base64').Base64;
@@ -54,26 +57,31 @@ const setArgsFromRequest = req => {
   return args;
 };
 
-const getUserDetails = authToken => got.get(`${idamArgs.idamApiUrl}/o/userinfo`, {
-  headers: {
-    Authorization: `Bearer ${authToken}`,
-    Accept: 'application/json'
-  }
-}).json()
-  .then(userInfo => {
-    return {
-      id: userInfo.uid,
-      email: userInfo.email || userInfo.sub,
-      forename: userInfo.given_name,
-      surname: userInfo.family_name,
-      roles: userInfo.roles
-    };
-  });
+const getUserDetails = authToken =>
+  got
+    .get(`${idamArgs.idamApiUrl}/o/userinfo`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        Accept: 'application/json'
+      }
+    })
+    .json()
+    .then(userInfo => {
+      return {
+        id: userInfo.uid,
+        email: userInfo.email || userInfo.sub,
+        forename: userInfo.given_name,
+        surname: userInfo.family_name,
+        roles: userInfo.roles
+      };
+    });
 
 const redirectToIdamLogin = (args, res) => {
   const state = args.state();
   idamCookies.set(res, stateCookieName, state, args.hostName);
-  const idamLoginUrl = idamWrapper.setup(args).getIdamLoginUrl({ state, scope: args.scope });
+  const idamLoginUrl = idamWrapper
+    .setup(args)
+    .getIdamLoginUrl({ state, scope: args.scope, prompt: 'login' });
   res.redirect(idamLoginUrl);
 };
 
@@ -103,28 +111,39 @@ const redirectToIdam = (req, res, next) => {
   return redirectToIdamLogin(args, res);
 };
 
-const getAccessToken = (code, args) => got.post(`${args.idamApiUrl}/o/token`, {
-  form: {
-    grant_type: 'authorization_code',
-    code,
-    redirect_uri: args.redirectUri,
-    client_id: args.idamClientID,
-    client_secret: args.idamSecret
-  },
-  headers: { Accept: 'application/json' }
-}).json();
+const getAccessToken = (code, args) =>
+  got
+    .post(`${args.idamApiUrl}/o/token`, {
+      form: {
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: args.redirectUri,
+        client_id: args.idamClientID,
+        client_secret: args.idamSecret
+      },
+      headers: { Accept: 'application/json' }
+    })
+    .json();
 
 const exchangeCodeForSession = (req, res, next, args) => {
   const state = idamCookies.get(req, stateCookieName) || req.query.state;
   if (!state) {
-    logger.exception(new Error('State cookie does not exist'), 'middleware/idam');
+    logger.exception(
+      new Error('State cookie does not exist'),
+      'middleware/idam'
+    );
     return res.redirect(args.indexUrl);
   }
   idamCookies.remove(res, stateCookieName);
 
   return getAccessToken(req.query.code, args)
     .then(response => {
-      idamCookies.set(res, tokenCookieName, response.access_token, args.hostName);
+      idamCookies.set(
+        res,
+        tokenCookieName,
+        response.access_token,
+        args.hostName
+      );
       req.cookies = req.cookies || {};
       req.cookies[tokenCookieName] = response.access_token;
       return getUserDetails(response.access_token);
@@ -141,7 +160,10 @@ const exchangeCodeForSession = (req, res, next, args) => {
 
 const buildEndSessionUrl = (req, postLogoutRedirectPath) => {
   const endSessionUrl = new URL('/o/endSession', idamArgs.idamLoginUrl);
-  endSessionUrl.searchParams.append('post_logout_redirect_uri', `${protocol}://${req.get('host')}${postLogoutRedirectPath}`);
+  endSessionUrl.searchParams.append(
+    'post_logout_redirect_uri',
+    `${protocol}://${req.get('host')}${postLogoutRedirectPath}`
+  );
   return endSessionUrl.href;
 };
 
@@ -188,7 +210,8 @@ const methods = {
     }
     return next();
   },
-  userDetails: () => (useMock ? middleware.userDetails(idamArgs) : loadUserDetails())
+  userDetails: () =>
+    (useMock ? middleware.userDetails(idamArgs) : loadUserDetails())
 };
 
 module.exports = methods;
