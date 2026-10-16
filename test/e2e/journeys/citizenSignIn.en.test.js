@@ -64,7 +64,8 @@ test.describe(`${language.toUpperCase()} - Citizen, Sign in scenarios for SYA`, 
         page,
         commonContent,
         language,
-        '07411222222'
+        '07411222222',
+        userEmail
       );
       await checkOptionAndContinueAfterSignIn(
         page,
