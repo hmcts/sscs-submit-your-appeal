@@ -1,4 +1,4 @@
-const { BaseStep } = require('@hmcts/one-per-page');
+const { BaseStep } = require('lib/vendor/one-per-page');
 const paths = require('paths');
 
 class Sessions extends BaseStep {

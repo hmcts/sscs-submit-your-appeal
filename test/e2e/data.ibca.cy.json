@@ -95,11 +95,7 @@
       "other": false
     },
     "scheduleHearing": true,
-    "datesCantAttend": [
-      "04-04-2018",
-      "05-04-2018",
-      "06-04-2018"
-    ]
+    "datesCantAttend": ["04-04-2018", "05-04-2018", "06-04-2018"]
   },
   "signAndSubmit": {
     "signer": "Joe Bloggs"

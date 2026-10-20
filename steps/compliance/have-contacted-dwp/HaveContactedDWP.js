@@ -1,6 +1,6 @@
-const { redirectTo, goTo, branch } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo, goTo, branch } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { getBenefitCode, isFeatureFlagEnabled } = require('utils/stringUtils');
 const Joi = require('joi');
@@ -33,7 +33,9 @@ class HaveContactedDWP extends SaveToDraftStore {
     return form({
       haveContactedDWP: text.joi(
         this.content.fields.haveContactedDWP.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

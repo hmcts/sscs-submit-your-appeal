@@ -1,6 +1,6 @@
 const paths = require('paths');
-const { Redirect } = require('@hmcts/one-per-page');
-const { goTo } = require('@hmcts/one-per-page/flow');
+const { Redirect } = require('lib/vendor/one-per-page');
+const { goTo } = require('lib/vendor/one-per-page/flow');
 const { resetJourney } = require('middleware/draftAppealStoreMiddleware');
 
 class EditAppeal extends Redirect {

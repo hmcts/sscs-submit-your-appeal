@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const { postCode, whitelistNotFirst } = require('utils/regex');
@@ -21,7 +21,9 @@ const { isIba } = require('utils/benefitTypeUtils');
 const i18next = require('i18next');
 
 const allowNI = config.get('features.allowNI.enabled');
-const ibaPostcodeMessage = allowNI ? 'invalidPostcodeIbaNI' : 'invalidPostcodeIba';
+const ibaPostcodeMessage = allowNI ?
+  'invalidPostcodeIbaNI' :
+  'invalidPostcodeIba';
 
 const usePostcodeChecker = config.get('postcodeChecker.enabled');
 const url = config.postcodeLookup.url;
@@ -72,7 +74,8 @@ class AppellantContactDetails extends SaveToDraftStore {
 
   get CYAEmailAddress() {
     return (
-      this.fields.emailAddress.value || userAnswer[i18next.language].NOT_PROVIDED
+      this.fields.emailAddress.value ||
+      userAnswer[i18next.language].NOT_PROVIDED
     );
   }
 
@@ -201,14 +204,22 @@ class AppellantContactDetails extends SaveToDraftStore {
     return {
       appellant: {
         contactDetails: {
-          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ? decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) : '',
-          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ? decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) : '',
+          postcodeLookup: this.fields[this.pcl.fieldMap.postcodeLookup] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeLookup].value) :
+            '',
+          postcodeAddress: this.fields[this.pcl.fieldMap.postcodeAddress] ?
+            decode(this.fields[this.pcl.fieldMap.postcodeAddress].value) :
+            '',
           addressLine1: decode(this.fields.addressLine1.value),
           addressLine2: decode(this.fields.addressLine2.value),
           townCity: decode(this.fields.townCity.value),
           county: decode(this.fields.county.value),
-          postCode: this.fields.postCode.value ? this.fields.postCode.value.trim() : this.fields.postCode.value,
-          phoneNumber: this.fields.phoneNumber.value ? this.fields.phoneNumber.value.trim() : this.fields.phoneNumber.value,
+          postCode: this.fields.postCode.value ?
+            this.fields.postCode.value.trim() :
+            this.fields.postCode.value,
+          phoneNumber: this.fields.phoneNumber.value ?
+            this.fields.phoneNumber.value.trim() :
+            this.fields.phoneNumber.value,
           emailAddress: this.fields.emailAddress.value
         }
       }

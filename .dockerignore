@@ -31,6 +31,7 @@
 !webpack/**
 !cookie-banner
 !cookie-banner/**
+!lib/**
 
 !app.js
 !appConfigurations.js
