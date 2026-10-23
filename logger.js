@@ -16,7 +16,13 @@ module.exports = class Logger {
     const activeConnStr = connStr || connectionString;
     connectionString = activeConnStr;
 
-    if (enabled && activeConnStr && !applicationInsights.defaultClient) {
+    if (applicationInsights.defaultClient) {
+      return (req, res, next) => next();
+    }
+
+    const isRealKey = String(activeConnStr).includes('IngestionEndpoint=');
+
+    if (enabled && isRealKey) {
       const roleName = serviceName || config.get('appInsights.roleName');
       applicationInsights.setup(activeConnStr)
         .setAutoCollectRequests(true)
@@ -27,10 +33,11 @@ module.exports = class Logger {
         .setUseDiskRetryCaching(true)
         .setSendLiveMetrics(true)
         .start();
+
       applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = roleName;
       this.console(`Application Insights enabled with role name: ${roleName}`, 1);
-    } else if (!enabled || !activeConnStr) {
-      this.console('Application Insights is disabled: Connection string is empty or config is set to false.', 2);
+    } else {
+      this.console('Application Insights is disabled: Connection string is invalid or empty', 2);
     }
 
     return (req, res, next) => next();

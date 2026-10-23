@@ -5,6 +5,7 @@ const setupSecrets = require('services/setupSecrets');
 setupSecrets();
 
 const logger = require('logger');
+
 logger.monitoringMiddleware({
   connectionString: config.get('appInsights.connectionString'),
   serviceName: config.get('appInsights.roleName'),
@@ -12,6 +13,7 @@ logger.monitoringMiddleware({
 });
 
 const s2s = require('services/s2s');
+
 s2s.initTokenRefresh();
 
 const app = require('app.js');
