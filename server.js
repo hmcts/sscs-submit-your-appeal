@@ -1,13 +1,20 @@
 const config = require('@hmcts/properties-volume').addTo(require('config'));
 const setupSecrets = require('services/setupSecrets');
-const s2s = require('services/s2s');
 
 // Setup secrets before loading the app
 setupSecrets();
+
+const logger = require('logger');
+logger.monitoringMiddleware({
+  connectionString: config.get('appInsights.connectionString'),
+  serviceName: config.get('appInsights.roleName'),
+  enabled: config.get('appInsights.enabled')
+});
+
+const s2s = require('services/s2s');
 s2s.initTokenRefresh();
 
 const app = require('app.js');
-const logger = require('logger');
 const https = require('https');
 
 const fs = require('graceful-fs');

@@ -16,10 +16,9 @@ module.exports = class Logger {
     const activeConnStr = connStr || connectionString;
     connectionString = activeConnStr;
 
-    if (enabled && activeConnStr) {
+    if (enabled && activeConnStr && !applicationInsights.defaultClient) {
       const roleName = serviceName || config.get('appInsights.roleName');
       applicationInsights.setup(activeConnStr)
-        .setInternalLogging(true, true)
         .setAutoCollectRequests(true)
         .setAutoCollectPerformance(true, true)
         .setAutoCollectExceptions(true)
@@ -30,7 +29,7 @@ module.exports = class Logger {
         .start();
       applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = roleName;
       this.console(`Application Insights enabled with role name: ${roleName}`, 1);
-    } else {
+    } else if (!enabled || !activeConnStr) {
       this.console('Application Insights is disabled: Connection string is empty or config is set to false.', 2);
     }
 
