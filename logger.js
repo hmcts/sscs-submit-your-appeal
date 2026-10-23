@@ -24,18 +24,27 @@ module.exports = class Logger {
 
     if (enabled && isRealKey) {
       const roleName = serviceName || config.get('appInsights.roleName');
+      const isTestEnv = process.env.NODE_ENV === 'testing' || String(activeConnStr).includes('test-key');
       applicationInsights.setup(activeConnStr)
         .setAutoCollectRequests(true)
         .setAutoCollectPerformance(true, true)
         .setAutoCollectExceptions(true)
-        .setAutoCollectDependencies(true)
+        .setAutoCollectDependencies(!isTestEnv)
         .setAutoCollectConsole(true, true)
         .setUseDiskRetryCaching(true)
         .setSendLiveMetrics(true)
-        .start();
+        .setDistributedTracingMode(applicationInsights.DistributedTracingModes.AI_AND_W3C);
 
       applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = roleName;
+      applicationInsights.start();
+
       this.console(`Application Insights enabled with role name: ${roleName}`, 1);
+      try {
+        applicationInsights.defaultClient.trackTrace({ message: `SYA App Insights forced startup trace for ${roleName}` });
+        applicationInsights.defaultClient.flush();
+      } catch (error) {
+        this.console(`Forced trace skipped (running in test context) due to error: ${error}`, 1);
+      }
     } else {
       this.console('Application Insights is disabled: Connection string is invalid or empty', 2);
     }
