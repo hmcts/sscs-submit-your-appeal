@@ -20,8 +20,7 @@
     "draftUrl": "DRAFT_API_URL"
   },
   "appInsights": {
-    "connectionString": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-    "roleName": "APPINSIGHTS_ROLE_NAME"
+    "connectionString": "APPLICATIONINSIGHTS_CONNECTION_STRING"
   },
   "e2e": {
     "waitForTimeout": "E2E_WAIT_FOR_TIMEOUT_VALUE",

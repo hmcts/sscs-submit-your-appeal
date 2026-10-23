@@ -1,27 +1,40 @@
 /* eslint-disable no-magic-numbers */
 
-
-const applicationInsights = require('applicationinsights');
 const config = require('config');
 const chalk = require('chalk');
 
-let iKey = config.get('appInsights.connectionString');
+if (config.has('appInsights.roleName')) {
+  process.env.APPLICATIONINSIGHTS_ROLE_NAME = config.get('appInsights.roleName');
+}
+const applicationInsights = require('applicationinsights');
+
+let connectionString = config.get('appInsights.connectionString');
 
 module.exports = class Logger {
-  static setIkey(iKeyVal) {
-    iKey = iKeyVal;
-  }
+  static monitoringMiddleware(appInsightsConfig = {}) {
+    const { serviceName, connectionString: connStr, enabled = true } = appInsightsConfig;
+    const activeConnStr = connStr || connectionString;
+    connectionString = activeConnStr;
 
-  static startAppInsights() {
-    if (iKey !== '') {
-      applicationInsights.setup(iKey)
+    if (enabled && activeConnStr) {
+      const roleName = serviceName || config.get('appInsights.roleName');
+      applicationInsights.setup(activeConnStr)
+        .setInternalLogging(true, true)
+        .setAutoCollectRequests(true)
+        .setAutoCollectPerformance(true, true)
+        .setAutoCollectExceptions(true)
+        .setAutoCollectDependencies(true)
         .setAutoCollectConsole(true, true)
-        .setDistributedTracingMode(applicationInsights.DistributedTracingModes.AI_AND_W3C)
-        .setSendLiveMetrics(true);
-      const client = applicationInsights.defaultClient;
-      client.context.tags[client.context.keys.cloudRole] = config.appInsights.roleName;
-      applicationInsights.start();
+        .setUseDiskRetryCaching(true)
+        .setSendLiveMetrics(true)
+        .start();
+      applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = roleName;
+      this.console(`Application Insights enabled with role name: ${roleName}`, 1);
+    } else {
+      this.console('Application Insights is disabled: Connection string is empty or config is set to false.', 2);
     }
+
+    return (req, res, next) => next();
   }
 
   static exception(error, label, postToAppInsights = true) {
@@ -33,11 +46,11 @@ module.exports = class Logger {
         const msg = this.msgBuilder(error, label);
         errorObj = new Error(msg);
       }
-      // Pass it to appinsights
-      if (iKey !== '' && postToAppInsights) {
+
+      if (connectionString !== '' && postToAppInsights && applicationInsights.defaultClient) {
         applicationInsights.defaultClient.trackException({ exception: errorObj });
       }
-      // Write Error to Console
+
       this.console(errorObj, 3);
     } catch (catchError) {
       console.log('Exception Catch Error', catchError);
@@ -47,15 +60,16 @@ module.exports = class Logger {
   static trace(messageInfo, label, severity = 1, properties = {}, postToAppInsights = true) {
     try {
       const msg = this.msgBuilder(messageInfo, label);
-      // Pass it to appinsights
-      if (iKey !== '' && postToAppInsights) {
+
+      if (connectionString !== '' && postToAppInsights && applicationInsights.defaultClient) {
         applicationInsights.defaultClient.trackTrace({
           message: msg,
           severity,
           properties
         });
       }
-      if (this.isObject(properties) && Object.keys(properties) > 0) {
+
+      if (this.isObject(properties) && Object.keys(properties).length > 0) {
         this.console(msg, severity, properties);
       } else {
         this.console(msg, severity);
@@ -67,11 +81,11 @@ module.exports = class Logger {
 
   static event(eventName, postToAppInsights = true) {
     try {
-      if (iKey !== '' && postToAppInsights) {
+      if (connectionString !== '' && postToAppInsights && applicationInsights.defaultClient) {
         applicationInsights.defaultClient.trackEvent({ name: eventName });
       }
-    } catch (cactchError) {
-      console.log('Event Catch Error', cactchError);
+    } catch (catchError) {
+      console.log('Event Catch Error', catchError);
     }
   }
 

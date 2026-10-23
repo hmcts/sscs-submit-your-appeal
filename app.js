@@ -1,7 +1,6 @@
-require('logger').startAppInsights();
-
 const config = require('config');
 const express = require('express');
+const logger = require('logger');
 const events = require('events');
 const commonContent = require('commonContent.json');
 const url = require('url');
@@ -18,6 +17,12 @@ const {
 } = require('./appConfigurations');
 
 const app = express();
+
+app.use(logger.monitoringMiddleware({
+  connectionString: config.get('appInsights.connectionString'),
+  serviceName: config.get('appInsights.roleName'),
+  enabled: config.get('appInsights.enabled')
+}));
 
 const port = config.get('node.port');
 
