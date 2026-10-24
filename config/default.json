@@ -25,6 +25,7 @@
     "bankHolidaysUrl": "https://www.gov.uk/bank-holidays.json"
   },
   "appInsights": {
+    "enabled": true,
     "connectionString": "",
     "roleName": "sya"
   },
