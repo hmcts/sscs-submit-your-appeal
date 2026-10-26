@@ -59,8 +59,8 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.29.5",
+    "@babel/core": "^8.0.0",
+    "@babel/preset-env": "^8.0.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
     "@hmcts/cookie-manager": "^1.0.0",
@@ -121,7 +121,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
-    "@babel/register": "^7.27.1",
+    "@babel/register": "^8.0.0",
     "@hmcts/eslint-config": "^1.4.0",
     "@playwright/test": "^1.52.0",
     "chai": "^4.5.0",
@@ -153,8 +153,8 @@
     "qs": "^6.16.0",
     "micromatch": "^4.0.8",
     "path-to-regexp": "^0.1.13",
-    "@babel/helpers": "^7.26.10",
-    "@babel/runtime": "^7.26.10",
+    "@babel/helpers": "^8.0.0",
+    "@babel/runtime": "^8.0.0",
     "cookie": "^1.0.0",
     "superagent": "^10.3.0",
     "express-session": "^1.18.2",
