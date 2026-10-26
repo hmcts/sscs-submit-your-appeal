@@ -1,5 +1,3 @@
-require('logger').startAppInsights();
-
 const config = require('config');
 const express = require('express');
 const events = require('events');
