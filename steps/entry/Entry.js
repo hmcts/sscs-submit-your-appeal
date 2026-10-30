@@ -1,4 +1,4 @@
-const { goTo } = require('@hmcts/one-per-page');
+const { goTo } = require('lib/vendor/one-per-page');
 const {
   RestoreFromDraftStore
 } = require('middleware/draftAppealStoreMiddleware');

@@ -3,7 +3,7 @@ const paths = require('paths');
 const NeedRDN = require('steps/compliance/need-rdn/NeedRDN');
 const sinon = require('sinon');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('lib/vendor/one-per-page');
 
 describe('NeedRDN.js', () => {
   let needRDN = null;

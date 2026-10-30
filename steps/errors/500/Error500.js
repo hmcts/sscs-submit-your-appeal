@@ -1,5 +1,5 @@
 /* eslint-disable no-throw-literal  */
-const { Page } = require('@hmcts/one-per-page');
+const { Page } = require('lib/vendor/one-per-page');
 
 class Error500 extends Page {
   static get path() {

@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { postCode, whitelistNotFirst } = require('utils/regex');
 const logger = require('logger');

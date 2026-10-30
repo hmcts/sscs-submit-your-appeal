@@ -1,5 +1,3 @@
-
-
 const OtherReasonForAppealing = require('steps/reasons-for-appealing/other-reasons-for-appealing/OtherReasonForAppealing');
 const sections = require('steps/check-your-appeal/sections');
 const { expect } = require('test/util/chai');

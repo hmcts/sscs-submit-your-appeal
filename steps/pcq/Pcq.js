@@ -1,5 +1,5 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
+const { goTo } = require('lib/vendor/one-per-page');
+const { form, text } = require('lib/vendor/one-per-page/forms');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { v4: uuidv4 } = require('uuid');
 const paths = require('paths');

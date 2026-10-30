@@ -65,7 +65,8 @@ describe('AppellantName.js', () => {
 
         for (const testTitle of titlesList) {
           const result = schema.validate(decode(testTitle.value));
-          expect(result.error).to.eq(null);
+          // Joi v18 returns `undefined` for no error; accept `null` or `undefined`.
+          expect([null, undefined]).to.include(result.error);
         }
       });
 

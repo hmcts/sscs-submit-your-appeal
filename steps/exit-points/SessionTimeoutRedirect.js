@@ -1,5 +1,5 @@
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { Redirect } = require('@hmcts/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { Redirect } = require('lib/vendor/one-per-page');
 const paths = require('paths');
 
 class SessionTimeoutRedirect extends Redirect {

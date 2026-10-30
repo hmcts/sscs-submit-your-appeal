@@ -1,0 +1,7 @@
+{
+  "name": "@hmcts/one-per-page",
+  "version": "5.4.0-vendored",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "Vendored minimal subset of @hmcts/one-per-page for sya project"
+}

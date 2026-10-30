@@ -13,12 +13,12 @@ describe('BranchForEnglandOrWales.js', () => {
       const BranchForEnglandOrWales = proxyquire(
         'steps/start/postcode-checker/BranchForEnglandOrWales',
         {
-          '@hmcts/one-per-page': {
+          'lib/vendor/one-per-page': {
             branch: () => {
               return { redirect: branchRedirectStub };
             }
           },
-          '@hmcts/one-per-page/flow': {
+          'lib/vendor/one-per-page/flow': {
             redirectTo: () => {
               return { redirect: redirectStub };
             }
