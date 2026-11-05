@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. NODE_OPTIONS=--openssl-legacy-provider node server.js",
