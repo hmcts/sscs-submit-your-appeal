@@ -2809,7 +2809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@standard-schema/spec@npm:^1.0.0":
+"@standard-schema/spec@npm:^1.1.0":
   version: 1.1.0
   resolution: "@standard-schema/spec@npm:1.1.0"
   checksum: 10/a209615c9e8b2ea535d7db0a5f6aa0f962fd4ab73ee86a46c100fb78116964af1f55a27c1794d4801e534a196794223daa25ff5135021e03c7828aa3d95e1763
@@ -7632,9 +7632,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^18.0.2":
-  version: 18.0.2
-  resolution: "joi@npm:18.0.2"
+"joi@npm:^18.3.1":
+  version: 18.3.1
+  resolution: "joi@npm:18.3.1"
   dependencies:
     "@hapi/address": "npm:^5.1.1"
     "@hapi/formula": "npm:^3.0.2"
@@ -7642,8 +7642,8 @@ __metadata:
     "@hapi/pinpoint": "npm:^2.0.1"
     "@hapi/tlds": "npm:^1.1.1"
     "@hapi/topo": "npm:^6.0.2"
-    "@standard-schema/spec": "npm:^1.0.0"
-  checksum: 10/0cf4980cafff311696cfb80618e1725c317153e927947ecb06e452142b89981979b50fca432d4d5e9f321b28ffc8bcbed96872a3a62aa704323055d8295c9b5a
+    "@standard-schema/spec": "npm:^1.1.0"
+  checksum: 10/2ebcb82bb507c9e8d28a71fab6e0111b59ec5ab8d88b6096c49e8d39c411692e871f35401a6a72d96ef6f7f437d5e7936d5e17466a65887c0530a1d15bc7a972
   languageName: node
   linkType: hard
 
@@ -8615,10 +8615,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment@npm:^2.29.4, moment@npm:^2.30.1":
+"moment@npm:^2.29.4":
   version: 2.30.1
   resolution: "moment@npm:2.30.1"
   checksum: 10/ae42d876d4ec831ef66110bdc302c0657c664991e45cf2afffc4b0f6cd6d251dde11375c982a5c0564ccc0fa593fc564576ddceb8c8845e87c15f58aa6baca69
+  languageName: node
+  linkType: hard
+
+"moment@npm:^2.31.0":
+  version: 2.31.0
+  resolution: "moment@npm:2.31.0"
+  checksum: 10/fd3708d46f820c64fe1e064a60747533a55ee0aefd944490e18f08b2a83a5b6418bb4f42e1de47ef1f1a29f450c7ac41edd1fa6f940db30ded247c9717301b9f
   languageName: node
   linkType: hard
 
@@ -11416,7 +11423,7 @@ __metadata:
     husky: "npm:^9.1.7"
     i18next: "npm:^25.8.5"
     instant-mocha: "npm:^1.5.3"
-    joi: "npm:^18.0.2"
+    joi: "npm:^18.3.1"
     jquery: "npm:^3.7.1"
     jquery-modal: "npm:^0.9.2"
     js-base64: "npm:^3.7.7"
@@ -11427,7 +11434,7 @@ __metadata:
     lodash-es: "npm:^4.18.0"
     mini-css-extract-plugin: "npm:^2.9.2"
     mocha: "npm:^11.7.6"
-    moment: "npm:^2.30.1"
+    moment: "npm:^2.31.0"
     nock: "npm:^14.0.4"
     node-emoji: "npm:^2.2.0"
     nodemon: "npm:^3.1.10"
