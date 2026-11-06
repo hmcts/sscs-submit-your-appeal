@@ -1,5 +1,3 @@
-
-
 const { expect } = require('test/util/chai');
 const MRNOverThirteenMonthsLate = require('steps/compliance/mrn-over-thirteen-months-late/MRNOverThirteenMonthsLate');
 const sections = require('steps/check-your-appeal/sections');

@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { text, form } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { text, form } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
@@ -39,12 +39,12 @@ class AppellantInternationalContactDetails extends SaveToDraftStore {
     const validCountries = getCountriesOfResidence().map(
       country => country.value
     );
-    return Joi.string().valid(validCountries);
+    return Joi.string().valid(...validCountries);
   }
 
   validPortSchema() {
     const validPorts = getPortsOfEntry().map(port => port.value);
-    return Joi.string().valid(validPorts);
+    return Joi.string().valid(...validPorts);
   }
 
   get form() {

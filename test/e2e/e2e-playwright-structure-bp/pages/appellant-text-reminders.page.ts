@@ -2,9 +2,9 @@ import { BasePage } from './ibca-base.page';
 
 export class AppellantTextRemindersPage extends BasePage {
   defaultPageContent: any = {
-    "heading": "Do you want to receive text message notifications?",
-    "bodyContents": [
-      "You’ll only get them when something important happens on your appeal. You won’t be charged to receive them."
+    heading: 'Do you want to receive text message notifications?',
+    bodyContents: [
+      'You’ll only get them when something important happens on your appeal. You won’t be charged to receive them.'
     ]
   };
 
@@ -12,11 +12,14 @@ export class AppellantTextRemindersPage extends BasePage {
     if (smsNotify.wantsSMSNotifications) {
       await this.page.getByText('Yes').click();
       await this.submitPage();
-      await this.page.getByRole('radio', { name: 'No, send them to a different' }).check();
+      await this.page
+        .getByRole('radio', { name: 'No, send them to a different' })
+        .check();
       await this.submitPage();
-      await this.page.getByRole('textbox', { name: 'Mobile number' }).fill(smsNotify.smsNumber);
+      await this.page
+        .getByRole('textbox', { name: 'Mobile number' })
+        .fill(smsNotify.smsNumber);
       await this.submitPage();
-
     } else {
       await this.page.getByText('No').click();
     }

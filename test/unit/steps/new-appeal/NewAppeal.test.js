@@ -3,7 +3,7 @@ const paths = require('paths');
 const NewAppeal = require('steps/new-appeal/NewAppeal');
 const sinon = require('sinon');
 const benefitTypes = require('../../../../steps/start/benefit-type/types');
-const { Redirect } = require('@hmcts/one-per-page');
+const { Redirect } = require('lib/vendor/one-per-page');
 
 describe('NewAppeal.js', () => {
   let newAppeal = null;
