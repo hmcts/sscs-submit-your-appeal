@@ -1,0 +1,24 @@
+<ul id='errors'>
+  {% for error in fields.errors %}
+  <li>{{ error.field.id }}: {{ error.message }}</li>
+  {% endfor %}
+</ul>
+
+<span id="form-validated">{{ fields.validated }}</span>
+<span id="form-filled">{{ fields.isFilled }}</span>
+
+{% if fields.item %}
+<div id="item">
+  <span class="value">{{ fields.item.value | default('no value') }}</span>
+  <span class="validated">{{ fields.item.validated }}</span>
+  <span class="valid">{{ fields.item.valid }}</span>
+</div>
+{% endif %}
+
+{% for fieldName, item in fields.items.fields %}
+<div id="item-{{ fieldName }}">
+  <span class="value">{{ item.value | default('no value') }}</span>
+  <span class="valid">{{ item.valid }}</span>
+  <span class="errors">{{ item.errors }}</span>
+</div>
+{% endfor %}
