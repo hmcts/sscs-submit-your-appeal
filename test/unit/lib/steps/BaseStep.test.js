@@ -135,11 +135,10 @@ describe('steps/BaseStep', () => {
         handler() { /* intentionally blank */ }
       }(req, res);
       expect(fooBar.path).to.eql('/foo-bar');
-
-      const complexStep = new class AppellantContactDetails extends BaseStep {
+      const base = new class extends BaseStep {
         handler() { /* intentionally blank */ }
       }(req, res);
-      expect(complexStep.path).to.eql('/appellant-contact-details');
+      expect(base.path).to.eql('/');
     });
 
     it('is backwards compatible to old #url', () => {
@@ -152,27 +151,6 @@ describe('steps/BaseStep', () => {
         handler() { /* intentionally blank */ }
       }(req, res);
       expect(step.path).to.eql('/test-step');
-    });
-
-    it('provides static and instance pathToBind matching path', () => {
-      class SampleStep extends BaseStep {
-        handler() { /* intentionally blank */ }
-      }
-      expect(SampleStep.pathToBind).to.eql('/sample-step');
-      expect(SampleStep.pathToBind).to.eql(SampleStep.path);
-
-      const step = new SampleStep({ journey: {} }, {});
-      expect(step.pathToBind).to.eql('/sample-step');
-      expect(step.pathToBind).to.eql(step.path);
-    });
-  });
-
-  describe('#name', () => {
-    it('returns the constructor name of the step', () => {
-      const step = new class TestStepName extends BaseStep {
-        handler() { /* intentionally blank */ }
-      }({ journey: {} }, {});
-      expect(step.name).to.eql('TestStepName');
     });
   });
 

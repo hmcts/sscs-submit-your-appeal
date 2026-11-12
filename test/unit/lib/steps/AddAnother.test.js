@@ -260,9 +260,9 @@ describe('steps/AddAnother', () => {
           .withSession({ AddAText: { items: ['foo', 'bar'] } })
           .get()
           .expect(OK)
-          .html(document => {
-            expect(document.querySelector('#item-0').textContent).to.contain('foo');
-            expect(document.querySelector('#item-1').textContent).to.contain('bar');
+          .html($ => {
+            expect($('#item-0 .value').text()).to.equal('foo');
+            expect($('#item-1 .value').text()).to.equal('bar');
           });
       });
 
@@ -276,8 +276,8 @@ describe('steps/AddAnother', () => {
           .withSession({ ValidateAList: { items: ['foo'] } })
           .get()
           .expect(OK)
-          .html(document => {
-            expect(document.querySelector('#errors').textContent).contains('min 2');
+          .html($ => {
+            expect($('#errors').text()).to.contain('min 2');
           });
       });
 
@@ -291,10 +291,10 @@ describe('steps/AddAnother', () => {
           .withSession({ ValidateAText: { items: ['foo', 'bar'] } })
           .get()
           .expect(OK)
-          .html(document => {
-            expect(document.querySelector('#item-0 .valid').textContent).to.contain('false');
-            expect(document.querySelector('#item-0 .errors').textContent).to.contain('no foos');
-            expect(document.querySelector('#item-1 .valid').textContent).to.contain('true');
+          .html($ => {
+            expect($('#item-0 .valid').text()).to.contain('false');
+            expect($('#item-0 .errors').text()).to.contain('no foos');
+            expect($('#item-1 .valid').text()).to.contain('true');
           });
       });
 
@@ -303,9 +303,9 @@ describe('steps/AddAnother', () => {
           .withSession({})
           .get()
           .expect(OK)
-          .html(document => {
-            expect(document.querySelector('#form-filled').textContent).to.contain('false');
-            expect(document.querySelector('#form-validated').textContent).to.contain('false');
+          .html($ => {
+            expect($('#form-filled').text()).to.contain('false');
+            expect($('#form-validated').text()).to.contain('false');
           });
       });
     });
@@ -321,8 +321,8 @@ describe('steps/AddAnother', () => {
           .withSession({ ValidateAList: { items: ['foo'] } })
           .post()
           .expect(OK)
-          .html(document => {
-            expect(document.querySelector('#errors').textContent).to.contain('min 2');
+          .html($ => {
+            expect($('#errors').text()).to.contain('min 2');
           });
       });
 
@@ -354,8 +354,8 @@ describe('steps/AddAnother', () => {
           .withSession({ AddAText: { items: ['foo', 'bar'] } })
           .get('/add-a-text/item-0')
           .expect(OK)
-          .html(document => {
-            return expect(document.querySelector('#item .value').textContent).to.contain('foo');
+          .html($ => {
+            return expect($('#item .value').text()).to.contain('foo');
           });
       });
 
@@ -372,9 +372,9 @@ describe('steps/AddAnother', () => {
           return request
             .get('/validate-a-text/item-0')
             .expect(OK)
-            .html(document => {
-              expect(document.querySelector('#item .validated').textContent).to.contain('true');
-              expect(document.querySelector('#item .valid').textContent).to.contain('false');
+            .html($ => {
+              expect($('#item .validated').text()).to.contain('true');
+              expect($('#item .valid').text()).to.contain('false');
             });
         });
 
@@ -382,9 +382,9 @@ describe('steps/AddAnother', () => {
           return request
             .get('/validate-a-text/item-1')
             .expect(OK)
-            .html(document => {
-              expect(document.querySelector('#item .value').textContent).to.contain('no value');
-              expect(document.querySelector('#item .validated').textContent).to.contain('false');
+            .html($ => {
+              expect($('#item .value').text()).to.contain('no value');
+              expect($('#item .validated').text()).to.equal('false');
             });
         });
       }
@@ -438,8 +438,8 @@ describe('steps/AddAnother', () => {
           .withSession({})
           .post('/validate-a-text/item-0')
           .expect(OK)
-          .html(document => {
-            return expect(document.querySelector('#errors').textContent).to.contain('item: always fails');
+          .html($ => {
+            return expect($('#errors').text()).to.contain('item: always fails');
           });
       });
 

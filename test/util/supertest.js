@@ -2,9 +2,8 @@ const express = require('express');
 const supertest = require('supertest');
 const session = require('lib/vendor/one-per-page/src/session');
 const { expressNunjucks } = require('express-nunjucks');
-const jsdom = require('jsdom');
-
-const { JSDOM } = jsdom;
+const domino = require('domino');
+const zepto = require('zepto-node');
 const { expect } = require('test/util/chai');
 const { i18nMiddleware } = require('lib/vendor/one-per-page/src/i18n/i18Next');
 const { defined } = require('lib/vendor/one-per-page/src/util/checks');
@@ -16,19 +15,14 @@ function testApp(views = []) {
   const app = express();
 
   const viewsDirs = [
-    path.resolve(__dirname, '../../views'),
-    path.resolve(__dirname, '../views'),
-    ...views
+    path.resolve(__dirname, '../../test/views'),
+    path.resolve(__dirname, '../../test/steps/check-your-answers/fixtures')
   ];
 
   app.set('views', viewsDirs);
   app.set('view engine', 'html');
 
-  expressNunjucks(app, {
-    autoescape: true,
-    watch: true,
-    noCache: true
-  });
+  expressNunjucks(app);
 
   return app;
 }
@@ -42,7 +36,7 @@ const _middleware = Symbol('middleware');
 const supertestInstance = stepDSL => {
   if (stepDSL[_supertest]) return stepDSL[_supertest];
 
-  const app = testApp(stepDSL.viewsDirs || []);
+  const app = testApp(stepDSL.viewsDirs);
   stepDSL[_app] = app;
 
   app.use((req, res, next) => {
@@ -75,8 +69,9 @@ const supertestInstance = stepDSL => {
 const wrapWithResponseAssertions = supertestObj => {
   supertestObj.html = assertions => {
     return supertestObj.then(res => {
-      const dom = new JSDOM(res.text);
-      return assertions(dom.window.document);
+      const _window = domino.createWindow(res.text);
+      const $ = zepto(_window);
+      return assertions($);
     });
   };
   supertestObj.text = assertions => {
@@ -125,7 +120,7 @@ class TestStepDSL {
     this.step = constructorFrom(step);
     this.body = body;
     this[_middleware] = middleware;
-    this.viewsDirs = [];
+    this.viewDirs = [];
   }
 
   static create(step) {
@@ -153,7 +148,7 @@ class TestStepDSL {
   }
 
   withViews(...viewDirs) {
-    this.viewsDirs = [...viewDirs, ...(this.viewsDirs || [])];
+    this.viewsDirs = [...viewDirs, ...this.viewDirs];
     return this;
   }
 

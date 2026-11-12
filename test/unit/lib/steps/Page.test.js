@@ -60,7 +60,7 @@ describe('Page', () => {
       const request = testStep(page).get();
 
       it(`renders a template named ${template}`, () => {
-        return request.html(document => expect(document.querySelector('h1').textContent).to.equal('Hello, World!'));
+        return request.html($ => expect($('h1').text()).to.equal('Hello, World!'));
       });
     });
 
@@ -110,7 +110,7 @@ describe('Page', () => {
       const request = testStep(page).get();
 
       it(`renders content from ${content}`, () => {
-        return request.html(document => expect(document.querySelector('#singleKey').textContent).to.equal('Single Key'));
+        return request.html($ => expect($('#singleKey').text()).to.equal('Single Key'));
       });
     });
 
@@ -128,11 +128,11 @@ describe('Page', () => {
         .get();
 
       it('supports nested keys', () => {
-        return request.html(document => expect(document.querySelector('#nestedKey').textContent).to.equal('Nested Key'));
+        return request.html($ => expect($('#nestedKey').text()).to.equal('Nested Key'));
       });
 
       it('has access to arbitrary functions on the step', () => {
-        return request.html(document => expect(document.querySelector('#funcKey').textContent).to.equal('Foo is Foo'));
+        return request.html($ => expect($('#funcKey').text()).to.equal('Foo is Foo'));
       });
     }
   });

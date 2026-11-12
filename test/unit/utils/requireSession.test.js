@@ -36,7 +36,7 @@ describe('session/requireSession', () => {
       return testStep(page)
         .withSetup(req => req.session.generate())
         .get()
-        .html(document => expect(document.querySelector('h1').textContent).to.contain('Hello, World!'));
+        .html($ => expect($('h1').text()).to.equal('Hello, World!'));
     });
   });
 });

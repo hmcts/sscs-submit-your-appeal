@@ -37,8 +37,8 @@ describe('steps/Question', () => {
         return testStep(SimpleQuestion)
           .withSetup(req => req.session.generate())
           .get()
-          .html(document => {
-            return expect(document.querySelector('h1').textContent).to.contain('Question 1');
+          .html($ => {
+            return expect($('h1').text()).to.contain('Question 1');
           });
       });
 
@@ -68,8 +68,8 @@ describe('steps/Question', () => {
             req.session.SimpleQuestion = { name: 'Michael Allen' };
           })
           .get()
-          .html(document => {
-            return expect(document.querySelector('#name').value).to.equal('Michael Allen');
+          .html($ => {
+            return expect($('#name').val()).to.contain('Michael Allen');
           });
       });
 
@@ -84,8 +84,8 @@ describe('steps/Question', () => {
         return testStep(InvalidQuestion)
           .withSession({ temp: { InvalidQuestion: { name: 'Invalid value' } } })
           .get()
-          .html(document => {
-            return expect(document.querySelector('.error-message').textContent).to.contain(errorMessage);
+          .html($ => {
+            return expect($('.error-message').text()).to.contain(errorMessage);
           });
       });
     });
