@@ -1,4 +1,4 @@
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const { testStep } = require('test/util/supertest');
 const Page = require('lib/vendor/one-per-page/src/steps/Page');
 const requireSession = require('lib/vendor/one-per-page/src/session/requireSession');
