@@ -11,7 +11,7 @@ const { RequestBoundJourney } = require('lib/vendor/one-per-page/src/flow');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-function testApp(views = []) {
+function testApp() {
   const app = express();
 
   const viewsDirs = [
