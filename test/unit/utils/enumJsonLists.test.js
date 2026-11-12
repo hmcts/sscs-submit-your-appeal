@@ -1,4 +1,3 @@
-
 const { expect } = require('chai');
 const sinon = require('sinon');
 const superagent = require('superagent');

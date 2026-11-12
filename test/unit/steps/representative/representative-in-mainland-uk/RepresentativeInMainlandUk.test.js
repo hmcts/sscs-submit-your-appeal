@@ -8,7 +8,7 @@ const sinon = require('sinon');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const benefitTypes = require('steps/start/benefit-type/types');
 const config = require('config');
-const { text } = require('@hmcts/one-per-page/forms');
+const { text } = require('lib/vendor/one-per-page/forms');
 
 describe('RepresentativeInMainlandUk.js', () => {
   let representativeInMainlandUk = null;

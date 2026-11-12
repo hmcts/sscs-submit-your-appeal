@@ -4,12 +4,12 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { text, object } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
 const logger = require('logger');
 

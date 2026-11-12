@@ -70,7 +70,8 @@ module.exports = defineConfig({
   use: {
     actionTimeout: 30000,
     navigationTimeout: 30000,
-    baseURL: process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
+    baseURL:
+      process.env.TEST_URL || 'https://benefit-appeal.aat.platform.hmcts.net/',
     trace: 'on-first-retry',
     screenshot: { mode: 'only-on-failure', fullPage: true },
     headless: process.env.SHOW_BROWSER_WINDOW !== 'true',

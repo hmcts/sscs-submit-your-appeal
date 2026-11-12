@@ -1,5 +1,3 @@
-
-
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const { expect } = require('test/util/chai');
 const paths = require('paths');

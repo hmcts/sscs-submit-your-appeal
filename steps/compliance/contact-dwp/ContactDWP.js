@@ -1,4 +1,4 @@
-const { ExitPoint } = require('@hmcts/one-per-page');
+const { ExitPoint } = require('lib/vendor/one-per-page');
 const { getBenefitCode } = require('utils/stringUtils');
 const paths = require('paths');
 const { isIba } = require('utils/benefitTypeUtils');

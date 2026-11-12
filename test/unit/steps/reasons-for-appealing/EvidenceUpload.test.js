@@ -24,7 +24,7 @@ describe('EvidenceUpload.js', () => {
     objectStub = obj => obj;
 
     EvidenceUpload = proxyquire('steps/reasons-for-appealing/evidence-upload/EvidenceUpload', {
-      '@hmcts/one-per-page/forms': {
+      'lib/vendor/one-per-page/forms': {
         text: textStub,
         object: objectStub
       }

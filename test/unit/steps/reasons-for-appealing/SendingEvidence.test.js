@@ -16,7 +16,7 @@ describe('SendingEvidence.js', () => {
     return proxyquire(
       'steps/reasons-for-appealing/sending-evidence/SendingEvidence',
       {
-        '@hmcts/one-per-page/forms': {
+        'lib/vendor/one-per-page/forms': {
           form: sinon.stub().returns(retrieve)
         }
       }
