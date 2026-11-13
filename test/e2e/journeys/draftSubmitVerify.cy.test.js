@@ -147,7 +147,7 @@ test.describe(`${language.toUpperCase()} - Verifying data when drafts are submit
         page,
         commonContent,
         language
-      , undefined, userEmail);
+        , undefined, userEmail);
       await checkOptionAndContinueAfterSignIn(
         page,
         commonContent,

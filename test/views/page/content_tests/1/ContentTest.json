@@ -1,0 +1,10 @@
+{
+  "en": {
+    "singleKey": "Single Key",
+    "nested": {
+      "key": "Nested Key"
+    },
+    "sessionKey": "Foo is {{ session.foo }}",
+    "funcKey": "Foo is {{ foo }}"
+  }
+}

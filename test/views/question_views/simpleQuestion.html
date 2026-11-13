@@ -1,0 +1,7 @@
+<h1>Question 1</h1>
+{% if fields.name.errors %}
+  {% for error in fields.name.errors %}
+    <span class="error-message">{{ error }}</span>
+  {% endfor %}
+{% endif %}
+<input id="name" name="name" value="{{ fields.name.value | default('') }}">
