@@ -1,0 +1,8 @@
+{
+  "en": {
+    "singleKey": "Single Key",
+    "nested": {
+      "key": "Nested Key"
+    }
+  }
+}

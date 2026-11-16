@@ -1,0 +1,18 @@
+<span id="assets">{{ assets | safe }}</span>
+
+<div>
+<h1 id="title">{{ title }}</h1>
+<p id="message">{{ message }}</p>
+
+{% if nextSteps %}
+    {% for option in nextSteps %}
+        {{ option | safe }}
+    {% endfor %}
+{% endif %}
+
+{% if error %}
+    {% if settings.env == 'development' %}
+<div id="error">{{ error }}</div>
+    {% endif %}
+{% endif %}
+</div>

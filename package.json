@@ -136,6 +136,7 @@
     "@playwright/test": "^1.52.0",
     "chai": "^4.5.0",
     "chai-as-promised": "^7.1.2",
+    "domino": "^2.1.9",
     "eslint": "^9.26.0",
     "eslint-plugin-mocha": "^11.0.0",
     "fs": "^0.0.1-security",
@@ -154,7 +155,8 @@
     "sinon": "^21.0.0",
     "sinon-chai": "^3.7.0",
     "supertest": "^7.2.2",
-    "webpack-node-externals": "3.0.0"
+    "webpack-node-externals": "3.0.0",
+    "zepto-node": "^1.0.0"
   },
   "resolutions": {
     "express": "^4.22.1",
