@@ -8,6 +8,11 @@ const { goTo, RequestBoundJourney } = require('lib/vendor/one-per-page/src/flow'
 const { text, form } = require('lib/vendor/one-per-page/src/forms');
 const Joi = require('joi');
 const loadStepContent = require('lib/vendor/one-per-page/src/i18n/loadStepContent');
+const incompleteJourney = require('./fixtures/incompleteJourney.fixture');
+const completeJourney = require('./fixtures/completeJourney.fixture');
+const loopingJourney = require('./fixtures/loopingJourney.fixture.js');
+const longLoopingJourney = require('./fixtures/longLoopingJourney.fixture.js');
+const branchingJourney = require('./fixtures/branchingJourney.fixture');
 
 describe('journey/RequestBoundJourney', () => {
   it('sets itself to req.journey', () => {
@@ -61,7 +66,7 @@ describe('journey/RequestBoundJourney', () => {
           journey,
           Entry,
           Name
-        } = require('./fixtures/incompleteJourney.fixture');
+        } = incompleteJourney;
 
         const names = journey.walkTree().map(s => s.name);
         expect(names).to.eql([Entry.name, Name.name]);
@@ -74,7 +79,7 @@ describe('journey/RequestBoundJourney', () => {
         Entry,
         Name,
         CheckAnswers
-      } = require('./fixtures/completeJourney.fixture');
+      } = completeJourney;
 
       it('returns instances of the questions in the order of the flow', () => {
         const names = journey().walkTree()
@@ -94,16 +99,12 @@ describe('journey/RequestBoundJourney', () => {
 
     describe('loop protection', () => {
       it('protects against infinite loops', () => {
-        const journey = require('./fixtures/loopingJourney.fixture.js');
-
-        const tightLoop = () => journey.walkTree();
+        const tightLoop = () => loopingJourney.walkTree();
         expect(tightLoop).to.throw(/possible infinite loop/);
       });
 
       it('protects against infinite loops', () => {
-        const journey = require('./fixtures/longLoopingJourney.fixture.js');
-
-        const looseLoop = () => journey.walkTree();
+        const looseLoop = () => longLoopingJourney.walkTree();
         expect(looseLoop).to.throw(/possible infinite loop/);
       });
     });
@@ -116,7 +117,7 @@ describe('journey/RequestBoundJourney', () => {
           Entry,
           Branch,
           CheckAnswers
-        } = require('./fixtures/branchingJourney.fixture');
+        } = branchingJourney;
 
         const names = journey.walkTree().map(s => s.name);
         expect(names).to.eql([

@@ -11,12 +11,13 @@ const { RequestBoundJourney } = require('lib/vendor/one-per-page/src/flow');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-function testApp() {
+function testApp(views = []) {
   const app = express();
 
   const viewsDirs = [
-    path.resolve(__dirname, '../../test/views'),
-    path.resolve(__dirname, '../../test/steps/check-your-answers/fixtures')
+    ...views,
+    path.resolve(__dirname, '../views'),
+    path.resolve(__dirname, '../unit/lib/steps/check-your-answers/fixtures')
   ];
 
   app.set('views', viewsDirs);
@@ -120,7 +121,7 @@ class TestStepDSL {
     this.step = constructorFrom(step);
     this.body = body;
     this[_middleware] = middleware;
-    this.viewDirs = [];
+    this.viewsDirs = [];
   }
 
   static create(step) {
@@ -148,7 +149,7 @@ class TestStepDSL {
   }
 
   withViews(...viewDirs) {
-    this.viewsDirs = [...viewDirs, ...this.viewDirs];
+    this.viewsDirs = [...viewDirs, ...this.viewsDirs];
     return this;
   }
 

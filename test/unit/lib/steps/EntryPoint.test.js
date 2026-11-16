@@ -8,7 +8,7 @@ describe('steps/EntryPoint', () => {
     const req = { journey: {} };
     const res = {};
     const noNextDefined = () => new class extends EntryPoint {}(req, res);
-    expect(noNextDefined).to.throw( /must implement next/);
+    expect(noNextDefined).to.throw(/must implement next/);
   });
 
   describe('GET', () => {

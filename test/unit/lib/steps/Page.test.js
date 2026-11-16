@@ -13,7 +13,7 @@ describe('Page', () => {
     });
 
     it('renders the page on GET', () => {
-      return page.get().expect(OK, '<h1>Hello, World!</h1>');
+      return page.get().expect(OK, '<h1>Hello, World!</h1>\n');
     });
 
     it('returns 405 (method not allowed) on POST', () => {
@@ -74,7 +74,7 @@ describe('Page', () => {
       return testStep(page)
         .withSession({ foo: 'Foo', bar: 'Bar' })
         .get()
-        .expect(OK, 'Foo Bar');
+        .expect(OK, 'Foo Bar\n');
     });
 
     it('has access to arbitrary functions on the step', () => {
@@ -95,7 +95,7 @@ describe('Page', () => {
 
       return testStep(page)
         .get()
-        .expect(OK, 'Foo Bar');
+        .expect(OK, 'Foo Bar\n');
     });
   });
 
@@ -141,6 +141,6 @@ describe('Page', () => {
     const page = class TestPage extends Page {};
     return testStep(page)
       .get()
-      .expect(OK, 'Default Page template');
+      .expect(OK, 'Default Page template\n');
   });
 });
