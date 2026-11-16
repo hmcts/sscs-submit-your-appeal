@@ -144,6 +144,12 @@ describe('DatesCantAttend.js', () => {
       const values = datesCantAttend.values();
       expect(values).to.eql({});
     });
+
+    it('should handle undefined items gracefully in values()', () => {
+      datesCantAttend.fields = {};
+      const values = datesCantAttend.values();
+      expect(values).to.eql({});
+    });
   });
 
   describe('next()', () => {

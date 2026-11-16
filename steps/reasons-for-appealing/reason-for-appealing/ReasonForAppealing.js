@@ -130,7 +130,11 @@ class ReasonForAppealing extends SaveToDraftStoreAddAnother {
       sessionLanguage
     );
 
-    const reasons = this.fields.items.value.map(item => {
+    const items = this.fields.items && Array.isArray(this.fields.items.value)
+      ? this.fields.items.value
+      : [];
+
+    const reasons = items.map(item => {
       return {
         whatYouDisagreeWith:
           item.whatYouDisagreeWith && item.whatYouDisagreeWith !== ' '

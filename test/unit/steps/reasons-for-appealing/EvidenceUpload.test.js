@@ -98,4 +98,40 @@ describe('EvidenceUpload.js', () => {
       i18next.changeLanguage('en');
     });
   });
+
+  describe('values()', () => {
+    it('returns formatted evidences when items exist', () => {
+      evidenceUpload.fields = {
+        items: {
+          value: [
+            {
+              link: 'http://example.com/file1.pdf',
+              uploadEv: 'file1.pdf',
+              hashToken: 'token123'
+            },
+            {
+              link: 'http://example.com/file2.pdf',
+              uploadEv: 'file2.pdf'
+            }
+          ]
+        }
+      };
+
+      const result = evidenceUpload.values();
+      expect(result.reasonsForAppealing.evidences.length).to.equal(2);
+      expect(result.reasonsForAppealing.evidences[0].fileName).to.equal('file1.pdf');
+      expect(result.reasonsForAppealing.evidences[0].hashToken).to.equal('token123');
+      expect(result.reasonsForAppealing.evidences[1].fileName).to.equal('file2.pdf');
+    });
+
+    it('returns empty evidences array when items is undefined or empty', () => {
+      evidenceUpload.fields = {};
+      const result = evidenceUpload.values();
+      expect(result).to.eql({
+        reasonsForAppealing: {
+          evidences: []
+        }
+      });
+    });
+  });
 });

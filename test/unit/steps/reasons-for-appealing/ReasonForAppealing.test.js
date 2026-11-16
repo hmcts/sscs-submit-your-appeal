@@ -147,6 +147,16 @@ describe('ReasonForAppealing.js', () => {
         }
       });
     });
+
+    it('should handle undefined items gracefully in values()', () => {
+      reasonForAppealing.fields = {};
+      const values = reasonForAppealing.values();
+      expect(values).to.eql({
+        reasonsForAppealing: {
+          reasons: []
+        }
+      });
+    });
   });
 
   describe('next()', () => {

@@ -98,6 +98,26 @@ describe('steps/AddAnother', () => {
     pathTest('/add-a-text/item-0/', 'edit');
     pathTest('/add-a-text/item-0/delete', 'delete');
     pathTest('/add-a-text/item-0/delete/', 'delete');
+
+    it('returns list if req.currentStep is a different step', () => {
+      const url = '/other-step/item-0';
+      const params = ['0'];
+      const req = { url, params, journey: {}, currentStep: { name: 'OtherStep' } };
+      const res = {};
+      const addAnother = new AddAText(req, res);
+      expect(addAnother.mode).to.eql('list');
+      expect(addAnother.index).to.eql(-1);
+    });
+
+    it('returns edit if req.currentStep is this step', () => {
+      const url = '/add-a-text/item-0';
+      const params = ['0'];
+      const req = { url, params, journey: {}, currentStep: { name: 'AddAText' } };
+      const res = {};
+      const addAnother = new AddAText(req, res);
+      expect(addAnother.mode).to.eql('edit');
+      expect(addAnother.index).to.eql(0);
+    });
   });
 
   describe('#index', () => {
