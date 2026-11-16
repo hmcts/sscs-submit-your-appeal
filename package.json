@@ -87,6 +87,7 @@
     "express-nunjucks": "^3.1.2",
     "express-session": "^1.19.0",
     "formidable": "^3.5.4",
+    "glob": "^14.0.2",
     "globals": "^17.0.0",
     "govuk-frontend": "^5.14.0",
     "graceful-fs": "^4.2.11",
