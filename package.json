@@ -64,7 +64,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
     "@hmcts/cookie-manager": "^1.0.0",
-    "@hmcts/div-idam-express-middleware": "^7.0.1",
+    "@hmcts/div-idam-express-middleware": "^8.0.0",
     "@hmcts/nodejs-healthcheck": "^1.8.6",
     "@hmcts/one-per-page": "^5.4.0",
     "@hmcts/properties-volume": "^1.2.0",
