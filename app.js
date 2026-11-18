@@ -6,8 +6,17 @@
   try {
     const i18next = require('i18next');
 
+    const ALLOWED_LANGUAGES = ['en', 'cy'];
+    const DEFAULT_LANG = 'en';
+
+    const sanitizeLanguage = lng => {
+      if (typeof lng !== 'string' || !lng) return DEFAULT_LANG;
+      const primary = lng.split('-')[0].toLowerCase();
+      return ALLOWED_LANGUAGES.includes(primary) ? primary : DEFAULT_LANG;
+    };
+
     // Store any existing value
-    i18next._language = i18next.language || 'en';
+    i18next._language = sanitizeLanguage(i18next.language);
 
     // Define an accessor so reads always get the primary subtag and writes
     // record the raw value on _language. This prevents later code from setting
@@ -16,11 +25,11 @@
       configurable: true,
       enumerable: true,
       get() {
-        const raw = this._language || 'en';
-        return (typeof raw === 'string' && raw.length > 0) ? raw.split('-')[0] : 'en';
+        const raw = this._language || DEFAULT_LANG;
+        return sanitizeLanguage(raw);
       },
       set(val) {
-        this._language = val;
+        this._language = sanitizeLanguage(val);
       }
     });
 
@@ -28,8 +37,8 @@
     const origChange = i18next.changeLanguage;
 
     i18next.changeLanguage = function(lng, normalizeLanguage) {
-      const normalized = (typeof lng === 'string' && lng.length > 0) ? lng.split('-')[0] : 'en';
-      this._language = typeof lng === 'string' ? lng : this._language || 'en';
+      const normalized = sanitizeLanguage(lng);
+      this._language = normalized;
       if (typeof origChange === 'function') {
         return origChange.call(i18next, normalized, normalizeLanguage);
       }

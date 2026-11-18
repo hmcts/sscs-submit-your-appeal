@@ -55,11 +55,13 @@ function resolveIfRelative(p, callerDir) {
 function requireLocalized(basePath, lang) {
   const callerDir = getCallerDir();
   const tried = [];
-  if (lang) {
+  // Ensure lang is a safe alphanumeric language tag (e.g. 'en', 'cy', 'en-GB')
+  const isSafeLang = typeof lang === 'string' && /^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]+)?$/.test(lang);
+  if (isSafeLang) {
     tried.push(`${basePath}.${lang}`);
-  }
-  if (lang && lang.includes('-')) {
-    tried.push(`${basePath}.${lang.split('-')[0]}`);
+    if (lang.includes('-')) {
+      tried.push(`${basePath}.${lang.split('-')[0]}`);
+    }
   }
   tried.push(`${basePath}.${DEFAULT_LANG}`);
 

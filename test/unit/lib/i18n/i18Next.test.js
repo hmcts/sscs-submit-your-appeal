@@ -101,6 +101,32 @@ describe('i18n/i18Next', () => {
       });
     });
 
+    it('falls back to english if req.query.lng is invalid or attempts path traversal', () => {
+      const req = {
+        i18Next: { changeLanguage: sinon.stub(), language: 'en' },
+        cookies: {},
+        query: { lng: '../../something' }
+      };
+      const res = { cookie: sinon.stub() };
+      return executeMiddleware({ req, res }).then(() => {
+        expect(req.i18Next.changeLanguage).calledWith('en');
+        expect(res.cookie).calledWith('i18n', 'en');
+      });
+    });
+
+    it('falls back to english if req.query.lng is an unsupported language', () => {
+      const req = {
+        i18Next: { changeLanguage: sinon.stub(), language: 'en' },
+        cookies: {},
+        query: { lng: 'fr' }
+      };
+      const res = { cookie: sinon.stub() };
+      return executeMiddleware({ req, res }).then(() => {
+        expect(req.i18Next.changeLanguage).calledWith('en');
+        expect(res.cookie).calledWith('i18n', 'en');
+      });
+    });
+
     it('sets the current language i18n cookie is present', () => {
       const req = {
         i18Next: { changeLanguage: sinon.stub(), language: 'en' },
@@ -109,6 +135,18 @@ describe('i18n/i18Next', () => {
       const res = { cookie: sinon.stub() };
       return executeMiddleware({ req, res }).then(() => {
         expect(req.i18Next.changeLanguage).calledWith('cy');
+      });
+    });
+
+    it('falls back to english if i18n cookie is invalid or attempts path traversal', () => {
+      const req = {
+        i18Next: { changeLanguage: sinon.stub(), language: 'en' },
+        cookies: { i18n: '../../etc/passwd' }
+      };
+      const res = { cookie: sinon.stub() };
+      return executeMiddleware({ req, res }).then(() => {
+        expect(req.i18Next.changeLanguage).calledWith('en');
+        expect(res.cookie).calledWith('i18n', 'en');
       });
     });
 
