@@ -75,7 +75,6 @@
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "config": "^4.0.0",
-    "connect-redis": "^9.0.0",
     "cookie-parser": "^1.4.7",
     "cookies": "^0.9.1",
     "copy-webpack-plugin": "^13.0.1",

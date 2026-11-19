@@ -4392,16 +4392,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"connect-redis@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "connect-redis@npm:9.0.0"
-  peerDependencies:
-    express-session: ">=1"
-    redis: ">=5"
-  checksum: 10/da5c6304a33c54128f105f5022f515fbe651ae0b28e194f2ba8b5d9def6cf59a690bb5f99715a6e69d4ef8f27273be4cd59608727cecf0e42d6cbb0fe9022d6a
-  languageName: node
-  linkType: hard
-
 "console-control-strings@npm:^1.1.0":
   version: 1.1.0
   resolution: "console-control-strings@npm:1.1.0"
@@ -11435,7 +11425,6 @@ __metadata:
     chalk: "npm:^4.1.2"
     clean-webpack-plugin: "npm:^4.0.0"
     config: "npm:^4.0.0"
-    connect-redis: "npm:^9.0.0"
     cookie-parser: "npm:^1.4.7"
     cookies: "npm:^0.9.1"
     copy-webpack-plugin: "npm:^13.0.1"
