@@ -1,5 +1,5 @@
-const { Interstitial } = require('@hmcts/one-per-page/steps');
-const { goTo } = require('@hmcts/one-per-page/flow');
+const { Interstitial } = require('lib/vendor/one-per-page/steps');
+const { goTo } = require('lib/vendor/one-per-page/flow');
 const paths = require('paths');
 const { isIba } = require('utils/benefitTypeUtils');
 

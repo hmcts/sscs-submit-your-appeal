@@ -1,5 +1,3 @@
-
-
 const ReasonForAppealing = require('steps/reasons-for-appealing/reason-for-appealing/ReasonForAppealing');
 const { expect } = require('test/util/chai');
 const paths = require('paths');
@@ -146,6 +144,16 @@ describe('ReasonForAppealing.js', () => {
       expect(values).to.eql({
         reasonsForAppealing: {
           reasons: reasonForAppealing.fields.items.value
+        }
+      });
+    });
+
+    it('should handle undefined items gracefully in values()', () => {
+      reasonForAppealing.fields = {};
+      const values = reasonForAppealing.values();
+      expect(values).to.eql({
+        reasonsForAppealing: {
+          reasons: []
         }
       });
     });

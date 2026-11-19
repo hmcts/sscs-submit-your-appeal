@@ -1,6 +1,6 @@
-const { goTo, branch } = require('@hmcts/one-per-page/flow');
-const { form, date, convert } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo, branch } = require('lib/vendor/one-per-page/flow');
+const { form, date, convert } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');

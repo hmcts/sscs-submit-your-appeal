@@ -22,7 +22,6 @@ describe('PostcodeChecker.js', () => {
       config: configStub
     });
 
-
     getStub.returns(requireStub);
   }
 
