@@ -1,6 +1,6 @@
-const { redirectTo, branch } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo, branch } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
@@ -15,7 +15,9 @@ class HearingAvailability extends SaveToDraftStore {
     return form({
       scheduleHearing: text.joi(
         this.content.fields.scheduleHearing.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

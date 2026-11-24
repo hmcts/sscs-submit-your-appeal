@@ -1,0 +1,16 @@
+<h1>Question 1</h1>
+
+<div>
+
+  {% if fields.name.errors %}
+    <span class="error-message">
+      {{ fields.name.errors | safe}}
+    </span>
+  {% endif %}
+
+  {{ fields.name }}
+  <input name="{{ fields.name.name }}"
+         value="{{ fields.name.value }}"
+         id="{{ fields.name.id }}"
+         type="text">
+</div>

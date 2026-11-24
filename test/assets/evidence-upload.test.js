@@ -1,4 +1,3 @@
-
 const { expect, sinon } = require('test/util/chai');
 const jQuery = require('jquery');
 const { JSDOM } = require('jsdom');
@@ -7,7 +6,6 @@ const { JSDOM } = require('jsdom');
 /* eslint-disable no-multi-assign */
 /* eslint-disable global-require */
 /* eslint-disable no-empty-function */
-
 
 describe('evidence upload', () => {
   let EvidenceUpload;

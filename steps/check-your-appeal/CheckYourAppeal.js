@@ -1,12 +1,12 @@
-const { section } = require('@hmcts/one-per-page/checkYourAnswers');
+const { section } = require('lib/vendor/one-per-page/checkYourAnswers');
 const {
   SaveToDraftStoreCYA
 } = require('middleware/draftAppealStoreMiddleware');
 const {
   removeRevertInvalidSteps
 } = require('middleware/draftAppealStoreMiddleware');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { goTo, action, redirectTo } = require('@hmcts/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { goTo, action, redirectTo } = require('lib/vendor/one-per-page/flow');
 const { lastName } = require('utils/regex');
 const { get } = require('lodash');
 const sections = require('steps/check-your-appeal/sections');

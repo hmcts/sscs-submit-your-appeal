@@ -1,7 +1,7 @@
 const {
   AuthAndRestoreAllDraftsState
 } = require('middleware/draftAppealStoreMiddleware');
-const { goTo } = require('@hmcts/one-per-page/flow');
+const { goTo } = require('lib/vendor/one-per-page/flow');
 const paths = require('paths');
 
 class Authenticated extends AuthAndRestoreAllDraftsState {
@@ -15,7 +15,9 @@ class Authenticated extends AuthAndRestoreAllDraftsState {
 
   handler(req, res, next) {
     if (req.method === 'GET') {
-      res.redirect(req.session.ccdCaseId ? paths.checkYourAppeal : paths.drafts);
+      res.redirect(
+        req.session.ccdCaseId ? paths.checkYourAppeal : paths.drafts
+      );
     } else {
       super.handler(req, res, next);
     }

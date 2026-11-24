@@ -4,12 +4,12 @@
 /* eslint-disable complexity */
 /* eslint-disable arrow-body-style */
 
-const { redirectTo } = require('@hmcts/one-per-page/flow');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { text, object } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const {
   SaveToDraftStoreAddAnother
 } = require('middleware/draftAppealStoreMiddleware');
-const { text, object } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 const config = require('config');
 const logger = require('logger');
 
@@ -348,7 +348,11 @@ class EvidenceUpload extends SaveToDraftStoreAddAnother {
   }
 
   values() {
-    const evidences = this.fields.items.value.map(file => {
+    const items = this.fields.items && Array.isArray(this.fields.items.value)
+      ? this.fields.items.value
+      : [];
+
+    const evidences = items.map(file => {
       if (file.hashToken) {
         return {
           url: file.link,

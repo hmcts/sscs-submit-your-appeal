@@ -1,6 +1,11 @@
-const { Question, EntryPoint, Redirect, Page } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { AddAnother } = require('@hmcts/one-per-page/steps');
+const {
+  Question,
+  EntryPoint,
+  Redirect,
+  Page
+} = require('lib/vendor/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { AddAnother } = require('lib/vendor/one-per-page/steps');
 const request = require('superagent');
 const config = require('config');
 const Base64 = require('js-base64').Base64;
@@ -10,7 +15,7 @@ const { maskNino } = require('utils/stringUtils');
 /* eslint-disable max-lines */
 const {
   CheckYourAnswers: CYA
-} = require('@hmcts/one-per-page/checkYourAnswers');
+} = require('lib/vendor/one-per-page/checkYourAnswers');
 
 let allowSaveAndReturn =
   config.get('features.allowSaveAndReturn.enabled') === 'true';
@@ -20,7 +25,7 @@ const idam = require('middleware/idam');
 const logger = require('logger');
 const {
   activeProperty
-} = require('@hmcts/one-per-page/src/session/sessionShims');
+} = require('lib/vendor/one-per-page/src/session/sessionShims');
 
 const logPath = 'draftAppealStoreMiddleware.js';
 

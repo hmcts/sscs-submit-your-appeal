@@ -45,7 +45,9 @@ describe('language-preference.js', () => {
   });
 
   it('should return true for startLanguagePreferenceToggle when pathname is /language-preference', () => {
-    const { window } = new JSDOM('', { url: 'http://localhost/language-preference' });
+    const { window } = new JSDOM('', {
+      url: 'http://localhost/language-preference'
+    });
     global.window = window;
     const result = LanguagePreferenceToggle.startLanguagePreferenceToggle();
     expect(result).to.be.true;

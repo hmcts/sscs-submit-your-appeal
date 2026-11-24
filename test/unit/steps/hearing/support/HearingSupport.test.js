@@ -31,7 +31,7 @@ describe('HearingSupport.js', () => {
     let fields = null;
     let field = null;
 
-    before(() => {
+    beforeEach(() => {
       fields = hearingSupport.form.fields;
     });
 
@@ -56,7 +56,7 @@ describe('HearingSupport.js', () => {
   });
 
   describe('values()', () => {
-    before(() => {
+    beforeEach(() => {
       hearingSupport.fields.arrangements.value = userAnswer.NO;
     });
 

@@ -1,7 +1,7 @@
-const { branch } = require('@hmcts/one-per-page');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { branch } = require('lib/vendor/one-per-page');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const Joi = require('joi');
 const paths = require('paths');
@@ -16,7 +16,9 @@ class HearingSupport extends SaveToDraftStore {
     return form({
       arrangements: text.joi(
         this.content.fields.arrangements.error.required,
-        Joi.string().valid([userAnswer.YES, userAnswer.NO]).required()
+        Joi.string()
+          .valid(...[userAnswer.YES, userAnswer.NO])
+          .required()
       )
     });
   }

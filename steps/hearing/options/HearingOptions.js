@@ -1,12 +1,12 @@
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
-const { redirectTo } = require('@hmcts/one-per-page/flow');
-const { form, object, text, bool } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { redirectTo } = require('lib/vendor/one-per-page/flow');
+const { form, object, text, bool } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
+const { errorFor } = require('lib/vendor/one-per-page/src/forms/validator');
 const sections = require('steps/check-your-appeal/sections');
 const i18next = require('i18next');
 const { setCYAValue } = require('steps/hearing/options/cyaHearingOptionsUtils');
 const paths = require('paths');
-const { errorFor } = require('@hmcts/one-per-page/src/forms/validator');
 const {
   emptyTelephoneValidation,
   invalidTelephoneValidation,
@@ -111,8 +111,14 @@ class HearingOptions extends SaveToDraftStore {
 
   get cyaOptions() {
     const selectOptions = this.fields.selectOptions.value;
-    const sessionLanguage = i18next.language;
-    const cyaContent = require(`./content.${sessionLanguage}`).cya;
+    const sessionLanguage = i18next.language || 'en';
+
+    const requireContent = require('utils/requireContent');
+
+    const cyaContent = requireContent.requireLocalized(
+      './content',
+      sessionLanguage
+    ).cya;
 
     const setRequestedOrNotRequested = value =>
       (value ? cyaContent.requested : cyaContent.notRequested);

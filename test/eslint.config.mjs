@@ -18,7 +18,8 @@ export default defineConfig([
     'test/e2e/page-objects/steps.js',
     'test/unit/coverage/',
     '!test'
-  ]), {
+  ]),
+  {
     extends: compat.extends('@hmcts/eslint-config/test'),
 
     languageOptions: {
@@ -44,7 +45,8 @@ export default defineConfig([
       'linebreak-style': ['warn', 'unix'],
 
       'object-curly-newline': [
-        'error', {
+        'error',
+        {
           consistent: true
         }
       ],
@@ -53,7 +55,8 @@ export default defineConfig([
       'new-cap': 'off',
 
       'max-len': [
-        'error', {
+        'error',
+        {
           code: 200
         }
       ],

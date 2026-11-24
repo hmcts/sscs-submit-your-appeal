@@ -1,4 +1,3 @@
-
 const { expect } = require('test/util/chai');
 const GetCaseData = require('../e2e/page-objects/tribunals-case-api/getCaseData.js');
 

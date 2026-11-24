@@ -215,7 +215,8 @@ describe('AppellantInMainlandUk.js', () => {
       const instance = new AppellantInMainlandUk({
         journey: {
           steps: {
-            AppellantContactDetails: paths.identity.enterAppellantContactDetails,
+            AppellantContactDetails:
+              paths.identity.enterAppellantContactDetails,
             AppellantInternationalContactDetails:
               paths.identity.enterAppellantInternationalContactDetails
           }

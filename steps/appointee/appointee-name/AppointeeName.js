@@ -1,6 +1,6 @@
-const { goTo } = require('@hmcts/one-per-page');
-const { form, text } = require('@hmcts/one-per-page/forms');
-const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
+const { goTo } = require('lib/vendor/one-per-page');
+const { form, text } = require('lib/vendor/one-per-page/forms');
+const { answer } = require('lib/vendor/one-per-page/checkYourAnswers');
 const { SaveToDraftStore } = require('middleware/draftAppealStoreMiddleware');
 const { firstName, lastName } = require('utils/regex');
 const sections = require('steps/check-your-appeal/sections');
@@ -31,9 +31,10 @@ class AppointeeName extends SaveToDraftStore {
     const fields = this.content.fields;
     const validTitles = titlesList.map(title => title.value);
     return form({
+      // Spread the titles array so .valid receives variadic args (Joi v18+)
       title: text
         .joi(fields.title.error.required, Joi.string().required())
-        .joi(fields.title.error.invalid, Joi.string().valid(validTitles)),
+        .joi(fields.title.error.invalid, Joi.string().valid(...validTitles)),
       firstName: text
         .joi(fields.firstName.error.required, Joi.string().required())
         .joi(

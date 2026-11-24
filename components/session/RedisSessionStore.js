@@ -1,5 +1,5 @@
 const session = require('express-session');
-const { createClient, createCluster } = require('redis');
+const redis = require('redis');
 
 const DEFAULT_TTL_SECONDS = 86400;
 const MILLISECONDS_PER_SECOND = 1000;
@@ -21,7 +21,7 @@ class RedisSessionStore extends session.Store {
     const cluster = isClusterEnabled(options.cluster);
 
     if (cluster) {
-      this.client = createCluster({
+      this.client = redis.createCluster({
         rootNodes: [
           {
             url: options.url
@@ -36,7 +36,7 @@ class RedisSessionStore extends session.Store {
         }
       });
     } else {
-      this.client = createClient({
+      this.client = redis.createClient({
         url: options.url,
         socket: {
           tls: redisUrl.protocol === 'rediss:'
