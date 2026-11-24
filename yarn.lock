@@ -1622,13 +1622,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^8.0.0":
-  version: 8.0.8
-  resolution: "@babel/runtime@npm:8.0.8"
-  checksum: 10/11aef038d43291323bdcb6bb30e37c27b475b53d465008b93dd73e7d1e12b00db49ca2f21467be703f17749ad4361ee8d6f7f14c592a15ad9fee68715e7e0536
-  languageName: node
-  linkType: hard
-
 "@babel/template@npm:^7.29.7":
   version: 7.29.7
   resolution: "@babel/template@npm:7.29.7"
@@ -6844,17 +6837,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^25.8.5":
-  version: 25.8.5
-  resolution: "i18next@npm:25.8.5"
-  dependencies:
-    "@babel/runtime": "npm:^7.28.4"
+"i18next@npm:26.3.4":
+  version: 26.3.4
+  resolution: "i18next@npm:26.3.4"
   peerDependencies:
-    typescript: ^5
+    typescript: ^5 || ^6
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/4762e46ca39d679332f1e9ebb31bd4b70ea74018a2dadef79e74d12ab4824c0ac3043bc2a4e3fc1eaf21b333bf79ad6dd97c3861e22811c48f80f02d4352efbc
+  checksum: 10/133ba9a5f76c1d57337f0dcc1b0ab0ff987714a1863813dcc95024531074c6d92603a19b0bac9c16a6b04c734742d8d098da0c222bef5a9562bdde231ea4b221
   languageName: node
   linkType: hard
 
@@ -11450,7 +11441,7 @@ __metadata:
     html-entities: "npm:^2.6.0"
     http-status-codes: "npm:^2.3.0"
     husky: "npm:^9.1.7"
-    i18next: "npm:^25.8.5"
+    i18next: "npm:26.3.4"
     instant-mocha: "npm:^1.5.3"
     joi: "npm:^18.3.1"
     jquery: "npm:^3.7.1"
