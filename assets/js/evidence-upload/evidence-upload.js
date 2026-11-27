@@ -9,9 +9,11 @@ class EvidenceUpload {
     this.elContainer = elContainer;
     this.formId = 'evidence-upload-form';
     this.elId = 'uploadEv';
+    this.chooseFileButtonId = `${this.elId}-choose-file`;
     this.listToRead = '.govuk-summary-list';
     this.doTheUpload = this.doTheUpload.bind(this);
     this.interceptSubmission = this.interceptSubmission.bind(this);
+    this.openFilePicker = this.openFilePicker.bind(this);
 
     fieldTemplates.getExported(this.setup.bind(this));
     errorSummary.getExported((error, components) => {
@@ -40,10 +42,10 @@ class EvidenceUpload {
       $('html').attr('lang') === 'en' ? 'Choose file' : 'Dewis ffeil';
     // give it the time to finish painting the dom...
     window.setTimeout(() => {
-      if (components && components.fileupload) {
+      if (components && components.fileuploadButton) {
         this.numberForNextItem = this.getNumberForNextItem();
         this.formAction = `/evidence-upload/item-${this.numberForNextItem}`;
-        this.fileupload = components.fileupload(
+        this.fileupload = components.fileuploadButton(
           {
             id: this.elId,
             name: `item.${this.elId}`,
@@ -110,14 +112,16 @@ class EvidenceUpload {
         });
       }
 
-      $('label').after(
+      $(`#${this.chooseFileButtonId}`).after(
         `<span id="${errorId}" class="govuk-error-message">${errors[0].errors[0]}</span>`
       );
     }
   }
   hideUnnecessaryMarkup() {
     $('.add-another-add-link').hide();
-    $(`#${this.elId}`).hide();
+  }
+  openFilePicker() {
+    $(`#${this.formId} #${this.elId}`).trigger('click');
   }
   interceptSubmission(e) {
     if ($('.noItems').length) {
@@ -172,11 +176,13 @@ class EvidenceUpload {
   }
   attachEventListeners() {
     $(`#${this.elId}`).on('change', this.doTheUpload);
-    $('.govuk-button').on('click', this.interceptSubmission);
+    $(`#${this.chooseFileButtonId}`).on('click', this.openFilePicker);
+    $('.govuk-button').not(`#${this.chooseFileButtonId}`).on('click', this.interceptSubmission);
   }
   detachEventListeners() {
     $(`#${this.elId}`).off('change', this.doTheUpload);
-    $('.govuk-button').off('click', this.interceptSubmission);
+    $(`#${this.chooseFileButtonId}`).off('click', this.openFilePicker);
+    $('.govuk-button').not(`#${this.chooseFileButtonId}`).off('click', this.interceptSubmission);
   }
   appendForm() {
     const markup = this.buildForm();

@@ -23,7 +23,7 @@ describe('evidence upload', () => {
         <label for="uploadEv">Label</label>
         <input type="file" id="uploadEv" name="uploadEv"/>
     </div>`;
-  const jsdom = new JSDOM(`<body>${content}</body>`);
+  const jsdom = new JSDOM(`<html lang="en"><body>${content}</body></html>`);
 
   const { window } = jsdom;
   const { document } = window;
@@ -91,6 +91,12 @@ describe('evidence upload', () => {
   });
   it('#hideUnnecessaryMarkup will do just that', () => {
     expect($('.add-another-add-link').css('display')).to.be.equal('none');
+  });
+  it('clicking the choose file button opens the file picker', () => {
+    const clickSpy = sinon.spy();
+    $('#evidence-upload-form #uploadEv').on('click', clickSpy);
+    $('#uploadEv-choose-file').trigger('click');
+    expect(clickSpy).to.have.been.calledOnce;
   });
   it('#destroy will remove the additional markup', () => {
     evidenceUpload.destroy();
