@@ -1,9 +1,9 @@
+const { expect } = require('@playwright/test');
+
 async function signOut(I, language) {
-  if (language === 'en') {
-    await I.getByText('Sign Out').first().click();
-  } else {
-    await I.getByText('Allgofnodi').first().click();
-  }
+  const signOutLink = I.getByRole('link', { name: language === 'en' ? 'Sign Out' : 'Allgofnodi' });
+  await signOutLink.first().click({ noWaitAfter: true });
+  await expect(signOutLink).toHaveCount(0, { timeout: 60000 });
 }
 
 async function navigateToSignOut(I) {
