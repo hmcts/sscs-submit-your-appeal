@@ -298,3 +298,11 @@
     <input name="{{ field.name }}" id="{{ field.id }}" type="file" accept="{{ acceptFileTypes }}"  />
   </div>
 {% endmacro %}
+
+{% macro fileuploadButton(field, buttonText="Choose file", acceptFileTypes="") %}
+  <div class="govuk-form-group {{ errorClass(field) }}">
+    {{ errorsFor(field) }}
+    <button type="button" id="{{ field.id }}-choose-file" class="govuk-button govuk-button--secondary">{{ buttonText }}</button>
+    <input name="{{ field.name }}" id="{{ field.id }}" type="file" accept="{{ acceptFileTypes }}" hidden />
+  </div>
+{% endmacro %}
